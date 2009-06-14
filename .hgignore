@@ -1,0 +1,16 @@
+syntax: glob
+.hg
+*.bak
+*.suo
+
+; specific directories
+ResxEditor\*
+trash\*
+BlueBrick\obj\*
+BlueBrick\bin\Debug\*
+
+; specific files
+BlueBrick\app.config
+BlueBrick\BlueBrick.csproj.user
+BlueBrick\bin\Release\BlueBrick*
+BlueBrick.resources.dll
