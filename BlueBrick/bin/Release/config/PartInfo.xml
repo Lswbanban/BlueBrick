@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<info>
+	<!-- Name of the colors in different languages, based on the LDRAW color number -->
+	<ColorList>
+		<color id="0">
+			<en>Black</en>
+			<fr>Noir</fr>
+		</color>
+		<color id="1">
+			<en>Blue</en>
+			<fr>Bleu</fr>
+		</color>
+		<color id="2">
+			<en>Green</en>
+			<fr>Vert</fr>
+		</color>
+		<color id="3">
+			<en>Teal</en>
+			<fr>Teal</fr>
+		</color>
+		<color id="4">
+			<en>Red</en>
+			<fr>Rouge</fr>
+		</color>
+		<color id="5">
+			<en>Dark Pink</en>
+			<fr>Rose foncé</fr>
+		</color>
+		<color id="6">
+			<en>Brown</en>
+			<fr>Marron</fr>
+		</color>
+		<color id="7">
+			<en>Gray</en>
+			<fr>Gris</fr>
+		</color>
+		<color id="8">
+			<en>Dark Gray</en>
+			<fr>Gris foncé</fr>
+		</color>
+		<color id="9">
+			<en>Light Blue</en>
+			<fr>Bleu clair</fr>
+		</color>
+		<color id="10">
+			<en>Bright Green</en>
+			<fr>Vert brillant</fr>
+		</color>
+		<color id="11">
+			<en>Turquoise</en>
+			<fr>Turquoise</fr>
+		</color>
+		<color id="12">
+			<en>Light Red</en>
+			<fr>Rouge clair</fr>
+		</color>
+		<color id="13">
+			<en>Pink</en>
+			<fr>Rose</fr>
+		</color>
+		<color id="14">
+			<en>Yellow</en>
+			<fr>Jaune</fr>
+		</color>
+		<color id="15">
+			<en>White</en>
+			<fr>Blanc</fr>
+		</color>
+		<color id="17">
+			<en>Light Green</en>
+			<fr>Vert clair</fr>
+		</color>
+		<color id="18">
+			<en>Light Yellow</en>
+			<fr>Jaune clair</fr>
+		</color>
+		<color id="19">
+			<en>Tan</en>
+			<fr>Beige</fr>
+		</color>
+		<color id="20">
+			<en>Light Violet</en>
+			<fr>Violet clair</fr>
+		</color>
+		<color id="21">
+			<en>Phosphor White</en>
+			<fr>Blanc phosphorescent</fr>
+		</color>
+		<color id="22">
+			<en>Violet</en>
+			<fr>Violet</fr>
+		</color>
+		<color id="23">
+			<en>Violet Blue</en>
+			<fr>Bleu-Violet</fr>
+		</color>
+		<color id="25">
+			<en>Orange</en>
+			<fr>Orange</fr>
+		</color>
+		<color id="26">
+			<en>Magenta</en>
+			<fr>Magenta</fr>
+		</color>
+		<color id="27">
+			<en>Lime</en>
+			<fr>Vert citron</fr>
+		</color>
+		<color id="28">
+			<en>Dark Tan</en>
+			<fr>Beige foncé</fr>
+		</color>
+		<color id="29">
+			<en>Light Purple</en>
+			<fr>Pourpre clair</fr>
+		</color>		
+		<color id="33">
+			<en>Trans Blue</en>
+			<fr>Bleu transparent</fr>
+		</color>
+		<color id="34">
+			<en>Trans Green</en>
+			<fr>Vert transparent</fr>
+		</color>
+		<color id="36">
+			<en>Trans Red</en>
+			<fr>Rouge transparent</fr>
+		</color>
+		<color id="37">
+			<en>Trans Violet</en>
+			<fr>Violet transparent</fr>
+		</color>
+		<color id="40">
+			<en>Trans Gray</en>
+			<fr>Gris transparent</fr>
+		</color>
+		<color id="41">
+			<en>Trans Light Cyan</en>
+			<fr>Bleu ciel transparent</fr>
+		</color>
+		<color id="42">
+			<en>Trans Flu Lime</en>
+			<fr>Vert citron transparent</fr>
+		</color>
+		<color id="45">
+			<en>Trans Pink</en>
+			<fr>Rose transparent</fr>
+		</color>
+		<color id="46">
+			<en>Trans Yellow</en>
+			<fr>Jaune transparent</fr>
+		</color>
+		<color id="47">
+			<en>Clear</en>
+			<fr>Transparent</fr>
+		</color>
+		<color id="57">
+			<en>Trans Flu Orange</en>
+			<fr>Orange transparent</fr>
+		</color>
+		<color id="69">
+			<en>Bright Purple</en>
+			<fr>Pourpre brillant</fr>
+		</color>
+		<color id="70">
+			<en>Reddish Brown</en>
+			<fr>Marron rougeoyant</fr>
+		</color>
+		<color id="71">
+			<en>Stone Gray</en>
+			<fr>Gris pierre</fr>
+		</color>
+		<color id="72">
+			<en>Dark Stone Gray</en>
+			<fr>Gris pierre foncé</fr>
+		</color>
+		<color id="73">
+			<en>Medium Blue</en>
+			<fr>Bleu moyen</fr>
+		</color>
+		<color id="74">
+			<en>Medium Green</en>
+			<fr>Vert moyen</fr>
+		</color>
+		<color id="77">
+			<en>Paradisa Pink</en>
+			<fr>Rose Paradisa</fr>
+		</color>
+		<color id="78">
+			<en>Light Flesh</en>
+			<fr>Chair clair</fr>
+		</color>
+		<color id="79">
+			<en>Translucent White</en>
+			<fr>Blanc translucide</fr>
+		</color>
+		<color id="85">
+			<en>Medium Lilac</en>
+			<fr>Lilas moyen</fr>
+		</color>
+		<color id="86">
+			<en>Dark Flesh</en>
+			<fr>Chair foncée</fr>
+		</color>
+		<color id="89">
+			<en>Royal Blue</en>
+			<fr>Bleu royal</fr>
+		</color>
+		<color id="92">
+			<en>Flesh</en>
+			<fr>Chair</fr>
+		</color>
+		<color id="134">
+			<en>Pearl Copper</en>
+			<fr>Cuivre perlé</fr>
+		</color>
+		<color id="135">
+			<en>Pearl Gray</en>
+			<fr>Gris perlé</fr>
+		</color>
+		<color id="137">
+			<en>Pearl Sand Blue</en>
+			<fr>Bleu pastel perlé</fr>
+		</color>
+		<color id="142">
+			<en>Pearl Gold</en>
+			<fr>Or perlé</fr>
+		</color>
+		<color id="151">
+			<en>Light Stone</en>
+			<fr>Pierre clair</fr>
+		</color>		
+		<color id="256">
+			<en>Rubber Black</en>
+			<fr>Noir caoutchouc</fr>
+		</color>
+		<color id="272">
+			<en>Dark Blue</en>
+			<fr>Bleu foncé</fr>
+		</color>
+		<color id="273">
+			<en>Rubber Blue</en>
+			<fr>Bleu caoutchouc</fr>
+		</color>
+		<color id="288">
+			<en>Dark Green</en>
+			<fr>Vert foncé</fr>
+		</color>
+		<color id="313">
+			<en>Maersk Blue</en>
+			<fr>Bleu Maersk</fr>
+		</color>
+		<color id="320">
+			<en>Dark red</en>
+			<fr>Rouge foncé</fr>
+		</color>
+		<color id="324">
+			<en>Rubber red</en>
+			<fr>Rouge caoutchouc</fr>
+		</color>
+		<color id="334">
+			<en>Chrome Gold</en>
+			<fr>Or chromé</fr>
+		</color>
+		<color id="335">
+			<en>Sand Red</en>
+			<fr>Rouge pastel</fr>
+		</color>
+		<color id="366">
+			<en>Earth Orange</en>
+			<fr>Orange de terre</fr>
+		</color>
+		<color id="373">
+			<en>Sand Violet</en>
+			<fr>Violet pastel</fr>
+		</color>
+		<color id="375">
+			<en>Rubber Gray</en>
+			<fr>Gris caoutchouc</fr>
+		</color>
+		<color id="378">
+			<en>Sand Green</en>
+			<fr>Vert pastel</fr>
+		</color>
+		<color id="379">
+			<en>Sand Blue</en>
+			<fr>Bleu pastel</fr>
+		</color>
+		<color id="383">
+			<en>Chrome Silver</en>
+			<fr>Argent chromé</fr>
+		</color>
+		<color id="462">
+			<en>Light Orange</en>
+			<fr>Orange clair</fr>
+		</color>
+		<color id="484">
+			<en>Dark Orange</en>
+			<fr>Orange foncé</fr>
+		</color>
+		<color id="494">
+			<en>Electric Contact</en>
+			<fr>Contact électrique</fr>
+		</color>
+		<color id="503">
+			<en>Light Gray</en>
+			<fr>Gris clair</fr>
+		</color>
+		<color id="511">
+			<en>Rubber White</en>
+			<fr>Blanc caoutchouc</fr>
+		</color>
+	</ColorList>
+	
+	<!-- Description of the part in different language -->
+	<DescriptionList>
+		<!-- BASEPLATE FOLDER -->
+		<part id="309p02">
+			<en>Baseplate 32 x 32 Island with River Pattern</en>
+			<fr>Plaque de base 32 x 32 avec un dessin d'île et de rivière</fr>
+		</part>
+		<part id="3811">
+			<en>Baseplate 32 x 32</en>
+			<fr>Plaque de base 32 x 32</fr>
+		</part>
+		<part id="3811p02">
+			<en>Baseplate 32 x 32 with Island and Water Pattern</en>
+			<fr>Plaque de base 32 x 32 avec un dessin d'île et d'eau</fr>
+		</part>
+		<part id="3857">
+			<en>Baseplate 16 x 32 with Square Corners</en>
+			<fr>Plaque de base 16 x 32 avec coins carrés</fr>
+		</part>
+		<part id="3867">
+			<en>Baseplate 16 x 16</en>
+			<fr>Plaque de base 16 x 16</fr>
+		</part>
+		<part id="3867p01">
+			<en>Baseplate 16 x 16 with Island and Water Pattern</en>
+			<fr>Plaque de base 16 x 16 avec un dessin d'île et d'eau</fr>
+		</part>
+		<part id="4186">
+			<en>Baseplate 48 x 48</en>
+			<fr>Plaque de base 48 x 48</fr>
+		</part>
+		<part id="6024">
+			<en>Baseplate 32 x 32 Canyon Plate</en>
+			<fr>Plaque de base 32 x 32 plaque Canyon</fr>
+		</part>
+		<part id="6024px5">
+			<en>Baseplate 32 x 32 Canyon Plate with Mountain and River Rapids Pattern</en>
+			<fr>Plaque de base 32 x 32 plaque Canyon avec un dessin de montagne et de rapides</fr>
+		</part>
+		<part id="6092px2">
+			<en>Baseplate 32 x 32 Raised with Ramp, Pit, and Stairs with Stone Path and Pool Pattern</en>
+			<fr>Plaque de base 32 x 32 élevée avec une rampe, une fosse, des escaliers avec un chemin en pierre et une piscine</fr>
+		</part>
+		<part id="30473">
+			<en>Baseplate 32 x 32 Canyon Plate without Island</en>
+			<fr>Plaque de base 32 x 32 plaque Canyon sans île</fr>
+		</part>
+		<!-- CUSTOM FOLDER -->
+		<part id="Table96x32">
+			<en>Table 96 x 32</en>
+			<fr>Table 96 x 32</fr>
+		</part>
+		<part id="Table96x64">
+			<en>Table 96 x 64</en>
+			<fr>Table 96 x 64</fr>
+		</part>
+			<part id="Table96x96">
+			<en>Table 96 x 96</en>
+			<fr>Table 96 x 96</fr>
+		</part>
+		<part id="TDSupport2">
+			<en>Track Designer Support 0.1 to 2.1</en>
+			<fr>Support Track Designer de 0.1 à 2.1</fr>
+		</part>
+		<part id="TDSupport4">
+			<en>Track Designer Support 2.2 to 4.1</en>
+			<fr>Support Track Designer de 2.2 à 4.1</fr>
+		</part>
+		<part id="TDSupport6">
+			<en>Track Designer Support 4.2 to 6.1</en>
+			<fr>Support Track Designer de 4.2 à 6.1</fr>
+		</part>
+		<part id="TDSupport8">
+			<en>Track Designer Support 6.2 to 8.1</en>
+			<fr>Support Track Designer de 6.2 à 8.1</fr>
+		</part>
+		<part id="TDSupport10">
+			<en>Track Designer Support 8.2 to 10.1</en>
+			<fr>Support Track Designer de 8.2 à 10.1</fr>
+		</part>
+		<part id="TDSupport12">
+			<en>Track Designer Support 10.2 to 12.1</en>
+			<fr>Support Track Designer de 10.2 à 12.1</fr>
+		</part>
+		<part id="TDSupport14">
+			<en>Track Designer Support 12.2 to 14.1</en>
+			<fr>Support Track Designer de 12.2 à 14.1</fr>
+		</part>
+		<!-- LOGO FOLDER -->
+		<part id="1000Steine">
+			<en>1000Steine logo</en>
+			<fr>Logo 1000Steine</fr>
+		</part>
+		<part id="BAYLTC">
+			<en>Bay Area Lego Train Club logo</en>
+			<fr>Logo Bay Area Lego Train Club</fr>
+		</part>
+		<part id="BeLUG">
+			<en>BeLUG logo</en>
+			<fr>Logo BeLUG</fr>
+		</part>
+		<part id="Byggepladen">
+			<en>Byggepladen logo</en>
+			<fr>Logo Byggepladen</fr>
+		</part>
+		<part id="COLTC">
+			<en>Central Ohio Lego Train Club logo</en>
+			<fr>Logo Central Ohio Lego Train Club</fr>
+		</part>
+		<part id="CPLTC">
+			<en>Canadian Prairie Lego Train Club logo</en>
+			<fr>Logo Canadian Prairie Lego Train Club</fr>
+		</part>
+		<part id="DeBouwsteen">
+			<en>De Bouwsteen logo</en>
+			<fr>Logo De Bouwsteen</fr>
+		</part>
+		<part id="DelVaLUG">
+			<en>Delaware Valley Lego User Group logo</en>
+			<fr>Logo Delaware Valley Lego User Group</fr>
+		</part>
+		<part id="EJLTC">
+			<en>East Japan Lego Train Club logo</en>
+			<fr>Logo East Japan Lego Train Club</fr>
+		</part>
+		<part id="FreeLUG">
+			<en>French Enthusiast Lego User Group logo</en>
+			<fr>Logo French Enthusiast Lego User Group</fr>
+		</part>
+		<part id="GBLTC">
+			<en>Great Basin Lego Train Club logo</en>
+			<fr>Logo Great Basin Lego Train Club</fr>
+		</part>
+		<part id="GFLTC">
+			<en>Greater Florida Lego Train Club logo</en>
+			<fr>Logo Greater Florida Lego Train Club</fr>
+		</part>
+		<part id="GMLTC">
+			<en>Greater Midwest Lego Train Club logo</en>
+			<fr>Logo Greater Midwest Lego Train Club</fr>
+		</part>
+		<part id="GPLR">
+			<en>Greater Portland Lego Railroaders logo</en>
+			<fr>Logo Greater Portland Lego Railroaders</fr>
+		</part>
+		<part id="GtwLUG">
+			<en>Gateway Lego User Group logo</en>
+			<fr>Logo Gateway Lego User Group</fr>
+		</part>
+		<part id="HARDLUG">
+			<en>Hampton Roads Lego User Group logo</en>
+			<fr>Logo Hampton Roads Lego User Group</fr>
+		</part>
+		<part id="HUNLTC">
+			<en>Hungarian Lego User Group logo</en>
+			<fr>Logo Hungarian Lego User Group</fr>
+		</part>
+		<part id="ILTCO">
+			<en>International Lego Train Club Organization logo</en>
+			<fr>Logo International Lego Train Club Organization</fr>
+		</part>
+		<part id="IndyLUG">
+			<en>Indiana Lego User Group logo</en>
+			<fr>Logo Indiana Lego User Group</fr>
+		</part>
+		<part id="LowLUG">
+			<en>Lowlands Lego User Group logo</en>
+			<fr>Logo Lowlands Lego User Group</fr>
+		</part>
+		<part id="M-LTC">
+			<en>Melbourne Lego Train Club logo</en>
+			<fr>Logo Melbourne Lego Train Club</fr>
+		</part>
+		<part id="MichLTC">
+			<en>Michigan Lego Train Club logo</en>
+			<fr>Logo Michigan Lego Train Club</fr>
+		</part>
+		<part id="MSLTC">
+			<en>Mid-South Lego Train Club logo</en>
+			<fr>Logo Mid-South Lego Train Club</fr>
+		</part>
+		<part id="NCLTC">
+			<en>North Carolina Lego Train Club logo</en>
+			<fr>Logo North Carolina Lego Train Club</fr>
+		</part>
+		<part id="NELUG">
+			<en>New England Lego User Group logo</en>
+			<fr>Logo New England Lego User Group</fr>
+		</part>
+		<part id="NGLTC">
+			<en>North Georgia Lego Train Club logo</en>
+			<fr>Logo North Georgia Lego Train Club</fr>
+		</part>
+		<part id="NILTC">
+			<en>Northern Illinois Lego Train Club logo</en>
+			<fr>Logo Northern Illinois Lego Train Club</fr>
+		</part>
+		<part id="ParLUGment">
+			<en>ParLUGment logo</en>
+			<fr>Logo ParLUGment</fr>
+		</part>
+		<part id="QueLUG">
+			<en>Québec Lego User Group logo</en>
+			<fr>Logo Québec Lego User Group</fr>
+		</part>
+		<part id="rtlToronto">
+			<en>rtlToronto logo</en>
+			<fr>Logo rtlToronto</fr>
+		</part>
+		<part id="SALUG">
+			<en>Southern Alberta Lego Users Group logo</en>
+			<fr>Logo Southern Alberta Lego Users Group</fr>
+		</part>
+		<part id="SCLTC">
+			<en>Southern California Lego Train Club logo</en>
+			<fr>Logo Southern California Lego Train Club</fr>
+		</part>
+		<part id="SPLTC">
+			<en>Southern Pacific Lego Train Club logo</en>
+			<fr>Logo Southern Pacific Lego Train Club</fr>
+		</part>
+		<part id="TCLTC">
+			<en>Twin Cities Lego Train Club logo</en>
+			<fr>Logo Twin Cities Lego Train Club</fr>
+		</part>
+		<part id="VLC">
+			<en>Vancouver Lego Club logo</en>
+			<fr>Logo Vancouver Lego Club</fr>
+		</part>
+		<part id="WamaLTC">
+			<en>Washington DC Metropolitan Area Lego Train Club logo</en>
+			<fr>Logo Washington DC Metropolitan Area Lego Train Club</fr>
+		</part>
+		<part id="WamaLUG">
+			<en>Washington DC Metropolitan Area Lego Users Group logo</en>
+			<fr>Logo Washington DC Metropolitan Area Lego Users Group</fr>
+		</part>
+		<!-- RAIL FOLDER -->
+		<part id="9VHalfCurve">
+			<en>Custom 9V Rail Half Curve</en>
+			<fr>Rail 9V demi courbe custom</fr>
+		</part>
+		<part id="9VHalfStraight">
+			<en>Custom 9V Rail Half straight</en>
+			<fr>Rail 9V demi droit custom</fr>
+		</part>
+		<part id="2670">
+			<en>Monorail Track Straight 4 x 8</en>
+			<fr>Monorail droit 4 x 8</fr>
+		</part>
+		<part id="2671">
+			<en>Monorail Track Straight 4 x 32</en>
+			<fr>Monorail droit 4 x 32</fr>
+		</part>
+		<part id="2672">
+			<en>Monorail Track Curve quarter</en>
+			<fr>Monorail quart de cercle</fr>
+		</part>
+		<part id="2677">
+			<en>Monorail Track Ramp Lower Part</en>
+			<fr>Monorail rampe partie basse</fr>
+		</part>
+		<part id="2678">
+			<en>Monorail Track Ramp Upper Part</en>
+			<fr>Monorail rampe partie haute</fr>
+		</part>
+		<part id="2680">
+			<en>Support 4 x 4 x 5 Stanchion</en>
+			<fr>Support 4 x 4 x 5</fr>
+		</part>
+		<part id="2681">
+			<en>Support 6 x 6 x 10 Stanchion</en>
+			<fr>Support 6 x 6 x 10</fr>
+		</part>
+		<part id="2774">
+			<en>Monorail Track Monoswitch</en>
+			<fr>Inverseur Monorail</fr>
+		</part>
+		<part id="2859">
+			<en>Rail 9V Switch Point Right</en>
+			<fr>Aiguillage droit 9V</fr>
+		</part>
+		<part id="2861">
+			<en>Rail 9V Switch Point Left</en>
+			<fr>Aiguillage gauche 9V</fr>
+		</part>
+		<part id="2865">
+			<en>Rail 9V Straight</en>
+			<fr>Rail 9V droit</fr>
+		</part>
+		<part id="2867">
+			<en>Rail 9V Curve</en>
+			<fr>Rail 9V courbe</fr>
+		</part>
+		<part id="2889">
+			<en>Monorail Track Point Right</en>
+			<fr>Aiguillage droit Monorail</fr>
+		</part>
+		<part id="2890">
+			<en>Monorail Track Point Left</en>
+			<fr>Aiguillage gauche Monorail</fr>
+		</part>
+		<part id="2891">
+			<en>Monorail Track Curve Short Right</en>
+			<fr>Monorail petite courbe droite</fr>
+		</part>
+		<part id="2892">
+			<en>Monorail Track Curve Short Left</en>
+			<fr>Monorail petite courbe gauche</fr>
+		</part>
+		<part id="3228A">
+			<en>Rail 4.5V Straight (old type)</en>
+			<fr>Rail 4.5V droit (ancien modèle)</fr>
+		</part>
+		<part id="3228B">
+			<en>Rail 4.5V Straight (new type)</en>
+			<fr>Rail 4.5V droit (nouveau modèle)</fr>
+		</part>
+		<part id="3229A">
+			<en>Rail 4.5V Curve (old type)</en>
+			<fr>Rail 4.5V courbe (ancien modèle)</fr>
+		</part>
+		<part id="3229B">
+			<en>Rail 4.5V Curve (new type)</en>
+			<fr>Rail 4.5V courbe (nouveau modèle)</fr>
+		</part>
+		<part id="3231">
+			<en>Rail 4.5V Crossing (old type)</en>
+			<fr>Rail 4.5V croisement (ancien modèle)</fr>
+		</part>
+		<part id="3231B">
+			<en>Rail 4.5V Crossing (new type)</en>
+			<fr>Rail 4.5V croisement (nouveau modèle)</fr>
+		</part>
+		<part id="32087">
+			<en>Rail 9V Crossing</en>
+			<fr>Rail 9V croisement</fr>
+		</part>
+		<part id="3240C01">
+			<en>Rail 12V Straight (new type)</en>
+			<fr>Rail 12V droit (nouveau modèle)</fr>
+		</part>
+		<part id="3241C01">
+			<en>Rail 12V Curve (new type)</en>
+			<fr>Rail 12V courbe (nouveau modèle)</fr>
+		</part>
+		<part id="7857">
+			<en>Rail 12V Crossing (new type)</en>
+			<fr>Rail 12V croisement (nouveau modèle)</fr>
+		</part>
+		<part id="X504B">
+			<en>Rail 12V Left point (old type)</en>
+			<fr>Rail 12V aiguillage gauche (ancien modèle)</fr>
+		</part>
+		<part id="X505B">
+			<en>Rail 12V Right point (old type)</en>
+			<fr>Rail 12V aiguillage droit (ancien modèle)</fr>
+		</part>
+		<part id="X563">
+			<en>Rail 12V Crossing (old type)</en>
+			<fr>Rail 12V croisement (ancien modèle)</fr>
+		</part>
+		<part id="X861C01">
+			<en>Rail 12V Straight (old type)</en>
+			<fr>Rail 12V droit (ancien modèle)</fr>
+		</part>
+		<part id="X864C01">
+			<en>Rail 12V Left point (new type)</en>
+			<fr>Rail 12V aiguillage gauche (nouveau modèle)</fr>
+		</part>
+		<part id="X865C01">
+			<en>Rail 12V Right point (new type)</en>
+			<fr>Rail 12V aiguillage droit (nouveau modèle)</fr>
+		</part>
+		<part id="X866C01">
+			<en>Rail 12V Curve (old type)</en>
+			<fr>Rail 12V courbe (ancien modèle)</fr>
+		</part>
+		<part id="X948AC01">
+			<en>Rail 4.5V Left point (old type)</en>
+			<fr>Rail 4.5V aiguillage left (ancien modèle)</fr>
+		</part>
+		<part id="X948CC01">
+			<en>Rail 4.5V Left point (new type)</en>
+			<fr>Rail 4.5V aiguillage left (nouveau modèle)</fr>
+		</part>
+		<part id="X949AC01">
+			<en>Rail 4.5V Right point (old type)</en>
+			<fr>Rail 4.5V aiguillage droit (ancien modèle)</fr>
+		</part>
+		<part id="X949CC01">
+			<en>Rail 4.5V Right point (new type)</en>
+			<fr>Rail 4.5V aiguillage droit (nouveau modèle)</fr>
+		</part>
+		<!-- ROAD FOLDER -->
+		<part id="309p03">
+			<en>Baseplate 32 x 32 Island with White Lines Pattern</en>
+			<fr>Route 32 x 32 ilôt avec des lignes blanches</fr>
+		</part>
+		<part id="425p01">
+			<en>Baseplate 32 x 32 Road 3 Lane with Race Track Pattern</en>
+			<fr>Route 32 x 32, 3 voies avec des motifs de circuit de course</fr>
+		</part>
+		<part id="610p01">
+			<en>Baseplate, Road 32 x 32 8-Stud Straight with Road Pattern</en>
+			<fr>Route droite 32 x 32 8 tenons</fr>
+		</part>
+		<part id="611p01">
+			<en>Baseplate, Road 32 x 32 8-Stud Crossroads with Road Pattern</en>
+			<fr>Route croisement 32 x 32 8 tenons</fr>
+		</part>
+		<part id="612p01">
+			<en>Baseplate, Road 32 x 32 8-Stud T Intersection with Road Pattern</en>
+			<fr>Route croisement en T 32 x 32 8 tenons</fr>
+		</part>
+		<part id="613p01">
+			<en>Baseplate, Road 32 x 32 8-Stud Curve with Road Pattern</en>
+			<fr>Route virage 32 x 32 8 tenons</fr>
+		</part>
+		<part id="2358p02">
+			<en>Baseplate, Road 32 x 32 7-Stud Straight with Runway Crosswalk Pattern</en>
+			<fr>Route droite 32 x 32 7 tenons avec passage pieton</fr>
+		</part>
+		<part id="2358p03">
+			<en>Baseplate, Road 32 x 32 7-Stud Straight with Plain Runway Wide Pattern</en>
+			<fr>Route droite 32 x 32 7 tenons avec large route dégagée</fr>
+		</part>
+		<part id="2358p04">
+			<en>Baseplate, Road 32 x 32 7-Stud Straight with Runway Narrow Pattern</en>
+			<fr>Route droite 32 x 32 7 tenons avec route étroite</fr>
+		</part>
+		<part id="2359p01">
+			<en>Baseplate, Road 32 x 32 7-Stud Curve with Road Pattern</en>
+			<fr>Route virage 32 x 32 7 tenons</fr>
+		</part>
+		<part id="2359p02">
+			<en>Baseplate, Road 32 x 32 7-Stud Curve with Road Pattern</en>
+			<fr>Route virage 32 x 32 7 tenons</fr>
+		</part>
+		<part id="2360p01">
+			<en>Baseplate, Road 32 x 32 7-Stud T Intersection with Crosswalks</en>
+			<fr>Route croisement en T 32 x 32 7 tenons</fr>
+		</part>
+		<part id="2360p02">
+			<en>Baseplate, Road 32 x 32 7-Stud T Intersection with Runway Pattern</en>
+			<fr>Route croisement en T 32 x 32 7 tenons</fr>
+		</part>
+		<part id="2361p01">
+			<en>Baseplate, Road 32 x 32 7-Stud Crossroads with Road and Crosswalks Pattern</en>
+			<fr>Route croisement 32 x 32 7 tenons avec passage pieton</fr>
+		</part>
+		<part id="2361p02">
+			<en>Baseplate, Road 32 x 32 7-Stud Crossroads with Runway Pattern</en>
+			<fr>Route croisement 32 x 32 7 tenons</fr>
+		</part>
+		<part id="6100p01">
+			<en>Baseplate 32 x 32 with 3 Driveways and Set 6571 Pattern</en>
+			<fr>Route 32 x 32 avec 3 voies et le motif du set 6571</fr>
+		</part>
+		<part id="6100p02">
+			<en>Baseplate 32 x 32 with 3 Driveways, White Lines, and Circled H Pattern</en>
+			<fr>Route 32 x 32 avec 3 voies, des lignes blanches et un H cerclé</fr>
+		</part>
+		<part id="6100p03">
+			<en>Baseplate 32 x 32 with 3 Driveways and Outer Lanes Labeled 1 and 2</en>
+			<fr>Route 32 x 32 avec 3 voies et des lignes marquées 1 et 2</fr>
+		</part>
+		<part id="6100p04">
+			<en>Baseplate 32 x 32 with 3 Driveways and Diagonal Lines Pattern</en>
+			<fr>Route 32 x 32 avec 3 voies et des zebras</fr>
+		</part>
+		<part id="6100p05">
+			<en>Baseplate 32 x 32 with 3 Driveways and Center Lane Labeled 1, Outer Lane Labeled 2</en>
+			<fr>Route 32 x 32 avec 3 voies dont la voie du milieu marquée 1, la voie extérieure marquée 2</fr>
+		</part>
+		<part id="44336px4">
+			<en>Baseplate 32 x 32 Road 6-Stud Straight with White Dashed Lines Pattern</en>
+			<fr>Route droite 32 x 32 6 tenons avec des lignes blanches pointillées</fr>
+		</part>
+		<part id="44341px2">
+			<en>Baseplate 32 x 32 Road 6-Stud T Intersection with White Dashed Lines and Crosswalk Pattern</en>
+			<fr>Route croisement en T 32 x 32 6 tenons avec des lignes blanches pointillées et un passage pieton</fr>
+		</part>
+		<part id="44342px2">
+			<en>Baseplate 32 x 32 Road 6-Stud Curve with White Dashed Lines Pattern</en>
+			<fr>Route virage 32 x 32 6 tenons avec des lignes blanches pointillées</fr>
+		</part>
+		<part id="44343px3">
+			<en>Baseplate 32 x 32 Road 6-Stud Crossroads with White Dashed Lines and Crosswalks Pattern</en>
+			<fr>Route croisement 32 x 32 6 tenons avec des lignes blanches pointillées et des passages pietons</fr>
+		</part>
+		<part id="80547">
+			<en>Baseplate, Road 32 x 32 7-Stud Straight with Road with White Sidelines Pattern</en>
+			<fr>Route droite 32 x 32 7 tenons avec des lignes blanches sur les cotés</fr>
+		</part>
+		<!-- SET FOLDER -->
+		<part id="2150.set">
+			<en>Rail Train Station Set</en>
+			<fr>Boite gare rail</fr>
+		</part>
+		<part id="4532.set">
+			<en>Rail Level Crossing Set</en>
+			<fr>Boite croisement rail</fr>
+		</part>
+		<part id="4539.set">
+			<en>Rail Strand Junction Set</en>
+			<fr>Boite croisement rail</fr>
+		</part>
+		<part id="4554.set">
+			<en>Rail Central Station Set</en>
+			<fr>Boite gare centrale rail</fr>
+		</part>
+		<part id="4555.set">
+			<en>Rail Container Depot Set</en>
+			<fr>Boite depot de conteneur rail</fr>
+		</part>
+		<part id="4565.set">
+			<en>Rail Freight and Crane Railway Set</en>
+			<fr>Boite Fret et Grue rail</fr>
+		</part>
+		<part id="6399.set1">
+			<en>Monorail Airport Terminal Set</en>
+			<fr>Boite terminus monorail à l'aéroport </fr>
+		</part>
+		<part id="6399.set2">
+			<en>Monorail City Terminal Set</en>
+			<fr>Boite terminus monorail à la ville</fr>
+		</part>
+		<part id="6399.set3">
+			<en>Monorail Bridge Set</en>
+			<fr>Boite pont monorail</fr>
+		</part>
+	</DescriptionList>
+</info>

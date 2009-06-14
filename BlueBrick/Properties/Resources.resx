@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActionAddArea" xml:space="preserve">
+    <value>Paint an Area</value>
+  </data>
+  <data name="ActionAddBrick" xml:space="preserve">
+    <value>Add part &amp;</value>
+  </data>
+  <data name="ActionAddLayerArea" xml:space="preserve">
+    <value>Add an Area Layer</value>
+  </data>
+  <data name="ActionAddLayerBrick" xml:space="preserve">
+    <value>Add a Brick Layer</value>
+  </data>
+  <data name="ActionAddLayerGrid" xml:space="preserve">
+    <value>Add a Grid layer</value>
+  </data>
+  <data name="ActionAddLayerText" xml:space="preserve">
+    <value>Add a Text Layer</value>
+  </data>
+  <data name="ActionAddText" xml:space="preserve">
+    <value>Add a new text</value>
+  </data>
+  <data name="ActionBringBrickToFront" xml:space="preserve">
+    <value>Bring selected Bricks to Front</value>
+  </data>
+  <data name="ActionBringTextToFront" xml:space="preserve">
+    <value>Bring selected Texts to Front</value>
+  </data>
+  <data name="ActionChangeBackgroundColor" xml:space="preserve">
+    <value>Change the background color</value>
+  </data>
+  <data name="ActionChangeGeneralInfo" xml:space="preserve">
+    <value>Change Map General Info</value>
+  </data>
+  <data name="ActionChangeMapAppearance" xml:space="preserve">
+    <value>Change map appearance</value>
+  </data>
+  <data name="ActionDeleteArea" xml:space="preserve">
+    <value>Erase an Area</value>
+  </data>
+  <data name="ActionDeleteBrick" xml:space="preserve">
+    <value>Delete part &amp;</value>
+  </data>
+  <data name="ActionDeleteSeveralBricks" xml:space="preserve">
+    <value>Delete several parts</value>
+  </data>
+  <data name="ActionDeleteSeveralTexts" xml:space="preserve">
+    <value>Delete several texts</value>
+  </data>
+  <data name="ActionDeleteText" xml:space="preserve">
+    <value>Delete the text "&amp;"</value>
+  </data>
+  <data name="ActionDuplicateBrick" xml:space="preserve">
+    <value>Duplicate the part &amp;</value>
+  </data>
+  <data name="ActionDuplicateSeveralBricks" xml:space="preserve">
+    <value>Duplicate several parts</value>
+  </data>
+  <data name="ActionDuplicateSeveralTexts" xml:space="preserve">
+    <value>Duplicate several texts</value>
+  </data>
+  <data name="ActionDuplicateText" xml:space="preserve">
+    <value>Duplicate the text "&amp;"</value>
+  </data>
+  <data name="ActionEditText" xml:space="preserve">
+    <value>Edit the text "&amp;"</value>
+  </data>
+  <data name="ActionHideLayer" xml:space="preserve">
+    <value>Hide the layer "&amp;"</value>
+  </data>
+  <data name="ActionMoveBrick" xml:space="preserve">
+    <value>Move the part &amp;</value>
+  </data>
+  <data name="ActionMoveLayerDown" xml:space="preserve">
+    <value>Move the layer "&amp;" Down</value>
+  </data>
+  <data name="ActionMoveLayerUp" xml:space="preserve">
+    <value>Move the layer "&amp;" Up</value>
+  </data>
+  <data name="ActionMoveSeveralBricks" xml:space="preserve">
+    <value>Move several parts</value>
+  </data>
+  <data name="ActionMoveSeveralTexts" xml:space="preserve">
+    <value>Move several texts</value>
+  </data>
+  <data name="ActionMoveText" xml:space="preserve">
+    <value>Move the text "&amp;"</value>
+  </data>
+  <data name="ActionRemoveLayer" xml:space="preserve">
+    <value>Remove the layer "&amp;"</value>
+  </data>
+  <data name="ActionRotateBrick" xml:space="preserve">
+    <value>Rotate the part &amp;</value>
+  </data>
+  <data name="ActionRotateSeveralBricks" xml:space="preserve">
+    <value>Rotate several parts</value>
+  </data>
+  <data name="ActionRotateSeveralTexts" xml:space="preserve">
+    <value>Rotate several texts</value>
+  </data>
+  <data name="ActionRotateText" xml:space="preserve">
+    <value>Rotate the text "&amp;"</value>
+  </data>
+  <data name="ActionSelectLayer" xml:space="preserve">
+    <value>Select layer "&amp;"</value>
+  </data>
+  <data name="ActionSendBrickToBack" xml:space="preserve">
+    <value>Send selected Bricks to Back</value>
+  </data>
+  <data name="ActionSendTextToBack" xml:space="preserve">
+    <value>Send selected Texts to Back</value>
+  </data>
+  <data name="ActionShowLayer" xml:space="preserve">
+    <value>Show layer "&amp;"</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="aligncentered" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\aligncentered.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="alignleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\alignleft.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="alignright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\alignright.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ChangeLayerOption" xml:space="preserve">
+    <value>Change the options of layer "&amp;"</value>
+  </data>
+  <data name="ColorSchemeBluePrint" xml:space="preserve">
+    <value>Blue Print</value>
+  </data>
+  <data name="ColorSchemeClassic" xml:space="preserve">
+    <value>Classic (printer friendly)</value>
+  </data>
+  <data name="ColorSchemeCustom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="ColorSchemeParchment" xml:space="preserve">
+    <value>Parchment</value>
+  </data>
+  <data name="DefaultAuthor" xml:space="preserve">
+    <value>Unknown Author</value>
+  </data>
+  <data name="DefaultLayerName" xml:space="preserve">
+    <value>Layer</value>
+  </data>
+  <data name="DefaultLUG" xml:space="preserve">
+    <value>Unknown LUG</value>
+  </data>
+  <data name="DefaultSaveFileName" xml:space="preserve">
+    <value>Untitled.bbm</value>
+  </data>
+  <data name="DefaultShow" xml:space="preserve">
+    <value>Unknown Show</value>
+  </data>
+  <data name="ErrorMissingLDrawPartRemapFile" xml:space="preserve">
+    <value>Can not open the "&amp;" file. Without this file you will not be able to import/export any LDraw file correctly. BlueBrick will try to perform the operation anyway but for a correct result, please verify the presence of this file, or reinstall BlueBrick.</value>
+  </data>
+  <data name="ErrorMissingPartInfoFile" xml:space="preserve">
+    <value>Can not open the "&amp;" file. Without this file you will not be able to see the color and description of the parts in the part list. Please verify the presence of this file, or reinstall BlueBrick to fix the problem.</value>
+  </data>
+  <data name="ErrorMissingTDPartRemapFile" xml:space="preserve">
+    <value>Can not open the "&amp;" file. Without this file you will not be able to import any Track Designer file. Please verify the presence of this file, or reinstall BlueBrick to fix the problem.</value>
+  </data>
+  <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
+    <value>You have modified some default appearance settings. These settings will be used when you create new maps, but do you want to also apply these settings to your current map?</value>
+  </data>
+  <data name="ErrorMsgCanNotLoadImage" xml:space="preserve">
+    <value>BlueBrick had encountered problems while loading  images from the parts database. These images have been ignored. This problem may happen if an image is corrupted or too big. Remove the image(s) from your database to remove this warning. The image(s) concerned is/are: </value>
+  </data>
+  <data name="ErrorMsgCanNotPaste" xml:space="preserve">
+    <value>Can not paste items of type &amp; in the current selected layer which is of type &amp;&amp;.</value>
+  </data>
+  <data name="ErrorMsgConfirmRestoreDefault" xml:space="preserve">
+    <value>Are you sure you want to restore the default settings?</value>
+  </data>
+  <data name="ErrorMsgCrash" xml:space="preserve">
+    <value>BlueBrick Copyright (C) 2008 Alban NANTY.
+This program is a free software under GPLv3 license and comes with ABSOLUTELY NO WARRANTY.
+This program encountered an unrecoverable error and will close. Please report this error to banban@lswproject.com.
+The error message is:
+
+</value>
+  </data>
+  <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
+    <value>You changed the language but this will take effect next time you will restart the application.</value>
+  </data>
+  <data name="ErrorMsgLayerTypeArea" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="ErrorMsgLayerTypeBrick" xml:space="preserve">
+    <value>Brick</value>
+  </data>
+  <data name="ErrorMsgLayerTypeGrid" xml:space="preserve">
+    <value>Grid</value>
+  </data>
+  <data name="ErrorMsgLayerTypeText" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="ErrorMsgMapWasModified" xml:space="preserve">
+    <value>Your current map is not saved. Do you want to save your modification?</value>
+  </data>
+  <data name="ErrorMsgMissingParts" xml:space="preserve">
+    <value>Some parts were not correctly loaded because you don't have them in your parts library. Some default images have been temporarily added to replace the original ones. You should ask the map's author (&amp;) where you can find them.</value>
+  </data>
+  <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
+    <value>Some Track Designer part ID's were not found in the "&amp;" remap file. BlueBrick was not able to load them and has ignored them. You should add a remap line for each missing ID in the remap file then insure that you have the corresponding part in your BlueBrick library and try to reopen the Track Designer file. The missing ID's were:</value>
+  </data>
+  <data name="ErrorMsgOldTDFile" xml:space="preserve">
+    <value>Sorry, the Track Designer file you are trying to load has an old version format. To fix this problem, open this file with Track Designer, and save it again. Now you should be able to load it with BlueBrick.</value>
+  </data>
+  <data name="ErrorMsgProgramObsolete" xml:space="preserve">
+    <value>Can not load this file.Your version of BlueBrick is obsolete or the file may not be a valid BlueBrick file. Try to download and install the last version of BlueBrick.</value>
+  </data>
+  <data name="ErrorMsgReadyToReloadPartLib" xml:space="preserve">
+    <value>The part library was unloaded, you can now modify the files in it. Click ok when you are ready to reload it.</value>
+  </data>
+  <data name="ErrorMsgTitleError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorMsgTitleWarning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="LanguageChineese" xml:space="preserve">
+    <value>Chineese</value>
+  </data>
+  <data name="LanguageDutch" xml:space="preserve">
+    <value>Nederlands</value>
+  </data>
+  <data name="LanguageEnglish" xml:space="preserve">
+    <value>English (default)</value>
+  </data>
+  <data name="LanguageFrench" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="LanguageGerman" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="LanguageItalian" xml:space="preserve">
+    <value>Italian</value>
+  </data>
+  <data name="LanguagePortuguese" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="LanguageSpanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="layerTypeArea" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\newlayerarea.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layerTypeBrick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\newlayerbrick.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layerTypeGrid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\newlayergrid.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layerTypeText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\newlayerText.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OptimBalanced" xml:space="preserve">
+    <value>Balanced</value>
+  </data>
+  <data name="OptimFaster" xml:space="preserve">
+    <value>Faster</value>
+  </data>
+  <data name="OptimLessMemory" xml:space="preserve">
+    <value>Less memory</value>
+  </data>
+  <data name="SnapGridOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\SnapGridOff.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SnapGridOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\SnapGridOn.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TextEnterText" xml:space="preserve">
+    <value>Type your text here...</value>
+  </data>
+  <data name="TextNA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="TextUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+</root>

@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActionAddArea" xml:space="preserve">
+    <value>Pintar un área</value>
+  </data>
+  <data name="ActionAddBrick" xml:space="preserve">
+    <value>Añadir una pieza &amp;</value>
+  </data>
+  <data name="ActionAddLayerArea" xml:space="preserve">
+    <value>Añadir una capà de área</value>
+  </data>
+  <data name="ActionAddLayerBrick" xml:space="preserve">
+    <value>Añadir una capa de Bricks</value>
+  </data>
+  <data name="ActionAddLayerGrid" xml:space="preserve">
+    <value>Añadir una capa de cuadrícula</value>
+  </data>
+  <data name="ActionAddLayerText" xml:space="preserve">
+    <value>Añadir una capa de texto</value>
+  </data>
+  <data name="ActionAddText" xml:space="preserve">
+    <value>Añadir nuevo texto</value>
+  </data>
+  <data name="ActionBringBrickToFront" xml:space="preserve">
+    <value>Traer los bricks seleccionados al frente</value>
+  </data>
+  <data name="ActionBringTextToFront" xml:space="preserve">
+    <value>Traer los textos seleccionados al frente</value>
+  </data>
+  <data name="ActionChangeBackgroundColor" xml:space="preserve">
+    <value>Cambiar el color de fondo</value>
+  </data>
+  <data name="ActionChangeGeneralInfo" xml:space="preserve">
+    <value>Cambiar la información general del mapa</value>
+  </data>
+  <data name="ActionChangeMapAppearance" xml:space="preserve">
+    <value>Cambiar la apariencia del mapa</value>
+  </data>
+  <data name="ActionDeleteArea" xml:space="preserve">
+    <value>Borrar un área</value>
+  </data>
+  <data name="ActionDeleteBrick" xml:space="preserve">
+    <value>Eliinar una pieza &amp;</value>
+  </data>
+  <data name="ActionDeleteSeveralBricks" xml:space="preserve">
+    <value>Eliinar algunas piezas</value>
+  </data>
+  <data name="ActionDeleteSeveralTexts" xml:space="preserve">
+    <value>Eliminar algunos textos</value>
+  </data>
+  <data name="ActionDeleteText" xml:space="preserve">
+    <value>Eliminar el texto "&amp;"</value>
+  </data>
+  <data name="ActionDuplicateBrick" xml:space="preserve">
+    <value>Duplicar la pieza "&amp;"</value>
+  </data>
+  <data name="ActionDuplicateSeveralBricks" xml:space="preserve">
+    <value>Duplicar algunas piezas</value>
+  </data>
+  <data name="ActionDuplicateSeveralTexts" xml:space="preserve">
+    <value>Duplicar algunos textos</value>
+  </data>
+  <data name="ActionDuplicateText" xml:space="preserve">
+    <value>Duplicar el texto "&amp;"</value>
+  </data>
+  <data name="ActionEditText" xml:space="preserve">
+    <value>Editar el texto "&amp;"</value>
+  </data>
+  <data name="ActionHideLayer" xml:space="preserve">
+    <value>Ocultar la capa "&amp;"</value>
+  </data>
+  <data name="ActionMoveBrick" xml:space="preserve">
+    <value>Mover la pieza "&amp;"</value>
+  </data>
+  <data name="ActionMoveLayerDown" xml:space="preserve">
+    <value>Mover la capa "&amp;" hacia abajo</value>
+  </data>
+  <data name="ActionMoveLayerUp" xml:space="preserve">
+    <value>Mover la capa "&amp;" hacia arriba</value>
+  </data>
+  <data name="ActionMoveSeveralBricks" xml:space="preserve">
+    <value>Mover algunas piezas</value>
+  </data>
+  <data name="ActionMoveSeveralTexts" xml:space="preserve">
+    <value>Mover algunos textos</value>
+  </data>
+  <data name="ActionMoveText" xml:space="preserve">
+    <value>Mover el texto "&amp;"</value>
+  </data>
+  <data name="ActionRemoveLayer" xml:space="preserve">
+    <value>Eliminar la capa "&amp;"</value>
+  </data>
+  <data name="ActionRotateBrick" xml:space="preserve">
+    <value>Girar la pieza "&amp;"</value>
+  </data>
+  <data name="ActionRotateSeveralBricks" xml:space="preserve">
+    <value>Girar algunas piezas</value>
+  </data>
+  <data name="ActionRotateSeveralTexts" xml:space="preserve">
+    <value>Girar algunos textos</value>
+  </data>
+  <data name="ActionRotateText" xml:space="preserve">
+    <value>Girar el texto "&amp;"</value>
+  </data>
+  <data name="ActionSelectLayer" xml:space="preserve">
+    <value>Seleccionar la capa "&amp;"</value>
+  </data>
+  <data name="ActionSendBrickToBack" xml:space="preserve">
+    <value>Enviar los Bricks seleccionados al fondo</value>
+  </data>
+  <data name="ActionSendTextToBack" xml:space="preserve">
+    <value>Enviar los textos seleccionados al fondo</value>
+  </data>
+  <data name="ActionShowLayer" xml:space="preserve">
+    <value>Mostrar la capa "&amp;"</value>
+  </data>
+  <data name="ChangeLayerOption" xml:space="preserve">
+    <value>Cambiar las opciones de la capa "&amp;"</value>
+  </data>
+  <data name="ColorSchemeBluePrint" xml:space="preserve">
+    <value>Blue Print</value>
+  </data>
+  <data name="ColorSchemeClassic" xml:space="preserve">
+    <value>Clásico (modo de impresión)</value>
+  </data>
+  <data name="ColorSchemeCustom" xml:space="preserve">
+    <value>Personalizado</value>
+  </data>
+  <data name="ColorSchemeParchment" xml:space="preserve">
+    <value>Pergamino</value>
+  </data>
+  <data name="DefaultAuthor" xml:space="preserve">
+    <value>Autor desconocido</value>
+  </data>
+  <data name="DefaultLayerName" xml:space="preserve">
+    <value>Capa</value>
+  </data>
+  <data name="DefaultLUG" xml:space="preserve">
+    <value>LUG desconocida</value>
+  </data>
+  <data name="DefaultSaveFileName" xml:space="preserve">
+    <value>SinTítulo.bbm</value>
+  </data>
+  <data name="DefaultShow" xml:space="preserve">
+    <value>Evento desconocido</value>
+  </data>
+  <data name="ErrorMissingLDrawPartRemapFile" xml:space="preserve">
+    <value>No se puede abrir el archivo "&amp;". Sin este archivo no podrá imprtar o exportar ningún archivo Ldraw correctamente. BlueBrick tratará de llevar la operación a cabo, pero para conseguir un resultado correcto, Por favor compruebe que el archivo existe o reinstale BlueBrick.</value>
+  </data>
+  <data name="ErrorMissingPartInfoFile" xml:space="preserve">
+    <value>No se puede abrir el archivo "&amp;". Sin este archivo no podrá ver el color y la descripción de las piezas en la lista de piezas. Por favor, compruebe que el archivo existe o reinstale BlueBrick para solucionar este problema.</value>
+  </data>
+  <data name="ErrorMissingTDPartRemapFile" xml:space="preserve">
+    <value>No se puede abrir el archivo "&amp;". Sin este archivo no podrá importar ningún archivo de Track Designer. Por favor, compruebe que el archivo existe o reinstale BlueBrick para solucionar este problema.</value>
+  </data>
+  <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
+    <value>Modificó algunas ajustes por defecto relacionadas con la apariencia. Estos ajustes se usarán al crear nuevas mapas, pero quiere aplicarlas también al mapa actual?</value>
+  </data>
+  <data name="ErrorMsgCanNotLoadImage" xml:space="preserve">
+    <value>BlueBrick ha encontrado un problema al cargar algunas imágenes de la base de datos de piezas y las ha ignorado. Este problema puede ocurrir cuando una imagen se ha corrompida o es demasiado grande. Elimina la(s) imagen(es) de la base de datos para quietar este aviso. Las imágenes son:</value>
+  </data>
+  <data name="ErrorMsgCanNotPaste" xml:space="preserve">
+    <value>No se puede pegar un objeto del tipo &amp; en la capa actual que es del tipo &amp;&amp;.</value>
+  </data>
+  <data name="ErrorMsgConfirmRestoreDefault" xml:space="preserve">
+    <value>¿Está seguro que quiere restaurar los ajustes por defecto?</value>
+  </data>
+  <data name="ErrorMsgCrash" xml:space="preserve">
+    <value>BlueBrick Copyright © 2008 Alban NANTY. Este programa es software libre bajo la licencia GPLv3 y NO TIENE NINGUNA GARANTÍA. Este programa encontró un error fataly se cerrará. Por favor informe de este error a banban@lswproject.com. El mensaje de error es:</value>
+  </data>
+  <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
+    <value>Ha cambiado el idioma, pero esto no tomará efecto hasta que reinicie la aplicación.</value>
+  </data>
+  <data name="ErrorMsgLayerTypeArea" xml:space="preserve">
+    <value>Área</value>
+  </data>
+  <data name="ErrorMsgLayerTypeBrick" xml:space="preserve">
+    <value>Brick</value>
+  </data>
+  <data name="ErrorMsgLayerTypeGrid" xml:space="preserve">
+    <value>Cuadrícula</value>
+  </data>
+  <data name="ErrorMsgLayerTypeText" xml:space="preserve">
+    <value>Texto</value>
+  </data>
+  <data name="ErrorMsgMapWasModified" xml:space="preserve">
+    <value>El mapa actual no está guardada. ¿Desea guardar los cambios?</value>
+  </data>
+  <data name="ErrorMsgMissingParts" xml:space="preserve">
+    <value>Algunas piezas no se cargaron correctamente porque no las tiene en la biblioteca de piezas. Algunas imágenes por defecto se han añadido temporalmente para reemplazar las originales. Deberá preguntar al autor del mapa (&amp;) dónde puede encotrarlas.</value>
+  </data>
+  <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
+    <value>Algunos IDs de piezas de Track Designer  no se encontraron el el archivo de coordenadas "&amp;". BlueBrick no pudo cargarlas y las ha ignorado. Añada una linea de coordenadas para cada ID que falta en el archivo de coordenadas, luego asegúrese de tener las piezas correspondientes en la biblioteca de piezas de BlueBrick e intenta abrir el archivo Track Designer de nuevo. Los IDs que faltan son:</value>
+  </data>
+  <data name="ErrorMsgOldTDFile" xml:space="preserve">
+    <value>El archivo Track Designer que intenta abrir tiene un formato de una versión antigua. Para corregir este problema, primero cargue el archivo con Track Designer y guárdelo nuevamente. Luego podrá cargarlo con BlueBrick.</value>
+  </data>
+  <data name="ErrorMsgProgramObsolete" xml:space="preserve">
+    <value>No se puede cargar este archivo. Su versión de BlueBrick es obsoleta o el archivo no es un archivo BlueBrick válido. Pruebe descargar e instalar la última versión de BlueBrick.</value>
+  </data>
+  <data name="ErrorMsgReadyToReloadPartLib" xml:space="preserve">
+    <value>La bibliteca de piezas ha sido descargada. Ahora puede modificar los archivos que contiene. Pulse aceptar cuando esté lista para cargarla nuevamente.</value>
+  </data>
+  <data name="ErrorMsgTitleError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorMsgTitleWarning" xml:space="preserve">
+    <value>Aviso</value>
+  </data>
+  <data name="OptimBalanced" xml:space="preserve">
+    <value>Equilibrado</value>
+  </data>
+  <data name="OptimFaster" xml:space="preserve">
+    <value>Más rápido</value>
+  </data>
+  <data name="OptimLessMemory" xml:space="preserve">
+    <value>Menos memoria</value>
+  </data>
+  <data name="TextEnterText" xml:space="preserve">
+    <value>Escriba aquí su texto…</value>
+  </data>
+  <data name="TextNA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="TextUnknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+</root>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<part>
+	<!-- THIS IS THE MONORAIL SHORT LEFT CURVE -->
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>4.875</left>
+		<right>0</right>
+		<top>7.5</top>
+		<bottom>0</bottom>
+	</SnapMargin>
+	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
+	<ConnexionList>
+		<!-- the center of this part in stud is x = 167 pix / 8 pixperstud / 2 = 10.4375    and    y = 92 / 8 / 2 = 5.75 -->
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>4</type>
+			<position>
+				<x>-9.3615</x>	<!-- x = pos1x - 28 * sin(45) because 28 is the radius in stud of the middle line of a 9V turn (for a quarter of circle) -->
+				<y>-4.451</y>	<!-- y = pos1y - 28 * (1 - cos(45)) because 28 is the radius in stud of the middle line of a 9V turn (for a quarter of circle) -->
+			</position>
+			<angle>225</angle>
+			<angleToPrev>135</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>225</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->
+			<nextConnexionPreference>1</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>3</type>
+			<position>
+				<x>10.4375</x>
+				<y>3.75</y>
+			</position>
+			<angle>0</angle>
+			<angleToPrev>225</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>135</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->
+			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+	</ConnexionList>
+	<hull>
+		<point>
+			<x>9</x>
+			<y>0</y>
+		</point>
+		<point>
+			<x>20</x>
+			<y>0</y>
+		</point>
+		<point>
+			<x>169</x>
+			<y>60</y>
+		</point>
+		<point>
+			<x>169</x>
+			<y>92</y>
+		</point>
+		<point>
+			<x>132</x>
+			<y>92</y>
+		</point>
+		<point>
+			<x>79</x>
+			<y>79</y>
+		</point>
+		<point>
+			<x>38</x>
+			<y>58</y>
+		</point>
+		<point>
+			<x>8</x>
+			<y>32</y>
+		</point>
+		<point>
+			<x>0</x>
+			<y>17</y>
+		</point>
+	</hull>
+</part>

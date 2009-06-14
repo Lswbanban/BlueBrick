@@ -1,0 +1,1617 @@
+// BlueBrick, a LEGO(c) layout editor.
+// Copyright (C) 2008 Alban NANTY
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+// see http://www.fsf.org/licensing/licenses/gpl.html
+// and http://www.gnu.org/licenses/
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Xml.Serialization;
+using System.IO;
+using BlueBrick.MapData;
+using System.Drawing.Drawing2D;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace BlueBrick
+{
+	public static class SaveLoadManager
+	{
+		#region Entry point
+
+		public static bool load(string filename)
+		{
+			if (File.Exists(filename))
+			{
+				string filenameLower = filename.ToLower();
+
+				if (filenameLower.EndsWith("ldr") || filenameLower.EndsWith("dat"))
+					return loadLDR(filename);
+				else if (filenameLower.EndsWith("mpd"))
+					return loadMDP(filename);
+				else if (filenameLower.EndsWith("tdl"))
+					return loadTDL(filename);
+				else
+					return loadBBM(filename);
+			}
+			return false;
+		}
+
+		public static void save(string filename)
+		{
+			string filenameLower = filename.ToLower();
+
+			if (filenameLower.EndsWith("ldr") || filenameLower.EndsWith("dat"))
+				saveLDR(filename);
+			else if (filenameLower.EndsWith("mpd"))
+				saveMDP(filename);
+			else if (filenameLower.EndsWith("tdl"))
+				saveTDL(filename);
+			else
+				saveBBM(filename);
+		}
+
+		private static List<string> slitLine(string line)
+		{
+			// use the normal split function
+			char[] lineSpliter = { '=', ' ', '\t' };
+			string[] splitedToken = line.Split(lineSpliter);
+			// remove the empty token
+			List<string> result = new List<string>(splitedToken.Length);
+			foreach (string token in splitedToken)
+				if (token != string.Empty)
+					result.Add(token);
+			return result;
+		}
+
+		#endregion
+		#region BlueBrick Format
+
+		private static bool loadBBM(string filename)
+		{
+			// create a serializer to load the map
+			XmlSerializer mySerializer = new XmlSerializer(typeof(Map));
+			FileStream myFileStream = new FileStream(filename, FileMode.Open);
+			// By default init the progress bar from the size of the file
+			// and divide by an approximate size value of a brick to 
+			// have an estimation of the number of brick in the file.
+			// This is only usefull for files which version is under 3, because
+			// from version 3 we record the number of brick in the file
+			MainForm.Instance.resetProgressBar((int)(myFileStream.Length / 900));
+			// parse and copy the data into this
+			Map.Instance = mySerializer.Deserialize(myFileStream) as Map;
+			// release the file stream
+			myFileStream.Close();
+			myFileStream.Dispose();
+			// the file can be open
+			return true;
+		}
+
+		private static void saveBBM(string filename)
+		{
+			// the current file name must be valid to call this function
+			XmlSerializer mySerializer = new XmlSerializer(typeof(Map));
+			StreamWriter myWriter = new StreamWriter(filename, false);
+			mySerializer.Serialize(myWriter, Map.Instance);
+			myWriter.Close();
+			myWriter.Dispose();
+		}
+
+		#endregion
+		#region LDRAW Format
+
+		public class LDrawRemapData
+		{
+			public float mAngle = 0.0f;
+			public float mX = 0.0f;
+			public float mY = 0.0f;
+			public float mZ = 0.0f;
+			public string mSleeperBrickNumber = null;
+			public string mSleeperBrickColor = null;
+			public string mUsePartInstead = null;
+
+			public LDrawRemapData()
+			{
+			}
+
+			public LDrawRemapData(LDrawRemapData obj)
+			{
+				mAngle = obj.mAngle;
+				mX = obj.mX;
+				mY = obj.mY;
+				mZ = obj.mZ;
+				mSleeperBrickNumber = obj.mSleeperBrickNumber;
+				mSleeperBrickColor = obj.mSleeperBrickColor;
+				mUsePartInstead = obj.mUsePartInstead;
+			}
+		}
+
+		private static Dictionary<string, LDrawRemapData> mLDrawPartRemap = null;
+
+		private static void initLDrawPartRemap()
+		{
+			// check if the remap part dictionnary was initialized
+			if (mLDrawPartRemap == null)
+			{
+				// initialise the dictionnary anyway even if we leave it empty
+				mLDrawPartRemap = new Dictionary<string, LDrawRemapData>();
+				// try to load the config file
+				string configFileName = Application.StartupPath + "/config/LDrawPartRemap.txt";
+				try
+				{
+					StreamReader textReader = new StreamReader(configFileName);
+					char[] partNumberSpliter = { '.' };
+					while (!textReader.EndOfStream)
+					{
+						// read the line, trim it and avoid empty line and comments
+						string line = textReader.ReadLine();
+						line = line.Trim();
+						if ((line.Length > 0) && (line[0] != ';'))
+						{
+							try
+							{
+								// get the part number
+								List<string> token = slitLine(line);
+								int currentTokenIndex = 0;
+								string partNumber = token[currentTokenIndex++].ToUpper();
+
+								// read the remap data
+								LDrawRemapData remapData = new LDrawRemapData();
+								remapData.mAngle = float.Parse(token[currentTokenIndex++], System.Globalization.CultureInfo.InvariantCulture);
+								remapData.mX = float.Parse(token[currentTokenIndex++], System.Globalization.CultureInfo.InvariantCulture);
+								remapData.mY = float.Parse(token[currentTokenIndex++], System.Globalization.CultureInfo.InvariantCulture);
+								remapData.mZ = float.Parse(token[currentTokenIndex++], System.Globalization.CultureInfo.InvariantCulture);
+
+								// read the optionnal data
+								if ((currentTokenIndex < token.Count) && !token[currentTokenIndex].StartsWith(";"))
+								{
+									// read the sleeper brick
+									string[] partNumberAndColor = token[currentTokenIndex++].Split(partNumberSpliter);
+									remapData.mSleeperBrickNumber = partNumberAndColor[0].ToUpper();
+									if (partNumberAndColor.Length > 1)
+										remapData.mSleeperBrickColor = partNumberAndColor[1];
+									else
+										remapData.mSleeperBrickColor = "0";
+
+									// read the use part instead
+									if ((currentTokenIndex < token.Count) && !token[currentTokenIndex].StartsWith(";"))
+										remapData.mUsePartInstead = token[currentTokenIndex++].ToUpper();
+								}
+
+								// add the remap data in the dictionnary
+								mLDrawPartRemap.Add(partNumber, remapData);
+							}
+							catch (Exception)
+							{
+								// we just skip the line, if the format is not correct
+							}
+						}
+					}
+				}
+				catch (Exception)
+				{
+					string message = Properties.Resources.ErrorMissingLDrawPartRemapFile.Replace("&", configFileName);
+					MessageBox.Show(null, message,
+						Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
+						MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				}
+			}
+		}
+
+		private static bool loadLDR(string filename)
+		{
+			// init the part remap
+			initLDrawPartRemap();
+			// create a new map
+			Map.Instance = new Map();
+			LayerBrick currentLayer = new LayerBrick();
+			// open the file
+			StreamReader textReader = new StreamReader(filename);
+			// init the progress bar with the number of bytes of the file
+			MainForm.Instance.resetProgressBar((int)(textReader.BaseStream.Length));
+			// create a line spliter array
+			char[] lineSpliter = { ' ', '\t' };
+			while (!textReader.EndOfStream)
+			{
+				// read the current line
+				string line = textReader.ReadLine();
+				// move the progressbar according to the number of byte read
+				MainForm.Instance.stepProgressBar(line.Length);
+				// split the current line
+				string[] token = line.Split(lineSpliter);
+				// check if the first token is 0 or 1, the other are just ignored
+				if ((token[0] == "0") && (token.Length > 1))
+				{
+					// comment or meta command
+					if (token[1].Equals("STEP"))
+					{
+						// new step, so add a layer (if the current layer is not empty)
+						if (currentLayer.BrickList.Count > 0)
+						{
+							currentLayer.updateFullBrickConnectivity();
+							currentLayer.sortBricksByAltitude();
+							Map.Instance.addLayer(currentLayer);
+							currentLayer = new LayerBrick();
+						}
+					}
+					else if (token[1].Equals("MLCAD"))
+					{
+						if (token[2].Equals("HIDE"))
+						{
+							parseBrickLineLDRAW(token, 4, currentLayer);
+							currentLayer.Visible = false;
+						}
+					}
+					else
+					{
+						parseMetaCommandLineLDRAW(line, token, currentLayer);
+					}
+				}
+				else if (token[0] == "1")
+				{
+					parseBrickLineLDRAW(token, 1, currentLayer);
+				}
+			}
+			// close the stream
+			textReader.Close();
+
+			// add the last layer if not empty
+			if (currentLayer.BrickList.Count > 0)
+			{
+				currentLayer.updateFullBrickConnectivity();
+				currentLayer.sortBricksByAltitude();
+				Map.Instance.addLayer(currentLayer);
+			}
+
+			// finish the progress bar (to hide it)
+			MainForm.Instance.finishProgressBar();
+
+			// the file can be open
+			return true;
+		}
+
+		private static bool loadMDP(string filename)
+		{
+			// init the part remap
+			initLDrawPartRemap();
+			// create a new map
+			Map.Instance = new Map();
+			LayerBrick currentLayer = new LayerBrick();
+			List<string> hiddenLayerNames = new List<string>();
+			// open the file
+			StreamReader textReader = new StreamReader(filename);
+			// init the progress bar with the number of bytes of the file
+			MainForm.Instance.resetProgressBar((int)(textReader.BaseStream.Length));
+			// create a line spliter array
+			char[] lineSpliter = { ' ', '\t' };
+			while (!textReader.EndOfStream)
+			{
+				string line = textReader.ReadLine();
+				// move the progressbar according to the number of byte read
+				MainForm.Instance.stepProgressBar(line.Length);
+				// split the current line
+				string[] token = line.Split(lineSpliter);
+				// check if the first token is 0 or 1, the other are just ignored
+				if ((token[0] == "0") && (token.Length > 1))
+				{
+					// comment or meta command
+					if (token[1].Equals("FILE"))
+					{
+						// new file, so add a layer (if the current layer is not empty)
+						if (currentLayer.BrickList.Count > 0)
+						{
+							currentLayer.updateFullBrickConnectivity();
+							currentLayer.sortBricksByAltitude();
+							Map.Instance.addLayer(currentLayer);
+							currentLayer = new LayerBrick();
+						}
+						// and we name the layer with the name of the sub model
+						currentLayer.Name = Path.GetFileNameWithoutExtension(line.Substring(7));
+					}
+					else if (token[1].Equals("STEP"))
+					{
+						// in mdp we skip the step
+					}
+					else if (token[1].Equals("MLCAD"))
+					{
+						if (token[2].Equals("HIDE"))
+						{
+							// check if it is a sub model or a simple part hidden
+							string partFullName = token[17];
+							if (Path.GetExtension(partFullName.ToUpper()).Equals(".LDR"))
+								hiddenLayerNames.Add(Path.GetFileNameWithoutExtension(partFullName));
+						}
+					}
+					else
+					{
+						parseMetaCommandLineLDRAW(line, token, currentLayer);
+					}
+				}
+				else if (token[0] == "1")
+				{
+					parseBrickLineLDRAW(token, 1, currentLayer);
+				}
+			}
+			// close the stream
+			textReader.Close();
+
+			// add the last layer if not empty
+			if (currentLayer.BrickList.Count > 0)
+			{
+				currentLayer.updateFullBrickConnectivity();
+				currentLayer.sortBricksByAltitude();
+				Map.Instance.addLayer(currentLayer);
+			}
+
+			// iterate on all the layers to hide the hidden ones we found
+			foreach (Layer layer in Map.Instance.LayerList)
+				foreach (string hiddenLayerName in hiddenLayerNames)
+					if (layer.Name.Equals(hiddenLayerName))
+					{
+						layer.Visible = false;
+						break;
+					}
+
+			// finish the progress bar (to hide it)
+			MainForm.Instance.finishProgressBar();
+
+			// the file can be open
+			return true;
+		}
+
+		private static void parseMetaCommandLineLDRAW(string line, string[] token, LayerBrick currentLayer)
+		{
+			if (token[1].StartsWith("Author"))
+			{
+				Map.Instance.Author = token[2].Clone() as string;
+			}
+			else if (token[1].StartsWith("LUG"))
+			{
+				Map.Instance.LUG = token[2].Clone() as string;
+			}
+			else if (token[1].StartsWith("Show"))
+			{
+				Map.Instance.Show = token[2].Clone() as string;
+			}
+			else if (token[1].StartsWith("Date"))
+			{
+				try
+				{
+					string endOfLine = line.Substring(line.IndexOf(token[1]) + token[1].Length);
+					DateTime date = DateTime.Parse(endOfLine);
+					Map.Instance.Date = date;
+				}
+				catch (Exception)
+				{
+				}
+			}
+			else if (token[1].Equals("WRITE") || token[1].Equals("PRINT") || token[1].Equals("CLEAR") ||
+					token[1].Equals("PAUSE") || token[1].Equals("SAVE") || token[1].Contains("LDRAW_ORG") ||
+					token[1].Contains("official") || token[1].Equals("ROTATION") || token[1].Equals("ROTSTEP") ||
+					token[1].Equals("BACKGROUND") || token[1].Equals("BUFEXCHG") || token[1].Equals("GHOST") ||
+					token[1].Equals("GROUP") || token[1].Contains("LPUB") || token[1].Equals("BI") ||
+					token[1].Equals("PLI") || token[1].Contains("BORDER") || token[1].Equals("NUMBER") ||
+					token[1].Equals("MARGINS") || token[1].Equals("PLACEMENT") || token[1].Equals("PART") ||
+					token[1].Equals("CONSTRAIN") || token[1].Equals("INSTANCE_COUNT") || token[1].Contains("SYNTH") ||
+					token[1].Equals("L3P") || token[1].Contains("COLOR") || token[1].Contains("COLOUR"))
+			{
+				// skip all these meta commands
+			}
+			else
+			{
+				// every thing else is treated as a comment
+				string comment = Map.Instance.Comment;
+				comment += line.Substring(2) + "\n";
+				Map.Instance.Comment = comment;
+			}
+		}
+
+		private static void parseBrickLineLDRAW(string[] token, int startIndex, LayerBrick currentLayer)
+		{
+			// only parse the DAT part, if the part is a ldr (i.e submodel, we just skip it)
+			string partFullName = token[startIndex + 13];
+			if (!Path.GetExtension(partFullName.ToUpper()).Equals(".DAT"))
+				return;
+
+			try
+			{
+				string color = token[startIndex++];
+				float x = float.Parse(token[startIndex++], System.Globalization.CultureInfo.InvariantCulture);
+				float y = float.Parse(token[startIndex++], System.Globalization.CultureInfo.InvariantCulture);
+				float z = -float.Parse(token[startIndex++], System.Globalization.CultureInfo.InvariantCulture);
+				float a = float.Parse(token[startIndex++], System.Globalization.CultureInfo.InvariantCulture);
+				startIndex++; // skip b
+				float c = float.Parse(token[startIndex++], System.Globalization.CultureInfo.InvariantCulture);
+				startIndex += 6; // skip d f g h i j
+				string partNumberWithoutColor = Path.GetFileNameWithoutExtension(partFullName).ToUpper();
+				string partNumber = partNumberWithoutColor + "." + color;
+				// compute the orientation angle
+				float angle = (float)Math.Atan2(c, a);
+				// compute the angle in degree
+				angle *= (float)(180.0 / Math.PI);
+
+				// check if we have some origin conversion to do
+				LDrawRemapData remapData = null;
+				mLDrawPartRemap.TryGetValue(partNumberWithoutColor, out remapData);
+				if (remapData != null)
+				{
+					// check if we need to skip this part during the loading
+					if ((remapData.mSleeperBrickNumber != null) && remapData.mSleeperBrickNumber.Equals("SKIP"))
+						return;
+
+					// cheat the angle
+					angle -= remapData.mAngle;
+					// add a shift in the good direction
+					if ((remapData.mX != 0.0f) || (remapData.mZ != 0.0f))
+					{
+						Matrix rotation = new Matrix();
+						rotation.Rotate(angle);
+						PointF[] offset = { new PointF(-remapData.mX, remapData.mZ) };
+						rotation.TransformVectors(offset);
+						x += offset[0].X;
+						z += offset[0].Y;
+					}
+				}
+
+				// create a new brick
+				LayerBrick.Brick brick = new LayerBrick.Brick(BrickLibrary.Instance.getActualPartNumber(partNumber));
+
+				// rotate the brick (will recompute the correct OffsetFromOriginalImage)
+				brick.Orientation = angle;
+
+				// rescale the position because 1 stud = 20 LDU and set the center position
+				x = (x / 20.0f) - brick.OffsetFromOriginalImage.X;
+				z = (z / 20.0f) - brick.OffsetFromOriginalImage.Y;
+				brick.Center = new PointF(x, z);
+				brick.Altitude = y;
+
+				// add the brick to the layer
+				currentLayer.addBrick(brick, -1);
+			}
+			catch (Exception)
+			{
+			}
+		}
+
+		private static void saveLDR(string filename)
+		{
+			// init the progress bar with the number of items (+1 for init remap +1 for header)
+			int nbItems = 0;
+			foreach (Layer layer in Map.Instance.LayerList)
+			{
+				// check the type because we only save brick layers
+				LayerBrick brickLayer = layer as LayerBrick;
+				if (brickLayer != null)
+					nbItems += layer.getNbItems();
+			}
+			MainForm.Instance.resetProgressBar(nbItems + 2);
+
+			// init the part remap
+			initLDrawPartRemap();
+			// step the progressbar after the init of part remap
+			MainForm.Instance.stepProgressBar();
+
+			StreamWriter textWriter = new StreamWriter(filename);
+			// write the header
+			saveHeaderInLDRAW(textWriter);
+			// add a line break
+			textWriter.WriteLine("0");
+			// step the progressbar after the write of the header
+			MainForm.Instance.stepProgressBar();
+
+			// iterate on all the layers of the Map
+			foreach (Layer layer in Map.Instance.LayerList)
+			{
+				// check the type because we only save brick layers
+				LayerBrick brickLayer = layer as LayerBrick;
+				if (brickLayer != null)
+				{
+					saveBrickLayerInLDRAW(textWriter, brickLayer, true);
+					// add a step to separate the layers
+					textWriter.WriteLine("0 STEP");
+				}
+			}
+			// close the file
+			textWriter.Close();
+		}
+
+		private static void saveMDP(string filename)
+		{
+			// init the progress bar with the number of items (+1 for init remap +2 for header)
+			int nbItems = 0;
+			foreach (Layer layer in Map.Instance.LayerList)
+			{
+				// check the type because we only save brick layers
+				LayerBrick brickLayer = layer as LayerBrick;
+				if (brickLayer != null)
+					nbItems += layer.getNbItems();
+			}
+			MainForm.Instance.resetProgressBar(nbItems + 3);
+
+			// init the part remap
+			initLDrawPartRemap();
+			// step the progressbar after the init of part remap
+			MainForm.Instance.stepProgressBar();
+
+			StreamWriter textWriter = new StreamWriter(filename);
+			// in mpd, we always start with the 0 FILE command,
+			// and we start with the main model that contains all the layers
+			textWriter.WriteLine("0 FILE " + Path.GetFileNameWithoutExtension(filename) + ".ldr");
+			// write the header
+			saveHeaderInLDRAW(textWriter);
+			// step the progressbar after the write of the header
+			MainForm.Instance.stepProgressBar();
+
+			// write the list of all the layer, at the 0 position with identity matrix in black
+			// the format line is like for a single part:
+			// 1 <colour> x y z a b c d e f g h i <file> 
+			// the black color has the code 1, the <file> is the name of the layer, replacing the space by _
+			List<string> layerStandardizedNames = new List<string>(Map.Instance.LayerList.Count);
+			foreach (Layer layer in Map.Instance.LayerList)
+			{
+				// check the type because we only save brick layers
+				LayerBrick brickLayer = layer as LayerBrick;
+				if (brickLayer != null)
+				{
+					// compute the clean layer name, removing white character
+					string layerName = layer.Name.Trim().Replace(' ', '_');
+					layerName = layerName.Replace('\t', '_');
+					layerName += ".ldr";
+					// write the line of the part
+					string line = "";
+					if (!brickLayer.Visible)
+						line += "0 MLCAD HIDE ";
+					line += "1 1 0 0 0 1 0 0 0 1 0 0 0 1 " + layerName;
+					textWriter.WriteLine(line);
+					// add the name in the list for later use
+					layerStandardizedNames.Add(layerName);
+				}
+			}
+			// step the progressbar after the write of the layer list
+			MainForm.Instance.stepProgressBar();
+
+			// add a line break
+			textWriter.WriteLine("0");
+			// iterate on all the layers of the Map
+			int layerIndex = 0;
+			foreach (Layer layer in Map.Instance.LayerList)
+			{
+				// check the type because we only save brick layers
+				LayerBrick brickLayer = layer as LayerBrick;
+				if (brickLayer != null)
+				{
+					// write the file meta command with the same name computed before for the layer
+					textWriter.WriteLine("0 FILE " + layerStandardizedNames[layerIndex++]);
+					// write a small header, but not the full info, just the type and author
+					textWriter.WriteLine("0 Unofficial Model");
+					textWriter.WriteLine("0 Author " + Map.Instance.Author);
+					// write the content of the layer
+					saveBrickLayerInLDRAW(textWriter, brickLayer, false);
+					// add a line break
+					textWriter.WriteLine("0");
+				}
+			}
+			// close the file
+			textWriter.Close();
+		}
+
+		private static void saveHeaderInLDRAW(StreamWriter textWriter)
+		{
+			// write that this is an unofficial model
+			textWriter.WriteLine("0 Unofficial Model");
+			// write the global info of this file
+			textWriter.WriteLine("0 Author " + Map.Instance.Author);
+			textWriter.WriteLine("0 LUG/LTC: " + Map.Instance.LUG);
+			textWriter.WriteLine("0 Show: " + Map.Instance.Show);
+			textWriter.WriteLine("0 Date: " + Map.Instance.Date.ToLongDateString());
+			// write the comments of this map
+			char[] commentSpliter = { '\n' };
+			String[] commentLines = Map.Instance.Comment.Split(commentSpliter);
+			foreach (string commentLine in commentLines)
+				if (commentLine != string.Empty)
+					textWriter.WriteLine("0 " + commentLine);
+		}
+
+		private static void saveBrickLayerInLDRAW(StreamWriter textWriter, LayerBrick brickLayer, bool useMLCADHide)
+		{
+			// an array containing the spliter for part number and color
+			char[] partNumberSpliter = { '.' };
+
+			// check if the layer is hidden (and so we should hide all the bricks)
+			bool hideBricks = useMLCADHide && !brickLayer.Visible;
+
+			// declare a list to store all the connection point for which the sleepers where already added
+			List<LayerBrick.Brick.ConnectionPoint> addedSleepers = new List<LayerBrick.Brick.ConnectionPoint>();
+
+			// iterate on all the bricks
+			foreach (LayerBrick.Brick brick in brickLayer.BrickList)
+			{
+				// step the progressbar for each brick (we do it at the begining because there is a continue in this loop)
+				MainForm.Instance.stepProgressBar();
+
+				// split the part name and color
+				string[] partNumberAndColor = brick.PartNumber.Split(partNumberSpliter);
+				string originalBrickNumber = partNumberAndColor[0];
+				// skip the brick if it is a set, a logo, or a special custom part
+				// so we skip all the parts that don't have a valid color number
+				int intColor = 0;
+				if ((partNumberAndColor.Length < 2) || !int.TryParse(partNumberAndColor[1], out intColor))
+					continue;
+
+				// compute x and y because the pair bricks doesn't have image in the library
+				float x = brick.Center.X + brick.OffsetFromOriginalImage.X;
+				float z = -brick.Center.Y - brick.OffsetFromOriginalImage.Y;
+
+				// get the remap data
+				LDrawRemapData remapData = null;
+				mLDrawPartRemap.TryGetValue(partNumberAndColor[0], out remapData);
+
+				// check if we need to save another brick number instead
+				if ((remapData != null) && (remapData.mUsePartInstead != null))
+					partNumberAndColor[0] = remapData.mUsePartInstead;
+
+				// save the brick
+				saveOneBrickInLDRAW(textWriter, brick, partNumberAndColor, x, z, remapData, hideBricks);
+
+				// if there's no remap for this brick, just continue to next brick
+				if (remapData == null)
+					continue;
+
+				// check if we need to add sleepers
+				if ((remapData.mSleeperBrickNumber != null) && (brick.HasConnectionPoint))
+				{
+					// this is a rail brick, we need to add 2 sleepers
+					// save the sleeper brick name into the part number array
+					partNumberAndColor[0] = remapData.mSleeperBrickNumber;
+					partNumberAndColor[1] = remapData.mSleeperBrickColor;
+					// and create a temp brick for saving
+					LayerBrick.Brick sleeperBrick = new LayerBrick.Brick(partNumberAndColor[0] + "." + partNumberAndColor[1]);
+					sleeperBrick.Altitude = brick.Altitude;
+
+					// get the remap data of the sleeper
+					LDrawRemapData sleeperRemapData = null;
+					mLDrawPartRemap.TryGetValue(remapData.mSleeperBrickNumber, out sleeperRemapData);
+
+					// if we found the sleeper remap data, add the difference of height between the rail brick and the sleeper
+					if ((sleeperRemapData != null) && (sleeperBrick.Altitude != 0.0f))
+						sleeperBrick.Altitude += sleeperRemapData.mY - remapData.mY;
+
+					// first check the connections points (the two extremity of the rail)
+					int nbConnexions = brick.ConnectionPoints.Count;
+					for (int i = 0; i < nbConnexions; ++i)
+					{
+						// get the current connexion
+						LayerBrick.Brick.ConnectionPoint connexion = brick.ConnectionPoints[i];
+						// if the connexion is free we need to add the sleeper
+						// else if it is not free we check if we didn't already add it
+						bool needToAddSleeper = (connexion.IsFree) || (!addedSleepers.Contains(connexion.ConnectedConnection));
+						if (needToAddSleeper)
+						{
+							// set the correct position and orientation of the sleeper
+							sleeperBrick.Orientation = brick.Orientation + BrickLibrary.Instance.getConnectionAngle(brick.PartNumber, i);
+							x = connexion.PositionInStudWorldCoord.X;
+							z = -connexion.PositionInStudWorldCoord.Y;
+							saveOneBrickInLDRAW(textWriter, sleeperBrick, partNumberAndColor, x, z, sleeperRemapData, hideBricks);
+							// add the brick to the list (to avoid adding another sleeper at the same place)
+							addedSleepers.Add(connexion);
+						}
+					}
+				}
+			}
+		}
+
+		private static void saveOneBrickInLDRAW(StreamWriter textWriter, LayerBrick.Brick brick, string[] partNumberAndColor, float x, float z, LDrawRemapData remapData, bool hideBricks)
+		{
+			// the LDRAW format for a brick is:
+			// 1 <colour> x y z a b c d e f g h i <file> 
+			// where x y z is the position and a b c d e f g h i is the matrix
+			// in BlueBrick the color is contained in the name of the part number
+			// the position must be translated from stud to LDU (1 stud = 20 LDU),
+			// and the Y coord is from the altitude of the brick (0 by default)
+			// The matrix is the identity, except if you rotate the part, but
+			// the second line of the matrix is always the identity
+
+			// the position of the brick
+			x *= 20;
+			float y = brick.Altitude;
+			z *= 20;
+			// angle
+			float angle = brick.Orientation;
+
+			// check if we have some origin conversion to do
+			if (remapData != null)
+			{
+				// add a shift in the good direction
+				if ((remapData.mX != 0.0f) || (remapData.mZ != 0.0f))
+				{
+					Matrix rotation = new Matrix();
+					rotation.Rotate(-angle);
+					PointF[] offset = { new PointF(remapData.mX, remapData.mZ) };
+					rotation.TransformVectors(offset);
+					x += offset[0].X;
+					z += offset[0].Y;
+				}
+				// set the height if there's not already a non null height set
+				if (y == 0.0f)
+					y = remapData.mY;
+				// cheat the angle
+				angle += remapData.mAngle;
+			}
+
+			//construct the line
+			string line = "";
+			// first the visible if we should use it
+			if (hideBricks)
+				line += "0 MLCAD HIDE ";
+			// then the type and color
+			line += "1 " + partNumberAndColor[1];
+			// position
+			line += " " + x.ToString(System.Globalization.CultureInfo.InvariantCulture);
+			line += " " + y.ToString(System.Globalization.CultureInfo.InvariantCulture);
+			line += " " + z.ToString(System.Globalization.CultureInfo.InvariantCulture);
+			// matrix
+			// convert the angle in radian
+			angle *= (float)Math.PI / 180.0f;
+			float cosAngle = (float)Math.Cos(angle);
+			float sinAngle = (float)Math.Sin(angle);
+			string cosAngleStr = cosAngle.ToString(System.Globalization.CultureInfo.InvariantCulture);
+			string sinAngleStr = sinAngle.ToString(System.Globalization.CultureInfo.InvariantCulture);
+			string minusSinAngleStr = (-sinAngle).ToString(System.Globalization.CultureInfo.InvariantCulture);
+			line += " " + cosAngleStr + " 0 " + sinAngleStr;
+			line += " 0 1 0";
+			line += " " + minusSinAngleStr + " 0 " + cosAngleStr;
+			// file
+			line += " " + partNumberAndColor[0] + ".DAT";
+			//write the line
+			textWriter.WriteLine(line);
+		}
+
+		#endregion
+		#region TrackDesigner Format
+
+		public class TrackDesignerRemapData
+		{
+			public class ConnexionData
+			{
+				public int mConnexionPointIndex = 0;
+				public int mType = 0;
+				public int mPolarity = 0; // 0 unasasigned, 2 -ve, 3 +ve
+				public float mDiffAngleBtwTDandBB = 0.0f;
+			}
+
+			public string mPartNumber = null;
+			public int mFlags = 0;
+			public bool mHasSeveralPort = false;
+			// in TD Files, there is only 4 connexions
+			public ConnexionData[] mConnexionData = { new ConnexionData(), new ConnexionData(), new ConnexionData(), new ConnexionData() };
+		}
+
+		private static Dictionary<int, TrackDesignerRemapData> mTrackDesignerPartRemap = null;
+		private static Dictionary<string, int> mTrackDesignerPartNumberAssociation = null;
+
+		private static bool initTrackDesignerPartRemap()
+		{
+			// check if the remap part dictionnary was initialized
+			if (mTrackDesignerPartRemap == null)
+			{
+				string configFileName = Application.StartupPath + "/config/TDPartRemap.txt";
+				try
+				{
+					StreamReader textReader = new StreamReader(configFileName);
+					mTrackDesignerPartRemap = new Dictionary<int, TrackDesignerRemapData>();
+					mTrackDesignerPartNumberAssociation = new Dictionary<string, int>();
+					char[] subLineSpliter = { ',' };
+					while (!textReader.EndOfStream)
+					{
+						// read the line, trim it and avoid empty line and comments
+						string line = textReader.ReadLine();
+						line = line.Trim();
+						if ((line.Length > 0) && (line[0] != ';'))
+						{
+							try
+							{
+								// get the td and bb part number
+								List<string> token = slitLine(line);
+								int tdPartNumber = int.Parse(token[0]);
+								TrackDesignerRemapData remapData = new TrackDesignerRemapData();
+								remapData.mPartNumber = token[1].ToUpper();
+
+								// get the flags
+								remapData.mFlags = int.Parse(token[2]);
+
+								// get the flag that tell if the part ha several port id
+								remapData.mHasSeveralPort = token[3].ToUpper().Equals("TRUE");
+								
+								// check the rest of the line to parse optionnal connexion remaping
+								for (int i = 4 ; i < token.Count-1 ; ++i)
+									if (token[i].Length > 0)
+										if (token[i][0] != ';')
+										{
+											// parse the subtoken with the comma as separator
+											string[] subToken = token[i + 1].Split(subLineSpliter);
+											if (subToken.Length >= 3)
+											{
+												int tdBitmapNum = int.Parse(token[i]);
+												if (tdBitmapNum < remapData.mConnexionData.Length)
+												{
+													TrackDesignerRemapData.ConnexionData connexion = remapData.mConnexionData[tdBitmapNum];
+													connexion.mConnexionPointIndex = int.Parse(subToken[0]);
+													connexion.mType = int.Parse(subToken[1]);
+													if (subToken[2].Equals("-"))
+														connexion.mPolarity = 2;
+													else if (subToken[2].Equals("+"))
+														connexion.mPolarity = 3;
+													else
+														connexion.mPolarity = 0;
+													connexion.mDiffAngleBtwTDandBB = float.Parse(subToken[3], System.Globalization.CultureInfo.InvariantCulture);
+												}
+												i++;
+											}
+										}
+										else
+										{
+											// the rest of the line is a comment so stop reading the line
+											break;
+										}
+
+								// add the remap data in the dictionnary
+								mTrackDesignerPartRemap.Add(tdPartNumber, remapData);
+								mTrackDesignerPartNumberAssociation.Add(remapData.mPartNumber, tdPartNumber);
+							}
+							catch (Exception)
+							{
+								// we just skip the line, if the format is not correct
+							}
+						}
+					}
+				}
+				catch (Exception)
+				{
+					string message = Properties.Resources.ErrorMissingTDPartRemapFile.Replace("&", configFileName);
+					MessageBox.Show(null, message,
+						Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
+						MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				}
+			}
+
+			// return true if the dictionnary was properly initialized
+			return (mTrackDesignerPartRemap != null);
+		}
+
+		private static bool loadTDL(string filename)
+		{
+			// create a new map and different layer for different type of parts
+			Map.Instance = new Map();
+			LayerBrick baseplateLayer = new LayerBrick();
+			LayerBrick rail9VLayer = new LayerBrick();
+			LayerBrick monorailLayer = new LayerBrick();
+			LayerBrick currentLayer = baseplateLayer;
+
+			// check if we can init the remap dictionnary
+			if (!initTrackDesignerPartRemap())
+				return false;
+
+			// declare a bool to check if we found some part not remaped in the remap file
+			List<int> noRemapablePartFound = new List<int>();
+
+			// open the file
+			FileStream myFileStream = new FileStream(filename, FileMode.Open);
+			BinaryReader binaryReader = new BinaryReader(myFileStream);
+			// init the progress bar with the number of bytes of the file
+			MainForm.Instance.resetProgressBar((int)(myFileStream.Length));
+
+			// read the header which is 124 bytes normally without comments
+			int headerSize = loadTDLHeader(binaryReader);
+			// check if there was an error reading the TD header
+			if (headerSize <= 0)
+			{
+				// finish the progressbar to hide it
+				MainForm.Instance.finishProgressBar();
+				binaryReader.Close();
+				myFileStream.Close();
+				return false;
+			}
+
+			// read the number of CTrackPieces in the list of parts
+			int nbTrackPieces = binaryReader.ReadInt16();
+			headerSize += 2;
+			// read the header of the CTrackPieces list (containing the string "CTrackPiece")
+			binaryReader.ReadChars(17);
+			headerSize += 17;
+
+			// move the progressbar according to the number of byte read
+			MainForm.Instance.stepProgressBar(headerSize);
+
+			// read until we reach the end of file
+			bool endOfFile = (binaryReader.BaseStream.Position >= binaryReader.BaseStream.Length);
+			while (!endOfFile)
+			{
+				// The part number (that contains the class of the part) and separate the number and the class
+				// The class are like that:
+				//             0 = baseplate
+				//       100 000 = 9Vtrain,  except 9V crossover is 1 000 100 000 and train station set is 110 000
+				//       200 000 = monorail
+				//       300 000 = road
+				//       4x0 000 = 12V gray rail where x is 1 or 3
+				//       5x0 000 = 4.5V gray rail where x is 0 or 3
+				//       6x0 000 = 12V blue rail where x is 1 or 3
+				//       7x0 000 = 4.5V blue rail where x is 0 or 3
+				//       800 000 = road
+				//       900 000 = road (green) except one part is 10 900 000
+				//     1 000 000 = road (green)
+				//    11 000 000 = road (green)
+				// 1 0x0 000 000 = support where x is from 1 to 7
+				int TDPartNumber = binaryReader.ReadInt32();
+
+				// skip the pointer in memory (also used as an instance ID)
+				binaryReader.ReadInt32();
+
+				// read angle in degree
+				double angle = binaryReader.ReadDouble();
+				// read x in stud
+				double x = binaryReader.ReadDouble();
+				// read y in stud
+				double y = binaryReader.ReadDouble();
+				// skip z (also a double), the value is multiplied by 3 compared to the value displayed in TrackDesigner
+				double z = binaryReader.ReadDouble();
+
+				// le type de la pièce (an int) (0 = Straight, 1 = Left Curve, 2 = Right Curve, 3 = Left Split, 4 = Right Split, 5 = Left Merge, 6 = Right Merge, 7 = Left Join, 8 = Right Join, 9 = Crossover, 10 = T Junction, 11 = Up Ramp, 12 = Down Ramp, 13 = Short Straight, 14 = Short Left Curve In, 15 = Short Right Curve In, 16 = Short Left Curve Out, 17 = Short Right Curve Out, 18 = Left Reverse Switch, 19 = Right Reverse Switch, 20 = Custom)
+				int type = binaryReader.ReadInt32();
+
+				// the id of bitmap (an int) when a part (like a curve) has two bitmap in the TrackDesigner part library, or for two baseplase with different color
+				int portIdOfOrigin = binaryReader.ReadInt32();
+
+				// skip 4 structures for the connexion, each structure is made of:
+				// - a pointer (instance ID)
+				// - a int that is the Port number connected to on other piece
+				// - a int that is the Port polarity: 0 unasasigned, 2 -ve, 3 +ve
+				// = so it is 4*3*4 = 48 bytes
+				// then skip also:
+				// - a int that is flags
+				// - a int that is slope 
+				// + one word (2 bytes that I don't know the meaning maybe comming from the list) = 10 bytes
+				// Note: the 2 bytes are not present for the last part in the stream, so for the last part we should skip less bytes
+				long remainingBytesCount = binaryReader.BaseStream.Length - binaryReader.BaseStream.Position;
+				if (remainingBytesCount >= 58)
+					binaryReader.ReadBytes(58);
+				else
+					endOfFile = true;
+
+				// --------------
+
+				// special case for a down ramp (TD give to the up and down ramp the same id with different bitmap id)
+				// whereas in fact it is two different parts.
+				if ((TDPartNumber == 232677) && (portIdOfOrigin == 1))
+					TDPartNumber = 232678;
+
+				// try to get the BlueBrick correcponding part number
+				TrackDesignerRemapData remapData = null;
+				mTrackDesignerPartRemap.TryGetValue(TDPartNumber, out remapData);
+
+				// if it is a valid part, get the class of the brick to know in which layer add
+				// and then create the brick and add it to the layer
+				if (remapData != null)
+				{
+					// create a new brick
+					LayerBrick.Brick brick = new LayerBrick.Brick(remapData.mPartNumber);
+
+					// choose the corect layer according to the type of connexion
+					if (brick.HasConnectionPoint)
+					{
+						switch (brick.ConnectionPoints[0].Type)
+						{
+							case BrickLibrary.Brick.ConnectionType.RAIL:
+								currentLayer = rail9VLayer;
+								break;
+							case BrickLibrary.Brick.ConnectionType.MONORAIL:
+							case BrickLibrary.Brick.ConnectionType.MONORAIL_SHORT_CURVE:
+								currentLayer = monorailLayer;
+								break;
+							default:
+								currentLayer = baseplateLayer;
+								break;
+						}
+					}
+					else
+					{
+						currentLayer = baseplateLayer;
+					}
+
+					// check if we have to remap the connexion
+					float diffAngleBtwTDandBB = 0;
+					// try to get the conexion remap data
+					if (portIdOfOrigin < remapData.mConnexionData.Length)
+					{
+						TrackDesignerRemapData.ConnexionData connexion = remapData.mConnexionData[portIdOfOrigin];
+						brick.ActiveConnectionPointIndex = connexion.mConnexionPointIndex;
+						diffAngleBtwTDandBB = connexion.mDiffAngleBtwTDandBB;
+					}
+
+					// the brick with connections, use there connexion point as origin of their position
+					if (brick.ConnectionPoints != null)
+					{
+						// set the angle of the brick first
+						brick.Orientation = (float)angle + diffAngleBtwTDandBB;
+						// then set the position
+						brick.ActiveConnectionPosition = new PointF((float)x, (float)y);
+					}
+					else
+					{
+						// first rotate the brick to have it like in TD
+						// such has the brick.Image.Width is correct
+						if (diffAngleBtwTDandBB != 0)
+							brick.Orientation = diffAngleBtwTDandBB;
+						// if the brick don't have connexion point, the position of the TD brick be the middle
+						// of the left border, but of course we need to rotate this virtual connexion point
+						Matrix rotation = new Matrix();
+						rotation.Rotate((float)angle);
+						PointF[] originToCenter = { new PointF(brick.Width / 2, 0) };
+						rotation.TransformVectors(originToCenter);
+						x += originToCenter[0].X;
+						y += originToCenter[0].Y;
+						// set the correct angle of the brick
+						brick.Orientation = (float)angle + diffAngleBtwTDandBB;
+						// set the position from the center that we have computed
+						brick.Center = new PointF((float)x, (float)y);
+					}
+
+
+					// add the brick to the layer
+					currentLayer.addBrick(brick, -1);
+
+					// special case for the monorail ramp in TD, it's only one part but in fact it is two part in LDRAW
+					if ((TDPartNumber == 232677) || (TDPartNumber == 232678))
+					{
+						// select the last brick added (the begining of the ramp)
+						currentLayer.clearSelection();
+						currentLayer.addObjectInSelection(brick);
+						// create the second part of the ramp
+						LayerBrick.Brick rampBrick = null;
+						if (TDPartNumber == 232677)
+						{
+							rampBrick = new LayerBrick.Brick("2678.7");
+							brick.ActiveConnectionPointIndex = 1;
+							rampBrick.ActiveConnectionPointIndex = 0;
+						}
+						else
+						{
+							rampBrick = new LayerBrick.Brick("2677.7");
+							brick.ActiveConnectionPointIndex = 0;
+							rampBrick.ActiveConnectionPointIndex = 1;
+						}
+						rampBrick.Orientation = (float)angle + diffAngleBtwTDandBB;
+						rampBrick.ActiveConnectionPosition = new PointF((float)x, (float)y);
+						currentLayer.addConnectBrick(rampBrick);
+						// clear the selection again
+						currentLayer.clearSelection();
+					}
+				}
+				else
+				{
+					if (!noRemapablePartFound.Contains(TDPartNumber))
+						noRemapablePartFound.Add(TDPartNumber);
+				}
+
+				// move the progressbar according to the number of byte read (each part takes 106 bytes)
+				MainForm.Instance.stepProgressBar(106);
+			}
+
+			// close the stream
+			binaryReader.Close();
+			myFileStream.Close();
+
+			// add the layers that are not empty
+			if (baseplateLayer.BrickList.Count > 0)
+			{
+				baseplateLayer.Name = "Baseplate";
+				baseplateLayer.updateFullBrickConnectivity();
+				Map.Instance.addLayer(baseplateLayer);
+			}
+			if (rail9VLayer.BrickList.Count > 0)
+			{
+				rail9VLayer.Name = "Rail";
+				rail9VLayer.updateFullBrickConnectivity();
+				Map.Instance.addLayer(rail9VLayer);
+			}
+			if (monorailLayer.BrickList.Count > 0)
+			{
+				monorailLayer.Name = "Monorail";
+				monorailLayer.updateFullBrickConnectivity();
+				Map.Instance.addLayer(monorailLayer);
+			}
+
+			// finish the progressbar to hide it
+			MainForm.Instance.finishProgressBar();
+
+			// check if we found some part that can be remaped
+			if (noRemapablePartFound.Count > 0)
+			{
+				string remapFileName = Application.StartupPath + "/config/TDPartRemap.txt";
+				string message = Properties.Resources.ErrorMsgMissingTDRemap.Replace("&", remapFileName);
+				foreach (int id in noRemapablePartFound)
+					message += id.ToString() + ", ";
+				message = message.Remove(message.Length - 2) + ".";
+				MessageBox.Show(null, message,
+					Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
+					MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+			}
+
+			// the file can be open
+			return true;
+		}
+
+		private static int loadTDLHeader(BinaryReader binaryReader)
+		{
+			// read the origin point
+			int originX = binaryReader.ReadInt32();
+			int originY = binaryReader.ReadInt32();
+			// read the number of pieces
+			int nbPieces = binaryReader.ReadInt32();
+			// read the number of the file version that must be 20
+			int fileVersionNumber = binaryReader.ReadInt32();
+			if (fileVersionNumber != 20)
+			{
+				MessageBox.Show(null, Properties.Resources.ErrorMsgOldTDFile,
+					Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
+					MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+				return -1;
+			}
+			// read the boundaries of the map (in stud coord)
+			int boundXMin = binaryReader.ReadInt32();
+			int boundYMin = binaryReader.ReadInt32();
+			int boundXMax = binaryReader.ReadInt32();
+			int boundYMax = binaryReader.ReadInt32();
+			// position and angle of the cursor
+			double x = binaryReader.ReadDouble();
+			double y = binaryReader.ReadDouble();
+			double z = binaryReader.ReadDouble();
+			double angle = binaryReader.ReadDouble();
+			// number of the selected port (connection point) of the selected part
+			int selectedPortNumber = binaryReader.ReadInt32();
+			// id of the selected part
+			int partId = binaryReader.ReadInt32();
+			// read the size of boundaries of the map (in stud coord), normally it should be (boundXMax - boundXMin, boundYMax - boundYMin)
+			int boundWidth = binaryReader.ReadInt32();
+			int boundHeight = binaryReader.ReadInt32();
+			// old dummy data (an empty CString)
+			char dummyStringSize = binaryReader.ReadChar();
+			// options flags and slopes??
+			Map.Instance.AllowElectricShortCuts = (binaryReader.ReadInt32() != 0);
+			int slope = binaryReader.ReadInt32();
+			Map.Instance.AllowUnderground = (binaryReader.ReadInt32() != 0);
+			Map.Instance.AllowSteps = (binaryReader.ReadInt32() != 0);
+			Map.Instance.AllowSlopeMismatch = (binaryReader.ReadInt32() != 0);
+			// description string
+			char descriptionStringSize = binaryReader.ReadChar();
+			Map.Instance.Show = new string(binaryReader.ReadChars(descriptionStringSize));
+			// comment string
+			char commentStringSize = binaryReader.ReadChar();
+			Map.Instance.Comment = new string(binaryReader.ReadChars(commentStringSize));
+			// now skip the piece list (normally it should be 0)
+			int nbPiecesInPieceList = binaryReader.ReadInt16();
+			int pieceListSize = 0;
+			if (nbPiecesInPieceList > 0)
+			{
+				// ??? We don't support piece list, just skip them for now
+				// read the header of the piece list (12 char) + all the pieces
+				pieceListSize = 12 + (nbPiecesInPieceList * 40);
+				binaryReader.ReadChars(pieceListSize);
+			}
+			// return the total of byte read
+			return (105 + descriptionStringSize + commentStringSize + pieceListSize);
+		}
+
+		private static void saveTDL(string filename)
+		{
+			// compute the number of brick to save
+			int nbItems = 0;
+			foreach (Layer layer in Map.Instance.LayerList)
+			{
+				// check the type because we only save brick layers
+				LayerBrick brickLayer = layer as LayerBrick;
+				if (brickLayer != null)
+					nbItems += layer.getNbItems();
+			}
+			// init the progress bar with the number of parts to write
+			MainForm.Instance.resetProgressBar(nbItems + 2);
+
+			// check if we can init the remap dictionnary
+			if (!initTrackDesignerPartRemap())
+			{
+				// finish the progressbar to hide it
+				MainForm.Instance.finishProgressBar();
+				return;
+			}
+
+			// step the progressbar after the init of part remap
+			MainForm.Instance.stepProgressBar();
+
+			// open the file
+			FileStream myFileStream = new FileStream(filename, FileMode.Create);
+			BinaryWriter binaryWriter = new BinaryWriter(myFileStream);
+
+			// write the header of the file
+			saveTDLHeader(binaryWriter, nbItems);
+
+			// step the progressbar after the write of the header
+			MainForm.Instance.stepProgressBar();
+
+			// now the piece list (record the stream position because the number of item may changed if some brick were skipped)
+			long streamPositionOfNbItem = binaryWriter.BaseStream.Position;
+			binaryWriter.Write((short)nbItems); // the number of piece in the TrackPiece list
+
+			if (nbItems > 0)
+			{
+				int nbItemsWritten = 0;
+
+				// write the header of the CTrackPieces list (containing the string "CTrackPiece")
+				binaryWriter.Write((int)0x14FFFF);
+				binaryWriter.Write((short)0x0B);
+				binaryWriter.Write((char[])"CTrackPiece".ToCharArray());
+
+				// save all the bricks
+				foreach (Layer layer in Map.Instance.LayerList)
+				{
+					// check the type because we only save brick layers
+					LayerBrick brickLayer = layer as LayerBrick;
+					if (brickLayer != null)
+						foreach (LayerBrick.Brick brick in brickLayer.BrickList)
+						{
+							// save the brick
+							if (saveOneBrickInTDL(binaryWriter, brick, (nbItemsWritten > 0)))
+								nbItemsWritten++;
+							// step the progress bar
+							MainForm.Instance.stepProgressBar();
+						}
+				}
+
+				// check if some items were skip, then we have to rewrite the number of items
+				if (nbItemsWritten < nbItems)
+				{
+					binaryWriter.BaseStream.Position = 8;
+					binaryWriter.Write((short)nbItemsWritten);
+					binaryWriter.BaseStream.Position = streamPositionOfNbItem;
+					binaryWriter.Write((short)nbItemsWritten);
+				}
+			}
+
+			// close the binary writer to close the file
+			binaryWriter.Close();
+
+			// finish the progressbar to hide it
+			MainForm.Instance.finishProgressBar();
+		}
+
+		private static int getConnectedBrickOtherBBConnexionIndex(LayerBrick.Brick brick, int connexionIndexOnBrick, LayerBrick.Brick connectedBrick)
+		{
+			int connectedBrickOtherBBConnexionIndex = 0;
+			// check if the connected brick is not null which may happen
+			if (connectedBrick != null)
+			{
+				// get the connected connexion
+				LayerBrick.Brick.ConnectionPoint connectedConnexion = brick.ConnectionPoints[connexionIndexOnBrick].ConnectedConnection;
+				// search the BB connexion index of the connected brick
+				foreach (LayerBrick.Brick.ConnectionPoint connexion in connectedBrick.ConnectionPoints)
+					if (connexion != connectedConnexion)
+						connectedBrickOtherBBConnexionIndex++;
+					else
+						break;
+			}
+			return connectedBrickOtherBBConnexionIndex;
+		}
+
+		private static bool saveOneBrickInTDL(BinaryWriter binaryWriter, LayerBrick.Brick brick, bool writeSeparatorWord)
+		{
+			// try to get the BlueBrick correcponding part number
+			int TDPartNumber = -1;
+			mTrackDesignerPartNumberAssociation.TryGetValue(brick.PartNumber, out TDPartNumber);
+			if (TDPartNumber == -1)
+				return false;
+
+			// special case for a down ramp (TD give to the up and down ramp the same id with different bitmap id)
+			// this part doesn't exist in TD, so we skip it.
+			if (TDPartNumber == 232678)
+				return false;
+
+			// try to get the remap data structure
+			TrackDesignerRemapData remapData = null;
+			mTrackDesignerPartRemap.TryGetValue(TDPartNumber, out remapData);
+
+			// check if we found the correct remap data
+			if (remapData != null)
+			{
+				// write one word (2 bytes that I don't know the meaning maybe comming from the list)
+				// except for the first brick (specified with the parameter)
+				if (writeSeparatorWord)
+					binaryWriter.Write((ushort)0x8001);
+
+				// write the TD part number
+				binaryWriter.Write((int)TDPartNumber);
+
+				// write an instance ID (use the hash code for that)
+				binaryWriter.Write((int)brick.GetHashCode());
+
+				// by default we use the active connection point to find the corresponding
+				// port id of origin. But some parts like the straight or the cross over, can
+				// have different connection point in BB but only one port id in TD because it
+				// is a symetric part. So for those parts we only use the first BB connection point
+				int connectionPointIndex = brick.ActiveConnectionPointIndex;
+				if (!remapData.mHasSeveralPort)
+					connectionPointIndex = 0;
+
+				// check if we have to remap the connexion
+				int portIdOfOrigin = -1;
+				int partType = 0;
+				float diffAngleBtwTDandBB = 0;
+				// search the connexion point 0
+				foreach (TrackDesignerRemapData.ConnexionData connexion in remapData.mConnexionData)
+				{
+					// increment the port id
+					portIdOfOrigin++;
+					// check if we found the port for which the BB connexion id is equal to the current active connexion
+					if (connexion.mConnexionPointIndex == connectionPointIndex)
+					{
+						partType = connexion.mType;
+						diffAngleBtwTDandBB = connexion.mDiffAngleBtwTDandBB;
+						break;
+					}
+				}
+
+				// the brick with connections, use there connexion point as origin of their position
+				double orientation = 0.0;
+				PointF position;
+				if (brick.ConnectionPoints != null)
+				{
+					// set the angle of the brick first
+					orientation = (double)(brick.Orientation - diffAngleBtwTDandBB);
+					// then set the position by getting it from the corresponding connection point
+					position = brick.ConnectionPoints[connectionPointIndex].mPositionInStudWorldCoord;
+				}
+				else
+				{
+					// set the correct angle of the brick
+					orientation = (double)(brick.Orientation - diffAngleBtwTDandBB);
+					// set the position from the center that we have computed
+					position = brick.Center;
+					// first rotate the brick to have it like in TD
+					// such has the brick.Image.Width is correct
+					LayerBrick.Brick dummyBrickToGetWidth = new LayerBrick.Brick(brick.PartNumber);
+					if (diffAngleBtwTDandBB != 0)
+						dummyBrickToGetWidth.Orientation = diffAngleBtwTDandBB;
+					// if the brick don't have connexion point, the position of the TD brick be the middle
+					// of the left border, but of course we need to rotate this virtual connexion point
+					Matrix rotation = new Matrix();
+					rotation.Rotate((float)orientation);
+					PointF[] originToCenter = { new PointF(dummyBrickToGetWidth.Width / 2, 0) };
+					rotation.TransformVectors(originToCenter);
+					position.X -= originToCenter[0].X;
+					position.Y -= originToCenter[0].Y;
+				}
+
+				// normalize the rotation between 0 and 360
+				while (orientation < 0.0f)
+					orientation += 360.0f;
+				while (orientation >= 360.0f)
+					orientation -= 360.0f;
+				// write the angle in degree
+				binaryWriter.Write((double)orientation);
+
+				// write the position in stud
+				binaryWriter.Write((double)position.X);
+				binaryWriter.Write((double)position.Y);
+				binaryWriter.Write((double)brick.Altitude);
+
+				// le type de la pièce (an int) (0 = Straight, 1 = Left Curve, 2 = Right Curve, 3 = Left Split, 4 = Right Split, 5 = Left Merge, 6 = Right Merge, 7 = Left Join, 8 = Right Join, 9 = Crossover, 10 = T Junction, 11 = Up Ramp, 12 = Down Ramp, 13 = Short Straight, 14 = Short Left Curve In, 15 = Short Right Curve In, 16 = Short Left Curve Out, 17 = Short Right Curve Out, 18 = Left Reverse Switch, 19 = Right Reverse Switch, 20 = Custom)
+				binaryWriter.Write((int)partType);
+
+				// the id of bitmap (an int) when a part (like a curve) has two bitmap in the TrackDesigner part library, or for two baseplase with different color
+				// but in TD code, this is since as the port id (i.e. connexion id) that is used as the origin point of the part
+				binaryWriter.Write((int)portIdOfOrigin);
+
+				// 4 structures for the 4 possibles connexions
+				for (int i = 0; i < remapData.mConnexionData.Length; ++i)
+				{
+					int connectedBrickInstanceId = 0;
+					int connectedBrickOtherPortId = 0;
+					int connectedBrickPolarity = remapData.mConnexionData[i].mPolarity;
+					// check if the brick has some connection point
+					if ((brick.ConnectionPoints != null) && (i < brick.ConnectionPoints.Count))
+					{
+						// get the corresponding connexion index of the BB part for the ith TD port id
+						int BBConnexionIndexForI = remapData.mConnexionData[i].mConnexionPointIndex;
+						// get the connected brick at the BB connexion point
+						LayerBrick.Brick connectedBrick = brick.ConnectionPoints[BBConnexionIndexForI].ConnectedBrick;
+						// search the BB connexion index of the connected brick
+						int connectedBrickOtherBBConnexionIndex = getConnectedBrickOtherBBConnexionIndex(brick, BBConnexionIndexForI, connectedBrick);
+						while (connectedBrick != null)
+						{
+							// special case for the down ramp that doesn't exist in TD, in fact the down ramp is merged
+							// inside the up ramp. So we need to skip the down ramp and continue with the next linked part
+							if (connectedBrick.PartNumber.StartsWith("2678."))
+							{
+								// take the other connexion point of the 2678 part (that only have 2 connexion points)
+								int nextConnexionIndex = 0;
+								if (connectedBrickOtherBBConnexionIndex == 0)
+									nextConnexionIndex = 1;
+								else
+									nextConnexionIndex = 0;
+								// get the next connected brick (which can be null)
+								LayerBrick.Brick nextConnectedBrick = connectedBrick.ConnectionPoints[nextConnexionIndex].ConnectedBrick;
+								connectedBrickOtherBBConnexionIndex = getConnectedBrickOtherBBConnexionIndex(connectedBrick, nextConnexionIndex, nextConnectedBrick);
+								// continue to the next brick
+								connectedBrick = nextConnectedBrick;
+								continue;
+							}
+
+							// compute the instance id
+							connectedBrickInstanceId = connectedBrick.GetHashCode();
+
+							// so now connectedBrickOtherBBConnexionIndex contain the BB connexion index, and we
+							// have to remap this index to the TD port id so get the remap data of the connect brick
+							TrackDesignerRemapData connectedRemapData = null;
+							int ConnectedTDPartNumber = -1;
+							mTrackDesignerPartNumberAssociation.TryGetValue(connectedBrick.PartNumber, out ConnectedTDPartNumber);
+							if (ConnectedTDPartNumber != -1)
+								mTrackDesignerPartRemap.TryGetValue(ConnectedTDPartNumber, out connectedRemapData);
+							// if we found the remap data of the connected brick
+							if (connectedRemapData != null)
+							{
+								// try to find the same BB connexion index, and the TD port id is the index j in the array
+								for (int j = 0; j < connectedRemapData.mConnexionData.Length; ++j)
+									if (connectedBrickOtherBBConnexionIndex == connectedRemapData.mConnexionData[j].mConnexionPointIndex)
+									{
+										connectedBrickOtherPortId = j;
+										break;
+									}
+							}
+
+							// stop the loop
+							break;
+						}
+					}
+
+					// write the instance ID of the first connected brick
+					binaryWriter.Write((int)connectedBrickInstanceId);
+					// write the Port number connected to on other piece
+					binaryWriter.Write((int)connectedBrickOtherPortId);
+					// write the Port polarity: 0 unasasigned, 2 -ve, 3 +ve
+					binaryWriter.Write((int)connectedBrickPolarity);
+				}
+
+				// write the flags
+				// TPF_ATTACHMENT     1     // piece is an attachment      
+				// TPF_SUPPORT        2     // piece is used to support elevation
+				// TPF_MODIFIED       4     // piece has been modified
+				// TPF_CONNECTION_MADE 8    // piece has been modified
+				binaryWriter.Write((int)remapData.mFlags);
+
+				// write the slope
+				binaryWriter.Write((int)0);
+
+				// the part was correctly written
+				return true;
+			}
+
+			// the remap was not found, the part was not written
+			return false;
+		}
+
+		private static void saveTDLHeader(BinaryWriter binaryWriter, int nbTotalBricks)
+		{
+			// get the boundaries of the map
+			RectangleF boundaries = Map.Instance.getTotalAreaInStud(true);
+			const int margin = 5;
+			boundaries.X = (int)Math.Round(boundaries.X) - margin;
+			boundaries.Width = (int)Math.Round(boundaries.Width) + (margin * 2);
+			boundaries.Y = (int)Math.Round(boundaries.Y) - margin;
+			boundaries.Height = (int)Math.Round(boundaries.Height) + (margin * 2);
+
+			// write the origin point (x,y)
+			binaryWriter.Write((int)-boundaries.Left);
+			binaryWriter.Write((int)-boundaries.Top);
+
+			// write the number of pieces
+			binaryWriter.Write((int)nbTotalBricks);
+
+			// write the number of the file version that must be 20
+			binaryWriter.Write((int)20);
+
+			// save the boundaries
+			binaryWriter.Write((int)boundaries.Left); // x min
+			binaryWriter.Write((int)boundaries.Top); // y min
+			binaryWriter.Write((int)boundaries.Right); // x max
+			binaryWriter.Write((int)boundaries.Bottom); // y max
+
+			// get the current selected brick if any
+			LayerBrick.Brick selectedBrick = null;
+			if (Map.Instance.SelectedLayer != null)
+			{
+				LayerBrick brickLayer = Map.Instance.SelectedLayer as LayerBrick;
+				if ((brickLayer != null) && (brickLayer.SelectedObjects.Count > 0))
+					selectedBrick = brickLayer.SelectedObjects[0] as LayerBrick.Brick;
+			}
+
+			// get different data to save depending if we have a selected brick or not
+			PointF cursorPosition;
+			double cursorPositionAltitude = 0.0;
+			double cursorAngle = 0.0;
+			int selectedPort = 0;
+			int selectedBrickId = 0;
+			if (selectedBrick != null)
+			{
+				cursorPositionAltitude = (double)selectedBrick.Altitude;
+				selectedBrickId = selectedBrick.GetHashCode();
+				if (selectedBrick.HasConnectionPoint)
+				{
+					// get the cursor position from the selected connection of the selected part
+					cursorPosition = selectedBrick.ActiveConnectionPosition;
+					cursorAngle = (double)selectedBrick.ActiveConnectionAngle;
+					selectedPort = selectedBrick.ActiveConnectionPointIndex;
+				}
+				else
+				{
+					// get the cursor position from the selected brick
+					cursorPosition = selectedBrick.Center;
+				}
+			}
+			else
+			{
+				// get the cursor position from the left top most position (this function return (0,0) if there's no bricks)
+				cursorPosition = Map.Instance.getMostTopLeftBrickPosition();
+			}
+
+			// save the cursor position
+			binaryWriter.Write((double)cursorPosition.X);
+			binaryWriter.Write((double)cursorPosition.Y);
+			binaryWriter.Write((double)cursorPositionAltitude);
+			// save the angle of the cursor
+			binaryWriter.Write((double)cursorAngle);
+			// selected port of the selected part
+			binaryWriter.Write((int)selectedPort);
+			// selected part hashcode (as an id)
+			binaryWriter.Write((int)selectedBrickId);
+
+			// size of the document
+			binaryWriter.Write((int)boundaries.Width);
+			binaryWriter.Write((int)boundaries.Height);
+			// old dummy data (an empty CString)
+			binaryWriter.Write((char)0);
+
+			// options flags and slopes??
+			binaryWriter.Write((int)(Map.Instance.AllowElectricShortCuts ? 1 : 0));
+			binaryWriter.Write((int)0); // slopes, what is it ???
+			binaryWriter.Write((int)(Map.Instance.AllowUnderground ? 1 : 0));
+			binaryWriter.Write((int)(Map.Instance.AllowSteps ? 1 : 0));
+			binaryWriter.Write((int)(Map.Instance.AllowSlopeMismatch ? 1 : 0));
+
+			// description string (the TDL file only support a maximum number of 255 char
+			// because the first char is the length of the string)
+			string description = Map.Instance.Show.Clone() as string;
+			if (description.Length > 255)
+				description = description.Substring(0, 255);
+			binaryWriter.Write((char)description.Length);
+			binaryWriter.Write((char[])description.ToCharArray());
+			// comment string (the TDL file only support a maximum number of 255 char
+			// because the first char is the length of the string)
+			string comment = Map.Instance.Comment.Clone() as string;
+			if (comment.Length > 255)
+				comment = description.Substring(0, 255);
+			binaryWriter.Write((char)comment.Length);
+			binaryWriter.Write((char[])comment.ToCharArray());
+
+			// now the piece list (normally it's an empty list)
+			binaryWriter.Write((short)0); // the number of piece in the piece list
+		}
+
+		#endregion
+	}
+}

@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<part>
+	<!-- THIS IS THE RAIL CURVE -->
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>1.5</left>
+		<right>1.875</right>
+		<top>0</top>
+		<bottom>4.125</bottom>
+	</SnapMargin>
+	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center of the picture) -->
+	<ConnexionList>
+		<!-- the center of this part in stud is x = 155 pix / 8 pixperstud / 2 = 9.6875    and    y = 140 / 8 / 2 = 8.75 -->		
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve, 5=duplo rail) -->
+			<type>5</type>
+			<position>
+				<x>-8.1875</x>
+				<y>1.25</y>
+			</position>
+			<angle>180</angle>
+			<angleToPrev>150</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>150</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->
+			<nextConnexionPreference>1</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve, 5=duplo rail) -->
+			<type>5</type>
+			<position>
+				<x>7.8125</x>	<!-- x = pos1x + 32 * sin(30) because 32 is the radius in stud of the middle line of a duplo turn (for a quarter of circle) -->
+				<y>5.5372</y>	<!-- y = pos1y + 32 * (1 - cos(30)) because 32 is the radius in stud of the middle line of a duplo turn (for a quarter of circle) -->
+			</position>
+			<angle>30</angle>
+			<angleToPrev>150</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>60</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->
+			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve, 5=duplo rail) -->
+			<type>5</type>
+			<position>
+				<x>7.8125</x>	<!-- x = pos1x + 32 * sin(30) because 32 is the radius in stud of the middle line of a duplo turn (for a quarter of circle) -->
+				<y>-3.0372</y>	<!-- y = pos1y - 32 * (1 - cos(30)) because 32 is the radius in stud of the middle line of a duplo turn (for a quarter of circle) -->
+			</position>
+			<angle>-30</angle>
+			<angleToPrev>60</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>150</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->
+			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+	</ConnexionList>
+	<!-- a list of point that describe the hull of the parts to help finding the bounding box, when rotating the part. This is optionnal, if it doesn't exist we use the full box of the picture. -->
+	<hull>
+		<point>
+			<x>0</x>
+			<y>88</y>
+		</point>
+		<point>
+			<x>12</x>
+			<y>49</y>
+		</point>
+		<point>
+			<x>29</x>
+			<y>0</y>
+		</point>
+		<point>
+			<x>92</x>
+			<y>0</y>
+		</point>
+		<point>
+			<x>124</x>
+			<y>23</y>
+		</point>
+		<point>
+			<x>147</x>
+			<y>36</y>
+		</point>
+		<point>
+			<x>155</x>
+			<y>76</y>
+		</point>
+		<point>
+			<x>155</x>
+			<y>113</y>
+		</point>
+		<point>
+			<x>122</x>
+			<y>139</y>
+		</point>
+		<point>
+			<x>12</x>
+			<y>112</y>
+		</point>
+	</hull>
+</part>

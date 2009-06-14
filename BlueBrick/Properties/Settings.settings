@@ -1,0 +1,111 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BlueBrick.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
+    </Setting>
+    <Setting Name="WheelMouseZoomSpeed" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.002</Value>
+    </Setting>
+    <Setting Name="WheelMouseIsZoomOnCursor" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AddGridLayerOnNewMap" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AddBrickLayerOnNewMap" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UndoStackDepth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="DefaultGridColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="DefaultBackgroundColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">CornflowerBlue</Value>
+    </Setting>
+    <Setting Name="DefaultTextFont" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Arial, 24pt</Value>
+    </Setting>
+    <Setting Name="DefaultTextColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="DefaultSubGridColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGray</Value>
+    </Setting>
+    <Setting Name="DefaultLUG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">***NotInitialized***</Value>
+    </Setting>
+    <Setting Name="DefaultShow" Type="System.String" Scope="User">
+      <Value Profile="(Default)">***NotInitialized***</Value>
+    </Setting>
+    <Setting Name="DefaultAuthor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">***NotInitialized***</Value>
+    </Setting>
+    <Setting Name="UndoStackDisplayedDepth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="MouseMultipleSelectionKey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">Ctrl+None</Value>
+    </Setting>
+    <Setting Name="MouseZoomKey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">Ctrl+Shift+None</Value>
+    </Setting>
+    <Setting Name="MousePanKey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">Alt+Shift+None</Value>
+    </Setting>
+    <Setting Name="DefaultGridSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">96</Value>
+    </Setting>
+    <Setting Name="DefaultSubDivisionNumber" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="DefaultAreaSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">32</Value>
+    </Setting>
+    <Setting Name="DefaultAreaTransparency" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="DisplayFreeConnexionPoints" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="StartSavedMipmapLevel" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ShortcutKey" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;65|1||&lt;/string&gt;
+  &lt;string&gt;72|1||&lt;/string&gt;
+  &lt;string&gt;67|4||&lt;/string&gt;
+  &lt;string&gt;68|5||&lt;/string&gt;
+  &lt;string&gt;69|6||&lt;/string&gt;
+  &lt;string&gt;70|7||&lt;/string&gt;
+  &lt;string&gt;36|3||&lt;/string&gt;
+  &lt;string&gt;51|3||&lt;/string&gt;
+  &lt;string&gt;37|2||&lt;/string&gt;
+  &lt;string&gt;66|8||&lt;/string&gt;
+  &lt;string&gt;23|0|32087.8|0&lt;/string&gt;
+  &lt;string&gt;18|0|2865.8|0&lt;/string&gt;
+  &lt;string&gt;11|0|2867.8|0&lt;/string&gt;
+  &lt;string&gt;17|0|2867.8|1&lt;/string&gt;
+  &lt;string&gt;24|0|2861.8|0&lt;/string&gt;
+  &lt;string&gt;10|0|2859.8|0&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="MouseDuplicateSelectionKey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">Alt+None</Value>
+    </Setting>
+    <Setting Name="RecentFiles" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string /&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="MaxRecentFilesNum" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

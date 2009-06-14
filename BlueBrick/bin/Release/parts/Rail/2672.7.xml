@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<part>
+	<!-- THIS IS THE MONORAIL LONG CURVE -->
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>0</left>
+		<right>0</right>
+		<top>0</top>
+		<bottom>0</bottom>
+	</SnapMargin>
+	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
+	<ConnexionList>
+		<!-- the center of this part in stud is x = 240 pix / 8 pixperstud / 2 = 15    and    y = 240 / 8 / 2 = 15 -->
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>3</type>
+			<position>
+				<x>-15</x>
+				<y>-13</y>
+			</position>
+			<angle>180</angle>
+			<angleToPrev>270</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>90</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->
+			<nextConnexionPreference>1</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>3</type>
+			<position>
+				<x>13</x>
+				<y>15</y>
+			</position>
+			<angle>90</angle>
+			<angleToPrev>90</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>270</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->
+			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+	</ConnexionList>
+	<hull>
+		<point>
+			<x>0</x>
+			<y>0</y>
+		</point>
+		<point>
+			<x>42</x>
+			<y>0</y>
+		</point>
+		<point>
+			<x>106</x>
+			<y>18</y>
+		</point>
+		<point>
+			<x>172</x>
+			<y>66</y>
+		</point>
+		<point>
+			<x>224</x>
+			<y>142</y>
+		</point>
+		<point>
+			<x>240</x>
+			<y>208</y>
+		</point>
+		<point>
+			<x>240</x>
+			<y>240</y>
+		</point>
+		<point>
+			<x>204</x>
+			<y>240</y>
+		</point>
+		<point>
+			<x>0</x>
+			<y>34</y>
+		</point>
+	</hull>
+</part>

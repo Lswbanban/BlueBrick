@@ -1,0 +1,46 @@
+; This file handle the change in the part library in case of some part may be renamed
+; The format of the file is quite simple:
+; - if the line start with a semi-colon it is ignored (it is just a comment)
+; - then every line has the form: <old name>=<new name>
+
+; remaping of parts released in a previous version of BlueBrick
+; and that were renamed because the made a mistake about the name (part id)
+; this remaping should never be deleted to be able to load a very old version of a BBM file
+3228A.1=3228AC01.1
+3228A.7=3228BC01.7
+3228B.1=3228AC01.1
+3228B.7=3228BC01.7
+3229A.1=3229AC01.1
+3229A.7=3229BC01.7
+3229B.1=3229AC01.1
+3229B.7=3229BC01.7
+3231.7=3231B.7
+
+; 4.5V right switch point
+3236.1=X949AC01.1
+X879CX1.1=X949AC01.1
+3236.7=X949CC01.7
+X879CX2.7=X949CC01.7
+
+; 4.5V left switch point
+3237.1=X948AC01.1
+X878CX1.1=X948AC01.1
+3237.7=X948CC01.7
+X878CX2.7=X948CC01.7
+
+3240.1=X861C01.1
+3240.7=3240C01.7
+3241.1=X866C01.1
+3241.7=3241C01.7
+7857.1=X563.1
+7858.1=X505B.1
+7858.7=X865C01.7
+7859.1=X504B.1
+7859.7=X864C01.7
+
+; temporary remaping because of LDRAW parts are missing,
+; so we use other parts when exporting in LDRAW, and need to use the correct one now
+; this list should be deleted when the parts will be available in LDRAW
+X864C01.1=X504B.1
+X865C01.1=X505B.1
+7857.1=X563.1

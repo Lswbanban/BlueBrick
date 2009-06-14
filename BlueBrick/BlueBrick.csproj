@@ -1,0 +1,582 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{54CBCBEE-A623-461D-90E6-2A6752062A90}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlueBrick</RootNamespace>
+    <AssemblyName>BlueBrick</AssemblyName>
+    <StartupObject>BlueBrick.Program</StartupObject>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>9A2553C210508483ADFF3955A7E66C26068642D5</ManifestCertificateThumbprint>
+    <ManifestKeyFile>BlueBrick_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <PublishUrl>H:\temp\PublishBB\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>BlueBrick</ProductName>
+    <PublisherName>Alban Nanty</PublisherName>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ApplicationIcon>BlueBrickIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\Action.cs" />
+    <Compile Include="Actions\ActionManager.cs" />
+    <Compile Include="Actions\Area\AddArea.cs" />
+    <Compile Include="Actions\Area\DeleteArea.cs" />
+    <Compile Include="Actions\Bricks\AddConnectBrick.cs" />
+    <Compile Include="Actions\Bricks\BringBrickToFront.cs" />
+    <Compile Include="Actions\Bricks\DuplicateBrick.cs" />
+    <Compile Include="Actions\Bricks\MoveBrick.cs" />
+    <Compile Include="Actions\Bricks\RotateBrick.cs" />
+    <Compile Include="Actions\Bricks\SendBrickToBack.cs" />
+    <Compile Include="Actions\Layers\AddLayer.cs" />
+    <Compile Include="Actions\Bricks\AddBrick.cs" />
+    <Compile Include="Actions\Layers\ChangeLayerOption.cs" />
+    <Compile Include="Actions\Layers\HideLayer.cs" />
+    <Compile Include="Actions\Layers\MoveLayerDown.cs" />
+    <Compile Include="Actions\Layers\MoveLayerUp.cs" />
+    <Compile Include="Actions\Layers\RemoveLayer.cs" />
+    <Compile Include="Actions\Layers\SelectLayer.cs" />
+    <Compile Include="Actions\Layers\ShowLayer.cs" />
+    <Compile Include="Actions\Bricks\DeleteBrick.cs" />
+    <Compile Include="Actions\Maps\ChangeBackgroundColor.cs" />
+    <Compile Include="Actions\Maps\ChangeGeneralInfo.cs" />
+    <Compile Include="Actions\Maps\ChangeMapAppearance.cs" />
+    <Compile Include="Actions\Texts\BringTextToFront.cs" />
+    <Compile Include="Actions\Texts\DuplicateText.cs" />
+    <Compile Include="Actions\Texts\AddText.cs" />
+    <Compile Include="Actions\Texts\EditText.cs" />
+    <Compile Include="Actions\Texts\MoveText.cs" />
+    <Compile Include="Actions\Texts\DeleteText.cs" />
+    <Compile Include="Actions\Texts\RotateText.cs" />
+    <Compile Include="Actions\Texts\SendTextToBack.cs" />
+    <Compile Include="ExportImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportImageForm.Designer.cs">
+      <DependentUpon>ExportImageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalOptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlobalOptionsForm.Designer.cs">
+      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LayerAreaOptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LayerAreaOptionForm.Designer.cs">
+      <DependentUpon>LayerAreaOptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LayerAreaPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LayerBrickOptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LayerBrickOptionForm.Designer.cs">
+      <DependentUpon>LayerBrickOptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LayerBrickPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LayerGridOptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LayerGridOptionForm.Designer.cs">
+      <DependentUpon>LayerGridOptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LayerGridPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LayerPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LayerStackPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LayerTextPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainSplitContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MapData\AStar.cs" />
+    <Compile Include="MapData\BrickLibrary.cs" />
+    <Compile Include="MapData\LayerArea.cs" />
+    <Compile Include="MapData\LayerBrick.cs" />
+    <Compile Include="MapData\LayerText.cs" />
+    <Compile Include="MapData\XmlReadWrite.cs" />
+    <Compile Include="MapPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MapData\Layer.cs" />
+    <Compile Include="MapData\LayerGrid.cs" />
+    <Compile Include="MapData\Map.cs" />
+    <Compile Include="PartLibraryPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PartLibraryPanel.Designer.cs">
+      <DependentUpon>PartLibraryPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartListForm.Designer.cs">
+      <DependentUpon>PartListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutBox.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox.it.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox.nl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTextForm.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditTextForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTextForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditTextForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTextForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditTextForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTextForm.nl.resx">
+      <DependentUpon>EditTextForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTextForm.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditTextForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportImageForm.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExportImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportImageForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExportImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportImageForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExportImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportImageForm.nl.resx">
+      <DependentUpon>ExportImageForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportImageForm.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExportImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportImageForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExportImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralInfoForm.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralInfoForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralInfoForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralInfoForm.nl.resx">
+      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralInfoForm.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalOptionsForm.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalOptionsForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalOptionsForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalOptionsForm.nl.resx">
+      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalOptionsForm.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalOptionsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerAreaOptionForm.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerAreaOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerAreaOptionForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerAreaOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerAreaOptionForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerAreaOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerAreaOptionForm.nl.resx">
+      <DependentUpon>LayerAreaOptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerAreaOptionForm.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerAreaOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerAreaOptionForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerAreaOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerBrickOptionForm.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerBrickOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerBrickOptionForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerBrickOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerBrickOptionForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerBrickOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerBrickOptionForm.nl.resx">
+      <DependentUpon>LayerBrickOptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerBrickOptionForm.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerBrickOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerBrickOptionForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerBrickOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerGridOptionForm.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerGridOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerGridOptionForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerGridOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerGridOptionForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerGridOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerGridOptionForm.nl.resx">
+      <DependentUpon>LayerGridOptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerGridOptionForm.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerGridOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerGridOptionForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerGridOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerGridPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerGridPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerStackPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerStackPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.nl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapPanel.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MapPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapPanel.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MapPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapPanel.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MapPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapPanel.nl.resx">
+      <DependentUpon>MapPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapPanel.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MapPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MapPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartLibraryPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PartLibraryPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartListForm.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PartListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartListForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PartListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartListForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PartListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartListForm.nl.resx">
+      <DependentUpon>PartListForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartListForm.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PartListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartListForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PartListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.fr.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTextForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditTextForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralInfoForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.nl.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.pt.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.es.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>
+      </SubType>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="EditTextForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditTextForm.Designer.cs">
+      <DependentUpon>EditTextForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneralInfoForm.Designer.cs">
+      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SaveLoadManager.cs" />
+    <Compile Include="SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\newlayerarea.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\newlayergrid.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\newlayerText.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\newlayerbrick.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\SnapGridOff.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\SnapGridOn.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="fr\BlueBrick.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\alignright.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\aligncentered.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\alignleft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BlueBrickIcon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

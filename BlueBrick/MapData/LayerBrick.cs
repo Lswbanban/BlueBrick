@@ -1,0 +1,1750 @@
+// BlueBrick, a LEGO(c) layout editor.
+// Copyright (C) 2008 Alban NANTY
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+// see http://www.fsf.org/licensing/licenses/gpl.html
+// and http://www.gnu.org/licenses/
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
+using BlueBrick.Actions;
+using BlueBrick.Actions.Bricks;
+using System.Xml.Serialization;
+using System.Collections;
+
+namespace BlueBrick.MapData
+{
+	[Serializable]
+	public class LayerBrick : Layer
+	{
+		/// <summary>
+		/// A brick is just a part that can be placed on the map
+		/// </summary>
+		[Serializable]
+		public class Brick : LayerItem
+		{
+			public class ConnectionPoint
+			{
+				public static Hashtable sHashtableForLinkRebuilding = new Hashtable(); // this hashtable is used to recreate the link when loading
+
+				public Brick mMyBrick = null; // reference to the brick this connection refer to
+				public PointF mPositionInStudWorldCoord = new PointF(0, 0); // the position of the connection point is world coord stud coord.
+				public ConnectionPoint mConnectionLink = null; // link toward this conection point is connected
+				public BrickLibrary.Brick.ConnectionType mType = BrickLibrary.Brick.ConnectionType.BRICK;
+
+				/// <summary>
+				/// This default constructor is for the serialization and should not be used in the program
+				/// </summary>
+				public ConnectionPoint()
+				{
+				}
+
+				public ConnectionPoint(Brick myBrick, int connexionIndex)
+				{
+					mMyBrick = myBrick;
+					// save the brick type (for optimisation reasons)
+					mType = BrickLibrary.Instance.getConnexionType(myBrick.PartNumber, connexionIndex);
+				}
+
+				public bool IsFree
+				{
+					get { return (mConnectionLink == null); }
+				}
+
+				public BrickLibrary.Brick.ConnectionType Type
+				{
+					get { return mType; }
+				}
+
+				public Brick ConnectedBrick
+				{
+					get
+					{
+						if (mConnectionLink != null)
+							return mConnectionLink.mMyBrick;
+						return null;
+					}
+				}
+
+				public ConnectionPoint ConnectedConnection
+				{
+					get	{ return mConnectionLink; }
+				}
+
+				public PointF PositionInStudWorldCoord
+				{
+					get { return mPositionInStudWorldCoord; }
+				}
+
+				#region IXmlSerializable Members
+
+				public System.Xml.Schema.XmlSchema GetSchema()
+				{
+					return null;
+				}
+
+				public void ReadXml(System.Xml.XmlReader reader)
+				{
+					// read the position of the connexion (for file version under 4)
+					if (Map.DataVersionOfTheFileLoaded <= 3)
+						mPositionInStudWorldCoord = XmlReadWrite.readPointF(reader);
+					else
+						reader.ReadToDescendant("LinkedTo");
+					// check if we have a link
+					if (reader.IsEmptyElement)
+					{
+						mConnectionLink = null;
+						reader.Read();
+					}
+					else
+					{
+						int hashCodeOfTheLink = reader.ReadElementContentAsInt();
+						// look in the hastable if this connexion alread exists, else create it
+						mConnectionLink = ConnectionPoint.sHashtableForLinkRebuilding[hashCodeOfTheLink] as ConnectionPoint;
+						if (mConnectionLink == null)
+						{
+							// instanciate a ConnectionPoint, and add it in the hash table
+							mConnectionLink = new ConnectionPoint();
+							ConnectionPoint.sHashtableForLinkRebuilding.Add(hashCodeOfTheLink, mConnectionLink);
+						}
+					}
+				}
+
+				public void WriteXml(System.Xml.XmlWriter writer)
+				{
+					writer.WriteAttributeString("id", GetHashCode().ToString());
+					writer.WriteStartElement("LinkedTo");
+					if (mConnectionLink != null)
+						writer.WriteString(mConnectionLink.GetHashCode().ToString());
+					writer.WriteEndElement();
+				}
+
+				#endregion
+			}
+
+			private string mPartNumber = null;	// id of the part
+			private float mOrientation = 0;	// in degree
+			private int mActiveConnectionPointIndex = 0; // the current active connection point in the connexion point list
+			private List<ConnectionPoint> mConnectionPoints = null; // list of all the connection point (if this brick can connect)
+			private float mAltitude = 0.0f; //for improving compatibility with LDRAW we save a up coordinate for each brick
+
+			// the image and the connection point are not serialized, they are built in the constructor
+			// or when the part number property is set by the serializer
+			[NonSerialized]
+			private Image[] mMipmapImages = new Image[5];	// all the images in different LOD level
+			[NonSerialized]
+			private Image mOriginalImageReference = null;	// reference on the original image in the database
+			[NonSerialized]
+			private PointF mTopLeftCornerInPixel = PointF.Empty;
+			[NonSerialized]
+			private PointF mSnapToGridOffset = new PointF(0, 0); // an offset from the center of the part to the point that should snap to the grid border (in stud)
+			[NonSerialized]
+			private PointF mOffsetFromOriginalImage = new PointF(0, 0); // when the image is rotated, the size is not the same as the orginal one, so this offset handle the difference
+
+			#region get/set
+			/// <summary>
+			/// the part number of the brick
+			/// The set of the part number is used by the serializer, but should not be used in the program
+			/// instead consider to delete your brick and create a new one with the appropriate constructor.
+			/// </summary>
+			public string PartNumber
+			{
+				get { return mPartNumber; }
+				set
+				{
+					mPartNumber = value;
+					updateImage();
+				}
+			}
+
+			/// <summary>
+			/// The current rotation of the image
+			/// </summary>
+			public float Orientation
+			{
+				get { return mOrientation; }
+				set
+				{
+					mOrientation = value;
+					updateImage();
+					updateConnectionPosition();
+				}
+			}
+
+			/// <summary>
+			///	Set the position in stud coord. The position of a brick is its top left corner.
+			/// </summary>
+			public new PointF Position
+			{
+				set
+				{
+					mDisplayArea.X = value.X;
+					mDisplayArea.Y = value.Y;
+					updateConnectionPosition();
+				}
+				get { return new PointF(mDisplayArea.X, mDisplayArea.Y); }
+			}
+
+			/// <summary>
+			/// Set the position via the center of the object in stud coord.
+			/// </summary>
+			public new PointF Center
+			{
+				set
+				{
+					mDisplayArea.X = value.X - (mDisplayArea.Width / 2);
+					mDisplayArea.Y = value.Y - (mDisplayArea.Height / 2);
+					updateConnectionPosition();				
+				}
+				get
+				{
+					return new PointF(mDisplayArea.X + (mDisplayArea.Width / 2), mDisplayArea.Y + (mDisplayArea.Height / 2));
+				}
+			}
+
+			/// <summary>
+			/// an offset from the center of the part to the point that should snap a corner of the grid
+			/// </summary>
+			public new PointF SnapToGridOffset
+			{
+				get { return mSnapToGridOffset; }
+			}
+
+			/// <summary>
+			/// an offset to adjust the centers from between original image and reframed rotated image.
+			/// </summary>
+			public new PointF OffsetFromOriginalImage
+			{
+				get { return mOffsetFromOriginalImage; }
+			}
+
+			/// <summary>
+			/// Tell if this brick has any connection point
+			/// </summary>
+			public bool HasConnectionPoint
+			{
+				get
+				{
+					if (mConnectionPoints != null)
+					{
+						foreach (ConnectionPoint connexion in mConnectionPoints)
+							if (connexion.Type != BrickLibrary.Brick.ConnectionType.BRICK)
+								return true;
+					}
+					return false;
+				}
+			}
+
+			/// <summary>
+			/// Accessor on the currently active connexion point if any
+			/// </summary>
+			public ConnectionPoint ActiveConnectionPoint
+			{
+				get
+				{
+					if (mConnectionPoints != null)
+						return mConnectionPoints[mActiveConnectionPointIndex];
+					return null;
+				}
+			}
+
+			/// <summary>
+			/// Accessor on the currently active connexion position if any
+			/// </summary>
+			public PointF ActiveConnectionPosition
+			{
+				get
+				{
+					if (mConnectionPoints != null)
+						return mConnectionPoints[mActiveConnectionPointIndex].mPositionInStudWorldCoord;
+					return new PointF();
+				}
+				set
+				{
+					if (mConnectionPoints != null)
+					{
+						PointF newCenter = this.Center;
+						newCenter.X += value.X - mConnectionPoints[mActiveConnectionPointIndex].mPositionInStudWorldCoord.X;
+						newCenter.Y += value.Y - mConnectionPoints[mActiveConnectionPointIndex].mPositionInStudWorldCoord.Y;
+						this.Center = newCenter;
+					}
+				}
+			}
+
+			/// <summary>
+			/// Accessor to get the current active connexion angle if any
+			/// </summary>
+			public float ActiveConnectionAngle
+			{
+				get
+				{
+					if (mConnectionPoints != null)
+						return BrickLibrary.Instance.getConnectionAngle(mPartNumber, mActiveConnectionPointIndex);
+					return 0.0f;
+				}
+			}
+
+			/// <summary>
+			/// Set the index of the active connexion point
+			/// </summary>
+			public int ActiveConnectionPointIndex
+			{
+				get { return mActiveConnectionPointIndex; }
+				set
+				{
+					if (mConnectionPoints != null)
+					{
+						if (value < 0)
+							mActiveConnectionPointIndex = 0;
+						else if (value >= mConnectionPoints.Count)
+							mActiveConnectionPointIndex = mConnectionPoints.Count - 1;
+						else
+							mActiveConnectionPointIndex = value;
+					}
+				}
+			}
+
+			/// <summary>
+			/// get an accessor on the list of connection point
+			/// </summary>
+			public List<ConnectionPoint> ConnectionPoints
+			{
+				get { return mConnectionPoints; }
+			}
+
+			/// <summary>
+			/// Return the list of free point for this brick
+			/// </summary>
+			public List<PointF> FreeConnectionPoints
+			{
+				get
+				{
+					if (mConnectionPoints != null)
+					{
+						List<PointF> result = new List<PointF>(mConnectionPoints.Count);
+						foreach (ConnectionPoint connexion in mConnectionPoints)
+							if (connexion.IsFree)
+								result.Add(connexion.mPositionInStudWorldCoord);
+						return result;
+					}
+					return null;
+				}
+			}
+
+			/// <summary>
+			/// Return the list of free connexion for this brick
+			/// </summary>
+			public List<ConnectionPoint> FreeConnections
+			{
+				get
+				{
+					if (mConnectionPoints != null)
+					{
+						List<ConnectionPoint> result = new List<ConnectionPoint>(mConnectionPoints.Count);
+						foreach (ConnectionPoint connexion in mConnectionPoints)
+							if (connexion.IsFree)
+								result.Add(connexion);
+						return result;
+					}
+					return null;
+				}
+			}
+
+			/// <summary>
+			/// for improving compatibility with LDRAW we save an altitude (up coord) for each brick
+			/// but it is not used in the program for now
+			/// </summary>
+			public float Altitude
+			{
+				get { return mAltitude; }
+				set { mAltitude = value; }
+			}
+			#endregion
+
+			#region constructor/copy
+			/// <summary>
+			/// this parameter less constructor is requested for the serialization, but should not
+			/// be used by the program
+			/// </summary>
+			public Brick()
+			{
+			}
+
+			/// <summary>
+			/// This is the normal constructor that you should use in your program
+			/// </summary>
+			/// <param name="partNumber">the part number used to create this brick</param>
+			public Brick(string partNumber)
+			{
+				init(partNumber);
+			}
+
+			/// <summary>
+			/// Clone this Brick
+			/// </summary>
+			/// <returns>a new Brick which is a conform copy of this</returns>
+			public Brick Clone()
+			{
+				Brick result = new Brick();
+				result.mDisplayArea = this.mDisplayArea;
+				result.mOrientation = this.mOrientation;
+				result.mActiveConnectionPointIndex = this.mActiveConnectionPointIndex;
+				// call the init after setting the orientation to compute the image in the right orientation
+				// the init method will initialize mImage, mConnectionPoints and mSnapToGridOffsetFromTopLeftCorner
+				result.init(this.mPartNumber);
+				// return the cloned value
+				return result;
+			}
+
+			private void init(string partNumber)
+			{
+				// We must set the part number first because the connection list need it
+				// call the accessor to recreate the picture
+				PartNumber = partNumber;
+				// create the connection list if any
+				List<PointF> connectionList = BrickLibrary.Instance.getConnectionList(partNumber);
+				if (connectionList != null)
+				{
+					mConnectionPoints = new List<ConnectionPoint>(connectionList.Count);
+					for (int i = 0; i < connectionList.Count; i++)
+						mConnectionPoints.Add(new ConnectionPoint(this, i));
+					updateConnectionPosition();
+				}
+			}
+			#endregion
+
+			#region IXmlSerializable Members
+
+			public override void ReadXml(System.Xml.XmlReader reader)
+			{
+				base.ReadXml(reader);
+				// avoid using the accessor to reduce the number of call of updateBitmap
+				mPartNumber = BrickLibrary.Instance.getActualPartNumber(reader.ReadElementContentAsString().ToUpper());
+				mOrientation = reader.ReadElementContentAsFloat();
+				mActiveConnectionPointIndex = reader.ReadElementContentAsInt();
+				// the altitude
+				if (Map.DataVersionOfTheFileLoaded >= 3)
+					mAltitude = reader.ReadElementContentAsFloat();
+				// update the bitmap
+				updateImage();
+				// read the connexion points if any
+				reader.ReadAttributeValue();
+				int count = int.Parse(reader.GetAttribute(0));
+				if (count > 0)
+				{
+					mConnectionPoints = new List<ConnectionPoint>(count);
+					int connexionIndex = 0;
+					bool connexionFound = reader.ReadToDescendant("Connexion");
+					while (connexionFound)
+					{
+						// read the id (hashcode key) of the connexion
+						reader.ReadAttributeValue();
+						int hashCode = int.Parse(reader.GetAttribute(0));
+
+						// look in the hastable if this connexion alread exists, else create it
+						ConnectionPoint connexion = ConnectionPoint.sHashtableForLinkRebuilding[hashCode] as ConnectionPoint;
+						if (connexion == null)
+						{
+							// instanciate a ConnectionPoint, and add it in the hash table
+							connexion = new ConnectionPoint(this, connexionIndex);
+							ConnectionPoint.sHashtableForLinkRebuilding.Add(hashCode, connexion);
+						}
+						else
+						{
+							// set the connexion type, if not set during the above creation
+							connexion.mType = BrickLibrary.Instance.getConnexionType(this.PartNumber, connexionIndex);
+						}
+						// increment the connexion index
+						connexionIndex++;
+						//read the connexion data and add it in the Connection list
+						connexion.mMyBrick = this;
+						connexion.ReadXml(reader);
+						mConnectionPoints.Add(connexion);
+
+						// read the next brick
+						connexionFound = reader.ReadToNextSibling("Connexion");
+					}
+					reader.ReadEndElement();
+
+					// update the connexion position which is not stored in the bbm file
+					// in file version before 3 it was stored, but I removed it because the connexion
+					// point can move in different part libraries
+					updateConnectionPosition();
+				}
+				else
+				{
+					reader.Read();
+				}
+			}
+
+			public override void WriteXml(System.Xml.XmlWriter writer)
+			{
+				base.WriteXml(writer);
+				writer.WriteElementString("PartNumber", mPartNumber);
+				writer.WriteElementString("Orientation", mOrientation.ToString(System.Globalization.CultureInfo.InvariantCulture));
+				writer.WriteElementString("ActiveConnectionPointIndex", mActiveConnectionPointIndex.ToString());
+				writer.WriteElementString("Altitude", mAltitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
+				// save the connexion points if any
+				writer.WriteStartElement("Connexions");
+				if (mConnectionPoints != null)
+				{
+					writer.WriteAttributeString("count", mConnectionPoints.Count.ToString());
+					foreach (ConnectionPoint connexion in mConnectionPoints)
+					{
+						writer.WriteStartElement("Connexion");
+						connexion.WriteXml(writer);
+						writer.WriteEndElement();
+					}
+				}
+				else
+				{
+					writer.WriteAttributeString("count", "0");
+				}
+				writer.WriteEndElement();
+			}
+
+			#endregion
+
+			#region update method
+			private PointF getMinMaxAndSize(PointF[] points, ref PointF min, ref PointF max)
+			{
+				min = points[0];
+				max = points[0];
+				for (int i = 1; i < points.Length; ++i)
+				{
+					if (points[i].X < min.X)
+						min.X = points[i].X;
+					if (points[i].Y < min.Y)
+						min.Y = points[i].Y;
+					if (points[i].X > max.X)
+						max.X = points[i].X;
+					if (points[i].Y > max.Y)
+						max.Y = points[i].Y;
+				}
+				return new PointF(Math.Abs(max.X - min.X), Math.Abs(max.Y - min.Y));
+			}
+
+			private void updateImage()
+			{
+				List<PointF> boundingBox = null;
+				List<PointF> hull = null;
+				mOriginalImageReference = BrickLibrary.Instance.getImage(mPartNumber, ref boundingBox, ref hull);
+				// check if the image is not in the library, create one
+				if (mOriginalImageReference == null)
+				{
+					// add a default image in the library and ask it again
+					BrickLibrary.Instance.AddUnknownBrick(mPartNumber, (int)(mDisplayArea.Width), (int)(mDisplayArea.Height));
+					mOriginalImageReference = BrickLibrary.Instance.getImage(mPartNumber, ref boundingBox, ref hull);
+				}
+				// normally now, we should have an image
+				// transform the bounding box of the part
+				PointF[] boundingPoints = boundingBox.ToArray();
+				Matrix rotation = new Matrix();
+				rotation.Rotate(mOrientation);
+				rotation.TransformVectors(boundingPoints);
+
+				// get the min, max and the size of the bounding box
+				PointF boundingMin = new PointF();
+				PointF boundingMax = new PointF();
+				PointF boundingSize = getMinMaxAndSize(boundingPoints, ref boundingMin, ref boundingMax);
+
+				// check if this picture has a specific hull
+				if (hull != boundingBox)
+				{
+					// there's a more precise hull, so transform it and get its size
+					PointF[] hullPoints = hull.ToArray();
+					rotation.TransformVectors(hullPoints);
+
+					PointF hullMin = new PointF();
+					PointF hullMax = new PointF();
+					PointF hullSize = getMinMaxAndSize(hullPoints, ref hullMin, ref hullMax);
+
+					// compute the offset between the hull and the normal bounding box
+					PointF deltaMin = new PointF(boundingMin.X - hullMin.X, boundingMin.Y - hullMin.Y);
+					PointF deltaMax = new PointF(boundingMax.X - hullMax.X, boundingMax.Y - hullMax.Y);
+					mOffsetFromOriginalImage = new PointF((deltaMax.X + deltaMin.X) / (NUM_PIXEL_PER_STUD_FOR_BRICKS * 2),
+														  (deltaMax.Y + deltaMin.Y) / (NUM_PIXEL_PER_STUD_FOR_BRICKS * 2));
+
+					// overwrite the bounding size and min with the hull ones which are more precise
+					boundingSize = hullSize;
+					boundingMin = hullMin;
+				}
+				else
+				{
+					mOffsetFromOriginalImage = new PointF(0, 0);
+				}
+
+				// compute the snapToGridOffset
+				BrickLibrary.Brick.Margin snapMargin = BrickLibrary.Instance.getSnapMargin(mPartNumber);
+				if ((snapMargin.mLeft != 0.0f) || (snapMargin.mRight != 0.0f) || (snapMargin.mTop != 0.0f) || (snapMargin.mBottom != 0.0f))
+				{
+					double angleInRadian = mOrientation * Math.PI / 180.0;
+					double cosAngle = Math.Cos(angleInRadian);
+					double sinAngle = Math.Sin(angleInRadian);
+					double xSnapOffset = 0;
+					double ySnapOffset = 0;
+					if (cosAngle > 0)
+					{
+						xSnapOffset = snapMargin.mLeft * cosAngle;
+						ySnapOffset = snapMargin.mTop * cosAngle;
+					}
+					else
+					{
+						cosAngle = -cosAngle;
+						xSnapOffset = snapMargin.mRight * cosAngle;
+						ySnapOffset = snapMargin.mBottom * cosAngle;
+					}
+					if (sinAngle > 0)
+					{
+						xSnapOffset += snapMargin.mBottom * sinAngle;
+						ySnapOffset += snapMargin.mLeft * sinAngle;
+					}
+					else
+					{
+						sinAngle = -sinAngle;
+						xSnapOffset += snapMargin.mTop * sinAngle;
+						ySnapOffset += snapMargin.mRight * sinAngle;
+					}
+					mSnapToGridOffset = new PointF((float)xSnapOffset, (float)ySnapOffset);
+				}
+				else
+				{
+					mSnapToGridOffset = new PointF(0, 0);
+				}
+
+				// set the size of the display area with the new computed bounding size, and recompute the snap to grid offset
+				mDisplayArea.Width = boundingSize.X / NUM_PIXEL_PER_STUD_FOR_BRICKS;
+				mDisplayArea.Height = boundingSize.Y / NUM_PIXEL_PER_STUD_FOR_BRICKS;
+				mTopLeftCornerInPixel = new PointF(-boundingMin.X, -boundingMin.Y);
+
+				// clear the new images array for all the levels
+				clearMipmapImages(0, mMipmapImages.Length - 1);
+			}
+
+			public void clearMipmapImages(int from, int to)
+			{
+				// create the new images for all the levels and draw in them
+				for (int i = from; i <= to; ++i)
+					mMipmapImages[i] = null;
+			}
+
+			/// <summary>
+			/// construct an image from the referenced image in the database and which size depend on the 
+			/// the mipmap level. Level 0 correspond to the full size (same size as in the part database).
+			/// The image is of course computed base on the current orientation of this brick
+			/// </summary>
+			/// <param name="mipmapLevel">a value from 0 to 5</param>
+			/// <returns>an image scaled depending on the mipmap level</returns>
+			private Image createImage(int mipmapLevel)
+			{
+				// create the transform
+				int powerOfTwo = (1 << mipmapLevel);
+				Matrix transform = new Matrix();
+				transform.Rotate(mOrientation);
+				transform.Translate(mTopLeftCornerInPixel.X / powerOfTwo, mTopLeftCornerInPixel.Y / powerOfTwo, MatrixOrder.Append);
+				// create a new image with the correct size
+				int newWidth = (int)((mDisplayArea.Width * NUM_PIXEL_PER_STUD_FOR_BRICKS) / powerOfTwo);
+				int newHeight = (int)((mDisplayArea.Height * NUM_PIXEL_PER_STUD_FOR_BRICKS) / powerOfTwo);
+				Bitmap image = new Bitmap(newWidth, newHeight);
+				// get the graphic context and draw the referenc image in it with the correct transform and scale
+				Graphics graphics = Graphics.FromImage(image);
+				graphics.Transform = transform;
+				graphics.Clear(Color.Transparent);
+				graphics.CompositingMode = CompositingMode.SourceOver;
+				graphics.SmoothingMode = SmoothingMode.HighQuality;
+				graphics.CompositingQuality = CompositingQuality.HighSpeed;
+				graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
+				graphics.DrawImage(mOriginalImageReference, 0, 0, (float)(mOriginalImageReference.Width) / powerOfTwo, (float)(mOriginalImageReference.Height) / powerOfTwo);
+				graphics.Flush();
+				// return the created image
+				return image;
+			}
+
+			private void updateConnectionPosition()
+			{
+				if (mConnectionPoints != null)
+				{
+					List<PointF> connectionList = BrickLibrary.Instance.getConnectionList(mPartNumber);
+					if (connectionList != null)
+					{
+						Matrix rotation = new Matrix();
+						rotation.Rotate(mOrientation);
+						PointF[] points = connectionList.ToArray();
+						rotation.TransformVectors(points);
+
+						PointF center = this.Center;
+						center.X += mOffsetFromOriginalImage.X;
+						center.Y += mOffsetFromOriginalImage.Y;
+						for (int i = 0; i < connectionList.Count; ++i)
+						{
+							mConnectionPoints[i].mPositionInStudWorldCoord.X = center.X + points[i].X;
+							mConnectionPoints[i].mPositionInStudWorldCoord.Y = center.Y + points[i].Y;
+						}
+					}
+				}
+			}
+
+			public void setActiveConnectionPointUnder(PointF positionInStudCoord, float sizeInStud)
+			{
+				if (mConnectionPoints != null)
+					for (int i = 0 ; i < mConnectionPoints.Count ; ++i)
+					{
+						PointF point = mConnectionPoints[i].mPositionInStudWorldCoord;
+						if ((positionInStudCoord.X > point.X - sizeInStud) && (positionInStudCoord.X < point.X + sizeInStud) &&
+							(positionInStudCoord.Y > point.Y - sizeInStud) && (positionInStudCoord.Y < point.Y + sizeInStud))
+						{
+							mActiveConnectionPointIndex = i;
+							break;
+						}
+					}
+			}
+
+			public void setActiveConnectionPointWithNextOne()
+			{
+				if (mConnectionPoints != null)
+				{
+					mActiveConnectionPointIndex++;
+					if (mActiveConnectionPointIndex >= mConnectionPoints.Count)
+						mActiveConnectionPointIndex = 0;
+				}
+			}
+
+			#endregion
+			#region get image
+			/// <summary>
+			/// return the current image of the brick depending on it's mipmap level (LOD level)
+			/// level 0 is the most detailed level.
+			/// </summary>
+			/// <param name="mipmapLevel">the level of detail</param>
+			/// <returns>the image of the brick</returns>
+			public Image getImage(int mipmapLevel)
+			{				
+				// create the image dynamically if not already created
+				if (mipmapLevel < Properties.Settings.Default.StartSavedMipmapLevel)
+					return createImage(mipmapLevel);
+				else if (mipmapLevel >= mMipmapImages.Length)
+					mipmapLevel = mMipmapImages.Length - 1;
+				// else return the saved image
+				if (mMipmapImages[mipmapLevel] == null)
+					mMipmapImages[mipmapLevel] = createImage(mipmapLevel);
+				return mMipmapImages[mipmapLevel];
+			}
+			#endregion
+		}
+
+		[NonSerialized]
+		private static SolidBrush[] sConnexionPointBrush = { new SolidBrush(Color.Red), new SolidBrush(Color.Yellow), new SolidBrush(Color.Cyan), new SolidBrush(Color.BlueViolet), new SolidBrush(Color.LightPink), new SolidBrush(Color.GreenYellow) };
+		private static float[] sConnexionPointRadius = { 2.5f, 1.0f, 1.5f, 1.0f, 1.0f, 1.0f };
+
+		// list of bricks and connection points
+		private List<Brick> mBricks = new List<Brick>(); // all the bricks in the layer
+		private List<Brick.ConnectionPoint>[] mFreeConnectionPoints = new List<Brick.ConnectionPoint>[(int)BrickLibrary.Brick.ConnectionType.COUNT];
+
+		//related to selection
+		private Brick mCurrentBrickUnderMouse = null;
+		private PointF mMouseDownInitialPosition;
+		private PointF mMouseDownLastPosition;
+		private bool mMouseHasMoved = false;
+		private bool mMouseMoveIsADuplicate = false;
+		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb((int)0x70FFFFFF));
+		private DuplicateBrick mLastDuplicateBrickAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
+
+		#region get/set
+		/// <summary>
+		/// An accessor on the brick list for saving in different fomat
+		/// </summary>
+		public List<Brick> BrickList
+		{
+			get { return mBricks; }
+		}
+		#endregion
+
+		#region constructor
+		public LayerBrick()
+		{
+			// create all the free connection list for all the different type of connection
+			for (int i = 0; i < (int)BrickLibrary.Brick.ConnectionType.COUNT; ++i)
+				mFreeConnectionPoints[i] = new List<Brick.ConnectionPoint>();
+		}
+
+		public override int getNbItems()
+		{
+			return mBricks.Count;
+		}
+		#endregion
+		#region IXmlSerializable Members
+
+		public override void ReadXml(System.Xml.XmlReader reader)
+		{
+			base.ReadXml(reader);
+			// clear all the content of the hash table
+			Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
+			// the brick
+			bool brickFound = reader.ReadToDescendant("Brick");
+			while (brickFound)
+			{
+				// instanciate a new brick, read and add the new brick
+				Brick brick = new Brick();
+				brick.ReadXml(reader);
+				mBricks.Add(brick);
+
+				// read the next brick
+				brickFound = reader.ReadToNextSibling("Brick");
+
+				// step the progress bar for each brick
+				MainForm.Instance.stepProgressBar();
+			}
+			// read the Bricks tag, to finish the list of brick
+			reader.Read();
+			
+			// clear again the hash table to free the memory after loading
+			Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
+
+			// reconstruct the freeConnexion points list by iterating on all the connexion of all the bricks
+			foreach (List<Brick.ConnectionPoint> connexionList in mFreeConnectionPoints)
+				connexionList.Clear();
+			foreach (Brick brick in mBricks)
+				if (brick.ConnectionPoints != null) // do not use brick.HasConnectionPoints here
+					foreach (Brick.ConnectionPoint connexion in brick.ConnectionPoints)
+					{
+						// 1)
+						// check if we need to break a link because it is not valid 
+						// this situation can happen when you load an unknow part that had
+						// some connexion point before in the XML file
+						// 2)
+						// check if we need to break the link because two connexion point are not anymore at
+						// the same place. This can happen if the file was save with a first version of the
+						// library, and then we change the library and we change the connexion position.
+						// So the parts are not move, but the links should be broken
+						if ( (connexion.mType == BrickLibrary.Brick.ConnectionType.BRICK) ||
+								((connexion.mConnectionLink != null) &&
+								!arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.mConnectionLink.mPositionInStudWorldCoord)) )
+						{
+							// we don't use the disconnect method here, because the disconnect method
+							// add the two connexion in the free connexion list, but we want to do it after.
+							if (connexion.mConnectionLink != null)
+								connexion.mConnectionLink.mConnectionLink = null;
+							connexion.mConnectionLink = null;
+						}
+						// add the connexion in the free list if it is free
+						if (connexion.IsFree)
+							mFreeConnectionPoints[(int)connexion.Type].Add(connexion);
+					}
+		}
+
+		public override void WriteXml(System.Xml.XmlWriter writer)
+		{
+			writer.WriteAttributeString("type", "brick");
+			base.WriteXml(writer);
+			// and serialize the brick list
+			writer.WriteStartElement("Bricks");
+			foreach (Brick brick in mBricks)
+			{
+				writer.WriteStartElement("Brick");
+				brick.WriteXml(writer);
+				writer.WriteEndElement();
+				// step the progress bar for each brick
+				MainForm.Instance.stepProgressBar();
+			}
+			writer.WriteEndElement();
+		}
+
+		#endregion
+
+		#region action on the layer
+		/// <summary>
+		///	Add the specified brick at the specified position in the list
+		/// </summary>
+		public void addBrick(Brick brickToAdd, int index)
+		{
+			// add its connection points to the free list
+			if (brickToAdd.HasConnectionPoint)
+				foreach (Brick.ConnectionPoint connexion in brickToAdd.ConnectionPoints)
+					mFreeConnectionPoints[(int)connexion.Type].Add(connexion);
+
+			// add the brick in the list
+			if (index < 0)
+				mBricks.Add(brickToAdd);
+			else
+				mBricks.Insert(index, brickToAdd);
+
+			// notify the part list view
+			MainForm.Instance.NotifyPartListForBrickAdded(this, brickToAdd);
+		}
+
+		/// <summary>
+		///	Add the specified brick by connecting it to the current selected brick
+		/// or don't change its position if there's no connection possible
+		/// </summary>
+		public void addConnectBrick(Brick brickToAdd)
+		{
+			// add its connection points to the free list
+			if (brickToAdd.HasConnectionPoint)
+				foreach (Brick.ConnectionPoint connexion in brickToAdd.ConnectionPoints)
+					mFreeConnectionPoints[(int)connexion.Type].Add(connexion);
+			// now make the connection
+			if (mSelectedObjects.Count == 1)
+			{
+				Brick selectedBrick = mSelectedObjects[0] as Brick;
+				if (selectedBrick.HasConnectionPoint && brickToAdd.HasConnectionPoint)
+				{
+					// first rotate this brick
+					float newOrientation = selectedBrick.Orientation + selectedBrick.ActiveConnectionAngle + 180 - brickToAdd.ActiveConnectionAngle;
+					// clamp the orientation between 0 and 360
+					if (newOrientation >= 360.0f)
+						newOrientation -= 360.0f;
+					if (newOrientation < 0.0f)
+						newOrientation += 360.0f;
+					// set the new orientation
+					brickToAdd.Orientation = newOrientation;
+					// the place the brick to add at the correct position
+					brickToAdd.ActiveConnectionPosition = selectedBrick.ActiveConnectionPosition;					
+
+					// set the link of the connection (and check all the other connexion  of the brick because maybe the add lock different connection at the same time)
+					if (brickToAdd.ActiveConnectionPoint.Type == selectedBrick.ActiveConnectionPoint.Type)
+						connectTwoConnectionPoints(brickToAdd.ActiveConnectionPoint, selectedBrick.ActiveConnectionPoint);
+					foreach (Brick.ConnectionPoint brickConnexion in brickToAdd.ConnectionPoints)
+						if (brickConnexion != brickToAdd.ActiveConnectionPoint)
+							for (int i = 0; i < mFreeConnectionPoints[(int)brickConnexion.Type].Count; ++i)
+							{
+								Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints[(int)brickConnexion.Type][i];
+								if ((freeConnexion != brickConnexion) && (freeConnexion.Type == brickConnexion.Type) && 
+									arePositionsEqual(brickConnexion.mPositionInStudWorldCoord, freeConnexion.mPositionInStudWorldCoord))
+								{
+									if (connectTwoConnectionPoints(brickConnexion, freeConnexion))
+										--i;
+								}
+							}
+					
+					// set the current connection point to the next one
+					brickToAdd.ActiveConnectionPointIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(brickToAdd.PartNumber, brickToAdd.ActiveConnectionPointIndex);
+					// and add the brick in the list
+					mBricks.Insert(mBricks.IndexOf(selectedBrick) + 1, brickToAdd);
+				}
+				else
+				{
+					PointF position = selectedBrick.Position;
+					position.X += selectedBrick.mDisplayArea.Width;
+					brickToAdd.Position = position;
+					mBricks.Insert(mBricks.IndexOf(selectedBrick) + 1, brickToAdd);
+				}
+			}
+			else
+			{
+				mBricks.Add(brickToAdd);
+			}
+
+			// notify the part list view
+			MainForm.Instance.NotifyPartListForBrickAdded(this, brickToAdd);
+		}
+
+		/// <summary>
+		///	Add the specified brick at the specified position in the list.
+		/// This method is specifically design for the reordering of the list, so only
+		/// the actions to bring to front or send to back should use it
+		/// </summary>
+		public void addBrickWithoutChangingConnectivity(Brick brickToAdd, int index)
+		{
+			// add the brick in the list
+			if (index < 0)
+				mBricks.Add(brickToAdd);
+			else
+				mBricks.Insert(index, brickToAdd);
+		}
+
+		/// <summary>
+		/// Remove the specified Brick
+		/// </summary>
+		/// <param name="brickToRemove">the brick you want to remove</param>
+		/// <returns>the previous index of the cell deleted</returns>
+		public int removeBrick(Brick brickToRemove)
+		{
+			int index = mBricks.IndexOf(brickToRemove);
+			if (index >= 0)
+			{
+				// remove its connextion points
+				if (brickToRemove.HasConnectionPoint)
+					foreach (Brick.ConnectionPoint connexion in brickToRemove.ConnectionPoints)
+					{
+						if (connexion.mConnectionLink != null)
+						{
+							mFreeConnectionPoints[(int)(connexion.mConnectionLink.Type)].Add(connexion.mConnectionLink);
+							connexion.mConnectionLink.mConnectionLink = null;
+						}
+						mFreeConnectionPoints[(int)(connexion.Type)].Remove(connexion);
+						connexion.mConnectionLink = null;
+					}
+
+				// remove the brick
+				mBricks.Remove(brickToRemove);
+				// remove also the item from the selection list if in it
+				if (mSelectedObjects.Contains(brickToRemove))
+					removeObjectFromSelection(brickToRemove);
+			}
+			else
+			{
+				index = 0;
+			}
+
+			// notify the part list view
+			MainForm.Instance.NotifyPartListForBrickRemoved(this, brickToRemove);
+
+			return index;
+		}
+
+		/// <summary>
+		/// Remove the specified Brick.
+		/// This method is specifically design for the reordering of the list, so only
+		/// the actions to bring to front or send to back should use it
+		/// </summary>
+		/// <param name="brickToRemove">the brick you want to remove</param>
+		/// <returns>the previous index of the cell deleted</returns>
+		public int removeBrickWithoutChangingConnectivity(Brick brickToRemove)
+		{
+			int index = mBricks.IndexOf(brickToRemove);
+			if (index >= 0)
+			{
+				// remove the brick
+				mBricks.Remove(brickToRemove);
+				// remove also the item from the selection list if in it
+				if (mSelectedObjects.Contains(brickToRemove))
+					removeObjectFromSelection(brickToRemove);
+			}
+			else
+			{
+				index = 0;
+			}
+
+			return index;
+		}
+
+		/// <summary>
+		/// Copy the list of the selected bricks in a separate list for later use.
+		/// This method should be called on a CTRL+C
+		/// </summary>
+		public void copyCurrentSelection()
+		{
+			// reset the copy list
+			sCopyItems.Clear();
+			// recreate the copy list if the selection is not empty
+			foreach (LayerItem item in SelectedObjects)
+			{
+				// add a duplicated item in the list (because the model may change between this copy and the paste)
+				sCopyItems.Add((item as Brick).Clone());
+			}
+		}
+
+		/// <summary>
+		/// Paste (duplicate) the list of bricks that was previously copied with a call to copyCurrentSelection()
+		/// This method should be called on a CTRL+V
+		/// </summary>
+		public void pasteCopiedList(float positionShift)
+		{
+			// To paste, we need to have copied something
+			if (sCopyItems.Count > 0)
+			{
+				mLastDuplicateBrickAction = new DuplicateBrick(this, sCopyItems, positionShift, positionShift);
+				ActionManager.Instance.doAction(mLastDuplicateBrickAction);
+			}
+		}
+
+		/// <summary>
+		/// Select all the items in this layer.
+		/// </summary>
+		public override void selectAll()
+		{
+			// convert the list of brick into list of item (do you know a better than
+			// just duplicate the list ?????
+			List<LayerItem> brickListAsItem = new List<LayerItem>(mBricks.Count);
+			foreach (Brick brick in mBricks)
+				brickListAsItem.Add(brick);
+			// clear the selection and add all the item of this layer
+			clearSelection();
+			addObjectInSelection(brickListAsItem);
+		}
+
+		/// <summary>
+		/// Connect the two connexion if possible (i.e. if both connexion are free)
+		/// </summary>
+		/// <param name="connexion1">the first connexion to connect with the second one</param>
+		/// <param name="connexion2">the second connexion to connect with the first one</param>
+		/// <returns>true if the connexion was made, else false.</returns>
+		private bool connectTwoConnectionPoints(Brick.ConnectionPoint connexion1, Brick.ConnectionPoint connexion2)
+		{
+			// the connexion can never be stolen
+			if (connexion1.IsFree && connexion2.IsFree)
+			{
+				connexion1.mConnectionLink = connexion2;
+				connexion2.mConnectionLink = connexion1;
+				mFreeConnectionPoints[(int)(connexion1.Type)].Remove(connexion1);
+				mFreeConnectionPoints[(int)(connexion2.Type)].Remove(connexion2);
+				return true;
+			}
+			return false;
+		}
+
+		private void disconnectTwoConnectionPoints(Brick.ConnectionPoint connexion1, Brick.ConnectionPoint connexion2)
+		{
+			if (connexion1 != null)
+			{
+				connexion1.mConnectionLink = null;
+				mFreeConnectionPoints[(int)(connexion1.Type)].Add(connexion1);
+			}
+			if (connexion2 != null)
+			{
+				connexion2.mConnectionLink = null;
+				mFreeConnectionPoints[(int)(connexion2.Type)].Add(connexion2);
+			}
+		}
+
+		private bool arePositionsEqual(PointF pos1, PointF pos2)
+		{
+			if (Math.Abs(pos1.X - pos2.X) < 0.1)
+				return (Math.Abs(pos1.Y - pos2.Y) < 0.1);
+			return false;
+		}
+
+		/// <summary>
+		/// Update the connectivity of all the selected bricks base of their positions
+		/// </summary>
+		/// <param name="breakLinkOnly">if true only update the disconnection, that means only break some links, do not create new links</param>
+		public void updateBrickConnectivityOfSelection(bool breakLinkOnly)
+		{
+			//--- DISCONNEXION FIRST
+			// search amond the selected bricks all the connexions that does not connect to another brick in the selection
+			// then check the position of the two connected point to know if we must break the link
+			foreach (Brick brick in mSelectedObjects)
+				if (brick.HasConnectionPoint)
+					foreach (Brick.ConnectionPoint connexion in brick.ConnectionPoints)
+						if ((connexion.mConnectionLink != null) && !mSelectedObjects.Contains(connexion.mConnectionLink.mMyBrick))
+						{
+							// check if we need to brake the link
+							if (!arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.mConnectionLink.mPositionInStudWorldCoord))
+								disconnectTwoConnectionPoints(connexion, connexion.mConnectionLink);
+						}
+
+			//--- NEW CONNEXION
+			if (!breakLinkOnly)
+			{
+				// build two lists from the free connection points, one in the selection, and one for the others
+				List<Brick.ConnectionPoint>[] connexionPointsInSelection = new List<Brick.ConnectionPoint>[(int)(BrickLibrary.Brick.ConnectionType.COUNT)];
+				List<Brick.ConnectionPoint>[] freeConnexionPoints = new List<Brick.ConnectionPoint>[(int)(BrickLibrary.Brick.ConnectionType.COUNT)];
+
+				for (int i = 0; i < (int)(BrickLibrary.Brick.ConnectionType.COUNT); ++i)
+				{
+					connexionPointsInSelection[i] = new List<Brick.ConnectionPoint>();
+					freeConnexionPoints[i] = new List<Brick.ConnectionPoint>();
+					foreach (Brick.ConnectionPoint connexion in mFreeConnectionPoints[i])
+						if (mSelectedObjects.Contains(connexion.mMyBrick))
+							connexionPointsInSelection[i].Add(connexion);
+						else
+							freeConnexionPoints[i].Add(connexion);
+				}
+
+				// now iterate on the free connexion point in selection to search where to connect
+				for (int i = 0; i < (int)(BrickLibrary.Brick.ConnectionType.COUNT); ++i)
+					foreach (Brick.ConnectionPoint selConnexion in connexionPointsInSelection[i])
+					{
+						// try to find a new connection
+						foreach (Brick.ConnectionPoint freeConnexion in freeConnexionPoints[i])
+							if (arePositionsEqual(selConnexion.mPositionInStudWorldCoord, freeConnexion.mPositionInStudWorldCoord))
+								connectTwoConnectionPoints(selConnexion, freeConnexion);
+					}
+			}
+		}
+
+		/// <summary>
+		/// Update the connectivity of all the bricks base of their positions
+		/// This method is slow since the whole connectivity is recompute. It should only be call after
+		/// an import of a map from a file format that doesn't contain the connectivity info, such as LDraw format
+		/// </summary>
+		public void updateFullBrickConnectivity()
+		{
+			foreach (Brick brick in mBricks)
+				if (brick.HasConnectionPoint)
+					foreach (Brick.ConnectionPoint brickConnexion in brick.ConnectionPoints)
+						for (int i = 0; i < mFreeConnectionPoints[(int)brickConnexion.Type].Count; ++i)
+						{
+							Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints[(int)brickConnexion.Type][i];
+							if ((freeConnexion.mMyBrick != brick) && arePositionsEqual(freeConnexion.mPositionInStudWorldCoord, brickConnexion.mPositionInStudWorldCoord))
+							{
+								if (connectTwoConnectionPoints(freeConnexion, brickConnexion))
+									i--;
+							}
+						}
+		}
+
+		/// <summary>
+		/// A delegate to compare two bricks by altitude
+		/// </summary>
+		/// <param name="brick1"></param>
+		/// <param name="brick2"></param>
+		/// <returns></returns>
+		private static int CompareBricksByAltitudeDelegate(Brick brick1, Brick brick2)
+		{
+			if (brick1.Altitude > brick2.Altitude)
+				return -1;
+			if (brick1.Altitude < brick2.Altitude)
+				return 1;
+			return 0;
+		}
+
+		/// <summary>
+		/// This method sort the array of bricks according to the altitude of each bricks,
+		/// such as the higher bricks are displayed last, and appear on top.
+		/// This function is usefull when we load a LDRAW or TD file that contains altitude
+		/// </summary>
+		public void sortBricksByAltitude()
+		{
+			mBricks.Sort(CompareBricksByAltitudeDelegate);
+		}
+
+		/// <summary>
+		/// recompute all the pictures of all the brick of all the brick layers 
+		/// </summary>
+		public void recomputeBrickMipmapImages()
+		{
+			foreach (Brick brick in mBricks)
+				brick.clearMipmapImages(0, 1);
+		}
+
+		#endregion
+
+		#region draw
+
+		/// <summary>
+		/// Get the brick in this layer that is placed on the most top left place
+		/// </summary>
+		/// <returns></returns>
+		public PointF getMostTopLeftBrickPosition()
+		{
+			PointF result = new PointF(float.MaxValue, float.MaxValue);
+			// iterate on all the bricks
+			foreach (Brick brick in mBricks)
+			{
+				if (brick.Position.X < result.X)
+					result.X = brick.Position.X;
+				if (brick.Position.Y < result.Y)
+					result.Y = brick.Position.Y;
+			}
+			return result;
+		}
+
+		/// <summary>
+		/// get the total area in stud covered by all the bricks in this layer
+		/// </summary>
+		/// <returns></returns>
+		public RectangleF getTotalAreaInStud()
+		{
+			PointF topLeft = new PointF(float.MaxValue, float.MaxValue);
+			PointF bottomRight = new PointF(float.MinValue, float.MinValue);
+			foreach (Brick brick in mBricks)
+			{
+				RectangleF brickArea = brick.mDisplayArea;
+				if (brickArea.X < topLeft.X)
+					topLeft.X = brickArea.X;
+				if (brickArea.Y < topLeft.Y)
+					topLeft.Y = brickArea.Y;
+				if (brickArea.Right > bottomRight.X)
+					bottomRight.X = brickArea.Right;
+				if (brickArea.Bottom > bottomRight.Y)
+					bottomRight.Y = brickArea.Bottom;
+			}
+			return new RectangleF(topLeft.X, topLeft.Y, bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
+		}
+
+		/// <summary>
+		/// Draw the layer.
+		/// </summary>
+		/// <param name="g">the graphic context in which draw the layer</param>
+		/// <param name="area">the area in layer pixel</param>
+		public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud)
+		{
+			if (!Visible)
+				return;
+
+			// compute the mipmap level according to the current scale
+			int mipmapLevel = 0;
+			if (scalePixelPerStud < 0.75f)
+				mipmapLevel = 4;
+			else if (scalePixelPerStud < 1.5f)
+				mipmapLevel = 3;
+			else if (scalePixelPerStud < 3.0f)
+				mipmapLevel = 2;
+			else if (scalePixelPerStud < 6.0f)
+				mipmapLevel = 1;
+			else
+				mipmapLevel = 0;
+
+			// iterate on all the bricks
+			foreach (Brick brick in mBricks)
+			{
+				float left = brick.Position.X;
+				float right = left + brick.Width;
+				float top = brick.Position.Y;
+				float bottom = top + brick.Height;
+				if ((right >= areaInStud.Left) && (left <= areaInStud.Right) && (bottom >= areaInStud.Top) && (top <= areaInStud.Bottom))
+				{
+					// the -0.5 and +1 is a hack to add 1 more pixel to have jointive baseplates
+					float x = (float)((left - areaInStud.Left) * scalePixelPerStud) - 0.5f;
+					float y = (float)((top - areaInStud.Top) * scalePixelPerStud) - 0.5f;
+					float width = (float)(brick.Width * scalePixelPerStud) + 1;
+					float height = (float)(brick.Height * scalePixelPerStud) + 1;
+					g.DrawImage(brick.getImage(mipmapLevel), x, y, width, height);
+
+					// draw a frame around the selected brick
+					if (mSelectedObjects.Contains(brick))
+						g.FillRectangle(mSelectionBrush, x, y, width, height);
+				}
+			}
+
+			// call the base class to draw the surrounding selection rectangle
+			base.draw(g, areaInStud, scalePixelPerStud);
+
+			// if there is only one selected object, we draw its current connexion point
+			if (mSelectedObjects.Count == 1)
+			{
+				Brick brick = mSelectedObjects[0] as Brick;
+				if (brick.HasConnectionPoint)
+				{
+					float x = (float)((brick.ActiveConnectionPosition.X - sConnexionPointRadius[0] - areaInStud.Left) * scalePixelPerStud);
+					float y = (float)((brick.ActiveConnectionPosition.Y - sConnexionPointRadius[0] - areaInStud.Top) * scalePixelPerStud);
+					float size = (float)(sConnexionPointRadius[0] * 2 * scalePixelPerStud);
+					g.FillEllipse(sConnexionPointBrush[0], x, y, size, size);
+				}
+			}
+
+			// draw the free connexion points if needed
+			if (BlueBrick.Properties.Settings.Default.DisplayFreeConnexionPoints)
+				for (int i = 1; i < (int)(BrickLibrary.Brick.ConnectionType.COUNT); ++i)
+					foreach (Brick.ConnectionPoint connexion in mFreeConnectionPoints[i])
+					{
+						float sizeInStud = sConnexionPointRadius[i];
+						float x = (float)((connexion.mPositionInStudWorldCoord.X - sizeInStud - areaInStud.Left) * scalePixelPerStud);
+						float y = (float)((connexion.mPositionInStudWorldCoord.Y - sizeInStud - areaInStud.Top) * scalePixelPerStud);
+						float sizeInPixel = (float)(sizeInStud * 2 * scalePixelPerStud);
+						g.FillEllipse(sConnexionPointBrush[i], x, y, sizeInPixel, sizeInPixel);
+					}
+		}
+		#endregion
+
+		#region mouse event
+		/// <summary>
+		/// Get the brick under the specified mouse coordinate or null if there's no brick under.
+		/// </summary>
+		/// <param name="mouseCoordInStud"></param>
+		/// <returns></returns>
+		public Brick getBrickUnderMouse(PointF mouseCoordInStud)
+		{
+			for (int i = mBricks.Count - 1; i >= 0; --i)
+			{
+				Brick brick = mBricks[i];
+				if ((mouseCoordInStud.X > brick.mDisplayArea.Left) && (mouseCoordInStud.X < brick.mDisplayArea.Right) &&
+					(mouseCoordInStud.Y > brick.mDisplayArea.Top) && (mouseCoordInStud.Y < brick.mDisplayArea.Bottom))
+				{
+					return brick;
+				}
+			}
+			return null;
+		}
+
+		/// <summary>
+		/// This function is called to know if this layer is interested by the specified mouse click
+		/// </summary>
+		/// <param name="e">the mouse event arg that describe the mouse click</param>
+		/// <returns>true if this layer wants to handle it</returns>
+		public override bool handleMouseDown(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
+		{
+			// if the layer is not visible it is not sensible to mouve click
+			if (!Visible)
+				return false;
+
+			// check if the mouse is inside the bounding rectangle of the selected objects
+			bool isMouseInsideSelectedObjects = isPointInsideSelectionRectangle(mouseCoordInStud);
+			if (!isMouseInsideSelectedObjects && (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+				&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey))
+				clearSelection();
+
+			// clear the current brick under the mouse and compute it again
+			mCurrentBrickUnderMouse = null;
+
+			// We search if there is a cell under the mouse but in priority we choose from the current selected bricks
+			// but in reverse order to choose first the brick on top
+			for (int i = mSelectedObjects.Count - 1; i >= 0; --i)
+			{
+				Brick brick = mSelectedObjects[i] as Brick;
+				if ((mouseCoordInStud.X > brick.mDisplayArea.Left) && (mouseCoordInStud.X < brick.mDisplayArea.Right) &&
+					(mouseCoordInStud.Y > brick.mDisplayArea.Top) && (mouseCoordInStud.Y < brick.mDisplayArea.Bottom))
+				{
+					mCurrentBrickUnderMouse = brick;
+					break;
+				}
+			}
+
+			// if the current selected brick is not under the mouse we search among the other bricks
+			// but in reverse order to choose first the brick on top
+			if (mCurrentBrickUnderMouse == null)
+				mCurrentBrickUnderMouse = getBrickUnderMouse(mouseCoordInStud);
+
+			// change the cursor:
+			// if we move the brick, use 4 directionnal arrows
+			// if there's a brick under the mouse, use the hand
+			bool willMoveSelectedObject = (isMouseInsideSelectedObjects || (mCurrentBrickUnderMouse != null))
+										&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
+			if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)
+				preferedCursor = Cursors.Hand;
+			else if (willMoveSelectedObject)
+				preferedCursor = Cursors.SizeAll;
+			else if (mCurrentBrickUnderMouse != null)
+				preferedCursor = Cursors.Hand;
+			else
+				preferedCursor = Cursors.Cross;
+
+			// handle the mouse down if we move the selected bricks
+			return willMoveSelectedObject;
+		}
+
+		/// <summary>
+		/// This method is called if the map decided that this layer should handle
+		/// this mouse click
+		/// </summary>
+		/// <param name="e">the mouse event arg that describe the click</param>
+		/// <returns>true if the view should be refreshed</returns>
+		public override bool mouseDown(MouseEventArgs e, PointF mouseCoordInStud)
+		{
+			bool mustRefresh = false;
+
+			// save a flag that tell if it is a simple move or a duplicate of the selection
+			mMouseMoveIsADuplicate = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+
+			// if finally we are called to handle this mouse down,
+			// we add the cell under the mouse if the selection list is empty
+			if ((mCurrentBrickUnderMouse != null) && !mMouseMoveIsADuplicate
+				&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey))
+			{
+				// if the selection is empty add the brick, else check the control key state
+				if (mSelectedObjects.Count == 0)
+				{
+					addObjectInSelection(mCurrentBrickUnderMouse);
+				}
+				else if (mSelectedObjects.Count == 1)
+				{
+					// check if we must change the connexion point
+					mCurrentBrickUnderMouse.setActiveConnectionPointUnder(mouseCoordInStud, sConnexionPointRadius[0]*2);
+				}
+				mustRefresh = true;
+			}
+
+			// record the initial position of the mouse
+			mMouseDownInitialPosition = getStartSnapPoint(mouseCoordInStud);
+			mMouseDownLastPosition = mMouseDownInitialPosition;
+			mMouseHasMoved = false;
+
+			return mustRefresh;
+		}
+
+		/// <summary>
+		/// This method is called when the mouse move.
+		/// </summary>
+		/// <param name="e">the mouse event arg that describe the mouse move</param>
+		/// <returns>true if the view should be refreshed</returns>
+		public override bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud)
+		{
+			if (mSelectedObjects.Count > 0)
+			{
+				// snap the mouse coord to the grid
+				mouseCoordInStud = getMovedSnapPoint(mouseCoordInStud);
+				// compute the delta mouve of the mouse
+				PointF deltaMove = new PointF(mouseCoordInStud.X - mMouseDownLastPosition.X, mouseCoordInStud.Y - mMouseDownLastPosition.Y);
+				// check if the delta move is not null
+				if (deltaMove.X != 0.0f || deltaMove.Y != 0.0)
+				{
+					// check if it is a move or a duplicate
+					if (mMouseMoveIsADuplicate)
+					{
+						// this is a duplicate, if we didn't move yet, this is the moment to copy  and paste the selection
+						// and this will change the current selection, that will be move normally after
+						if (!mMouseHasMoved)
+						{
+							this.copyCurrentSelection();
+							this.pasteCopiedList(0.0f);
+						}
+					}
+					// this is move of the selection, not a duplicate selection
+					// move all the selected brick if the delta move is not null
+					foreach (LayerBrick.Brick brick in mSelectedObjects)
+						brick.Position = new PointF(brick.Position.X + deltaMove.X, brick.Position.Y + deltaMove.Y);
+					// update the free connexion list
+					updateBrickConnectivityOfSelection(true);
+					// move also the bounding rectangle
+					moveBoundingSelectionRectangle(deltaMove);
+					// memorize the last position of the mouse
+					mMouseDownLastPosition = mouseCoordInStud;
+					// set the flag that indicate that we moved the mouse
+					mMouseHasMoved = true;
+					return true;
+				}
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// This method is called when the mouse button is released.
+		/// </summary>
+		/// <param name="e">the mouse event arg that describe the click</param>
+		/// <returns>true if the view should be refreshed</returns>
+		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
+		{
+			// check if we moved the selected text
+			if (mMouseHasMoved && (mSelectedObjects.Count > 0))
+			{
+				// reset the flag
+				mMouseHasMoved = false;
+
+				// compute the delta mouve of the mouse
+				mouseCoordInStud = getMovedSnapPoint(mouseCoordInStud);
+				PointF deltaMove = new PointF(mouseCoordInStud.X - mMouseDownInitialPosition.X, mouseCoordInStud.Y - mMouseDownInitialPosition.Y);
+
+				// create a new action for this move
+				if ((deltaMove.X != 0) || (deltaMove.Y != 0))
+				{
+					// update the duplicate action or add a move action
+					if (mMouseMoveIsADuplicate)
+					{
+						mLastDuplicateBrickAction.updatePositionShift(deltaMove.X, deltaMove.Y);
+						mLastDuplicateBrickAction = null;
+					}
+					else
+					{
+						// reset the initial position to each brick
+						foreach (LayerBrick.Brick brick in mSelectedObjects)
+							brick.Position = new PointF(brick.Position.X - deltaMove.X, brick.Position.Y - deltaMove.Y);
+						ActionManager.Instance.doAction(new MoveBrick(this, mSelectedObjects, deltaMove));
+					}
+				}
+				else
+				{
+					// update the free connexion list if the use move the brick and then go back
+					// to the original place (deltaMove is null), so the link was broken because
+					// of the move, so we need to recreate the link
+					updateBrickConnectivityOfSelection(false);
+					// reset anyway the temp reference for the duplication
+					mLastDuplicateBrickAction = null;
+				}
+			}
+			else
+			{
+				// if we didn't move the item and use the control key, we need to add or remove object from the selection
+				// we must do it in the up event because if we do it in the down, we may remove an object before moving
+				// we do this only if the mMouseHasMoved flag is not set to avoid this change if we move
+				if ((mCurrentBrickUnderMouse != null) && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey))
+				{
+					if (mSelectedObjects.Contains(mCurrentBrickUnderMouse))
+						removeObjectFromSelection(mCurrentBrickUnderMouse);
+					else
+						addObjectInSelection(mCurrentBrickUnderMouse);
+				}
+			}
+
+			mCurrentBrickUnderMouse = null;
+			return true;
+		}
+
+		/// <summary>
+		/// Select all the item inside the rectangle in the current selected layer
+		/// </summary>
+		/// <param name="selectionRectangeInStud">the rectangle in which select the items</param>
+		public override void selectInRectangle(RectangleF selectionRectangeInStud)
+		{
+			// fill it with all the cells in the rectangle
+			List<LayerItem> objListInRectangle = new List<LayerItem>(mBricks.Count);
+			foreach (Brick brick in mBricks)
+			{
+				if ((selectionRectangeInStud.Right > brick.mDisplayArea.Left) && (selectionRectangeInStud.Left < brick.mDisplayArea.Right) &&
+					(selectionRectangeInStud.Bottom > brick.mDisplayArea.Top) && (selectionRectangeInStud.Top < brick.mDisplayArea.Bottom))
+				{
+					objListInRectangle.Add(brick);
+				}
+			}
+			// check if it is a brand new selection or a add/remove selection
+			if (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+			{
+				// the control key is not pressed, it is a brand new selection
+				// clear the selection list and add all the object in the rectangle
+				mSelectedObjects.Clear();
+				addObjectInSelection(objListInRectangle);
+			}
+			else
+			{
+				// check if we found new object to add in the selection, then add them
+				// else remove all the objects in the rectangle
+				bool objectToAddFound = false;
+				foreach (LayerItem item in objListInRectangle)
+					if (!mSelectedObjects.Contains(item))
+					{
+						addObjectInSelection(item);
+						objectToAddFound = true;
+					}
+				// check if it is a remove type
+				if (!objectToAddFound)
+					removeObjectFromSelection(objListInRectangle);
+			}
+		}
+
+		/// <summary>
+		/// This method return a snap point near the specified point according to different
+		/// snapping rules that are specific of this brick layer:
+		/// If the mouse is not under a selected brick, that means the player is moving a group
+		/// of brick, handling the group from an empty part, then the snapping is a relative snaping,
+		/// i.e. we want to move the whole group by step of the grid size from their original position.
+		/// But if the user handle the group of object by one brick, we want to snap this brick on the
+		/// world grid; that mean the first snap value can be small to reach the world grid, then the
+		/// snap will use the step of the grid size.
+		/// Now if the user is moving a group of brick with connexion point, we want to snap the group
+		/// on the connexion point. Here again we look at the brick under the mouse which is the master
+		/// brick to move
+		/// </summary>
+		/// <param name="pointInStud">the point to snap</param>
+		/// <returns>a near snap point</returns>
+		private PointF getStartSnapPoint(PointF pointInStud)
+		{
+			PointF result;
+
+			if (SnapGridEnabled)
+			{
+				// check if there is a master brick
+				if (mCurrentBrickUnderMouse != null)
+				{
+					result = mCurrentBrickUnderMouse.Position;
+				}
+				else
+				{
+					// there's no master brick, just do a relative snapping
+					result = Layer.snapToGrid(pointInStud);
+				}
+			}
+			else
+			{
+				result = pointInStud;
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// This method return a snap point near the specified point according to different
+		/// snapping rules that are specific of this brick layer:
+		/// If the mouse is not under a selected brick, that means the player is moving a group
+		/// of brick, handling the group from an empty area, then the snapping is a relative snaping,
+		/// i.e. we want to move the whole group by step of the grid size from their original position.
+		/// But if the user handle the group of object by one brick, we want to snap this brick on the
+		/// world grid; that mean the first snap value can be small to reach the world grid, then the
+		/// snap will use the step of the grid size.
+		/// Now if the user is moving a group of brick by holding a brick with connexion point, 
+		/// we want to snap the group by snapping the hold brick on the connexion point.
+		/// Here again we look at the brick under the mouse which is the master brick to move and snap.
+		/// </summary>
+		/// <param name="pointInStud">the point to snap</param>
+		/// <returns>a near snap point</returns>
+		private PointF getMovedSnapPoint(PointF pointInStud)
+		{
+			if (SnapGridEnabled)
+			{
+				// check if there is a master brick
+				if (mCurrentBrickUnderMouse != null)
+				{
+					// now check if the master brick has some connections
+					if (mCurrentBrickUnderMouse.HasConnectionPoint)
+					{
+						// but we also need to check if the brick has FREE connexion
+						// (so if the user move a rail that is connected to other rail, we snap on the grid)
+						// get the list of the free connexion point for the selected brick
+						List<PointF> selectedBrickFreeConnexionPoints = mCurrentBrickUnderMouse.FreeConnectionPoints;
+
+						// check if the brick has free connexions
+						if (selectedBrickFreeConnexionPoints.Count > 0)
+						{
+							// recompute the free position of the selected brick, to centered them around
+							// the current mouse position
+							List<PointF> selectedBrickFreeConnexionPointsToPosition = new List<PointF>(selectedBrickFreeConnexionPoints.Count);
+							for (int i = 0; i < selectedBrickFreeConnexionPoints.Count; ++i)
+							{
+								// first we compute the delta to go from the free position in world coord
+								// toward the position of the brick in world coord
+								PointF newPosition = selectedBrickFreeConnexionPoints[i];
+								newPosition.X -= mCurrentBrickUnderMouse.Position.X;
+								newPosition.Y -= mCurrentBrickUnderMouse.Position.Y;
+								selectedBrickFreeConnexionPointsToPosition.Add(newPosition);
+								// then we recompute the free poisition in world coord but not
+								// from the current position of the brick but from the current position
+								// of the mouse, such as we have virtual free position around the 
+								// actual mouse position
+								newPosition = selectedBrickFreeConnexionPoints[i];
+								newPosition.X += pointInStud.X - mCurrentBrickUnderMouse.Center.X;
+								newPosition.Y += pointInStud.Y - mCurrentBrickUnderMouse.Center.Y;
+								selectedBrickFreeConnexionPoints[i] = newPosition;
+							}
+
+							// snap the selected brick on a free connexion points (of other bricks)
+							// iterate on all the free connexion point to know if there's a nearest point						
+							float nearestSquareDistance = float.MaxValue;
+							PointF bestPosition = new PointF();
+							List<Brick.ConnectionPoint> selectedBrickFreeConnections = mCurrentBrickUnderMouse.FreeConnections;
+							for (int i = 0; i < selectedBrickFreeConnections.Count; ++i)
+							{
+								Brick.ConnectionPoint brickConnexion = selectedBrickFreeConnections[i];
+								foreach (Brick.ConnectionPoint freeConnexion in mFreeConnectionPoints[(int)brickConnexion.Type])
+									if (freeConnexion.mMyBrick != mCurrentBrickUnderMouse)
+									{
+										float dx = freeConnexion.mPositionInStudWorldCoord.X - selectedBrickFreeConnexionPoints[i].X;
+										float dy = freeConnexion.mPositionInStudWorldCoord.Y - selectedBrickFreeConnexionPoints[i].Y;
+										float squareDistance = (dx * dx) + (dy * dy);
+										if (squareDistance < nearestSquareDistance)
+										{
+											nearestSquareDistance = squareDistance;
+											bestPosition = new PointF(freeConnexion.mPositionInStudWorldCoord.X - selectedBrickFreeConnexionPointsToPosition[i].X, freeConnexion.mPositionInStudWorldCoord.Y - selectedBrickFreeConnexionPointsToPosition[i].Y);
+										}
+									}
+							}
+							// check if the nearest free connexion if close enough to snap
+							if (nearestSquareDistance < 64.0f) // snapping of 8 studs
+								return bestPosition;
+						}
+					}
+					// This is the normal case for snapping the brick under the mouse.
+					// First we move the mouse coord to the upper left corner which is the
+					// position of the part, then we snap this position to the grid
+					// If you only snap the position to the grid, then you can see the part grabed
+					// from its top left corner, so to avoid that, we move the mouse coord to the position
+					// from the center of the part.
+					pointInStud.X -= mCurrentBrickUnderMouse.mDisplayArea.Width / 2;
+					pointInStud.Y -= mCurrentBrickUnderMouse.mDisplayArea.Height / 2;
+					pointInStud = Layer.snapToGrid(pointInStud);
+					pointInStud.X -= mCurrentBrickUnderMouse.SnapToGridOffset.X;
+					pointInStud.Y -= mCurrentBrickUnderMouse.SnapToGridOffset.Y;
+					return pointInStud;
+				}
+
+				// the snapping is enable but the group of brick was grab from an empty place
+				// i.e. there's no bricks under the mouse so just do a normal snapping on the grid
+				return Layer.snapToGrid(pointInStud);
+			}
+
+			// by default do not change anything
+			return pointInStud;
+		}
+
+		#endregion
+	}
+}

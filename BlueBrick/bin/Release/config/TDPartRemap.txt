@@ -1,0 +1,119 @@
+; This file is used by BlueBrick to remap the part numbers used by TrackDesigner (including the class) into the part number used by BlueBrick.
+;
+; If you try to load a TrackDesigner file in BlueBrick and some parts are not correctly imported (because maybe the file use a specific
+; part registry in TD), first right click on the part in TD, then choose "Properties" and note the ID number (the last info of the list).
+; Then add a line in this file, starting with this ID and following by the corresponding BlueBrick part number and color.
+; Then relaunch BlueBrick and open your TrackDesigner file again (note: this file is only parse one time by BlueBrick, so each time you modify it,
+; you must close BlueBrick and relaunch it to take effect).
+;
+; Each line can contains only one remapping. You can add comments in this file with a semicolon, everything after the semicolon is ignored.
+;
+; The format of the remaping is: <TDClassPartNumber>=<BBPartNumber.Color> <Flag> <HasSeveralPort> (<TDBitmapId>=<BBConnexionPointIndex>,<Type>,<Polarity>,<AmendedAngle>)...
+;   <TDClassPartNumber>: the full TD designer ID (that can be seen in the properties of the part)
+;   <BBPartNumber.Color>: the corresponding part number (LDRAW number) followed by a dot and by the LDRAW color index, or in fact the name of the gif picture in the part library of BlueBrick (without extension)
+;	<Flag>: some flags needed by TrackDesigner, can have 4 values: 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation
+;	<HasSeveralPort>: boolean flag (true or false) to tell if the part has several port id (or bitmap id). If false we will always use the port id 0 as the origin of the part when saving the file.
+;   <TDBitmapId>: optionnal parameter for TrackDesigner parts that have the same ID but different bitmap index (i.e. geometry number) such as rail curve left and right or a rail point. To see the bitmap index from inside TrackDesigner, you should look in the registry file that contains the part (tdr file).
+;   <BBConnexionPointIndex>: the connexion 0-based index in the BlueBrick part xml file (use 0 if the part doesn't have xml file) corresponding to how is connected the part in TD when you use this bitmap index
+;   <Type>: the type of the part (0 = Straight, 1 = Left Curve, 2 = Right Curve, 3 = Left Split, 4 = Right Split, 5 = Left Merge, 6 = Right Merge, 7 = Left Join, 8 = Right Join, 9 = Crossover, 10 = T Junction, 11 = Up Ramp, 12 = Down Ramp, 13 = Short Straight, 14 = Short Left Curve In, 15 = Short Right Curve In, 16 = Short Left Curve Out, 17 = Short Right Curve Out, 18 = Left Reverse Switch, 19 = Right Reverse Switch, 20 = Custom)
+;	<Polarity>: the polarity of the connection, one character among *, - and +: * = unasasigned, - = -ve, + = +ve
+;   <AmendedAngle>: some additionnal angle (in degree) to add to the part that use this specific bitmap index to find back the normal angle of the part
+;   Be careful: no space between <BBConnexionPointIndex> and <AmendedAngle> only the comma.
+
+;---- Baseplates ----
+626=3811.2		0	FALSE	0=0,20,*,0		;32x32 green
+627=3811.1		0	FALSE	0=0,20,*,0		;32x32 blue
+628=4186.7		0	FALSE	0=0,20,*,0		;48x48 light gray
+5009=3857.14	0	FALSE	0=0,20,*,90		;16x32 yellow
+5010=3857.2		0	FALSE	0=0,20,*,90		;16x32 green
+
+;---- Support ----
+1010002868=TDSupport2.4		2	FALSE	0=0,20,*,0
+1020002868=TDSupport4.4		2	FALSE	0=0,20,*,0
+1030002868=TDSupport6.4		2	FALSE	0=0,20,*,0
+1040002868=TDSupport8.4		2	FALSE	0=0,20,*,0
+1050002868=TDSupport10.4	2	FALSE	0=0,20,*,0
+1060002868=TDSupport12.4	2	FALSE	0=0,20,*,0
+1070002868=TDSupport14.4	2	FALSE	0=0,20,*,0
+
+;---- 9V Rails ----
+112150=2150.set		0	FALSE	0=0,20,*,0												;Train Station
+102865=2865.8		0	FALSE	0=0,0,+,0	1=1,0,-,180									;straight
+102867=2867.8  		0	TRUE	0=0,2,-,0	1=1,1,+,157.5								;curve
+102859=2859.8  		0	TRUE	0=0,4,-,0	1=2,5,+,180		2=1,7,+,157.5				;right point
+102861=2861.8  		0	TRUE	0=0,3,-,0	1=1,6,+,180		2=2,8,+,202.5				;left point
+1000102866=32087.8	0	FALSE	0=0,9,-,0	1=1,9,+,0		2=2,9,*,0		3=3,9,*,0	;crossover
+114532=4532.set		0	FALSE	0=0,20,*,0												;Level Crossing
+114539=4539.set		0	FALSE	0=0,20,*,0												;Strand Junction
+114554=2150.set		0	FALSE	0=0,20,*,0												;Central Station
+114555=4555.set		0	FALSE	0=0,20,*,0												;Container Depot
+114565=4565.set		0	FALSE	0=0,20,*,0												;Freight and Crane Railway
+
+;---- Monorails ----
+202670=2670.7		0	FALSE	0=0,13,*,0		1=1,13,*,180				;short straight
+202671=2671.7		0	FALSE	0=0,0,*,0		1=1,0,*,180					;long straight
+202672=2672.7		0	TRUE	0=0,2,*,0		1=1,1,*,90					;curve
+232677=2677.7		0	FALSE	0=0,11,*,0		1=1,12,*,180				;ramp up (and also down normally, but the loading code change the number to 232678 if it is a down ramp
+232678=2678.7		0	FALSE	0=0,12,*,0		1=1,11,*,180				;ramp down (TD never generate this ID, but the loading code need it)
+202680=2680.0		0	FALSE	0=0,20,*,0									;short support
+202681=2681.0		0	FALSE	0=0,20,*,0									;tall support
+202774=2774.7		0	TRUE	0=1,19,*,180	1=0,18,*,0					;reverse switch
+202889=2889.7		0	TRUE	0=0,4,*,0		1=1,5,*,180		2=2,7,*,135	;right point
+202890=2890.7		0	TRUE	0=0,3,*,0		1=1,6,*,180		2=2,8,*,225	;left point
+202891=2891.7		0	TRUE	0=0,17,*,45		1=1,14,*,180				;short right curve
+202892=2892.7		0	TRUE	0=0,16,*,-45 	1=1,15,*,180				;short left curve
+226399=6399.set1	0	FALSE	0=0,20,*,0									;Airport terminal
+10226399=6399.set2	0	FALSE	0=0,20,*,0									;City terminal
+20226399=6399.set3	0	FALSE	0=0,20,*,0									;Bridge
+
+;---- Road ----
+302358=80547.7		0	FALSE	0=0,0,*,-90									;straight
+302359=2359p01.7	0	TRUE	0=0,1,*,0	1=1,2,*,90						;curve
+302360=2360p01.7	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T shape
+302361=2361p01.7	0	FALSE	0=0,9,*,0									;crossover
+
+800551=2360p01.7	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T shape
+800552=2359p01.7	0	TRUE	0=0,1,*,0	1=1,2,*,90						;curve
+800553=80547.7		0	FALSE	0=0,0,*,-90									;straight
+806304=2361p01.7	0	FALSE	0=0,9,*,0									;crossover
+
+902358=2358p03.2	0	FALSE	0=0,0,*,-90									;straight
+902359=2359p02.2	0	TRUE	0=0,1,*,0	1=1,2,*,90						;curve
+902360=2360p02.2	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T shape
+902361=2361p02.2	0	FALSE	0=0,9,*,0									;crossover
+905180=2360p02.2	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T junction (old)
+10905180=2361p02.2	0	FALSE	0=0,9,*,0									;crossover (old)
+905181=2358p03.2	0	FALSE	0=0,0,*,-90									;straight (old)
+
+1006322=610p01.2	0	FALSE	0=0,0,*,-90									;straight
+1006321=613p01.2	0	TRUE	0=0,1,*,0	1=1,2,*,90						;curve
+11006320=612p01.2	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T shape
+11006323=611p01.2	0	FALSE	0=0,9,*,0									;crossover
+
+;---- 12V Rails gray ----
+433240=3240C01.7	0	FALSE	0=0,0,-,0	1=1,0,+,180								;straight
+433241=3241C01.7	0	TRUE	0=0,2,-,0	1=1,1,+,157.5							;curve
+417859=X864C01.7	0	TRUE	0=0,3,-,0	1=1,6,+,180		2=2,8,+,180				;left point
+417858=X865C01.7	0	TRUE	0=0,4,-,0	1=2,5,+,180		2=1,7,+,180				;right point
+417857=7857.7		0	FALSE	0=0,9,-,0	1=1,9,-,0		2=2,9,+,0	3=3,9,+,0	;crossover
+
+;---- 12V Rails blue ----
+633240=X861C01.1	0	FALSE	0=0,0,-,0	1=1,0,+,180								;straight
+633241=X866C01.1	0	TRUE	0=0,2,-,0	1=1,1,+,157.5							;curve
+610754=X504B.1		0	TRUE	0=0,3,-,0	1=1,6,+,180		2=2,8,+,180				;left point
+610753=X505B.1		0	TRUE	0=0,4,-,0	1=2,5,+,180		2=1,7,+,180				;right point
+610756=X563.1		0	FALSE	0=0,9,-,0	1=1,9,-,0		2=2,9,+,0	3=3,9,+,0	;crossover
+
+;---- 4.5V Rails gray ----
+533228=3228B.7		0	FALSE	0=0,0,*,0	1=1,0,*,180								;straight
+533229=3229B.7		0	TRUE	0=0,2,*,0	1=1,1,*,157.5							;curve
+503237=X948CC01.7	0	TRUE	0=0,3,*,0	1=1,6,*,180		2=2,8,*,180				;left point
+503236=X949CC01.7	0	TRUE	0=0,4,*,0	1=2,5,*,180		2=1,7,*,180				;right point
+503231=3231B.7		0	FALSE	0=0,9,*,0	1=1,9,*,0		2=2,9,*,0	3=3,9,*,0	;crossover
+
+;---- 4.5V Rails blue ----
+733228=3228A.1		0	FALSE	0=0,0,*,0	1=1,0,*,180								;straight
+733229=3229A.1		0	TRUE	0=0,2,*,0	1=1,1,*,157.5							;curve
+703237=X948AC01.1	0	TRUE	0=0,3,*,0	1=1,6,*,180		2=2,8,*,180				;left point
+703236=X949AC01.1	0	TRUE	0=0,4,*,0	1=2,5,*,180		2=1,7,*,180				;right point
+703231=3231.1		0	FALSE	0=0,9,*,0	1=1,9,*,0		2=2,9,*,0	3=3,9,*,0	;crossover

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<part>
+	<!-- THIS IS THE RAIL CURVE -->
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>0</left>
+		<right>0.875</right>
+		<top>0</top>
+		<bottom>2.625</bottom>
+	</SnapMargin>
+	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
+	<ConnexionList>
+		<!-- the center of this part in stud is x = 135 pix / 8 pixperstud / 2 = 8.4375    and    y = 86 / 8 / 2 = 5.375 -->		
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>1</type>
+			<position>
+				<x>-8.4375</x>
+				<y>-1.4375</y>
+			</position>
+			<angle>180</angle>
+			<angleToPrev>202.5</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>157.5</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->
+			<nextConnexionPreference>1</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>1</type>
+			<position>
+				<x>6.8698</x>	<!-- x = pos1x + 40 * sin(22.5) because 40 is the radius in stud of the middle line of a 9V turn (for a quarter of circle) -->
+				<y>1.6073</y>	<!-- y = pos1y + 40 * (1 - cos(22.5)) because 40 is the radius in stud of the middle line of a 9V turn (for a quarter of circle) -->
+			</position>
+			<angle>22.5</angle>
+			<angleToPrev>157.5</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>202.5</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->
+			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+	</ConnexionList>
+	<hull>
+		<point>
+			<x>0</x>
+			<y>0</y>
+		</point>
+		<point>
+			<x>8</x>
+			<y>0</y>
+		</point>
+		<point>
+			<x>69</x>
+			<y>6</y>
+		</point>
+		<point>
+			<x>135</x>
+			<y>26</y>
+		</point>
+		<point>
+			<x>110</x>
+			<y>87</y>
+		</point>
+		<point>
+			<x>0</x>
+			<y>64</y>
+		</point>
+	</hull>
+</part>
