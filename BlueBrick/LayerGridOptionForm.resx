@@ -258,7 +258,7 @@
     <value>10</value>
   </data>
   <data name="subGridThicknessLabel.Text" xml:space="preserve">
-    <value>Thickness (in pixel)</value>
+    <value>Thickness (in pixels)</value>
   </data>
   <data name="subGridThicknessLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -306,7 +306,7 @@
     <value>7</value>
   </data>
   <data name="gridThicknessLabel.Text" xml:space="preserve">
-    <value>Thickness (in pixel)</value>
+    <value>Thickness (in pixels)</value>
   </data>
   <data name="gridThicknessLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -939,7 +939,7 @@
     <value>0</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Layer's name</value>
+    <value>Layer name</value>
   </data>
   <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>

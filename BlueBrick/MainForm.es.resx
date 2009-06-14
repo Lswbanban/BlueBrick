@@ -347,7 +347,7 @@
     <value>279, 22</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>Seleccionadr Todo</value>
+    <value>Seleccionar Todo</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -368,37 +368,37 @@
     <value>279, 22</value>
   </data>
   <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pasos de ajuste</value>
+    <value>Distancia de ajuste</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Text" xml:space="preserve">
     <value>Desactivado</value>
   </data>
   <data name="moveStep32ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStep16ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStep4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pasos de rotación</value>
+    <value>Rotación</value>
   </data>
   <data name="rotationStep22ToolStripMenuItem.Text" xml:space="preserve">
     <value>22,5°</value>

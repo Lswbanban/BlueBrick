@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.3.0.0 |
+                    | BlueBrick version 1.4.0.0 |
                     +---------------------------+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -114,11 +114,15 @@ Open bugs:
 - MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
+- MISSING FEATURE (Patrick): A feature to move the area
+- MISSING FEATURE (Alban): Custom mouse cursors
+- BUG (Patrick): The export area is too limited
 - BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Alban): The TD 4.5V level crossing is missing in the BB part library
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier): UNFIXABLE, linked with windows propeties. In "general information" the choice of date is made in the language of Windows, not the language selected for the application.
+- BUG (Alban): The content of the combobox for the key CTRL, ALT and SHIFT is not localized (because added in code).
 
 Bug fixed in 1.3.0.0:
 - NEW FEATURE (Alban): The LDraw 4.5V rail are now fully supported thanks to the new LDRAW parts created recently

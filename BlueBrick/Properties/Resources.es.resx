@@ -124,10 +124,10 @@
     <value>Añadir una pieza &amp;</value>
   </data>
   <data name="ActionAddLayerArea" xml:space="preserve">
-    <value>Añadir una capà de área</value>
+    <value>Añadir una capa de área</value>
   </data>
   <data name="ActionAddLayerBrick" xml:space="preserve">
-    <value>Añadir una capa de Bricks</value>
+    <value>Añadir una capa de bricks</value>
   </data>
   <data name="ActionAddLayerGrid" xml:space="preserve">
     <value>Añadir una capa de cuadrícula</value>

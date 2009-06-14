@@ -209,8 +209,26 @@ benutzten Dateien</value>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Maus</value>
   </data>
+  <data name="mouseDuplicateSelKeyComboBox.Items" xml:space="preserve">
+    <value>Strg</value>
+  </data>
+  <data name="mouseDuplicateSelKeyComboBox.Items1" xml:space="preserve">
+    <value>Alt</value>
+  </data>
+  <data name="mouseDuplicateSelKeyComboBox.Items2" xml:space="preserve">
+    <value>Shift</value>
+  </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Duplicaten Auswahltaste</value>
+  </data>
+  <data name="mouseMultipleSelKeyComboBox.Items" xml:space="preserve">
+    <value>Strg</value>
+  </data>
+  <data name="mouseMultipleSelKeyComboBox.Items1" xml:space="preserve">
+    <value>Alt</value>
+  </data>
+  <data name="mouseMultipleSelKeyComboBox.Items2" xml:space="preserve">
+    <value>Shift</value>
   </data>
   <data name="mouseMultipleSelKeyComboBox.Text" xml:space="preserve">
     <value>STRG</value>
@@ -351,25 +369,25 @@ benutzten Dateien</value>
     <value>Teilenauswahl löschen</value>
   </data>
   <data name="comboBoxAction.Items2" xml:space="preserve">
-    <value>Drehe Auswahl nach Links</value>
+    <value>Nach links drehen</value>
   </data>
   <data name="comboBoxAction.Items3" xml:space="preserve">
-    <value>Drehe Auswahl nach Rechts</value>
+    <value>Nach rechst drehen</value>
   </data>
   <data name="comboBoxAction.Items4" xml:space="preserve">
-    <value>Bewege Auswahl nach Rechts</value>
+    <value>Nach rechst bewegen</value>
   </data>
   <data name="comboBoxAction.Items5" xml:space="preserve">
-    <value>Bewege Auswahl nach Links</value>
+    <value>Nach links bewegen</value>
   </data>
   <data name="comboBoxAction.Items6" xml:space="preserve">
-    <value>Bewege Auswahl nach Oben</value>
+    <value>Nach oben bewegen</value>
   </data>
   <data name="comboBoxAction.Items7" xml:space="preserve">
-    <value>Bewege Auswahl nach Unten</value>
+    <value>Nach unten bewegen</value>
   </data>
   <data name="comboBoxAction.Items8" xml:space="preserve">
-    <value>Ändere die aktive Verknüpfung</value>
+    <value>Ändere die aktive Verbindung</value>
   </data>
   <data name="comboBoxKey.Items36" xml:space="preserve">
     <value>Leertaste</value>
@@ -419,23 +437,29 @@ benutzten Dateien</value>
   <data name="comboBoxKey.Items51" xml:space="preserve">
     <value>Num-Block .</value>
   </data>
+  <data name="comboBoxKey.Items65" xml:space="preserve">
+    <value>Rücksetztaste</value>
+  </data>
+  <data name="comboBoxKey.Items66" xml:space="preserve">
+    <value>Eingabetaste</value>
+  </data>
   <data name="comboBoxKey.Items67" xml:space="preserve">
-    <value>Pfeil nach Links</value>
+    <value>Pfeil links</value>
   </data>
   <data name="comboBoxKey.Items68" xml:space="preserve">
-    <value>Pfeil nach Rechts</value>
+    <value>Pfeil rechts</value>
   </data>
   <data name="comboBoxKey.Items69" xml:space="preserve">
-    <value>Pfeil nach Oben</value>
+    <value>Pfeil oben</value>
   </data>
   <data name="comboBoxKey.Items70" xml:space="preserve">
-    <value>Pfeil nach Unten</value>
+    <value>Pfeil unten</value>
   </data>
   <data name="comboBoxKey.Items71" xml:space="preserve">
-    <value>Einfg</value>
+    <value>Einfügen</value>
   </data>
   <data name="comboBoxKey.Items72" xml:space="preserve">
-    <value>Entf</value>
+    <value>Entfernen</value>
   </data>
   <data name="comboBoxKey.Items73" xml:space="preserve">
     <value>Pos1</value>

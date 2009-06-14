@@ -402,7 +402,7 @@ and http://www.gnu.org/licenses/</value>
     <value>7</value>
   </data>
   <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Translated in</value>
+    <value>Translated to</value>
   </data>
   <data name="columnHeader1.Width" type="System.Int32, mscorlib">
     <value>100</value>

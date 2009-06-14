@@ -577,12 +577,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BlueBrick Copyright (C) 2008 Alban NANTY.
-        ///This program is a free software under GPLv3 license and comes with ABSOLUTELY NO WARRANTY.
-        ///This program encountered an unrecoverable error and will close. Please report this error to banban@lswproject.com.
-        ///The error message is:
-        ///
-        ///.
+        ///   Looks up a localized string similar to BlueBrick Copyright (C) 2008 Alban NANTY. This program is free software under the GPLv3 license and comes with ABSOLUTELY NO WARRANTY. This program encountered a fatal error and will close. Please report this error to banban@lswproject.com. The error message is:.
         /// </summary>
         internal static string ErrorMsgCrash {
             get {
@@ -591,7 +586,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You changed the language but this will take effect next time you will restart the application..
+        ///   Looks up a localized string similar to You changed the language but this will take effect next time you restart the application..
         /// </summary>
         internal static string ErrorMsgLanguageHasChanged {
             get {
@@ -654,7 +649,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some Track Designer part ID&apos;s were not found in the &quot;&amp;&quot; remap file. BlueBrick was not able to load them and has ignored them. You should add a remap line for each missing ID in the remap file then insure that you have the corresponding part in your BlueBrick library and try to reopen the Track Designer file. The missing ID&apos;s were:.
+        ///   Looks up a localized string similar to Some Track Designer part ID&apos;s were not found in the &quot;&amp;&quot; remap file. BlueBrick was not able to load them and has ignored them. You should add a remap line for each missing ID in the remap file then ensure that you have the corresponding part in your BlueBrick library and try to reopen the Track Designer file. The missing ID&apos;s were:.
         /// </summary>
         internal static string ErrorMsgMissingTDRemap {
             get {
@@ -681,7 +676,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The part library was unloaded, you can now modify the files in it. Click ok when you are ready to reload it..
+        ///   Looks up a localized string similar to The parts library was unloaded, you can now modify the files in it. Click ok when you are ready to reload it..
         /// </summary>
         internal static string ErrorMsgReadyToReloadPartLib {
             get {

@@ -293,15 +293,10 @@
     <value>Are you sure you want to restore the default settings?</value>
   </data>
   <data name="ErrorMsgCrash" xml:space="preserve">
-    <value>BlueBrick Copyright (C) 2008 Alban NANTY.
-This program is a free software under GPLv3 license and comes with ABSOLUTELY NO WARRANTY.
-This program encountered an unrecoverable error and will close. Please report this error to banban@lswproject.com.
-The error message is:
-
-</value>
+    <value>BlueBrick Copyright (C) 2008 Alban NANTY. This program is free software under the GPLv3 license and comes with ABSOLUTELY NO WARRANTY. This program encountered a fatal error and will close. Please report this error to banban@lswproject.com. The error message is:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
-    <value>You changed the language but this will take effect next time you will restart the application.</value>
+    <value>You changed the language but this will take effect next time you restart the application.</value>
   </data>
   <data name="ErrorMsgLayerTypeArea" xml:space="preserve">
     <value>Area</value>
@@ -322,7 +317,7 @@ The error message is:
     <value>Some parts were not correctly loaded because you don't have them in your parts library. Some default images have been temporarily added to replace the original ones. You should ask the map's author (&amp;) where you can find them.</value>
   </data>
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
-    <value>Some Track Designer part ID's were not found in the "&amp;" remap file. BlueBrick was not able to load them and has ignored them. You should add a remap line for each missing ID in the remap file then insure that you have the corresponding part in your BlueBrick library and try to reopen the Track Designer file. The missing ID's were:</value>
+    <value>Some Track Designer part ID's were not found in the "&amp;" remap file. BlueBrick was not able to load them and has ignored them. You should add a remap line for each missing ID in the remap file then ensure that you have the corresponding part in your BlueBrick library and try to reopen the Track Designer file. The missing ID's were:</value>
   </data>
   <data name="ErrorMsgOldTDFile" xml:space="preserve">
     <value>Sorry, the Track Designer file you are trying to load has an old version format. To fix this problem, open this file with Track Designer, and save it again. Now you should be able to load it with BlueBrick.</value>
@@ -331,7 +326,7 @@ The error message is:
     <value>Can not load this file.Your version of BlueBrick is obsolete or the file may not be a valid BlueBrick file. Try to download and install the last version of BlueBrick.</value>
   </data>
   <data name="ErrorMsgReadyToReloadPartLib" xml:space="preserve">
-    <value>The part library was unloaded, you can now modify the files in it. Click ok when you are ready to reload it.</value>
+    <value>The parts library was unloaded, you can now modify the files in it. Click ok when you are ready to reload it.</value>
   </data>
   <data name="ErrorMsgTitleError" xml:space="preserve">
     <value>Error</value>
