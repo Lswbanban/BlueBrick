@@ -1403,7 +1403,7 @@ namespace BlueBrick.MapData
 			bool willMoveSelectedObject = (isMouseInsideSelectedObjects || (mCurrentBrickUnderMouse != null))
 										&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
 			if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)
-				preferedCursor = Cursors.Hand;
+				preferedCursor = MainForm.Instance.BrickDuplicateCursor;
 			else if (willMoveSelectedObject)
 				preferedCursor = Cursors.SizeAll;
 			else if (mCurrentBrickUnderMouse != null)

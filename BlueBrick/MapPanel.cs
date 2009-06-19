@@ -207,6 +207,7 @@ namespace BlueBrick
 			this.BackgroundImage = null;
 			this.ContextMenuStrip = this.contextMenuStrip;
 			this.Font = null;
+			this.MouseEnter += new System.EventHandler(this.MapPanel_MouseEnter);
 			this.MouseLeave += new System.EventHandler(this.MapPanel_MouseLeave);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapPanel_MouseMove);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapPanel_MouseDown);
@@ -320,6 +321,27 @@ namespace BlueBrick
 	
 		#region Mouse event
 
+		/// <summary>
+		/// Set the default Cursor on the map according to the current selected layer
+		/// </summary>
+		private Cursor getDefaultCursor()
+		{
+			LayerBrick brickLayer = Map.Instance.SelectedLayer as LayerBrick;
+			if (brickLayer != null)
+			{
+				return MainForm.Instance.BrickArrowCursor;
+			}
+			else
+			{
+				LayerText textLayer = Map.Instance.SelectedLayer as LayerText;
+				if (textLayer != null)
+				{
+					return MainForm.Instance.TextArrowCursor;
+				}
+			}
+			return Cursors.Default;
+		}
+
 		private PointF getPointCoordInStud(Point pointCoordInPixel)
 		{
 			PointF pointCoordInStud = new PointF();
@@ -363,7 +385,7 @@ namespace BlueBrick
 			this.Focus();
 
 			// the cursor to set according to the action
-			Cursor preferedCursor = Cursors.Arrow;
+			Cursor preferedCursor = getDefaultCursor();
 
 			// then dispatch the event
 			switch (e.Button)
@@ -628,11 +650,17 @@ namespace BlueBrick
 			}
 
 			// restore the default cursor
-			this.Cursor = Cursors.Arrow;
+			this.Cursor = getDefaultCursor();
 
 			// check if we need to update the view
 			if (mustRefreshView)
 				updateView();
+		}
+
+		private void MapPanel_MouseEnter(object sender, EventArgs e)
+		{
+			// set the default cursor
+			this.Cursor = getDefaultCursor();
 		}
 
 		private void MapPanel_MouseLeave(object sender, EventArgs e)

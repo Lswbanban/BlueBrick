@@ -40,6 +40,12 @@ namespace BlueBrick
 		// reference on the main form (set in the constructor)
 		private static MainForm sInstance = null;
 
+		// custom cursors for the application
+		private Cursor mBrickArrowCursor = null;
+		private Cursor mBrickDuplicateCursor = null;
+		private Cursor mTextArrowCursor = null;
+		private Cursor mTextDuplicateCursor = null;
+
 		// for shortcut key
 		private PointF mObjectTotalMove = new PointF(0, 0);
 		private bool mIsLeftArrowDown = false;
@@ -98,6 +104,38 @@ namespace BlueBrick
 		{
 			get { return sInstance; }
 		}
+
+		/// <summary>
+		/// Get the cursor for duplication of layer items
+		/// </summary>
+		public Cursor BrickArrowCursor
+		{
+			get { return mBrickArrowCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for duplication of layer items
+		/// </summary>
+		public Cursor BrickDuplicateCursor
+		{
+			get { return mBrickDuplicateCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for duplication of layer items
+		/// </summary>
+		public Cursor TextArrowCursor
+		{
+			get { return mTextArrowCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for duplication of layer items
+		/// </summary>
+		public Cursor TextDuplicateCursor
+		{
+			get { return mTextDuplicateCursor; }
+		}
 		#endregion
 
         #region Initialisation of the application
@@ -106,6 +144,8 @@ namespace BlueBrick
 		{
 			InitializeComponent();
 			sInstance = this;
+			// load the custom cursors
+			LoadEmbededCustomCursors();
 			// regenerate the paint icon with the right color in the background
 			mCurrentPaintIconColor = this.colorDialog.Color;
 			generatePaintIcon();
@@ -128,6 +168,31 @@ namespace BlueBrick
 			}
 			// set the static flag to terminate the thread of the splash screen
 			sIsMainFormReady = true;
+		}
+
+		/// <summary>
+		/// Load and create all the embeded cursors creates specially for this application
+		/// </summary>
+		private void LoadEmbededCustomCursors()
+		{
+			// get the assembly
+			System.Reflection.Assembly assembly = this.GetType().Assembly;
+			// brick arrow cursor
+			System.IO.Stream stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.BrickArrowCursor.cur");
+			mBrickArrowCursor = new Cursor(stream);
+			stream.Close();
+			// brick duplicate cursor
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.BrickDuplicateCursor.cur");
+			mBrickDuplicateCursor = new Cursor(stream);
+			stream.Close();
+			// text arrow cursor
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.TextArrowCursor.cur");
+			mTextArrowCursor = new Cursor(stream);
+			stream.Close();
+			// text duplicate cursor
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.TextDuplicateCursor.cur");
+			mTextDuplicateCursor = new Cursor(stream);
+			stream.Close();
 		}
 
 		/// <summary>

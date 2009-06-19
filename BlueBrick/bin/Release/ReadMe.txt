@@ -123,6 +123,7 @@ Open bugs:
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier): UNFIXABLE, linked with windows propeties. In "general information" the choice of date is made in the language of Windows, not the language selected for the application.
 - BUG (Alban): The content of the combobox for the key CTRL, ALT and SHIFT is not localized (because added in code).
+- BUG (Alban): Add the @ in front of the path
 
 Bug fixed in 1.3.0.0:
 - NEW FEATURE (Alban): The LDraw 4.5V rail are now fully supported thanks to the new LDRAW parts created recently
