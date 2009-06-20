@@ -423,9 +423,15 @@ namespace BlueBrick.MapData
 		{
 			if (mouseCoordInStud != PointF.Empty)
 			{
-				bool isMouseInsideSelectedObjects = isPointInsideSelectionRectangle(mouseCoordInStud);
-				if (isMouseInsideSelectedObjects && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey))
-					return MainForm.Instance.TextDuplicateCursor;
+				if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)
+				{
+					if (isPointInsideSelectionRectangle(mouseCoordInStud))
+						return MainForm.Instance.TextDuplicateCursor;
+				}
+				else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+				{
+					return MainForm.Instance.TextSelectionCursor;
+				}
 			}
 			// return the default arrow cursor
 			return MainForm.Instance.TextArrowCursor;
@@ -505,9 +511,7 @@ namespace BlueBrick.MapData
 				preferedCursor = MainForm.Instance.TextDuplicateCursor;
 			else if (willMoveSelectedObject)
 				preferedCursor = Cursors.SizeAll;
-			else if (mCurrentTextCellUnderMouse != null)
-				preferedCursor = Cursors.Hand;
-			else
+			else if (mCurrentTextCellUnderMouse == null)
 				preferedCursor = Cursors.Cross;
 
 			// handle the mouse down if we duplicate or move the selected texts

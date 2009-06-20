@@ -43,9 +43,13 @@ namespace BlueBrick
 		// custom cursors for the application
 		private Cursor mBrickArrowCursor = null;
 		private Cursor mBrickDuplicateCursor = null;
+		private Cursor mBrickSelectionCursor = null;
 		private Cursor mTextArrowCursor = null;
 		private Cursor mTextDuplicateCursor = null;
-
+		private Cursor mTextSelectionCursor = null;
+		private Cursor mAreaPaintCursor = null;
+		private Cursor mAreaEraserCursor = null;
+		
 		// for shortcut key
 		private PointF mObjectTotalMove = new PointF(0, 0);
 		private bool mIsLeftArrowDown = false;
@@ -107,7 +111,7 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Get the cursor for duplication of layer items
+		/// Get the cursor for duplication of layer bricks
 		/// </summary>
 		public Cursor BrickArrowCursor
 		{
@@ -115,7 +119,7 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Get the cursor for duplication of layer items
+		/// Get the cursor for duplication of layer bricks
 		/// </summary>
 		public Cursor BrickDuplicateCursor
 		{
@@ -123,7 +127,15 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Get the cursor for duplication of layer items
+		/// Get the cursor for selection of layer bricks
+		/// </summary>
+		public Cursor BrickSelectionCursor
+		{
+			get { return mBrickSelectionCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for duplication of layer texts
 		/// </summary>
 		public Cursor TextArrowCursor
 		{
@@ -131,11 +143,35 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Get the cursor for duplication of layer items
+		/// Get the cursor for duplication of layer texts
 		/// </summary>
 		public Cursor TextDuplicateCursor
 		{
 			get { return mTextDuplicateCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for selection of layer texts
+		/// </summary>
+		public Cursor TextSelectionCursor
+		{
+			get { return mTextSelectionCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for painting the area layer
+		/// </summary>
+		public Cursor AreaPaintCursor
+		{
+			get { return mAreaPaintCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for erasing the area layer
+		/// </summary>
+		public Cursor AreaEraserCursor
+		{
+			get { return mAreaEraserCursor; }
 		}
 		#endregion
 
@@ -167,6 +203,10 @@ namespace BlueBrick
 				createNewMap();
 				UpdateRecentFileMenuFromConfigFile();
 			}
+		}
+
+		private void MainForm_Shown(object sender, EventArgs e)
+		{
 			// set the static flag to terminate the thread of the splash screen
 			sIsMainFormReady = true;
 		}
@@ -186,6 +226,10 @@ namespace BlueBrick
 			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.BrickDuplicateCursor.cur");
 			mBrickDuplicateCursor = new Cursor(stream);
 			stream.Close();
+			// brick duplicate cursor
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.BrickSelectionCursor.cur");
+			mBrickSelectionCursor = new Cursor(stream);
+			stream.Close();
 			// text arrow cursor
 			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.TextArrowCursor.cur");
 			mTextArrowCursor = new Cursor(stream);
@@ -193,6 +237,18 @@ namespace BlueBrick
 			// text duplicate cursor
 			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.TextDuplicateCursor.cur");
 			mTextDuplicateCursor = new Cursor(stream);
+			stream.Close();
+			// text selection cursor
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.TextSelectionCursor.cur");
+			mTextSelectionCursor = new Cursor(stream);
+			stream.Close();
+			// area paint cursor
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.AreaPaintCursor.cur");
+			mAreaPaintCursor = new Cursor(stream);
+			stream.Close();
+			// area erase cursor
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.AreaEraserCursor.cur");
+			mAreaEraserCursor = new Cursor(stream);
 			stream.Close();
 		}
 

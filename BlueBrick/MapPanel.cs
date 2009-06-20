@@ -498,7 +498,7 @@ namespace BlueBrick
 									BrickLibrary.Brick.Margin snapMargin = BrickLibrary.Instance.getSnapMargin(mCurrentPartDropNumber);
 									mCurrentPartDropSnappingOffset = new PointF(snapMargin.mLeft, snapMargin.mTop);
 									// set the hand cursor
-									this.Cursor = Cursors.Hand;
+									this.Cursor = MainForm.Instance.BrickDuplicateCursor;
 								}
 							}
 							else

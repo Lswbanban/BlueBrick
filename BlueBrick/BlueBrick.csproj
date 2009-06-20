@@ -570,6 +570,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BlueBrickIcon.ico" />
+    <EmbeddedResource Include="Cursor\AreaEraserCursor.cur" />
+    <EmbeddedResource Include="Cursor\AreaPaintCursor.cur" />
+    <EmbeddedResource Include="Cursor\TextSelectionCursor.cur" />
+    <EmbeddedResource Include="Cursor\BrickSelectionCursor.cur" />
     <EmbeddedResource Include="Cursor\TextArrowCursor.cur" />
     <EmbeddedResource Include="Cursor\TextDuplicateCursor.cur" />
     <EmbeddedResource Include="Cursor\BrickArrowCursor.cur" />

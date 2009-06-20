@@ -27,8 +27,11 @@ namespace BlueBrick
 			splashScreen.Show();
 			while (!MainForm.IsMainFormReady)
 			{
-				Thread.Sleep(500);
+				Thread.Sleep(200);
 			}
+			MainForm.CheckForIllegalCrossThreadCalls = false;
+			MainForm.Instance.BringToFront();
+			MainForm.CheckForIllegalCrossThreadCalls = true;
 			splashScreen.Hide();
 			splashScreen.Dispose();
 		}
@@ -48,6 +51,7 @@ namespace BlueBrick
 				// create a separate thread for the splash screen
 				ThreadStart threadDelegate = new ThreadStart(SplashScreenLoop);
 				Thread newThread = new Thread(threadDelegate);
+				newThread.IsBackground = true;
 				newThread.Start();
 
 				// try to load the language saved in the setting,

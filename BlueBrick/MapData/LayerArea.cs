@@ -414,7 +414,9 @@ namespace BlueBrick.MapData
 		/// <param name="mouseCoordInStud"></param>
 		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
 		{
-			return Cursors.Default;
+			if (sCurrentDrawColor == Color.Empty)
+				return MainForm.Instance.AreaEraserCursor;
+			return MainForm.Instance.AreaPaintCursor;
 		}
 
 		/// <summary>
