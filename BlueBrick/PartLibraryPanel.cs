@@ -79,7 +79,7 @@ namespace BlueBrick
 			this.TabPages.Clear();
 			// then search the "parts" folder, if not here maybe we should display
 			// an error message (something wrong with the installation of the application?)
-			DirectoryInfo partsFolder = new DirectoryInfo(Application.StartupPath + "/parts");
+			DirectoryInfo partsFolder = new DirectoryInfo(Application.StartupPath + @"/parts");
 			if (partsFolder.Exists)
 			{
 				// get all the folders in the parts folder to create a tab for each folder found

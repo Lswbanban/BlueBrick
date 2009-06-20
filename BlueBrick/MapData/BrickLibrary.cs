@@ -229,7 +229,7 @@ namespace BlueBrick.MapData
 			mColorNames.Clear();
 			mPartDescriptions.Clear();
 			// try to load the xml file
-			string xmlFileName = Application.StartupPath + "/config/PartInfo.xml";
+			string xmlFileName = Application.StartupPath + @"/config/PartInfo.xml";
 			if (System.IO.File.Exists(xmlFileName))
 			{
 				System.Xml.XmlReaderSettings xmlSettings = new System.Xml.XmlReaderSettings();
@@ -328,7 +328,7 @@ namespace BlueBrick.MapData
 			try
 			{
 				// try to load the rempa file
-				string remapFileName = Application.StartupPath + "/parts/PartRemap.txt";
+				string remapFileName = Application.StartupPath + @"/parts/PartRemap.txt";
 				System.IO.StreamReader textReader = new System.IO.StreamReader(remapFileName);
 				char[] lineSpliter = { '=' };
 				while (!textReader.EndOfStream)

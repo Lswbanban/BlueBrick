@@ -70,7 +70,7 @@ namespace BlueBrick
 		{
 			try
 			{
-				string lugListFileName = Application.StartupPath + "/config/LugList.txt";
+				string lugListFileName = Application.StartupPath + @"/config/LugList.txt";
 				System.IO.StreamReader textReader = new System.IO.StreamReader(lugListFileName);
 				comboBoxToFill.Items.Clear();
 				comboBoxToFill.Sorted = true;

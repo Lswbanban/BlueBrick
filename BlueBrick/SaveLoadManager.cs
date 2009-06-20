@@ -145,7 +145,7 @@ namespace BlueBrick
 				// initialise the dictionnary anyway even if we leave it empty
 				mLDrawPartRemap = new Dictionary<string, LDrawRemapData>();
 				// try to load the config file
-				string configFileName = Application.StartupPath + "/config/LDrawPartRemap.txt";
+				string configFileName = Application.StartupPath + @"/config/LDrawPartRemap.txt";
 				try
 				{
 					StreamReader textReader = new StreamReader(configFileName);
@@ -803,7 +803,7 @@ namespace BlueBrick
 			// check if the remap part dictionnary was initialized
 			if (mTrackDesignerPartRemap == null)
 			{
-				string configFileName = Application.StartupPath + "/config/TDPartRemap.txt";
+				string configFileName = Application.StartupPath + @"/config/TDPartRemap.txt";
 				try
 				{
 					StreamReader textReader = new StreamReader(configFileName);
@@ -1135,7 +1135,7 @@ namespace BlueBrick
 			// check if we found some part that can be remaped
 			if (noRemapablePartFound.Count > 0)
 			{
-				string remapFileName = Application.StartupPath + "/config/TDPartRemap.txt";
+				string remapFileName = Application.StartupPath + @"/config/TDPartRemap.txt";
 				string message = Properties.Resources.ErrorMsgMissingTDRemap.Replace("&", remapFileName);
 				foreach (int id in noRemapablePartFound)
 					message += id.ToString() + ", ";
