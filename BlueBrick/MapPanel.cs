@@ -324,22 +324,16 @@ namespace BlueBrick
 		/// <summary>
 		/// Set the default Cursor on the map according to the current selected layer
 		/// </summary>
-		private Cursor getDefaultCursor()
+		private Cursor getDefaultCursor(PointF mouseCoordInStud)
 		{
-			LayerBrick brickLayer = Map.Instance.SelectedLayer as LayerBrick;
-			if (brickLayer != null)
-			{
-				return MainForm.Instance.BrickArrowCursor;
-			}
-			else
-			{
-				LayerText textLayer = Map.Instance.SelectedLayer as LayerText;
-				if (textLayer != null)
-				{
-					return MainForm.Instance.TextArrowCursor;
-				}
-			}
+			if (Map.Instance.SelectedLayer != null)
+				return Map.Instance.SelectedLayer.getDefaultCursorWithoutMouseClick(mouseCoordInStud);
 			return Cursors.Default;
+		}
+
+		public void setDefaultCursor()
+		{
+			this.Cursor = getDefaultCursor(getPointCoordInStud(this.PointToClient(Cursor.Position)));
 		}
 
 		private PointF getPointCoordInStud(Point pointCoordInPixel)
@@ -385,14 +379,14 @@ namespace BlueBrick
 			this.Focus();
 
 			// the cursor to set according to the action
-			Cursor preferedCursor = getDefaultCursor();
+			PointF mouseCoordInStud = getMouseCoordInStud(e);
+			Cursor preferedCursor = getDefaultCursor(mouseCoordInStud);
 
 			// then dispatch the event
 			switch (e.Button)
 			{
 				case MouseButtons.Left:
 					// left button is handle by layers (so give it to the map)
-					PointF mouseCoordInStud = getMouseCoordInStud(e);
 					if (Control.ModifierKeys == Settings.Default.MouseZoomKey)
 					{
 						// this is the zoom with the keys, not the wheel, save the initial position of the mouse
@@ -546,6 +540,9 @@ namespace BlueBrick
 					// nothing to do if we didn't move
 					if ((mLastMousePos.X != e.X) || (mLastMousePos.Y != e.Y))
 					{
+						// set the cursor with the preference
+						this.Cursor = getDefaultCursor(getMouseCoordInStud(e));
+
 						// if there's a brick under the mouse, and the player don't use a button,
 						// display the description of the brick in the status bar
 						string message = "";
@@ -588,6 +585,7 @@ namespace BlueBrick
 		private void MapPanel_MouseUp(object sender, MouseEventArgs e)
 		{
 			bool mustRefreshView = false;
+			PointF mouseCoordInStud = getMouseCoordInStud(e);
 
 			switch (e.Button)
 			{
@@ -614,7 +612,7 @@ namespace BlueBrick
 					else if (mIsMouseHandledByMap)
 					{
 						// left button is handle by layers (so give it to the map)
-						mustRefreshView = Map.Instance.mouseUp(e, getMouseCoordInStud(e));
+						mustRefreshView = Map.Instance.mouseUp(e, mouseCoordInStud);
 						mIsMouseHandledByMap = false;
 					}
 					else if (mIsZooming)
@@ -650,7 +648,7 @@ namespace BlueBrick
 			}
 
 			// restore the default cursor
-			this.Cursor = getDefaultCursor();
+			this.Cursor = getDefaultCursor(mouseCoordInStud);
 
 			// check if we need to update the view
 			if (mustRefreshView)
@@ -660,7 +658,7 @@ namespace BlueBrick
 		private void MapPanel_MouseEnter(object sender, EventArgs e)
 		{
 			// set the default cursor
-			this.Cursor = getDefaultCursor();
+			this.Cursor = getDefaultCursor(PointF.Empty);
 		}
 
 		private void MapPanel_MouseLeave(object sender, EventArgs e)

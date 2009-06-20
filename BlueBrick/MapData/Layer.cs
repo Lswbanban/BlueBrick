@@ -454,6 +454,12 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// Return the cursor that should be display when the mouse is above the map without mouse click
+		/// </summary>
+		/// <param name="mouseCoordInStud"></param>
+		public abstract Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud);
+
+		/// <summary>
 		/// This function is called to know if this layer is interested by the specified mouse click
 		/// </summary>
 		/// <param name="e">the mouse event arg that describe the mouse click</param>

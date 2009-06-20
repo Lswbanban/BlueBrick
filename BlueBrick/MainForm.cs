@@ -52,6 +52,7 @@ namespace BlueBrick
 		private bool mIsRightArrowDown = false;
 		private bool mIsUpArrowDown = false;
 		private bool mIsDownArrowDown = false;
+		private Keys mLastKeyDownModifier = Keys.None;
 		private Bitmap mPaintIcon = null; // the paint icon contains the color of the paint in the background
 		private Color mCurrentPaintIconColor = Color.Empty;
 		// for the current map
@@ -1676,7 +1677,17 @@ namespace BlueBrick
 			// if any modifier is pressed, we don't handle the key, for example the CTRL+S will be handle
 			// by the shortcut of the "Save" menu item
 			if (e.Alt || e.Control || e.Shift)
+			{
+				// but we will warn the mapPanel in case it wants to change the cursor
+				// we need to check if the modifier changed because of the auto repeat key down event
+				// if you keep pressing a keep
+				if (mLastKeyDownModifier != e.Modifiers)
+				{
+					mLastKeyDownModifier = e.Modifiers;
+					this.mapPanel.setDefaultCursor();
+				}
 				return;
+			}
 
 			// get the current value of the grid step in case of we need to move the selected objects
 			float moveSize = Layer.CurrentSnapGridSize;
@@ -1743,6 +1754,13 @@ namespace BlueBrick
 		{
 			// by default we don't handle the keys
 			e.Handled = false;
+
+			// We will warn the mapPanel in case it wants to change the cursor
+			if (mLastKeyDownModifier != e.Modifiers)
+			{
+				mLastKeyDownModifier = e.Modifiers;
+				this.mapPanel.setDefaultCursor();
+			}
 
 			// if any modifier is pressed, we don't handle the key, for example the CTRL+S will be handle
 			// by the shortcut of the "Save" menu item

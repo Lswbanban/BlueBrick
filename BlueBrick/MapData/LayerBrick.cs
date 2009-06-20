@@ -1341,6 +1341,22 @@ namespace BlueBrick.MapData
 
 		#region mouse event
 		/// <summary>
+		/// Return the cursor that should be display when the mouse is above the map without mouse click
+		/// </summary>
+		/// <param name="mouseCoordInStud"></param>
+		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
+		{
+			if (mouseCoordInStud != PointF.Empty)
+			{
+				bool isMouseInsideSelectedObjects = isPointInsideSelectionRectangle(mouseCoordInStud);
+				if (isMouseInsideSelectedObjects && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey))
+					return MainForm.Instance.BrickDuplicateCursor;
+			}
+			// return the default arrow cursor
+			return MainForm.Instance.BrickArrowCursor;
+		}
+
+		/// <summary>
 		/// Get the brick under the specified mouse coordinate or null if there's no brick under.
 		/// </summary>
 		/// <param name="mouseCoordInStud"></param>
@@ -1397,12 +1413,20 @@ namespace BlueBrick.MapData
 			if (mCurrentBrickUnderMouse == null)
 				mCurrentBrickUnderMouse = getBrickUnderMouse(mouseCoordInStud);
 
-			// change the cursor:
+			// save a flag that tell if it is a simple move or a duplicate of the selection
+			// Be carreful for a duplication we take only the selected objects, not the cell
+			// under the mouse that may not be selected
+			mMouseMoveIsADuplicate = isMouseInsideSelectedObjects &&
+									(Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+
 			// if we move the brick, use 4 directionnal arrows
 			// if there's a brick under the mouse, use the hand
 			bool willMoveSelectedObject = (isMouseInsideSelectedObjects || (mCurrentBrickUnderMouse != null))
-										&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
-			if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)
+										&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+										&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+
+			// select the appropriate cursor:
+			if (mMouseMoveIsADuplicate)
 				preferedCursor = MainForm.Instance.BrickDuplicateCursor;
 			else if (willMoveSelectedObject)
 				preferedCursor = Cursors.SizeAll;
@@ -1411,8 +1435,8 @@ namespace BlueBrick.MapData
 			else
 				preferedCursor = Cursors.Cross;
 
-			// handle the mouse down if we move the selected bricks
-			return willMoveSelectedObject;
+			// handle the mouse down if we duplicate or move the selected bricks
+			return (mMouseMoveIsADuplicate || willMoveSelectedObject);
 		}
 
 		/// <summary>
@@ -1424,9 +1448,6 @@ namespace BlueBrick.MapData
 		public override bool mouseDown(MouseEventArgs e, PointF mouseCoordInStud)
 		{
 			bool mustRefresh = false;
-
-			// save a flag that tell if it is a simple move or a duplicate of the selection
-			mMouseMoveIsADuplicate = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
 
 			// if finally we are called to handle this mouse down,
 			// we add the cell under the mouse if the selection list is empty

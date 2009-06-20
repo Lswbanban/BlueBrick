@@ -409,6 +409,15 @@ namespace BlueBrick.MapData
 		#region mouse event
 
 		/// <summary>
+		/// Return the cursor that should be display when the mouse is above the map without mouse click
+		/// </summary>
+		/// <param name="mouseCoordInStud"></param>
+		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
+		{
+			return Cursors.Default;
+		}
+
+		/// <summary>
 		/// Convert a mouse coord in stud into a cell coord
 		/// </summary>
 		/// <param name="mouseCoordInStud">the point to convert</param>
