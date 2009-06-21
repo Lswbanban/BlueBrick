@@ -268,6 +268,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move the Areas.
+        /// </summary>
+        internal static string ActionMoveArea {
+            get {
+                return ResourceManager.GetString("ActionMoveArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move the part &amp;.
         /// </summary>
         internal static string ActionMoveBrick {
@@ -667,7 +676,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can not load this file.Your version of BlueBrick is obsolete or the file may not be a valid BlueBrick file. Try to download and install the last version of BlueBrick..
+        ///   Looks up a localized string similar to Cannot load this file. Your version of BlueBrick is obsolete or the file may not be a valid BlueBrick file. Try downloading and installing the latest version of BlueBrick..
         /// </summary>
         internal static string ErrorMsgProgramObsolete {
             get {

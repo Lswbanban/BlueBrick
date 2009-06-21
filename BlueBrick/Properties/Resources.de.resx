@@ -329,7 +329,7 @@ Die Fehlermeldung lautet:"</value>
     <value>Diese Datei kann nicht geladen werden. Die Version von BlueBrick ist veraltet oder es handelt sich nicht um eine gültige BlueBrick Datei. Versuche die letzte Version von BlueBrick herunterzuladen und zu installieren.</value>
   </data>
   <data name="ErrorMsgReadyToReloadPartLib" xml:space="preserve">
-    <value>The part library was unloaded, you can now modify the files in it. Click ok when you are ready to reload it.</value>
+    <value>Die Teilenbibliothek ist deaktiviert. Sie können jetzt die enthaltenen Dateien ändern. Drücken Sie auf "ok" sobald Sie es reaktivieren möchten.</value>
   </data>
   <data name="ErrorMsgTitleError" xml:space="preserve">
     <value>Fehler</value>

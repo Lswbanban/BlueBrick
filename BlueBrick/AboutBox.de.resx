@@ -156,12 +156,6 @@
 Weitere Information unter http://www.fsf.org/licensing/licenses/gpl.html
 and http://www.gnu.org/licenses/</value>
   </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Übersetzt nach</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>von</value>
-  </data>
   <data name="translatorListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
@@ -272,16 +266,16 @@ and http://www.gnu.org/licenses/</value>
         dAlGb3JlQ29sb3IXVXNlSXRlbVN0eWxlRm9yU3ViSXRlbXMBAAAEBAAEBAAICDFTeXN0ZW0uV2luZG93
         cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlzdFZpZXdTdWJJdGVtAgAAABRTeXN0ZW0uRHJhd2luZy5Db2xv
         cgMAAAABE1N5c3RlbS5EcmF3aW5nLkZvbnQDAAAAFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAECAAAA
-        BgQAAAAKUG9ydHVndWVzZf////8CAAAACQUAAAAF+v///xRTeXN0ZW0uRHJhd2luZy5Db2xvcgQAAAAE
-        bmFtZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwMAAAAKAAAAAAAAAAAFAAEAAAkHAAAAAfj/
-        ///6////CgAAAAAAAAAAGgABAAEFBQAAADFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0r
-        TGlzdFZpZXdTdWJJdGVtBAAAAAR0ZXh0BG5hbWUFc3R5bGUIdXNlckRhdGEBAQQCPlN5c3RlbS5XaW5k
-        b3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0rU3ViSXRlbVN0eWxlAgAAAAIAAAAG
-        CQAAABxMdcOtcyBCYWl4aW5obyAmIFBlZHJvIFNpbHZhCgoKBQcAAAATU3lzdGVtLkRyYXdpbmcuRm9u
-        dAQAAAAETmFtZQRTaXplBVN0eWxlBFVuaXQBAAQECxhTeXN0ZW0uRHJhd2luZy5Gb250U3R5bGUDAAAA
-        G1N5c3RlbS5EcmF3aW5nLkdyYXBoaWNzVW5pdAMAAAADAAAABgoAAAAUTWljcm9zb2Z0IFNhbnMgU2Vy
-        aWYAAARBBfX///8YU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAAAAAAAAX0
-        ////G1N5c3RlbS5EcmF3aW5nLkdyYXBoaWNzVW5pdAEAAAAHdmFsdWVfXwAIAwAAAAMAAAAL
+        BgQAAAANUG9ydHVnaWVzaXNjaP////8CAAAACQUAAAAF+v///xRTeXN0ZW0uRHJhd2luZy5Db2xvcgQA
+        AAAEbmFtZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwMAAAAKAAAAAAAAAAAFAAEAAAkHAAAA
+        Afj////6////CgAAAAAAAAAAGgABAAEFBQAAADFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0
+        ZW0rTGlzdFZpZXdTdWJJdGVtBAAAAAR0ZXh0BG5hbWUFc3R5bGUIdXNlckRhdGEBAQQCPlN5c3RlbS5X
+        aW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0rU3ViSXRlbVN0eWxlAgAAAAIA
+        AAAGCQAAABxMdcOtcyBCYWl4aW5obyAmIFBlZHJvIFNpbHZhCgoKBQcAAAATU3lzdGVtLkRyYXdpbmcu
+        Rm9udAQAAAAETmFtZQRTaXplBVN0eWxlBFVuaXQBAAQECxhTeXN0ZW0uRHJhd2luZy5Gb250U3R5bGUD
+        AAAAG1N5c3RlbS5EcmF3aW5nLkdyYXBoaWNzVW5pdAMAAAADAAAABgoAAAAUTWljcm9zb2Z0IFNhbnMg
+        U2VyaWYAAARBBfX///8YU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAAAAAA
+        AAX0////G1N5c3RlbS5EcmF3aW5nLkdyYXBoaWNzVW5pdAEAAAAHdmFsdWVfXwAIAwAAAAMAAAAL
 </value>
   </data>
   <data name="translatorListView.Items5" mimetype="application/x-microsoft.net.object.binary.base64">
@@ -294,17 +288,23 @@ and http://www.gnu.org/licenses/</value>
         dAlGb3JlQ29sb3IXVXNlSXRlbVN0eWxlRm9yU3ViSXRlbXMBAAAEBAAEBAAICDFTeXN0ZW0uV2luZG93
         cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlzdFZpZXdTdWJJdGVtAgAAABRTeXN0ZW0uRHJhd2luZy5Db2xv
         cgMAAAABE1N5c3RlbS5EcmF3aW5nLkZvbnQDAAAAFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAECAAAA
-        BgQAAAAHU3BhbmlzaP////8CAAAACQUAAAAF+v///xRTeXN0ZW0uRHJhd2luZy5Db2xvcgQAAAAEbmFt
-        ZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwMAAAAKAAAAAAAAAAAFAAEAAAkHAAAAAfj////6
-        ////CgAAAAAAAAAAGgABAAEFBQAAADFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlz
-        dFZpZXdTdWJJdGVtBAAAAAR0ZXh0BG5hbWUFc3R5bGUIdXNlckRhdGEBAQQCPlN5c3RlbS5XaW5kb3dz
-        LkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0rU3ViSXRlbVN0eWxlAgAAAAIAAAAGCQAA
-        ABFKZXRybyBkZSBDaMOidGVhdQoKCgUHAAAAE1N5c3RlbS5EcmF3aW5nLkZvbnQEAAAABE5hbWUEU2l6
-        ZQVTdHlsZQRVbml0AQAEBAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAABtTeXN0ZW0uRHJhd2lu
-        Zy5HcmFwaGljc1VuaXQDAAAAAwAAAAYKAAAAFE1pY3Jvc29mdCBTYW5zIFNlcmlmAAAEQQX1////GFN5
-        c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAF9P///xtTeXN0ZW0uRHJh
-        d2luZy5HcmFwaGljc1VuaXQBAAAAB3ZhbHVlX18ACAMAAAADAAAACw==
+        BgQAAAAIU3BhbmlzY2j/////AgAAAAkFAAAABfr///8UU3lzdGVtLkRyYXdpbmcuQ29sb3IEAAAABG5h
+        bWUFdmFsdWUKa25vd25Db2xvcgVzdGF0ZQEAAAAJBwcDAAAACgAAAAAAAAAABQABAAAJBwAAAAH4////
+        +v///woAAAAAAAAAABoAAQABBQUAAAAxU3lzdGVtLldpbmRvd3MuRm9ybXMuTGlzdFZpZXdJdGVtK0xp
+        c3RWaWV3U3ViSXRlbQQAAAAEdGV4dARuYW1lBXN0eWxlCHVzZXJEYXRhAQEEAj5TeXN0ZW0uV2luZG93
+        cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlzdFZpZXdTdWJJdGVtK1N1Ykl0ZW1TdHlsZQIAAAACAAAABgkA
+        AAARSmV0cm8gZGUgQ2jDonRlYXUKCgoFBwAAABNTeXN0ZW0uRHJhd2luZy5Gb250BAAAAAROYW1lBFNp
+        emUFU3R5bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQMAAAAbU3lzdGVtLkRyYXdp
+        bmcuR3JhcGhpY3NVbml0AwAAAAMAAAAGCgAAABRNaWNyb3NvZnQgU2FucyBTZXJpZgAABEEF9f///xhT
+        eXN0ZW0uRHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMAAAAAAAAABfT///8bU3lzdGVtLkRy
+        YXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
 </value>
+  </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Übersetzt nach</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>von</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Über BlueBrick</value>

@@ -124,6 +124,9 @@
         uy06AkYQGIdRs8dSGDHCUJ6DYq6oirYku7pySb9pjN+yKjoJADs=
 </value>
   </data>
+  <data name="trashLayerButton.ToolTip" xml:space="preserve">
+    <value>Markierte Ebene löschen</value>
+  </data>
   <data name="newLayerBrickButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
@@ -214,11 +217,17 @@
         6H1T6Cgkh5ziuIKtiXZxthQAOw==
 </value>
   </data>
+  <data name="layerUpButton.ToolTip" xml:space="preserve">
+    <value>Verschiebe die Ebene nach Oben</value>
+  </data>
   <data name="layerDownButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhEAAQAPEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAQABAAAAIglI+pAg2b3INH0uqo3BNx
         q3xd9GnbxV1MpoLtiMLqUgAAOw==
 </value>
+  </data>
+  <data name="layerDownButton.ToolTip" xml:space="preserve">
+    <value>Verschiebe die Ebene nach Unten</value>
   </data>
   <data name="menuBar.Text" xml:space="preserve">
     <value>Menüleiste</value>
@@ -266,13 +275,16 @@
     <value>199, 22</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bild Exportieren...</value>
+    <value>Bild &amp;Exportieren...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 6</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 22</value>
+  </data>
+  <data name="reloadPartLibraryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teilebibleothek neu laden</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 6</value>
@@ -314,7 +326,7 @@
     <value>268, 22</value>
   </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Kopieren</value>
+    <value>&amp;Kopieren</value>
   </data>
   <data name="pasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>268, 22</value>

@@ -186,6 +186,9 @@
   <data name="ActionHideLayer" xml:space="preserve">
     <value>Hide the layer "&amp;"</value>
   </data>
+  <data name="ActionMoveArea" xml:space="preserve">
+    <value>Move the Areas</value>
+  </data>
   <data name="ActionMoveBrick" xml:space="preserve">
     <value>Move the part &amp;</value>
   </data>
@@ -323,7 +326,7 @@
     <value>Sorry, the Track Designer file you are trying to load has an old version format. To fix this problem, open this file with Track Designer, and save it again. Now you should be able to load it with BlueBrick.</value>
   </data>
   <data name="ErrorMsgProgramObsolete" xml:space="preserve">
-    <value>Can not load this file.Your version of BlueBrick is obsolete or the file may not be a valid BlueBrick file. Try to download and install the last version of BlueBrick.</value>
+    <value>Cannot load this file. Your version of BlueBrick is obsolete or the file may not be a valid BlueBrick file. Try downloading and installing the latest version of BlueBrick.</value>
   </data>
   <data name="ErrorMsgReadyToReloadPartLib" xml:space="preserve">
     <value>The parts library was unloaded, you can now modify the files in it. Click ok when you are ready to reload it.</value>
