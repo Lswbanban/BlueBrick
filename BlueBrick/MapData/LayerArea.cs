@@ -34,6 +34,7 @@ namespace BlueBrick.MapData
 		private Dictionary<int, Dictionary<int, SolidBrush>> mColorMap = new Dictionary<int, Dictionary<int, SolidBrush>>();
 
 		//related to selection
+		private bool mIsMovingArea = false;
 		private bool mIsPaintingNewArea = false;
 		private Point mMouseDownInitialPosition = Point.Empty;
 		private Point mMouseDownLastPosition = Point.Empty;
@@ -260,6 +261,82 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// Move all the cells according to the specified move direction
+		/// </summary>
+		/// <param name="moveX">the move in x axis, in cell numbers</param>
+		/// <param name="moveY">the move in y axis, in cell numbers</param>
+		public void moveCells(int moveX, int moveY)
+		{
+			// move the lines if necessary
+			if (moveX != 0)
+			{
+				// copy the key of the lines
+				int[] lineKeys = new int[mColorMap.Keys.Count];
+				mColorMap.Keys.CopyTo(lineKeys, 0);
+				// according to the doc, the order of the keys in the Dictionary.KeyCollection is unspecified
+				// so we need to sort the keys, to avoid override when moving
+				Array.Sort(lineKeys);
+
+				// depending on the direction of the move, we copy from the begining or the end
+				int startX = 0;
+				int endX = lineKeys.Length;
+				int dirX = 1;
+				if (moveX > 0)
+				{
+					startX = lineKeys.Length - 1;
+					endX = -1;
+					dirX = -1;
+				}
+
+				// iterate to move the lines
+				for (int x = startX; x != endX; x += dirX)
+				{
+					int currentLineKey = lineKeys[x];
+					Dictionary<int, SolidBrush> currentLine = null;
+					mColorMap.TryGetValue(currentLineKey, out currentLine);
+					if (currentLine != null)
+					{
+						// move the line
+						mColorMap.Remove(currentLineKey);
+						mColorMap.Add(currentLineKey + moveX, currentLine);
+
+						// copy the key inside the current line
+						int[] rowKeys = new int[currentLine.Keys.Count];
+						currentLine.Keys.CopyTo(rowKeys, 0);
+						// according to the doc, the order of the keys in the Dictionary.KeyCollection is unspecified
+						// so we need to sort the keys, to avoid override when moving
+						Array.Sort(rowKeys);
+
+						// depending on the direction of the move, we copy from the begining or the end
+						int startY = 0;
+						int endY = rowKeys.Length;
+						int dirY = 1;
+						if (moveY > 0)
+						{
+							startY = rowKeys.Length - 1;
+							endY = -1;
+							dirY = -1;
+						}
+
+						// iterate to move the rows
+						for (int y = startY; y != endY; y += dirY)
+						{
+							int currentRowKey = rowKeys[y];
+							SolidBrush currentRow = null;
+							currentLine.TryGetValue(currentRowKey, out currentRow);
+							if (currentRow != null)
+							{
+								// move the row
+								currentLine.Remove(currentRowKey);
+								currentLine.Add(currentRowKey + moveY, currentRow);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
 		/// Rescale the colormap by trying to keep the cell at the same place, by duplicating
 		/// some cell, or skiping some cells depending on the direction of the rescale (smaller
 		/// or bigger cell size)
@@ -365,7 +442,19 @@ namespace BlueBrick.MapData
 			if (!Visible)
 				return;
 
+			// if the user is moving the area, we just shift the rendering
+			if (mIsMovingArea)
+			{
+				int diffXInCell = mMouseDownLastPosition.X - mMouseDownInitialPosition.X;
+				int diffYInCell = mMouseDownLastPosition.Y - mMouseDownInitialPosition.Y;
+				areaInStud.X -= diffXInCell * mAreaCellSizeInStud;
+				areaInStud.Y -= diffYInCell * mAreaCellSizeInStud;
+			}
+
+			// compute one area size in pixel unit accordind to the current zoom
 			float areaCellSizeInPixel = (float)(mAreaCellSizeInStud * scalePixelPerStud);
+
+			// start to draw the visible part of the map
 			int startX = (int)(areaInStud.Left / mAreaCellSizeInStud) - 1;
 			int endX = (int)(areaInStud.Right / mAreaCellSizeInStud) + 1;
 			int startY = (int)(areaInStud.Top / mAreaCellSizeInStud) - 1;
@@ -414,7 +503,9 @@ namespace BlueBrick.MapData
 		/// <param name="mouseCoordInStud"></param>
 		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
 		{
-			if (sCurrentDrawColor == Color.Empty)
+			if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+				return Cursors.SizeAll;
+			else if (sCurrentDrawColor == Color.Empty)
 				return MainForm.Instance.AreaEraserCursor;
 			return MainForm.Instance.AreaPaintCursor;
 		}
@@ -457,9 +548,12 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseDown(MouseEventArgs e, PointF mouseCoordInStud)
 		{
+			// check if we paint or move the area
+			mIsMovingArea = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
+			mIsPaintingNewArea = !mIsMovingArea;
+			// record the initial position
 			mMouseDownInitialPosition = computeCellCoordFromStudCoord(mouseCoordInStud);
 			mMouseDownLastPosition = mMouseDownInitialPosition;
-			mIsPaintingNewArea = true;
 			// update on the down event because we want to draw the fist square
 			return true;
 		}
@@ -487,19 +581,30 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			// reset the painting flag
-			mIsPaintingNewArea = false;
-			// compute the rectangle of the modified area
-			int x = Math.Min(mMouseDownInitialPosition.X, mMouseDownLastPosition.X);
-			int y = Math.Min(mMouseDownInitialPosition.Y, mMouseDownLastPosition.Y);
-			int width = Math.Abs(mMouseDownLastPosition.X - mMouseDownInitialPosition.X) + 1;
-			int height = Math.Abs(mMouseDownLastPosition.Y - mMouseDownInitialPosition.Y) + 1;
-			Rectangle rectangle = new Rectangle(x, y, width, height);			
-			// depending on the current draw color, we add or remove area
-			if (sCurrentDrawColor != Color.Empty)
-				ActionManager.Instance.doAction(new AddArea(this, sCurrentDrawColor, rectangle));
+			if (mIsMovingArea)
+			{
+				// compute the moving direction
+				int x = mMouseDownLastPosition.X - mMouseDownInitialPosition.X;
+				int y = mMouseDownLastPosition.Y - mMouseDownInitialPosition.Y;
+				ActionManager.Instance.doAction(new MoveArea(this, x, y));
+			}
 			else
-				ActionManager.Instance.doAction(new DeleteArea(this, rectangle));
+			{
+				// compute the rectangle of the modified area
+				int x = Math.Min(mMouseDownInitialPosition.X, mMouseDownLastPosition.X);
+				int y = Math.Min(mMouseDownInitialPosition.Y, mMouseDownLastPosition.Y);
+				int width = Math.Abs(mMouseDownLastPosition.X - mMouseDownInitialPosition.X) + 1;
+				int height = Math.Abs(mMouseDownLastPosition.Y - mMouseDownInitialPosition.Y) + 1;
+				Rectangle rectangle = new Rectangle(x, y, width, height);			
+				// depending on the current draw color, we add or remove area
+				if (sCurrentDrawColor != Color.Empty)
+					ActionManager.Instance.doAction(new AddArea(this, sCurrentDrawColor, rectangle));
+				else
+					ActionManager.Instance.doAction(new DeleteArea(this, rectangle));
+			}
+			// reset the moving and painting flag
+			mIsMovingArea = false;
+			mIsPaintingNewArea = false;
 			// and finally update the view
 			return true;
 		}

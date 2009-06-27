@@ -68,6 +68,7 @@
     <Compile Include="Actions\ActionManager.cs" />
     <Compile Include="Actions\Area\AddArea.cs" />
     <Compile Include="Actions\Area\DeleteArea.cs" />
+    <Compile Include="Actions\Area\MoveArea.cs" />
     <Compile Include="Actions\Bricks\AddConnectBrick.cs" />
     <Compile Include="Actions\Bricks\BringBrickToFront.cs" />
     <Compile Include="Actions\Bricks\DuplicateBrick.cs" />
