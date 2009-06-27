@@ -186,6 +186,9 @@
   <data name="ActionHideLayer" xml:space="preserve">
     <value>Verstecke die Ebene "&amp;"</value>
   </data>
+  <data name="ActionMoveArea" xml:space="preserve">
+    <value>Bereich bewegen</value>
+  </data>
   <data name="ActionMoveBrick" xml:space="preserve">
     <value>Verschiebe das Teil &amp;</value>
   </data>
@@ -293,10 +296,10 @@
     <value>Willst du wirklich alles auf die Standardeinstellungen zurücksetzen?</value>
   </data>
   <data name="ErrorMsgCrash" xml:space="preserve">
-    <value>"BlueBrick Copyright (C) 2008 Alban NANTY.
-Dieses Programm ist freie Software unter der GPLv3 Lizenz und enthält ABSOLUT KEINE GEWAEHRLEISTUNG. 
+    <value>BlueBrick Copyright (C) 2008 Alban NANTY.
+Dieses Programm ist eine freie Software unter der GPLv3 Lizenz und enthält ABSOLUT KEINE GEWAEHRLEISTUNG. 
 Es ist ein schwerer Fehler aufgetretten. Das Programm wird geschlossen. Berichte diesen Fehler bitte an banban@lswproject.com. 
-Die Fehlermeldung lautet:"</value>
+Die Fehlermeldung lautet:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
     <value>Die Sprache wurde geändert. Die Änderung wird jedoch erst bei dem nächsten Neustart aktiviert.</value>

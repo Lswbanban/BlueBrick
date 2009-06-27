@@ -186,6 +186,9 @@
   <data name="ActionHideLayer" xml:space="preserve">
     <value>Cacher le calque "&amp;"</value>
   </data>
+  <data name="ActionMoveArea" xml:space="preserve">
+    <value>Déplacer les zones</value>
+  </data>
   <data name="ActionMoveBrick" xml:space="preserve">
     <value>Déplacer la pièce &amp;</value>
   </data>

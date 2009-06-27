@@ -595,7 +595,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You changed the language but this will take effect next time you restart the application..
+        ///   Looks up a localized string similar to You changed the language but this will not take effect until you restart the application..
         /// </summary>
         internal static string ErrorMsgLanguageHasChanged {
             get {

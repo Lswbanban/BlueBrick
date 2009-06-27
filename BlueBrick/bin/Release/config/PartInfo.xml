@@ -5,310 +5,387 @@
 		<color id="0">
 			<en>Black</en>
 			<fr>Noir</fr>
+			<de>Schwarz (Black)</de>
 		</color>
 		<color id="1">
 			<en>Blue</en>
 			<fr>Bleu</fr>
+			<de>Blau</de>
 		</color>
 		<color id="2">
 			<en>Green</en>
 			<fr>Vert</fr>
+			<de>Grün (Green)</de>
 		</color>
 		<color id="3">
 			<en>Teal</en>
 			<fr>Teal</fr>
+			<de>Grünliches Türkis (Teal)</de>
 		</color>
 		<color id="4">
 			<en>Red</en>
 			<fr>Rouge</fr>
+			<de>Rot (Red)</de>
 		</color>
 		<color id="5">
 			<en>Dark Pink</en>
 			<fr>Rose foncé</fr>
+			<de>Dunkelrosa (Dark Pink)</de>
 		</color>
 		<color id="6">
 			<en>Brown</en>
 			<fr>Marron</fr>
+			<de>Braun (Brown)</de>
 		</color>
 		<color id="7">
 			<en>Gray</en>
 			<fr>Gris</fr>
+			<de>Grau (Gray)</de>
 		</color>
 		<color id="8">
 			<en>Dark Gray</en>
 			<fr>Gris foncé</fr>
+			<de>Dunkelgrau (Dark Gray)</de>
 		</color>
 		<color id="9">
 			<en>Light Blue</en>
 			<fr>Bleu clair</fr>
+			<de>Hellblau (Light Blue)</de>
 		</color>
 		<color id="10">
 			<en>Bright Green</en>
 			<fr>Vert brillant</fr>
+			<de>Leuchtend Grün (Bright Green)</de>
 		</color>
 		<color id="11">
 			<en>Turquoise</en>
 			<fr>Turquoise</fr>
+			<de>Tuerkis (Turquoise)</de>
 		</color>
 		<color id="12">
 			<en>Light Red</en>
 			<fr>Rouge clair</fr>
+			<de>Hellrot (Light Red)</de>
 		</color>
 		<color id="13">
 			<en>Pink</en>
 			<fr>Rose</fr>
+			<de>Rosa (Pink)</de>
 		</color>
 		<color id="14">
 			<en>Yellow</en>
 			<fr>Jaune</fr>
+			<de>Gelb (Yellow)</de>
 		</color>
 		<color id="15">
 			<en>White</en>
 			<fr>Blanc</fr>
+			<de>Weiß (white)</de>
 		</color>
 		<color id="17">
 			<en>Light Green</en>
 			<fr>Vert clair</fr>
+			<de>Hellgrün (Light Green)</de>
 		</color>
 		<color id="18">
 			<en>Light Yellow</en>
 			<fr>Jaune clair</fr>
+			<de>Hellgelb (Light Yellow)</de>
 		</color>
 		<color id="19">
 			<en>Tan</en>
 			<fr>Beige</fr>
+			<de>Beige (Tan)</de>
 		</color>
 		<color id="20">
 			<en>Light Violet</en>
 			<fr>Violet clair</fr>
+			<de>Hellviolett (Light Violet)</de>
 		</color>
 		<color id="21">
 			<en>Phosphor White</en>
 			<fr>Blanc phosphorescent</fr>
+			<de>Phosphor (Phosphor White)</de>
 		</color>
 		<color id="22">
 			<en>Violet</en>
 			<fr>Violet</fr>
+			<de>Violett (Violet)</de>
 		</color>
 		<color id="23">
 			<en>Violet Blue</en>
 			<fr>Bleu-Violet</fr>
+			<de>Blauviolett (Violet Blue)</de>
 		</color>
 		<color id="25">
 			<en>Orange</en>
 			<fr>Orange</fr>
+			<de>Orange (Orange)</de>
 		</color>
 		<color id="26">
 			<en>Magenta</en>
 			<fr>Magenta</fr>
+			<de>Magenta (Magenta)</de>
 		</color>
 		<color id="27">
 			<en>Lime</en>
 			<fr>Vert citron</fr>
+			<de>Limone (Lime)</de>
 		</color>
 		<color id="28">
 			<en>Dark Tan</en>
 			<fr>Beige foncé</fr>
+			<en>Dunkelbeige (Dark Tan)</en>
 		</color>
 		<color id="29">
 			<en>Light Purple</en>
 			<fr>Pourpre clair</fr>
+			<de>HellViolett (Light Purple)</de>
 		</color>		
 		<color id="33">
 			<en>Trans Blue</en>
 			<fr>Bleu transparent</fr>
+			<de>Glas, Blau (Trans Blue)</de>
 		</color>
 		<color id="34">
 			<en>Trans Green</en>
 			<fr>Vert transparent</fr>
+			<de>Glas, Grün (Trans Green)</de>
 		</color>
 		<color id="36">
 			<en>Trans Red</en>
 			<fr>Rouge transparent</fr>
+			<de>Glas, Rot (Trans Red)</de>
 		</color>
 		<color id="37">
 			<en>Trans Violet</en>
 			<fr>Violet transparent</fr>
+			<de>Glas, Violett (Trans Violet)</de>
 		</color>
 		<color id="40">
 			<en>Trans Gray</en>
 			<fr>Gris transparent</fr>
+			<de>Glas, Grau (Trans Gray)</de>
 		</color>
 		<color id="41">
 			<en>Trans Light Cyan</en>
 			<fr>Bleu ciel transparent</fr>
+			<de>Glas, Hellblau (Trans Light Cyan)</de>
 		</color>
 		<color id="42">
 			<en>Trans Flu Lime</en>
 			<fr>Vert citron transparent</fr>
+			<de>Glas, Hellgrün (Trans Flu Lime)</de>
 		</color>
 		<color id="45">
 			<en>Trans Pink</en>
 			<fr>Rose transparent</fr>
+			<de>Glas, Pink (Trans Pink)</de>
 		</color>
 		<color id="46">
 			<en>Trans Yellow</en>
 			<fr>Jaune transparent</fr>
+			<de>Glas, Gelb (Trans Yellow)</de>
 		</color>
 		<color id="47">
 			<en>Clear</en>
 			<fr>Transparent</fr>
+			<de>Glas (Clear)</de>
 		</color>
 		<color id="57">
 			<en>Trans Flu Orange</en>
 			<fr>Orange transparent</fr>
+			<de>Glas, Orange (Trans Flu Orange)</de>
 		</color>
 		<color id="69">
 			<en>Bright Purple</en>
 			<fr>Pourpre brillant</fr>
+			<de>Leuchtend Violett (Bright Purple)</de>
 		</color>
 		<color id="70">
 			<en>Reddish Brown</en>
 			<fr>Marron rougeoyant</fr>
+			<de>Rotbraun (Reddish Brown)</de>
 		</color>
 		<color id="71">
 			<en>Stone Gray</en>
 			<fr>Gris pierre</fr>
+			<de>Steingrau (Stone Gray)</de>
 		</color>
 		<color id="72">
 			<en>Dark Stone Gray</en>
 			<fr>Gris pierre foncé</fr>
+			<de>Dunkelsteingrau (Dark Stone Gray)</de>
 		</color>
 		<color id="73">
 			<en>Medium Blue</en>
 			<fr>Bleu moyen</fr>
+			<de>Mittelblau (Medium Blue)</de>
 		</color>
 		<color id="74">
 			<en>Medium Green</en>
 			<fr>Vert moyen</fr>
+			<de>Mittelgrün (Medium Green)</de>
 		</color>
 		<color id="77">
 			<en>Paradisa Pink</en>
 			<fr>Rose Paradisa</fr>
+			<de>Paradisa Rosa (Paradisa Pink)</de>
 		</color>
 		<color id="78">
 			<en>Light Flesh</en>
 			<fr>Chair clair</fr>
+			<de>Helle Hautfarbe (Light Flesh)</de>
 		</color>
 		<color id="79">
 			<en>Translucent White</en>
 			<fr>Blanc translucide</fr>
+			<de>Durchsichtig Weiß (Translucent White)</de>
 		</color>
 		<color id="85">
 			<en>Medium Lilac</en>
 			<fr>Lilas moyen</fr>
+			<de>Mittellila (Medium Lilac)</de>
 		</color>
 		<color id="86">
 			<en>Dark Flesh</en>
 			<fr>Chair foncée</fr>
+			<de>Hautfarbe, dunkel (Dark Flesh)</de>
 		</color>
 		<color id="89">
 			<en>Royal Blue</en>
 			<fr>Bleu royal</fr>
+			<de>Königliches Blau (Royal Blue)</de>
 		</color>
 		<color id="92">
 			<en>Flesh</en>
 			<fr>Chair</fr>
+			<de>Hautfarbe (Flesh)</de>
 		</color>
 		<color id="134">
 			<en>Pearl Copper</en>
 			<fr>Cuivre perlé</fr>
+			<de>Perlen-Kupfer (Pearl Copper)</de>
 		</color>
 		<color id="135">
 			<en>Pearl Gray</en>
 			<fr>Gris perlé</fr>
+			<de>Perlengrau (Pearl Gray)</de>
 		</color>
 		<color id="137">
 			<en>Pearl Sand Blue</en>
-			<fr>Bleu pastel perlé</fr>
+			<fr>Bleu pastel perlé</fr>	
+			<de>Perlen-Sandblau (Pearl Sand Blue)</de>
 		</color>
 		<color id="142">
 			<en>Pearl Gold</en>
 			<fr>Or perlé</fr>
+			<de>Perlen-Gold (Pearl Gold)</de>
 		</color>
 		<color id="151">
 			<en>Light Stone</en>
 			<fr>Pierre clair</fr>
+			<de>Steinfarbe, hell (Light Stone)</de>
 		</color>		
 		<color id="256">
 			<en>Rubber Black</en>
 			<fr>Noir caoutchouc</fr>
+			<de>Gummi, Schwarz (Rubber Black)</de>
 		</color>
 		<color id="272">
 			<en>Dark Blue</en>
 			<fr>Bleu foncé</fr>
+			<de>Dunkelblau (Dark Blue)</de>
 		</color>
 		<color id="273">
 			<en>Rubber Blue</en>
 			<fr>Bleu caoutchouc</fr>
+			<de>Gummi, Blau (Rubber Blue)</de>
 		</color>
 		<color id="288">
 			<en>Dark Green</en>
 			<fr>Vert foncé</fr>
+			<de>Dunkelgrün (Dark Green)</de>
 		</color>
 		<color id="313">
 			<en>Maersk Blue</en>
 			<fr>Bleu Maersk</fr>
+			<de>Maersk Blau (Maersk Blue)</de>
 		</color>
 		<color id="320">
 			<en>Dark red</en>
 			<fr>Rouge foncé</fr>
+			<de>Dunkelrot (Dark Red)</de>
 		</color>
 		<color id="324">
 			<en>Rubber red</en>
 			<fr>Rouge caoutchouc</fr>
+			<de>Gummi, Rot (Rubber red)</de>
 		</color>
 		<color id="334">
 			<en>Chrome Gold</en>
 			<fr>Or chromé</fr>
+			<de>Gold (Chrome Gold)</de>
 		</color>
 		<color id="335">
 			<en>Sand Red</en>
 			<fr>Rouge pastel</fr>
+			<de>Sandrot (Sand Red)</de>
 		</color>
 		<color id="366">
 			<en>Earth Orange</en>
 			<fr>Orange de terre</fr>
+			<de>Ocker (Earth Orange)</de>
 		</color>
 		<color id="373">
 			<en>Sand Violet</en>
 			<fr>Violet pastel</fr>
+			<de>Sandviolett (Sand Violet)</de>
 		</color>
 		<color id="375">
 			<en>Rubber Gray</en>
 			<fr>Gris caoutchouc</fr>
+			<de>Gummi, Grau (Rubber Gray)</de>
 		</color>
 		<color id="378">
 			<en>Sand Green</en>
 			<fr>Vert pastel</fr>
+			<de>Sandgrün (Sand Green)</de>
 		</color>
 		<color id="379">
 			<en>Sand Blue</en>
 			<fr>Bleu pastel</fr>
+			<de>Sandblau (Sand Blue)</de>
 		</color>
 		<color id="383">
 			<en>Chrome Silver</en>
 			<fr>Argent chromé</fr>
+			<de>Silber (Chrome Silver)</de>
 		</color>
 		<color id="462">
 			<en>Light Orange</en>
 			<fr>Orange clair</fr>
+			<de>Hellorange (Light Orange)</de>
 		</color>
 		<color id="484">
 			<en>Dark Orange</en>
 			<fr>Orange foncé</fr>
+			<de>Dunkelorange (Dark Orange)</de>
 		</color>
 		<color id="494">
 			<en>Electric Contact</en>
-			<fr>Contact électrique</fr>
+			<fr>Contact électrique</fr> 
+			<de>Elektro-Kontakt (Electric Contact)</de>
 		</color>
 		<color id="503">
 			<en>Light Gray</en>
 			<fr>Gris clair</fr>
+			<de>Hellgrau (Light Gray)</de>
 		</color>
 		<color id="511">
 			<en>Rubber White</en>
 			<fr>Blanc caoutchouc</fr>
+			<de>Gummi Weiß (Rubber White)</de>
 		</color>
 	</ColorList>
 	

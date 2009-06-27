@@ -394,7 +394,7 @@
     <value>189, 6</value>
   </data>
   <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
-    <value>Select the rotation angle step</value>
+    <value>Select angle for rotation steps</value>
   </data>
   <data name="&gt;&gt;trashLayerButton.Name" xml:space="preserve">
     <value>trashLayerButton</value>

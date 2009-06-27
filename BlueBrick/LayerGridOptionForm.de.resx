@@ -176,7 +176,7 @@
     <value>Schrift ändern</value>
   </data>
   <data name="cellIndexColumnLabel.Text" xml:space="preserve">
-    <value>Spalte</value>
+    <value>Spalten</value>
   </data>
   <data name="cellIndexColumnComboBox.Items" xml:space="preserve">
     <value>Buchstaben</value>

@@ -120,6 +120,7 @@ Open bugs:
 - BUG (Alban): The TD 4.5V level crossing is missing in the BB part library
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
+- BUG (Alexander): The standard windows are spawn in the language of the OS, not the one selected in the application.
 - BUG (Didier): UNFIXABLE, linked with windows propeties. In "general information" the choice of date is made in the language of Windows, not the language selected for the application.
 - BUG (Alban): The content of the combobox for the key CTRL, ALT and SHIFT is not localized (because added in code).
 

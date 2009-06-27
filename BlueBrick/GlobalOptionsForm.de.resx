@@ -168,7 +168,7 @@ benutzten Dateien</value>
     <value>174, 27</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Anzahl der angezeigten "Rückgängig" Schritte</value>
+    <value>Anzahl der angezeigten, Rückgängigen Schritte.</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 30</value>
@@ -177,10 +177,10 @@ benutzten Dateien</value>
     <value>174, 27</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Anzahl der gespeicherten "Rückgängig" Schritte</value>
+    <value>Anzahl der gespeicherten, Rückgängigen Schritte.</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>Neue Karten Standardeinstellungen</value>
+    <value>Standardeinstellungen für neue Karten</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 137</value>
@@ -219,7 +219,7 @@ benutzten Dateien</value>
     <value>Shift</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>Duplicaten Auswahltaste</value>
+    <value>Duplikaten Auswahltaste</value>
   </data>
   <data name="mouseMultipleSelKeyComboBox.Items" xml:space="preserve">
     <value>Strg</value>
@@ -234,7 +234,7 @@ benutzten Dateien</value>
     <value>STRG</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Mehrfach Auswahl Taste</value>
+    <value>Mehrfach Auswahltaste</value>
   </data>
   <data name="mouseZoomCenteredCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 17</value>
@@ -249,13 +249,14 @@ benutzten Dateien</value>
     <value>148, 27</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Mausrad Vergrößerungsgeschwindigkeit</value>
+    <value>Mausrad Vergrößerungstempo</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Sprache</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Wenn die Sprache geändert wird, muss die Anwendung neu gestartet werden um die Änderung zu aktivieren.</value>
+    <value>Wenn die Sprache geändert wird, muss die Anwendung neu gestartet werden
+um die Änderung auszuführen.</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Sprache</value>
@@ -342,13 +343,13 @@ benutzten Dateien</value>
     <value>Farbschema</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
-    <value>Um Tastenkürzel zu entfernen, wähle sie in der Liste aus und klicke dann auf diese Taste.</value>
+    <value>Um Tastenkürzel zu entfernen, wähle sie in der Liste aus und drücke dann auf diese Taste.</value>
   </data>
   <data name="labelHintAdd.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 148</value>
   </data>
   <data name="labelHintAdd.Text" xml:space="preserve">
-    <value>Um ein Tastenkürzel  hinzuzufügen, bearbeite die Felder am Ende der Liste und klicke dann auf diese Taste.</value>
+    <value>Um Tastenkürzel  hinzuzufügen, bearbeite die Auswahlfelder unter der Liste und drücke dann auf diese Taste.</value>
   </data>
   <data name="buttonDelete.Text" xml:space="preserve">
     <value>Tastenkürzel entfernen</value>

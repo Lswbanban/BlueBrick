@@ -117,1782 +117,782 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="clearRecentFilesButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 65</value>
+  <data name="comboBoxKey.Items52" xml:space="preserve">
+    <value>F1</value>
   </data>
-  <data name="clearRecentFilesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 28</value>
+  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;okButton.Name" xml:space="preserve">
+    <value>okButton</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="clearRecentFilesButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="clearRecentFilesButton.Text" xml:space="preserve">
-    <value>Clear Recent Files List</value>
+  <data name="okButton.Text" xml:space="preserve">
+    <value>Ok</value>
   </data>
-  <data name="&gt;&gt;clearRecentFilesButton.Name" xml:space="preserve">
-    <value>clearRecentFilesButton</value>
-  </data>
-  <data name="&gt;&gt;clearRecentFilesButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;clearRecentFilesButton.Parent" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;clearRecentFilesButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="RecentFilesNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 24</value>
-  </data>
-  <data name="RecentFilesNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 20</value>
-  </data>
-  <data name="RecentFilesNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;RecentFilesNumericUpDown.Name" xml:space="preserve">
-    <value>RecentFilesNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;RecentFilesNumericUpDown.Type" xml:space="preserve">
+  <data name="&gt;&gt;areaTransparencyNumericUpDown.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;RecentFilesNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox10</value>
+  <data name="mouseZoomCenteredCheckBox.Text" xml:space="preserve">
+    <value>Zoom centered on pointer</value>
   </data>
-  <data name="&gt;&gt;RecentFilesNumericUpDown.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;areaTransparencyNumericUpDown.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label23.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
+    <value>Add a Brick Layer on new map</value>
   </data>
-  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 18</value>
-  </data>
-  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 29</value>
-  </data>
-  <data name="label23.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label23.Text" xml:space="preserve">
-    <value>Number of Recent Files</value>
-  </data>
-  <data name="label23.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label23.Name" xml:space="preserve">
-    <value>label23</value>
-  </data>
-  <data name="&gt;&gt;label23.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label23.Parent" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="groupBox10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 284</value>
-  </data>
-  <data name="groupBox10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 106</value>
-  </data>
-  <data name="groupBox10.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Recent Files</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.Name" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.Parent" xml:space="preserve">
-    <value>generalTabPage</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="optimComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 23</value>
-  </data>
-  <data name="optimComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 21</value>
-  </data>
-  <data name="optimComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;optimComboBox.Name" xml:space="preserve">
-    <value>optimComboBox</value>
-  </data>
-  <data name="&gt;&gt;optimComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;optimComboBox.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;optimComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 18</value>
-  </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 29</value>
-  </data>
-  <data name="label11.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Memory/Speed balance</value>
-  </data>
-  <data name="label11.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label11.Name" xml:space="preserve">
-    <value>label11</value>
-  </data>
-  <data name="&gt;&gt;label11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="groupBox8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>294, 335</value>
-  </data>
-  <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 55</value>
-  </data>
-  <data name="groupBox8.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Performance</value>
-  </data>
-  <data name="&gt;&gt;groupBox8.Name" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;groupBox8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox8.Parent" xml:space="preserve">
-    <value>generalTabPage</value>
-  </data>
-  <data name="&gt;&gt;groupBox8.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 89</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 50</value>
-  </data>
-  <data name="label10.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>The more "undo" steps you want to record, the more memory the application will use.</value>
-  </data>
-  <data name="label10.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Author</value>
   </data>
   <data name="&gt;&gt;label10.Name" xml:space="preserve">
     <value>label10</value>
   </data>
-  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+  <data name="&gt;&gt;mouseMultipleSelKeyComboBox.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBoxKey.Items68" xml:space="preserve">
+    <value>Right Arrow</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 65</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 20</value>
-  </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Number of Undo displayed</value>
-  </data>
-  <data name="label9.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="undoDisplayedNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 65</value>
-  </data>
-  <data name="undoDisplayedNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 20</value>
-  </data>
-  <data name="undoDisplayedNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
   </data>
   <data name="&gt;&gt;undoDisplayedNumericUpDown.Name" xml:space="preserve">
     <value>undoDisplayedNumericUpDown</value>
   </data>
-  <data name="&gt;&gt;undoDisplayedNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;fontDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FontDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;undoDisplayedNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+  <data name="mouseMultipleSelKeyComboBox.Items1" xml:space="preserve">
+    <value>ALT</value>
   </data>
-  <data name="&gt;&gt;undoDisplayedNumericUpDown.ZOrder" xml:space="preserve">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="showTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>84, 137</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Default Grid Size (in studs)</value>
+  </data>
+  <data name="samplePictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>425, 33</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 17</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 32</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 20</value>
-  </data>
-  <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Number of Undo recorded</value>
-  </data>
-  <data name="label8.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
-  </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="undoRecordedNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 32</value>
-  </data>
-  <data name="undoRecordedNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 20</value>
-  </data>
-  <data name="undoRecordedNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;undoRecordedNumericUpDown.Name" xml:space="preserve">
-    <value>undoRecordedNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;undoRecordedNumericUpDown.Type" xml:space="preserve">
+  <data name="&gt;&gt;numericUpDown1.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;undoRecordedNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+  <data name="&gt;&gt;comboBoxAction.Parent" xml:space="preserve">
+    <value>shortcutKeysTabPage</value>
   </data>
-  <data name="&gt;&gt;undoRecordedNumericUpDown.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;comboBoxAction.Name" xml:space="preserve">
+    <value>comboBoxAction</value>
+  </data>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="comboBoxKey.Items36" xml:space="preserve">
+    <value>Space</value>
+  </data>
+  <data name="label23.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
     <value>294, 175</value>
   </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 150</value>
-  </data>
-  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Undo/Redo</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
-    <value>generalTabPage</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;mouseMultipleSelKeyComboBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="lugComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 104</value>
+  <data name="displayFreeConnexionPointCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
   </data>
-  <data name="lugComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 21</value>
+  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
-  <data name="lugComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;lugComboBox.Name" xml:space="preserve">
-    <value>lugComboBox</value>
-  </data>
-  <data name="&gt;&gt;lugComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lugComboBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;lugComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="showTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 137</value>
-  </data>
-  <data name="showTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 20</value>
-  </data>
-  <data name="showTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;showTextBox.Name" xml:space="preserve">
-    <value>showTextBox</value>
-  </data>
-  <data name="&gt;&gt;showTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;showTextBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;showTextBox.ZOrder" xml:space="preserve">
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 137</value>
+  <data name="comboBoxPartNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 21</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 17</value>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="label7.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="&gt;&gt;Key.Name" xml:space="preserve">
+    <value>Key</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Show</value>
+  <data name="&gt;&gt;groupBox7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Number of Undo displayed</value>
+  </data>
+  <data name="comboBoxConnexion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 21</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;colorSchemeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="backgroundColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>379, 48</value>
+  </data>
+  <data name="colorSchemeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 109</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="displayFreeConnexionPointCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 22</value>
+  </data>
+  <data name="&gt;&gt;defaultFontButton.Name" xml:space="preserve">
+    <value>defaultFontButton</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
+  </data>
+  <data name="restoreDefaultButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 439</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;optimComboBox.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="defaultFontColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="comboBoxKey.Items22" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Name" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="label6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="label7.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 21</value>
   </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+  <data name="buttonAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>476, 367</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>592, 471</value>
+  </data>
+  <data name="shortcutKeysTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="colorSchemeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="comboBoxKey.Items46" xml:space="preserve">
+    <value>Num Pad 9</value>
+  </data>
+  <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 17</value>
+  </data>
+  <data name="addGridLayerCheckBox.Text" xml:space="preserve">
+    <value>Add a Grid Layer on new map</value>
+  </data>
+  <data name="showTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 20</value>
+  </data>
+  <data name="&gt;&gt;clearRecentFilesButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labelHintAdd.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomLeft</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+    <value>generalTabPage</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label17.Name" xml:space="preserve">
+    <value>label17</value>
+  </data>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 439</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.Parent" xml:space="preserve">
+    <value>shortcutKeysTabPage</value>
+  </data>
+  <data name="&gt;&gt;label28.Parent" xml:space="preserve">
+    <value>groupBox9</value>
+  </data>
+  <data name="label12.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;restoreDefaultButton.Name" xml:space="preserve">
+    <value>restoreDefaultButton</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Key.Width" type="System.Int32, mscorlib">
+    <value>76</value>
+  </data>
+  <data name="&gt;&gt;comboBoxPartNum.Parent" xml:space="preserve">
+    <value>shortcutKeysTabPage</value>
+  </data>
+  <data name="defaultFontColorPictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="comboBoxKey.Items31" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>227, 95</value>
+  </data>
+  <data name="subGridColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>GlobalOptionsForm</value>
+  </data>
+  <data name="comboBoxAction.Items6" xml:space="preserve">
+    <value>Move Selection Up</value>
+  </data>
+  <data name="areaTransparencyNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>210, 18</value>
+  </data>
+  <data name="comboBoxKey.Items63" xml:space="preserve">
+    <value>F12</value>
+  </data>
+  <data name="comboBoxKey.Items6" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="&gt;&gt;RecentFilesNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label27.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="gridSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>211, 21</value>
+  </data>
+  <data name="&gt;&gt;appearanceTabPage.Parent" xml:space="preserve">
+    <value>optionsTabControl</value>
+  </data>
+  <data name="PartNumber.Text" xml:space="preserve">
+    <value>Part Number</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="undoDisplayedNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 20</value>
+  </data>
+  <data name="gridColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>379, 71</value>
+  </data>
+  <data name="label19.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;listViewShortcutKeys.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>227, 48</value>
+  </data>
+  <data name="mouseMultipleSelKeyComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 88</value>
+  </data>
+  <data name="&gt;&gt;lugComboBox.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;areaCellSizeNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Action.Name" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="&gt;&gt;label14.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="generalTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
-  <data name="authorTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 73</value>
+  <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>505, 439</value>
   </data>
-  <data name="authorTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 20</value>
+  <data name="comboBoxKey.Items39" xml:space="preserve">
+    <value>Num Pad 2</value>
   </data>
-  <data name="authorTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="&gt;&gt;gridSizeNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox7</value>
   </data>
-  <data name="&gt;&gt;authorTextBox.Name" xml:space="preserve">
-    <value>authorTextBox</value>
-  </data>
-  <data name="&gt;&gt;authorTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;authorTextBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;authorTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 104</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 17</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>LUG/LTC</value>
-  </data>
-  <data name="label6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="defaultFontColorLabel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 74</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 17</value>
-  </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Author</value>
-  </data>
-  <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="addBrickLayerCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="addBrickLayerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 46</value>
-  </data>
-  <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 17</value>
-  </data>
-  <data name="addBrickLayerCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
-    <value>Add a Brick Layer on new map</value>
-  </data>
-  <data name="&gt;&gt;addBrickLayerCheckBox.Name" xml:space="preserve">
-    <value>addBrickLayerCheckBox</value>
-  </data>
-  <data name="&gt;&gt;addBrickLayerCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;addBrickLayerCheckBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;addBrickLayerCheckBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="addGridLayerCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="addGridLayerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 22</value>
-  </data>
-  <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 17</value>
-  </data>
-  <data name="addGridLayerCheckBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;label27.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="addGridLayerCheckBox.Text" xml:space="preserve">
-    <value>Add a Grid Layer on new map</value>
+  <data name="comboBoxKey.Items72" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="&gt;&gt;addGridLayerCheckBox.Name" xml:space="preserve">
-    <value>addGridLayerCheckBox</value>
+  <data name="&gt;&gt;languageComboBox.Name" xml:space="preserve">
+    <value>languageComboBox</value>
   </data>
-  <data name="&gt;&gt;addGridLayerCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;addGridLayerCheckBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;addGridLayerCheckBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 113</value>
-  </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 165</value>
-  </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>New map default configuration</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>generalTabPage</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="mouseDuplicateSelKeyComboBox.Items" xml:space="preserve">
-    <value>CTRL</value>
-  </data>
-  <data name="mouseDuplicateSelKeyComboBox.Items1" xml:space="preserve">
-    <value>ALT</value>
-  </data>
-  <data name="mouseDuplicateSelKeyComboBox.Items2" xml:space="preserve">
-    <value>SHIFT</value>
-  </data>
-  <data name="mouseDuplicateSelKeyComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 124</value>
-  </data>
-  <data name="mouseDuplicateSelKeyComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 21</value>
-  </data>
-  <data name="mouseDuplicateSelKeyComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="mouseDuplicateSelKeyComboBox.Text" xml:space="preserve">
-    <value>ALT</value>
-  </data>
-  <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.Name" xml:space="preserve">
-    <value>mouseDuplicateSelKeyComboBox</value>
-  </data>
-  <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 124</value>
-  </data>
-  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 18</value>
-  </data>
-  <data name="label14.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Duplicate selection Key</value>
-  </data>
-  <data name="label14.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label14.Name" xml:space="preserve">
-    <value>label14</value>
-  </data>
-  <data name="&gt;&gt;label14.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="mouseMultipleSelKeyComboBox.Items" xml:space="preserve">
-    <value>CTRL</value>
-  </data>
-  <data name="mouseMultipleSelKeyComboBox.Items1" xml:space="preserve">
-    <value>ALT</value>
-  </data>
-  <data name="mouseMultipleSelKeyComboBox.Items2" xml:space="preserve">
-    <value>SHIFT</value>
-  </data>
-  <data name="mouseMultipleSelKeyComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 88</value>
-  </data>
-  <data name="mouseMultipleSelKeyComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 21</value>
-  </data>
-  <data name="mouseMultipleSelKeyComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="mouseMultipleSelKeyComboBox.Text" xml:space="preserve">
-    <value>CTRL</value>
-  </data>
-  <data name="&gt;&gt;mouseMultipleSelKeyComboBox.Name" xml:space="preserve">
-    <value>mouseMultipleSelKeyComboBox</value>
-  </data>
-  <data name="&gt;&gt;mouseMultipleSelKeyComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mouseMultipleSelKeyComboBox.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;mouseMultipleSelKeyComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 88</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 18</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Multiple selection Key</value>
-  </data>
-  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="mouseZoomCenteredCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mouseZoomCenteredCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 25</value>
-  </data>
-  <data name="mouseZoomCenteredCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 17</value>
-  </data>
-  <data name="mouseZoomCenteredCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="mouseZoomCenteredCheckBox.Text" xml:space="preserve">
-    <value>Zoom centered on pointer</value>
-  </data>
-  <data name="&gt;&gt;mouseZoomCenteredCheckBox.Name" xml:space="preserve">
-    <value>mouseZoomCenteredCheckBox</value>
-  </data>
-  <data name="&gt;&gt;mouseZoomCenteredCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mouseZoomCenteredCheckBox.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;mouseZoomCenteredCheckBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 52</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 20</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Wheel Zoom Speed</value>
-  </data>
-  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="mouseZoomSpeedNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 52</value>
-  </data>
-  <data name="mouseZoomSpeedNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
-  </data>
-  <data name="mouseZoomSpeedNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;mouseZoomSpeedNumericUpDown.Name" xml:space="preserve">
-    <value>mouseZoomSpeedNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;mouseZoomSpeedNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mouseZoomSpeedNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;mouseZoomSpeedNumericUpDown.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>294, 6</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 163</value>
-  </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Mouse</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>generalTabPage</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 43</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 46</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>If you change the language you will need to restart the application for the change to take effect.</value>
-  </data>
-  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 19</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 23</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="languageComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>83, 19</value>
-  </data>
-  <data name="languageComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 21</value>
-  </data>
-  <data name="languageComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;languageComboBox.Name" xml:space="preserve">
-    <value>languageComboBox</value>
-  </data>
-  <data name="&gt;&gt;languageComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;languageComboBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;languageComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 6</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 100</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>generalTabPage</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="generalTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="generalTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="generalTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>584, 405</value>
-  </data>
-  <data name="generalTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="generalTabPage.Text" xml:space="preserve">
-    <value>General</value>
-  </data>
-  <data name="&gt;&gt;generalTabPage.Name" xml:space="preserve">
-    <value>generalTabPage</value>
-  </data>
-  <data name="&gt;&gt;generalTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;generalTabPage.Parent" xml:space="preserve">
-    <value>optionsTabControl</value>
-  </data>
-  <data name="&gt;&gt;generalTabPage.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label27.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 47</value>
-  </data>
-  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 19</value>
-  </data>
-  <data name="label27.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="label27.Text" xml:space="preserve">
-    <value>Default area cell size (in studs)</value>
-  </data>
-  <data name="label27.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label27.Name" xml:space="preserve">
-    <value>label27</value>
-  </data>
-  <data name="&gt;&gt;label27.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label27.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;label27.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="areaCellSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>210, 47</value>
-  </data>
-  <data name="areaCellSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
-  </data>
-  <data name="areaCellSizeNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;areaCellSizeNumericUpDown.Name" xml:space="preserve">
-    <value>areaCellSizeNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;areaCellSizeNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;areaCellSizeNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;areaCellSizeNumericUpDown.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label28.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 19</value>
-  </data>
-  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 20</value>
-  </data>
-  <data name="label28.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label28.Text" xml:space="preserve">
-    <value>Default Transparency (in %)</value>
-  </data>
-  <data name="label28.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label28.Name" xml:space="preserve">
-    <value>label28</value>
-  </data>
-  <data name="&gt;&gt;label28.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label28.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;label28.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="areaTransparencyNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>210, 18</value>
-  </data>
-  <data name="areaTransparencyNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
-  </data>
-  <data name="areaTransparencyNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;areaTransparencyNumericUpDown.Name" xml:space="preserve">
-    <value>areaTransparencyNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;areaTransparencyNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;areaTransparencyNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;areaTransparencyNumericUpDown.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="groupBox9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 247</value>
-  </data>
-  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 78</value>
-  </data>
-  <data name="groupBox9.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Default Area Appearance</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Name" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Parent" xml:space="preserve">
-    <value>appearanceTabPage</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 49</value>
-  </data>
-  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 20</value>
-  </data>
-  <data name="label22.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="label22.Text" xml:space="preserve">
-    <value>Default Number of Subdivisions</value>
-  </data>
-  <data name="label22.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label22.Name" xml:space="preserve">
-    <value>label22</value>
-  </data>
-  <data name="&gt;&gt;label22.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label22.Parent" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="gridSubdivisionNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 49</value>
-  </data>
-  <data name="gridSubdivisionNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
-  </data>
-  <data name="gridSubdivisionNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;gridSubdivisionNumericUpDown.Name" xml:space="preserve">
-    <value>gridSubdivisionNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;gridSubdivisionNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gridSubdivisionNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;gridSubdivisionNumericUpDown.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 21</value>
-  </data>
-  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 17</value>
-  </data>
-  <data name="label21.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Default Grid Size (in studs)</value>
-  </data>
-  <data name="label21.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label21.Name" xml:space="preserve">
-    <value>label21</value>
-  </data>
-  <data name="&gt;&gt;label21.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label21.Parent" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="gridSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 21</value>
-  </data>
-  <data name="gridSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
-  </data>
-  <data name="gridSizeNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;gridSizeNumericUpDown.Name" xml:space="preserve">
-    <value>gridSizeNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;gridSizeNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gridSizeNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;gridSizeNumericUpDown.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 160</value>
-  </data>
-  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 81</value>
-  </data>
-  <data name="groupBox7.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Default Grid Size</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.Name" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="comboBoxKey.Items4" xml:space="preserve">
+    <value>E</value>
   </data>
   <data name="&gt;&gt;groupBox7.Parent" xml:space="preserve">
     <value>appearanceTabPage</value>
   </data>
-  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="areaCellSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>210, 47</value>
   </data>
-  <data name="defaultFontNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 77</value>
-  </data>
-  <data name="defaultFontNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 70</value>
-  </data>
-  <data name="defaultFontNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="defaultFontNameLabel.Text" xml:space="preserve">
-    <value>Font name</value>
-  </data>
-  <data name="defaultFontNameLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;defaultFontNameLabel.Name" xml:space="preserve">
-    <value>defaultFontNameLabel</value>
-  </data>
-  <data name="&gt;&gt;defaultFontNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;defaultFontNameLabel.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;defaultFontNameLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="defaultFontColorLabel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="defaultFontColorLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 41</value>
-  </data>
-  <data name="defaultFontColorLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
-  </data>
-  <data name="defaultFontColorLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="defaultFontColorLabel.Text" xml:space="preserve">
-    <value>Color</value>
-  </data>
-  <data name="defaultFontColorLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;defaultFontColorLabel.Name" xml:space="preserve">
-    <value>defaultFontColorLabel</value>
-  </data>
-  <data name="&gt;&gt;defaultFontColorLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;defaultFontColorLabel.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;defaultFontColorLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="defaultFontColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>245, 40</value>
-  </data>
-  <data name="defaultFontColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="defaultFontColorPictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;defaultFontColorPictureBox.Name" xml:space="preserve">
-    <value>defaultFontColorPictureBox</value>
-  </data>
-  <data name="&gt;&gt;defaultFontColorPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;defaultFontColorPictureBox.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;defaultFontColorPictureBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="defaultFontButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>42, 35</value>
-  </data>
-  <data name="defaultFontButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 23</value>
-  </data>
-  <data name="defaultFontButton.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="defaultFontButton.Text" xml:space="preserve">
-    <value>Change Font</value>
-  </data>
-  <data name="&gt;&gt;defaultFontButton.Name" xml:space="preserve">
-    <value>defaultFontButton</value>
-  </data>
-  <data name="&gt;&gt;defaultFontButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;defaultFontButton.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;defaultFontButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 159</value>
-  </data>
-  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>286, 166</value>
-  </data>
-  <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Default Text Format</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.Parent" xml:space="preserve">
-    <value>appearanceTabPage</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 22</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 17</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
-    <value>Display Free Connection Points</value>
-  </data>
-  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.Name" xml:space="preserve">
-    <value>displayFreeConnexionPointCheckBox</value>
-  </data>
-  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label20.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 16</value>
-  </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 13</value>
-  </data>
-  <data name="label20.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Preview</value>
-  </data>
-  <data name="&gt;&gt;label20.Name" xml:space="preserve">
-    <value>label20</value>
-  </data>
-  <data name="&gt;&gt;label20.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label20.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="samplePictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>425, 33</value>
-  </data>
-  <data name="samplePictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 90</value>
-  </data>
-  <data name="samplePictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;samplePictureBox.Name" xml:space="preserve">
-    <value>samplePictureBox</value>
-  </data>
-  <data name="&gt;&gt;samplePictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;samplePictureBox.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;samplePictureBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="label19.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 95</value>
-  </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 28</value>
-  </data>
-  <data name="label19.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Default sub-grid Color</value>
-  </data>
-  <data name="label19.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopRight</value>
-  </data>
-  <data name="&gt;&gt;label19.Name" xml:space="preserve">
-    <value>label19</value>
-  </data>
-  <data name="&gt;&gt;label19.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="subGridColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>379, 95</value>
-  </data>
-  <data name="subGridColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="subGridColorPictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;subGridColorPictureBox.Name" xml:space="preserve">
-    <value>subGridColorPictureBox</value>
-  </data>
-  <data name="&gt;&gt;subGridColorPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;subGridColorPictureBox.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;subGridColorPictureBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;undoRecordedNumericUpDown.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="label18.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 71</value>
-  </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 13</value>
-  </data>
-  <data name="label18.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Default Grid Color</value>
-  </data>
-  <data name="label18.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label18.Name" xml:space="preserve">
-    <value>label18</value>
-  </data>
-  <data name="&gt;&gt;label18.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="gridColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>379, 71</value>
-  </data>
-  <data name="gridColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="gridColorPictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;gridColorPictureBox.Name" xml:space="preserve">
-    <value>gridColorPictureBox</value>
-  </data>
-  <data name="&gt;&gt;gridColorPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gridColorPictureBox.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;gridColorPictureBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="label17.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 48</value>
-  </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 13</value>
-  </data>
-  <data name="label17.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>Background Color</value>
-  </data>
-  <data name="label17.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label17.Name" xml:space="preserve">
-    <value>label17</value>
-  </data>
-  <data name="&gt;&gt;label17.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="backgroundColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>379, 48</value>
-  </data>
-  <data name="backgroundColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="backgroundColorPictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;backgroundColorPictureBox.Name" xml:space="preserve">
-    <value>backgroundColorPictureBox</value>
-  </data>
-  <data name="&gt;&gt;backgroundColorPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;backgroundColorPictureBox.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;backgroundColorPictureBox.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 43</value>
-  </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 48</value>
-  </data>
-  <data name="label16.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Choose a predefined color scheme or customize your own colors.</value>
-  </data>
-  <data name="label16.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;label16.Name" xml:space="preserve">
-    <value>label16</value>
-  </data>
-  <data name="&gt;&gt;label16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="label15.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 93</value>
-  </data>
-  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 13</value>
-  </data>
-  <data name="label15.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>Color Scheme</value>
-  </data>
-  <data name="&gt;&gt;label15.Name" xml:space="preserve">
-    <value>label15</value>
+  <data name="groupBox8.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;label15.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
-    <value>groupBox5</value>
+  <data name="&gt;&gt;mouseZoomCenteredCheckBox.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
-  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="colorSchemeComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 109</value>
-  </data>
-  <data name="colorSchemeComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 21</value>
-  </data>
-  <data name="colorSchemeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;colorSchemeComboBox.Name" xml:space="preserve">
-    <value>colorSchemeComboBox</value>
-  </data>
-  <data name="&gt;&gt;colorSchemeComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;colorSchemeComboBox.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;colorSchemeComboBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 7</value>
   </data>
-  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>567, 146</value>
-  </data>
-  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Colors</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
-    <value>appearanceTabPage</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="appearanceTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="appearanceTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="appearanceTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>584, 405</value>
-  </data>
-  <data name="appearanceTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
-    <value>Appearance</value>
-  </data>
-  <data name="&gt;&gt;appearanceTabPage.Name" xml:space="preserve">
-    <value>appearanceTabPage</value>
-  </data>
-  <data name="&gt;&gt;appearanceTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;appearanceTabPage.Parent" xml:space="preserve">
-    <value>optionsTabControl</value>
-  </data>
-  <data name="&gt;&gt;appearanceTabPage.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="comboBoxConnexion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>392, 369</value>
-  </data>
-  <data name="comboBoxConnexion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 21</value>
-  </data>
-  <data name="comboBoxConnexion.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;comboBoxConnexion.Name" xml:space="preserve">
-    <value>comboBoxConnexion</value>
-  </data>
-  <data name="&gt;&gt;comboBoxConnexion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comboBoxConnexion.Parent" xml:space="preserve">
-    <value>shortcutKeysTabPage</value>
-  </data>
-  <data name="&gt;&gt;comboBoxConnexion.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="comboBoxPartNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 369</value>
-  </data>
-  <data name="comboBoxPartNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 21</value>
-  </data>
-  <data name="comboBoxPartNum.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPartNum.Name" xml:space="preserve">
-    <value>comboBoxPartNum</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPartNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPartNum.Parent" xml:space="preserve">
-    <value>shortcutKeysTabPage</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPartNum.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>476, 30</value>
-  </data>
-  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 120</value>
-  </data>
-  <data name="label13.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>To remove shortcut keys, select them in the list and then click on this button:</value>
-  </data>
-  <data name="label13.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomLeft</value>
-  </data>
-  <data name="&gt;&gt;label13.Name" xml:space="preserve">
-    <value>label13</value>
-  </data>
-  <data name="&gt;&gt;label13.Type" xml:space="preserve">
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
-    <value>shortcutKeysTabPage</value>
+  <data name="displayFreeConnexionPointCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;gridColorPictureBox.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="label12.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;addGridLayerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.Name" xml:space="preserve">
+    <value>displayFreeConnexionPointCheckBox</value>
+  </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 18</value>
+  </data>
+  <data name="mouseMultipleSelKeyComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 17</value>
+  </data>
+  <data name="&gt;&gt;clearRecentFilesButton.Parent" xml:space="preserve">
+    <value>groupBox10</value>
+  </data>
+  <data name="comboBoxKey.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 369</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 52</value>
+  </data>
+  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="comboBoxKey.Items41" xml:space="preserve">
+    <value>Num Pad 4</value>
+  </data>
+  <data name="mouseZoomCenteredCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="labelHintAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>476, 212</value>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="labelHintAdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 152</value>
+  <data name="&gt;&gt;gridColorPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="labelHintAdd.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 50</value>
+  </data>
+  <data name="comboBoxKey.Items65" xml:space="preserve">
+    <value>Backspace</value>
+  </data>
+  <data name="&gt;&gt;optionsTabControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;samplePictureBox.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 18</value>
+  </data>
+  <data name="comboBoxKey.Items25" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="&gt;&gt;defaultFontNameLabel.Name" xml:space="preserve">
+    <value>defaultFontNameLabel</value>
+  </data>
+  <data name="&gt;&gt;lugComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Performance</value>
+  </data>
+  <data name="label21.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="labelHintAdd.Text" xml:space="preserve">
     <value>To add a shortcut key, adjust the comboboxes at the bottom of the list and then click on this button:</value>
   </data>
-  <data name="labelHintAdd.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomLeft</value>
+  <data name="comboBoxKey.Items17" xml:space="preserve">
+    <value>R</value>
   </data>
-  <data name="&gt;&gt;labelHintAdd.Name" xml:space="preserve">
-    <value>labelHintAdd</value>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
   </data>
-  <data name="&gt;&gt;labelHintAdd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label13.Text" xml:space="preserve">
+    <value>To remove shortcut keys, select them in the list and then click on this button:</value>
   </data>
-  <data name="&gt;&gt;labelHintAdd.Parent" xml:space="preserve">
-    <value>shortcutKeysTabPage</value>
+  <data name="comboBoxKey.Items49" xml:space="preserve">
+    <value>Num Pad -</value>
   </data>
-  <data name="&gt;&gt;labelHintAdd.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="label13.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="buttonDelete.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;groupBox10.Name" xml:space="preserve">
+    <value>groupBox10</value>
   </data>
-  <data name="buttonDelete.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>476, 153</value>
-  </data>
-  <data name="buttonDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 40</value>
-  </data>
-  <data name="buttonDelete.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="buttonDelete.Text" xml:space="preserve">
-    <value>Remove
-Shortcut</value>
-  </data>
-  <data name="&gt;&gt;buttonDelete.Name" xml:space="preserve">
-    <value>buttonDelete</value>
-  </data>
-  <data name="&gt;&gt;buttonDelete.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonDelete.Parent" xml:space="preserve">
-    <value>shortcutKeysTabPage</value>
-  </data>
-  <data name="&gt;&gt;buttonDelete.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="buttonAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>476, 367</value>
+  <data name="&gt;&gt;defaultFontColorPictureBox.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="buttonAdd.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
   </data>
+  <data name="&gt;&gt;label18.Name" xml:space="preserve">
+    <value>label18</value>
+  </data>
+  <data name="languageComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 21</value>
+  </data>
+  <data name="&gt;&gt;gridSizeNumericUpDown.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;optionsTabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gridSizeNumericUpDown.Name" xml:space="preserve">
+    <value>gridSizeNumericUpDown</value>
+  </data>
+  <data name="comboBoxKey.Items9" xml:space="preserve">
+    <value>J</value>
+  </data>
+  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Default Area Appearance</value>
+  </data>
+  <data name="label15.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="buttonAdd.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="buttonAdd.Text" xml:space="preserve">
-    <value>Add Shortcut</value>
+  <data name="mouseZoomCenteredCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 25</value>
   </data>
-  <data name="&gt;&gt;buttonAdd.Name" xml:space="preserve">
-    <value>buttonAdd</value>
+  <data name="comboBoxKey.Items34" xml:space="preserve">
+    <value>8</value>
   </data>
-  <data name="&gt;&gt;buttonAdd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 28</value>
   </data>
-  <data name="&gt;&gt;buttonAdd.Parent" xml:space="preserve">
-    <value>shortcutKeysTabPage</value>
+  <data name="comboBoxKey.Items66" xml:space="preserve">
+    <value>Enter</value>
   </data>
-  <data name="&gt;&gt;buttonAdd.ZOrder" xml:space="preserve">
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 32</value>
+  </data>
+  <data name="&gt;&gt;label19.Name" xml:space="preserve">
+    <value>label19</value>
+  </data>
+  <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 55</value>
+  </data>
+  <data name="&gt;&gt;areaTransparencyNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox9</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonDelete.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;labelHintAdd.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox10.Parent" xml:space="preserve">
+    <value>generalTabPage</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 43</value>
+  </data>
+  <data name="label18.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Default Number of Subdivisions</value>
+  </data>
+  <data name="&gt;&gt;mouseZoomSpeedNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RecentFilesNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 24</value>
+  </data>
+  <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;colorDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;appearanceTabPage.Name" xml:space="preserve">
+    <value>appearanceTabPage</value>
+  </data>
+  <data name="&gt;&gt;undoDisplayedNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBoxPartNum.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBox9.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="comboBoxAction.Items" xml:space="preserve">
-    <value>Add Part</value>
+  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 78</value>
   </data>
-  <data name="comboBoxAction.Items1" xml:space="preserve">
-    <value>Delete Selected Parts</value>
+  <data name="comboBoxKey.Items75" xml:space="preserve">
+    <value>Page Up</value>
+  </data>
+  <data name="label23.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RecentFilesNumericUpDown.Name" xml:space="preserve">
+    <value>RecentFilesNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;areaCellSizeNumericUpDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 29</value>
+  </data>
+  <data name="comboBoxKey.Items59" xml:space="preserve">
+    <value>F8</value>
+  </data>
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 17</value>
+  </data>
+  <data name="&gt;&gt;samplePictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label19.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;label28.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="gridColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;restoreDefaultButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 120</value>
+  </data>
+  <data name="&gt;&gt;optimComboBox.Name" xml:space="preserve">
+    <value>optimComboBox</value>
+  </data>
+  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 29</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 113</value>
+  </data>
+  <data name="&gt;&gt;defaultFontColorLabel.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="Action.Width" type="System.Int32, mscorlib">
+    <value>164</value>
+  </data>
+  <data name="shortcutKeysTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="comboBoxKey.Items12" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="&gt;&gt;samplePictureBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;comboBoxConnexion.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 13</value>
+  </data>
+  <data name="label17.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;defaultFontButton.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="comboBoxKey.Items44" xml:space="preserve">
+    <value>Num Pad 7</value>
+  </data>
+  <data name="addBrickLayerCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
+    <value>shortcutKeysTabPage</value>
+  </data>
+  <data name="&gt;&gt;defaultFontColorPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;restoreDefaultButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;backgroundColorPictureBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;label17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;subGridColorPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 13</value>
   </data>
   <data name="comboBoxAction.Items2" xml:space="preserve">
     <value>Rotate Selection Left</value>
@@ -1900,521 +900,714 @@ Shortcut</value>
   <data name="comboBoxAction.Items3" xml:space="preserve">
     <value>Rotate Selection Right</value>
   </data>
-  <data name="comboBoxAction.Items4" xml:space="preserve">
-    <value>Move Selection Left</value>
+  <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="comboBoxAction.Items5" xml:space="preserve">
-    <value>Move Selection Right</value>
+  <data name="comboBoxAction.Items1" xml:space="preserve">
+    <value>Delete Selected Parts</value>
   </data>
-  <data name="comboBoxAction.Items6" xml:space="preserve">
-    <value>Move Selection Up</value>
+  <data name="comboBoxPartNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 369</value>
   </data>
   <data name="comboBoxAction.Items7" xml:space="preserve">
     <value>Move Selection Down</value>
   </data>
+  <data name="comboBoxAction.Items4" xml:space="preserve">
+    <value>Move Selection Left</value>
+  </data>
+  <data name="defaultFontButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 23</value>
+  </data>
+  <data name="&gt;&gt;gridSizeNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="comboBoxAction.Items8" xml:space="preserve">
     <value>Change Active Connection</value>
   </data>
-  <data name="comboBoxAction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 369</value>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 43</value>
   </data>
-  <data name="comboBoxAction.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 21</value>
+  <data name="buttonDelete.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
-  <data name="comboBoxAction.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="mouseZoomSpeedNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 52</value>
   </data>
-  <data name="&gt;&gt;comboBoxAction.Name" xml:space="preserve">
-    <value>comboBoxAction</value>
-  </data>
-  <data name="&gt;&gt;comboBoxAction.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comboBoxAction.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
     <value>shortcutKeysTabPage</value>
   </data>
-  <data name="&gt;&gt;comboBoxAction.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="comboBoxKey.Items" xml:space="preserve">
-    <value>A</value>
-  </data>
-  <data name="comboBoxKey.Items1" xml:space="preserve">
-    <value>B</value>
-  </data>
-  <data name="comboBoxKey.Items2" xml:space="preserve">
-    <value>C</value>
-  </data>
-  <data name="comboBoxKey.Items3" xml:space="preserve">
-    <value>D</value>
-  </data>
-  <data name="comboBoxKey.Items4" xml:space="preserve">
-    <value>E</value>
-  </data>
-  <data name="comboBoxKey.Items5" xml:space="preserve">
-    <value>F</value>
-  </data>
-  <data name="comboBoxKey.Items6" xml:space="preserve">
-    <value>G</value>
-  </data>
-  <data name="comboBoxKey.Items7" xml:space="preserve">
-    <value>H</value>
-  </data>
-  <data name="comboBoxKey.Items8" xml:space="preserve">
-    <value>I</value>
-  </data>
-  <data name="comboBoxKey.Items9" xml:space="preserve">
-    <value>J</value>
-  </data>
-  <data name="comboBoxKey.Items10" xml:space="preserve">
-    <value>K</value>
-  </data>
-  <data name="comboBoxKey.Items11" xml:space="preserve">
-    <value>L</value>
-  </data>
-  <data name="comboBoxKey.Items12" xml:space="preserve">
-    <value>M</value>
-  </data>
-  <data name="comboBoxKey.Items13" xml:space="preserve">
-    <value>N</value>
-  </data>
-  <data name="comboBoxKey.Items14" xml:space="preserve">
-    <value>O</value>
-  </data>
-  <data name="comboBoxKey.Items15" xml:space="preserve">
-    <value>P</value>
-  </data>
-  <data name="comboBoxKey.Items16" xml:space="preserve">
-    <value>Q</value>
-  </data>
-  <data name="comboBoxKey.Items17" xml:space="preserve">
-    <value>R</value>
-  </data>
-  <data name="comboBoxKey.Items18" xml:space="preserve">
-    <value>S</value>
-  </data>
-  <data name="comboBoxKey.Items19" xml:space="preserve">
-    <value>T</value>
-  </data>
-  <data name="comboBoxKey.Items20" xml:space="preserve">
-    <value>U</value>
-  </data>
-  <data name="comboBoxKey.Items21" xml:space="preserve">
-    <value>V</value>
-  </data>
-  <data name="comboBoxKey.Items22" xml:space="preserve">
-    <value>W</value>
-  </data>
-  <data name="comboBoxKey.Items23" xml:space="preserve">
-    <value>X</value>
-  </data>
-  <data name="comboBoxKey.Items24" xml:space="preserve">
-    <value>Y</value>
-  </data>
-  <data name="comboBoxKey.Items25" xml:space="preserve">
-    <value>Z</value>
-  </data>
-  <data name="comboBoxKey.Items26" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="comboBoxKey.Items27" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="comboBoxKey.Items28" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="comboBoxKey.Items29" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="comboBoxKey.Items30" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="comboBoxKey.Items31" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="comboBoxKey.Items32" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="comboBoxKey.Items33" xml:space="preserve">
+  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="comboBoxKey.Items34" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;labelHintAdd.Name" xml:space="preserve">
+    <value>labelHintAdd</value>
   </data>
-  <data name="comboBoxKey.Items35" xml:space="preserve">
-    <value>9</value>
+  <data name="defaultFontColorLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
   </data>
-  <data name="comboBoxKey.Items36" xml:space="preserve">
-    <value>Space</value>
-  </data>
-  <data name="comboBoxKey.Items37" xml:space="preserve">
-    <value>Num Pad 0</value>
-  </data>
-  <data name="comboBoxKey.Items38" xml:space="preserve">
-    <value>Num Pad 1</value>
-  </data>
-  <data name="comboBoxKey.Items39" xml:space="preserve">
-    <value>Num Pad 2</value>
-  </data>
-  <data name="comboBoxKey.Items40" xml:space="preserve">
-    <value>Num Pad 3</value>
-  </data>
-  <data name="comboBoxKey.Items41" xml:space="preserve">
-    <value>Num Pad 4</value>
-  </data>
-  <data name="comboBoxKey.Items42" xml:space="preserve">
-    <value>Num Pad 5</value>
-  </data>
-  <data name="comboBoxKey.Items43" xml:space="preserve">
-    <value>Num Pad 6</value>
-  </data>
-  <data name="comboBoxKey.Items44" xml:space="preserve">
-    <value>Num Pad 7</value>
-  </data>
-  <data name="comboBoxKey.Items45" xml:space="preserve">
-    <value>Num Pad 8</value>
-  </data>
-  <data name="comboBoxKey.Items46" xml:space="preserve">
-    <value>Num Pad 9</value>
-  </data>
-  <data name="comboBoxKey.Items47" xml:space="preserve">
-    <value>Num Pad /</value>
-  </data>
-  <data name="comboBoxKey.Items48" xml:space="preserve">
-    <value>Num Pad *</value>
-  </data>
-  <data name="comboBoxKey.Items49" xml:space="preserve">
-    <value>Num Pad -</value>
-  </data>
-  <data name="comboBoxKey.Items50" xml:space="preserve">
-    <value>Num Pad +</value>
-  </data>
-  <data name="comboBoxKey.Items51" xml:space="preserve">
-    <value>Num Pad .</value>
-  </data>
-  <data name="comboBoxKey.Items52" xml:space="preserve">
-    <value>F1</value>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 88</value>
   </data>
   <data name="comboBoxKey.Items53" xml:space="preserve">
     <value>F2</value>
   </data>
-  <data name="comboBoxKey.Items54" xml:space="preserve">
-    <value>F3</value>
-  </data>
-  <data name="comboBoxKey.Items55" xml:space="preserve">
-    <value>F4</value>
-  </data>
-  <data name="comboBoxKey.Items56" xml:space="preserve">
-    <value>F5</value>
-  </data>
-  <data name="comboBoxKey.Items57" xml:space="preserve">
-    <value>F6</value>
-  </data>
-  <data name="comboBoxKey.Items58" xml:space="preserve">
-    <value>F7</value>
-  </data>
-  <data name="comboBoxKey.Items59" xml:space="preserve">
-    <value>F8</value>
-  </data>
-  <data name="comboBoxKey.Items60" xml:space="preserve">
-    <value>F9</value>
-  </data>
-  <data name="comboBoxKey.Items61" xml:space="preserve">
-    <value>F10</value>
-  </data>
-  <data name="comboBoxKey.Items62" xml:space="preserve">
-    <value>F11</value>
-  </data>
-  <data name="comboBoxKey.Items63" xml:space="preserve">
-    <value>F12</value>
-  </data>
-  <data name="comboBoxKey.Items64" xml:space="preserve">
-    <value>Esc</value>
-  </data>
-  <data name="comboBoxKey.Items65" xml:space="preserve">
-    <value>Backspace</value>
-  </data>
-  <data name="comboBoxKey.Items66" xml:space="preserve">
-    <value>Enter</value>
-  </data>
-  <data name="comboBoxKey.Items67" xml:space="preserve">
-    <value>Left Arrow</value>
-  </data>
-  <data name="comboBoxKey.Items68" xml:space="preserve">
-    <value>Right Arrow</value>
-  </data>
-  <data name="comboBoxKey.Items69" xml:space="preserve">
-    <value>Up Arrow</value>
-  </data>
-  <data name="comboBoxKey.Items70" xml:space="preserve">
-    <value>Down Arrow</value>
-  </data>
-  <data name="comboBoxKey.Items71" xml:space="preserve">
-    <value>Insert</value>
-  </data>
-  <data name="comboBoxKey.Items72" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="comboBoxKey.Items73" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="comboBoxKey.Items74" xml:space="preserve">
-    <value>End</value>
-  </data>
-  <data name="comboBoxKey.Items75" xml:space="preserve">
-    <value>Page Up</value>
-  </data>
-  <data name="comboBoxKey.Items76" xml:space="preserve">
-    <value>Page Down</value>
-  </data>
-  <data name="comboBoxKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 369</value>
-  </data>
-  <data name="comboBoxKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 21</value>
-  </data>
-  <data name="comboBoxKey.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;comboBoxKey.Name" xml:space="preserve">
-    <value>comboBoxKey</value>
-  </data>
-  <data name="&gt;&gt;comboBoxKey.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comboBoxKey.Parent" xml:space="preserve">
-    <value>shortcutKeysTabPage</value>
-  </data>
-  <data name="&gt;&gt;comboBoxKey.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="label12.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 11</value>
-  </data>
-  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 13</value>
-  </data>
-  <data name="label12.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>List of shortcut keys associated with actions:</value>
-  </data>
-  <data name="&gt;&gt;label12.Name" xml:space="preserve">
-    <value>label12</value>
-  </data>
-  <data name="&gt;&gt;label12.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
-    <value>shortcutKeysTabPage</value>
-  </data>
-  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="Key.Text" xml:space="preserve">
-    <value>Key</value>
-  </data>
-  <data name="Key.Width" type="System.Int32, mscorlib">
-    <value>76</value>
-  </data>
-  <data name="Action.Text" xml:space="preserve">
-    <value>Action</value>
-  </data>
-  <data name="Action.Width" type="System.Int32, mscorlib">
-    <value>164</value>
-  </data>
-  <data name="PartNumber.Text" xml:space="preserve">
-    <value>Part Number</value>
-  </data>
-  <data name="PartNumber.Width" type="System.Int32, mscorlib">
-    <value>123</value>
-  </data>
-  <data name="Connection.Text" xml:space="preserve">
-    <value>Connection</value>
-  </data>
-  <data name="Connection.Width" type="System.Int32, mscorlib">
-    <value>71</value>
-  </data>
-  <data name="listViewShortcutKeys.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 30</value>
-  </data>
-  <data name="listViewShortcutKeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>458, 333</value>
-  </data>
-  <data name="listViewShortcutKeys.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="&gt;&gt;listViewShortcutKeys.Name" xml:space="preserve">
     <value>listViewShortcutKeys</value>
   </data>
-  <data name="&gt;&gt;listViewShortcutKeys.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="labelHintAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>476, 212</value>
   </data>
-  <data name="&gt;&gt;listViewShortcutKeys.Parent" xml:space="preserve">
-    <value>shortcutKeysTabPage</value>
-  </data>
-  <data name="&gt;&gt;listViewShortcutKeys.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="shortcutKeysTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="shortcutKeysTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="shortcutKeysTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>584, 405</value>
-  </data>
-  <data name="shortcutKeysTabPage.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;undoDisplayedNumericUpDown.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Shortcut Keys</value>
+  <data name="areaCellSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
   </data>
-  <data name="&gt;&gt;shortcutKeysTabPage.Name" xml:space="preserve">
-    <value>shortcutKeysTabPage</value>
+  <data name="&gt;&gt;label21.Name" xml:space="preserve">
+    <value>label21</value>
   </data>
-  <data name="&gt;&gt;shortcutKeysTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;addGridLayerCheckBox.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;shortcutKeysTabPage.Parent" xml:space="preserve">
-    <value>optionsTabControl</value>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;shortcutKeysTabPage.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="optionsTabControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="optionsTabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="optionsTabControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="optionsTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>592, 431</value>
-  </data>
-  <data name="optionsTabControl.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;optionsTabControl.Name" xml:space="preserve">
-    <value>optionsTabControl</value>
-  </data>
-  <data name="&gt;&gt;optionsTabControl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;optionsTabControl.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;optionsTabControl.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 439</value>
+  <data name="&gt;&gt;comboBoxConnexion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="appearanceTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="comboBoxKey.Items37" xml:space="preserve">
+    <value>Num Pad 0</value>
+  </data>
+  <data name="mouseDuplicateSelKeyComboBox.Items2" xml:space="preserve">
+    <value>SHIFT</value>
+  </data>
+  <data name="&gt;&gt;colorSchemeComboBox.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="label18.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;subGridColorPictureBox.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="comboBoxKey.Items69" xml:space="preserve">
+    <value>Up Arrow</value>
+  </data>
+  <data name="mouseDuplicateSelKeyComboBox.Items1" xml:space="preserve">
+    <value>ALT</value>
+  </data>
+  <data name="lugComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 21</value>
+  </data>
+  <data name="&gt;&gt;shortcutKeysTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="comboBoxKey.Items70" xml:space="preserve">
+    <value>Down Arrow</value>
+  </data>
+  <data name="generalTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>584, 405</value>
+  </data>
+  <data name="&gt;&gt;generalTabPage.Parent" xml:space="preserve">
+    <value>optionsTabControl</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 137</value>
+  </data>
+  <data name="&gt;&gt;addGridLayerCheckBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="optionsTabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;samplePictureBox.Name" xml:space="preserve">
+    <value>samplePictureBox</value>
+  </data>
+  <data name="label14.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 159</value>
+  </data>
+  <data name="label21.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label20.Name" xml:space="preserve">
+    <value>label20</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;RecentFilesNumericUpDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;shortcutKeysTabPage.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;generalTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;defaultFontNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label11.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;listViewShortcutKeys.Parent" xml:space="preserve">
+    <value>shortcutKeysTabPage</value>
+  </data>
+  <data name="mouseDuplicateSelKeyComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 21</value>
+  </data>
+  <data name="undoRecordedNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="areaCellSizeNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="gridSubdivisionNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>List of shortcut keys associated with actions:</value>
+  </data>
+  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 11</value>
+  </data>
+  <data name="gridColorPictureBox.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
+  </data>
+  <data name="gridSubdivisionNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="mouseMultipleSelKeyComboBox.Items2" xml:space="preserve">
+    <value>SHIFT</value>
+  </data>
+  <data name="&gt;&gt;showTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;mouseZoomSpeedNumericUpDown.Name" xml:space="preserve">
+    <value>mouseZoomSpeedNumericUpDown</value>
+  </data>
+  <data name="defaultFontColorLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>174, 41</value>
+  </data>
+  <data name="&gt;&gt;label27.Name" xml:space="preserve">
+    <value>label27</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="comboBoxConnexion.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mouseMultipleSelKeyComboBox.Text" xml:space="preserve">
+    <value>CTRL</value>
+  </data>
+  <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="listViewShortcutKeys.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="optimComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 21</value>
+  </data>
+  <data name="defaultFontButton.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="label10.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labelHintAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonDelete.Text" xml:space="preserve">
+    <value>Remove
+Shortcut</value>
+  </data>
+  <data name="comboBoxKey.Items23" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="comboBoxKey.Items43" xml:space="preserve">
+    <value>Num Pad 6</value>
+  </data>
+  <data name="label19.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;gridSubdivisionNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBoxKey.Items15" xml:space="preserve">
+    <value>P</value>
+  </data>
+  <data name="authorTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>84, 73</value>
+  </data>
+  <data name="addBrickLayerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 46</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;defaultFontColorLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 17</value>
+  </data>
+  <data name="&gt;&gt;groupBox10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="comboBoxKey.Items45" xml:space="preserve">
+    <value>Num Pad 8</value>
+  </data>
+  <data name="&gt;&gt;generalTabPage.Name" xml:space="preserve">
+    <value>generalTabPage</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Duplicate selection Key</value>
+  </data>
+  <data name="undoDisplayedNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="mouseDuplicateSelKeyComboBox.Text" xml:space="preserve">
+    <value>ALT</value>
+  </data>
+  <data name="&gt;&gt;comboBoxKey.Name" xml:space="preserve">
+    <value>comboBoxKey</value>
+  </data>
+  <data name="colorSchemeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 21</value>
+  </data>
+  <data name="optionsTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>592, 431</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>LUG/LTC</value>
+  </data>
+  <data name="comboBoxConnexion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>392, 369</value>
+  </data>
+  <data name="&gt;&gt;backgroundColorPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonDelete.Parent" xml:space="preserve">
+    <value>shortcutKeysTabPage</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="clearRecentFilesButton.Text" xml:space="preserve">
+    <value>Clear Recent Files List</value>
+  </data>
+  <data name="comboBoxKey.Items32" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 47</value>
+  </data>
+  <data name="label28.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="comboBoxAction.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Mouse</value>
+  </data>
+  <data name="comboBoxKey.Items64" xml:space="preserve">
+    <value>Esc</value>
+  </data>
+  <data name="&gt;&gt;label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="undoDisplayedNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 65</value>
+  </data>
+  <data name="&gt;&gt;comboBoxAction.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="comboBoxKey.Items56" xml:space="preserve">
+    <value>F5</value>
+  </data>
+  <data name="label17.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="comboBoxAction.Location" type="System.Drawing.Point, System.Drawing">
+    <value>105, 369</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>generalTabPage</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>The more "undo" steps you want to record, the more memory the application will use.</value>
+  </data>
+  <data name="mouseMultipleSelKeyComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 21</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Default Grid Color</value>
+  </data>
+  <data name="samplePictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBoxAction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 100</value>
+  </data>
+  <data name="comboBoxKey.Items3" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="comboBoxKey.Items48" xml:space="preserve">
+    <value>Num Pad *</value>
+  </data>
+  <data name="&gt;&gt;label22.Name" xml:space="preserve">
+    <value>label22</value>
+  </data>
+  <data name="&gt;&gt;mouseZoomCenteredCheckBox.Name" xml:space="preserve">
+    <value>mouseZoomCenteredCheckBox</value>
+  </data>
+  <data name="buttonDelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 40</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
-    <value>cancelButton</value>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 124</value>
   </data>
-  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;comboBoxPartNum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="RecentFilesNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+  <data name="addGridLayerCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 22</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;label12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lugComboBox.Name" xml:space="preserve">
+    <value>lugComboBox</value>
+  </data>
+  <data name="&gt;&gt;authorTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Wheel Zoom Speed</value>
+  </data>
+  <data name="comboBoxKey.Items73" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
+    <value>Display Free Connection Points</value>
+  </data>
+  <data name="&gt;&gt;groupBox9.Name" xml:space="preserve">
+    <value>groupBox9</value>
+  </data>
+  <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>New map default configuration</value>
+  </data>
+  <data name="comboBoxKey.Items54" xml:space="preserve">
+    <value>F3</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 163</value>
+  </data>
+  <data name="label15.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>505, 439</value>
+  <data name="&gt;&gt;RecentFilesNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox10</value>
   </data>
-  <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 49</value>
   </data>
-  <data name="okButton.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 13</value>
   </data>
-  <data name="okButton.Text" xml:space="preserve">
-    <value>Ok</value>
+  <data name="defaultFontButton.Text" xml:space="preserve">
+    <value>Change Font</value>
   </data>
-  <data name="&gt;&gt;okButton.Name" xml:space="preserve">
-    <value>okButton</value>
+  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 20</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.Name" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="shortcutKeysTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>584, 405</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Number of Recent Files</value>
+  </data>
+  <data name="&gt;&gt;clearRecentFilesButton.Name" xml:space="preserve">
+    <value>clearRecentFilesButton</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Undo/Redo</value>
+  </data>
+  <data name="&gt;&gt;defaultFontButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="defaultFontNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 77</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 18</value>
+  </data>
+  <data name="comboBoxKey.Items10" xml:space="preserve">
+    <value>K</value>
+  </data>
+  <data name="comboBoxAction.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 21</value>
+  </data>
+  <data name="undoRecordedNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 20</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 74</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 6</value>
+  </data>
+  <data name="comboBoxKey.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 21</value>
+  </data>
+  <data name="&gt;&gt;defaultFontButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label28.Name" xml:space="preserve">
+    <value>label28</value>
+  </data>
+  <data name="numericUpDown1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="comboBoxKey.Items5" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>202, 48</value>
+  </data>
+  <data name="&gt;&gt;optimComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 165</value>
+  </data>
+  <data name="&gt;&gt;listViewShortcutKeys.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;comboBoxKey.Parent" xml:space="preserve">
+    <value>shortcutKeysTabPage</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Default area cell size (in studs)</value>
+  </data>
+  <data name="&gt;&gt;colorDialog.Name" xml:space="preserve">
+    <value>colorDialog</value>
+  </data>
+  <data name="RecentFilesNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 20</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Colors</value>
+  </data>
+  <data name="&gt;&gt;lugComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label28.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label18.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;okButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 89</value>
+  </data>
+  <data name="comboBoxKey.Items18" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="languageComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>83, 19</value>
+  </data>
+  <data name="&gt;&gt;label20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 150</value>
+  </data>
+  <data name="label20.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="mouseDuplicateSelKeyComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="buttonDelete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>476, 153</value>
+  </data>
+  <data name="comboBoxKey.Items51" xml:space="preserve">
+    <value>Num Pad .</value>
+  </data>
+  <data name="&gt;&gt;authorTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;restoreDefaultButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mouseMultipleSelKeyComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>227, 71</value>
+  </data>
+  <data name="defaultFontButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 35</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.Parent" xml:space="preserve">
+    <value>generalTabPage</value>
+  </data>
+  <data name="label11.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label27.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;PartNumber.Name" xml:space="preserve">
+    <value>PartNumber</value>
+  </data>
+  <data name="&gt;&gt;label23.Name" xml:space="preserve">
+    <value>label23</value>
+  </data>
+  <data name="&gt;&gt;defaultFontNameLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 160</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 39</value>
   </data>
-  <data name="numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
+  <data name="&gt;&gt;label21.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="numericUpDown1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="mouseMultipleSelKeyComboBox.Items" xml:space="preserve">
+    <value>CTRL</value>
   </data>
-  <data name="&gt;&gt;numericUpDown1.Name" xml:space="preserve">
-    <value>numericUpDown1</value>
+  <data name="defaultFontColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>245, 40</value>
   </data>
-  <data name="&gt;&gt;numericUpDown1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="buttonAdd.Text" xml:space="preserve">
+    <value>Add Shortcut</value>
   </data>
-  <metadata name="colorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="restoreDefaultButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 439</value>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 104</value>
   </data>
-  <data name="restoreDefaultButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 23</value>
+  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>567, 146</value>
   </data>
-  <data name="restoreDefaultButton.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+  <data name="comboBoxKey.Items67" xml:space="preserve">
+    <value>Left Arrow</value>
   </data>
-  <data name="restoreDefaultButton.Text" xml:space="preserve">
-    <value>Restore Default</value>
+  <data name="Key.Text" xml:space="preserve">
+    <value>Key</value>
   </data>
-  <data name="&gt;&gt;restoreDefaultButton.Name" xml:space="preserve">
-    <value>restoreDefaultButton</value>
+  <data name="&gt;&gt;comboBoxConnexion.Parent" xml:space="preserve">
+    <value>shortcutKeysTabPage</value>
   </data>
-  <data name="&gt;&gt;restoreDefaultButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;restoreDefaultButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;restoreDefaultButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="fontDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>124, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>592, 471</value>
+  <data name="&gt;&gt;defaultFontNameLabel.Parent" xml:space="preserve">
+    <value>groupBox6</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2458,49 +1651,856 @@ Shortcut</value>
         AA//4AAf//gAf//+Af///4f/
 </value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>BlueBrick Options</value>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Recent Files</value>
   </data>
-  <data name="&gt;&gt;Key.Name" xml:space="preserve">
-    <value>Key</value>
+  <data name="lugComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>84, 104</value>
+  </data>
+  <data name="undoRecordedNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 32</value>
+  </data>
+  <data name="backgroundColorPictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="restoreDefaultButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 23</value>
+  </data>
+  <data name="comboBoxKey.Items58" xml:space="preserve">
+    <value>F7</value>
+  </data>
+  <data name="groupBox10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 106</value>
+  </data>
+  <data name="comboBoxKey.Items47" xml:space="preserve">
+    <value>Num Pad /</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 65</value>
+  </data>
+  <data name="&gt;&gt;gridColorPictureBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>286, 166</value>
+  </data>
+  <data name="comboBoxKey.Items2" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="defaultFontNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 70</value>
+  </data>
+  <data name="showTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="comboBoxKey.Items76" xml:space="preserve">
+    <value>Page Down</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="Action.Text" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="label27.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="comboBoxKey.Items50" xml:space="preserve">
+    <value>Num Pad +</value>
   </data>
   <data name="&gt;&gt;Key.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Action.Name" xml:space="preserve">
-    <value>Action</value>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;Action.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label27.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PartNumber.Name" xml:space="preserve">
-    <value>PartNumber</value>
+  <data name="&gt;&gt;optimComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PartNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 81</value>
   </data>
-  <data name="&gt;&gt;Connection.Name" xml:space="preserve">
+  <data name="groupBox9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 247</value>
+  </data>
+  <data name="&gt;&gt;mouseZoomCenteredCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Memory/Speed balance</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Default sub-grid Color</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
+    <value>appearanceTabPage</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBoxKey.Items21" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label22.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="gridSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="&gt;&gt;undoRecordedNumericUpDown.Name" xml:space="preserve">
+    <value>undoRecordedNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;generalTabPage.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;groupBox10.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="comboBoxKey.Items13" xml:space="preserve">
+    <value>N</value>
+  </data>
+  <data name="appearanceTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="optionsTabControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>422, 16</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 19</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Shortcut Keys</value>
+  </data>
+  <data name="&gt;&gt;authorTextBox.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="addGridLayerCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label20.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;comboBoxConnexion.Name" xml:space="preserve">
+    <value>comboBoxConnexion</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Color Scheme</value>
+  </data>
+  <data name="gridSizeNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="Connection.Text" xml:space="preserve">
     <value>Connection</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
+    <value>cancelButton</value>
+  </data>
+  <data name="&gt;&gt;areaCellSizeNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox9</value>
+  </data>
+  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 19</value>
+  </data>
+  <data name="comboBoxKey.Items29" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;Connection.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;colorDialog.Name" xml:space="preserve">
-    <value>colorDialog</value>
+  <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;colorDialog.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="PartNumber.Width" type="System.Int32, mscorlib">
+    <value>123</value>
+  </data>
+  <data name="&gt;&gt;showTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBoxKey.Items28" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Parent" xml:space="preserve">
+    <value>appearanceTabPage</value>
+  </data>
+  <data name="&gt;&gt;mouseZoomCenteredCheckBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="okButton.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="label14.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="generalTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="comboBoxKey.Items62" xml:space="preserve">
+    <value>F11</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>476, 30</value>
+  </data>
+  <data name="comboBoxKey.Items7" xml:space="preserve">
+    <value>H</value>
+  </data>
+  <data name="&gt;&gt;addGridLayerCheckBox.Name" xml:space="preserve">
+    <value>addGridLayerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label21.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="subGridColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>379, 95</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 23</value>
+  </data>
+  <data name="areaTransparencyNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="&gt;&gt;Action.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;defaultFontColorLabel.Name" xml:space="preserve">
+    <value>defaultFontColorLabel</value>
+  </data>
+  <data name="samplePictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 90</value>
+  </data>
+  <data name="&gt;&gt;buttonDelete.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;authorTextBox.Name" xml:space="preserve">
+    <value>authorTextBox</value>
+  </data>
+  <data name="&gt;&gt;labelHintAdd.Parent" xml:space="preserve">
+    <value>shortcutKeysTabPage</value>
+  </data>
+  <data name="mouseZoomSpeedNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="comboBoxKey.Items38" xml:space="preserve">
+    <value>Num Pad 1</value>
+  </data>
+  <data name="mouseZoomCenteredCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 17</value>
+  </data>
+  <data name="&gt;&gt;label22.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="subGridColorPictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="shortcutKeysTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="defaultFontNameLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;comboBoxPartNum.Name" xml:space="preserve">
+    <value>comboBoxPartNum</value>
+  </data>
+  <data name="&gt;&gt;gridSubdivisionNumericUpDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;subGridColorPictureBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="authorTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 20</value>
+  </data>
+  <data name="&gt;&gt;label22.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBoxKey.Items71" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="labelHintAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 152</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Name" xml:space="preserve">
+    <value>numericUpDown1</value>
+  </data>
+  <data name="&gt;&gt;mouseZoomSpeedNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;mouseMultipleSelKeyComboBox.Name" xml:space="preserve">
+    <value>mouseMultipleSelKeyComboBox</value>
+  </data>
+  <data name="groupBox10.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="authorTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;defaultFontColorPictureBox.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="mouseDuplicateSelKeyComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 124</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="optionsTabControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="listViewShortcutKeys.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 30</value>
+  </data>
+  <data name="comboBoxKey.Items30" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;areaTransparencyNumericUpDown.Name" xml:space="preserve">
+    <value>areaTransparencyNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="defaultFontNameLabel.Text" xml:space="preserve">
+    <value>Font name</value>
+  </data>
+  <data name="comboBoxKey.Items42" xml:space="preserve">
+    <value>Num Pad 5</value>
+  </data>
+  <data name="groupBox7.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="restoreDefaultButton.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;optionsTabControl.Name" xml:space="preserve">
+    <value>optionsTabControl</value>
+  </data>
+  <data name="&gt;&gt;label23.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="clearRecentFilesButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="comboBoxKey.Items35" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;label28.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 46</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>294, 335</value>
+  </data>
+  <data name="comboBoxKey.Items14" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Default Text Format</value>
+  </data>
+  <data name="comboBoxKey.Items40" xml:space="preserve">
+    <value>Num Pad 3</value>
+  </data>
+  <data name="&gt;&gt;label19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mouseZoomCenteredCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.Name" xml:space="preserve">
+    <value>mouseDuplicateSelKeyComboBox</value>
+  </data>
+  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 17</value>
+  </data>
+  <data name="&gt;&gt;gridSubdivisionNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="defaultFontColorLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;subGridColorPictureBox.Name" xml:space="preserve">
+    <value>subGridColorPictureBox</value>
+  </data>
+  <data name="areaTransparencyNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="restoreDefaultButton.Text" xml:space="preserve">
+    <value>Restore Default</value>
+  </data>
+  <data name="comboBoxKey.Items8" xml:space="preserve">
+    <value>I</value>
+  </data>
+  <data name="&gt;&gt;undoRecordedNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clearRecentFilesButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;addBrickLayerCheckBox.Name" xml:space="preserve">
+    <value>addBrickLayerCheckBox</value>
+  </data>
+  <data name="&gt;&gt;colorSchemeComboBox.Name" xml:space="preserve">
+    <value>colorSchemeComboBox</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>BlueBrick Options</value>
+  </data>
+  <data name="&gt;&gt;gridSubdivisionNumericUpDown.Name" xml:space="preserve">
+    <value>gridSubdivisionNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.Name" xml:space="preserve">
+    <value>buttonAdd</value>
+  </data>
+  <data name="comboBoxKey.Items24" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Number of Undo recorded</value>
+  </data>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="comboBoxKey.Items16" xml:space="preserve">
+    <value>Q</value>
+  </data>
+  <data name="&gt;&gt;showTextBox.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Default Grid Size</value>
+  </data>
+  <data name="comboBoxKey.Items55" xml:space="preserve">
+    <value>F4</value>
+  </data>
+  <data name="backgroundColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="clearRecentFilesButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 65</value>
+  </data>
+  <data name="&gt;&gt;optionsTabControl.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="optimComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;undoDisplayedNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 20</value>
+  </data>
+  <data name="label8.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="defaultFontColorLabel.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="&gt;&gt;addBrickLayerCheckBox.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="comboBoxKey.Items" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="label28.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label23.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label13.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomLeft</value>
+  </data>
+  <data name="&gt;&gt;label12.Name" xml:space="preserve">
+    <value>label12</value>
+  </data>
+  <data name="label20.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;areaCellSizeNumericUpDown.Name" xml:space="preserve">
+    <value>areaCellSizeNumericUpDown</value>
+  </data>
+  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 19</value>
+  </data>
+  <data name="mouseZoomSpeedNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;showTextBox.Name" xml:space="preserve">
+    <value>showTextBox</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="comboBoxKey.Items33" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;buttonDelete.Name" xml:space="preserve">
+    <value>buttonDelete</value>
+  </data>
+  <data name="&gt;&gt;backgroundColorPictureBox.Name" xml:space="preserve">
+    <value>backgroundColorPictureBox</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="comboBoxKey.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 17</value>
+  </data>
+  <data name="comboBoxKey.Items57" xml:space="preserve">
+    <value>F6</value>
+  </data>
+  <data name="&gt;&gt;groupBox9.Parent" xml:space="preserve">
+    <value>appearanceTabPage</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="appearanceTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>584, 405</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 20</value>
+  </data>
+  <data name="clearRecentFilesButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 28</value>
+  </data>
+  <data name="label16.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;undoRecordedNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;label14.Name" xml:space="preserve">
+    <value>label14</value>
+  </data>
+  <data name="label22.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 93</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="&gt;&gt;Connection.Name" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="&gt;&gt;label13.Name" xml:space="preserve">
+    <value>label13</value>
+  </data>
+  <data name="labelHintAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="Connection.Width" type="System.Int32, mscorlib">
+    <value>71</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>If you change the language you will need to restart the application for the change to take effect.</value>
+  </data>
+  <data name="listViewShortcutKeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>458, 333</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Multiple selection Key</value>
+  </data>
+  <data name="&gt;&gt;buttonDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBoxKey.Items20" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="&gt;&gt;colorSchemeComboBox.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="comboBoxKey.Items1" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="&gt;&gt;PartNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBoxKey.Items74" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="&gt;&gt;addBrickLayerCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="defaultFontColorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
+  </data>
+  <data name="&gt;&gt;label15.Name" xml:space="preserve">
+    <value>label15</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Background Color</value>
+  </data>
+  <data name="generalTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="&gt;&gt;addBrickLayerCheckBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 18</value>
+  </data>
+  <data name="&gt;&gt;label23.Parent" xml:space="preserve">
+    <value>groupBox10</value>
+  </data>
+  <data name="addBrickLayerCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="comboBoxKey.Items26" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;defaultFontColorLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="comboBoxKey.Items61" xml:space="preserve">
+    <value>F10</value>
+  </data>
+  <data name="mouseDuplicateSelKeyComboBox.Items" xml:space="preserve">
+    <value>CTRL</value>
+  </data>
+  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 20</value>
+  </data>
+  <data name="&gt;&gt;appearanceTabPage.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label27.Parent" xml:space="preserve">
+    <value>groupBox9</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>generalTabPage</value>
+  </data>
+  <data name="label9.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="optionsTabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;shortcutKeysTabPage.Parent" xml:space="preserve">
+    <value>optionsTabControl</value>
+  </data>
+  <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="buttonDelete.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="comboBoxAction.Items5" xml:space="preserve">
+    <value>Move Selection Right</value>
+  </data>
+  <data name="comboBoxKey.Items11" xml:space="preserve">
+    <value>L</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;shortcutKeysTabPage.Name" xml:space="preserve">
+    <value>shortcutKeysTabPage</value>
+  </data>
+  <data name="gridSubdivisionNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>211, 49</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>generalTabPage</value>
+  </data>
+  <data name="comboBoxAction.Items" xml:space="preserve">
+    <value>Add Part</value>
+  </data>
+  <data name="&gt;&gt;mouseZoomSpeedNumericUpDown.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 20</value>
+  </data>
+  <data name="groupBox10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 284</value>
+  </data>
+  <data name="&gt;&gt;defaultFontColorPictureBox.Name" xml:space="preserve">
+    <value>defaultFontColorPictureBox</value>
+  </data>
+  <data name="&gt;&gt;backgroundColorPictureBox.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;fontDialog.Name" xml:space="preserve">
     <value>fontDialog</value>
   </data>
-  <data name="&gt;&gt;fontDialog.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FontDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="appearanceTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>GlobalOptionsForm</value>
+  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="comboBoxPartNum.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
   </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="label17.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lugComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="defaultFontNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;gridColorPictureBox.Name" xml:space="preserve">
+    <value>gridColorPictureBox</value>
+  </data>
+  <data name="languageComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="comboBoxKey.Items27" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="optimComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 23</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>294, 6</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 13</value>
+  </data>
+  <data name="&gt;&gt;comboBoxKey.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBoxKey.Items19" xml:space="preserve">
+    <value>T</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Choose a predefined color scheme or customize your own colors.</value>
+  </data>
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Default Transparency (in %)</value>
+  </data>
+  <data name="&gt;&gt;appearanceTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBoxKey.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="comboBoxKey.Items60" xml:space="preserve">
+    <value>F9</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="addGridLayerCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <metadata name="fontDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>124, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="colorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

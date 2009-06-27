@@ -186,6 +186,9 @@
   <data name="ActionHideLayer" xml:space="preserve">
     <value>Verberg laag "&amp;"</value>
   </data>
+  <data name="ActionMoveArea" xml:space="preserve">
+    <value>Gebieden verplaatsen</value>
+  </data>
   <data name="ActionMoveBrick" xml:space="preserve">
     <value>Verplaats onderdeel &amp;</value>
   </data>
