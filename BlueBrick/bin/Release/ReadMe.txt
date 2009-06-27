@@ -114,8 +114,6 @@ Open bugs:
 - MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
-- MISSING FEATURE (Patrick): A feature to move the area
-- BUG (Patrick): The export area is too limited
 - BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Alban): The TD 4.5V level crossing is missing in the BB part library
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
@@ -126,6 +124,8 @@ Open bugs:
 
 Bug fixed in 1.4.0.0:
 - NEW FEATURE (Alban): Custom mouse cursors.
+- NEW FEATURE (Patrick): A feature to move the area
+- BUGFIX (Patrick): The export area could be truncated in the exported image for large layout + add a 32 studs margin
 - BUGFIX (Alban): When you press the duplicated key (ALT) above a brick/text not in the selection, the selection can be duplicated.
 - BUGFIX (Alban): The aplication was not in foreground when the splashscreen disapear.
 - BUGFIX (Alban): Some improvment has been made in the spanish and german translation.
