@@ -117,16 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annuler</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Edition du texte</value>
+  <data name="fontColorLabel.Text" xml:space="preserve">
+    <value>Couleur</value>
   </data>
-  <data name="okButton.Text" xml:space="preserve">
-    <value>Ok</value>
+  <data name="fontButton.Text" xml:space="preserve">
+    <value>Changer la police</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Taille :</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAAAAACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAgAQAAAAAAAAAAAAAAAEAAAAA
@@ -169,10 +172,7 @@
         AA//4AAf//gAf//+Af///4f/
 </value>
   </data>
-  <data name="fontColorLabel.Text" xml:space="preserve">
-    <value>Couleur</value>
-  </data>
-  <data name="fontButton.Text" xml:space="preserve">
-    <value>Changer la police</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Edition du texte</value>
   </data>
 </root>

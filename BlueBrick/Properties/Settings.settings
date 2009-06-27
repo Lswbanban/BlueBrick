@@ -27,7 +27,7 @@
       <Value Profile="(Default)">CornflowerBlue</Value>
     </Setting>
     <Setting Name="DefaultTextFont" Type="System.Drawing.Font" Scope="User">
-      <Value Profile="(Default)">Arial, 24pt</Value>
+      <Value Profile="(Default)">Arial, 18pt</Value>
     </Setting>
     <Setting Name="DefaultTextColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>

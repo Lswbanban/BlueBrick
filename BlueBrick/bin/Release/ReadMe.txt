@@ -121,6 +121,7 @@ Open bugs:
 - BUG (Alexander): The standard windows are spawn in the language of the OS, not the one selected in the application.
 - BUG (Didier): UNFIXABLE, linked with windows propeties. In "general information" the choice of date is made in the language of Windows, not the language selected for the application.
 - BUG (Alban): The content of the combobox for the key CTRL, ALT and SHIFT is not localized (because added in code).
+- BUG (Alban): Shortcut conflict between the standard shortcut and the customizable shortcuts
 
 Bug fixed in 1.4.0.0:
 - NEW FEATURE (Alban): Custom mouse cursors.
@@ -129,7 +130,9 @@ Bug fixed in 1.4.0.0:
 - BUGFIX (Alban): When you press the duplicated key (ALT) above a brick/text not in the selection, the selection can be duplicated.
 - BUGFIX (Alban): The aplication was not in foreground when the splashscreen disapear.
 - BUGFIX (Alban): Some improvment has been made in the spanish and german translation.
-- BUG (Alban): Add the @ in front of the path for cross platform support
+- BUGFIX (Alban): Add the @ in front of the path for cross platform support
+- BUGFIX (Patrick): The text is unreadable in the text edit box if you choose a small font size.
+- BUGFIX (Alban): The style of the text (bold, italic, etc...) were not used on the map
 
 Bug fixed in 1.3.0.0:
 - NEW FEATURE (Alban): The LDraw 4.5V rail are now fully supported thanks to the new LDRAW parts created recently

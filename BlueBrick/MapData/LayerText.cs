@@ -156,7 +156,7 @@ namespace BlueBrick.MapData
 				{
 					// create a scaled font from the current one, to avoid aliasing
 					const float FONT_SCALE = 4.0f;
-					Font scaledTextFont = new Font(mTextFont.FontFamily, mTextFont.Size * FONT_SCALE);
+					Font scaledTextFont = new Font(mTextFont.FontFamily, mTextFont.Size * FONT_SCALE, mTextFont.Style);
 
 					Graphics graphics = Graphics.FromImage(mImage);
 					SizeF scaledTextFontSize = graphics.MeasureString(mText, scaledTextFont);

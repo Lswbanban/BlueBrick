@@ -25,9 +25,16 @@ namespace BlueBrick
 {
 	public partial class EditTextForm : Form
 	{
+		// the font edited for the text
+		private Font mEditedFont = Properties.Settings.Default.DefaultTextFont;
+
+		// we use a constant size of the font for the edition,
+		// else the text is unreadable if you use a small font
+		private const float FONT_SIZE_FOR_EDITION = 14;
+
 		public Font EditedFont
 		{
-			get { return this.textBox.Font; }
+			get { return mEditedFont; }
 		}
 
 		public Color EditedColor
@@ -61,7 +68,7 @@ namespace BlueBrick
 			if (textCell != null)
 			{
 				// text font
-				this.textBox.Font = textCell.Font;
+				mEditedFont = textCell.Font;
 				// color
 				changeColor(textCell.FontColor);
 				// text alignement
@@ -77,7 +84,7 @@ namespace BlueBrick
 			else
 			{
 				// text font
-				this.textBox.Font = Properties.Settings.Default.DefaultTextFont;
+				mEditedFont = Properties.Settings.Default.DefaultTextFont;
 				// color
 				changeColor(Properties.Settings.Default.DefaultTextColor);
 				// text alignement
@@ -86,6 +93,10 @@ namespace BlueBrick
 				this.textBox.Text = BlueBrick.Properties.Resources.TextEnterText;
 				this.textBox.SelectAll();
 			}
+
+			// text box font
+			this.labelSize.Text = mEditedFont.Size.ToString();
+			this.textBox.Font = new Font(mEditedFont.FontFamily, FONT_SIZE_FOR_EDITION, mEditedFont.Style);
 		}
 
 		private void alignLeftButton_Click(object sender, EventArgs e)
@@ -115,13 +126,16 @@ namespace BlueBrick
 		private void fontButton_Click(object sender, EventArgs e)
 		{
 			// set the color with the current back color of the picture box
-			this.fontDialog.Font = this.textBox.Font;
+			this.fontDialog.Font = mEditedFont;
 			// open the color box in modal
 			DialogResult result = this.fontDialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 			{
-				// if the user choose a color, set it back in the back color of the picture box
-				this.textBox.Font = this.fontDialog.Font;
+				// save the edited font
+				mEditedFont = this.fontDialog.Font;
+				// and use the same in the edit box, except that we override the font size
+				this.labelSize.Text = mEditedFont.Size.ToString();
+				this.textBox.Font = new Font(mEditedFont.FontFamily, FONT_SIZE_FOR_EDITION, mEditedFont.Style);
 			}
 		}
 
@@ -141,12 +155,6 @@ namespace BlueBrick
 		{
 			// set the specified color in the back color of the picture box
 			fontColorPictureBox.BackColor = newColor;
-			this.textBox.ForeColor = newColor;
-			// check if we need to change the background color for a better contrast
-			if ((newColor.R > 127) && (newColor.G > 127) && (newColor.B > 127))
-				this.textBox.BackColor = Color.Black;
-			else
-				this.textBox.BackColor = Color.White;
 		}
 
 		private void textBox_TextChanged(object sender, EventArgs e)

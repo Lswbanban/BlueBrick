@@ -121,7 +121,7 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Arial, 24pt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Arial, 18pt")]
         public global::System.Drawing.Font DefaultTextFont {
             get {
                 return ((global::System.Drawing.Font)(this["DefaultTextFont"]));
