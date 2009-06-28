@@ -34,14 +34,21 @@ namespace BlueBrick.Actions.Texts
 		private float mRotationStep = 0.0f; // in degree, we need to save it because the current rotation step may change between the do and undo
 		private PointF mCenter = new PointF(0, 0);	// in Stud coord
 
-		public RotateText(LayerText layer, List<Layer.LayerItem> texts, bool rotateCW)
+		public RotateText(LayerText layer, List<Layer.LayerItem> texts, int rotateSteps)
+			: this(layer, texts, rotateSteps, false)
+		{
+		}
+
+		public RotateText(LayerText layer, List<Layer.LayerItem> texts, int rotateSteps, bool forceKeepLastCenter)
 		{
 			mTextLayer = layer;
-			mRotateCW = rotateCW;
-			mRotationStep = MapData.Layer.CurrentRotationStep;
+			mRotateCW = (rotateSteps < 0);
+			mRotationStep = MapData.Layer.CurrentRotationStep * Math.Abs(rotateSteps);
+
 			// we must invalidate the last center is the last action in the undo stack is not a rotation
-			if (!ActionManager.Instance.getUndoableActionType().IsInstanceOfType(this))
+			if (!forceKeepLastCenter && !ActionManager.Instance.getUndoableActionType().IsInstanceOfType(this))
 				sLastCenterIsValid = false;
+
 			// fill the text list with the one provided and set the center of rotation for this action
 			if (texts.Count > 0)
 			{

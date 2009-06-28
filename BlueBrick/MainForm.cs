@@ -51,13 +51,21 @@ namespace BlueBrick
 		private Cursor mAreaEraserCursor = null;
 		
 		// for shortcut key
+		// var for updating the move
 		private PointF mObjectTotalMove = new PointF(0, 0);
 		private bool mIsLeftArrowDown = false;
 		private bool mIsRightArrowDown = false;
 		private bool mIsUpArrowDown = false;
 		private bool mIsDownArrowDown = false;
+		// var for updating the rotation
+		private int mObjectTotalStepToRotate = 0;
+		private bool mIsRotateLeftDown = false;
+		private bool mIsRotateRightDown = false;
+		// flags for the key events
 		private Keys mLastModifierKeyDown = Keys.None;
 		private bool mModifierWasPressedIgnoreCustomShortcut = false;
+
+		// painting tool
 		private Bitmap mPaintIcon = null; // the paint icon contains the color of the paint in the background
 		private Color mCurrentPaintIconColor = Color.Empty;
 
@@ -1206,10 +1214,10 @@ namespace BlueBrick
 				switch (Map.Instance.SelectedLayer.GetType().Name)
 				{
 					case "LayerBrick":
-						ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects, false));
+						ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects, 1));
 						break;
 					case "LayerText":
-						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, false));
+						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, 1));
 						break;
 				}
 			}
@@ -1223,10 +1231,10 @@ namespace BlueBrick
 				switch (Map.Instance.SelectedLayer.GetType().Name)
 				{
 					case "LayerBrick":
-						ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects, true));
+						ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects, -1));
 						break;
 					case "LayerText":
-						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, true));
+						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, -1));
 						break;
 				}
 			}
@@ -1616,6 +1624,10 @@ namespace BlueBrick
 		/// <param name="move">an incremental move if this is not a real move, else the total move</param>
 		private void moveSelectedObjects(bool isRealMove, PointF move)
 		{
+			// check if there's nothing to move
+			if ((move.X == 0.0f) && (move.Y == 0.0f))
+				return;
+
 			// first get the current selected layer
 			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
 			{
@@ -1626,43 +1638,94 @@ namespace BlueBrick
 					case "LayerBrick":
 						if (isRealMove)
 						{
-							// undo the total move of all the objects
-							foreach (Layer.LayerItem obj in itemList)
-								obj.Position = new PointF(obj.Position.X - move.X, obj.Position.Y - move.Y);
-							// and create a move action that will record the real move
-							ActionManager.Instance.doAction(new MoveBrick(Map.Instance.SelectedLayer as LayerBrick, itemList, move));
+							// create the action and first undo it, to cancel all the incremental moves
+							MoveBrick moveAction = new MoveBrick(Map.Instance.SelectedLayer as LayerBrick, itemList, move);
+							moveAction.undo();
+							// then add it to the undo stack (that will perform the redo)
+							ActionManager.Instance.doAction(moveAction);
 						}
 						else
 						{
-							foreach (Layer.LayerItem obj in itemList)
-								obj.Position = new PointF(obj.Position.X + move.X, obj.Position.Y + move.Y);
-							// update the bounding rectangle and the view
-							(Map.Instance.SelectedLayer as LayerBrick).updateBoundingSelectionRectangle();
-							this.mapPanel.updateView();
+							// do a move action without puting it in the undo stack
+							MoveBrick moveAction = new MoveBrick(Map.Instance.SelectedLayer as LayerBrick, itemList, move);
+							moveAction.redo();
 						}
 						break;
 					case "LayerText":
 						if (isRealMove)
 						{
-							// undo the total move of all the objects
-							foreach (Layer.LayerItem obj in itemList)
-								obj.Position = new PointF(obj.Position.X - move.X, obj.Position.Y - move.Y);
-							// and create a move action that will record the real move
-							ActionManager.Instance.doAction(new MoveText(Map.Instance.SelectedLayer as LayerText, itemList, move));
+							// create the action and first undo it, to cancel all the incremental moves
+							MoveText moveAction = new MoveText(Map.Instance.SelectedLayer as LayerText, itemList, move);
+							moveAction.undo();
+							// then add it to the undo stack (that will perform the redo)
+							ActionManager.Instance.doAction(moveAction);
 						}
 						else
 						{
-							foreach (Layer.LayerItem obj in itemList)
-								obj.Position = new PointF(obj.Position.X + move.X, obj.Position.Y + move.Y);
-							// update the bounding rectangle and the view
-							(Map.Instance.SelectedLayer as LayerText).updateBoundingSelectionRectangle();
-							this.mapPanel.updateView();
+							// do a move action without puting it in the undo stack
+							MoveText moveAction = new MoveText(Map.Instance.SelectedLayer as LayerText, itemList, move);
+							moveAction.redo();
 						}
 						break;
 				}
 			}
 		}
 
+		/// <summary>
+		/// Rotate the currently selected object from the specified value
+		/// </summary>
+		/// <param name="isRealMove">tell if it is a real rotation that must be recorded in the undo stack, or just an update</param>
+		/// <param name="move">an incremental angle to rotate if this is not a real move, else the total angle</param>
+		private void rotateSelectedObjects(bool isRealMove, int angleStep)
+		{
+			// check if there's nothing to rotate
+			if (angleStep == 0)
+				return;
+
+			// first get the current selected layer
+			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			{
+				List<Layer.LayerItem> itemList = Map.Instance.SelectedLayer.SelectedObjects;
+
+				switch (Map.Instance.SelectedLayer.GetType().Name)
+				{
+					case "LayerBrick":
+						if (isRealMove)
+						{
+							// create the opposite action and do it, to cancel all the incremental moves
+							// we can not create the normal action and undo it because the rotation of connected
+							// brick is not symetrical (because the rotation step is not constant)
+							RotateBrick unrotateAction = new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, itemList, -angleStep, true);
+							unrotateAction.redo();
+							// So create a new move action to add in the undo stack
+							ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, itemList, angleStep, true));
+						}
+						else
+						{
+							// do a move action without puting it in the undo stack
+							RotateBrick rotateAction = new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, itemList, angleStep, ((angleStep != -1) && (angleStep != 1)));
+							rotateAction.redo();
+						}
+						break;
+					case "LayerText":
+						if (isRealMove)
+						{
+							//// undo the total move of all the objects
+							RotateText rotateAction = new RotateText(Map.Instance.SelectedLayer as LayerText, itemList, angleStep, true);
+							rotateAction.undo();
+							// then add it to the undo stack (that will perform the redo)
+							ActionManager.Instance.doAction(rotateAction);
+						}
+						else
+						{
+							// do a move action without puting it in the undo stack
+							RotateText rotateAction = new RotateText(Map.Instance.SelectedLayer as LayerText, itemList, angleStep, ((angleStep != -1) && (angleStep != 1)));
+							rotateAction.redo();
+						}
+						break;
+				}
+			}
+		}
 		#endregion
 
 		#region event handler for drag and drop file
@@ -1790,12 +1853,20 @@ namespace BlueBrick
 								deleteToolStripMenuItem_Click(sender, e);
 								break;
 							case shortcutableAction.ROTATE_LEFT:
-								// shortcut to the event handler of the menu
-								rotateCCWToolStripMenuItem_Click(sender, e);
+								// set the flag
+								mIsRotateLeftDown = true;
+								// modify the move vector
+								mObjectTotalStepToRotate--;
+								// add a fake rotation for updating the view
+								rotateSelectedObjects(false, -1);
 								break;
 							case shortcutableAction.ROTATE_RIGHT:
-								// shortcut to the event handler of the menu
-								rotateCWToolStripMenuItem_Click(sender, e);
+								// set the flag
+								mIsRotateRightDown = true;
+								// modify the move vector
+								mObjectTotalStepToRotate++;
+								// add a fake rotation for updating the view
+								rotateSelectedObjects(false, 1);
 								break;
 							case shortcutableAction.MOVE_LEFT:
 								// set the flag
@@ -1839,6 +1910,10 @@ namespace BlueBrick
 								}
 								break;
 						}
+
+						// we need to force the refresh of the map immediatly because the invalidate
+						// is not fast enough compare to the repeat key event.
+						this.mapPanel.Refresh();
 
 						// and just return, because don't need to search more keys
 						return;
@@ -1907,10 +1982,19 @@ namespace BlueBrick
 
 						// a boolean to check if we must move the objects
 						bool mustMoveObject = false;
+						bool mustRotateObject = false;
 
 						// more stuff to init for some specific actions
 						switch (actionIndex)
 						{
+							case shortcutableAction.ROTATE_LEFT:
+								mIsRotateLeftDown = false;
+								mustRotateObject = !mIsRotateRightDown;
+								break;
+							case shortcutableAction.ROTATE_RIGHT:
+								mIsRotateRightDown = false;
+								mustRotateObject = !mIsRotateLeftDown;
+								break;
 							case shortcutableAction.MOVE_LEFT:
 								mIsLeftArrowDown = false;
 								mustMoveObject = !(mIsRightArrowDown || mIsDownArrowDown || mIsUpArrowDown);
@@ -1937,6 +2021,15 @@ namespace BlueBrick
 							// reset the move object
 							mObjectTotalMove.X = 0;
 							mObjectTotalMove.Y = 0;
+						}
+
+						// check if one of the two rotate key are still pressed, else do the real rotation
+						if (mustRotateObject)
+						{
+							// rotate the selected parts
+							rotateSelectedObjects(true, mObjectTotalStepToRotate);
+							// reset the total rotate angle
+							mObjectTotalStepToRotate = 0;
 						}
 
 						// and just return, because don't need to search more keys

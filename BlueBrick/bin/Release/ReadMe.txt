@@ -134,6 +134,8 @@ Bug fixed in 1.4.0.0:
 - BUGFIX (Patrick): The text is unreadable in the text edit box if you choose a small font size.
 - BUGFIX (Alban): The style of the text (bold, italic, etc...) were not used on the map
 - BUGFIX (Alban): Shortcut conflict between the standard shortcut and the customizable shortcuts (like CTRL+S and S)
+- BUGFIX (Alban): Support the repeated shortcut (if you keep pressing a shortcut key)
+- BUGFIX (Alban): Improve shortcut support, the repeated rotation is now recorded as only one undoable action (just like the move, also debuggued)
 
 Bug fixed in 1.3.0.0:
 - NEW FEATURE (Alban): The LDraw 4.5V rail are now fully supported thanks to the new LDRAW parts created recently

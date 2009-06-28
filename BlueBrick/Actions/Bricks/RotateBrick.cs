@@ -39,11 +39,17 @@ namespace BlueBrick.Actions.Bricks
 		private int mNewConnexionPointIndex = -1; // -1 means no connexion
 		private int mOldConnexionPointIndex = -1; // -1 means no connexion
 
-		public RotateBrick(LayerBrick layer, List<Layer.LayerItem> bricks, bool rotateCW)
+		public RotateBrick(LayerBrick layer, List<Layer.LayerItem> bricks, int rotateSteps)
+			: this(layer, bricks, rotateSteps, false)
+		{
+		}
+
+		public RotateBrick(LayerBrick layer, List<Layer.LayerItem> bricks, int rotateSteps, bool forceKeepLastCenter)
 		{
 			mBrickLayer = layer;
-			mRotateCW = rotateCW;
-			mRotationStep = MapData.Layer.CurrentRotationStep;
+			mRotateCW = (rotateSteps < 0);
+			int nbSteps = Math.Abs(rotateSteps);
+			mRotationStep = MapData.Layer.CurrentRotationStep * nbSteps;
 
 			// special case for 1 brick that has connexion, in that case we don't care about the rotation step
 			// we rotate the brick such at it can connect with its next connexion point
@@ -64,41 +70,44 @@ namespace BlueBrick.Actions.Bricks
 							// store the connection position
 							mConnexionPosition = connexion.mPositionInStudWorldCoord;
 							mOldConnexionPointIndex = i;
+							
+							// search the previous connexion point of the same type than the current connexion point
+							// in the worst case, we just find the same connexion point
+							BrickLibrary.Brick.ConnectionType nextConnexionType = BrickLibrary.Brick.ConnectionType.BRICK;
+							mRotationStep = 0;
+							mNewConnexionPointIndex = i;
+
 							// Store the next connection point index which will become the new connection point after the rotation
 							// compute the rotation step by substracted the connected point angle with the next connexion angle
-							if (rotateCW)
+							if (mRotateCW)
 							{
-								// search the previous connexion point of the same type than the current connexion point
-								// in the worst case, we just find the same connexion point
-								BrickLibrary.Brick.ConnectionType nextConnexionType = BrickLibrary.Brick.ConnectionType.BRICK;
-								mRotationStep = 0;
-								mNewConnexionPointIndex = i;
-								do
+								for (int s = 0; s < nbSteps; s++)
 								{
-									int currentConnexionPointIndex = mNewConnexionPointIndex;
-									mNewConnexionPointIndex--;
-									if (mNewConnexionPointIndex < 0)
-										mNewConnexionPointIndex = brick.ConnectionPoints.Count - 1;
-									mRotationStep += BrickLibrary.Instance.getConnectionAngleToPrev(partNumber, currentConnexionPointIndex);
-									nextConnexionType = BrickLibrary.Instance.getConnexionType(partNumber, mNewConnexionPointIndex);
-								} while (nextConnexionType != connexion.mType);
+									do
+									{
+										int currentConnexionPointIndex = mNewConnexionPointIndex;
+										mNewConnexionPointIndex--;
+										if (mNewConnexionPointIndex < 0)
+											mNewConnexionPointIndex = brick.ConnectionPoints.Count - 1;
+										mRotationStep += BrickLibrary.Instance.getConnectionAngleToPrev(partNumber, currentConnexionPointIndex);
+										nextConnexionType = BrickLibrary.Instance.getConnexionType(partNumber, mNewConnexionPointIndex);
+									} while (nextConnexionType != connexion.mType);
+								}
 							}
 							else
 							{
-								// search the previous connexion point of the same type than the current connexion point
-								// in the worst case, we just find the same connexion point
-								BrickLibrary.Brick.ConnectionType nextConnexionType = BrickLibrary.Brick.ConnectionType.BRICK;
-								mRotationStep = 0;
-								mNewConnexionPointIndex = i;
-								do
+								for (int s = 0; s < nbSteps; s++)
 								{
-									int currentConnexionPointIndex = mNewConnexionPointIndex;
-									mNewConnexionPointIndex++;
-									if (mNewConnexionPointIndex >= brick.ConnectionPoints.Count)
-										mNewConnexionPointIndex = 0;
-									mRotationStep += BrickLibrary.Instance.getConnectionAngleToNext(partNumber, currentConnexionPointIndex);
-									nextConnexionType = BrickLibrary.Instance.getConnexionType(partNumber, mNewConnexionPointIndex);
-								} while (nextConnexionType != connexion.mType);
+									do
+									{
+										int currentConnexionPointIndex = mNewConnexionPointIndex;
+										mNewConnexionPointIndex++;
+										if (mNewConnexionPointIndex >= brick.ConnectionPoints.Count)
+											mNewConnexionPointIndex = 0;
+										mRotationStep += BrickLibrary.Instance.getConnectionAngleToNext(partNumber, currentConnexionPointIndex);
+										nextConnexionType = BrickLibrary.Instance.getConnexionType(partNumber, mNewConnexionPointIndex);
+									} while (nextConnexionType != connexion.mType);
+								}
 							}
 							break;
 						}
@@ -107,7 +116,7 @@ namespace BlueBrick.Actions.Bricks
 			}
 
 			// we must invalidate the last center if the last action in the undo stack is not a rotation
-			if (!ActionManager.Instance.getUndoableActionType().IsInstanceOfType(this))
+			if (!forceKeepLastCenter && !ActionManager.Instance.getUndoableActionType().IsInstanceOfType(this))
 				sLastCenterIsValid = false;
 
 			// fill the brick list with the one provided and set the center of rotation for this action
