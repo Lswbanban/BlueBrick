@@ -56,16 +56,21 @@ namespace BlueBrick
 		private bool mIsRightArrowDown = false;
 		private bool mIsUpArrowDown = false;
 		private bool mIsDownArrowDown = false;
-		private Keys mLastKeyDownModifier = Keys.None;
+		private Keys mLastModifierKeyDown = Keys.None;
+		private bool mModifierWasPressedIgnoreCustomShortcut = false;
 		private Bitmap mPaintIcon = null; // the paint icon contains the color of the paint in the background
 		private Color mCurrentPaintIconColor = Color.Empty;
+
 		// for the current map
 		private string mCurrentMapFileName = Properties.Resources.DefaultSaveFileName;
 		private bool mIsCurrentMapNameValid = false;
+
 		// the part list view
 		private PartListForm mPartListForm = null;
+
 		// for the selection Path
 		AStar mAStar = new AStar();
+
 		// a mapping key table to store the shortcut for each action
 		enum shortcutableAction
 		{
@@ -1734,16 +1739,24 @@ namespace BlueBrick
 			// by the shortcut of the "Save" menu item
 			if (e.Alt || e.Control || e.Shift)
 			{
-				// but we will warn the mapPanel in case it wants to change the cursor
+				// a modifier is pressed, we start to ignore all the shortcut until all the key of the
+				// keyboard are released.
+				mModifierWasPressedIgnoreCustomShortcut = true;
+
+				// if a modifier is just pressed we will warn the mapPanel in case it wants to change the cursor
 				// we need to check if the modifier changed because of the auto repeat key down event
 				// if you keep pressing a keep
-				if (mLastKeyDownModifier != e.Modifiers)
+				if (mLastModifierKeyDown != e.Modifiers)
 				{
-					mLastKeyDownModifier = e.Modifiers;
+					mLastModifierKeyDown = e.Modifiers;
 					this.mapPanel.setDefaultCursor();
 				}
 				return;
 			}
+
+			// check if we need to ignore the custom shortcut
+			if (mModifierWasPressedIgnoreCustomShortcut)
+				return;
 
 			// get the current value of the grid step in case of we need to move the selected objects
 			float moveSize = Layer.CurrentSnapGridSize;
@@ -1765,6 +1778,25 @@ namespace BlueBrick
 						// more stuff to init for some specific actions
 						switch (actionIndex)
 						{
+							case shortcutableAction.ADD_PART:
+								// add a connected brick, or if the selection count is different from 1, add a brick in the origin
+								if (Map.Instance.SelectedLayer.SelectedObjects.Count == 1)
+									Map.Instance.addConnectBrick(shortcut.mPartName, shortcut.mConnexion);
+								else
+									Map.Instance.addBrick(shortcut.mPartName, new PointF(0.0f, 0.0f));
+								break;
+							case shortcutableAction.DELETE_PART:
+								// shortcut to the event handler of the menu
+								deleteToolStripMenuItem_Click(sender, e);
+								break;
+							case shortcutableAction.ROTATE_LEFT:
+								// shortcut to the event handler of the menu
+								rotateCCWToolStripMenuItem_Click(sender, e);
+								break;
+							case shortcutableAction.ROTATE_RIGHT:
+								// shortcut to the event handler of the menu
+								rotateCWToolStripMenuItem_Click(sender, e);
+								break;
 							case shortcutableAction.MOVE_LEFT:
 								// set the flag
 								mIsLeftArrowDown = true;
@@ -1797,6 +1829,15 @@ namespace BlueBrick
 								// add a fake move for updating the view
 								moveSelectedObjects(false, new PointF(0, moveSize));
 								break;
+							case shortcutableAction.CHANGE_CURRENT_CONNEXION:
+								Layer selectedLayer = Map.Instance.SelectedLayer;
+								if ((selectedLayer != null) && (selectedLayer.GetType().Name.Equals("LayerBrick")) && (selectedLayer.SelectedObjects.Count == 1))
+								{
+									LayerBrick.Brick selectedBrick = (selectedLayer as LayerBrick).SelectedObjects[0] as LayerBrick.Brick;
+									selectedBrick.setActiveConnectionPointWithNextOne();
+									this.mapPanel.updateView();
+								}
+								break;
 						}
 
 						// and just return, because don't need to search more keys
@@ -1808,20 +1849,49 @@ namespace BlueBrick
 
 		private void MainForm_KeyUp(object sender, KeyEventArgs e)
 		{
-			// by default we don't handle the keys
-			e.Handled = false;
+			// we will try to handle the key, but there are several case for which 
+			// we don't handle them
+			e.Handled = true;
 
-			// We will warn the mapPanel in case it wants to change the cursor
-			if (mLastKeyDownModifier != e.Modifiers)
+			// We will warn the mapPanel if a modifier is released in case it wants to change the cursor
+			bool wasModifierReleased = (mLastModifierKeyDown != e.Modifiers);
+			if (wasModifierReleased)
 			{
-				mLastKeyDownModifier = e.Modifiers;
+				// save the new modifier state
+				mLastModifierKeyDown = e.Modifiers;
+				// and change the cursor of the panel
 				this.mapPanel.setDefaultCursor();
+				// a modifier was released anyway, we don't handle the key
+				e.Handled = false;
 			}
 
-			// if any modifier is pressed, we don't handle the key, for example the CTRL+S will be handle
-			// by the shortcut of the "Save" menu item
+			// if any modifier is pressed, we don't handle the key released,
+			// for example the CTRL+S will be handle by the shortcut of the "Save" menu item
+			// when the S is released. Than means you can releas any keys you want if one
+			// modifier is pressed, we ignore all of them
 			if (e.Alt || e.Control || e.Shift)
+				e.Handled = false;
+
+			// if we still need to ignore the shortcut, because one modifier was pressed before,
+			// the user must release all the keys before we start to handle the normal shortcut again
+			if (mModifierWasPressedIgnoreCustomShortcut)
+			{
+				// if the modifier was pressed, but now it is another key which is released, we can reset
+				// the flag, because we assume the other key was pressed during the modifier down
+				// unfortunatly this is only working with one normal key pressed with a modifier,
+				// if you press two normal key with a modifier, and release the modifier first, the
+				// first released normal key will be skiped but not the second one.
+				if (!wasModifierReleased)
+					mModifierWasPressedIgnoreCustomShortcut = false;
+				e.Handled = false;
+			}
+
+			// if we don't handle the key just return
+			if (!e.Handled)
 				return;
+
+			// now reset the handle flag to false and we try to find if we handle that key
+			e.Handled = false;
 
 			// iterate on all the possible actions
 			for (shortcutableAction actionIndex = 0; actionIndex < shortcutableAction.NB_ACTIONS; ++actionIndex)
@@ -1841,25 +1911,6 @@ namespace BlueBrick
 						// more stuff to init for some specific actions
 						switch (actionIndex)
 						{
-							case shortcutableAction.ADD_PART:
-								// add a connected brick, or if the selection count is different from 1, add a brick in the origin
-								if (Map.Instance.SelectedLayer.SelectedObjects.Count == 1)
-									Map.Instance.addConnectBrick(shortcut.mPartName, shortcut.mConnexion);
-								else
-									Map.Instance.addBrick(shortcut.mPartName, new PointF(0.0f, 0.0f));
-								break;
-							case shortcutableAction.DELETE_PART:
-								// shortcut to the event handler of the menu
-								deleteToolStripMenuItem_Click(sender, e);
-								break;
-							case shortcutableAction.ROTATE_LEFT:
-								// shortcut to the event handler of the menu
-								rotateCCWToolStripMenuItem_Click(sender, e);
-								break;
-							case shortcutableAction.ROTATE_RIGHT:
-								// shortcut to the event handler of the menu
-								rotateCWToolStripMenuItem_Click(sender, e);
-								break;
 							case shortcutableAction.MOVE_LEFT:
 								mIsLeftArrowDown = false;
 								mustMoveObject = !(mIsRightArrowDown || mIsDownArrowDown || mIsUpArrowDown);
@@ -1875,15 +1926,6 @@ namespace BlueBrick
 							case shortcutableAction.MOVE_DOWN:
 								mIsDownArrowDown = false;
 								mustMoveObject = !(mIsLeftArrowDown || mIsRightArrowDown || mIsUpArrowDown);
-								break;
-							case shortcutableAction.CHANGE_CURRENT_CONNEXION:
-								Layer selectedLayer = Map.Instance.SelectedLayer;
-								if ((selectedLayer != null) && (selectedLayer.GetType().Name.Equals("LayerBrick")) && (selectedLayer.SelectedObjects.Count == 1))
-								{
-									LayerBrick.Brick selectedBrick = (selectedLayer as LayerBrick).SelectedObjects[0] as LayerBrick.Brick;
-									selectedBrick.setActiveConnectionPointWithNextOne();
-									this.mapPanel.updateView();
-								}
 								break;
 						}
 
@@ -1903,7 +1945,6 @@ namespace BlueBrick
 				}
 			}
 		}
-
 		#endregion
 
 		#region function related to parts library
