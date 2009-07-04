@@ -757,7 +757,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Italian.
+        ///   Looks up a localized string similar to Italiano.
         /// </summary>
         internal static string LanguageItalian {
             get {
