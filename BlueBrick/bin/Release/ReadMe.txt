@@ -121,17 +121,18 @@ Open bugs:
 - BUG (Alexander): The standard windows are spawn in the language of the OS, not the one selected in the application.
 - BUG (Didier): UNFIXABLE, linked with windows propeties. In "general information" the choice of date is made in the language of Windows, not the language selected for the application.
 - BUG (Alban): The content of the combobox for the key CTRL, ALT and SHIFT is not localized (because added in code).
-- BUG (Patrick): Sometimes the return character is displayed with a square when the text is edited in the edit window.
 
 Bug fixed in 1.4.0.0:
 - NEW FEATURE (Alban): Custom mouse cursors.
 - NEW FEATURE (Patrick): A feature to move the area
-- BUGFIX (Patrick): The export area could be truncated in the exported image for large layout + add a 32 studs margin
+- NEW FEATURE (Sergio): The italian language is integrated.
+- BUGFIX (Patrick): The text is unreadable in the text edit box if you choose a small font size.
+- BUGFIX (Patrick): If you save a file with a text containing a cariage return when you reload the file and edit it, the return is lost in the edit box.
+- BUGFIX (Alban): The export area could be truncated in the exported image for large layout + add a 32 studs margin
 - BUGFIX (Alban): When you press the duplicated key (ALT) above a brick/text not in the selection, the selection can be duplicated.
 - BUGFIX (Alban): The aplication was not in foreground when the splashscreen disapear.
 - BUGFIX (Alban): Some improvment has been made in the spanish and german translation.
 - BUGFIX (Alban): Add the @ in front of the path for cross platform support
-- BUGFIX (Patrick): The text is unreadable in the text edit box if you choose a small font size.
 - BUGFIX (Alban): The style of the text (bold, italic, etc...) were not used on the map
 - BUGFIX (Alban): Shortcut conflict between the standard shortcut and the customizable shortcuts (like CTRL+S and S)
 - BUGFIX (Alban): Support the repeated shortcut (if you keep pressing a shortcut key)

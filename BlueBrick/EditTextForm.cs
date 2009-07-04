@@ -78,8 +78,9 @@ namespace BlueBrick
 					alignCenterButton_Click(null, null);
 				else
 					alignRightButton_Click(null, null);
-				// the text itself
-				this.textBox.Text = textCell.Text;
+				// the text itself (replace the single "\n" by a "\r\n" to be
+				// correctly handled by the text box. The "\r" is lost during a save of the file.
+				this.textBox.Text = textCell.Text.Replace("\n", "\r\n").Replace("\r\r", "\r");
 			}
 			else
 			{

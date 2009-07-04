@@ -137,9 +137,6 @@
   <data name="labelWidthFeet.Location" type="System.Drawing.Point, System.Drawing">
     <value>336, 120</value>
   </data>
-  <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
   <data name="lugComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>357, 21</value>
   </data>
@@ -380,8 +377,8 @@
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>25</value>
   </data>
-  <data name="&gt;&gt;label15.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 13</value>
   </data>
   <data name="&gt;&gt;labelWidthFeet.Name" xml:space="preserve">
     <value>labelWidthFeet</value>
@@ -440,8 +437,8 @@
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;labelWidthMeter.Name" xml:space="preserve">
-    <value>labelWidthMeter</value>
+  <data name="&gt;&gt;labelHeightMeter.Name" xml:space="preserve">
+    <value>labelHeightMeter</value>
   </data>
   <data name="labelHeightStud.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -545,8 +542,8 @@
         AA//4AAf//gAf//+Af///4f/
 </value>
   </data>
-  <data name="&gt;&gt;dateTimePicker.ZOrder" xml:space="preserve">
-    <value>23</value>
+  <data name="&gt;&gt;dateTimePicker.Name" xml:space="preserve">
+    <value>dateTimePicker</value>
   </data>
   <data name="&gt;&gt;lugComboBox.Name" xml:space="preserve">
     <value>lugComboBox</value>
@@ -596,8 +593,8 @@
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="&gt;&gt;dateTimePicker.Name" xml:space="preserve">
-    <value>dateTimePicker</value>
+  <data name="&gt;&gt;labelWidthMeter.Name" xml:space="preserve">
+    <value>labelWidthMeter</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 148</value>
@@ -647,9 +644,6 @@
   <data name="&gt;&gt;labelWidthStud.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 13</value>
-  </data>
   <data name="AuthorTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -686,8 +680,8 @@
   <data name="&gt;&gt;labelHeightStud.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="&gt;&gt;ButtonCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -719,9 +713,6 @@
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="&gt;&gt;labelHeightMeter.Name" xml:space="preserve">
-    <value>labelHeightMeter</value>
-  </data>
   <data name="AuthorTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>87, 12</value>
   </data>
@@ -746,8 +737,8 @@
   <data name="label14.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 20</value>
+  <data name="labelWidthStud.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 23</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 20</value>
@@ -803,9 +794,6 @@
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>18</value>
   </data>
-  <data name="labelHeightModule.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 38</value>
   </data>
@@ -814,6 +802,9 @@
   </data>
   <data name="&gt;&gt;label13.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 20</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -848,8 +839,8 @@
   <data name="&gt;&gt;label9.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;ButtonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 13</value>
@@ -863,6 +854,9 @@
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;dateTimePicker.ZOrder" xml:space="preserve">
+    <value>23</value>
   </data>
   <data name="&gt;&gt;commentTextBox.ZOrder" xml:space="preserve">
     <value>29</value>
@@ -894,8 +888,8 @@
   <data name="&gt;&gt;lugComboBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="labelWidthStud.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 23</value>
+  <data name="labelHeightModule.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -936,6 +930,9 @@
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 13</value>
   </data>
+  <data name="&gt;&gt;label15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;label19.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -947,6 +944,9 @@
   </data>
   <data name="&gt;&gt;label8.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 20</value>

@@ -207,11 +207,11 @@ namespace BlueBrick
 			this.BackgroundImage = null;
 			this.ContextMenuStrip = this.contextMenuStrip;
 			this.Font = null;
-			this.MouseEnter += new System.EventHandler(this.MapPanel_MouseEnter);
 			this.MouseLeave += new System.EventHandler(this.MapPanel_MouseLeave);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapPanel_MouseMove);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapPanel_MouseDown);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MapPanel_MouseUp);
+			this.MouseEnter += new System.EventHandler(this.MapPanel_MouseEnter);
 			this.contextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
 

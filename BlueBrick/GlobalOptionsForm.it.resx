@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Generale</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Aspetto</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Tasti scorciatoia</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>File Recenti</value>
+  </data>
+  <data name="clearRecentFilesButton.Text" xml:space="preserve">
+    <value>Pulisci lista files recenti</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Numero di files recenti</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Prestazioni</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Rapporto Memoria/Velocità</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Annulla/Ripeti</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Maggiore è il numero di ANNULLA che vuoi registrare, maggiore sarà la memoria utilizzata dall'applicazione.</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Numero di ANNULLA mostrati</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Numero di ANNULLA registrati</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Configurazione di default nuova mappa</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Mostra</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Autore</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 17</value>
+  </data>
+  <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
+    <value>Aggiungi un Layer elementi sulla nuova mappa</value>
+  </data>
+  <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 17</value>
+  </data>
+  <data name="addGridLayerCheckBox.Text" xml:space="preserve">
+    <value>Aggiungi un Layer Grid sulla nuova mappa</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Tasto Copia Selezione</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Tasto Selezione Multipla</value>
+  </data>
+  <data name="mouseZoomCenteredCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 17</value>
+  </data>
+  <data name="mouseZoomCenteredCheckBox.Text" xml:space="preserve">
+    <value>Zoom centrato sul puntatore</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Velocità di zoom rotellina mouse</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Se cambi la lingua dovrai riavviare
+l'applicazione per vedere la modifica</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Aspetto di default dell'area</value>
+  </data>
+  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 44</value>
+  </data>
+  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 28</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Dimensioni di default
+dell'area cella (in Stud)</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Trasparenza di default (in %)</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Dimensioni di default della Griglia</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Numero di suddivisioni di default</value>
+  </data>
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 17</value>
+  </data>
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 28</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Dimensioni di default
+della Griglia (in Stud)</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Formato di default del testo</value>
+  </data>
+  <data name="defaultFontNameLabel.Text" xml:space="preserve">
+    <value>Nome del font</value>
+  </data>
+  <data name="defaultFontColorLabel.Text" xml:space="preserve">
+    <value>Colore</value>
+  </data>
+  <data name="defaultFontButton.Text" xml:space="preserve">
+    <value>Cambia Font</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Colori</value>
+  </data>
+  <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 17</value>
+  </data>
+  <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
+    <value>Mostra punti di connessione liberi</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Anteprima</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Colore di default griglia secondaria</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Colore di default griglia</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Colore sfondo</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Scegli uno schema colore predefinito, oppure personalizza i colori come vuoi.</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 13</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Schema colore</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Per rimuovere un tasto scorciatoia, selezionalo nella lista poi clicca su questo pulsante:</value>
+  </data>
+  <data name="labelHintAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 145</value>
+  </data>
+  <data name="labelHintAdd.Text" xml:space="preserve">
+    <value>Per aggiungere un tasto scorciatoia, compila le combo box al fondo della lista, poi clicca su questo pulsante:</value>
+  </data>
+  <data name="buttonDelete.Text" xml:space="preserve">
+    <value>Rimuovi un tasto scorciatoia</value>
+  </data>
+  <data name="buttonAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>476, 360</value>
+  </data>
+  <data name="buttonAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 39</value>
+  </data>
+  <data name="buttonAdd.Text" xml:space="preserve">
+    <value>Aggiungi un tasto scorciatoia</value>
+  </data>
+  <data name="comboBoxAction.Items" xml:space="preserve">
+    <value>Aggiungi pezzo</value>
+  </data>
+  <data name="comboBoxAction.Items1" xml:space="preserve">
+    <value>Cancella il pezzo selezionato</value>
+  </data>
+  <data name="comboBoxAction.Items2" xml:space="preserve">
+    <value>Ruota la selezione a sinistra</value>
+  </data>
+  <data name="comboBoxAction.Items3" xml:space="preserve">
+    <value>Ruota la selezione a destra</value>
+  </data>
+  <data name="comboBoxAction.Items4" xml:space="preserve">
+    <value>Sposta la selezione a sinistra</value>
+  </data>
+  <data name="comboBoxAction.Items5" xml:space="preserve">
+    <value>Sposta la selezione a destra</value>
+  </data>
+  <data name="comboBoxAction.Items6" xml:space="preserve">
+    <value>Sposta la selezione verso l'alto</value>
+  </data>
+  <data name="comboBoxAction.Items7" xml:space="preserve">
+    <value>Sposta la selezione verso il basso</value>
+  </data>
+  <data name="comboBoxAction.Items8" xml:space="preserve">
+    <value>Cambia la connessione attiva</value>
+  </data>
+  <data name="comboBoxKey.Items36" xml:space="preserve">
+    <value>Spazio</value>
+  </data>
+  <data name="comboBoxKey.Items37" xml:space="preserve">
+    <value>Numerico 0</value>
+  </data>
+  <data name="comboBoxKey.Items38" xml:space="preserve">
+    <value>Numerico 1</value>
+  </data>
+  <data name="comboBoxKey.Items39" xml:space="preserve">
+    <value>Numerico 2</value>
+  </data>
+  <data name="comboBoxKey.Items40" xml:space="preserve">
+    <value>Numerico 3</value>
+  </data>
+  <data name="comboBoxKey.Items41" xml:space="preserve">
+    <value>Numerico 4</value>
+  </data>
+  <data name="comboBoxKey.Items42" xml:space="preserve">
+    <value>Numerico 5</value>
+  </data>
+  <data name="comboBoxKey.Items43" xml:space="preserve">
+    <value>Numerico 6</value>
+  </data>
+  <data name="comboBoxKey.Items44" xml:space="preserve">
+    <value>Numerico 7</value>
+  </data>
+  <data name="comboBoxKey.Items45" xml:space="preserve">
+    <value>Numerico 8</value>
+  </data>
+  <data name="comboBoxKey.Items46" xml:space="preserve">
+    <value>Numerico 9</value>
+  </data>
+  <data name="comboBoxKey.Items47" xml:space="preserve">
+    <value>Numerico /</value>
+  </data>
+  <data name="comboBoxKey.Items48" xml:space="preserve">
+    <value>Numerico *</value>
+  </data>
+  <data name="comboBoxKey.Items49" xml:space="preserve">
+    <value>Numerico -</value>
+  </data>
+  <data name="comboBoxKey.Items50" xml:space="preserve">
+    <value>Numerico +</value>
+  </data>
+  <data name="comboBoxKey.Items51" xml:space="preserve">
+    <value>Numerico .</value>
+  </data>
+  <data name="comboBoxKey.Items64" xml:space="preserve">
+    <value>ESC</value>
+  </data>
+  <data name="comboBoxKey.Items65" xml:space="preserve">
+    <value>backspace</value>
+  </data>
+  <data name="comboBoxKey.Items66" xml:space="preserve">
+    <value>Invio</value>
+  </data>
+  <data name="comboBoxKey.Items67" xml:space="preserve">
+    <value>Freccia sinistra</value>
+  </data>
+  <data name="comboBoxKey.Items68" xml:space="preserve">
+    <value>Freccia destra</value>
+  </data>
+  <data name="comboBoxKey.Items69" xml:space="preserve">
+    <value>Freccia su</value>
+  </data>
+  <data name="comboBoxKey.Items70" xml:space="preserve">
+    <value>Freccia giù</value>
+  </data>
+  <data name="comboBoxKey.Items71" xml:space="preserve">
+    <value>Ins</value>
+  </data>
+  <data name="comboBoxKey.Items72" xml:space="preserve">
+    <value>Canc</value>
+  </data>
+  <data name="comboBoxKey.Items74" xml:space="preserve">
+    <value>Fine</value>
+  </data>
+  <data name="comboBoxKey.Items75" xml:space="preserve">
+    <value>Pagina Su</value>
+  </data>
+  <data name="comboBoxKey.Items76" xml:space="preserve">
+    <value>Pagina Giù</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 13</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Lista tasti scorciatoia associati con azioni:</value>
+  </data>
+  <data name="Key.Text" xml:space="preserve">
+    <value>Tasto</value>
+  </data>
+  <data name="Action.Text" xml:space="preserve">
+    <value>Azione</value>
+  </data>
+  <data name="PartNumber.Text" xml:space="preserve">
+    <value>Codice pezzo</value>
+  </data>
+  <data name="Connection.Text" xml:space="preserve">
+    <value>Connessione</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="restoreDefaultButton.Text" xml:space="preserve">
+    <value>Ripristina i default</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAAAAAAAACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAgAQAAAAAAAAAAAAAAAEAAAAA
+        AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAwMDAAMDcwADwyqYAACBAAAAgYAAAIIAAACCgAAAg
+        wAAAIOAAAEAAAABAIAAAQEAAAEBgAABAgAAAQKAAAEDAAABA4AAAYAAAAGAgAABgQAAAYGAAAGCAAABg
+        oAAAYMAAAGDgAACAAAAAgCAAAIBAAACAYAAAgIAAAICgAACAwAAAgOAAAKAAAACgIAAAoEAAAKBgAACg
+        gAAAoKAAAKDAAACg4AAAwAAAAMAgAADAQAAAwGAAAMCAAADAoAAAwMAAAMDgAADgAAAA4CAAAOBAAADg
+        YAAA4IAAAOCgAADgwAAA4OAAQAAAAEAAIABAAEAAQABgAEAAgABAAKAAQADAAEAA4ABAIAAAQCAgAEAg
+        QABAIGAAQCCAAEAgoABAIMAAQCDgAEBAAABAQCAAQEBAAEBAYABAQIAAQECgAEBAwABAQOAAQGAAAEBg
+        IABAYEAAQGBgAEBggABAYKAAQGDAAEBg4ABAgAAAQIAgAECAQABAgGAAQICAAECAoABAgMAAQIDgAECg
+        AABAoCAAQKBAAECgYABAoIAAQKCgAECgwABAoOAAQMAAAEDAIABAwEAAQMBgAEDAgABAwKAAQMDAAEDA
+        4ABA4AAAQOAgAEDgQABA4GAAQOCAAEDgoABA4MAAQODgAIAAAACAACAAgABAAIAAYACAAIAAgACgAIAA
+        wACAAOAAgCAAAIAgIACAIEAAgCBgAIAggACAIKAAgCDAAIAg4ACAQAAAgEAgAIBAQACAQGAAgECAAIBA
+        oACAQMAAgEDgAIBgAACAYCAAgGBAAIBgYACAYIAAgGCgAIBgwACAYOAAgIAAAICAIACAgEAAgIBgAICA
+        gACAgKAAgIDAAICA4ACAoAAAgKAgAICgQACAoGAAgKCAAICgoACAoMAAgKDgAIDAAACAwCAAgMBAAIDA
+        YACAwIAAgMCgAIDAwACAwOAAgOAAAIDgIACA4EAAgOBgAIDggACA4KAAgODAAIDg4ADAAAAAwAAgAMAA
+        QADAAGAAwACAAMAAoADAAMAAwADgAMAgAADAICAAwCBAAMAgYADAIIAAwCCgAMAgwADAIOAAwEAAAMBA
+        IADAQEAAwEBgAMBAgADAQKAAwEDAAMBA4ADAYAAAwGAgAMBgQADAYGAAwGCAAMBgoADAYMAAwGDgAMCA
+        AADAgCAAwIBAAMCAYADAgIAAwICgAMCAwADAgOAAwKAAAMCgIADAoEAAwKBgAMCggADAoKAAwKDAAMCg
+        4ADAwAAAwMAgAMDAQADAwGAAwMCAAMDAoADw+/8ApKCgAICAgAAAAP8AAP8AAAD//wD/AAAA/wD/AP//
+        AAD///8AAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIhAiIgAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAQECIiEDQiIibAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECI0NCIQNDQiEBA
+        kQAAAAAAAAAAAAAAAAAAAAAAAEBAiNDQ0IhA0IhAiEBAQAAAAAAAAAAAAAAAAAAAAABAiNDQ0NDQiEDQ
+        QIhA0NDQQIgAAAAAAAAAAAAAAAAAQIjQ0NDQ0NCIQNBAiEDQ0NBAiIgAAAAAAAAAAAAAAABA0NDQ0NDQ
+        0IhA0ECIQIjQ0ECI0IiSAP8AAAAAAAAAAEDQ0NDQ0NDQiEDQQIjQQIiIQMjQQEBAkgAAAAAAAAD/QMjQ
+        0NDQ0NCIQNDQQIjQQEDQ0EBAiNBAmv8AAAAAAP9AyNDQ0NDQ0IhA0NDQQECI0NDQQIhA0NBA/wAAAAAA
+        AEDQ0NDQ0NDQiEDQ0NDQiNDQ0NBAiECI0EAAAAAAAAAAQNDQ0NDQ0NCIQNDQ0NCIiNDQ0ECIiECIQAAA
+        AAAAAABA0NDQ0NDQ0IhA0NCIiEBAiNDQ0ECIkEBAAAAAAAAAAEDQ0NDQ0NDQiEDQiEBA0NBAiNDQ0EBA
+        QNAAAAAAAAAAQNDQ0NDQ0NCIQNBAiEDQ0NBA0NDQ0NDQ0AAAAAAAAABA0NDQ0NDQ0IhA0ECIQMjQ0ECI
+        0NDQ0NCIAAAAAAAAAEDQ0NDQ0NDQiEDQQIhAiNDQQIjQ0IhAQIgAAAAAAAAAQNDQ0NDQ0NCIQNBAiNBA
+        iNBAiNBAQNCIQAAAAAAAAABA0NDQ0NDQ0IhA0NBAiNBAQIjQQIhAiNCIQAAAAAAAAEDQ0NDQ0NCIQEBA
+        iNBAQEDQ0NBAiECI0IhAAAAAAAAAQNDQ0NCIQECI0IhAQIjQ0NDQ0ECIiEDI0EAAAAAAAABA0NCIQECI
+        0NDQ0NCIQECI0NDQ0EDQiECIQAAAAAAAAECIQECI0NDQ0NDQ0NDQiEBAiNDQ0EDQiEAAAAAAAAAAQECI
+        0NDQ0NDQ0NDQ0NDQ0IhAQIjQiEBAiAAAAAAAAAAAAEBAiNDQ0NDQ0NDQ0NDQ0NCIQECI0NDQAAAAAAAA
+        AAAAAABAQIjQ0NDQ0NDQ0NDQ0NDQiEBAiMgAAAAAAAAAAAAAAAAAQECI0NDQ0NDQ0NDQ0NDQ0NBAQAAA
+        AAAAAAAAAAAAAAAAAEBAiNDQ0NDQ0NDQ0IiIQEAAAAAAAAAAAAAAAAAAAAAAAABAQIjQ0NDQ0NCIQEAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAQECI0NCIQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAA
+        AAAAAAAAAAAAAP/n////wf///wB///4AH//4AA//8AAD/+AAAf/gAABf4AAAH8AAAAfAAAAH4AAAD+AA
+        AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
+        AA//4AAf//gAf//+Af///4f/
+</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Opzioni di BlueBrick</value>
+  </data>
+</root>
