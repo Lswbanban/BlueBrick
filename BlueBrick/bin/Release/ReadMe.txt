@@ -115,7 +115,6 @@ Open bugs:
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
-- BUG (Alban): The TD 4.5V level crossing is missing in the BB part library
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Alexander): The standard windows are spawn in the language of the OS, not the one selected in the application.
@@ -126,6 +125,7 @@ Bug fixed in 1.4.0.0:
 - NEW FEATURE (Alban): Custom mouse cursors.
 - NEW FEATURE (Patrick): A feature to move the area
 - NEW FEATURE (Sergio): The italian language is integrated.
+- NEW FEATURE (Patrick & Alban): Add new parts in the part library (new road + 48x48 green baseplate)
 - BUGFIX (Patrick): The text is unreadable in the text edit box if you choose a small font size.
 - BUGFIX (Patrick): If you save a file with a text containing a cariage return when you reload the file and edit it, the return is lost in the edit box.
 - BUGFIX (Alban): The export area could be truncated in the exported image for large layout + add a 32 studs margin
@@ -137,6 +137,7 @@ Bug fixed in 1.4.0.0:
 - BUGFIX (Alban): Shortcut conflict between the standard shortcut and the customizable shortcuts (like CTRL+S and S)
 - BUGFIX (Alban): Support the repeated shortcut (if you keep pressing a shortcut key)
 - BUGFIX (Alban): Improve shortcut support, the repeated rotation is now recorded as only one undoable action (just like the move, also debuggued)
+- BUGFIX (Alban): The TD 4.5V level crossing (#153) is missing in the BB part library for compatibility with TrackDesigner
 
 Bug fixed in 1.3.0.0:
 - NEW FEATURE (Alban): The LDraw 4.5V rail are now fully supported thanks to the new LDRAW parts created recently
