@@ -213,10 +213,13 @@ benutzten Dateien</value>
     <value>Strg</value>
   </data>
   <data name="mouseDuplicateSelKeyComboBox.Items1" xml:space="preserve">
-    <value>Alt</value>
+    <value>Alt.</value>
   </data>
   <data name="mouseDuplicateSelKeyComboBox.Items2" xml:space="preserve">
     <value>Shift</value>
+  </data>
+  <data name="mouseDuplicateSelKeyComboBox.Text" xml:space="preserve">
+    <value>Alt.</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Duplikaten Auswahltaste</value>
@@ -225,13 +228,13 @@ benutzten Dateien</value>
     <value>Strg</value>
   </data>
   <data name="mouseMultipleSelKeyComboBox.Items1" xml:space="preserve">
-    <value>Alt</value>
+    <value>Alt.</value>
   </data>
   <data name="mouseMultipleSelKeyComboBox.Items2" xml:space="preserve">
     <value>Shift</value>
   </data>
   <data name="mouseMultipleSelKeyComboBox.Text" xml:space="preserve">
-    <value>STRG</value>
+    <value>Strg</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Mehrfach Auswahltaste</value>

@@ -114,12 +114,12 @@ Open bugs:
 - MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
+- MISSING FEATURE (Alex & Alban): When you drag'n'drop a connected brick, the dragged brick is not rotated for a proper connection
 - BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
-- BUG (Alexander): The standard windows are spawn in the language of the OS, not the one selected in the application.
-- BUG (Didier): UNFIXABLE, linked with windows propeties. In "general information" the choice of date is made in the language of Windows, not the language selected for the application.
-- BUG (Alban): The content of the combobox for the key CTRL, ALT and SHIFT is not localized (because added in code).
+- BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
+- REFACTORING (Alban): Do not fill the optim combo box in code
 
 Bug fixed in 1.4.0.0:
 - NEW FEATURE (Alban): Custom mouse cursors.
@@ -138,6 +138,7 @@ Bug fixed in 1.4.0.0:
 - BUGFIX (Alban): Support the repeated shortcut (if you keep pressing a shortcut key)
 - BUGFIX (Alban): Improve shortcut support, the repeated rotation is now recorded as only one undoable action (just like the move, also debuggued)
 - BUGFIX (Alban): The TD 4.5V level crossing (#153) is missing in the BB part library for compatibility with TrackDesigner
+- BUGFIX (Alban): The content of the combobox for the key CTRL, ALT and SHIFT is not localized (because added in code).
 
 Bug fixed in 1.3.0.0:
 - NEW FEATURE (Alban): The LDraw 4.5V rail are now fully supported thanks to the new LDRAW parts created recently

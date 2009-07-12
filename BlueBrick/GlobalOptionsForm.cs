@@ -407,13 +407,7 @@ namespace BlueBrick
 
 		private void fillAndSelectMultipleAndDuplicateSelectionKeyComboBox()
 		{
-			// multiple selection
-			// fill the combo box with localized string (well I hope they will be localized :-)
-			mouseMultipleSelKeyComboBox.Items.Clear();
-			mouseMultipleSelKeyComboBox.Items.Add(Keys.Control.ToString());
-			mouseMultipleSelKeyComboBox.Items.Add(Keys.Alt.ToString());
-			mouseMultipleSelKeyComboBox.Items.Add(Keys.Shift.ToString());
-			// select the correct index
+			// select the correct index for multiple selection
 			switch (Settings.Default.MouseMultipleSelectionKey)
 			{
 				case Keys.Control: this.mouseMultipleSelKeyComboBox.SelectedIndex = 0; break;
@@ -421,13 +415,7 @@ namespace BlueBrick
 				case Keys.Shift: this.mouseMultipleSelKeyComboBox.SelectedIndex = 2; break;
 			}
 
-			// duplicate
-			// fill the combo box with localized string (well I hope they will be localized :-)
-			mouseDuplicateSelKeyComboBox.Items.Clear();
-			mouseDuplicateSelKeyComboBox.Items.Add(Keys.Control.ToString());
-			mouseDuplicateSelKeyComboBox.Items.Add(Keys.Alt.ToString());
-			mouseDuplicateSelKeyComboBox.Items.Add(Keys.Shift.ToString());
-			// select the correct index
+			// select the correct index for duplicate
 			switch (Settings.Default.MouseDuplicateSelectionKey)
 			{
 				case Keys.Control: this.mouseDuplicateSelKeyComboBox.SelectedIndex = 0; break;
