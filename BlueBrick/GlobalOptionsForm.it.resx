@@ -157,7 +157,7 @@
     <value>Configurazione di default nuova mappa</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Mostra</value>
+    <value>Spettacolo</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Autore</value>
@@ -327,51 +327,6 @@ della Griglia (in Stud)</value>
   </data>
   <data name="comboBoxKey.Items36" xml:space="preserve">
     <value>Spazio</value>
-  </data>
-  <data name="comboBoxKey.Items37" xml:space="preserve">
-    <value>Numerico 0</value>
-  </data>
-  <data name="comboBoxKey.Items38" xml:space="preserve">
-    <value>Numerico 1</value>
-  </data>
-  <data name="comboBoxKey.Items39" xml:space="preserve">
-    <value>Numerico 2</value>
-  </data>
-  <data name="comboBoxKey.Items40" xml:space="preserve">
-    <value>Numerico 3</value>
-  </data>
-  <data name="comboBoxKey.Items41" xml:space="preserve">
-    <value>Numerico 4</value>
-  </data>
-  <data name="comboBoxKey.Items42" xml:space="preserve">
-    <value>Numerico 5</value>
-  </data>
-  <data name="comboBoxKey.Items43" xml:space="preserve">
-    <value>Numerico 6</value>
-  </data>
-  <data name="comboBoxKey.Items44" xml:space="preserve">
-    <value>Numerico 7</value>
-  </data>
-  <data name="comboBoxKey.Items45" xml:space="preserve">
-    <value>Numerico 8</value>
-  </data>
-  <data name="comboBoxKey.Items46" xml:space="preserve">
-    <value>Numerico 9</value>
-  </data>
-  <data name="comboBoxKey.Items47" xml:space="preserve">
-    <value>Numerico /</value>
-  </data>
-  <data name="comboBoxKey.Items48" xml:space="preserve">
-    <value>Numerico *</value>
-  </data>
-  <data name="comboBoxKey.Items49" xml:space="preserve">
-    <value>Numerico -</value>
-  </data>
-  <data name="comboBoxKey.Items50" xml:space="preserve">
-    <value>Numerico +</value>
-  </data>
-  <data name="comboBoxKey.Items51" xml:space="preserve">
-    <value>Numerico .</value>
   </data>
   <data name="comboBoxKey.Items64" xml:space="preserve">
     <value>ESC</value>

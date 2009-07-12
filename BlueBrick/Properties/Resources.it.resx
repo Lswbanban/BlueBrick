@@ -187,7 +187,7 @@
     <value>Nascondi il Layer "&amp;"</value>
   </data>
   <data name="ActionMoveArea" xml:space="preserve">
-    <value>Move the Areas</value>
+    <value>Sposta le aree</value>
   </data>
   <data name="ActionMoveBrick" xml:space="preserve">
     <value>Sposta il pezzo &amp;</value>
@@ -320,7 +320,7 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
     <value>Non posso caricare questo file. La tua versione di BlueBrick è vecchia, oppure il file non è in formato BlueBrick. Creca di scaricere e installare l'ultima versione di BlueBrick.</value>
   </data>
   <data name="ErrorMsgReadyToReloadPartLib" xml:space="preserve">
-    <value>The parts library was unloaded, you can now modify the files in it. Click ok when you are ready to reload it.</value>
+    <value>La libreria dei pezzi è stata scaricata dalla memoria, adesso puoi modificarne i files. Clicca su OK quando sei pronto per ricaricarla.</value>
   </data>
   <data name="ErrorMsgTitleError" xml:space="preserve">
     <value>Errore</value>
