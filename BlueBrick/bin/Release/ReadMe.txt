@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.4.0.0 |
+                    | BlueBrick version 1.5.0.0 |
                     +---------------------------+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -114,12 +114,20 @@ Open bugs:
 - MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
+- MISSING FEATURE (Alban): Add two buttons for "Send To back" and "Bring to Front"
 - MISSING FEATURE (Alex & Alban): When you drag'n'drop a connected brick, the dragged brick is not rotated for a proper connection
+- MISSING FEATURE (Alban): Add a warning message box when saving in LDR or TDL and some data will be lost
 - BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
+- BUG (Alex & Alban): Some picture URL are not correct in the HTML exported list (put the URL in XML file).
+- BUG (Alex): In the shortcut panel, we should grayed the connection point and part number if it is not used by the action.
+- BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - REFACTORING (Alban): Do not fill the optim combo box in code
+
+Bug fixed in 1.5.0.0:
+- BUG (Alban): The saving as a new map do not add the file in the recent list
 
 Bug fixed in 1.4.0.0:
 - NEW FEATURE (Alban): Custom mouse cursors.

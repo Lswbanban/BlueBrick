@@ -30,25 +30,6 @@ namespace BlueBrick
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-			this.mainSplitContainer = new BlueBrick.MainSplitContainer();
-			this.mapPanel = new BlueBrick.MapPanel();
-			this.statusBar = new System.Windows.Forms.StatusStrip();
-			this.statusBarProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-			this.statusBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
-			this.toolSplitContainer = new System.Windows.Forms.SplitContainer();
-			this.partsTabControl = new BlueBrick.PartLibraryPanel();
-			this.layerSplitContainer = new System.Windows.Forms.SplitContainer();
-			this.layerStackPanel = new BlueBrick.LayerStackPanel();
-			this.LayerButtonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.trashLayerButton = new System.Windows.Forms.Button();
-			this.label2 = new System.Windows.Forms.Label();
-			this.newLayerBrickButton = new System.Windows.Forms.Button();
-			this.newLayerAreaButton = new System.Windows.Forms.Button();
-			this.newLayerGridButton = new System.Windows.Forms.Button();
-			this.newLayerTextButton = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
-			this.layerUpButton = new System.Windows.Forms.Button();
-			this.layerDownButton = new System.Windows.Forms.Button();
 			this.menuBar = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,6 +88,7 @@ namespace BlueBrick
 			this.generalInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutBlueBrickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.helpContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolBar = new System.Windows.Forms.ToolStrip();
 			this.toolBarNewButton = new System.Windows.Forms.ToolStripButton();
 			this.toolBarOpenButton = new System.Windows.Forms.ToolStripButton();
@@ -142,6 +124,28 @@ namespace BlueBrick
 			this.saveExportImageDialog = new System.Windows.Forms.SaveFileDialog();
 			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.toolTipForMainForm = new System.Windows.Forms.ToolTip(this.components);
+			this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+			this.mainSplitContainer = new BlueBrick.MainSplitContainer();
+			this.mapPanel = new BlueBrick.MapPanel();
+			this.statusBar = new System.Windows.Forms.StatusStrip();
+			this.statusBarProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+			this.statusBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolSplitContainer = new System.Windows.Forms.SplitContainer();
+			this.partsTabControl = new BlueBrick.PartLibraryPanel();
+			this.layerSplitContainer = new System.Windows.Forms.SplitContainer();
+			this.layerStackPanel = new BlueBrick.LayerStackPanel();
+			this.LayerButtonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.trashLayerButton = new System.Windows.Forms.Button();
+			this.label2 = new System.Windows.Forms.Label();
+			this.newLayerBrickButton = new System.Windows.Forms.Button();
+			this.newLayerAreaButton = new System.Windows.Forms.Button();
+			this.newLayerGridButton = new System.Windows.Forms.Button();
+			this.newLayerTextButton = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
+			this.layerUpButton = new System.Windows.Forms.Button();
+			this.layerDownButton = new System.Windows.Forms.Button();
+			this.menuBar.SuspendLayout();
+			this.toolBar.SuspendLayout();
 			this.mainSplitContainer.Panel1.SuspendLayout();
 			this.mainSplitContainer.Panel2.SuspendLayout();
 			this.mainSplitContainer.SuspendLayout();
@@ -154,327 +158,20 @@ namespace BlueBrick
 			this.layerSplitContainer.Panel2.SuspendLayout();
 			this.layerSplitContainer.SuspendLayout();
 			this.LayerButtonFlowLayoutPanel.SuspendLayout();
-			this.menuBar.SuspendLayout();
-			this.toolBar.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// mainSplitContainer
-			// 
-			this.mainSplitContainer.AccessibleDescription = null;
-			this.mainSplitContainer.AccessibleName = null;
-			resources.ApplyResources(this.mainSplitContainer, "mainSplitContainer");
-			this.mainSplitContainer.BackgroundImage = null;
-			this.mainSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.mainSplitContainer.Font = null;
-			this.mainSplitContainer.Name = "mainSplitContainer";
-			// 
-			// mainSplitContainer.Panel1
-			// 
-			this.mainSplitContainer.Panel1.AccessibleDescription = null;
-			this.mainSplitContainer.Panel1.AccessibleName = null;
-			resources.ApplyResources(this.mainSplitContainer.Panel1, "mainSplitContainer.Panel1");
-			this.mainSplitContainer.Panel1.BackgroundImage = null;
-			this.mainSplitContainer.Panel1.Controls.Add(this.mapPanel);
-			this.mainSplitContainer.Panel1.Font = null;
-			this.toolTipForMainForm.SetToolTip(this.mainSplitContainer.Panel1, resources.GetString("mainSplitContainer.Panel1.ToolTip"));
-			// 
-			// mainSplitContainer.Panel2
-			// 
-			this.mainSplitContainer.Panel2.AccessibleDescription = null;
-			this.mainSplitContainer.Panel2.AccessibleName = null;
-			resources.ApplyResources(this.mainSplitContainer.Panel2, "mainSplitContainer.Panel2");
-			this.mainSplitContainer.Panel2.BackgroundImage = null;
-			this.mainSplitContainer.Panel2.Controls.Add(this.toolSplitContainer);
-			this.mainSplitContainer.Panel2.Font = null;
-			this.toolTipForMainForm.SetToolTip(this.mainSplitContainer.Panel2, resources.GetString("mainSplitContainer.Panel2.ToolTip"));
-			this.toolTipForMainForm.SetToolTip(this.mainSplitContainer, resources.GetString("mainSplitContainer.ToolTip"));
-			// 
-			// mapPanel
-			// 
-			this.mapPanel.AccessibleDescription = null;
-			this.mapPanel.AccessibleName = null;
-			resources.ApplyResources(this.mapPanel, "mapPanel");
-			this.mapPanel.BackColor = System.Drawing.Color.CornflowerBlue;
-			this.mapPanel.BackgroundImage = null;
-			this.mapPanel.Controls.Add(this.statusBar);
-			this.mapPanel.Font = null;
-			this.mapPanel.Name = "mapPanel";
-			this.toolTipForMainForm.SetToolTip(this.mapPanel, resources.GetString("mapPanel.ToolTip"));
-			this.mapPanel.ViewScale = 1;
-			// 
-			// statusBar
-			// 
-			this.statusBar.AccessibleDescription = null;
-			this.statusBar.AccessibleName = null;
-			resources.ApplyResources(this.statusBar, "statusBar");
-			this.statusBar.BackColor = System.Drawing.SystemColors.Control;
-			this.statusBar.BackgroundImage = null;
-			this.statusBar.Font = null;
-			this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusBarProgressBar,
-            this.statusBarLabel});
-			this.statusBar.Name = "statusBar";
-			this.statusBar.SizingGrip = false;
-			this.toolTipForMainForm.SetToolTip(this.statusBar, resources.GetString("statusBar.ToolTip"));
-			// 
-			// statusBarProgressBar
-			// 
-			this.statusBarProgressBar.AccessibleDescription = null;
-			this.statusBarProgressBar.AccessibleName = null;
-			resources.ApplyResources(this.statusBarProgressBar, "statusBarProgressBar");
-			this.statusBarProgressBar.Name = "statusBarProgressBar";
-			// 
-			// statusBarLabel
-			// 
-			this.statusBarLabel.AccessibleDescription = null;
-			this.statusBarLabel.AccessibleName = null;
-			resources.ApplyResources(this.statusBarLabel, "statusBarLabel");
-			this.statusBarLabel.BackgroundImage = null;
-			this.statusBarLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.statusBarLabel.Name = "statusBarLabel";
-			// 
-			// toolSplitContainer
-			// 
-			this.toolSplitContainer.AccessibleDescription = null;
-			this.toolSplitContainer.AccessibleName = null;
-			resources.ApplyResources(this.toolSplitContainer, "toolSplitContainer");
-			this.toolSplitContainer.BackgroundImage = null;
-			this.toolSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.toolSplitContainer.Font = null;
-			this.toolSplitContainer.Name = "toolSplitContainer";
-			// 
-			// toolSplitContainer.Panel1
-			// 
-			this.toolSplitContainer.Panel1.AccessibleDescription = null;
-			this.toolSplitContainer.Panel1.AccessibleName = null;
-			resources.ApplyResources(this.toolSplitContainer.Panel1, "toolSplitContainer.Panel1");
-			this.toolSplitContainer.Panel1.BackgroundImage = null;
-			this.toolSplitContainer.Panel1.Controls.Add(this.partsTabControl);
-			this.toolSplitContainer.Panel1.Font = null;
-			this.toolTipForMainForm.SetToolTip(this.toolSplitContainer.Panel1, resources.GetString("toolSplitContainer.Panel1.ToolTip"));
-			// 
-			// toolSplitContainer.Panel2
-			// 
-			this.toolSplitContainer.Panel2.AccessibleDescription = null;
-			this.toolSplitContainer.Panel2.AccessibleName = null;
-			resources.ApplyResources(this.toolSplitContainer.Panel2, "toolSplitContainer.Panel2");
-			this.toolSplitContainer.Panel2.BackColor = System.Drawing.SystemColors.Control;
-			this.toolSplitContainer.Panel2.BackgroundImage = null;
-			this.toolSplitContainer.Panel2.Controls.Add(this.layerSplitContainer);
-			this.toolSplitContainer.Panel2.Font = null;
-			this.toolTipForMainForm.SetToolTip(this.toolSplitContainer.Panel2, resources.GetString("toolSplitContainer.Panel2.ToolTip"));
-			this.toolTipForMainForm.SetToolTip(this.toolSplitContainer, resources.GetString("toolSplitContainer.ToolTip"));
-			// 
-			// partsTabControl
-			// 
-			this.partsTabControl.AccessibleDescription = null;
-			this.partsTabControl.AccessibleName = null;
-			resources.ApplyResources(this.partsTabControl, "partsTabControl");
-			this.partsTabControl.BackgroundImage = null;
-			this.partsTabControl.Font = null;
-			this.partsTabControl.Name = "partsTabControl";
-			this.partsTabControl.SelectedIndex = 0;
-			this.toolTipForMainForm.SetToolTip(this.partsTabControl, resources.GetString("partsTabControl.ToolTip"));
-			// 
-			// layerSplitContainer
-			// 
-			this.layerSplitContainer.AccessibleDescription = null;
-			this.layerSplitContainer.AccessibleName = null;
-			resources.ApplyResources(this.layerSplitContainer, "layerSplitContainer");
-			this.layerSplitContainer.BackgroundImage = null;
-			this.layerSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-			this.layerSplitContainer.Font = null;
-			this.layerSplitContainer.Name = "layerSplitContainer";
-			// 
-			// layerSplitContainer.Panel1
-			// 
-			this.layerSplitContainer.Panel1.AccessibleDescription = null;
-			this.layerSplitContainer.Panel1.AccessibleName = null;
-			resources.ApplyResources(this.layerSplitContainer.Panel1, "layerSplitContainer.Panel1");
-			this.layerSplitContainer.Panel1.BackgroundImage = null;
-			this.layerSplitContainer.Panel1.Controls.Add(this.layerStackPanel);
-			this.layerSplitContainer.Panel1.Font = null;
-			this.toolTipForMainForm.SetToolTip(this.layerSplitContainer.Panel1, resources.GetString("layerSplitContainer.Panel1.ToolTip"));
-			// 
-			// layerSplitContainer.Panel2
-			// 
-			this.layerSplitContainer.Panel2.AccessibleDescription = null;
-			this.layerSplitContainer.Panel2.AccessibleName = null;
-			resources.ApplyResources(this.layerSplitContainer.Panel2, "layerSplitContainer.Panel2");
-			this.layerSplitContainer.Panel2.BackgroundImage = null;
-			this.layerSplitContainer.Panel2.Controls.Add(this.LayerButtonFlowLayoutPanel);
-			this.layerSplitContainer.Panel2.Font = null;
-			this.toolTipForMainForm.SetToolTip(this.layerSplitContainer.Panel2, resources.GetString("layerSplitContainer.Panel2.ToolTip"));
-			this.toolTipForMainForm.SetToolTip(this.layerSplitContainer, resources.GetString("layerSplitContainer.ToolTip"));
-			// 
-			// layerStackPanel
-			// 
-			this.layerStackPanel.AccessibleDescription = null;
-			this.layerStackPanel.AccessibleName = null;
-			resources.ApplyResources(this.layerStackPanel, "layerStackPanel");
-			this.layerStackPanel.BackColor = System.Drawing.SystemColors.Control;
-			this.layerStackPanel.BackgroundImage = null;
-			this.layerStackPanel.Font = null;
-			this.layerStackPanel.Name = "layerStackPanel";
-			this.toolTipForMainForm.SetToolTip(this.layerStackPanel, resources.GetString("layerStackPanel.ToolTip"));
-			// 
-			// LayerButtonFlowLayoutPanel
-			// 
-			this.LayerButtonFlowLayoutPanel.AccessibleDescription = null;
-			this.LayerButtonFlowLayoutPanel.AccessibleName = null;
-			resources.ApplyResources(this.LayerButtonFlowLayoutPanel, "LayerButtonFlowLayoutPanel");
-			this.LayerButtonFlowLayoutPanel.BackgroundImage = null;
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.trashLayerButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.label2);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerBrickButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerAreaButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerGridButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerTextButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.label1);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.layerUpButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.layerDownButton);
-			this.LayerButtonFlowLayoutPanel.Font = null;
-			this.LayerButtonFlowLayoutPanel.Name = "LayerButtonFlowLayoutPanel";
-			this.toolTipForMainForm.SetToolTip(this.LayerButtonFlowLayoutPanel, resources.GetString("LayerButtonFlowLayoutPanel.ToolTip"));
-			// 
-			// trashLayerButton
-			// 
-			this.trashLayerButton.AccessibleDescription = null;
-			this.trashLayerButton.AccessibleName = null;
-			resources.ApplyResources(this.trashLayerButton, "trashLayerButton");
-			this.trashLayerButton.BackColor = System.Drawing.SystemColors.Control;
-			this.trashLayerButton.BackgroundImage = null;
-			this.trashLayerButton.FlatAppearance.BorderSize = 0;
-			this.trashLayerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			this.trashLayerButton.Font = null;
-			this.trashLayerButton.Name = "trashLayerButton";
-			this.toolTipForMainForm.SetToolTip(this.trashLayerButton, resources.GetString("trashLayerButton.ToolTip"));
-			this.trashLayerButton.UseVisualStyleBackColor = false;
-			this.trashLayerButton.Click += new System.EventHandler(this.trashLayerButton_Click);
-			// 
-			// label2
-			// 
-			this.label2.AccessibleDescription = null;
-			this.label2.AccessibleName = null;
-			resources.ApplyResources(this.label2, "label2");
-			this.label2.Font = null;
-			this.label2.Name = "label2";
-			this.toolTipForMainForm.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
-			// 
-			// newLayerBrickButton
-			// 
-			this.newLayerBrickButton.AccessibleDescription = null;
-			this.newLayerBrickButton.AccessibleName = null;
-			resources.ApplyResources(this.newLayerBrickButton, "newLayerBrickButton");
-			this.newLayerBrickButton.BackgroundImage = null;
-			this.newLayerBrickButton.FlatAppearance.BorderSize = 0;
-			this.newLayerBrickButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			this.newLayerBrickButton.Font = null;
-			this.newLayerBrickButton.Name = "newLayerBrickButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerBrickButton, resources.GetString("newLayerBrickButton.ToolTip"));
-			this.newLayerBrickButton.UseVisualStyleBackColor = true;
-			this.newLayerBrickButton.Click += new System.EventHandler(this.newLayerBrickButton_Click);
-			// 
-			// newLayerAreaButton
-			// 
-			this.newLayerAreaButton.AccessibleDescription = null;
-			this.newLayerAreaButton.AccessibleName = null;
-			resources.ApplyResources(this.newLayerAreaButton, "newLayerAreaButton");
-			this.newLayerAreaButton.BackgroundImage = null;
-			this.newLayerAreaButton.FlatAppearance.BorderSize = 0;
-			this.newLayerAreaButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			this.newLayerAreaButton.Font = null;
-			this.newLayerAreaButton.Name = "newLayerAreaButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerAreaButton, resources.GetString("newLayerAreaButton.ToolTip"));
-			this.newLayerAreaButton.UseVisualStyleBackColor = true;
-			this.newLayerAreaButton.Click += new System.EventHandler(this.newLayerAreaButton_Click);
-			// 
-			// newLayerGridButton
-			// 
-			this.newLayerGridButton.AccessibleDescription = null;
-			this.newLayerGridButton.AccessibleName = null;
-			resources.ApplyResources(this.newLayerGridButton, "newLayerGridButton");
-			this.newLayerGridButton.BackgroundImage = null;
-			this.newLayerGridButton.FlatAppearance.BorderSize = 0;
-			this.newLayerGridButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			this.newLayerGridButton.Font = null;
-			this.newLayerGridButton.Name = "newLayerGridButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerGridButton, resources.GetString("newLayerGridButton.ToolTip"));
-			this.newLayerGridButton.UseVisualStyleBackColor = true;
-			this.newLayerGridButton.Click += new System.EventHandler(this.newLayerGridButton_Click);
-			// 
-			// newLayerTextButton
-			// 
-			this.newLayerTextButton.AccessibleDescription = null;
-			this.newLayerTextButton.AccessibleName = null;
-			resources.ApplyResources(this.newLayerTextButton, "newLayerTextButton");
-			this.newLayerTextButton.BackgroundImage = null;
-			this.newLayerTextButton.FlatAppearance.BorderSize = 0;
-			this.newLayerTextButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			this.newLayerTextButton.Font = null;
-			this.newLayerTextButton.Name = "newLayerTextButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerTextButton, resources.GetString("newLayerTextButton.ToolTip"));
-			this.newLayerTextButton.UseVisualStyleBackColor = true;
-			this.newLayerTextButton.Click += new System.EventHandler(this.newLayerTextButton_Click);
-			// 
-			// label1
-			// 
-			this.label1.AccessibleDescription = null;
-			this.label1.AccessibleName = null;
-			resources.ApplyResources(this.label1, "label1");
-			this.label1.Font = null;
-			this.label1.Name = "label1";
-			this.toolTipForMainForm.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
-			// 
-			// layerUpButton
-			// 
-			this.layerUpButton.AccessibleDescription = null;
-			this.layerUpButton.AccessibleName = null;
-			resources.ApplyResources(this.layerUpButton, "layerUpButton");
-			this.layerUpButton.BackgroundImage = null;
-			this.layerUpButton.FlatAppearance.BorderSize = 0;
-			this.layerUpButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			this.layerUpButton.Font = null;
-			this.layerUpButton.Name = "layerUpButton";
-			this.toolTipForMainForm.SetToolTip(this.layerUpButton, resources.GetString("layerUpButton.ToolTip"));
-			this.layerUpButton.UseVisualStyleBackColor = true;
-			this.layerUpButton.Click += new System.EventHandler(this.layerUpButton_Click);
-			// 
-			// layerDownButton
-			// 
-			this.layerDownButton.AccessibleDescription = null;
-			this.layerDownButton.AccessibleName = null;
-			resources.ApplyResources(this.layerDownButton, "layerDownButton");
-			this.layerDownButton.BackgroundImage = null;
-			this.layerDownButton.FlatAppearance.BorderSize = 0;
-			this.layerDownButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			this.layerDownButton.Font = null;
-			this.layerDownButton.Name = "layerDownButton";
-			this.toolTipForMainForm.SetToolTip(this.layerDownButton, resources.GetString("layerDownButton.ToolTip"));
-			this.layerDownButton.UseVisualStyleBackColor = true;
-			this.layerDownButton.Click += new System.EventHandler(this.layerDownButton_Click);
 			// 
 			// menuBar
 			// 
-			this.menuBar.AccessibleDescription = null;
-			this.menuBar.AccessibleName = null;
-			resources.ApplyResources(this.menuBar, "menuBar");
-			this.menuBar.BackgroundImage = null;
-			this.menuBar.Font = null;
 			this.menuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.helpToolStripMenuItem});
+			resources.ApplyResources(this.menuBar, "menuBar");
 			this.menuBar.Name = "menuBar";
-			this.toolTipForMainForm.SetToolTip(this.menuBar, resources.GetString("menuBar.ToolTip"));
 			// 
 			// fileToolStripMenuItem
 			// 
-			this.fileToolStripMenuItem.AccessibleDescription = null;
-			this.fileToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
-			this.fileToolStripMenuItem.BackgroundImage = null;
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
@@ -488,114 +185,72 @@ namespace BlueBrick
             this.toolStripSeparator12,
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-			this.fileToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
 			// 
 			// newToolStripMenuItem
 			// 
-			this.newToolStripMenuItem.AccessibleDescription = null;
-			this.newToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.newToolStripMenuItem, "newToolStripMenuItem");
-			this.newToolStripMenuItem.BackgroundImage = null;
 			this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-			this.newToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.newToolStripMenuItem, "newToolStripMenuItem");
 			this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
 			// 
 			// openToolStripMenuItem
 			// 
-			this.openToolStripMenuItem.AccessibleDescription = null;
-			this.openToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.openToolStripMenuItem, "openToolStripMenuItem");
-			this.openToolStripMenuItem.BackgroundImage = null;
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.openToolStripMenuItem, "openToolStripMenuItem");
 			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
 			// 
 			// openRecentToolStripMenuItem
 			// 
-			this.openRecentToolStripMenuItem.AccessibleDescription = null;
-			this.openRecentToolStripMenuItem.AccessibleName = null;
 			resources.ApplyResources(this.openRecentToolStripMenuItem, "openRecentToolStripMenuItem");
-			this.openRecentToolStripMenuItem.BackgroundImage = null;
 			this.openRecentToolStripMenuItem.Name = "openRecentToolStripMenuItem";
-			this.openRecentToolStripMenuItem.ShortcutKeyDisplayString = null;
 			// 
 			// toolStripSeparator1
 			// 
-			this.toolStripSeparator1.AccessibleDescription = null;
-			this.toolStripSeparator1.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
 			// 
 			// saveToolStripMenuItem
 			// 
-			this.saveToolStripMenuItem.AccessibleDescription = null;
-			this.saveToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.saveToolStripMenuItem, "saveToolStripMenuItem");
-			this.saveToolStripMenuItem.BackgroundImage = null;
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.saveToolStripMenuItem, "saveToolStripMenuItem");
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
 			// saveasToolStripMenuItem
 			// 
-			this.saveasToolStripMenuItem.AccessibleDescription = null;
-			this.saveasToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.saveasToolStripMenuItem, "saveasToolStripMenuItem");
-			this.saveasToolStripMenuItem.BackgroundImage = null;
 			this.saveasToolStripMenuItem.Name = "saveasToolStripMenuItem";
-			this.saveasToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.saveasToolStripMenuItem, "saveasToolStripMenuItem");
 			this.saveasToolStripMenuItem.Click += new System.EventHandler(this.saveasToolStripMenuItem_Click);
 			// 
 			// exportAsPictureToolStripMenuItem
 			// 
-			this.exportAsPictureToolStripMenuItem.AccessibleDescription = null;
-			this.exportAsPictureToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.exportAsPictureToolStripMenuItem, "exportAsPictureToolStripMenuItem");
-			this.exportAsPictureToolStripMenuItem.BackgroundImage = null;
 			this.exportAsPictureToolStripMenuItem.Name = "exportAsPictureToolStripMenuItem";
-			this.exportAsPictureToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.exportAsPictureToolStripMenuItem, "exportAsPictureToolStripMenuItem");
 			this.exportAsPictureToolStripMenuItem.Click += new System.EventHandler(this.exportAsPictureToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
-			this.toolStripSeparator2.AccessibleDescription = null;
-			this.toolStripSeparator2.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
 			// 
 			// reloadPartLibraryToolStripMenuItem
 			// 
-			this.reloadPartLibraryToolStripMenuItem.AccessibleDescription = null;
-			this.reloadPartLibraryToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.reloadPartLibraryToolStripMenuItem, "reloadPartLibraryToolStripMenuItem");
-			this.reloadPartLibraryToolStripMenuItem.BackgroundImage = null;
 			this.reloadPartLibraryToolStripMenuItem.Name = "reloadPartLibraryToolStripMenuItem";
-			this.reloadPartLibraryToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.reloadPartLibraryToolStripMenuItem, "reloadPartLibraryToolStripMenuItem");
 			this.reloadPartLibraryToolStripMenuItem.Click += new System.EventHandler(this.reloadPartLibraryToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator12
 			// 
-			this.toolStripSeparator12.AccessibleDescription = null;
-			this.toolStripSeparator12.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator12, "toolStripSeparator12");
 			this.toolStripSeparator12.Name = "toolStripSeparator12";
+			resources.ApplyResources(this.toolStripSeparator12, "toolStripSeparator12");
 			// 
 			// exitToolStripMenuItem
 			// 
-			this.exitToolStripMenuItem.AccessibleDescription = null;
-			this.exitToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
-			this.exitToolStripMenuItem.BackgroundImage = null;
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
 			// editToolStripMenuItem
 			// 
-			this.editToolStripMenuItem.AccessibleDescription = null;
-			this.editToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.editToolStripMenuItem, "editToolStripMenuItem");
-			this.editToolStripMenuItem.BackgroundImage = null;
 			this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.undoToolStripMenuItem,
             this.redoToolStripMenuItem,
@@ -619,125 +274,79 @@ namespace BlueBrick
             this.currentLayerOptionsToolStripMenuItem,
             this.optionsToolStripMenuItem});
 			this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-			this.editToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.editToolStripMenuItem, "editToolStripMenuItem");
 			// 
 			// undoToolStripMenuItem
 			// 
-			this.undoToolStripMenuItem.AccessibleDescription = null;
-			this.undoToolStripMenuItem.AccessibleName = null;
 			resources.ApplyResources(this.undoToolStripMenuItem, "undoToolStripMenuItem");
-			this.undoToolStripMenuItem.BackgroundImage = null;
 			this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-			this.undoToolStripMenuItem.ShortcutKeyDisplayString = null;
 			this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
 			// 
 			// redoToolStripMenuItem
 			// 
-			this.redoToolStripMenuItem.AccessibleDescription = null;
-			this.redoToolStripMenuItem.AccessibleName = null;
 			resources.ApplyResources(this.redoToolStripMenuItem, "redoToolStripMenuItem");
-			this.redoToolStripMenuItem.BackgroundImage = null;
 			this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-			this.redoToolStripMenuItem.ShortcutKeyDisplayString = null;
 			this.redoToolStripMenuItem.Click += new System.EventHandler(this.redoToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator4
 			// 
-			this.toolStripSeparator4.AccessibleDescription = null;
-			this.toolStripSeparator4.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
+			resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
 			// 
 			// cutToolStripMenuItem
 			// 
-			this.cutToolStripMenuItem.AccessibleDescription = null;
-			this.cutToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.cutToolStripMenuItem, "cutToolStripMenuItem");
-			this.cutToolStripMenuItem.BackgroundImage = null;
 			this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-			this.cutToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.cutToolStripMenuItem, "cutToolStripMenuItem");
 			this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
 			// 
 			// copyToolStripMenuItem
 			// 
-			this.copyToolStripMenuItem.AccessibleDescription = null;
-			this.copyToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.copyToolStripMenuItem, "copyToolStripMenuItem");
-			this.copyToolStripMenuItem.BackgroundImage = null;
 			this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-			this.copyToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.copyToolStripMenuItem, "copyToolStripMenuItem");
 			this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
 			// 
 			// pasteToolStripMenuItem
 			// 
-			this.pasteToolStripMenuItem.AccessibleDescription = null;
-			this.pasteToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.pasteToolStripMenuItem, "pasteToolStripMenuItem");
-			this.pasteToolStripMenuItem.BackgroundImage = null;
 			this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-			this.pasteToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.pasteToolStripMenuItem, "pasteToolStripMenuItem");
 			this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
 			// 
 			// deleteToolStripMenuItem
 			// 
-			this.deleteToolStripMenuItem.AccessibleDescription = null;
-			this.deleteToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
-			this.deleteToolStripMenuItem.BackgroundImage = null;
 			this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-			this.deleteToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
 			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator5
 			// 
-			this.toolStripSeparator5.AccessibleDescription = null;
-			this.toolStripSeparator5.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
 			this.toolStripSeparator5.Name = "toolStripSeparator5";
+			resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
 			// 
 			// selectAllToolStripMenuItem
 			// 
-			this.selectAllToolStripMenuItem.AccessibleDescription = null;
-			this.selectAllToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
-			this.selectAllToolStripMenuItem.BackgroundImage = null;
 			this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-			this.selectAllToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
 			this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
 			// 
 			// deselectAllToolStripMenuItem
 			// 
-			this.deselectAllToolStripMenuItem.AccessibleDescription = null;
-			this.deselectAllToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.deselectAllToolStripMenuItem, "deselectAllToolStripMenuItem");
-			this.deselectAllToolStripMenuItem.BackgroundImage = null;
 			this.deselectAllToolStripMenuItem.Name = "deselectAllToolStripMenuItem";
-			this.deselectAllToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.deselectAllToolStripMenuItem, "deselectAllToolStripMenuItem");
 			this.deselectAllToolStripMenuItem.Click += new System.EventHandler(this.deselectAllToolStripMenuItem_Click);
 			// 
 			// selectPathToolStripMenuItem
 			// 
-			this.selectPathToolStripMenuItem.AccessibleDescription = null;
-			this.selectPathToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.selectPathToolStripMenuItem, "selectPathToolStripMenuItem");
-			this.selectPathToolStripMenuItem.BackgroundImage = null;
 			this.selectPathToolStripMenuItem.Name = "selectPathToolStripMenuItem";
-			this.selectPathToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.selectPathToolStripMenuItem, "selectPathToolStripMenuItem");
 			this.selectPathToolStripMenuItem.Click += new System.EventHandler(this.selectPathToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator8
 			// 
-			this.toolStripSeparator8.AccessibleDescription = null;
-			this.toolStripSeparator8.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
 			this.toolStripSeparator8.Name = "toolStripSeparator8";
+			resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
 			// 
 			// moveStepToolStripMenuItem
 			// 
-			this.moveStepToolStripMenuItem.AccessibleDescription = null;
-			this.moveStepToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.moveStepToolStripMenuItem, "moveStepToolStripMenuItem");
-			this.moveStepToolStripMenuItem.BackgroundImage = null;
 			this.moveStepToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.moveStepDisabledToolStripMenuItem,
             this.moveStep32ToolStripMenuItem,
@@ -747,252 +356,160 @@ namespace BlueBrick
             this.moveStep1ToolStripMenuItem,
             this.moveStep05ToolStripMenuItem});
 			this.moveStepToolStripMenuItem.Name = "moveStepToolStripMenuItem";
-			this.moveStepToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.moveStepToolStripMenuItem, "moveStepToolStripMenuItem");
 			// 
 			// moveStepDisabledToolStripMenuItem
 			// 
-			this.moveStepDisabledToolStripMenuItem.AccessibleDescription = null;
-			this.moveStepDisabledToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.moveStepDisabledToolStripMenuItem, "moveStepDisabledToolStripMenuItem");
-			this.moveStepDisabledToolStripMenuItem.BackgroundImage = null;
 			this.moveStepDisabledToolStripMenuItem.Name = "moveStepDisabledToolStripMenuItem";
-			this.moveStepDisabledToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.moveStepDisabledToolStripMenuItem, "moveStepDisabledToolStripMenuItem");
 			this.moveStepDisabledToolStripMenuItem.Click += new System.EventHandler(this.moveStepDisabledToolStripMenuItem_Click);
 			// 
 			// moveStep32ToolStripMenuItem
 			// 
-			this.moveStep32ToolStripMenuItem.AccessibleDescription = null;
-			this.moveStep32ToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.moveStep32ToolStripMenuItem, "moveStep32ToolStripMenuItem");
-			this.moveStep32ToolStripMenuItem.BackgroundImage = null;
 			this.moveStep32ToolStripMenuItem.Checked = true;
 			this.moveStep32ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.moveStep32ToolStripMenuItem.Name = "moveStep32ToolStripMenuItem";
-			this.moveStep32ToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.moveStep32ToolStripMenuItem, "moveStep32ToolStripMenuItem");
 			this.moveStep32ToolStripMenuItem.Click += new System.EventHandler(this.moveStep32ToolStripMenuItem_Click);
 			// 
 			// moveStep16ToolStripMenuItem
 			// 
-			this.moveStep16ToolStripMenuItem.AccessibleDescription = null;
-			this.moveStep16ToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.moveStep16ToolStripMenuItem, "moveStep16ToolStripMenuItem");
-			this.moveStep16ToolStripMenuItem.BackgroundImage = null;
 			this.moveStep16ToolStripMenuItem.Name = "moveStep16ToolStripMenuItem";
-			this.moveStep16ToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.moveStep16ToolStripMenuItem, "moveStep16ToolStripMenuItem");
 			this.moveStep16ToolStripMenuItem.Click += new System.EventHandler(this.moveStep16ToolStripMenuItem_Click);
 			// 
 			// moveStep8ToolStripMenuItem
 			// 
-			this.moveStep8ToolStripMenuItem.AccessibleDescription = null;
-			this.moveStep8ToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.moveStep8ToolStripMenuItem, "moveStep8ToolStripMenuItem");
-			this.moveStep8ToolStripMenuItem.BackgroundImage = null;
 			this.moveStep8ToolStripMenuItem.Name = "moveStep8ToolStripMenuItem";
-			this.moveStep8ToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.moveStep8ToolStripMenuItem, "moveStep8ToolStripMenuItem");
 			this.moveStep8ToolStripMenuItem.Click += new System.EventHandler(this.moveStep8ToolStripMenuItem_Click);
 			// 
 			// moveStep4ToolStripMenuItem
 			// 
-			this.moveStep4ToolStripMenuItem.AccessibleDescription = null;
-			this.moveStep4ToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.moveStep4ToolStripMenuItem, "moveStep4ToolStripMenuItem");
-			this.moveStep4ToolStripMenuItem.BackgroundImage = null;
 			this.moveStep4ToolStripMenuItem.Name = "moveStep4ToolStripMenuItem";
-			this.moveStep4ToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.moveStep4ToolStripMenuItem, "moveStep4ToolStripMenuItem");
 			this.moveStep4ToolStripMenuItem.Click += new System.EventHandler(this.moveStep4ToolStripMenuItem_Click);
 			// 
 			// moveStep1ToolStripMenuItem
 			// 
-			this.moveStep1ToolStripMenuItem.AccessibleDescription = null;
-			this.moveStep1ToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.moveStep1ToolStripMenuItem, "moveStep1ToolStripMenuItem");
-			this.moveStep1ToolStripMenuItem.BackgroundImage = null;
 			this.moveStep1ToolStripMenuItem.Name = "moveStep1ToolStripMenuItem";
-			this.moveStep1ToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.moveStep1ToolStripMenuItem, "moveStep1ToolStripMenuItem");
 			this.moveStep1ToolStripMenuItem.Click += new System.EventHandler(this.moveStep1ToolStripMenuItem_Click);
 			// 
 			// moveStep05ToolStripMenuItem
 			// 
-			this.moveStep05ToolStripMenuItem.AccessibleDescription = null;
-			this.moveStep05ToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.moveStep05ToolStripMenuItem, "moveStep05ToolStripMenuItem");
-			this.moveStep05ToolStripMenuItem.BackgroundImage = null;
 			this.moveStep05ToolStripMenuItem.Name = "moveStep05ToolStripMenuItem";
-			this.moveStep05ToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.moveStep05ToolStripMenuItem, "moveStep05ToolStripMenuItem");
 			this.moveStep05ToolStripMenuItem.Click += new System.EventHandler(this.moveStep05ToolStripMenuItem_Click);
 			// 
 			// rotationStepToolStripMenuItem
 			// 
-			this.rotationStepToolStripMenuItem.AccessibleDescription = null;
-			this.rotationStepToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.rotationStepToolStripMenuItem, "rotationStepToolStripMenuItem");
-			this.rotationStepToolStripMenuItem.BackgroundImage = null;
 			this.rotationStepToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rotationStep90ToolStripMenuItem,
             this.rotationStep45ToolStripMenuItem,
             this.rotationStep22ToolStripMenuItem,
             this.rotationStep1ToolStripMenuItem});
 			this.rotationStepToolStripMenuItem.Name = "rotationStepToolStripMenuItem";
-			this.rotationStepToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.rotationStepToolStripMenuItem, "rotationStepToolStripMenuItem");
 			// 
 			// rotationStep90ToolStripMenuItem
 			// 
-			this.rotationStep90ToolStripMenuItem.AccessibleDescription = null;
-			this.rotationStep90ToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.rotationStep90ToolStripMenuItem, "rotationStep90ToolStripMenuItem");
-			this.rotationStep90ToolStripMenuItem.BackgroundImage = null;
 			this.rotationStep90ToolStripMenuItem.Checked = true;
 			this.rotationStep90ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.rotationStep90ToolStripMenuItem.Name = "rotationStep90ToolStripMenuItem";
-			this.rotationStep90ToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.rotationStep90ToolStripMenuItem, "rotationStep90ToolStripMenuItem");
 			this.rotationStep90ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep90ToolStripMenuItem_Click);
 			// 
 			// rotationStep45ToolStripMenuItem
 			// 
-			this.rotationStep45ToolStripMenuItem.AccessibleDescription = null;
-			this.rotationStep45ToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.rotationStep45ToolStripMenuItem, "rotationStep45ToolStripMenuItem");
-			this.rotationStep45ToolStripMenuItem.BackgroundImage = null;
 			this.rotationStep45ToolStripMenuItem.Name = "rotationStep45ToolStripMenuItem";
-			this.rotationStep45ToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.rotationStep45ToolStripMenuItem, "rotationStep45ToolStripMenuItem");
 			this.rotationStep45ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep45ToolStripMenuItem_Click);
 			// 
 			// rotationStep22ToolStripMenuItem
 			// 
-			this.rotationStep22ToolStripMenuItem.AccessibleDescription = null;
-			this.rotationStep22ToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.rotationStep22ToolStripMenuItem, "rotationStep22ToolStripMenuItem");
-			this.rotationStep22ToolStripMenuItem.BackgroundImage = null;
 			this.rotationStep22ToolStripMenuItem.Name = "rotationStep22ToolStripMenuItem";
-			this.rotationStep22ToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.rotationStep22ToolStripMenuItem, "rotationStep22ToolStripMenuItem");
 			this.rotationStep22ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep22ToolStripMenuItem_Click);
 			// 
 			// rotationStep1ToolStripMenuItem
 			// 
-			this.rotationStep1ToolStripMenuItem.AccessibleDescription = null;
-			this.rotationStep1ToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.rotationStep1ToolStripMenuItem, "rotationStep1ToolStripMenuItem");
-			this.rotationStep1ToolStripMenuItem.BackgroundImage = null;
 			this.rotationStep1ToolStripMenuItem.Name = "rotationStep1ToolStripMenuItem";
-			this.rotationStep1ToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.rotationStep1ToolStripMenuItem, "rotationStep1ToolStripMenuItem");
 			this.rotationStep1ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep1ToolStripMenuItem_Click);
 			// 
 			// rotateCWToolStripMenuItem
 			// 
-			this.rotateCWToolStripMenuItem.AccessibleDescription = null;
-			this.rotateCWToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.rotateCWToolStripMenuItem, "rotateCWToolStripMenuItem");
-			this.rotateCWToolStripMenuItem.BackgroundImage = null;
 			this.rotateCWToolStripMenuItem.Name = "rotateCWToolStripMenuItem";
-			this.rotateCWToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.rotateCWToolStripMenuItem, "rotateCWToolStripMenuItem");
 			this.rotateCWToolStripMenuItem.Click += new System.EventHandler(this.rotateCWToolStripMenuItem_Click);
 			// 
 			// rotateCCWToolStripMenuItem
 			// 
-			this.rotateCCWToolStripMenuItem.AccessibleDescription = null;
-			this.rotateCCWToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.rotateCCWToolStripMenuItem, "rotateCCWToolStripMenuItem");
-			this.rotateCCWToolStripMenuItem.BackgroundImage = null;
 			this.rotateCCWToolStripMenuItem.Name = "rotateCCWToolStripMenuItem";
-			this.rotateCCWToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.rotateCCWToolStripMenuItem, "rotateCCWToolStripMenuItem");
 			this.rotateCCWToolStripMenuItem.Click += new System.EventHandler(this.rotateCCWToolStripMenuItem_Click);
 			// 
 			// paintToolToolStripMenuItem
 			// 
-			this.paintToolToolStripMenuItem.AccessibleDescription = null;
-			this.paintToolToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.paintToolToolStripMenuItem, "paintToolToolStripMenuItem");
-			this.paintToolToolStripMenuItem.BackgroundImage = null;
 			this.paintToolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.paintToolPaintToolStripMenuItem,
             this.paintToolEraseToolStripMenuItem,
             this.toolStripSeparator11,
             this.paintToolChooseColorToolStripMenuItem});
 			this.paintToolToolStripMenuItem.Name = "paintToolToolStripMenuItem";
-			this.paintToolToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.paintToolToolStripMenuItem, "paintToolToolStripMenuItem");
 			// 
 			// paintToolPaintToolStripMenuItem
 			// 
-			this.paintToolPaintToolStripMenuItem.AccessibleDescription = null;
-			this.paintToolPaintToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.paintToolPaintToolStripMenuItem, "paintToolPaintToolStripMenuItem");
-			this.paintToolPaintToolStripMenuItem.BackgroundImage = null;
 			this.paintToolPaintToolStripMenuItem.Checked = true;
 			this.paintToolPaintToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.paintToolPaintToolStripMenuItem.Name = "paintToolPaintToolStripMenuItem";
-			this.paintToolPaintToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.paintToolPaintToolStripMenuItem, "paintToolPaintToolStripMenuItem");
 			this.paintToolPaintToolStripMenuItem.Click += new System.EventHandler(this.paintToolPaintToolStripMenuItem_Click);
 			// 
 			// paintToolEraseToolStripMenuItem
 			// 
-			this.paintToolEraseToolStripMenuItem.AccessibleDescription = null;
-			this.paintToolEraseToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.paintToolEraseToolStripMenuItem, "paintToolEraseToolStripMenuItem");
-			this.paintToolEraseToolStripMenuItem.BackgroundImage = null;
 			this.paintToolEraseToolStripMenuItem.Name = "paintToolEraseToolStripMenuItem";
-			this.paintToolEraseToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.paintToolEraseToolStripMenuItem, "paintToolEraseToolStripMenuItem");
 			this.paintToolEraseToolStripMenuItem.Click += new System.EventHandler(this.paintToolEraseToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator11
 			// 
-			this.toolStripSeparator11.AccessibleDescription = null;
-			this.toolStripSeparator11.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
 			this.toolStripSeparator11.Name = "toolStripSeparator11";
+			resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
 			// 
 			// paintToolChooseColorToolStripMenuItem
 			// 
-			this.paintToolChooseColorToolStripMenuItem.AccessibleDescription = null;
-			this.paintToolChooseColorToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.paintToolChooseColorToolStripMenuItem, "paintToolChooseColorToolStripMenuItem");
-			this.paintToolChooseColorToolStripMenuItem.BackgroundImage = null;
 			this.paintToolChooseColorToolStripMenuItem.Name = "paintToolChooseColorToolStripMenuItem";
-			this.paintToolChooseColorToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.paintToolChooseColorToolStripMenuItem, "paintToolChooseColorToolStripMenuItem");
 			this.paintToolChooseColorToolStripMenuItem.Click += new System.EventHandler(this.paintToolChooseColorToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator10
 			// 
-			this.toolStripSeparator10.AccessibleDescription = null;
-			this.toolStripSeparator10.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
 			this.toolStripSeparator10.Name = "toolStripSeparator10";
+			resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
 			// 
 			// mapBackgroundColorToolStripMenuItem
 			// 
-			this.mapBackgroundColorToolStripMenuItem.AccessibleDescription = null;
-			this.mapBackgroundColorToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.mapBackgroundColorToolStripMenuItem, "mapBackgroundColorToolStripMenuItem");
-			this.mapBackgroundColorToolStripMenuItem.BackgroundImage = null;
 			this.mapBackgroundColorToolStripMenuItem.Name = "mapBackgroundColorToolStripMenuItem";
-			this.mapBackgroundColorToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.mapBackgroundColorToolStripMenuItem, "mapBackgroundColorToolStripMenuItem");
 			this.mapBackgroundColorToolStripMenuItem.Click += new System.EventHandler(this.mapBackgroundColorToolStripMenuItem_Click);
 			// 
 			// currentLayerOptionsToolStripMenuItem
 			// 
-			this.currentLayerOptionsToolStripMenuItem.AccessibleDescription = null;
-			this.currentLayerOptionsToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.currentLayerOptionsToolStripMenuItem, "currentLayerOptionsToolStripMenuItem");
-			this.currentLayerOptionsToolStripMenuItem.BackgroundImage = null;
 			this.currentLayerOptionsToolStripMenuItem.Name = "currentLayerOptionsToolStripMenuItem";
-			this.currentLayerOptionsToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.currentLayerOptionsToolStripMenuItem, "currentLayerOptionsToolStripMenuItem");
 			this.currentLayerOptionsToolStripMenuItem.Click += new System.EventHandler(this.currentLayerOptionsToolStripMenuItem_Click);
 			// 
 			// optionsToolStripMenuItem
 			// 
-			this.optionsToolStripMenuItem.AccessibleDescription = null;
-			this.optionsToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.optionsToolStripMenuItem, "optionsToolStripMenuItem");
-			this.optionsToolStripMenuItem.BackgroundImage = null;
 			this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-			this.optionsToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.optionsToolStripMenuItem, "optionsToolStripMenuItem");
 			this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
 			// 
 			// viewToolStripMenuItem
 			// 
-			this.viewToolStripMenuItem.AccessibleDescription = null;
-			this.viewToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
-			this.viewToolStripMenuItem.BackgroundImage = null;
 			this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolbarMenuItem,
             this.statusBarMenuItem,
@@ -1000,89 +517,66 @@ namespace BlueBrick
             this.toolStripSeparator9,
             this.generalInformationToolStripMenuItem});
 			this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-			this.viewToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
 			// 
 			// toolbarMenuItem
 			// 
-			this.toolbarMenuItem.AccessibleDescription = null;
-			this.toolbarMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.toolbarMenuItem, "toolbarMenuItem");
-			this.toolbarMenuItem.BackgroundImage = null;
 			this.toolbarMenuItem.Checked = true;
 			this.toolbarMenuItem.CheckOnClick = true;
 			this.toolbarMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.toolbarMenuItem.Name = "toolbarMenuItem";
-			this.toolbarMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.toolbarMenuItem, "toolbarMenuItem");
 			this.toolbarMenuItem.Click += new System.EventHandler(this.toolbarToolStripMenuItem_Click);
 			// 
 			// statusBarMenuItem
 			// 
-			this.statusBarMenuItem.AccessibleDescription = null;
-			this.statusBarMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.statusBarMenuItem, "statusBarMenuItem");
-			this.statusBarMenuItem.BackgroundImage = null;
 			this.statusBarMenuItem.Checked = true;
 			this.statusBarMenuItem.CheckOnClick = true;
 			this.statusBarMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.statusBarMenuItem.Name = "statusBarMenuItem";
-			this.statusBarMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.statusBarMenuItem, "statusBarMenuItem");
 			this.statusBarMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
 			// 
 			// partListToolStripMenuItem
 			// 
-			this.partListToolStripMenuItem.AccessibleDescription = null;
-			this.partListToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.partListToolStripMenuItem, "partListToolStripMenuItem");
-			this.partListToolStripMenuItem.BackgroundImage = null;
 			this.partListToolStripMenuItem.Name = "partListToolStripMenuItem";
-			this.partListToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.partListToolStripMenuItem, "partListToolStripMenuItem");
 			this.partListToolStripMenuItem.Click += new System.EventHandler(this.partListToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator9
 			// 
-			this.toolStripSeparator9.AccessibleDescription = null;
-			this.toolStripSeparator9.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
 			this.toolStripSeparator9.Name = "toolStripSeparator9";
+			resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
 			// 
 			// generalInformationToolStripMenuItem
 			// 
-			this.generalInformationToolStripMenuItem.AccessibleDescription = null;
-			this.generalInformationToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.generalInformationToolStripMenuItem, "generalInformationToolStripMenuItem");
-			this.generalInformationToolStripMenuItem.BackgroundImage = null;
 			this.generalInformationToolStripMenuItem.Name = "generalInformationToolStripMenuItem";
-			this.generalInformationToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.generalInformationToolStripMenuItem, "generalInformationToolStripMenuItem");
 			this.generalInformationToolStripMenuItem.Click += new System.EventHandler(this.generalInformationToolStripMenuItem_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
-			this.helpToolStripMenuItem.AccessibleDescription = null;
-			this.helpToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
-			this.helpToolStripMenuItem.BackgroundImage = null;
 			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpContentsToolStripMenuItem,
+            this.toolStripSeparator13,
             this.aboutBlueBrickToolStripMenuItem});
 			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-			this.helpToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
 			// 
 			// aboutBlueBrickToolStripMenuItem
 			// 
-			this.aboutBlueBrickToolStripMenuItem.AccessibleDescription = null;
-			this.aboutBlueBrickToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.aboutBlueBrickToolStripMenuItem, "aboutBlueBrickToolStripMenuItem");
-			this.aboutBlueBrickToolStripMenuItem.BackgroundImage = null;
 			this.aboutBlueBrickToolStripMenuItem.Name = "aboutBlueBrickToolStripMenuItem";
-			this.aboutBlueBrickToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.aboutBlueBrickToolStripMenuItem, "aboutBlueBrickToolStripMenuItem");
 			this.aboutBlueBrickToolStripMenuItem.Click += new System.EventHandler(this.aboutBlueBrickToolStripMenuItem_Click);
+			// 
+			// helpContentsToolStripMenuItem
+			// 
+			this.helpContentsToolStripMenuItem.Name = "helpContentsToolStripMenuItem";
+			resources.ApplyResources(this.helpContentsToolStripMenuItem, "helpContentsToolStripMenuItem");
+			this.helpContentsToolStripMenuItem.Click += new System.EventHandler(this.helpContentsToolStripMenuItem_Click);
 			// 
 			// toolBar
 			// 
-			this.toolBar.AccessibleDescription = null;
-			this.toolBar.AccessibleName = null;
-			resources.ApplyResources(this.toolBar, "toolBar");
-			this.toolBar.BackgroundImage = null;
-			this.toolBar.Font = null;
 			this.toolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolBarNewButton,
             this.toolBarOpenButton,
@@ -1101,128 +595,91 @@ namespace BlueBrick
             this.toolBarRotateCCWButton,
             this.toolBarRotateCWButton,
             this.toolBarPaintButton});
+			resources.ApplyResources(this.toolBar, "toolBar");
 			this.toolBar.Name = "toolBar";
-			this.toolTipForMainForm.SetToolTip(this.toolBar, resources.GetString("toolBar.ToolTip"));
 			// 
 			// toolBarNewButton
 			// 
-			this.toolBarNewButton.AccessibleDescription = null;
-			this.toolBarNewButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarNewButton, "toolBarNewButton");
-			this.toolBarNewButton.BackgroundImage = null;
 			this.toolBarNewButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarNewButton, "toolBarNewButton");
 			this.toolBarNewButton.Name = "toolBarNewButton";
 			this.toolBarNewButton.Click += new System.EventHandler(this.toolBarNewButton_Click);
 			// 
 			// toolBarOpenButton
 			// 
-			this.toolBarOpenButton.AccessibleDescription = null;
-			this.toolBarOpenButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarOpenButton, "toolBarOpenButton");
-			this.toolBarOpenButton.BackgroundImage = null;
 			this.toolBarOpenButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarOpenButton, "toolBarOpenButton");
 			this.toolBarOpenButton.Name = "toolBarOpenButton";
 			this.toolBarOpenButton.Click += new System.EventHandler(this.toolBarOpenButton_Click);
 			// 
 			// toolBarSaveButton
 			// 
-			this.toolBarSaveButton.AccessibleDescription = null;
-			this.toolBarSaveButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarSaveButton, "toolBarSaveButton");
-			this.toolBarSaveButton.BackgroundImage = null;
 			this.toolBarSaveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarSaveButton, "toolBarSaveButton");
 			this.toolBarSaveButton.Name = "toolBarSaveButton";
 			this.toolBarSaveButton.Click += new System.EventHandler(this.toolBarSaveButton_Click);
 			// 
 			// toolStripSeparator7
 			// 
-			this.toolStripSeparator7.AccessibleDescription = null;
-			this.toolStripSeparator7.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
 			this.toolStripSeparator7.Name = "toolStripSeparator7";
+			resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
 			// 
 			// toolBarUndoButton
 			// 
-			this.toolBarUndoButton.AccessibleDescription = null;
-			this.toolBarUndoButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarUndoButton, "toolBarUndoButton");
-			this.toolBarUndoButton.BackgroundImage = null;
 			this.toolBarUndoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarUndoButton, "toolBarUndoButton");
 			this.toolBarUndoButton.Name = "toolBarUndoButton";
 			this.toolBarUndoButton.ButtonClick += new System.EventHandler(this.undoToolStripMenuItem_Click);
 			this.toolBarUndoButton.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolBarUndoButton_DropDownItemClicked);
 			// 
 			// toolBarRedoButton
 			// 
-			this.toolBarRedoButton.AccessibleDescription = null;
-			this.toolBarRedoButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarRedoButton, "toolBarRedoButton");
-			this.toolBarRedoButton.BackgroundImage = null;
 			this.toolBarRedoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarRedoButton, "toolBarRedoButton");
 			this.toolBarRedoButton.Name = "toolBarRedoButton";
 			this.toolBarRedoButton.ButtonClick += new System.EventHandler(this.redoToolStripMenuItem_Click);
 			this.toolBarRedoButton.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolBarRedoButton_DropDownItemClicked);
 			// 
 			// toolStripSeparator3
 			// 
-			this.toolStripSeparator3.AccessibleDescription = null;
-			this.toolStripSeparator3.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
 			// 
 			// toolBarDeleteButton
 			// 
-			this.toolBarDeleteButton.AccessibleDescription = null;
-			this.toolBarDeleteButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarDeleteButton, "toolBarDeleteButton");
-			this.toolBarDeleteButton.BackgroundImage = null;
 			this.toolBarDeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarDeleteButton, "toolBarDeleteButton");
 			this.toolBarDeleteButton.Name = "toolBarDeleteButton";
 			this.toolBarDeleteButton.Click += new System.EventHandler(this.toolBarDeleteButton_Click);
 			// 
 			// toolBarCutButton
 			// 
-			this.toolBarCutButton.AccessibleDescription = null;
-			this.toolBarCutButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarCutButton, "toolBarCutButton");
-			this.toolBarCutButton.BackgroundImage = null;
 			this.toolBarCutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarCutButton, "toolBarCutButton");
 			this.toolBarCutButton.Name = "toolBarCutButton";
 			this.toolBarCutButton.Click += new System.EventHandler(this.toolBarCutButton_Click);
 			// 
 			// toolBarCopyButton
 			// 
-			this.toolBarCopyButton.AccessibleDescription = null;
-			this.toolBarCopyButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarCopyButton, "toolBarCopyButton");
-			this.toolBarCopyButton.BackgroundImage = null;
 			this.toolBarCopyButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarCopyButton, "toolBarCopyButton");
 			this.toolBarCopyButton.Name = "toolBarCopyButton";
 			this.toolBarCopyButton.Click += new System.EventHandler(this.toolBarCopyButton_Click);
 			// 
 			// toolBarPasteButton
 			// 
-			this.toolBarPasteButton.AccessibleDescription = null;
-			this.toolBarPasteButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarPasteButton, "toolBarPasteButton");
-			this.toolBarPasteButton.BackgroundImage = null;
 			this.toolBarPasteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarPasteButton, "toolBarPasteButton");
 			this.toolBarPasteButton.Name = "toolBarPasteButton";
 			this.toolBarPasteButton.Click += new System.EventHandler(this.toolBarPasteButton_Click);
 			// 
 			// toolStripSeparator6
 			// 
-			this.toolStripSeparator6.AccessibleDescription = null;
-			this.toolStripSeparator6.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
 			this.toolStripSeparator6.Name = "toolStripSeparator6";
+			resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
 			// 
 			// toolBarSnapGridButton
 			// 
-			this.toolBarSnapGridButton.AccessibleDescription = null;
-			this.toolBarSnapGridButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarSnapGridButton, "toolBarSnapGridButton");
-			this.toolBarSnapGridButton.BackgroundImage = null;
 			this.toolBarSnapGridButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.toolBarSnapGridButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolBarGrid32Button,
@@ -1231,178 +688,119 @@ namespace BlueBrick
             this.toolBarGrid4Button,
             this.toolBarGrid1Button,
             this.toolBarGrid05Button});
+			resources.ApplyResources(this.toolBarSnapGridButton, "toolBarSnapGridButton");
 			this.toolBarSnapGridButton.Name = "toolBarSnapGridButton";
 			this.toolBarSnapGridButton.Click += new System.EventHandler(this.toolBarSnapGridButton_Click);
 			// 
 			// toolBarGrid32Button
 			// 
-			this.toolBarGrid32Button.AccessibleDescription = null;
-			this.toolBarGrid32Button.AccessibleName = null;
-			resources.ApplyResources(this.toolBarGrid32Button, "toolBarGrid32Button");
-			this.toolBarGrid32Button.BackgroundImage = null;
 			this.toolBarGrid32Button.Checked = true;
 			this.toolBarGrid32Button.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.toolBarGrid32Button.Name = "toolBarGrid32Button";
-			this.toolBarGrid32Button.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.toolBarGrid32Button, "toolBarGrid32Button");
 			this.toolBarGrid32Button.Click += new System.EventHandler(this.toolBarGrid32Button_Click);
 			// 
 			// toolBarGrid16Button
 			// 
-			this.toolBarGrid16Button.AccessibleDescription = null;
-			this.toolBarGrid16Button.AccessibleName = null;
-			resources.ApplyResources(this.toolBarGrid16Button, "toolBarGrid16Button");
-			this.toolBarGrid16Button.BackgroundImage = null;
 			this.toolBarGrid16Button.Name = "toolBarGrid16Button";
-			this.toolBarGrid16Button.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.toolBarGrid16Button, "toolBarGrid16Button");
 			this.toolBarGrid16Button.Click += new System.EventHandler(this.toolBarGrid16Button_Click);
 			// 
 			// toolBarGrid8Button
 			// 
-			this.toolBarGrid8Button.AccessibleDescription = null;
-			this.toolBarGrid8Button.AccessibleName = null;
-			resources.ApplyResources(this.toolBarGrid8Button, "toolBarGrid8Button");
-			this.toolBarGrid8Button.BackgroundImage = null;
 			this.toolBarGrid8Button.Name = "toolBarGrid8Button";
-			this.toolBarGrid8Button.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.toolBarGrid8Button, "toolBarGrid8Button");
 			this.toolBarGrid8Button.Click += new System.EventHandler(this.toolBarGrid8Button_Click);
 			// 
 			// toolBarGrid4Button
 			// 
-			this.toolBarGrid4Button.AccessibleDescription = null;
-			this.toolBarGrid4Button.AccessibleName = null;
-			resources.ApplyResources(this.toolBarGrid4Button, "toolBarGrid4Button");
-			this.toolBarGrid4Button.BackgroundImage = null;
 			this.toolBarGrid4Button.Name = "toolBarGrid4Button";
-			this.toolBarGrid4Button.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.toolBarGrid4Button, "toolBarGrid4Button");
 			this.toolBarGrid4Button.Click += new System.EventHandler(this.toolBarGrid4Button_Click);
 			// 
 			// toolBarGrid1Button
 			// 
-			this.toolBarGrid1Button.AccessibleDescription = null;
-			this.toolBarGrid1Button.AccessibleName = null;
-			resources.ApplyResources(this.toolBarGrid1Button, "toolBarGrid1Button");
-			this.toolBarGrid1Button.BackgroundImage = null;
 			this.toolBarGrid1Button.Name = "toolBarGrid1Button";
-			this.toolBarGrid1Button.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.toolBarGrid1Button, "toolBarGrid1Button");
 			this.toolBarGrid1Button.Click += new System.EventHandler(this.toolBarGrid1Button_Click);
 			// 
 			// toolBarGrid05Button
 			// 
-			this.toolBarGrid05Button.AccessibleDescription = null;
-			this.toolBarGrid05Button.AccessibleName = null;
-			resources.ApplyResources(this.toolBarGrid05Button, "toolBarGrid05Button");
-			this.toolBarGrid05Button.BackgroundImage = null;
 			this.toolBarGrid05Button.Name = "toolBarGrid05Button";
-			this.toolBarGrid05Button.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.toolBarGrid05Button, "toolBarGrid05Button");
 			this.toolBarGrid05Button.Click += new System.EventHandler(this.toolBarGrid05Button_Click);
 			// 
 			// toolBarRotationAngleButton
 			// 
-			this.toolBarRotationAngleButton.AccessibleDescription = null;
-			this.toolBarRotationAngleButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarRotationAngleButton, "toolBarRotationAngleButton");
-			this.toolBarRotationAngleButton.BackgroundImage = null;
 			this.toolBarRotationAngleButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.toolBarRotationAngleButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolBarAngle90Button,
             this.toolBarAngle45Button,
             this.toolBarAngle22Button,
             this.toolBarAngle1Button});
+			resources.ApplyResources(this.toolBarRotationAngleButton, "toolBarRotationAngleButton");
 			this.toolBarRotationAngleButton.Name = "toolBarRotationAngleButton";
 			// 
 			// toolBarAngle90Button
 			// 
-			this.toolBarAngle90Button.AccessibleDescription = null;
-			this.toolBarAngle90Button.AccessibleName = null;
-			resources.ApplyResources(this.toolBarAngle90Button, "toolBarAngle90Button");
-			this.toolBarAngle90Button.BackgroundImage = null;
 			this.toolBarAngle90Button.Checked = true;
 			this.toolBarAngle90Button.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.toolBarAngle90Button.Name = "toolBarAngle90Button";
-			this.toolBarAngle90Button.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.toolBarAngle90Button, "toolBarAngle90Button");
 			this.toolBarAngle90Button.Click += new System.EventHandler(this.toolBarAngle90Button_Click);
 			// 
 			// toolBarAngle45Button
 			// 
-			this.toolBarAngle45Button.AccessibleDescription = null;
-			this.toolBarAngle45Button.AccessibleName = null;
-			resources.ApplyResources(this.toolBarAngle45Button, "toolBarAngle45Button");
-			this.toolBarAngle45Button.BackgroundImage = null;
 			this.toolBarAngle45Button.Name = "toolBarAngle45Button";
-			this.toolBarAngle45Button.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.toolBarAngle45Button, "toolBarAngle45Button");
 			this.toolBarAngle45Button.Click += new System.EventHandler(this.toolBarAngle45Button_Click);
 			// 
 			// toolBarAngle22Button
 			// 
-			this.toolBarAngle22Button.AccessibleDescription = null;
-			this.toolBarAngle22Button.AccessibleName = null;
-			resources.ApplyResources(this.toolBarAngle22Button, "toolBarAngle22Button");
-			this.toolBarAngle22Button.BackgroundImage = null;
 			this.toolBarAngle22Button.Name = "toolBarAngle22Button";
-			this.toolBarAngle22Button.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.toolBarAngle22Button, "toolBarAngle22Button");
 			this.toolBarAngle22Button.Click += new System.EventHandler(this.toolBarAngle22Button_Click);
 			// 
 			// toolBarAngle1Button
 			// 
-			this.toolBarAngle1Button.AccessibleDescription = null;
-			this.toolBarAngle1Button.AccessibleName = null;
-			resources.ApplyResources(this.toolBarAngle1Button, "toolBarAngle1Button");
-			this.toolBarAngle1Button.BackgroundImage = null;
 			this.toolBarAngle1Button.Name = "toolBarAngle1Button";
-			this.toolBarAngle1Button.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.toolBarAngle1Button, "toolBarAngle1Button");
 			this.toolBarAngle1Button.Click += new System.EventHandler(this.toolBarAngle1Button_Click);
 			// 
 			// toolBarRotateCCWButton
 			// 
-			this.toolBarRotateCCWButton.AccessibleDescription = null;
-			this.toolBarRotateCCWButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarRotateCCWButton, "toolBarRotateCCWButton");
-			this.toolBarRotateCCWButton.BackgroundImage = null;
 			this.toolBarRotateCCWButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarRotateCCWButton, "toolBarRotateCCWButton");
 			this.toolBarRotateCCWButton.Name = "toolBarRotateCCWButton";
 			this.toolBarRotateCCWButton.Click += new System.EventHandler(this.toolBarRotateCCWButton_Click);
 			// 
 			// toolBarRotateCWButton
 			// 
-			this.toolBarRotateCWButton.AccessibleDescription = null;
-			this.toolBarRotateCWButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarRotateCWButton, "toolBarRotateCWButton");
-			this.toolBarRotateCWButton.BackgroundImage = null;
 			this.toolBarRotateCWButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarRotateCWButton, "toolBarRotateCWButton");
 			this.toolBarRotateCWButton.Name = "toolBarRotateCWButton";
 			this.toolBarRotateCWButton.Click += new System.EventHandler(this.toolBarRotateCWButton_Click);
 			// 
 			// toolBarPaintButton
 			// 
-			this.toolBarPaintButton.AccessibleDescription = null;
-			this.toolBarPaintButton.AccessibleName = null;
-			resources.ApplyResources(this.toolBarPaintButton, "toolBarPaintButton");
-			this.toolBarPaintButton.BackgroundImage = null;
 			this.toolBarPaintButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.toolBarPaintButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.paintToolStripMenuItem,
             this.eraseToolStripMenuItem});
+			resources.ApplyResources(this.toolBarPaintButton, "toolBarPaintButton");
 			this.toolBarPaintButton.Name = "toolBarPaintButton";
 			this.toolBarPaintButton.ButtonClick += new System.EventHandler(this.toolBarPaintButton_ButtonClick);
 			// 
 			// paintToolStripMenuItem
 			// 
-			this.paintToolStripMenuItem.AccessibleDescription = null;
-			this.paintToolStripMenuItem.AccessibleName = null;
 			resources.ApplyResources(this.paintToolStripMenuItem, "paintToolStripMenuItem");
-			this.paintToolStripMenuItem.BackgroundImage = null;
 			this.paintToolStripMenuItem.Name = "paintToolStripMenuItem";
-			this.paintToolStripMenuItem.ShortcutKeyDisplayString = null;
 			this.paintToolStripMenuItem.Click += new System.EventHandler(this.paintToolStripMenuItem_Click);
 			// 
 			// eraseToolStripMenuItem
 			// 
-			this.eraseToolStripMenuItem.AccessibleDescription = null;
-			this.eraseToolStripMenuItem.AccessibleName = null;
 			resources.ApplyResources(this.eraseToolStripMenuItem, "eraseToolStripMenuItem");
-			this.eraseToolStripMenuItem.BackgroundImage = null;
 			this.eraseToolStripMenuItem.Name = "eraseToolStripMenuItem";
-			this.eraseToolStripMenuItem.ShortcutKeyDisplayString = null;
 			this.eraseToolStripMenuItem.Click += new System.EventHandler(this.eraseToolStripMenuItem_Click);
 			// 
 			// openFileDialog
@@ -1427,23 +825,202 @@ namespace BlueBrick
 			// 
 			this.colorDialog.Color = System.Drawing.Color.Gold;
 			// 
+			// toolStripSeparator13
+			// 
+			this.toolStripSeparator13.Name = "toolStripSeparator13";
+			resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
+			// 
+			// mainSplitContainer
+			// 
+			this.mainSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.mainSplitContainer, "mainSplitContainer");
+			this.mainSplitContainer.Name = "mainSplitContainer";
+			// 
+			// mainSplitContainer.Panel1
+			// 
+			this.mainSplitContainer.Panel1.Controls.Add(this.mapPanel);
+			// 
+			// mainSplitContainer.Panel2
+			// 
+			this.mainSplitContainer.Panel2.Controls.Add(this.toolSplitContainer);
+			// 
+			// mapPanel
+			// 
+			this.mapPanel.BackColor = System.Drawing.Color.CornflowerBlue;
+			this.mapPanel.Controls.Add(this.statusBar);
+			resources.ApplyResources(this.mapPanel, "mapPanel");
+			this.mapPanel.Name = "mapPanel";
+			this.mapPanel.ViewScale = 1;
+			// 
+			// statusBar
+			// 
+			this.statusBar.BackColor = System.Drawing.SystemColors.Control;
+			this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusBarProgressBar,
+            this.statusBarLabel});
+			resources.ApplyResources(this.statusBar, "statusBar");
+			this.statusBar.Name = "statusBar";
+			this.statusBar.SizingGrip = false;
+			// 
+			// statusBarProgressBar
+			// 
+			resources.ApplyResources(this.statusBarProgressBar, "statusBarProgressBar");
+			this.statusBarProgressBar.Name = "statusBarProgressBar";
+			// 
+			// statusBarLabel
+			// 
+			this.statusBarLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.statusBarLabel.Name = "statusBarLabel";
+			resources.ApplyResources(this.statusBarLabel, "statusBarLabel");
+			// 
+			// toolSplitContainer
+			// 
+			this.toolSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.toolSplitContainer, "toolSplitContainer");
+			this.toolSplitContainer.Name = "toolSplitContainer";
+			// 
+			// toolSplitContainer.Panel1
+			// 
+			this.toolSplitContainer.Panel1.Controls.Add(this.partsTabControl);
+			// 
+			// toolSplitContainer.Panel2
+			// 
+			this.toolSplitContainer.Panel2.BackColor = System.Drawing.SystemColors.Control;
+			this.toolSplitContainer.Panel2.Controls.Add(this.layerSplitContainer);
+			// 
+			// partsTabControl
+			// 
+			resources.ApplyResources(this.partsTabControl, "partsTabControl");
+			this.partsTabControl.Name = "partsTabControl";
+			this.partsTabControl.SelectedIndex = 0;
+			// 
+			// layerSplitContainer
+			// 
+			resources.ApplyResources(this.layerSplitContainer, "layerSplitContainer");
+			this.layerSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+			this.layerSplitContainer.Name = "layerSplitContainer";
+			// 
+			// layerSplitContainer.Panel1
+			// 
+			this.layerSplitContainer.Panel1.Controls.Add(this.layerStackPanel);
+			// 
+			// layerSplitContainer.Panel2
+			// 
+			this.layerSplitContainer.Panel2.Controls.Add(this.LayerButtonFlowLayoutPanel);
+			// 
+			// layerStackPanel
+			// 
+			resources.ApplyResources(this.layerStackPanel, "layerStackPanel");
+			this.layerStackPanel.BackColor = System.Drawing.SystemColors.Control;
+			this.layerStackPanel.Name = "layerStackPanel";
+			// 
+			// LayerButtonFlowLayoutPanel
+			// 
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.trashLayerButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.label2);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerBrickButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerAreaButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerGridButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerTextButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.label1);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.layerUpButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.layerDownButton);
+			resources.ApplyResources(this.LayerButtonFlowLayoutPanel, "LayerButtonFlowLayoutPanel");
+			this.LayerButtonFlowLayoutPanel.Name = "LayerButtonFlowLayoutPanel";
+			// 
+			// trashLayerButton
+			// 
+			this.trashLayerButton.BackColor = System.Drawing.SystemColors.Control;
+			this.trashLayerButton.FlatAppearance.BorderSize = 0;
+			this.trashLayerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.trashLayerButton, "trashLayerButton");
+			this.trashLayerButton.Name = "trashLayerButton";
+			this.toolTipForMainForm.SetToolTip(this.trashLayerButton, resources.GetString("trashLayerButton.ToolTip"));
+			this.trashLayerButton.UseVisualStyleBackColor = false;
+			this.trashLayerButton.Click += new System.EventHandler(this.trashLayerButton_Click);
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// newLayerBrickButton
+			// 
+			this.newLayerBrickButton.FlatAppearance.BorderSize = 0;
+			this.newLayerBrickButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerBrickButton, "newLayerBrickButton");
+			this.newLayerBrickButton.Name = "newLayerBrickButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerBrickButton, resources.GetString("newLayerBrickButton.ToolTip"));
+			this.newLayerBrickButton.UseVisualStyleBackColor = true;
+			this.newLayerBrickButton.Click += new System.EventHandler(this.newLayerBrickButton_Click);
+			// 
+			// newLayerAreaButton
+			// 
+			this.newLayerAreaButton.FlatAppearance.BorderSize = 0;
+			this.newLayerAreaButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerAreaButton, "newLayerAreaButton");
+			this.newLayerAreaButton.Name = "newLayerAreaButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerAreaButton, resources.GetString("newLayerAreaButton.ToolTip"));
+			this.newLayerAreaButton.UseVisualStyleBackColor = true;
+			this.newLayerAreaButton.Click += new System.EventHandler(this.newLayerAreaButton_Click);
+			// 
+			// newLayerGridButton
+			// 
+			this.newLayerGridButton.FlatAppearance.BorderSize = 0;
+			this.newLayerGridButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerGridButton, "newLayerGridButton");
+			this.newLayerGridButton.Name = "newLayerGridButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerGridButton, resources.GetString("newLayerGridButton.ToolTip"));
+			this.newLayerGridButton.UseVisualStyleBackColor = true;
+			this.newLayerGridButton.Click += new System.EventHandler(this.newLayerGridButton_Click);
+			// 
+			// newLayerTextButton
+			// 
+			this.newLayerTextButton.FlatAppearance.BorderSize = 0;
+			this.newLayerTextButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerTextButton, "newLayerTextButton");
+			this.newLayerTextButton.Name = "newLayerTextButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerTextButton, resources.GetString("newLayerTextButton.ToolTip"));
+			this.newLayerTextButton.UseVisualStyleBackColor = true;
+			this.newLayerTextButton.Click += new System.EventHandler(this.newLayerTextButton_Click);
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			// 
+			// layerUpButton
+			// 
+			this.layerUpButton.FlatAppearance.BorderSize = 0;
+			this.layerUpButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.layerUpButton, "layerUpButton");
+			this.layerUpButton.Name = "layerUpButton";
+			this.toolTipForMainForm.SetToolTip(this.layerUpButton, resources.GetString("layerUpButton.ToolTip"));
+			this.layerUpButton.UseVisualStyleBackColor = true;
+			this.layerUpButton.Click += new System.EventHandler(this.layerUpButton_Click);
+			// 
+			// layerDownButton
+			// 
+			this.layerDownButton.FlatAppearance.BorderSize = 0;
+			this.layerDownButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.layerDownButton, "layerDownButton");
+			this.layerDownButton.Name = "layerDownButton";
+			this.toolTipForMainForm.SetToolTip(this.layerDownButton, resources.GetString("layerDownButton.ToolTip"));
+			this.layerDownButton.UseVisualStyleBackColor = true;
+			this.layerDownButton.Click += new System.EventHandler(this.layerDownButton_Click);
+			// 
 			// MainForm
 			// 
-			this.AccessibleDescription = null;
-			this.AccessibleName = null;
 			this.AllowDrop = true;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = null;
 			this.Controls.Add(this.mainSplitContainer);
 			this.Controls.Add(this.toolBar);
 			this.Controls.Add(this.menuBar);
 			this.DoubleBuffered = true;
-			this.Font = null;
 			this.KeyPreview = true;
 			this.MainMenuStrip = this.menuBar;
 			this.Name = "MainForm";
-			this.toolTipForMainForm.SetToolTip(this, resources.GetString("$this.ToolTip"));
 			this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseWheel);
 			this.Shown += new System.EventHandler(this.MainForm_Shown);
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
@@ -1451,6 +1028,10 @@ namespace BlueBrick
 			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+			this.menuBar.ResumeLayout(false);
+			this.menuBar.PerformLayout();
+			this.toolBar.ResumeLayout(false);
+			this.toolBar.PerformLayout();
 			this.mainSplitContainer.Panel1.ResumeLayout(false);
 			this.mainSplitContainer.Panel2.ResumeLayout(false);
 			this.mainSplitContainer.ResumeLayout(false);
@@ -1465,10 +1046,6 @@ namespace BlueBrick
 			this.layerSplitContainer.Panel2.ResumeLayout(false);
 			this.layerSplitContainer.ResumeLayout(false);
 			this.LayerButtonFlowLayoutPanel.ResumeLayout(false);
-			this.menuBar.ResumeLayout(false);
-			this.menuBar.PerformLayout();
-			this.toolBar.ResumeLayout(false);
-			this.toolBar.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1588,6 +1165,8 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripMenuItem reloadPartLibraryToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
 		private System.Windows.Forms.ToolTip toolTipForMainForm;
+		private System.Windows.Forms.ToolStripMenuItem helpContentsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
 	}
 }
 

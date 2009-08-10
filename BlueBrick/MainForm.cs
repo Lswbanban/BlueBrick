@@ -214,6 +214,7 @@ namespace BlueBrick
 			else
 			{
 				createNewMap();
+				// we update the list in the else because it is already updated in the openMap()
 				UpdateRecentFileMenuFromConfigFile();
 			}
 		}
@@ -722,6 +723,8 @@ namespace BlueBrick
 				// change the current file name before calling the save
 				changeCurrentMapFileName(this.saveFileDialog.FileName, true);
 				saveMap();
+				// update the recent file list with the new file saved
+				UpdateRecentFileMenuFromConfigFile(this.saveFileDialog.FileName, true);
 			}
 		}
 
@@ -1385,6 +1388,11 @@ namespace BlueBrick
 		#endregion
 
 		#region Help Menu
+		private void helpContentsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Help.ShowHelp(this, @"BlueBrick.chm");
+		}
+
 		private void aboutBlueBrickToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			AboutBox aboutBox = new AboutBox();
