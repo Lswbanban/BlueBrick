@@ -1,0 +1,46 @@
+/* ---- body ------------------------------------------------------- */
+BODY		{ 	background-color: white; 
+				font-family: cursive; /* please same family as P */
+				color: black; /* please same color as P */
+				background-color: #CEDFFF; /* light blue */
+				text-align: justify;
+				margin-top: 2em;
+				margin-left: 2em;
+				margin-right: 2em;
+				margin-bottom: 2em; }
+
+/* ---- links ------------------------------------------------------ */
+A:link			{ color: blue }
+A:active		{ color: red }
+A:visited		{ color: #5E86CE }
+A:hover   		{ color: blue; background-color: #FFE44F }
+A.NoHover:hover { color: black; background-color: transparent }
+
+/* ---- Headers --------------------------------------------------- */
+H1				{ color: #1D77F2 }
+
+/* ---- Paragraph ------------------------------------------------- */
+P				{ text-indent: 0.8em }
+P:first-letter 	{ font-size: 150%; }
+
+/* ---- fonts ----------------------------------------------------- */
+FONT.path	{ font-variant: small-caps;
+			  font-weight: bold;
+			  background-color: #CCCCCC }
+
+/* ---- hr -------------------------------------------------------- */
+HR			{ 	width: 80%;
+				background-color: #A0FBD0 }
+
+/* ---- Special DIV ----------------------------------------------- */
+DIV.LegalNotice	{ text-align: center;
+				  border-width: thick;
+				  border-style: groove;
+				  border-color: red;
+				  padding-top: 1em;
+				  padding-left: 1em;
+				  padding-right: 1em;
+				  padding-bottom: 1em; }
+				  
+DIV.DocAuthor	{ text-align: center;
+				  font-weight: bold; }

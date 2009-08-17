@@ -1,0 +1,16 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=..\..\BlueBrick\bin\Release\BlueBrick.chm
+Contents file=BlueBrickTOC.hhc
+Default topic=Start_Page.htm
+Display compile progress=No
+Index file=BlueBrickIndex.hhk
+Language=0x409 English (United States)
+
+
+[FILES]
+Choosing_a_language.htm
+Start_Page.htm
+
+[INFOTYPES]
+
