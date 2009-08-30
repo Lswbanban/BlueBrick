@@ -117,12 +117,13 @@ Open bugs:
 - MISSING FEATURE (Alban): Add two buttons for "Send To back" and "Bring to Front"
 - MISSING FEATURE (Alex & Alban): When you drag'n'drop a connected brick, the dragged brick is not rotated for a proper connection
 - MISSING FEATURE (Alban): Add a warning message box when saving in LDR or TDL and some data will be lost
+- MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
+- MISSING FEATURE (Loys): Support Multi-Document
 - BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - BUG (Alex & Alban): Some picture URL are not correct in the HTML exported list (put the URL in XML file).
-- BUG (Alex): In the shortcut panel, we should grayed the connection point and part number if it is not used by the action.
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - REFACTORING (Alban): Do not fill the optim combo box in code
 
