@@ -17,17 +17,50 @@ A:hover   		{ color: blue; background-color: #FFE44F }
 A.NoHover:hover { color: black; background-color: transparent }
 
 /* ---- Headers --------------------------------------------------- */
-H1				{ color: #1D77F2 }
+H1				{ font-size: XX-large;
+				  color: #1D77F2;
+				  text-align: left; }
+H2				{ font-size: large;
+				  color: #1D77F2;
+				  text-align: left;
+				  margin-top: 2em;
+				  font-style: italic }
 
 /* ---- Paragraph ------------------------------------------------- */
 P				{ text-indent: 0.8em }
 P:first-letter 	{ font-size: 150%; }
 
-/* ---- fonts ----------------------------------------------------- */
-FONT.path	{ font-variant: small-caps;
-			  font-weight: bold;
-			  background-color: #CCCCCC }
+/* ---- Table ----------------------------------------------------- */
+TABLE.XMLDescription	{ width: 100%;
+				  text-align: left;
+				  border-width: thin;
+				  border-style: solid;
+				  border-color: black; }
+				  
+TD				{ padding-top: 0.5em;
+				  padding-left: 0.5em;
+				  padding-right: 0.5em;
+				  padding-bottom: 0.5em; }
+				  
+TD.Tilte		{ text-align: center;
+				  font-weight: bold;
+				  vertical-align: top;
+				  width: 6em;
+				  background-color: #B9D1FF; }
 
+TD.XMLCode		{ font-family: monospace;
+				  font-weight: bold; }
+
+
+/* ---- fonts ----------------------------------------------------- */
+FONT.path		{ font-variant: small-caps;
+			  	  font-weight: bold;
+			 	  background-color: #CCCCCC }
+
+FONT.Important	{font-variant: small-caps;
+				 font-weight: bold;
+				 color: #6A1AFF }
+			  
 /* ---- hr -------------------------------------------------------- */
 HR			{ 	width: 80%;
 				background-color: #A0FBD0 }
@@ -44,3 +77,17 @@ DIV.LegalNotice	{ text-align: center;
 				  
 DIV.DocAuthor	{ text-align: center;
 				  font-weight: bold; }
+				  
+DIV.TechNote	{ width: 100%;
+				  margin-left: 10%;
+				  margin-right: 10%;
+				  text-align: left;
+				  border-width: thin;
+				  border-style: dotted;
+				  border-color: black;
+				  padding-top: 1em;
+				  padding-left: 1em;
+				  padding-right: 1em;
+				  padding-bottom: 1em;
+				  background-color: #E8E8E8;
+				  font-family: monospace; }

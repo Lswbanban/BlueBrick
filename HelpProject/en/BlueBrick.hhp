@@ -11,6 +11,15 @@ Language=0x409 English (United States)
 [FILES]
 Choosing_a_language.htm
 Start_Page.htm
+Track_Designer_Remaping_File.htm
+Adjusting_the_Part_Info_File.htm
+How_to_extend_the_Part_Library.htm
+LDraw_Remaping_File.htm
+Part_Image_Format.htm
+Part_Library_Folders.htm
+Part_XML_Description.htm
+Reload_the_Part_Library.htm
+..\parts_folder.png
 
 [INFOTYPES]
 
