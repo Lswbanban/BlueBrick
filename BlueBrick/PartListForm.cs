@@ -537,7 +537,13 @@ namespace BlueBrick
 						case 0: //this is the part
 							//special case for the part column, we also add the picture
 							string colorNum = item.SubItems[2].Tag as string;
-							text = "<IMG WIDTH=100% SRC=\"" + colorNum + "/" + text + ".png\"><BR>" + text;
+							// check if we have an imageURL or if we need to construct the default image path
+							string partNumber = text + "." + colorNum;
+							string imageURL = BrickLibrary.Instance.getImageURL(partNumber);
+							if (imageURL == null)
+								imageURL = colorNum + "/" + text + ".png";
+							// construct the text for the IMG tag
+							text = "<IMG WIDTH=100% SRC=\"" + imageURL + "\"><BR>" + text;
 							// write the cell
 							writer.WriteLine("\t<TD WIDTH=20% ALIGN=\"center\">{0}</TD>", text);
 							break;

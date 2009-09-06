@@ -660,6 +660,15 @@ namespace BlueBrick.MapData
 			return 0;
 		}
 
+		public string getImageURL(string partNumber)
+		{
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if (brickRef != null)
+				return brickRef.mImageURL;
+			return null;
+		}
+
 		/// <summary>
 		/// return info based on the part number. 4 texts are returned, in an array in this order:
 		/// the LDRAW part number, the color number, the color name, and the description
