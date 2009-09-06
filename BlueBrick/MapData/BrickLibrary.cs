@@ -55,104 +55,49 @@ namespace BlueBrick.MapData
 			public Margin			mSnapMargin = new Margin(); // the the inside margin that should be use for snapping the part on the grid
 			public List<PointF>		mBoundingBox = new List<PointF>(5); // list of the 4 corner in pixel, plus the origin in stud and from the center
 			public List<PointF>		mHull = new List<PointF>(4); // list of all the points in pixel that describe the hull of the part
+			public string			mImageURL = null; // the URL on internet of the image for part list export in HTML
 
 			public Brick(string partNumber, Image image, string xmlFileName)
 			{
 				// assign the part num and the image
 				mPartNumber = partNumber;
 				mImage = image;
-				bool hullFound = false;
-				// parse the xml data
+
+				// parse the xml data if the xml file exists
 				if (System.IO.File.Exists(xmlFileName))
 				{
+					// create an XML reader to parse the data
 					System.Xml.XmlReaderSettings xmlSettings = new System.Xml.XmlReaderSettings();
 					xmlSettings.ConformanceLevel = System.Xml.ConformanceLevel.Fragment;
 					xmlSettings.IgnoreWhitespace = true;
 					xmlSettings.IgnoreComments = true;
 					System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(xmlFileName, xmlSettings);
 
-					// origin of the brick
-					if (xmlReader.ReadToFollowing("SnapMargin"))
+					// first enter the unique root tag
+					if (xmlReader.ReadToFollowing("part"))
 					{
-						xmlReader.ReadToDescendant("left");
-						mSnapMargin.mLeft = xmlReader.ReadElementContentAsFloat();
-						mSnapMargin.mRight = xmlReader.ReadElementContentAsFloat();
-						mSnapMargin.mTop = xmlReader.ReadElementContentAsFloat();
-						mSnapMargin.mBottom = xmlReader.ReadElementContentAsFloat();
-					}
-					// the connexion
-					bool connexionFound = xmlReader.ReadToFollowing("connexion");
-					if (connexionFound)
-					{
-						mConnectionType = new List<ConnectionType>();
-						mConnectionPoint = new List<PointF>();
-						mConnectionAngle = new List<float>();
-						mConnectionAngleToPrev = new List<float>();
-						mConnectionAngleToNext = new List<float>();
-						mConnectionNextPreferedIndex = new List<int>();
-					}
-					while (connexionFound)
-					{
-						// read the type of the connexion
-						ConnectionType connexionType = ConnectionType.BRICK;
-						if (xmlReader.ReadToDescendant("type"))
+						// read the first child node
+						xmlReader.Read();
+						bool continueToRead = !xmlReader.EOF;
+						while (continueToRead)
 						{
-							connexionType = (ConnectionType)(xmlReader.ReadElementContentAsInt());
-						}
-						mConnectionType.Add(connexionType);
-						// read the position of the connexion
-						PointF position = new PointF();
-						if (xmlReader.LocalName.Equals("position"))
-						{
-							xmlReader.ReadToDescendant("x");
-							position.X = xmlReader.ReadElementContentAsFloat();
-							position.Y = xmlReader.ReadElementContentAsFloat();
-						}
-						mConnectionPoint.Add(position);
-						// read the angle of the connexion
-						float angle = 0.0f;
-						if (xmlReader.ReadToFollowing("angle"))
-						{
-							angle = xmlReader.ReadElementContentAsFloat();
-						}
-						mConnectionAngle.Add(angle);
-						// read the angle to prev of the connexion
-						angle = 180.0f;
-						if (xmlReader.LocalName.Equals("angleToPrev"))
-						{
-							angle = xmlReader.ReadElementContentAsFloat();
-						}
-						mConnectionAngleToPrev.Add(angle);
-						// read the angle to prev of the connexion
-						angle = 180.0f;
-						if (xmlReader.LocalName.Equals("angleToNext"))
-						{
-							angle = xmlReader.ReadElementContentAsFloat();
-						}
-						mConnectionAngleToNext.Add(angle);
-						// read the preference for the next connexion
-						int preferedIndex = 0;
-						if (xmlReader.LocalName.Equals("nextConnexionPreference"))
-						{
-							preferedIndex = xmlReader.ReadElementContentAsInt();
-						}
-						mConnectionNextPreferedIndex.Add(preferedIndex);
-						// go to next connexion
-						connexionFound = xmlReader.ReadToNextSibling("connexion");
-					}
-					// the hull
-					hullFound = xmlReader.ReadToFollowing("hull");
-					if (hullFound)
-					{
-						bool pointFound = xmlReader.ReadToDescendant("point");
-						while (pointFound)
-						{
-							xmlReader.ReadToDescendant("x");
-							PointF point = new PointF(xmlReader.ReadElementContentAsFloat(), xmlReader.ReadElementContentAsFloat());
-							mHull.Add(point);
-							pointFound = xmlReader.ReadToNextSibling("point");
+							if (xmlReader.Name.Equals("Author"))
+								readAuthorTag(ref xmlReader);
+							else if (xmlReader.Name.Equals("ImageURL"))
+								readImageURLTag(ref xmlReader);
+							else if (xmlReader.Name.Equals("SnapMargin"))
+								readSnapMarginTag(ref xmlReader);
+							else if (xmlReader.Name.Equals("ConnexionList"))
+								readConnexionListTag(ref xmlReader);
+							else if (xmlReader.Name.Equals("hull"))
+								readHullTag(ref xmlReader);
+							else
+								xmlReader.Read();
+							// check if we need to continue
+							continueToRead = !xmlReader.Name.Equals("part") && !xmlReader.EOF;
 						}
 					}
+
 					// close the xml file
 					xmlReader.Close();
 				}
@@ -164,8 +109,190 @@ namespace BlueBrick.MapData
 				mBoundingBox.Add(new PointF((float)(image.Width), (float)(image.Height)));
 									
 				// If there's no hull, we use the bounding box as a default hull
-				if (!hullFound)
+				if (mHull.Count == 0)
 					mHull = mBoundingBox;
+			}
+
+			private void readAuthorTag(ref System.Xml.XmlReader xmlReader)
+			{
+				// nothing for now, we just ignore the author tag
+				// maybe later we will display the author somewhere
+				if (!xmlReader.IsEmptyElement)
+				{
+					/*string author = */ xmlReader.ReadElementContentAsString();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private void readImageURLTag(ref System.Xml.XmlReader xmlReader)
+			{
+				if (!xmlReader.IsEmptyElement)
+				{
+					mImageURL = xmlReader.ReadElementContentAsString();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private void readSnapMarginTag(ref System.Xml.XmlReader xmlReader)
+			{
+				// check if the margin is not empty
+				bool continueToRead = !xmlReader.IsEmptyElement;
+				if (continueToRead)
+				{
+					// read the first child node
+					xmlReader.Read();
+					while (continueToRead)
+					{
+						if (xmlReader.Name.Equals("left"))
+							mSnapMargin.mLeft = xmlReader.ReadElementContentAsFloat();
+						else if (xmlReader.Name.Equals("right"))
+							mSnapMargin.mRight = xmlReader.ReadElementContentAsFloat();
+						else if (xmlReader.Name.Equals("top"))
+							mSnapMargin.mTop = xmlReader.ReadElementContentAsFloat();
+						else if (xmlReader.Name.Equals("bottom"))
+							mSnapMargin.mBottom = xmlReader.ReadElementContentAsFloat();
+						else
+							xmlReader.Read();
+						// check if we reach the end of the snap margin
+						continueToRead = !xmlReader.Name.Equals("SnapMargin") && !xmlReader.EOF;
+					}
+					// finish the snap margin
+					if (!xmlReader.EOF)
+						xmlReader.ReadEndElement();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private void readConnexionListTag(ref System.Xml.XmlReader xmlReader)
+			{
+				if (!xmlReader.IsEmptyElement)
+				{
+					// the connexion
+					bool connexionFound = xmlReader.ReadToDescendant("connexion");
+					if (connexionFound)
+					{
+						mConnectionType = new List<ConnectionType>();
+						mConnectionPoint = new List<PointF>();
+						mConnectionAngle = new List<float>();
+						mConnectionAngleToPrev = new List<float>();
+						mConnectionAngleToNext = new List<float>();
+						mConnectionNextPreferedIndex = new List<int>();
+					}
+					while (connexionFound)
+					{
+						// set the default variables for the current connexion
+						ConnectionType connexionType = ConnectionType.BRICK;
+						PointF position = new PointF();
+						float angle = 0.0f;
+						float angleToPrev = 180.0f;
+						float angleToNext = 180.0f;
+						int preferedIndex = 0;
+
+						// read the first child node of the connexion
+						xmlReader.Read();
+						bool continueToReadConnexion = true;
+						while (continueToReadConnexion)
+						{
+							if (xmlReader.Name.Equals("type"))
+								connexionType = (ConnectionType)(xmlReader.ReadElementContentAsInt());
+							else if (xmlReader.Name.Equals("position"))
+								position = readPointTag(ref xmlReader, "position");
+							else if (xmlReader.Name.Equals("angle"))
+								angle = xmlReader.ReadElementContentAsFloat();
+							else if (xmlReader.Name.Equals("angleToPrev"))
+								angleToPrev = xmlReader.ReadElementContentAsFloat();
+							else if (xmlReader.Name.Equals("angleToNext"))
+								angleToNext = xmlReader.ReadElementContentAsFloat();
+							else if (xmlReader.Name.Equals("nextConnexionPreference"))
+								preferedIndex = xmlReader.ReadElementContentAsInt();
+							else
+								xmlReader.Read();
+							// check if we reach the end of the connexion
+							continueToReadConnexion = !xmlReader.Name.Equals("connexion") && !xmlReader.EOF;
+						}
+
+						// set all the value for the current connexion
+						mConnectionType.Add(connexionType);
+						mConnectionPoint.Add(position);
+						mConnectionAngle.Add(angle);
+						mConnectionAngleToPrev.Add(angleToPrev);
+						mConnectionAngleToNext.Add(angleToNext);
+						mConnectionNextPreferedIndex.Add(preferedIndex);
+						// go to next connexion
+						connexionFound = !xmlReader.EOF && xmlReader.ReadToNextSibling("connexion");
+					}
+					// finish the connexion
+					if (!xmlReader.EOF)
+						xmlReader.ReadEndElement();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private void readHullTag(ref System.Xml.XmlReader xmlReader)
+			{
+				if (!xmlReader.IsEmptyElement)
+				{
+					bool pointFound = xmlReader.ReadToDescendant("point");
+					while (pointFound)
+					{
+						if (xmlReader.Name.Equals("point"))
+							mHull.Add(readPointTag(ref xmlReader, "point"));
+						else
+							xmlReader.Read();
+						pointFound = !xmlReader.Name.Equals("hull") && !xmlReader.EOF;
+					}
+					// finish the hull
+					if (!xmlReader.EOF)
+						xmlReader.ReadEndElement();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private PointF readPointTag(ref System.Xml.XmlReader xmlReader, string pointTagName)
+			{
+				float x = 0;
+				float y = 0;
+				if (!xmlReader.IsEmptyElement)
+				{
+					// read the first child node (x or y)
+					xmlReader.Read();
+					bool continueToReadPoint = true;
+					while (continueToReadPoint)
+					{
+						if (xmlReader.Name.Equals("x") && !xmlReader.IsEmptyElement)
+							x = xmlReader.ReadElementContentAsFloat();
+						else if (xmlReader.Name.Equals("y") && !xmlReader.IsEmptyElement)
+							y = xmlReader.ReadElementContentAsFloat();
+						else
+							xmlReader.Read();
+						// check if we reach the end of the point
+						continueToReadPoint = !xmlReader.Name.Equals(pointTagName) && !xmlReader.EOF;
+					}
+					// finish the point
+					if (!xmlReader.EOF)
+						xmlReader.ReadEndElement();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+				// return the point (or default 0,0 point)
+				return new PointF(x, y);
 			}
 		}
 
