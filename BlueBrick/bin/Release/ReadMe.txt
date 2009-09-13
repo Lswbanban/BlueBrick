@@ -123,12 +123,13 @@ Open bugs:
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
-- BUG (Alex & Alban): Some picture URL are not correct in the HTML exported list (put the URL in XML file).
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - REFACTORING (Alban): Do not fill the optim combo box in code
 
 Bug fixed in 1.5.0.0:
+- NEW FEATURE (Alban): Add the Author tag in the XML files of the parts
 - BUG (Alban): The saving as a new map do not add the file in the recent list
+- BUG (Alex & Alban): Some picture URL are not correct in the HTML exported list (put the URL in XML file).
 
 Bug fixed in 1.4.0.0:
 - NEW FEATURE (Alban): Custom mouse cursors.

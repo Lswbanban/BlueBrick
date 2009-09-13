@@ -698,29 +698,27 @@ namespace BlueBrick.MapData
 			}
 			else
 			{
+				// We copy the color id no matter if it is a valid id number or "set" for example
+				// we copy it anyway in the result
+				result[1] = numberAndColor[1];
+
 				// try to parse the color id that may failed if the color is "set"
 				int colorId = 0;
 				if (int.TryParse(numberAndColor[1], out colorId))
 				{
 					// we have a valid color, so the partId is only the first part
 					partId = numberAndColor[0];
-					// try to get the name of this color
+					// try to get the name of this color (this can fail because we may have a valid color id
+					// but no name for this color in the list of color name)
 					string colorName = string.Empty;
 					if (mColorNames.TryGetValue(colorId, out colorName))
-					{
-						result[1] = numberAndColor[1];
 						result[2] = colorName;
-					}
 					else
-					{
-						result[1] = string.Empty;
 						result[2] = BlueBrick.Properties.Resources.TextUnknown;
-					}
 				}
 				else
 				{
 					// no valid color id, this case is for the "set" for example
-					result[1] = string.Empty;
 					result[2] = BlueBrick.Properties.Resources.TextNA;
 					partId = partNumber;
 				}

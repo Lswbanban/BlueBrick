@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <part>
 	<!-- THIS IS THE RIGHT RAILPOINTS -->
+	<Author>Alban Nanty</Author>
+	<ImageURL>http://media.peeron.com/pics/inv/custpics/2859.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>0.5</left>

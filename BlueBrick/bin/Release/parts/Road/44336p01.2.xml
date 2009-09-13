@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <part>
 	<!-- THIS IS A STRAIGHT ROAD -->
+	<Author>Alban Nanty</Author>
+	<ImageURL>http://media.peeron.com/ldraw/images/2/44336p01.png</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>0</left>

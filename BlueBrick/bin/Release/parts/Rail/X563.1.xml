@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <part>
 	<!-- THIS IS THE RAIL CROSS -->
+	<Author>Alban Nanty</Author>
+	<ImageURL>http://media.peeron.com/pics/inv/custpics/x563.1083161313.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>0</left>
