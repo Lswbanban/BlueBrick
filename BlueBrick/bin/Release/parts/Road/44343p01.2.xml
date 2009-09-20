@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS A CROSS ROAD -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Baseplate 32 x 32 Road 6-Stud Crossroads with Dark Gray Road and Crosswalks Pattern</en>
+		<fr>Route croisement 32 x 32 6 tenons avec des lignes de marquage et des passages pietons</fr>
+	</Description>
 	<ImageURL>http://www.ldraw.org/library/unofficial/images/parts//44343p01.png</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

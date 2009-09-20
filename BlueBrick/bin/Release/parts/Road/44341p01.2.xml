@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS A T ROAD -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Baseplate 32 x 32 Road 6-Stud T Intersection with Dark Gray Road Pattern</en>
+		<fr>Route croisement en T 32 x 32 6 tenons avec des lignes de marquage</fr>
+	</Description>
 	<ImageURL>http://www.ldraw.org/library/unofficial/images/parts//44341p01.png</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

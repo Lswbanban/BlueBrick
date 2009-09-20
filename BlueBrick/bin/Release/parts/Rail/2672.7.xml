@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE MONORAIL LONG CURVE -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Monorail Track Curve quarter</en>
+		<fr>Monorail quart de cercle</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/custpics/2672.1092233091.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

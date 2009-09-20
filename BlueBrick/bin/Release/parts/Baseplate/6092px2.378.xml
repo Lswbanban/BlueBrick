@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <part>
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Baseplate 32 x 32 Raised with Ramp, Pit, and Stairs with Stone Path and Pool Pattern</en>
+		<fr>Plaque de base 32 x 32 élevée avec une rampe, une fosse, des escaliers avec un chemin en pierre et une piscine</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/custpics/6092px2.jpg</ImageURL>
 </part>

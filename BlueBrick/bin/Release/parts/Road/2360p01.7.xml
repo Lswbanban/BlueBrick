@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS A T ROAD -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Baseplate, Road 32 x 32 7-Stud T Intersection with Crosswalks</en>
+		<fr>Route croisement en T 32 x 32 7 tenons</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/ldraw/images/7/2360p01.png</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

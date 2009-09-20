@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
 <part>
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Baseplate 48 x 48</en>
+		<fr>Plaque de base 48 x 48</fr>
+	</Description>
 </part>

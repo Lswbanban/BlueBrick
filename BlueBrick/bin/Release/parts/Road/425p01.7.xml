@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS A STRAIGHT ROAD -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Baseplate 32 x 32 Road 3 Lane with Race Track Pattern</en>
+		<fr>Route 32 x 32, 3 voies avec des motifs de circuit de course</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/ldraw/images/7/425p01.png</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

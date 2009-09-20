@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE RAIL CROSS -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Rail 12V Crossing (new type)</en>
+		<fr>Rail 12V croisement (nouveau modèle)</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/custpics/x563.1083161313.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

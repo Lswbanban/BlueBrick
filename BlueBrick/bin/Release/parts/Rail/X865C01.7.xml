@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE LEFT RAILPOINTS -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Rail 12V Right point (new type)</en>
+		<fr>Rail 12V aiguillage droit (nouveau modèle)</fr>
+	</Description>
 	<ImageURL>http://www.ldraw.org/library/unofficial/images/parts//x865c01.png</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

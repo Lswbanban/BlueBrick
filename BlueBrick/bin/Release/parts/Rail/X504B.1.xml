@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE LEFT RAILPOINTS -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Rail 12V Left point (old type)</en>
+		<fr>Rail 12V aiguillage gauche (ancien modèle)</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/custpics/x504b.1251649727.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

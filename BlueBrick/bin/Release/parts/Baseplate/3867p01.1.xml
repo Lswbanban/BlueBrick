@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <part>
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Baseplate 16 x 16 with Island and Water Pattern</en>
+		<fr>Plaque de base 16 x 16 avec un dessin d'île et d'eau</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/ldraw/images/7/3867p01.png</ImageURL>
 </part>

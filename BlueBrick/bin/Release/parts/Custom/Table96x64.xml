@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
 <part>
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Table 96 x 64</en>
+		<fr>Table 96 x 64</fr>
+	</Description>
 </part>

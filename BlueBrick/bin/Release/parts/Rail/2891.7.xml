@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE MONORAIL SHORT RIGHT CURVE -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Monorail Track Curve Short Right</en>
+		<fr>Monorail petite courbe droite</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/custpics/2891.1092233076.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

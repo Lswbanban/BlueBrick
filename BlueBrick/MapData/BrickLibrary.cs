@@ -56,6 +56,7 @@ namespace BlueBrick.MapData
 			public List<PointF>		mBoundingBox = new List<PointF>(5); // list of the 4 corner in pixel, plus the origin in stud and from the center
 			public List<PointF>		mHull = new List<PointF>(4); // list of all the points in pixel that describe the hull of the part
 			public string			mImageURL = null; // the URL on internet of the image for part list export in HTML
+			public string			mDescription = BlueBrick.Properties.Resources.TextUnknown; // the description of the part in the current language of the application
 
 			public Brick(string partNumber, Image image, string xmlFileName)
 			{
@@ -67,11 +68,14 @@ namespace BlueBrick.MapData
 				if (System.IO.File.Exists(xmlFileName))
 				{
 					// create an XML reader to parse the data
+					System.Xml.XmlParserContext xmlContext = new System.Xml.XmlParserContext(null, null, "", System.Xml.XmlSpace.Default, System.Text.Encoding.UTF7);
 					System.Xml.XmlReaderSettings xmlSettings = new System.Xml.XmlReaderSettings();
 					xmlSettings.ConformanceLevel = System.Xml.ConformanceLevel.Fragment;
 					xmlSettings.IgnoreWhitespace = true;
 					xmlSettings.IgnoreComments = true;
-					System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(xmlFileName, xmlSettings);
+					xmlSettings.CheckCharacters = false;
+					xmlSettings.CloseInput = true;
+					System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(xmlFileName, xmlSettings, xmlContext);
 
 					// first enter the unique root tag
 					if (xmlReader.ReadToFollowing("part"))
@@ -83,6 +87,8 @@ namespace BlueBrick.MapData
 						{
 							if (xmlReader.Name.Equals("Author"))
 								readAuthorTag(ref xmlReader);
+							else if (xmlReader.Name.Equals("Description"))
+								readDescriptionTag(ref xmlReader);
 							else if (xmlReader.Name.Equals("ImageURL"))
 								readImageURLTag(ref xmlReader);
 							else if (xmlReader.Name.Equals("SnapMargin"))
@@ -120,6 +126,55 @@ namespace BlueBrick.MapData
 				if (!xmlReader.IsEmptyElement)
 				{
 					/*string author = */ xmlReader.ReadElementContentAsString();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private void readDescriptionTag(ref System.Xml.XmlReader xmlReader)
+			{
+				// check if the description is not empty
+				bool continueToRead = !xmlReader.IsEmptyElement;
+				if (continueToRead)
+				{
+					// declare a variable to store the default description when we will find it
+					// the default description is in english
+					string defaultDescription = BlueBrick.Properties.Resources.TextUnknown;
+					bool isDescriptionFound = false;
+
+					// read the first child node
+					xmlReader.Read();
+					while (continueToRead)
+					{
+						// get the current language tag
+						string language = xmlReader.Name.ToLower();
+
+						// check if we found the language of the application,
+						// else check if it is the default english language,
+						// else read the next entry
+						if (language.Equals(BlueBrick.Properties.Settings.Default.Language))
+						{
+							mDescription = xmlReader.ReadElementContentAsString();
+							isDescriptionFound = true;
+						}
+						else if (language.Equals("en"))
+							defaultDescription = xmlReader.ReadElementContentAsString();
+						else
+							xmlReader.Read();
+
+						// check if we reach the end of the Description
+						continueToRead = !xmlReader.Name.Equals("Description") && !xmlReader.EOF;
+					}
+
+					// check if we have found a description for the current language
+					if (!isDescriptionFound)
+						mDescription = defaultDescription;
+
+					// finish the Description tag
+					if (!xmlReader.EOF)
+						xmlReader.ReadEndElement();
 				}
 				else
 				{
@@ -302,9 +357,6 @@ namespace BlueBrick.MapData
 		// a dictionary that contains all color names in the current langage of the application
 		private Dictionary<int, string> mColorNames = new Dictionary<int, string>();
 
-		// a dictionary that contains all parts description in the current langage of the application
-		private Dictionary<string, string> mPartDescriptions = new Dictionary<string, string>();
-
 		// singleton on the map (we assume it is always valid)
 		private static BrickLibrary sInstance = new BrickLibrary();
 
@@ -342,7 +394,6 @@ namespace BlueBrick.MapData
 		{
 			mBrickDictionary.Clear();
 			mColorNames.Clear();
-			mPartDescriptions.Clear();
 			mWereUnknownBricksAdded = false;
 		}
 
@@ -350,13 +401,12 @@ namespace BlueBrick.MapData
 		/// This method should be called when the application start to load the information from
 		/// the config xml file.
 		/// </summary>
-		public void loadColorAndDescriptionInfo()
+		public void loadColorInfo()
 		{
 			// clear the color name table and description tables
 			mColorNames.Clear();
-			mPartDescriptions.Clear();
 			// try to load the xml file
-			string xmlFileName = Application.StartupPath + @"/config/PartInfo.xml";
+			string xmlFileName = Application.StartupPath + @"/config/ColorTable.xml";
 			if (System.IO.File.Exists(xmlFileName))
 			{
 				System.Xml.XmlReaderSettings xmlSettings = new System.Xml.XmlReaderSettings();
@@ -400,38 +450,6 @@ namespace BlueBrick.MapData
 					while (!xmlReader.Name.Equals("color"))
 						xmlReader.ReadToNextSibling("color");
 					colorFound = xmlReader.ReadToNextSibling("color");
-				}
-
-				// the descriptions
-				bool partFound = xmlReader.ReadToFollowing("part");
-				while (partFound)
-				{
-					// read the color id
-					xmlReader.ReadAttributeValue();
-					string partId = xmlReader.GetAttribute(0).ToUpper();
-
-					// read the default langage "en"
-					xmlReader.ReadToDescendant("en");
-					string defaultDescriptionName = xmlReader.ReadElementContentAsString();
-
-					// now search the name in the language of the application
-					string descriptionName = string.Empty;
-					if (isDefaultLanguageEnglish)
-						descriptionName = defaultDescriptionName;
-					else if (xmlReader.Name.Equals(BlueBrick.Properties.Settings.Default.Language))
-						descriptionName = xmlReader.ReadElementContentAsString();
-					else if (xmlReader.ReadToNextSibling(BlueBrick.Properties.Settings.Default.Language))
-						descriptionName = xmlReader.ReadElementContentAsString();
-					else
-						descriptionName = defaultDescriptionName;
-
-					// save the name in the dictionary
-					mPartDescriptions.Add(partId, descriptionName);
-
-					// read the next part
-					while (!xmlReader.Name.Equals("part"))
-						xmlReader.ReadToNextSibling("part");
-					partFound = xmlReader.ReadToNextSibling("part");
 				}
 
 				//close the stream
@@ -679,11 +697,6 @@ namespace BlueBrick.MapData
 		{
 			string[] result = new string[4];
 
-			// compute the part id by removing the color, but if there's no
-			// valid color, or for example "set" instead of the color number
-			// use the full partNumber.
-			string partId = string.Empty;
-
 			// first split the bluebrick number
 			string[] numberAndColor = partNumber.Split(new char[] { '.' });
 			// the LDRAW part number is always the first part of the BlueBrick part number
@@ -694,7 +707,6 @@ namespace BlueBrick.MapData
 				// this case if for the logo for example
 				result[1] = string.Empty;
 				result[2] = BlueBrick.Properties.Resources.TextNA;
-				partId = partNumber;
 			}
 			else
 			{
@@ -706,8 +718,6 @@ namespace BlueBrick.MapData
 				int colorId = 0;
 				if (int.TryParse(numberAndColor[1], out colorId))
 				{
-					// we have a valid color, so the partId is only the first part
-					partId = numberAndColor[0];
 					// try to get the name of this color (this can fail because we may have a valid color id
 					// but no name for this color in the list of color name)
 					string colorName = string.Empty;
@@ -720,15 +730,16 @@ namespace BlueBrick.MapData
 				{
 					// no valid color id, this case is for the "set" for example
 					result[2] = BlueBrick.Properties.Resources.TextNA;
-					partId = partNumber;
 				}
 			}
 
 			// try to get the description
-			string description = string.Empty;
-			if (!mPartDescriptions.TryGetValue(partId, out description))
-				description = BlueBrick.Properties.Resources.TextUnknown;
-			result[3] = description;
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if (brickRef != null)
+				result[3] = brickRef.mDescription;
+			else
+				result[3] = BlueBrick.Properties.Resources.TextUnknown;
 
 			return result;
 		}

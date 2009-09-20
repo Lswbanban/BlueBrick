@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS A STRAIGHT ROAD -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Baseplate, Road 32 x 32 7-Stud Straight with Road with White Sidelines Pattern</en>
+		<fr>Route droite 32 x 32 7 tenons avec des lignes blanches sur les cotés</fr>
+	</Description>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>0</left>

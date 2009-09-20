@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE RAIL STRAIGHT -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Level Crossing Set</en>
+		<fr>Boite passage à niveau</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/setpics/146-1.1104545774.thumb2.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

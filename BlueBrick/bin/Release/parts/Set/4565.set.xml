@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE RAIL STRAIGHT -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Rail Freight and Crane Railway Set</en>
+		<fr>Boite Fret et Grue rail</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/setpics/4565-1.1174536164.thumb2.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

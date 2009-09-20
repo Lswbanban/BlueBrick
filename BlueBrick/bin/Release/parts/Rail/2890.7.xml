@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE LEFT MONORAIL POINT -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Monorail Track Point Left</en>
+		<fr>Aiguillage gauche Monorail</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/custpics/2890.1092232942.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

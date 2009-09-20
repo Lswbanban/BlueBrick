@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS A TD RAIL SUPPORT -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Track Designer Support 0.1 to 2.1</en>
+		<fr>Support Track Designer de 0.1 à 2.1</fr>
+	</Description>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>1</left>

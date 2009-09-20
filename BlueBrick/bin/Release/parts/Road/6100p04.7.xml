@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS A STRAIGHT ROAD -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Baseplate 32 x 32 with 3 Driveways and Diagonal Lines Pattern</en>
+		<fr>Route 32 x 32 avec 3 voies et des zebras</fr>
+	</Description>
 	<ImageURL>http://www.ldraw.org/library/unofficial/images/parts//6100p04.png</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

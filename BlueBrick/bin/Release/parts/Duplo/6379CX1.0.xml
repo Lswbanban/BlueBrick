@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE RAIL CURVE -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Duplo Train Track Point Y with Red Frog and Yellow Switch</en>
+		<fr>Aiguillage Duplo en forme de Y avec une aiguille rouge et un bouton jaune</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/custpics/6379cx1.1070001082.jpg</ImageURL>	
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

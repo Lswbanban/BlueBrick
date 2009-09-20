@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE MONORAIL LONG STRAIGHT -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Monorail Track Straight 4 x 32</en>
+		<fr>Monorail droit 4 x 32</fr>
+	</Description>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>0</left>

@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS AIRPORT TERMINAL -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Monorail City Terminal Set</en>
+		<fr>Boite terminus monorail à la ville</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/setpics/6399-1.1167875109.thumb2.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

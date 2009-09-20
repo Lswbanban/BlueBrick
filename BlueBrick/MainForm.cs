@@ -278,7 +278,7 @@ namespace BlueBrick
 			// reinit the parts tab control (that will fill the brick library again)
 			this.partsTabControl.initPartsTabControl();
 			// and relod the other data for the brick libray (after the brick library is loaded)
-			BrickLibrary.Instance.loadColorAndDescriptionInfo();
+			BrickLibrary.Instance.loadColorInfo();
 			BrickLibrary.Instance.createEntriesForRenamedParts();
 		}
 

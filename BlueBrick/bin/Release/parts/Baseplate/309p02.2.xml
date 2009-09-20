@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <part>
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Baseplate 32 x 32 Island with River Pattern</en>
+		<fr>Plaque de base 32 x 32 avec un dessin d'île et de rivière</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/ldraw/images/2/309p02.png</ImageURL>
 </part>

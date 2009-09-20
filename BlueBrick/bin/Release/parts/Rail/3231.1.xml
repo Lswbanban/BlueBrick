@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE RAIL CROSS -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Rail 4.5V Crossing (old type)</en>
+		<fr>Rail 4.5V croisement (ancien modèle)</fr>
+	</Description>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>0</left>

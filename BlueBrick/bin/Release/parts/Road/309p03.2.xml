@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS A STRAIGHT ROAD -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Baseplate 32 x 32 Island with White Lines Pattern</en>
+		<fr>Route 32 x 32 ilôt avec des lignes blanches</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/ldraw/images/2/309p03.png</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>

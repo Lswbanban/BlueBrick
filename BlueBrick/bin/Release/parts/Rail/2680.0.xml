@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS A MONORAIL SHORT SUPPORT -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Support 4 x 4 x 5 Stanchion</en>
+		<fr>Support 4 x 4 x 5</fr>
+	</Description>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>1</left>

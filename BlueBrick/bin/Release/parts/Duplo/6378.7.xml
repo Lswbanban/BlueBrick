@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <part>
-	<!-- THIS IS THE RAIL CURVE -->
 	<Author>Alban Nanty</Author>
+	<Description>
+		<en>Duplo Train Track Curved 30 Degrees</en>
+		<fr>Rail courbe Duplo de 30 degrés</fr>
+	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/custpics/6378.1114408932.jpg</ImageURL>	
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
