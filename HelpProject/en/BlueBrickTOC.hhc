@@ -38,10 +38,6 @@
 			<param name="Local" value="Reload_the_Part_Library.htm">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Adjusting the Part Info File">
-			<param name="Local" value="Adjusting_the_Part_Info_File.htm">
-			</OBJECT>
-		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="LDraw Remaping File">
 			<param name="Local" value="LDraw_Remaping_File.htm">
 			</OBJECT>

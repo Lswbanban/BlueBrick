@@ -15,14 +15,39 @@
 <H2>2. Scale</H2>
 <P>The scale of the parts is <FONT CLASS="Important">1 stud = 8 pixels</FONT>. Since a stud equals to 8 millimeters in real life, another way to memorise the scale is 1 pixel = 1 millimeter.</P>
 
-<H2>3. Part File Name Convention</H2>
+<H2>3. Authorized Characters for File Name</H2>
 <P>The name of the parts are case insentive, because BlueBrick convert all the names in upper case when creating its part library. So if you create two parts that have the same name but with different cases, they will be considered as the same part. You can use any authorized character to name your parts (including space), but I strongly recommand you to use english character only to facilitate the share of your map internationnaly. Also avoid using the dot character since this character is used to separate the file name from the extension and also used by BlueBrick to separate the part number from the color.</P>
 
-<P>The convention to name a LEGO&copy; part is to use the full part number, then a dot folowing by the color code of the part according to the LDRAW color table, and finally the extension.</P>
+<H2>4. File Name Convention</H2>
+<P>BlueBrick doesn't care about how you name your parts, but the only constraint is that the name must be unique in the whole library. So you can not name two parts with the same name even if they are in different folders. Moreover this name becomes a unique id that is saved in the layout BBM files. So to avoid naming collision in the library and to make your BBM files portables, the <FONT CLASS="Important">convention is to use the part or set number</FONT>. This is just a convention, but I strongly recommand you to follow it. The official BlueBrick library will follow it.</P>
+
+<H3>File Name Convention for a Set</H3>
+<P>Since there is some Lego&copy; part and Lego&copy; set that have the same number, to avoid collision, the convention is to had the suffix ".set" to the set number. Do not use a numerical suffix (like ".1";) else this suffix will be interpreted as a color (see below for more details), and the color information is irrelevant for a set.</P>
+
+<DIV class="TechNote">
+<PRE><PRE>&lt;SetNumber&gt;.set.gif
+&lt;SetNumber&gt;.set.xml
+
+For example the naming convention for the set #2150 is:
+<B>2150.set.gif</B>
+
+Moreover if you want to split a set in different gif images, you can name them like:
+6399.set1.gif
+6399.set2.gif
+6399.set3.gif
+etc...</PRE>
+</DIV>
+
+<H3>File Name Convention for a Part</H3>
+
+<P>The convention to name a LEGO&copy; part is to use the full part number, followed by a dot and then by the color code of the part according to the LDRAW color table, and finally by the extension.</P>
 
 <DIV class="TechNote">
 <PRE>&lt;PartNumber&gt;.&lt;Color&gt;.gif
 &lt;PartNumber&gt;.&lt;Color&gt;.xml
+
+For example the naming convention for a Blue Baseplate 32 x 32 is:
+<B>3811.1.gif</B>
 
 <B>The LDRAW color table is:</B>
   0 Black               28 Dark Tan               134 Pearl Copper
@@ -51,15 +76,6 @@
  25 Orange              86 Dark Flesh             503 Light Gray
  26 Magenta             89 Royal Blue             511 Rubber White
  27 Lime                92 Flesh</PRE>
-</DIV>
-
-<P>The color code is not always relevant (for example for the Logo and the sets), so if you don't specify a valid color code in the name of your part, the "Unknown" color will be assigned automatically by BlueBrick. A non-numerical color code can also be used to create different variations of the same part without assigning a color on them. For example if you want to split a set in different parts, you can name them:</P>
-
-<DIV class="TechNote">
-<PRE>6399.set1.gif
-6399.set2.gif
-6399.set3.gif
-etc...</PRE>
 </DIV>
 
 </BODY>

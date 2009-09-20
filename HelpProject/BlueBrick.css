@@ -25,6 +25,10 @@ H2				{ font-size: large;
 				  text-align: left;
 				  margin-top: 2em;
 				  font-style: italic }
+H3				{ font-size: medium;
+				  color: black;
+				  text-align: left;
+				  margin-top: 1.5em; }
 
 /* ---- Paragraph ------------------------------------------------- */
 P				{ text-indent: 0.8em }

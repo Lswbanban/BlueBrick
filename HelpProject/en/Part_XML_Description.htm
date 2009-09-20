@@ -10,9 +10,9 @@
 <H1>Part XML Description</H1>
 <H2>1. Overview</H2>
 
-<P>For each GIF image file created in the part library, you can create an XML file with the same name. This XML file will contains usefull information to describe the properties of your parts such as its different connection points. But BlueBrick can still assign a default behavior to your part if you don't create an XML file, so this file is optionnal. The XML file must be exactly the same as the GIF file, execepted the extension of course.</P>
+<P>For each GIF image file created in the part library, you can create an XML file with the same name. This XML file will contains usefull information to describe the properties of your parts such as its different connection points. But BlueBrick can still assign a default behavior to your part if you don't create an XML file, so this file is optionnal. The name of the XML file must be exactly the same as the GIF file, execepted the extension of course.</P>
 
-<P>You can duplicate an existing XML file and modify it to work faster. Be carefull, the XML tags are case sensitive. <FONT CLASS="Important">Not implemented in BlueBrick 1.4: </FONT> Every field is optionnal, and the order of the fields does not matter. If one field is missing the default behavior is used instead.</P>
+<P>You can duplicate an existing XML file and modify it to work faster. Be carefull, the XML tags are case sensitive. Every field is optionnal, and the order of the fields does not matter. If one field is missing the default behavior is used instead.</P>
 
 <H2>2. Skeleton of the XML file</H2>
 
@@ -23,6 +23,10 @@
 &lt;?xml version="1.0"?&gt;
 &lt;part&gt;
     &lt;Author&gt;...&lt;/Author&gt;
+    &lt;Description&gt;
+        &lt;en&gt;...&lt;/en&gt;
+        ...
+    &lt;/Description&gt;
     &lt;ImageURL&gt;...&lt;/ImageURL&gt;
     &lt;SnapMargin&gt;
         ...
@@ -46,8 +50,6 @@
 
 <H2>3. Specify the Author</H2>
 
-<FONT CLASS="Important">Not implemented in BlueBrick 1.4!!</FONT>
-
 <TABLE CLASS="XMLDescription">
 <TR>
 	<TD CLASS="Tilte">Syntax:</TD>
@@ -63,9 +65,31 @@
 
 <P>This field is free string text to give information on the author of the part. It can contains as much information as you want, such as your email address for example. This information is ignored for now by BlueBrick during the parsing, but will may be used in the futur.</P>
 
-<H2>4. Specify an online reference Image</H2>
+<H2>4. Add a description in different languages</H2>
 
-<FONT CLASS="Important">Not implemented in BlueBrick 1.4!!</FONT>
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;Description&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;en&gt;...&lt;/en&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;fr&gt;...&lt;/fr&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;...<BR>
+		&lt;/Description&gt;
+	</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Default Value:</TD>
+	<TD>The text "Unknown" in the language currently selected for BlueBrick.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Description:</TD>
+	<TD>A short sentence that describe this part.</TD>
+</TR>  
+</TABLE>
+
+<P>This field is a text describing the part that is displayed by BlueBrick in the status bar of the application and in the Part List window. If you don't know what to write, I suggest you to use the description given by peeron.com.</P>
+
+<P>The part description can be translated in any language, each translation must be enclosed inside a tag of 2 letters representing the language. When BlueBrick is parsing the part library at startup, it will only keep the description of the current language selected for BlueBrick. For example if BlueBrick is configured to use French it will only search for the &lt;fr&gt; tag. But if the description can not be found in the language of the application, then the english version is used as a replacement. Finally if the english version can not be found either, the text "Unknown" (translated in the language of the application) is used. So you should always at least give the english version of the description.</P>
+
+<H2>5. Specify an online reference Image</H2>
 
 <TABLE CLASS="XMLDescription">
 <TR>
@@ -83,7 +107,7 @@
 
 <P>When you export the part list of your map in HTML, in order to have a portable file, the images of the parts in the list do not reference your local hard drive. Instead we use an internet URL such as a link to the Peeron or Bricklink website. If you have created a very custom part, you can upload a picture of it in your Brickshelf folder, and specify the Brickshelf deep link URL in the XML tag.</P>
 
-<H2>5. Specify the Margins for Snaping</H2>
+<H2>6. Specify the Margins for Snaping</H2>
 
 <TABLE CLASS="XMLDescription">
 <TR>
@@ -129,7 +153,7 @@
 </PRE>
 </DIV>
 
-<H2>6. Describe the Connection Points</H2>
+<H2>7. Describe the Connection Points</H2>
 
 <TABLE CLASS="XMLDescription">
 <TR>
@@ -171,9 +195,12 @@
 
 <P>The <FONT CLASS="Important">position field</FONT> is the coordinate of the connection <FONT CLASS="Important">in stud unit</FONT> and <FONT CLASS="Important">from the center of the part</FONT>. So first you have to compute the center of your part in stud coordinate. You don't need to specify the center of the part because BlueBrick compute it automatically, but you still need to calculate it for yourself in order to place the connection point at the right position. When BlueBrick rotates the parts, it is a lot more simple and efficient to rotate it from its center, that's why BlueBrick use this system of coordinate for the connection points:</P>
 
-<CENTER><IMG SRC="../ConnectionPointAxis.png"></CENTER>
+<CENTER><IMG SRC="../ConnectionPointAxisCross.png"></CENTER>
 
-<P>Note that the Y axis is oriented downward (positive value toward the bottom). Usually it is easy to find the center of your part based on the LEGO&copy; geometry of the part, but if you have a complex part such as the rail point above, you can find it based on the part picture itself.</P>
+<P>Note that <FONT CLASS="Important">the Y axis is oriented downward</FONT> (positive value toward the bottom). Usually it is easy to find the center of your part based on the LEGO&copy; geometry of the part. For example for the 9V track crossing above, it is obvious to see that the 4 connection points are at 8 studs from the center. But if you have a complex part such as the 9V rail point below, you can find the center of the part based on the part picture itself. And then, from this center you can compute the positions of the connection points.</P>
+
+<CENTER><IMG SRC="../ConnectionPointAxis.png"></CENTER>
+<BR>
 
 <DIV CLASS="TechNote">
 To compute the center of the 9V switch point, we can start from the size of the image 279x166 pixels then divide by the scale (1 stud = 8 pixels), then divide by 2 to get the middle:<BR>
@@ -196,7 +223,7 @@ So to compute the top right connection point, imagine that you add another count
 <BR>
 And finally the right top connection point is at:<BR>
 <B>rightTopX</B> = <B>counterCurveEndX</B> - radius * sin(curveAngle) = 31.0625 - 40 * sin(22.5&deg;) = 15.7552<BR>
-<B>rightTopY</B> = <B>counterCurveEndY</B> + radius * (1 - cos(curveAngle)) = -9.625 + 40 * (1 - cos(22.5&deg;) = -6.58018
+<B>rightTopY</B> = <B>counterCurveEndY</B> + radius * (1 - cos(curveAngle)) = -9.625 + 40 * (1 - cos(22.5&deg;)) = -6.58018
 </DIV>
 
 <P>The computation of the position is the most difficult thing when your part does not have a simple geometry, but most of the time it stays quite simple. The next parameter is the <FONT CLASS="Important">angle field</FONT>. This describe the orientation <FONT CLASS="Important">in degree</FONT> of the connection point compare to the direction of the right border. Be careful, since the Y Axis is inverted in the part coordinate system, the sign of the angle is inverted compared to the trigonometric direction.</P>
@@ -225,7 +252,7 @@ And finally the right top connection point is at:<BR>
 &lt;/ConnexionList&gt;</PRE>
 </DIV>
 
-<H2>7. Describe the Hull</H2>
+<H2>8. Describe the Hull</H2>
 
 <TABLE CLASS="XMLDescription">
 <TR>
@@ -248,44 +275,44 @@ And finally the right top connection point is at:<BR>
 
 <P>The Hull description is usefull for parts that are not squared neither rectangular, such as a rail point or a rail curve. The hull is used by BlueBrick to draw the selection overlay on the part. BlueBrick also use the hull of the part to compute the bounding box of the part. The bounding box of a part is the minimal rectangular box (aligned on the vertical and horizontal axis) that can contains the whole part. This bounding box is used when you pick a part by clicking on it. So a good hull increase the usability of your part. The hull definition also impact the memory used by BlueBrick because the size of the image needed to draw it when rotated is based on its hull. So please add the minimum of point in the hull because its number impact the performance of the application.</P>
 
-<P>Beware that the hull definition, unless the previous parameters, is in pixel coordinates and not stud coordinates. The reason is that it is much easier to define the hull in pixel by using your image editor and find the coordinates by moving the mouse on top of the image. A wrong hull definition may cause the part to be truncated when it is rotated with a free angle. When you are specifying the hull of your part, a good way to test is to rotate your part up to 360&deg; by small step like 22.5&deg; and check at every step if the part is not truncated. As an example here is the hull of the 9V curved track:</P>
+<P>Beware that the hull definition, unless the previous parameters, is in pixel coordinates and not stud coordinates. The reason is that it is much easier to define the hull in pixel by using your image editor and find the coordinates by moving the mouse on top of the image. A wrong hull definition may cause the part to be truncated when it is rotated with a free angle. When you are specifying the hull of your part, a good way to test is to rotate your part up to 360&deg; by small step like 22.5&deg; and check at every step if the part is not truncated. Here are two examples for the hull definition of the 9V Switch Point and Curved Track:</P>
+
+<CENTER><IMG SRC="../HullSwitchPoint.png">&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../HullCurve.png"></CENTER>
+<BR>
 
 <DIV CLASS="TechNote">
-<IMG SRC="../Hull.png" ALIGN="right">
-<PRE>&lt;hull&gt;
+<PRE><B>Here is the corresponding XML for the hull of the 9V Switch Point:</B>
+
+&lt;hull&gt;
     &lt;point&gt;
-        &lt;x&gt;0&lt;/x&gt;
+        &lt;x&gt;258&lt;/x&gt;
         &lt;y&gt;0&lt;/y&gt;
     &lt;/point&gt;
     &lt;point&gt;
-        &lt;x&gt;74&lt;/x&gt;
-        &lt;y&gt;5&lt;/y&gt;
+        &lt;x&gt;280&lt;/x&gt;
+        &lt;y&gt;52&lt;/y&gt;
     &lt;/point&gt;
     &lt;point&gt;
-        &lt;x&gt;138&lt;/x&gt;
-        &lt;y&gt;26&lt;/y&gt;
-    &lt;/point&gt;
-    &lt;point&gt;
-        &lt;x&gt;138&lt;/x&gt;
-        &lt;y&gt;38&lt;/y&gt;
-    &lt;/point&gt;
-    &lt;point&gt;
-        &lt;x&gt;121&lt;/x&gt;
-        &lt;y&gt;77&lt;/y&gt;
-    &lt;/point&gt;
-    &lt;point&gt;
-        &lt;x&gt;114&lt;/x&gt;
-        &lt;y&gt;85&lt;/y&gt;
+        &lt;x&gt;264&lt;/x&gt;
+        &lt;y&gt;166&lt;/y&gt;
     &lt;/point&gt;
     &lt;point&gt;
         &lt;x&gt;0&lt;/x&gt;
-        &lt;y&gt;64&lt;/y&gt;
+        &lt;y&gt;166&lt;/y&gt;
+    &lt;/point&gt;
+    &lt;point&gt;
+        &lt;x&gt;0&lt;/x&gt;
+        &lt;y&gt;102&lt;/y&gt;
+    &lt;/point&gt;
+    &lt;point&gt;
+        &lt;x&gt;19&lt;/x&gt;
+        &lt;y&gt;53&lt;/y&gt;
     &lt;/point&gt;
 &lt;/hull&gt;
 </PRE>
 </DIV>
 
-<P>Note that it is not optimum and useless to create concave hull, since BlueBrick iterate through all the points to find the bounding box. That's why there is no points between the two last one.</P>
+<P>Note that it is not optimum and useless to create concave hull, since BlueBrick iterate through all the points to find the bounding box. That's why there is no points between the last one and the first one for example.</P>
 
 </BODY>
 </HTML>
