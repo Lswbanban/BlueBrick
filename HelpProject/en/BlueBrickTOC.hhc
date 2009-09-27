@@ -17,6 +17,56 @@
 		<param name="Local" value="Choosing_a_language.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Software Overview">
+		<param name="Local" value="Software_Overview.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Toolbars">
+			<param name="Local" value="Toolbars.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Window Panes">
+			<param name="Local" value="Window_Panes.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Navigation">
+		<param name="Local" value="Navigation.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Zooming and Viewing">
+			<param name="Local" value="Zooming_and_Viewing.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Selecting Parts">
+			<param name="Local" value="Selecting_Parts.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Creating and Modifying Models">
+		<param name="Local" value="Creating_and_Modifying_Models.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Adding and Deleting Parts">
+			<param name="Local" value="Adding_and_Deleting_Parts.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Moving Parts">
+			<param name="Local" value="Moving_Parts.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Undo and Redo">
+			<param name="Local" value="Undo_and_Redo.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Saving and Loading">
+			<param name="Local" value="Saving_and_Loading.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="How to extend the Part Library">
 		<param name="Local" value="How_to_extend_the_Part_Library.htm">
 		</OBJECT>
