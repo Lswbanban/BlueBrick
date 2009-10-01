@@ -6,13 +6,6 @@
 		<fr>Route croisement 32 x 32 6 tenons avec des lignes de marquage et des passages pietons</fr>
 	</Description>
 	<ImageURL>http://www.ldraw.org/library/unofficial/images/parts//44343p01.png</ImageURL>
-	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
-	<SnapMargin>
-		<left>0</left>
-		<right>0</right>
-		<top>0</top>
-		<bottom>0</bottom>
-	</SnapMargin>
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center) -->
 	<ConnexionList>
 		<connexion>
