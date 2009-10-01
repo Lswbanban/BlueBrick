@@ -125,6 +125,7 @@ Open bugs:
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - REFACTORING (Alban): Do not fill the optim combo box in code
+- REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file
 
 Bug fixed in 1.5.0.0:
 - NEW FEATURE (Alban): Add the Author tag in the XML files of the parts
