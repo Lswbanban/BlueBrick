@@ -39,6 +39,10 @@ namespace BlueBrick
 
 		// reference on the main form (set in the constructor)
 		private static MainForm sInstance = null;
+		
+		// a flag mostly never used, only when the application wants to restart, to prevent the user to
+		// be able to cancel the close of the application and then finally end up with two instance of the application
+		private bool mCanUserCancelTheApplicationClose = true;
 
 		// custom cursors for the application
 		private Cursor mBrickArrowCursor = null;
@@ -520,16 +524,20 @@ namespace BlueBrick
 		{
 			if (Map.Instance.WasModified)
 			{
+				// if the user can cancel the application close, give him 3 buttons yes/no/cancel,
+				// else give him only 2 buttons yes/no:
 				DialogResult result = MessageBox.Show(this,
 					BlueBrick.Properties.Resources.ErrorMsgMapWasModified,
-					BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNoCancel,
+					BlueBrick.Properties.Resources.ErrorMsgTitleWarning,
+					mCanUserCancelTheApplicationClose ? MessageBoxButtons.YesNoCancel : MessageBoxButtons.YesNo,
 					MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
 				if (result == DialogResult.Yes)
 				{
 					// call the save method (that maybe will perform a save as)
 					saveToolStripMenuItem_Click(null, null);
 				}
-				if (result == DialogResult.Cancel)
+				else if (result == DialogResult.Cancel)
 				{
 					// user cancel so return false
 					return false;
@@ -1356,6 +1364,23 @@ namespace BlueBrick
 			// update the the recent file list anyway because the user may have click the
 			// clear recent file list button before clicking cancel
 			UpdateRecentFileMenuFromConfigFile();
+
+			// check if we need to restart, if yes, ask the user what he wants to do
+			if (optionForm.DoesNeedToRestart)
+			{
+				DialogResult doesUserWantRestart = MessageBox.Show(this, Properties.Resources.ErrorMsgLanguageHasChanged,
+					Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNo,
+					MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
+				if (doesUserWantRestart == DialogResult.Yes)
+				{
+					// the user can not cancel the close of the application, because once the restart is called
+					// it will launch a new instance of the application, so if the user can cancel the close
+					// of the current instance he may end up with two instances.
+					mCanUserCancelTheApplicationClose = false;
+					Application.Restart();
+				}
+			}
 		}
 
 		#endregion

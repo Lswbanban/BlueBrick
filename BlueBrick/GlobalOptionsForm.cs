@@ -66,6 +66,15 @@ namespace BlueBrick
 		//save the last sorted column for the shortcut list
 		private int mGlobalStatsLastColumnSorted = -1;
 
+		// flag for the main application
+		private bool mDoesNeedToRestart = false;
+
+		#region properties
+		public bool DoesNeedToRestart
+		{
+			get { return mDoesNeedToRestart; }
+		}
+		#endregion
 		#region init / close
 		public GlobalOptionsForm()
 		{
@@ -184,12 +193,8 @@ namespace BlueBrick
 			// -- tab general
 			// language
 			bool hasLanguageChanged = setLanguageSettingAccordingToComboBox();
-			if (hasLanguageChanged)
-			{
-				MessageBox.Show(this, Resources.ErrorMsgLanguageHasChanged,
-					Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
-					MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-			}
+			// if the language change, we need to restart the application
+			mDoesNeedToRestart = hasLanguageChanged;
 			// mouse
 			Settings.Default.WheelMouseIsZoomOnCursor = this.mouseZoomCenteredCheckBox.Checked;
 			Settings.Default.WheelMouseZoomSpeed = (double)this.mouseZoomSpeedNumericUpDown.Value;

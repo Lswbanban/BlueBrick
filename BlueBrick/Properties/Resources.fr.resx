@@ -294,7 +294,7 @@ Le message d'erreur est :
 </value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
-    <value>Vous avez changé le language mais ceci ne prendra effet qu'au prochain redémarrage de l'application.</value>
+    <value>Vous avez changé le language mais ceci ne prendra effet qu'au prochain redémarrage de l'application. Voulez-vous redémarrer maintenant ?</value>
   </data>
   <data name="ErrorMsgLayerTypeArea" xml:space="preserve">
     <value>calque</value>

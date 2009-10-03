@@ -299,7 +299,7 @@
     <value>BlueBrick Copyright (C) 2008 Alban NANTY. This program is free software under the GPLv3 license and comes with ABSOLUTELY NO WARRANTY. This program encountered a fatal error and will close. Please report this error to banban@lswproject.com. The error message is:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
-    <value>You changed the language but this will not take effect until you restart the application.</value>
+    <value>You changed the language but this will not take effect until you restart the application. Do you want to restart now?</value>
   </data>
   <data name="ErrorMsgLayerTypeArea" xml:space="preserve">
     <value>Area</value>
