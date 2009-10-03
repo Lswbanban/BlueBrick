@@ -110,7 +110,6 @@ In the View menu you can show/hide the part list. The part list is in a seperate
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-- MISSING FEATURE (Alban): Help
 - MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
@@ -128,9 +127,12 @@ Open bugs:
 - REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file
 
 Bug fixed in 1.5.0.0:
+- NEW FEATURE (Alban): Help file!!
 - NEW FEATURE (Alban): Add the Author tag in the XML files of the parts
+- NEW FEATURE (Alban, Alex, JB): A lot of new parts in the library, and improvment of some old parts.
 - BUG (Alban): The saving as a new map do not add the file in the recent list
 - BUG (Alex & Alban): Some picture URL are not correct in the HTML exported list (put the URL in XML file).
+- REFACTORING (Alban): Move the part description in the XML file of the parts.
 
 Bug fixed in 1.4.0.0:
 - NEW FEATURE (Alban): Custom mouse cursors.
