@@ -317,6 +317,9 @@ Le message d'erreur est :
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
     <value>Quelques identifiants de pièces Track Designer n'ont pas été trouvés dans le fichier de remmapage "&amp;". BlueBrick n'a pas été capable de les charger et les a juste ignorés. Vous devriez ajouter une ligne de remmapage pour chaque identifiant manquant dans le fichier de remmapage et ensuite vous assurer que vous avez la pièce correspondante dans votre librairie BlueBrick puis essayer de rouvrir le fichier Track Designer. Les identifiants manquants étaient: </value>
   </data>
+  <data name="ErrorMsgNoHelpFile" xml:space="preserve">
+    <value>BlueBrick ne trouve pas le fichier d'aide qui se nomme "BlueBrick.chm" et qui est supposé être dans le répertoire d'installation. Réinstaller BlueBrick peut résoudre le problème.</value>
+  </data>
   <data name="ErrorMsgOldTDFile" xml:space="preserve">
     <value>Désolé, le fichier Track Designer que vous essayez d'ouvrir a un format trop ancien. Pour régler le problème, ouvrez d'abord le fichier avec Track Designer puis sauvez-le de nouveau. Ensuite vous pourrez l'ouvrir avec BlueBrick.</value>
   </data>
