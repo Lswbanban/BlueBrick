@@ -3,6 +3,7 @@ syntax: glob
 *.bak
 *.suo
 *.orig
+*.log
 
 ; specific directories
 ResxEditor\*

@@ -1,0 +1,48 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=..\..\BlueBrick\bin\Release\nl\BlueBrick.chm
+Contents file=BlueBrickTOC_nl.hhc
+Default topic=Start_Page.htm
+Display compile progress=No
+Error log file=log.log
+Index file=BlueBrickIndex_nl.hhk
+Language=0x413 Dutch (Netherlands)
+Title=BlueBrick Help
+
+
+[FILES]
+Choosing_a_language.htm
+Start_Page.htm
+Track_Designer_Remaping_File.htm
+How_to_extend_the_Part_Library.htm
+LDraw_Remaping_File.htm
+Part_Image_Format.htm
+Part_Library_Folders.htm
+Part_XML_Description.htm
+Reload_the_Part_Library.htm
+..\parts_folder.png
+Software_Overview.htm
+Toolbars.htm
+Window_Panes.htm
+Navigation.htm
+Zooming_and_Viewing.htm
+Selecting_Parts.htm
+Creating_and_Modifying_Models.htm
+Saving_and_Loading.htm
+Adding_and_Deleting_Parts.htm
+Undo_and_Redo.htm
+Moving_Parts.htm
+Creating_and_Using_Layers.htm
+Layer_Toolbar.htm
+The_Four_Different_Type_of_Layers.htm
+Export_Report_and_Printing.htm
+Exporting_a_Layout_as_an_Image.htm
+Exporting_the_Parts_List.htm
+Global_Options.htm
+General_Options.htm
+Appearance_Options.htm
+Shortcut_Keys.htm
+Other_Options.htm
+
+[INFOTYPES]
+

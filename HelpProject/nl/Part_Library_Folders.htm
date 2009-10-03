@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Part Library Folders</Title>
+</HEAD>
+<BODY>
+<H1>Part Library Folders</H1>
+<H2>1. Folder Organisation</H2>
+<P>The part library is made of <A HREF="Part_Image_Format.htm">GIF format images</A> and <A HREF="Part_XML_Description.htm">XML files</A> all stored inside the subfolder named "parts" of the BlueBrick installation folder.</P>
+
+<CENTER>
+<DIV STYLE="background-image:url(../parts_folder.png); width:455px; height:331px; margin:0px;">
+<DIV STYLE="height:162px; margin:0px;">&nbsp;</DIV><BR>
+<DIV STYLE="color:red; text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x2190; This is the part library folder.</DIV>
+</DIV>
+</CENTER>
+
+ <P>This folder is mandatory for BlueBrick to run, and is parsed when the application is launched. You can create as many subfolders as you want in the "parts" folder, but <FONT CLASS="Important">only one depth level is supported</FONT>. In fact you must put your parts in a subfolder, every parts saved directly in the "parts" folder or in a deeper subfolder than the first level will be ignored.</P>
+ 
+<DIV class="TechNote">
+<PRE><B>The original organisation of the "parts" folder is:</B>
+parts
+  &#x251C;&#x2500; Baseplate
+  &#x251C;&#x2500; Custom
+  &#x251C;&#x2500; Duplo
+  &#x251C;&#x2500; Logo
+  &#x251C;&#x2500; Rail
+  &#x251C;&#x2500; Road
+  &#x2514;&#x2500; Set
+
+<B>And here is an example of modification of the parts folder:</B>
+parts<FONT COLOR=red>    &#x2190; If you add parts in this folder they will be ignored</FONT>
+  &#x251C;&#x2500; Baseplate
+  &#x2502;<FONT COLOR=red>  &#x2514;&#x2500; My Baseplate    &#x2190; This folder will be ignored</FONT>
+  &#x251C;&#x2500; Custom
+  &#x251C;&#x2500; Duplo
+  &#x251C;&#x2500; Logo
+<FONT COLOR=green>  &#x251C;&#x2500; My Parts    &#x2190; This folder is ok</FONT>
+  &#x251C;&#x2500; Rail
+  &#x251C;&#x2500; Road
+  &#x2514;&#x2500; Set</PRE>
+</DIV>
+
+<H2>2. BlueBrick folder parsing</H2>
+<P>For each subfolder of the "parts" folder, BlueBrick will create a Tab page in the brick library panel, and the name of the Tab page is the name of the folder. You can choose any folder name including space and accentuated character. You can also rename, delete or reorganize the original folders as you want because they are not used to identify the parts. The folders are just convenient containers to group the parts together in different Tab Pages in the Brick library. The counterpart is that <FONT CLASS="Important">every part name in the whole library must be unique</FONT> and the part name is the id that is saved in the map file. Usually this is not a big problem since every lego parts already has a unique number.</P>
+
+<P>Only the GIF files are searched in the parts folders to create the part library. For each GIF file found, BlueBrick check if an XML file of the same name exists, though this file is optionnal. An XML file without GIF file associated will be ignored.</P>
+
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

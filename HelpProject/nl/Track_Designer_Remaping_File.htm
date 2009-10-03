@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Track Designer Remaping File</Title>
+</HEAD>
+<BODY>
+<H1>Track Designer Remaping File</H1>
+<H2>Purpose</H2>
+<P>BlueBrick can save and load files in Track Designer format (TDL). But because the part numbers and other informations are different between BlueBrick and Track Designer, BlueBrick need to have conversion information when saving or loading a TDL format file.</P>
+<P>For this purpose, BlueBrick use a configuration file named "TDPartRemap.txt" which is located in the "config" folder of the installation folder. The file contains one conversion line per part. If there is no conversion line for a part, you will fail to load/save it.</P>
+
+<DIV CLASS="TechNote">
+&lt;BlueBrick install folder&gt;\config\TDPartRemap.txt
+</DIV>
+
+<P>Note that this file is only parse one time by BlueBrick, so each time you modify it, you must close BlueBrick and relaunch it to take effect.</P>
+
+<P><FONT CLASS="Important">Note: It is very probable that this file will disapear in a furtur version of BlueBrick, and the remap information will move to the part description XML file.</FONT></P>
+
+<H2>When do you need to edit this file?</H2>
+<P>Normally, you only need to modify this file if you add a part that is supported by Track Designer. BlueBrick already comes with the full support of the default library of Track Designer, so you will probably never modify this file. But since Track Designer also have a feature to expend the library, it may happen that you want to support the custom part you made for Track Designer (in order to load your TDL file created with your custom TD library).</P>
+
+<H2>File Format</H2>
+<P>The "TDPartRemap.txt" configuration file is a plain text file. Every blanck line or line that start with a semicolon ";" are ignored. In fact everything after a semicolon is ignored until the end of the line. The semicolon lets you add some comment in the file. The part conversion is written on one line (one line per part) with the following format:</P>
+<BR>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;TDClassPartNumber>=&lt;BBPartNumber.Color&gt; &lt;Flag&gt; &lt;HasSeveralPort&gt; (&lt;TDBitmapId&gt;=&lt;BBConnexionPointIndex&gt;,&lt;Type&gt;,&lt;Polarity&gt;,&lt;AmendedAngle&gt;)...</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;TDClassPartNumber&gt;</TD>
+	<TD>The full TD designer ID (that can be seen in the properties of the part by right clicking on the part in Track Designer, and choose "Properties")</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;BBPartNumber.Color&gt;</TD>
+	<TD>The corresponding part number (LDRAW number) followed by a dot and by the LDRAW color index, or in fact the name of the gif picture in the part library of BlueBrick (without extension).</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;Flag&gt;</TD>
+	<TD>Some flags needed by TrackDesigner, can have 4 values: 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;HasSeveralPort&gt;</TD>
+	<TD>Boolean flag (TRUE or FALSE) to tell if the part has several port id (or bitmap id). If false we will always use the port id 0 as the origin of the part when saving the file.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;TDBitmapId&gt;</TD>
+	<TD>Optionnal parameter for TrackDesigner parts that have the same ID but different bitmap index (i.e. geometry number) such as rail curve left and right or a rail point. To see the bitmap index from inside TrackDesigner, you should look in the registry file that contains the part (tdr file).</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;BBConnexionPointIndex&gt;</TD>
+	<TD>The connexion 0-based index in the BlueBrick part xml file (use 0 if the part doesn't have xml file) corresponding to how is connected the part in TD when you use this bitmap index.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;Type&gt;</TD>
+	<TD>The type of the part, a number between 0 to 20. (0 = Straight, 1 = Left Curve, 2 = Right Curve, 3 = Left Split, 4 = Right Split, 5 = Left Merge, 6 = Right Merge, 7 = Left Join, 8 = Right Join, 9 = Crossover, 10 = T Junction, 11 = Up Ramp, 12 = Down Ramp, 13 = Short Straight, 14 = Short Left Curve In, 15 = Short Right Curve In, 16 = Short Left Curve Out, 17 = Short Right Curve Out, 18 = Left Reverse Switch, 19 = Right Reverse Switch, 20 = Custom).</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;Polarity&gt;</TD>
+	<TD>The polarity of the connection, one character among *, - and +.
+	<UL>
+		<LI>* : unasasigned</LI>
+		<LI>- : -ve</LI>
+		<LI>+ : +ve</LI>
+	</UL></TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;AmendedAngle&gt;</TD>
+	<TD>Some additionnal angle (in degree) to add to the part that use this specific bitmap index to find back the normal angle of the part.</TD>
+</TR>  
+</TABLE>
+<P>Note that the parameters can be separated by any blank character (space or tabulation). But be careful, there is no space between all the parameters from &lt;BBConnexionPointIndex&gt; to &lt;AmendedAngle&gt; only the comma to separate them.</P>
+
+<P>Here is an example for the 12V grey rail point:</P>
+<DIV CLASS="TechNote">
+417858=X865C01.7	0	TRUE	0=0,4,-,0	1=2,5,+,180		2=1,7,+,180
+</DIV>
+
+</BODY>
+</HTML>

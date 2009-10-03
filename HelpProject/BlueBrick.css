@@ -34,6 +34,11 @@ H3				{ font-size: medium;
 P				{ text-indent: 0.8em }
 P:first-letter 	{ font-size: 150%; }
 
+/* ---- TT: only used during translation -------------------------- */
+TT				{ color: red;
+				 font-size: 150%;
+				 background-color: yellow }
+
 /* ---- Table ----------------------------------------------------- */
 TABLE.XMLDescription	{ width: 100%;
 				  text-align: left;
