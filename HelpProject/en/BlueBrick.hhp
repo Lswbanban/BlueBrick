@@ -1,11 +1,13 @@
 [OPTIONS]
 Compatibility=1.1 or later
 Compiled file=..\..\BlueBrick\bin\Release\BlueBrick.chm
-Contents file=BlueBrickTOC.hhc
+Contents file=..\..\..\HelpProject\en\BlueBrickTOC.hhc
 Default topic=Start_Page.htm
 Display compile progress=No
+Error log file=I:\code\BlueBrick\HelpProject\en\log.log
 Index file=BlueBrickIndex.hhk
 Language=0x409 English (United States)
+Title=BlueBrick Help
 
 
 [FILES]
