@@ -8,21 +8,21 @@
 </HEAD>
 <BODY>
 <H1>Part Image Format</H1>
-<H2>1. Format</H2>
-<P>BlueBrick only parse GIF image in the subfolders of the parts folder (see the <A HREF="Part_Library_Folders.htm">Folder Organization</A> for more details). The GIF image can contain a transparent color.</P>
+<H2>Format</H2>
+<P>BlueBrick only parses GIF images in the subfolders of the parts folder (see the <A HREF="Part_Library_Folders.htm">Folder Organization</A> for more details). The GIF image can contain a transparent color.</P>
 <P>It doesn't matter in which orientation you place the top view of the part in the image, but to facilitate the integration of your part with LDraw, I recommend you to use the same orientation as the LDraw part. Otherwise, you will have to modify the <A HREF="LDraw_Remaping_File.htm">LDraw Remap file</A>.</P>
 
-<H2>2. Scale</H2>
-<P>The scale of the parts is <FONT CLASS="Important">1 stud = 8 pixels</FONT>. Since a stud equals to 8 millimeters in real life, another way to memorise the scale is 1 pixel = 1 millimeter.</P>
+<H2>Scale</H2>
+<P>The scale of the parts is <FONT CLASS="Important">1 stud = 8 pixels</FONT>. Since a stud is equal to 8 millimeters in real life, another way to memorize the scale is 1 pixel = 1 millimeter.</P>
 
-<H2>3. Authorized Characters for File Name</H2>
-<P>The name of the parts are case insentive, because BlueBrick convert all the names in upper case when creating its part library. So if you create two parts that have the same name but with different cases, they will be considered as the same part. You can use any authorized character to name your parts (including space), but I strongly recommand you to use english character only to facilitate the share of your map internationnaly. Also avoid using the dot character since this character is used to separate the file name from the extension and also used by BlueBrick to separate the part number from the color.</P>
+<H2>Authorized Characters for File Name</H2>
+<P>The names of the parts are not case sensitive, as BlueBrick converts all the names into upper case when creating its part library. Therefore if you create two parts that have the same name but with different cases, they will be considered as the same part. You can use any authorized character to name your parts (including spaces), but I strongly recommend you to use English characters only to facilitate the share of your map internationally. Also avoid using the period (full-stop) character since this character is used to separate the file name from the extension and is also used by BlueBrick to separate the part number from the color.</P>
 
-<H2>4. File Name Convention</H2>
-<P>BlueBrick doesn't care about how you name your parts, but the only constraint is that the name must be unique in the whole library. So you can not name two parts with the same name even if they are in different folders. Moreover this name becomes a unique id that is saved in the layout BBM files. So to avoid naming collision in the library and to make your BBM files portables, the <FONT CLASS="Important">convention is to use the part or set number</FONT>. This is just a convention, but I strongly recommand you to follow it. The official BlueBrick library will follow it.</P>
+<H2>File Name Convention</H2>
+<P>BlueBrick doesn't mind how you name your parts.  The only constraint is that the name must be unique in the whole library. You cannot name two parts with the same name even if they are in different folders. Moreover this name becomes a unique id that is saved in the layout BBM files. So to avoid naming collisions in the library and to make your BBM files portable, <FONT CLASS="Important">one commonly uses the part or set number</FONT>. This is just a common practice, but I strongly recommend you to follow it. The official BlueBrick library will use this method.</P>
 
 <H3>File Name Convention for a Set</H3>
-<P>Since there is some Lego&copy; part and Lego&copy; set that have the same number, to avoid collision, the convention is to had the suffix ".set" to the set number. Do not use a numerical suffix (like ".1";) else this suffix will be interpreted as a color (see below for more details), and the color information is irrelevant for a set.</P>
+<P>Since there are some Lego&copy; parts and Lego&copy; sets that have the same number, to avoid conflicts, the common practice is to add ".set" as a suffix to the set number. Do not use a numerical suffix (like ".1"), otherwise this suffix will be interpreted as a color (see below for more details), and the color information is irrelevant for a set.</P>
 
 <DIV class="TechNote">
 <PRE><PRE>&lt;SetNumber&gt;.set.gif
@@ -40,7 +40,7 @@ etc...</PRE>
 
 <H3>File Name Convention for a Part</H3>
 
-<P>The convention to name a LEGO&copy; part is to use the full part number, followed by a dot and then by the color code of the part according to the LDRAW color table, and finally by the extension.</P>
+<P>The common standard for naming a LEGO&copy; part is to use the full part number, followed by a dot and then by the color code of the part according to the LDRAW color table, and finally by the extension.</P>
 
 <DIV class="TechNote">
 <PRE>&lt;PartNumber&gt;.&lt;Color&gt;.gif

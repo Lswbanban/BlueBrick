@@ -10,14 +10,14 @@
 <H1>LDraw Remaping File</H1>
 
 <H2>Purpose</H2>
-<P>BlueBrick can save and load files in LDRAW format. But because the origin of the parts in LDRAW files is not always the same than the origin of the parts in the BlueBrick library, BlueBrick need to apply some transformation on the position and orientation of the parts when saving or loading a LDRAW format file.</P>
+<P>BlueBrick can save and load files in LDRAW format. But because the origin of the parts in LDRAW files is not always the same than the origin of the parts in the BlueBrick library, BlueBrick needs to apply some transformation on the position and orientation of the parts when saving or loading an LDRAW format file.</P>
 <P>For this purpose, BlueBrick use a configuration file named "LDrawPartRemap.txt" which is located in the "config" folder of the installation folder. The file contains one conversion line per part. If there is no conversion line for a part that needs one, you will notice that the part is not at the same place and/or orientation, when opening the LDraw file with BlueBrick and with your LDraw software.</P>
 
 <DIV CLASS="TechNote">
 &lt;BlueBrick install folder&gt;\config\LDrawPartRemap.txt
 </DIV>
 
-<P>Note that this file is only parse one time by BlueBrick, so each time you modify it, you must close BlueBrick and relaunch it to take effect.</P>
+<P>Note that this file is only parsed one time by BlueBrick, so each time you modify it, you must close BlueBrick and relaunch it to take effect.</P>
 
 <P><FONT CLASS="Important">Note: It is very probable that this file will disapear in a furtur version of BlueBrick, and the remap information will move to the part description XML file.</FONT></P>
 
@@ -27,7 +27,7 @@
 <P>Moreover if you are extending your library with a part, you only need to modify this file if the origin of the part is different in BlueBrick and LDraw.</P>
 
 <H2>File Format</H2>
-<P>The "LDrawPartRemap.txt" configuration file is a plain text file. Every blanck line or line that start with a semicolon ";" are ignored. In fact everything after a semicolon is ignored until the end of the line. The semicolon lets you add some comment in the file. The part conversion is written on one line (one line per part) with the following format:</P>
+<P>The "LDrawPartRemap.txt" configuration file is a plain text file. Every blank line or line that starts with a semicolon ";" is ignored. In fact everything after a semicolon is ignored until the end of the line. The semicolon lets you add some comments to the file. The part conversion is written on one line (one line per part) with the following format:</P>
 <BR>
 
 <TABLE CLASS="XMLDescription">
