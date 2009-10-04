@@ -302,7 +302,7 @@ Es ist ein schwerer Fehler aufgetretten. Das Programm wird geschlossen. Berichte
 Die Fehlermeldung lautet:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
-    <value>Die Sprache wurde geändert. Die Änderung wird jedoch erst bei dem nächsten Neustart aktiviert.</value>
+    <value>Die Sprache wurde geändert. Die Änderung wird jedoch erst bei dem nächsten Neustart aktiviert. Möchten Sie jetzt neu starten?</value>
   </data>
   <data name="ErrorMsgLayerTypeArea" xml:space="preserve">
     <value>Fläche</value>
@@ -324,6 +324,9 @@ Die Fehlermeldung lautet:</value>
   </data>
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
     <value>Einige Track Designer „ID's“ wurden nicht in der Zuweisungstabelle in der "&amp;" „remap“-Datei gefunden. BlueBrick konnte sie nicht laden und hat die Eintragungen übersprungen. Für jede fehlende ID sollte in der remap-Datei eine Zuweisungszeile eingefügt werden. Stelle ebenso sicher, dass die dazugehörigen Teile in der Teilenbibliothek vorhanden sind. Danach versuche die Datei neu zu laden. Die fehlenden ID's waren:</value>
+  </data>
+  <data name="ErrorMsgNoHelpFile" xml:space="preserve">
+    <value>BlueBrick kann im Installationsordner die Datei namens "BlueBrick.chm" nicht finden. Eine Neuinstallation könnte das Problem beheben.</value>
   </data>
   <data name="ErrorMsgOldTDFile" xml:space="preserve">
     <value>Die Track Designer Datei, die du zu öffnen versuchst hat leider das Format einer älteren Version. Um dieses Problem zu beheben öffne diese Datei mit Track Designer und speichere sie wieder. Die Datei sollte sich jetzt mit BlueBrick öffnen lassen.</value>
