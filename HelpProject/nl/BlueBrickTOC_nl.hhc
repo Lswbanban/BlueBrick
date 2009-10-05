@@ -9,7 +9,7 @@
 </OBJECT>
 <UL>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Start Page">
+		<param name="Name" value="Start Pagina">
 		<param name="Local" value="Start_Page.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
@@ -31,7 +31,7 @@
 			</OBJECT>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Navigation">
+		<param name="Name" value="Navigatie">
 		<param name="Local" value="Navigation.htm">
 		</OBJECT>
 	<UL>
@@ -50,11 +50,11 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Adding and Deleting Parts">
+			<param name="Name" value="Toevoegen en verwijderne van onderdelen">
 			<param name="Local" value="Adding_and_Deleting_Parts.htm">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Moving Parts">
+			<param name="Name" value="Verplaatsen van onderdelen">
 			<param name="Local" value="Moving_Parts.htm">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
@@ -62,7 +62,7 @@
 			<param name="Local" value="Undo_and_Redo.htm">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Saving and Loading">
+			<param name="Name" value="Opslaan en openen">
 			<param name="Local" value="Saving_and_Loading.htm">
 			</OBJECT>
 	</UL>
@@ -76,7 +76,7 @@
 			<param name="Local" value="Layer_Toolbar.htm">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="The Four Different Type of Layers">
+			<param name="Name" value="De vier verschillende typen lagen">
 			<param name="Local" value="The_Four_Different_Type_of_Layers.htm">
 			</OBJECT>
 	</UL>
@@ -86,11 +86,11 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Exporting a Layout as an Image">
+			<param name="Name" value="Exporteren van een layout als een afbeelding">
 			<param name="Local" value="Exporting_a_Layout_as_an_Image.htm">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Exporting the Parts List">
+			<param name="Name" value="Exporteren van de onderdelen lijst">
 			<param name="Local" value="Exporting_the_Parts_List.htm">
 			</OBJECT>
 	</UL>
@@ -100,11 +100,11 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="General Options">
+			<param name="Name" value="Algemene opties">
 			<param name="Local" value="General_Options.htm">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Appearance Options">
+			<param name="Name" value="Beschikbare verbindingspunten">
 			<param name="Local" value="Appearance_Options.htm">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
