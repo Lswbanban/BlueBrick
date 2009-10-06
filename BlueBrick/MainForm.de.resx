@@ -532,9 +532,6 @@
   <data name="viewToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ansicht</value>
   </data>
-  <data name="aboutBlueBrickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
-  </data>
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Über BlueBrick...</value>
   </data>
@@ -782,6 +779,28 @@
   </data>
   <data name="toolBarRotateCWButton.ToolTipText" xml:space="preserve">
     <value>Ausgewähte Objekte gegen den Uhrzeigersinn drehen</value>
+  </data>
+  <data name="toolBarSendToBackButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAGBJREFUOE9jYKAN
+        +P+fgaEBihmANMlgQA1oADkZzQUgMWwYw2cgRSCIzQCQOEwebAk6QJZEV0x7zbj8iC5OfGwOTDTCUh4+
+        mmCqpEgzLISwGULQZoxEQWlmAhkIcglhmwGNfKEEbFV7owAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolBarSendToBackButton.ToolTipText" xml:space="preserve">
+    <value>In den Hintergrund</value>
+  </data>
+  <data name="toolBarBringToFrontButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAGJJREFUOE/FkVEK
+        ACAIQz16N68mCLIStIgMf9Q9U0VC612kTT8yEwNQhrC4BInEKUjYGXvwnlmKh6m4ajeAho4EQGzny79Q
+        hLcDIG55bcLmk1z8XhzNyPH8LW6uoF3+A/LDDo2Jo/8pPa9sAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
+    <value>In den Vordergrund</value>
   </data>
   <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -371,28 +371,28 @@
     <value>Distancia de ajuste</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>133, 22</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Text" xml:space="preserve">
     <value>Desactivado</value>
   </data>
   <data name="moveStep32ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>133, 22</value>
   </data>
   <data name="moveStep16ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>133, 22</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>133, 22</value>
   </data>
   <data name="moveStep4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>133, 22</value>
   </data>
   <data name="moveStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>133, 22</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>133, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -486,9 +486,6 @@
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>A&amp;yuda</value>
-  </data>
-  <data name="aboutBlueBrickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 22</value>
   </data>
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>Acerca de BlueBrick...</value>
@@ -677,6 +674,28 @@
   </data>
   <data name="toolBarRotateCWButton.ToolTipText" xml:space="preserve">
     <value>Girar los objetos seleccionados en el sentido del reloj</value>
+  </data>
+  <data name="toolBarSendToBackButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAGBJREFUOE9jYKAN
+        +P+fgaEBihmANMlgQA1oADkZzQUgMWwYw2cgRSCIzQCQOEwebAk6QJZEV0x7zbj8iC5OfGwOTDTCUh4+
+        mmCqpEgzLISwGULQZoxEQWlmAhkIcglhmwGNfKEEbFV7owAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolBarSendToBackButton.ToolTipText" xml:space="preserve">
+    <value>Enviar al fondo</value>
+  </data>
+  <data name="toolBarBringToFrontButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAGJJREFUOE/FkVEK
+        ACAIQz16N68mCLIStIgMf9Q9U0VC612kTT8yEwNQhrC4BInEKUjYGXvwnlmKh6m4ajeAho4EQGzny79Q
+        hLcDIG55bcLmk1z8XhzNyPH8LW6uoF3+A/LDDo2Jo/8pPa9sAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
+    <value>Traer al frente</value>
   </data>
   <data name="toolBarPaintButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

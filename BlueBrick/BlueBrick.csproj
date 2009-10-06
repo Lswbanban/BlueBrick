@@ -571,6 +571,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BlueBrickIcon.ico" />
+    <Content Include="icons\BringToFront.bmp" />
+    <Content Include="icons\SendToBack.bmp" />
     <EmbeddedResource Include="Cursor\AreaEraserCursor.cur" />
     <EmbeddedResource Include="Cursor\AreaPaintCursor.cur" />
     <EmbeddedResource Include="Cursor\TextSelectionCursor.cur" />

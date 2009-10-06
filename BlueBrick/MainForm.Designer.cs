@@ -136,6 +136,8 @@ namespace BlueBrick
 			this.toolBarAngle1Button = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolBarRotateCCWButton = new System.Windows.Forms.ToolStripButton();
 			this.toolBarRotateCWButton = new System.Windows.Forms.ToolStripButton();
+			this.toolBarSendToBackButton = new System.Windows.Forms.ToolStripButton();
+			this.toolBarBringToFrontButton = new System.Windows.Forms.ToolStripButton();
 			this.toolBarPaintButton = new System.Windows.Forms.ToolStripSplitButton();
 			this.paintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.eraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -778,6 +780,8 @@ namespace BlueBrick
             this.toolBarRotationAngleButton,
             this.toolBarRotateCCWButton,
             this.toolBarRotateCWButton,
+            this.toolBarSendToBackButton,
+            this.toolBarBringToFrontButton,
             this.toolBarPaintButton});
 			resources.ApplyResources(this.toolBar, "toolBar");
 			this.toolBar.Name = "toolBar";
@@ -964,6 +968,20 @@ namespace BlueBrick
 			resources.ApplyResources(this.toolBarRotateCWButton, "toolBarRotateCWButton");
 			this.toolBarRotateCWButton.Name = "toolBarRotateCWButton";
 			this.toolBarRotateCWButton.Click += new System.EventHandler(this.toolBarRotateCWButton_Click);
+			// 
+			// toolBarSendToBackButton
+			// 
+			this.toolBarSendToBackButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarSendToBackButton, "toolBarSendToBackButton");
+			this.toolBarSendToBackButton.Name = "toolBarSendToBackButton";
+			this.toolBarSendToBackButton.Click += new System.EventHandler(this.toolBarSendToBackButton_Click);
+			// 
+			// toolBarBringToFrontButton
+			// 
+			this.toolBarBringToFrontButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			resources.ApplyResources(this.toolBarBringToFrontButton, "toolBarBringToFrontButton");
+			this.toolBarBringToFrontButton.Name = "toolBarBringToFrontButton";
+			this.toolBarBringToFrontButton.Click += new System.EventHandler(this.toolBarBringToFrontButton_Click);
 			// 
 			// toolBarPaintButton
 			// 
@@ -1167,6 +1185,8 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolTip toolTipForMainForm;
 		private System.Windows.Forms.ToolStripMenuItem helpContentsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+		private System.Windows.Forms.ToolStripButton toolBarSendToBackButton;
+		private System.Windows.Forms.ToolStripButton toolBarBringToFrontButton;
 	}
 }
 

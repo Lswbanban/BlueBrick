@@ -111,7 +111,6 @@ In the View menu you can show/hide the part list. The part list is in a seperate
 
 Open bugs:
 - [target 1.5] MISSING FEATURE (Alban): Add a warning message box when saving in LDR or TDL and some data will be lost
-- [target 1.5] MISSING FEATURE (Alban): Add two buttons for "Send To back" and "Bring to Front"
 - [target 1.6] MISSING FEATURE (Alex & Alban): When you drag'n'drop a connected brick, the dragged brick is not rotated for a proper connection
 - [target 1.6] MISSING FEATURE (Alban): support new flex PF track.
 - [target 1.6] MISSING FEATURE (Alban): make configurable connexion points
@@ -130,6 +129,7 @@ Open bugs:
 
 Bug fixed in 1.5.0.0:
 - NEW FEATURE (Alban, Alex, JB): Fully comprehensive and integrated offline help file in English and Dutch.
+- NEW FEATURE (Alban): Add two buttons for "Send To back" and "Bring to Front"
 - NEW FEATURE (Alban): Add the Author tag in the XML files of the parts
 - NEW FEATURE (Alban): Add an auto-restart when the user change the language.
 - NEW FEATURE (Alban, Alex, JB): A lot of new parts in the library, and improvment of some old parts, in details:

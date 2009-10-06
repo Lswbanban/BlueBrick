@@ -381,6 +381,8 @@ namespace BlueBrick
 			this.toolBarRotationAngleButton.Enabled = enableMoveRotateButton;
 			this.toolBarRotateCCWButton.Enabled = enableMoveRotateButton;
 			this.toolBarRotateCWButton.Enabled = enableMoveRotateButton;
+			this.toolBarBringToFrontButton.Enabled = enableMoveRotateButton;
+			this.toolBarSendToBackButton.Enabled = enableMoveRotateButton;
 			//menu
 			this.moveStepToolStripMenuItem.Enabled = enableMoveRotateButton;
 			this.rotationStepToolStripMenuItem.Enabled = enableMoveRotateButton;
@@ -464,6 +466,7 @@ namespace BlueBrick
 			mPartListForm.removeBrickNotification(layer, brick);
 		}
 		#endregion
+
 		#region status bar
 
 		public void setStatusBarMessage(string message)
@@ -1578,6 +1581,36 @@ namespace BlueBrick
 		{
 			// call the event handler of the menu
 			rotateCWToolStripMenuItem_Click(sender, e);
+		}
+
+		public void toolBarSendToBackButton_Click(object sender, EventArgs e)
+		{
+			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			{
+				if (Map.Instance.SelectedLayer.GetType().Name == "LayerBrick")
+				{
+					ActionManager.Instance.doAction(new SendBrickToBack(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects));
+				}
+				else if (Map.Instance.SelectedLayer.GetType().Name == "LayerText")
+				{
+					ActionManager.Instance.doAction(new SendTextToBack(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects));
+				}
+			}
+		}
+
+		public void toolBarBringToFrontButton_Click(object sender, EventArgs e)
+		{
+			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			{
+				if (Map.Instance.SelectedLayer.GetType().Name == "LayerBrick")
+				{
+					ActionManager.Instance.doAction(new BringBrickToFront(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects));
+				}
+				else if (Map.Instance.SelectedLayer.GetType().Name == "LayerText")
+				{
+					ActionManager.Instance.doAction(new BringTextToFront(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects));
+				}
+			}
 		}
 
 		private void toolBarPaintButton_ButtonClick(object sender, EventArgs e)
