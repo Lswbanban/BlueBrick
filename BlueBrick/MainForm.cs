@@ -731,8 +731,25 @@ namespace BlueBrick
 			DialogResult result = this.saveFileDialog.ShowDialog();
 			if (result == DialogResult.OK)
 			{
+				// for a "Save As..." only (not for a save), we check if the user choose a LDRAW or TDL format
+				// to display a warning message, that he will lost data
+				string filenameLower = this.saveFileDialog.FileName.ToLower();
+				if (!filenameLower.EndsWith("bbm"))
+				{
+					// display the warning message
+					result = MessageBox.Show(this, Properties.Resources.ErrorMsgNotSavingInBBM,
+									Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNo,
+									MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
+					// if the user doesn't want to continue, do not save and
+					// do not add the name in the recent list file
+					if (result == DialogResult.No)
+						return;
+				}
+
 				// change the current file name before calling the save
 				changeCurrentMapFileName(this.saveFileDialog.FileName, true);
+				// save the map
 				saveMap();
 				// update the recent file list with the new file saved
 				UpdateRecentFileMenuFromConfigFile(this.saveFileDialog.FileName, true);

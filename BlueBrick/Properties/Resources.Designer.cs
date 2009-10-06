@@ -676,6 +676,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The format you choose can not save all the information of your Layout. For example Grid, Area and Text will be lost. Only the native BBM format can save all the data. Do you want to continue anyway?.
+        /// </summary>
+        internal static string ErrorMsgNotSavingInBBM {
+            get {
+                return ResourceManager.GetString("ErrorMsgNotSavingInBBM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, the Track Designer file you are trying to load has an old version format. To fix this problem, open this file with Track Designer, and save it again. Now you should be able to load it with BlueBrick..
         /// </summary>
         internal static string ErrorMsgOldTDFile {

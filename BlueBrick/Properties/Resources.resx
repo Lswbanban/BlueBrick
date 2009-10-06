@@ -325,6 +325,9 @@
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
     <value>BlueBrick can not find the help file named "BlueBrick.chm" which is supposed to be in the installation folder. Reinstalling BlueBrick may fix the problem.</value>
   </data>
+  <data name="ErrorMsgNotSavingInBBM" xml:space="preserve">
+    <value>The format you choose can not save all the information of your Layout. For example Grid, Area and Text will be lost. Only the native BBM format can save all the data. Do you want to continue anyway?</value>
+  </data>
   <data name="ErrorMsgOldTDFile" xml:space="preserve">
     <value>Sorry, the Track Designer file you are trying to load has an old version format. To fix this problem, open this file with Track Designer, and save it again. Now you should be able to load it with BlueBrick.</value>
   </data>

@@ -110,26 +110,27 @@ In the View menu you can show/hide the part list. The part list is in a seperate
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-- [target 1.5] MISSING FEATURE (Alban): Add a warning message box when saving in LDR or TDL and some data will be lost
 - [target 1.6] MISSING FEATURE (Alex & Alban): When you drag'n'drop a connected brick, the dragged brick is not rotated for a proper connection
 - [target 1.6] MISSING FEATURE (Alban): support new flex PF track.
 - [target 1.6] MISSING FEATURE (Alban): make configurable connexion points
+- [target 1.6] MISSING FEATURE (Alban): Add the polarity check
 - MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
-- MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
 - MISSING FEATURE (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
-- BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
+- MISSING FEATURE (Alban): Compatibility with TrackDraw?
+- [target 1.6] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
+- BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
-- BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - REFACTORING (Alban): Do not fill the optim combo box in code
 - [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file
 
 Bug fixed in 1.5.0.0:
 - NEW FEATURE (Alban, Alex, JB): Fully comprehensive and integrated offline help file in English and Dutch.
 - NEW FEATURE (Alban): Add two buttons for "Send To back" and "Bring to Front"
+- NEW FEATURE (Alban): Add a warning message box when saving in LDR or TDL to notice the user that some data will be lost
 - NEW FEATURE (Alban): Add the Author tag in the XML files of the parts
 - NEW FEATURE (Alban): Add an auto-restart when the user change the language.
 - NEW FEATURE (Alban, Alex, JB): A lot of new parts in the library, and improvment of some old parts, in details:
