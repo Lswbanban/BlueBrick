@@ -321,7 +321,7 @@ Le message d'erreur est :
     <value>BlueBrick ne trouve pas le fichier d'aide qui se nomme "BlueBrick.chm" et qui est supposé être dans le répertoire d'installation. Réinstaller BlueBrick peut résoudre le problème.</value>
   </data>
   <data name="ErrorMsgNotSavingInBBM" xml:space="preserve">
-    <value>Le format de fichier que vous avez choisi ne peut pas sauver toutes les informations de votre plan. Par exemple les grilles, zones et textes seront perdus. Seul le format natif BBM peut sauver toutes les données. Voulez-vous continuer tout de même ?</value>
+    <value>Le format de fichier que vous avez choisi ne peut pas sauver toutes les informations de votre plan. Les grilles, zones et textes seront perdus. Seul le format natif BBM peut sauver toutes les données. Voulez-vous continuer tout de même ?</value>
   </data>
   <data name="ErrorMsgOldTDFile" xml:space="preserve">
     <value>Désolé, le fichier Track Designer que vous essayez d'ouvrir a un format trop ancien. Pour régler le problème, ouvrez d'abord le fichier avec Track Designer puis sauvez-le de nouveau. Ensuite vous pourrez l'ouvrir avec BlueBrick.</value>

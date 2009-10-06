@@ -676,7 +676,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The format you choose can not save all the information of your Layout. For example Grid, Area and Text will be lost. Only the native BBM format can save all the data. Do you want to continue anyway?.
+        ///   Looks up a localized string similar to The format you have selected can not save all the data contained in your Layout. Grid, Area and Text information will be lost. Only the native BBM format can save all the data. Do you want to continue anyway?.
         /// </summary>
         internal static string ErrorMsgNotSavingInBBM {
             get {
