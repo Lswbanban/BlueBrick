@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Aawsum (JB)</Author>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/6369-1.1175443142.thumb2.jpg</ImageURL>
+	<Description>
+		<en>Auto Workshop</en>
+		<fr>Atelier automobile</fr>
+	</Description>
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>1</left>
+		<right>0</right>
+		<top>1</top>
+		<bottom>5</bottom>
+	</SnapMargin>
+</part>

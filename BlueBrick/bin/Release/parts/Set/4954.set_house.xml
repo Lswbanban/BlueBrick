@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Aawsum (JB)</Author>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/4954-1.1183179146.thumb2.jpg</ImageURL>
+	<Description>
+		<en>Model Town House - House</en>
+		<fr>Maison de ville  - Maison</fr>
+	</Description>
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>1.5</left>
+		<right>0</right>
+		<top>0</top>
+		<bottom>0</bottom>
+	</SnapMargin>
+</part>

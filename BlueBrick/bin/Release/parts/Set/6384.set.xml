@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Aawsum (JB)</Author>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/6384-1.1122434234.thumb2.jpg</ImageURL>
+	<Description>
+		<en>Police Station</en>
+		<fr>Caserne de police</fr>
+	</Description>
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>0</left>
+		<right>1</right>
+		<top>1</top>
+		<bottom>0</bottom>
+	</SnapMargin>
+</part>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Aawsum (JB)</Author>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/7997-1.1185666139.thumb2.jpg</ImageURL>
+	<Description>
+		<en>Train Station</en>
+		<fr>Gare</fr>
+	</Description>
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>0</left>
+		<right>0</right>
+		<top>0</top>
+		<bottom>1</bottom>
+	</SnapMargin>
+</part>
