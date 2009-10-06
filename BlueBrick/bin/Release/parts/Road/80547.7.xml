@@ -5,13 +5,6 @@
 		<en>Baseplate, Road 32 x 32 7-Stud Straight with Road with White Sidelines Pattern</en>
 		<fr>Route droite 32 x 32 7 tenons avec des lignes blanches sur les cotés</fr>
 	</Description>
-	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
-	<SnapMargin>
-		<left>0</left>
-		<right>0</right>
-		<top>0</top>
-		<bottom>0</bottom>
-	</SnapMargin>
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center) -->
 	<ConnexionList>
 		<connexion>
@@ -21,9 +14,9 @@
 				<x>0</x>
 				<y>-16</y>
 			</position>
-			<angle>90</angle>
-			<angleToPrev>180.0</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
-			<angleToNext>180.0</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<angle>-90</angle>
+			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>180</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
 			<nextConnexionPreference>1</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 		<connexion>
@@ -33,9 +26,9 @@
 				<x>0</x>
 				<y>16</y>
 			</position>
-			<angle>-90</angle>
-			<angleToPrev>180.0</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
-			<angleToNext>180.0</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<angle>90</angle>
+			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>180</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>

@@ -6,13 +6,6 @@
 		<fr>Route virage 32 x 32 7 tenons</fr>
 	</Description>
 	<ImageURL>http://media.peeron.com/ldraw/images/2/2359p02.png</ImageURL>
-	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
-	<SnapMargin>
-		<left>0</left>
-		<right>0</right>
-		<top>0</top>
-		<bottom>0</bottom>
-	</SnapMargin>
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center) -->
 	<ConnexionList>
 		<connexion>
@@ -22,9 +15,9 @@
 				<x>-16</x>
 				<y>0</y>
 			</position>
-			<angle>0</angle>
-			<angleToPrev>-90.0</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
-			<angleToNext>-270.0</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<angle>180</angle>
+			<angleToPrev>-90</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>-270</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
 			<nextConnexionPreference>1</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 		<connexion>
@@ -34,9 +27,9 @@
 				<x>0</x>
 				<y>16</y>
 			</position>
-			<angle>-90</angle>
-			<angleToPrev>-270.0</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
-			<angleToNext>-90.0</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<angle>90</angle>
+			<angleToPrev>-270</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>-90</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>

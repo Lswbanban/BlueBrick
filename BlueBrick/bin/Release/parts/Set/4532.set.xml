@@ -46,7 +46,7 @@
 				<x>0</x>
 				<y>-16</y>
 			</position>
-			<angle>90</angle>
+			<angle>-90</angle>
 			<angleToPrev>180.0</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
 			<angleToNext>180.0</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
 			<nextConnexionPreference>3</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
@@ -58,7 +58,7 @@
 				<x>0</x>
 				<y>16</y>
 			</position>
-			<angle>-90</angle>
+			<angle>90</angle>
 			<angleToPrev>180.0</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
 			<angleToNext>180.0</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
 			<nextConnexionPreference>2</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->

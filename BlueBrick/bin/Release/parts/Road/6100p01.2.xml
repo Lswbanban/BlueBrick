@@ -6,13 +6,6 @@
 		<fr>Route 32 x 32 avec 3 voies et le motif du set 6571</fr>
 	</Description>
 	<ImageURL>http://www.ldraw.org/library/unofficial/images/parts//6100p01.png</ImageURL>
-	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
-	<SnapMargin>
-		<left>0</left>
-		<right>0</right>
-		<top>0</top>
-		<bottom>0</bottom>
-	</SnapMargin>
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center) -->
 	<ConnexionList>
 		<connexion>
@@ -22,9 +15,9 @@
 				<x>0</x>
 				<y>16</y>
 			</position>
-			<angle>-90</angle>
-			<angleToPrev>360.0</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
-			<angleToNext>360.0</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<angle>90</angle>
+			<angleToPrev>0</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>0</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
