@@ -328,6 +328,9 @@ Die Fehlermeldung lautet:</value>
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
     <value>BlueBrick kann im Installationsordner die Datei namens "BlueBrick.chm" nicht finden. Eine Neuinstallation könnte das Problem beheben.</value>
   </data>
+  <data name="ErrorMsgNotSavingInBBM" xml:space="preserve">
+    <value>Das ausgewählte Format kann nicht alle Daten des "Layouts" speichern. Raster, Flächen und Texte werden verloren gehen. Nur das BBM Format kann alle Daten speichern. Möchten Sie trotzdem fortfahren?</value>
+  </data>
   <data name="ErrorMsgOldTDFile" xml:space="preserve">
     <value>Die Track Designer Datei, die du zu öffnen versuchst hat leider das Format einer älteren Version. Um dieses Problem zu beheben öffne diese Datei mit Track Designer und speichere sie wieder. Die Datei sollte sich jetzt mit BlueBrick öffnen lassen.</value>
   </data>
