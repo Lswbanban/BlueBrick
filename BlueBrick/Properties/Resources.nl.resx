@@ -317,6 +317,12 @@ The error message is:
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
     <value>Sommige ID's van Track Designer onderdelen zijn niet gevonde in het "&amp;" remap bestand. BlueBrick kon deze niet laten en negeren. U dient een remap lijn toe te voegen voor elk ontbrekend ID in het remap bestand en dan controleren of dit onderdeel beschikbaar is in uw BlueBrick onderdelenlijst en het bestand opnieuw openen. De ontbrekende ID's zijn: </value>
   </data>
+  <data name="ErrorMsgNoHelpFile" xml:space="preserve">
+    <value>BlueBrick kan het help bestand "BlueBrick.chm" niet vinden in de installatiefolder. Het opnieuw installeren van BlueBrick kan het probleem oplossen.</value>
+  </data>
+  <data name="ErrorMsgNotSavingInBBM" xml:space="preserve">
+    <value>Het geselecteerde formaat kan niet alle data uit de lay-out opslaan. Rooster, Gebied en tekst informatie zullen verloren gaan. Enkel het BBM formaat kan alle data bewaren. Wenst u toch verder te gaan?</value>
+  </data>
   <data name="ErrorMsgOldTDFile" xml:space="preserve">
     <value>Sorry, het Track Designer bestand dat je wil openen is gemaakt met een oude versie. Om dit probleem te verhelpen open je het bestand eerst met Track Designer, en sla je het bestand opnieuw op. Hierna kan je het bestand ook openen met BlueBrick.</value>
   </data>
