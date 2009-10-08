@@ -168,8 +168,14 @@
   <data name="cellIndexColorLabel.Text" xml:space="preserve">
     <value>Cor</value>
   </data>
+  <data name="cellIndexFontButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>257, 45</value>
+  </data>
+  <data name="cellIndexFontButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 23</value>
+  </data>
   <data name="cellIndexFontButton.Text" xml:space="preserve">
-    <value>Tipo de letra</value>
+    <value>Mudar o tipo de letra</value>
   </data>
   <data name="cellIndexColumnLabel.Text" xml:space="preserve">
     <value>Coluna</value>
