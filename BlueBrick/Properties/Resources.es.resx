@@ -312,6 +312,12 @@
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
     <value>Algunos IDs de piezas de Track Designer  no se encontraron el el archivo de coordenadas "&amp;". BlueBrick no pudo cargarlas y las ha ignorado. Añada una linea de coordenadas para cada ID que falta en el archivo de coordenadas, luego asegúrese de tener las piezas correspondientes en la biblioteca de piezas de BlueBrick e intenta abrir el archivo Track Designer de nuevo. Los IDs que faltan son:</value>
   </data>
+  <data name="ErrorMsgNoHelpFile" xml:space="preserve">
+    <value>BlueBrick no encuantra el archivo de ayuda "Bluebrick.chm" que debería encontrarse en la carpeta de instalación. Reinstalar BlueBrick podría solucionar este problema.</value>
+  </data>
+  <data name="ErrorMsgNotSavingInBBM" xml:space="preserve">
+    <value>El formato que has seleccionado no es capaz de guardar todos los datos contenidos en el trazado. La información de cuadrícula, área y texto se perderá. Solamente el formato nativo BBM puede guardar todos los datos. ¿Está seguro de querer continuar?</value>
+  </data>
   <data name="ErrorMsgOldTDFile" xml:space="preserve">
     <value>El archivo Track Designer que intenta abrir tiene un formato de una versión antigua. Para corregir este problema, primero cargue el archivo con Track Designer y guárdelo nuevamente. Luego podrá cargarlo con BlueBrick.</value>
   </data>
