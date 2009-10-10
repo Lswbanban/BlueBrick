@@ -538,7 +538,9 @@ namespace BlueBrick
 							//special case for the part column, we also add the picture
 							string colorNum = item.SubItems[2].Tag as string;
 							// check if we have an imageURL or if we need to construct the default image path
-							string partNumber = text + "." + colorNum;
+							string partNumber = text;
+							if (colorNum != string.Empty)
+								partNumber += "." + colorNum;
 							string imageURL = BrickLibrary.Instance.getImageURL(partNumber);
 							if (imageURL == null)
 								imageURL = colorNum + "/" + text + ".png";
