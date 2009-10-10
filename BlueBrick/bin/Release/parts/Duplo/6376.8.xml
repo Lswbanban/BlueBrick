@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<part>
+	<Author>FreeBee (Roland Bal)</Author>
+	<Description>
+		<en>Duplo Train Track Crossing</en>
+		<fr>Croisement de Rail Duplo</fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/custpics/6376.1070000992.jpg</ImageURL>	
+
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>1.5</left>
+		<right>1.5</right>
+		<top>4.875</top>
+		<bottom>4.875</bottom>
+	</SnapMargin>
+
+	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
+	<ConnexionList>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve, 5=duplo rail) -->
+			<type>5</type>
+			<position>
+				<x>-8</x>
+				<y>0</y>
+			</position>
+			<angle>180</angle>
+			<angleToPrev>120</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>60</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<nextConnexionPreference>2</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve, 5=duplo rail) -->
+			<type>5</type>
+			<position>
+				<x>-4</x>
+				<y>6.9282</y>
+			</position>
+			<angle>120</angle>
+			<angleToPrev>60</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>120</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<nextConnexionPreference>3</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve, 5=duplo rail) -->
+			<type>5</type>
+			<position>
+				<x>8</x>
+				<y>0</y>
+			</position>
+			<angle>0</angle>
+			<angleToPrev>120</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>60</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve, 5=duplo rail) -->
+			<type>5</type>
+			<position>
+				<x>4</x>
+				<y>-6.9282</y>
+			</position>
+			<angle>-60</angle>
+			<angleToPrev>60</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>120</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<nextConnexionPreference>1</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+	</ConnexionList>
+</part>

@@ -2,17 +2,17 @@
 <part>
 	<Author>FreeBee (Roland Bal)</Author>
 	<Description>
-		<en>Duplo Train Track Straight 4 x 8</en>
-		<fr>Rail droit Duplo 4 x 8</fr>
+		<en>Duplo Level Crossing</en>
+		<fr>Duplo Passage à niveau</fr>
 	</Description>
-	<ImageURL>http://media.peeron.com/pics/inv/custpics/6377.1223848822.jpg</ImageURL>	
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/3773-1.1181874244.thumb2.jpg</ImageURL>	
 
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
-		<left>1.5</left>
-		<right>1.5</right>
-		<top>0</top>
-		<bottom>0</bottom>
+		<left>2</left>
+		<right>2</right>
+		<top>6</top>
+		<bottom>6</bottom>
 	</SnapMargin>
 
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
