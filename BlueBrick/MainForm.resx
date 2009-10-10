@@ -149,8 +149,8 @@
   <data name="&gt;&gt;toolBarUndoButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSplitButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="layerSplitContainer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="newLayerGridButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="moveStep16ToolStripMenuItem.Text" xml:space="preserve">
     <value>16 studs</value>
@@ -173,6 +173,9 @@
   </data>
   <data name="&gt;&gt;saveToolStripMenuItem.Name" xml:space="preserve">
     <value>saveToolStripMenuItem</value>
+  </data>
+  <data name="newLayerBrickButton.ToolTip" xml:space="preserve">
+    <value>Add a Brick Layer</value>
   </data>
   <data name="&gt;&gt;newLayerAreaButton.Name" xml:space="preserve">
     <value>newLayerAreaButton</value>
@@ -233,7 +236,7 @@
   <data name="&gt;&gt;aboutBlueBrickToolStripMenuItem.Name" xml:space="preserve">
     <value>aboutBlueBrickToolStripMenuItem</value>
   </data>
-  <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
@@ -271,9 +274,6 @@
   <data name="toolBarSnapGridButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 22</value>
   </data>
-  <data name="&gt;&gt;newLayerGridButton.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
   <data name="paintToolEraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 22</value>
   </data>
@@ -282,9 +282,6 @@
   </data>
   <data name="toolBarCopyButton.ToolTipText" xml:space="preserve">
     <value>Copy selected objects</value>
-  </data>
-  <data name="rotateCCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 22</value>
   </data>
   <data name="&gt;&gt;moveStep1ToolStripMenuItem.Name" xml:space="preserve">
     <value>moveStep1ToolStripMenuItem</value>
@@ -295,17 +292,11 @@
   <data name="&gt;&gt;mapBackgroundColorToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cutToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+X</value>
-  </data>
   <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
   </data>
-  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
-    <value>fileToolStripMenuItem</value>
-  </data>
-  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 6</value>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 6</value>
   </data>
   <data name="&gt;&gt;trashLayerButton.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -325,8 +316,8 @@
         887/iJ63/3ccoMCQtbsu/1+1+yr5XiHWtRSrAwAVuOpj/JTj1QAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="mapBackgroundColorToolStripMenuItem.Text" xml:space="preserve">
-    <value>Map &amp;Background Color...</value>
+  <data name="partsTabControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -343,8 +334,8 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>648, 545</value>
   </data>
-  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+  <data name="&gt;&gt;layerSplitContainer.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="layerDownButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -373,11 +364,17 @@
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 6</value>
   </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
   <data name="toolBarDeleteButton.ToolTipText" xml:space="preserve">
     <value>Delete selected objects</value>
   </data>
-  <data name="eraseToolStripMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Fuchsia</value>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 6</value>
   </data>
   <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
     <value>Select angle for rotation steps</value>
@@ -406,8 +403,11 @@
   <data name="layerDownButton.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="toolBarGrid16Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 22</value>
+  <data name="trashLayerButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="newLayerTextButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 25</value>
@@ -424,11 +424,8 @@
         uy06AkYQGIdRs8dSGDHCUJ6DYq6oirYku7pySb9pjN+yKjoJADs=
 </value>
   </data>
-  <data name="&gt;&gt;toolBarPasteButton.Name" xml:space="preserve">
-    <value>toolBarPasteButton</value>
-  </data>
-  <data name="layerSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 258</value>
+  <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 22</value>
   </data>
   <data name="toolBarPasteButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -445,8 +442,8 @@
   <data name="moveStep16ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 22</value>
   </data>
-  <data name="&gt;&gt;saveasToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;deselectAllToolStripMenuItem.Name" xml:space="preserve">
+    <value>deselectAllToolStripMenuItem</value>
   </data>
   <data name="newLayerTextButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -468,17 +465,23 @@
   <data name="&gt;&gt;statusBarMenuItem.Name" xml:space="preserve">
     <value>statusBarMenuItem</value>
   </data>
-  <data name="rotateCWToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+R</value>
+  <data name="reloadPartLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 22</value>
   </data>
   <data name="redoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Redo</value>
+  </data>
+  <data name="layerUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="&gt;&gt;mainSplitContainer.Panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="&gt;&gt;partsTabControl.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="newLayerBrickButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>134, 0</value>
@@ -507,11 +510,8 @@
         q3xd9GnbxV1MpoLtiMLqUgAAOw==
 </value>
   </data>
-  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 6</value>
-  </data>
-  <data name="&gt;&gt;openRecentToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;newLayerAreaButton.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="toolBarUndoButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -537,6 +537,9 @@
   <data name="toolBarGrid16Button.Text" xml:space="preserve">
     <value>16 studs</value>
   </data>
+  <data name="&gt;&gt;openRecentToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="layerDownButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
   </data>
@@ -549,8 +552,8 @@
   <data name="&gt;&gt;toolBarPaintButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSplitButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="toolBarUndoButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
+  <data name="newLayerTextButton.ToolTip" xml:space="preserve">
+    <value>Add a Text Layer</value>
   </data>
   <data name="&gt;&gt;toolBarSnapGridButton.Name" xml:space="preserve">
     <value>toolBarSnapGridButton</value>
@@ -575,9 +578,6 @@
   </data>
   <data name="&gt;&gt;toolStripSeparator13.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="newLayerTextButton.ToolTip" xml:space="preserve">
-    <value>Add a Text Layer</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 22</value>
@@ -633,9 +633,6 @@
   <data name="&gt;&gt;statusBar.Name" xml:space="preserve">
     <value>statusBar</value>
   </data>
-  <data name="rotationStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 22</value>
-  </data>
   <data name="&gt;&gt;toolStripSeparator10.Name" xml:space="preserve">
     <value>toolStripSeparator10</value>
   </data>
@@ -671,9 +668,6 @@
   <data name="saveFileDialog.Title" xml:space="preserve">
     <value>Save the BlueBrick Map As</value>
   </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
   <data name="statusBarLabel.Text" xml:space="preserve">
     <value>  </value>
   </data>
@@ -701,9 +695,6 @@
   </data>
   <data name="mainSplitContainer.ToolTip" xml:space="preserve">
     <value />
-  </data>
-  <data name="toolBarSendToBackButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
   </data>
   <data name="copyToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+C</value>
@@ -750,20 +741,23 @@
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>154, 0</value>
   </data>
-  <data name="&gt;&gt;statusBar.Parent" xml:space="preserve">
-    <value>mapPanel</value>
-  </data>
   <data name="&gt;&gt;exportAsPictureToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;reloadPartLibraryToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;editToolStripMenuItem.Name" xml:space="preserve">
+    <value>editToolStripMenuItem</value>
+  </data>
   <data name="&gt;&gt;paintToolToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotate CCW</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
   <data name="&gt;&gt;optionsToolStripMenuItem.Name" xml:space="preserve">
     <value>optionsToolStripMenuItem</value>
@@ -792,8 +786,26 @@
   <data name="statusBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>446, 22</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator12.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="newLayerTextButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////////
+        ////////////////////////////////////AAAAAAAA////////////////////////////////////
+        ////////////////////AAAAAAAA////////////////AAAAAAAAAAAAAAAAAAAAAAAAv7+/////////
+        ////AAAAAAAA////////////////Pz8/Pz8/AAAAAAAAPz8/Pz8/z8/P////////////AAAAAAAA////
+        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
+        ////AAAAAAAA////////////////////////AAAAAAAA////////////////////////AAAAAAAA////
+        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
+        ////AAAAAAAA////////b29vPz8/z8/P////AAAAAAAA////////Pz8/Pz8/////////AAAAAAAA////
+        ////Pz8/AAAAv7+/////AAAAAAAA////////AAAAAAAA////////AAAAAAAA////////Pz8/AAAAX19f
+        f39/AAAAAAAAf39/f39/AAAAAAAA////////AAAAAAAA////////Pz8/AAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAA////////AAAAAAAA////////n5+ff39/f39/f39/f39/f39/f39/f39/f39/f39/////
+        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="mapBackgroundColorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Map &amp;Background Color...</value>
   </data>
   <data name="mapPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -807,23 +819,17 @@
   <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 22</value>
   </data>
-  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
-    <value>Select the grid snaping step</value>
-  </data>
   <data name="toolSplitContainer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="toolBarRotateCCWButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="newLayerAreaButton.ToolTip" xml:space="preserve">
-    <value>Add an Area Layer</value>
+  <data name="&gt;&gt;menuBar.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;toolBarCopyButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;moveStepDisabledToolStripMenuItem.Name" xml:space="preserve">
-    <value>moveStepDisabledToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -833,6 +839,9 @@
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 6</value>
+  </data>
+  <data name="&gt;&gt;paintToolPaintToolStripMenuItem.Name" xml:space="preserve">
+    <value>paintToolPaintToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;colorDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -861,14 +870,14 @@
   <data name="statusBarProgressBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 16</value>
   </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;layerDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolBarRotateCWButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Choose Color...</value>
   </data>
   <data name="&gt;&gt;layerStackPanel.Name" xml:space="preserve">
     <value>layerStackPanel</value>
@@ -879,14 +888,11 @@
   <data name="trashLayerButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
   </data>
-  <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
-    <value>Choose Color...</value>
+  <data name="&gt;&gt;moveStep4ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="trashLayerButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="saveExportImageDialog.Filter" xml:space="preserve">
-    <value>Bitmap|*.bmp|GIF|*.gif|JPEG|*.jpg|PNG|*.png</value>
+  <data name="&gt;&gt;mainSplitContainer.Panel2.Parent" xml:space="preserve">
+    <value>mainSplitContainer</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -894,14 +900,11 @@
   <data name="toolSplitContainer.Panel2.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="toolBarAngle22Button.Text" xml:space="preserve">
-    <value>22.5°</value>
-  </data>
   <data name="newLayerAreaButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel1.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="moveStep32ToolStripMenuItem.Text" xml:space="preserve">
+    <value>32 studs</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 25</value>
@@ -927,6 +930,9 @@
   <data name="toolBarDeleteButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 22</value>
   </data>
+  <data name="newLayerAreaButton.ToolTip" xml:space="preserve">
+    <value>Add an Area Layer</value>
+  </data>
   <data name="toolBarSendToBackButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -944,26 +950,31 @@
   <data name="&gt;&gt;pasteToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;layerUpButton.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
+  <data name="&gt;&gt;toolSplitContainer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="toolBarNewButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 6</value>
+  <data name="&gt;&gt;layerSplitContainer.Panel2.Name" xml:space="preserve">
+    <value>layerSplitContainer.Panel2</value>
   </data>
   <data name="&gt;&gt;toolSplitContainer.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;toolSplitContainer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
+        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
+        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
+</value>
   </data>
   <data name="&gt;&gt;layerSplitContainer.Panel1.Name" xml:space="preserve">
     <value>layerSplitContainer.Panel1</value>
   </data>
-  <data name="&gt;&gt;toolBarAngle45Button.Name" xml:space="preserve">
-    <value>toolBarAngle45Button</value>
+  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
+    <value>fileToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;toolBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -983,9 +994,6 @@
   <data name="&gt;&gt;toolBarBringToFrontButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="selectPathToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+P</value>
-  </data>
   <data name="toolBarOpenButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 22</value>
   </data>
@@ -994,6 +1002,12 @@
   </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
+  </data>
+  <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 22</value>
+  </data>
+  <data name="&gt;&gt;menuBar.Name" xml:space="preserve">
+    <value>menuBar</value>
   </data>
   <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1019,11 +1033,14 @@
   <data name="paintToolStripMenuItem.Text" xml:space="preserve">
     <value>Paint</value>
   </data>
-  <data name="toolBarGrid4Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 22</value>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 22</value>
   </data>
-  <data name="&gt;&gt;optionsToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 6</value>
+  </data>
+  <data name="&gt;&gt;toolBarPasteButton.Name" xml:space="preserve">
+    <value>toolBarPasteButton</value>
   </data>
   <data name="newLayerTextButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1031,23 +1048,8 @@
   <data name="toolBarAngle1Button.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 22</value>
   </data>
-  <data name="newLayerTextButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////////
-        ////////////////////////////////////AAAAAAAA////////////////////////////////////
-        ////////////////////AAAAAAAA////////////////AAAAAAAAAAAAAAAAAAAAAAAAv7+/////////
-        ////AAAAAAAA////////////////Pz8/Pz8/AAAAAAAAPz8/Pz8/z8/P////////////AAAAAAAA////
-        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
-        ////AAAAAAAA////////////////////////AAAAAAAA////////////////////////AAAAAAAA////
-        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
-        ////AAAAAAAA////////b29vPz8/z8/P////AAAAAAAA////////Pz8/Pz8/////////AAAAAAAA////
-        ////Pz8/AAAAv7+/////AAAAAAAA////////AAAAAAAA////////AAAAAAAA////////Pz8/AAAAX19f
-        f39/AAAAAAAAf39/f39/AAAAAAAA////////AAAAAAAA////////Pz8/AAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAA////////AAAAAAAA////////n5+ff39/f39/f39/f39/f39/f39/f39/f39/f39/////
-        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="mainSplitContainer.Panel2MinSize" type="System.Int32, mscorlib">
     <value>190</value>
@@ -1085,11 +1087,17 @@
   <data name="layerSplitContainer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="paintToolEraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Erase</value>
+  </data>
   <data name="&gt;&gt;toolBarRedoButton.Name" xml:space="preserve">
     <value>toolBarRedoButton</value>
   </data>
   <data name="undoToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="moveStep1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>1 stud</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator6.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1112,11 +1120,11 @@
   <data name="toolBarUndoButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="newLayerTextButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
+  <data name="&gt;&gt;toolBarAngle45Button.Name" xml:space="preserve">
+    <value>toolBarAngle45Button</value>
   </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;layerUpButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
   </data>
   <data name="&gt;&gt;saveToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1124,8 +1132,8 @@
   <data name="&gt;&gt;mainSplitContainer.Name" xml:space="preserve">
     <value>mainSplitContainer</value>
   </data>
-  <data name="paintToolEraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Erase</value>
+  <data name="selectPathToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+P</value>
   </data>
   <data name="rotationStep45ToolStripMenuItem.Text" xml:space="preserve">
     <value>45°</value>
@@ -1151,6 +1159,9 @@
   <data name="&gt;&gt;toolBarRotateCCWButton.Name" xml:space="preserve">
     <value>toolBarRotateCCWButton</value>
   </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;moveStepToolStripMenuItem.Name" xml:space="preserve">
     <value>moveStepToolStripMenuItem</value>
   </data>
@@ -1162,9 +1173,6 @@
   </data>
   <data name="editToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Edit</value>
-  </data>
-  <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Global &amp;Options...</value>
   </data>
   <data name="&gt;&gt;toolBarCopyButton.Name" xml:space="preserve">
     <value>toolBarCopyButton</value>
@@ -1215,14 +1223,11 @@
   <data name="rotateCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotate CW</value>
   </data>
-  <data name="&gt;&gt;moveStep4ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;layerUpButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="toolBarAngle45Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 22</value>
+  <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Global &amp;Options...</value>
   </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 22</value>
@@ -1260,8 +1265,8 @@
         Jspwsa3XP/Or/kx/efQNcELmCXhefr4AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="&gt;&gt;paintToolPaintToolStripMenuItem.Name" xml:space="preserve">
-    <value>paintToolPaintToolStripMenuItem</value>
+  <data name="toolBarAngle22Button.Text" xml:space="preserve">
+    <value>22.5°</value>
   </data>
   <data name="&gt;&gt;toolBarRotateCCWButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1272,11 +1277,17 @@
   <data name="&gt;&gt;trashLayerButton.Parent" xml:space="preserve">
     <value>LayerButtonFlowLayoutPanel</value>
   </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;toolBarOpenButton.Name" xml:space="preserve">
     <value>toolBarOpenButton</value>
   </data>
   <data name="viewToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;View</value>
+  </data>
+  <data name="layerSplitContainer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1287,17 +1298,8 @@
   <data name="&gt;&gt;toolBarAngle22Button.Name" xml:space="preserve">
     <value>toolBarAngle22Button</value>
   </data>
-  <data name="toolBarCutButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAU1JREFUOE+tk79L
-        w0Acxfv31KWT0C0iCMUlo1kkDrbplsVfUCVLwVCQGyykRcQaa6XtEE2haismJVRbQaLWTbC74L/wzF2x
-        oJWYoAe3fHnv897dcZHIf6/WtY2q0cR3rn5Sn5j9mE0BRDv4IjYMa2LmW5xoBhptZwwRZSUcwDQ7IGTU
-        wrp1wYtysPqftc7bfZZYqRuQFQJBSIUDUBA10uo0fWUjEx4grWWZmZcUnDZa4QC58ht4ZQilOAC/7kLY
-        cqGWnoNBpN13LGRfkRB1zC1pSKzaDMJJFtTChT9kU38Bvz30xAZiPEEqU2bmh8cBjs9u2Mz3/anZ6T/B
-        7vbGYgpwei4KhyZi3C/PSc9td+9QqlkeQGFpabUDTvQacSKmonH/Bmn1fiT2qk7PLzLxfu0K8Zkkot7e
-        KVb8AXvVS8wm855hGbn8UbBb/+tv/gCno8+zubci9wAAAABJRU5ErkJggg==
-</value>
+  <data name="cutToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+X</value>
   </data>
   <data name="toolBarRotateCWButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1307,6 +1309,9 @@
         22kiAJqVyRGd8Sp99J7OW3vhUtZvugb0Wz3DytAKQwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="layerSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 258</value>
+  </data>
   <data name="&gt;&gt;redoToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1315,6 +1320,9 @@
   </data>
   <data name="redoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Y</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 6</value>
   </data>
   <data name="statusBarLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>13, 17</value>
@@ -1337,11 +1345,11 @@
   <data name="newLayerAreaButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
-  <data name="newLayerBrickButton.ToolTip" xml:space="preserve">
-    <value>Add a Brick Layer</value>
+  <data name="layerSplitContainer.Panel1.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="LayerButtonFlowLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
+  <data name="&gt;&gt;statusBar.Parent" xml:space="preserve">
+    <value>mapPanel</value>
   </data>
   <data name="&gt;&gt;partsTabControl.Parent" xml:space="preserve">
     <value>toolSplitContainer.Panel1</value>
@@ -1373,9 +1381,6 @@
   <data name="&gt;&gt;toolStripSeparator13.Name" xml:space="preserve">
     <value>toolStripSeparator13</value>
   </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;toolTipForMainForm.Name" xml:space="preserve">
     <value>toolTipForMainForm</value>
   </data>
@@ -1388,8 +1393,8 @@
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Delete</value>
   </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel2.Parent" xml:space="preserve">
-    <value>mainSplitContainer</value>
+  <data name="rotationStep90ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 22</value>
   </data>
   <data name="deselectAllToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+D</value>
@@ -1415,6 +1420,9 @@
   <data name="&gt;&gt;newLayerAreaButton.Parent" xml:space="preserve">
     <value>LayerButtonFlowLayoutPanel</value>
   </data>
+  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 6</value>
+  </data>
   <data name="toolBarGrid8Button.Text" xml:space="preserve">
     <value>8 studs</value>
   </data>
@@ -1430,14 +1438,14 @@
   <data name="&gt;&gt;generalInformationToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;optionsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;paintToolEraseToolStripMenuItem.Name" xml:space="preserve">
     <value>paintToolEraseToolStripMenuItem</value>
   </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Parent" xml:space="preserve">
-    <value>mainSplitContainer.Panel2</value>
+  <data name="&gt;&gt;toolStripSeparator4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
@@ -1454,8 +1462,8 @@
   <data name="openFileDialog.Title" xml:space="preserve">
     <value>Open a BlueBrick Map</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="toolBarSendToBackButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
   </data>
   <data name="&gt;&gt;newLayerTextButton.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -1466,8 +1474,8 @@
   <data name="&gt;&gt;layerStackPanel.Parent" xml:space="preserve">
     <value>layerSplitContainer.Panel1</value>
   </data>
-  <data name="&gt;&gt;deselectAllToolStripMenuItem.Name" xml:space="preserve">
-    <value>deselectAllToolStripMenuItem</value>
+  <data name="trashLayerButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;moveStep1ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1484,8 +1492,8 @@
   <data name="cutToolStripMenuItem.Text" xml:space="preserve">
     <value>Cut</value>
   </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
+    <value>Select the grid snaping step</value>
   </data>
   <data name="undoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Undo</value>
@@ -1502,8 +1510,8 @@
   <data name="saveToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+S</value>
   </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="saveExportImageDialog.Filter" xml:space="preserve">
+    <value>Bitmap|*.bmp|GIF|*.gif|JPEG|*.jpg|PNG|*.png</value>
   </data>
   <data name="trashLayerButton.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1592,14 +1600,14 @@
   <data name="&gt;&gt;exportAsPictureToolStripMenuItem.Name" xml:space="preserve">
     <value>exportAsPictureToolStripMenuItem</value>
   </data>
-  <data name="moveStep32ToolStripMenuItem.Text" xml:space="preserve">
-    <value>32 studs</value>
-  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
   </data>
   <data name="layerSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
     <value>234</value>
+  </data>
+  <data name="toolBarGrid4Button.Text" xml:space="preserve">
+    <value>4 studs</value>
   </data>
   <data name="&gt;&gt;moveStep16ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1655,9 +1663,6 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
-  <data name="&gt;&gt;rotationStep90ToolStripMenuItem.Name" xml:space="preserve">
-    <value>rotationStep90ToolStripMenuItem</value>
-  </data>
   <data name="&gt;&gt;moveStep32ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1687,9 +1692,6 @@
   </data>
   <data name="newLayerGridButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
-  </data>
-  <data name="&gt;&gt;layerDownButton.ZOrder" xml:space="preserve">
-    <value>8</value>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Save</value>
@@ -1751,11 +1753,8 @@
   <data name="&gt;&gt;paintToolStripMenuItem.Name" xml:space="preserve">
     <value>paintToolStripMenuItem</value>
   </data>
-  <data name="partsTabControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="layerStackPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;newLayerGridButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
   </data>
   <data name="&gt;&gt;aboutBlueBrickToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1778,8 +1777,8 @@
   <data name="&gt;&gt;rotationStepToolStripMenuItem.Name" xml:space="preserve">
     <value>rotationStepToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;rotationStep45ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="LayerButtonFlowLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="&gt;&gt;mapPanel.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1793,23 +1792,20 @@
   <data name="toolBarRotateCWButton.ToolTipText" xml:space="preserve">
     <value>Rotate selected objects CW</value>
   </data>
-  <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 22</value>
-  </data>
-  <data name="toolBarPasteButton.ToolTipText" xml:space="preserve">
-    <value>Paste copied objects</value>
+  <data name="&gt;&gt;toolStripSeparator9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;LayerButtonFlowLayoutPanel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="layerUpButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="mainSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>450</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Select &amp;All</value>
   </data>
-  <data name="reloadPartLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+  <data name="rotateCCWToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+L</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 13</value>
@@ -1820,11 +1816,11 @@
   <data name="&gt;&gt;moveStepDisabledToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
+  <data name="&gt;&gt;rotationStep90ToolStripMenuItem.Name" xml:space="preserve">
+    <value>rotationStep90ToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="generalInformationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
   </data>
   <data name="&gt;&gt;mapPanel.Type" xml:space="preserve">
     <value>BlueBrick.MapPanel, BlueBrick, Version=1.4.4.0, Culture=neutral, PublicKeyToken=null</value>
@@ -1838,8 +1834,8 @@
   <data name="partsTabControl.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;paintToolChooseColorToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;toolSplitContainer.Parent" xml:space="preserve">
+    <value>mainSplitContainer.Panel2</value>
   </data>
   <data name="LayerButtonFlowLayoutPanel.ToolTip" xml:space="preserve">
     <value />
@@ -1853,11 +1849,8 @@
   <data name="toolBarRotateCCWButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 22</value>
   </data>
-  <data name="moveStep1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>1 stud</value>
-  </data>
-  <data name="&gt;&gt;moveStep8ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="toolBarPasteButton.ToolTipText" xml:space="preserve">
+    <value>Paste copied objects</value>
   </data>
   <data name="label2.ToolTip" xml:space="preserve">
     <value />
@@ -1883,11 +1876,16 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
   </data>
-  <data name="&gt;&gt;newLayerAreaButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;toolStripSeparator6.Name" xml:space="preserve">
+    <value>toolStripSeparator6</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="toolBarDeleteButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAFVJREFUOE9jYKAh
+        +A80G4ZJsgZZIzobt0He3t4QxYYC/xm8JTAxSBwoD1WH1SDsGtENg3gLhwEIP+PzBk4DQKZCXIGPJhCc
+        owYMk0AknJhIylgEFQMAZoiPkxTJumUAAAAASUVORK5CYII=
+</value>
   </data>
   <data name="&gt;&gt;openFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1907,8 +1905,8 @@
   <data name="moveStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 22</value>
   </data>
-  <data name="exportAsPictureToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Export Picture...</value>
+  <data name="toolBarGrid4Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 22</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
@@ -1931,14 +1929,20 @@
   <data name="&gt;&gt;toolBarSaveButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;paintToolChooseColorToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="layerStackPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
   <data name="toolBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 24</value>
   </data>
-  <data name="&gt;&gt;toolBar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="LayerButtonFlowLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;moveStepToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;partListToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1965,32 +1969,26 @@
   <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotation Step</value>
   </data>
-  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 6</value>
-  </data>
   <data name="layerUpButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>38, 0</value>
   </data>
   <data name="&gt;&gt;newLayerBrickButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="layerStackPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="&gt;&gt;saveasToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="toolBarAngle45Button.Text" xml:space="preserve">
     <value>45°</value>
   </data>
-  <data name="layerSplitContainer.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
-    <value>toolStripSeparator2</value>
+  <data name="toolBarUndoButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
   </data>
   <data name="layerStackPanel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="LayerButtonFlowLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Help</value>
   </data>
   <data name="menuBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -2025,16 +2023,11 @@
   <data name="$this.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
-        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
-        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
-</value>
+  <data name="&gt;&gt;moveStep8ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;layerDownButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="layerStackPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;moveStep05ToolStripMenuItem.Name" xml:space="preserve">
     <value>moveStep05ToolStripMenuItem</value>
@@ -2066,8 +2059,8 @@
   <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
     <value>Paint Tool</value>
   </data>
-  <data name="trashLayerButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="rotationStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 22</value>
   </data>
   <data name="&gt;&gt;rotateCWToolStripMenuItem.Name" xml:space="preserve">
     <value>rotateCWToolStripMenuItem</value>
@@ -2090,11 +2083,14 @@
   <data name="&gt;&gt;selectAllToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="layerSplitContainer.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="rotateCCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 22</value>
   </data>
   <data name="moveStep4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 22</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="paintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 22</value>
@@ -2105,22 +2101,14 @@
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;editToolStripMenuItem.Name" xml:space="preserve">
-    <value>editToolStripMenuItem</value>
+  <data name="rotateCWToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+R</value>
   </data>
   <data name="&gt;&gt;moveStep4ToolStripMenuItem.Name" xml:space="preserve">
     <value>moveStep4ToolStripMenuItem</value>
   </data>
   <data name="toolBar.ToolTip" xml:space="preserve">
     <value />
-  </data>
-  <data name="toolBarDeleteButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAFVJREFUOE9jYKAh
-        +A80G4ZJsgZZIzobt0He3t4QxYYC/xm8JTAxSBwoD1WH1SDsGtENg3gLhwEIP+PzBk4DQKZCXIGPJhCc
-        owYMk0AknJhIylgEFQMAZoiPkxTJumUAAAAASUVORK5CYII=
-</value>
   </data>
   <data name="toolSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 496</value>
@@ -2136,6 +2124,9 @@
   </data>
   <data name="&gt;&gt;rotationStepToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolBarAngle45Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 22</value>
   </data>
   <data name="&gt;&gt;helpToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2161,6 +2152,9 @@
   <data name="menuBar.Text" xml:space="preserve">
     <value>menuBar</value>
   </data>
+  <data name="&gt;&gt;toolBar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="toolBarRedoButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -2179,11 +2173,8 @@
   <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
     <value>exitToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;rotationStep1ToolStripMenuItem.Name" xml:space="preserve">
-    <value>rotationStep1ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator6.Name" xml:space="preserve">
-    <value>toolStripSeparator6</value>
+  <data name="&gt;&gt;layerDownButton.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;toolBarSendToBackButton.Name" xml:space="preserve">
     <value>toolBarSendToBackButton</value>
@@ -2200,11 +2191,11 @@
   <data name="&gt;&gt;rotationStep45ToolStripMenuItem.Name" xml:space="preserve">
     <value>rotationStep45ToolStripMenuItem</value>
   </data>
-  <data name="rotateCCWToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+L</value>
+  <data name="&gt;&gt;rotationStep45ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="toolBarGrid4Button.Text" xml:space="preserve">
-    <value>4 studs</value>
+  <data name="&gt;&gt;moveStepDisabledToolStripMenuItem.Name" xml:space="preserve">
+    <value>moveStepDisabledToolStripMenuItem</value>
   </data>
   <data name="layerDownButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2233,8 +2224,8 @@
   <data name="&gt;&gt;eraseToolStripMenuItem.Name" xml:space="preserve">
     <value>eraseToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;moveStepToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="exportAsPictureToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Export Picture...</value>
   </data>
   <data name="&gt;&gt;toolBarGrid05Button.Name" xml:space="preserve">
     <value>toolBarGrid05Button</value>
@@ -2260,9 +2251,6 @@
   <data name="&gt;&gt;paintToolEraseToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel2.Name" xml:space="preserve">
-    <value>layerSplitContainer.Panel2</value>
-  </data>
   <data name="&gt;&gt;statusBarMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -2281,11 +2269,11 @@
   <data name="&gt;&gt;toolBarAngle22Button.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuBar.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
+    <value>toolStripSeparator2</value>
   </data>
-  <data name="&gt;&gt;menuBar.Name" xml:space="preserve">
-    <value>menuBar</value>
+  <data name="&gt;&gt;toolSplitContainer.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 20</value>
@@ -2296,8 +2284,8 @@
   <data name="toolSplitContainer.Panel1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 22</value>
+  <data name="layerSplitContainer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
   <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2313,17 +2301,26 @@
   <data name="&gt;&gt;toolBarRotationAngleButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="layerSplitContainer.Panel1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="toolBarCutButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAU1JREFUOE+tk79L
+        w0Acxfv31KWT0C0iCMUlo1kkDrbplsVfUCVLwVCQGyykRcQaa6XtEE2haismJVRbQaLWTbC74L/wzF2x
+        oJWYoAe3fHnv897dcZHIf6/WtY2q0cR3rn5Sn5j9mE0BRDv4IjYMa2LmW5xoBhptZwwRZSUcwDQ7IGTU
+        wrp1wYtysPqftc7bfZZYqRuQFQJBSIUDUBA10uo0fWUjEx4grWWZmZcUnDZa4QC58ht4ZQilOAC/7kLY
+        cqGWnoNBpN13LGRfkRB1zC1pSKzaDMJJFtTChT9kU38Bvz30xAZiPEEqU2bmh8cBjs9u2Mz3/anZ6T/B
+        7vbGYgpwei4KhyZi3C/PSc9td+9QqlkeQGFpabUDTvQacSKmonH/Bmn1fiT2qk7PLzLxfu0K8Zkkot7e
+        KVb8AXvVS8wm855hGbn8UbBb/+tv/gCno8+zubci9wAAAABJRU5ErkJggg==
+</value>
   </data>
   <data name="&gt;&gt;selectPathToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="toolBarGrid16Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 22</value>
+  </data>
   <data name="openRecentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 22</value>
-  </data>
-  <data name="rotationStep90ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 22</value>
   </data>
   <data name="&gt;&gt;toolBarRedoButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSplitButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2331,8 +2328,8 @@
   <data name="&gt;&gt;cutToolStripMenuItem.Name" xml:space="preserve">
     <value>cutToolStripMenuItem</value>
   </data>
-  <data name="newLayerGridButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="&gt;&gt;rotationStep1ToolStripMenuItem.Name" xml:space="preserve">
+    <value>rotationStep1ToolStripMenuItem</value>
   </data>
   <data name="layerSplitContainer.Panel2.ToolTip" xml:space="preserve">
     <value />
@@ -2343,11 +2340,11 @@
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
     <value>toolStripSeparator5</value>
   </data>
-  <data name="generalInformationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
+  <data name="layerSplitContainer.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="mainSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>450</value>
+  <data name="eraseToolStripMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Fuchsia</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
     <value>toolStripSeparator3</value>
@@ -2364,6 +2361,9 @@
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Select &amp;Path</value>
   </data>
+  <data name="&gt;&gt;toolStripSeparator11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;rotateCCWToolStripMenuItem.Name" xml:space="preserve">
     <value>rotateCCWToolStripMenuItem</value>
   </data>
@@ -2372,6 +2372,9 @@
   </metadata>
   <metadata name="colorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>402, 41</value>
+  </metadata>
+  <metadata name="statusBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 470</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>134</value>
@@ -2384,9 +2387,6 @@
   </metadata>
   <metadata name="menuBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
-  </metadata>
-  <metadata name="statusBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 470</value>
   </metadata>
   <metadata name="openFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>2, 41</value>

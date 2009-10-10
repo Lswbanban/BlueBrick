@@ -114,7 +114,7 @@ Open bugs:
 - [target 1.6] MISSING FEATURE (Alban): support new flex PF track.
 - [target 1.6] MISSING FEATURE (Alban): make configurable connexion points
 - [target 1.6] MISSING FEATURE (Alban): Add the polarity check
-- MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
+- [target 1.6] MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
 - MISSING FEATURE (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that

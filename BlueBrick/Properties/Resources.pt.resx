@@ -289,7 +289,7 @@
     <value>BlueBrick Copyright © 2008 Alban NANTY. Este programa é um software livre sobe a licensa GPLv3 e NÂO POSSUI QUALQUER GARANTIA. Este programa encontrou um erro irrecuperável e irá ser fechado. Por favor, reporte este erro para banban@lswproject.com. A mensagem de erro é:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
-    <value>A linguagem foi alterada mas só terá efeito da próxima vez que a aplicação será inicializada.</value>
+    <value>A linguagem foi alterada mas só terá efeito da próxima vez que a aplicação for iniciada. Pretende reiniciar agora?</value>
   </data>
   <data name="ErrorMsgLayerTypeArea" xml:space="preserve">
     <value>Área</value>
