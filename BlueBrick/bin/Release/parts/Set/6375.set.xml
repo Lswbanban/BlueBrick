@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<part>
+	<Author>FreeBee (Roland Bal)</Author>
+	<Description>
+		<en>Exxon Gas Station</en>
+		<fr>Station service Exxon</fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/6375-2.1124747856.thumb2.jpg</ImageURL>
+
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>0</left>
+		<right>8</right>
+		<top>0</top>
+		<bottom>0</bottom>
+	</SnapMargin>
+
+	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center) -->
+	<ConnexionList>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>2</type>
+			<position>
+				<x>-4</x>
+				<y>16</y>
+			</position>
+			<angle>90</angle>
+			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>180</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<nextConnexionPreference>1</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>2</type>
+			<position>
+				<x>-4</x>
+				<y>-16</y>
+			</position>
+			<angle>-90</angle>
+			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>180</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+	</ConnexionList>
+</part>

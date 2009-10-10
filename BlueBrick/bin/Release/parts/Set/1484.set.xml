@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<part>
+	<Author>FreeBee (Roland Bal)</Author>
+	<Description>
+		<en>Weetabix Town House</en>
+		<fr>Maison de ville Weetabix</fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/1484-1.1175348421.thumb2.jpg</ImageURL>
+
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>0.5</left>
+		<right>0</right>
+		<top>0</top>
+		<bottom>5</bottom>
+	</SnapMargin>
+</part>

@@ -2,16 +2,16 @@
 <part>
 	<Author>FreeBee (Roland Bal)</Author>
 	<Description>
-		<en>Train Station</en>
-		<fr>Gare</fr>
+		<en>Holiday Home</en>
+		<fr>Maison de vacances</fr>
 	</Description>
-	<ImageURL>http://media.peeron.com/pics/inv/setpics/2150-1.1105127485.thumb2.jpg</ImageURL>
+	<ImageURL>http://www.bricklink.com/SL/1472-1.jpg?0</ImageURL>
 
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
-		<left>1</left>
-		<right>1</right>
-		<top>9</top>
-		<bottom>1</bottom>
+		<left>0</left>
+		<right>0</right>
+		<top>0</top>
+		<bottom>5</bottom>
 	</SnapMargin>
 </part>

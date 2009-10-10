@@ -2,10 +2,10 @@
 <part>
 	<Author>FreeBee (Roland Bal)</Author>
 	<Description>
-		<en>Train Station</en>
-		<fr>Gare</fr>
+		<en>Metro Station</en>
+		<fr>Station de Métro</fr>
 	</Description>
-	<ImageURL>http://media.peeron.com/pics/inv/setpics/2150-1.1105127485.thumb2.jpg</ImageURL>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/4554-1.1174536513.thumb2.jpg</ImageURL>
 
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
