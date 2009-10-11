@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Alexander McKenna</Author>
+	<Description>
+		<en>Weekend Cottage</en>
+		<fr>Petite maison de weekend</fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/6360-1.1187958326.jpg</ImageURL>
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>0</left>
+		<right>0</right>
+		<top>1</top>
+		<bottom>.25</bottom>
+	</SnapMargin>
+	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
+</part>

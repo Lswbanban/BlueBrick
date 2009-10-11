@@ -2,15 +2,15 @@
 <part>
 	<Author>Alexander McKenna</Author>
 	<Description>
-		<en>Beta-1 Command Base</en>
-		<fr>Base de commandement Beta-1</fr>
+		<en>Cycle Fix-It Shop</en>
+		<fr>Boutique de réparation de vélo</fr>
 	</Description>
-	<ImageURL>http://media.peeron.com/pics/inv/setpics/6970-1.1170476326.thumb2.jpg</ImageURL>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/6699-1.1121480986.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>0</left>
-		<right>.5</right>
-		<top>1.2</top>
-		<bottom>0</bottom>
+		<right>0</right>
+		<top>0</top>
+		<bottom>3</bottom>
 	</SnapMargin>
 </part>

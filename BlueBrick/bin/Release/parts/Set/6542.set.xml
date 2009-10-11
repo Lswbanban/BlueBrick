@@ -2,15 +2,15 @@
 <part>
 	<Author>Alexander McKenna</Author>
 	<Description>
-		<en>Beta-1 Command Base</en>
-		<fr>Base de commandement Beta-1</fr>
+		<en>Launch and Load Seaport</en>
+		<fr>Port de chargement</fr>
 	</Description>
-	<ImageURL>http://media.peeron.com/pics/inv/setpics/6970-1.1170476326.thumb2.jpg</ImageURL>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/6542-1.1167961319.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
-		<left>0</left>
-		<right>.5</right>
-		<top>1.2</top>
+		<left>5.5</left>
+		<right>4.5</right>
+		<top>0</top>
 		<bottom>0</bottom>
 	</SnapMargin>
 </part>

@@ -2,9 +2,10 @@
 <part>
 	<Author>Alexander McKenna</Author>
 	<Description>
-		<en>Baseplate 32 x 32 Road 9-Stud Landing Pad with Green Octagon</en>
-		<fr>Plaque de base 32 x 32, route de 9 tenons, plateforme d'atterrissage avec des octagones verts</fr>
+		<en>Airport</en>
+		<fr>Aeroport</fr>
 	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/6392-1.1121389543.jpg</ImageURL>
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center) -->
 	<ConnexionList>
 		<connexion>

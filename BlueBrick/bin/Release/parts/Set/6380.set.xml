@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Alexander McKenna</Author>
+	<Description>
+		<en>Emergency Treatment Center</en>
+		<fr>Centre de traitement d'urgence</fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/6380-1.1182574635.jpg</ImageURL>
+	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
+	<ConnexionList>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>2</type>
+			<position>
+				<x>0</x>
+				<y>16</y>
+			</position>
+			<angle>90</angle>
+			<angleToPrev>0</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>0</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+	</ConnexionList>
+</part>

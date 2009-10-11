@@ -5,14 +5,7 @@
 		<en>Level Crossing</en>
 		<fr>Passage à niveau</fr>
 	</Description>
-	<ImageURL>http://media.peeron.com/pics/inv/setpics/4539-1.1174843247.thumb2.jpg</ImageURL>
-	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
-	<SnapMargin>
-		<left>0</left>
-		<right>0</right>
-		<top>0</top>
-		<bottom>0</bottom>
-	</SnapMargin>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/7834-1.1105127517.jpg</ImageURL>
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
 	<ConnexionList>
 		<connexion>
@@ -20,7 +13,7 @@
 			<type>1</type>
 			<position>
 				<x>-16</x>
-				<y>0</y>
+				<y>-5</y>
 			</position>
 			<angle>180</angle>
 			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
@@ -32,7 +25,7 @@
 			<type>1</type>
 			<position>
 				<x>16</x>
-				<y>0</y>
+				<y>-5</y>				
 			</position>
 			<angle>0</angle>
 			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
