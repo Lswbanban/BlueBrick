@@ -2,16 +2,16 @@
 <part>
 	<Author>Alexander McKenna</Author>
 	<Description>
-		<en>Airport Shuttle</en>
-		<fr>La navette de l'aéroport</fr>
+		<en>Monorail Transport System</en>
+		<fr>Système de transport Monorail</fr>
 	</Description>
-	<ImageURL>http://media.peeron.com/pics/inv/setpics/6399-1.1167875109.thumb2.jpg</ImageURL>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/6990-1.1167619389.jpg</ImageURL>
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
-		<left>3</left>
-		<right>3</right>
-		<top>11</top>
-		<bottom>0.5</bottom>
+		<left>0</left>
+		<right>0</right>
+		<top>12</top>
+		<bottom>6</bottom>
 	</SnapMargin>
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
 	<ConnexionList>
@@ -19,8 +19,8 @@
 			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
 			<type>3</type>
 			<position>
-				<x>-4</x>
-				<y>-13.5</y>
+				<x>-10</x>
+				<y>17</y>
 			</position>
 			<angle>180</angle>
 			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
@@ -31,37 +31,13 @@
 			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
 			<type>3</type>
 			<position>
-				<x>12</x>
-				<y>-13.5</y>
+				<x>6</x>
+				<y>17</y>
 			</position>
 			<angle>0</angle>
 			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
 			<angleToNext>180</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
-		</connexion>
-		<connexion>
-			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
-			<type>2</type>
-			<position>
-				<x>-16</x>
-				<y>6</y>
-			</position>
-			<angle>180</angle>
-			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
-			<angleToNext>180</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
-			<nextConnexionPreference>3</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
-		</connexion>
-		<connexion>
-			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
-			<type>2</type>
-			<position>
-				<x>16</x>
-				<y>6</y>
-			</position>
-			<angle>0</angle>
-			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
-			<angleToNext>180</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
-			<nextConnexionPreference>2</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
 </part>
