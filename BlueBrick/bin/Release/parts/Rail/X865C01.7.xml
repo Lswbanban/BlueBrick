@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <part>
-	<Author>Alban Nanty</Author>
+	<Author>FreeBee (Roland Bal)</Author>
 	<Description>
 		<en>Rail 12V Right point (new type)</en>
 		<fr>Rail 12V aiguillage droit (nouveau modèle)</fr>
 	</Description>
 	<ImageURL>http://www.ldraw.org/library/unofficial/images/parts//x865c01.png</ImageURL>
+	
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>0</left>
@@ -13,6 +14,7 @@
 		<top>0</top>
 		<bottom>16</bottom>
 	</SnapMargin>
+
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
 	<ConnexionList>
 		<!-- the center of this part in stud is x = 256 pix / 8 pixperstud / 2 = 16    and    y = 128 / 8 / 2 = 8 -->
@@ -53,6 +55,7 @@
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
+	
 	<!-- a list of point that describe the hull of the parts to help finding the bounding box, when rotating the part. This is optionnal, if it doesn't exist we use the full box of the picture. -->
 	<hull>
 		<point>
@@ -60,11 +63,11 @@
 			<y>64</y>
 		</point>
 		<point>
-			<x>18</x>
-			<y>122</y>
+			<x>23</x>
+			<y>119</y>
 		</point>
 		<point>
-			<x>246</x>
+			<x>248</x>
 			<y>128</y>
 		</point>
 		<point>

@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <part>
-	<Author>Alban Nanty</Author>
+	<Author>FreeBee (Roland Bal)</Author>
 	<Description>
 		<en>Rail 12V Crossing (new type)</en>
 		<fr>Rail 12V croisement (nouveau modèle)</fr>
 	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/custpics/x563.1083161313.jpg</ImageURL>
+	
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>0</left>
@@ -13,6 +14,7 @@
 		<top>0</top>
 		<bottom>0</bottom>
 	</SnapMargin>
+
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
 	<ConnexionList>
 		<connexion>
@@ -64,6 +66,7 @@
 			<nextConnexionPreference>2</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
+
 	<!-- a list of point that describe the hull of the parts to help finding the bounding box, when rotating the part. This is optionnal, if it doesn't exist we use the full box of the picture. -->
 	<hull>
 		<point>

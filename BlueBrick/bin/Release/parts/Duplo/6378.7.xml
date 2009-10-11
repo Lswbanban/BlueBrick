@@ -5,7 +5,8 @@
 		<en>Duplo Train Track Curved 30 Degrees</en>
 		<fr>Rail courbe Duplo de 30 degrés</fr>
 	</Description>
-	<ImageURL>http://media.peeron.com/pics/inv/custpics/6378.1114408932.jpg</ImageURL>	
+	<ImageURL>http://media.peeron.com/pics/inv/custpics/6378.1114408932.jpg</ImageURL>
+
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>1.5</left>
@@ -33,8 +34,8 @@
 			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve, 5=duplo rail) -->
 			<type>5</type>
 			<position>
-				<x>7.8125</x>	<!-- x = pos1x + 32 * cos(60) = pos1x + 16   because 32 is the radius in stud of the middle line of a duplo turn (for a quarter of circle) -->
-				<y>2.4122</y>	<!-- y = pos1y + 32 * (1 - sin(60)) = pos1y + 4.2872   because 32 is the radius in stud of the middle line of a duplo turn (for a quarter of circle) -->
+				<x>7.8125</x>	<!-- x = pos1x + 32 * sin(30) = pos1x + 16   because 32 is the radius in stud of the middle line of a duplo turn (for a quarter of circle) -->
+				<y>2.4122</y>	<!-- y = pos1y + 32 * (1 - cos(30)) = pos1y + 4.2872   because 32 is the radius in stud of the middle line of a duplo turn (for a quarter of circle) -->
 			</position>
 			<angle>30</angle>
 			<angleToPrev>150</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
