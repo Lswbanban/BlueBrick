@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Marc Raps</Author>
+	<Description>
+		<en>City Corner - Bus Stop</en>
+		<fr>Coin de ville - Arrêt de bus</fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/7641-1.1245013792.1.jpg</ImageURL>
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>3.5</left>
+		<right>0</right>
+		<top>0</top>
+		<bottom>1.5</bottom>
+	</SnapMargin>
+</part>

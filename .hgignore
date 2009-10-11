@@ -10,6 +10,10 @@ ResxEditor\*
 trash\*
 BlueBrick\obj\*
 BlueBrick\bin\Debug\*
+BlueBrick\bin\Release\part from Freebee
+BlueBrick\bin\Release\parts from JB
+BlueBrick\bin\Release\part from Alex
+BlueBrick\bin\Release\parts from Rapseflaps
 
 ; specific files
 BlueBrick\BlueBrick.csproj.user

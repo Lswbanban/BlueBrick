@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Marc Raps</Author>
+	<Description>
+		<en>City Corner - Bike Shop</en>
+		<fr>Coin de ville - Boutique de vélo</fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/7641-1.1245013792.1.jpg</ImageURL>
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>0</left>
+		<right>0.25</right>
+		<top>0</top>
+		<bottom>3.5</bottom>
+	</SnapMargin>
+</part>

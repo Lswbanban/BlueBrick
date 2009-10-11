@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Marc Raps</Author>
+	<Description>
+		<en>Derby Trotter</en>
+		<fr>Ecurie Derby</fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/setpics/6355-1.1122432012.jpg</ImageURL>
+	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
+	<SnapMargin>
+		<left>1.25</left>
+		<right>0</right>
+		<top>0</top>
+		<bottom>0</bottom>
+	</SnapMargin>
+</part>
