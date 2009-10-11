@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <part>
-	<Author>Aawsum (JB)</Author>
+	<Author>FreeBee (Roland Bal)</Author>
 	<Description>
-		<en>Train Engine Shed - Side by side version</en>
-		<fr>Remise de locomotive - version cote à cote</fr>
+		<en>Train Engine Shed - half version</en>
+		<fr>Remise de locomotive - demi-version</fr>
 	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/setpics/10027-1.1124661708.thumb2.jpg</ImageURL>
 
@@ -22,7 +22,7 @@
 			<type>1</type>
 			<position>
 				<x>-16</x>
-				<y>-8</y>
+				<y>0</y>
 			</position>
 			<angle>180</angle>
 			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
@@ -34,36 +34,12 @@
 			<type>1</type>
 			<position>
 				<x>16</x>
-				<y>-8</y>
+				<y>0</y>
 			</position>
 			<angle>0</angle>
 			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
 			<angleToNext>180</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
-		</connexion>
-		<connexion>
-			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
-			<type>1</type>
-			<position>
-				<x>-16</x>
-				<y>8</y>
-			</position>
-			<angle>180</angle>
-			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
-			<angleToNext>180</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
-			<nextConnexionPreference>3</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
-		</connexion>
-		<connexion>
-			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
-			<type>1</type>
-			<position>
-				<x>16</x>
-				<y>8</y>
-			</position>
-			<angle>0</angle>
-			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
-			<angleToNext>180</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
-			<nextConnexionPreference>2</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
 </part>

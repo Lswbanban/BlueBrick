@@ -38,6 +38,9 @@ X878CX2.7=X948CC01.7
 7859.1=X504B.1
 7859.7=X864C01.7
 
+; remaping of TD old parts
+153.set=158.set
+
 ; temporary remaping because of LDRAW parts are missing,
 ; so we use other parts when exporting in LDRAW, and need to use the correct one now
 ; this list should be deleted when the parts will be available in LDRAW
