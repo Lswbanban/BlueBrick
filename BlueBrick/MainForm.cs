@@ -1398,6 +1398,10 @@ namespace BlueBrick
 					// it will launch a new instance of the application, so if the user can cancel the close
 					// of the current instance he may end up with two instances.
 					mCanUserCancelTheApplicationClose = false;
+					// close the Part List else it prevent the application to close
+					mPartListForm.Close();
+					mPartListForm.Dispose();
+					// and restart the application
 					Application.Restart();
 				}
 			}
