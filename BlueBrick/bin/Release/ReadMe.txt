@@ -120,6 +120,7 @@ Open bugs:
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
 - MISSING FEATURE (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
+- MISSING FEATURE (Alex): Remember the window size.
 - [target 1.6] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
@@ -130,18 +131,18 @@ Open bugs:
 
 Bug fixed in 1.5.0.0:
 - NEW FEATURE (Alban, Alex, JB): Fully comprehensive and integrated offline help file in English and Dutch.
-- NEW FEATURE (Alban): Add two buttons for "Send To back" and "Bring to Front"
-- NEW FEATURE (Alban): Add a warning message box when saving in LDR or TDL to notice the user that some data will be lost
-- NEW FEATURE (Alban): Add the Author tag in the XML files of the parts
-- NEW FEATURE (Alban): Add an auto-restart when the user change the language.
+- NEW FEATURE (Alban): Added two buttons for "Send To back" and "Bring to Front"
+- NEW FEATURE (Alban): Added a warning message when saving in LDR or TDL to notice the user that some data will be lost
+- NEW FEATURE (Alban): Added the Author tag in the XML files of the parts
+- NEW FEATURE (Alban): Added an auto-restart when the user change the language.
 - NEW FEATURE (Alban, Alex, JB): A lot of new parts in the library, and improvment of some old parts, in details:
-    * Completely revised and extended track library (34 GIFs)
-    * Completely revised and extended track side buildings library (27 Sets with minifigs and vehicles)
-    * Completely new town set additions (38 new sets with minifigs and vehicles)
-    * Completely new space set library (5 sets)
-    * Completely revised duplo parts library (6 GIFs)
-    * 9 new baseplates including space
-    * 6 new custom bases
+	* Completely revised and extended track side buildings library (27 Sets with minifigs and vehicles)
+	* Completely new town set additions (46 new sets with minifigs and vehicles)
+	* Revised and extended track library (29 GIFs)
+	* Completely new space set library (4 sets including monorail!)
+	* Completely revised duplo parts library (6 GIFs)
+	* 9 new baseplates including space
+	* 9 new custom bases (incl. US and EU standard size tables)
 - BUG (Alban): The saving as a new map do not add the file in the recent list
 - BUG (Alex & Alban): Some picture URL are not correct in the HTML exported list (put the URL in XML file).
 - REFACTORING (Alban): Move the part description in the XML file of the parts.
