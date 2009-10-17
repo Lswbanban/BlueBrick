@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Text;
 using System.Windows.Forms;
 using BlueBrick.Properties;
@@ -118,10 +119,12 @@ namespace BlueBrick
 			this.undoDisplayedNumericUpDown.Value = Settings.Default.UndoStackDisplayedDepth;
 
 			// -- tab appearance
-			this.displayFreeConnexionPointCheckBox.Checked = Settings.Default.DisplayFreeConnexionPoints;
 			this.backgroundColorPictureBox.BackColor = Settings.Default.DefaultBackgroundColor;
 			this.gridColorPictureBox.BackColor = Settings.Default.DefaultGridColor;
 			this.subGridColorPictureBox.BackColor = Settings.Default.DefaultSubGridColor;
+			this.displayFreeConnexionPointCheckBox.Checked = Settings.Default.DisplayFreeConnexionPoints;
+			setGammaToNumericUpDown(this.GammaForSelectionNumericUpDown, Settings.Default.GammaForSelection);
+			setGammaToNumericUpDown(this.GammaForSnappingNumericUpDown, Settings.Default.GammaForSnappingPart);
 			// grid size
 			this.gridSizeNumericUpDown.Value = (Decimal)Settings.Default.DefaultGridSize;
 			this.gridSubdivisionNumericUpDown.Value = (Decimal)Settings.Default.DefaultSubDivisionNumber;
@@ -180,6 +183,8 @@ namespace BlueBrick
 			destination.DefaultAreaTransparency = source.DefaultAreaTransparency;
 			destination.DefaultAreaSize = source.DefaultAreaSize;
 			destination.DisplayFreeConnexionPoints = source.DisplayFreeConnexionPoints;
+			destination.GammaForSelection = source.GammaForSelection;
+			destination.GammaForSnappingPart = source.GammaForSnappingPart;
 			destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
 			destination.MaxRecentFilesNum = source.MaxRecentFilesNum;
 			destination.ShortcutKey = new System.Collections.Specialized.StringCollection();
@@ -220,7 +225,6 @@ namespace BlueBrick
 			}
 
 			// -- tab appearance
-			Settings.Default.DisplayFreeConnexionPoints = this.displayFreeConnexionPointCheckBox.Checked;
 			// check if the user changed the grid color
 			bool doesGridColorChanged = (mOldSettings.DefaultBackgroundColor != backgroundColorPictureBox.BackColor) ||
 										(mOldSettings.DefaultGridColor != gridColorPictureBox.BackColor) ||
@@ -228,6 +232,9 @@ namespace BlueBrick
 			Settings.Default.DefaultBackgroundColor = backgroundColorPictureBox.BackColor;
 			Settings.Default.DefaultGridColor = gridColorPictureBox.BackColor;
 			Settings.Default.DefaultSubGridColor = subGridColorPictureBox.BackColor;
+			Settings.Default.DisplayFreeConnexionPoints = this.displayFreeConnexionPointCheckBox.Checked;
+			Settings.Default.GammaForSelection = getGammaFromNumericUpDown(this.GammaForSelectionNumericUpDown);
+			Settings.Default.GammaForSnappingPart = getGammaFromNumericUpDown(this.GammaForSnappingNumericUpDown);
 			// font
 			bool doesFontChanged = (!mOldSettings.DefaultTextFont.Equals(defaultFontNameLabel.Font)) ||
 									(mOldSettings.DefaultTextColor != defaultFontColorPictureBox.BackColor);
@@ -454,6 +461,22 @@ namespace BlueBrick
 		#endregion
 
 		#region tab appearance
+		private float getGammaFromNumericUpDown(NumericUpDown control)
+		{
+			float gamma = (float)(100 - (int)(control.Value)) / 100.0f;
+			if (gamma == 0.0f)
+				gamma = 0.01f;
+			return gamma;
+		}
+
+		private void setGammaToNumericUpDown(NumericUpDown control, float gamma)
+		{
+			if (gamma == 0.01f)
+				gamma = 0.0f;
+			gamma = 100 - (int)(gamma * 100.0f);
+			control.Value = (Decimal)gamma;
+		}
+
 		private void redrawSamplePictureBox()
 		{
 			// create the image if not already existing
@@ -467,18 +490,36 @@ namespace BlueBrick
 			int startGridCoord = 10;
 			// draw some sub-grid lines
 			Pen linePen = new Pen(subGridColorPictureBox.BackColor, 1);
-			for (int i = startGridCoord-8; i < this.samplePictureBox.Width; i += 8)
+			for (int i = startGridCoord - 8; i < this.samplePictureBox.Height; i += 8)
 			{
 				graphics.DrawLine(linePen, 0, i, this.samplePictureBox.Width, i);
 				graphics.DrawLine(linePen, i, 0, i, this.samplePictureBox.Height);
 			}
 			// draw some grid lines
 			linePen = new Pen(gridColorPictureBox.BackColor, 2);
-			for (int i = startGridCoord; i < this.samplePictureBox.Width; i += 32)
+			for (int i = startGridCoord; i < this.samplePictureBox.Height; i += 32)
 			{
 				graphics.DrawLine(linePen, 0, i, this.samplePictureBox.Width, i);
 				graphics.DrawLine(linePen, i, 0, i, this.samplePictureBox.Height);
 			}
+
+			// create the image attributes
+			ImageAttributes imageAttributeForSelection = new ImageAttributes();
+			imageAttributeForSelection.SetGamma(getGammaFromNumericUpDown(this.GammaForSelectionNumericUpDown));
+			ImageAttributes imageAttributeForSnapping = new ImageAttributes();
+			imageAttributeForSnapping.SetGamma(getGammaFromNumericUpDown(this.GammaForSnappingNumericUpDown));
+
+			// get the part example image from the resource
+			Image image = Properties.Resources.PartForOptionPreview;
+
+			// draw 3 part images as an example
+			Rectangle destinationRectangle = new Rectangle(42, 42, image.Width, image.Height);
+			graphics.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel);
+			destinationRectangle.Y += 32;
+			graphics.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributeForSelection);
+			destinationRectangle.Y += 32;
+			graphics.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributeForSnapping);
+
 			// invalidate the picture box
 			this.samplePictureBox.Invalidate();
 		}
@@ -529,6 +570,16 @@ namespace BlueBrick
 				colorSchemeComboBox.SelectedIndex = (int)ColorScheme.CUSTOM;
 				findCorectColorSchemeAccordingToColors();
 			}
+		}
+
+		private void GammaForSelectionNumericUpDown_ValueChanged(object sender, EventArgs e)
+		{
+			redrawSamplePictureBox();
+		}
+
+		private void GammaForSnappingNumericUpDown_ValueChanged(object sender, EventArgs e)
+		{
+			redrawSamplePictureBox();
 		}
 
 		private void colorSchemeComboBox_SelectedIndexChanged(object sender, EventArgs e)

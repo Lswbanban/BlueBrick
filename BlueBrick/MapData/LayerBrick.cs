@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 using BlueBrick.Actions;
 using BlueBrick.Actions.Bricks;
@@ -636,7 +637,11 @@ namespace BlueBrick.MapData
 			{
 				// create the new images for all the levels and draw in them
 				for (int i = from; i <= to; ++i)
+				{
+					if (mMipmapImages[i] != null)
+						mMipmapImages[i].Dispose();
 					mMipmapImages[i] = null;
+				}
 			}
 
 			/// <summary>
@@ -746,6 +751,8 @@ namespace BlueBrick.MapData
 		[NonSerialized]
 		private static SolidBrush[] sConnexionPointBrush = { new SolidBrush(Color.Red), new SolidBrush(Color.Yellow), new SolidBrush(Color.Cyan), new SolidBrush(Color.BlueViolet), new SolidBrush(Color.LightPink), new SolidBrush(Color.GreenYellow) };
 		private static float[] sConnexionPointRadius = { 2.5f, 1.0f, 1.5f, 1.0f, 1.0f, 1.0f };
+		private static ImageAttributes mImageAttributeForSelection = new ImageAttributes();
+		private static ImageAttributes mImageAttributeForSnapping = new ImageAttributes();
 
 		// list of bricks and connection points
 		private List<Brick> mBricks = new List<Brick>(); // all the bricks in the layer
@@ -757,7 +764,6 @@ namespace BlueBrick.MapData
 		private PointF mMouseDownLastPosition;
 		private bool mMouseHasMoved = false;
 		private bool mMouseMoveIsADuplicate = false;
-		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb((int)0x70FFFFFF));
 		private DuplicateBrick mLastDuplicateBrickAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
 
 		#region get/set
@@ -781,6 +787,12 @@ namespace BlueBrick.MapData
 		public override int getNbItems()
 		{
 			return mBricks.Count;
+		}
+
+		public static void sUpdateGammaFromSettings()
+		{
+			mImageAttributeForSelection.SetGamma(Properties.Settings.Default.GammaForSelection);
+			mImageAttributeForSnapping.SetGamma(Properties.Settings.Default.GammaForSnappingPart);
 		}
 		#endregion
 		#region IXmlSerializable Members
@@ -1288,6 +1300,7 @@ namespace BlueBrick.MapData
 				mipmapLevel = 0;
 
 			// iterate on all the bricks
+			Rectangle destinationRectangle = new Rectangle();
 			foreach (Brick brick in mBricks)
 			{
 				float left = brick.Position.X;
@@ -1297,15 +1310,19 @@ namespace BlueBrick.MapData
 				if ((right >= areaInStud.Left) && (left <= areaInStud.Right) && (bottom >= areaInStud.Top) && (top <= areaInStud.Bottom))
 				{
 					// the -0.5 and +1 is a hack to add 1 more pixel to have jointive baseplates
-					float x = (float)((left - areaInStud.Left) * scalePixelPerStud) - 0.5f;
-					float y = (float)((top - areaInStud.Top) * scalePixelPerStud) - 0.5f;
-					float width = (float)(brick.Width * scalePixelPerStud) + 1;
-					float height = (float)(brick.Height * scalePixelPerStud) + 1;
-					g.DrawImage(brick.getImage(mipmapLevel), x, y, width, height);
+					destinationRectangle.X = (int)(((left - areaInStud.Left) * scalePixelPerStud) - 0.5f);
+					destinationRectangle.Y = (int)(((top - areaInStud.Top) * scalePixelPerStud) - 0.5f);
+					destinationRectangle.Width = (int)((brick.Width * scalePixelPerStud) + 1.0f);
+					destinationRectangle.Height = (int)((brick.Height * scalePixelPerStud) + 1.0f);
+					Image image = brick.getImage(mipmapLevel);
 
-					// draw a frame around the selected brick
-					if (mSelectedObjects.Contains(brick))
-						g.FillRectangle(mSelectionBrush, x, y, width, height);
+					// draw the current brick eventually highlighted
+					if (brick == mCurrentBrickUnderMouse)
+						g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSnapping);
+					else if (mSelectedObjects.Contains(brick))
+						g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSelection);
+					else
+						g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel);
 				}
 			}
 
@@ -1425,7 +1442,7 @@ namespace BlueBrick.MapData
 			mMouseMoveIsADuplicate = isMouseInsideSelectedObjects &&
 									(Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
 
-			// if we move the brick, use 4 directionnal arrows
+			// if we move the brick, use 4 directionnal arrows cursor
 			// if there's a brick under the mouse, use the hand
 			bool willMoveSelectedObject = (isMouseInsideSelectedObjects || (mCurrentBrickUnderMouse != null))
 										&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)

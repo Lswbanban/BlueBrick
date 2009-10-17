@@ -203,6 +203,8 @@ namespace BlueBrick
 			// regenerate the paint icon with the right color in the background
 			mCurrentPaintIconColor = this.colorDialog.Color;
 			generatePaintIcon();
+			// init the drawing data for the brick layer
+			LayerBrick.sUpdateGammaFromSettings();
 			// reset the shortcut keys
 			initShortcutKeyArrayFromSettings();
 			// hide the part list form
@@ -1376,6 +1378,8 @@ namespace BlueBrick
 			{
 				// reinit the array of shortcut
 				initShortcutKeyArrayFromSettings();
+				// update the gamma for the layer bricks because they may have changed (before redrawing the map)
+				LayerBrick.sUpdateGammaFromSettings();
 				// redraw the map because the color scheme may have changed
 				this.mapPanel.Invalidate();
 				// also redraw the undo stack
