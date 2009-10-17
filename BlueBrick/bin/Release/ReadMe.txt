@@ -61,6 +61,11 @@ Open bugs:
 - REFACTORING (Alban): Do not fill the optim combo box in code
 - [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file
 
+Bug fixed in 1.6.0.0:
+- NEW FEATURE (Alban, Stephan): Highlight even more the grabbed part in a group to help the user understand that this is the snapping part
+- NEW FEATURE (Alban): Change the highlight method of the part (remove the ugly squares) and add options to customize the highlight value
+
+
 Bug fixed in 1.5.1.0:
 - BUG (Stefan): The parts with hull moved at the wrong place after a rotation (basically bug in the rotation algorithm).
 - BUG (1000steine): The tooltips for rotate CCW and CW was inverted in the german translation.

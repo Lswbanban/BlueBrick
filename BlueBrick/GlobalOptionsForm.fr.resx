@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Général</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Apparence</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Racourcis clavier</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 34</value>
@@ -132,6 +141,9 @@
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Nombre de Undo enregistrés</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Configuration par défaut des nouveaux plans</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Exposition</value>
@@ -151,8 +163,8 @@
   <data name="addGridLayerCheckBox.Text" xml:space="preserve">
     <value>Ajouter un calque grille aux nouveaux plans</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Configuration par défaut des nouveaux plans</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Souris</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Touche de duplication</value>
@@ -169,14 +181,11 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Vitesse de zoom à la molette</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Souris</value>
-  </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Si vous changez le language vous devrez redémarrer l'application pour que cela prenne effet.</value>
   </data>
-  <data name="generalTabPage.Text" xml:space="preserve">
-    <value>Général</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Apparence par défault des zones</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>Taille de zone par défaut (en stud)</value>
@@ -184,8 +193,8 @@
   <data name="label28.Text" xml:space="preserve">
     <value>Transparence par défaut (en %)</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Apparence par défault des zones</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Taille de la grille par défaut</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Nombre de subdivisions par défaut</value>
@@ -193,8 +202,8 @@
   <data name="label21.Text" xml:space="preserve">
     <value>Taille de la grille par défaut (en stud)</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Taille de la grille par défaut</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Format des textes par défaut</value>
   </data>
   <data name="defaultFontNameLabel.Text" xml:space="preserve">
     <value>le nom de la police</value>
@@ -205,14 +214,22 @@
   <data name="defaultFontButton.Text" xml:space="preserve">
     <value>Changer la police</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Format des textes par défaut</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Couleurs</value>
   </data>
   <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 17</value>
   </data>
   <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
     <value>Afficher les points de connexion libres</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Mise en surbrillance
+de la pièce attrappée</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Mise en surbrillance
+de la sélection</value>
   </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 13</value>
@@ -237,12 +254,6 @@
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>Thème de couleur</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Couleurs</value>
-  </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
-    <value>Apparence</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Pour supprimer des racourcis claviers, sélectionnez les dans la liste et cliquez ensuite sur ce bouton :</value>
@@ -370,9 +381,6 @@ racourcis</value>
   </data>
   <data name="Connection.Text" xml:space="preserve">
     <value>Connexion</value>
-  </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Racourcis clavier</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annuler</value>
