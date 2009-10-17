@@ -114,14 +114,14 @@ namespace BlueBrick.Actions.Texts
 				Matrix rotation = new Matrix();
 				rotation.Rotate(-mRotationStep);
 				foreach (Layer.LayerItem obj in mTexts)
-					rotateCW(obj as LayerText.TextCell, rotation);
+					rotate(obj as LayerText.TextCell, rotation, -mRotationStep);
 			}
 			else
 			{
 				Matrix rotation = new Matrix();
 				rotation.Rotate(mRotationStep);
 				foreach (Layer.LayerItem obj in mTexts)
-					rotateCCW(obj as LayerText.TextCell, rotation);
+					rotate(obj as LayerText.TextCell, rotation, mRotationStep);
 			}
 			// update the bounding rectangle (because the text is not square)
 			mTextLayer.updateBoundingSelectionRectangle();
@@ -134,69 +134,39 @@ namespace BlueBrick.Actions.Texts
 				Matrix rotation = new Matrix();
 				rotation.Rotate(mRotationStep);
 				foreach (Layer.LayerItem obj in mTexts)
-					rotateCCW(obj as LayerText.TextCell, rotation);
+					rotate(obj as LayerText.TextCell, rotation, mRotationStep);
 			}
 			else
 			{
 				Matrix rotation = new Matrix();
 				rotation.Rotate(-mRotationStep);
 				foreach (Layer.LayerItem obj in mTexts)
-					rotateCW(obj as LayerText.TextCell, rotation);
+					rotate(obj as LayerText.TextCell, rotation, -mRotationStep);
 			}
 			// update the bounding rectangle (because the text is not square)
 			mTextLayer.updateBoundingSelectionRectangle();
 		}
 
-		private void rotateCCW(LayerText.TextCell text, Matrix rotation)
+		private void rotate(LayerText.TextCell text, Matrix rotation, float rotationAngle)
 		{
-			PointF textCenterBeforeRotation = new PointF(text.Center.X, text.Center.Y);
+			// compute the pivot point of the part before the rotation
+			PointF textCenter = text.Center; // use this variable for optimization reason (the center is computed)
 
 			// change the orientation of the picture
-			text.Orientation = (text.Orientation + mRotationStep);
+			text.Orientation = (text.Orientation + rotationAngle);
 
-			// change the position for a group of parts
+			// change the position for a group of texts
 			if (mTexts.Count > 1)
 			{
-				PointF[] points = { new PointF(textCenterBeforeRotation.X - mCenter.X, textCenterBeforeRotation.Y - mCenter.Y) };
+				PointF[] points = { new PointF(textCenter.X - mCenter.X, textCenter.Y - mCenter.Y) };
 				rotation.TransformVectors(points);
 				// assign the new position
-				PointF newPosition = new PointF();
-				newPosition.X = mCenter.X + points[0].X;
-				newPosition.Y = mCenter.Y + points[0].Y;
-				// assign the new position
-				text.Center = newPosition;
+				textCenter.X = mCenter.X + points[0].X;
+				textCenter.Y = mCenter.Y + points[0].Y;
 			}
-			else
-			{
-				//if only one part, reset the center, to rotate on the center
-				text.Center = textCenterBeforeRotation;
-			}
-		}
 
-		private void rotateCW(LayerText.TextCell text, Matrix rotation)
-		{
-			PointF textCenterBeforeRotation = new PointF(text.Center.X, text.Center.Y);
-
-			// change the orientation of the picture
-			text.Orientation = (text.Orientation - mRotationStep);
-
-			// change the position for a group of parts
-			if (mTexts.Count > 1)
-			{
-				PointF[] points = { new PointF(textCenterBeforeRotation.X - mCenter.X, textCenterBeforeRotation.Y - mCenter.Y) };
-				rotation.TransformVectors(points);
-				// assign the new position
-				PointF newPosition = new PointF();
-				newPosition.X = mCenter.X + points[0].X;
-				newPosition.Y = mCenter.Y + points[0].Y;
-				// assign the new position
-				text.Center = newPosition;
-			}
-			else
-			{
-				//if only one part, reset the center, to rotate on the center
-				text.Center = textCenterBeforeRotation;
-			}
+			// assign the new center position
+			text.Center = textCenter;
 		}
 	}
 }

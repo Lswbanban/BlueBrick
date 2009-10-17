@@ -121,6 +121,9 @@ Open bugs:
 - MISSING FEATURE (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (Alex): Remember the window size.
+- MISSING FEATURE (FreeBee): Mirroring selected (just like rotating)
+- MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
+- [target 1.6] BUG (Stefan): Rotation of a group of part is buggued.
 - [target 1.6] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
@@ -136,9 +139,9 @@ Bug fixed in 1.5.0.0:
 - NEW FEATURE (Alban): Added the Author tag in the XML files of the parts
 - NEW FEATURE (Alban): Added an auto-restart when the user change the language.
 - NEW FEATURE (Alban, Alex, JB): A lot of new parts in the library, and improvment of some old parts, in details:
+	* Completely Revised and extended track library (34 GIFs)
 	* Completely revised and extended track side buildings library (27 Sets with minifigs and vehicles)
 	* Completely new town set additions (46 new sets with minifigs and vehicles)
-	* Revised and extended track library (29 GIFs)
 	* Completely new space set library (4 sets including monorail!)
 	* Completely revised duplo parts library (6 GIFs)
 	* 9 new baseplates including space

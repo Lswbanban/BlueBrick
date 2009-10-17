@@ -181,14 +181,14 @@ namespace BlueBrick.Actions.Bricks
 				Matrix rotation = new Matrix();
 				rotation.Rotate(-mRotationStep);
 				foreach (Layer.LayerItem obj in mBricks)
-					rotateCW(obj as LayerBrick.Brick, rotation);
+					rotate(obj as LayerBrick.Brick, rotation, -mRotationStep);
 			}
 			else
 			{
 				Matrix rotation = new Matrix();
 				rotation.Rotate(mRotationStep);
 				foreach (Layer.LayerItem obj in mBricks)
-					rotateCCW(obj as LayerBrick.Brick, rotation);
+					rotate(obj as LayerBrick.Brick, rotation, mRotationStep);
 			}
 
 			// special case, if the brick we have to rotate is connected, we need also to move it after the rotation
@@ -225,69 +225,46 @@ namespace BlueBrick.Actions.Bricks
 				Matrix rotation = new Matrix();
 				rotation.Rotate(mRotationStep);
 				foreach (Layer.LayerItem obj in mBricks)
-					rotateCCW(obj as LayerBrick.Brick, rotation);
+					rotate(obj as LayerBrick.Brick, rotation, mRotationStep);
 			}
 			else
 			{
 				Matrix rotation = new Matrix();
 				rotation.Rotate(-mRotationStep);
 				foreach (Layer.LayerItem obj in mBricks)
-					rotateCW(obj as LayerBrick.Brick, rotation);
+					rotate(obj as LayerBrick.Brick, rotation, -mRotationStep);
 			}
 			// update the bounding rectangle in any case because the brick is not necessary squared
 			mBrickLayer.updateBoundingSelectionRectangle();
 			mBrickLayer.updateBrickConnectivityOfSelection(false);
 		}
 
-		private void rotateCCW(LayerBrick.Brick brick, Matrix rotation)
+		private void rotate(LayerBrick.Brick brick, Matrix rotation, float rotationAngle)
 		{
-			PointF brickCenterBeforeRotation = new PointF(brick.Center.X, brick.Center.Y);
+			// compute the pivot point of the part before the rotation
+			PointF brickCenter = brick.Center; // use this variable for optimization reason (the center is computed)
+			PointF centerOffset = brick.OffsetFromOriginalImage;
+			PointF brickPivot = new PointF(brickCenter.X + centerOffset.X, brickCenter.Y + centerOffset.Y);
 
 			// change the orientation of the picture
-			brick.Orientation = (brick.Orientation + mRotationStep);
+			brick.Orientation = (brick.Orientation + rotationAngle);
 
 			// change the position for a group of parts
 			if (mBricks.Count > 1)
 			{
-				PointF[] points = { new PointF(brickCenterBeforeRotation.X - mCenter.X, brickCenterBeforeRotation.Y - mCenter.Y) };
+				PointF[] points = { new PointF(brickPivot.X - mCenter.X, brickPivot.Y - mCenter.Y) };
 				rotation.TransformVectors(points);
-				// assign the new position
-				PointF newPosition = new PointF();
-				newPosition.X = mCenter.X + points[0].X;
-				newPosition.Y = mCenter.Y + points[0].Y;
-				brick.Center = newPosition;
+				// recompute the pivot
+				brickPivot.X = mCenter.X + points[0].X;
+				brickPivot.Y = mCenter.Y + points[0].Y;
 			}
-			else
-			{
-				//if only one part, reset the center, to rotate on the center
-				brick.Center = brickCenterBeforeRotation;
-			}
-		}
 
-		private void rotateCW(LayerBrick.Brick brick, Matrix rotation)
-		{
-			PointF brickCenterBeforeRotation = new PointF(brick.Center.X, brick.Center.Y);
-
-			// change the orientation of the picture
-			brick.Orientation = (brick.Orientation - mRotationStep);
-
-			// change the position for a group of parts
-			if (mBricks.Count > 1)
-			{
-				PointF[] points = { new PointF(brickCenterBeforeRotation.X - mCenter.X, brickCenterBeforeRotation.Y - mCenter.Y) };
-				rotation.TransformVectors(points);
-				// assign the new position
-				PointF newPosition = new PointF();
-				newPosition.X = mCenter.X + points[0].X;
-				newPosition.Y = mCenter.Y + points[0].Y;
-				// assign the new position
-				brick.Center = newPosition;
-			}
-			else
-			{
-				//if only one part, reset the center, to rotate on the center
-				brick.Center = brickCenterBeforeRotation;
-			}
+			// compute the new center of the part based on the pivot of the part and the new offset
+			centerOffset = brick.OffsetFromOriginalImage;
+			brickCenter.X = brickPivot.X - centerOffset.X;
+			brickCenter.Y = brickPivot.Y - centerOffset.Y;
+			// assign the new center position
+			brick.Center = brickCenter;
 		}
 	}
 }
