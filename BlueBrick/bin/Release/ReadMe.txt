@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.5.0.0 |
+                    | BlueBrick version 1.5.1.0 |
                     +---------------------------+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -29,81 +29,10 @@ The version 2.0 is enough to run BlueBrick and I suggest you to install this one
 Then extract the files contained in the zip, somewhere on your hardrive, by keeping the same folders organization.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
-3) Quick Reference
+3) Help
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-The window is split in 3: on the left the map panel where you build your layout, on the top right the part library panel, and on the bottom right the layers panel.
-
-3.1) Layer panel
-
-The layer panel contains a stack of layers, that are rendered from the bottom to the top.
-- you can select a layer by clicking on it
-- by clicking on the eye button of a layer, you can show/hide
-- by double-cliking on a layer, you open an option window to tune parameters of the layer (like its name for example)
-- you can create new layers by cliking on the small button under the stack
-- you can delete a layer by cliking on the small trashbin under the stack
-- you can reorder the layers by clicking on the arrow under the stack
-
-One important thing in BlueBrick: the layers are typed. There are 4 type of layers: Text, Grid, Area and Brick. You can only add bricks in a brick layer and text in a text layer.
-
-3.2) The part library
-
-The part library is separate in different tabs. Each tab corresponds to a folder in the "parts" folder of the BlueBrick install folder. The folders are parsed at the launch of BlueBrick. You can add your own folders, and parts as you want. The convention is that a STUD should be represented by 8 pixels, and only GIF files are taken into account by the software (other format are ignored).
-
-To add a brick on you map, just drag and drop a part on the map, but of course a Brick layer should be selected. If you see a interdiction cursor while dragging it is probably because the current selected layer is not a brick layer.
-
-If a brick (and only one) is selected on the map, you can just click one time on a part in the part library, to add this part next to the selected one. This is working for a baseplate (the new part is added on the right) and also for a rail part (which is more usefull because the new part is added to the current connexion point (red circle)).
-
-3.3) The map
-
-BlueBrick is a single document application, you can not work on different map at the same time.
-
-Here are the key to navigate on the map:
-- left mouse click: select a part or a text and move it, or draw an area
-- drag'n'drop with left mouse button: select parts or texts in rectangle, or draw an area
-- CTRL + left mouse click: add or remove an item to/from the current selection, also working in rectangle
-- mouse wheel: zoom in/out
-- mouse wheel button + move: pan the view
-- CTRL + SHIFT + left mouse click + move: zoom in/out
-- ALT + SHIFT + left mouse click + move: pan the view
-
-Note: the two last shortcuts may be usefull if you use a notebook without any mouse wheel.
-
-Buttons in the toolbar:
-- undo/redo (by clicking on the little down triangle, you can undo/redo several actions)
-- trashbin: delete the current selection
-- grid snapping: by cliking on the button enable/disbale the snapping. By cliking on the little down triangle, choose the step of the grid snapping
-- rotation step: by cliking on it choose the step of the rotation (the rotation can not be enable/disable)
-- left rotation: rotate the selection to the left by the step angle
-- right rotation: rotate the selection to the right by the step angle
-- paint tool: you can choose between the pencil or the eraser by clicking on the little down triangle ; clicking directly on the button can change the color
-
-Usefull Shortcut key:
-- CTRl+Z: undo
-- CTRL+Y: redo
-- CTRL+S: save
-- DEL or BACKSPACE: delete the current selection
-- CTRL+A: select all items in the current layer
-
-The selection is only sensitive to the current selected layer.
-
-To add a new text in your map, add a text layer (or select a text layer), then double-click somewhere on the map. Type your text in the opened window and choose OK. To edit a text in the map, double click on it.
-
-For the parts that have connexion points (like rail), a small dot appears on each of their free connexion. If you select a single rail part, a red dot is also displayed: this is the current selected connexion point. By cliking inside this part, you can change the current selected connection point.
-
-Moving a group of part (drag'n'drop selected parts): if the grid snapping is disable, it's a free move. If it is enable it depend where you grabed the group of parts. The part that is under the mouse is the master part for the snapping (this part only will be snapped on the grid, the other part keep their relative position according to the master part). If there's no part under the mouse, the snapping is relative to their original position. If the master part is a part with connexion points, then this master part try to connect to the free connection points around the mouse. Note that the snapping on the connexion do not care about the orientation of the part.
-
-If you try to rotate a rail that is connected, it will not rotate according to the rotation step, but it will rotate from one connection to the other.
-
-3.4) Save/Export
-
-The default extension for BlueBrick map file is BBM and in fact is XML (can be open with a text editor). You can also save in LDR or MPD format (LDRAW) but of course some information (like the texts, the area, the grid...) will be lost. You can load BBM, LDR, MPD and TDL format.
-
-To export, go in the File menu, or CTRL+E: an export window appears. You can choose the area you want to export by drag/drop. A simple click in the area choose the whole area. Specify the size of the image that you want to export (or specify a scale, and the size is automatically computed from your chosen area). Then click ok and enter a file name. You can export your image in BMP, GIF, JPG or PNG.
-
-3.5) Part list
-
-In the View menu you can show/hide the part list. The part list is in a seperate window and is updated dynamically while you are editing the map. There's an option to split the list by layer or not. You can also export the part list in TXT or HTML format.
+Please refer to the help file that comes with the application (menu Help > Content and Index...)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 4) History
@@ -131,6 +60,10 @@ Open bugs:
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Do not fill the optim combo box in code
 - [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file
+
+Bug fixed in 1.5.1.0:
+- BUG (Stefan): The parts with hull moved at the wrong place after a rotation (basically bug in the rotation algorithm).
+- BUG (1000steine): The tooltips for rotate CCW and CW was inverted in the german translation.
 
 Bug fixed in 1.5.0.0:
 - NEW FEATURE (Alban, Alex, JB): Fully comprehensive and integrated offline help file in English and Dutch.

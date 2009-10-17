@@ -782,7 +782,7 @@
 </value>
   </data>
   <data name="toolBarRotateCCWButton.ToolTipText" xml:space="preserve">
-    <value>Ausgewählte Objekte im Uhrzeigersinn drehen</value>
+    <value>Ausgewählte Objekte gegen den Uhrzeigersinn drehen</value>
   </data>
   <data name="toolBarRotateCWButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -793,7 +793,7 @@
 </value>
   </data>
   <data name="toolBarRotateCWButton.ToolTipText" xml:space="preserve">
-    <value>Ausgewähte Objekte gegen den Uhrzeigersinn drehen</value>
+    <value>Ausgewählte Objekte im Uhrzeigersinn drehen</value>
   </data>
   <data name="toolBarSendToBackButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
