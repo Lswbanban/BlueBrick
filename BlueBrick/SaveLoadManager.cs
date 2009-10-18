@@ -778,115 +778,6 @@ namespace BlueBrick
 		#endregion
 		#region TrackDesigner Format
 
-		public class TrackDesignerRemapData
-		{
-			public class ConnexionData
-			{
-				public int mConnexionPointIndex = 0;
-				public int mType = 0;
-				public int mPolarity = 0; // 0 unasasigned, 2 -ve, 3 +ve
-				public float mDiffAngleBtwTDandBB = 0.0f;
-			}
-
-			public string mPartNumber = null;
-			public int mFlags = 0;
-			public bool mHasSeveralPort = false;
-			// in TD Files, there is only 4 connexions
-			public ConnexionData[] mConnexionData = { new ConnexionData(), new ConnexionData(), new ConnexionData(), new ConnexionData() };
-		}
-
-		private static Dictionary<int, TrackDesignerRemapData> mTrackDesignerPartRemap = null;
-		private static Dictionary<string, int> mTrackDesignerPartNumberAssociation = null;
-
-		private static bool initTrackDesignerPartRemap()
-		{
-			// check if the remap part dictionnary was initialized
-			if (mTrackDesignerPartRemap == null)
-			{
-				string configFileName = Application.StartupPath + @"/config/TDPartRemap.txt";
-				try
-				{
-					StreamReader textReader = new StreamReader(configFileName);
-					mTrackDesignerPartRemap = new Dictionary<int, TrackDesignerRemapData>();
-					mTrackDesignerPartNumberAssociation = new Dictionary<string, int>();
-					char[] subLineSpliter = { ',' };
-					while (!textReader.EndOfStream)
-					{
-						// read the line, trim it and avoid empty line and comments
-						string line = textReader.ReadLine();
-						line = line.Trim();
-						if ((line.Length > 0) && (line[0] != ';'))
-						{
-							try
-							{
-								// get the td and bb part number
-								List<string> token = slitLine(line);
-								int tdPartNumber = int.Parse(token[0]);
-								TrackDesignerRemapData remapData = new TrackDesignerRemapData();
-								remapData.mPartNumber = token[1].ToUpper();
-
-								// get the flags
-								remapData.mFlags = int.Parse(token[2]);
-
-								// get the flag that tell if the part ha several port id
-								remapData.mHasSeveralPort = token[3].ToUpper().Equals("TRUE");
-								
-								// check the rest of the line to parse optionnal connexion remaping
-								for (int i = 4 ; i < token.Count-1 ; ++i)
-									if (token[i].Length > 0)
-										if (token[i][0] != ';')
-										{
-											// parse the subtoken with the comma as separator
-											string[] subToken = token[i + 1].Split(subLineSpliter);
-											if (subToken.Length >= 3)
-											{
-												int tdBitmapNum = int.Parse(token[i]);
-												if (tdBitmapNum < remapData.mConnexionData.Length)
-												{
-													TrackDesignerRemapData.ConnexionData connexion = remapData.mConnexionData[tdBitmapNum];
-													connexion.mConnexionPointIndex = int.Parse(subToken[0]);
-													connexion.mType = int.Parse(subToken[1]);
-													if (subToken[2].Equals("-"))
-														connexion.mPolarity = 2;
-													else if (subToken[2].Equals("+"))
-														connexion.mPolarity = 3;
-													else
-														connexion.mPolarity = 0;
-													connexion.mDiffAngleBtwTDandBB = float.Parse(subToken[3], System.Globalization.CultureInfo.InvariantCulture);
-												}
-												i++;
-											}
-										}
-										else
-										{
-											// the rest of the line is a comment so stop reading the line
-											break;
-										}
-
-								// add the remap data in the dictionnary
-								mTrackDesignerPartRemap.Add(tdPartNumber, remapData);
-								mTrackDesignerPartNumberAssociation.Add(remapData.mPartNumber, tdPartNumber);
-							}
-							catch (Exception)
-							{
-								// we just skip the line, if the format is not correct
-							}
-						}
-					}
-				}
-				catch (Exception)
-				{
-					string message = Properties.Resources.ErrorMissingTDPartRemapFile.Replace("&", configFileName);
-					MessageBox.Show(null, message,
-						Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
-						MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-				}
-			}
-
-			// return true if the dictionnary was properly initialized
-			return (mTrackDesignerPartRemap != null);
-		}
-
 		private static bool loadTDL(string filename)
 		{
 			// create a new map and different layer for different type of parts
@@ -895,10 +786,6 @@ namespace BlueBrick
 			LayerBrick rail9VLayer = new LayerBrick();
 			LayerBrick monorailLayer = new LayerBrick();
 			LayerBrick currentLayer = baseplateLayer;
-
-			// check if we can init the remap dictionnary
-			if (!initTrackDesignerPartRemap())
-				return false;
 
 			// declare a bool to check if we found some part not remaped in the remap file
 			List<int> noRemapablePartFound = new List<int>();
@@ -993,16 +880,16 @@ namespace BlueBrick
 				if ((TDPartNumber == 232677) && (portIdOfOrigin == 1))
 					TDPartNumber = 232678;
 
-				// try to get the BlueBrick correcponding part number
-				TrackDesignerRemapData remapData = null;
-				mTrackDesignerPartRemap.TryGetValue(TDPartNumber, out remapData);
+				// try to get the remap data for the BlueBrick part number
+				string BBPartNumber = null;
+				BrickLibrary.Brick.TDRemapData remapData = BrickLibrary.Instance.getTDRemapData(TDPartNumber, out BBPartNumber);
 
 				// if it is a valid part, get the class of the brick to know in which layer add
 				// and then create the brick and add it to the layer
 				if (remapData != null)
 				{
 					// create a new brick
-					LayerBrick.Brick brick = new LayerBrick.Brick(remapData.mPartNumber);
+					LayerBrick.Brick brick = new LayerBrick.Brick(BBPartNumber);
 
 					// choose the corect layer according to the type of connexion
 					if (brick.HasConnectionPoint)
@@ -1029,10 +916,10 @@ namespace BlueBrick
 					// check if we have to remap the connexion
 					float diffAngleBtwTDandBB = 0;
 					// try to get the conexion remap data
-					if (portIdOfOrigin < remapData.mConnexionData.Length)
+					if (portIdOfOrigin < remapData.mConnexionData.Count)
 					{
-						TrackDesignerRemapData.ConnexionData connexion = remapData.mConnexionData[portIdOfOrigin];
-						brick.ActiveConnectionPointIndex = connexion.mConnexionPointIndex;
+						BrickLibrary.Brick.TDRemapData.ConnexionData connexion = remapData.mConnexionData[portIdOfOrigin];
+						brick.ActiveConnectionPointIndex = connexion.mBBConnexionPointIndex;
 						diffAngleBtwTDandBB = connexion.mDiffAngleBtwTDandBB;
 					}
 
@@ -1224,14 +1111,6 @@ namespace BlueBrick
 			// init the progress bar with the number of parts to write
 			MainForm.Instance.resetProgressBar(nbItems + 2);
 
-			// check if we can init the remap dictionnary
-			if (!initTrackDesignerPartRemap())
-			{
-				// finish the progressbar to hide it
-				MainForm.Instance.finishProgressBar();
-				return;
-			}
-
 			// step the progressbar after the init of part remap
 			MainForm.Instance.stepProgressBar();
 
@@ -1311,31 +1190,24 @@ namespace BlueBrick
 
 		private static bool saveOneBrickInTDL(BinaryWriter binaryWriter, LayerBrick.Brick brick, bool writeSeparatorWord)
 		{
-			// try to get the BlueBrick correcponding part number
-			int TDPartNumber = -1;
-			mTrackDesignerPartNumberAssociation.TryGetValue(brick.PartNumber, out TDPartNumber);
-			if (TDPartNumber == -1)
-				return false;
-
-			// special case for a down ramp (TD give to the up and down ramp the same id with different bitmap id)
-			// this part doesn't exist in TD, so we skip it.
-			if (TDPartNumber == 232678)
-				return false;
-
 			// try to get the remap data structure
-			TrackDesignerRemapData remapData = null;
-			mTrackDesignerPartRemap.TryGetValue(TDPartNumber, out remapData);
+			BrickLibrary.Brick.TDRemapData remapData = BrickLibrary.Instance.getTDRemapData(brick.PartNumber);
 
 			// check if we found the correct remap data
 			if (remapData != null)
 			{
+				// special case for a down ramp (TD give to the up and down ramp the same id with different bitmap id)
+				// this part doesn't exist in TD, so we skip it.
+				if (remapData.mTDId == 232678)
+					return false;
+
 				// write one word (2 bytes that I don't know the meaning maybe comming from the list)
 				// except for the first brick (specified with the parameter)
 				if (writeSeparatorWord)
 					binaryWriter.Write((ushort)0x8001);
 
 				// write the TD part number
-				binaryWriter.Write((int)TDPartNumber);
+				binaryWriter.Write((int)remapData.mTDId);
 
 				// write an instance ID (use the hash code for that)
 				binaryWriter.Write((int)brick.GetHashCode());
@@ -1353,12 +1225,12 @@ namespace BlueBrick
 				int partType = 0;
 				float diffAngleBtwTDandBB = 0;
 				// search the connexion point 0
-				foreach (TrackDesignerRemapData.ConnexionData connexion in remapData.mConnexionData)
+				foreach (BrickLibrary.Brick.TDRemapData.ConnexionData connexion in remapData.mConnexionData)
 				{
 					// increment the port id
 					portIdOfOrigin++;
 					// check if we found the port for which the BB connexion id is equal to the current active connexion
-					if (connexion.mConnexionPointIndex == connectionPointIndex)
+					if (connexion.mBBConnexionPointIndex == connectionPointIndex)
 					{
 						partType = connexion.mType;
 						diffAngleBtwTDandBB = connexion.mDiffAngleBtwTDandBB;
@@ -1418,16 +1290,21 @@ namespace BlueBrick
 				binaryWriter.Write((int)portIdOfOrigin);
 
 				// 4 structures for the 4 possibles connexions
-				for (int i = 0; i < remapData.mConnexionData.Length; ++i)
+				for (int i = 0; i < 4; ++i)
 				{
 					int connectedBrickInstanceId = 0;
 					int connectedBrickOtherPortId = 0;
-					int connectedBrickPolarity = remapData.mConnexionData[i].mPolarity;
+					int connectedBrickPolarity = 0;
+
+					// get the polarity
+					if (i < remapData.mConnexionData.Count)
+						connectedBrickPolarity = remapData.mConnexionData[i].mPolarity;
+
 					// check if the brick has some connection point
 					if ((brick.ConnectionPoints != null) && (i < brick.ConnectionPoints.Count))
 					{
 						// get the corresponding connexion index of the BB part for the ith TD port id
-						int BBConnexionIndexForI = remapData.mConnexionData[i].mConnexionPointIndex;
+						int BBConnexionIndexForI = remapData.mConnexionData[i].mBBConnexionPointIndex;
 						// get the connected brick at the BB connexion point
 						LayerBrick.Brick connectedBrick = brick.ConnectionPoints[BBConnexionIndexForI].ConnectedBrick;
 						// search the BB connexion index of the connected brick
@@ -1457,17 +1334,13 @@ namespace BlueBrick
 
 							// so now connectedBrickOtherBBConnexionIndex contain the BB connexion index, and we
 							// have to remap this index to the TD port id so get the remap data of the connect brick
-							TrackDesignerRemapData connectedRemapData = null;
-							int ConnectedTDPartNumber = -1;
-							mTrackDesignerPartNumberAssociation.TryGetValue(connectedBrick.PartNumber, out ConnectedTDPartNumber);
-							if (ConnectedTDPartNumber != -1)
-								mTrackDesignerPartRemap.TryGetValue(ConnectedTDPartNumber, out connectedRemapData);
+							BrickLibrary.Brick.TDRemapData connectedRemapData = BrickLibrary.Instance.getTDRemapData(connectedBrick.PartNumber);
 							// if we found the remap data of the connected brick
 							if (connectedRemapData != null)
 							{
 								// try to find the same BB connexion index, and the TD port id is the index j in the array
-								for (int j = 0; j < connectedRemapData.mConnexionData.Length; ++j)
-									if (connectedBrickOtherBBConnexionIndex == connectedRemapData.mConnexionData[j].mConnexionPointIndex)
+								for (int j = 0; j < connectedRemapData.mConnexionData.Count; ++j)
+									if (connectedBrickOtherBBConnexionIndex == connectedRemapData.mConnexionData[j].mBBConnexionPointIndex)
 									{
 										connectedBrickOtherPortId = j;
 										break;

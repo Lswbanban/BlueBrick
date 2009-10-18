@@ -414,7 +414,7 @@ namespace BlueBrick.MapData
 				// call the accessor to recreate the picture
 				PartNumber = partNumber;
 				// create the connection list if any
-				List<PointF> connectionList = BrickLibrary.Instance.getConnectionList(partNumber);
+				List<BrickLibrary.Brick.ConnectionPoint> connectionList = BrickLibrary.Instance.getConnectionList(partNumber);
 				if (connectionList != null)
 				{
 					mConnectionPoints = new List<ConnectionPoint>(connectionList.Count);
@@ -680,21 +680,21 @@ namespace BlueBrick.MapData
 			{
 				if (mConnectionPoints != null)
 				{
-					List<PointF> connectionList = BrickLibrary.Instance.getConnectionList(mPartNumber);
-					if (connectionList != null)
+					List<PointF> pointList = BrickLibrary.Instance.getConnectionPositionList(mPartNumber);
+					if (pointList != null)
 					{
 						Matrix rotation = new Matrix();
 						rotation.Rotate(mOrientation);
-						PointF[] points = connectionList.ToArray();
-						rotation.TransformVectors(points);
+						PointF[] pointArray = pointList.ToArray();
+						rotation.TransformVectors(pointArray);
 
 						PointF center = this.Center;
 						center.X += mOffsetFromOriginalImage.X;
 						center.Y += mOffsetFromOriginalImage.Y;
-						for (int i = 0; i < connectionList.Count; ++i)
+						for (int i = 0; i < pointList.Count; ++i)
 						{
-							mConnectionPoints[i].mPositionInStudWorldCoord.X = center.X + points[i].X;
-							mConnectionPoints[i].mPositionInStudWorldCoord.Y = center.Y + points[i].Y;
+							mConnectionPoints[i].mPositionInStudWorldCoord.X = center.X + pointArray[i].X;
+							mConnectionPoints[i].mPositionInStudWorldCoord.Y = center.Y + pointArray[i].Y;
 						}
 					}
 				}

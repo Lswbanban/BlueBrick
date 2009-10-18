@@ -5,6 +5,7 @@
 		<en>Track Designer Support 0.1 to 2.1</en>
 		<fr>Support Track Designer de 0.1 à 2.1</fr>
 	</Description>
+	
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>1</left>
@@ -12,4 +13,19 @@
 		<top>1</top>
 		<bottom>1</bottom>
 	</SnapMargin>
+	
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>1010002868</ID> <!-- ID of this part in Track Designer -->
+		<Flag>2</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<HasSeveralPort>false</HasSeveralPort>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>20</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>0</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>
 </part>

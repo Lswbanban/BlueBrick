@@ -752,7 +752,7 @@ namespace BlueBrick
 			// refill the connexion combobox according to the current selected part
 			this.comboBoxConnexion.Items.Clear();
 			// ask the list of connexion to the brick library
-			List<PointF> connexionList = BrickLibrary.Instance.getConnectionList(this.comboBoxPartNum.SelectedItem.ToString());
+			List<BrickLibrary.Brick.ConnectionPoint> connexionList = BrickLibrary.Instance.getConnectionList(this.comboBoxPartNum.SelectedItem.ToString());
 			int nbConnexion = 1;
 			if (connexionList != null)
 				nbConnexion = connexionList.Count;
