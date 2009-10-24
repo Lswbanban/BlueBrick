@@ -130,20 +130,46 @@
 			<param name="Local" value="Part_Image_Format.htm">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Part XML Description">
+			<param name="Name" value="XML Part Description">
 			<param name="Local" value="Part_XML_Description.htm">
 			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Author">
+				<param name="Local" value="Part_XML_Description_Author.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Part Description">
+				<param name="Local" value="Part_XML_Description_Description.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Image URL">
+				<param name="Local" value="Part_XML_Description_Image.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Margins">
+				<param name="Local" value="Part_XML_Description_Margin.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Connections">
+				<param name="Local" value="Part_XML_Description_Connection.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Hull">
+				<param name="Local" value="Part_XML_Description_Hull.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="TD Compatibility">
+				<param name="Local" value="Part_XML_Description_Track_Designer.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="LDraw Compatibility">
+				<param name="Local" value="Part_XML_Description_LDRAW.htm">
+				</OBJECT>
+		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Reload the Part Library">
 			<param name="Local" value="Reload_the_Part_Library.htm">
-			</OBJECT>
-		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="LDraw Remaping File">
-			<param name="Local" value="LDraw_Remaping_File.htm">
-			</OBJECT>
-		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Track Designer Remaping File">
-			<param name="Local" value="Track_Designer_Remaping_File.htm">
 			</OBJECT>
 	</UL>
 </UL>

@@ -1,11 +1,11 @@
 [OPTIONS]
 Compatibility=1.1 or later
 Compiled file=..\..\BlueBrick\bin\Release\BlueBrick.chm
-Contents file=I:\code\BlueBrick\HelpProject\en\BlueBrickTOC_en.hhc
+Contents file=BlueBrickTOC_en.hhc
 Default topic=Start_Page.htm
 Display compile progress=No
 Error log file=log.log
-Index file=I:\code\BlueBrick\HelpProject\en\BlueBrickIndex_en.hhk
+Index file=BlueBrickIndex_en.hhk
 Language=0x409 English (United States)
 Title=BlueBrick Help
 
@@ -13,9 +13,7 @@ Title=BlueBrick Help
 [FILES]
 Choosing_a_language.htm
 Start_Page.htm
-Track_Designer_Remaping_File.htm
 How_to_extend_the_Part_Library.htm
-LDraw_Remaping_File.htm
 Part_Image_Format.htm
 Part_Library_Folders.htm
 Part_XML_Description.htm
@@ -43,6 +41,14 @@ General_Options.htm
 Appearance_Options.htm
 Shortcut_Keys.htm
 Other_Options.htm
+Part_XML_Description_Track_Designer.htm
+Part_XML_Description_Author.htm
+Part_XML_Description_Connection.htm
+Part_XML_Description_Description.htm
+Part_XML_Description_Hull.htm
+Part_XML_Description_Image.htm
+Part_XML_Description_LDRAW.htm
+Part_XML_Description_Margin.htm
 
 [INFOTYPES]
 

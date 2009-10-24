@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Add a description in different languages</Title>
+</HEAD>
+<BODY>
+<H1>Add a description in different languages</H1>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;Description&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;en&gt;...&lt;/en&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;fr&gt;...&lt;/fr&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;...<BR>
+		&lt;/Description&gt;
+	</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Default Value:</TD>
+	<TD>The text "Unknown" in the language currently selected for BlueBrick.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Description:</TD>
+	<TD>A short sentence that describe this part.</TD>
+</TR>  
+</TABLE>
+
+<P>This field is a text describing the part that is displayed by BlueBrick in the status bar of the application and in the Part List window. If you don't know what to write, I suggest using the description given by peeron.com.</P>
+
+<P>The part description can be translated in any language. Each translation must be enclosed inside a tag of 2 letters representing the language. When BlueBrick is parsing the part library on startup, it will only keep the description of the current language selected for BlueBrick. For example if BlueBrick is configured to use French it will only search for the &lt;fr&gt; tag. But if the description can not be found in the language of the application, then the English version is used as a replacement. Finally if the English version can not be found either, the text "Unknown" (translated in the language of the application) is used. So you should always at least give the English version of the description.</P>
+
+</BODY>
+</HTML>

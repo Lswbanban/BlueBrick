@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Add information for LDRAW Compatibility</Title>
+</HEAD>
+<BODY>
+<H1>Add information for LDRAW Compatibility</H1>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;LDRAW&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;Angle&gt;...&lt;/Angle&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;x&gt;...&lt;/x&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;y&gt;...&lt;/y&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;z&gt;...&lt;/z&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;SleeperID&gt;...&lt;/SleeperID&gt;<BR>
+		&lt;/LDRAW&gt;
+	</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Default Value:</TD>
+	<TD>If there is no &lt;LDRAW&gt;, the part is not compatible with LDraw.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Description:</TD>
+	<TD>A set of information used by BlueBrick to convert LDraw parts to BlueBrick parts and vice and versa.</TD>
+</TR>  
+</TABLE>
+
+<P>BlueBrick can save and load files in LDRAW format. But because the origin of the parts in LDRAW files is not always the same than the origin of the parts in the BlueBrick library, BlueBrick needs to apply some transformation on the position and orientation of the parts when saving or loading an LDRAW format file.</P>
+
+<P>If you are extending your library with sets, you probably don't need to modify this file because the LDRAW library mostly contains parts and very few models. So the sets will not be loadable anyway by your LDraw software.</P>
+
+<P>Moreover if you are extending your library with a part, you only need to add a LDRAW field in the XML file if the origin of the part is different in BlueBrick and LDraw.</P>
+
+<P>The <FONT CLASS="Important">Angle field</FONT> contains the difference of angle between the two coordinate systems along the UP axis (in Degree).</P>
+
+<P>The <FONT CLASS="Important">x, y and z field</FONT> contains the difference of position between the two coordinate systems (in LDU).</P>
+
+<P>The <FONT CLASS="Important">SleeperID field</FONT> contains the BlueBrick part id (the part number followed by a dot and the color id) of the sleeper to use or "skip" if you want to skip the sleeper parts during loading.</P>
+
+</BODY>
+</HTML>
