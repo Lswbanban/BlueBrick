@@ -207,6 +207,8 @@ namespace BlueBrick
 			LayerBrick.sUpdateGammaFromSettings();
 			// reset the shortcut keys
 			initShortcutKeyArrayFromSettings();
+			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
+			SaveDefaultKeyInDefaultSettings();
 			// hide the part list form
 			mPartListForm = new PartListForm(this);
 			mPartListForm.Visible = false;
@@ -229,6 +231,48 @@ namespace BlueBrick
 		{
 			// set the static flag to terminate the thread of the splash screen
 			sIsMainFormReady = true;
+		}
+
+		private void SaveDefaultKeyInDefaultSettings()
+		{
+			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
+			// Indeed the "Ctrl" string doesn't not exist on german OS (the key name is "Strg"),
+			// so the default setting fail to load if you put a CTRL as default key in the default
+			// Setting. So instead we save the default key here if the default key is not saved
+			// and then after the application will be able to reload correctly the settings
+			bool needToSave = false;
+
+			if (BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey == Keys.None)
+			{
+				BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey = Keys.Control;
+				needToSave = true;
+			}
+			if (BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey == Keys.None)
+			{
+				BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey = Keys.Alt;
+				needToSave = true;
+			}
+			if (BlueBrick.Properties.Settings.Default.MouseZoomKey == Keys.None)
+			{
+				BlueBrick.Properties.Settings.Default.MouseZoomKey = Keys.Control | Keys.Shift;
+				needToSave = true;
+			}
+			if (BlueBrick.Properties.Settings.Default.MousePanKey == Keys.None)
+			{
+				BlueBrick.Properties.Settings.Default.MousePanKey = Keys.Alt | Keys.Shift;
+				needToSave = true;
+			}
+
+			// try to save (never mind if we can not (for example BlueBrick is launched
+			// from a write protected drive)
+			try
+			{
+				if (needToSave)
+					BlueBrick.Properties.Settings.Default.Save();
+			}
+			catch
+			{
+			}
 		}
 
 		/// <summary>

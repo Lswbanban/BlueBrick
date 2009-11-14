@@ -48,13 +48,13 @@
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="MouseMultipleSelectionKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">Ctrl+None</Value>
+      <Value Profile="(Default)">None</Value>
     </Setting>
     <Setting Name="MouseZoomKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">Ctrl+Shift+None</Value>
+      <Value Profile="(Default)">None</Value>
     </Setting>
     <Setting Name="MousePanKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">Alt+Shift+None</Value>
+      <Value Profile="(Default)">None</Value>
     </Setting>
     <Setting Name="DefaultGridSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">96</Value>
@@ -96,7 +96,7 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="MouseDuplicateSelectionKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">Alt+None</Value>
+      <Value Profile="(Default)">None</Value>
     </Setting>
     <Setting Name="RecentFiles" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;

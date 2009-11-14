@@ -1301,7 +1301,7 @@ namespace BlueBrick
 						connectedBrickPolarity = remapData.mConnexionData[i].mPolarity;
 
 					// check if the brick has some connection point
-					if ((brick.ConnectionPoints != null) && (i < brick.ConnectionPoints.Count))
+					if ((brick.ConnectionPoints != null) && (i < remapData.mConnexionData.Count))
 					{
 						// get the corresponding connexion index of the BB part for the ith TD port id
 						int BBConnexionIndexForI = remapData.mConnexionData[i].mBBConnexionPointIndex;

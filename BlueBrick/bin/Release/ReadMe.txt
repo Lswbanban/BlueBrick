@@ -59,7 +59,7 @@ Open bugs:
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Do not fill the optim combo box in code
-- [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file
+- [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file: check if we can remove the hard code exception for the ramp?
 
 Bug fixed in 1.6.0.0:
 - NEW FEATURE (Alban, Stephan): Highlight even more the grabbed part in a group to help the user understand that this is the snapping part

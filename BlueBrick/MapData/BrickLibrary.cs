@@ -355,7 +355,7 @@ namespace BlueBrick.MapData
 							mTDRemapData.mTDId = xmlReader.ReadElementContentAsInt();
 						else if (xmlReader.Name.Equals("Flag"))
 							mTDRemapData.mFlags = xmlReader.ReadElementContentAsInt();
-						else if (xmlReader.Name.Equals("HasSeveralPort"))
+						else if (xmlReader.Name.Equals("HasSeveralGeometries"))
 							mTDRemapData.mHasSeveralPort = xmlReader.ReadElementContentAsBoolean();
 						else if (xmlReader.Name.Equals("TDBitmapList"))
 						{

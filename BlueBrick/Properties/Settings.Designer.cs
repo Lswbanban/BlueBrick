@@ -205,7 +205,7 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+None")]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
         public global::System.Windows.Forms.Keys MouseMultipleSelectionKey {
             get {
                 return ((global::System.Windows.Forms.Keys)(this["MouseMultipleSelectionKey"]));
@@ -217,7 +217,7 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Shift+None")]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
         public global::System.Windows.Forms.Keys MouseZoomKey {
             get {
                 return ((global::System.Windows.Forms.Keys)(this["MouseZoomKey"]));
@@ -229,7 +229,7 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Alt+Shift+None")]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
         public global::System.Windows.Forms.Keys MousePanKey {
             get {
                 return ((global::System.Windows.Forms.Keys)(this["MousePanKey"]));
@@ -343,7 +343,7 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Alt+None")]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
         public global::System.Windows.Forms.Keys MouseDuplicateSelectionKey {
             get {
                 return ((global::System.Windows.Forms.Keys)(this["MouseDuplicateSelectionKey"]));
