@@ -44,7 +44,7 @@
 			<type>2</type>
 			<position>
 				<x>-16</x>
-				<y>6</y>
+				<y>5.375</y>
 			</position>
 			<angle>180</angle>
 			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
@@ -56,7 +56,7 @@
 			<type>2</type>
 			<position>
 				<x>16</x>
-				<y>6</y>
+				<y>5.375</y>
 			</position>
 			<angle>0</angle>
 			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->

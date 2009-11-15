@@ -1457,7 +1457,12 @@ namespace BlueBrick.MapData
 				preferedCursor = Cursors.Cross;
 
 			// handle the mouse down if we duplicate or move the selected bricks
-			return (mMouseMoveIsADuplicate || willMoveSelectedObject);
+			bool willHandleTheMouse = (mMouseMoveIsADuplicate || willMoveSelectedObject);
+			// reset the brick pointer under the mouse if finally we don't care.
+			if (!willHandleTheMouse)
+				mCurrentBrickUnderMouse = null;
+			// return the result
+			return willHandleTheMouse;
 		}
 
 		/// <summary>

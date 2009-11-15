@@ -20,75 +20,97 @@
 ;   <AmendedAngle>: some additionnal angle (in degree) to add to the part that use this specific bitmap index to find back the normal angle of the part
 ;   Be careful: no space between <BBConnexionPointIndex> and <AmendedAngle> only the comma.
 
+
+MISSING parts:
+2358p01.7
+608p01.7
+609p01.7
+606p02.7
+607p01.7
+608px1
+6099px1
+606p33
+
+800551=set 551-1, part 608p01
+800552=set 552-1, part 609p01
+800553=set 553-1, part 606p02
+806304=set 6304, part 607p01
+905180=set 5180-1, part 608px1 (T jonction)
+10905180=set 5180-1, part 6099px1 (cross)
+905181=set 5181-1, part 606p33
+
+
+
+
 ;---- Baseplates ----
-626=3811.2		0	FALSE	0=0,20,*,0		;32x32 green
-627=3811.1		0	FALSE	0=0,20,*,0		;32x32 blue
-628=4186.7		0	FALSE	0=0,20,*,0		;48x48 light gray
-5009=3857.14	0	FALSE	0=0,20,*,90		;16x32 yellow
-5010=3857.2		0	FALSE	0=0,20,*,90		;16x32 green
+;626=3811.2		0	FALSE	0=0,20,*,0		;32x32 green
+;627=3811.1		0	FALSE	0=0,20,*,0		;32x32 blue
+;628=4186.7		0	FALSE	0=0,20,*,0		;48x48 light gray
+;5009=3857.14	0	FALSE	0=0,20,*,90		;16x32 yellow
+;5010=3857.2		0	FALSE	0=0,20,*,90		;16x32 green
 
 ;---- Support ----
-1010002868=TDSupport2.4		2	FALSE	0=0,20,*,0
-1020002868=TDSupport4.4		2	FALSE	0=0,20,*,0
-1030002868=TDSupport6.4		2	FALSE	0=0,20,*,0
-1040002868=TDSupport8.4		2	FALSE	0=0,20,*,0
-1050002868=TDSupport10.4	2	FALSE	0=0,20,*,0
-1060002868=TDSupport12.4	2	FALSE	0=0,20,*,0
-1070002868=TDSupport14.4	2	FALSE	0=0,20,*,0
+;1010002868=TDSupport2.4		2	FALSE	0=0,20,*,0
+;1020002868=TDSupport4.4		2	FALSE	0=0,20,*,0
+;1030002868=TDSupport6.4		2	FALSE	0=0,20,*,0
+;1040002868=TDSupport8.4		2	FALSE	0=0,20,*,0
+;1050002868=TDSupport10.4	2	FALSE	0=0,20,*,0
+;1060002868=TDSupport12.4	2	FALSE	0=0,20,*,0
+;1070002868=TDSupport14.4	2	FALSE	0=0,20,*,0
 
 ;---- 9V Rails ----
-112150=2150.set		0	FALSE	0=0,20,*,0												;Train Station
-102865=2865.8		0	FALSE	0=0,0,+,0	1=1,0,-,180									;straight
-102867=2867.8  		0	TRUE	0=0,2,-,0	1=1,1,+,157.5								;curve
-102859=2859.8  		0	TRUE	0=0,4,-,0	1=2,5,+,180		2=1,7,+,157.5				;right point
-102861=2861.8  		0	TRUE	0=0,3,-,0	1=1,6,+,180		2=2,8,+,202.5				;left point
-1000102866=32087.8	0	FALSE	0=0,9,-,0	1=1,9,+,0		2=2,9,*,0		3=3,9,*,0	;crossover
-114532=4532.set		0	FALSE	0=0,20,*,0												;Level Crossing
-114539=4539.set		0	FALSE	0=0,20,*,0												;Strand Junction
-114554=2150.set		0	FALSE	0=0,20,*,0												;Central Station
-114555=4555.set		0	FALSE	0=0,20,*,0												;Container Depot
-114565=4565.set		0	FALSE	0=0,20,*,0												;Freight and Crane Railway
+;112150=2150.set		0	FALSE	0=0,20,*,0												;Train Station
+;102865=2865.8		0	FALSE	0=0,0,+,0	1=1,0,-,180									;straight
+;102867=2867.8  		0	TRUE	0=0,2,-,0	1=1,1,+,157.5								;curve
+;102859=2859.8  		0	TRUE	0=0,4,-,0	1=2,5,+,180		2=1,7,+,157.5				;right point
+;102861=2861.8  		0	TRUE	0=0,3,-,0	1=1,6,+,180		2=2,8,+,202.5				;left point
+;1000102866=32087.8	0	FALSE	0=0,9,-,0	1=1,9,+,0		2=2,9,*,0		3=3,9,*,0	;crossover
+;114532=4532.set		0	FALSE	0=0,20,*,0												;Level Crossing
+;114539=4539.set		0	FALSE	0=0,20,*,0												;Strand Junction
+;114554=2150.set		0	FALSE	0=0,20,*,0												;Central Station
+;114555=4555.set		0	FALSE	0=0,20,*,0												;Container Depot
+;114565=4565.set		0	FALSE	0=0,20,*,0												;Freight and Crane Railway
 
 ;---- Monorails ----
-202670=2670.7		0	FALSE	0=0,13,*,0		1=1,13,*,180				;short straight
-202671=2671.7		0	FALSE	0=0,0,*,0		1=1,0,*,180					;long straight
-202672=2672.7		0	TRUE	0=0,2,*,0		1=1,1,*,90					;curve
-232677=2677.7		0	FALSE	0=0,11,*,0		1=1,12,*,180				;ramp up (and also down normally, but the loading code change the number to 232678 if it is a down ramp
-232678=2678.7		0	FALSE	0=0,12,*,0		1=1,11,*,180				;ramp down (TD never generate this ID, but the loading code need it)
-202680=2680.0		0	FALSE	0=0,20,*,0									;short support
-202681=2681.0		0	FALSE	0=0,20,*,0									;tall support
-202774=2774.7		0	TRUE	0=1,19,*,180	1=0,18,*,0					;reverse switch
-202889=2889.7		0	TRUE	0=0,4,*,0		1=1,5,*,180		2=2,7,*,135	;right point
-202890=2890.7		0	TRUE	0=0,3,*,0		1=1,6,*,180		2=2,8,*,225	;left point
-202891=2891.7		0	TRUE	0=0,17,*,45		1=1,14,*,180				;short right curve
-202892=2892.7		0	TRUE	0=0,16,*,-45 	1=1,15,*,180				;short left curve
-226399=6399.set1	0	FALSE	0=0,20,*,0									;Airport terminal
-10226399=6399.set2	0	FALSE	0=0,20,*,0									;City terminal
-20226399=6399.set3	0	FALSE	0=0,20,*,0									;Bridge
+;202670=2670.7		0	FALSE	0=0,13,*,0		1=1,13,*,180				;short straight
+;202671=2671.7		0	FALSE	0=0,0,*,0		1=1,0,*,180					;long straight
+;202672=2672.7		0	TRUE	0=0,2,*,0		1=1,1,*,90					;curve
+;232677=2677.7		0	FALSE	0=0,11,*,0		1=1,12,*,180				;ramp up (and also down normally, but the loading code change the number to 232678 if it is a down ramp
+;232678=2678.7		0	FALSE	0=0,12,*,0		1=1,11,*,180				;ramp down (TD never generate this ID, but the loading code need it)
+;202680=2680.0		0	FALSE	0=0,20,*,0									;short support
+;202681=2681.0		0	FALSE	0=0,20,*,0									;tall support
+;202774=2774.7		0	TRUE	0=1,19,*,180	1=0,18,*,0					;reverse switch
+;202889=2889.7		0	TRUE	0=0,4,*,0		1=1,5,*,180		2=2,7,*,135	;right point
+;202890=2890.7		0	TRUE	0=0,3,*,0		1=1,6,*,180		2=2,8,*,225	;left point
+;202891=2891.7		0	TRUE	0=0,17,*,45		1=1,14,*,180				;short right curve
+;202892=2892.7		0	TRUE	0=0,16,*,-45 	1=1,15,*,180				;short left curve
+;226399=6399.set1	0	FALSE	0=0,20,*,0									;Airport terminal
+;10226399=6399.set2	0	FALSE	0=0,20,*,0									;City terminal
+;20226399=6399.set3	0	FALSE	0=0,20,*,0									;Bridge
 
 ;---- Road ----
-302358=80547.7		0	FALSE	0=0,0,*,-90									;straight
-302359=2359p01.7	0	TRUE	0=0,1,*,0	1=1,2,*,90						;curve
-302360=2360p01.7	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T shape
-302361=2361p01.7	0	FALSE	0=0,9,*,0									;crossover
+;302358=80547.7		0	FALSE	0=0,0,*,-90									;straight
+;302359=2359p01.7	0	TRUE	0=0,1,*,0	1=1,2,*,90						;curve
+;302360=2360p01.7	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T shape
+;302361=2361p01.7	0	FALSE	0=0,9,*,0									;crossover
 
 800551=2360p01.7	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T shape
 800552=2359p01.7	0	TRUE	0=0,1,*,0	1=1,2,*,90						;curve
 800553=80547.7		0	FALSE	0=0,0,*,-90									;straight
 806304=2361p01.7	0	FALSE	0=0,9,*,0									;crossover
 
-902358=2358p03.2	0	FALSE	0=0,0,*,-90									;straight
-902359=2359p02.2	0	TRUE	0=0,1,*,0	1=1,2,*,90						;curve
-902360=2360p02.2	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T shape
-902361=2361p02.2	0	FALSE	0=0,9,*,0									;crossover
+;902358=2358p03.2	0	FALSE	0=0,0,*,-90									;straight
+;902359=2359p02.2	0	TRUE	0=0,1,*,0	1=1,2,*,90						;curve
+;902360=2360p02.2	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T shape
+;902361=2361p02.2	0	FALSE	0=0,9,*,0									;crossover
 905180=2360p02.2	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T junction (old)
 10905180=2361p02.2	0	FALSE	0=0,9,*,0									;crossover (old)
 905181=2358p03.2	0	FALSE	0=0,0,*,-90									;straight (old)
 
-1006322=610p01.2	0	FALSE	0=0,0,*,-90									;straight
-1006321=613p01.2	0	TRUE	0=0,1,*,0	1=1,2,*,90						;curve
-11006320=612p01.2	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T shape
-11006323=611p01.2	0	FALSE	0=0,9,*,0									;crossover
+;1006322=610p01.2	0	FALSE	0=0,0,*,-90									;straight
+;1006321=613p01.2	0	TRUE	0=0,1,*,0	1=1,2,*,90						;curve
+;11006320=612p01.2	0	TRUE	0=0,7,*,90	1=2,8,*,-90		2=1,10,*,180	;T shape
+;11006323=611p01.2	0	FALSE	0=0,9,*,0									;crossover
 
 ;---- 12V Rails gray ----
 433240=3240C01.7	0	FALSE	0=0,0,-,0	1=1,0,+,180								;straight

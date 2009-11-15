@@ -713,10 +713,18 @@ namespace BlueBrick.MapData
 		{
 			// instanciate the brick and add it into the dictionnary
 			Brick brick = new Brick(partNumber, image, xmlFileName);
-			mBrickDictionary.Add(partNumber, brick);
-			// add also the link between the TD number and the BB number if there is an available TD remap data
-			if (brick.mTDRemapData != null)
-				mTrackDesignerPartNumberAssociation.Add(brick.mTDRemapData.mTDId, partNumber);
+			// if the creation of the brick launch an exception it will be catched by the calling function.
+			try
+			{
+				mBrickDictionary.Add(partNumber, brick);
+				// add also the link between the TD number and the BB number if there is an available TD remap data
+				if (brick.mTDRemapData != null)
+					mTrackDesignerPartNumberAssociation.Add(brick.mTDRemapData.mTDId, partNumber);
+			}
+			catch
+			{
+				// we don't care if there is already a part mapped
+			}
 		}
 
 		public Image getImage(string partNumber, ref List<PointF> boundingBox, ref List<PointF> hull)
