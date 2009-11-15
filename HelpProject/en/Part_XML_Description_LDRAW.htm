@@ -29,17 +29,17 @@
 </TR>  
 </TABLE>
 
-<P>BlueBrick can save and load files in LDRAW format. But because the origin of the parts in LDRAW files is not always the same than the origin of the parts in the BlueBrick library, BlueBrick needs to apply some transformation on the position and orientation of the parts when saving or loading an LDRAW format file.</P>
+<P>BlueBrick can save and load files in the LDRAW format. Because the origin (e.g. rotation), of the parts in the LDRAW files are not always the same as the origin of the parts in the BlueBrick library, BlueBrick needs to apply some transformation on the position and orientation of the parts when saving or loading an LDRAW file format.</P>
 
-<P>If you are extending your library with sets, you probably don't need to modify this file because the LDRAW library mostly contains parts and very few models. So the sets will not be loadable anyway by your LDraw software.</P>
+<P>If you are extending your library with sets, you probably don't need to modify this file because the LDRAW library mostly contains parts and very few models. Because of this your LDraw software will not be able to load your sets unless you have you the corresponding LDR file.</P>
 
-<P>Moreover if you are extending your library with a part, you only need to add a LDRAW field in the XML file if the origin of the part is different in BlueBrick and LDraw.</P>
+<P>Moreover if you are extending your library with a part, you only need to add an LDRAW field in the XML file if the origin of the part is different in BlueBrick and LDraw.</P>
 
-<P>The <FONT CLASS="Important">Angle field</FONT> contains the difference of angle between the two coordinate systems along the UP axis (in Degree).</P>
+<P>The <FONT CLASS="Important">Angle field</FONT> contains the difference of angle between the two coordinate systems along the UP axis (in degrees).</P>
 
-<P>The <FONT CLASS="Important">x, y and z field</FONT> contains the difference of position between the two coordinate systems (in LDU).</P>
+<P>The <FONT CLASS="Important">x, y and z fields</FONT> contain the difference in position between the two coordinate systems (in <A HREF="http://www.brickwiki.org/wiki/LDU">LDU</A>).</P>
 
-<P>The <FONT CLASS="Important">SleeperID field</FONT> contains the BlueBrick part id (the part number followed by a dot and the color id) of the sleeper to use or "skip" if you want to skip the sleeper parts during loading.</P>
+<P>The <FONT CLASS="Important">SleeperID field</FONT> contains the BlueBrick part ID (the part number followed by a dot and the color ID), of the sleeper to use or "skip" if you want to skip the sleeper parts during loading.</P>
 
 </BODY>
 </HTML>

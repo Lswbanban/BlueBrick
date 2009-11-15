@@ -52,7 +52,6 @@ Open bugs:
 - MISSING FEATURE (Alex): Remember the window size.
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating)
 - MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
-- [target 1.6] BUG (Stefan): Rotation of a group of part is buggued.
 - [target 1.6] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
@@ -64,6 +63,7 @@ Open bugs:
 Bug fixed in 1.6.0.0:
 - NEW FEATURE (Alban, Stephan): Highlight even more the grabbed part in a group to help the user understand that this is the snapping part
 - NEW FEATURE (Alban): Change the highlight method of the part (remove the ugly squares) and add options to customize the highlight value
+- BUGFIX (Thomas): A message box appears for the multiple selection key when switching the application to German language on a German Windows OS.
 
 
 Bug fixed in 1.5.1.0:
@@ -84,8 +84,8 @@ Bug fixed in 1.5.0.0:
 	* Completely revised duplo parts library (6 GIFs)
 	* 9 new baseplates including space
 	* 9 new custom bases (incl. US and EU standard size tables)
-- BUG (Alban): The saving as a new map do not add the file in the recent list
-- BUG (Alex & Alban): Some picture URL are not correct in the HTML exported list (put the URL in XML file).
+- BUGFIX (Alban): The saving as a new map do not add the file in the recent list
+- BUGFIX (Alex & Alban): Some picture URL are not correct in the HTML exported list (put the URL in XML file).
 - REFACTORING (Alban): Move the part description in the XML file of the parts.
 
 Bug fixed in 1.4.0.0:
