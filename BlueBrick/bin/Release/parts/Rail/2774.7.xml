@@ -6,6 +6,7 @@
 		<fr>Inverseur Monorail</fr>
 	</Description>
 	<ImageURL>http://media.peeron.com/pics/inv/custpics/2774.1092233018.jpg</ImageURL>
+
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>0</left>
@@ -13,6 +14,7 @@
 		<top>0</top>
 		<bottom>0</bottom>
 	</SnapMargin>
+
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
 	<ConnexionList>
 		<connexion>
@@ -40,4 +42,25 @@
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>202774</ID> <!-- ID of this part in Track Designer -->
+		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<HasSeveralGeometries>true</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>1</BBConnexionPointIndex>
+				<Type>19</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>180</AngleBetweenTDandBB>
+			</TDBitmap>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>18</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>0</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>
 </part>

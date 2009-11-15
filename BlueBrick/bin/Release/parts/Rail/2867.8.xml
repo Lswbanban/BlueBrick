@@ -5,6 +5,7 @@
 		<en>Rail 9V Curve</en>
 		<fr>Rail 9V courbe</fr>
 	</Description>
+
 	<!-- The margin of this part in stud for snaping on the grid, relative to the bitmap -->
 	<SnapMargin>
 		<left>0.5</left>
@@ -12,6 +13,7 @@
 		<top>0</top>
 		<bottom>2.625</bottom>
 	</SnapMargin>
+
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the origine defined above) -->
 	<ConnexionList>
 		<!-- the center of this part in stud is x = 139 pix / 8 pixperstud / 2 = 8.6875    and    y = 86 / 8 / 2 = 5.375 -->		
@@ -40,6 +42,7 @@
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
+
 	<hull>
 		<point>
 			<x>0</x>
@@ -70,4 +73,25 @@
 			<y>64</y>
 		</point>
 	</hull>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>102867</ID> <!-- ID of this part in Track Designer -->
+		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<HasSeveralGeometries>true</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>2</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>N</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>0</AngleBetweenTDandBB>
+			</TDBitmap>
+			<TDBitmap>
+				<BBConnexionPointIndex>1</BBConnexionPointIndex>
+				<Type>1</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>P</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>157.5</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>
 </part>
