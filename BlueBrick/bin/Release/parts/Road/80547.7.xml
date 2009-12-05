@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <part>
+	<!-- This part was named before 2358p01 -->
 	<Author>Alban Nanty</Author>
 	<Description>
 		<en>Baseplate, Road 32 x 32 7-Stud Straight with Road with White Sidelines Pattern</en>
@@ -32,4 +33,20 @@
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
+
+	<!-- This part was named before 2358p01 -->
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>302358</ID> <!-- ID of this part in Track Designer -->
+		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<HasSeveralGeometries>false</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>0</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>-90</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>
 </part>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Alex McKenna</Author>
+	<Description>
+		<en>Baseplate 32 x 32 Road T Intersection with Road Pattern-9 Studs</en>
+		<fr>Plaque de route 32 x 32 Intersection en T, trottoire de 9 Studs</fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/ldraw/images/7/608p01.png</ImageURL>
+	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center) -->
+
+	<ConnexionList>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>2</type>
+			<position>
+				<x>0</x>
+				<y>16</y>
+			</position>
+			<angle>90</angle>
+			<angleToPrev>180</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>90</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<nextConnexionPreference>2</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>2</type>
+			<position>
+				<x>16</x>
+				<y>0</y>
+			</position>
+			<angle>0</angle>
+			<angleToPrev>90</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>90</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+		<connexion>
+			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
+			<type>2</type>
+			<position>
+				<x>0</x>
+				<y>-16</y>
+			</position>
+			<angle>-90</angle>
+			<angleToPrev>90</angleToPrev> <!-- how much angle between this connection and the prev one in this circular list -->
+			<angleToNext>180</angleToNext> <!-- how much angle between this connection and the next one in this circular list -->			
+			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
+		</connexion>
+	</ConnexionList>
+
+	<TrackDesigner>
+    		<ID>800551</ID>
+    		<Flag>0</Flag>
+    		<HasSeveralGeometries>true</HasSeveralGeometries>
+    		<TDBitmapList>
+        		<TDBitmap>
+            			<BBConnexionPointIndex>0</BBConnexionPointIndex>
+            			<Type>7</Type>
+            			<Polarity>0</Polarity>
+            			<AngleBetweenTDandBB>90</AngleBetweenTDandBB>
+        		</TDBitmap>
+        		<TDBitmap>
+            			<BBConnexionPointIndex>2</BBConnexionPointIndex>
+            			<Type>8</Type>
+            			<Polarity>0</Polarity>
+            			<AngleBetweenTDandBB>-90</AngleBetweenTDandBB>
+        		</TDBitmap>
+        		<TDBitmap>
+            			<BBConnexionPointIndex>1</BBConnexionPointIndex>
+            			<Type>10</Type>
+            			<Polarity>0</Polarity>
+            			<AngleBetweenTDandBB>180</AngleBetweenTDandBB>
+        		</TDBitmap>
+    		</TDBitmapList>
+	</TrackDesigner>  
+</part>
