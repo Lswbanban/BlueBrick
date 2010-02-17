@@ -267,8 +267,8 @@ namespace BlueBrick.MapData
 		/// <param name="moveY">the move in y axis, in cell numbers</param>
 		public void moveCells(int moveX, int moveY)
 		{
-			// move the lines if necessary
-			if (moveX != 0)
+			// move the cells if necessary
+			if ((moveX != 0) || (moveY != 0))
 			{
 				// copy the key of the lines
 				int[] lineKeys = new int[mColorMap.Keys.Count];
@@ -296,39 +296,46 @@ namespace BlueBrick.MapData
 					mColorMap.TryGetValue(currentLineKey, out currentLine);
 					if (currentLine != null)
 					{
-						// move the line
-						mColorMap.Remove(currentLineKey);
-						mColorMap.Add(currentLineKey + moveX, currentLine);
-
-						// copy the key inside the current line
-						int[] rowKeys = new int[currentLine.Keys.Count];
-						currentLine.Keys.CopyTo(rowKeys, 0);
-						// according to the doc, the order of the keys in the Dictionary.KeyCollection is unspecified
-						// so we need to sort the keys, to avoid override when moving
-						Array.Sort(rowKeys);
-
-						// depending on the direction of the move, we copy from the begining or the end
-						int startY = 0;
-						int endY = rowKeys.Length;
-						int dirY = 1;
-						if (moveY > 0)
+						// move the line if necessary
+						if (moveX != 0)
 						{
-							startY = rowKeys.Length - 1;
-							endY = -1;
-							dirY = -1;
+							mColorMap.Remove(currentLineKey);
+							mColorMap.Add(currentLineKey + moveX, currentLine);
 						}
 
-						// iterate to move the rows
-						for (int y = startY; y != endY; y += dirY)
+						// move the row if necessary
+						if (moveY != 0)
 						{
-							int currentRowKey = rowKeys[y];
-							SolidBrush currentRow = null;
-							currentLine.TryGetValue(currentRowKey, out currentRow);
-							if (currentRow != null)
+							// copy the key inside the current line
+							int[] rowKeys = new int[currentLine.Keys.Count];
+							currentLine.Keys.CopyTo(rowKeys, 0);
+							// according to the doc, the order of the keys in the Dictionary.KeyCollection is unspecified
+							// so we need to sort the keys, to avoid override when moving
+							Array.Sort(rowKeys);
+
+							// depending on the direction of the move, we copy from the begining or the end
+							int startY = 0;
+							int endY = rowKeys.Length;
+							int dirY = 1;
+							if (moveY > 0)
 							{
-								// move the row
-								currentLine.Remove(currentRowKey);
-								currentLine.Add(currentRowKey + moveY, currentRow);
+								startY = rowKeys.Length - 1;
+								endY = -1;
+								dirY = -1;
+							}
+
+							// iterate to move the rows
+							for (int y = startY; y != endY; y += dirY)
+							{
+								int currentRowKey = rowKeys[y];
+								SolidBrush currentRow = null;
+								currentLine.TryGetValue(currentRowKey, out currentRow);
+								if (currentRow != null)
+								{
+									// move the row
+									currentLine.Remove(currentRowKey);
+									currentLine.Add(currentRowKey + moveY, currentRow);
+								}
 							}
 						}
 					}

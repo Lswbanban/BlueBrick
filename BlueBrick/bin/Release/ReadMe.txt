@@ -58,7 +58,6 @@ Open bugs:
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
-- BUG (Alban): the area doesn't move if you just move along the Y axis
 - REFACTORING (Alban): Do not fill the optim combo box in code
 - [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file: check if we can remove the hard code exception for the ramp?
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
@@ -70,6 +69,7 @@ Bug fixed in 1.6.0.0:
 - BUGFIX (Thomas): A message box appears for the multiple selection key when switching the application to German language on a German Windows OS.
 - BUGFIX (Alban): The duplication cursor could appear in wrong situation (when you press duplication key during moving parts/text)
 - BUGFIX (Alban): You can now also duplicate brick/text if you press the duplication key after the left mouse key (but before moving)
+- BUGFIX (Alban): the area doesn't move if you just move along the Y axis
 
 Bug fixed in 1.5.1.0:
 - BUG (Stefan): The parts with hull moved at the wrong place after a rotation (basically bug in the rotation algorithm).
