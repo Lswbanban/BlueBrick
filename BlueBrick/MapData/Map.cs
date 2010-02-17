@@ -308,7 +308,7 @@ namespace BlueBrick.MapData
 				layerFound = reader.ReadToNextSibling("Layer");
 			}
 			// if the selected index is valid, reset the selected layer
-			if (selectedLayerIndex != -1)
+			if ((selectedLayerIndex >= 0) && (selectedLayerIndex < mLayers.Count))
 				mSelectedLayer = mLayers[selectedLayerIndex];
 			else
 				mSelectedLayer = null;

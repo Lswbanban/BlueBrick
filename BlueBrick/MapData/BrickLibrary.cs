@@ -787,6 +787,22 @@ namespace BlueBrick.MapData
 			return null;
 		}
 
+		/// <summary>
+		/// Get the number of connection for the specified part. If the part doesn't have any connection
+		/// list, then the function return 0. Also if the part doesn't exist in the library, the function
+		/// return 0.
+		/// </summary>
+		/// <param name="partNumber">the full part number</param>
+		/// <returns>The number of connection for the specified part, or 0 if the part doesn't exist.</returns>
+		public int getConnectionCount(string partNumber)
+		{
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if ((brickRef != null) && (brickRef.mConnectionPoints != null))
+				return brickRef.mConnectionPoints.Count;
+			return 0;
+		}
+
 		public float getConnectionAngle(string partNumber, int pointIndex)
 		{
 			Brick brickRef = null;

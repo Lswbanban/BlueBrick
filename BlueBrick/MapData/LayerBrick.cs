@@ -442,13 +442,39 @@ namespace BlueBrick.MapData
 				// read the connexion points if any
 				reader.ReadAttributeValue();
 				int count = int.Parse(reader.GetAttribute(0));
+
+				// check the number of connection is the same in the Brick library and in the loading file.
+				// They can be different if the file was saved with an old part library and then one part
+				// was updated to add or remove connection. So there is 3 different cases:
+				// - if they are the same: no problems.
+				// - if there is more connections in the part lib than in the file: we reserve enough space in the list,
+				// based on the library value, and then we will add empty connections instances to fullfill the list
+				// after finishing reading the connection tag.
+				// - if there is more parts in the file than in the list, we need to discard some connection,
+				// so we add a check in the parsing to create the last connections as default one (of type brick).
+				// This will ensure that the link will be broken (because all connections or type BRICK are
+				// broken after the loading of the file is finished) and then the GC will destroy these connections.
+				// And of course the list is reserved based on the library value.
+				
+				// So first, we ask the number of connection to the part lib then allocate
+				// the list of connection based on the number set in the library and not the number
+				// read in the file, because finally the number of connection must be like the part lib says
+				int connectionCountInBrickLibrary = BrickLibrary.Instance.getConnectionCount(mPartNumber);
+				if (connectionCountInBrickLibrary > 0)
+					mConnectionPoints = new List<ConnectionPoint>(connectionCountInBrickLibrary);
+
+				// now check if we need to parse some connection in the file
 				if (count > 0)
 				{
-					mConnectionPoints = new List<ConnectionPoint>(count);
+					// declare a counter for the connections
 					int connexionIndex = 0;
 					bool connexionFound = reader.ReadToDescendant("Connexion");
 					while (connexionFound)
 					{
+						// a boolean saying if the current connection is valid or will be destroyed later
+						// because it is over the number indicated by the part library
+						bool isConnectionValid = (connexionIndex < mConnectionPoints.Capacity);
+
 						// read the id (hashcode key) of the connexion
 						reader.ReadAttributeValue();
 						int hashCode = int.Parse(reader.GetAttribute(0));
@@ -458,25 +484,47 @@ namespace BlueBrick.MapData
 						if (connexion == null)
 						{
 							// instanciate a ConnectionPoint, and add it in the hash table
-							connexion = new ConnectionPoint(this, connexionIndex);
+							if (isConnectionValid)
+								connexion = new ConnectionPoint(this, connexionIndex);
+							else
+								connexion = new ConnectionPoint();
 							ConnectionPoint.sHashtableForLinkRebuilding.Add(hashCode, connexion);
 						}
 						else
 						{
 							// set the connexion type, if not set during the above creation
-							connexion.mType = BrickLibrary.Instance.getConnexionType(this.PartNumber, connexionIndex);
+							if (isConnectionValid)
+								connexion.mType = BrickLibrary.Instance.getConnexionType(this.PartNumber, connexionIndex);
 						}
-						// increment the connexion index
-						connexionIndex++;
+
 						//read the connexion data and add it in the Connection list
 						connexion.mMyBrick = this;
 						connexion.ReadXml(reader);
-						mConnectionPoints.Add(connexion);
+
+						// during the reading of the connection list in the file, we check if
+						// we didn't reached the limit of the part library. If there is more connection
+						// in the file than in the part lib, we continue to read the connections,
+						// but we don't add them in the connection list.
+						if (isConnectionValid)
+							mConnectionPoints.Add(connexion);
+
+						// increment the connexion index
+						connexionIndex++;
 
 						// read the next brick
 						connexionFound = reader.ReadToNextSibling("Connexion");
 					}
 					reader.ReadEndElement();
+
+					// check if we read all the connections in the file, if not we have to instanciate
+					// empty connection to fullfill the list
+					for (int i = mConnectionPoints.Count; i < mConnectionPoints.Capacity; ++i)
+					{
+						ConnectionPoint connexion = new ConnectionPoint(this, i);
+						mConnectionPoints.Add(connexion);
+						// we don't need to add this connection in the hastable since we know this
+						// connection doesn't exist in the file, so there is no link attached to it
+					}
 
 					// update the connexion position which is not stored in the bbm file
 					// in file version before 3 it was stored, but I removed it because the connexion
@@ -691,6 +739,11 @@ namespace BlueBrick.MapData
 						PointF center = this.Center;
 						center.X += mOffsetFromOriginalImage.X;
 						center.Y += mOffsetFromOriginalImage.Y;
+
+						// in this function we assume the two arrays have the same size,
+						// i.e. mConnectionPoints.Count == pointArray.Length
+						// during the loading code we have created the mConnectionPoints with the
+						// same size as the part library.
 						for (int i = 0; i < pointList.Count; ++i)
 						{
 							mConnectionPoints[i].mPositionInStudWorldCoord.X = center.X + pointArray[i].X;
@@ -751,8 +804,8 @@ namespace BlueBrick.MapData
 		[NonSerialized]
 		private static SolidBrush[] sConnexionPointBrush = { new SolidBrush(Color.Red), new SolidBrush(Color.Yellow), new SolidBrush(Color.Cyan), new SolidBrush(Color.BlueViolet), new SolidBrush(Color.LightPink), new SolidBrush(Color.GreenYellow) };
 		private static float[] sConnexionPointRadius = { 2.5f, 1.0f, 1.5f, 1.0f, 1.0f, 1.0f };
-		private static ImageAttributes mImageAttributeForSelection = new ImageAttributes();
-		private static ImageAttributes mImageAttributeForSnapping = new ImageAttributes();
+		private static ImageAttributes sImageAttributeForSelection = new ImageAttributes();
+		private static ImageAttributes sImageAttributeForSnapping = new ImageAttributes();
 
 		// list of bricks and connection points
 		private List<Brick> mBricks = new List<Brick>(); // all the bricks in the layer
@@ -791,8 +844,8 @@ namespace BlueBrick.MapData
 
 		public static void sUpdateGammaFromSettings()
 		{
-			mImageAttributeForSelection.SetGamma(Properties.Settings.Default.GammaForSelection);
-			mImageAttributeForSnapping.SetGamma(Properties.Settings.Default.GammaForSnappingPart);
+			sImageAttributeForSelection.SetGamma(Properties.Settings.Default.GammaForSelection);
+			sImageAttributeForSnapping.SetGamma(Properties.Settings.Default.GammaForSnappingPart);
 		}
 		#endregion
 		#region IXmlSerializable Members
@@ -835,13 +888,19 @@ namespace BlueBrick.MapData
 						// this situation can happen when you load an unknow part that had
 						// some connexion point before in the XML file
 						// 2)
+						// Also happen when a part description changed in the part lib, so all
+						// the connection of type BRICK are the trailing connection in the file
+						// that does not exist anymore in the part library. So if any of the
+						// two connection is of type BRICK, we can break the connection.
+						// 3)
 						// check if we need to break the link because two connexion point are not anymore at
 						// the same place. This can happen if the file was save with a first version of the
 						// library, and then we change the library and we change the connexion position.
 						// So the parts are not move, but the links should be broken
 						if ( (connexion.mType == BrickLibrary.Brick.ConnectionType.BRICK) ||
 								((connexion.mConnectionLink != null) &&
-								!arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.mConnectionLink.mPositionInStudWorldCoord)) )
+									((connexion.mConnectionLink.mConnectionLink.mType == BrickLibrary.Brick.ConnectionType.BRICK) ||
+									 !arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.mConnectionLink.mPositionInStudWorldCoord))) )
 						{
 							// we don't use the disconnect method here, because the disconnect method
 							// add the two connexion in the free connexion list, but we want to do it after.
@@ -1318,9 +1377,9 @@ namespace BlueBrick.MapData
 
 					// draw the current brick eventually highlighted
 					if (brick == mCurrentBrickUnderMouse)
-						g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSnapping);
+						g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, sImageAttributeForSnapping);
 					else if (mSelectedObjects.Contains(brick))
-						g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSelection);
+						g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, sImageAttributeForSelection);
 					else
 						g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel);
 				}
