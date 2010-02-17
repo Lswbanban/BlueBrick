@@ -58,10 +58,10 @@ Open bugs:
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
+- BUG (Alban): the area doesn't move if you just move along the Y axis
 - REFACTORING (Alban): Do not fill the optim combo box in code
 - [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file: check if we can remove the hard code exception for the ramp?
-- BUG (Alban): the area doesn't move if you just move along the Y axis
-- BUG (Alban): the highlight of the cliked part stay higlighted if you duplicate a selection of part
+- REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
 Bug fixed in 1.6.0.0:
 - NEW FEATURE (Alban, Stephan): Highlight even more the grabbed part in a group to help the user understand that this is the snapping part

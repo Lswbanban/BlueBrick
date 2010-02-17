@@ -432,6 +432,27 @@ namespace BlueBrick.MapData
 			}
 		}
 
+		/// <summary>
+		/// Get the layer item under the specified mouse coordinate or null if there's no brick under.
+		/// The search is done in revers order of the list to get the topmost item.
+		/// </summary>
+		/// <param name="itemList">the list of layer item in which searching</param>
+		/// <param name="mouseCoordInStud">the coordinate of the mouse cursor (in stud), where to look for</param>
+		/// <returns>the layer item that is under the mouse coordinate or null if there is none.</returns>
+		protected LayerItem getLayerItemUnderMouse<T>(List<T> itemList, PointF mouseCoordInStud) where T : LayerItem
+		{
+			for (int i = itemList.Count - 1; i >= 0; --i)
+			{
+				LayerItem item = itemList[i];
+				if ((mouseCoordInStud.X > item.mDisplayArea.Left) && (mouseCoordInStud.X < item.mDisplayArea.Right) &&
+					(mouseCoordInStud.Y > item.mDisplayArea.Top) && (mouseCoordInStud.Y < item.mDisplayArea.Bottom))
+				{
+					return item;
+				}
+			}
+			return null;
+		}
+
 		#endregion
 
 		#region draw/mouse event

@@ -1454,21 +1454,13 @@ namespace BlueBrick.MapData
 
 		/// <summary>
 		/// Get the brick under the specified mouse coordinate or null if there's no brick under.
+		/// The search is done in revers order of the list to get the topmost item.
 		/// </summary>
-		/// <param name="mouseCoordInStud"></param>
-		/// <returns></returns>
+		/// <param name="mouseCoordInStud">the coordinate of the mouse cursor, where to look for</param>
+		/// <returns>the brick that is under the mouse coordinate or null if there is none.</returns>
 		public Brick getBrickUnderMouse(PointF mouseCoordInStud)
 		{
-			for (int i = mBricks.Count - 1; i >= 0; --i)
-			{
-				Brick brick = mBricks[i];
-				if ((mouseCoordInStud.X > brick.mDisplayArea.Left) && (mouseCoordInStud.X < brick.mDisplayArea.Right) &&
-					(mouseCoordInStud.Y > brick.mDisplayArea.Top) && (mouseCoordInStud.Y < brick.mDisplayArea.Bottom))
-				{
-					return brick;
-				}
-			}
-			return null;
+			return getLayerItemUnderMouse(mBricks, mouseCoordInStud) as Brick;
 		}
 
 		/// <summary>
@@ -1492,17 +1484,7 @@ namespace BlueBrick.MapData
 			mCurrentBrickUnderMouse = null;
 
 			// We search if there is a cell under the mouse but in priority we choose from the current selected bricks
-			// but in reverse order to choose first the brick on top
-			for (int i = mSelectedObjects.Count - 1; i >= 0; --i)
-			{
-				Brick brick = mSelectedObjects[i] as Brick;
-				if ((mouseCoordInStud.X > brick.mDisplayArea.Left) && (mouseCoordInStud.X < brick.mDisplayArea.Right) &&
-					(mouseCoordInStud.Y > brick.mDisplayArea.Top) && (mouseCoordInStud.Y < brick.mDisplayArea.Bottom))
-				{
-					mCurrentBrickUnderMouse = brick;
-					break;
-				}
-			}
+			mCurrentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
 
 			// if the current selected brick is not under the mouse we search among the other bricks
 			// but in reverse order to choose first the brick on top
@@ -1548,7 +1530,8 @@ namespace BlueBrick.MapData
 		{
 			mMouseIsBetweenDownAndUpEvent = true;
 
-			bool mustRefresh = false;
+			// if there's a brick under the mouse, we have to refresh the view to display the highlight
+			bool mustRefresh = (mCurrentBrickUnderMouse != null);
 
 			// if finally we are called to handle this mouse down,
 			// we add the cell under the mouse if the selection list is empty
@@ -1586,12 +1569,14 @@ namespace BlueBrick.MapData
 			if (mSelectedObjects.Count > 0)
 			{
 				// snap the mouse coord to the grid
-				mouseCoordInStud = getMovedSnapPoint(mouseCoordInStud);
+				PointF mouseCoordInStudSnapped = getMovedSnapPoint(mouseCoordInStud);
 				// compute the delta move of the mouse
-				PointF deltaMove = new PointF(mouseCoordInStud.X - mMouseDownLastPosition.X, mouseCoordInStud.Y - mMouseDownLastPosition.Y);
+				PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownLastPosition.X, mouseCoordInStudSnapped.Y - mMouseDownLastPosition.Y);
 				// check if the delta move is not null
 				if (deltaMove.X != 0.0f || deltaMove.Y != 0.0)
 				{
+					bool wereBrickJustDuplicated = false;
+
 					// check if it is a move or a duplicate
 					if (mMouseMoveIsADuplicate)
 					{
@@ -1601,6 +1586,8 @@ namespace BlueBrick.MapData
 						{
 							this.copyCurrentSelection();
 							this.pasteCopiedList(0.0f);
+							// set the flag
+							wereBrickJustDuplicated = true;
 						}
 					}
 					// this is move of the selection, not a duplicate selection
@@ -1611,8 +1598,11 @@ namespace BlueBrick.MapData
 					updateBrickConnectivityOfSelection(true);
 					// move also the bounding rectangle
 					moveBoundingSelectionRectangle(deltaMove);
+					// after we moved the selection check if we need to refresh the current highlighted brick
+					if (wereBrickJustDuplicated)
+						mCurrentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
 					// memorize the last position of the mouse
-					mMouseDownLastPosition = mouseCoordInStud;
+					mMouseDownLastPosition = mouseCoordInStudSnapped;
 					// set the flag that indicate that we moved the mouse
 					mMouseHasMoved = true;
 					return true;

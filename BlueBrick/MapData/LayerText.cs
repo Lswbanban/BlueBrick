@@ -453,21 +453,13 @@ namespace BlueBrick.MapData
 
 		/// <summary>
 		/// Get the text cell under the specified mouse coordinate or null if there's no text cell under.
+		/// The search is done in revers order of the list to get the topmost item.
 		/// </summary>
-		/// <param name="mouseCoordInStud"></param>
-		/// <returns></returns>
+		/// <param name="mouseCoordInStud">the coordinate of the mouse cursor, where to look for</param>
+		/// <returns>the text cell that is under the mouse coordinate or null if there is none.</returns>
 		public TextCell getTextCellUnderMouse(PointF mouseCoordInStud)
 		{
-			for (int i = mTexts.Count - 1; i >= 0; --i)
-			{
-				TextCell cell = mTexts[i];
-				if ((mouseCoordInStud.X > cell.mDisplayArea.Left) && (mouseCoordInStud.X < cell.mDisplayArea.Right) &&
-					(mouseCoordInStud.Y > cell.mDisplayArea.Top) && (mouseCoordInStud.Y < cell.mDisplayArea.Bottom))
-				{
-					return cell;
-				}
-			}
-			return null;
+			return getLayerItemUnderMouse(mTexts, mouseCoordInStud) as TextCell;
 		}
 
 		/// <summary>
@@ -491,17 +483,7 @@ namespace BlueBrick.MapData
 			mCurrentTextCellUnderMouse = null;
 
 			// We search if there is a cell under the mouse but in priority we choose from the current selected cells
-			// but in reverse order to choose first the brick on top
-			for (int i = mSelectedObjects.Count - 1; i >= 0; --i)
-			{
-				TextCell cell = mSelectedObjects[i] as TextCell;
-				if ((mouseCoordInStud.X > cell.mDisplayArea.Left) && (mouseCoordInStud.X < cell.mDisplayArea.Right) &&
-					(mouseCoordInStud.Y > cell.mDisplayArea.Top) && (mouseCoordInStud.Y < cell.mDisplayArea.Bottom))
-				{
-					mCurrentTextCellUnderMouse = cell;
-					break;
-				}
-			}
+			mCurrentTextCellUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as TextCell;
 
 			// if the current selected brick is not under the mouse we search among the other bricks
 			// but in reverse order to choose first the brick on top
