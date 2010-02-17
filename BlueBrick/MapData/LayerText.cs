@@ -211,6 +211,7 @@ namespace BlueBrick.MapData
 		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb((int)0x70FFFFFF));
 		private PointF mMouseDownInitialPosition;
 		private PointF mMouseDownLastPosition;
+		private bool mMouseIsBetweenDownAndUpEvent = false;
 		private bool mMouseHasMoved = false;
 		private bool mMouseMoveIsADuplicate = false;
 		private DuplicateText mLastDuplicateTextAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
@@ -421,16 +422,29 @@ namespace BlueBrick.MapData
 		/// <param name="mouseCoordInStud"></param>
 		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
 		{
-			if (mouseCoordInStud != PointF.Empty)
+			if (mMouseIsBetweenDownAndUpEvent)
 			{
-				if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)
+				// the second test after the or, is because we give a second chance to the user to duplicate
+				// the selection if he press the duplicate key after the mouse down, but before he start to move
+				if (mMouseMoveIsADuplicate ||
+					(!mMouseHasMoved && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)))
+					return MainForm.Instance.TextDuplicateCursor;
+				else
+					return Cursors.SizeAll;
+			}
+			else
+			{
+				if (mouseCoordInStud != PointF.Empty)
 				{
-					if (isPointInsideSelectionRectangle(mouseCoordInStud))
-						return MainForm.Instance.TextDuplicateCursor;
-				}
-				else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
-				{
-					return MainForm.Instance.TextSelectionCursor;
+					if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)
+					{
+						if (isPointInsideSelectionRectangle(mouseCoordInStud))
+							return MainForm.Instance.TextDuplicateCursor;
+					}
+					else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+					{
+						return MainForm.Instance.TextSelectionCursor;
+					}
 				}
 			}
 			// return the default arrow cursor
@@ -526,6 +540,8 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseDown(MouseEventArgs e, PointF mouseCoordInStud)
 		{
+			mMouseIsBetweenDownAndUpEvent = true;
+
 			bool mustRefresh = false;
 
 			// if finally we are called to handle this mouse down,
@@ -570,6 +586,11 @@ namespace BlueBrick.MapData
 		{
 			if (mSelectedObjects.Count > 0)
 			{
+				// give a second chance to duplicate if the user press the duplicate key
+				// after pressing down the mouse key, but not if the user already moved
+				if (!mMouseHasMoved && !mMouseMoveIsADuplicate)
+					mMouseMoveIsADuplicate = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+
 				// check if it is a move or a duplicate
 				if (mMouseMoveIsADuplicate)
 				{
@@ -581,9 +602,9 @@ namespace BlueBrick.MapData
 						this.pasteCopiedList(0.0f);
 					}
 				}
-				// this is move of the selection, not a duplicate selection
-				// compute the delta mouve of the mouse
+				// compute the delta move of the mouse
 				PointF deltaMove = new PointF(mouseCoordInStud.X - mMouseDownLastPosition.X, mouseCoordInStud.Y - mMouseDownLastPosition.Y);
+				// this is move of the selection, not a duplicate selection
 				foreach (LayerText.TextCell cell in mSelectedObjects)
 					cell.Position = new PointF(cell.Position.X + deltaMove.X, cell.Position.Y + deltaMove.Y);
 				// move also the bounding rectangle
@@ -651,6 +672,7 @@ namespace BlueBrick.MapData
 				}
 			}
 
+			mMouseIsBetweenDownAndUpEvent = false;
 			mCurrentTextCellUnderMouse = null;
 			return true;
 		}

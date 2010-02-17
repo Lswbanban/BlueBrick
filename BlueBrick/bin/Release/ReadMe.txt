@@ -44,6 +44,7 @@ Open bugs:
 - [target 1.6] MISSING FEATURE (Alban): make configurable connexion points
 - [target 1.6] MISSING FEATURE (Alban): Add the polarity check
 - [target 1.6] MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
+- [target 1.6] MISSING FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder)
 - MISSING FEATURE (Alban): Autosave.
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
@@ -59,12 +60,16 @@ Open bugs:
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Do not fill the optim combo box in code
 - [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file: check if we can remove the hard code exception for the ramp?
+- BUG (Alban): the area doesn't move if you just move along the Y axis
+- BUG (Alban): the highlight of the cliked part stay higlighted if you duplicate a selection of part
 
 Bug fixed in 1.6.0.0:
 - NEW FEATURE (Alban, Stephan): Highlight even more the grabbed part in a group to help the user understand that this is the snapping part
 - NEW FEATURE (Alban): Change the highlight method of the part (remove the ugly squares) and add options to customize the highlight value
+- BUGFIX (Alex): CRASH! In the XML loading code, when you load a part that has a different number of connection in the file and in the part library, you may crash.
 - BUGFIX (Thomas): A message box appears for the multiple selection key when switching the application to German language on a German Windows OS.
-
+- BUGFIX (Alban): The duplication cursor could appear in wrong situation (when you press duplication key during moving parts/text)
+- BUGFIX (Alban): You can now also duplicate brick/text if you press the duplication key after the left mouse key (but before moving)
 
 Bug fixed in 1.5.1.0:
 - BUG (Stefan): The parts with hull moved at the wrong place after a rotation (basically bug in the rotation algorithm).
