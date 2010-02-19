@@ -286,6 +286,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move the grid origin.
+        /// </summary>
+        internal static string ActionMoveGridOrigin {
+            get {
+                return ResourceManager.GetString("ActionMoveGridOrigin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move the layer &quot;&amp;&quot; Down.
         /// </summary>
         internal static string ActionMoveLayerDown {

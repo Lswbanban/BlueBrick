@@ -192,6 +192,9 @@
   <data name="ActionMoveBrick" xml:space="preserve">
     <value>Move the part &amp;</value>
   </data>
+  <data name="ActionMoveGridOrigin" xml:space="preserve">
+    <value>Move the grid origin</value>
+  </data>
   <data name="ActionMoveLayerDown" xml:space="preserve">
     <value>Move the layer "&amp;" Down</value>
   </data>

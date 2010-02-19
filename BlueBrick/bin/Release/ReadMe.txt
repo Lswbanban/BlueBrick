@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.5.1.0 |
+                    | BlueBrick version 1.6.0.0 |
                     +---------------------------+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -65,6 +65,7 @@ Open bugs:
 Bug fixed in 1.6.0.0:
 - NEW FEATURE (Alban, Stephan): Highlight even more the grabbed part in a group to help the user understand that this is the snapping part
 - NEW FEATURE (Alban): Change the highlight method of the part (remove the ugly squares) and add options to customize the highlight value
+- NEW FEATURE (Alban): Move the grid origin with the mouse when the grid layer is selected
 - BUGFIX (Alex): CRASH! In the XML loading code, when you load a part that has a different number of connection in the file and in the part library, you may crash.
 - BUGFIX (Thomas): A message box appears for the multiple selection key when switching the application to German language on a German Windows OS.
 - BUGFIX (Alban): The duplication cursor could appear in wrong situation (when you press duplication key during moving parts/text)

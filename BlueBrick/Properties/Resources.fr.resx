@@ -192,6 +192,9 @@
   <data name="ActionMoveBrick" xml:space="preserve">
     <value>Déplacer la pièce &amp;</value>
   </data>
+  <data name="ActionMoveGridOrigin" xml:space="preserve">
+    <value>Déplacer l'origine de la grille</value>
+  </data>
   <data name="ActionMoveLayerDown" xml:space="preserve">
     <value>Descendre le calque "&amp;"</value>
   </data>

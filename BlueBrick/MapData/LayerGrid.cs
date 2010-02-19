@@ -18,6 +18,8 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using BlueBrick.Actions;
+using BlueBrick.Actions.Grid;
 
 namespace BlueBrick.MapData
 {
@@ -45,6 +47,11 @@ namespace BlueBrick.MapData
 		private CellIndexType mCellIndexColumnType = CellIndexType.LETTERS;
 		private CellIndexType mCellIndexRowType = CellIndexType.NUMBERS;
 		private Point mCellIndexCorner = new Point(0, 0); // the position in stud coordinate
+
+		// mouse event
+		private bool mIsMovingGridOrigin = false;
+		private Point mMouseDownInitialPosition = Point.Empty;
+		private Point mMouseDownLastPosition = Point.Empty;
 
 		// global param for drawing the cell index
 		static private StringFormat sCellIndexStringFormat = new StringFormat();
@@ -286,18 +293,27 @@ namespace BlueBrick.MapData
 				// compute the start position
 				float gridSizeInPixel = (float)(mGridSizeInStud * scalePixelPerStud);
 
+				// if we are moving the cell index, add a delta to the cell origin
+				Point cellIndexCorner = mCellIndexCorner;
+				if (mIsMovingGridOrigin)
+				{
+					cellIndexCorner.X += (mMouseDownLastPosition.X - mMouseDownInitialPosition.X);
+					cellIndexCorner.Y += (mMouseDownLastPosition.Y - mMouseDownInitialPosition.Y);
+				}
+
 				// ---- COLUMN
 				// compute all the start x
 				int leftInGrid = (int)(areaInStud.Left / mGridSizeInStud) - mGridSizeInStud;
-				int startXInGrid = mCellIndexCorner.X;
+				int startXInGrid = cellIndexCorner.X;
+				// we clamp the part outside the screen
 				if (startXInGrid < leftInGrid)
-					startXInGrid = leftInGrid; // we clamp the part outside the screen
+					startXInGrid = leftInGrid;
 				float startX = (float)(((startXInGrid * mGridSizeInStud) + halfGridSizeInStud - areaInStud.Left) * scalePixelPerStud);
 				// iterate for the columns
-				int cellCornerYInStud = mCellIndexCorner.Y * mGridSizeInStud;
+				int cellCornerYInStud = cellIndexCorner.Y * mGridSizeInStud;
 				if ((cellCornerYInStud + mGridSizeInStud > areaInStud.Top) && (cellCornerYInStud < areaInStud.Bottom))
 				{
-					int currentIndex = leftInGrid - mCellIndexCorner.X;
+					int currentIndex = leftInGrid - cellIndexCorner.X;
 					if (currentIndex < 0)
 						currentIndex = 0;
 					float y = (float)((cellCornerYInStud + halfGridSizeInStud - areaInStud.Top) * scalePixelPerStud);
@@ -312,15 +328,16 @@ namespace BlueBrick.MapData
 				// --- ROW ---
 				// compute all the start y
 				int topInGrid = (int)(areaInStud.Top / mGridSizeInStud) - mGridSizeInStud;
-				int startYInGrid = mCellIndexCorner.Y;
+				int startYInGrid = cellIndexCorner.Y;
+				// we clamp the part outside the screen
 				if (startYInGrid < topInGrid)
-					startYInGrid = topInGrid; // we clamp the part outside the screen
+					startYInGrid = topInGrid;
 				float startY = (float)(((startYInGrid * mGridSizeInStud) + halfGridSizeInStud - areaInStud.Top) * scalePixelPerStud);
 				// iterate for the rows
-				int cellCornerXInStud = mCellIndexCorner.X * mGridSizeInStud;
+				int cellCornerXInStud = cellIndexCorner.X * mGridSizeInStud;
 				if ((cellCornerXInStud + mGridSizeInStud > areaInStud.Left) && (cellCornerXInStud < areaInStud.Right))
 				{
-					int currentIndex = topInGrid - mCellIndexCorner.Y;
+					int currentIndex = topInGrid - cellIndexCorner.Y;
 					if (currentIndex < 0)
 						currentIndex = 0;
 					float x = (float)((cellCornerXInStud + halfGridSizeInStud - areaInStud.Left) * scalePixelPerStud);
@@ -372,12 +389,31 @@ namespace BlueBrick.MapData
 
 		#region mouse event
 		/// <summary>
+		/// Convert a mouse coord in stud into a grid coord
+		/// </summary>
+		/// <param name="mouseCoordInStud">the point to convert</param>
+		/// <returns>the converted coordinates</returns>
+		private Point computeGridCoordFromStudCoord(PointF mouseCoordInStud)
+		{
+			Point result = new Point((int)(mouseCoordInStud.X / mGridSizeInStud), (int)(mouseCoordInStud.Y / mGridSizeInStud));
+			if (mouseCoordInStud.X < 0)
+				result.X = result.X - 1;
+			if (mouseCoordInStud.Y < 0)
+				result.Y = result.Y - 1;
+			return result;
+		}
+
+		/// <summary>
 		/// Return the cursor that should be display when the mouse is above the map without mouse click
 		/// </summary>
 		/// <param name="mouseCoordInStud"></param>
 		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
 		{
-			// We can do nothing on the grid
+			// check if the user try to move the origin of the grid
+			if (Visible && mDisplayCellIndex)
+				return Cursors.SizeAll;
+
+			// else we can do nothing on the grid
 			return Cursors.No;
 		}
 
@@ -388,6 +424,11 @@ namespace BlueBrick.MapData
 		/// <returns>true if this layer wants to handle it</returns>
 		public override bool handleMouseDown(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
+			if (Visible && mDisplayCellIndex)
+				preferedCursor = Cursors.SizeAll;
+			else
+				preferedCursor = Cursors.No;
+
 			// since we dont want to have the selection in rectangle to be displayed
 			// we reply that we are always interested in the left click mouse event
 			// even if we do nothing with it after
@@ -402,6 +443,10 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseDown(MouseEventArgs e, PointF mouseCoordInStud)
 		{
+			// record the initial position
+			mMouseDownInitialPosition = computeGridCoordFromStudCoord(mouseCoordInStud);
+			mMouseDownLastPosition = mMouseDownInitialPosition;
+			mIsMovingGridOrigin = true;
 			// the grid handle none click
 			return false;
 		}
@@ -413,8 +458,13 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			// the grid handle none click
-			return false;
+			// compute the position snapped on the grid
+			Point newPosition = computeGridCoordFromStudCoord(mouseCoordInStud);
+			// update is the snapped position changed
+			bool mustUpdate = (mMouseDownLastPosition.X != newPosition.X) || (mMouseDownLastPosition.Y != newPosition.Y);
+			mMouseDownLastPosition = newPosition;
+			// update if the user move the mouse
+			return mustUpdate;
 		}
 
 		/// <summary>
@@ -424,8 +474,14 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			// the grid handle none click
-			return false;
+			// compute the moving direction
+			int x = mMouseDownLastPosition.X - mMouseDownInitialPosition.X;
+			int y = mMouseDownLastPosition.Y - mMouseDownInitialPosition.Y;
+			ActionManager.Instance.doAction(new MoveGridOrigin(this, x, y));
+			// reset the flag
+			mIsMovingGridOrigin = false;
+			// finally update the layer
+			return true;
 		}
 
 		/// <summary>

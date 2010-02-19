@@ -539,7 +539,7 @@ namespace BlueBrick.MapData
 		/// <returns>true if this layer wants to handle it</returns>
 		public override bool handleMouseDown(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
-			// if the layer is not visible it is not sensible to mouve click
+			// if the layer is not visible it is not sensible to mouse click
 			if (!Visible)
 				return false;
 
