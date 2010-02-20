@@ -411,7 +411,7 @@ namespace BlueBrick.MapData
 		{
 			// check if the user try to move the origin of the grid
 			if (Visible && mDisplayCellIndex)
-				return Cursors.SizeAll;
+				return Cursors.Arrow;
 
 			// else we can do nothing on the grid
 			return Cursors.No;

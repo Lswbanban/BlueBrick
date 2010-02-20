@@ -53,6 +53,8 @@ Open bugs:
 - MISSING FEATURE (Alex): Remember the window size.
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating)
 - MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
+- MISSING FEATURE (Richie): The grid step and rotation step could be saved in the preference of the application.
+- MISSING FEATURE (Didier): List of events
 - [target 1.6] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
