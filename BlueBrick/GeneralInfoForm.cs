@@ -31,13 +31,14 @@ namespace BlueBrick
 		{
 			InitializeComponent();
 
-			// fill lug list box from text file
-			sFillLUGComboBox(this.lugComboBox);
+			// fill the 2 combo boxes from text file
+			sFillLUGComboBox(this.lugComboBox, @"/config/LugList.txt");
+			sFillLUGComboBox(this.showComboBox, @"/config/EventList.txt");
 
 			// fill the text controls
 			this.AuthorTextBox.Text = Map.Instance.Author;
 			this.lugComboBox.Text = Map.Instance.LUG;
-			this.showTextBox.Text = Map.Instance.Show;
+			this.showComboBox.Text = Map.Instance.Show;
 			this.dateTimePicker.Value = Map.Instance.Date;
 			char[] splitter = { '\n' };
 			this.commentTextBox.Lines = Map.Instance.Comment.Split(splitter);
@@ -62,16 +63,16 @@ namespace BlueBrick
 		{
 			// save the data to the map (must do an action for that)
 			ActionManager.Instance.doAction(new ChangeGeneralInfo(this.AuthorTextBox.Text,
-				this.lugComboBox.Text, this.showTextBox.Text, this.dateTimePicker.Value,
+				this.lugComboBox.Text, this.showComboBox.Text, this.dateTimePicker.Value,
 				this.commentTextBox.Text));
 		}
 
-		public static void sFillLUGComboBox(ComboBox comboBoxToFill)
+		public static void sFillLUGComboBox(ComboBox comboBoxToFill, string sourceDataFileName)
 		{
 			try
 			{
-				string lugListFileName = Application.StartupPath + @"/config/LugList.txt";
-				System.IO.StreamReader textReader = new System.IO.StreamReader(lugListFileName);
+				string sourceDataFullFileName = Application.StartupPath + sourceDataFileName;
+				System.IO.StreamReader textReader = new System.IO.StreamReader(sourceDataFullFileName);
 				comboBoxToFill.Items.Clear();
 				comboBoxToFill.Sorted = true;
 				while (!textReader.EndOfStream)

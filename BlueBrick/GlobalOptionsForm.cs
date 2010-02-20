@@ -96,7 +96,8 @@ namespace BlueBrick
 			fillAndSelectMultipleAndDuplicateSelectionKeyComboBox();
 			fillAndSelectOptimComboBox();
 			// new map
-			GeneralInfoForm.sFillLUGComboBox(this.lugComboBox);
+			GeneralInfoForm.sFillLUGComboBox(this.lugComboBox, @"/config/LugList.txt");
+			GeneralInfoForm.sFillLUGComboBox(this.showComboBox, @"/config/EventList.txt");
 			this.addGridLayerCheckBox.Checked = Settings.Default.AddGridLayerOnNewMap;
 			this.addBrickLayerCheckBox.Checked = Settings.Default.AddBrickLayerOnNewMap;
 			if (Settings.Default.DefaultAuthor.Equals("***NotInitialized***"))
@@ -108,9 +109,9 @@ namespace BlueBrick
 			else
 				this.lugComboBox.Text = Settings.Default.DefaultLUG;
 			if (Settings.Default.DefaultShow.Equals("***NotInitialized***"))
-				this.showTextBox.Text = Resources.DefaultShow;
-			else			
-				this.showTextBox.Text = Settings.Default.DefaultShow;
+				this.showComboBox.Text = Resources.DefaultShow;
+			else
+				this.showComboBox.Text = Settings.Default.DefaultShow;
 			// recent files
 			this.RecentFilesNumericUpDown.Value = Settings.Default.MaxRecentFilesNum;
 			this.clearRecentFilesButton.Enabled = (Settings.Default.RecentFiles.Count > 0);
@@ -209,7 +210,7 @@ namespace BlueBrick
 			Settings.Default.AddBrickLayerOnNewMap = this.addBrickLayerCheckBox.Checked;
 			Settings.Default.DefaultAuthor = this.authorTextBox.Text;
 			Settings.Default.DefaultLUG = this.lugComboBox.Text;
-			Settings.Default.DefaultShow = this.showTextBox.Text;
+			Settings.Default.DefaultShow = this.showComboBox.Text;
 			// recent files
 			Settings.Default.MaxRecentFilesNum = (int)this.RecentFilesNumericUpDown.Value;
 			// undo
@@ -384,9 +385,9 @@ namespace BlueBrick
 				this.lugComboBox.Text = Resources.DefaultLUG;
 				mLastDefaultLUG = Resources.DefaultLUG;
 			}
-			if (this.showTextBox.Text.Equals(mLastDefaultShow))
+			if (this.showComboBox.Text.Equals(mLastDefaultShow))
 			{
-				this.showTextBox.Text = Resources.DefaultShow;
+				this.showComboBox.Text = Resources.DefaultShow;
 				mLastDefaultShow = Resources.DefaultShow;
 			}
 			// and restore the previous culture (to avoid partially translated software before the restart)
