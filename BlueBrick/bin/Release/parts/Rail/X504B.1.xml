@@ -83,4 +83,31 @@
 			<y>128</y>
 		</point>
 	</hull>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>610754</ID> <!-- ID of this part in Track Designer -->
+		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<HasSeveralGeometries>true</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>3</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>N</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>0</AngleBetweenTDandBB>
+			</TDBitmap>
+			<TDBitmap>
+				<BBConnexionPointIndex>1</BBConnexionPointIndex>
+				<Type>6</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>P</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>180</AngleBetweenTDandBB>
+			</TDBitmap>
+			<TDBitmap>
+				<BBConnexionPointIndex>2</BBConnexionPointIndex>
+				<Type>8</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>P</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>180</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>
 </part>
