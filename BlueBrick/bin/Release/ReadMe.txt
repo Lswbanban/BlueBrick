@@ -54,7 +54,6 @@ Open bugs:
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating)
 - MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
 - MISSING FEATURE (Richie): The grid step and rotation step could be saved in the preference of the application.
-- MISSING FEATURE (Didier): List of events
 - [target 1.6] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
@@ -68,6 +67,7 @@ Bug fixed in 1.6.0.0:
 - NEW FEATURE (Alban, Stephan): Highlight even more the grabbed part in a group to help the user understand that this is the snapping part
 - NEW FEATURE (Alban): Change the highlight method of the part (remove the ugly squares) and add options to customize the highlight value
 - NEW FEATURE (Alban): Move the grid origin with the mouse when the grid layer is selected
+- NEW FEATURE (Didier): Add a configurable list of event in the a config file
 - BUGFIX (Alex): CRASH! In the XML loading code, when you load a part that has a different number of connection in the file and in the part library, you may crash.
 - BUGFIX (Thomas): A message box appears for the multiple selection key when switching the application to German language on a German Windows OS.
 - BUGFIX (Alban): The duplication cursor could appear in wrong situation (when you press duplication key during moving parts/text)

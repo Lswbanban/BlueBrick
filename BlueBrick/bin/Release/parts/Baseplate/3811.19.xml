@@ -5,4 +5,19 @@
 		<en>Baseplate 32 x 32</en>
 		<fr>Plaque de base 32 x 32</fr>
 	</Description>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>40003811</ID> <!-- ID of this part in Track Designer -->
+		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<HasSeveralGeometries>false</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>20</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>0</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>
 </part>

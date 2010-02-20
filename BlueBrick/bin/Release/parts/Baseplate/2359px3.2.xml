@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Alex McKenna</Author>
+	<Description>
+		<en>Baseplate 32 x 32 Road 7-Stud Curve with Foliage and Lagoon Pattern</en>
+		<fr></fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/custpics/2359px3.jpg</ImageURL>
+
+	<TrackDesigner>
+    		<ID>1080002359</ID>
+    		<Flag>0</Flag>
+    		<HasSeveralGeometries>false</HasSeveralGeometries>
+    		<TDBitmapList>
+        		<TDBitmap>
+            			<BBConnexionPointIndex>0</BBConnexionPointIndex>
+            			<Type>20</Type>
+            			<Polarity>0</Polarity>
+            			<AngleBetweenTDandBB>0</AngleBetweenTDandBB>
+        		</TDBitmap>
+    		</TDBitmapList>
+	</TrackDesigner>  
+</part>

@@ -6,4 +6,19 @@
 		<fr>Table 96 x 96</fr>
 	</Description>
 	<ImageURL>http://www.brickshelf.com/gallery/ludo-soete/Modular-Tables/1_modular_table_3x3.jpg</ImageURL>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>1010000002</ID> <!-- ID of this part in Track Designer -->
+		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<HasSeveralGeometries>false</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>20</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>0</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>
 </part>
