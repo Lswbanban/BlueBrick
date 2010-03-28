@@ -473,7 +473,8 @@ namespace BlueBrick.MapData
 					{
 						// a boolean saying if the current connection is valid or will be destroyed later
 						// because it is over the number indicated by the part library
-						bool isConnectionValid = (connexionIndex < mConnectionPoints.Capacity);
+						// be careful mConnectionPoints can be null, so use the int var instead
+						bool isConnectionValid = (connexionIndex < connectionCountInBrickLibrary);
 
 						// read the id (hashcode key) of the connexion
 						reader.ReadAttributeValue();
@@ -518,13 +519,14 @@ namespace BlueBrick.MapData
 
 					// check if we read all the connections in the file, if not we have to instanciate
 					// empty connection to fullfill the list
-					for (int i = mConnectionPoints.Count; i < mConnectionPoints.Capacity; ++i)
-					{
-						ConnectionPoint connexion = new ConnectionPoint(this, i);
-						mConnectionPoints.Add(connexion);
-						// we don't need to add this connection in the hastable since we know this
-						// connection doesn't exist in the file, so there is no link attached to it
-					}
+					if (mConnectionPoints != null)
+						for (int i = mConnectionPoints.Count; i < mConnectionPoints.Capacity; ++i)
+						{
+							ConnectionPoint connexion = new ConnectionPoint(this, i);
+							mConnectionPoints.Add(connexion);
+							// we don't need to add this connection in the hastable since we know this
+							// connection doesn't exist in the file, so there is no link attached to it
+						}
 
 					// update the connexion position which is not stored in the bbm file
 					// in file version before 3 it was stored, but I removed it because the connexion
