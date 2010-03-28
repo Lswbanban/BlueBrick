@@ -716,7 +716,7 @@ namespace BlueBrick.MapData
 				Graphics graphics = Graphics.FromImage(image);
 				graphics.Transform = transform;
 				graphics.Clear(Color.Transparent);
-				graphics.CompositingMode = CompositingMode.SourceOver;
+				graphics.CompositingMode = CompositingMode.SourceCopy; // this should be enough since we draw the image on an empty transparent area
 				graphics.SmoothingMode = SmoothingMode.HighQuality;
 				graphics.CompositingQuality = CompositingQuality.HighSpeed;
 				graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
