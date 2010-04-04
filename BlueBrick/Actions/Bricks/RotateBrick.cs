@@ -29,7 +29,7 @@ namespace BlueBrick.Actions.Bricks
 
 		// data for the action
 		private LayerBrick mBrickLayer = null;
-		private List<Layer.LayerItem> mBricks = null;
+		protected List<Layer.LayerItem> mBricks = null;
 		private bool mRotateCW;
 		private float mRotationStep = 0.0f; // in degree, we need to save it because the current rotation step may change between the do and undo
 		private PointF mCenter = new PointF(0,0);	// in Stud coord

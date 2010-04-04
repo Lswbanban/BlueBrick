@@ -839,7 +839,7 @@ namespace BlueBrick.MapData
 		private bool mMouseHasMoved = false;
 		private bool mMouseMoveIsADuplicate = false;
 		private DuplicateBrick mLastDuplicateBrickAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
-		private RotateBrick mRotationForSnappingDuringBrickMove = null; // this action is used temporally during the edition, while you are moving the selection next to a connectable brick. The Action is not recorded in the ActionManager because it is a temporary one.
+		private RotateBrickOnPivotBrick mRotationForSnappingDuringBrickMove = null; // this action is used temporally during the edition, while you are moving the selection next to a connectable brick. The Action is not recorded in the ActionManager because it is a temporary one.
 		private float mSnappingOrientation = 0.0f; // this orientation is just used during the the edition of a group of part if they snap to a free connexion point
 
 		#region get/set
@@ -1678,17 +1678,22 @@ namespace BlueBrick.MapData
 					else
 					{
 						// undo the rotation action if needed
+						bool isComplexActionNeeded = false;
 						if (mRotationForSnappingDuringBrickMove != null)
+						{
 							mRotationForSnappingDuringBrickMove.undo();
+							mRotationForSnappingDuringBrickMove = null;
+							isComplexActionNeeded = true;
+						}
 						// reset the initial position to each brick
 						foreach (LayerBrick.Brick brick in mSelectedObjects)
 							brick.Center = new PointF(brick.Center.X - deltaMove.X, brick.Center.Y - deltaMove.Y);
 
 						// create a move or complex move action depending if some roatation are needed
-						if (mRotationForSnappingDuringBrickMove != null)
+						if (isComplexActionNeeded)
 						{
-							mRotationForSnappingDuringBrickMove = null;
-							ActionManager.Instance.doAction(new RotateAndMoveBrick(this, mSelectedObjects, mSnappingOrientation, deltaMove));
+							ActionManager.Instance.doAction(new RotateAndMoveBrick(this, mSelectedObjects, mSnappingOrientation, mCurrentBrickUnderMouse, deltaMove));
+							mSnappingOrientation = 0.0f;
 						}
 						else
 						{
@@ -1856,9 +1861,6 @@ namespace BlueBrick.MapData
 									}
 								}
 
-							// get the position of the center before rotating the parts
-							PointF snapPosition = mCurrentBrickUnderMouse.Center;
-
 							// update the temporary rotation of the selection
 							// undo the previous rotation
 							if (mRotationForSnappingDuringBrickMove != null)
@@ -1881,17 +1883,14 @@ namespace BlueBrick.MapData
 									mSnappingOrientation += 360.0f;
 
 								// and create a new action for the new angle
-								mRotationForSnappingDuringBrickMove = new RotateBrick(this, SelectedObjects, mSnappingOrientation, false);
+								mRotationForSnappingDuringBrickMove = new RotateBrickOnPivotBrick(this, SelectedObjects, mSnappingOrientation, mCurrentBrickUnderMouse);
 								mRotationForSnappingDuringBrickMove.MustUpdateBrickConnectivity = false;
                                 mRotationForSnappingDuringBrickMove.redo();
 
-								// compute the shift of the center
-								snapPosition.X = mCurrentBrickUnderMouse.Center.X - snapPosition.X;
-								snapPosition.Y = mCurrentBrickUnderMouse.Center.Y - snapPosition.Y;
-
 								// compute the position from the connection points
-								snapPosition.X += bestFreeConnection.mPositionInStudWorldCoord.X + mCurrentBrickUnderMouse.Center.X - activeBrickConnexion.mPositionInStudWorldCoord.X;
-								snapPosition.Y += bestFreeConnection.mPositionInStudWorldCoord.Y + mCurrentBrickUnderMouse.Center.Y - activeBrickConnexion.mPositionInStudWorldCoord.Y;
+								PointF snapPosition = bestFreeConnection.mPositionInStudWorldCoord;
+								snapPosition.X += mCurrentBrickUnderMouse.Center.X - activeBrickConnexion.mPositionInStudWorldCoord.X;
+								snapPosition.Y += mCurrentBrickUnderMouse.Center.Y - activeBrickConnexion.mPositionInStudWorldCoord.Y;
 
 								// return the position
 								return snapPosition;

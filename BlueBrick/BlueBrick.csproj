@@ -75,6 +75,7 @@
     <Compile Include="Actions\Bricks\MoveBrick.cs" />
     <Compile Include="Actions\Bricks\RotateAndMoveBrick.cs" />
     <Compile Include="Actions\Bricks\RotateBrick.cs" />
+    <Compile Include="Actions\Bricks\RotateBrickOnPivotBrick.cs" />
     <Compile Include="Actions\Bricks\SendBrickToBack.cs" />
     <Compile Include="Actions\Grid\MoveGridOrigin.cs" />
     <Compile Include="Actions\Layers\AddLayer.cs" />

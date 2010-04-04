@@ -20,15 +20,14 @@ using BlueBrick.MapData;
 
 namespace BlueBrick.Actions.Bricks
 {
-	class RotateAndMoveBrick : Action
+	class RotateAndMoveBrick : RotateBrickOnPivotBrick
 	{
-		private RotateBrick mRotateAction = null;
 		private MoveBrick mMoveAction = null;
 
-		public RotateAndMoveBrick(LayerBrick layer, List<Layer.LayerItem> bricks, float angle, PointF move)
+		public RotateAndMoveBrick(LayerBrick layer, List<Layer.LayerItem> bricks, float angle, LayerBrick.Brick pivotBrick, PointF move)
+			: base(layer, bricks, angle, pivotBrick)
 		{
-			mRotateAction = new RotateBrick(layer, bricks, angle);
-			mRotateAction.MustUpdateBrickConnectivity = false; // the connectivity will be updated by the move action
+			this.MustUpdateBrickConnectivity = false; // the connectivity will be updated by the move action
 			mMoveAction = new MoveBrick(layer, bricks, move);
 		}
 
@@ -41,14 +40,14 @@ namespace BlueBrick.Actions.Bricks
 		public override void redo()
 		{
 			// do the move action after to update the connectivity
-			mRotateAction.redo();
+			base.redo();
 			mMoveAction.redo();
 		}
 
 		public override void undo()
 		{
 			// do the move action after to update the connectivity
-			mRotateAction.undo();
+			base.undo();
 			mMoveAction.undo();
 		}
 	}
