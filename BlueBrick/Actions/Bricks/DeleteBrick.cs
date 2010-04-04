@@ -62,7 +62,7 @@ namespace BlueBrick.Actions.Bricks
 					foreach (LayerBrick.Brick.ConnectionPoint connexion in deletedBrick.ConnectionPoints)
 						if (!connexion.IsFree)
 						{
-							nextBrickToSelect = connexion.mConnectionLink.mMyBrick;
+							nextBrickToSelect = connexion.ConnectionLink.mMyBrick;
 							break;
 						}
 			}

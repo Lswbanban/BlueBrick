@@ -41,7 +41,7 @@ namespace BlueBrick.MapData
 
 				public Brick mMyBrick = null; // reference to the brick this connection refer to
 				public PointF mPositionInStudWorldCoord = new PointF(0, 0); // the position of the connection point is world coord stud coord.
-				public ConnectionPoint mConnectionLink = null; // link toward this conection point is connected
+				private ConnectionPoint mConnectionLink = null; // link toward this conection point is connected
 				public BrickLibrary.Brick.ConnectionType mType = BrickLibrary.Brick.ConnectionType.BRICK;
 
 				/// <summary>
@@ -78,9 +78,39 @@ namespace BlueBrick.MapData
 					}
 				}
 
-				public ConnectionPoint ConnectedConnection
+				/// <summary>
+				/// Property to get/set the link. When a link is created, if this is the active
+				/// connection point of the brick, we try to find another one that is free. If the
+				/// link is broken and the active connection point of the brick is not free, then
+				/// this connection becomes the active connection point
+				/// </summary>
+				public ConnectionPoint ConnectionLink
 				{
 					get	{ return mConnectionLink; }
+					set
+					{
+						// only update the active connection point of the brick if my brick is valid
+						if (mMyBrick != null)
+						{
+							// check if we brake or set the link
+							if (value == null)
+							{
+								// the link is broken, check if the active connection point is not free
+								// because then it can become me
+								if (!mMyBrick.ActiveConnectionPoint.IsFree)
+									mMyBrick.mActiveConnectionPointIndex = mMyBrick.ConnectionPoints.IndexOf(this);
+							}
+							else
+							{
+								// the link is set, check if the active connection point is me, then force
+								// the brick to choose someone else
+								if (mMyBrick.ActiveConnectionPoint == this)
+									mMyBrick.setActiveConnectionPointWithNextOne();
+							}
+						}
+						// finally set the link
+						mConnectionLink = value;
+					}
 				}
 
 				public PointF PositionInStudWorldCoord
@@ -317,12 +347,16 @@ namespace BlueBrick.MapData
 				{
 					if (mConnectionPoints != null)
 					{
+						// check if the value is in the range
 						if (value < 0)
 							mActiveConnectionPointIndex = 0;
 						else if (value >= mConnectionPoints.Count)
 							mActiveConnectionPointIndex = mConnectionPoints.Count - 1;
 						else
 							mActiveConnectionPointIndex = value;
+						// check if the active connection point is Free, else select the next one
+						if (!ActiveConnectionPoint.IsFree)
+							setActiveConnectionPointWithNextOne();
 					}
 				}
 			}
@@ -791,9 +825,16 @@ namespace BlueBrick.MapData
 			{
 				if (mConnectionPoints != null)
 				{
-					mActiveConnectionPointIndex++;
-					if (mActiveConnectionPointIndex >= mConnectionPoints.Count)
-						mActiveConnectionPointIndex = 0;
+					// memorize the current index to know when if we are looping
+					int previousActiveConnectionIndex = mActiveConnectionPointIndex;
+					do
+					{
+						// go to the next one (and loop if reaching the end of the list)
+						mActiveConnectionPointIndex++;
+						if (mActiveConnectionPointIndex >= mConnectionPoints.Count)
+							mActiveConnectionPointIndex = 0;
+						// until we find a free point or we tested them all
+					} while (!mConnectionPoints[mActiveConnectionPointIndex].IsFree && (mActiveConnectionPointIndex != previousActiveConnectionIndex));
 				}
 			}
 
@@ -921,15 +962,15 @@ namespace BlueBrick.MapData
 						// library, and then we change the library and we change the connexion position.
 						// So the parts are not move, but the links should be broken
 						if ( (connexion.mType == BrickLibrary.Brick.ConnectionType.BRICK) ||
-								((connexion.mConnectionLink != null) &&
-									((connexion.mConnectionLink.mConnectionLink.mType == BrickLibrary.Brick.ConnectionType.BRICK) ||
-									 !arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.mConnectionLink.mPositionInStudWorldCoord))) )
+								((connexion.ConnectionLink != null) &&
+									((connexion.ConnectionLink.ConnectionLink.mType == BrickLibrary.Brick.ConnectionType.BRICK) ||
+									 !arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.ConnectionLink.mPositionInStudWorldCoord))) )
 						{
 							// we don't use the disconnect method here, because the disconnect method
 							// add the two connexion in the free connexion list, but we want to do it after.
-							if (connexion.mConnectionLink != null)
-								connexion.mConnectionLink.mConnectionLink = null;
-							connexion.mConnectionLink = null;
+							if (connexion.ConnectionLink != null)
+								connexion.ConnectionLink.ConnectionLink = null;
+							connexion.ConnectionLink = null;
 						}
 						// add the connexion in the free list if it is free
 						if (connexion.IsFree)
@@ -1003,7 +1044,10 @@ namespace BlueBrick.MapData
 					// set the new orientation
 					brickToAdd.Orientation = newOrientation;
 					// the place the brick to add at the correct position
-					brickToAdd.ActiveConnectionPosition = selectedBrick.ActiveConnectionPosition;					
+					brickToAdd.ActiveConnectionPosition = selectedBrick.ActiveConnectionPosition;
+
+					// get the prefered index now, because the connection of the brick will move automatically the the active connection
+					int nextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(brickToAdd.PartNumber, brickToAdd.ActiveConnectionPointIndex);
 
 					// set the link of the connection (and check all the other connexion  of the brick because maybe the add lock different connection at the same time)
 					if (brickToAdd.ActiveConnectionPoint.Type == selectedBrick.ActiveConnectionPoint.Type)
@@ -1022,7 +1066,7 @@ namespace BlueBrick.MapData
 							}
 					
 					// set the current connection point to the next one
-					brickToAdd.ActiveConnectionPointIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(brickToAdd.PartNumber, brickToAdd.ActiveConnectionPointIndex);
+					brickToAdd.ActiveConnectionPointIndex = nextPreferedActiveConnectionIndex;
 					// and add the brick in the list
 					mBricks.Insert(mBricks.IndexOf(selectedBrick) + 1, brickToAdd);
 				}
@@ -1071,13 +1115,13 @@ namespace BlueBrick.MapData
 				if (brickToRemove.HasConnectionPoint)
 					foreach (Brick.ConnectionPoint connexion in brickToRemove.ConnectionPoints)
 					{
-						if (connexion.mConnectionLink != null)
+						if (connexion.ConnectionLink != null)
 						{
-							mFreeConnectionPoints[(int)(connexion.mConnectionLink.Type)].Add(connexion.mConnectionLink);
-							connexion.mConnectionLink.mConnectionLink = null;
+							mFreeConnectionPoints[(int)(connexion.ConnectionLink.Type)].Add(connexion.ConnectionLink);
+							connexion.ConnectionLink.ConnectionLink = null;
 						}
 						mFreeConnectionPoints[(int)(connexion.Type)].Remove(connexion);
-						connexion.mConnectionLink = null;
+						connexion.ConnectionLink = null;
 					}
 
 				// remove the brick
@@ -1179,8 +1223,8 @@ namespace BlueBrick.MapData
 			// the connexion can never be stolen
 			if (connexion1.IsFree && connexion2.IsFree)
 			{
-				connexion1.mConnectionLink = connexion2;
-				connexion2.mConnectionLink = connexion1;
+				connexion1.ConnectionLink = connexion2;
+				connexion2.ConnectionLink = connexion1;
 				mFreeConnectionPoints[(int)(connexion1.Type)].Remove(connexion1);
 				mFreeConnectionPoints[(int)(connexion2.Type)].Remove(connexion2);
 				return true;
@@ -1192,12 +1236,12 @@ namespace BlueBrick.MapData
 		{
 			if (connexion1 != null)
 			{
-				connexion1.mConnectionLink = null;
+				connexion1.ConnectionLink = null;
 				mFreeConnectionPoints[(int)(connexion1.Type)].Add(connexion1);
 			}
 			if (connexion2 != null)
 			{
-				connexion2.mConnectionLink = null;
+				connexion2.ConnectionLink = null;
 				mFreeConnectionPoints[(int)(connexion2.Type)].Add(connexion2);
 			}
 		}
@@ -1221,11 +1265,11 @@ namespace BlueBrick.MapData
 			foreach (Brick brick in mSelectedObjects)
 				if (brick.HasConnectionPoint)
 					foreach (Brick.ConnectionPoint connexion in brick.ConnectionPoints)
-						if ((connexion.mConnectionLink != null) && !mSelectedObjects.Contains(connexion.mConnectionLink.mMyBrick))
+						if ((connexion.ConnectionLink != null) && !mSelectedObjects.Contains(connexion.ConnectionLink.mMyBrick))
 						{
 							// check if we need to brake the link
-							if (!arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.mConnectionLink.mPositionInStudWorldCoord))
-								disconnectTwoConnectionPoints(connexion, connexion.mConnectionLink);
+							if (!arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.ConnectionLink.mPositionInStudWorldCoord))
+								disconnectTwoConnectionPoints(connexion, connexion.ConnectionLink);
 						}
 
 			//--- NEW CONNEXION
@@ -1411,17 +1455,27 @@ namespace BlueBrick.MapData
 			// call the base class to draw the surrounding selection rectangle
 			base.draw(g, areaInStud, scalePixelPerStud);
 
-			// if there is only one selected object, we draw its current connexion point
-			if (mSelectedObjects.Count == 1)
+			// check if there's a brick for which we need to draw the current connection point (red dot)
+			// two conditions: one brick under the mouse, or only one brick selected.
+			Brick brickThatHasActiveConnection = null;
+			if (mCurrentBrickUnderMouse != null && mCurrentBrickUnderMouse.HasConnectionPoint &&
+				mCurrentBrickUnderMouse.ActiveConnectionPoint.IsFree)
+			{
+				brickThatHasActiveConnection = mCurrentBrickUnderMouse;
+			}
+			else if (mSelectedObjects.Count == 1)
 			{
 				Brick brick = mSelectedObjects[0] as Brick;
-				if (brick.HasConnectionPoint)
-				{
-					float x = (float)((brick.ActiveConnectionPosition.X - sConnexionPointRadius[0] - areaInStud.Left) * scalePixelPerStud);
-					float y = (float)((brick.ActiveConnectionPosition.Y - sConnexionPointRadius[0] - areaInStud.Top) * scalePixelPerStud);
-					float size = (float)(sConnexionPointRadius[0] * 2 * scalePixelPerStud);
-					g.FillEllipse(sConnexionPointBrush[0], x, y, size, size);
-				}
+				if (brick.HasConnectionPoint && brick.ActiveConnectionPoint.IsFree)
+					brickThatHasActiveConnection = brick;
+			}
+			// now if the brick is valid, draw the red dot
+			if (brickThatHasActiveConnection != null)
+			{
+				float x = (float)((brickThatHasActiveConnection.ActiveConnectionPosition.X - sConnexionPointRadius[0] - areaInStud.Left) * scalePixelPerStud);
+				float y = (float)((brickThatHasActiveConnection.ActiveConnectionPosition.Y - sConnexionPointRadius[0] - areaInStud.Top) * scalePixelPerStud);
+				float size = (float)(sConnexionPointRadius[0] * 2 * scalePixelPerStud);
+				g.FillEllipse(sConnexionPointBrush[0], x, y, size, size);
 			}
 
 			// draw the free connexion points if needed
@@ -1567,15 +1621,10 @@ namespace BlueBrick.MapData
 			{
 				// if the selection is empty add the brick, else check the control key state
 				if (mSelectedObjects.Count == 0)
-				{
 					addObjectInSelection(mCurrentBrickUnderMouse);
-				}
-				else if (mSelectedObjects.Count == 1)
-				{
-					// check if we must change the connexion point
-					mCurrentBrickUnderMouse.setActiveConnectionPointUnder(mouseCoordInStud);
-				}
-				mustRefresh = true;
+
+				// update the active connexion point
+				mCurrentBrickUnderMouse.setActiveConnectionPointUnder(mouseCoordInStud);
 			}
 
 			// record the initial position of the mouse

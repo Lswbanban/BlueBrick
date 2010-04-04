@@ -70,7 +70,7 @@ namespace BlueBrick.Actions.Bricks
 					for (int i = 0; i < brick.ConnectionPoints.Count; ++i)
 					{
 						LayerBrick.Brick.ConnectionPoint connexion = brick.ConnectionPoints[i];
-						if (connexion.mConnectionLink != null)
+						if (connexion.ConnectionLink != null)
 						{
 							// in that case we don't use the static center
 							sLastCenterIsValid = false;

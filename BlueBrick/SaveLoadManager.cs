@@ -693,7 +693,7 @@ namespace BlueBrick
 						LayerBrick.Brick.ConnectionPoint connexion = brick.ConnectionPoints[i];
 						// if the connexion is free we need to add the sleeper
 						// else if it is not free we check if we didn't already add it
-						bool needToAddSleeper = (connexion.IsFree) || (!addedSleepers.Contains(connexion.ConnectedConnection));
+						bool needToAddSleeper = (connexion.IsFree) || (!addedSleepers.Contains(connexion.ConnectionLink));
 						if (needToAddSleeper)
 						{
 							// set the correct position and orientation of the sleeper
@@ -1177,7 +1177,7 @@ namespace BlueBrick
 			if (connectedBrick != null)
 			{
 				// get the connected connexion
-				LayerBrick.Brick.ConnectionPoint connectedConnexion = brick.ConnectionPoints[connexionIndexOnBrick].ConnectedConnection;
+				LayerBrick.Brick.ConnectionPoint connectedConnexion = brick.ConnectionPoints[connexionIndexOnBrick].ConnectionLink;
 				// search the BB connexion index of the connected brick
 				foreach (LayerBrick.Brick.ConnectionPoint connexion in connectedBrick.ConnectionPoints)
 					if (connexion != connectedConnexion)
