@@ -878,6 +878,7 @@ namespace BlueBrick.MapData
 		private PointF mMouseDownInitialPosition;
 		private PointF mMouseDownLastPosition;
 		private PointF mMouseGrabDeltaToCenter; // The delta between the grab point of the mouse inside the grabed brick, to the center of that brick
+		private PointF mMouseGrabDeltaToActiveConnectionPoint; // The delta between the grab point of the mouse inside the grabed brick, to the active connection point of that brick
 		private bool mMouseIsBetweenDownAndUpEvent = false;
 		private bool mMouseHasMoved = false;
 		private bool mMouseMoveIsADuplicate = false;
@@ -1541,6 +1542,30 @@ namespace BlueBrick.MapData
 			return getLayerItemUnderMouse(mBricks, mouseCoordInStud) as Brick;
 		}
 
+		private void setBrickUnderMouse(Brick brick, PointF mouseCoordInStud)
+		{
+			// set the new value
+			mCurrentBrickUnderMouse = brick;
+
+			// update the 2 grab distance if you change the brick under the mouse
+			if (brick != null)
+			{
+				// grab distance to center
+				mMouseGrabDeltaToCenter = new PointF(mouseCoordInStud.X - brick.Center.X, mouseCoordInStud.Y - brick.Center.Y);
+				// grab distance to the active connection point
+				Brick.ConnectionPoint activeConnectionPoint = brick.ActiveConnectionPoint;
+				if (activeConnectionPoint != null)
+					mMouseGrabDeltaToActiveConnectionPoint = new PointF(mouseCoordInStud.X - activeConnectionPoint.mPositionInStudWorldCoord.X, mouseCoordInStud.Y - activeConnectionPoint.mPositionInStudWorldCoord.Y);
+				else
+					mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+			}
+			else
+			{
+				mMouseGrabDeltaToCenter = new PointF(0.0f, 0.0f);
+				mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+			}
+		}
+
 		/// <summary>
 		/// This function is called to know if this layer is interested by the specified mouse click
 		/// </summary>
@@ -1596,8 +1621,7 @@ namespace BlueBrick.MapData
 				mCurrentBrickUnderMouse = null;
 
 			// compute the grab point if we grab a brick
-			if (mCurrentBrickUnderMouse != null)
-				mMouseGrabDeltaToCenter = new PointF(mouseCoordInStud.X - mCurrentBrickUnderMouse.Center.X, mouseCoordInStud.Y - mCurrentBrickUnderMouse.Center.Y);
+			setBrickUnderMouse(mCurrentBrickUnderMouse, mouseCoordInStud);
 
 			// return the result
 			return willHandleTheMouse;
@@ -1680,8 +1704,7 @@ namespace BlueBrick.MapData
 					if (wereBrickJustDuplicated)
 					{
 						mCurrentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
-						if (mCurrentBrickUnderMouse != null)
-							mMouseGrabDeltaToCenter = new PointF(mouseCoordInStud.X - mCurrentBrickUnderMouse.Center.X, mouseCoordInStud.Y - mCurrentBrickUnderMouse.Center.Y);
+						setBrickUnderMouse(mCurrentBrickUnderMouse, mouseCoordInStud);
 					}
 					// memorize the last position of the mouse
 					mMouseDownLastPosition = mouseCoordInStudSnapped;
@@ -1895,6 +1918,12 @@ namespace BlueBrick.MapData
 						Brick.ConnectionPoint activeBrickConnexion = mCurrentBrickUnderMouse.ActiveConnectionPoint;
 						if (activeBrickConnexion.IsFree)
 						{
+							// compute the virtual position of the active connection point, from the
+							// real position of the mouse.
+							PointF virtualActiveConnectionPosition = pointInStud;
+							virtualActiveConnectionPosition.X -= mMouseGrabDeltaToActiveConnectionPoint.X;
+							virtualActiveConnectionPosition.Y -= mMouseGrabDeltaToActiveConnectionPoint.Y;
+
 							// snap the selected brick on a free connexion points (of other bricks)
 							// iterate on all the free connexion point to know if there's a nearest point						
 							float nearestSquareDistance = float.MaxValue;
@@ -1902,8 +1931,8 @@ namespace BlueBrick.MapData
 							foreach (Brick.ConnectionPoint freeConnexion in mFreeConnectionPoints[(int)activeBrickConnexion.Type])
 								if (freeConnexion.mMyBrick != mCurrentBrickUnderMouse)
 								{
-									float dx = freeConnexion.mPositionInStudWorldCoord.X - pointInStud.X;
-									float dy = freeConnexion.mPositionInStudWorldCoord.Y - pointInStud.Y;
+									float dx = freeConnexion.mPositionInStudWorldCoord.X - virtualActiveConnectionPosition.X;
+									float dy = freeConnexion.mPositionInStudWorldCoord.Y - virtualActiveConnectionPosition.Y;
 									float squareDistance = (dx * dx) + (dy * dy);
 									if (squareDistance < nearestSquareDistance)
 									{
@@ -1922,7 +1951,10 @@ namespace BlueBrick.MapData
 							}
 
 							// check if the nearest free connexion if close enough to snap
-							if (nearestSquareDistance < 64.0f) // snapping of 8 studs
+							float threshold = 64.0f; // snapping of 8 studs minimum
+							if (CurrentSnapGridSize > 8)
+								threshold = CurrentSnapGridSize * CurrentSnapGridSize;
+							if (nearestSquareDistance < threshold)
 							{
 								// rotate the selection
 								mSnappingOrientation = bestFreeConnection.mMyBrick.Orientation - mCurrentBrickUnderMouse.Orientation;
@@ -1952,17 +1984,20 @@ namespace BlueBrick.MapData
 					// Snap the position of the mouse on the grid (the snapping is a Floor style one)
 					// then add the center shift of the part and the snapping offset
 					pointInStud = Layer.snapToGrid(pointInStud);
-					// compute the center shift
-					PointF halfBrickSize = new PointF(mCurrentBrickUnderMouse.mDisplayArea.Width / 2, mCurrentBrickUnderMouse.mDisplayArea.Height / 2);
-					PointF centerShift = Layer.snapToGrid(mMouseGrabDeltaToCenter);
-					// there is a special case depending on the relationship between the snap size and the brick size
-					if (halfBrickSize.X < CurrentSnapGridSize)
-						centerShift.X = -halfBrickSize.X;
-					if (halfBrickSize.Y < CurrentSnapGridSize)
-						centerShift.Y = -halfBrickSize.Y;
-					// shift the point according to the center and the grid offset
-					pointInStud.X += -centerShift.X - mCurrentBrickUnderMouse.SnapToGridOffset.X;
-					pointInStud.Y += -centerShift.Y - mCurrentBrickUnderMouse.SnapToGridOffset.Y;
+					
+					// compute the center shift (including the snap grid margin
+					PointF halfBrickShift = new PointF((mCurrentBrickUnderMouse.mDisplayArea.Width / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.X,
+													(mCurrentBrickUnderMouse.mDisplayArea.Height / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.Y);
+
+					// compute a snapped grab delta
+					PointF snappedGrabDelta = mMouseGrabDeltaToCenter;
+					snappedGrabDelta.X += halfBrickShift.X;
+					snappedGrabDelta.Y += halfBrickShift.Y;
+					snappedGrabDelta = Layer.snapToGrid(snappedGrabDelta);
+
+					// shift the point according to the center and the snap grabbed delta
+					pointInStud.X += halfBrickShift.X - snappedGrabDelta.X;
+					pointInStud.Y += halfBrickShift.Y - snappedGrabDelta.Y;
 					return pointInStud;
 				}
 
