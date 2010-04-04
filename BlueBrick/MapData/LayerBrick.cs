@@ -92,19 +92,21 @@ namespace BlueBrick.MapData
 						// only update the active connection point of the brick if my brick is valid
 						if (mMyBrick != null)
 						{
+							// get the active connection point (that can be null, during a loading)
+							ConnectionPoint activeConnectionPoint = mMyBrick.ActiveConnectionPoint;
 							// check if we brake or set the link
 							if (value == null)
 							{
 								// the link is broken, check if the active connection point is not free
 								// because then it can become me
-								if (!mMyBrick.ActiveConnectionPoint.IsFree)
+								if (activeConnectionPoint != null && !activeConnectionPoint.IsFree)
 									mMyBrick.mActiveConnectionPointIndex = mMyBrick.ConnectionPoints.IndexOf(this);
 							}
 							else
 							{
 								// the link is set, check if the active connection point is me, then force
 								// the brick to choose someone else
-								if (mMyBrick.ActiveConnectionPoint == this)
+								if (activeConnectionPoint == this)
 									mMyBrick.setActiveConnectionPointWithNextOne();
 							}
 						}
