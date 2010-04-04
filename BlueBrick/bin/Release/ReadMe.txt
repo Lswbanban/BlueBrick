@@ -10,21 +10,19 @@ BlueBrick is a free software for Windows/Vista developped by Alban Nanty in open
 
 This software was designed specially for the AFOLs who want to prepare the layouts of their LEGO(c) exhibitions. BlueBrick is compatible with LDRAW (http://www.ldraw.org/) and "Train Depot Track Designer" (http://www.ngltc.org/Train_Depot/td.htm) and was designed to extend easily its part database. Its layers feature allow you to better organize your map, and some specific layers make possible the addition of annotation and area assignment.
 
-
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 2) Install
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-To run BlueBrick, you should download and install the Microsoft .NET FrameWork version 2.0, that can be found on the
-Microsoft website:
+If your OS is Vista or Windows 7, nothing special need to be install first. If your OS is Windows XP, you need to download and install the Microsoft .NET FrameWork (at least version 2.0), that can be found on the Microsoft website (if not already install on your machine):
 
-Microsoft .NET FrameWork version 2.0
+Microsoft .NET FrameWork version 3.5 SP1
+http://msdn.microsoft.com/en-us/netframework/aa569263.aspx
+
+or Microsoft .NET FrameWork version 2.0
 http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5&DisplayLang=en
 
-Microsoft .NET FrameWork version 3.0
-http://www.microsoft.com/downloads/thankyou.aspx?familyId=10cc340b-f857-4a14-83f5-25634c3bf043&displayLang=en
-
-The version 2.0 is enough to run BlueBrick and I suggest you to install this one, since the install of the version 3.0 seems more complex.
+The version 2.0 is enough to run BlueBrick.
 
 Then extract the files contained in the zip, somewhere on your hardrive, by keeping the same folders organization.
 
@@ -40,11 +38,11 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - [target 1.6] MISSING FEATURE (Alex & Alban): When you drag'n'drop a connected brick, the dragged brick is not rotated for a proper connection
-- [target 1.6] MISSING FEATURE (Alban): support new flex PF track.
 - [target 1.6] MISSING FEATURE (Alban): make configurable connexion points
-- [target 1.6] MISSING FEATURE (Alban): Add the polarity check
-- [target 1.6] MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
 - [target 1.6] MISSING FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder)
+- [target 1.7] MISSING FEATURE (Alban): support new flex PF track.
+- [target 1.7] MISSING FEATURE (Alban): Add the polarity check
+- [target 1.7] MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
 - MISSING FEATURE (Alban): Autosave.
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
@@ -60,7 +58,7 @@ Open bugs:
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Do not fill the optim combo box in code
-- [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file: check if we can remove the hard code exception for the ramp?
+- [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file: check if we can remove the hard code exception for the ramp? TD registry file is stored in: HKEY_CURRENT_USER\Software\Train Depot\Track Designer\Registry    and the keyname is "Filename"
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
 Bug fixed in 1.6.0.0:

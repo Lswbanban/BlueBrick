@@ -513,9 +513,6 @@ namespace BlueBrick
 						{
 							// memorise the position of the mouse snapped to the grid
 							PointF partCorner = getScreenPointInStud(e.Location);
-							int factorToGetCenter = (2 * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
-							partCorner.X -= (float)(mCurrentPartDropImage.Width) / factorToGetCenter;
-							partCorner.Y -= (float)(mCurrentPartDropImage.Height) / factorToGetCenter;
 							mCurrentPartDropPosition = Layer.snapToGrid(partCorner);
 							mCurrentPartDropPosition.X -= mCurrentPartDropSnappingOffset.X;
 							mCurrentPartDropPosition.Y -= mCurrentPartDropSnappingOffset.Y;

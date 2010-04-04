@@ -88,6 +88,17 @@ namespace BlueBrick.MapData
 					get { return mPositionInStudWorldCoord; }
 				}
 
+				public float Angle
+				{
+					get
+					{
+						int myIndex = mMyBrick.ConnectionPoints.IndexOf(this);
+						if (myIndex >= 0)
+							return BrickLibrary.Instance.getConnectionAngle(mMyBrick.PartNumber, myIndex);
+						return 0.0f;
+					}
+				}
+
 				#region IXmlSerializable Members
 
 				public System.Xml.Schema.XmlSchema GetSchema()
@@ -217,7 +228,7 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// an offset from the center of the part to the point that should snap a corner of the grid
 			/// </summary>
-			public new PointF SnapToGridOffset
+			public PointF SnapToGridOffset
 			{
 				get { return mSnapToGridOffset; }
 			}
@@ -225,7 +236,7 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// an offset to adjust the centers from between original image and reframed rotated image.
 			/// </summary>
-			public new PointF OffsetFromOriginalImage
+			public PointF OffsetFromOriginalImage
 			{
 				get { return mOffsetFromOriginalImage; }
 			}
@@ -755,19 +766,25 @@ namespace BlueBrick.MapData
 				}
 			}
 
-			public void setActiveConnectionPointUnder(PointF positionInStudCoord, float sizeInStud)
+			public void setActiveConnectionPointUnder(PointF positionInStudCoord)
 			{
 				if (mConnectionPoints != null)
+				{
+					float bestSquareDistance = float.MaxValue;
 					for (int i = 0 ; i < mConnectionPoints.Count ; ++i)
-					{
-						PointF point = mConnectionPoints[i].mPositionInStudWorldCoord;
-						if ((positionInStudCoord.X > point.X - sizeInStud) && (positionInStudCoord.X < point.X + sizeInStud) &&
-							(positionInStudCoord.Y > point.Y - sizeInStud) && (positionInStudCoord.Y < point.Y + sizeInStud))
+						if (mConnectionPoints[i].IsFree)
 						{
-							mActiveConnectionPointIndex = i;
-							break;
+							PointF point = mConnectionPoints[i].mPositionInStudWorldCoord;
+							float dx = positionInStudCoord.X - point.X;
+							float dy = positionInStudCoord.Y - point.Y;
+							float squareDistance = (dx * dx) + (dy * dy);
+							if (squareDistance < bestSquareDistance)
+							{
+								bestSquareDistance = squareDistance;
+								mActiveConnectionPointIndex = i;
+							}
 						}
-					}
+				}
 			}
 
 			public void setActiveConnectionPointWithNextOne()
@@ -817,10 +834,13 @@ namespace BlueBrick.MapData
 		private Brick mCurrentBrickUnderMouse = null;
 		private PointF mMouseDownInitialPosition;
 		private PointF mMouseDownLastPosition;
+		private PointF mMouseGrabDeltaToCenter; // The delta between the grab point of the mouse inside the grabed brick, to the center of that brick
 		private bool mMouseIsBetweenDownAndUpEvent = false;
 		private bool mMouseHasMoved = false;
 		private bool mMouseMoveIsADuplicate = false;
 		private DuplicateBrick mLastDuplicateBrickAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
+		private RotateBrick mRotationForSnappingDuringBrickMove = null; // this action is used temporally during the edition, while you are moving the selection next to a connectable brick. The Action is not recorded in the ActionManager because it is a temporary one.
+		private float mSnappingOrientation = 0.0f; // this orientation is just used during the the edition of a group of part if they snap to a free connexion point
 
 		#region get/set
 		/// <summary>
@@ -1518,6 +1538,11 @@ namespace BlueBrick.MapData
 			// reset the brick pointer under the mouse if finally we don't care.
 			if (!willHandleTheMouse)
 				mCurrentBrickUnderMouse = null;
+
+			// compute the grab point if we grab a brick
+			if (mCurrentBrickUnderMouse != null)
+				mMouseGrabDeltaToCenter = new PointF(mouseCoordInStud.X - mCurrentBrickUnderMouse.Center.X, mouseCoordInStud.Y - mCurrentBrickUnderMouse.Center.Y);
+
 			// return the result
 			return willHandleTheMouse;
 		}
@@ -1548,7 +1573,7 @@ namespace BlueBrick.MapData
 				else if (mSelectedObjects.Count == 1)
 				{
 					// check if we must change the connexion point
-					mCurrentBrickUnderMouse.setActiveConnectionPointUnder(mouseCoordInStud, sConnexionPointRadius[0]*2);
+					mCurrentBrickUnderMouse.setActiveConnectionPointUnder(mouseCoordInStud);
 				}
 				mustRefresh = true;
 			}
@@ -1595,14 +1620,18 @@ namespace BlueBrick.MapData
 					// this is move of the selection, not a duplicate selection
 					// move all the selected brick if the delta move is not null
 					foreach (LayerBrick.Brick brick in mSelectedObjects)
-						brick.Position = new PointF(brick.Position.X + deltaMove.X, brick.Position.Y + deltaMove.Y);
+						brick.Center = new PointF(brick.Center.X + deltaMove.X, brick.Center.Y + deltaMove.Y);
 					// update the free connexion list
 					updateBrickConnectivityOfSelection(true);
 					// move also the bounding rectangle
 					moveBoundingSelectionRectangle(deltaMove);
 					// after we moved the selection check if we need to refresh the current highlighted brick
 					if (wereBrickJustDuplicated)
+					{
 						mCurrentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
+						if (mCurrentBrickUnderMouse != null)
+							mMouseGrabDeltaToCenter = new PointF(mouseCoordInStud.X - mCurrentBrickUnderMouse.Center.X, mouseCoordInStud.Y - mCurrentBrickUnderMouse.Center.Y);
+					}
 					// memorize the last position of the mouse
 					mMouseDownLastPosition = mouseCoordInStudSnapped;
 					// set the flag that indicate that we moved the mouse
@@ -1648,10 +1677,23 @@ namespace BlueBrick.MapData
 					}
 					else
 					{
+						// undo the rotation action if needed
+						if (mRotationForSnappingDuringBrickMove != null)
+							mRotationForSnappingDuringBrickMove.undo();
 						// reset the initial position to each brick
 						foreach (LayerBrick.Brick brick in mSelectedObjects)
-							brick.Position = new PointF(brick.Position.X - deltaMove.X, brick.Position.Y - deltaMove.Y);
-						ActionManager.Instance.doAction(new MoveBrick(this, mSelectedObjects, deltaMove));
+							brick.Center = new PointF(brick.Center.X - deltaMove.X, brick.Center.Y - deltaMove.Y);
+
+						// create a move or complex move action depending if some roatation are needed
+						if (mRotationForSnappingDuringBrickMove != null)
+						{
+							mRotationForSnappingDuringBrickMove = null;
+							ActionManager.Instance.doAction(new RotateAndMoveBrick(this, mSelectedObjects, mSnappingOrientation, deltaMove));
+						}
+						else
+						{
+							ActionManager.Instance.doAction(new MoveBrick(this, mSelectedObjects, deltaMove));
+						}
 					}
 				}
 				else
@@ -1748,7 +1790,7 @@ namespace BlueBrick.MapData
 				// check if there is a master brick
 				if (mCurrentBrickUnderMouse != null)
 				{
-					result = mCurrentBrickUnderMouse.Position;
+					result = mCurrentBrickUnderMouse.Center;
 				}
 				else
 				{
@@ -1789,72 +1831,88 @@ namespace BlueBrick.MapData
 					// now check if the master brick has some connections
 					if (mCurrentBrickUnderMouse.HasConnectionPoint)
 					{
-						// but we also need to check if the brick has FREE connexion
-						// (so if the user move a rail that is connected to other rail, we snap on the grid)
-						// get the list of the free connexion point for the selected brick
-						List<PointF> selectedBrickFreeConnexionPoints = mCurrentBrickUnderMouse.FreeConnectionPoints;
-
-						// check if the brick has free connexions
-						if (selectedBrickFreeConnexionPoints.Count > 0)
+						// but we also need to check if the brick has a FREE connexion
+						// but more than that we need to check if the Active Connection is a free connexion.
+						// Because for connection snapping, we always snap the active connection with
+						// the other bricks. That give the feedback to the user of which free connection
+						// of is moving brick will try to connect
+						Brick.ConnectionPoint activeBrickConnexion = mCurrentBrickUnderMouse.ActiveConnectionPoint;
+						if (activeBrickConnexion.IsFree)
 						{
-							// recompute the free position of the selected brick, to centered them around
-							// the current mouse position
-							List<PointF> selectedBrickFreeConnexionPointsToPosition = new List<PointF>(selectedBrickFreeConnexionPoints.Count);
-							for (int i = 0; i < selectedBrickFreeConnexionPoints.Count; ++i)
-							{
-								// first we compute the delta to go from the free position in world coord
-								// toward the position of the brick in world coord
-								PointF newPosition = selectedBrickFreeConnexionPoints[i];
-								newPosition.X -= mCurrentBrickUnderMouse.Position.X;
-								newPosition.Y -= mCurrentBrickUnderMouse.Position.Y;
-								selectedBrickFreeConnexionPointsToPosition.Add(newPosition);
-								// then we recompute the free poisition in world coord but not
-								// from the current position of the brick but from the current position
-								// of the mouse, such as we have virtual free position around the 
-								// actual mouse position
-								newPosition = selectedBrickFreeConnexionPoints[i];
-								newPosition.X += pointInStud.X - mCurrentBrickUnderMouse.Center.X;
-								newPosition.Y += pointInStud.Y - mCurrentBrickUnderMouse.Center.Y;
-								selectedBrickFreeConnexionPoints[i] = newPosition;
-							}
-
 							// snap the selected brick on a free connexion points (of other bricks)
 							// iterate on all the free connexion point to know if there's a nearest point						
 							float nearestSquareDistance = float.MaxValue;
-							PointF bestPosition = new PointF();
-							List<Brick.ConnectionPoint> selectedBrickFreeConnections = mCurrentBrickUnderMouse.FreeConnections;
-							for (int i = 0; i < selectedBrickFreeConnections.Count; ++i)
-							{
-								Brick.ConnectionPoint brickConnexion = selectedBrickFreeConnections[i];
-								foreach (Brick.ConnectionPoint freeConnexion in mFreeConnectionPoints[(int)brickConnexion.Type])
-									if (freeConnexion.mMyBrick != mCurrentBrickUnderMouse)
+							Brick.ConnectionPoint bestFreeConnection = null;
+							foreach (Brick.ConnectionPoint freeConnexion in mFreeConnectionPoints[(int)activeBrickConnexion.Type])
+								if (freeConnexion.mMyBrick != mCurrentBrickUnderMouse)
+								{
+									float dx = freeConnexion.mPositionInStudWorldCoord.X - pointInStud.X;
+									float dy = freeConnexion.mPositionInStudWorldCoord.Y - pointInStud.Y;
+									float squareDistance = (dx * dx) + (dy * dy);
+									if (squareDistance < nearestSquareDistance)
 									{
-										float dx = freeConnexion.mPositionInStudWorldCoord.X - selectedBrickFreeConnexionPoints[i].X;
-										float dy = freeConnexion.mPositionInStudWorldCoord.Y - selectedBrickFreeConnexionPoints[i].Y;
-										float squareDistance = (dx * dx) + (dy * dy);
-										if (squareDistance < nearestSquareDistance)
-										{
-											nearestSquareDistance = squareDistance;
-											bestPosition = new PointF(freeConnexion.mPositionInStudWorldCoord.X - selectedBrickFreeConnexionPointsToPosition[i].X, freeConnexion.mPositionInStudWorldCoord.Y - selectedBrickFreeConnexionPointsToPosition[i].Y);
-										}
+										nearestSquareDistance = squareDistance;
+										bestFreeConnection = freeConnexion;
 									}
+								}
+
+							// get the position of the center before rotating the parts
+							PointF snapPosition = mCurrentBrickUnderMouse.Center;
+
+							// update the temporary rotation of the selection
+							// undo the previous rotation
+							if (mRotationForSnappingDuringBrickMove != null)
+							{
+								mRotationForSnappingDuringBrickMove.undo();
+								mRotationForSnappingDuringBrickMove = null;
+								mSnappingOrientation = 0.0f;
 							}
+
 							// check if the nearest free connexion if close enough to snap
 							if (nearestSquareDistance < 64.0f) // snapping of 8 studs
-								return bestPosition;
+							{
+								// rotate the selection
+								mSnappingOrientation = bestFreeConnection.mMyBrick.Orientation - mCurrentBrickUnderMouse.Orientation;
+								mSnappingOrientation += bestFreeConnection.Angle + 180 - activeBrickConnexion.Angle;
+								// clamp the orientation between 0 and 360
+								if (mSnappingOrientation >= 360.0f)
+									mSnappingOrientation -= 360.0f;
+								if (mSnappingOrientation < 0.0f)
+									mSnappingOrientation += 360.0f;
+
+								// and create a new action for the new angle
+								mRotationForSnappingDuringBrickMove = new RotateBrick(this, SelectedObjects, mSnappingOrientation, false);
+								mRotationForSnappingDuringBrickMove.MustUpdateBrickConnectivity = false;
+                                mRotationForSnappingDuringBrickMove.redo();
+
+								// compute the shift of the center
+								snapPosition.X = mCurrentBrickUnderMouse.Center.X - snapPosition.X;
+								snapPosition.Y = mCurrentBrickUnderMouse.Center.Y - snapPosition.Y;
+
+								// compute the position from the connection points
+								snapPosition.X += bestFreeConnection.mPositionInStudWorldCoord.X + mCurrentBrickUnderMouse.Center.X - activeBrickConnexion.mPositionInStudWorldCoord.X;
+								snapPosition.Y += bestFreeConnection.mPositionInStudWorldCoord.Y + mCurrentBrickUnderMouse.Center.Y - activeBrickConnexion.mPositionInStudWorldCoord.Y;
+
+								// return the position
+								return snapPosition;
+							}
 						}
 					}
 					// This is the normal case for snapping the brick under the mouse.
-					// First we move the mouse coord to the upper left corner which is the
-					// position of the part, then we snap this position to the grid
-					// If you only snap the position to the grid, then you can see the part grabed
-					// from its top left corner, so to avoid that, we move the mouse coord to the position
-					// from the center of the part.
-					pointInStud.X -= mCurrentBrickUnderMouse.mDisplayArea.Width / 2;
-					pointInStud.Y -= mCurrentBrickUnderMouse.mDisplayArea.Height / 2;
+					// Snap the position of the mouse on the grid (the snapping is a Floor style one)
+					// then add the center shift of the part and the snapping offset
 					pointInStud = Layer.snapToGrid(pointInStud);
-					pointInStud.X -= mCurrentBrickUnderMouse.SnapToGridOffset.X;
-					pointInStud.Y -= mCurrentBrickUnderMouse.SnapToGridOffset.Y;
+					// compute the center shift
+					PointF halfBrickSize = new PointF(mCurrentBrickUnderMouse.mDisplayArea.Width / 2, mCurrentBrickUnderMouse.mDisplayArea.Height / 2);
+					PointF centerShift = Layer.snapToGrid(mMouseGrabDeltaToCenter);
+					// there is a special case depending on the relationship between the snap size and the brick size
+					if (halfBrickSize.X < CurrentSnapGridSize)
+						centerShift.X = -halfBrickSize.X;
+					if (halfBrickSize.Y < CurrentSnapGridSize)
+						centerShift.Y = -halfBrickSize.Y;
+					// shift the point according to the center and the grid offset
+					pointInStud.X += -centerShift.X - mCurrentBrickUnderMouse.SnapToGridOffset.X;
+					pointInStud.Y += -centerShift.Y - mCurrentBrickUnderMouse.SnapToGridOffset.Y;
 					return pointInStud;
 				}
 

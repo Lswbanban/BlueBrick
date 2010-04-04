@@ -422,8 +422,8 @@ namespace BlueBrick.MapData
 			if (mSnapGridEnabled)
 			{
 				PointF snappedPoint = new PointF();
-				snappedPoint.X = (float)(Math.Round(pointInStud.X / CurrentSnapGridSize) * CurrentSnapGridSize);
-				snappedPoint.Y = (float)(Math.Round(pointInStud.Y / CurrentSnapGridSize) * CurrentSnapGridSize);
+				snappedPoint.X = (float)(Math.Floor(pointInStud.X / CurrentSnapGridSize) * CurrentSnapGridSize);
+				snappedPoint.Y = (float)(Math.Floor(pointInStud.Y / CurrentSnapGridSize) * CurrentSnapGridSize);
 				return snappedPoint;
 			}
 			else

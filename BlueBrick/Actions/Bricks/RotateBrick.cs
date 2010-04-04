@@ -38,6 +38,14 @@ namespace BlueBrick.Actions.Bricks
 		private PointF mConnexionPosition = new PointF(0, 0);	// in Stud coord
 		private int mNewConnexionPointIndex = -1; // -1 means no connexion
 		private int mOldConnexionPointIndex = -1; // -1 means no connexion
+		
+		// Another configuration data, for special case when this action is used during edition
+		private bool mMustUpdateBrickConnectivity = true;
+
+		public bool MustUpdateBrickConnectivity
+		{
+			set { mMustUpdateBrickConnectivity = value; }
+		}
 
 		public RotateBrick(LayerBrick layer, List<Layer.LayerItem> bricks, int rotateSteps)
 			: this(layer, bricks, rotateSteps, false)
@@ -46,10 +54,9 @@ namespace BlueBrick.Actions.Bricks
 
 		public RotateBrick(LayerBrick layer, List<Layer.LayerItem> bricks, int rotateSteps, bool forceKeepLastCenter)
 		{
-			mBrickLayer = layer;
-			mRotateCW = (rotateSteps < 0);
+			bool rotateCW = (rotateSteps < 0);
 			int nbSteps = Math.Abs(rotateSteps);
-			mRotationStep = MapData.Layer.CurrentRotationStep * nbSteps;
+			float angle = MapData.Layer.CurrentRotationStep * nbSteps;
 
 			// special case for 1 brick that has connexion, in that case we don't care about the rotation step
 			// we rotate the brick such at it can connect with its next connexion point
@@ -70,16 +77,16 @@ namespace BlueBrick.Actions.Bricks
 							// store the connection position
 							mConnexionPosition = connexion.mPositionInStudWorldCoord;
 							mOldConnexionPointIndex = i;
-							
+
 							// search the previous connexion point of the same type than the current connexion point
 							// in the worst case, we just find the same connexion point
 							BrickLibrary.Brick.ConnectionType nextConnexionType = BrickLibrary.Brick.ConnectionType.BRICK;
-							mRotationStep = 0;
+							angle = 0.0f;
 							mNewConnexionPointIndex = i;
 
 							// Store the next connection point index which will become the new connection point after the rotation
-							// compute the rotation step by substracted the connected point angle with the next connexion angle
-							if (mRotateCW)
+							// compute the rotation step by subtracted the connected point angle with the next connexion angle
+							if (rotateCW)
 							{
 								for (int s = 0; s < nbSteps; s++)
 								{
@@ -89,7 +96,7 @@ namespace BlueBrick.Actions.Bricks
 										mNewConnexionPointIndex--;
 										if (mNewConnexionPointIndex < 0)
 											mNewConnexionPointIndex = brick.ConnectionPoints.Count - 1;
-										mRotationStep += BrickLibrary.Instance.getConnectionAngleToPrev(partNumber, currentConnexionPointIndex);
+										angle += BrickLibrary.Instance.getConnectionAngleToPrev(partNumber, currentConnexionPointIndex);
 										nextConnexionType = BrickLibrary.Instance.getConnexionType(partNumber, mNewConnexionPointIndex);
 									} while (nextConnexionType != connexion.mType);
 								}
@@ -104,7 +111,7 @@ namespace BlueBrick.Actions.Bricks
 										mNewConnexionPointIndex++;
 										if (mNewConnexionPointIndex >= brick.ConnectionPoints.Count)
 											mNewConnexionPointIndex = 0;
-										mRotationStep += BrickLibrary.Instance.getConnectionAngleToNext(partNumber, currentConnexionPointIndex);
+										angle += BrickLibrary.Instance.getConnectionAngleToNext(partNumber, currentConnexionPointIndex);
 										nextConnexionType = BrickLibrary.Instance.getConnexionType(partNumber, mNewConnexionPointIndex);
 									} while (nextConnexionType != connexion.mType);
 								}
@@ -114,6 +121,26 @@ namespace BlueBrick.Actions.Bricks
 					}
 				}
 			}
+
+			// then call the normal constructor
+			commonConstructor(layer, bricks, angle * Math.Sign(rotateSteps), forceKeepLastCenter);
+		}
+
+		public RotateBrick(LayerBrick layer, List<Layer.LayerItem> bricks, float angle)
+			: this(layer, bricks, angle, false)
+		{
+		}
+
+		public RotateBrick(LayerBrick layer, List<Layer.LayerItem> bricks, float angle, bool forceKeepLastCenter)
+		{
+			commonConstructor(layer, bricks, angle, forceKeepLastCenter);
+		}
+
+		private void commonConstructor(LayerBrick layer, List<Layer.LayerItem> bricks, float angle, bool forceKeepLastCenter)
+		{
+			mBrickLayer = layer;
+            mRotateCW = (angle < 0.0f);
+            mRotationStep = Math.Abs(angle);
 
 			// we must invalidate the last center if the last action in the undo stack is not a rotation
 			if (!forceKeepLastCenter && !ActionManager.Instance.getUndoableActionType().IsInstanceOfType(this))
@@ -205,7 +232,8 @@ namespace BlueBrick.Actions.Bricks
 
 			// update the bounding rectangle in any case because the brick is not necessary squared
 			mBrickLayer.updateBoundingSelectionRectangle();
-			mBrickLayer.updateBrickConnectivityOfSelection(false);
+			if (mMustUpdateBrickConnectivity)
+				mBrickLayer.updateBrickConnectivityOfSelection(false);
 		}
 
 		public override void undo()
@@ -236,7 +264,8 @@ namespace BlueBrick.Actions.Bricks
 			}
 			// update the bounding rectangle in any case because the brick is not necessary squared
 			mBrickLayer.updateBoundingSelectionRectangle();
-			mBrickLayer.updateBrickConnectivityOfSelection(false);
+			if (mMustUpdateBrickConnectivity)
+				mBrickLayer.updateBrickConnectivityOfSelection(false);
 		}
 
 		private void rotate(LayerBrick.Brick brick, Matrix rotation, float rotationAngle)

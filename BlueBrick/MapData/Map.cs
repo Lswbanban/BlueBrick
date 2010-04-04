@@ -20,7 +20,6 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using BlueBrick.Actions;
 using BlueBrick.Actions.Bricks;
-using BlueBrick.Actions;
 using BlueBrick.Actions.Layers;
 using BlueBrick.Actions.Maps;
 
