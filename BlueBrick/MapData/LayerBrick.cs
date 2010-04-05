@@ -1900,7 +1900,7 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <param name="pointInStud">the point to snap</param>
 		/// <returns>a near snap point</returns>
-		private PointF getMovedSnapPoint(PointF pointInStud)
+		public PointF getMovedSnapPoint(PointF pointInStud)
 		{
 			if (SnapGridEnabled)
 			{
@@ -2010,6 +2010,39 @@ namespace BlueBrick.MapData
 			return pointInStud;
 		}
 
+		/// <summary>
+		/// This method is called by the Map Panel when the user want to drag and drop a part from
+		/// the part library on this layer. The selection and the current part under the mouse
+		/// is then patch with this temporary part.
+		/// </summary>
+		/// <param name="partDrop">The temporary part to add</param>
+		public void addTemporaryPartDrop(Brick partDrop)
+		{
+			mBricks.Add(partDrop);
+			mSelectedObjects.Clear();
+			mSelectedObjects.Add(partDrop);
+			mCurrentBrickUnderMouse = partDrop;
+			mMouseGrabDeltaToCenter = new PointF(0.0f, 0.0f);
+			Brick.ConnectionPoint activeConnectionPoint = partDrop.ActiveConnectionPoint;
+			if (activeConnectionPoint != null)
+				mMouseGrabDeltaToActiveConnectionPoint = new PointF(partDrop.Center.X - activeConnectionPoint.mPositionInStudWorldCoord.X, partDrop.Center.Y - activeConnectionPoint.mPositionInStudWorldCoord.Y);
+			else
+				mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+		}
+
+		/// <summary>
+		/// This method is called by the Map Panel when the user finished to drag and drop a part from
+		/// the part library on this layer. The temporary part is removed from the layer.
+		/// </summary>
+		/// <param name="partDrop">The temporary part to remove</param>
+		public void removeTemporaryPartDrop(Brick partDrop)
+		{
+			mBricks.Remove(partDrop);
+			mSelectedObjects.Clear();
+			mCurrentBrickUnderMouse = null;
+			mMouseGrabDeltaToCenter = new PointF(0.0f, 0.0f);
+			mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+		}
 		#endregion
 	}
 }

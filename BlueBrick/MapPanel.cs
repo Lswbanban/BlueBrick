@@ -56,10 +56,8 @@ namespace BlueBrick
 		private Pen mSelectionRectanglePen = new Pen(Color.Black, 2);
 
 		//dragndrop of a part on the map
-		private string mCurrentPartDropNumber = null;
-		private Image mCurrentPartDropImage = null;
-		private PointF mCurrentPartDropPosition = new PointF();
-		private PointF mCurrentPartDropSnappingOffset = new PointF();
+		private LayerBrick.Brick mCurrentPartDrop = null;
+		private LayerBrick mBrickLayerThatReceivePartDrop = null;
 		private ContextMenuStrip contextMenuStrip;
 		private System.ComponentModel.IContainer components;
 		private ToolStripMenuItem bringToFrontToolStripMenuItem;
@@ -290,20 +288,6 @@ namespace BlueBrick
 				g.DrawRectangle(mSelectionRectanglePen, mSelectionRectangle.X, mSelectionRectangle.Y, width, height);
 			}
 
-			// draw the currently drop part if any
-			if (mCurrentPartDropImage != null)
-			{
-				// for the drop image (and only for it), change the interpolation mode
-				// to avoid rendering bugs
-				g.InterpolationMode = InterpolationMode.HighQualityBilinear;
-				float sizeScale = (float)(mViewScale / Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
-				float width = (float)(mCurrentPartDropImage.Width * sizeScale);
-				float height = (float)(mCurrentPartDropImage.Height * sizeScale);
-				float x = (float)((mCurrentPartDropPosition.X - mViewCornerX) * mViewScale);
-				float y = (float)((mCurrentPartDropPosition.Y - mViewCornerY) * mViewScale);
-				g.DrawImage(mCurrentPartDropImage, x, y, width, height);
-			}
-
 //for debug FPS			TimeSpan delta = DateTime.Now - time;
 //for debug FPS			g.DrawString(delta.Ticks.ToString(), new Font(FontFamily.GenericMonospace,12), Brushes.Black, 0, 0);
 		}
@@ -486,17 +470,17 @@ namespace BlueBrick
 					{
 						// if the number of click is null, that means it can be a dragndrop from another view, such as the part lib
 						// check if we need to search the image dropped, or if we already have it
-						if (mCurrentPartDropImage == null)
+						if (mCurrentPartDrop == null)
 						{
 							if (Map.Instance.canAddBrick())
 							{
 								// ask the main window if one part was selected in the part lib
-								mCurrentPartDropNumber = (this.TopLevelControl as MainForm).getSelectedPartNumberInPartLib();
-								if (mCurrentPartDropNumber != null)
+								string partDropNumber = (this.TopLevelControl as MainForm).getSelectedPartNumberInPartLib();
+								mBrickLayerThatReceivePartDrop = Map.Instance.SelectedLayer as LayerBrick;
+								if (partDropNumber != null && mBrickLayerThatReceivePartDrop != null)
 								{
-									mCurrentPartDropImage = BrickLibrary.Instance.getImage(mCurrentPartDropNumber);
-									BrickLibrary.Brick.Margin snapMargin = BrickLibrary.Instance.getSnapMargin(mCurrentPartDropNumber);
-									mCurrentPartDropSnappingOffset = new PointF(snapMargin.mLeft, snapMargin.mTop);
+									mCurrentPartDrop = new LayerBrick.Brick(partDropNumber);
+									mBrickLayerThatReceivePartDrop.addTemporaryPartDrop(mCurrentPartDrop);
 									// set the hand cursor
 									this.Cursor = MainForm.Instance.BrickDuplicateCursor;
 								}
@@ -509,15 +493,17 @@ namespace BlueBrick
 						}
 
 						// check if we are currently dragging a part
-						if (mCurrentPartDropImage != null)
+						if (mCurrentPartDrop != null)
 						{
 							// memorise the position of the mouse snapped to the grid
-							PointF partCorner = getScreenPointInStud(e.Location);
-							mCurrentPartDropPosition = Layer.snapToGrid(partCorner);
-							mCurrentPartDropPosition.X -= mCurrentPartDropSnappingOffset.X;
-							mCurrentPartDropPosition.Y -= mCurrentPartDropSnappingOffset.Y;
-							// refresh the view
-							mustRefreshView = true;
+							PointF partCenter = getScreenPointInStud(e.Location);
+							if (mBrickLayerThatReceivePartDrop != null)
+							{
+								mCurrentPartDrop.Center = mBrickLayerThatReceivePartDrop.getMovedSnapPoint(partCenter);
+								mBrickLayerThatReceivePartDrop.updateBoundingSelectionRectangle();
+								// refresh the view
+								mustRefreshView = true;
+							}
 						}
 					}
 					break;
@@ -625,14 +611,18 @@ namespace BlueBrick
 						// update the view at the end of the scroll
 						mustRefreshView = true;
 					}
-					else if (mCurrentPartDropImage != null)
+					else if (mCurrentPartDrop != null)
 					{
-						// we have finished a dragndrop
-						// add the new part
-						Map.Instance.addBrick(mCurrentPartDropNumber, mCurrentPartDropPosition);
+						// we have finished a dragndrop, remove the temporary part
+						if (mBrickLayerThatReceivePartDrop != null)
+						{
+							mBrickLayerThatReceivePartDrop.removeTemporaryPartDrop(mCurrentPartDrop);
+							mBrickLayerThatReceivePartDrop = null;
+						}
+						// and add the real new part
+						Map.Instance.addBrick(mCurrentPartDrop.PartNumber, mCurrentPartDrop.Position, mCurrentPartDrop.Orientation);
 						(this.TopLevelControl as MainForm).resetSelectedPartInPartLib();
-						mCurrentPartDropNumber = null;
-						mCurrentPartDropImage = null;
+						mCurrentPartDrop = null;
 						mustRefreshView = true;
 					}
 					break;
@@ -662,10 +652,15 @@ namespace BlueBrick
 		{
 			// if the user leave the panel while is was dropping a part,
 			// just cancel the drop
-			if (mCurrentPartDropImage != null)
+			if (mCurrentPartDrop != null)
 			{
-				mCurrentPartDropNumber = null;
-				mCurrentPartDropImage = null;
+				// remove and destroy the part
+				if (mBrickLayerThatReceivePartDrop != null)
+				{
+					mBrickLayerThatReceivePartDrop.removeTemporaryPartDrop(mCurrentPartDrop);
+					mBrickLayerThatReceivePartDrop = null;
+				}
+				mCurrentPartDrop = null;
 				// restore the default cursor
 				this.Cursor = Cursors.Arrow;
 				// update the view

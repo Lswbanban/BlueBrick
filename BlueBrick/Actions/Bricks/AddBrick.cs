@@ -26,11 +26,14 @@ namespace BlueBrick.Actions.Bricks
 		private LayerBrick.Brick mBrick = null;
 		private int mBrickIndex = -1; // this index is for the redo, to add the text at the same place
 
-		public AddBrick(LayerBrick layer, string partNumber, PointF position)
+		public AddBrick(LayerBrick layer, string partNumber, PointF position, float orientation)
 		{
 			mBrickLayer = layer;
 			mBrick = new LayerBrick.Brick(partNumber);
 			mBrick.Position = position;
+			// set the orientation if it is not the default one
+			if (orientation != 0.0f)
+				mBrick.Orientation = orientation;
 		}
 
 		public override string getName()

@@ -488,8 +488,13 @@ namespace BlueBrick.MapData
 
 		public void addBrick(string partNumber, PointF position)
 		{
+			addBrick(partNumber, position, 0.0f);
+		}
+
+		public void addBrick(string partNumber, PointF position, float orientation)
+		{
 			if (canAddBrick())
-				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, partNumber, position));
+				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, partNumber, position, orientation));
 		}
 
 		public void addConnectBrick(string partNumber)
