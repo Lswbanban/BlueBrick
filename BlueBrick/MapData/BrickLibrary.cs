@@ -63,7 +63,28 @@ namespace BlueBrick.MapData
 					public int mPolarity = 0; // 0 unasasigned, 2 -ve, 3 +ve
 					public float mDiffAngleBtwTDandBB = 0.0f;
 				}
-				public int mTDId = 0;
+
+				public class TDId
+				{
+					private int mDefaultId = 0;
+
+					public int ID
+					{
+						get { return mDefaultId; }
+					}
+
+					public void addId(string registry, int id)
+					{
+						mDefaultId = id;
+					}
+
+					public void addToAssociationDictionnary(Dictionary<int, string> TDPartNumberAssociation, string partNumber)
+					{
+						TDPartNumberAssociation.Add(mDefaultId, partNumber);
+					}
+				}
+
+				public TDId mTDId = new TDId();
 				public int mFlags = 0;
 				public bool mHasSeveralPort = false;
 				public List<ConnexionData> mConnexionData = null;
@@ -352,62 +373,15 @@ namespace BlueBrick.MapData
 					while (continueToRead)
 					{
 						if (xmlReader.Name.Equals("ID"))
-							mTDRemapData.mTDId = xmlReader.ReadElementContentAsInt();
+							readTrackDesignerIDTag(ref xmlReader);
+						else if (xmlReader.Name.Equals("IDList"))
+							readTrackDesignerIDListTag(ref xmlReader);
 						else if (xmlReader.Name.Equals("Flag"))
 							mTDRemapData.mFlags = xmlReader.ReadElementContentAsInt();
 						else if (xmlReader.Name.Equals("HasSeveralGeometries"))
 							mTDRemapData.mHasSeveralPort = xmlReader.ReadElementContentAsBoolean();
 						else if (xmlReader.Name.Equals("TDBitmapList"))
-						{
-							bool bitmapFound = xmlReader.ReadToDescendant("TDBitmap");
-							// instanciate the list of bitmap id
-							if (bitmapFound)
-								mTDRemapData.mConnexionData = new List<TDRemapData.ConnexionData>();
-
-							while (bitmapFound)
-							{
-								// instanciate a connection point for the current connexion
-								TDRemapData.ConnexionData connexionData = new TDRemapData.ConnexionData();
-
-								// read the first child node
-								xmlReader.Read();
-								continueToRead = !xmlReader.EOF;
-								while (continueToRead)
-								{
-									if (xmlReader.Name.Equals("BBConnexionPointIndex"))
-										connexionData.mBBConnexionPointIndex = xmlReader.ReadElementContentAsInt();
-									else if (xmlReader.Name.Equals("Type"))
-										connexionData.mType = xmlReader.ReadElementContentAsInt();
-									else if (xmlReader.Name.Equals("Polarity"))
-									{
-										string polarity = xmlReader.ReadElementContentAsString();
-										if (polarity.Equals("N"))
-											connexionData.mPolarity = 2;
-										else if (polarity.Equals("P"))
-											connexionData.mPolarity = 3;
-										else
-											connexionData.mPolarity = 0;
-									}
-									else if (xmlReader.Name.Equals("AngleBetweenTDandBB"))
-										connexionData.mDiffAngleBtwTDandBB = xmlReader.ReadElementContentAsFloat();
-									else
-										xmlReader.Read();
-
-									// check if we need to continue
-									continueToRead = !xmlReader.Name.Equals("TDBitmap") && !xmlReader.EOF;
-								}
-
-								// add the current connexion in the list
-								mTDRemapData.mConnexionData.Add(connexionData);
-
-								// go to next bitmap
-								bitmapFound = !xmlReader.EOF && xmlReader.ReadToNextSibling("TDBitmap");
-							}
-
-							// finish the bitmap list
-							if (!xmlReader.EOF)
-								xmlReader.ReadEndElement();
-						}
+							readTrackDesignerBitmapTag(ref xmlReader);
 						else
 							xmlReader.Read();
 
@@ -423,6 +397,107 @@ namespace BlueBrick.MapData
 				{
 					xmlReader.Read();
 				}
+			}
+
+			private void readTrackDesignerIDTag(ref System.Xml.XmlReader xmlReader)
+			{
+				// check if the id list is not empty
+				if (!xmlReader.IsEmptyElement)
+				{
+					// get the registry attribute if any
+					string registry = "default";
+					if (xmlReader.HasAttributes)
+						registry = xmlReader.GetAttribute("registry");
+					// read the int id
+					int id = xmlReader.ReadElementContentAsInt();
+					// add it to the id class (that can maintain several ids)
+					mTDRemapData.mTDId.addId(registry, id);
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private void readTrackDesignerIDListTag(ref System.Xml.XmlReader xmlReader)
+			{
+				// check if the id list is not empty
+				if (!xmlReader.IsEmptyElement)
+				{
+					// read the first child node
+					xmlReader.Read();
+					bool continueToRead = !xmlReader.EOF;
+					while (continueToRead)
+					{
+						if (xmlReader.Name.Equals("ID"))
+							readTrackDesignerIDTag(ref xmlReader);
+						else
+							xmlReader.Read();
+
+						// check if we need to continue
+						continueToRead = !xmlReader.Name.Equals("IDList") && !xmlReader.EOF;
+					}
+
+					// finish the ID list
+					if (!xmlReader.EOF)
+						xmlReader.ReadEndElement();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private void readTrackDesignerBitmapTag(ref System.Xml.XmlReader xmlReader)
+			{
+				bool bitmapFound = xmlReader.ReadToDescendant("TDBitmap");
+				// instanciate the list of bitmap id
+				if (bitmapFound)
+					mTDRemapData.mConnexionData = new List<TDRemapData.ConnexionData>();
+
+				while (bitmapFound)
+				{
+					// instanciate a connection point for the current connexion
+					TDRemapData.ConnexionData connexionData = new TDRemapData.ConnexionData();
+
+					// read the first child node
+					xmlReader.Read();
+					bool continueToRead = !xmlReader.EOF;
+					while (continueToRead)
+					{
+						if (xmlReader.Name.Equals("BBConnexionPointIndex"))
+							connexionData.mBBConnexionPointIndex = xmlReader.ReadElementContentAsInt();
+						else if (xmlReader.Name.Equals("Type"))
+							connexionData.mType = xmlReader.ReadElementContentAsInt();
+						else if (xmlReader.Name.Equals("Polarity"))
+						{
+							string polarity = xmlReader.ReadElementContentAsString();
+							if (polarity.Equals("N"))
+								connexionData.mPolarity = 2;
+							else if (polarity.Equals("P"))
+								connexionData.mPolarity = 3;
+							else
+								connexionData.mPolarity = 0;
+						}
+						else if (xmlReader.Name.Equals("AngleBetweenTDandBB"))
+							connexionData.mDiffAngleBtwTDandBB = xmlReader.ReadElementContentAsFloat();
+						else
+							xmlReader.Read();
+
+						// check if we need to continue
+						continueToRead = !xmlReader.Name.Equals("TDBitmap") && !xmlReader.EOF;
+					}
+
+					// add the current connexion in the list
+					mTDRemapData.mConnexionData.Add(connexionData);
+
+					// go to next bitmap
+					bitmapFound = !xmlReader.EOF && xmlReader.ReadToNextSibling("TDBitmap");
+				}
+
+				// finish the bitmap list
+				if (!xmlReader.EOF)
+					xmlReader.ReadEndElement();
 			}
 
 			private void readLDRAWTag(ref System.Xml.XmlReader xmlReader)
@@ -719,7 +794,7 @@ namespace BlueBrick.MapData
 				mBrickDictionary.Add(partNumber, brick);
 				// add also the link between the TD number and the BB number if there is an available TD remap data
 				if (brick.mTDRemapData != null)
-					mTrackDesignerPartNumberAssociation.Add(brick.mTDRemapData.mTDId, partNumber);
+					brick.mTDRemapData.mTDId.addToAssociationDictionnary(mTrackDesignerPartNumberAssociation, partNumber);
 			}
 			catch
 			{

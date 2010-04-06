@@ -1198,7 +1198,7 @@ namespace BlueBrick
 			{
 				// special case for a down ramp (TD give to the up and down ramp the same id with different bitmap id)
 				// this part doesn't exist in TD, so we skip it.
-				if (remapData.mTDId == 232678)
+				if (remapData.mTDId.ID == 232678)
 					return false;
 
 				// write one word (2 bytes that I don't know the meaning maybe comming from the list)
@@ -1207,7 +1207,7 @@ namespace BlueBrick
 					binaryWriter.Write((ushort)0x8001);
 
 				// write the TD part number
-				binaryWriter.Write((int)remapData.mTDId);
+				binaryWriter.Write((int)remapData.mTDId.ID);
 
 				// write an instance ID (use the hash code for that)
 				binaryWriter.Write((int)brick.GetHashCode());
@@ -1241,7 +1241,7 @@ namespace BlueBrick
 				// the brick with connections, use there connexion point as origin of their position
 				double orientation = 0.0;
 				PointF position;
-				if (brick.ConnectionPoints != null)
+				if ((brick.ConnectionPoints != null) && (connectionPointIndex < brick.ConnectionPoints.Count))
 				{
 					// set the angle of the brick first
 					orientation = (double)(brick.Orientation - diffAngleBtwTDandBB);
@@ -1305,50 +1305,54 @@ namespace BlueBrick
 					{
 						// get the corresponding connexion index of the BB part for the ith TD port id
 						int BBConnexionIndexForI = remapData.mConnexionData[i].mBBConnexionPointIndex;
-						// get the connected brick at the BB connexion point
-						LayerBrick.Brick connectedBrick = brick.ConnectionPoints[BBConnexionIndexForI].ConnectedBrick;
-						// search the BB connexion index of the connected brick
-						int connectedBrickOtherBBConnexionIndex = getConnectedBrickOtherBBConnexionIndex(brick, BBConnexionIndexForI, connectedBrick);
-						while (connectedBrick != null)
+						// check if the connexion index is valid
+						if (BBConnexionIndexForI < brick.ConnectionPoints.Count)
 						{
-							// special case for the down ramp that doesn't exist in TD, in fact the down ramp is merged
-							// inside the up ramp. So we need to skip the down ramp and continue with the next linked part
-							if (connectedBrick.PartNumber.StartsWith("2678."))
+							// get the connected brick at the BB connexion point
+							LayerBrick.Brick connectedBrick = brick.ConnectionPoints[BBConnexionIndexForI].ConnectedBrick;
+							// search the BB connexion index of the connected brick
+							int connectedBrickOtherBBConnexionIndex = getConnectedBrickOtherBBConnexionIndex(brick, BBConnexionIndexForI, connectedBrick);
+							while (connectedBrick != null)
 							{
-								// take the other connexion point of the 2678 part (that only have 2 connexion points)
-								int nextConnexionIndex = 0;
-								if (connectedBrickOtherBBConnexionIndex == 0)
-									nextConnexionIndex = 1;
-								else
-									nextConnexionIndex = 0;
-								// get the next connected brick (which can be null)
-								LayerBrick.Brick nextConnectedBrick = connectedBrick.ConnectionPoints[nextConnexionIndex].ConnectedBrick;
-								connectedBrickOtherBBConnexionIndex = getConnectedBrickOtherBBConnexionIndex(connectedBrick, nextConnexionIndex, nextConnectedBrick);
-								// continue to the next brick
-								connectedBrick = nextConnectedBrick;
-								continue;
+								// special case for the down ramp that doesn't exist in TD, in fact the down ramp is merged
+								// inside the up ramp. So we need to skip the down ramp and continue with the next linked part
+								if (connectedBrick.PartNumber.StartsWith("2678."))
+								{
+									// take the other connexion point of the 2678 part (that only have 2 connexion points)
+									int nextConnexionIndex = 0;
+									if (connectedBrickOtherBBConnexionIndex == 0)
+										nextConnexionIndex = 1;
+									else
+										nextConnexionIndex = 0;
+									// get the next connected brick (which can be null)
+									LayerBrick.Brick nextConnectedBrick = connectedBrick.ConnectionPoints[nextConnexionIndex].ConnectedBrick;
+									connectedBrickOtherBBConnexionIndex = getConnectedBrickOtherBBConnexionIndex(connectedBrick, nextConnexionIndex, nextConnectedBrick);
+									// continue to the next brick
+									connectedBrick = nextConnectedBrick;
+									continue;
+								}
+
+								// compute the instance id
+								connectedBrickInstanceId = connectedBrick.GetHashCode();
+
+								// so now connectedBrickOtherBBConnexionIndex contain the BB connexion index, and we
+								// have to remap this index to the TD port id so get the remap data of the connect brick
+								BrickLibrary.Brick.TDRemapData connectedRemapData = BrickLibrary.Instance.getTDRemapData(connectedBrick.PartNumber);
+								// if we found the remap data of the connected brick
+								if (connectedRemapData != null)
+								{
+									// try to find the same BB connexion index, and the TD port id is the index j in the array
+									for (int j = 0; j < connectedRemapData.mConnexionData.Count; ++j)
+										if (connectedBrickOtherBBConnexionIndex == connectedRemapData.mConnexionData[j].mBBConnexionPointIndex)
+										{
+											connectedBrickOtherPortId = j;
+											break;
+										}
+								}
+
+								// stop the loop
+								break;
 							}
-
-							// compute the instance id
-							connectedBrickInstanceId = connectedBrick.GetHashCode();
-
-							// so now connectedBrickOtherBBConnexionIndex contain the BB connexion index, and we
-							// have to remap this index to the TD port id so get the remap data of the connect brick
-							BrickLibrary.Brick.TDRemapData connectedRemapData = BrickLibrary.Instance.getTDRemapData(connectedBrick.PartNumber);
-							// if we found the remap data of the connected brick
-							if (connectedRemapData != null)
-							{
-								// try to find the same BB connexion index, and the TD port id is the index j in the array
-								for (int j = 0; j < connectedRemapData.mConnexionData.Count; ++j)
-									if (connectedBrickOtherBBConnexionIndex == connectedRemapData.mConnexionData[j].mBBConnexionPointIndex)
-									{
-										connectedBrickOtherPortId = j;
-										break;
-									}
-							}
-
-							// stop the loop
-							break;
 						}
 					}
 
