@@ -1,0 +1,17 @@
+; This config file is used to list all the different Track Designer Registry that the AFOL Community may have used in the World.
+; All these custom registry may not be compatible between each other because they may use different part ID for describing the same part.
+; However, BlueBrick can support several Registry during the loading of a TDL file, but it will use the current Registry
+; set on your machine during the saving of a TDL file in order to decide which ID should be used.
+; The TDL file saved on your machine with BlueBrick is then intended to be load in TrackDesigner with the same Registry.
+;
+; This config file allow you to associate a TDR filename (Track Designer Registry file) with a string keyword.
+; This keyword can then be used in the XML description files of the BlueBrick part library to specify the ID used in one
+; particular registry file. Please read the BlueBRick help file for more information on the XML Format.
+;
+; The format for this config file is: <keyword>=<TDRFilename> without space around "="
+; The keyword can not contains blank characters (no space, no tab), file name can contains space.
+; The "default" keyword is reserved for the default registry.
+; Only one registry per line, blanck lines and lines starting with a semicolon are ignored.
+;
+default=REGISTRY.TDR
+freelug=custom_reg_v09f_06-01-20.tdr

@@ -790,6 +790,9 @@ namespace BlueBrick
 			// declare a bool to check if we found some part not remaped in the remap file
 			List<int> noRemapablePartFound = new List<int>();
 
+			// update the registry to use
+			BrickLibrary.Instance.updateCurrentTrackDesignerRegistryUsed();
+
 			// open the file
 			FileStream myFileStream = new FileStream(filename, FileMode.Open);
 			BinaryReader binaryReader = new BinaryReader(myFileStream);
@@ -1113,6 +1116,9 @@ namespace BlueBrick
 
 			// step the progressbar after the init of part remap
 			MainForm.Instance.stepProgressBar();
+
+			// update the registry to use
+			BrickLibrary.Instance.updateCurrentTrackDesignerRegistryUsed();
 
 			// open the file
 			FileStream myFileStream = new FileStream(filename, FileMode.Create);

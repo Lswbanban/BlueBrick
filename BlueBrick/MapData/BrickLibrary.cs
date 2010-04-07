@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace BlueBrick.MapData
 {
@@ -66,21 +67,88 @@ namespace BlueBrick.MapData
 
 				public class TDId
 				{
+					public static string sCurrentRegistryUsed = "default";
 					private int mDefaultId = 0;
+					private Dictionary<string, int> mOtherIds = null;
 
 					public int ID
 					{
-						get { return mDefaultId; }
+						get
+						{
+							// first try to get the id for the registry set on this machine
+							int id = this.IDForCurrentRegistry;
+							if (id != 0)
+								return id;
+							// else return the default ID
+							return mDefaultId;
+						}
+					}
+
+					public int IDForCurrentRegistry
+					{
+						get
+						{
+							// first try to get the id for the registry set on this machine
+							if (mOtherIds != null)
+							{
+								int id = 0;								
+								if (mOtherIds.TryGetValue(sCurrentRegistryUsed, out id))
+									return id;
+							}
+							// else return 0
+							return 0;
+						}
+					}
+
+					public int DefaultID
+					{
+						get	{ return mDefaultId; }
 					}
 
 					public void addId(string registry, int id)
 					{
-						mDefaultId = id;
+						// check if it is the default id
+						if (registry.Equals("default"))
+						{
+							mDefaultId = id;
+						}
+						else
+						{
+							// check if we need to create the dictionnary
+							if (mOtherIds == null)
+								mOtherIds = new Dictionary<string, int>();
+							// add the new id with its key
+							mOtherIds.Add(registry, id);
+							// also if the default id is not set yet, use this one as a default id
+							if (mDefaultId == 0)
+								mDefaultId = id;
+						}
 					}
 
-					public void addToAssociationDictionnary(Dictionary<int, string> TDPartNumberAssociation, string partNumber)
+					private void addIdToAssociationDictionnary(Dictionary<int, List<Brick>> TDPartNumberAssociation, int id, Brick brick)
 					{
-						TDPartNumberAssociation.Add(mDefaultId, partNumber);
+						// try to get the list that maybe already exist
+						List<Brick> brickList = null;
+						TDPartNumberAssociation.TryGetValue(id, out brickList);
+						// if the list doesn't exist create it and add it to the dictionary
+						if (brickList == null)
+						{
+							brickList = new List<Brick>(1); // most of the time there's only one brick associated with a TD id
+							TDPartNumberAssociation.Add(id, brickList);
+						}
+						// add the brick to the list
+						if (!brickList.Contains(brick))
+							brickList.Add(brick);
+					}
+
+					public void addToAssociationDictionnary(Dictionary<int, List<Brick>> TDPartNumberAssociation, Brick brick)
+					{
+						// add the default id
+						addIdToAssociationDictionnary(TDPartNumberAssociation, mDefaultId, brick);
+						// and add the other id if needed
+						if (mOtherIds != null)
+							foreach(int id in mOtherIds.Values)
+								addIdToAssociationDictionnary(TDPartNumberAssociation, id, brick);
 					}
 				}
 
@@ -553,7 +621,10 @@ namespace BlueBrick.MapData
 		private Dictionary<int, string> mColorNames = new Dictionary<int, string>();
 
 		// a dictionary to find the corresponding BlueBrick part number from the TD part id
-		private Dictionary<int, string> mTrackDesignerPartNumberAssociation = new Dictionary<int, string>();
+		private Dictionary<int, List<Brick>> mTrackDesignerPartNumberAssociation = new Dictionary<int, List<Brick>>();
+
+		// a dictionary that match the registry file names with a registry keyword used in the part XML files
+		private Dictionary<string, string> mTrackDesignerRegistryFiles = new Dictionary<string, string>();
 
 		// singleton on the map (we assume it is always valid)
 		private static BrickLibrary sInstance = new BrickLibrary();
@@ -593,6 +664,7 @@ namespace BlueBrick.MapData
 			mBrickDictionary.Clear();
 			mColorNames.Clear();
 			mTrackDesignerPartNumberAssociation.Clear();
+			mTrackDesignerRegistryFiles.Clear();
 			mWereUnknownBricksAdded = false;
 		}
 
@@ -710,8 +782,76 @@ namespace BlueBrick.MapData
 				// ignore the remaping if the file is not present
 			}
 		}
+
+		/// <summary>
+		/// This method should be called when the application start to associate keyword and filename
+		/// for the TD registry files.
+		/// </summary>
+		public void loadTrackDesignerRegistryFileList()
+		{
+			try
+			{
+				// clear the dictionnary before starting
+				mTrackDesignerRegistryFiles.Clear();
+				// try to load the rempa file
+				string registryFileName = Application.StartupPath + @"/config/TDRegistryList.txt";
+				System.IO.StreamReader textReader = new System.IO.StreamReader(registryFileName);
+				char[] lineSpliter = { '=' };
+				while (!textReader.EndOfStream)
+				{
+					// read the line, trim it and avoid empty line and comments
+					string line = textReader.ReadLine();
+					line = line.Trim();
+					if ((line.Length > 0) && (line[0] != ';'))
+					{
+						try
+						{
+							// split the line with the "=" char, keep the line case sensitive
+							string[] token = line.Split(lineSpliter);
+							if (token.Length == 2)
+								mTrackDesignerRegistryFiles.Add(token[1], token[0]);
+						}
+						catch (Exception)
+						{
+							// we just skip the line, if the format is not correct
+						}
+					}
+				}
+			}
+			catch (Exception)
+			{
+				// ignore the remaping if the file is not present
+			}
+		}
 		
 		#endregion
+
+		/// <summary>
+		/// This method will check the windows registry info to know if there is any key
+		/// set by the TrackDesigner software to know which TDR registry is used by TD.
+		/// Track Designer store its preference in this key:
+		/// HKEY_CURRENT_USER\Software\Train Depot\Track Designer\Registry
+		/// </summary>
+		public void updateCurrentTrackDesignerRegistryUsed()
+		{
+			// set the default keyword in case we don't find it
+			Brick.TDRemapData.TDId.sCurrentRegistryUsed = "default";
+
+			// try to read the value from the windows registry
+			Object TDRegistryFilenameObject = Registry.GetValue("HKEY_CURRENT_USER\\Software\\Train Depot\\Track Designer\\Registry", "Filename", null);
+			if (TDRegistryFilenameObject != null)
+			{
+				// try to convert the key into a string and then find the file in the registry list
+				string TDRegistryFilename = TDRegistryFilenameObject as string;
+				if (TDRegistryFilename != null)
+				{
+					System.IO.FileInfo fileInfo = new System.IO.FileInfo(TDRegistryFilename);
+					string keyword = null;
+					if (mTrackDesignerRegistryFiles.TryGetValue(fileInfo.Name, out keyword))
+						Brick.TDRemapData.TDId.sCurrentRegistryUsed = keyword;
+				}
+			}
+		}
 
 		/// <summary>
 		/// This method create a default bitmap with a red cross and the part number,
@@ -794,7 +934,7 @@ namespace BlueBrick.MapData
 				mBrickDictionary.Add(partNumber, brick);
 				// add also the link between the TD number and the BB number if there is an available TD remap data
 				if (brick.mTDRemapData != null)
-					brick.mTDRemapData.mTDId.addToAssociationDictionnary(mTrackDesignerPartNumberAssociation, partNumber);
+					brick.mTDRemapData.mTDId.addToAssociationDictionnary(mTrackDesignerPartNumberAssociation, brick);
 			}
 			catch
 			{
@@ -1015,12 +1155,57 @@ namespace BlueBrick.MapData
 		/// <returns>An instance of remap data, that contains all the information to translate the specified part into Track Designer</returns>
 		public Brick.TDRemapData getTDRemapData(int tdID, out string BBPartNumber)
 		{
-			// first get the corresponding BlueBrick part number from the TD id
-			mTrackDesignerPartNumberAssociation.TryGetValue(tdID, out BBPartNumber);
-			// if not null try to get the remap data for this BlueBrick part
-			if (BBPartNumber != null)
-				return getTDRemapData(BBPartNumber);
-			return null;
+			// the brick that will best fit the TD id
+			Brick brickFound = null;
+			// first get the corresponding Brick list from the TD id
+			List<Brick> brickList = null;
+			mTrackDesignerPartNumberAssociation.TryGetValue(tdID, out brickList);
+			// if not null try to get the remap data for this or these Brick parts
+			if (brickList != null)
+			{
+				if (brickList.Count == 1)
+				{
+					// if only one brick is mapped with this TD id, just use this one
+					brickFound = brickList[0];
+				}
+				else
+				{
+					// The brick library normally can not generate an empty list, but even if the
+					// list is empty, the following code will not fail.
+					// else we need to search the best brick according to the current TD registry set
+					// on this machine and the TD id
+					Brick bestBrick = null; // the brick for the registry set on this machine
+					Brick defaultBrick = null; // the default brick
+					Brick otherRegistryBrick = null; // the brick comes from another registry
+					foreach (Brick brick in brickList)
+						if (brick.mTDRemapData.mTDId.IDForCurrentRegistry == tdID)
+							bestBrick = brick;
+						else if (brick.mTDRemapData.mTDId.DefaultID == tdID)
+							defaultBrick = brick;
+						else
+							otherRegistryBrick = brick;
+
+					// return the best brick among all the brick found
+					if (bestBrick != null)
+						brickFound = bestBrick;
+					else if (defaultBrick != null)
+						brickFound = defaultBrick;
+					else if (otherRegistryBrick != null)
+						brickFound = otherRegistryBrick;
+				}
+			}
+
+			// if we found a brick, set the part number and return its remapdata (that can be null)
+			if (brickFound != null)
+			{
+				BBPartNumber = brickFound.mPartNumber;
+				return brickFound.mTDRemapData;
+			}
+			else
+			{
+				BBPartNumber = null;
+				return null;
+			}
 		}
 
 		/// <summary>

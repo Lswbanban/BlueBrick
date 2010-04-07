@@ -37,7 +37,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-- [target 1.6] MISSING FEATURE (Alex & Alban): When you drag'n'drop a connected brick, the dragged brick is not rotated for a proper connection
 - [target 1.6] MISSING FEATURE (Alban): make configurable connexion points
 - [target 1.6] MISSING FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder)
 - [target 1.7] MISSING FEATURE (Alban): support new flex PF track.
@@ -58,10 +57,11 @@ Open bugs:
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Do not fill the optim combo box in code
-- [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file: check if we can remove the hard code exception for the ramp? TD registry file is stored in: HKEY_CURRENT_USER\Software\Train Depot\Track Designer\Registry    and the keyname is "Filename"
+- [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file: check if we can remove the hard code exception for the ramp? (if (remapData.mTDId.ID == 232678) return false;	if (connectedBrick.PartNumber.StartsWith("2678."))
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
 Bug fixed in 1.6.0.0:
+- NEW FEATURE (Alex & Alban): When you drag'n'drop a connected brick, the dragged brick is not rotated for a proper connection
 - NEW FEATURE (Alban, Stephan): Highlight even more the grabbed part in a group to help the user understand that this is the snapping part
 - NEW FEATURE (Alban): Change the highlight method of the part (remove the ugly squares) and add options to customize the highlight value
 - NEW FEATURE (Alban): Move the grid origin with the mouse when the grid layer is selected
