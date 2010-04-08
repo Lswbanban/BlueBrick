@@ -25,11 +25,18 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/TDBitmap&gt;<BR>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<BR>
 		&nbsp;&nbsp;&nbsp;&nbsp;&lt;/TDBitmapList&gt;<BR>
-		&lt;/TrackDesigner&gt;
+		&lt;/TrackDesigner&gt;<BR>
+		<BR>
+		<BR>
+		<I>Note: The &lt;ID&gt; tag can be replaced by a list of ids that has this syntax:</I><BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;IDList&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ID registry="..."&gt;...&lt;/ID&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;/IDList&gt;<BR>
 	</TD>
 </TR><TR>
 	<TD CLASS="Tilte">Default Value:</TD>
-	<TD>If there is no &lt;TrackDesigner&gt;, the part is not compatible with TrackDesigner.</TD>
+	<TD>If there is no &lt;TrackDesigner&gt; tag, the part is not compatible with TrackDesigner.</TD>
 </TR><TR>
 	<TD CLASS="Tilte">Description:</TD>
 	<TD>A set of information used by BlueBrick to convert Track Designer parts to BlueBrick parts and vice and versa.</TD>
@@ -41,6 +48,10 @@
 <P>Normally, you only need to add this XML tag if you add a part that is supported by Track Designer. BlueBrick already comes with the full support of Track Designer's default library so you will probably never need to add this information. However, since Track Designer also has a feature to expand the library, it can happen that you want to support the custom part you made for Track Designer (in order to load your TDL file created with your custom TD library).</P>
 
 <P>The <FONT CLASS="Important">ID field</FONT> contains the full Track Designer ID (this can be seen in the parts properties window by right clicking on the part in Track Designer, and choosing "Properties"). This ID is used to make the link between the Track Designer part and the corresponding BlueBrick part. A default value is not possible, this field must always have an entry.</P>
+
+<P>Since it is possible to assign any ID to a part in a TD registry, it may happen that the same part have different IDs in different custom registries, making these two registries not compatible between them. However BlueBrick can still load two different TDL files saved with uncompatible TD registries. If a part is known to have different TD ids in different registries, you can replace the <FONT CLASS="Important">ID field</FONT> by a <FONT CLASS="Important">IDList field</FONT> in which you list all the known IDs.</P>
+
+<P>The <FONT CLASS="Important">ID field</FONT> contains an attribute named <FONT CLASS="Important">registry</FONT>. The value of this attribute is a keyword that reference the registry in which the part has this id. As a keyword, you can use the name of the LUG/LTC that use the registry or the name of the website that distribute this registry. Then in the "config" folder of the BlueBrick installation folder, you can find a configuration file named "TDRegistryList.txt" in which you can associate your keyword with the actual file name of the registry.</P>
 
 <P>The <FONT CLASS="Important">Flag field</FONT> contains an integer value needed by Track Designer. This field can have only four values:
 <UL>
