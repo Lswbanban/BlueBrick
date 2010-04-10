@@ -6,4 +6,19 @@
 		<fr>Plaque de base 16 x 16 avec un dessin d'île et d'eau</fr>
 	</Description>
 	<ImageURL>http://media.peeron.com/ldraw/images/7/3867p01.png</ImageURL>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>1120003867</ID> <!-- ID of this part in Track Designer -->
+		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<HasSeveralGeometries>false</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>20</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>90</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>
 </part>

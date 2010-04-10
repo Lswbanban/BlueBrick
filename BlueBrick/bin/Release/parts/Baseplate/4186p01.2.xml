@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Alex McKenna</Author>
+	<Description>
+		<en>Baseplate 48 x 48 with Playing Field Pattern</en>
+		<fr>Plaque de base 48 x 48 avec marquage de terrain de jeu</fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/ldraw/images/2/4186p01.png</ImageURL>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>1010004186</ID>
+		<Flag>0</Flag>
+		<HasSeveralGeometries>false</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>20</Type>
+				<Polarity>0</Polarity>
+				<AngleBetweenTDandBB>0</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>  
+</part>

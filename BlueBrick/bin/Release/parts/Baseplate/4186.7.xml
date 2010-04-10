@@ -8,7 +8,10 @@
 
 	<!-- Track Designer remaping data -->
 	<TrackDesigner>
-		<ID>628</ID> <!-- ID of this part in Track Designer -->
+		<IDList><!-- ID of this part in Track Designer -->
+			<ID registry="default">628</ID>
+			<ID registry="freelug">4186</ID>
+		</IDList>
 		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
 		<HasSeveralGeometries>false</HasSeveralGeometries>
 		<TDBitmapList>

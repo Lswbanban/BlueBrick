@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <part>
-	<Author>Alban Nanty</Author>
+	<Author>Alex McKenna</Author>
 	<Description>
-		<en>Baseplate 32 x 32 Canyon Plate with Mountain and River Rapids Pattern</en>
-		<fr>Plaque de base 32 x 32 plaque Canyon avec un dessin de montagne et de rapides</fr>
+		<en>Baseplate 32 x 32 Canyon Plate with Foliage Rocks and Lagoon Pattern</en>
+		<fr>Plaque de base 32 x 32 plaque Canyon avec un dessin de rochers feuillus et de lagon</fr>
 	</Description>
-	<ImageURL>http://media.peeron.com/pics/inv/custpics/6024px5.1076284713.jpg</ImageURL>
+	<ImageURL>http://media.peeron.com/pics/inv/custpics/6024px2.1061798180.jpg</ImageURL>
 
 	<!-- Track Designer remaping data -->
 	<TrackDesigner>
-		<ID>1090006024</ID>
+		<ID>1080006024</ID>
 		<Flag>0</Flag>
 		<HasSeveralGeometries>false</HasSeveralGeometries>
 		<TDBitmapList>
@@ -20,5 +20,5 @@
 				<AngleBetweenTDandBB>180</AngleBetweenTDandBB>
 			</TDBitmap>
 		</TDBitmapList>
-	</TrackDesigner>
+	</TrackDesigner>  
 </part>
