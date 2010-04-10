@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Alex McKenna</Author>
+	<Description>
+		<en>Platform 16 x 16 x 2 and 1/3 Ramp</en>
+		<fr></fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/custpics/2642.1074966625.jpg</ImageURL>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>1040302642</ID>
+		<Flag>0</Flag>
+		<HasSeveralGeometries>false</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>20</Type>
+				<Polarity>0</Polarity>
+				<AngleBetweenTDandBB>90</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>  
+</part>

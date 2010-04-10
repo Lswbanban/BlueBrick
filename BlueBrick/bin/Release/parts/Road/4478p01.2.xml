@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <part>
-	<Author>Alban Nanty</Author>
+	<Author>Alex McKenna</Author>
 	<Description>
-		<en>Baseplate 32 x 32 with 3 Driveways, White Lines, and Circled H Pattern</en>
-		<fr>Route 32 x 32 avec 3 voies, des lignes blanches et un H cerclé</fr>
+		<en>Baseplate 32 x 32 with Driveway and Gray Pattern</en>
+		<fr>Plaque de base 32 x 32 avec une allée et un dessin gris</fr>
 	</Description>
-	<ImageURL>http://www.ldraw.org/library/unofficial/images/parts//6100p02.png</ImageURL>
+	<ImageURL>http://media.peeron.com/pics/inv/custpics/4478p01.1065324080.jpg</ImageURL>
 
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center) -->
 	<ConnexionList>
@@ -25,16 +25,16 @@
 
 	<!-- Track Designer remaping data -->
 	<TrackDesigner>
-		<ID>306100</ID> <!-- ID of this part in Track Designer -->
-		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<ID>30304478</ID>
+		<Flag>0</Flag>
 		<HasSeveralGeometries>false</HasSeveralGeometries>
 		<TDBitmapList>
 			<TDBitmap>
 				<BBConnexionPointIndex>0</BBConnexionPointIndex>
-				<Type>20</Type> <!-- The type list is too long, please refer to the help file -->
-				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<Type>7</Type>
+				<Polarity>0</Polarity>
 				<AngleBetweenTDandBB>90</AngleBetweenTDandBB>
 			</TDBitmap>
 		</TDBitmapList>
-	</TrackDesigner>
+	</TrackDesigner>  
 </part>

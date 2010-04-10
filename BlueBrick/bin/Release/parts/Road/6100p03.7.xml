@@ -6,6 +6,7 @@
 		<fr>Route 32 x 32 avec 3 voies et des lignes marquées 1 et 2</fr>
 	</Description>
 	<ImageURL>http://www.ldraw.org/library/unofficial/images/parts//6100p03.png</ImageURL>
+
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center) -->
 	<ConnexionList>
 		<connexion>
@@ -21,4 +22,19 @@
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>1030306100</ID> <!-- ID of this part in Track Designer -->
+		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<HasSeveralGeometries>false</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>20</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>90</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>
 </part>

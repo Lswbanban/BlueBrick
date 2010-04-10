@@ -45,4 +45,31 @@
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>1010304434</ID>
+		<Flag>0</Flag>
+		<HasSeveralGeometries>true</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>3</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>90</AngleBetweenTDandBB>
+			</TDBitmap>
+			<TDBitmap>
+				<BBConnexionPointIndex>2</BBConnexionPointIndex>
+				<Type>4</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>-90</AngleBetweenTDandBB>
+			</TDBitmap>
+			<TDBitmap>
+				<BBConnexionPointIndex>1</BBConnexionPointIndex>
+				<Type>10</Type> <!-- The type list is too long, please refer to the help file -->
+				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
+				<AngleBetweenTDandBB>180</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>
 </part>

@@ -36,16 +36,16 @@
 
 	<!-- Track Designer remaping data -->
 	<TrackDesigner>
-    		<ID>1010300309</ID> <!-- ID of this part in Track Designer -->
-    		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
-    		<HasSeveralGeometries>false</HasSeveralGeometries>
-    		<TDBitmapList>
-        		<TDBitmap>
-            			<BBConnexionPointIndex>0</BBConnexionPointIndex>
-            			<Type>0</Type>
-            			<Polarity>0</Polarity>
-            			<AngleBetweenTDandBB>0</AngleBetweenTDandBB>
-        		</TDBitmap>
-    		</TDBitmapList>
-	</TrackDesigner>  
+		<ID>1010300309</ID> <!-- ID of this part in Track Designer -->
+		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<HasSeveralGeometries>false</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>20</Type>
+				<Polarity>0</Polarity>
+				<AngleBetweenTDandBB>-90</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>
 </part>

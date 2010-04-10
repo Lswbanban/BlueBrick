@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<part>
+	<Author>Alex McKenna</Author>
+	<Description>
+		<en>Platform 16 x 16 x 2 and 1/3 Even</en>
+		<fr></fr>
+	</Description>
+	<ImageURL>http://media.peeron.com/pics/inv/custpics/2617.1074966619.jpg</ImageURL>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>1030302617</ID>
+		<Flag>0</Flag>
+		<HasSeveralGeometries>false</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>20</Type>
+				<Polarity>0</Polarity>
+				<AngleBetweenTDandBB>90</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner>  
+</part>

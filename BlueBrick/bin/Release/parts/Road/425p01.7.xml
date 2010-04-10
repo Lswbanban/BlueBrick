@@ -33,4 +33,19 @@
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
+
+	<!-- Track Designer remaping data -->
+	<TrackDesigner>
+		<ID>1020300425</ID>
+		<Flag>0</Flag>
+		<HasSeveralGeometries>false</HasSeveralGeometries>
+		<TDBitmapList>
+			<TDBitmap>
+				<BBConnexionPointIndex>0</BBConnexionPointIndex>
+				<Type>20</Type>
+				<Polarity>0</Polarity>
+				<AngleBetweenTDandBB>-90</AngleBetweenTDandBB>
+			</TDBitmap>
+		</TDBitmapList>
+	</TrackDesigner> 
 </part>
