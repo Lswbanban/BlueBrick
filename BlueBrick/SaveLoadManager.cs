@@ -1025,8 +1025,7 @@ namespace BlueBrick
 			// check if we found some part that can be remaped
 			if (noRemapablePartFound.Count > 0)
 			{
-				string remapFileName = Application.StartupPath + @"/config/TDPartRemap.txt";
-				string message = Properties.Resources.ErrorMsgMissingTDRemap.Replace("&", remapFileName);
+				string message = Properties.Resources.ErrorMsgMissingTDRemap;
 				foreach (int id in noRemapablePartFound)
 					message += id.ToString() + ", ";
 				message = message.Remove(message.Length - 2) + ".";

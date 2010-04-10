@@ -323,7 +323,7 @@
     <value>Some parts were not correctly loaded because you don't have them in your parts library. Some default images have been temporarily added to replace the original ones. You should ask the map's author (&amp;) where you can find them.</value>
   </data>
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
-    <value>Some Track Designer part ID's were not found in the "&amp;" remap file. BlueBrick was not able to load them and has ignored them. You should add a remap line for each missing ID in the remap file then ensure that you have the corresponding part in your BlueBrick library and try to reopen the Track Designer file. The missing ID's were:</value>
+    <value>Some Track Designer part ID's were not found in your BlueBrick library. BlueBrick was not able to load them and has ignored them. You should ensure that you have the corresponding part in your BlueBrick library with the correct Track Designer ID set in the XML file and try to reopen the Track Designer file. The missing ID's were:</value>
   </data>
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
     <value>BlueBrick can not find the help file named "BlueBrick.chm" which is supposed to be in the installation folder. Reinstalling BlueBrick may fix the problem.</value>

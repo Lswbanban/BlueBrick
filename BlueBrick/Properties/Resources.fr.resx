@@ -318,7 +318,7 @@ Le message d'erreur est :
     <value>Quelques pièces n'ont pas été correctement chargées parce que vous ne les avez pas dans votre librairie. Quelques images par défaut ont été temporairement ajoutées pour remplacer les images originales. Vous devriez demander à l'auteur du plan (&amp;) où vous pouvez les trouver.</value>
   </data>
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
-    <value>Quelques identifiants de pièces Track Designer n'ont pas été trouvés dans le fichier de remmapage "&amp;". BlueBrick n'a pas été capable de les charger et les a juste ignorés. Vous devriez ajouter une ligne de remmapage pour chaque identifiant manquant dans le fichier de remmapage et ensuite vous assurer que vous avez la pièce correspondante dans votre librairie BlueBrick puis essayer de rouvrir le fichier Track Designer. Les identifiants manquants étaient: </value>
+    <value>Quelques identifiants de pièces Track Designer n'ont pas été trouvés dans votre librairie BlueBrick. BlueBrick n'a pas été capable de les charger et les a juste ignorés. Vous devriez vous assurer que vous avez la pièce correspondante dans votre librairie BlueBrick avec l'identifiant Track Designer correctement inscrit dans le fichier XML puis essayer de rouvrir le fichier Track Designer. Les identifiants manquants étaient:</value>
   </data>
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
     <value>BlueBrick ne trouve pas le fichier d'aide qui se nomme "BlueBrick.chm" et qui est supposé être dans le répertoire d'installation. Réinstaller BlueBrick peut résoudre le problème.</value>
