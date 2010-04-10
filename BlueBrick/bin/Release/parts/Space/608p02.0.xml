@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <part>
-	<Author>Alban Nanty</Author>
+	<Author>Alex McKenna</Author>
 	<Description>
-		<en>Baseplate 32 x 32 Road 6-Stud T Intersection with Dark Gray Road Pattern</en>
-		<fr>Route croisement en T 32 x 32 6 tenons avec des lignes de marquage</fr>
+		<en>Baseplate 32 x 32 Road 9 Stud T Intersection with Green Octagon</en>
+		<fr></fr>
 	</Description>
-	<ImageURL>http://www.ldraw.org/library/unofficial/images/parts//44341p01.png</ImageURL>
+	<ImageURL>http://media.peeron.com/ldraw/images/0/608p02.png</ImageURL>
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center) -->
+
 	<ConnexionList>
 		<connexion>
 			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
@@ -48,28 +49,28 @@
 
 	<!-- Track Designer remaping data -->
 	<TrackDesigner>
-		<ID>1001004434</ID>
+		<ID>1010900608</ID>
 		<Flag>0</Flag>
 		<HasSeveralGeometries>true</HasSeveralGeometries>
 		<TDBitmapList>
-			<TDBitmap>
-				<BBConnexionPointIndex>0</BBConnexionPointIndex>
-				<Type>3</Type> <!-- The type list is too long, please refer to the help file -->
-				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
-				<AngleBetweenTDandBB>90</AngleBetweenTDandBB>
-			</TDBitmap>
-			<TDBitmap>
-				<BBConnexionPointIndex>2</BBConnexionPointIndex>
-				<Type>4</Type> <!-- The type list is too long, please refer to the help file -->
-				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
-				<AngleBetweenTDandBB>-90</AngleBetweenTDandBB>
-			</TDBitmap>
-			<TDBitmap>
-				<BBConnexionPointIndex>1</BBConnexionPointIndex>
-				<Type>10</Type> <!-- The type list is too long, please refer to the help file -->
-				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
-				<AngleBetweenTDandBB>180</AngleBetweenTDandBB>
-			</TDBitmap>
+    		<TDBitmap>
+    			<BBConnexionPointIndex>0</BBConnexionPointIndex>
+    			<Type>3</Type>
+    			<Polarity>0</Polarity>
+    			<AngleBetweenTDandBB>90</AngleBetweenTDandBB>
+    		</TDBitmap>
+    		<TDBitmap>
+    			<BBConnexionPointIndex>2</BBConnexionPointIndex>
+    			<Type>4</Type>
+    			<Polarity>0</Polarity>
+    			<AngleBetweenTDandBB>-90</AngleBetweenTDandBB>
+    		</TDBitmap>
+    		<TDBitmap>
+    			<BBConnexionPointIndex>1</BBConnexionPointIndex>
+    			<Type>10</Type>
+    			<Polarity>0</Polarity>
+    			<AngleBetweenTDandBB>180</AngleBetweenTDandBB>
+    		</TDBitmap>
 		</TDBitmapList>
 	</TrackDesigner>
 </part>

@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <part>
-	<Author>Alban Nanty</Author>
+	<Author>Alex McKenna</Author>
 	<Description>
-		<en>Baseplate 32 x 32 Island with White Lines Pattern</en>
-		<fr>Route 32 x 32 ilôt avec des lignes blanches</fr>
+		<en>Baseplate 32 x 32 with Racing Pattern</en>
+		<fr>Plaque de base 32 x 32 avec un dessin de course</fr>
 	</Description>
-	<ImageURL>http://media.peeron.com/ldraw/images/2/309p03.png</ImageURL>
-
+	<ImageURL>http://media.peeron.com/ldraw/images/2/30030p01.png</ImageURL>
 	<!-- list of connexion point (assuming that this part can connect to another one), the position of the connexion is in stud coord and relative to the center) -->
+	
 	<ConnexionList>
 		<connexion>
 			<!-- type of connexion (0=none, 1=rail, 2=road, 3=monorail standard, 4=monorail short curve) -->
@@ -34,19 +34,19 @@
 			<nextConnexionPreference>0</nextConnexionPreference> <!-- index (0-based) in that list for connecting the next part -->
 		</connexion>
 	</ConnexionList>
-	
+
 	<!-- Track Designer remaping data -->
 	<TrackDesigner>
-		<ID>21000309</ID>
-		<Flag>0</Flag> <!-- 0=no flag, 1=piece is an attachment, 2=piece is used to support elevation, 3=piece is an attachment and is used to support elevation -->
+		<ID>1031003003</ID>
+		<Flag>0</Flag>
 		<HasSeveralGeometries>false</HasSeveralGeometries>
 		<TDBitmapList>
-			<TDBitmap>
-				<BBConnexionPointIndex>0</BBConnexionPointIndex>
-				<Type>20</Type> <!-- The type list is too long, please refer to the help file -->
-				<Polarity>0</Polarity> <!-- 0=unasasigned, N=-ve, P=+ve -->
-				<AngleBetweenTDandBB>-90</AngleBetweenTDandBB>
-			</TDBitmap>
+    		<TDBitmap>
+    			<BBConnexionPointIndex>0</BBConnexionPointIndex>
+    			<Type>0</Type>
+    			<Polarity>0</Polarity>
+    			<AngleBetweenTDandBB>-90</AngleBetweenTDandBB>
+    		</TDBitmap>
 		</TDBitmapList>
-	</TrackDesigner>
+	</TrackDesigner>  
 </part>
