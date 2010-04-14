@@ -11,12 +11,15 @@ trash\*
 BlueBrick\obj\*
 BlueBrick\bin\Debug\*
 BlueBrick\bin\Release\old version
-BlueBrick\bin\Release\part from Freebee
-BlueBrick\bin\Release\parts from JB
-BlueBrick\bin\Release\part from Alex
-BlueBrick\bin\Release\parts from Rapseflaps
+BlueBrick\bin\Release\part to integrate
 
 ; specific files
 BlueBrick\BlueBrick.csproj.user
 BlueBrick\bin\Release\BlueBrick*
 BlueBrick.resources.dll
+
+; ignore the part HG database
+BlueBrick\bin\Release\.hg
+BlueBrick\bin\Release\.hgignore
+BlueBrick\bin\Release\parts
+BlueBrick\bin\Release\UpadateFileList.bat
