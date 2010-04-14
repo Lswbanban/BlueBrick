@@ -160,6 +160,10 @@ namespace BlueBrick.MapData
 
 			public class LDRAWRemapData
 			{
+				public float mAngle = 0.0f;
+				public PointF mTranslation = new PointF();
+				public float mPreferedHeight = 0.0f;
+				public string mAssociatedSleeperID = null;
 			};
 
 			public string			mImageURL = null; // the URL on internet of the image for part list export in HTML
@@ -215,7 +219,7 @@ namespace BlueBrick.MapData
 								readHullTag(ref xmlReader);
 							else if (xmlReader.Name.Equals("TrackDesigner"))
 								readTrackDesignerTag(ref xmlReader);
-							else if (xmlReader.Name.Equals("LDRAW"))
+							else if (xmlReader.Name.Equals("LDraw"))
 								readLDRAWTag(ref xmlReader);
 							else
 								xmlReader.Read();
@@ -457,7 +461,7 @@ namespace BlueBrick.MapData
 						continueToRead = !xmlReader.Name.Equals("TrackDesigner") && !xmlReader.EOF;
 					}
 
-					// finish the connexion
+					// finish the track designer tag
 					if (!xmlReader.EOF)
 						xmlReader.ReadEndElement();
 				}
@@ -574,6 +578,31 @@ namespace BlueBrick.MapData
 				bool continueToRead = !xmlReader.IsEmptyElement;
 				if (continueToRead)
 				{
+					// the LDRAW tag is not empty, instanciate the class that will hold the data
+					mLDRAWRemapData = new LDRAWRemapData();
+
+					// read the first child node
+					xmlReader.Read();
+					continueToRead = !xmlReader.EOF;
+					while (continueToRead)
+					{
+						if (xmlReader.Name.Equals("Angle"))
+							mLDRAWRemapData.mAngle = xmlReader.ReadElementContentAsFloat();
+						else if (xmlReader.Name.Equals("Translation"))
+							mLDRAWRemapData.mTranslation = readPointTag(ref xmlReader, "Translation");
+						else if (xmlReader.Name.Equals("PreferedHeight"))
+							mLDRAWRemapData.mPreferedHeight = xmlReader.ReadElementContentAsFloat();
+						else if (xmlReader.Name.Equals("SleeperID"))
+							mLDRAWRemapData.mAssociatedSleeperID = xmlReader.ReadContentAsString().ToUpper();
+						else
+							xmlReader.Read();
+						// check if we need to continue
+						continueToRead = !xmlReader.Name.Equals("LDraw") && !xmlReader.EOF;
+					}
+
+					// finish the LDraw tag
+					if (!xmlReader.EOF)
+						xmlReader.ReadEndElement();
 				}
 				else
 				{

@@ -4,42 +4,48 @@
 <META NAME="description" CONTENT="The reference documentation for BlueBrick.">
 <META NAME="author" CONTENT="Alban Nanty">
 <LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
-<Title>Add information for LDRAW Compatibility</Title>
+<Title>Add information for LDraw Compatibility</Title>
 </HEAD>
 <BODY>
-<H1>Add information for LDRAW Compatibility</H1>
+<H1>Add information for LDraw Compatibility</H1>
 
 <TABLE CLASS="XMLDescription">
 <TR>
 	<TD CLASS="Tilte">Syntax:</TD>
-	<TD CLASS="XMLCode">&lt;LDRAW&gt;<BR>
+	<TD CLASS="XMLCode">&lt;LDraw&gt;<BR>
 		&nbsp;&nbsp;&nbsp;&nbsp;&lt;Angle&gt;...&lt;/Angle&gt;<BR>
-		&nbsp;&nbsp;&nbsp;&nbsp;&lt;x&gt;...&lt;/x&gt;<BR>
-		&nbsp;&nbsp;&nbsp;&nbsp;&lt;y&gt;...&lt;/y&gt;<BR>
-		&nbsp;&nbsp;&nbsp;&nbsp;&lt;z&gt;...&lt;/z&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;Translation&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;x&gt;...&lt;/x&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;y&gt;...&lt;/y&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Translation&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;PreferedHeight&gt;...&lt;/PreferedHeight&gt;<BR>
 		&nbsp;&nbsp;&nbsp;&nbsp;&lt;SleeperID&gt;...&lt;/SleeperID&gt;<BR>
-		&lt;/LDRAW&gt;
+		&lt;/LDraw&gt;
 	</TD>
 </TR><TR>
 	<TD CLASS="Tilte">Default Value:</TD>
-	<TD>If there is no &lt;LDRAW&gt;, the part is not compatible with LDraw.</TD>
+	<TD>If there is no &lt;LDraw&gt;, the part is not compatible with LDraw.</TD>
 </TR><TR>
 	<TD CLASS="Tilte">Description:</TD>
 	<TD>A set of information used by BlueBrick to convert LDraw parts to BlueBrick parts and vice and versa.</TD>
 </TR>  
 </TABLE>
 
-<P>BlueBrick can save and load files in the LDRAW format. Because the origin (e.g. rotation), of the parts in the LDRAW files are not always the same as the origin of the parts in the BlueBrick library, BlueBrick needs to apply some transformation on the position and orientation of the parts when saving or loading an LDRAW file format.</P>
+<P>BlueBrick can save and load files in the LDraw format. Because the origin (e.g. rotation), of the parts in the LDraw files are not always the same as the origin of the parts in the BlueBrick library, BlueBrick needs to apply some transformation on the position and orientation of the parts when saving or loading an LDraw file format.</P>
 
-<P>If you are extending your library with sets, you probably don't need to modify this file because the LDRAW library mostly contains parts and very few models. Because of this your LDraw software will not be able to load your sets unless you have you the corresponding LDR file.</P>
+<P>If you are extending your library with sets, you probably don't need to modify this file because the LDraw library mostly contains parts and very few models. Because of this your LDraw software will not be able to load your sets unless you have you the corresponding LDR file.</P>
 
-<P>Moreover if you are extending your library with a part, you only need to add an LDRAW field in the XML file if the origin of the part is different in BlueBrick and LDraw.</P>
+<P>Moreover if you are extending your library with a part, you only need to add an LDraw field in the XML file if the origin of the part is different in BlueBrick and LDraw.</P>
 
 <P>The <FONT CLASS="Important">Angle field</FONT> contains the difference of angle between the two coordinate systems along the UP axis (in degrees).</P>
 
-<P>The <FONT CLASS="Important">x, y and z fields</FONT> contain the difference in position between the two coordinate systems (in <A HREF="http://www.brickwiki.org/wiki/LDU">LDU</A>).</P>
+<P>The <FONT CLASS="Important">x and y inside the translation fields</FONT> contain the difference in position between the two coordinate systems (in <A HREF="http://www.brickwiki.org/wiki/LDU">LDU</A>).</P>
 
-<P>The <FONT CLASS="Important">SleeperID field</FONT> contains the BlueBrick part ID (the part number followed by a dot and the color ID), of the sleeper to use or "skip" if you want to skip the sleeper parts during loading.</P>
+<P>When you save your BlueBrick map in LDraw, BlueBrick place all the part at the altitude 0 by default. The <FONT CLASS="Important">PreferedHeight field</FONT> contains a height value (in <A HREF="http://www.brickwiki.org/wiki/LDU">LDU</A>) that is used by BlueBrick instead of the altitude 0. But if you change the altitude of a part with a LDraw software and reload the map in BlueBrick, the altitude will be conserved in the following saving. The <FONT CLASS="Important">PreferedHeight field</FONT> is only used during the save in LDraw format if the altitude of the part is 0.</P>
+<P>Note that if you use a non-null value for the <FONT CLASS="Important">PreferedHeight field</FONT> of a part and save a BlueBrick map containting this part then the altitude of this part will never changed anymore in that BlueBrick map file, even if you change the <FONT CLASS="Important">PreferedHeight field</FONT> again and reload the part library. Because the part was saved in the LDR file with the first value you tuned and this value is then alway kept by BlueBrick. So if you have created a new part and want to tune its prefered height, you have to recreate the layout each time before saving it in LDR.</P>
+
+<P>The <FONT CLASS="Important">SleeperID field</FONT> contains the BlueBrick part ID (the part number followed by a dot and the color ID), of the sleeper to use with the rail part you are describing. All the sleeper IDs that you add in this field will be ignored during the loading of a LDRaw file (because BlueBrick doesn't need to display the Sleepers separatly and actually the Sleeper parts doesn't exists in the BlueBrick part library) and will be re-generated during the saving.</P>
+<P>Because the sleepers of the 4.5V and 12V rails are shared between two portions of rails, there's no miracle solution to know if a sleeper needs to be added or not. BlueBrick doesn't try to guess and always add a sleeper at all the junction point. This behavior leads BlueBrick to generate a LDraw file where some sleepers are placed exactly at the same place than the existing sleeper inside the LDraw shortcut piece.</P>
 
 </BODY>
 </HTML>
