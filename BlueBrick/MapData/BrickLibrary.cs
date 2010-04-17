@@ -168,10 +168,11 @@ namespace BlueBrick.MapData
 				public string mUsePartInstead = null;
 			};
 
+			private static string	sIgnoreSpecialDescription = "IGNORE";
 			public string			mImageURL = null; // the URL on internet of the image for part list export in HTML
 			public string			mDescription = BlueBrick.Properties.Resources.TextUnknown; // the description of the part in the current language of the application
 			public string			mPartNumber = null; // the part number (same as the key in the dictionnary), usefull in case of part renaming
-			public Image			mImage = null;	// the image of the brick just as it is loaded from the hardrive
+			public Image			mImage = null;	// the image of the brick just as it is loaded from the hardrive. If null, the brick is ignored by BlueBrick.
 			public Margin			mSnapMargin = new Margin(); // the the inside margin that should be use for snapping the part on the grid
 			public List<ConnectionPoint> mConnectionPoints = null; // all the information for each connection
 			public List<PointF>		mConnectionPositionList = null; // for optimization reason, the positions of the connections are also saved into a list
@@ -180,7 +181,19 @@ namespace BlueBrick.MapData
 			public TDRemapData		mTDRemapData = null;
 			public LDrawRemapData	mLDrawRemapData = null;
 
-			public Brick(string partNumber, Image image, string xmlFileName)
+			#region get/set
+			/// <summary>
+			/// An ignorable brick is a brick not visible in the part library for the user, and also
+			/// not displayed on the layout as an unknown part. This is basically a part that is invisible to
+			/// the user and that don't create error on the layout.
+			/// </summary>
+			public bool ShouldBeIgnored
+			{
+				get { return (mDescription.Equals(sIgnoreSpecialDescription)); }
+			}
+			#endregion
+
+			public Brick(string partNumber, Image image, string xmlFileName, bool isIgnorableBrick)
 			{
 				// assign the part num and the image
 				mPartNumber = partNumber;
@@ -233,6 +246,10 @@ namespace BlueBrick.MapData
 					// close the xml file
 					xmlReader.Close();
 				}
+
+				// change the description if this part should be ignnored
+				if (isIgnorableBrick)
+					mDescription = sIgnoreSpecialDescription;
 
 				// create the bounding box list (usefull for the creation of the rotated parts
 				mBoundingBox.Add(new PointF(0, 0));
@@ -597,14 +614,18 @@ namespace BlueBrick.MapData
 						else if (xmlReader.Name.Equals("SleeperID"))
 						{
 							char[] partNumberSpliter = { '.' };
-							string[] partNumberAndColor = xmlReader.ReadContentAsString().ToUpper().Split(partNumberSpliter);
+							string[] partNumberAndColor = xmlReader.ReadElementContentAsString().ToUpper().Split(partNumberSpliter);
 							if (partNumberAndColor.Length > 0)
+							{
 								mLDrawRemapData.mSleeperBrickNumber = partNumberAndColor[0];
-							if (partNumberAndColor.Length > 1)
-								mLDrawRemapData.mSleeperBrickColor = partNumberAndColor[1];
+								if (partNumberAndColor.Length > 1)
+									mLDrawRemapData.mSleeperBrickColor = partNumberAndColor[1];
+								else
+									mLDrawRemapData.mSleeperBrickColor = "0"; // black
+							}
 						}
 						else if (xmlReader.Name.Equals("UsePartInstead"))
-							mLDrawRemapData.mUsePartInstead = xmlReader.ReadContentAsString().ToUpper();
+							mLDrawRemapData.mUsePartInstead = xmlReader.ReadElementContentAsString().ToUpper();
 						else
 							xmlReader.Read();
 						// check if we need to continue
@@ -913,7 +934,7 @@ namespace BlueBrick.MapData
 			graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
 			graphics.DrawLine(pen, new Point(0, 0), new Point(widthInPixel, heightInPixel));
 			graphics.DrawLine(pen, new Point(0, heightInPixel), new Point(widthInPixel, 0));
-			if (partNumber != null)
+			if ((partNumber != null) && (partNumber.Length > 0))
 			{
 				SolidBrush brush = new SolidBrush(Color.Black);
 				StringFormat format = new StringFormat();
@@ -959,15 +980,24 @@ namespace BlueBrick.MapData
 			if (heightInStud <= 0)
 				heightInStud = 32;
 			Bitmap unknownImage = createUnknownImage(partNumber, widthInStud, heightInStud);
-			Brick brick = new Brick(partNumber, unknownImage, null);
+			Brick brick = new Brick(partNumber, unknownImage, null, false);
 			mBrickDictionary.Add(partNumber, brick);
 			mWereUnknownBricksAdded = true;
 		}
 
 		public void AddBrick(string partNumber, Image image, string xmlFileName)
 		{
+			// if the image is null, this brick should be ignored by BlueBrick, and we can created an unknown image
+			// for it. The ignore bricks have different meaning than the unknown bricks
+			bool isIgnorableBrick = false;
+			if (image == null)
+			{
+				image = createUnknownImage(null, 1, 1);
+				isIgnorableBrick = true;
+			}
+
 			// instanciate the brick and add it into the dictionnary
-			Brick brick = new Brick(partNumber, image, xmlFileName);
+			Brick brick = new Brick(partNumber, image, xmlFileName, isIgnorableBrick);
 			// if the creation of the brick launch an exception it will be catched by the calling function.
 			try
 			{
@@ -1260,6 +1290,20 @@ namespace BlueBrick.MapData
 			if (brickRef != null)
 				return brickRef.mLDrawRemapData;
 			return null;
+		}
+
+		/// <summary>
+		/// Tell if the specified brick id (with color) should be ignore during the loading of a LDraw File.
+		/// </summary>
+		/// <param name="partNumber">the bluebrick part number</param>
+		/// <returns>true if the brick should be skiped</returns>
+		public bool shouldBeIgnored(string partNumber)
+		{
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if (brickRef != null)
+				return brickRef.ShouldBeIgnored;
+			return false;
 		}
 	}
 }

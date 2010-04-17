@@ -332,6 +332,11 @@ namespace BlueBrick
 				startIndex += 6; // skip d f g h i j
 				string partNumberWithoutColor = Path.GetFileNameWithoutExtension(partFullName).ToUpper();
 				string partNumber = partNumberWithoutColor + "." + color;
+
+				// check if it is a sleeper that we should ignore
+				if (BrickLibrary.Instance.shouldBeIgnored(partNumber))
+					return;
+
 				// compute the orientation angle
 				float angle = (float)Math.Atan2(c, a);
 				// compute the angle in degree
@@ -341,10 +346,6 @@ namespace BlueBrick
 				BrickLibrary.Brick.LDrawRemapData remapData = BrickLibrary.Instance.getLDrawRemapData(partNumber);
 				if (remapData != null)
 				{
-					// check if we need to skip this part during the loading
-					if ((remapData.mSleeperBrickNumber != null) && remapData.mSleeperBrickNumber.Equals("SKIP"))
-						return;
-
 					// cheat the angle
 					angle -= remapData.mAngle;
 					// add a shift in the good direction

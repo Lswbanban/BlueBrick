@@ -119,6 +119,7 @@ namespace BlueBrick
 			// create a list of image to load all the images in a list
 			List<Bitmap> imageList = new List<Bitmap>();
 			List<string> imageFileUnloadable = new List<string>();
+			List<string> xmlFileLoaded = new List<string>();
 
 			// declare a variable to find the biggest image size
 			int biggestSize = 1; // 1 to avoid a division by 0
@@ -139,6 +140,7 @@ namespace BlueBrick
 					// put the image in the database
 					string xmlFileName = file.FullName.Substring(0, file.FullName.Length - 3) + "xml";
 					BrickLibrary.Instance.AddBrick(name, image, xmlFileName);
+					xmlFileLoaded.Add(xmlFileName);
 
 					// add the image in the image list
 					imageList.Add(image);
@@ -160,6 +162,26 @@ namespace BlueBrick
 				{
 					// add the file that can't be loaded in the list of problems
 					imageFileUnloadable.Add(file.FullName);
+				}
+			}
+
+			// now check if there's xml files without GIF. In that case we still load them but these
+			// parts will be ignored by BlueBrick
+			FileInfo[] xmlFiles = folder.GetFiles("*.xml");
+			foreach (FileInfo file in xmlFiles)
+			{
+				try
+				{
+					if (!xmlFileLoaded.Contains(file.FullName))
+					{
+						// get the name without extension and use upper case
+						string name = file.Name.Substring(0, file.Name.Length - 4).ToUpper();
+						// and add the brick with a null image
+						BrickLibrary.Instance.AddBrick(name, null, file.FullName);
+					}
+				}
+				catch
+				{
 				}
 			}
 
