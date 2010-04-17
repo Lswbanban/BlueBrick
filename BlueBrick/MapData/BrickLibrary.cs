@@ -158,12 +158,14 @@ namespace BlueBrick.MapData
 				public List<ConnexionData> mConnexionData = null;
 			};
 
-			public class LDRAWRemapData
+			public class LDrawRemapData
 			{
 				public float mAngle = 0.0f;
 				public PointF mTranslation = new PointF();
 				public float mPreferedHeight = 0.0f;
-				public string mAssociatedSleeperID = null;
+				public string mSleeperBrickNumber = null;
+				public string mSleeperBrickColor = null;
+				public string mUsePartInstead = null;
 			};
 
 			public string			mImageURL = null; // the URL on internet of the image for part list export in HTML
@@ -176,7 +178,7 @@ namespace BlueBrick.MapData
 			public List<PointF>		mBoundingBox = new List<PointF>(5); // list of the 4 corner in pixel, plus the origin in stud and from the center
 			public List<PointF>		mHull = new List<PointF>(4); // list of all the points in pixel that describe the hull of the part
 			public TDRemapData		mTDRemapData = null;
-			public LDRAWRemapData	mLDRAWRemapData = null;
+			public LDrawRemapData	mLDrawRemapData = null;
 
 			public Brick(string partNumber, Image image, string xmlFileName)
 			{
@@ -579,7 +581,7 @@ namespace BlueBrick.MapData
 				if (continueToRead)
 				{
 					// the LDRAW tag is not empty, instanciate the class that will hold the data
-					mLDRAWRemapData = new LDRAWRemapData();
+					mLDrawRemapData = new LDrawRemapData();
 
 					// read the first child node
 					xmlReader.Read();
@@ -587,13 +589,22 @@ namespace BlueBrick.MapData
 					while (continueToRead)
 					{
 						if (xmlReader.Name.Equals("Angle"))
-							mLDRAWRemapData.mAngle = xmlReader.ReadElementContentAsFloat();
+							mLDrawRemapData.mAngle = xmlReader.ReadElementContentAsFloat();
 						else if (xmlReader.Name.Equals("Translation"))
-							mLDRAWRemapData.mTranslation = readPointTag(ref xmlReader, "Translation");
+							mLDrawRemapData.mTranslation = readPointTag(ref xmlReader, "Translation");
 						else if (xmlReader.Name.Equals("PreferedHeight"))
-							mLDRAWRemapData.mPreferedHeight = xmlReader.ReadElementContentAsFloat();
+							mLDrawRemapData.mPreferedHeight = xmlReader.ReadElementContentAsFloat();
 						else if (xmlReader.Name.Equals("SleeperID"))
-							mLDRAWRemapData.mAssociatedSleeperID = xmlReader.ReadContentAsString().ToUpper();
+						{
+							char[] partNumberSpliter = { '.' };
+							string[] partNumberAndColor = xmlReader.ReadContentAsString().ToUpper().Split(partNumberSpliter);
+							if (partNumberAndColor.Length > 0)
+								mLDrawRemapData.mSleeperBrickNumber = partNumberAndColor[0];
+							if (partNumberAndColor.Length > 1)
+								mLDrawRemapData.mSleeperBrickColor = partNumberAndColor[1];
+						}
+						else if (xmlReader.Name.Equals("UsePartInstead"))
+							mLDrawRemapData.mUsePartInstead = xmlReader.ReadContentAsString().ToUpper();
 						else
 							xmlReader.Read();
 						// check if we need to continue
@@ -1242,12 +1253,12 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <param name="partNumber">the bluebrick part number</param>
 		/// <returns>An instance of remap data, that contains all the information to translate the specified part into LDRAW</returns>
-		public Brick.LDRAWRemapData getLDRAWRemapData(string partNumber)
+		public Brick.LDrawRemapData getLDrawRemapData(string partNumber)
 		{
 			Brick brickRef = null;
 			mBrickDictionary.TryGetValue(partNumber, out brickRef);
 			if (brickRef != null)
-				return brickRef.mLDRAWRemapData;
+				return brickRef.mLDrawRemapData;
 			return null;
 		}
 	}

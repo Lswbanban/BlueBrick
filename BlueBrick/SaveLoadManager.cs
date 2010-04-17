@@ -109,108 +109,8 @@ namespace BlueBrick
 		#endregion
 		#region LDRAW Format
 
-		public class LDrawRemapData
-		{
-			public float mAngle = 0.0f;
-			public float mX = 0.0f;
-			public float mY = 0.0f;
-			public float mZ = 0.0f;
-			public string mSleeperBrickNumber = null;
-			public string mSleeperBrickColor = null;
-			public string mUsePartInstead = null;
-
-			public LDrawRemapData()
-			{
-			}
-
-			public LDrawRemapData(LDrawRemapData obj)
-			{
-				mAngle = obj.mAngle;
-				mX = obj.mX;
-				mY = obj.mY;
-				mZ = obj.mZ;
-				mSleeperBrickNumber = obj.mSleeperBrickNumber;
-				mSleeperBrickColor = obj.mSleeperBrickColor;
-				mUsePartInstead = obj.mUsePartInstead;
-			}
-		}
-
-		private static Dictionary<string, LDrawRemapData> mLDrawPartRemap = null;
-
-		private static void initLDrawPartRemap()
-		{
-			// check if the remap part dictionnary was initialized
-			if (mLDrawPartRemap == null)
-			{
-				// initialise the dictionnary anyway even if we leave it empty
-				mLDrawPartRemap = new Dictionary<string, LDrawRemapData>();
-				// try to load the config file
-				string configFileName = Application.StartupPath + @"/config/LDrawPartRemap.txt";
-				try
-				{
-					StreamReader textReader = new StreamReader(configFileName);
-					char[] partNumberSpliter = { '.' };
-					while (!textReader.EndOfStream)
-					{
-						// read the line, trim it and avoid empty line and comments
-						string line = textReader.ReadLine();
-						line = line.Trim();
-						if ((line.Length > 0) && (line[0] != ';'))
-						{
-							try
-							{
-								// get the part number
-								List<string> token = slitLine(line);
-								int currentTokenIndex = 0;
-								string partNumber = token[currentTokenIndex++].ToUpper();
-
-								// read the remap data
-								LDrawRemapData remapData = new LDrawRemapData();
-								remapData.mAngle = float.Parse(token[currentTokenIndex++], System.Globalization.CultureInfo.InvariantCulture);
-								remapData.mX = float.Parse(token[currentTokenIndex++], System.Globalization.CultureInfo.InvariantCulture);
-								remapData.mY = float.Parse(token[currentTokenIndex++], System.Globalization.CultureInfo.InvariantCulture);
-								remapData.mZ = float.Parse(token[currentTokenIndex++], System.Globalization.CultureInfo.InvariantCulture);
-
-								// read the optionnal data
-								if ((currentTokenIndex < token.Count) && !token[currentTokenIndex].StartsWith(";"))
-								{
-									// read the sleeper brick
-									string[] partNumberAndColor = token[currentTokenIndex++].Split(partNumberSpliter);
-									remapData.mSleeperBrickNumber = partNumberAndColor[0].ToUpper();
-									if (partNumberAndColor.Length > 1)
-										remapData.mSleeperBrickColor = partNumberAndColor[1];
-									else
-										remapData.mSleeperBrickColor = "0";
-
-									// read the use part instead
-									if ((currentTokenIndex < token.Count) && !token[currentTokenIndex].StartsWith(";"))
-										remapData.mUsePartInstead = token[currentTokenIndex++].ToUpper();
-								}
-
-								// add the remap data in the dictionnary
-								mLDrawPartRemap.Add(partNumber, remapData);
-							}
-							catch (Exception)
-							{
-								// we just skip the line, if the format is not correct
-							}
-						}
-					}
-				}
-				catch (Exception)
-				{
-					string message = Properties.Resources.ErrorMissingLDrawPartRemapFile.Replace("&", configFileName);
-					MessageBox.Show(null, message,
-						Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
-						MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-				}
-			}
-		}
-
 		private static bool loadLDR(string filename)
 		{
-			// init the part remap
-			initLDrawPartRemap();
 			// create a new map
 			Map.Instance = new Map();
 			LayerBrick currentLayer = new LayerBrick();
@@ -281,8 +181,6 @@ namespace BlueBrick
 
 		private static bool loadMDP(string filename)
 		{
-			// init the part remap
-			initLDrawPartRemap();
 			// create a new map
 			Map.Instance = new Map();
 			LayerBrick currentLayer = new LayerBrick();
@@ -440,8 +338,7 @@ namespace BlueBrick
 				angle *= (float)(180.0 / Math.PI);
 
 				// check if we have some origin conversion to do
-				LDrawRemapData remapData = null;
-				mLDrawPartRemap.TryGetValue(partNumberWithoutColor, out remapData);
+				BrickLibrary.Brick.LDrawRemapData remapData = BrickLibrary.Instance.getLDrawRemapData(partNumber);
 				if (remapData != null)
 				{
 					// check if we need to skip this part during the loading
@@ -451,11 +348,11 @@ namespace BlueBrick
 					// cheat the angle
 					angle -= remapData.mAngle;
 					// add a shift in the good direction
-					if ((remapData.mX != 0.0f) || (remapData.mZ != 0.0f))
+					if ((remapData.mTranslation.X != 0.0f) || (remapData.mTranslation.Y != 0.0f))
 					{
 						Matrix rotation = new Matrix();
 						rotation.Rotate(angle);
-						PointF[] offset = { new PointF(-remapData.mX, remapData.mZ) };
+						PointF[] offset = { new PointF(-remapData.mTranslation.X, remapData.mTranslation.Y) };
 						rotation.TransformVectors(offset);
 						x += offset[0].X;
 						z += offset[0].Y;
@@ -495,8 +392,6 @@ namespace BlueBrick
 			}
 			MainForm.Instance.resetProgressBar(nbItems + 2);
 
-			// init the part remap
-			initLDrawPartRemap();
 			// step the progressbar after the init of part remap
 			MainForm.Instance.stepProgressBar();
 
@@ -537,8 +432,6 @@ namespace BlueBrick
 			}
 			MainForm.Instance.resetProgressBar(nbItems + 3);
 
-			// init the part remap
-			initLDrawPartRemap();
 			// step the progressbar after the init of part remap
 			MainForm.Instance.stepProgressBar();
 
@@ -652,8 +545,7 @@ namespace BlueBrick
 				float z = -brick.Center.Y - brick.OffsetFromOriginalImage.Y;
 
 				// get the remap data
-				LDrawRemapData remapData = null;
-				mLDrawPartRemap.TryGetValue(partNumberAndColor[0], out remapData);
+				BrickLibrary.Brick.LDrawRemapData remapData = BrickLibrary.Instance.getLDrawRemapData(brick.PartNumber);
 
 				// check if we need to save another brick number instead
 				if ((remapData != null) && (remapData.mUsePartInstead != null))
@@ -678,12 +570,11 @@ namespace BlueBrick
 					sleeperBrick.Altitude = brick.Altitude;
 
 					// get the remap data of the sleeper
-					LDrawRemapData sleeperRemapData = null;
-					mLDrawPartRemap.TryGetValue(remapData.mSleeperBrickNumber, out sleeperRemapData);
+					BrickLibrary.Brick.LDrawRemapData sleeperRemapData = BrickLibrary.Instance.getLDrawRemapData(sleeperBrick.PartNumber);
 
 					// if we found the sleeper remap data, add the difference of height between the rail brick and the sleeper
 					if ((sleeperRemapData != null) && (sleeperBrick.Altitude != 0.0f))
-						sleeperBrick.Altitude += sleeperRemapData.mY - remapData.mY;
+						sleeperBrick.Altitude += sleeperRemapData.mPreferedHeight - remapData.mPreferedHeight;
 
 					// first check the connections points (the two extremity of the rail)
 					int nbConnexions = brick.ConnectionPoints.Count;
@@ -709,7 +600,7 @@ namespace BlueBrick
 			}
 		}
 
-		private static void saveOneBrickInLDRAW(StreamWriter textWriter, LayerBrick.Brick brick, string[] partNumberAndColor, float x, float z, LDrawRemapData remapData, bool hideBricks)
+		private static void saveOneBrickInLDRAW(StreamWriter textWriter, LayerBrick.Brick brick, string[] partNumberAndColor, float x, float z, BrickLibrary.Brick.LDrawRemapData remapData, bool hideBricks)
 		{
 			// the LDRAW format for a brick is:
 			// 1 <colour> x y z a b c d e f g h i <file> 
@@ -731,18 +622,18 @@ namespace BlueBrick
 			if (remapData != null)
 			{
 				// add a shift in the good direction
-				if ((remapData.mX != 0.0f) || (remapData.mZ != 0.0f))
+				if ((remapData.mTranslation.X != 0.0f) || (remapData.mTranslation.Y != 0.0f))
 				{
 					Matrix rotation = new Matrix();
 					rotation.Rotate(-angle);
-					PointF[] offset = { new PointF(remapData.mX, remapData.mZ) };
+					PointF[] offset = { new PointF(remapData.mTranslation.X, remapData.mTranslation.Y) };
 					rotation.TransformVectors(offset);
 					x += offset[0].X;
 					z += offset[0].Y;
 				}
 				// set the height if there's not already a non null height set
 				if (y == 0.0f)
-					y = remapData.mY;
+					y = remapData.mPreferedHeight;
 				// cheat the angle
 				angle += remapData.mAngle;
 			}
