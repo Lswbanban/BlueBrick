@@ -264,14 +264,8 @@
   <data name="DefaultShow" xml:space="preserve">
     <value>Onbekende Voorstelling</value>
   </data>
-  <data name="ErrorMissingLDrawPartRemapFile" xml:space="preserve">
-    <value>Kan het bestand "&amp;" niet openen. Zonder dit bestand kan je niet correct een LDraw bestand importeren/exporteren. BlueBrick zal toch proberen om deze actie uit te voeren, maar om een correct resultaat te bekomen dien je te controleren of het bestand bestaat of BlueBrick te herinstalleren.</value>
-  </data>
   <data name="ErrorMissingPartInfoFile" xml:space="preserve">
     <value>Kan het bestand "&amp;" niet openen. Zonder dit bestand kan je de kleur en omschrijving van de onderdelen niet zien in de onderdelenlijst. Controleer of het bestand aanwezig is of herinstalleer BlueBrick.</value>
-  </data>
-  <data name="ErrorMissingTDPartRemapFile" xml:space="preserve">
-    <value>Kan het bestand "&amp;" niet openen. Zonder dit bestand kan je geen Track Designer bestanden inporteren. Controleer of het bestand aanwezig is of herinstalleer BlueBrick.</value>
   </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
     <value>U hebt de standaard instellingen van het voorkomen aangepast. Deze aanpassingen worden gebruikt als u een nieuwe kaart aanmaakt. Wenst u deze aanpassingen ook op de huidige kaart toe te passen?</value>

@@ -267,14 +267,8 @@
   <data name="DefaultShow" xml:space="preserve">
     <value>Exposition inconnue</value>
   </data>
-  <data name="ErrorMissingLDrawPartRemapFile" xml:space="preserve">
-    <value>Impossible d'ouvrir le fichier "&amp;". Sans ce fichier vous ne pourrez pas importer/exporter correctement les fichiers LDraw. BlueBrick va tout de même essayer de réaliser l'operation mais pour un resultat correct, merci de vérifier la présence de ce fichier, ou de réinstaller BlueBrick.</value>
-  </data>
   <data name="ErrorMissingPartInfoFile" xml:space="preserve">
     <value>Impossible d'ouvrir le fichier "&amp;". Sans ce fichier vous ne pourrez pas voir la couleur et la description des pièces dans la liste de pièces. Merci de vérifier la présence de ce fichier, ou de réinstaller BlueBrick pour résoudre le problème.</value>
-  </data>
-  <data name="ErrorMissingTDPartRemapFile" xml:space="preserve">
-    <value>Impossible d'ouvrir le fichier "&amp;". Sans ce fichier vous ne pourrez pas importer les fichiers Track Designer. Merci de vérifier la présence de ce fichier, ou de réinstaller BlueBrick pour résoudre le problème.</value>
   </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
     <value>Vous avez modifié quelques paramètres par défaut concernant l'apparence. Ces paramètres seront utilisés quand vous créerez de nouveaux plans, mais voulez-vous aussi appliquer ces paramètres à votre plan actuel ?</value>

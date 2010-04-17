@@ -162,7 +162,7 @@ namespace BlueBrick.MapData
 			{
 				public float mAngle = 0.0f;
 				public PointF mTranslation = new PointF();
-				public float mPreferedHeight = 0.0f;
+				public float mPreferredHeight = 0.0f;
 				public string mSleeperBrickNumber = null;
 				public string mSleeperBrickColor = null;
 				public string mUsePartInstead = null;
@@ -609,8 +609,8 @@ namespace BlueBrick.MapData
 							mLDrawRemapData.mAngle = xmlReader.ReadElementContentAsFloat();
 						else if (xmlReader.Name.Equals("Translation"))
 							mLDrawRemapData.mTranslation = readPointTag(ref xmlReader, "Translation");
-						else if (xmlReader.Name.Equals("PreferedHeight"))
-							mLDrawRemapData.mPreferedHeight = xmlReader.ReadElementContentAsFloat();
+						else if (xmlReader.Name.Equals("PreferredHeight"))
+							mLDrawRemapData.mPreferredHeight = xmlReader.ReadElementContentAsFloat();
 						else if (xmlReader.Name.Equals("SleeperID"))
 						{
 							char[] partNumberSpliter = { '.' };

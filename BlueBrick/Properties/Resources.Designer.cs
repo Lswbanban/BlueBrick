@@ -532,29 +532,11 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can not open the &quot;&amp;&quot; file. Without this file you will not be able to import/export any LDraw file correctly. BlueBrick will try to perform the operation anyway but for a correct result, please verify the presence of this file, or reinstall BlueBrick..
-        /// </summary>
-        internal static string ErrorMissingLDrawPartRemapFile {
-            get {
-                return ResourceManager.GetString("ErrorMissingLDrawPartRemapFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Can not open the &quot;&amp;&quot; file. Without this file you will not be able to see the color and description of the parts in the part list. Please verify the presence of this file, or reinstall BlueBrick to fix the problem..
         /// </summary>
         internal static string ErrorMissingPartInfoFile {
             get {
                 return ResourceManager.GetString("ErrorMissingPartInfoFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Can not open the &quot;&amp;&quot; file. Without this file you will not be able to import any Track Designer file. Please verify the presence of this file, or reinstall BlueBrick to fix the problem..
-        /// </summary>
-        internal static string ErrorMissingTDPartRemapFile {
-            get {
-                return ResourceManager.GetString("ErrorMissingTDPartRemapFile", resourceCulture);
             }
         }
         

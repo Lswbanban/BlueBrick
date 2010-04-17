@@ -264,14 +264,8 @@
   <data name="DefaultShow" xml:space="preserve">
     <value>Evento Desconhecido</value>
   </data>
-  <data name="ErrorMissingLDrawPartRemapFile" xml:space="preserve">
-    <value>O ficheiro "&amp;" não consegue ser aberto. Sem este ficheiro não será permitida a importação e exportação correcta para qualquer ficheiro LDraw. O BlueBrick irá tentar executar esta operação, mas para um resultado correcto, por favor verifique a presença deste ficheiro ou re-instale o BlueBrick.</value>
-  </data>
   <data name="ErrorMissingPartInfoFile" xml:space="preserve">
     <value>O ficheiro "&amp;" não consegue ser aberto. Sem este ficheiro não será possível mostrar a cor e descrição das peças na lista de peças. Por favor, verifique a presença deste ficheiro ou re-instale o BlueBrick para corrigir este problema.</value>
-  </data>
-  <data name="ErrorMissingTDPartRemapFile" xml:space="preserve">
-    <value>O ficheiro "&amp;" não consegue ser aberto. Sem este ficheiro não será possível importar nenhum ficheiro Track Designer. Por favor, verifique a presença deste ficheiro ou re-instale o BlueBrick de novo para corrigir este problema.</value>
   </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
     <value>Foram modificadas algumas opções por defeito da aparência. Essas configurações serão utilizadas quando criar novos mapas, mas quer que sejam aplicadas ao mapa actual?</value>

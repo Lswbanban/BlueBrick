@@ -575,7 +575,7 @@ namespace BlueBrick
 
 					// if we found the sleeper remap data, add the difference of height between the rail brick and the sleeper
 					if ((sleeperRemapData != null) && (sleeperBrick.Altitude != 0.0f))
-						sleeperBrick.Altitude += sleeperRemapData.mPreferedHeight - remapData.mPreferedHeight;
+						sleeperBrick.Altitude += sleeperRemapData.mPreferredHeight - remapData.mPreferredHeight;
 
 					// first check the connections points (the two extremity of the rail)
 					int nbConnexions = brick.ConnectionPoints.Count;
@@ -634,7 +634,7 @@ namespace BlueBrick
 				}
 				// set the height if there's not already a non null height set
 				if (y == 0.0f)
-					y = remapData.mPreferedHeight;
+					y = remapData.mPreferredHeight;
 				// cheat the angle
 				angle += remapData.mAngle;
 			}

@@ -274,14 +274,8 @@
   <data name="DefaultShow" xml:space="preserve">
     <value>Unbekannte Veranstalltung</value>
   </data>
-  <data name="ErrorMissingLDrawPartRemapFile" xml:space="preserve">
-    <value>Kann die Datei "&amp;" nicht öffnen. Ohne diese Datei ist der korrekte Import/Export einer LDraw Datei nicht möglich. BlueBrick wird trotzdem versuchen die Aufgabe auszuführen. Für ein korrektes Ergebnis überprüfe bitte die Anwesenheit dieser Datei oder installiere BlueBrick erneut.</value>
-  </data>
   <data name="ErrorMissingPartInfoFile" xml:space="preserve">
     <value>Kann die Datei "&amp;" nicht öffnen. Ohne diese Datei können die Farben und Beschreibungen der Teile in der Stückliste nicht richtig dargestellt werden. Für ein korrektes Ergebnis überprüfe bitte die Anwesenheit dieser Datei oder installiere BlueBrick erneut um das problem zu lösen.</value>
-  </data>
-  <data name="ErrorMissingTDPartRemapFile" xml:space="preserve">
-    <value>Kann die Datei "&amp;" nicht öffnen. Ohne diese Datei ist der korrekte Import einer Track Designer Datei nicht möglich. Für ein korrektes Ergebnis überprüfe bitte die Anwesenheit dieser Datei oder installiere BlueBrick erneut.</value>
   </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
     <value>Es wurden einige Standard Einstellungen das Aussehen betreffend geändert. Diese Einstellungen werden bei einer neuen Karte verwendet. Sollen diese Einstellungen auch auf die aktuelle Karte angewendet werden?</value>
