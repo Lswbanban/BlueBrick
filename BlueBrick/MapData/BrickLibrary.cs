@@ -165,7 +165,8 @@ namespace BlueBrick.MapData
 				public float mPreferredHeight = 0.0f;
 				public string mSleeperBrickNumber = null;
 				public string mSleeperBrickColor = null;
-				public string mUsePartInstead = null;
+				public string mReplacementPartNumber = null;
+				public string mReplacementPartColor = null;
 			};
 
 			private static string	sIgnoreSpecialDescription = "IGNORE";
@@ -613,19 +614,12 @@ namespace BlueBrick.MapData
 							mLDrawRemapData.mPreferredHeight = xmlReader.ReadElementContentAsFloat();
 						else if (xmlReader.Name.Equals("SleeperID"))
 						{
-							char[] partNumberSpliter = { '.' };
-							string[] partNumberAndColor = xmlReader.ReadElementContentAsString().ToUpper().Split(partNumberSpliter);
-							if (partNumberAndColor.Length > 0)
-							{
-								mLDrawRemapData.mSleeperBrickNumber = partNumberAndColor[0];
-								if (partNumberAndColor.Length > 1)
-									mLDrawRemapData.mSleeperBrickColor = partNumberAndColor[1];
-								else
-									mLDrawRemapData.mSleeperBrickColor = "0"; // black
-							}
+							readBlueBrickId(ref xmlReader, ref mLDrawRemapData.mSleeperBrickNumber, ref mLDrawRemapData.mSleeperBrickColor);
+							if (mLDrawRemapData.mSleeperBrickColor == null)
+								mLDrawRemapData.mSleeperBrickColor = "0"; // black as default color
 						}
 						else if (xmlReader.Name.Equals("UsePartInstead"))
-							mLDrawRemapData.mUsePartInstead = xmlReader.ReadElementContentAsString().ToUpper();
+							readBlueBrickId(ref xmlReader, ref mLDrawRemapData.mReplacementPartNumber, ref mLDrawRemapData.mReplacementPartColor);
 						else
 							xmlReader.Read();
 						// check if we need to continue
@@ -639,6 +633,18 @@ namespace BlueBrick.MapData
 				else
 				{
 					xmlReader.Read();
+				}
+			}
+
+			private void readBlueBrickId(ref System.Xml.XmlReader xmlReader, ref string partNumber, ref string partColor)
+			{
+				char[] partNumberSpliter = { '.' };
+				string[] partNumberAndColor = xmlReader.ReadElementContentAsString().ToUpper().Split(partNumberSpliter);
+				if (partNumberAndColor.Length > 0)
+				{
+					partNumber = partNumberAndColor[0];
+					if (partNumberAndColor.Length > 1)
+						partColor = partNumberAndColor[1];
 				}
 			}
 

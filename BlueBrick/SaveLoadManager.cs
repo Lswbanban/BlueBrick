@@ -549,8 +549,13 @@ namespace BlueBrick
 				BrickLibrary.Brick.LDrawRemapData remapData = BrickLibrary.Instance.getLDrawRemapData(brick.PartNumber);
 
 				// check if we need to save another brick number instead
-				if ((remapData != null) && (remapData.mUsePartInstead != null))
-					partNumberAndColor[0] = remapData.mUsePartInstead;
+				if (remapData != null)
+				{
+					if (remapData.mReplacementPartNumber != null)
+						partNumberAndColor[0] = remapData.mReplacementPartNumber;
+					if (remapData.mReplacementPartColor != null)
+						partNumberAndColor[1] = remapData.mReplacementPartColor;
+				}
 
 				// save the brick
 				saveOneBrickInLDRAW(textWriter, brick, partNumberAndColor, x, z, remapData, hideBricks);
