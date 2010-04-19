@@ -551,10 +551,10 @@ namespace BlueBrick
 				// check if we need to save another brick number instead
 				if (remapData != null)
 				{
-					if (remapData.mReplacementPartNumber != null)
-						partNumberAndColor[0] = remapData.mReplacementPartNumber;
-					if (remapData.mReplacementPartColor != null)
-						partNumberAndColor[1] = remapData.mReplacementPartColor;
+					if (remapData.mAliasPartNumber != null)
+						partNumberAndColor[0] = remapData.mAliasPartNumber;
+					if (remapData.mAliasPartColor != null)
+						partNumberAndColor[1] = remapData.mAliasPartColor;
 				}
 
 				// save the brick

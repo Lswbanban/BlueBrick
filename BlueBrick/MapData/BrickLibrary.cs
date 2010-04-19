@@ -165,8 +165,8 @@ namespace BlueBrick.MapData
 				public float mPreferredHeight = 0.0f;
 				public string mSleeperBrickNumber = null;
 				public string mSleeperBrickColor = null;
-				public string mReplacementPartNumber = null;
-				public string mReplacementPartColor = null;
+				public string mAliasPartNumber = null;
+				public string mAliasPartColor = null;
 			};
 
 			private static string	sIgnoreSpecialDescription = "IGNORE";
@@ -206,7 +206,7 @@ namespace BlueBrick.MapData
 					// create an XML reader to parse the data
 					System.Xml.XmlParserContext xmlContext = new System.Xml.XmlParserContext(null, null, "", System.Xml.XmlSpace.Default, System.Text.Encoding.UTF7);
 					System.Xml.XmlReaderSettings xmlSettings = new System.Xml.XmlReaderSettings();
-					xmlSettings.ConformanceLevel = System.Xml.ConformanceLevel.Fragment;
+					xmlSettings.ConformanceLevel = System.Xml.ConformanceLevel.Document;
 					xmlSettings.IgnoreWhitespace = true;
 					xmlSettings.IgnoreComments = true;
 					xmlSettings.CheckCharacters = false;
@@ -618,8 +618,15 @@ namespace BlueBrick.MapData
 							if (mLDrawRemapData.mSleeperBrickColor == null)
 								mLDrawRemapData.mSleeperBrickColor = "0"; // black as default color
 						}
-						else if (xmlReader.Name.Equals("UsePartInstead"))
-							readBlueBrickId(ref xmlReader, ref mLDrawRemapData.mReplacementPartNumber, ref mLDrawRemapData.mReplacementPartColor);
+						else if (xmlReader.Name.Equals("Alias"))
+						{
+							// before reading the alias content check if we need to create a remaping by reading the attribute
+							bool needToAddRemap = !(xmlReader.HasAttributes && (xmlReader.GetAttribute("noremap") == "true"));
+							if (needToAddRemap)
+								BrickLibrary.Instance.TempLDrawRenamedPartList.Add(this);
+							// read the alias
+							readBlueBrickId(ref xmlReader, ref mLDrawRemapData.mAliasPartNumber, ref mLDrawRemapData.mAliasPartColor);
+						}
 						else
 							xmlReader.Read();
 						// check if we need to continue
@@ -693,6 +700,9 @@ namespace BlueBrick.MapData
 		// a dictionary that match the registry file names with a registry keyword used in the part XML files
 		private Dictionary<string, string> mTrackDesignerRegistryFiles = new Dictionary<string, string>();
 
+		// This temporary list is used during the loading of the Brick library to record the parts that have an alias
+		private List<Brick> mTempLDrawRenamedPartList = new List<Brick>();
+
 		// singleton on the map (we assume it is always valid)
 		private static BrickLibrary sInstance = new BrickLibrary();
 
@@ -719,6 +729,14 @@ namespace BlueBrick.MapData
 			get { return mWereUnknownBricksAdded; }
 			set { mWereUnknownBricksAdded = value; }
 		}
+
+		/// <summary>
+		/// A Temporary list to store the brick that have an alias during the loading of the part library
+		/// </summary>
+		public List<Brick> TempLDrawRenamedPartList
+		{
+			get { return mTempLDrawRenamedPartList; }
+		}
 		#endregion
 
 		#region initialisation
@@ -732,6 +750,7 @@ namespace BlueBrick.MapData
 			mColorNames.Clear();
 			mTrackDesignerPartNumberAssociation.Clear();
 			mTrackDesignerRegistryFiles.Clear();
+			mTempLDrawRenamedPartList.Clear();
 			mWereUnknownBricksAdded = false;
 		}
 
@@ -848,6 +867,24 @@ namespace BlueBrick.MapData
 			{
 				// ignore the remaping if the file is not present
 			}
+
+			// Also add all the parts that have an alias in there LDraw tag
+			foreach (Brick brick in mTempLDrawRenamedPartList)
+				if ((brick.mLDrawRemapData != null) && (brick.mLDrawRemapData.mAliasPartNumber != null)) // normally always true
+				{
+					// reconstruct the alias name
+					string aliasName = brick.mLDrawRemapData.mAliasPartNumber;
+					if (brick.mLDrawRemapData.mAliasPartColor != null)
+						aliasName += "." + brick.mLDrawRemapData.mAliasPartColor;
+					// check if the alias brick does not already exist in the library, else we wont erase it
+					Brick aliasBrickRef = null;
+					mBrickDictionary.TryGetValue(aliasName, out aliasBrickRef);
+					if (aliasBrickRef == null)
+						mBrickDictionary.Add(aliasName, brick);
+				}
+
+			// we can clear the temporary list after 
+			mTempLDrawRenamedPartList.Clear();
 		}
 
 		/// <summary>
