@@ -181,7 +181,7 @@
     <value>Fill</value>
   </data>
   <data name="labelProductName.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 20.25pt, style=Bold</value>
+    <value>Arial Rounded MT Bold, 20.25pt</value>
   </data>
   <data name="labelProductName.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 0</value>
@@ -262,7 +262,7 @@
     <value>21</value>
   </data>
   <data name="labelCopyright.Text" xml:space="preserve">
-    <value>Copyright (c) 2008 Alban NANTY</value>
+    <value>Copyright (c) 2010 Alban NANTY</value>
   </data>
   <data name="labelCopyright.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
