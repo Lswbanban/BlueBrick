@@ -198,6 +198,8 @@ namespace BlueBrick
 		{
 			InitializeComponent();
 			sInstance = this;
+			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
+			loadWindowSettingFromDefaultSettings();
 			// load the custom cursors
 			LoadEmbededCustomCursors();
 			// regenerate the paint icon with the right color in the background
@@ -269,6 +271,42 @@ namespace BlueBrick
 			{
 				if (needToSave)
 					BlueBrick.Properties.Settings.Default.Save();
+			}
+			catch
+			{
+			}
+		}
+
+		private void loadWindowSettingFromDefaultSettings()
+		{
+			// DOT NET BUG: the data binding of the Form size and window state interfere with the
+			// the normal behavior of saving, so we remove the data binding and do it manually
+			this.Location = Properties.Settings.Default.MainFormLocation;
+			this.Size = Properties.Settings.Default.MainFormSize;
+			this.WindowState = Properties.Settings.Default.MainFormWindowState;
+		}
+
+		private void saveWindowSettingInDefaultSettings()
+		{
+			// DOT NET BUG: the data binding of the Form size and window state interfere with the
+			// the normal behavior of saving, so we remove the data binding and do it manually
+			Properties.Settings.Default.MainFormWindowState = this.WindowState;
+			if (this.WindowState == FormWindowState.Maximized)
+			{
+				Properties.Settings.Default.MainFormLocation = this.RestoreBounds.Location;
+				Properties.Settings.Default.MainFormSize = this.RestoreBounds.Size;
+			}
+			else
+			{
+				Properties.Settings.Default.MainFormLocation = this.Location;
+				Properties.Settings.Default.MainFormSize = this.Size;
+			}
+
+			// try to save (never mind if we can not (for example BlueBrick is launched
+			// from a write protected drive)
+			try
+			{
+				BlueBrick.Properties.Settings.Default.Save();
 			}
 			catch
 			{
@@ -933,6 +971,11 @@ namespace BlueBrick
 				// if the player cancel the closing then cancel the event
 				e.Cancel = true;
 			}
+
+			// if the user didn't cancel the close, save the setting of the user,
+			// in order to save the main form position, size and state
+			if (!e.Cancel)
+				saveWindowSettingInDefaultSettings();
 		}
 
 		#endregion

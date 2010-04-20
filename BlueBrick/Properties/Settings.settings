@@ -113,5 +113,14 @@
     <Setting Name="GammaForSnappingPart" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0.05</Value>
     </Setting>
+    <Setting Name="MainFormLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="MainFormSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">648, 545</Value>
+    </Setting>
+    <Setting Name="MainFormWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
