@@ -237,6 +237,8 @@ namespace BlueBrick.MapData
 								readTrackDesignerTag(ref xmlReader);
 							else if (xmlReader.Name.Equals("LDraw"))
 								readLDRAWTag(ref xmlReader);
+							else if (xmlReader.Name.Equals("OldNameList"))
+								readImageOldNameTag(ref xmlReader);
 							else
 								xmlReader.Read();
 							// check if we need to continue
@@ -331,6 +333,38 @@ namespace BlueBrick.MapData
 				if (!xmlReader.IsEmptyElement)
 				{
 					mImageURL = xmlReader.ReadElementContentAsString();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private void readImageOldNameTag(ref System.Xml.XmlReader xmlReader)
+			{
+				// check if the old name list is not empty
+				bool continueToRead = !xmlReader.IsEmptyElement;
+				if (continueToRead)
+				{
+					// read the first child node
+					xmlReader.Read();
+					while (continueToRead)
+					{
+						if (xmlReader.Name.Equals("OldName"))
+						{
+							string oldName = xmlReader.ReadElementContentAsString().ToUpper();
+							BrickLibrary.Instance.AddToTempRenamedPartList(oldName, this);
+						}
+						else
+							xmlReader.Read();
+
+						// check if we reach the end of the Description
+						continueToRead = !xmlReader.Name.Equals("OldNameList") && !xmlReader.EOF;
+					}
+
+					// finish the old name list tag
+					if (!xmlReader.EOF)
+						xmlReader.ReadEndElement();
 				}
 				else
 				{
@@ -622,10 +656,11 @@ namespace BlueBrick.MapData
 						{
 							// before reading the alias content check if we need to create a remaping by reading the attribute
 							bool needToAddRemap = !(xmlReader.HasAttributes && (xmlReader.GetAttribute("noremap") == "true"));
-							if (needToAddRemap)
-								BrickLibrary.Instance.TempLDrawRenamedPartList.Add(this);
 							// read the alias
-							readBlueBrickId(ref xmlReader, ref mLDrawRemapData.mAliasPartNumber, ref mLDrawRemapData.mAliasPartColor);
+							string fullPartId = readBlueBrickId(ref xmlReader, ref mLDrawRemapData.mAliasPartNumber, ref mLDrawRemapData.mAliasPartColor);
+							// add the part to the remap list if need
+							if (needToAddRemap)
+								BrickLibrary.Instance.AddToTempRenamedPartList(fullPartId, this);
 						}
 						else
 							xmlReader.Read();
@@ -643,16 +678,18 @@ namespace BlueBrick.MapData
 				}
 			}
 
-			private void readBlueBrickId(ref System.Xml.XmlReader xmlReader, ref string partNumber, ref string partColor)
+			private string readBlueBrickId(ref System.Xml.XmlReader xmlReader, ref string partNumber, ref string partColor)
 			{
 				char[] partNumberSpliter = { '.' };
-				string[] partNumberAndColor = xmlReader.ReadElementContentAsString().ToUpper().Split(partNumberSpliter);
+				string fullPartId = xmlReader.ReadElementContentAsString().ToUpper();
+				string[] partNumberAndColor = fullPartId.Split(partNumberSpliter);
 				if (partNumberAndColor.Length > 0)
 				{
 					partNumber = partNumberAndColor[0];
 					if (partNumberAndColor.Length > 1)
 						partColor = partNumberAndColor[1];
 				}
+				return fullPartId;
 			}
 
 			private PointF readPointTag(ref System.Xml.XmlReader xmlReader, string pointTagName)
@@ -701,7 +738,7 @@ namespace BlueBrick.MapData
 		private Dictionary<string, string> mTrackDesignerRegistryFiles = new Dictionary<string, string>();
 
 		// This temporary list is used during the loading of the Brick library to record the parts that have an alias
-		private List<Brick> mTempLDrawRenamedPartList = new List<Brick>();
+		private Dictionary<string, Brick> mTempRenamedPartList = new Dictionary<string, Brick>();
 
 		// singleton on the map (we assume it is always valid)
 		private static BrickLibrary sInstance = new BrickLibrary();
@@ -729,14 +766,6 @@ namespace BlueBrick.MapData
 			get { return mWereUnknownBricksAdded; }
 			set { mWereUnknownBricksAdded = value; }
 		}
-
-		/// <summary>
-		/// A Temporary list to store the brick that have an alias during the loading of the part library
-		/// </summary>
-		public List<Brick> TempLDrawRenamedPartList
-		{
-			get { return mTempLDrawRenamedPartList; }
-		}
 		#endregion
 
 		#region initialisation
@@ -750,8 +779,25 @@ namespace BlueBrick.MapData
 			mColorNames.Clear();
 			mTrackDesignerPartNumberAssociation.Clear();
 			mTrackDesignerRegistryFiles.Clear();
-			mTempLDrawRenamedPartList.Clear();
+			mTempRenamedPartList.Clear();
 			mWereUnknownBricksAdded = false;
+		}
+
+		/// <summary>
+		/// Add the specified brick with the specified old name to the temporary list for the rename parts
+		/// </summary>
+		/// <param name="partNumber">the old part number</param>
+		/// <param name="brick">the actual brick that is linked with the old name</param>
+		public void AddToTempRenamedPartList(string partNumber, Brick brick)
+		{
+			try
+			{
+				mTempRenamedPartList.Add(partNumber, brick);
+			}
+			catch
+			{
+				// if the brick is already added, we just don't care
+			}
 		}
 
 		/// <summary>
@@ -827,64 +873,18 @@ namespace BlueBrick.MapData
 		/// </summary>
 		public void createEntriesForRenamedParts()
 		{
-			try
+			// Add all the parts that have an alias (previous name or alias in LDRaw tag)
+			foreach (KeyValuePair<string, Brick> renamedPart in mTempRenamedPartList)
 			{
-				// try to load the rempa file
-				string remapFileName = Application.StartupPath + @"/parts/PartRemap.txt";
-				System.IO.StreamReader textReader = new System.IO.StreamReader(remapFileName);
-				char[] lineSpliter = { '=' };
-				while (!textReader.EndOfStream)
-				{
-					// read the line, trim it and avoid empty line and comments
-					string line = textReader.ReadLine();
-					line = line.Trim();
-					if ((line.Length > 0) && (line[0] != ';'))
-					{
-						try
-						{
-							string[] token = line.ToUpper().Split(lineSpliter);
-							// try to get the two bricks from the two refs
-							Brick oldBrickRef = null;
-							mBrickDictionary.TryGetValue(token[0], out oldBrickRef);
-							Brick newBrickRef = null;
-							mBrickDictionary.TryGetValue(token[1], out newBrickRef);
-							// check if the old name doesn't already have a brick on it,
-							// and that we found the brick for the new name
-							if ((oldBrickRef == null) && (newBrickRef != null))
-							{
-								// if we found the new brick, we can add a second entry for it (with the old name)
-								mBrickDictionary.Add(token[0], newBrickRef);
-							}
-						}
-						catch (Exception)
-						{
-							// we just skip the line, if the format is not correct
-						}
-					}
-				}
+				// check if the alias brick does not already exist in the library, else we wont erase it
+				Brick brickRef = null;
+				mBrickDictionary.TryGetValue(renamedPart.Key, out brickRef);
+				if (brickRef == null)
+					mBrickDictionary.Add(renamedPart.Key, renamedPart.Value);
 			}
-			catch (Exception)
-			{
-				// ignore the remaping if the file is not present
-			}
-
-			// Also add all the parts that have an alias in there LDraw tag
-			foreach (Brick brick in mTempLDrawRenamedPartList)
-				if ((brick.mLDrawRemapData != null) && (brick.mLDrawRemapData.mAliasPartNumber != null)) // normally always true
-				{
-					// reconstruct the alias name
-					string aliasName = brick.mLDrawRemapData.mAliasPartNumber;
-					if (brick.mLDrawRemapData.mAliasPartColor != null)
-						aliasName += "." + brick.mLDrawRemapData.mAliasPartColor;
-					// check if the alias brick does not already exist in the library, else we wont erase it
-					Brick aliasBrickRef = null;
-					mBrickDictionary.TryGetValue(aliasName, out aliasBrickRef);
-					if (aliasBrickRef == null)
-						mBrickDictionary.Add(aliasName, brick);
-				}
 
 			// we can clear the temporary list after 
-			mTempLDrawRenamedPartList.Clear();
+			mTempRenamedPartList.Clear();
 		}
 
 		/// <summary>

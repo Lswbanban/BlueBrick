@@ -147,6 +147,10 @@
 				<param name="Local" value="Part_XML_Description_Image.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Old Name">
+				<param name="Local" value="Part_XML_Description_OldName.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Margins">
 				<param name="Local" value="Part_XML_Description_Margin.htm">
 				</OBJECT>

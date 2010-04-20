@@ -553,6 +553,11 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="alias">
+			<param name="Name" value="Keep a trace of the previous name of a part">
+			<param name="Local" value="Part_XML_Description_OldName.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="coordinates">
 			<param name="Name" value="Part XML Description">
 			<param name="Local" value="Part_XML_Description.htm">
@@ -586,6 +591,11 @@
 			<param name="Name" value="Exporting the Parts List">
 			<param name="Local" value="Exporting_the_Parts_List.htm">
 			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="rename">
+			<param name="Name" value="Keep a trace of the previous name of a part">
+			<param name="Local" value="Part_XML_Description_OldName.htm">
+			</OBJECT>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="performance">
@@ -613,6 +623,11 @@
 		<param name="Name" value="reload">
 		<param name="Name" value="Reload the Part Library">
 		<param name="Local" value="Reload_the_Part_Library.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="rename">
+		<param name="Name" value="Keep a trace of the previous name of a part">
+		<param name="Local" value="Part_XML_Description_OldName.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="rotate">
