@@ -292,6 +292,9 @@ namespace BlueBrick
 			enableSnapGridButton(Properties.Settings.Default.UISnapGridEnabled, Properties.Settings.Default.UISnapGridSize);
 			// rotation step
 			updateRotationStepButton(Properties.Settings.Default.UIRotationStep);
+			// toolbar and status bar visibility
+			this.toolBar.Visible = this.toolbarMenuItem.Checked = Properties.Settings.Default.UIToolbarIsVisible;
+			this.statusBar.Visible = this.statusBarMenuItem.Checked = Properties.Settings.Default.UIStatusbarIsVisible;
 		}
 
 		private void saveUISettingInDefaultSettings()
@@ -328,6 +331,10 @@ namespace BlueBrick
 			Properties.Settings.Default.UISnapGridEnabled = Layer.SnapGridEnabled;
 			Properties.Settings.Default.UISnapGridSize = Layer.CurrentSnapGridSize;
 			Properties.Settings.Default.UIRotationStep = Layer.CurrentRotationStep;
+
+			// toolbar and status bar visibility
+			Properties.Settings.Default.UIToolbarIsVisible = this.toolBar.Visible;
+			Properties.Settings.Default.UIStatusbarIsVisible = this.statusBar.Visible;
 
 			// try to save (never mind if we can not (for example BlueBrick is launched
 			// from a write protected drive)

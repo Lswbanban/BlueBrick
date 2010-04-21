@@ -522,5 +522,29 @@ namespace BlueBrick.Properties {
                 this["UIPartListFormIsVisible"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UIToolbarIsVisible {
+            get {
+                return ((bool)(this["UIToolbarIsVisible"]));
+            }
+            set {
+                this["UIToolbarIsVisible"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UIStatusbarIsVisible {
+            get {
+                return ((bool)(this["UIStatusbarIsVisible"]));
+            }
+            set {
+                this["UIStatusbarIsVisible"] = value;
+            }
+        }
     }
 }
