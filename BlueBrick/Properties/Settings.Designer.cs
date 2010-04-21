@@ -570,5 +570,29 @@ namespace BlueBrick.Properties {
                 this["UIIsPaintToolSelected"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("450")]
+        public int UIMainSplitContainerDistance {
+            get {
+                return ((int)(this["UIMainSplitContainerDistance"]));
+            }
+            set {
+                this["UIMainSplitContainerDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("230")]
+        public int UIToolSplitContainerDistance {
+            get {
+                return ((int)(this["UIToolSplitContainerDistance"]));
+            }
+            set {
+                this["UIToolSplitContainerDistance"] = value;
+            }
+        }
     }
 }

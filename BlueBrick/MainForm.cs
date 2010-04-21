@@ -285,6 +285,9 @@ namespace BlueBrick
 			mPartListForm.Size = Properties.Settings.Default.UIPartListFormSize;
 			mPartListForm.WindowState = Properties.Settings.Default.UIPartListFormWindowState;
 			mPartListForm.Visible = this.partListToolStripMenuItem.Checked = Properties.Settings.Default.UIPartListFormIsVisible;
+			// split container
+			this.mainSplitContainer.SplitterDistance = Properties.Settings.Default.UIMainSplitContainerDistance;
+			this.toolSplitContainer.SplitterDistance = Properties.Settings.Default.UIToolSplitContainerDistance;
 			// snap grid button enable and size
 			enableSnapGridButton(Properties.Settings.Default.UISnapGridEnabled, Properties.Settings.Default.UISnapGridSize);
 			// rotation step
@@ -304,31 +307,44 @@ namespace BlueBrick
 		{
 			// DOT NET BUG: the data binding of the Form size and window state interfere with the
 			// the normal behavior of saving, so we remove the data binding and do it manually
-			Properties.Settings.Default.UIMainFormWindowState = this.WindowState;
-			if (this.WindowState == FormWindowState.Maximized)
+
+			// don't save the window state in minimized, else when you reopen the application
+			// it only appears in the task bar
+			if (this.WindowState == FormWindowState.Minimized)
+				Properties.Settings.Default.UIMainFormWindowState = FormWindowState.Normal;
+			else
+				Properties.Settings.Default.UIMainFormWindowState = this.WindowState;
+			// save the normal size or the restore one
+			if (this.WindowState == FormWindowState.Normal)
 			{
-				Properties.Settings.Default.UIMainFormLocation = this.RestoreBounds.Location;
-				Properties.Settings.Default.UIMainFormSize = this.RestoreBounds.Size;
+				// normal window size
+				Properties.Settings.Default.UIMainFormLocation = this.Location;
+				Properties.Settings.Default.UIMainFormSize = this.Size;
 			}
 			else
 			{
-				Properties.Settings.Default.UIMainFormLocation = this.Location;
-				Properties.Settings.Default.UIMainFormSize = this.Size;
+				// save the restore window size
+				Properties.Settings.Default.UIMainFormLocation = this.RestoreBounds.Location;
+				Properties.Settings.Default.UIMainFormSize = this.RestoreBounds.Size;
 			}
 
 			// save also the window size/position/state of the Part List Window
 			Properties.Settings.Default.UIPartListFormIsVisible = mPartListForm.Visible;
 			Properties.Settings.Default.UIPartListFormWindowState = mPartListForm.WindowState;
-			if (mPartListForm.WindowState == FormWindowState.Maximized)
-			{
-				Properties.Settings.Default.UIPartListFormLocation = mPartListForm.RestoreBounds.Location;
-				Properties.Settings.Default.UIPartListFormSize = mPartListForm.RestoreBounds.Size;
-			}
-			else
+			if (mPartListForm.WindowState == FormWindowState.Normal)
 			{
 				Properties.Settings.Default.UIPartListFormLocation = mPartListForm.Location;
 				Properties.Settings.Default.UIPartListFormSize = mPartListForm.Size;
 			}
+			else
+			{
+				Properties.Settings.Default.UIPartListFormLocation = mPartListForm.RestoreBounds.Location;
+				Properties.Settings.Default.UIPartListFormSize = mPartListForm.RestoreBounds.Size;
+			}
+
+			// split container
+			Properties.Settings.Default.UIMainSplitContainerDistance = this.mainSplitContainer.SplitterDistance;
+			Properties.Settings.Default.UIToolSplitContainerDistance = this.toolSplitContainer.SplitterDistance;
 
 			// snap grid size and rotation
 			Properties.Settings.Default.UISnapGridEnabled = Layer.SnapGridEnabled;
