@@ -44,18 +44,14 @@ namespace BlueBrick
 			// 
 			// listView
 			// 
-			this.listView.AccessibleDescription = null;
-			this.listView.AccessibleName = null;
-			resources.ApplyResources(this.listView, "listView");
 			this.listView.AllowColumnReorder = true;
-			this.listView.BackgroundImage = null;
 			this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.partColumnHeader,
             this.quantiyColumnHeader,
             this.colorColumnHeader,
             this.descriptionColumnHeader});
 			this.tableLayoutPanel.SetColumnSpan(this.listView, 3);
-			this.listView.Font = null;
+			resources.ApplyResources(this.listView, "listView");
 			this.listView.FullRowSelect = true;
 			this.listView.Name = "listView";
 			this.listView.Sorting = System.Windows.Forms.SortOrder.Ascending;
@@ -81,49 +77,33 @@ namespace BlueBrick
 			// 
 			// tableLayoutPanel
 			// 
-			this.tableLayoutPanel.AccessibleDescription = null;
-			this.tableLayoutPanel.AccessibleName = null;
 			resources.ApplyResources(this.tableLayoutPanel, "tableLayoutPanel");
-			this.tableLayoutPanel.BackgroundImage = null;
 			this.tableLayoutPanel.Controls.Add(this.buttonClose, 2, 1);
 			this.tableLayoutPanel.Controls.Add(this.listView, 0, 0);
 			this.tableLayoutPanel.Controls.Add(this.buttonExport, 0, 1);
 			this.tableLayoutPanel.Controls.Add(this.useGroupCheckBox, 1, 1);
-			this.tableLayoutPanel.Font = null;
 			this.tableLayoutPanel.Name = "tableLayoutPanel";
 			// 
 			// buttonClose
 			// 
-			this.buttonClose.AccessibleDescription = null;
-			this.buttonClose.AccessibleName = null;
-			resources.ApplyResources(this.buttonClose, "buttonClose");
-			this.buttonClose.BackgroundImage = null;
 			this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonClose.Font = null;
+			resources.ApplyResources(this.buttonClose, "buttonClose");
 			this.buttonClose.Name = "buttonClose";
 			this.buttonClose.UseVisualStyleBackColor = true;
 			this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
 			// 
 			// buttonExport
 			// 
-			this.buttonExport.AccessibleDescription = null;
-			this.buttonExport.AccessibleName = null;
 			resources.ApplyResources(this.buttonExport, "buttonExport");
-			this.buttonExport.BackgroundImage = null;
-			this.buttonExport.Font = null;
 			this.buttonExport.Name = "buttonExport";
 			this.buttonExport.UseVisualStyleBackColor = true;
 			this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
 			// 
 			// useGroupCheckBox
 			// 
-			this.useGroupCheckBox.AccessibleDescription = null;
-			this.useGroupCheckBox.AccessibleName = null;
 			resources.ApplyResources(this.useGroupCheckBox, "useGroupCheckBox");
-			this.useGroupCheckBox.BackgroundImage = null;
 			this.useGroupCheckBox.Checked = true;
 			this.useGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.useGroupCheckBox.Font = null;
 			this.useGroupCheckBox.Name = "useGroupCheckBox";
 			this.useGroupCheckBox.UseVisualStyleBackColor = true;
 			this.useGroupCheckBox.CheckedChanged += new System.EventHandler(this.useGroupCheckBox_CheckedChanged);
@@ -136,13 +116,11 @@ namespace BlueBrick
 			// 
 			// PartListForm
 			// 
-			this.AccessibleDescription = null;
-			this.AccessibleName = null;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = null;
 			this.Controls.Add(this.tableLayoutPanel);
-			this.Font = null;
+			this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::BlueBrick.Properties.Settings.Default, "PartListFormLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.Location = global::BlueBrick.Properties.Settings.Default.PartListFormLocation;
 			this.Name = "PartListForm";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PartListForm_FormClosing);
 			this.tableLayoutPanel.ResumeLayout(false);

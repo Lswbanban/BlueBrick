@@ -198,8 +198,11 @@ namespace BlueBrick
 		{
 			InitializeComponent();
 			sInstance = this;
-			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
-			loadWindowSettingFromDefaultSettings();
+			// create and hide the part list form
+			mPartListForm = new PartListForm(this);
+			mPartListForm.Visible = false;
+			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED for mapping UI properties in settings
+			loadUISettingFromDefaultSettings();
 			// load the custom cursors
 			LoadEmbededCustomCursors();
 			// regenerate the paint icon with the right color in the background
@@ -211,9 +214,6 @@ namespace BlueBrick
 			initShortcutKeyArrayFromSettings();
 			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
 			SaveDefaultKeyInDefaultSettings();
-			// hide the part list form
-			mPartListForm = new PartListForm(this);
-			mPartListForm.Visible = false;
 			// load the part info
 			loadPartLibraryFromDisk();
 			// check if we need to open a file or create a new map
@@ -277,16 +277,22 @@ namespace BlueBrick
 			}
 		}
 
-		private void loadWindowSettingFromDefaultSettings()
+		private void loadUISettingFromDefaultSettings()
 		{
 			// DOT NET BUG: the data binding of the Form size and window state interfere with the
 			// the normal behavior of saving, so we remove the data binding and do it manually
 			this.Location = Properties.Settings.Default.MainFormLocation;
 			this.Size = Properties.Settings.Default.MainFormSize;
 			this.WindowState = Properties.Settings.Default.MainFormWindowState;
+			// part list window
+			mPartListForm.Location = Properties.Settings.Default.PartListFormLocation;
+			mPartListForm.Size = Properties.Settings.Default.PartListFormSize;
+			mPartListForm.WindowState = Properties.Settings.Default.PartListFormWindowState;
+			// snap grid button, enable and size
+			enableSnapGridButton(Properties.Settings.Default.UISnapGridEnabled, Properties.Settings.Default.UISnapGridSize);
 		}
 
-		private void saveWindowSettingInDefaultSettings()
+		private void saveUISettingInDefaultSettings()
 		{
 			// DOT NET BUG: the data binding of the Form size and window state interfere with the
 			// the normal behavior of saving, so we remove the data binding and do it manually
@@ -301,6 +307,23 @@ namespace BlueBrick
 				Properties.Settings.Default.MainFormLocation = this.Location;
 				Properties.Settings.Default.MainFormSize = this.Size;
 			}
+
+			// save also the window size/position/state of the Part List Window
+			Properties.Settings.Default.PartListFormWindowState = mPartListForm.WindowState;
+			if (mPartListForm.WindowState == FormWindowState.Maximized)
+			{
+				Properties.Settings.Default.PartListFormLocation = mPartListForm.RestoreBounds.Location;
+				Properties.Settings.Default.PartListFormSize = mPartListForm.RestoreBounds.Size;
+			}
+			else
+			{
+				Properties.Settings.Default.PartListFormLocation = mPartListForm.Location;
+				Properties.Settings.Default.PartListFormSize = mPartListForm.Size;
+			}
+
+			// snap grid button
+			Properties.Settings.Default.UISnapGridEnabled = Layer.SnapGridEnabled;
+			Properties.Settings.Default.UISnapGridSize = Layer.CurrentSnapGridSize;
 
 			// try to save (never mind if we can not (for example BlueBrick is launched
 			// from a write protected drive)
@@ -484,32 +507,58 @@ namespace BlueBrick
 		/// to enable/disable the snap grid button
 		/// </summary>
 		/// <param name="enable">true is the snap grid is enabled</param>
-		private void enableSnapGridButton(bool enable)
+		/// <param name="size">the new size</param>
+		private void enableSnapGridButton(bool enable, float size)
 		{
-			// uncheck all the menu item anyway
+			// uncheck all the menu item
 			this.moveStep32ToolStripMenuItem.Checked = false;
 			this.moveStep16ToolStripMenuItem.Checked = false;
 			this.moveStep8ToolStripMenuItem.Checked = false;
 			this.moveStep4ToolStripMenuItem.Checked = false;
 			this.moveStep1ToolStripMenuItem.Checked = false;
 			this.moveStep05ToolStripMenuItem.Checked = false;
+			// uncheck all the toolbar item
+			this.toolBarGrid32Button.Checked = false;
+			this.toolBarGrid16Button.Checked = false;
+			this.toolBarGrid8Button.Checked = false;
+			this.toolBarGrid4Button.Checked = false;
+			this.toolBarGrid1Button.Checked = false;
+			this.toolBarGrid05Button.Checked = false;
 			// enable or disable the correct items
 			if (enable)
 			{
 				// menu
 				this.moveStepDisabledToolStripMenuItem.Checked = false;
-				if (this.toolBarGrid32Button.Checked)
+				if (size == 32.0f)
+				{
 					this.moveStep32ToolStripMenuItem.Checked = true;
-				else if (this.toolBarGrid16Button.Checked)
+					this.toolBarGrid32Button.Checked = true;
+				}
+				else if (size == 16.0f)
+				{
 					this.moveStep16ToolStripMenuItem.Checked = true;
-				else if (this.toolBarGrid8Button.Checked)
+					this.toolBarGrid16Button.Checked = true;
+				}
+				else if (size == 8.0f)
+				{
 					this.moveStep8ToolStripMenuItem.Checked = true;
-				else if (this.toolBarGrid4Button.Checked)
+					this.toolBarGrid8Button.Checked = true;
+				}
+				else if (size == 4.0f)
+				{
 					this.moveStep4ToolStripMenuItem.Checked = true;
-				else if (this.toolBarGrid1Button.Checked)
+					this.toolBarGrid4Button.Checked = true;
+				}
+				else if (size == 1.0f)
+				{
 					this.moveStep1ToolStripMenuItem.Checked = true;
-				else if (this.toolBarGrid05Button.Checked)
+					this.toolBarGrid1Button.Checked = true;
+				}
+				else
+				{
 					this.moveStep05ToolStripMenuItem.Checked = true;
+					this.toolBarGrid05Button.Checked = true;
+				}
 				// toolbar
 				this.toolBarSnapGridButton.DropDown.Enabled = true;
 				this.toolBarSnapGridButton.Image = BlueBrick.Properties.Resources.SnapGridOn;
@@ -524,6 +573,8 @@ namespace BlueBrick
 				this.toolBarSnapGridButton.Image = BlueBrick.Properties.Resources.SnapGridOff;
 				Layer.SnapGridEnabled = false;
 			}
+			// set the size
+			Layer.CurrentSnapGridSize = size;
 		}
 
 		public void NotifyPartListForLayerAdded(Layer layer)
@@ -975,7 +1026,7 @@ namespace BlueBrick
 			// if the user didn't cancel the close, save the setting of the user,
 			// in order to save the main form position, size and state
 			if (!e.Cancel)
-				saveWindowSettingInDefaultSettings();
+				saveUISettingInDefaultSettings();
 		}
 
 		#endregion
@@ -1170,97 +1221,43 @@ namespace BlueBrick
 
 		private void moveStepDisabledToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			enableSnapGridButton(false);
+			enableSnapGridButton(false, Layer.CurrentSnapGridSize);
 		}
 
 		private void moveStep32ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// toolbar
-			this.toolBarGrid32Button.Checked = true;
-			this.toolBarGrid16Button.Checked = false;
-			this.toolBarGrid8Button.Checked = false;
-			this.toolBarGrid4Button.Checked = false;
-			this.toolBarGrid1Button.Checked = false;
-			this.toolBarGrid05Button.Checked = false;
-			// enable the toolbar, and the menu item will be checked according to the previously set toolbar
-			enableSnapGridButton(true);
-			//layer
-			Layer.CurrentSnapGridSize = 32;
+			// enable the toolbar and the menu item
+			enableSnapGridButton(true, 32.0f);
 		}
 
 		private void moveStep16ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// toolbar
-			this.toolBarGrid32Button.Checked = false;
-			this.toolBarGrid16Button.Checked = true;
-			this.toolBarGrid8Button.Checked = false;
-			this.toolBarGrid4Button.Checked = false;
-			this.toolBarGrid1Button.Checked = false;
-			this.toolBarGrid05Button.Checked = false;
-			// enable the toolbar, and the menu item will be checked according to the previously set toolbar
-			enableSnapGridButton(true);
-			//layer
-			Layer.CurrentSnapGridSize = 16;
+			// enable the toolbar and the menu item
+			enableSnapGridButton(true, 16.0f);
 		}
 
 		private void moveStep8ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// toolbar
-			this.toolBarGrid32Button.Checked = false;
-			this.toolBarGrid16Button.Checked = false;
-			this.toolBarGrid8Button.Checked = true;
-			this.toolBarGrid4Button.Checked = false;
-			this.toolBarGrid1Button.Checked = false;
-			this.toolBarGrid05Button.Checked = false;
-			// enable the toolbar, and the menu item will be checked according to the previously set toolbar
-			enableSnapGridButton(true);
-			//layer
-			Layer.CurrentSnapGridSize = 8;
+			// enable the toolbar and the menu item
+			enableSnapGridButton(true, 8.0f);
 		}
 
 		private void moveStep4ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// toolbar
-			this.toolBarGrid32Button.Checked = false;
-			this.toolBarGrid16Button.Checked = false;
-			this.toolBarGrid8Button.Checked = false;
-			this.toolBarGrid4Button.Checked = true;
-			this.toolBarGrid1Button.Checked = false;
-			this.toolBarGrid05Button.Checked = false;
-			// enable the toolbar, and the menu item will be checked according to the previously set toolbar
-			enableSnapGridButton(true);
-			//layer
-			Layer.CurrentSnapGridSize = 4;
+			// enable the toolbar and the menu item
+			enableSnapGridButton(true, 4.0f);
 		}
 
 		private void moveStep1ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// toolbar
-			this.toolBarGrid32Button.Checked = false;
-			this.toolBarGrid16Button.Checked = false;
-			this.toolBarGrid8Button.Checked = false;
-			this.toolBarGrid4Button.Checked = false;
-			this.toolBarGrid1Button.Checked = true;
-			this.toolBarGrid05Button.Checked = false;
-			// enable the toolbar, and the menu item will be checked according to the previously set toolbar
-			enableSnapGridButton(true);
-			//layer
-			Layer.CurrentSnapGridSize = 1;
+			// enable the toolbar and the menu item
+			enableSnapGridButton(true, 1.0f);
 		}
 
 		private void moveStep05ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// toolbar
-			this.toolBarGrid32Button.Checked = false;
-			this.toolBarGrid16Button.Checked = false;
-			this.toolBarGrid8Button.Checked = false;
-			this.toolBarGrid4Button.Checked = false;
-			this.toolBarGrid1Button.Checked = false;
-			this.toolBarGrid05Button.Checked = true;
-			// enable the toolbar, and the menu item will be checked according to the previously set toolbar
-			enableSnapGridButton(true);
-			//layer
-			Layer.CurrentSnapGridSize = 0.5f;
+			// enable the toolbar and the menu item
+			enableSnapGridButton(true, 0.5f);
 		}
 
 		private void rotationStep90ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1620,7 +1617,7 @@ namespace BlueBrick
 		{
 			if (this.toolBarSnapGridButton.ButtonPressed)
 			{
-				enableSnapGridButton(!this.toolBarSnapGridButton.DropDown.Enabled);
+				enableSnapGridButton(!this.toolBarSnapGridButton.DropDown.Enabled, Layer.CurrentSnapGridSize);
 			}
 		}
 

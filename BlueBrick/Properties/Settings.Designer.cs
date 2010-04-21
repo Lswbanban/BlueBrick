@@ -438,5 +438,65 @@ namespace BlueBrick.Properties {
                 this["MainFormWindowState"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point PartListFormLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["PartListFormLocation"]));
+            }
+            set {
+                this["PartListFormLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState PartListFormWindowState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["PartListFormWindowState"]));
+            }
+            set {
+                this["PartListFormWindowState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("446, 577")]
+        public global::System.Drawing.Size PartListFormSize {
+            get {
+                return ((global::System.Drawing.Size)(this["PartListFormSize"]));
+            }
+            set {
+                this["PartListFormSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UISnapGridEnabled {
+            get {
+                return ((bool)(this["UISnapGridEnabled"]));
+            }
+            set {
+                this["UISnapGridEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("32")]
+        public float UISnapGridSize {
+            get {
+                return ((float)(this["UISnapGridSize"]));
+            }
+            set {
+                this["UISnapGridSize"] = value;
+            }
+        }
     }
 }
