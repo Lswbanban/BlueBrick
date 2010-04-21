@@ -204,9 +204,6 @@ namespace BlueBrick
 			loadUISettingFromDefaultSettings();
 			// load the custom cursors
 			LoadEmbededCustomCursors();
-			// regenerate the paint icon with the right color in the background
-			mCurrentPaintIconColor = this.colorDialog.Color;
-			generatePaintIcon();
 			// init the drawing data for the brick layer
 			LayerBrick.sUpdateGammaFromSettings();
 			// reset the shortcut keys
@@ -292,6 +289,12 @@ namespace BlueBrick
 			enableSnapGridButton(Properties.Settings.Default.UISnapGridEnabled, Properties.Settings.Default.UISnapGridSize);
 			// rotation step
 			updateRotationStepButton(Properties.Settings.Default.UIRotationStep);
+			// regenerate the paint icon with the right color in the background
+			generatePaintIcon(Properties.Settings.Default.UIPaintColor);
+			if (Properties.Settings.Default.UIIsPaintToolSelected)
+				paintToolPaintToolStripMenuItem_Click(this, null);
+			else
+				paintToolEraseToolStripMenuItem_Click(this, null);
 			// toolbar and status bar visibility
 			this.toolBar.Visible = this.toolbarMenuItem.Checked = Properties.Settings.Default.UIToolbarIsVisible;
 			this.statusBar.Visible = this.statusBarMenuItem.Checked = Properties.Settings.Default.UIStatusbarIsVisible;
@@ -331,6 +334,10 @@ namespace BlueBrick
 			Properties.Settings.Default.UISnapGridEnabled = Layer.SnapGridEnabled;
 			Properties.Settings.Default.UISnapGridSize = Layer.CurrentSnapGridSize;
 			Properties.Settings.Default.UIRotationStep = Layer.CurrentRotationStep;
+
+			// paint color
+			Properties.Settings.Default.UIPaintColor = mCurrentPaintIconColor;
+			Properties.Settings.Default.UIIsPaintToolSelected = (this.toolBarPaintButton.Image == mPaintIcon);
 
 			// toolbar and status bar visibility
 			Properties.Settings.Default.UIToolbarIsVisible = this.toolBar.Visible;
@@ -1363,12 +1370,14 @@ namespace BlueBrick
 			LayerArea.CurrentDrawColor = Color.Empty;
 		}
 
-		private void generatePaintIcon()
+		private void generatePaintIcon(Color color)
 		{
-			// get the background color from the color dialog
+			// assign the current paint color with the specified parameter
+			mCurrentPaintIconColor = color;
+			// get the background color from the specified color
 			// but cheat a little if the user choose the magenta color, because it is the transparent
 			// color of the original bitmap
-			Color backColor = mCurrentPaintIconColor;
+			Color backColor = color;
 			if ((backColor == Color.Magenta) || (backColor == Color.Fuchsia))
 				backColor = Color.FromArgb(unchecked((int)0xFFFF00FE));
 			// recreate the icon and use the color of the color dialog for the background
@@ -1380,7 +1389,7 @@ namespace BlueBrick
 			// refresh the icon
 			this.toolBarPaintButton.Image = mPaintIcon;
 			// set the current static paint color in the area layer
-			LayerArea.CurrentDrawColor = mCurrentPaintIconColor;
+			LayerArea.CurrentDrawColor = color;
 		}
 
 		private void paintToolChooseColorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1389,8 +1398,7 @@ namespace BlueBrick
 			DialogResult result = this.colorDialog.ShowDialog();
 			if (result == DialogResult.OK)
 			{
-				mCurrentPaintIconColor = this.colorDialog.Color;
-				generatePaintIcon();
+				generatePaintIcon(this.colorDialog.Color);
 			}
 		}
 

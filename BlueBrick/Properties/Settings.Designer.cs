@@ -546,5 +546,29 @@ namespace BlueBrick.Properties {
                 this["UIStatusbarIsVisible"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Gold")]
+        public global::System.Drawing.Color UIPaintColor {
+            get {
+                return ((global::System.Drawing.Color)(this["UIPaintColor"]));
+            }
+            set {
+                this["UIPaintColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UIIsPaintToolSelected {
+            get {
+                return ((bool)(this["UIIsPaintToolSelected"]));
+            }
+            set {
+                this["UIIsPaintToolSelected"] = value;
+            }
+        }
     }
 }
