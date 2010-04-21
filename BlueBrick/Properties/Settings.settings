@@ -113,22 +113,22 @@
     <Setting Name="GammaForSnappingPart" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0.05</Value>
     </Setting>
-    <Setting Name="MainFormLocation" Type="System.Drawing.Point" Scope="User">
+    <Setting Name="UIMainFormLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
-    <Setting Name="MainFormSize" Type="System.Drawing.Size" Scope="User">
+    <Setting Name="UIMainFormSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">648, 545</Value>
     </Setting>
-    <Setting Name="MainFormWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+    <Setting Name="UIMainFormWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>
     </Setting>
-    <Setting Name="PartListFormLocation" Type="System.Drawing.Point" Scope="User">
+    <Setting Name="UIPartListFormLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
-    <Setting Name="PartListFormWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+    <Setting Name="UIPartListFormWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>
     </Setting>
-    <Setting Name="PartListFormSize" Type="System.Drawing.Size" Scope="User">
+    <Setting Name="UIPartListFormSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">446, 577</Value>
     </Setting>
     <Setting Name="UISnapGridEnabled" Type="System.Boolean" Scope="User">
@@ -136,6 +136,12 @@
     </Setting>
     <Setting Name="UISnapGridSize" Type="System.Single" Scope="User">
       <Value Profile="(Default)">32</Value>
+    </Setting>
+    <Setting Name="UIRotationStep" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="UIPartListFormIsVisible" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

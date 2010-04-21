@@ -37,7 +37,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-- [target 1.6] MISSING FEATURE (Richie): The grid step and rotation step could be saved in the preference of the application.
 - [target 1.6] MISSING FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder)
 - [target 1.7] MISSING FEATURE (Alban): make configurable connexion points
 - [target 1.7] MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
@@ -65,6 +64,8 @@ Bug fixed in 1.6.0.0:
 - NEW FEATURE (Alban): Change the highlight method of the part (remove the ugly squares) and add options to customize the highlight value
 - NEW FEATURE (Alban): Move the grid origin with the mouse when the grid layer is selected
 - NEW FEATURE (Alex): Remember the window size.
+- NEW FEATURE (Richie): The grid step and rotation step could be saved in the preference of the application.
+- NEW FEATURE (Alban): Save even more UI status in the preference of the application (Part list visibility, size and position, paint color, toolbar and status bar visibility, split panel position)
 - NEW FEATURE (Didier): Add a configurable list of event in the a config file
 - BUGFIX (Alex): CRASH! In the XML loading code, when you load a part that has a different number of connection in the file and in the part library, you may crash.
 - BUGFIX (Thomas): A message box appears for the multiple selection key when switching the application to German language on a German Windows OS.

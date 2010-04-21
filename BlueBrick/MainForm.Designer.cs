@@ -1035,10 +1035,10 @@ namespace BlueBrick
 			this.Controls.Add(this.mainSplitContainer);
 			this.Controls.Add(this.toolBar);
 			this.Controls.Add(this.menuBar);
-			this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::BlueBrick.Properties.Settings.Default, "MainFormLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::BlueBrick.Properties.Settings.Default, "UIMainFormLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
 			this.DoubleBuffered = true;
 			this.KeyPreview = true;
-			this.Location = global::BlueBrick.Properties.Settings.Default.MainFormLocation;
+			this.Location = global::BlueBrick.Properties.Settings.Default.UIMainFormLocation;
 			this.MainMenuStrip = this.menuBar;
 			this.Name = "MainForm";
 			this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseWheel);

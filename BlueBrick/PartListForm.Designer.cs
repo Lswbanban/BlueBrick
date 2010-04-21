@@ -119,8 +119,8 @@ namespace BlueBrick
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.tableLayoutPanel);
-			this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::BlueBrick.Properties.Settings.Default, "PartListFormLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-			this.Location = global::BlueBrick.Properties.Settings.Default.PartListFormLocation;
+			this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::BlueBrick.Properties.Settings.Default, "UIPartListFormLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.Location = global::BlueBrick.Properties.Settings.Default.UIPartListFormLocation;
 			this.Name = "PartListForm";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PartListForm_FormClosing);
 			this.tableLayoutPanel.ResumeLayout(false);

@@ -406,72 +406,72 @@ namespace BlueBrick.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point MainFormLocation {
+        public global::System.Drawing.Point UIMainFormLocation {
             get {
-                return ((global::System.Drawing.Point)(this["MainFormLocation"]));
+                return ((global::System.Drawing.Point)(this["UIMainFormLocation"]));
             }
             set {
-                this["MainFormLocation"] = value;
+                this["UIMainFormLocation"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("648, 545")]
-        public global::System.Drawing.Size MainFormSize {
+        public global::System.Drawing.Size UIMainFormSize {
             get {
-                return ((global::System.Drawing.Size)(this["MainFormSize"]));
+                return ((global::System.Drawing.Size)(this["UIMainFormSize"]));
             }
             set {
-                this["MainFormSize"] = value;
+                this["UIMainFormSize"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public global::System.Windows.Forms.FormWindowState MainFormWindowState {
+        public global::System.Windows.Forms.FormWindowState UIMainFormWindowState {
             get {
-                return ((global::System.Windows.Forms.FormWindowState)(this["MainFormWindowState"]));
+                return ((global::System.Windows.Forms.FormWindowState)(this["UIMainFormWindowState"]));
             }
             set {
-                this["MainFormWindowState"] = value;
+                this["UIMainFormWindowState"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point PartListFormLocation {
+        public global::System.Drawing.Point UIPartListFormLocation {
             get {
-                return ((global::System.Drawing.Point)(this["PartListFormLocation"]));
+                return ((global::System.Drawing.Point)(this["UIPartListFormLocation"]));
             }
             set {
-                this["PartListFormLocation"] = value;
+                this["UIPartListFormLocation"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public global::System.Windows.Forms.FormWindowState PartListFormWindowState {
+        public global::System.Windows.Forms.FormWindowState UIPartListFormWindowState {
             get {
-                return ((global::System.Windows.Forms.FormWindowState)(this["PartListFormWindowState"]));
+                return ((global::System.Windows.Forms.FormWindowState)(this["UIPartListFormWindowState"]));
             }
             set {
-                this["PartListFormWindowState"] = value;
+                this["UIPartListFormWindowState"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("446, 577")]
-        public global::System.Drawing.Size PartListFormSize {
+        public global::System.Drawing.Size UIPartListFormSize {
             get {
-                return ((global::System.Drawing.Size)(this["PartListFormSize"]));
+                return ((global::System.Drawing.Size)(this["UIPartListFormSize"]));
             }
             set {
-                this["PartListFormSize"] = value;
+                this["UIPartListFormSize"] = value;
             }
         }
         
@@ -496,6 +496,30 @@ namespace BlueBrick.Properties {
             }
             set {
                 this["UISnapGridSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("90")]
+        public float UIRotationStep {
+            get {
+                return ((float)(this["UIRotationStep"]));
+            }
+            set {
+                this["UIRotationStep"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UIPartListFormIsVisible {
+            get {
+                return ((bool)(this["UIPartListFormIsVisible"]));
+            }
+            set {
+                this["UIPartListFormIsVisible"] = value;
             }
         }
     }

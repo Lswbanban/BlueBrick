@@ -200,7 +200,6 @@ namespace BlueBrick
 			sInstance = this;
 			// create and hide the part list form
 			mPartListForm = new PartListForm(this);
-			mPartListForm.Visible = false;
 			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED for mapping UI properties in settings
 			loadUISettingFromDefaultSettings();
 			// load the custom cursors
@@ -281,49 +280,54 @@ namespace BlueBrick
 		{
 			// DOT NET BUG: the data binding of the Form size and window state interfere with the
 			// the normal behavior of saving, so we remove the data binding and do it manually
-			this.Location = Properties.Settings.Default.MainFormLocation;
-			this.Size = Properties.Settings.Default.MainFormSize;
-			this.WindowState = Properties.Settings.Default.MainFormWindowState;
+			this.Location = Properties.Settings.Default.UIMainFormLocation;
+			this.Size = Properties.Settings.Default.UIMainFormSize;
+			this.WindowState = Properties.Settings.Default.UIMainFormWindowState;
 			// part list window
-			mPartListForm.Location = Properties.Settings.Default.PartListFormLocation;
-			mPartListForm.Size = Properties.Settings.Default.PartListFormSize;
-			mPartListForm.WindowState = Properties.Settings.Default.PartListFormWindowState;
-			// snap grid button, enable and size
+			mPartListForm.Location = Properties.Settings.Default.UIPartListFormLocation;
+			mPartListForm.Size = Properties.Settings.Default.UIPartListFormSize;
+			mPartListForm.WindowState = Properties.Settings.Default.UIPartListFormWindowState;
+			mPartListForm.Visible = this.partListToolStripMenuItem.Checked = Properties.Settings.Default.UIPartListFormIsVisible;
+			// snap grid button enable and size
 			enableSnapGridButton(Properties.Settings.Default.UISnapGridEnabled, Properties.Settings.Default.UISnapGridSize);
+			// rotation step
+			updateRotationStepButton(Properties.Settings.Default.UIRotationStep);
 		}
 
 		private void saveUISettingInDefaultSettings()
 		{
 			// DOT NET BUG: the data binding of the Form size and window state interfere with the
 			// the normal behavior of saving, so we remove the data binding and do it manually
-			Properties.Settings.Default.MainFormWindowState = this.WindowState;
+			Properties.Settings.Default.UIMainFormWindowState = this.WindowState;
 			if (this.WindowState == FormWindowState.Maximized)
 			{
-				Properties.Settings.Default.MainFormLocation = this.RestoreBounds.Location;
-				Properties.Settings.Default.MainFormSize = this.RestoreBounds.Size;
+				Properties.Settings.Default.UIMainFormLocation = this.RestoreBounds.Location;
+				Properties.Settings.Default.UIMainFormSize = this.RestoreBounds.Size;
 			}
 			else
 			{
-				Properties.Settings.Default.MainFormLocation = this.Location;
-				Properties.Settings.Default.MainFormSize = this.Size;
+				Properties.Settings.Default.UIMainFormLocation = this.Location;
+				Properties.Settings.Default.UIMainFormSize = this.Size;
 			}
 
 			// save also the window size/position/state of the Part List Window
-			Properties.Settings.Default.PartListFormWindowState = mPartListForm.WindowState;
+			Properties.Settings.Default.UIPartListFormIsVisible = mPartListForm.Visible;
+			Properties.Settings.Default.UIPartListFormWindowState = mPartListForm.WindowState;
 			if (mPartListForm.WindowState == FormWindowState.Maximized)
 			{
-				Properties.Settings.Default.PartListFormLocation = mPartListForm.RestoreBounds.Location;
-				Properties.Settings.Default.PartListFormSize = mPartListForm.RestoreBounds.Size;
+				Properties.Settings.Default.UIPartListFormLocation = mPartListForm.RestoreBounds.Location;
+				Properties.Settings.Default.UIPartListFormSize = mPartListForm.RestoreBounds.Size;
 			}
 			else
 			{
-				Properties.Settings.Default.PartListFormLocation = mPartListForm.Location;
-				Properties.Settings.Default.PartListFormSize = mPartListForm.Size;
+				Properties.Settings.Default.UIPartListFormLocation = mPartListForm.Location;
+				Properties.Settings.Default.UIPartListFormSize = mPartListForm.Size;
 			}
 
-			// snap grid button
+			// snap grid size and rotation
 			Properties.Settings.Default.UISnapGridEnabled = Layer.SnapGridEnabled;
 			Properties.Settings.Default.UISnapGridSize = Layer.CurrentSnapGridSize;
+			Properties.Settings.Default.UIRotationStep = Layer.CurrentRotationStep;
 
 			// try to save (never mind if we can not (for example BlueBrick is launched
 			// from a write protected drive)
@@ -1260,68 +1264,40 @@ namespace BlueBrick
 			enableSnapGridButton(true, 0.5f);
 		}
 
+		/// <summary>
+		/// Update the checkmark in front of the correct rotation step in the menu and the toolbard
+		/// according to the specified angle value
+		/// </summary>
+		/// <param name="angle">the new angle chosen</param>
+		private void updateRotationStepButton(float angle)
+		{
+			// toolbar and menu
+			this.toolBarAngle90Button.Checked = this.rotationStep90ToolStripMenuItem.Checked = (angle == 90.0f);
+			this.toolBarAngle45Button.Checked = this.rotationStep45ToolStripMenuItem.Checked = (angle == 45.0f);
+			this.toolBarAngle22Button.Checked = this.rotationStep22ToolStripMenuItem.Checked = (angle == 22.5f);
+			this.toolBarAngle1Button.Checked = this.rotationStep1ToolStripMenuItem.Checked = (angle == 1.0f);
+			//layer
+			Layer.CurrentRotationStep = angle;
+		}
+
 		private void rotationStep90ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// toolbar
-			this.toolBarAngle90Button.Checked = true;
-			this.toolBarAngle45Button.Checked = false;
-			this.toolBarAngle22Button.Checked = false;
-			this.toolBarAngle1Button.Checked = false;
-			//menu
-			this.rotationStep90ToolStripMenuItem.Checked = true;
-			this.rotationStep45ToolStripMenuItem.Checked = false;
-			this.rotationStep22ToolStripMenuItem.Checked = false;
-			this.rotationStep1ToolStripMenuItem.Checked = false;
-			//layer
-			Layer.CurrentRotationStep = 90;
+			updateRotationStepButton(90.0f);
 		}
 
 		private void rotationStep45ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// toolbar
-			this.toolBarAngle90Button.Checked = false;
-			this.toolBarAngle45Button.Checked = true;
-			this.toolBarAngle22Button.Checked = false;
-			this.toolBarAngle1Button.Checked = false;
-			//menu
-			this.rotationStep90ToolStripMenuItem.Checked = false;
-			this.rotationStep45ToolStripMenuItem.Checked = true;
-			this.rotationStep22ToolStripMenuItem.Checked = false;
-			this.rotationStep1ToolStripMenuItem.Checked = false;
-			//layer
-			Layer.CurrentRotationStep = 45;
+			updateRotationStepButton(45.0f);
 		}
 
 		private void rotationStep22ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// toolbar
-			this.toolBarAngle90Button.Checked = false;
-			this.toolBarAngle45Button.Checked = false;
-			this.toolBarAngle22Button.Checked = true;
-			this.toolBarAngle1Button.Checked = false;
-			//menu
-			this.rotationStep90ToolStripMenuItem.Checked = false;
-			this.rotationStep45ToolStripMenuItem.Checked = false;
-			this.rotationStep22ToolStripMenuItem.Checked = true;
-			this.rotationStep1ToolStripMenuItem.Checked = false;
-			//layer
-			Layer.CurrentRotationStep = 22.5f;
+			updateRotationStepButton(22.5f);
 		}
 
 		private void rotationStep1ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// toolbar
-			this.toolBarAngle90Button.Checked = false;
-			this.toolBarAngle45Button.Checked = false;
-			this.toolBarAngle22Button.Checked = false;
-			this.toolBarAngle1Button.Checked = true;
-			//menu
-			this.rotationStep90ToolStripMenuItem.Checked = false;
-			this.rotationStep45ToolStripMenuItem.Checked = false;
-			this.rotationStep22ToolStripMenuItem.Checked = false;
-			this.rotationStep1ToolStripMenuItem.Checked = true;
-			//layer
-			Layer.CurrentRotationStep = 1;
+			updateRotationStepButton(1.0f);
 		}
 
 		private void rotateCWToolStripMenuItem_Click(object sender, EventArgs e)
