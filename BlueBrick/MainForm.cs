@@ -229,6 +229,11 @@ namespace BlueBrick
 		{
 			// set the static flag to terminate the thread of the splash screen
 			sIsMainFormReady = true;
+
+			// set the split container distance in the shown event because else the distance is not
+			// correct if the window was maximise
+			this.mainSplitContainer.SplitterDistance = Properties.Settings.Default.UIMainSplitContainerDistance;
+			this.toolSplitContainer.SplitterDistance = Properties.Settings.Default.UIToolSplitContainerDistance;
 		}
 
 		private void SaveDefaultKeyInDefaultSettings()
@@ -285,9 +290,6 @@ namespace BlueBrick
 			mPartListForm.Size = Properties.Settings.Default.UIPartListFormSize;
 			mPartListForm.WindowState = Properties.Settings.Default.UIPartListFormWindowState;
 			mPartListForm.Visible = this.partListToolStripMenuItem.Checked = Properties.Settings.Default.UIPartListFormIsVisible;
-			// split container
-			this.mainSplitContainer.SplitterDistance = Properties.Settings.Default.UIMainSplitContainerDistance;
-			this.toolSplitContainer.SplitterDistance = Properties.Settings.Default.UIToolSplitContainerDistance;
 			// snap grid button enable and size
 			enableSnapGridButton(Properties.Settings.Default.UISnapGridEnabled, Properties.Settings.Default.UISnapGridSize);
 			// rotation step
