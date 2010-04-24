@@ -156,7 +156,9 @@ namespace BlueBrick
 			// init the combobox selections (the selection for connexion is set in the event handler of the selection of part num)
 			this.comboBoxKey.SelectedIndex = 0;
 			this.comboBoxAction.SelectedIndex = 0;
-			this.comboBoxPartNum.SelectedIndex = 0;
+			// test if there's at list one part in the library, else an exception is raised when seting the selected index
+			if (this.comboBoxPartNum.Items.Count > 0)
+				this.comboBoxPartNum.SelectedIndex = 0;
 			// click on the first column to add the little sign of the sort order
 			listViewShortcutKeys_ColumnClick(this, new ColumnClickEventArgs(0));
 		}
