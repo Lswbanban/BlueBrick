@@ -274,7 +274,10 @@
     <value>Vous avez modifié quelques paramètres par défaut concernant l'apparence. Ces paramètres seront utilisés quand vous créerez de nouveaux plans, mais voulez-vous aussi appliquer ces paramètres à votre plan actuel ?</value>
   </data>
   <data name="ErrorMsgCanNotLoadImage" xml:space="preserve">
-    <value>BlueBrick a rencontré quelques problèmes pour charger certaines images de la base de données de pièces et les a simplement ignorés. Ce problème peut arriver lorsqu'une image est trop grosse ou a été altérée. Retirez la/les image(s) de votre base de données pour enlever ce message d'avertissement. La/les images concernées est/sont :</value>
+    <value>BlueBrick a rencontré quelques problèmes pour charger certaines images de la base de données de pièces et les a simplement ignorés. Ce problème peut arriver lorsqu'une image est trop grosse ou a été altérée. Retirez la/les image(s) de votre base de données pour supprimer ce message d'avertissement. La/les images concernées est/sont :</value>
+  </data>
+  <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
+    <value>BlueBrick a rencontré quelques problèmes pour charger certains fichiers XML de la base de données de pièces et les a simplement ignorés. Ce problème peut arriver lorsqu'un fichier XML contient des erreurs de syntaxe. Corrigez la syntaxe ou retirez les fichiers XML de votre base de données pour supprimer ce message d'avertissement. Le/les fichiers XML concernés est/sont :</value>
   </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>Impossible de copier des objets du type &amp; dans le calque actuellement sélectionné qui est du type &amp;&amp;.</value>

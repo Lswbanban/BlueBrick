@@ -284,7 +284,10 @@
     <value>You have modified some default appearance settings. These settings will be used when you create new maps, but do you want to also apply these settings to your current map?</value>
   </data>
   <data name="ErrorMsgCanNotLoadImage" xml:space="preserve">
-    <value>BlueBrick had encountered problems while loading  images from the parts database. These images have been ignored. This problem may happen if an image is corrupted or too big. Remove the image(s) from your database to remove this warning. The image(s) concerned is/are: </value>
+    <value>BlueBrick had encountered problems while loading images from the parts database. These images have been ignored. This problem may happen if an image is corrupted or too big. Remove the image(s) from your database to remove this warning. The image(s) concerned is/are: </value>
+  </data>
+  <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
+    <value>BlueBrick had encountered problems while loading XML files from the parts database. These XML files have been ignored. This problem may happen if an XML file contains syntax errors. Fix the syntax or delete the XML files to remove this warning. The file(s) concerned is/are:</value>
   </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>Can not paste items of type &amp; in the current selected layer which is of type &amp;&amp;.</value>

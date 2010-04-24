@@ -119,6 +119,7 @@ namespace BlueBrick
 			// create a list of image to load all the images in a list
 			List<Bitmap> imageList = new List<Bitmap>();
 			List<string> imageFileUnloadable = new List<string>();
+			List<string> xmlFileUnloadable = new List<string>();
 			List<string> xmlFileLoaded = new List<string>();
 
 			// declare a variable to find the biggest image size
@@ -134,29 +135,37 @@ namespace BlueBrick
 					// read the image from the file
 					Bitmap image = new Bitmap(file.FullName);
 
-					// get the name without extension and use upper case
-					string name = file.Name.Substring(0, file.Name.Length - 4).ToUpper();
+					try
+					{
+						// get the name without extension and use upper case
+						string name = file.Name.Substring(0, file.Name.Length - 4).ToUpper();
 
-					// put the image in the database
-					string xmlFileName = file.FullName.Substring(0, file.FullName.Length - 3) + "xml";
-					BrickLibrary.Instance.AddBrick(name, image, xmlFileName);
-					xmlFileLoaded.Add(xmlFileName);
+						// put the image in the database
+						string xmlFileName = file.FullName.Substring(0, file.FullName.Length - 3) + "xml";
+						BrickLibrary.Instance.AddBrick(name, image, xmlFileName);
+						xmlFileLoaded.Add(xmlFileName);
 
-					// add the image in the image list
-					imageList.Add(image);
+						// add the image in the image list
+						imageList.Add(image);
 
-					// memorize the biggest size
-					if (biggestSize < image.Width)
-						biggestSize = image.Width;
-					if (biggestSize < image.Height)
-						biggestSize = image.Height;
+						// memorize the biggest size
+						if (biggestSize < image.Width)
+							biggestSize = image.Width;
+						if (biggestSize < image.Height)
+							biggestSize = image.Height;
 
-					// create a new item for the list view item
-					ListViewItem newItem = new ListViewItem(null as string, imageIndex);
-					newItem.ToolTipText = name;
-					newItem.Tag = name;
-					listViewToFill.Items.Add(newItem);
-					imageIndex++;
+						// create a new item for the list view item
+						ListViewItem newItem = new ListViewItem(null as string, imageIndex);
+						newItem.ToolTipText = name;
+						newItem.Tag = name;
+						listViewToFill.Items.Add(newItem);
+						imageIndex++;
+					}
+					catch
+					{
+						// add the file that can't be loaded in the list of problems
+						xmlFileUnloadable.Add(file.FullName);
+					}
 				}
 				catch
 				{
@@ -182,16 +191,35 @@ namespace BlueBrick
 				}
 				catch
 				{
+					// add the file that can't be loaded in the list of problems
+					xmlFileUnloadable.Add(file.FullName);
 				}
 			}
 
 			// check if there was some error with some files
+			string message = null;
 			if (imageFileUnloadable.Count > 0)
 			{
 				// display a warning message
-				string message = Properties.Resources.ErrorMsgCanNotLoadImage;
+				message = Properties.Resources.ErrorMsgCanNotLoadImage;
 				foreach (string filename in imageFileUnloadable)
 					message += "\n" + filename;
+			}
+			if (xmlFileUnloadable.Count > 0)
+			{
+				if (message == null)
+					message = "";
+				else
+					message += "\n\n";
+				// display a warning message
+				message += Properties.Resources.ErrorMsgCanNotLoadPartXML;
+				foreach (string filename in xmlFileUnloadable)
+					message += "\n" + filename;
+			}
+
+			// display the error message if there was some errors
+			if (message != null)
+			{
 				MessageBox.Show(null, message,
 					Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
 					MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);

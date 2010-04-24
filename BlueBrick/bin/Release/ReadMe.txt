@@ -67,6 +67,7 @@ Bug fixed in 1.6.0.0:
 - NEW FEATURE (Alban): Save even more UI status in the preference of the application (Part list visibility, size and position, paint color, toolbar and status bar visibility, split panel position)
 - NEW FEATURE (Didier): Add a configurable list of event in the a config file
 - BUGFIX (Alex): CRASH! In the XML loading code, when you load a part that has a different number of connection in the file and in the part library, you may crash.
+- BUGFIX (Alban): CRASH! The opening of the Global Option window was crashing the application if the part library was empty
 - BUGFIX (Thomas): A message box appears for the multiple selection key when switching the application to German language on a German Windows OS.
 - BUGFIX (Alban): The duplication cursor could appear in wrong situation (when you press duplication key during moving parts/text)
 - BUGFIX (Alban): You can now also duplicate brick/text if you press the duplication key after the left mouse key (but before moving)

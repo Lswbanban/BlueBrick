@@ -550,11 +550,20 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BlueBrick had encountered problems while loading  images from the parts database. These images have been ignored. This problem may happen if an image is corrupted or too big. Remove the image(s) from your database to remove this warning. The image(s) concerned is/are: .
+        ///   Looks up a localized string similar to BlueBrick had encountered problems while loading images from the parts database. These images have been ignored. This problem may happen if an image is corrupted or too big. Remove the image(s) from your database to remove this warning. The image(s) concerned is/are: .
         /// </summary>
         internal static string ErrorMsgCanNotLoadImage {
             get {
                 return ResourceManager.GetString("ErrorMsgCanNotLoadImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BlueBrick had encountered problems while loading XML files from the parts database. These XML files have been ignored. This problem may happen if an XML file contains syntax errors. Fix the syntax or delete the XML files to remove this warning. The file(s) concerned is/are:.
+        /// </summary>
+        internal static string ErrorMsgCanNotLoadPartXML {
+            get {
+                return ResourceManager.GetString("ErrorMsgCanNotLoadPartXML", resourceCulture);
             }
         }
         
