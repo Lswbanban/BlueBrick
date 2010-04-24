@@ -649,7 +649,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some Track Designer part ID&apos;s were not found in your BlueBrick library. BlueBrick was not able to load them and has ignored them. You should ensure that you have the corresponding part in your BlueBrick library with the correct Track Designer ID set in the XML file and try to reopen the Track Designer file. The missing ID&apos;s were:.
+        ///   Looks up a localized string similar to Some Track Designer part ID&apos;s were not found in your BlueBrick library. BlueBrick was not able to load them and has ignored them. You should ensure that you have the corresponding part in your BlueBrick library with the correct Track Designer ID set in the XML file and then try to re-open the Track Designer file. The missing ID&apos;s were:.
         /// </summary>
         internal static string ErrorMsgMissingTDRemap {
             get {

@@ -249,6 +249,24 @@ por defecto (en studs)</value>
   <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
     <value>Mostrar puntos de conexión libres</value>
   </data>
+  <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
+    <value>214, 163</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Color resaalte pieza seleccionada</value>
+  </data>
+  <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
+    <value>214, 126</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Color resalte de selección</value>
+  </data>
+  <data name="GammaForSnappingNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>356, 170</value>
+  </data>
+  <data name="GammaForSelectionNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>356, 133</value>
+  </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 13</value>
   </data>
@@ -256,16 +274,16 @@ por defecto (en studs)</value>
     <value>Previsualizar</value>
   </data>
   <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 98</value>
+    <value>236, 97</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>Color por defecto de la sub-cuadrícula</value>
   </data>
   <data name="subGridColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>379, 103</value>
+    <value>388, 106</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 63</value>
+    <value>227, 61</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 30</value>
@@ -274,13 +292,13 @@ por defecto (en studs)</value>
     <value>Color por defecto de la cuadrícula</value>
   </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 40</value>
+    <value>236, 40</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>Color de fondo</value>
   </data>
   <data name="backgroundColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>379, 40</value>
+    <value>388, 40</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Elige un esquema de colores predefinido o crea tus própias preferencias.</value>

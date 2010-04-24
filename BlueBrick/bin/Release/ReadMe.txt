@@ -37,7 +37,7 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-- [target 1.6] MISSING FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder)
+- [target 1.7] MISSING FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder)
 - [target 1.7] MISSING FEATURE (Alban): make configurable connexion points
 - [target 1.7] MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
 - [target 1.7] MISSING FEATURE (Alban): Add the polarity check
@@ -55,7 +55,6 @@ Open bugs:
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Do not fill the optim combo box in code
-- [target 1.6] REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file: check if we can remove the hard code exception for the ramp? (if (remapData.mTDId.ID == 232678) return false;	if (connectedBrick.PartNumber.StartsWith("2678."))
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
 Bug fixed in 1.6.0.0:
@@ -72,6 +71,8 @@ Bug fixed in 1.6.0.0:
 - BUGFIX (Alban): The duplication cursor could appear in wrong situation (when you press duplication key during moving parts/text)
 - BUGFIX (Alban): You can now also duplicate brick/text if you press the duplication key after the left mouse key (but before moving)
 - BUGFIX (Alban): the area doesn't move if you just move along the Y axis
+- REFACTORING (Alban): Move the TD and LDRAW Remap information in the XML part description file
+- REFACTORING (Alban): Remove the PartRemap.txt file and put the remap information in the XML part description file
 
 Bug fixed in 1.5.1.0:
 - BUG (Stefan): The parts with hull moved at the wrong place after a rotation (basically bug in the rotation algorithm).

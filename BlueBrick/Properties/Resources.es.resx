@@ -192,6 +192,9 @@
   <data name="ActionMoveBrick" xml:space="preserve">
     <value>Mover la pieza "&amp;"</value>
   </data>
+  <data name="ActionMoveGridOrigin" xml:space="preserve">
+    <value>Mover orígen de la cuadrícula</value>
+  </data>
   <data name="ActionMoveLayerDown" xml:space="preserve">
     <value>Mover la capa "&amp;" hacia abajo</value>
   </data>
@@ -283,7 +286,7 @@
     <value>BlueBrick Copyright © 2008 Alban NANTY. Este programa es software libre bajo la licencia GPLv3 y NO TIENE NINGUNA GARANTÍA. Este programa encontró un error fataly se cerrará. Por favor informe de este error a banban@lswproject.com. El mensaje de error es:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
-    <value>Ha cambiado el idioma, pero esto no tomará efecto hasta que reinicie la aplicación. ¿Quieres reiniciarla ahora?</value>
+    <value>Has cambiado el idioma, pero esto no tomará efecto hasta que reinicie la aplicación. ¿Quieres reiniciarla ahora?</value>
   </data>
   <data name="ErrorMsgLayerTypeArea" xml:space="preserve">
     <value>Área</value>
@@ -304,7 +307,7 @@
     <value>Algunas piezas no se cargaron correctamente porque no las tiene en la biblioteca de piezas. Algunas imágenes por defecto se han añadido temporalmente para reemplazar las originales. Deberá preguntar al autor del mapa (&amp;) dónde puede encotrarlas.</value>
   </data>
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
-    <value>Algunos IDs de piezas de Track Designer  no se encontraron el el archivo de coordenadas "&amp;". BlueBrick no pudo cargarlas y las ha ignorado. Añada una linea de coordenadas para cada ID que falta en el archivo de coordenadas, luego asegúrese de tener las piezas correspondientes en la biblioteca de piezas de BlueBrick e intenta abrir el archivo Track Designer de nuevo. Los IDs que faltan son:</value>
+    <value>Algunos IDs de piezas de Track Designer  no se encontraron el tu biblioteca BlueBlrick. BlueBrick no pudo cargarlas y las ha ignorado. Asegúrate de tener las piezas necesarias instaladas con el ID correcto de Track Designer incluido en el archivo XML y luego vuelve a abrir el archivo Track Designer. Los IDs que faltan son:</value>
   </data>
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
     <value>BlueBrick no encuentra el archivo de ayuda "Bluebrick.chm" que debería encontrarse en la carpeta de instalación. Reinstalar BlueBrick podría solucionar este problema.</value>
