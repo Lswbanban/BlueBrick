@@ -276,6 +276,9 @@
   <data name="ErrorMsgCanNotLoadImage" xml:space="preserve">
     <value>BlueBrick heeft een probleem met het laden van enkele afbeeldingen uit de onderdelen database en heeft deze genegeerd. Dit probleem kan voorkomen als de afbeelding corrupt is of te groot om in te laden. Verwijder deze afbeeldingen uit de database om deze waarschuwing te vermijden. De betreffende afbeelding(en) is/zijn: </value>
   </data>
+  <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
+    <value>BlueBrick heeft een probleem met het laden van XML bestanden voor de onderdelen database. Deze bestanden zijn genegeerd. Dit probleem kan voorkomen als de XML syntax fouten bevat. Verbeter de syntax of verwijder XML bestanden om deze melding te vermijden. De bestand(en) zijn:</value>
+  </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>U kan geen onderdelen van het type &amp; in de huidige laag plakken welke van het type &amp;&amp; is.</value>
   </data>

@@ -152,7 +152,7 @@
     <value>Hoogte</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Afmetingen Afbeelding Pixels</value>
+    <value>Afmetingen Afbeelding in Pixels</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Selecteer het gebied dat u wenst te exporteren doot het op het voorbeeldvenster te slepen of door de waarden te wijzigen en de afmetinge van de figuur in de stellen. Klik hierna om een bestandsnaam in te geven.</value>
