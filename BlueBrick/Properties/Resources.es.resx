@@ -276,6 +276,9 @@
   <data name="ErrorMsgCanNotLoadImage" xml:space="preserve">
     <value>BlueBrick ha encontrado un problema al cargar algunas imágenes de la base de datos de piezas y las ha ignorado. Este problema puede ocurrir cuando una imagen se ha corrompida o es demasiado grande. Elimina la(s) imagen(es) de la base de datos para quietar este aviso. Las imágenes son:</value>
   </data>
+  <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
+    <value>BlueBrick ha encontrado un problema durante la carga de de los archivos XML de la base de piezas. Estos archivos XML se han ignorado. Este problema puede ocurris cuando hay un error de sintaxis en el archivo XML. Corrige este error o elimina los archivos afectados para eliminar este aviso. Los archivos afetcados son:</value>
+  </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>No se puede pegar un objeto del tipo &amp; en la capa actual que es del tipo &amp;&amp;.</value>
   </data>

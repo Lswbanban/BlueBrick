@@ -192,6 +192,9 @@
   <data name="ActionMoveBrick" xml:space="preserve">
     <value>Verplaats onderdeel &amp;</value>
   </data>
+  <data name="ActionMoveGridOrigin" xml:space="preserve">
+    <value>Verplaats origineel rooster</value>
+  </data>
   <data name="ActionMoveLayerDown" xml:space="preserve">
     <value>Verplaats laag "&amp;" omlaag</value>
   </data>
@@ -288,7 +291,7 @@ The error message is:
 </value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
-    <value>De aanpassingen van de taal zullen pas van kracht worden na het herstarten van het programma.</value>
+    <value>De aanpassingen van de taal zullen pas van kracht worden na het herstarten van het programma. Wenst u nu te herstarten?</value>
   </data>
   <data name="ErrorMsgLayerTypeArea" xml:space="preserve">
     <value>Gebied</value>
@@ -309,7 +312,7 @@ The error message is:
     <value>Sommige onderdelen zijn niet correct geladen omdat ze niet aanwzig zijn in de onderdelenlijst. Er zijn standaard afbeeldingen toegevoegd om deze te vervangen. U kan de auteur van de kaart (&amp;) vragen waar u deze kan vinden.</value>
   </data>
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
-    <value>Sommige ID's van Track Designer onderdelen zijn niet gevonde in het "&amp;" remap bestand. BlueBrick kon deze niet laten en negeren. U dient een remap lijn toe te voegen voor elk ontbrekend ID in het remap bestand en dan controleren of dit onderdeel beschikbaar is in uw BlueBrick onderdelenlijst en het bestand opnieuw openen. De ontbrekende ID's zijn: </value>
+    <value>Sommige ID's van Track Designer onderdelen zijn niet gevonden in uw BlueBrick bibliotheek, BlueBrick kon deze niet laden en zal ze negeren. Gelieve te controleren of het onderdeel in uw bibliotheek aanwezig is met het correcte Track Designer ID ingesteld in het XML bestand en het Track Designer ID opnieuw openen, De ontbreekende ID's zijn:</value>
   </data>
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
     <value>BlueBrick kan het help bestand "BlueBrick.chm" niet vinden in de installatiefolder. Het opnieuw installeren van BlueBrick kan het probleem oplossen.</value>

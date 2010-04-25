@@ -123,8 +123,9 @@
   <data name="buttonOk.Text" xml:space="preserve">
     <value>&amp;OK</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Algemeen</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="isVisibleCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 17</value>
   </data>
   <data name="isVisibleCheckBox.Text" xml:space="preserve">
     <value>Zichtbaar</value>
@@ -132,20 +133,19 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Naam laag</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Voorkomen</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Algemeen</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Celgrootte
 in stud</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>%</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Transparantie</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing" />
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Voorkomen</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAAAAACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAgAQAAAAAAAAAAAAAAAEAAAAA
