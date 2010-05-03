@@ -1,0 +1,76 @@
+﻿<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Track Designer Konvertierungsdatei</Title>
+</HEAD>
+<BODY>
+<H1>Track Designer Konvertierungsdatei</H1>
+<H2>Zweck</H2>
+<P>BlueBrick kann sowohl Dateien im Track Desinger Format (TDL) öffnen als auch Gleispläne im Track Designer Format speichern. Da sich Teilnummern und andere Informationen in BlueBrick von denen im Track Desinger unterscheiden, benötigt BlueBrick Informationen für die Konvertierung von TDL-Dateien. Für diesen Zweck wurde in BlueBrick die Konvertierungsdatei "TDPartRemap.txt" angelegt. Diese befindet sich im Unterordner "config" des Installationsverzeichnisses. Diese Datei enthält für jedes Teil eine Konvertierungszeile. Fehlt für ein Teil diese Zeile, wird beim Öffnen einer Datei mit einem derartigen Teil dieses Teil ignoriert. Das gleiche gilt für das Speichern im TDL-Format. Wie schon beschrieben, lautet diese Konvertierungsdatei:</P>
+
+<DIV CLASS="TechNote">
+&lt;BlueBrick install folder&gt;\config\TDPartRemap.txt
+</DIV>
+
+<P>Diese Datei wird nur einmal von BlueBrick hochgeladen. Nach jeder Änderung dieser Datei muss BlueBrick also geschlossen und neu gestartet werden, damit diese Änderung auch wirksam ist.</P>
+
+<P><FONT CLASS="Important">Hinweis: Wahrscheinlich wird diese Datei mit einer zukünftigen Version von BlueBrick entfallen, die Konvertierungsinformationen werden dann in den <A HREF="Part_XML_Description.htm">zusätzliche Teiledaten in XML-Dateien</A> integriert.</FONT></P>
+
+<H2>Wann muss diese Datei geändert werden?</H2>
+
+<P>Diese Datei muss nur dann geändert werden, wenn in BlueBrick ein Teil hinzugefügt wird, dass auch im TrackDesigner benutzt wird. Alle in der Standardbibliothek des TrackDesigners enthaltenen Teile sind auch schon in in der Konvertierungsdatei enthalten. Die Änderung der Konvertierungsdatei ist nur in folgender Situation erforderlich: Auch im Track Designer konnte mit selbst erstellten Teilen die Teilebibliothek erweitert werden. Sollen also TrackDesigner-Dateien, die selbst erstellte Teile enthalten, auch in BlueBrick importiert werden können, so muss die Konvertierungsdatei um diese selbst erstellten Teile erweitert werden.</P>
+
+<H2>Dateiformat</H2>
+<P>Die Konvertierungsdatei "TDPartRemap.txt" ist eine einfache Textdatei. Jede leere Zeile und jede Zeile, die mit einem Semikolon ";" beginnt, wird ignoriert. Des weiteren werden alle hinter einem Semikolon stehenden Zeichen bis zum Ende der Zeile ebenfalls ignoriert. Hinter einem Semikolon lassen sich deshalb Kommentare einfügen. Die Konvertierungsdaten werden in einer Zeile pro Teil hinterlegt. Diese Daten haben folgendes Format:</P>
+<BR>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;TD-Teilnummer>=&lt;BB-Teilnummer.Farbe&gt; &lt;Flag&gt; &lt;HasSeveralPort&gt; (&lt;TDBitmapId&gt;=&lt;BB-Verknüpfungspunktindex&gt;,&lt;Typ&gt;,&lt;Polarität&gt;,&lt;Anpassungswinkel&gt;)...</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;TD-Teilnummer&gt;</TD>
+	<TD>Die vollständige TrackDesigner ID (diese ID erscheint, wenn im TrackDesigner ein Teil mit der rechten Maustaste angeklickt und dann die Schaltfläche "properties" ausgewählt wird.)</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;BB-Teilnummer.Farbe&gt;</TD>
+	<TD>Die entsprechende Teilnummer (LDRAW-Teilenummer) gefolgt von einem Punkt und dem LDRAW-Farbindex. Alternativ kann auch der Name des gif-Bildes aus der BlueBrick-Teilebibliothek angegeben werden (ohne die Endung .gif).</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;Flag&gt;</TD>
+	<TD>Flags, die vom TrackDesigner benötigt werden. 4 Werte sind möglich: 0=kein Flag, 1=Teil ist ein Anhang ("attachment"), 2=Teil wird zur Unterstützung von Steigungen verwendet, 3=Teil ist ein Anhang ("attachment") und wird zur Unterstützung von Steigungen verwendet.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;HasSeveralPort&gt;</TD>
+	<TD>Binäres Flag (wahr oder falsch) zur Kennzeichnung, ob das Teil mehrere Port Ids (oder Bitmap Ids) hat. Bei der Angabe "falsch" wird immer die Port Id 0 als Ursprung des Teils angegeben wenn die Datei gespeichert wird.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;TDBitmapId&gt;</TD>
+	<TD>Optionale Parameter für TrackDesigner-Teile, die die gleiche ID, aber einen anderen Bitmap-Index (z.B. Geometrienummer) haben, z.B. Gleiskurve links und rechts oder Weichen. Den Bitmap-Index aus TrackDesigner erhält man aus der Registrierungsdatei (registry file), die dieses Teil enthält (tdr file).</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;BB-Verknüpfungspunktindex&gt;</TD>
+	<TD>Die Verknüpfungsdaten in der BlueBrick Teile-XML-Datei (0 eingeben, wenn das Teil keine XML-Datei besitzt) entsprechend der Verknüpfung im Trackdesigner, wenn dieser Bitmap-Index benutzt wird.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;Typ&gt;</TD>
+	<TD>Der Typ des Teils als Zahl zwischen 1 und 20 (0 = Gerade, 1 = linke Kurve, 2 = rechte Kurve, 3 = linker Abzweig, 4 = rechter Abzweig, 5 = Einmündung von links, 6 = Einmündung von rechts, 7 = linke Anbindung, 8 = rechte Anbindung, 9 = Kreuzung, 10 = T-Kreuzung, 11 = Steigung, 12 = Gefälle, 13 = kurze Gerade, 14 = kurze Linkskurve einwärts, 15 = kurze Rechtskurve einwärts, 16 = kurze Linkskurve auswärts, 17 = kurze Rechtskurve auswärts, 18 = linker Umkehrschalter, 19 = rechter Umkehrschalter, 20 = benutzerdefiniert).</TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;Polarität&gt;</TD>
+	<TD>Die Polarität einer Verknüpfung, einer der Zeichen *, - oder + mit folgender Bedeutung:
+	<UL>
+		<LI>* : unasasigned</LI>
+		<LI>- : -ve</LI>
+		<LI>+ : +ve</LI>
+	</UL></TD>
+</TR><TR>
+	<TD CLASS="Tilte">&lt;Anpassungswinkel&gt;</TD>
+	<TD>Ein zusätzlicher Winkel (in Grad) für Teile, die diesen besonderen Bitmap-Index benutzen. Mit diesem Winkel kann die ursprüngliche Ausrichtung des Teils wieder hergestellt werden.</TD>
+</TR>  
+</TABLE>
+<P>Hinweis: Die ersten Parameter könnenn durch jedes unsichtbare Zeichen (Leerzeichen oder Tabulator) getrennt werden, alle Parameter von &lt;BB-Verknüpfungspunkt-Index&gt; bis &lt;Anpassungswinkel&gt; dürfen nur durch ein Komma getrennt werden.</P>
+
+<P>Hier als Beispiel die Zeile für eine graue 12V-Weiche:</P>
+<DIV CLASS="TechNote">
+417858=X865C01.7	0	TRUE	0=0,4,-,0	1=2,5,+,180		2=1,7,+,180
+</DIV>
+
+</BODY>
+</HTML>

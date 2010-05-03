@@ -1,0 +1,83 @@
+﻿<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Dateinamen und -formate</Title>
+</HEAD>
+<BODY>
+<H1>Dateinamen und -formate für Teile- und Setbilder</H1>
+<H2>Dateityp</H2>
+<P>BlueBrick verarbeitet nur GIF-Bilder aus den Unterordnern des <A HREF="Part_Library_Folders.htm">Teile-Ordners "parts"</A>. Das GIF-Bild kann transparente Flächen enthalten.</P>
+<P>Die Orientierung der Draufsicht eines Teils spielt keine Rolle, aber um den Export nach LDraw zu erleichtern, sollte die gleiche Orientierung wie die des LDraw-Teils verwendet werden. Sonst muss die <A HREF="LDraw_Remaping_File.htm">LDraw Konvertierungsdatei</A> angepasst werden.</P>
+
+<H2>Maßstab</H2>
+<P>Der Maßstab eines Teils ist <FONT CLASS="Important">1 Noppe = 8 Pixel</FONT>. Da der Abstand von zwei Noppen 8mm beträgt, kann man diesen Maßstab auch einfach umrechnen in 1 Pixel = 1 Millimeter.</P>
+
+<H2>Zulässige Zeichen für Dateinamen</H2>
+<P>Die Verwendung von Gross- bzw. Kleinbuchstaben im Dateinamen ist ohne Bedeutung, da BlueBrick bei der Erstellung der Teilebibliothek alle Dateinamen in Großbuchstaben abspeichert. Werden also zwei Teile erstellt, deren Namen sich nur durch Groß- bzw. Kleinschreibung unterscheidet, behandelt BlueBrick diese Teile so dass ein Teil doppelt vorliegt. Im Teilnamen kann jedes Zeichen, auch ein Leerzeichen, verwendet werden. Besonders bei internationaler Zusammenarbeit sollten aber nur in England gebräuchliche Buchstaben und keine Umlaute wie ö, ä oder ü verwendet werden. Des weiteren sollte der Dateinamen auch keinen Punkt enthalten, da zum einen ein Punkt den Dateinamen von der Dateiendung (gif, bbm, etc.) trennt und zum anderen in BlueBrick mittels Punkt die Teilnummer von der Teilefarbe getrennt wird.</P>
+
+<H2>Zulässige Dateinamen eines Teils oder Sets</H2>
+<P>BlueBrick akzeptiert jeden beliebigen Namen eines Teils. Die einzige Bedingung ist, dass der Name in der gesamten Teilebibliothek einzigartig ist. Auch wenn Teile in unterschiedlichen Ordnern abgelegt sind, dürfen diese nicht den gleichen Namen haben. Der Name eines Teils wird als eindeutige ID beim Speichern eines Gleisplans als BBM-Datei verwendet. Um Konflikte in der Teilebibliothek zu vermeiden und um Gleispläne in Form von BBM-Dateien untereinander austauschen zu können, wird allgemein <FONT CLASS="Important">als Dateiname eines Teils oder Sets die Teil- oder Setnummer verwendet</FONT>. Dieses ist nicht unbedingt für BlueBrick erforderlich, aber gängige Praxis. An dieser gängigen Praxis sollte man sich halten, die offizielle BlueBrick Teile- und Setbibliothek wird diese Methode verwenden.</P>
+
+<H3>Syntax eines Set-Dateinames</H3>
+<P>Da einige LEGO&copy; Teile die gleiche Nummer eines LEGO&copy; Sets haben, ist es üblich, ".set" als Endung eines Set-Namens zu verwenden. So wird die Verwechslung von Teilen mit Sets der gleichen Nummer vermieden. Eine numerische Endung wie ".1" darf nicht verwendet werden, da diese Endung sonst als Farbe interpretiert wird (siehe unten für mehr Details). Für Sets ist eine zusätzliche Farbangabe irrelevant.</P>
+
+<DIV class="TechNote">
+<PRE><PRE>&lt;SetNumber&gt;.set.gif
+&lt;SetNumber&gt;.set.xml
+
+Beispiel: Der Dateiname des Set Nr. 2150 in BlueBrick ist:
+<B>2150.set.gif</B>
+
+Soll ein Set in unterschiedliche gif-Bilder aufgeteilt werden,
+so sollten diese folgende Dateinamen erhalten:
+6399.set1.gif
+6399.set2.gif
+6399.set3.gif
+etc...</PRE>
+</DIV>
+
+<H3>Syntax eines Teile-Dateinamens</H3>
+
+<P>Standardmäßig besteht der Dateiname eines LEGO&copy; Teils aus der vollständigen Teilnummer, gefolgt von einem Punkt und dem Farbcode gemäß der LDraw Farbtabelle und zuletzt der Dateiendung.</P>
+
+<DIV class="TechNote">
+<PRE>&lt;PartNumber&gt;.&lt;Color&gt;.gif
+&lt;PartNumber&gt;.&lt;Color&gt;.xml
+
+Der Dateiname einer blauen 32x32 Grundplatte ist folglich:
+<B>3811.1.gif</B>
+
+<B>The LDRAW color table is:</B>
+  0 Black               28 Dark Tan               134 Pearl Copper
+  1 Blue                29 Light Purple           135 Pearl Gray
+  2 Green               33 Trans Blue             137 Pearl Sand Blue
+  3 Teal                34 Trans Green            142 Pearl Gold
+  4 Red                 36 Trans Red              151 Light Stone
+  5 Dark Pink           37 Trans Violet           256 Rubber Black
+  6 Brown               40 Trans Gray             272 Dark Blue
+  7 Gray                41 Trans Light Cyan       273 Rubber Blue
+  8 Dark Gray           42 Trans Flu Lime         288 Dark Green
+  9 Light Blue          45 Trans Pink             313 Maersk Blue
+ 10 Bright Green        46 Trans Yellow           320 Dark Red
+ 11 Turquiose           47 Clear                  324 Rubber Red
+ 12 Light Red           57 Trans Flu Orange       334 Chrome Gold
+ 13 Pink                69 Bright Purple          335 Sand Red
+ 14 Yellow              70 Reddish Brown          366 Earth Orange
+ 15 White               71 Stone Gray             373 Sand Violet
+ 17 Light Green         72 Dark Stone Gray        375 Rubber Gray
+ 18 Light Yellow        73 Medium Blue            378 Sand Green
+ 19 Tan                 74 Medium Green           379 Sand Blue
+ 20 Light Violet        77 Paradisa Pink          383 Chrome Silver
+ 21 Phosphor White      78 Light Flesh            462 Light Orange
+ 22 Violet              79 Translucent White      484 Dark Orange
+ 23 Violet Blue         85 Medium Lilac           494 Electric Contact
+ 25 Orange              86 Dark Flesh             503 Light Gray
+ 26 Magenta             89 Royal Blue             511 Rubber White
+ 27 Lime                92 Flesh</PRE>
+</DIV>
+
+</BODY>
+</HTML>

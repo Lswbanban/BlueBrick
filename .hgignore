@@ -4,6 +4,7 @@ syntax: glob
 *.suo
 *.orig
 *.log
+*.chm
 
 ; specific directories
 ResxEditor\*

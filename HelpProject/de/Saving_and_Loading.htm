@@ -1,0 +1,32 @@
+﻿<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alex McKenna-Klein">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Speichern und Laden</Title>
+</HEAD>
+<BODY>
+<H1>Speichern und Laden</H1>
+
+<BR>
+<CENTER><IMG SRC="MainToolbar.png"></CENTER>
+
+<P>In BlueBrick kann man immer nur einen Gleisplan öffnen. Soll ein zweiter Gleisplan geöffnet werden, muss zuvor der erste geschlossen werden. Man kann aber einen kompletten Gleisplan oder auch Teile davon in die Zwischenablage kopieren, den aktuellen Gleisplan schießen, einen anderen öffnen und den Inhalt der Zwischenablage dort einfügen.</P>
+
+<P>Zur <B>Erstellung</B> eines neuen Gleisplans entweder den Button (1) "Erstellung eines neuen Gleisplans" drücken, <FONT CLASS="path">&nbsp;Datei &gt; Neu&nbsp;</FONT> aus dem Menü wählen oder STRG + N drücken.</P>
+
+<P>Zum <B>Öffnen</B> eines bereits existierenden Gleisplans entweder den Button (2) "öffne einen vorhandenen Gleisplan" betätigen, <FONT CLASS="path">&nbsp;Datei &gt; öffnen...&nbsp;</FONT> aus dem Menü wählen oder STRG + O drücken.</P>
+
+<P>Zum <B>Speichern</B> des Gleisplans entweder den Button (3) "Speicher den aktuellen Gleisplan" drücken, <FONT CLASS="path">&nbsp;Datei &gt; Speichern&nbsp;</FONT> bzw. <FONT CLASS="path">&nbsp;Datei &gt; Speichern unter ...&nbsp;</FONT> aus dem Menü wählen oder STRG + S drücken. Der Gleisplan kann in den Formaten .bbm (BlueBrick), .ldr (LDraw), .mpd (LDraw multiple parts file) oder .tdl (trackdesigner) gespeichert werden. Beim Speichern in den unterschiedlichen Formaten werden folgende Inhalte gespeichert:</P>
+
+<UL>
+	<LI><B>BBM:</B> Nur im original BlueBrick-Format werden alle Informationen des Gleisplans inkl. Ebenen und Texte gespeichert.</LI>
+	<LI><B>LDraw LDR:</B> Wird ein Gleisplan im LDraw Format gespeichert, kann mann sich das Layout in 3D ansehen.<BR>
+		Hinweis: BlueBrick Teile können beim Öffnen mit LDraw verloren gehen, wenn diese nicht in der LDraw Teilebibliothek enthalten sind. Wird diese Datei anschließend wieder mit BlueBrick geöffnet, kehren die verlorenen Teile nicht zurück. Die LDraw Teilebibliothek sollte daher immer die neuesten Updates von der <A HREF="http://www.ldraw.org">LDraw Homepage</A> enthalten. Mit Ausnahme von Steineebenen werden Raster, Flächen- oder Textebenen nicht gespeichert. Steine-Ebenen in BlueBrick werden in LDraw durch einen Konstruktionsschritt zwischen den Ebenen gekennzeichnet und im LDraw-Editor angezeigt. Wird die LDR-Datei in BlueBrick geöffnet, werden die unterschiedlichen Steine-Ebenen auch als unterschiedliche Ebenen in BlueBrick dargestellt. Lediglich die Bezeichnungen der Ebenen gehen verloren. Alle Änderungen in LDraw bezüglich der Höhe von Teilen (y-Koordinate) <U>bleiben</U> in BlueBrick erhalten, auch wenn die Datei im BlueBrick-Format gespeichert wird. In BlueBrick ist dieses zwar nicht sichtbar, aber wenn diese Datei wieder im LDraw-Format gespeichert wird, sieht man diese Änderungen wieder.</LI>
+	<LI><B>LDraw MPD:</B> Dieses entspricht dem LDR-Format mit dem einzigen Unterschied, dass jede BlueBrick-Stein-Ebene als Untermodell gespeichert wird und der Name dieser Ebene erhalten bleibt. Wie bei der Speicherung als LDR-Datei gehen alle anderen Ebenen (Raster-, Text- und Flächenebenen) verloren.</LI>
+	<LI><B>Track Designer:</B> Dieses Format ist am besten zu BlueBrick kompatibel. Lediglich einige Angaben im TrackDesigner wie Polarität und Schrägen werden von BlueBrick noch nicht genutzt.</LI>
+</UL>
+
+</BODY>
+</HTML>

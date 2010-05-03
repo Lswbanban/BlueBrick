@@ -1,0 +1,329 @@
+﻿<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Zusätzliche Teiledaten in XML-Dateien</Title>
+</HEAD>
+<BODY>
+<H1>Zusätzliche Teiledaten in XML-Dateien</H1>
+<H2>Überblick</H2>
+
+<P>Zu jedem gif-Bild der Teilebibliothek kann eine xml-Datei mit gleichem Namen erstellt werden. Diese xml-Datei enthält nützliche Informationen, um die Eigenschaften eines Teils wie z.B. die Verbindungspunkte zu beschreiben. Ist zu einem Teil keine xml-Datei vorhanden, verwendet BlueBrick die Standardeigenschaften. Eine xml-Datei ist also nicht unbedingt erforderlich. Die xml-Datei muss den gleichen Dateinamen haben wie das zugehörige gif-Bild, mit Ausnahme der Endung natürlich.</P>
+
+<P>Um schneller eine xml-Datei zu erstellen, kann eine bereits vorhandene xml-Datei kopiert und geändert werden. Vorsicht: die xml-tags unterscheiden zwischen Groß- und Kleinschreibung. Jedes Feld ist optional, die Reihenfolge der Felder spielt keine Rolle. Fehlt ein Feld, wird die Standardeinstellung für diese Eigenschaft verwendet.</P>
+
+<H2>Struktur einer xml-Datei</H2>
+
+<P>Diejenigen, die nicht mit der Syntax von xml-Dateien vertraut sind oder noch nicht einmal wissen, was eine xml-Datei ist, sollten sich zusätzliche Informationen aus dem Internet holen. Die Aufgabe von xml-Dateien lässt sich in Kurzform so beschreiben: Diese Dateien ordnen Daten in einer Baumstruktur durch die Benutzung von Tags, die mit den Zeichen &lt; und &gt; eingefasst sind. Die xml-Datei eines Teiles hat im allgemeinen folgende Struktur:</P>
+
+<DIV CLASS="TechNote">
+<PRE>
+&lt;?xml version="1.0"?&gt;
+&lt;part&gt;
+    &lt;Author&gt;...&lt;/Author&gt;
+    &lt;Description&gt;
+        &lt;en&gt;...&lt;/en&gt;
+        ...
+    &lt;/Description&gt;
+    &lt;ImageURL&gt;...&lt;/ImageURL&gt;
+    &lt;SnapMargin&gt;
+        ...
+    &lt;/SnapMargin&gt;
+    &lt;ConnexionList&gt;
+        &lt;connexion&gt;
+            ...
+        &lt;/connexion&gt;
+        ...
+    &lt;/ConnexionList&gt;
+    &lt;hull&gt;
+        &lt;point&gt;
+            ...
+        &lt;/point&gt;
+        ...
+    &lt;/hull&gt;
+&lt;/part&gt;</PRE>
+</DIV>
+
+<P>Die unterschiedlichen Felder und deren Nutzung in BlueBrick wird im folgenden beschrieben:</P>
+
+<H2>Name des Autors</H2>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;Author&gt;...&lt;/Author&gt;</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Standardwert:</TD>
+	<TD>Der Text "Unknown".</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Beschreibung:</TD>
+	<TD>Der Name des Autors dieses Teils</TD>
+</TR>  
+</TABLE>
+
+<P>In diesem Feld kann ein beliebiger Text eingetragen werden, um über den Autor des Teils zu informieren. Es bleibt jedem Autor überlassen, welche Informationen, z.B. Email-Adresse, dort eingetragen werden. Zur Zeit wird dieser Eintrag von BlueBrick noch ignoriert, aber in Zukunft wird dieser Eintrag mit verarbeitet und angezeigt.</P>
+
+<H2>Beschreibung in verschiedenen Sprachen einfügen</H2>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;Description&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;en&gt;...&lt;/en&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;de&gt;...&lt;/de&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;fr&gt;...&lt;/fr&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;...<BR>
+		&lt;/Description&gt;
+	</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Standardwert:</TD>
+	<TD>Der Text "Unbekannt" in der gerade für BlueBrick gewählten Sprache.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Beschreibung:</TD>
+	<TD>Eine kurze Beschreibung des Teils.</TD>
+</TR>  
+</TABLE>
+
+<P>In diesem Feld wird eine Beschreibung des Teils eingetragen. Diese Beschreibung wird in der Statuszeile angezeigt. Im Zweifelsfall sollte man als Beschreibung einfach die Teilebeschreibung von peeron.com eintragen.</P>
+
+<P>Die Teilebeschreibung kann in jede beliebige Sprache übersetzt werden. Jede Übersetzung muss in einem Tag aus zwei Buchstaben für die jeweilige Sprache eingefasst sein, z.B. &lt;fr&gt; ... &lt;/fr&gt; für französisch. Beim Start von BlueBrick werden aus der Teilebibliothek nur die Teilebeschreibungen in der aktuell in BlueBrick eingestellten Sprache übernommen. Ist BlueBrick beispielsweise auf französisch eingestellt, sucht BlueBrick nach dem Tag &lt;fr&gt;. Wird keine Beschreibung in der in BlueBrick eingestellten Sprache gefunden, wird die englische Beschreibung benutzt. Wird nicht einmal eine englische Version gefunden, so wird der Text "Unbekannt" (übersetzt in der in BlueBrick eingestellten Sprache) benutzt. Die Teilebeschreibung sollte also mindestens eine englische Version enthalten.</P>
+
+<H2>Verweis auf ein Bild im Internet</H2>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;ImageURL&gt;...&lt;/ImageURL&gt;</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Standardwert:</TD>
+	<TD>Als Standardeinstellung erstellt BlueBrick diese URL:<BR>
+	http://media.peeron.com/ldraw/images/<I>&lt;ColorCode&gt;</I>/<I>&lt;PartNumber&gt;</I>.png</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Beschreibung:</TD>
+	<TD>Um die Teileliste in HTML zu erstellen, kann auf ein Bild im Internet verwiesen werden. Hierzu ist, wie im obigen Beispiel, die vollständige Internetadresse (URL) des Bildes anzugegeben.</TD>
+</TR>    
+</TABLE>
+
+<P>Wird die Teileliste des Gleisplans in HTML exportiert, so wird für die Teilebilder kein Link zur lokalen Festplatte akzeptiert. Die Bilder aus der Teileliste würden sonst nur auf einem Rechner angezeigt. Vielmehr wird eine Internet URL, z.B. ein Link zu Peeron oder Bricklink, in der Teileliste abgelegt. Für selbst erstellte Teile sollten daher die Bilder im Internet, z.B. auf Brickshelf, abgelegt werden und der Link zu diesem Bild im XML tag abgelegt werden.</P>
+
+<H2>Angabe der Überscheidungen bei Verbindungen</H2>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;SnapMargin&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;left&gt;...&lt;/left&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;right&gt;...&lt;/right&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;top&gt;...&lt;/top&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;bottom&gt;...&lt;/bottom&gt;<BR>
+		&lt;/SnapMargin&gt;
+	</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Standardwert:</TD>
+	<TD>0 auf jeder Seite (das Teil wird mit dem Bilderrand am benachbarten Teil verbunden, es gibt keine Überschneidungen)</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Beschreibung:</TD>
+	<TD>Die Überschneidung nach innen in <FONT CLASS="Important">Noppen-Koordinaten</FONT>. Das folgende Beispiel der Gleise erläutert dieses sehr gut.</TD>
+</TR>  
+</TABLE>
+
+<P>In den meisten Fällen kann der Standardwert (keine Überschneidung) übernommen werden. So überscheiden sich z.B. angrenzende Basisplatten nicht, die Ränder der Basisplatten passen exakt ins Raster. Im Gegensatz hierzu passt beispielsweise ein 9V-Gleis nicht: dieses ist 17 Noppen lang: 16 Noppen für das eigentliche Gleis und je eine halbe Noppe Überstand auf beiden Seiten für die Verbindung zum Nachbargleis. Bei einem Gleis soll daher nicht das äußerste Ende nach dem Raster ausgerichtet werden, da so das andere Ende des Gleises nicht mehr zum Raster passen würde</P>
+
+<CENTER><IMG SRC="../SnapMargin2.png"></CENTER>
+
+<P>Deshalb ist in der XML-Datei des 9V-Gleises eine Überschneidung von 0,5 Noppen auf der rechten und linken Seite angegeben:</P>
+
+<DIV CLASS="TechNote">
+<IMG SRC="../SnapMargin1.png" ALIGN="right">
+<PRE>
+&lt;SnapMargin&gt;
+    &lt;left&gt;0.5&lt;/left&gt;
+    &lt;right&gt;0.5&lt;/right&gt;
+    &lt;top&gt;0&lt;/top&gt;
+    &lt;bottom&gt;0&lt;/bottom&gt;
+&lt;/SnapMargin&gt;
+
+
+
+
+
+
+
+</PRE>
+</DIV>
+
+<H2>Beschreibung der Verknüpfungspunkte</H2>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;ConnexionList&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;connexion&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;type&gt;...&lt;/type&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;position&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;x&gt;...&lt;/x&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;y&gt;...&lt;/y&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/position&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;angle&gt;...&lt;/angle&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;angleToPrev&gt;...&lt;/angleToPrev&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;angleToNext&gt;...&lt;/angleToNext&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;nextConnexionPreference&gt;...&lt;/nextConnexionPreference&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;/connexion&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;...<BR>
+		&lt;/ConnexionList&gt;
+	</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Standardwert:</TD>
+	<TD>Kein Verknüpfungspunkt.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Beschreibung:</TD>
+	<TD>Liste der Verknüpfungspunkte. Die Anzahl der Verknüpfungspunkte ist unbegrenzt. Für jeden Verknüpfungspunkt sind mehrere Parameter anzugeben.</TD>
+</TR>  
+</TABLE>
+
+<P>Im Feld <FONT CLASS="Important">type</FONT> ist eine ganze Zahl zur Beschreibung des Verknüpfungstyps einzutragen. In BlueBrick können nur Verknüpfungspunkte des gleichen Typs verknüpft werden. Hier ist eine Liste mit allen verfügbaren Typen (die Hintergrundfarbe entspricht der Farbe des Verknüpfungspunktes in BlueBrick).</P>
+
+<DIV CLASS="TechNote">
+0 = Keine<BR>
+<FONT STYLE="background-color:yellow">1 = Schiene (4.5V, 12V or 9V)</FONT><BR>
+<FONT STYLE="background-color:cyan">2 = Straße</FONT><BR>
+<FONT STYLE="background-color:purple">3 = Monorail (standard)</FONT><BR>
+<FONT STYLE="background-color:pink">4 = Monorail (kurze Kurve)</FONT><BR>
+<FONT STYLE="background-color:lightgreen">5 = Duplo-Schienen</FONT><BR>
+</DIV>
+
+<P>Im Feld <FONT CLASS="Important">position</FONT> sind die Koordinaten der Verknüpfungspunkte <FONT CLASS="Important">in Noppen-Einheiten</FONT>, <FONT CLASS="Important"> relativ zum Teilmittelpunkt einzutragen.</FONT>. Hierzu ist zunächst der Abstand des Verknüpfungspunktes zum Teilmittelpunkt zu bestimmen. Im unten gezeigten Beispiel beträgt der Abstand 8 Noppen zu allen Seiten. Der Teilmittelpunkt muss nicht angegeben werden, BlueBrick berechnet diesen automatisch. Wird ein Teil in BlueBrick gedreht, so ist es am einfachsten, dieses um den Teilemittelpunkt zu drehen. Deshalb sind die Koordinaten der Verknüpfungspunkte als Abstand zum Teilemittelpunkt anzugeben:</P>
+
+<CENTER><IMG SRC="../ConnectionPointAxisCross.png"></CENTER>
+
+<P>Bitte beachten, dass <FONT CLASS="Important">die y-Achse nach unten zeigt.</FONT> (je größer die Werte desto weiter unten liegt der Punkt). Meistens kann der Teilemittelpunkt einfach anhand der Abmessungen in Noppen bestimmt werden. Die 9V Kreuzung beispielsweise ist 16 x 16 Noppen groß, somit ist offensichtlich, dass die Verknüpfungspunkte 8 Noppen vom Teilemittelpunkt entfernt sind. Bei komplexen Teilen wie der 9V-Weiche kann der Teilemittelpunkt anhand des Teilebildes in Pixel berechnet und anschließend in Noppen umgerechnet werden. Im nächsten Schritt können die Koordinaten der Verknüpfungspunkte berechnet werden.</P>
+
+<CENTER><IMG SRC="../ConnectionPointAxis.png"></CENTER>
+<BR>
+
+<DIV CLASS="TechNote">
+Der Teilemittelpunkt der 9V-Weiche wird anhand der Bildgröße 279x166 Pixel berechnet. Die Breite bzw. Höhe wird durch den Maßstab (1 Noppe = 8 Pixel) geteilt und anschließend halbiert. So erhält man den Mittelpunkt:<BR>
+<B>Mittelpunkt X</B> = 279 Pixels / 8 Pixel pro Noppe / 2 = 17.4375 Noppen<BR>
+<B>Mittelpunkt Y</B> = 166 Pixels / 8 Pixel pro Noppe / 2 = 10.375 Noppen<BR>
+<BR>
+Diese zwei Werte geben den Abstand in Noppen zwischen den Rändern und dem Teilemittelpunkt an. Da der linke Verknüpfungspunkt 0,5 Noppen vom linken Rand und 4 Noppen vom unteren Rand entfernt ist, ergeben sich die Koordinaten des linken Verknüpfungspunktes wie folgt:<BR>
+<B>Links X</B> = 0.5 - <B>Mittelpunkt X</B> = 0.5 - 17.4375 = -16.9375<BR>
+<B>Links Y</B> = <B>Mittelpunkt Y</B> - 4 = 10.375 - 4 = 6.375<BR>
+<BR>
+Analog wird der rechte Verknüpfungspunkt berechnet:<BR>
+<B>Rechts Unten X</B> = 32.5 - <B>Mittelpunkt X</B> = 15.0625<BR>
+<B>Rechts Unten Y</B> = <B>Links Y</B> = 6.375<BR>
+<BR>
+Für Gleiskurven kann ein Verknüpfungspunkt analog berechnet werden, aber der andere Verknüpfungspunkt muss mit Hilfe von Trigonometrie auf Basis des Drehwinkels und des Kurvenradius berechnet werden. So hat das 9V-Kurvengleis einen Radius von 40 Noppen und einen Winkel von 22.5&deg.<BR>
+<BR>
+Zurück zur Weiche: Um die Koordinaten des Verknüpfungspunktes rechts oben zu berechnen, stelle man sich vor dass eine Kurve mit entgegengesetzter Krümmung an die Weiche angebunden wird. Der Endpunkt dieser Kurve ist nämlich bekannt: er ist exakt (16, -16) vom Verknüpfungspunkt rechts unten entfernt. Somit ergibt sich:<BR>
+<B>Ende Gegenkurve X</B> = <B>Rechts Unten X</B> + 16 = 15.0625 + 16 = 31.0625<BR>
+<B>Ende Gegenkurve Y</B> = <B>Rechts Unten Y</B> - 16 = 6.375 - 16 = -9.625<BR>
+<BR>
+Damit ergeben sich die Koordinaten des Verknüpfungspunktes Rechts Oben zu:<BR>
+<B>Rechts Oben X</B> = <B>Ende Gegenkurve X</B> - Radius * sin(Kurvenwinkel) = 31.0625 - 40 * sin(22.5&deg;) = 15.7552<BR>
+<B>Rechts Oben Y</B> = <B>Ende Gegenkurve Y</B> + Radius * (1 - cos(Kurvenwinkel)) = -9.625 + 40 * (1 - cos(22.5&deg;)) = -6.58018
+</DIV>
+
+<P>Die Berechnung der Koordinaten ist der schwierigste Teil der XML-Datei, wenn das Teil keine einfache Geometrie hat. Aber in den meisten Fällen ist die Geometrie so einfach, dass auch die Berechnung der Koordinaten einfach ist.</P>
+
+<P>Der nächste Parameter ist der Winkel im Feld <FONT CLASS="Important">angle</FONT>. Dieser beschreibt die Richtung des Verknüpfungspunktes <FONT CLASS="Important">in Grad</FONT>. Vorsicht: da die Y-Achse im Teilekoordinatensystem nach unten zeigt und somit entgegengesetzt der in der Trigonometrie üblichen Richtung verläuft, muss auch das Vorzeichen des Winkels umgekehrt zum in der Trigonometrie üblichen Vorzeichen sein. Daher ist der Winkel des Verknüpfungspuntkes oben rechts <FONT CLASS="Important">-</FONT>22.5&deg statt 22.5&deg. </P>
+
+<CENTER><IMG SRC="../ConnectionPointAngle.png"></CENTER>
+
+<P>Im Feld <FONT CLASS="Important">angleToPrev</FONT> bzw. <FONT CLASS="Important">angleToNext</FONT> wird, ähnlich zum vorherigen Parameter, der Winkelunterschied <FONT CLASS="Important">in Grad</FONT> zwischen diesem und den vorherigen bzw. nachfolgendem Verknüpfungspunkt der Liste eingetragen. Dabei ist der letzte Verknüpfungspunkt der Liste als der vorhergehende Punkt des ersten Punktes und der erste Verknüpfungspunkt als der nachfolgende des letzten Verknüpfungspunktes zu betrachten, quasi als würde die Liste nicht mit dem ersten Punkt beginnen und mit dem letzten enden sonder als wäre die Liste ein geschlossener Kreis. Wird also die Reihenfolge der Verknüpfungspunkte geändert, so müssen auch die Parameter in den Feldern "angleToPrev" und "angleToNext" der neuen Reihenfolge angepaßt werden.</P>
+
+<P>Die Reihenfolge der Vernküpfungspunkte wird von BlueBrick benutzt wenn ein Teil, das mit einem anderen verknüpft ist, gedreht wird. BlueBrick dreht nämlich bereits verknüpfte Teile so dass diese mit dem nächsten Verknüpfungspunkt in der Liste verknüpft werden.</P>
+
+<P>Hat ein Teil mehrere Typen von Verknüpfungspunkten (so hat z.B. ein Bahnübergang sowohl Straßen- als auch Gleisverknüpfungspunkte), so müssen für jeden Verknüpfungstyp eigene Listen erstellt werden. Es darf aber nur eine Liste je Verknüpfungstyp geben.</P>
+
+<P>Im letzten Feld <FONT CLASS="Important">nextConnexionPreference</FONT> wird ein Verweis auf einen Verknüpfungspunkt der Liste eingetragen. Dieser Verweis legt den Verknüpfungspunkt fest, an dem das nachfolgende Teil angebunden werden soll. Nehmen wir als Beispiel ein gerades 9V-Gleis: wird ein neu hinzugefügtes Gleis an der linken Seite an bereits vorhandene Gleise angebunden, so soll automatisch der rechte Verknüpfungspunkt für den Anschluss weiterer Gleise ausgewählt werden. Ein mit einem Doppelklick aus der Teileliste ausgewähltes Gleisstück soll also automatisch an dem rechten Verknüpfungspunkt angebunden werden. Analoges gilt für die andere Seite: wird ein neu hinzugefügtes Gleis an der rechten Seite an bereits vorhandene Gleise angebunden, sollen weitere Gleise automatisch an der linken Seite angebunden werden.</P>
+
+<P>Nehmen wir die oben dargestellte Weiche als weiteres Beispiel: Wird diese Weiche links ans Gleisbild angeschlossen, so wird automatisch der rechte untere Verknüpfungspunkt für den Anschluss weiterer Gleise ausgewählt. Wird die Weiche mit einem der rechten Verknüpfungspunkte mit dem vorhandenen Gleisbild verbunden, wird automatisch der linke Verknüpfungspunkt für die Anbindung weiterer Gleise ausgewählt. In der XML-Datei sieht dieses wie folgt aus:</P>
+
+<DIV CLASS="TechNote">
+<PRE>&lt;ConnexionList&gt;
+<FONT COLOR="blue">&#x250C;&#x2500;&#x25BA;</FONT> &lt;connexion&gt;
+<FONT COLOR="blue">&#x2502;</FONT> <FONT COLOR="green">&#x250C;&#x2500;&#x2500;&#x2500;</FONT> &lt;nextConnexionPreference&gt;<B><FONT COLOR="green">1</FONT></B>&lt;/nextConnexionPreference&gt;
+<FONT COLOR="blue">&#x2502;</FONT> <FONT COLOR="green">&#x2502;</FONT> &lt;/connexion&gt;
+<FONT COLOR="blue">&#x2502;</FONT> <FONT COLOR="green">&#x2514;&#x25BA;</FONT>&lt;connexion&gt;
+<FONT COLOR="blue">&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;</FONT> &lt;nextConnexionPreference&gt;<B><FONT COLOR="blue">0</FONT></B>&lt;/nextConnexionPreference&gt;
+<FONT COLOR="blue">&#x2502;</FONT>    &lt;/connexion&gt;
+<FONT COLOR="blue">&#x2502;</FONT>    &lt;connexion&gt;
+<FONT COLOR="blue">&#x2514;&#x2500;&#x2500;&#x2500;&#x2500;</FONT> &lt;nextConnexionPreference&gt;<B><FONT COLOR="blue">0</FONT></B>&lt;/nextConnexionPreference&gt;
+      &lt;/connexion&gt;
+&lt;/ConnexionList&gt;</PRE>
+</DIV>
+
+<P>Sofern ein Teil nicht nur einen Verknüpfungspunkt hat, sollte ein Verknüpfungspunkt nicht auf sich selbst zur Anbindung des nächsten Teils verweisen. Nach Verknüpfung dieses Punktes mit einem Teil ist der Punkt ja bereits belegt und weitere Teile können an diesem Punkt nicht mehr angebunden werden.</P>
+
+<H2>Beschreibung der Hüllkurve</H2>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;hull&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;point&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;/point&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;...<BR>
+		&lt;/hull&gt;	
+	</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Standardwert:</TD>
+	<TD>Die vier Ecken eines Bildes werden als Standardwert benutzt.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Beschreibung:</TD>
+	<TD>Die Hüllkurve ist eine aus mehreren Geraden zusammengesetzte, geschlossene Linie, innerhalb derer sich das gesamte Teil inklusive hervorstehender Komponenten befindet. Die Hüllkurve wird durch eine Liste von Punkten definiert, deren <FONT CLASS="Important">Koordinaten in Pixel</FONT>, ausgehend von der oberen linken Ecke des Bildes, angegeben werden.</TD>
+</TR>
+</TABLE>
+
+<P>Die Hüllkurve ist für nicht rechteckige Teile, wie z.B. Gleiskurven, nützlich. Bluebrick benutzt die Hüllkurve, um die das kleinste Rechteck zu berechnen, in das dieses Teil passt. Dabei ist dieses Rechteck immer parallel zu den Achsen ausgerichtet. Wenn ein Teil im Gleisplan ausgewählt wird, wird um das ausgewählte Teil ein Rechteck gelegt und der Bereich innerhalb dieses Rechtecks wird aufgehellt. Dieses Rechteck wird mit Hilfe der Hüllkurve berechnet. Die Hüllkurve hat einen Einfluss auf den von BlueBrick benötigten Speicherplatz, denn die Hüllkurve beeinflusst die Größe des bei einer Drehung eines Teils zu erstellenden Bildes . Eine Hüllkurve sollte daher mit sowenig Punkten wie möglich erzeugt werden, um die Leistung von BlueBrick nicht unnötig zu beeinträchtigen.</P>
+
+<P>Die Hüllkurve wird, im Gegensatz zu den vorherigen Parametern, <FONT CLASS="Important">in Pixel- und nicht in Noppen-Koordinaten</FONT> angegeben. Wird nämlich in einem Bildbearbeitungsprogramm die Maus über dem Bild bewegt, lassen sich die aktuellen Koordinaten der Mausposition direkt in Pixel ablesen. Die Eckpunkte der Hüllkurve lassen sich also einfach in Pixel bestimmen.</P>
+
+<P>Eine falsche Hüllkurve kann dazu führen, dass Teilbereiche eines Teils bei der Drehung um einen beliebigen Winkel abgeschnitten werden. Eine gute Möglichkeit zum Testen der Hüllkurve ist die Drehung dieses Teils um 360&deg; in kleinen Schritten, z.B. 22.5&deg;. Nach jedem Schritt darf kein Bereich des Teils abgeschnitten sein.</P>
+
+<P>Nachfolgend zwei Beispiele einer Hüllkurve, eine 9V-Weiche und ein 9V Kurvengleis:</P>
+
+<CENTER><IMG SRC="../HullSwitchPoint.png">&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="../HullCurve.png"></CENTER>
+<BR>
+
+<DIV CLASS="TechNote">
+<PRE><B>Der zur Beschreibung der Hüllkurve der 9V-Weiche gehörende Teil der XML-Datei sieht wie folgt aus:</B>
+
+&lt;hull&gt;
+    &lt;point&gt;
+        &lt;x&gt;258&lt;/x&gt;
+        &lt;y&gt;0&lt;/y&gt;
+    &lt;/point&gt;
+    &lt;point&gt;
+        &lt;x&gt;280&lt;/x&gt;
+        &lt;y&gt;52&lt;/y&gt;
+    &lt;/point&gt;
+    &lt;point&gt;
+        &lt;x&gt;264&lt;/x&gt;
+        &lt;y&gt;166&lt;/y&gt;
+    &lt;/point&gt;
+    &lt;point&gt;
+        &lt;x&gt;0&lt;/x&gt;
+        &lt;y&gt;166&lt;/y&gt;
+    &lt;/point&gt;
+    &lt;point&gt;
+        &lt;x&gt;0&lt;/x&gt;
+        &lt;y&gt;102&lt;/y&gt;
+    &lt;/point&gt;
+    &lt;point&gt;
+        &lt;x&gt;19&lt;/x&gt;
+        &lt;y&gt;53&lt;/y&gt;
+    &lt;/point&gt;
+&lt;/hull&gt;
+</PRE>
+</DIV>
+
+<P>Die Reihenfolge der Punkte ist unbedeutend. Auch ist unbedeutend, mit welchem Punkt begonnen und mit welchem aufgehört wird. BlueBrick erzeugt die Hüllkurve aus der Gesamtheit der einzelnen Punkte. Es ist jedoch übersichtlich, wenn die Punkte in der Reihenfolge angegeben werden, die dem Verlauf der Hüllkurve im Uhrzeigersinn entsprechen.</P>
+
+</BODY>
+</HTML>
