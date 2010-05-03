@@ -255,6 +255,14 @@ por defeito (em studs)</value>
   <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
     <value>Mostra os Pontos de Conexão Livres</value>
   </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Cor de destaque da
+peça seleccionada</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Cor de destaque
+da selecção</value>
+  </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 13</value>
   </data>

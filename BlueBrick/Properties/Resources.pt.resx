@@ -192,6 +192,9 @@
   <data name="ActionMoveBrick" xml:space="preserve">
     <value>Mover a peça "&amp;"</value>
   </data>
+  <data name="ActionMoveGridOrigin" xml:space="preserve">
+    <value>Mover origem da grelha</value>
+  </data>
   <data name="ActionMoveLayerDown" xml:space="preserve">
     <value>Mover a camada "&amp;" para baixo</value>
   </data>
@@ -271,7 +274,10 @@
     <value>Foram modificadas algumas opções por defeito da aparência. Essas configurações serão utilizadas quando criar novos mapas, mas quer que sejam aplicadas ao mapa actual?</value>
   </data>
   <data name="ErrorMsgCanNotLoadImage" xml:space="preserve">
-    <value>O BlueBrick encontrou problemas no carregamento de algumas imagens da base de dados de peças e foram ignoradas. Este problema pode ter ocorrido por uma imagem estar corrompida ou ser grande demais. Remova a imagem ou imagens da base de dados para remover este aviso. As imagens são:</value>
+    <value>O BlueBrick encontrou problemas no carregamento de algumas imagens da base de dados de peças e foram ignoradas. Este problema pode ter ocorrido por uma imagem estar corrompida ou ser grande demais. Apague a imagem ou imagens da base de dados para remover este aviso. As imagens são:</value>
+  </data>
+  <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
+    <value>O BlueBrick encontrou problemas no carregamento de alguns ficheiros XML base de dados de peças; esses ficheiros foram ignorados. Este problema pode ter ocorrido porque um dos ficheiros tem erros de sintaxe. Corrija a sintaxe ou apague os ficheiros com erro para remover este aviso. Os ficheiros em causa são:</value>
   </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>Não pode ser colocado um objecto do tipo &amp; na camada actual que é do tipo &amp;&amp;.</value>
@@ -304,7 +310,7 @@
     <value>Algumas peças não foram correctamente carregadas porque não se encontram na biblioteca de peças. Algumas das imagens por defeito foram temporáriamente adicionadas para substituir as originais. Deverá perguntar ao autor do map (&amp;) onde as poderá encontrar.</value>
   </data>
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
-    <value>Alguns elementos Track Designer não foram encontrados no "&amp;" ficheiro de mapeamento. O BlueBrick foi incapaz de carregá-los e limitou-se a ignorá-los. Adicione uma linha para cada identificação em falta no ficheiro de mapeamento, assegure-se que tem o elemento correspondente na sua biblioteca do BlueBrick e tente reabrir o ficheiro Track Designer. As identificações em falta foram:</value>
+    <value>Alguns elementos Track Designer não foram encontrados na sua biblioteca BlueBrick. O BlueBrick foi incapaz de carregá-los e limitou-se a ignorá-los. Assegure-se que tem simultaneamente as peças na biblioteca BlueBrick e no ficheiro XML com o "Track Designer ID set" correcto, e tente novamente abrir o ficheiro Track Designer. As identificações (IDs) em falta foram:</value>
   </data>
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
     <value>O BlueBrick não consegue encontrar o ficheiro de ajuda designado "BlueBrick.chm" que deveria encontrar-se na pasta de instalação. A reinstalação do BlueBrick pode resolver este problema.</value>
