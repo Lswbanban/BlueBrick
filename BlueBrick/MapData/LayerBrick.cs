@@ -1651,6 +1651,8 @@ namespace BlueBrick.MapData
 
 				// update the active connexion point
 				mCurrentBrickUnderMouse.setActiveConnectionPointUnder(mouseCoordInStud);
+				// and call again the function to recompute the grab distance from the modified active connection point
+				setBrickUnderMouse(mCurrentBrickUnderMouse, mouseCoordInStud);
 			}
 
 			// record the initial position of the mouse
