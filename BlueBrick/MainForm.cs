@@ -128,6 +128,14 @@ namespace BlueBrick
 		}
 
 		/// <summary>
+		/// Get the part library tab control
+		/// </summary>
+		public PartLibraryPanel PartsTabControl
+		{
+			get { return partsTabControl; }
+		}
+
+		/// <summary>
 		/// Get the cursor for duplication of layer bricks
 		/// </summary>
 		public Cursor BrickArrowCursor

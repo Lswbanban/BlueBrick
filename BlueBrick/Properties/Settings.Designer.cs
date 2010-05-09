@@ -594,5 +594,29 @@ namespace BlueBrick.Properties {
                 this["UIToolSplitContainerDistance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>Baseplate</string>
+  <string>Road</string>
+  <string>Track</string>
+  <string>Train</string>
+  <string>Town</string>
+  <string>Space</string>
+  <string>Table</string>
+  <string>Custom</string>
+  <string>Logo</string>
+  <string>Duplo</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection PartLibTabOrder {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["PartLibTabOrder"]));
+            }
+            set {
+                this["PartLibTabOrder"] = value;
+            }
+        }
     }
 }

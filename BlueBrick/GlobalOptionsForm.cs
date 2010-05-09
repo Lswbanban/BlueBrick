@@ -80,12 +80,12 @@ namespace BlueBrick
 		public GlobalOptionsForm()
 		{
 			InitializeComponent();
-			initControlValues();
+			initControlValues(false);
 			// save the old settings
 			copySettings(mOldSettings, Settings.Default);
 		}
 
-		private void initControlValues()
+		private void initControlValues(bool isForResetingDefaultSetting)
 		{
 			// init the controls
 
@@ -142,6 +142,9 @@ namespace BlueBrick
 			this.areaTransparencyNumericUpDown.Value = (Decimal)Settings.Default.DefaultAreaTransparency;
 			this.areaCellSizeNumericUpDown.Value = (Decimal)Settings.Default.DefaultAreaSize;
 
+			// -- tab part lib
+			fillPartLibraryListBox(isForResetingDefaultSetting);
+
 			// -- tab shortcut key
 			// init the list view
 			this.listViewShortcutKeys.Items.Clear();
@@ -190,6 +193,9 @@ namespace BlueBrick
 			destination.GammaForSnappingPart = source.GammaForSnappingPart;
 			destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
 			destination.MaxRecentFilesNum = source.MaxRecentFilesNum;
+			destination.PartLibTabOrder = new System.Collections.Specialized.StringCollection();
+			foreach (string text in source.PartLibTabOrder)
+				destination.PartLibTabOrder.Add(text.Clone() as string);
 			destination.ShortcutKey = new System.Collections.Specialized.StringCollection();
 			foreach (string text in source.ShortcutKey)
 				destination.ShortcutKey.Add(text.Clone() as string);
@@ -268,6 +274,9 @@ namespace BlueBrick
 				}				
 			}
 
+			// -- tab PartLib
+			savePartLibraryTabOrderAndSortThem();
+
 			// -- tab shortcut key
 			// save the list view
 			Settings.Default.ShortcutKey = new System.Collections.Specialized.StringCollection();
@@ -296,7 +305,7 @@ namespace BlueBrick
 				// restore the language
 				Settings.Default.Language = currentLanguage;
 				// init the controls
-				initControlValues();
+				initControlValues(true);
 			}
 		}
 
@@ -680,6 +689,93 @@ namespace BlueBrick
 				this.defaultFontColorPictureBox.BackColor = this.colorDialog.Color;
 				this.defaultFontNameLabel.ForeColor = this.colorDialog.Color;
 			}
+		}
+		#endregion
+
+		#region tab PartLib
+		private void fillPartLibraryListBox(bool isForResetingDefaultSetting)
+		{
+			// get the list of tabs
+			List<string> tabNames = BlueBrick.MainForm.Instance.PartsTabControl.getTabNames();
+
+			// if we need to reset the order from the setting, change the tab name list
+			// according to the default setting
+			if (isForResetingDefaultSetting)
+			{
+				System.Collections.Specialized.StringCollection settingNameList = Settings.Default.PartLibTabOrder;
+				int insertIndex = 0;
+				foreach (string settingName in settingNameList)
+				{
+					int currentIndex = tabNames.IndexOf(settingName);
+					if (currentIndex != -1)
+					{
+						// get the tab page, remove it and reinsert it at the correct position
+						string name = tabNames[currentIndex];
+						tabNames.Remove(name); // do not use RemoveAt() that throw an exception even if the index is correct
+						tabNames.Insert(insertIndex, name);
+
+						// increment the insert point
+						if (insertIndex < tabNames.Count)
+							insertIndex++;
+					}
+				}
+			}
+
+			// fill the list with it
+			this.PartLibTabListBox.Items.Clear();
+			foreach (string name in tabNames)
+				this.PartLibTabListBox.Items.Add(name);
+		}
+
+		private void savePartLibraryTabOrderAndSortThem()
+		{
+			// recreate the setting array
+			Settings.Default.PartLibTabOrder = new System.Collections.Specialized.StringCollection();
+			// iterate on the list in the control
+			foreach (object item in this.PartLibTabListBox.Items)
+				Settings.Default.PartLibTabOrder.Add(item as string);
+
+			// call the function on the part lib to sort the names
+			BlueBrick.MainForm.Instance.PartsTabControl.sortTabsAccordingToSettings();
+		}
+
+		private void MoveUpButton_Click(object sender, EventArgs e)
+		{
+			int selectedIndex = this.PartLibTabListBox.SelectedIndex;
+			if (selectedIndex > 0)
+			{
+				string name = this.PartLibTabListBox.Items[selectedIndex] as string;
+				this.PartLibTabListBox.Items.RemoveAt(selectedIndex);
+				int newIndex = selectedIndex - 1;
+				this.PartLibTabListBox.Items.Insert(newIndex, name);
+				this.PartLibTabListBox.SelectedIndex = newIndex;
+			}
+		}
+
+		private void MoveDownButton_Click(object sender, EventArgs e)
+		{
+			int selectedIndex = this.PartLibTabListBox.SelectedIndex;
+			if ((selectedIndex >= 0) && (selectedIndex < this.PartLibTabListBox.Items.Count - 1))
+			{
+				string name = this.PartLibTabListBox.Items[selectedIndex] as string;
+				this.PartLibTabListBox.Items.RemoveAt(selectedIndex);
+				int newIndex = selectedIndex + 1;
+				this.PartLibTabListBox.Items.Insert(newIndex, name);
+				this.PartLibTabListBox.SelectedIndex = newIndex;
+			}
+		}
+
+		private void PartLibTabListBox_SelectedValueChanged(object sender, EventArgs e)
+		{
+			int selectedIndex = this.PartLibTabListBox.SelectedIndex;
+			MoveUpButton.Enabled = (selectedIndex > 0);
+			MoveDownButton.Enabled = (selectedIndex >= 0) && (selectedIndex < this.PartLibTabListBox.Items.Count - 1);
+		}
+
+		private void alphabeticOrderButton_Click(object sender, EventArgs e)
+		{
+			this.PartLibTabListBox.Sorted = true;
+			this.PartLibTabListBox.Sorted = false;
 		}
 		#endregion
 

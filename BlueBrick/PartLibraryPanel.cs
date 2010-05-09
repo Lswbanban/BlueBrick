@@ -88,6 +88,7 @@ namespace BlueBrick
 				{
 					// add the tab in the tab control, based on the name of the folder
 					TabPage newTabPage = new TabPage(category.Name);
+					newTabPage.Name = category.Name;
 					this.TabPages.Add(newTabPage);
 
 					// then for the new tab added, we add a list control to 
@@ -111,6 +112,9 @@ namespace BlueBrick
 					// fill the list view with the file name
 					fillListViewWithParts(newListView, category);
 				}
+
+				// after creating all the tabs, sort them according to the settings
+				sortTabsAccordingToSettings();
 			}
 		}
 
@@ -264,6 +268,38 @@ namespace BlueBrick
 		}
 		#endregion
 
+		#region configuration of the part lib
+		public List<string> getTabNames()
+		{
+			List<string> resultList = new List<string>(this.TabCount);
+			foreach (TabPage tabPage in this.TabPages)
+				resultList.Add(tabPage.Name);
+			return resultList;
+		}
+
+		public void sortTabsAccordingToSettings()
+		{
+			// get the sorted name list from the settings
+			System.Collections.Specialized.StringCollection sortedNameList = BlueBrick.Properties.Settings.Default.PartLibTabOrder;
+
+			int insertIndex = 0;
+			foreach (string tabName in sortedNameList)
+			{
+				int currentIndex = this.TabPages.IndexOfKey(tabName);
+				if (currentIndex != -1)
+				{
+					// get the tab page, remove it and reinsert it at the correct position
+					TabPage tabPage = this.TabPages[currentIndex];
+					this.TabPages.Remove(tabPage); // do not use RemoveAt() that throw an exception even if the index is correct
+					this.TabPages.Insert(insertIndex, tabPage);
+
+					// increment the insert point
+					if (insertIndex < this.TabPages.Count)
+						insertIndex++;
+				}
+			}
+		}
+		#endregion
 		#region event handler for parts library
 
 		private void listView_MouseClick(object sender, MouseEventArgs e)
