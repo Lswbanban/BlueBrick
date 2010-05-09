@@ -523,7 +523,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown Show.
+        ///   Looks up a localized string similar to Unknown Event.
         /// </summary>
         internal static string DefaultShow {
             get {

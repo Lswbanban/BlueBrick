@@ -189,7 +189,7 @@ benutzten Dateien</value>
     <value>77, 17</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Veranstaltung</value>
+    <value>Ausstellung</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Autor</value>
@@ -308,6 +308,13 @@ um die Änderung auszuführen.</value>
   </data>
   <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
     <value>Zeige freie Verbindungspunkte an</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Farbkennzeichnung
+des geführten Teils</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Farbkennzeichnung ausgewählter Teile</value>
   </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 13</value>

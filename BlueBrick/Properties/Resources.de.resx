@@ -192,6 +192,9 @@
   <data name="ActionMoveBrick" xml:space="preserve">
     <value>Verschiebe das Teil &amp;</value>
   </data>
+  <data name="ActionMoveGridOrigin" xml:space="preserve">
+    <value>Verschiebe den Rasternullpunkt</value>
+  </data>
   <data name="ActionMoveLayerDown" xml:space="preserve">
     <value>Verschiebe die Ebene "&amp;" nach Unten</value>
   </data>
@@ -272,7 +275,7 @@
     <value>unbenannt.bbm</value>
   </data>
   <data name="DefaultShow" xml:space="preserve">
-    <value>Unbekannte Veranstalltung</value>
+    <value>keine Ausstellung</value>
   </data>
   <data name="ErrorMissingPartInfoFile" xml:space="preserve">
     <value>Kann die Datei "&amp;" nicht öffnen. Ohne diese Datei können die Farben und Beschreibungen der Teile in der Stückliste nicht richtig dargestellt werden. Für ein korrektes Ergebnis überprüfe bitte die Anwesenheit dieser Datei oder installiere BlueBrick erneut um das problem zu lösen.</value>
@@ -282,6 +285,9 @@
   </data>
   <data name="ErrorMsgCanNotLoadImage" xml:space="preserve">
     <value>BlueBrick ist auf einige Probleme beim Laden einiger Bilder aus der Teilebibleothek gestossen und hat die die entsprechenden Bilder einfach ignoriert. So etwas kann passieren wenn eine Datei beschaedigt oder zu gross ist. Um diese Anzeige abzustellen entferne die entsprechenden Bilder aus der Teilebibleothek. Die betroffenen Bilder sind:</value>
+  </data>
+  <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
+    <value>BlueBrick hat ein Problem beim Laden der XML-Dateien aus der Teilebibliothek festgestellt. Dieses Problem kann auftreten wenn eine XML-Datei Syntaxfehler enthält. Um diese Warnung zu beseitigen muss entweder der Syntaxfehler behoben oder die fehlerhafte XML-Datei gelöscht werden. Dieses betrifft folgende Datei(en):</value>
   </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>Die Objekte der Art &amp; können nicht in die gerade aktivierte Schicht der Art &amp;&amp; eingefügt werden.</value>
@@ -317,7 +323,7 @@ Die Fehlermeldung lautet:</value>
     <value>Einige Teile wurden nicht richtig geladen, da sie nicht in der Teilenbibliothek gefunden wurden. Einige Ersatzbilder wurden an ihrer Stelle eingefügt. Du solltest den ursprünglichen Autor (&amp;) fragen, wo du sie finden kannst.</value>
   </data>
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
-    <value>Einige Track Designer „ID's“ wurden nicht in der Zuweisungstabelle in der "&amp;" „remap“-Datei gefunden. BlueBrick konnte sie nicht laden und hat die Eintragungen übersprungen. Für jede fehlende ID sollte in der remap-Datei eine Zuweisungszeile eingefügt werden. Stelle ebenso sicher, dass die dazugehörigen Teile in der Teilenbibliothek vorhanden sind. Danach versuche die Datei neu zu laden. Die fehlenden ID's waren:</value>
+    <value>Einige TrackDesigner-Teile-IDs wurden nicht in der BlueBrick-Teilebibliothek gefunden. BlueBrick konnte diese Teile nicht laden und hat diese Teile übersprungen. Entweder fehlt das Teil in der BlueBrick-Teilebibliothek oder in der zugehörigen XML-Datei ist die falsche TrackDesigner-Teile-ID angegeben. Bitte Fehler korrigieren und TrackDesigner-Datei erneut öffnen. Betroffen sind folgende TrackDesigner-Teile-IDs:</value>
   </data>
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
     <value>BlueBrick kann im Installationsordner die Datei namens "BlueBrick.chm" nicht finden. Eine Neuinstallation könnte das Problem beheben.</value>

@@ -275,7 +275,7 @@
     <value>Untitled.bbm</value>
   </data>
   <data name="DefaultShow" xml:space="preserve">
-    <value>Unknown Show</value>
+    <value>Unknown Event</value>
   </data>
   <data name="ErrorMissingPartInfoFile" xml:space="preserve">
     <value>Can not open the "&amp;" file. Without this file you will not be able to see the color and description of the parts in the part list. Please verify the presence of this file, or reinstall BlueBrick to fix the problem.</value>
