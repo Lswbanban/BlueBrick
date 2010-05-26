@@ -391,6 +391,9 @@
   <data name="PartForOptionPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\PartForOptionPreview.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PartLibMenuItemLargeIcons" xml:space="preserve">
+    <value>Large Icons</value>
+  </data>
   <data name="SnapGridOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\SnapGridOff.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

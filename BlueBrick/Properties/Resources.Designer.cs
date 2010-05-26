@@ -863,6 +863,15 @@ namespace BlueBrick.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Large Icons.
+        /// </summary>
+        internal static string PartLibMenuItemLargeIcons {
+            get {
+                return ResourceManager.GetString("PartLibMenuItemLargeIcons", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap SnapGridOff {
             get {
                 object obj = ResourceManager.GetObject("SnapGridOff", resourceCulture);

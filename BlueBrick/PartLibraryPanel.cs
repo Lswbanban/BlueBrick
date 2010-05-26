@@ -21,6 +21,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
 using BlueBrick.MapData;
+using BlueBrick.Properties;
 
 namespace BlueBrick
 {
@@ -70,6 +71,23 @@ namespace BlueBrick
 		}
 
 		/// <summary>
+		/// create and return a context menu that can be assigned to a tab page
+		/// </summary>
+		/// <returns>a new instance of context menu for a part lib tab</returns>
+		private ContextMenuStrip createContextMenuItemForATabPage()
+		{
+			// create the context menu
+			ContextMenuStrip contextMenu = new ContextMenuStrip();
+			// menu item to display the icons in large
+			ToolStripMenuItem largeIconsMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemLargeIcons, null, menuItem_LargeIconClick);
+			largeIconsMenuItem.CheckOnClick = true;
+			largeIconsMenuItem.Checked = true;
+			contextMenu.Items.Add(largeIconsMenuItem);
+			// return the well form context menu
+			return contextMenu;
+		}
+
+		/// <summary>
 		/// parse the part folder to find all the part in the library
 		/// </summary>
 		public void initPartsTabControl()
@@ -89,6 +107,7 @@ namespace BlueBrick
 					// add the tab in the tab control, based on the name of the folder
 					TabPage newTabPage = new TabPage(category.Name);
 					newTabPage.Name = category.Name;
+					newTabPage.ContextMenuStrip = createContextMenuItemForATabPage();
 					this.TabPages.Add(newTabPage);
 
 					// then for the new tab added, we add a list control to 
@@ -102,7 +121,6 @@ namespace BlueBrick
 					newListView.MultiSelect = false;
 					newListView.View = View.Tile; // we always use this view, because of the layout of the item
 					newListView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
-					newListView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listView_MouseUp);
 					newListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
 					newListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
 					newListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listView_MouseMove);
@@ -126,9 +144,6 @@ namespace BlueBrick
 			List<string> xmlFileUnloadable = new List<string>();
 			List<string> xmlFileLoaded = new List<string>();
 
-			// declare a variable to find the biggest image size
-			int biggestSize = 1; // 1 to avoid a division by 0
-
 			// get the list of image in the folder
 			FileInfo[] imageFiles = folder.GetFiles("*.gif");
 			int imageIndex = 0;
@@ -151,12 +166,6 @@ namespace BlueBrick
 
 						// add the image in the image list
 						imageList.Add(image);
-
-						// memorize the biggest size
-						if (biggestSize < image.Width)
-							biggestSize = image.Width;
-						if (biggestSize < image.Height)
-							biggestSize = image.Height;
 
 						// create a new item for the list view item
 						ListViewItem newItem = new ListViewItem(null as string, imageIndex);
@@ -229,8 +238,24 @@ namespace BlueBrick
 					MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 			}
 
+			// then fill the list view
+			fillListViewFromImageList(listViewToFill, imageList, false);
+		}
+
+		private void fillListViewFromImageList(ListView listViewToFill, List<Bitmap> imageList, bool useScale)
+		{
+			// declare a variable to find the biggest image size
+			int biggestSize = 1; // 1 to avoid a division by 0
+			foreach (Bitmap image in imageList)
+			{
+				if (biggestSize < image.Width)
+					biggestSize = image.Width;
+				if (biggestSize < image.Height)
+					biggestSize = image.Height;
+			}
+
 			// compute the rescale factor:
-			float imageRescaleFactor = (float)PART_ITEM_LARGE_SIZE.Width / (float)biggestSize;
+			float globalImageRescaleFactor = (float)PART_ITEM_LARGE_SIZE.Width / (float)biggestSize;
 
 			// create two image list that will receive a snapshot of each image
 			// found in the folder
@@ -242,6 +267,20 @@ namespace BlueBrick
 			// now we rescale all the images according to the biggest one in the folder
 			foreach (Bitmap image in imageList)
 			{
+				// choose the the current scale that should be used
+				float imageRescaleFactor = 1.0f;
+				if (useScale)
+				{
+					imageRescaleFactor = globalImageRescaleFactor;
+				}
+				else
+				{
+					if (image.Width > image.Height)
+						imageRescaleFactor = (float)PART_ITEM_LARGE_SIZE.Width / (float)image.Width;
+					else
+						imageRescaleFactor = (float)PART_ITEM_LARGE_SIZE.Width / (float)image.Height;
+				}
+
 				// create a snapshot of the current image and replace it in the two image lists
 				// but to avoid a stretching effect, we redraw the picture in a square
 				// first compute the position and size of the bitmap to draw
@@ -302,6 +341,31 @@ namespace BlueBrick
 		#endregion
 		#region event handler for parts library
 
+		private void menuItem_LargeIconClick(object sender, EventArgs e)
+		{
+			ListView listView = this.SelectedTab.Controls[0] as ListView;
+			if (listView != null)
+			{
+				// also adjust the size of the tile according to the
+				// size of the next current image (which is the small one for the moment)
+				// we change the size before changing the image list, because the change of
+				// the image list will call a refresh anyway
+				if (listView.SmallImageList.ImageSize == PART_ITEM_SMALL_SIZE)
+					listView.TileSize = PART_ITEM_SMALL_SIZE_WITH_MARGIN;
+				else
+					listView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
+
+				// switch between large view and small view
+				ImageList swap = listView.LargeImageList;
+				listView.LargeImageList = listView.SmallImageList;
+				listView.SmallImageList = swap;
+
+				// resize the tabcontrol to handle a layout bug when
+				// the scroll bar disapear
+				this.Size += new Size(1, 1);
+			}
+		}
+
 		private void listView_MouseClick(object sender, MouseEventArgs e)
 		{
 			// try to get the list view (it can also be the tab page that contains the list view)
@@ -320,35 +384,6 @@ namespace BlueBrick
 						}
 				}
 			}
-		}
-
-		private void listView_MouseUp(object sender, MouseEventArgs e)
-		{
-			ListView listView = sender as ListView;
-			if (listView == null)
-				listView = this.SelectedTab.Controls[0] as ListView;
-
-			if (listView != null)
-				if (e.Button == MouseButtons.Right)
-				{
-					// also adjust the size of the tile according to the
-					// size of the next current image (which is the small one for the moment)
-					// we change the size before changing the image list, because the change of
-					// the image list will call a refresh anyway
-					if (listView.SmallImageList.ImageSize == PART_ITEM_SMALL_SIZE)
-						listView.TileSize = PART_ITEM_SMALL_SIZE_WITH_MARGIN;
-					else
-						listView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
-
-					// switch between large view and small view
-					ImageList swap = listView.LargeImageList;
-					listView.LargeImageList = listView.SmallImageList;
-					listView.SmallImageList = swap;
-
-					// resize the tabcontrol to handle a layout bug when
-					// the scroll bar disapear
-					this.Size += new Size(1, 1);
-				}
 		}
 
 		private void listView_MouseMove(object sender, MouseEventArgs e)
