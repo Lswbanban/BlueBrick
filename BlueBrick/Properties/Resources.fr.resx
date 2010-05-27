@@ -350,6 +350,9 @@ Le message d'erreur est :
   <data name="PartLibMenuItemLargeIcons" xml:space="preserve">
     <value>Grandes icones</value>
   </data>
+  <data name="PartLibMenuItemRespectProportion" xml:space="preserve">
+    <value>Respecter les proportions</value>
+  </data>
   <data name="TextEnterText" xml:space="preserve">
     <value>Entrez votre texte ici...</value>
   </data>

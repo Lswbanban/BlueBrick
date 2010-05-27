@@ -872,6 +872,15 @@ namespace BlueBrick.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Respect Proportion.
+        /// </summary>
+        internal static string PartLibMenuItemRespectProportion {
+            get {
+                return ResourceManager.GetString("PartLibMenuItemRespectProportion", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap SnapGridOff {
             get {
                 object obj = ResourceManager.GetObject("SnapGridOff", resourceCulture);

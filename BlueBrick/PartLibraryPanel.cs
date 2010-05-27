@@ -74,7 +74,7 @@ namespace BlueBrick
 		/// create and return a context menu that can be assigned to a tab page
 		/// </summary>
 		/// <returns>a new instance of context menu for a part lib tab</returns>
-		private ContextMenuStrip createContextMenuItemForATabPage()
+		private ContextMenuStrip createContextMenuItemForATabPage(bool respectProportionIsChecked)
 		{
 			// create the context menu
 			ContextMenuStrip contextMenu = new ContextMenuStrip();
@@ -83,6 +83,11 @@ namespace BlueBrick
 			largeIconsMenuItem.CheckOnClick = true;
 			largeIconsMenuItem.Checked = true;
 			contextMenu.Items.Add(largeIconsMenuItem);
+			// menu item to repect the proportions
+			ToolStripMenuItem proportionMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemRespectProportion, null, menuItem_RespectProportionClick);
+			proportionMenuItem.CheckOnClick = true;
+			proportionMenuItem.Checked = respectProportionIsChecked;
+			contextMenu.Items.Add(proportionMenuItem);
 			// return the well form context menu
 			return contextMenu;
 		}
@@ -107,7 +112,7 @@ namespace BlueBrick
 					// add the tab in the tab control, based on the name of the folder
 					TabPage newTabPage = new TabPage(category.Name);
 					newTabPage.Name = category.Name;
-					newTabPage.ContextMenuStrip = createContextMenuItemForATabPage();
+					newTabPage.ContextMenuStrip = createContextMenuItemForATabPage(false);
 					this.TabPages.Add(newTabPage);
 
 					// then for the new tab added, we add a list control to 
@@ -139,7 +144,7 @@ namespace BlueBrick
 		private void fillListViewWithParts(ListView listViewToFill, DirectoryInfo folder)
 		{
 			// create a list of image to load all the images in a list
-			List<Bitmap> imageList = new List<Bitmap>();
+			List<Image> imageList = new List<Image>();
 			List<string> imageFileUnloadable = new List<string>();
 			List<string> xmlFileUnloadable = new List<string>();
 			List<string> xmlFileLoaded = new List<string>();
@@ -242,20 +247,25 @@ namespace BlueBrick
 			fillListViewFromImageList(listViewToFill, imageList, false);
 		}
 
-		private void fillListViewFromImageList(ListView listViewToFill, List<Bitmap> imageList, bool useScale)
+		private void fillListViewFromImageList(ListView listViewToFill, List<Image> imageList, bool respectProportion)
 		{
-			// declare a variable to find the biggest image size
-			int biggestSize = 1; // 1 to avoid a division by 0
-			foreach (Bitmap image in imageList)
+			// compute the global rescale factor if we need to respect the proportions
+			float globalImageRescaleFactor = 1.0f;
+			if (respectProportion)
 			{
-				if (biggestSize < image.Width)
-					biggestSize = image.Width;
-				if (biggestSize < image.Height)
-					biggestSize = image.Height;
-			}
+				// declare a variable to find the biggest image size
+				int biggestSize = 1; // 1 to avoid a division by 0
+				foreach (Image image in imageList)
+				{
+					if (biggestSize < image.Width)
+						biggestSize = image.Width;
+					if (biggestSize < image.Height)
+						biggestSize = image.Height;
+				}
 
-			// compute the rescale factor:
-			float globalImageRescaleFactor = (float)PART_ITEM_LARGE_SIZE.Width / (float)biggestSize;
+				// compute the rescale factor:
+				globalImageRescaleFactor = (float)PART_ITEM_LARGE_SIZE.Width / (float)biggestSize;
+			}
 
 			// create two image list that will receive a snapshot of each image
 			// found in the folder
@@ -265,11 +275,11 @@ namespace BlueBrick
 			smallImageList.ImageSize = PART_ITEM_SMALL_SIZE;
 
 			// now we rescale all the images according to the biggest one in the folder
-			foreach (Bitmap image in imageList)
+			foreach (Image image in imageList)
 			{
 				// choose the the current scale that should be used
 				float imageRescaleFactor = 1.0f;
-				if (useScale)
+				if (respectProportion)
 				{
 					imageRescaleFactor = globalImageRescaleFactor;
 				}
@@ -302,8 +312,16 @@ namespace BlueBrick
 			}
 
 			// assign the two image list created
-			listViewToFill.LargeImageList = largeImageList;
-			listViewToFill.SmallImageList = smallImageList;
+			if (listViewToFill.TileSize == PART_ITEM_LARGE_SIZE_WITH_MARGIN)
+			{
+				listViewToFill.LargeImageList = largeImageList;
+				listViewToFill.SmallImageList = smallImageList;
+			}
+			else
+			{
+				listViewToFill.LargeImageList = smallImageList;
+				listViewToFill.SmallImageList = largeImageList;
+			}
 		}
 		#endregion
 
@@ -363,6 +381,22 @@ namespace BlueBrick
 				// resize the tabcontrol to handle a layout bug when
 				// the scroll bar disapear
 				this.Size += new Size(1, 1);
+			}
+		}
+
+		private void menuItem_RespectProportionClick(object sender, EventArgs e)
+		{
+			ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+			ListView listView = this.SelectedTab.Controls[0] as ListView;
+			if (listView != null && menuItem != null)
+			{
+				// create a list of image with all the original part image from the part lib
+				List<Image> imageList = new List<Image>(listView.Items.Count);
+				foreach (ListViewItem item in listView.Items)
+					imageList.Add(BrickLibrary.Instance.getImage(item.Tag as string));
+
+				// regenerate the two image list for the current list view
+				fillListViewFromImageList(listView, imageList, menuItem.Checked);
 			}
 		}
 
