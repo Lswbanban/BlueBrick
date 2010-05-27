@@ -864,6 +864,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bubble Info.
+        /// </summary>
+        internal static string PartLibMenuItemDisplayTooltips {
+            get {
+                return ResourceManager.GetString("PartLibMenuItemDisplayTooltips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Large Icons.
         /// </summary>
         internal static string PartLibMenuItemLargeIcons {

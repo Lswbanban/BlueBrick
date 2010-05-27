@@ -88,6 +88,11 @@ namespace BlueBrick
 			proportionMenuItem.CheckOnClick = true;
 			proportionMenuItem.Checked = respectProportionIsChecked;
 			contextMenu.Items.Add(proportionMenuItem);
+			// menu item to display tooltips
+			ToolStripMenuItem bubbleInfoMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemDisplayTooltips, null, menuItem_DisplayTooltipsClick);
+			bubbleInfoMenuItem.CheckOnClick = true;
+			bubbleInfoMenuItem.Checked = false;
+			contextMenu.Items.Add(bubbleInfoMenuItem);
 			// return the well form context menu
 			return contextMenu;
 		}
@@ -122,6 +127,7 @@ namespace BlueBrick
 					newListView.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 					newListView.Dock = DockStyle.Fill;
 					newListView.Alignment = ListViewAlignment.SnapToGrid;
+					newListView.BackColor = Settings.Default.PartLibBackColor;
 					newListView.ShowItemToolTips = false; //item tooltip are the name of the image file
 					newListView.MultiSelect = false;
 					newListView.View = View.Tile; // we always use this view, because of the layout of the item
@@ -398,6 +404,12 @@ namespace BlueBrick
 				// regenerate the two image list for the current list view
 				fillListViewFromImageList(listView, imageList, menuItem.Checked);
 			}
+		}
+
+		private void menuItem_DisplayTooltipsClick(object sender, EventArgs e)
+		{
+			ListView listView = this.SelectedTab.Controls[0] as ListView;
+			listView.ShowItemToolTips = !listView.ShowItemToolTips;
 		}
 
 		private void listView_MouseClick(object sender, MouseEventArgs e)

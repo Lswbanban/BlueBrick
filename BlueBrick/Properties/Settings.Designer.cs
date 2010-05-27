@@ -618,5 +618,17 @@ namespace BlueBrick.Properties {
                 this["PartLibTabOrder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color PartLibBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PartLibBackColor"]));
+            }
+            set {
+                this["PartLibBackColor"] = value;
+            }
+        }
     }
 }
