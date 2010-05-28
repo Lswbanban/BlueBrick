@@ -341,6 +341,8 @@ namespace BlueBrick
 
 		public void updateAppearanceAccordingToSettings()
 		{
+			this.SuspendLayout();
+
 			// first sort the tabs
 			// get the sorted name list from the settings
 			System.Collections.Specialized.StringCollection sortedNameList = BlueBrick.Properties.Settings.Default.PartLibTabOrder;
@@ -377,6 +379,8 @@ namespace BlueBrick
 				{
 				}
 			}
+
+			this.ResumeLayout();
 		}
 		#endregion
 		#region event handler for parts library
