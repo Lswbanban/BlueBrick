@@ -630,5 +630,53 @@ namespace BlueBrick.Properties {
                 this["PartLibBackColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PartLibDisplayBubbleInfo {
+            get {
+                return ((bool)(this["PartLibDisplayBubbleInfo"]));
+            }
+            set {
+                this["PartLibDisplayBubbleInfo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PartLibBubbleInfoPartID {
+            get {
+                return ((bool)(this["PartLibBubbleInfoPartID"]));
+            }
+            set {
+                this["PartLibBubbleInfoPartID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PartLibBubbleInfoPartColor {
+            get {
+                return ((bool)(this["PartLibBubbleInfoPartColor"]));
+            }
+            set {
+                this["PartLibBubbleInfoPartColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PartLibBubbleInfoPartDescription {
+            get {
+                return ((bool)(this["PartLibBubbleInfoPartDescription"]));
+            }
+            set {
+                this["PartLibBubbleInfoPartDescription"] = value;
+            }
+        }
     }
 }

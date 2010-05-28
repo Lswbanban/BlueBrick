@@ -99,6 +99,14 @@ namespace BlueBrick
 			this.label15 = new System.Windows.Forms.Label();
 			this.colorSchemeComboBox = new System.Windows.Forms.ComboBox();
 			this.partLibTabPage = new System.Windows.Forms.TabPage();
+			this.groupBox13 = new System.Windows.Forms.GroupBox();
+			this.label26 = new System.Windows.Forms.Label();
+			this.PartLibBackColorPictureBox = new System.Windows.Forms.PictureBox();
+			this.groupBox12 = new System.Windows.Forms.GroupBox();
+			this.displayPartDescriptionCheckBox = new System.Windows.Forms.CheckBox();
+			this.displayPartColorCheckBox = new System.Windows.Forms.CheckBox();
+			this.displayPartIDCheckBox = new System.Windows.Forms.CheckBox();
+			this.displayBubbleInfoCheckBox = new System.Windows.Forms.CheckBox();
 			this.groupBox11 = new System.Windows.Forms.GroupBox();
 			this.alphabeticOrderButton = new System.Windows.Forms.Button();
 			this.PartLibTabListBox = new System.Windows.Forms.ListBox();
@@ -154,6 +162,9 @@ namespace BlueBrick
 			((System.ComponentModel.ISupportInitialize)(this.gridColorPictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.backgroundColorPictureBox)).BeginInit();
 			this.partLibTabPage.SuspendLayout();
+			this.groupBox13.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PartLibBackColorPictureBox)).BeginInit();
+			this.groupBox12.SuspendLayout();
 			this.groupBox11.SuspendLayout();
 			this.shortcutKeysTabPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -745,10 +756,71 @@ namespace BlueBrick
 			// 
 			// partLibTabPage
 			// 
+			this.partLibTabPage.Controls.Add(this.groupBox13);
+			this.partLibTabPage.Controls.Add(this.groupBox12);
 			this.partLibTabPage.Controls.Add(this.groupBox11);
 			resources.ApplyResources(this.partLibTabPage, "partLibTabPage");
 			this.partLibTabPage.Name = "partLibTabPage";
 			this.partLibTabPage.UseVisualStyleBackColor = true;
+			// 
+			// groupBox13
+			// 
+			this.groupBox13.Controls.Add(this.label26);
+			this.groupBox13.Controls.Add(this.PartLibBackColorPictureBox);
+			resources.ApplyResources(this.groupBox13, "groupBox13");
+			this.groupBox13.Name = "groupBox13";
+			this.groupBox13.TabStop = false;
+			// 
+			// label26
+			// 
+			resources.ApplyResources(this.label26, "label26");
+			this.label26.Name = "label26";
+			// 
+			// PartLibBackColorPictureBox
+			// 
+			this.PartLibBackColorPictureBox.BackColor = System.Drawing.Color.White;
+			this.PartLibBackColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.PartLibBackColorPictureBox, "PartLibBackColorPictureBox");
+			this.PartLibBackColorPictureBox.Name = "PartLibBackColorPictureBox";
+			this.PartLibBackColorPictureBox.TabStop = false;
+			this.PartLibBackColorPictureBox.Click += new System.EventHandler(this.PartLibBackColorPictureBox_Click);
+			// 
+			// groupBox12
+			// 
+			this.groupBox12.Controls.Add(this.displayPartDescriptionCheckBox);
+			this.groupBox12.Controls.Add(this.displayPartColorCheckBox);
+			this.groupBox12.Controls.Add(this.displayPartIDCheckBox);
+			this.groupBox12.Controls.Add(this.displayBubbleInfoCheckBox);
+			resources.ApplyResources(this.groupBox12, "groupBox12");
+			this.groupBox12.Name = "groupBox12";
+			this.groupBox12.TabStop = false;
+			// 
+			// displayPartDescriptionCheckBox
+			// 
+			resources.ApplyResources(this.displayPartDescriptionCheckBox, "displayPartDescriptionCheckBox");
+			this.displayPartDescriptionCheckBox.Checked = true;
+			this.displayPartDescriptionCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.displayPartDescriptionCheckBox.Name = "displayPartDescriptionCheckBox";
+			this.displayPartDescriptionCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// displayPartColorCheckBox
+			// 
+			resources.ApplyResources(this.displayPartColorCheckBox, "displayPartColorCheckBox");
+			this.displayPartColorCheckBox.Name = "displayPartColorCheckBox";
+			this.displayPartColorCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// displayPartIDCheckBox
+			// 
+			resources.ApplyResources(this.displayPartIDCheckBox, "displayPartIDCheckBox");
+			this.displayPartIDCheckBox.Name = "displayPartIDCheckBox";
+			this.displayPartIDCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// displayBubbleInfoCheckBox
+			// 
+			resources.ApplyResources(this.displayBubbleInfoCheckBox, "displayBubbleInfoCheckBox");
+			this.displayBubbleInfoCheckBox.Name = "displayBubbleInfoCheckBox";
+			this.displayBubbleInfoCheckBox.UseVisualStyleBackColor = true;
+			this.displayBubbleInfoCheckBox.CheckedChanged += new System.EventHandler(this.displayBubbleInfoCheckBox_CheckedChanged);
 			// 
 			// groupBox11
 			// 
@@ -1062,6 +1134,10 @@ namespace BlueBrick
 			((System.ComponentModel.ISupportInitialize)(this.gridColorPictureBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.backgroundColorPictureBox)).EndInit();
 			this.partLibTabPage.ResumeLayout(false);
+			this.groupBox13.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.PartLibBackColorPictureBox)).EndInit();
+			this.groupBox12.ResumeLayout(false);
+			this.groupBox12.PerformLayout();
 			this.groupBox11.ResumeLayout(false);
 			this.shortcutKeysTabPage.ResumeLayout(false);
 			this.shortcutKeysTabPage.PerformLayout();
@@ -1168,5 +1244,13 @@ namespace BlueBrick
 		private System.Windows.Forms.ListBox PartLibTabListBox;
 		private System.Windows.Forms.Button MoveDownButton;
 		private System.Windows.Forms.Button alphabeticOrderButton;
+		private System.Windows.Forms.GroupBox groupBox12;
+		private System.Windows.Forms.CheckBox displayBubbleInfoCheckBox;
+		private System.Windows.Forms.CheckBox displayPartDescriptionCheckBox;
+		private System.Windows.Forms.CheckBox displayPartColorCheckBox;
+		private System.Windows.Forms.CheckBox displayPartIDCheckBox;
+		private System.Windows.Forms.GroupBox groupBox13;
+		private System.Windows.Forms.Label label26;
+		private System.Windows.Forms.PictureBox PartLibBackColorPictureBox;
 	}
 }

@@ -91,7 +91,6 @@ namespace BlueBrick
 			// menu item to display tooltips
 			ToolStripMenuItem bubbleInfoMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemDisplayTooltips, null, menuItem_DisplayTooltipsClick);
 			bubbleInfoMenuItem.CheckOnClick = true;
-			bubbleInfoMenuItem.Checked = false;
 			contextMenu.Items.Add(bubbleInfoMenuItem);
 			// return the well form context menu
 			return contextMenu;
@@ -143,7 +142,7 @@ namespace BlueBrick
 				}
 
 				// after creating all the tabs, sort them according to the settings
-				sortTabsAccordingToSettings();
+				updateAppearanceAccordingToSettings();
 			}
 		}
 
@@ -340,8 +339,9 @@ namespace BlueBrick
 			return resultList;
 		}
 
-		public void sortTabsAccordingToSettings()
+		public void updateAppearanceAccordingToSettings()
 		{
+			// first sort the tabs
 			// get the sorted name list from the settings
 			System.Collections.Specialized.StringCollection sortedNameList = BlueBrick.Properties.Settings.Default.PartLibTabOrder;
 
@@ -359,6 +359,22 @@ namespace BlueBrick
 					// increment the insert point
 					if (insertIndex < this.TabPages.Count)
 						insertIndex++;
+				}
+			}
+
+			// then update the background color and the bubble info status
+			bool displayBubbleInfo = BlueBrick.Properties.Settings.Default.PartLibDisplayBubbleInfo;
+			foreach (TabPage tabPage in this.TabPages)
+			{
+				try
+				{
+					ListView listView = tabPage.Controls[0] as ListView;
+					listView.BackColor = BlueBrick.Properties.Settings.Default.PartLibBackColor;
+					listView.ShowItemToolTips = displayBubbleInfo;
+					(tabPage.ContextMenuStrip.Items[2] as ToolStripMenuItem).Checked = displayBubbleInfo;
+				}
+				catch
+				{
 				}
 			}
 		}
@@ -408,8 +424,22 @@ namespace BlueBrick
 
 		private void menuItem_DisplayTooltipsClick(object sender, EventArgs e)
 		{
-			ListView listView = this.SelectedTab.Controls[0] as ListView;
-			listView.ShowItemToolTips = !listView.ShowItemToolTips;
+			// get the checked status
+			bool displayBubbleInfo = (sender as ToolStripMenuItem).Checked;
+			// update the setting
+			BlueBrick.Properties.Settings.Default.PartLibDisplayBubbleInfo = displayBubbleInfo;
+			// the display tooltip is global to all the tabpage, so update all the pages
+			foreach (TabPage tabPage in this.TabPages)
+			{
+				try
+				{
+					(tabPage.Controls[0] as ListView).ShowItemToolTips = displayBubbleInfo;
+					(tabPage.ContextMenuStrip.Items[2] as ToolStripMenuItem).Checked = displayBubbleInfo;
+				}
+				catch
+				{
+				}
+			}
 		}
 
 		private void listView_MouseClick(object sender, MouseEventArgs e)

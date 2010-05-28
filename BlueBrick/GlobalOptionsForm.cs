@@ -144,6 +144,11 @@ namespace BlueBrick
 
 			// -- tab part lib
 			fillPartLibraryListBox(isForResetingDefaultSetting);
+			this.PartLibBackColorPictureBox.BackColor = Settings.Default.PartLibBackColor;
+			this.displayPartIDCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartID;
+			this.displayPartColorCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartColor;
+			this.displayPartDescriptionCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartDescription;
+			this.displayBubbleInfoCheckBox.Checked = Settings.Default.PartLibDisplayBubbleInfo;
 
 			// -- tab shortcut key
 			// init the list view
@@ -168,34 +173,43 @@ namespace BlueBrick
 
 		private void copySettings(Settings destination, Settings source)
 		{
+			// general
 			destination.AddBrickLayerOnNewMap = source.AddBrickLayerOnNewMap;
 			destination.AddGridLayerOnNewMap = source.AddGridLayerOnNewMap;
 			destination.DefaultBackgroundColor = source.DefaultBackgroundColor;
 			destination.DefaultAuthor = source.DefaultAuthor.Clone() as string;
-			destination.DefaultGridColor = source.DefaultGridColor;
-			destination.DefaultGridSize = source.DefaultGridSize;
 			destination.DefaultLUG = source.DefaultLUG.Clone() as string;
 			destination.DefaultShow = source.DefaultShow.Clone() as string;
-			destination.DefaultSubDivisionNumber = source.DefaultSubDivisionNumber;
-			destination.DefaultSubGridColor = source.DefaultSubGridColor;
-			destination.DefaultTextColor = source.DefaultTextColor;
-			destination.DefaultTextFont = source.DefaultTextFont.Clone() as Font;
 			destination.Language = source.Language.Clone() as string;
 			destination.MouseMultipleSelectionKey = source.MouseMultipleSelectionKey;
 			destination.UndoStackDepth = source.UndoStackDepth;
 			destination.UndoStackDisplayedDepth = source.UndoStackDisplayedDepth;
 			destination.WheelMouseIsZoomOnCursor = source.WheelMouseIsZoomOnCursor;
 			destination.WheelMouseZoomSpeed = source.WheelMouseZoomSpeed;
+			destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
+			destination.MaxRecentFilesNum = source.MaxRecentFilesNum;
+			// appearance
 			destination.DefaultAreaTransparency = source.DefaultAreaTransparency;
 			destination.DefaultAreaSize = source.DefaultAreaSize;
 			destination.DisplayFreeConnexionPoints = source.DisplayFreeConnexionPoints;
 			destination.GammaForSelection = source.GammaForSelection;
 			destination.GammaForSnappingPart = source.GammaForSnappingPart;
-			destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
-			destination.MaxRecentFilesNum = source.MaxRecentFilesNum;
+			destination.DefaultGridColor = source.DefaultGridColor;
+			destination.DefaultGridSize = source.DefaultGridSize;
+			destination.DefaultSubDivisionNumber = source.DefaultSubDivisionNumber;
+			destination.DefaultSubGridColor = source.DefaultSubGridColor;
+			destination.DefaultTextColor = source.DefaultTextColor;
+			destination.DefaultTextFont = source.DefaultTextFont.Clone() as Font;
+			// part lib
 			destination.PartLibTabOrder = new System.Collections.Specialized.StringCollection();
 			foreach (string text in source.PartLibTabOrder)
 				destination.PartLibTabOrder.Add(text.Clone() as string);
+			destination.PartLibBackColor = source.PartLibBackColor;
+			destination.PartLibBubbleInfoPartID = source.PartLibBubbleInfoPartID;
+			destination.PartLibBubbleInfoPartColor = source.PartLibBubbleInfoPartColor;
+			destination.PartLibBubbleInfoPartDescription = source.PartLibBubbleInfoPartDescription;
+			destination.PartLibDisplayBubbleInfo = source.PartLibDisplayBubbleInfo;
+			// shortcut
 			destination.ShortcutKey = new System.Collections.Specialized.StringCollection();
 			foreach (string text in source.ShortcutKey)
 				destination.ShortcutKey.Add(text.Clone() as string);
@@ -276,6 +290,13 @@ namespace BlueBrick
 
 			// -- tab PartLib
 			savePartLibraryTabOrderAndSortThem();
+			Settings.Default.PartLibBackColor = this.PartLibBackColorPictureBox.BackColor;
+			Settings.Default.PartLibBubbleInfoPartID = this.displayPartIDCheckBox.Checked;
+			Settings.Default.PartLibBubbleInfoPartColor = this.displayPartColorCheckBox.Checked;
+			Settings.Default.PartLibBubbleInfoPartDescription = this.displayPartDescriptionCheckBox.Checked;
+			Settings.Default.PartLibDisplayBubbleInfo = this.displayBubbleInfoCheckBox.Checked;
+			// call the function on the part lib to reflect the change
+			BlueBrick.MainForm.Instance.PartsTabControl.updateAppearanceAccordingToSettings();
 
 			// -- tab shortcut key
 			// save the list view
@@ -734,9 +755,6 @@ namespace BlueBrick
 			// iterate on the list in the control
 			foreach (object item in this.PartLibTabListBox.Items)
 				Settings.Default.PartLibTabOrder.Add(item as string);
-
-			// call the function on the part lib to sort the names
-			BlueBrick.MainForm.Instance.PartsTabControl.sortTabsAccordingToSettings();
 		}
 
 		private void MoveUpButton_Click(object sender, EventArgs e)
@@ -776,6 +794,27 @@ namespace BlueBrick
 		{
 			this.PartLibTabListBox.Sorted = true;
 			this.PartLibTabListBox.Sorted = false;
+		}
+
+		private void displayBubbleInfoCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			bool isEnabled = this.displayBubbleInfoCheckBox.Checked;
+			this.displayPartIDCheckBox.Enabled = isEnabled;
+			this.displayPartColorCheckBox.Enabled = isEnabled;
+			this.displayPartDescriptionCheckBox.Enabled = isEnabled;
+		}
+
+		private void PartLibBackColorPictureBox_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.colorDialog.Color = PartLibBackColorPictureBox.BackColor;
+			// open the color box in modal
+			DialogResult result = this.colorDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				PartLibBackColorPictureBox.BackColor = this.colorDialog.Color;
+			}
 		}
 		#endregion
 
