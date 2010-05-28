@@ -94,7 +94,7 @@ namespace BlueBrick
 			this.mouseZoomCenteredCheckBox.Checked = Settings.Default.WheelMouseIsZoomOnCursor;
 			this.mouseZoomSpeedNumericUpDown.Value = (Decimal)Settings.Default.WheelMouseZoomSpeed;
 			fillAndSelectMultipleAndDuplicateSelectionKeyComboBox();
-			fillAndSelectOptimComboBox();
+			this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
 			// new map
 			GeneralInfoForm.sFillLUGComboBox(this.lugComboBox, @"/config/LugList.txt");
 			GeneralInfoForm.sFillLUGComboBox(this.showComboBox, @"/config/EventList.txt");
@@ -473,17 +473,6 @@ namespace BlueBrick
 		{
 			Settings.Default.StartSavedMipmapLevel = optimComboBox.SelectedIndex;
 			return (mOldSettings.StartSavedMipmapLevel != Settings.Default.StartSavedMipmapLevel);
-		}
-
-		private void fillAndSelectOptimComboBox()
-		{
-			// fill the combo box
-			optimComboBox.Items.Clear();
-			optimComboBox.Items.Add(Resources.OptimFaster);
-			optimComboBox.Items.Add(Resources.OptimBalanced);
-			optimComboBox.Items.Add(Resources.OptimLessMemory);
-			// set the selected value
-			optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
 		}
 
 		private void clearRecentFilesButton_Click(object sender, EventArgs e)

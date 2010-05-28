@@ -139,6 +139,15 @@ benutzten Dateien</value>
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Leistung</value>
   </data>
+  <data name="optimComboBox.Items" xml:space="preserve">
+    <value>Schneller</value>
+  </data>
+  <data name="optimComboBox.Items1" xml:space="preserve">
+    <value>Ausgeglichen</value>
+  </data>
+  <data name="optimComboBox.Items2" xml:space="preserve">
+    <value>Weniger Speicher</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="optimComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 23</value>

@@ -275,6 +275,10 @@ namespace BlueBrick
 			this.optimComboBox.BackgroundImage = null;
 			this.optimComboBox.Font = null;
 			this.optimComboBox.FormattingEnabled = true;
+			this.optimComboBox.Items.AddRange(new object[] {
+            resources.GetString("optimComboBox.Items"),
+            resources.GetString("optimComboBox.Items1"),
+            resources.GetString("optimComboBox.Items2")});
 			this.optimComboBox.Name = "optimComboBox";
 			// 
 			// label11

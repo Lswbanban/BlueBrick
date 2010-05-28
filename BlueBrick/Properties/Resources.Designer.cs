@@ -829,33 +829,6 @@ namespace BlueBrick.Properties {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Balanced.
-        /// </summary>
-        internal static string OptimBalanced {
-            get {
-                return ResourceManager.GetString("OptimBalanced", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Faster.
-        /// </summary>
-        internal static string OptimFaster {
-            get {
-                return ResourceManager.GetString("OptimFaster", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Less memory.
-        /// </summary>
-        internal static string OptimLessMemory {
-            get {
-                return ResourceManager.GetString("OptimLessMemory", resourceCulture);
-            }
-        }
-        
         internal static System.Drawing.Bitmap PartForOptionPreview {
             get {
                 object obj = ResourceManager.GetObject("PartForOptionPreview", resourceCulture);

@@ -322,15 +322,6 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
     <value>Attenzione</value>
   </data>
-  <data name="OptimBalanced" xml:space="preserve">
-    <value>Bilanciato</value>
-  </data>
-  <data name="OptimFaster" xml:space="preserve">
-    <value>Più veloce</value>
-  </data>
-  <data name="OptimLessMemory" xml:space="preserve">
-    <value>Meno memoria</value>
-  </data>
   <data name="TextEnterText" xml:space="preserve">
     <value>Digita il testo qui...</value>
   </data>

@@ -138,6 +138,15 @@
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Desempenhos</value>
   </data>
+  <data name="optimComboBox.Items" xml:space="preserve">
+    <value>Mais Rápido</value>
+  </data>
+  <data name="optimComboBox.Items1" xml:space="preserve">
+    <value>Equilibrado</value>
+  </data>
+  <data name="optimComboBox.Items2" xml:space="preserve">
+    <value>Menos memória</value>
+  </data>
   <data name="label11.Text" xml:space="preserve">
     <value>Balanço da Memória/Velocidade</value>
   </data>

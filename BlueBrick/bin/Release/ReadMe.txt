@@ -54,13 +54,13 @@ Open bugs:
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
-- REFACTORING (Alban): Do not fill the optim combo box in code
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
 Bug fixed in 1.6.1.0:
 - NEW FEATURE (Alex & Alban): Add a context menu in the part lib to choose more options: large/small icons, respect proportions, display bubble info
 - NEW FEATURE (Alex & Alban): Add a tab in the Global Option for the part lib: now you can choose the back ground color and sort the tabs of the part lib
 - BUGFIX 21 (Alban): The rail snapping is bugged if you change the current connection point in the same drag'n'drop
+- REFACTORING 17 (Alban): Do not fill the optim combo box in code
 
 Bug fixed in 1.6.0.0:
 - NEW FEATURE (Alex & Alban): When you drag'n'drop a connected brick, the dragged brick is rotated for a proper connection

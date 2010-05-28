@@ -333,15 +333,6 @@
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
     <value>Aviso</value>
   </data>
-  <data name="OptimBalanced" xml:space="preserve">
-    <value>Equilibrado</value>
-  </data>
-  <data name="OptimFaster" xml:space="preserve">
-    <value>Más rápido</value>
-  </data>
-  <data name="OptimLessMemory" xml:space="preserve">
-    <value>Menos memoria</value>
-  </data>
   <data name="TextEnterText" xml:space="preserve">
     <value>Escriba aquí su texto…</value>
   </data>

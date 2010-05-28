@@ -338,15 +338,6 @@ Le message d'erreur est :
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
     <value>Attention</value>
   </data>
-  <data name="OptimBalanced" xml:space="preserve">
-    <value>Compromis</value>
-  </data>
-  <data name="OptimFaster" xml:space="preserve">
-    <value>Rapide</value>
-  </data>
-  <data name="OptimLessMemory" xml:space="preserve">
-    <value>Moins de mémoire</value>
-  </data>
   <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
     <value>Info bulles</value>
   </data>

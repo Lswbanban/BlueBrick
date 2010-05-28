@@ -338,15 +338,6 @@ The error message is:
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
     <value>Waarschuwing</value>
   </data>
-  <data name="OptimBalanced" xml:space="preserve">
-    <value>Gebalanceerd</value>
-  </data>
-  <data name="OptimFaster" xml:space="preserve">
-    <value>Sneller</value>
-  </data>
-  <data name="OptimLessMemory" xml:space="preserve">
-    <value>Minder geheugen</value>
-  </data>
   <data name="TextEnterText" xml:space="preserve">
     <value>Typ hier uw tekst...</value>
   </data>
