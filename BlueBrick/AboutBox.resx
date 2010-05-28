@@ -157,7 +157,7 @@
     <value>3, 3</value>
   </data>
   <data name="logoPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 134</value>
+    <value>114, 133</value>
   </data>
   <data name="logoPictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>CenterImage</value>
@@ -182,6 +182,9 @@
   </data>
   <data name="labelProductName.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial Rounded MT Bold, 20.25pt</value>
+  </data>
+  <data name="labelProductName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="labelProductName.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 0</value>
@@ -216,8 +219,11 @@
   <data name="labelVersion.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="labelVersion.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="labelVersion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 41</value>
+    <value>126, 33</value>
   </data>
   <data name="labelVersion.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 0</value>
@@ -249,8 +255,11 @@
   <data name="labelCopyright.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="labelCopyright.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="labelCopyright.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 64</value>
+    <value>126, 52</value>
   </data>
   <data name="labelCopyright.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 0</value>
@@ -285,8 +294,11 @@
   <data name="labelWebSiteName.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
+  <data name="labelWebSiteName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="labelWebSiteName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 89</value>
+    <value>126, 74</value>
   </data>
   <data name="labelWebSiteName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 0</value>
@@ -319,10 +331,10 @@
     <value>Fill</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>123, 113</value>
+    <value>123, 96</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 27</value>
+    <value>250, 22</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -349,7 +361,7 @@
     <value>NoControl</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 355</value>
+    <value>150, 354</value>
   </data>
   <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 20</value>
@@ -376,7 +388,7 @@
     <value>Fill</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 140</value>
+    <value>3, 139</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>370, 80</value>
@@ -479,15 +491,15 @@ and http://www.gnu.org/licenses/</value>
         //8KAAAAAAAAAAAaAAEAAQUFAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0
         Vmlld1N1Ykl0ZW0EAAAABHRleHQEbmFtZQVzdHlsZQh1c2VyRGF0YQEBBAI+U3lzdGVtLldpbmRvd3Mu
         Rm9ybXMuTGlzdFZpZXdJdGVtK0xpc3RWaWV3U3ViSXRlbStTdWJJdGVtU3R5bGUCAAAAAgAAAAYJAAAA
-        JlRob21hcyBXw7ZsayAmIEFsZXhhbmRlciBNY0tlbm5hLUtsZWluCgkKAAAACgUHAAAAE1N5c3RlbS5E
-        cmF3aW5nLkZvbnQEAAAABE5hbWUEU2l6ZQVTdHlsZQRVbml0AQAEBAsYU3lzdGVtLkRyYXdpbmcuRm9u
-        dFN0eWxlAwAAABtTeXN0ZW0uRHJhd2luZy5HcmFwaGljc1VuaXQDAAAAAwAAAAYLAAAAFE1pY3Jvc29m
-        dCBTYW5zIFNlcmlmAAAEQQX0////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAI
-        AwAAAAAAAAAF8////xtTeXN0ZW0uRHJhd2luZy5HcmFwaGljc1VuaXQBAAAAB3ZhbHVlX18ACAMAAAAD
-        AAAABQoAAAA+U3lzdGVtLldpbmRvd3MuRm9ybXMuTGlzdFZpZXdJdGVtK0xpc3RWaWV3U3ViSXRlbStT
-        dWJJdGVtU3R5bGUDAAAACWJhY2tDb2xvcglmb3JlQ29sb3IEZm9udAQEBBRTeXN0ZW0uRHJhd2luZy5D
-        b2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAE1N5c3RlbS5EcmF3aW5nLkZvbnQDAAAAAgAA
-        AAHy////+v///woAAAAAAAAAAAUAAQAB8f////r///8KAAAAAAAAAAAAAAAACgs=
+        L1Rob21hcyBXw7ZsayAmIEx1ZGdlciBIYXZpZ2hvcnN0ICYgQWxleCBNY0tlbm5hCgkKAAAACgUHAAAA
+        E1N5c3RlbS5EcmF3aW5nLkZvbnQEAAAABE5hbWUEU2l6ZQVTdHlsZQRVbml0AQAEBAsYU3lzdGVtLkRy
+        YXdpbmcuRm9udFN0eWxlAwAAABtTeXN0ZW0uRHJhd2luZy5HcmFwaGljc1VuaXQDAAAAAwAAAAYLAAAA
+        FE1pY3Jvc29mdCBTYW5zIFNlcmlmAAAEQQX0////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAH
+        dmFsdWVfXwAIAwAAAAAAAAAF8////xtTeXN0ZW0uRHJhd2luZy5HcmFwaGljc1VuaXQBAAAAB3ZhbHVl
+        X18ACAMAAAADAAAABQoAAAA+U3lzdGVtLldpbmRvd3MuRm9ybXMuTGlzdFZpZXdJdGVtK0xpc3RWaWV3
+        U3ViSXRlbStTdWJJdGVtU3R5bGUDAAAACWJhY2tDb2xvcglmb3JlQ29sb3IEZm9udAQEBBRTeXN0ZW0u
+        RHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAE1N5c3RlbS5EcmF3aW5nLkZv
+        bnQDAAAAAgAAAAHy////+v///woAAAAAAAAAAAUAAQAB8f////r///8KAAAAAAAAAAAAAAAACgs=
 </value>
   </data>
   <data name="translatorListView.Items3" mimetype="application/x-microsoft.net.object.binary.base64">
@@ -557,7 +569,7 @@ and http://www.gnu.org/licenses/</value>
 </value>
   </data>
   <data name="translatorListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 223</value>
+    <value>3, 222</value>
   </data>
   <data name="translatorListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>370, 126</value>
@@ -577,6 +589,39 @@ and http://www.gnu.org/licenses/</value>
   <data name="&gt;&gt;translatorListView.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>123, 118</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 21</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Many thanks to Alexander McKenna-Klein!</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>tableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
   <data name="tableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -584,7 +629,7 @@ and http://www.gnu.org/licenses/</value>
     <value>9, 9</value>
   </data>
   <data name="tableLayoutPanel.RowCount" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="tableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>376, 378</value>
@@ -605,7 +650,7 @@ and http://www.gnu.org/licenses/</value>
     <value>0</value>
   </data>
   <data name="tableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="logoPictureBox" Row="0" RowSpan="5" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelProductName" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelVersion" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCopyright" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelWebSiteName" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="okButton" Row="7" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="label2" Row="5" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="translatorListView" Row="6" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,120,Percent,100" /&gt;&lt;Rows Styles="Percent,11,64773,Percent,6,534091,Percent,7,102273,Percent,6,818182,Percent,7,670455,Percent,22,72727,Percent,37,5,Absolute,24,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="logoPictureBox" Row="0" RowSpan="6" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelProductName" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelVersion" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCopyright" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelWebSiteName" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="okButton" Row="8" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="label2" Row="6" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="translatorListView" Row="7" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="label3" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,120,Percent,100" /&gt;&lt;Rows Styles="Percent,9,40171,Percent,5,413105,Percent,6,267806,Percent,6,267806,Percent,6,267806,Percent,5,982906,Percent,22,67574,Percent,37,41497,Absolute,24,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

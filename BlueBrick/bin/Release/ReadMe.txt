@@ -42,13 +42,13 @@ Open bugs:
 - [target 1.7] MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
 - [target 1.7] MISSING FEATURE (Alban): Add the polarity check
 - [target 1.7] MISSING FEATURE (Alban): support new flex PF track.
+- [target 1.7] MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
 - MISSING FEATURE (Alban): Autosave.
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
 - MISSING FEATURE (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating)
-- MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
 - [target 1.7] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
@@ -56,6 +56,11 @@ Open bugs:
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Do not fill the optim combo box in code
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
+
+Bug fixed in 1.6.1.0:
+- NEW FEATURE (Alex & Alban): Add a context menu in the part lib to choose more options: large/small icons, respect proportions, display bubble info
+- NEW FEATURE (Alex & Alban): Add a tab in the Global Option for the part lib: now you can choose the back ground color and sort the tabs of the part lib
+- BUGFIX 21 (Alban): The rail snapping is bugged if you change the current connection point in the same drag'n'drop
 
 Bug fixed in 1.6.0.0:
 - NEW FEATURE (Alex & Alban): When you drag'n'drop a connected brick, the dragged brick is rotated for a proper connection

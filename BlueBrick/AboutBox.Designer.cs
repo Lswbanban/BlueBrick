@@ -40,6 +40,7 @@ namespace BlueBrick
 			this.translatorListView = new System.Windows.Forms.ListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			this.label3 = new System.Windows.Forms.Label();
 			this.tableLayoutPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
 			this.SuspendLayout();
@@ -53,16 +54,17 @@ namespace BlueBrick
 			this.tableLayoutPanel.Controls.Add(this.labelCopyright, 1, 2);
 			this.tableLayoutPanel.Controls.Add(this.labelWebSiteName, 1, 3);
 			this.tableLayoutPanel.Controls.Add(this.label1, 1, 4);
-			this.tableLayoutPanel.Controls.Add(this.okButton, 0, 7);
-			this.tableLayoutPanel.Controls.Add(this.label2, 0, 5);
-			this.tableLayoutPanel.Controls.Add(this.translatorListView, 0, 6);
+			this.tableLayoutPanel.Controls.Add(this.okButton, 0, 8);
+			this.tableLayoutPanel.Controls.Add(this.label2, 0, 6);
+			this.tableLayoutPanel.Controls.Add(this.translatorListView, 0, 7);
+			this.tableLayoutPanel.Controls.Add(this.label3, 1, 5);
 			this.tableLayoutPanel.Name = "tableLayoutPanel";
 			// 
 			// logoPictureBox
 			// 
 			resources.ApplyResources(this.logoPictureBox, "logoPictureBox");
 			this.logoPictureBox.Name = "logoPictureBox";
-			this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 5);
+			this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
 			this.logoPictureBox.TabStop = false;
 			// 
 			// labelProductName
@@ -139,6 +141,11 @@ namespace BlueBrick
 			// 
 			resources.ApplyResources(this.columnHeader2, "columnHeader2");
 			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
 			// AboutBox
 			// 
 			resources.ApplyResources(this, "$this");
@@ -151,6 +158,7 @@ namespace BlueBrick
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.tableLayoutPanel.ResumeLayout(false);
+			this.tableLayoutPanel.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
 			this.ResumeLayout(false);
 
@@ -170,5 +178,6 @@ namespace BlueBrick
 		private System.Windows.Forms.ListView translatorListView;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.Label label3;
 	}
 }
