@@ -534,7 +534,7 @@ namespace BlueBrick
 						{
 							LayerBrick.Brick brickUnderMouse = brickLayer.getBrickUnderMouse(getMouseCoordInStud(e));
 							if (brickUnderMouse != null)
-								message = BrickLibrary.Instance.getFormatedBrickInfo(brickUnderMouse.PartNumber);
+								message = BrickLibrary.Instance.getFormatedBrickInfo(brickUnderMouse.PartNumber, true, true, true);
 						}
 						else
 						{

@@ -57,12 +57,15 @@ namespace BlueBrick
 		};
 
 		// save the old value of the setting to restore the old value after a click on "Reset Default Settings" + "Cancel"
-		Settings mOldSettings = new Settings();
+		private Settings mOldSettings = new Settings();
 
 		// save the default string in the old language
-		string mLastDefaultAuthor = Resources.DefaultAuthor;
-		string mLastDefaultLUG = Resources.DefaultLUG;
-		string mLastDefaultShow = Resources.DefaultShow;
+		private string mLastDefaultAuthor = Resources.DefaultAuthor;
+		private string mLastDefaultLUG = Resources.DefaultLUG;
+		private string mLastDefaultShow = Resources.DefaultShow;
+
+		// a flag to check if the user changed the part lib order
+		private bool mHasPartLibOrderChanged = false;
 
 		//save the last sorted column for the shortcut list
 		private int mGlobalStatsLastColumnSorted = -1;
@@ -289,14 +292,19 @@ namespace BlueBrick
 			}
 
 			// -- tab PartLib
-			savePartLibraryTabOrderAndSortThem();
+			savePartLibraryTabOrder();
+			bool doesAppearanceChanged = (Settings.Default.PartLibBackColor != this.PartLibBackColorPictureBox.BackColor) ||
+										(Settings.Default.PartLibDisplayBubbleInfo != this.displayBubbleInfoCheckBox.Checked);
+			bool doesBubbleInfoChanged = (Settings.Default.PartLibBubbleInfoPartID != this.displayPartIDCheckBox.Checked) ||
+										(Settings.Default.PartLibBubbleInfoPartColor != this.displayPartColorCheckBox.Checked) ||
+										(Settings.Default.PartLibBubbleInfoPartDescription != this.displayPartDescriptionCheckBox.Checked);
 			Settings.Default.PartLibBackColor = this.PartLibBackColorPictureBox.BackColor;
 			Settings.Default.PartLibBubbleInfoPartID = this.displayPartIDCheckBox.Checked;
 			Settings.Default.PartLibBubbleInfoPartColor = this.displayPartColorCheckBox.Checked;
 			Settings.Default.PartLibBubbleInfoPartDescription = this.displayPartDescriptionCheckBox.Checked;
 			Settings.Default.PartLibDisplayBubbleInfo = this.displayBubbleInfoCheckBox.Checked;
 			// call the function on the part lib to reflect the change
-			BlueBrick.MainForm.Instance.PartsTabControl.updateAppearanceAccordingToSettings();
+			BlueBrick.MainForm.Instance.PartsTabControl.updateAppearanceAccordingToSettings(mHasPartLibOrderChanged, doesAppearanceChanged, doesBubbleInfoChanged);
 
 			// -- tab shortcut key
 			// save the list view
@@ -737,13 +745,16 @@ namespace BlueBrick
 				this.PartLibTabListBox.Items.Add(name);
 		}
 
-		private void savePartLibraryTabOrderAndSortThem()
+		private void savePartLibraryTabOrder()
 		{
-			// recreate the setting array
-			Settings.Default.PartLibTabOrder = new System.Collections.Specialized.StringCollection();
-			// iterate on the list in the control
-			foreach (object item in this.PartLibTabListBox.Items)
-				Settings.Default.PartLibTabOrder.Add(item as string);
+			if (mHasPartLibOrderChanged)
+			{
+				// recreate the setting array
+				Settings.Default.PartLibTabOrder = new System.Collections.Specialized.StringCollection();
+				// iterate on the list in the control
+				foreach (object item in this.PartLibTabListBox.Items)
+					Settings.Default.PartLibTabOrder.Add(item as string);
+			}
 		}
 
 		private void MoveUpButton_Click(object sender, EventArgs e)
@@ -756,6 +767,7 @@ namespace BlueBrick
 				int newIndex = selectedIndex - 1;
 				this.PartLibTabListBox.Items.Insert(newIndex, name);
 				this.PartLibTabListBox.SelectedIndex = newIndex;
+				mHasPartLibOrderChanged = true;
 			}
 		}
 
@@ -769,6 +781,7 @@ namespace BlueBrick
 				int newIndex = selectedIndex + 1;
 				this.PartLibTabListBox.Items.Insert(newIndex, name);
 				this.PartLibTabListBox.SelectedIndex = newIndex;
+				mHasPartLibOrderChanged = true;
 			}
 		}
 
@@ -783,6 +796,7 @@ namespace BlueBrick
 		{
 			this.PartLibTabListBox.Sorted = true;
 			this.PartLibTabListBox.Sorted = false;
+			mHasPartLibOrderChanged = true;
 		}
 
 		private void displayBubbleInfoCheckBox_CheckedChanged(object sender, EventArgs e)

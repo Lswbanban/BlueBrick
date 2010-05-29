@@ -91,6 +91,7 @@ namespace BlueBrick
 			// menu item to display tooltips
 			ToolStripMenuItem bubbleInfoMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemDisplayTooltips, null, menuItem_DisplayTooltipsClick);
 			bubbleInfoMenuItem.CheckOnClick = true;
+			bubbleInfoMenuItem.Checked = Settings.Default.PartLibDisplayBubbleInfo;
 			contextMenu.Items.Add(bubbleInfoMenuItem);
 			// return the well form context menu
 			return contextMenu;
@@ -127,7 +128,7 @@ namespace BlueBrick
 					newListView.Dock = DockStyle.Fill;
 					newListView.Alignment = ListViewAlignment.SnapToGrid;
 					newListView.BackColor = Settings.Default.PartLibBackColor;
-					newListView.ShowItemToolTips = false; //item tooltip are the name of the image file
+					newListView.ShowItemToolTips = Settings.Default.PartLibDisplayBubbleInfo;
 					newListView.MultiSelect = false;
 					newListView.View = View.Tile; // we always use this view, because of the layout of the item
 					newListView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
@@ -142,7 +143,7 @@ namespace BlueBrick
 				}
 
 				// after creating all the tabs, sort them according to the settings
-				updateAppearanceAccordingToSettings();
+				updateAppearanceAccordingToSettings(true, false, false);
 			}
 		}
 
@@ -179,7 +180,10 @@ namespace BlueBrick
 
 						// create a new item for the list view item
 						ListViewItem newItem = new ListViewItem(null as string, imageIndex);
-						newItem.ToolTipText = name;
+						newItem.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(name,
+																	Settings.Default.PartLibBubbleInfoPartID,
+																	Settings.Default.PartLibBubbleInfoPartColor,
+																	Settings.Default.PartLibBubbleInfoPartDescription);
 						newItem.Tag = name;
 						listViewToFill.Items.Add(newItem);
 						imageIndex++;
@@ -339,44 +343,58 @@ namespace BlueBrick
 			return resultList;
 		}
 
-		public void updateAppearanceAccordingToSettings()
+		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBubbleInfoFormat)
 		{
 			this.SuspendLayout();
 
-			// first sort the tabs
-			// get the sorted name list from the settings
-			System.Collections.Specialized.StringCollection sortedNameList = BlueBrick.Properties.Settings.Default.PartLibTabOrder;
-
-			int insertIndex = 0;
-			foreach (string tabName in sortedNameList)
+			if (updateTabOrder)
 			{
-				int currentIndex = this.TabPages.IndexOfKey(tabName);
-				if (currentIndex != -1)
-				{
-					// get the tab page, remove it and reinsert it at the correct position
-					TabPage tabPage = this.TabPages[currentIndex];
-					this.TabPages.Remove(tabPage); // do not use RemoveAt() that throw an exception even if the index is correct
-					this.TabPages.Insert(insertIndex, tabPage);
+				// first sort the tabs
+				// get the sorted name list from the settings
+				System.Collections.Specialized.StringCollection sortedNameList = BlueBrick.Properties.Settings.Default.PartLibTabOrder;
 
-					// increment the insert point
-					if (insertIndex < this.TabPages.Count)
-						insertIndex++;
+				int insertIndex = 0;
+				foreach (string tabName in sortedNameList)
+				{
+					int currentIndex = this.TabPages.IndexOfKey(tabName);
+					if (currentIndex != -1)
+					{
+						// get the tab page, remove it and reinsert it at the correct position
+						TabPage tabPage = this.TabPages[currentIndex];
+						this.TabPages.Remove(tabPage); // do not use RemoveAt() that throw an exception even if the index is correct
+						this.TabPages.Insert(insertIndex, tabPage);
+
+						// increment the insert point
+						if (insertIndex < this.TabPages.Count)
+							insertIndex++;
+					}
 				}
 			}
 
-			// then update the background color and the bubble info status
-			bool displayBubbleInfo = BlueBrick.Properties.Settings.Default.PartLibDisplayBubbleInfo;
-			foreach (TabPage tabPage in this.TabPages)
+			if (updateAppearance || updateBubbleInfoFormat)
 			{
-				try
+				// then update the background color and the bubble info status
+				bool displayBubbleInfo = Settings.Default.PartLibDisplayBubbleInfo;
+				bool displayPartId = Settings.Default.PartLibBubbleInfoPartID;
+				bool displayColor = Settings.Default.PartLibBubbleInfoPartColor;
+				bool displayDescription = Settings.Default.PartLibBubbleInfoPartDescription;
+				foreach (TabPage tabPage in this.TabPages)
 				{
-					ListView listView = tabPage.Controls[0] as ListView;
-					listView.BackColor = BlueBrick.Properties.Settings.Default.PartLibBackColor;
-					listView.ShowItemToolTips = displayBubbleInfo;
-					(tabPage.ContextMenuStrip.Items[2] as ToolStripMenuItem).Checked = displayBubbleInfo;
-				}
-				catch
-				{
+					try
+					{
+						ListView listView = tabPage.Controls[0] as ListView;
+						listView.BackColor = Settings.Default.PartLibBackColor;
+						listView.ShowItemToolTips = displayBubbleInfo;
+						(tabPage.ContextMenuStrip.Items[2] as ToolStripMenuItem).Checked = displayBubbleInfo;
+						// update the tooltip text of all the items
+						if (updateBubbleInfoFormat)
+							foreach (ListViewItem item in listView.Items)
+								item.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string,
+													displayPartId, displayColor, displayDescription);
+					}
+					catch
+					{
+					}
 				}
 			}
 
@@ -482,7 +500,7 @@ namespace BlueBrick
 					// construct the message to display
 					string message = "";
 					if (item != null)
-						message = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string);
+						message = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string, true, true, true);
 
 					//display the message in the status bar
 					MainForm.Instance.setStatusBarMessage(message);

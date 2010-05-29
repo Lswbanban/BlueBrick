@@ -1239,11 +1239,26 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <param name="partNumber">the bluebrick part number</param>
 		/// <returns>A formated description of the part</returns>
-		public string getFormatedBrickInfo(string partNumber)
+		public string getFormatedBrickInfo(string partNumber, bool withId, bool withColor, bool withDescription)
 		{
 			string[] partInfo = getBrickInfo(partNumber);
 			// construct the message with part number, color and description and return it
-			return (partInfo[0] + ", " + partInfo[2] + ", " + partInfo[3]);
+			string formatedInfo = "";
+			if (withId)
+				formatedInfo += partInfo[0];
+			if (withColor)
+			{
+				if (withId)
+					formatedInfo += ", ";
+				formatedInfo += partInfo[2];
+			}
+			if (withDescription)
+			{
+				if (withId || withColor)
+					formatedInfo += ", ";
+				formatedInfo += partInfo[3];
+			}
+			return formatedInfo;
 		}
 
 		/// <summary>
