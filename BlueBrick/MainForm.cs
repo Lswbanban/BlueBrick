@@ -651,7 +651,8 @@ namespace BlueBrick
 
 		public void setStatusBarMessage(string message)
 		{
-			this.statusBarLabel.Text = message;
+			// escape the ampersome character
+			this.statusBarLabel.Text = message.Replace("&", "&&");
 		}
 
 		public void resetProgressBar(int maxValue)

@@ -165,15 +165,20 @@ namespace BlueBrick
 					// read the image from the file
 					Bitmap image = new Bitmap(file.FullName);
 
+					// construct the XML file
+					string xmlFileName = file.FullName.Substring(0, file.FullName.Length - 3) + "xml";
+
 					try
 					{
 						// get the name without extension and use upper case
 						string name = file.Name.Substring(0, file.Name.Length - 4).ToUpper();
 
-						// put the image in the database
-						string xmlFileName = file.FullName.Substring(0, file.FullName.Length - 3) + "xml";
-						BrickLibrary.Instance.AddBrick(name, image, xmlFileName);
+						// push the xml file name in the list first because we don't want to try to load
+						// it a second time if an exception is raised.
 						xmlFileLoaded.Add(xmlFileName);
+
+						// put the image in the database
+						BrickLibrary.Instance.AddBrick(name, image, xmlFileName);
 
 						// add the image in the image list
 						imageList.Add(image);
@@ -191,7 +196,7 @@ namespace BlueBrick
 					catch
 					{
 						// add the file that can't be loaded in the list of problems
-						xmlFileUnloadable.Add(file.FullName);
+						xmlFileUnloadable.Add(xmlFileName);
 					}
 				}
 				catch
