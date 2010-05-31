@@ -196,6 +196,9 @@ namespace BlueBrick.MapData
 			[NonSerialized]
 			private PointF mOffsetFromOriginalImage = new PointF(0, 0); // when the image is rotated, the size is not the same as the orginal one, so this offset handle the difference
 
+			[NonSerialized]
+			private static Bitmap sInvalidDummyImageToSkip = new Bitmap(1, 1); // a dummy image to indicate the the image is not valid
+
 			#region get/set
 			/// <summary>
 			/// the part number of the brick
@@ -758,19 +761,27 @@ namespace BlueBrick.MapData
 				// create a new image with the correct size
 				int newWidth = (int)((mDisplayArea.Width * NUM_PIXEL_PER_STUD_FOR_BRICKS) / powerOfTwo);
 				int newHeight = (int)((mDisplayArea.Height * NUM_PIXEL_PER_STUD_FOR_BRICKS) / powerOfTwo);
-				Bitmap image = new Bitmap(newWidth, newHeight);
-				// get the graphic context and draw the referenc image in it with the correct transform and scale
-				Graphics graphics = Graphics.FromImage(image);
-				graphics.Transform = transform;
-				graphics.Clear(Color.Transparent);
-				graphics.CompositingMode = CompositingMode.SourceCopy; // this should be enough since we draw the image on an empty transparent area
-				graphics.SmoothingMode = SmoothingMode.HighQuality;
-				graphics.CompositingQuality = CompositingQuality.HighSpeed;
-				graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
-				graphics.DrawImage(mOriginalImageReference, 0, 0, (float)(mOriginalImageReference.Width) / powerOfTwo, (float)(mOriginalImageReference.Height) / powerOfTwo);
-				graphics.Flush();
-				// return the created image
-				return image;
+				if ((newWidth > 0) && (newHeight > 0))
+				{
+					Bitmap image = new Bitmap(newWidth, newHeight);
+					// get the graphic context and draw the referenc image in it with the correct transform and scale
+					Graphics graphics = Graphics.FromImage(image);
+					graphics.Transform = transform;
+					graphics.Clear(Color.Transparent);
+					graphics.CompositingMode = CompositingMode.SourceCopy; // this should be enough since we draw the image on an empty transparent area
+					graphics.SmoothingMode = SmoothingMode.HighQuality;
+					graphics.CompositingQuality = CompositingQuality.HighSpeed;
+					graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
+					graphics.DrawImage(mOriginalImageReference, 0, 0, (float)(mOriginalImageReference.Width) / powerOfTwo, (float)(mOriginalImageReference.Height) / powerOfTwo);
+					graphics.Flush();
+					// return the created image
+					return image;
+				}
+				else
+				{
+					// if the resulting image is too small return a specific image pointer for skipping reason
+					return sInvalidDummyImageToSkip;
+				}
 			}
 
 			private void updateConnectionPosition()
@@ -844,21 +855,36 @@ namespace BlueBrick.MapData
 			#region get image
 			/// <summary>
 			/// return the current image of the brick depending on it's mipmap level (LOD level)
-			/// level 0 is the most detailed level.
+			/// level 0 is the most detailed level. Can return null if the image too small to be
+			/// visible for the LOD specified.
 			/// </summary>
 			/// <param name="mipmapLevel">the level of detail</param>
-			/// <returns>the image of the brick</returns>
+			/// <returns>the image of the brick or null if the image is too small to be seen</returns>
 			public Image getImage(int mipmapLevel)
-			{				
-				// create the image dynamically if not already created
+			{
+				// the result image
+				Image image = null;
+				// check if the mipmap level is under the level that should be saved in memory
+				// if yes that means the image is not saved and must be recreated every time
 				if (mipmapLevel < Properties.Settings.Default.StartSavedMipmapLevel)
-					return createImage(mipmapLevel);
-				else if (mipmapLevel >= mMipmapImages.Length)
-					mipmapLevel = mMipmapImages.Length - 1;
-				// else return the saved image
-				if (mMipmapImages[mipmapLevel] == null)
-					mMipmapImages[mipmapLevel] = createImage(mipmapLevel);
-				return mMipmapImages[mipmapLevel];
+				{
+					image = createImage(mipmapLevel);
+				}
+				else
+				{
+					// avoid having the mipmap level above the save array
+					if (mipmapLevel >= mMipmapImages.Length)
+						mipmapLevel = mMipmapImages.Length - 1;
+					// create the image dynamically if not already created
+					if (mMipmapImages[mipmapLevel] == null)
+						mMipmapImages[mipmapLevel] = createImage(mipmapLevel);
+					// return the saved image
+					image = mMipmapImages[mipmapLevel];
+				}
+				// check if the saved or generated image is a dummy one
+				if (image == sInvalidDummyImageToSkip)
+					return null;
+				return image;
 			}
 			#endregion
 		}
@@ -1438,20 +1464,24 @@ namespace BlueBrick.MapData
 				float bottom = top + brick.Height;
 				if ((right >= areaInStud.Left) && (left <= areaInStud.Right) && (bottom >= areaInStud.Top) && (top <= areaInStud.Bottom))
 				{
-					// the -0.5 and +1 is a hack to add 1 more pixel to have jointive baseplates
-					destinationRectangle.X = (int)(((left - areaInStud.Left) * scalePixelPerStud) - 0.5f);
-					destinationRectangle.Y = (int)(((top - areaInStud.Top) * scalePixelPerStud) - 0.5f);
-					destinationRectangle.Width = (int)((brick.Width * scalePixelPerStud) + 1.0f);
-					destinationRectangle.Height = (int)((brick.Height * scalePixelPerStud) + 1.0f);
 					Image image = brick.getImage(mipmapLevel);
+					// the return image can be null if too small to be visible
+					if (image != null)
+					{
+						// the -0.5 and +1 is a hack to add 1 more pixel to have jointive baseplates
+						destinationRectangle.X = (int)(((left - areaInStud.Left) * scalePixelPerStud) - 0.5f);
+						destinationRectangle.Y = (int)(((top - areaInStud.Top) * scalePixelPerStud) - 0.5f);
+						destinationRectangle.Width = (int)((brick.Width * scalePixelPerStud) + 1.0f);
+						destinationRectangle.Height = (int)((brick.Height * scalePixelPerStud) + 1.0f);
 
-					// draw the current brick eventually highlighted
-					if (brick == mCurrentBrickUnderMouse)
-						g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, sImageAttributeForSnapping);
-					else if (mSelectedObjects.Contains(brick))
-						g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, sImageAttributeForSelection);
-					else
-						g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel);
+						// draw the current brick eventually highlighted
+						if (brick == mCurrentBrickUnderMouse)
+							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, sImageAttributeForSnapping);
+						else if (mSelectedObjects.Contains(brick))
+							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, sImageAttributeForSelection);
+						else
+							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel);
+					}
 				}
 			}
 

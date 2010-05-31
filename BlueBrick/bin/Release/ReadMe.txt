@@ -59,7 +59,10 @@ Open bugs:
 Bug fixed in 1.6.1.0:
 - NEW FEATURE (Alex & Alban): Add a context menu in the part lib to choose more options: large/small icons, respect proportions, display bubble info
 - NEW FEATURE (Alex & Alban): Add a tab in the Global Option for the part lib: now you can choose the back ground color and sort the tabs of the part lib
+- BUGFIX (Larry): CRASH! if you add a small brick in the part lib (1 stud wide) BlueBrick was crashing in Export window or when zooming out
 - BUGFIX 21 (Alban): The rail snapping is bugged if you change the current connection point in the same drag'n'drop
+- BUGFIX (Alban): fix a bug in the list of files that could not be loaded (wrong name and duplicated files)
+- BUGFIX (Alban): fix the bug that the ampersome character "&" was not displayed in the status bar
 - REFACTORING 17 (Alban): Do not fill the optim combo box in code
 
 Bug fixed in 1.6.0.0:

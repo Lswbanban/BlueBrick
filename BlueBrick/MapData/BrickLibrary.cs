@@ -984,8 +984,10 @@ namespace BlueBrick.MapData
 				format.Alignment = StringAlignment.Center;
 				format.LineAlignment = StringAlignment.Center;
 				float fontSize = Math.Min(widthInPixel, heightInPixel) / partNumber.Length;
+				if (fontSize <= 4.0f)
+					fontSize = 4.0f;
 				Font font = new Font(FontFamily.GenericSansSerif, fontSize);
-				graphics.DrawString(partNumber, font, brush, widthInPixel / 2, heightInPixel / 2, format);
+				graphics.DrawString(partNumber, font, brush, (float)widthInPixel * 0.5f, (float)heightInPixel * 0.5f, format);
 			}
 			// return the image created
 			return unknownImage;
