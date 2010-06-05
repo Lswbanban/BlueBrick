@@ -130,12 +130,8 @@ namespace BlueBrick
 			{
 				// create from the Settings a disctionary to store the display status of each tab
 				Dictionary<string, PartLibDisplaySetting> tabDisplayStatus = new Dictionary<string,PartLibDisplaySetting>();
-				char[] separator = new char[] { ':' };
-				foreach (string stringTabConfig in Settings.Default.UIPartLibDisplayConfig)
-				{
-					string[] tabConfig = stringTabConfig.Split(separator, 3);
-					tabDisplayStatus.Add(tabConfig[0], new PartLibDisplaySetting(tabConfig[1].Equals("1"), tabConfig[2].Equals("1")));
-				}
+				foreach (string tabConfig in Settings.Default.UIPartLibDisplayConfig)
+					tabDisplayStatus.Add(tabConfig.Remove(tabConfig.Length - 2), new PartLibDisplaySetting(tabConfig[tabConfig.Length - 2] == '1', tabConfig[tabConfig.Length - 1] == '1'));
 
 				// get all the folders in the parts folder to create a tab for each folder found
 				DirectoryInfo[] categoryFolder = partsFolder.GetDirectories();
@@ -452,8 +448,8 @@ namespace BlueBrick
 				bool hasCurrentTabLargeIcon = (tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.LARGE_ICON] as ToolStripMenuItem).Checked;
 				bool doesCurrentTabRespectProportion = (tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.RESPECT_PROPORTION] as ToolStripMenuItem).Checked;
 				// construct the string
-				string tabConfig = tabPage.Name + ":" + (hasCurrentTabLargeIcon ? "1" : "0")
-								+ ":" + (doesCurrentTabRespectProportion ? "1" : "0");
+				string tabConfig = tabPage.Name + (hasCurrentTabLargeIcon ? "1" : "0")
+								+ (doesCurrentTabRespectProportion ? "1" : "0");
 				// add the new config in the list
 				Settings.Default.UIPartLibDisplayConfig.Add(tabConfig);
 			}
