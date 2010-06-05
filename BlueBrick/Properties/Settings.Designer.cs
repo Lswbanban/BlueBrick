@@ -678,5 +678,29 @@ namespace BlueBrick.Properties {
                 this["PartLibBubbleInfoPartDescription"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>Baseplate:1:1</string>
+  <string>Road:1:1</string>
+  <string>Track:1:0</string>
+  <string>Train:1:0</string>
+  <string>Town:1:0</string>
+  <string>Space:1:0</string>
+  <string>Table:1:0</string>
+  <string>Custom:1:0</string>
+  <string>Logo:1:0</string>
+  <string>Duplo:1:0</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection UIPartLibDisplayConfig {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["UIPartLibDisplayConfig"]));
+            }
+            set {
+                this["UIPartLibDisplayConfig"] = value;
+            }
+        }
     }
 }

@@ -32,6 +32,24 @@ namespace BlueBrick
 		private Size PART_ITEM_SMALL_SIZE_WITH_MARGIN = new Size(69, 69);
 		private Size PART_ITEM_LARGE_SIZE_WITH_MARGIN = new Size(134, 134);
 
+		private enum ContextMenuIndex
+		{
+			LARGE_ICON = 0,
+			RESPECT_PROPORTION,
+			SHOW_BUBBLE_INFO
+		}
+
+		private class PartLibDisplaySetting
+		{
+			public bool mLargeIcons = true;
+			public bool mRespectProportion = false;
+			public PartLibDisplaySetting(bool largeIcon, bool respectProportion)
+			{
+				mLargeIcons = largeIcon;
+				mRespectProportion = respectProportion;
+			}
+		};
+
 		public PartLibraryPanel()
 		{
 			InitializeComponent();
@@ -74,14 +92,14 @@ namespace BlueBrick
 		/// create and return a context menu that can be assigned to a tab page
 		/// </summary>
 		/// <returns>a new instance of context menu for a part lib tab</returns>
-		private ContextMenuStrip createContextMenuItemForATabPage(bool respectProportionIsChecked)
+		private ContextMenuStrip createContextMenuItemForATabPage(bool useLargeIcon, bool respectProportionIsChecked)
 		{
 			// create the context menu
 			ContextMenuStrip contextMenu = new ContextMenuStrip();
 			// menu item to display the icons in large
 			ToolStripMenuItem largeIconsMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemLargeIcons, null, menuItem_LargeIconClick);
 			largeIconsMenuItem.CheckOnClick = true;
-			largeIconsMenuItem.Checked = true;
+			largeIconsMenuItem.Checked = useLargeIcon;
 			contextMenu.Items.Add(largeIconsMenuItem);
 			// menu item to repect the proportions
 			ToolStripMenuItem proportionMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemRespectProportion, null, menuItem_RespectProportionClick);
@@ -110,14 +128,28 @@ namespace BlueBrick
 			DirectoryInfo partsFolder = new DirectoryInfo(Application.StartupPath + @"/parts");
 			if (partsFolder.Exists)
 			{
+				// create from the Settings a disctionary to store the display status of each tab
+				Dictionary<string, PartLibDisplaySetting> tabDisplayStatus = new Dictionary<string,PartLibDisplaySetting>();
+				char[] separator = new char[] { ':' };
+				foreach (string stringTabConfig in Settings.Default.UIPartLibDisplayConfig)
+				{
+					string[] tabConfig = stringTabConfig.Split(separator, 3);
+					tabDisplayStatus.Add(tabConfig[0], new PartLibDisplaySetting(tabConfig[1].Equals("1"), tabConfig[2].Equals("1")));
+				}
+
 				// get all the folders in the parts folder to create a tab for each folder found
 				DirectoryInfo[] categoryFolder = partsFolder.GetDirectories();
 				foreach (DirectoryInfo category in categoryFolder)
 				{
+					// try to get the display setting or construct a default one
+					PartLibDisplaySetting displaySetting = null;
+					if (!tabDisplayStatus.TryGetValue(category.Name, out displaySetting))
+						displaySetting = new PartLibDisplaySetting(true, false);
+
 					// add the tab in the tab control, based on the name of the folder
 					TabPage newTabPage = new TabPage(category.Name);
 					newTabPage.Name = category.Name;
-					newTabPage.ContextMenuStrip = createContextMenuItemForATabPage(false);
+					newTabPage.ContextMenuStrip = createContextMenuItemForATabPage(displaySetting.mLargeIcons, displaySetting.mRespectProportion);
 					this.TabPages.Add(newTabPage);
 
 					// then for the new tab added, we add a list control to 
@@ -131,7 +163,10 @@ namespace BlueBrick
 					newListView.ShowItemToolTips = Settings.Default.PartLibDisplayBubbleInfo;
 					newListView.MultiSelect = false;
 					newListView.View = View.Tile; // we always use this view, because of the layout of the item
-					newListView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
+					if (displaySetting.mLargeIcons)
+						newListView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
+					else
+						newListView.TileSize = PART_ITEM_SMALL_SIZE_WITH_MARGIN;
 					newListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
 					newListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
 					newListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listView_MouseMove);
@@ -139,7 +174,7 @@ namespace BlueBrick
 					newTabPage.Controls.Add(newListView);
 
 					// fill the list view with the file name
-					fillListViewWithParts(newListView, category);
+					fillListViewWithParts(newListView, category, displaySetting.mRespectProportion);
 				}
 
 				// after creating all the tabs, sort them according to the settings
@@ -147,7 +182,7 @@ namespace BlueBrick
 			}
 		}
 
-		private void fillListViewWithParts(ListView listViewToFill, DirectoryInfo folder)
+		private void fillListViewWithParts(ListView listViewToFill, DirectoryInfo folder, bool respectProportion)
 		{
 			// create a list of image to load all the images in a list
 			List<Image> imageList = new List<Image>();
@@ -258,7 +293,7 @@ namespace BlueBrick
 			}
 
 			// then fill the list view
-			fillListViewFromImageList(listViewToFill, imageList, false);
+			fillListViewFromImageList(listViewToFill, imageList, respectProportion);
 		}
 
 		private void fillListViewFromImageList(ListView listViewToFill, List<Image> imageList, bool respectProportion)
@@ -390,7 +425,7 @@ namespace BlueBrick
 						ListView listView = tabPage.Controls[0] as ListView;
 						listView.BackColor = Settings.Default.PartLibBackColor;
 						listView.ShowItemToolTips = displayBubbleInfo;
-						(tabPage.ContextMenuStrip.Items[2] as ToolStripMenuItem).Checked = displayBubbleInfo;
+						(tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.SHOW_BUBBLE_INFO] as ToolStripMenuItem).Checked = displayBubbleInfo;
 						// update the tooltip text of all the items
 						if (updateBubbleInfoFormat)
 							foreach (ListViewItem item in listView.Items)
@@ -404,6 +439,24 @@ namespace BlueBrick
 			}
 
 			this.ResumeLayout();
+		}
+
+		public void savePartListDisplayStatusInSettings()
+		{
+			// reset the setting list
+			Settings.Default.UIPartLibDisplayConfig = new System.Collections.Specialized.StringCollection();
+			// collect the info for all the pages
+			foreach (TabPage tabPage in this.TabPages)
+			{
+				// get the status
+				bool hasCurrentTabLargeIcon = (tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.LARGE_ICON] as ToolStripMenuItem).Checked;
+				bool doesCurrentTabRespectProportion = (tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.RESPECT_PROPORTION] as ToolStripMenuItem).Checked;
+				// construct the string
+				string tabConfig = tabPage.Name + ":" + (hasCurrentTabLargeIcon ? "1" : "0")
+								+ ":" + (doesCurrentTabRespectProportion ? "1" : "0");
+				// add the new config in the list
+				Settings.Default.UIPartLibDisplayConfig.Add(tabConfig);
+			}
 		}
 		#endregion
 		#region event handler for parts library
@@ -461,7 +514,7 @@ namespace BlueBrick
 				try
 				{
 					(tabPage.Controls[0] as ListView).ShowItemToolTips = displayBubbleInfo;
-					(tabPage.ContextMenuStrip.Items[2] as ToolStripMenuItem).Checked = displayBubbleInfo;
+					(tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.SHOW_BUBBLE_INFO] as ToolStripMenuItem).Checked = displayBubbleInfo;
 				}
 				catch
 				{

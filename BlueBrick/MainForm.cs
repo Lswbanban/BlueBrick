@@ -369,6 +369,9 @@ namespace BlueBrick
 			Properties.Settings.Default.UIToolbarIsVisible = this.toolBar.Visible;
 			Properties.Settings.Default.UIStatusbarIsVisible = this.statusBar.Visible;
 
+			// the part lib display config
+			this.partsTabControl.savePartListDisplayStatusInSettings();
+
 			// try to save (never mind if we can not (for example BlueBrick is launched
 			// from a write protected drive)
 			try

@@ -191,5 +191,20 @@
     <Setting Name="PartLibBubbleInfoPartDescription" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="UIPartLibDisplayConfig" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;Baseplate:1:1&lt;/string&gt;
+  &lt;string&gt;Road:1:1&lt;/string&gt;
+  &lt;string&gt;Track:1:0&lt;/string&gt;
+  &lt;string&gt;Train:1:0&lt;/string&gt;
+  &lt;string&gt;Town:1:0&lt;/string&gt;
+  &lt;string&gt;Space:1:0&lt;/string&gt;
+  &lt;string&gt;Table:1:0&lt;/string&gt;
+  &lt;string&gt;Custom:1:0&lt;/string&gt;
+  &lt;string&gt;Logo:1:0&lt;/string&gt;
+  &lt;string&gt;Duplo:1:0&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
