@@ -338,6 +338,15 @@ The error message is:
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
     <value>Waarschuwing</value>
   </data>
+  <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
+    <value>Tooltip Info</value>
+  </data>
+  <data name="PartLibMenuItemLargeIcons" xml:space="preserve">
+    <value>Grote iconen</value>
+  </data>
+  <data name="PartLibMenuItemRespectProportion" xml:space="preserve">
+    <value>Respecteer verhoudingen</value>
+  </data>
   <data name="TextEnterText" xml:space="preserve">
     <value>Typ hier uw tekst...</value>
   </data>

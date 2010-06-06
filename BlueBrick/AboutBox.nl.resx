@@ -156,6 +156,12 @@
 Meer info op http://www.fsf.org/licensing/licenses/gpl.html
 en http://www.gnu.org/licenses/</value>
   </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Vertaald in het</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>door</value>
+  </data>
   <data name="translatorListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
@@ -300,11 +306,8 @@ en http://www.gnu.org/licenses/</value>
         aW5nLkdyYXBoaWNzVW5pdAEAAAAHdmFsdWVfXwAIAwAAAAMAAAAL
 </value>
   </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Vertaald in het</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>door</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Met dank aan Alexander McKenna!</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Over BlueBrick</value>
