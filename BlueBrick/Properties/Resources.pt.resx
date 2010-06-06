@@ -333,6 +333,15 @@
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
     <value>Aviso</value>
   </data>
+  <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
+    <value>Informação em caixa</value>
+  </data>
+  <data name="PartLibMenuItemLargeIcons" xml:space="preserve">
+    <value>Ícones grandes</value>
+  </data>
+  <data name="PartLibMenuItemRespectProportion" xml:space="preserve">
+    <value>Respeitar a proporção</value>
+  </data>
   <data name="TextEnterText" xml:space="preserve">
     <value>Escreva o seu texto aqui…</value>
   </data>

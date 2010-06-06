@@ -117,14 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Apariencia</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Atajos de teclado</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Archivos recientes</value>
+  </data>
   <data name="clearRecentFilesButton.Text" xml:space="preserve">
     <value>Borrar lista de archivos recientes</value>
   </data>
   <data name="label23.Text" xml:space="preserve">
     <value>Número de archivos recientes</value>
   </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Archivos recientes</value>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Rendimiento</value>
   </data>
   <data name="optimComboBox.Items" xml:space="preserve">
     <value>Más rápido</value>
@@ -138,8 +147,8 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Relación Memoria/Velocidad</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Rendimiento</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Deshacer/Rehacer</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Cuantos más pasos quieres recordar más memoria se utilizará.</value>
@@ -150,8 +159,8 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Número de pasos guardados</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Deshacer/Rehacer</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Configuración por defecto del nuevo plano</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Evento</value>
@@ -172,8 +181,8 @@
   <data name="addGridLayerCheckBox.Text" xml:space="preserve">
     <value>Añadir una capa de cuadrícula en el plano nuevo </value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Configuración por defecto del nuevo plano</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Ratón</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Tecla de selección duplicada</value>
@@ -190,8 +199,8 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Velocidad de zoom con rueda</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Ratón</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Idioma</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Si cambias el idioma será necesario reiniciar la aplicación para que surat efecto.</value>
@@ -199,8 +208,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Idioma</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Idioma</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Apariencia por defecto del área</value>
   </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 44</value>
@@ -215,8 +224,8 @@ de la célula (en studs)</value>
   <data name="label28.Text" xml:space="preserve">
     <value>Transparecia por defecto (en %)</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Apariencia por defecto del área</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Tamaño de la cuadrícula por defecto</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Número de sub-divisiones por defecto</value>
@@ -231,8 +240,8 @@ de la célula (en studs)</value>
     <value>Tamaño de la cuadrícula
 por defecto (en studs)</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Tamaño de la cuadrícula por defecto</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Formato de texto por defecto</value>
   </data>
   <data name="defaultFontNameLabel.Text" xml:space="preserve">
     <value>Nombre de tipo de letra</value>
@@ -240,8 +249,8 @@ por defecto (en studs)</value>
   <data name="defaultFontButton.Text" xml:space="preserve">
     <value>Cambiar tipo de letra</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Formato de texto por defecto</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Colores</value>
   </data>
   <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 17</value>
@@ -309,17 +318,14 @@ por defecto (en studs)</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Esquema de colores</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Colores</value>
-  </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
+  <data name="groupBox13.Text" xml:space="preserve">
     <value>Apariencia</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Color de fondo biblioteca de piezas</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>Apariencia</value>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Burbuja de información</value>
   </data>
   <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 17</value>
@@ -345,8 +351,8 @@ por defecto (en studs)</value>
   <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
     <value>Mostrar burbuja con:</value>
   </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Burbuja de información</value>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Orden de pestañas</value>
   </data>
   <data name="alphabeticOrderButton.Text" xml:space="preserve">
     <value>Orden alfabético</value>
@@ -356,9 +362,6 @@ por defecto (en studs)</value>
   </data>
   <data name="MoveUpButton.Text" xml:space="preserve">
     <value>Subir</value>
-  </data>
-  <data name="groupBox11.Text" xml:space="preserve">
-    <value>Orden de pestañas</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Para eliminar atajos de teclado, selecciónalos en la lista y pulsa este botón:</value>
@@ -452,9 +455,6 @@ por defecto (en studs)</value>
   </data>
   <data name="Connection.Text" xml:space="preserve">
     <value>Conexión</value>
-  </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Atajos de teclado</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancelar</value>
