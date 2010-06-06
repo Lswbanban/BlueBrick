@@ -837,7 +837,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bubble Info.
+        ///   Looks up a localized string similar to Bubble Information.
         /// </summary>
         internal static string PartLibMenuItemDisplayTooltips {
             get {
