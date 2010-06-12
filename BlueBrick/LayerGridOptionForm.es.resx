@@ -135,7 +135,7 @@ cuadrícula (en studs)</value>
     <value>Grosor (en pixeles)</value>
   </data>
   <data name="subGridCheckBox.Text" xml:space="preserve">
-    <value>Número de sub-divisiones</value>
+    <value>Número de subdivisiones</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Tamaño de la cuadrícula</value>
@@ -144,7 +144,7 @@ cuadrícula (en studs)</value>
     <value>Índice de la célula</value>
   </data>
   <data name="cellIndexOriginButton.Text" xml:space="preserve">
-    <value>Calcular orígen</value>
+    <value>Calcular origen</value>
   </data>
   <data name="cellIndexOriginLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 124</value>
@@ -153,7 +153,7 @@ cuadrícula (en studs)</value>
     <value>185, 26</value>
   </data>
   <data name="cellIndexOriginLabel.Text" xml:space="preserve">
-    <value>El orígen está en
+    <value>El origen está en
 (coordenada de la cuadrícula)</value>
   </data>
   <data name="cellIndexFontNameLabel.Text" xml:space="preserve">

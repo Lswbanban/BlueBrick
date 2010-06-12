@@ -167,7 +167,7 @@
 </value>
   </data>
   <data name="newLayerAreaButton.ToolTip" xml:space="preserve">
-    <value>Añadir una capà de área</value>
+    <value>Añadir una capa de área</value>
   </data>
   <data name="newLayerGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -230,7 +230,7 @@
     <value>Bajar capa seleccionada</value>
   </data>
   <data name="menuBar.Text" xml:space="preserve">
-    <value>barra de manu</value>
+    <value>barra de menú</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -284,7 +284,7 @@
     <value>214, 22</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Recargar bilbioteca de piezas</value>
+    <value>Recargar biblioteca de piezas</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 6</value>

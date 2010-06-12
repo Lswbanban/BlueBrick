@@ -146,7 +146,7 @@
 </value>
   </data>
   <data name="labelVersion.Text" xml:space="preserve">
-    <value>Versiçon </value>
+    <value>Versión </value>
   </data>
   <data name="labelWebSiteName.Text" xml:space="preserve">
     <value>Visita bluebrick.lswproject.com</value>
@@ -155,9 +155,15 @@
     <value>Contacto: banban@lswproject.com</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Este programa es software libre: puedes redistribuirlo bajo los tçerminos de la GNU General Public Licence versiçon 3 publicada por la Free Software Foundation. Vea
+    <value>Este programa es software libre: puedes redistribuirlo bajo los términos de la GNU General Public Licence versiçon 3 publicada por la Free Software Foundation. Vea
 http://www.fsf.org/licensing/licenses/gpl.html e
 http://www.gnu.org/licenses/</value>
+  </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Traducido en</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>por</value>
   </data>
   <data name="translatorListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -299,11 +305,8 @@ http://www.gnu.org/licenses/</value>
         YXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
 </value>
   </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Traducido en</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>por</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>¡Muchas gracias a Alexander McKenna!</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Acerca de BlueBrick</value>

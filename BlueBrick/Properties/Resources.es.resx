@@ -157,10 +157,10 @@
     <value>Borrar un área</value>
   </data>
   <data name="ActionDeleteBrick" xml:space="preserve">
-    <value>Eliinar una pieza &amp;</value>
+    <value>Eliminar una pieza &amp;</value>
   </data>
   <data name="ActionDeleteSeveralBricks" xml:space="preserve">
-    <value>Eliinar algunas piezas</value>
+    <value>Eliminar algunas piezas</value>
   </data>
   <data name="ActionDeleteSeveralTexts" xml:space="preserve">
     <value>Eliminar algunos textos</value>
@@ -193,7 +193,7 @@
     <value>Mover la pieza "&amp;"</value>
   </data>
   <data name="ActionMoveGridOrigin" xml:space="preserve">
-    <value>Mover orígen de la cuadrícula</value>
+    <value>Mover origen de la cuadrícula</value>
   </data>
   <data name="ActionMoveLayerDown" xml:space="preserve">
     <value>Mover la capa "&amp;" hacia abajo</value>
@@ -277,7 +277,7 @@
     <value>BlueBrick ha encontrado un problema al cargar algunas imágenes de la base de datos de piezas y las ha ignorado. Este problema puede ocurrir cuando una imagen se ha corrompida o es demasiado grande. Elimina la(s) imagen(es) de la base de datos para quietar este aviso. Las imágenes son:</value>
   </data>
   <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
-    <value>BlueBrick ha encontrado un problema durante la carga de de los archivos XML de la base de piezas. Estos archivos XML se han ignorado. Este problema puede ocurris cuando hay un error de sintaxis en el archivo XML. Corrige este error o elimina los archivos afectados para eliminar este aviso. Los archivos afetcados son:</value>
+    <value>BlueBrick ha encontrado un problema durante la carga de de los archivos XML de la base de piezas. Estos archivos XML se han ignorado. Este problema puede ocurrir cuando hay un error de sintaxis en el archivo XML. Corrige este error o elimina los archivos afectados para eliminar este aviso. Los archivos afectados son:</value>
   </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>No se puede pegar un objeto del tipo &amp; en la capa actual que es del tipo &amp;&amp;.</value>
@@ -286,7 +286,7 @@
     <value>¿Está seguro que quiere restaurar los ajustes por defecto?</value>
   </data>
   <data name="ErrorMsgCrash" xml:space="preserve">
-    <value>BlueBrick Copyright © 2008 Alban NANTY. Este programa es software libre bajo la licencia GPLv3 y NO TIENE NINGUNA GARANTÍA. Este programa encontró un error fataly se cerrará. Por favor informe de este error a banban@lswproject.com. El mensaje de error es:</value>
+    <value>BlueBrick Copyright © 2008 Alban NANTY. Este programa es software libre bajo la licencia GPLv3 y NO TIENE NINGUNA GARANTÍA. Este programa encontró un error fatal y se cerrará. Por favor informe de este error a banban@lswproject.com. El mensaje de error es:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
     <value>Has cambiado el idioma, pero esto no tomará efecto hasta que reinicie la aplicación. ¿Quieres reiniciarla ahora?</value>
@@ -307,7 +307,7 @@
     <value>El mapa actual no está guardada. ¿Desea guardar los cambios?</value>
   </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
-    <value>Algunas piezas no se cargaron correctamente porque no las tiene en la biblioteca de piezas. Algunas imágenes por defecto se han añadido temporalmente para reemplazar las originales. Deberá preguntar al autor del mapa (&amp;) dónde puede encotrarlas.</value>
+    <value>Algunas piezas no se cargaron correctamente porque no las tiene en la biblioteca de piezas. Algunas imágenes por defecto se han añadido temporalmente para reemplazar las originales. Deberá preguntar al autor del mapa (&amp;) dónde puede encontrarlas.</value>
   </data>
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
     <value>Algunos IDs de piezas de Track Designer  no se encontraron el tu biblioteca BlueBlrick. BlueBrick no pudo cargarlas y las ha ignorado. Asegúrate de tener las piezas necesarias instaladas con el ID correcto de Track Designer incluido en el archivo XML y luego vuelve a abrir el archivo Track Designer. Los IDs que faltan son:</value>
@@ -325,7 +325,7 @@
     <value>No se puede cargar este archivo. Su versión de BlueBrick es obsoleta o el archivo no es un archivo BlueBrick válido. Pruebe descargar e instalar la última versión de BlueBrick.</value>
   </data>
   <data name="ErrorMsgReadyToReloadPartLib" xml:space="preserve">
-    <value>La bibliteca de piezas ha sido descargada. Ahora puede modificar los archivos que contiene. Pulse aceptar cuando esté lista para cargarla nuevamente.</value>
+    <value>La biblioteca de piezas ha sido descargada. Ahora puede modificar los archivos que contiene. Pulse aceptar cuando esté lista para cargarla nuevamente.</value>
   </data>
   <data name="ErrorMsgTitleError" xml:space="preserve">
     <value>Error</value>
@@ -334,7 +334,7 @@
     <value>Aviso</value>
   </data>
   <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
-    <value>Tooltip</value>
+    <value>Burbuja de información</value>
   </data>
   <data name="PartLibMenuItemLargeIcons" xml:space="preserve">
     <value>Iconos grandes</value>

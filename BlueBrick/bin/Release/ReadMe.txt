@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.6.0.0 |
+                    | BlueBrick version 1.6.1.0 |
                     +---------------------------+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -49,6 +49,7 @@ Open bugs:
 - MISSING FEATURE (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating)
+- MISSING FEATURE (Larry): Shortcut parts (being able to have a meta XML part file describing an assembly of parts).
 - [target 1.7] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
@@ -61,7 +62,7 @@ Bug fixed in 1.6.1.0:
 - NEW FEATURE (Alex & Alban): Add a tab in the Global Option for the part lib: now you can choose the back ground color and sort the tabs of the part lib
 - BUGFIX (Larry): CRASH! if you add a small brick in the part lib (1 stud wide) BlueBrick was crashing in Export window or when zooming out
 - BUGFIX 21 (Alban): The rail snapping is bugged if you change the current connection point in the same drag'n'drop
-- BUGFIX (Alban): fix a bug in the list of files that could not be loaded (wrong name and duplicated files)
+- BUGFIX (Alban): fix a bug in the error message dialog for list of files that could not be loaded (wrong name and duplicated files in the list)
 - BUGFIX (Alban): fix the bug that the ampersome character "&" was not displayed in the status bar
 - REFACTORING 17 (Alban): Do not fill the optim combo box in code
 

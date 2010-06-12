@@ -120,6 +120,9 @@
   <data name="appearanceTabPage.Text" xml:space="preserve">
     <value>Apariencia</value>
   </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Biblioteca de piezas</value>
+  </data>
   <data name="shortcutKeysTabPage.Text" xml:space="preserve">
     <value>Atajos de teclado</value>
   </data>
@@ -203,7 +206,7 @@
     <value>Idioma</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Si cambias el idioma será necesario reiniciar la aplicación para que surat efecto.</value>
+    <value>Si cambias el idioma será necesario reiniciar la aplicación para que surta efecto.</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Idioma</value>
@@ -222,13 +225,13 @@
 de la célula (en studs)</value>
   </data>
   <data name="label28.Text" xml:space="preserve">
-    <value>Transparecia por defecto (en %)</value>
+    <value>Transparencia por defecto (en %)</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>Tamaño de la cuadrícula por defecto</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
-    <value>Número de sub-divisiones por defecto</value>
+    <value>Número de subdivisiones por defecto</value>
   </data>
   <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 17</value>
@@ -262,7 +265,7 @@ por defecto (en studs)</value>
     <value>214, 163</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
-    <value>Color resaalte pieza seleccionada</value>
+    <value>Color resalte pieza seleccionada</value>
   </data>
   <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
     <value>214, 126</value>
@@ -310,7 +313,7 @@ por defecto (en studs)</value>
     <value>388, 40</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
-    <value>Elige un esquema de colores predefinido o crea tus própias preferencias.</value>
+    <value>Elige un esquema de colores predefinido o crea tus propias preferencias.</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 13</value>
