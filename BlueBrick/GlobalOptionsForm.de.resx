@@ -123,6 +123,9 @@
   <data name="appearanceTabPage.Text" xml:space="preserve">
     <value>Aussehen</value>
   </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Teilebibliothek</value>
+  </data>
   <data name="shortcutKeysTabPage.Text" xml:space="preserve">
     <value>Tastenkürzel</value>
   </data>
@@ -360,6 +363,51 @@ des geführten Teils</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>Farbschema</value>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>Aussehen</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Hintergrundfarbe der Teilebibliothek</value>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Pop-up-Info</value>
+  </data>
+  <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 17</value>
+  </data>
+  <data name="displayPartDescriptionCheckBox.Text" xml:space="preserve">
+    <value>Teilebeschreibung</value>
+  </data>
+  <data name="displayPartColorCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 17</value>
+  </data>
+  <data name="displayPartColorCheckBox.Text" xml:space="preserve">
+    <value>Teilefarbe</value>
+  </data>
+  <data name="displayPartIDCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 17</value>
+  </data>
+  <data name="displayPartIDCheckBox.Text" xml:space="preserve">
+    <value>Teile-ID</value>
+  </data>
+  <data name="displayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 17</value>
+  </data>
+  <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
+    <value>Inhalt der Pop-up-Info:</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Reihenfolge Karteireiter</value>
+  </data>
+  <data name="alphabeticOrderButton.Text" xml:space="preserve">
+    <value>Alphabetische Reihenfolge</value>
+  </data>
+  <data name="MoveDownButton.Text" xml:space="preserve">
+    <value>Nach unten schieben</value>
+  </data>
+  <data name="MoveUpButton.Text" xml:space="preserve">
+    <value>Nach oben schieben</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Um Tastenkürzel zu entfernen, wähle sie in der Liste aus und drücke dann auf diese Taste.</value>
