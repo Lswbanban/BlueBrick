@@ -104,6 +104,12 @@
     <Compile Include="ExportImageForm.Designer.cs">
       <DependentUpon>ExportImageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FindForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindForm.Designer.cs">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalOptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -591,6 +597,10 @@
     <EmbeddedResource Include="ExportImageForm.it.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ExportImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralInfoForm.it.resx">
       <SubType>Designer</SubType>

@@ -1230,6 +1230,12 @@ namespace BlueBrick
 			}
 		}
 
+		private void findAndReplaceToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			FindForm optionForm = new FindForm();
+			optionForm.ShowDialog(this);
+		}
+
 		public void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// select all in the current selected layer
