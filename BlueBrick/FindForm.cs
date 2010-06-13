@@ -24,6 +24,10 @@ namespace BlueBrick
 {
 	public partial class FindForm : Form
 	{
+		private string[] mLibraryPartList = MapData.BrickLibrary.Instance.getBrickNameList();
+		private string[] mSelectionPartList = null;
+		private string mBestPartToFindInSelection = null;
+
 		#region init
 		public FindForm()
 		{
@@ -45,17 +49,67 @@ namespace BlueBrick
 				if (layer.GetType().Name.Equals("LayerBrick"))
 					this.LayerCheckedListBox.Items.Add(layer.Name, layer == selectedLayer);
 			}
+			
+			// construct the list of parts from the selection (if it is a valid selection)
+			BlueBrick.MapData.LayerBrick selectedBrickLayer = selectedLayer as BlueBrick.MapData.LayerBrick;
+			if ((selectedBrickLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
+			{
+				// collapse all the selection in a dictionnary with unique instance of each part
+				// and a counter of each different part in the selection
+				Dictionary<string, int> collaspedList = new Dictionary<string, int>();
+				int nbSelectedItems = selectedLayer.SelectedObjects.Count;
+				for (int i = 0; i < nbSelectedItems; ++i)
+				{
+					string currentPartNumber = (selectedLayer.SelectedObjects[i] as MapData.LayerBrick.Brick).PartNumber;
+					int occurence = 0;
+					if (collaspedList.TryGetValue(currentPartNumber, out occurence))
+					{
+						collaspedList.Remove(currentPartNumber);
+						collaspedList.Add(currentPartNumber, occurence + 1);
+					}
+					else
+					{
+						collaspedList.Add(currentPartNumber, 1);
+					}
+				}
+				// construct the list by expanding the dictionnary
+				// and at the same time find the best part (the one which higher occurence)
+				int j = 0;
+				int bestScore = 0;
+				mSelectionPartList = new string[collaspedList.Count];
+				foreach (KeyValuePair<string, int> keyValue in collaspedList)
+				{
+					mSelectionPartList[j++] = keyValue.Key;
+					if (keyValue.Value > bestScore)
+					{
+						bestScore = keyValue.Value;
+						mBestPartToFindInSelection = keyValue.Key;
+					}
+				}
+			}
 
 			// fill the find and replace combo box
-			string[] partList = MapData.BrickLibrary.Instance.getBrickNameList();
-			this.FindComboBox.Items.AddRange(partList);
-			this.ReplaceComboBox.Items.AddRange(partList);
-			if (this.FindComboBox.Items.Count > 0)
-				this.FindComboBox.SelectedIndex = 0;
+			if (mSelectionPartList != null)
+				this.FindComboBox.Items.AddRange(mSelectionPartList);
+			else
+				this.FindComboBox.Items.AddRange(mLibraryPartList);
+			this.ReplaceComboBox.Items.AddRange(mLibraryPartList);
+			setBestSelectedItemForFindComboBox();
 
 			// update the check all button according to the number of layer checked
 			// the function to update the status of the button will be called by the event handler
 			LayerCheckedListBox_SelectedIndexChanged(null, null);
+		}
+
+		private void setBestSelectedItemForFindComboBox()
+		{
+			if (this.FindComboBox.Items.Count > 0)
+			{
+				if (mBestPartToFindInSelection != null)
+					this.FindComboBox.SelectedItem = mBestPartToFindInSelection;
+				else
+					this.FindComboBox.SelectedIndex = 0;
+			}
 		}
 		#endregion
 
@@ -66,6 +120,24 @@ namespace BlueBrick
 			bool enabled = this.inLayerRadioButton.Checked;
 			this.LayerCheckedListBox.Enabled = enabled;
 			this.allLayerCheckBox.Enabled = enabled;
+
+			// change the list of findable items (if there's 2 lists)
+			if (mSelectionPartList != null)
+			{
+				string previousSelection = this.FindComboBox.SelectedItem as string;
+				this.FindComboBox.Items.Clear();
+				if (enabled)
+					this.FindComboBox.Items.AddRange(mLibraryPartList);
+				else
+					this.FindComboBox.Items.AddRange(mSelectionPartList);
+				// reset the selection if it exist
+				if (previousSelection != null)
+					this.FindComboBox.SelectedItem = previousSelection;
+				// if the reset of the previous selection failed, set the best selection
+				if (this.FindComboBox.SelectedItem == null)
+					setBestSelectedItemForFindComboBox();
+			}
+
 			// update the search buttons
 			updateButtonStatusAccordingToQueryValidity();
 		}
