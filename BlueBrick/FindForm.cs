@@ -27,6 +27,7 @@ namespace BlueBrick
 		private string[] mLibraryPartList = MapData.BrickLibrary.Instance.getBrickNameList();
 		private string[] mSelectionPartList = null;
 		private string mBestPartToFindInSelection = null;
+		private List<BlueBrick.MapData.LayerBrick> mBrickOnlyLayerList = new List<BlueBrick.MapData.LayerBrick>();
 
 		#region init
 		public FindForm()
@@ -47,7 +48,11 @@ namespace BlueBrick
 			{
 				BlueBrick.MapData.Layer layer = BlueBrick.MapData.Map.Instance.LayerList[i];
 				if (layer.GetType().Name.Equals("LayerBrick"))
+				{
+					// add a check box item and the corresponding layer reference in a private list
 					this.LayerCheckedListBox.Items.Add(layer.Name, layer == selectedLayer);
+					mBrickOnlyLayerList.Add(layer as BlueBrick.MapData.LayerBrick);
+				}
 			}
 			
 			// construct the list of parts from the selection (if it is a valid selection)
@@ -148,7 +153,7 @@ namespace BlueBrick
 			bool whatToSearchIsValidForFind = (this.FindComboBox.SelectedItem != null);
 			bool whatToSearchIsValidForReplace = whatToSearchIsValidForFind &&
 												(this.ReplaceComboBox.SelectedItem != null) &&
-												(this.FindComboBox.SelectedIndex != this.ReplaceComboBox.SelectedIndex);
+												(!this.FindComboBox.SelectedItem.Equals(this.ReplaceComboBox.SelectedItem));
 			bool whereToSearchIsValidForFind = this.inCurrentSelectionRadioButton.Checked ||
 												(this.LayerCheckedListBox.CheckedItems.Count == 1);
 			bool whereToSearchIsValidForReplace = this.inCurrentSelectionRadioButton.Checked ||
@@ -195,6 +200,63 @@ namespace BlueBrick
 				this.ReplacePictureBox.Image = MapData.BrickLibrary.Instance.getImage(this.ReplaceComboBox.SelectedItem as string);
 			// update the search buttons
 			updateButtonStatusAccordingToQueryValidity();
+		}
+
+		private void SelectAllButton_Click(object sender, EventArgs e)
+		{
+			// get the search part
+			string searchingPartNumber = this.FindComboBox.SelectedItem as string;
+			// the new list of object to select
+			List<BlueBrick.MapData.Layer.LayerItem>	objectToSelect = new List<BlueBrick.MapData.Layer.LayerItem>();
+
+			// get the current selected layer because we will need it (normally it is never null)
+			BlueBrick.MapData.Layer selectedLayer = BlueBrick.MapData.Map.Instance.SelectedLayer;
+			if (selectedLayer != null)
+			{
+				// check if the selection must be performed in the current selection
+				// or in a new layer
+				if (this.inCurrentSelectionRadioButton.Checked)
+				{
+					// sub select in current selection, iterate on the selection
+					int nbSelectedItems = selectedLayer.SelectedObjects.Count;
+					for (int i = 0; i < nbSelectedItems; ++i)
+					{
+						BlueBrick.MapData.Layer.LayerItem currentItem = selectedLayer.SelectedObjects[i];
+						string currentPartNumber = (currentItem as MapData.LayerBrick.Brick).PartNumber;
+						if (currentPartNumber.Equals(searchingPartNumber))
+							objectToSelect.Add(currentItem);
+					}
+				}
+				else if (this.LayerCheckedListBox.CheckedItems.Count == 1)
+				{
+					// find in which layer the selection should be done
+					BlueBrick.MapData.LayerBrick layerToSelect = mBrickOnlyLayerList[this.LayerCheckedListBox.CheckedIndices[0]];
+					// First we need to select the target layer if not already selected
+					if (selectedLayer != layerToSelect)
+					{
+						Actions.ActionManager.Instance.doAction(new Actions.Layers.SelectLayer(layerToSelect));
+						// important to update the new selected layer for the rest of the code
+						selectedLayer = layerToSelect;
+					}
+					// then iterate on all the bricks of the selected layer to find the one we search
+					foreach (BlueBrick.MapData.LayerBrick.Brick brick in layerToSelect.BrickList)
+						if (brick.PartNumber.Equals(searchingPartNumber))
+							objectToSelect.Add(brick);
+				}
+			}
+
+			// select the new objects
+			selectedLayer.clearSelection();
+			selectedLayer.addObjectInSelection(objectToSelect);
+
+			// close the window
+			this.Close();
+		}
+
+		private void ReplaceButton_Click(object sender, EventArgs e)
+		{
+			// close the window
+			this.Close();
 		}
 		#endregion
 	}

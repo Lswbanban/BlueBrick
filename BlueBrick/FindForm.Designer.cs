@@ -158,17 +158,20 @@ namespace BlueBrick
 			resources.ApplyResources(this.ReplaceButton, "ReplaceButton");
 			this.ReplaceButton.Name = "ReplaceButton";
 			this.ReplaceButton.UseVisualStyleBackColor = true;
+			this.ReplaceButton.Click += new System.EventHandler(this.ReplaceButton_Click);
 			// 
 			// SelectAllButton
 			// 
 			resources.ApplyResources(this.SelectAllButton, "SelectAllButton");
 			this.SelectAllButton.Name = "SelectAllButton";
 			this.SelectAllButton.UseVisualStyleBackColor = true;
+			this.SelectAllButton.Click += new System.EventHandler(this.SelectAllButton_Click);
 			// 
 			// FindForm
 			// 
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.CancelButton = this.CancelButton;
 			this.Controls.Add(this.SelectAllButton);
 			this.Controls.Add(this.ReplaceButton);
 			this.Controls.Add(this.CancelButton);

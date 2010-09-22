@@ -1234,6 +1234,7 @@ namespace BlueBrick
 		{
 			FindForm optionForm = new FindForm();
 			optionForm.ShowDialog(this);
+			this.mapPanel.Invalidate();
 		}
 
 		public void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
