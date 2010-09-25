@@ -39,9 +39,9 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 - [target 1.7] MISSING FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder)
 - [target 1.7] MISSING FEATURE (Alban): make configurable connexion points
-- [target 1.7] MISSING FEATURE (Denis): Feature to replace a set of brick by another one.
 - [target 1.7] MISSING FEATURE (Alban): Add the polarity check
 - [target 1.7] MISSING FEATURE (Alban): support new flex PF track.
+- [target 1.7] MISSING FEATURE (Alban): Display the general info on top of the map (optionnal)
 - [target 1.7] MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
 - MISSING FEATURE (Alban): Autosave.
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
@@ -56,6 +56,9 @@ Open bugs:
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
+
+Bug fixed in 1.7.0.0:
+- NEW FEATURE (Denis): Feature to search and replace a set of brick type by another one.
 
 Bug fixed in 1.6.1.0:
 - NEW FEATURE (Alex & Alban): Add a context menu in the part lib to choose more options: large/small icons, respect proportions, display bubble info
