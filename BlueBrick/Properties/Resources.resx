@@ -213,6 +213,9 @@
   <data name="ActionRemoveLayer" xml:space="preserve">
     <value>Remove the layer "&amp;"</value>
   </data>
+  <data name="ActionReplaceBrick" xml:space="preserve">
+    <value>Replace the part &amp;</value>
+  </data>
   <data name="ActionRotateBrick" xml:space="preserve">
     <value>Rotate the part &amp;</value>
   </data>

@@ -72,6 +72,7 @@
     <Compile Include="Actions\Bricks\BringBrickToFront.cs" />
     <Compile Include="Actions\Bricks\DuplicateBrick.cs" />
     <Compile Include="Actions\Bricks\MoveBrick.cs" />
+    <Compile Include="Actions\Bricks\ReplaceBrick.cs" />
     <Compile Include="Actions\Bricks\RotateAndMoveBrick.cs" />
     <Compile Include="Actions\Bricks\RotateBrick.cs" />
     <Compile Include="Actions\Bricks\RotateBrickOnPivotBrick.cs" />

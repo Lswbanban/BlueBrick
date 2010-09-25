@@ -19,22 +19,23 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using BlueBrick.MapData;
 
 namespace BlueBrick
 {
 	public partial class FindForm : Form
 	{
-		private string[] mLibraryPartList = MapData.BrickLibrary.Instance.getBrickNameList();
+		private string[] mLibraryPartList = BrickLibrary.Instance.getBrickNameList();
 		private string[] mSelectionPartList = null;
 		private string mBestPartToFindInSelection = null;
-		private List<BlueBrick.MapData.LayerBrick> mBrickOnlyLayerList = new List<BlueBrick.MapData.LayerBrick>();
+		private List<LayerBrick> mBrickOnlyLayerList = new List<LayerBrick>();
 
 		#region init
 		public FindForm()
 		{
 			InitializeComponent();
 			// get the selected layer because we will need it
-			BlueBrick.MapData.Layer selectedLayer = BlueBrick.MapData.Map.Instance.SelectedLayer;
+			Layer selectedLayer = Map.Instance.SelectedLayer;
 
 			// determines which radio button should be selected
 			bool isSelectionEmpty = (selectedLayer.SelectedObjects.Count == 0);
@@ -44,19 +45,19 @@ namespace BlueBrick
 			inLayerRadioButton_CheckedChanged(this.inLayerRadioButton, null);
 
 			// fill the layer list (in reverse order)
-			for (int i = BlueBrick.MapData.Map.Instance.LayerList.Count-1; i >= 0; --i)
+			for (int i = Map.Instance.LayerList.Count-1; i >= 0; --i)
 			{
-				BlueBrick.MapData.Layer layer = BlueBrick.MapData.Map.Instance.LayerList[i];
+				Layer layer = Map.Instance.LayerList[i];
 				if (layer.GetType().Name.Equals("LayerBrick"))
 				{
 					// add a check box item and the corresponding layer reference in a private list
 					this.LayerCheckedListBox.Items.Add(layer.Name, layer == selectedLayer);
-					mBrickOnlyLayerList.Add(layer as BlueBrick.MapData.LayerBrick);
+					mBrickOnlyLayerList.Add(layer as LayerBrick);
 				}
 			}
 			
 			// construct the list of parts from the selection (if it is a valid selection)
-			BlueBrick.MapData.LayerBrick selectedBrickLayer = selectedLayer as BlueBrick.MapData.LayerBrick;
+			LayerBrick selectedBrickLayer = selectedLayer as LayerBrick;
 			if ((selectedBrickLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
 			{
 				// collapse all the selection in a dictionnary with unique instance of each part
@@ -65,7 +66,7 @@ namespace BlueBrick
 				int nbSelectedItems = selectedLayer.SelectedObjects.Count;
 				for (int i = 0; i < nbSelectedItems; ++i)
 				{
-					string currentPartNumber = (selectedLayer.SelectedObjects[i] as MapData.LayerBrick.Brick).PartNumber;
+					string currentPartNumber = (selectedLayer.SelectedObjects[i] as LayerBrick.Brick).PartNumber;
 					int occurence = 0;
 					if (collaspedList.TryGetValue(currentPartNumber, out occurence))
 					{
@@ -189,7 +190,7 @@ namespace BlueBrick
 		private void FindComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (this.FindComboBox.SelectedItem != null)
-				this.FindPictureBox.Image = MapData.BrickLibrary.Instance.getImage(this.FindComboBox.SelectedItem as string);
+				this.FindPictureBox.Image = BrickLibrary.Instance.getImage(this.FindComboBox.SelectedItem as string);
 			// update the search buttons
 			updateButtonStatusAccordingToQueryValidity();
 		}
@@ -197,7 +198,7 @@ namespace BlueBrick
 		private void ReplaceComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (this.ReplaceComboBox.SelectedItem != null)
-				this.ReplacePictureBox.Image = MapData.BrickLibrary.Instance.getImage(this.ReplaceComboBox.SelectedItem as string);
+				this.ReplacePictureBox.Image = BrickLibrary.Instance.getImage(this.ReplaceComboBox.SelectedItem as string);
 			// update the search buttons
 			updateButtonStatusAccordingToQueryValidity();
 		}
@@ -207,10 +208,10 @@ namespace BlueBrick
 			// get the search part
 			string searchingPartNumber = this.FindComboBox.SelectedItem as string;
 			// the new list of object to select
-			List<BlueBrick.MapData.Layer.LayerItem>	objectToSelect = new List<BlueBrick.MapData.Layer.LayerItem>();
+			List<Layer.LayerItem>	objectToSelect = new List<Layer.LayerItem>();
 
 			// get the current selected layer because we will need it (normally it is never null)
-			BlueBrick.MapData.Layer selectedLayer = BlueBrick.MapData.Map.Instance.SelectedLayer;
+			Layer selectedLayer = Map.Instance.SelectedLayer;
 			if (selectedLayer != null)
 			{
 				// check if the selection must be performed in the current selection
@@ -221,8 +222,8 @@ namespace BlueBrick
 					int nbSelectedItems = selectedLayer.SelectedObjects.Count;
 					for (int i = 0; i < nbSelectedItems; ++i)
 					{
-						BlueBrick.MapData.Layer.LayerItem currentItem = selectedLayer.SelectedObjects[i];
-						string currentPartNumber = (currentItem as MapData.LayerBrick.Brick).PartNumber;
+						Layer.LayerItem currentItem = selectedLayer.SelectedObjects[i];
+						string currentPartNumber = (currentItem as LayerBrick.Brick).PartNumber;
 						if (currentPartNumber.Equals(searchingPartNumber))
 							objectToSelect.Add(currentItem);
 					}
@@ -230,7 +231,7 @@ namespace BlueBrick
 				else if (this.LayerCheckedListBox.CheckedItems.Count == 1)
 				{
 					// find in which layer the selection should be done
-					BlueBrick.MapData.LayerBrick layerToSelect = mBrickOnlyLayerList[this.LayerCheckedListBox.CheckedIndices[0]];
+					LayerBrick layerToSelect = mBrickOnlyLayerList[this.LayerCheckedListBox.CheckedIndices[0]];
 					// First we need to select the target layer if not already selected
 					if (selectedLayer != layerToSelect)
 					{
@@ -239,7 +240,7 @@ namespace BlueBrick
 						selectedLayer = layerToSelect;
 					}
 					// then iterate on all the bricks of the selected layer to find the one we search
-					foreach (BlueBrick.MapData.LayerBrick.Brick brick in layerToSelect.BrickList)
+					foreach (LayerBrick.Brick brick in layerToSelect.BrickList)
 						if (brick.PartNumber.Equals(searchingPartNumber))
 							objectToSelect.Add(brick);
 				}
@@ -255,6 +256,34 @@ namespace BlueBrick
 
 		private void ReplaceButton_Click(object sender, EventArgs e)
 		{
+			List<LayerBrick> layers = null;
+
+			// check if the selection must be performed in the current selection
+			// or in several layers
+			if (this.inCurrentSelectionRadioButton.Checked)
+			{
+				// only one layer is selected
+				layers = new List<LayerBrick>(1);
+
+				// get the current selected layer because we will need it (normally it is never null)
+				LayerBrick selectedLayer = (Map.Instance.SelectedLayer) as LayerBrick;
+				if (selectedLayer != null)
+					layers.Add(selectedLayer);
+			}
+			else
+			{
+				layers = new List<LayerBrick>(this.LayerCheckedListBox.CheckedIndices.Count);
+				foreach (int index in this.LayerCheckedListBox.CheckedIndices)
+					layers.Add(mBrickOnlyLayerList[index]);
+			}
+
+			// get the search and replace part number
+			string searchingPartNumber = this.FindComboBox.SelectedItem as string;
+			string replacementPartNumber = this.ReplaceComboBox.SelectedItem as string;
+
+			// do the action
+			Actions.ActionManager.Instance.doAction(new Actions.Bricks.ReplaceBrick(layers, searchingPartNumber, replacementPartNumber, this.inCurrentSelectionRadioButton.Checked));
+
 			// close the window
 			this.Close();
 		}
