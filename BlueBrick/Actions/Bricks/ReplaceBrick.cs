@@ -123,7 +123,7 @@ namespace BlueBrick.Actions.Bricks
 					}
 
 					// update the connectivity of the whole layer after replacement
-					currentLayer.updateBrickConnectivityOfSelection(false);
+					currentLayer.updateFullBrickConnectivityForSelectedBricksOnly();
 					// clear the selection again (it was only use for fast connectivity update)
 					currentLayer.clearSelection();
 				}

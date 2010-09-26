@@ -1332,6 +1332,29 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// Update the connectivity of all the selected bricks base of their positions.
+		/// This method is quite slow especially if the selection list is big
+		/// </summary>
+		public void updateFullBrickConnectivityForSelectedBricksOnly()
+		{
+			foreach (Layer.LayerItem item in mSelectedObjects)
+			{
+				Brick brick = item as Brick;
+				if (brick.HasConnectionPoint)
+					foreach (Brick.ConnectionPoint brickConnexion in brick.ConnectionPoints)
+						for (int i = 0; i < mFreeConnectionPoints[(int)brickConnexion.Type].Count; ++i)
+						{
+							Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints[(int)brickConnexion.Type][i];
+							if ((freeConnexion.mMyBrick != brick) && arePositionsEqual(freeConnexion.mPositionInStudWorldCoord, brickConnexion.mPositionInStudWorldCoord))
+							{
+								if (connectTwoConnectionPoints(freeConnexion, brickConnexion))
+									i--;
+							}
+						}
+			}
+		}
+
+		/// <summary>
 		/// Update the connectivity of all the bricks base of their positions
 		/// This method is slow since the whole connectivity is recompute. It should only be call after
 		/// an import of a map from a file format that doesn't contain the connectivity info, such as LDraw format
