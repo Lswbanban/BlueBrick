@@ -50,6 +50,7 @@ namespace BlueBrick.MapData
 		private DateTime mDate = DateTime.Today;
 		private string mComment = "";
 		private Color mBackgroundColor = BlueBrick.Properties.Settings.Default.DefaultBackgroundColor;
+		private string mGeneralInfoWatermark = "";
 
 		// some data for compatibility with Track designer
 		private bool mAllowElectricShortCuts = false;
@@ -84,31 +85,36 @@ namespace BlueBrick.MapData
 		public string Author
 		{
 			get { return mAuthor; }
-			set { mAuthor = value; }
+			set { mAuthor = value; computeGeneralInfoWatermark();  }
 		}
 
 		public string LUG
 		{
 			get { return mLUG; }
-			set { mLUG = value; }
+			set { mLUG = value; computeGeneralInfoWatermark(); }
 		}
 
 		public string Show
 		{
 			get { return mShow; }
-			set { mShow = value; }
+			set { mShow = value; computeGeneralInfoWatermark(); }
 		}
 
 		public DateTime Date
 		{
 			get { return mDate; }
-			set { mDate = value; }
+			set { mDate = value; computeGeneralInfoWatermark(); }
 		}
 
 		public string Comment
 		{
 			get { return mComment; }
 			set { mComment = value; }
+		}
+
+		public string GeneralInfoWatermark
+		{
+			get { return mGeneralInfoWatermark; }
 		}
 
 		public Color BackgroundColor
@@ -191,6 +197,14 @@ namespace BlueBrick.MapData
 				}
 			}
 		}
+
+		/// <summary>
+		/// Compute the string displayed on top of the map from some general infos
+		/// </summary>
+		private void computeGeneralInfoWatermark()
+		{
+			mGeneralInfoWatermark = this.Author + ", " + this.LUG + ", " + this.Show + " (" + this.Date.ToShortDateString() + ")";
+		}
 		#endregion
 
 		#region constructor
@@ -207,6 +221,8 @@ namespace BlueBrick.MapData
 				mLUG = BlueBrick.Properties.Resources.DefaultLUG;
 			if (mShow.Equals("***NotInitialized***"))
 				mShow = BlueBrick.Properties.Resources.DefaultShow;
+			// and construct the watermark
+			computeGeneralInfoWatermark();
 		}
 		#endregion
 
@@ -311,6 +327,8 @@ namespace BlueBrick.MapData
 				mSelectedLayer = mLayers[selectedLayerIndex];
 			else
 				mSelectedLayer = null;
+			// construct the watermark
+			computeGeneralInfoWatermark();
 			// for old version, make disapear the progress bar, since it was just an estimation
 			MainForm.Instance.finishProgressBar();
 		}

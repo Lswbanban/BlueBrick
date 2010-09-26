@@ -55,6 +55,11 @@ namespace BlueBrick
 		private Rectangle mSelectionRectangle = new Rectangle();
 		private Pen mSelectionRectanglePen = new Pen(Color.Black, 2);
 
+		// drawing data to draw the general info watermark
+		private Font mGeneralInfoFont = new Font(FontFamily.GenericSansSerif, 10);
+		private SolidBrush mGeneralInfoBackgroundBrush = new SolidBrush(Color.FromArgb(0x77FFFFFF));
+		private int mCurrentStatusBarHeight = 0;
+
 		//dragndrop of a part on the map
 		private LayerBrick.Brick mCurrentPartDrop = null;
 		private LayerBrick mBrickLayerThatReceivePartDrop = null;
@@ -92,6 +97,11 @@ namespace BlueBrick
 				// invalidate the panel, since we must redraw it to handle the new scale
 				Invalidate();
 			}
+		}
+
+		public int CurrentStatusBarHeight
+		{
+			set { mCurrentStatusBarHeight = value; }
 		}
 
 		#endregion
@@ -273,6 +283,16 @@ namespace BlueBrick
 			float startYInStud = (float)mViewCornerY;
 			RectangleF rectangle = new RectangleF(startXInStud, startYInStud, widthInStud, heightInStud);
 			Map.Instance.draw(g, rectangle, mViewScale);
+
+			// draw the global info if it is enabled
+			if (Properties.Settings.Default.DisplayGeneralInfoWatermark)
+			{
+				SizeF generalInfoSize = g.MeasureString(Map.Instance.GeneralInfoWatermark, mGeneralInfoFont);
+				float x = (float)(this.Size.Width) - generalInfoSize.Width;
+				float y = (float)(this.Size.Height - mCurrentStatusBarHeight) - generalInfoSize.Height;
+				g.FillRectangle(mGeneralInfoBackgroundBrush, x, y, generalInfoSize.Width, generalInfoSize.Height);
+				g.DrawString(Map.Instance.GeneralInfoWatermark, mGeneralInfoFont, Brushes.Black, x, y);
+			}
 
 			// on top of all the layer draw the selection rectangle
 			if (mIsSelectionRectangleOn)

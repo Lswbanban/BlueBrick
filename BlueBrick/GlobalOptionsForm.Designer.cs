@@ -133,6 +133,7 @@ namespace BlueBrick
 			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.restoreDefaultButton = new System.Windows.Forms.Button();
 			this.fontDialog = new System.Windows.Forms.FontDialog();
+			this.displayGeneralInfoWatermarkCheckBox = new System.Windows.Forms.CheckBox();
 			this.optionsTabControl.SuspendLayout();
 			this.generalTabPage.SuspendLayout();
 			this.groupBox10.SuspendLayout();
@@ -636,6 +637,7 @@ namespace BlueBrick
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.Controls.Add(this.displayGeneralInfoWatermarkCheckBox);
 			this.groupBox5.Controls.Add(this.displayFreeConnexionPointCheckBox);
 			this.groupBox5.Controls.Add(this.label25);
 			this.groupBox5.Controls.Add(this.label24);
@@ -1099,6 +1101,14 @@ namespace BlueBrick
 			this.restoreDefaultButton.UseVisualStyleBackColor = true;
 			this.restoreDefaultButton.Click += new System.EventHandler(this.restoreDefaultButton_Click);
 			// 
+			// displayGeneralInfoWatermarkCheckBox
+			// 
+			resources.ApplyResources(this.displayGeneralInfoWatermarkCheckBox, "displayGeneralInfoWatermarkCheckBox");
+			this.displayGeneralInfoWatermarkCheckBox.Checked = true;
+			this.displayGeneralInfoWatermarkCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.displayGeneralInfoWatermarkCheckBox.Name = "displayGeneralInfoWatermarkCheckBox";
+			this.displayGeneralInfoWatermarkCheckBox.UseVisualStyleBackColor = true;
+			// 
 			// GlobalOptionsForm
 			// 
 			this.AcceptButton = this.okButton;
@@ -1264,5 +1274,6 @@ namespace BlueBrick
 		private System.Windows.Forms.GroupBox groupBox13;
 		private System.Windows.Forms.Label label26;
 		private System.Windows.Forms.PictureBox PartLibBackColorPictureBox;
+		private System.Windows.Forms.CheckBox displayGeneralInfoWatermarkCheckBox;
 	}
 }

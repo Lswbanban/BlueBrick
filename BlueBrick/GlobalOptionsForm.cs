@@ -127,6 +127,7 @@ namespace BlueBrick
 			this.gridColorPictureBox.BackColor = Settings.Default.DefaultGridColor;
 			this.subGridColorPictureBox.BackColor = Settings.Default.DefaultSubGridColor;
 			this.displayFreeConnexionPointCheckBox.Checked = Settings.Default.DisplayFreeConnexionPoints;
+			this.displayGeneralInfoWatermarkCheckBox.Checked = Settings.Default.DisplayGeneralInfoWatermark;
 			setGammaToNumericUpDown(this.GammaForSelectionNumericUpDown, Settings.Default.GammaForSelection);
 			setGammaToNumericUpDown(this.GammaForSnappingNumericUpDown, Settings.Default.GammaForSnappingPart);
 			// grid size
@@ -195,6 +196,7 @@ namespace BlueBrick
 			destination.DefaultAreaTransparency = source.DefaultAreaTransparency;
 			destination.DefaultAreaSize = source.DefaultAreaSize;
 			destination.DisplayFreeConnexionPoints = source.DisplayFreeConnexionPoints;
+			destination.DisplayGeneralInfoWatermark = source.DisplayGeneralInfoWatermark;
 			destination.GammaForSelection = source.GammaForSelection;
 			destination.GammaForSnappingPart = source.GammaForSnappingPart;
 			destination.DefaultGridColor = source.DefaultGridColor;
@@ -259,6 +261,7 @@ namespace BlueBrick
 			Settings.Default.DefaultGridColor = gridColorPictureBox.BackColor;
 			Settings.Default.DefaultSubGridColor = subGridColorPictureBox.BackColor;
 			Settings.Default.DisplayFreeConnexionPoints = this.displayFreeConnexionPointCheckBox.Checked;
+			Settings.Default.DisplayGeneralInfoWatermark = this.displayGeneralInfoWatermarkCheckBox.Checked;
 			Settings.Default.GammaForSelection = getGammaFromNumericUpDown(this.GammaForSelectionNumericUpDown);
 			Settings.Default.GammaForSnappingPart = getGammaFromNumericUpDown(this.GammaForSnappingNumericUpDown);
 			// font

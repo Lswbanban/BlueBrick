@@ -311,6 +311,7 @@ namespace BlueBrick
 			// toolbar and status bar visibility
 			this.toolBar.Visible = this.toolbarMenuItem.Checked = Properties.Settings.Default.UIToolbarIsVisible;
 			this.statusBar.Visible = this.statusBarMenuItem.Checked = Properties.Settings.Default.UIStatusbarIsVisible;
+			this.mapPanel.CurrentStatusBarHeight = Properties.Settings.Default.UIStatusbarIsVisible ? this.statusBar.Height : 0;
 		}
 
 		private void saveUISettingInDefaultSettings()
@@ -1535,6 +1536,8 @@ namespace BlueBrick
 		private void statusBarToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			this.statusBar.Visible = this.statusBarMenuItem.Checked;
+			this.mapPanel.CurrentStatusBarHeight = this.statusBar.Visible ? this.statusBar.Height : 0;
+			this.mapPanel.Invalidate();
 		}
 
 		private void generalInformationToolStripMenuItem_Click(object sender, EventArgs e)
