@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<info>
+	<SelectedConnection>
+		<!-- you can configure the color and size of the selected connection -->
+		<!-- if not precised, by default it will be a big red dot -->
+		<ColorARGB>FFFF0000</ColorARGB>
+		<Size>2.5</Size>		
+	</SelectedConnection>
+	<ConnectionTypeList>
+		<!-- List of all the connection types and associated colors and size -->
+		<!-- Place in the name attribute the string id that is used inside the xml files of the parts; so this is a required attribute -->
+		<!-- The color is given in ARGB format in hexadecimal. If you don't specify the color, the black color will be used -->
+		<!-- Specify the size (i.e. radius of the dot) of the connection in Stud. If you don't specify the size, the default size is 1 studs -->
+		<ConnectionType name="1">
+			<ColorARGB>FFFFFF00</ColorARGB>
+			<Size>1</Size>
+		</ConnectionType>
+		<ConnectionType name="2">
+			<ColorARGB>FF00FFFF</ColorARGB>
+			<Size>1.5</Size>
+		</ConnectionType>
+		<ConnectionType name="3">
+			<ColorARGB>FFE22B8A</ColorARGB>
+			<Size>1</Size>
+		</ConnectionType>
+		<ConnectionType name="4">
+			<ColorARGB>FFC1B6FF</ColorARGB>
+			<Size>1</Size>
+		</ConnectionType>
+		<ConnectionType name="5">
+			<ColorARGB>FF2FFFAD</ColorARGB>
+			<Size>1</Size>
+		</ConnectionType>
+	</ConnectionTypeList>
+</info>

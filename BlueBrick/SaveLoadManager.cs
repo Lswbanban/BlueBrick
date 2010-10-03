@@ -794,13 +794,14 @@ namespace BlueBrick
 					// choose the corect layer according to the type of connexion
 					if (brick.HasConnectionPoint)
 					{
+						// this switch is hard-coded, it should be refactored
 						switch (brick.ConnectionPoints[0].Type)
 						{
-							case BrickLibrary.Brick.ConnectionType.RAIL:
+							case 1:
 								currentLayer = rail9VLayer;
 								break;
-							case BrickLibrary.Brick.ConnectionType.MONORAIL:
-							case BrickLibrary.Brick.ConnectionType.MONORAIL_SHORT_CURVE:
+							case 3:
+							case 4:
 								currentLayer = monorailLayer;
 								break;
 							default:

@@ -23,20 +23,47 @@ namespace BlueBrick.MapData
 {
 	public class BrickLibrary
 	{
+		public class ConnectionType
+		{
+			public const int DEFAULT = 0;
+			public const int COUNT = 6;
+
+			// there's a specific connection type for rendering the selected connections
+			public static ConnectionType sSelectedConnection = new ConnectionType(string.Empty, Color.Red, 2.5f);
+
+			// the data used to render the connection
+			private string mName = string.Empty;
+			private SolidBrush mBrush = null;
+			private float mSize = 1.0f;
+
+			public Brush Brush
+			{
+				get { return mBrush; }
+			}
+
+			public float Size
+			{
+				get { return mSize; }
+			}
+
+			public ConnectionType(string name, Color color, float size)
+			{
+				mName = name;
+				mBrush = new SolidBrush(color);
+				mSize = size;
+			}
+			//BRICK = 0,
+			//RAIL,
+			//ROAD,
+			//MONORAIL,
+			//MONORAIL_SHORT_CURVE,
+			//DUPLO_RAIL,
+			//// the last one to count
+			//COUNT,
+		};
+
 		public class Brick
 		{
-			public enum ConnectionType
-			{
-				BRICK = 0,
-				RAIL,
-				ROAD,
-				MONORAIL,
-				MONORAIL_SHORT_CURVE,
-				DUPLO_RAIL,
-				// the last one to count
-				COUNT,
-			};
-
 			public class Margin
 			{
 				public float mLeft = 0.0f;
@@ -47,7 +74,7 @@ namespace BlueBrick.MapData
 
 			public class ConnectionPoint
 			{
-				public ConnectionType mType = ConnectionType.BRICK;
+				public int mType = 0;
 				public PointF mPosition = new PointF(0.0f, 0.0f); // the connection point in pixel, relative to the center of the brick
 				public float mAngle = 0.0f; // the angle that we should add to connect to this connection point
 				public float mAngleToPrev = 180.0f;
@@ -428,7 +455,7 @@ namespace BlueBrick.MapData
 						while (continueToReadConnexion)
 						{
 							if (xmlReader.Name.Equals("type"))
-								connectionPoint.mType = (ConnectionType)(xmlReader.ReadElementContentAsInt());
+								connectionPoint.mType = readConnectionType(ref xmlReader);
 							else if (xmlReader.Name.Equals("position"))
 								connectionPoint.mPosition = readPointTag(ref xmlReader, "position");
 							else if (xmlReader.Name.Equals("angle"))
@@ -460,6 +487,13 @@ namespace BlueBrick.MapData
 				{
 					xmlReader.Read();
 				}
+			}
+
+			private int readConnectionType(ref System.Xml.XmlReader xmlReader)
+			{
+				//string connectionName = xmlReader.ReadElementContentAsString();
+				//int index = mConnectionTypes.IndexOf(connectionName);
+				return xmlReader.ReadElementContentAsInt();
 			}
 
 			private void readHullTag(ref System.Xml.XmlReader xmlReader)
@@ -731,6 +765,9 @@ namespace BlueBrick.MapData
 		// a dictionary that contains all color names in the current langage of the application
 		private Dictionary<int, string> mColorNames = new Dictionary<int, string>();
 
+		// a list of all the different type of connections
+		private List<ConnectionType> mConnectionTypes = new List<ConnectionType>();
+
 		// a dictionary to find the corresponding BlueBrick part number from the TD part id
 		private Dictionary<int, List<Brick>> mTrackDesignerPartNumberAssociation = new Dictionary<int, List<Brick>>();
 
@@ -766,6 +803,11 @@ namespace BlueBrick.MapData
 			get { return mWereUnknownBricksAdded; }
 			set { mWereUnknownBricksAdded = value; }
 		}
+
+		public List<ConnectionType> ConnectionTypes
+		{
+			get { return mConnectionTypes; }
+		}
 		#endregion
 
 		#region initialisation
@@ -777,6 +819,7 @@ namespace BlueBrick.MapData
 		{
 			mBrickDictionary.Clear();
 			mColorNames.Clear();
+			mConnectionTypes.Clear();
 			mTrackDesignerPartNumberAssociation.Clear();
 			mTrackDesignerRegistryFiles.Clear();
 			mTempRenamedPartList.Clear();
@@ -860,7 +903,103 @@ namespace BlueBrick.MapData
 			}
 			else
 			{
-				string message = Properties.Resources.ErrorMissingPartInfoFile.Replace("&", xmlFileName);
+				string message = Properties.Resources.ErrorMsgMissingColorInfoFile.Replace("&", xmlFileName);
+				MessageBox.Show(null, message,
+					Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
+					MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+			}
+		}
+
+		/// <summary>
+		/// This method should be called when the application start in order to load the information from
+		/// the config xml file. This config file contains the list of connection types.
+		/// </summary>
+		public void loadConnectionTypeInfo()
+		{
+			// clear the color name table and description tables
+			mConnectionTypes.Clear();
+
+			// add the default connection at first in the list
+			mConnectionTypes.Add(new ConnectionType(string.Empty, Color.Black, 1.0f));
+
+			// try to load the xml file
+			string xmlFileName = Application.StartupPath + @"/config/ConnectionTypeList.xml";
+			if (System.IO.File.Exists(xmlFileName))
+			{
+				System.Xml.XmlReaderSettings xmlSettings = new System.Xml.XmlReaderSettings();
+				xmlSettings.ConformanceLevel = System.Xml.ConformanceLevel.Fragment;
+				xmlSettings.IgnoreWhitespace = true;
+				xmlSettings.IgnoreComments = true;
+				xmlSettings.CheckCharacters = false;
+				xmlSettings.CloseInput = true;
+				System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(xmlFileName, xmlSettings);
+
+				// read the first node
+				if (xmlReader.ReadToFollowing("info"))
+				{
+					// read the first descendant
+					xmlReader.Read();
+					bool continueToRead = !xmlReader.EOF;
+					// check if we have an override color fo the selected connection
+					if (continueToRead && xmlReader.Name.Equals("SelectedConnection"))
+					{
+						Color color = Color.Red;
+						if (xmlReader.ReadToDescendant("ColorARGB"))
+						{
+							string hexaNumber = xmlReader.ReadElementContentAsString();
+							color = Color.FromArgb(int.Parse(hexaNumber, System.Globalization.NumberStyles.HexNumber));
+						}
+						float size = 2.5f;
+						if (xmlReader.Name.Equals("Size"))
+							size = xmlReader.ReadElementContentAsFloat();
+						// update the selected connection rendering
+						ConnectionType.sSelectedConnection = new ConnectionType(string.Empty, color, size);
+					}
+					// now parse the list of connection
+					while (continueToRead && !xmlReader.Name.Equals("ConnectionType"))
+					{
+						xmlReader.Read();
+						continueToRead = !xmlReader.EOF;
+					}
+					while (continueToRead)
+					{
+						// read the connection id
+						xmlReader.ReadAttributeValue();
+						string name = xmlReader.GetAttribute(0);
+
+						// read the color
+						Color color = Color.Black;
+						if (xmlReader.ReadToDescendant("ColorARGB"))
+						{
+							string hexaNumber = xmlReader.ReadElementContentAsString();
+							color = Color.FromArgb(int.Parse(hexaNumber, System.Globalization.NumberStyles.HexNumber));
+						}
+
+						// read the size
+						float size = 1.0f;
+						if (xmlReader.Name.Equals("Size"))
+							size = xmlReader.ReadElementContentAsFloat();
+
+						// add the new connection to the list
+						mConnectionTypes.Add(new ConnectionType(name, color, size));
+
+						// read the next connection
+						while (continueToRead && !xmlReader.Name.Equals("ConnectionType"))
+						{
+							xmlReader.ReadToNextSibling("ConnectionType");
+							continueToRead = !xmlReader.EOF;
+						}
+						continueToRead = xmlReader.ReadToNextSibling("ConnectionType");
+						continueToRead &= !xmlReader.EOF;
+					}
+				}
+
+				//close the stream
+				xmlReader.Close();
+			}
+			else
+			{
+				string message = Properties.Resources.ErrorMsgMissingConnectionTypeInfoFile.Replace("&", xmlFileName);
 				MessageBox.Show(null, message,
 					Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
 					MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
@@ -1081,13 +1220,13 @@ namespace BlueBrick.MapData
 			return null;
 		}
 
-		public Brick.ConnectionType getConnexionType(string partNumber, int connexionIndex)
+		public int getConnexionType(string partNumber, int connexionIndex)
 		{
 			Brick brickRef = null;
 			mBrickDictionary.TryGetValue(partNumber, out brickRef);
 			if ((brickRef != null) && (brickRef.mConnectionPoints != null))
 				return brickRef.mConnectionPoints[connexionIndex].mType;
-			return Brick.ConnectionType.BRICK;
+			return ConnectionType.DEFAULT;
 		}
 
 		public Brick.Margin getSnapMargin(string partNumber)

@@ -541,15 +541,6 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can not open the &quot;&amp;&quot; file. Without this file you will not be able to see the color and description of the parts in the part list. Please verify the presence of this file, or reinstall BlueBrick to fix the problem..
-        /// </summary>
-        internal static string ErrorMissingPartInfoFile {
-            get {
-                return ResourceManager.GetString("ErrorMissingPartInfoFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to You have modified some default appearance settings. These settings will be used when you create new maps, but do you want to also apply these settings to your current map?.
         /// </summary>
         internal static string ErrorMsgApplyNewSettingsToAllLayers {
@@ -654,6 +645,24 @@ namespace BlueBrick.Properties {
         internal static string ErrorMsgMapWasModified {
             get {
                 return ResourceManager.GetString("ErrorMsgMapWasModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can not open the &quot;&amp;&quot; file. Without this file you will not be able to see the color and description of the parts in the part list. Please verify the presence of this file, or reinstall BlueBrick to fix the problem..
+        /// </summary>
+        internal static string ErrorMsgMissingColorInfoFile {
+            get {
+                return ResourceManager.GetString("ErrorMsgMissingColorInfoFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can not open the &quot;&amp;&quot; file. Without this file you will not be able to connect the parts together. Please verify the presence of this file, or reinstall BlueBrick to fix the problem..
+        /// </summary>
+        internal static string ErrorMsgMissingConnectionTypeInfoFile {
+            get {
+                return ResourceManager.GetString("ErrorMsgMissingConnectionTypeInfoFile", resourceCulture);
             }
         }
         

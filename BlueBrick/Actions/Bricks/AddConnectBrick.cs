@@ -38,7 +38,7 @@ namespace BlueBrick.Actions.Bricks
 				if (selectedBrick.HasConnectionPoint && mBrick.HasConnectionPoint)
 				{
 					// get the type of the active connexion of the selected brick
-					BrickLibrary.Brick.ConnectionType selectedConnexionType = selectedBrick.ActiveConnectionPoint.mType;
+					int selectedConnexionType = selectedBrick.ActiveConnectionPoint.mType;
 
 					// try to give the correct connexion point, either the specified wanted one, or if
 					// we add the same brick do a special case

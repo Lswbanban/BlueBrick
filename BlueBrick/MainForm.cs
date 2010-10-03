@@ -438,6 +438,7 @@ namespace BlueBrick
 			this.partsTabControl.initPartsTabControl();
 			// and relod the other data for the brick libray (after the brick library is loaded)
 			BrickLibrary.Instance.loadColorInfo();
+			BrickLibrary.Instance.loadConnectionTypeInfo();
 			BrickLibrary.Instance.createEntriesForRenamedParts();
 			BrickLibrary.Instance.loadTrackDesignerRegistryFileList();
 		}

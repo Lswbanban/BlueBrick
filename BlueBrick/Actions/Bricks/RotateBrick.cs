@@ -80,7 +80,7 @@ namespace BlueBrick.Actions.Bricks
 
 							// search the previous connexion point of the same type than the current connexion point
 							// in the worst case, we just find the same connexion point
-							BrickLibrary.Brick.ConnectionType nextConnexionType = BrickLibrary.Brick.ConnectionType.BRICK;
+							int nextConnexionType = BrickLibrary.ConnectionType.DEFAULT;
 							angle = 0.0f;
 							mNewConnexionPointIndex = i;
 

@@ -277,9 +277,6 @@
   <data name="DefaultShow" xml:space="preserve">
     <value>keine Ausstellung</value>
   </data>
-  <data name="ErrorMissingPartInfoFile" xml:space="preserve">
-    <value>Kann die Datei "&amp;" nicht öffnen. Ohne diese Datei können die Farben und Beschreibungen der Teile in der Stückliste nicht richtig dargestellt werden. Für ein korrektes Ergebnis überprüfe bitte die Anwesenheit dieser Datei oder installiere BlueBrick erneut um das problem zu lösen.</value>
-  </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
     <value>Es wurden einige Standard Einstellungen das Aussehen betreffend geändert. Diese Einstellungen werden bei einer neuen Karte verwendet. Sollen diese Einstellungen auch auf die aktuelle Karte angewendet werden?</value>
   </data>
@@ -318,6 +315,9 @@ Die Fehlermeldung lautet:</value>
   </data>
   <data name="ErrorMsgMapWasModified" xml:space="preserve">
     <value>Die aktuelle Karte ist nicht gespeichert. Sollen die Änderungen gespeichert werden?</value>
+  </data>
+  <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
+    <value>Kann die Datei "&amp;" nicht öffnen. Ohne diese Datei können die Farben und Beschreibungen der Teile in der Stückliste nicht richtig dargestellt werden. Für ein korrektes Ergebnis überprüfe bitte die Anwesenheit dieser Datei oder installiere BlueBrick erneut um das problem zu lösen.</value>
   </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
     <value>Einige Teile wurden nicht richtig geladen, da sie nicht in der Teilenbibliothek gefunden wurden. Einige Ersatzbilder wurden an ihrer Stelle eingefügt. Du solltest den ursprünglichen Autor (&amp;) fragen, wo du sie finden kannst.</value>

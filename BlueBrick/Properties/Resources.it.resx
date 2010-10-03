@@ -264,9 +264,6 @@
   <data name="DefaultShow" xml:space="preserve">
     <value>Show sconosciuto</value>
   </data>
-  <data name="ErrorMissingPartInfoFile" xml:space="preserve">
-    <value>Impossibile aprire il file "&amp;". Senza questo file non potrai vedere colori e descrizioni nell'elenco dei pezzi. Verifica la presenza di questo file, oppure reinstalla BlueBrick per risolvere il problema.</value>
-  </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
     <value>Hai modificato alcuni settaggi che riguardano l'aspetto grafico. Questi settaggi verranno usati quando andrai a creare nuove mappe; Vuoi applicare questi settaggi anche alla mappa corrente ?</value>
   </data>
@@ -300,6 +297,9 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
   </data>
   <data name="ErrorMsgMapWasModified" xml:space="preserve">
     <value>La Mappa corrente non è stata salvata. Vuoi salvare le modifiche ?</value>
+  </data>
+  <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
+    <value>Impossibile aprire il file "&amp;". Senza questo file non potrai vedere colori e descrizioni nell'elenco dei pezzi. Verifica la presenza di questo file, oppure reinstalla BlueBrick per risolvere il problema.</value>
   </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
     <value>Alcuni pezzi non sono stati caricati correttamente, perché non esistono nella tua libreria dei pezzi. Per sostituire le immagini sono state inserite immagini di default. Devi chiedere all'autore della mappa (&amp;) dove poterli reperire.</value>

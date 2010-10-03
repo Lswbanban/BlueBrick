@@ -270,9 +270,6 @@
   <data name="DefaultShow" xml:space="preserve">
     <value>Exposition inconnue</value>
   </data>
-  <data name="ErrorMissingPartInfoFile" xml:space="preserve">
-    <value>Impossible d'ouvrir le fichier "&amp;". Sans ce fichier vous ne pourrez pas voir la couleur et la description des pièces dans la liste de pièces. Merci de vérifier la présence de ce fichier, ou de réinstaller BlueBrick pour résoudre le problème.</value>
-  </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
     <value>Vous avez modifié quelques paramètres par défaut concernant l'apparence. Ces paramètres seront utilisés quand vous créerez de nouveaux plans, mais voulez-vous aussi appliquer ces paramètres à votre plan actuel ?</value>
   </data>
@@ -313,6 +310,12 @@ Le message d'erreur est :
   </data>
   <data name="ErrorMsgMapWasModified" xml:space="preserve">
     <value>Votre plan actuel n'est pas sauvegardé. Voulez-vous sauver vos modifications ?</value>
+  </data>
+  <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
+    <value>Impossible d'ouvrir le fichier "&amp;". Sans ce fichier vous ne pourrez pas voir la couleur et la description des pièces dans la liste de pièces. Merci de vérifier la présence de ce fichier, ou de réinstaller BlueBrick pour résoudre le problème.</value>
+  </data>
+  <data name="ErrorMsgMissingConnectionTypeInfoFile" xml:space="preserve">
+    <value>Impossible d'ouvrir le fichier "&amp;". Sans ce fichier vous ne pourrez pas connecter les pièces correctement. Merci de vérifier la présence de ce fichier, ou de réinstaller BlueBrick pour résoudre le problème.</value>
   </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
     <value>Quelques pièces n'ont pas été correctement chargées parce que vous ne les avez pas dans votre librairie. Quelques images par défaut ont été temporairement ajoutées pour remplacer les images originales. Vous devriez demander à l'auteur du plan (&amp;) où vous pouvez les trouver.</value>

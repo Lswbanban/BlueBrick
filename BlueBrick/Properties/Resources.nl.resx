@@ -267,9 +267,6 @@
   <data name="DefaultShow" xml:space="preserve">
     <value>Onbekende Voorstelling</value>
   </data>
-  <data name="ErrorMissingPartInfoFile" xml:space="preserve">
-    <value>Kan het bestand "&amp;" niet openen. Zonder dit bestand kan je de kleur en omschrijving van de onderdelen niet zien in de onderdelenlijst. Controleer of het bestand aanwezig is of herinstalleer BlueBrick.</value>
-  </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
     <value>U hebt de standaard instellingen van het voorkomen aangepast. Deze aanpassingen worden gebruikt als u een nieuwe kaart aanmaakt. Wenst u deze aanpassingen ook op de huidige kaart toe te passen?</value>
   </data>
@@ -310,6 +307,9 @@ The error message is:
   </data>
   <data name="ErrorMsgMapWasModified" xml:space="preserve">
     <value>Uw huidige kaart is niet bewaard. Wilt u de wijzigengen opslaan?</value>
+  </data>
+  <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
+    <value>Kan het bestand "&amp;" niet openen. Zonder dit bestand kan je de kleur en omschrijving van de onderdelen niet zien in de onderdelenlijst. Controleer of het bestand aanwezig is of herinstalleer BlueBrick.</value>
   </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
     <value>Sommige onderdelen zijn niet correct geladen omdat ze niet aanwzig zijn in de onderdelenlijst. Er zijn standaard afbeeldingen toegevoegd om deze te vervangen. U kan de auteur van de kaart (&amp;) vragen waar u deze kan vinden.</value>

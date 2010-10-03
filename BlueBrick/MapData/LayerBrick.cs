@@ -42,7 +42,7 @@ namespace BlueBrick.MapData
 				public Brick mMyBrick = null; // reference to the brick this connection refer to
 				public PointF mPositionInStudWorldCoord = new PointF(0, 0); // the position of the connection point is world coord stud coord.
 				private ConnectionPoint mConnectionLink = null; // link toward this conection point is connected
-				public BrickLibrary.Brick.ConnectionType mType = BrickLibrary.Brick.ConnectionType.BRICK;
+				public int mType = BrickLibrary.ConnectionType.DEFAULT; // 0 if the default brick type (which is a kind of Brick connection)
 
 				/// <summary>
 				/// This default constructor is for the serialization and should not be used in the program
@@ -63,7 +63,7 @@ namespace BlueBrick.MapData
 					get { return (mConnectionLink == null); }
 				}
 
-				public BrickLibrary.Brick.ConnectionType Type
+				public int Type
 				{
 					get { return mType; }
 				}
@@ -286,7 +286,7 @@ namespace BlueBrick.MapData
 					if (mConnectionPoints != null)
 					{
 						foreach (ConnectionPoint connexion in mConnectionPoints)
-							if (connexion.Type != BrickLibrary.Brick.ConnectionType.BRICK)
+							if (connexion.Type != BrickLibrary.ConnectionType.DEFAULT)
 								return true;
 					}
 					return false;
@@ -890,14 +890,12 @@ namespace BlueBrick.MapData
 		}
 
 		[NonSerialized]
-		private static SolidBrush[] sConnexionPointBrush = { new SolidBrush(Color.Red), new SolidBrush(Color.Yellow), new SolidBrush(Color.Cyan), new SolidBrush(Color.BlueViolet), new SolidBrush(Color.LightPink), new SolidBrush(Color.GreenYellow) };
-		private static float[] sConnexionPointRadius = { 2.5f, 1.0f, 1.5f, 1.0f, 1.0f, 1.0f };
 		private static ImageAttributes sImageAttributeForSelection = new ImageAttributes();
 		private static ImageAttributes sImageAttributeForSnapping = new ImageAttributes();
 
 		// list of bricks and connection points
 		private List<Brick> mBricks = new List<Brick>(); // all the bricks in the layer
-		private List<Brick.ConnectionPoint>[] mFreeConnectionPoints = new List<Brick.ConnectionPoint>[(int)BrickLibrary.Brick.ConnectionType.COUNT];
+		private List<Brick.ConnectionPoint>[] mFreeConnectionPoints = new List<Brick.ConnectionPoint>[BrickLibrary.ConnectionType.COUNT];
 
 		//related to selection
 		private Brick mCurrentBrickUnderMouse = null;
@@ -926,7 +924,7 @@ namespace BlueBrick.MapData
 		public LayerBrick()
 		{
 			// create all the free connection list for all the different type of connection
-			for (int i = 0; i < (int)BrickLibrary.Brick.ConnectionType.COUNT; ++i)
+			for (int i = 0; i < (int)BrickLibrary.ConnectionType.COUNT; ++i)
 				mFreeConnectionPoints[i] = new List<Brick.ConnectionPoint>();
 		}
 
@@ -990,9 +988,9 @@ namespace BlueBrick.MapData
 						// the same place. This can happen if the file was save with a first version of the
 						// library, and then we change the library and we change the connexion position.
 						// So the parts are not move, but the links should be broken
-						if ( (connexion.mType == BrickLibrary.Brick.ConnectionType.BRICK) ||
+						if ( (connexion.mType == BrickLibrary.ConnectionType.DEFAULT) ||
 								((connexion.ConnectionLink != null) &&
-									((connexion.ConnectionLink.ConnectionLink.mType == BrickLibrary.Brick.ConnectionType.BRICK) ||
+									((connexion.ConnectionLink.ConnectionLink.mType == BrickLibrary.ConnectionType.DEFAULT) ||
 									 !arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.ConnectionLink.mPositionInStudWorldCoord))) )
 						{
 							// we don't use the disconnect method here, because the disconnect method
@@ -1305,10 +1303,10 @@ namespace BlueBrick.MapData
 			if (!breakLinkOnly)
 			{
 				// build two lists from the free connection points, one in the selection, and one for the others
-				List<Brick.ConnectionPoint>[] connexionPointsInSelection = new List<Brick.ConnectionPoint>[(int)(BrickLibrary.Brick.ConnectionType.COUNT)];
-				List<Brick.ConnectionPoint>[] freeConnexionPoints = new List<Brick.ConnectionPoint>[(int)(BrickLibrary.Brick.ConnectionType.COUNT)];
+				List<Brick.ConnectionPoint>[] connexionPointsInSelection = new List<Brick.ConnectionPoint>[BrickLibrary.ConnectionType.COUNT];
+				List<Brick.ConnectionPoint>[] freeConnexionPoints = new List<Brick.ConnectionPoint>[BrickLibrary.ConnectionType.COUNT];
 
-				for (int i = 0; i < (int)(BrickLibrary.Brick.ConnectionType.COUNT); ++i)
+				for (int i = 0; i < BrickLibrary.ConnectionType.COUNT; ++i)
 				{
 					connexionPointsInSelection[i] = new List<Brick.ConnectionPoint>();
 					freeConnexionPoints[i] = new List<Brick.ConnectionPoint>();
@@ -1320,7 +1318,7 @@ namespace BlueBrick.MapData
 				}
 
 				// now iterate on the free connexion point in selection to search where to connect
-				for (int i = 0; i < (int)(BrickLibrary.Brick.ConnectionType.COUNT); ++i)
+				for (int i = 0; i < BrickLibrary.ConnectionType.COUNT; ++i)
 					foreach (Brick.ConnectionPoint selConnexion in connexionPointsInSelection[i])
 					{
 						// try to find a new connection
@@ -1525,25 +1523,27 @@ namespace BlueBrick.MapData
 				if (brick.HasConnectionPoint && brick.ActiveConnectionPoint.IsFree)
 					brickThatHasActiveConnection = brick;
 			}
-			// now if the brick is valid, draw the red dot
+			// now if the brick is valid, draw the dot of the selected connection
 			if (brickThatHasActiveConnection != null)
 			{
-				float x = (float)((brickThatHasActiveConnection.ActiveConnectionPosition.X - sConnexionPointRadius[0] - areaInStud.Left) * scalePixelPerStud);
-				float y = (float)((brickThatHasActiveConnection.ActiveConnectionPosition.Y - sConnexionPointRadius[0] - areaInStud.Top) * scalePixelPerStud);
-				float size = (float)(sConnexionPointRadius[0] * 2 * scalePixelPerStud);
-				g.FillEllipse(sConnexionPointBrush[0], x, y, size, size);
+				float sizeInStud = BrickLibrary.ConnectionType.sSelectedConnection.Size;
+				float x = (float)((brickThatHasActiveConnection.ActiveConnectionPosition.X - sizeInStud - areaInStud.Left) * scalePixelPerStud);
+				float y = (float)((brickThatHasActiveConnection.ActiveConnectionPosition.Y - sizeInStud - areaInStud.Top) * scalePixelPerStud);
+				float size = (float)(sizeInStud * 2 * scalePixelPerStud);
+				g.FillEllipse(BrickLibrary.ConnectionType.sSelectedConnection.Brush, x, y, size, size);
 			}
 
 			// draw the free connexion points if needed
 			if (BlueBrick.Properties.Settings.Default.DisplayFreeConnexionPoints)
-				for (int i = 1; i < (int)(BrickLibrary.Brick.ConnectionType.COUNT); ++i)
+				for (int i = 1; i < BrickLibrary.ConnectionType.COUNT; ++i)
 					foreach (Brick.ConnectionPoint connexion in mFreeConnectionPoints[i])
 					{
-						float sizeInStud = sConnexionPointRadius[i];
+						BrickLibrary.ConnectionType connectionType = BrickLibrary.Instance.ConnectionTypes[i];
+						float sizeInStud = connectionType.Size;
 						float x = (float)((connexion.mPositionInStudWorldCoord.X - sizeInStud - areaInStud.Left) * scalePixelPerStud);
 						float y = (float)((connexion.mPositionInStudWorldCoord.Y - sizeInStud - areaInStud.Top) * scalePixelPerStud);
 						float sizeInPixel = (float)(sizeInStud * 2 * scalePixelPerStud);
-						g.FillEllipse(sConnexionPointBrush[i], x, y, sizeInPixel, sizeInPixel);
+						g.FillEllipse(connectionType.Brush, x, y, sizeInPixel, sizeInPixel);
 					}
 		}
 		#endregion

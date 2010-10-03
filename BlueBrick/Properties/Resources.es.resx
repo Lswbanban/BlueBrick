@@ -267,9 +267,6 @@
   <data name="DefaultShow" xml:space="preserve">
     <value>Evento desconocido</value>
   </data>
-  <data name="ErrorMissingPartInfoFile" xml:space="preserve">
-    <value>No se puede abrir el archivo "&amp;". Sin este archivo no podrá ver el color y la descripción de las piezas en la lista de piezas. Por favor, compruebe que el archivo existe o reinstale BlueBrick para solucionar este problema.</value>
-  </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
     <value>Modificó algunas ajustes por defecto relacionadas con la apariencia. Estos ajustes se usarán al crear nuevas mapas, pero quiere aplicarlas también al mapa actual?</value>
   </data>
@@ -305,6 +302,9 @@
   </data>
   <data name="ErrorMsgMapWasModified" xml:space="preserve">
     <value>El mapa actual no está guardada. ¿Desea guardar los cambios?</value>
+  </data>
+  <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
+    <value>No se puede abrir el archivo "&amp;". Sin este archivo no podrá ver el color y la descripción de las piezas en la lista de piezas. Por favor, compruebe que el archivo existe o reinstale BlueBrick para solucionar este problema.</value>
   </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
     <value>Algunas piezas no se cargaron correctamente porque no las tiene en la biblioteca de piezas. Algunas imágenes por defecto se han añadido temporalmente para reemplazar las originales. Deberá preguntar al autor del mapa (&amp;) dónde puede encontrarlas.</value>

@@ -280,9 +280,6 @@
   <data name="DefaultShow" xml:space="preserve">
     <value>Unknown Event</value>
   </data>
-  <data name="ErrorMissingPartInfoFile" xml:space="preserve">
-    <value>Can not open the "&amp;" file. Without this file you will not be able to see the color and description of the parts in the part list. Please verify the presence of this file, or reinstall BlueBrick to fix the problem.</value>
-  </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
     <value>You have modified some default appearance settings. These settings will be used when you create new maps, but do you want to also apply these settings to your current map?</value>
   </data>
@@ -318,6 +315,12 @@
   </data>
   <data name="ErrorMsgMapWasModified" xml:space="preserve">
     <value>Your current map is not saved. Do you want to save your modification?</value>
+  </data>
+  <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
+    <value>Can not open the "&amp;" file. Without this file you will not be able to see the color and description of the parts in the part list. Please verify the presence of this file, or reinstall BlueBrick to fix the problem.</value>
+  </data>
+  <data name="ErrorMsgMissingConnectionTypeInfoFile" xml:space="preserve">
+    <value>Can not open the "&amp;" file. Without this file you will not be able to connect the parts together. Please verify the presence of this file, or reinstall BlueBrick to fix the problem.</value>
   </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
     <value>Some parts were not correctly loaded because you don't have them in your parts library. Some default images have been temporarily added to replace the original ones. You should ask the map's author (&amp;) where you can find them.</value>
