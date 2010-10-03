@@ -11,24 +11,28 @@
 		<!-- Place in the name attribute the string id that is used inside the xml files of the parts; so this is a required attribute -->
 		<!-- The color is given in ARGB format in hexadecimal. If you don't specify the color, the black color will be used -->
 		<!-- Specify the size (i.e. radius of the dot) of the connection in Stud. If you don't specify the size, the default size is 1 studs -->
-		<ConnectionType name="1">
+		<ConnectionType name="1"> <!-- Rail -->
 			<ColorARGB>FFFFFF00</ColorARGB>
 			<Size>1</Size>
 		</ConnectionType>
-		<ConnectionType name="2">
+		<ConnectionType name="2"> <!-- Road -->
 			<ColorARGB>FF00FFFF</ColorARGB>
 			<Size>1.5</Size>
 		</ConnectionType>
-		<ConnectionType name="3">
+		<ConnectionType name="3"> <!-- Monorail -->
 			<ColorARGB>FFE22B8A</ColorARGB>
 			<Size>1</Size>
 		</ConnectionType>
-		<ConnectionType name="4">
+		<ConnectionType name="4"> <!-- MONORAIL_SHORT_CURVE -->
 			<ColorARGB>FFC1B6FF</ColorARGB>
 			<Size>1</Size>
 		</ConnectionType>
-		<ConnectionType name="5">
+		<ConnectionType name="5"> <!-- Duplo rail -->
 			<ColorARGB>FF2FFFAD</ColorARGB>
+			<Size>1</Size>
+		</ConnectionType>
+		<ConnectionType name="magnet">
+			<ColorARGB>FFFFA746</ColorARGB>
 			<Size>1</Size>
 		</ConnectionType>
 	</ConnectionTypeList>

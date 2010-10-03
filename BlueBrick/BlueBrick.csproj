@@ -164,6 +164,7 @@
     </Compile>
     <Compile Include="MapData\AStar.cs" />
     <Compile Include="MapData\BrickLibrary.cs" />
+    <Compile Include="MapData\FreeConnectionSet.cs" />
     <Compile Include="MapData\LayerArea.cs" />
     <Compile Include="MapData\LayerBrick.cs" />
     <Compile Include="MapData\LayerText.cs" />

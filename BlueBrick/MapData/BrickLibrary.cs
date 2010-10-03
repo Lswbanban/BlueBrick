@@ -26,7 +26,6 @@ namespace BlueBrick.MapData
 		public class ConnectionType
 		{
 			public const int DEFAULT = 0;
-			public const int COUNT = 6;
 
 			// there's a specific connection type for rendering the selected connections
 			public static ConnectionType sSelectedConnection = new ConnectionType(string.Empty, Color.Red, 2.5f);
@@ -52,14 +51,6 @@ namespace BlueBrick.MapData
 				mBrush = new SolidBrush(color);
 				mSize = size;
 			}
-			//BRICK = 0,
-			//RAIL,
-			//ROAD,
-			//MONORAIL,
-			//MONORAIL_SHORT_CURVE,
-			//DUPLO_RAIL,
-			//// the last one to count
-			//COUNT,
 		};
 
 		public class Brick
@@ -221,7 +212,7 @@ namespace BlueBrick.MapData
 			}
 			#endregion
 
-			public Brick(string partNumber, Image image, string xmlFileName, bool isIgnorableBrick)
+			public Brick(string partNumber, Image image, string xmlFileName, bool isIgnorableBrick, Dictionary<string, int> connectionRemapingDictionary)
 			{
 				// assign the part num and the image
 				mPartNumber = partNumber;
@@ -257,7 +248,7 @@ namespace BlueBrick.MapData
 							else if (xmlReader.Name.Equals("SnapMargin"))
 								readSnapMarginTag(ref xmlReader);
 							else if (xmlReader.Name.Equals("ConnexionList"))
-								readConnexionListTag(ref xmlReader);
+								readConnexionListTag(ref xmlReader, connectionRemapingDictionary);
 							else if (xmlReader.Name.Equals("hull"))
 								readHullTag(ref xmlReader);
 							else if (xmlReader.Name.Equals("TrackDesigner"))
@@ -432,7 +423,7 @@ namespace BlueBrick.MapData
 				}
 			}
 
-			private void readConnexionListTag(ref System.Xml.XmlReader xmlReader)
+			private void readConnexionListTag(ref System.Xml.XmlReader xmlReader, Dictionary<string, int> connectionRemapingDictionary)
 			{
 				if (!xmlReader.IsEmptyElement)
 				{
@@ -455,7 +446,7 @@ namespace BlueBrick.MapData
 						while (continueToReadConnexion)
 						{
 							if (xmlReader.Name.Equals("type"))
-								connectionPoint.mType = readConnectionType(ref xmlReader);
+								connectionPoint.mType = readConnectionType(ref xmlReader, connectionRemapingDictionary);
 							else if (xmlReader.Name.Equals("position"))
 								connectionPoint.mPosition = readPointTag(ref xmlReader, "position");
 							else if (xmlReader.Name.Equals("angle"))
@@ -489,11 +480,12 @@ namespace BlueBrick.MapData
 				}
 			}
 
-			private int readConnectionType(ref System.Xml.XmlReader xmlReader)
+			private int readConnectionType(ref System.Xml.XmlReader xmlReader, Dictionary<string, int> remapingDictionary)
 			{
-				//string connectionName = xmlReader.ReadElementContentAsString();
-				//int index = mConnectionTypes.IndexOf(connectionName);
-				return xmlReader.ReadElementContentAsInt();
+				string connectionName = xmlReader.ReadElementContentAsString();
+				int index = BrickLibrary.ConnectionType.DEFAULT;
+				remapingDictionary.TryGetValue(connectionName, out index);
+				return index;
 			}
 
 			private void readHullTag(ref System.Xml.XmlReader xmlReader)
@@ -767,6 +759,7 @@ namespace BlueBrick.MapData
 
 		// a list of all the different type of connections
 		private List<ConnectionType> mConnectionTypes = new List<ConnectionType>();
+		private Dictionary<string, int> mConnectionTypeRemapingDictionnary = new Dictionary<string, int>();
 
 		// a dictionary to find the corresponding BlueBrick part number from the TD part id
 		private Dictionary<int, List<Brick>> mTrackDesignerPartNumberAssociation = new Dictionary<int, List<Brick>>();
@@ -820,6 +813,7 @@ namespace BlueBrick.MapData
 			mBrickDictionary.Clear();
 			mColorNames.Clear();
 			mConnectionTypes.Clear();
+			mConnectionTypeRemapingDictionnary.Clear();
 			mTrackDesignerPartNumberAssociation.Clear();
 			mTrackDesignerRegistryFiles.Clear();
 			mTempRenamedPartList.Clear();
@@ -918,6 +912,7 @@ namespace BlueBrick.MapData
 		{
 			// clear the color name table and description tables
 			mConnectionTypes.Clear();
+			mConnectionTypeRemapingDictionnary.Clear();
 
 			// add the default connection at first in the list
 			mConnectionTypes.Add(new ConnectionType(string.Empty, Color.Black, 1.0f));
@@ -981,6 +976,7 @@ namespace BlueBrick.MapData
 							size = xmlReader.ReadElementContentAsFloat();
 
 						// add the new connection to the list
+						mConnectionTypeRemapingDictionnary.Add(name, mConnectionTypes.Count);
 						mConnectionTypes.Add(new ConnectionType(name, color, size));
 
 						// read the next connection
@@ -1164,7 +1160,7 @@ namespace BlueBrick.MapData
 			if (heightInStud <= 0)
 				heightInStud = 32;
 			Bitmap unknownImage = createUnknownImage(partNumber, widthInStud, heightInStud);
-			Brick brick = new Brick(partNumber, unknownImage, null, false);
+			Brick brick = new Brick(partNumber, unknownImage, null, false, mConnectionTypeRemapingDictionnary);
 			mBrickDictionary.Add(partNumber, brick);
 			mWereUnknownBricksAdded = true;
 		}
@@ -1181,7 +1177,7 @@ namespace BlueBrick.MapData
 			}
 
 			// instanciate the brick and add it into the dictionnary
-			Brick brick = new Brick(partNumber, image, xmlFileName, isIgnorableBrick);
+			Brick brick = new Brick(partNumber, image, xmlFileName, isIgnorableBrick, mConnectionTypeRemapingDictionnary);
 			// if the creation of the brick launch an exception it will be catched by the calling function.
 			try
 			{

@@ -434,11 +434,12 @@ namespace BlueBrick
 		{
 			// first clear the database for precaution
 			BrickLibrary.Instance.clearAllData();
+			// reload first the connection type info because we will need it for loading the part library
+			BrickLibrary.Instance.loadConnectionTypeInfo();
 			// reinit the parts tab control (that will fill the brick library again)
 			this.partsTabControl.initPartsTabControl();
 			// and relod the other data for the brick libray (after the brick library is loaded)
 			BrickLibrary.Instance.loadColorInfo();
-			BrickLibrary.Instance.loadConnectionTypeInfo();
 			BrickLibrary.Instance.createEntriesForRenamedParts();
 			BrickLibrary.Instance.loadTrackDesignerRegistryFileList();
 		}

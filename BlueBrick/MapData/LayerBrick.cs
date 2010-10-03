@@ -895,7 +895,7 @@ namespace BlueBrick.MapData
 
 		// list of bricks and connection points
 		private List<Brick> mBricks = new List<Brick>(); // all the bricks in the layer
-		private List<Brick.ConnectionPoint>[] mFreeConnectionPoints = new List<Brick.ConnectionPoint>[BrickLibrary.ConnectionType.COUNT];
+		private FreeConnectionSet mFreeConnectionPoints = new FreeConnectionSet();
 
 		//related to selection
 		private Brick mCurrentBrickUnderMouse = null;
@@ -923,9 +923,6 @@ namespace BlueBrick.MapData
 		#region constructor
 		public LayerBrick()
 		{
-			// create all the free connection list for all the different type of connection
-			for (int i = 0; i < (int)BrickLibrary.ConnectionType.COUNT; ++i)
-				mFreeConnectionPoints[i] = new List<Brick.ConnectionPoint>();
 		}
 
 		public override int getNbItems()
@@ -968,8 +965,7 @@ namespace BlueBrick.MapData
 			Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
 
 			// reconstruct the freeConnexion points list by iterating on all the connexion of all the bricks
-			foreach (List<Brick.ConnectionPoint> connexionList in mFreeConnectionPoints)
-				connexionList.Clear();
+			mFreeConnectionPoints.removeAll();
 			foreach (Brick brick in mBricks)
 				if (brick.ConnectionPoints != null) // do not use brick.HasConnectionPoints here
 					foreach (Brick.ConnectionPoint connexion in brick.ConnectionPoints)
@@ -1001,7 +997,7 @@ namespace BlueBrick.MapData
 						}
 						// add the connexion in the free list if it is free
 						if (connexion.IsFree)
-							mFreeConnectionPoints[(int)connexion.Type].Add(connexion);
+							mFreeConnectionPoints.add(connexion);
 					}
 		}
 
@@ -1031,9 +1027,7 @@ namespace BlueBrick.MapData
 		public void addBrick(Brick brickToAdd, int index)
 		{
 			// add its connection points to the free list
-			if (brickToAdd.HasConnectionPoint)
-				foreach (Brick.ConnectionPoint connexion in brickToAdd.ConnectionPoints)
-					mFreeConnectionPoints[(int)connexion.Type].Add(connexion);
+			mFreeConnectionPoints.addAllBrickConnections(brickToAdd);
 
 			// add the brick in the list
 			if (index < 0)
@@ -1052,9 +1046,8 @@ namespace BlueBrick.MapData
 		public void addConnectBrick(Brick brickToAdd)
 		{
 			// add its connection points to the free list
-			if (brickToAdd.HasConnectionPoint)
-				foreach (Brick.ConnectionPoint connexion in brickToAdd.ConnectionPoints)
-					mFreeConnectionPoints[(int)connexion.Type].Add(connexion);
+			mFreeConnectionPoints.addAllBrickConnections(brickToAdd);
+
 			// now make the connection
 			if (mSelectedObjects.Count == 1)
 			{
@@ -1081,9 +1074,9 @@ namespace BlueBrick.MapData
 						connectTwoConnectionPoints(brickToAdd.ActiveConnectionPoint, selectedBrick.ActiveConnectionPoint);
 					foreach (Brick.ConnectionPoint brickConnexion in brickToAdd.ConnectionPoints)
 						if (brickConnexion != brickToAdd.ActiveConnectionPoint)
-							for (int i = 0; i < mFreeConnectionPoints[(int)brickConnexion.Type].Count; ++i)
+							for (int i = 0; i < mFreeConnectionPoints.getListForType(brickConnexion.Type).Count; ++i)
 							{
-								Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints[(int)brickConnexion.Type][i];
+								Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints.getListForType(brickConnexion.Type)[i];
 								if ((freeConnexion != brickConnexion) && (freeConnexion.Type == brickConnexion.Type) && 
 									arePositionsEqual(brickConnexion.mPositionInStudWorldCoord, freeConnexion.mPositionInStudWorldCoord))
 								{
@@ -1144,10 +1137,10 @@ namespace BlueBrick.MapData
 					{
 						if (connexion.ConnectionLink != null)
 						{
-							mFreeConnectionPoints[(int)(connexion.ConnectionLink.Type)].Add(connexion.ConnectionLink);
+							mFreeConnectionPoints.add(connexion.ConnectionLink);
 							connexion.ConnectionLink.ConnectionLink = null;
 						}
-						mFreeConnectionPoints[(int)(connexion.Type)].Remove(connexion);
+						mFreeConnectionPoints.remove(connexion);
 						connexion.ConnectionLink = null;
 					}
 
@@ -1252,8 +1245,8 @@ namespace BlueBrick.MapData
 			{
 				connexion1.ConnectionLink = connexion2;
 				connexion2.ConnectionLink = connexion1;
-				mFreeConnectionPoints[(int)(connexion1.Type)].Remove(connexion1);
-				mFreeConnectionPoints[(int)(connexion2.Type)].Remove(connexion2);
+				mFreeConnectionPoints.remove(connexion1);
+				mFreeConnectionPoints.remove(connexion2);
 				return true;
 			}
 			return false;
@@ -1264,12 +1257,12 @@ namespace BlueBrick.MapData
 			if (connexion1 != null)
 			{
 				connexion1.ConnectionLink = null;
-				mFreeConnectionPoints[(int)(connexion1.Type)].Add(connexion1);
+				mFreeConnectionPoints.add(connexion1);
 			}
 			if (connexion2 != null)
 			{
 				connexion2.ConnectionLink = null;
-				mFreeConnectionPoints[(int)(connexion2.Type)].Add(connexion2);
+				mFreeConnectionPoints.add(connexion2);
 			}
 		}
 
@@ -1303,26 +1296,25 @@ namespace BlueBrick.MapData
 			if (!breakLinkOnly)
 			{
 				// build two lists from the free connection points, one in the selection, and one for the others
-				List<Brick.ConnectionPoint>[] connexionPointsInSelection = new List<Brick.ConnectionPoint>[BrickLibrary.ConnectionType.COUNT];
-				List<Brick.ConnectionPoint>[] freeConnexionPoints = new List<Brick.ConnectionPoint>[BrickLibrary.ConnectionType.COUNT];
+				FreeConnectionSet connexionPointsInSelection = new FreeConnectionSet();
+				FreeConnectionSet freeConnexionPoints = new FreeConnectionSet();
 
-				for (int i = 0; i < BrickLibrary.ConnectionType.COUNT; ++i)
+				int connectionTypeCount = mFreeConnectionPoints.ConnectionTypeCount;
+				for (int i = 0; i < connectionTypeCount; ++i)
 				{
-					connexionPointsInSelection[i] = new List<Brick.ConnectionPoint>();
-					freeConnexionPoints[i] = new List<Brick.ConnectionPoint>();
-					foreach (Brick.ConnectionPoint connexion in mFreeConnectionPoints[i])
+					foreach (Brick.ConnectionPoint connexion in mFreeConnectionPoints.getListForType(i))
 						if (mSelectedObjects.Contains(connexion.mMyBrick))
-							connexionPointsInSelection[i].Add(connexion);
+							connexionPointsInSelection.add(connexion);
 						else
-							freeConnexionPoints[i].Add(connexion);
+							freeConnexionPoints.add(connexion);
 				}
 
 				// now iterate on the free connexion point in selection to search where to connect
-				for (int i = 0; i < BrickLibrary.ConnectionType.COUNT; ++i)
-					foreach (Brick.ConnectionPoint selConnexion in connexionPointsInSelection[i])
+				for (int i = 0; i < connectionTypeCount; ++i)
+					foreach (Brick.ConnectionPoint selConnexion in connexionPointsInSelection.getListForType(i))
 					{
 						// try to find a new connection
-						foreach (Brick.ConnectionPoint freeConnexion in freeConnexionPoints[i])
+						foreach (Brick.ConnectionPoint freeConnexion in freeConnexionPoints.getListForType(i))
 							if (arePositionsEqual(selConnexion.mPositionInStudWorldCoord, freeConnexion.mPositionInStudWorldCoord))
 								connectTwoConnectionPoints(selConnexion, freeConnexion);
 					}
@@ -1340,9 +1332,9 @@ namespace BlueBrick.MapData
 				Brick brick = item as Brick;
 				if (brick.HasConnectionPoint)
 					foreach (Brick.ConnectionPoint brickConnexion in brick.ConnectionPoints)
-						for (int i = 0; i < mFreeConnectionPoints[(int)brickConnexion.Type].Count; ++i)
+						for (int i = 0; i < mFreeConnectionPoints.getListForType(brickConnexion.Type).Count; ++i)
 						{
-							Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints[(int)brickConnexion.Type][i];
+							Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints.getListForType(brickConnexion.Type)[i];
 							if ((freeConnexion.mMyBrick != brick) && arePositionsEqual(freeConnexion.mPositionInStudWorldCoord, brickConnexion.mPositionInStudWorldCoord))
 							{
 								if (connectTwoConnectionPoints(freeConnexion, brickConnexion))
@@ -1362,9 +1354,9 @@ namespace BlueBrick.MapData
 			foreach (Brick brick in mBricks)
 				if (brick.HasConnectionPoint)
 					foreach (Brick.ConnectionPoint brickConnexion in brick.ConnectionPoints)
-						for (int i = 0; i < mFreeConnectionPoints[(int)brickConnexion.Type].Count; ++i)
+						for (int i = 0; i < mFreeConnectionPoints.getListForType(brickConnexion.Type).Count; ++i)
 						{
-							Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints[(int)brickConnexion.Type][i];
+							Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints.getListForType(brickConnexion.Type)[i];
 							if ((freeConnexion.mMyBrick != brick) && arePositionsEqual(freeConnexion.mPositionInStudWorldCoord, brickConnexion.mPositionInStudWorldCoord))
 							{
 								if (connectTwoConnectionPoints(freeConnexion, brickConnexion))
@@ -1535,8 +1527,8 @@ namespace BlueBrick.MapData
 
 			// draw the free connexion points if needed
 			if (BlueBrick.Properties.Settings.Default.DisplayFreeConnexionPoints)
-				for (int i = 1; i < BrickLibrary.ConnectionType.COUNT; ++i)
-					foreach (Brick.ConnectionPoint connexion in mFreeConnectionPoints[i])
+				for (int i = 1; i < mFreeConnectionPoints.ConnectionTypeCount; ++i)
+					foreach (Brick.ConnectionPoint connexion in mFreeConnectionPoints.getListForType(i))
 					{
 						BrickLibrary.ConnectionType connectionType = BrickLibrary.Instance.ConnectionTypes[i];
 						float sizeInStud = connectionType.Size;
@@ -1983,7 +1975,7 @@ namespace BlueBrick.MapData
 							// iterate on all the free connexion point to know if there's a nearest point						
 							float nearestSquareDistance = float.MaxValue;
 							Brick.ConnectionPoint bestFreeConnection = null;
-							foreach (Brick.ConnectionPoint freeConnexion in mFreeConnectionPoints[(int)activeBrickConnexion.Type])
+							foreach (Brick.ConnectionPoint freeConnexion in mFreeConnectionPoints.getListForType(activeBrickConnexion.Type))
 								if (freeConnexion.mMyBrick != mCurrentBrickUnderMouse)
 								{
 									float dx = freeConnexion.mPositionInStudWorldCoord.X - virtualActiveConnectionPosition.X;
