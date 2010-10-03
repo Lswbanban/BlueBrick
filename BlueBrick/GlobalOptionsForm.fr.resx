@@ -129,6 +129,15 @@
   <data name="shortcutKeysTabPage.Text" xml:space="preserve">
     <value>Racourcis clavier</value>
   </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Fichiers récents</value>
+  </data>
+  <data name="clearRecentFilesButton.Text" xml:space="preserve">
+    <value>Vider la liste des fichiers récents</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Nombre de fichiers récents</value>
+  </data>
   <data name="optimComboBox.Items" xml:space="preserve">
     <value>Rapide</value>
   </data>
@@ -193,8 +202,14 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Vitesse de zoom à la molette</value>
   </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Langage</value>
+  </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Si vous changez le language vous devrez redémarrer l'application pour que cela prenne effet.</value>
+    <value>Si vous changez le langage vous devrez redémarrer l'application pour que cela prenne effet.</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Langage</value>
   </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Apparence par défault des zones</value>
@@ -228,6 +243,12 @@
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Couleurs</value>
+  </data>
+  <data name="displayGeneralInfoWatermarkCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 17</value>
+  </data>
+  <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
+    <value>Afficher l'emprunte des Infos Générales</value>
   </data>
   <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 17</value>

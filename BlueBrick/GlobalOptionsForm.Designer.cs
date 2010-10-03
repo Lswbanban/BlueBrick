@@ -82,6 +82,7 @@ namespace BlueBrick
 			this.defaultFontColorPictureBox = new System.Windows.Forms.PictureBox();
 			this.defaultFontButton = new System.Windows.Forms.Button();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.displayGeneralInfoWatermarkCheckBox = new System.Windows.Forms.CheckBox();
 			this.displayFreeConnexionPointCheckBox = new System.Windows.Forms.CheckBox();
 			this.label25 = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
@@ -133,7 +134,6 @@ namespace BlueBrick
 			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.restoreDefaultButton = new System.Windows.Forms.Button();
 			this.fontDialog = new System.Windows.Forms.FontDialog();
-			this.displayGeneralInfoWatermarkCheckBox = new System.Windows.Forms.CheckBox();
 			this.optionsTabControl.SuspendLayout();
 			this.generalTabPage.SuspendLayout();
 			this.groupBox10.SuspendLayout();
@@ -173,45 +173,64 @@ namespace BlueBrick
 			// 
 			// optionsTabControl
 			// 
+			this.optionsTabControl.AccessibleDescription = null;
+			this.optionsTabControl.AccessibleName = null;
+			resources.ApplyResources(this.optionsTabControl, "optionsTabControl");
+			this.optionsTabControl.BackgroundImage = null;
 			this.optionsTabControl.Controls.Add(this.generalTabPage);
 			this.optionsTabControl.Controls.Add(this.appearanceTabPage);
 			this.optionsTabControl.Controls.Add(this.partLibTabPage);
 			this.optionsTabControl.Controls.Add(this.shortcutKeysTabPage);
-			resources.ApplyResources(this.optionsTabControl, "optionsTabControl");
+			this.optionsTabControl.Font = null;
 			this.optionsTabControl.Name = "optionsTabControl";
 			this.optionsTabControl.SelectedIndex = 0;
 			// 
 			// generalTabPage
 			// 
+			this.generalTabPage.AccessibleDescription = null;
+			this.generalTabPage.AccessibleName = null;
+			resources.ApplyResources(this.generalTabPage, "generalTabPage");
+			this.generalTabPage.BackgroundImage = null;
 			this.generalTabPage.Controls.Add(this.groupBox10);
 			this.generalTabPage.Controls.Add(this.groupBox8);
 			this.generalTabPage.Controls.Add(this.groupBox4);
 			this.generalTabPage.Controls.Add(this.groupBox3);
 			this.generalTabPage.Controls.Add(this.groupBox2);
 			this.generalTabPage.Controls.Add(this.groupBox1);
-			resources.ApplyResources(this.generalTabPage, "generalTabPage");
+			this.generalTabPage.Font = null;
 			this.generalTabPage.Name = "generalTabPage";
 			this.generalTabPage.UseVisualStyleBackColor = true;
 			// 
 			// groupBox10
 			// 
+			this.groupBox10.AccessibleDescription = null;
+			this.groupBox10.AccessibleName = null;
+			resources.ApplyResources(this.groupBox10, "groupBox10");
+			this.groupBox10.BackgroundImage = null;
 			this.groupBox10.Controls.Add(this.clearRecentFilesButton);
 			this.groupBox10.Controls.Add(this.RecentFilesNumericUpDown);
 			this.groupBox10.Controls.Add(this.label23);
-			resources.ApplyResources(this.groupBox10, "groupBox10");
+			this.groupBox10.Font = null;
 			this.groupBox10.Name = "groupBox10";
 			this.groupBox10.TabStop = false;
 			// 
 			// clearRecentFilesButton
 			// 
+			this.clearRecentFilesButton.AccessibleDescription = null;
+			this.clearRecentFilesButton.AccessibleName = null;
 			resources.ApplyResources(this.clearRecentFilesButton, "clearRecentFilesButton");
+			this.clearRecentFilesButton.BackgroundImage = null;
+			this.clearRecentFilesButton.Font = null;
 			this.clearRecentFilesButton.Name = "clearRecentFilesButton";
 			this.clearRecentFilesButton.UseVisualStyleBackColor = true;
 			this.clearRecentFilesButton.Click += new System.EventHandler(this.clearRecentFilesButton_Click);
 			// 
 			// RecentFilesNumericUpDown
 			// 
+			this.RecentFilesNumericUpDown.AccessibleDescription = null;
+			this.RecentFilesNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.RecentFilesNumericUpDown, "RecentFilesNumericUpDown");
+			this.RecentFilesNumericUpDown.Font = null;
 			this.RecentFilesNumericUpDown.Maximum = new decimal(new int[] {
             20,
             0,
@@ -231,56 +250,83 @@ namespace BlueBrick
 			// 
 			// label23
 			// 
+			this.label23.AccessibleDescription = null;
+			this.label23.AccessibleName = null;
 			resources.ApplyResources(this.label23, "label23");
+			this.label23.Font = null;
 			this.label23.Name = "label23";
 			// 
 			// groupBox8
 			// 
+			this.groupBox8.AccessibleDescription = null;
+			this.groupBox8.AccessibleName = null;
+			resources.ApplyResources(this.groupBox8, "groupBox8");
+			this.groupBox8.BackgroundImage = null;
 			this.groupBox8.Controls.Add(this.optimComboBox);
 			this.groupBox8.Controls.Add(this.label11);
-			resources.ApplyResources(this.groupBox8, "groupBox8");
+			this.groupBox8.Font = null;
 			this.groupBox8.Name = "groupBox8";
 			this.groupBox8.TabStop = false;
 			// 
 			// optimComboBox
 			// 
+			this.optimComboBox.AccessibleDescription = null;
+			this.optimComboBox.AccessibleName = null;
+			resources.ApplyResources(this.optimComboBox, "optimComboBox");
+			this.optimComboBox.BackgroundImage = null;
+			this.optimComboBox.Font = null;
 			this.optimComboBox.FormattingEnabled = true;
 			this.optimComboBox.Items.AddRange(new object[] {
             resources.GetString("optimComboBox.Items"),
             resources.GetString("optimComboBox.Items1"),
             resources.GetString("optimComboBox.Items2")});
-			resources.ApplyResources(this.optimComboBox, "optimComboBox");
 			this.optimComboBox.Name = "optimComboBox";
 			// 
 			// label11
 			// 
+			this.label11.AccessibleDescription = null;
+			this.label11.AccessibleName = null;
 			resources.ApplyResources(this.label11, "label11");
+			this.label11.Font = null;
 			this.label11.Name = "label11";
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.AccessibleDescription = null;
+			this.groupBox4.AccessibleName = null;
+			resources.ApplyResources(this.groupBox4, "groupBox4");
+			this.groupBox4.BackgroundImage = null;
 			this.groupBox4.Controls.Add(this.label10);
 			this.groupBox4.Controls.Add(this.label9);
 			this.groupBox4.Controls.Add(this.undoDisplayedNumericUpDown);
 			this.groupBox4.Controls.Add(this.label8);
 			this.groupBox4.Controls.Add(this.undoRecordedNumericUpDown);
-			resources.ApplyResources(this.groupBox4, "groupBox4");
+			this.groupBox4.Font = null;
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.TabStop = false;
 			// 
 			// label10
 			// 
+			this.label10.AccessibleDescription = null;
+			this.label10.AccessibleName = null;
 			resources.ApplyResources(this.label10, "label10");
+			this.label10.Font = null;
 			this.label10.Name = "label10";
 			// 
 			// label9
 			// 
+			this.label9.AccessibleDescription = null;
+			this.label9.AccessibleName = null;
 			resources.ApplyResources(this.label9, "label9");
+			this.label9.Font = null;
 			this.label9.Name = "label9";
 			// 
 			// undoDisplayedNumericUpDown
 			// 
+			this.undoDisplayedNumericUpDown.AccessibleDescription = null;
+			this.undoDisplayedNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.undoDisplayedNumericUpDown, "undoDisplayedNumericUpDown");
+			this.undoDisplayedNumericUpDown.Font = null;
 			this.undoDisplayedNumericUpDown.Maximum = new decimal(new int[] {
             50,
             0,
@@ -300,12 +346,18 @@ namespace BlueBrick
 			// 
 			// label8
 			// 
+			this.label8.AccessibleDescription = null;
+			this.label8.AccessibleName = null;
 			resources.ApplyResources(this.label8, "label8");
+			this.label8.Font = null;
 			this.label8.Name = "label8";
 			// 
 			// undoRecordedNumericUpDown
 			// 
+			this.undoRecordedNumericUpDown.AccessibleDescription = null;
+			this.undoRecordedNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.undoRecordedNumericUpDown, "undoRecordedNumericUpDown");
+			this.undoRecordedNumericUpDown.Font = null;
 			this.undoRecordedNumericUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -325,6 +377,10 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.AccessibleDescription = null;
+			this.groupBox3.AccessibleName = null;
+			resources.ApplyResources(this.groupBox3, "groupBox3");
+			this.groupBox3.BackgroundImage = null;
 			this.groupBox3.Controls.Add(this.showComboBox);
 			this.groupBox3.Controls.Add(this.lugComboBox);
 			this.groupBox3.Controls.Add(this.label7);
@@ -333,60 +389,93 @@ namespace BlueBrick
 			this.groupBox3.Controls.Add(this.label5);
 			this.groupBox3.Controls.Add(this.addBrickLayerCheckBox);
 			this.groupBox3.Controls.Add(this.addGridLayerCheckBox);
-			resources.ApplyResources(this.groupBox3, "groupBox3");
+			this.groupBox3.Font = null;
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 
 			// showComboBox
 			// 
-			this.showComboBox.FormattingEnabled = true;
+			this.showComboBox.AccessibleDescription = null;
+			this.showComboBox.AccessibleName = null;
 			resources.ApplyResources(this.showComboBox, "showComboBox");
+			this.showComboBox.BackgroundImage = null;
+			this.showComboBox.Font = null;
+			this.showComboBox.FormattingEnabled = true;
 			this.showComboBox.Name = "showComboBox";
 			// 
 			// lugComboBox
 			// 
-			this.lugComboBox.FormattingEnabled = true;
+			this.lugComboBox.AccessibleDescription = null;
+			this.lugComboBox.AccessibleName = null;
 			resources.ApplyResources(this.lugComboBox, "lugComboBox");
+			this.lugComboBox.BackgroundImage = null;
+			this.lugComboBox.Font = null;
+			this.lugComboBox.FormattingEnabled = true;
 			this.lugComboBox.Name = "lugComboBox";
 			// 
 			// label7
 			// 
+			this.label7.AccessibleDescription = null;
+			this.label7.AccessibleName = null;
 			resources.ApplyResources(this.label7, "label7");
+			this.label7.Font = null;
 			this.label7.Name = "label7";
 			// 
 			// authorTextBox
 			// 
+			this.authorTextBox.AccessibleDescription = null;
+			this.authorTextBox.AccessibleName = null;
 			resources.ApplyResources(this.authorTextBox, "authorTextBox");
+			this.authorTextBox.BackgroundImage = null;
+			this.authorTextBox.Font = null;
 			this.authorTextBox.Name = "authorTextBox";
 			// 
 			// label6
 			// 
+			this.label6.AccessibleDescription = null;
+			this.label6.AccessibleName = null;
 			resources.ApplyResources(this.label6, "label6");
+			this.label6.Font = null;
 			this.label6.Name = "label6";
 			// 
 			// label5
 			// 
+			this.label5.AccessibleDescription = null;
+			this.label5.AccessibleName = null;
 			resources.ApplyResources(this.label5, "label5");
+			this.label5.Font = null;
 			this.label5.Name = "label5";
 			// 
 			// addBrickLayerCheckBox
 			// 
+			this.addBrickLayerCheckBox.AccessibleDescription = null;
+			this.addBrickLayerCheckBox.AccessibleName = null;
 			resources.ApplyResources(this.addBrickLayerCheckBox, "addBrickLayerCheckBox");
+			this.addBrickLayerCheckBox.BackgroundImage = null;
 			this.addBrickLayerCheckBox.Checked = true;
 			this.addBrickLayerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.addBrickLayerCheckBox.Font = null;
 			this.addBrickLayerCheckBox.Name = "addBrickLayerCheckBox";
 			this.addBrickLayerCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// addGridLayerCheckBox
 			// 
+			this.addGridLayerCheckBox.AccessibleDescription = null;
+			this.addGridLayerCheckBox.AccessibleName = null;
 			resources.ApplyResources(this.addGridLayerCheckBox, "addGridLayerCheckBox");
+			this.addGridLayerCheckBox.BackgroundImage = null;
 			this.addGridLayerCheckBox.Checked = true;
 			this.addGridLayerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.addGridLayerCheckBox.Font = null;
 			this.addGridLayerCheckBox.Name = "addGridLayerCheckBox";
 			this.addGridLayerCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.AccessibleDescription = null;
+			this.groupBox2.AccessibleName = null;
+			resources.ApplyResources(this.groupBox2, "groupBox2");
+			this.groupBox2.BackgroundImage = null;
 			this.groupBox2.Controls.Add(this.mouseDuplicateSelKeyComboBox);
 			this.groupBox2.Controls.Add(this.label14);
 			this.groupBox2.Controls.Add(this.mouseMultipleSelKeyComboBox);
@@ -394,122 +483,174 @@ namespace BlueBrick
 			this.groupBox2.Controls.Add(this.mouseZoomCenteredCheckBox);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.mouseZoomSpeedNumericUpDown);
-			resources.ApplyResources(this.groupBox2, "groupBox2");
+			this.groupBox2.Font = null;
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.TabStop = false;
 			// 
 			// mouseDuplicateSelKeyComboBox
 			// 
+			this.mouseDuplicateSelKeyComboBox.AccessibleDescription = null;
+			this.mouseDuplicateSelKeyComboBox.AccessibleName = null;
+			resources.ApplyResources(this.mouseDuplicateSelKeyComboBox, "mouseDuplicateSelKeyComboBox");
+			this.mouseDuplicateSelKeyComboBox.BackgroundImage = null;
 			this.mouseDuplicateSelKeyComboBox.DisplayMember = "ALT";
+			this.mouseDuplicateSelKeyComboBox.Font = null;
 			this.mouseDuplicateSelKeyComboBox.FormattingEnabled = true;
 			this.mouseDuplicateSelKeyComboBox.Items.AddRange(new object[] {
             resources.GetString("mouseDuplicateSelKeyComboBox.Items"),
             resources.GetString("mouseDuplicateSelKeyComboBox.Items1"),
             resources.GetString("mouseDuplicateSelKeyComboBox.Items2")});
-			resources.ApplyResources(this.mouseDuplicateSelKeyComboBox, "mouseDuplicateSelKeyComboBox");
 			this.mouseDuplicateSelKeyComboBox.Name = "mouseDuplicateSelKeyComboBox";
 			this.mouseDuplicateSelKeyComboBox.SelectedIndexChanged += new System.EventHandler(this.mouseDuplicateSelKeyComboBox_SelectedIndexChanged);
 			// 
 			// label14
 			// 
+			this.label14.AccessibleDescription = null;
+			this.label14.AccessibleName = null;
 			resources.ApplyResources(this.label14, "label14");
+			this.label14.Font = null;
 			this.label14.Name = "label14";
 			// 
 			// mouseMultipleSelKeyComboBox
 			// 
+			this.mouseMultipleSelKeyComboBox.AccessibleDescription = null;
+			this.mouseMultipleSelKeyComboBox.AccessibleName = null;
+			resources.ApplyResources(this.mouseMultipleSelKeyComboBox, "mouseMultipleSelKeyComboBox");
+			this.mouseMultipleSelKeyComboBox.BackgroundImage = null;
 			this.mouseMultipleSelKeyComboBox.DisplayMember = "Strg";
+			this.mouseMultipleSelKeyComboBox.Font = null;
 			this.mouseMultipleSelKeyComboBox.FormattingEnabled = true;
 			this.mouseMultipleSelKeyComboBox.Items.AddRange(new object[] {
             resources.GetString("mouseMultipleSelKeyComboBox.Items"),
             resources.GetString("mouseMultipleSelKeyComboBox.Items1"),
             resources.GetString("mouseMultipleSelKeyComboBox.Items2")});
-			resources.ApplyResources(this.mouseMultipleSelKeyComboBox, "mouseMultipleSelKeyComboBox");
 			this.mouseMultipleSelKeyComboBox.Name = "mouseMultipleSelKeyComboBox";
 			this.mouseMultipleSelKeyComboBox.SelectedIndexChanged += new System.EventHandler(this.mouseMultipleSelKeyComboBox_SelectedIndexChanged);
 			// 
 			// label4
 			// 
+			this.label4.AccessibleDescription = null;
+			this.label4.AccessibleName = null;
 			resources.ApplyResources(this.label4, "label4");
+			this.label4.Font = null;
 			this.label4.Name = "label4";
 			// 
 			// mouseZoomCenteredCheckBox
 			// 
+			this.mouseZoomCenteredCheckBox.AccessibleDescription = null;
+			this.mouseZoomCenteredCheckBox.AccessibleName = null;
 			resources.ApplyResources(this.mouseZoomCenteredCheckBox, "mouseZoomCenteredCheckBox");
+			this.mouseZoomCenteredCheckBox.BackgroundImage = null;
 			this.mouseZoomCenteredCheckBox.Checked = true;
 			this.mouseZoomCenteredCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.mouseZoomCenteredCheckBox.Font = null;
 			this.mouseZoomCenteredCheckBox.Name = "mouseZoomCenteredCheckBox";
 			this.mouseZoomCenteredCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// label3
 			// 
+			this.label3.AccessibleDescription = null;
+			this.label3.AccessibleName = null;
 			resources.ApplyResources(this.label3, "label3");
+			this.label3.Font = null;
 			this.label3.Name = "label3";
 			// 
 			// mouseZoomSpeedNumericUpDown
 			// 
-			this.mouseZoomSpeedNumericUpDown.DecimalPlaces = 4;
+			this.mouseZoomSpeedNumericUpDown.AccessibleDescription = null;
+			this.mouseZoomSpeedNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.mouseZoomSpeedNumericUpDown, "mouseZoomSpeedNumericUpDown");
+			this.mouseZoomSpeedNumericUpDown.DecimalPlaces = 4;
+			this.mouseZoomSpeedNumericUpDown.Font = null;
 			this.mouseZoomSpeedNumericUpDown.Name = "mouseZoomSpeedNumericUpDown";
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.AccessibleDescription = null;
+			this.groupBox1.AccessibleName = null;
+			resources.ApplyResources(this.groupBox1, "groupBox1");
+			this.groupBox1.BackgroundImage = null;
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.languageComboBox);
-			resources.ApplyResources(this.groupBox1, "groupBox1");
+			this.groupBox1.Font = null;
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
 			// 
 			// label2
 			// 
+			this.label2.AccessibleDescription = null;
+			this.label2.AccessibleName = null;
 			resources.ApplyResources(this.label2, "label2");
+			this.label2.Font = null;
 			this.label2.Name = "label2";
 			// 
 			// label1
 			// 
+			this.label1.AccessibleDescription = null;
+			this.label1.AccessibleName = null;
 			resources.ApplyResources(this.label1, "label1");
+			this.label1.Font = null;
 			this.label1.Name = "label1";
 			// 
 			// languageComboBox
 			// 
-			this.languageComboBox.FormattingEnabled = true;
+			this.languageComboBox.AccessibleDescription = null;
+			this.languageComboBox.AccessibleName = null;
 			resources.ApplyResources(this.languageComboBox, "languageComboBox");
+			this.languageComboBox.BackgroundImage = null;
+			this.languageComboBox.Font = null;
+			this.languageComboBox.FormattingEnabled = true;
 			this.languageComboBox.Name = "languageComboBox";
 			this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.languageComboBox_SelectedIndexChanged);
 			// 
 			// appearanceTabPage
 			// 
+			this.appearanceTabPage.AccessibleDescription = null;
+			this.appearanceTabPage.AccessibleName = null;
+			resources.ApplyResources(this.appearanceTabPage, "appearanceTabPage");
+			this.appearanceTabPage.BackgroundImage = null;
 			this.appearanceTabPage.Controls.Add(this.groupBox9);
 			this.appearanceTabPage.Controls.Add(this.groupBox7);
 			this.appearanceTabPage.Controls.Add(this.groupBox6);
 			this.appearanceTabPage.Controls.Add(this.groupBox5);
-			resources.ApplyResources(this.appearanceTabPage, "appearanceTabPage");
+			this.appearanceTabPage.Font = null;
 			this.appearanceTabPage.Name = "appearanceTabPage";
 			this.appearanceTabPage.UseVisualStyleBackColor = true;
 			// 
 			// groupBox9
 			// 
+			this.groupBox9.AccessibleDescription = null;
+			this.groupBox9.AccessibleName = null;
+			resources.ApplyResources(this.groupBox9, "groupBox9");
+			this.groupBox9.BackgroundImage = null;
 			this.groupBox9.Controls.Add(this.label27);
 			this.groupBox9.Controls.Add(this.areaCellSizeNumericUpDown);
 			this.groupBox9.Controls.Add(this.label28);
 			this.groupBox9.Controls.Add(this.areaTransparencyNumericUpDown);
-			resources.ApplyResources(this.groupBox9, "groupBox9");
+			this.groupBox9.Font = null;
 			this.groupBox9.Name = "groupBox9";
 			this.groupBox9.TabStop = false;
 			// 
 			// label27
 			// 
+			this.label27.AccessibleDescription = null;
+			this.label27.AccessibleName = null;
 			resources.ApplyResources(this.label27, "label27");
+			this.label27.Font = null;
 			this.label27.Name = "label27";
 			// 
 			// areaCellSizeNumericUpDown
 			// 
+			this.areaCellSizeNumericUpDown.AccessibleDescription = null;
+			this.areaCellSizeNumericUpDown.AccessibleName = null;
+			resources.ApplyResources(this.areaCellSizeNumericUpDown, "areaCellSizeNumericUpDown");
+			this.areaCellSizeNumericUpDown.Font = null;
 			this.areaCellSizeNumericUpDown.Increment = new decimal(new int[] {
             8,
             0,
             0,
             0});
-			resources.ApplyResources(this.areaCellSizeNumericUpDown, "areaCellSizeNumericUpDown");
 			this.areaCellSizeNumericUpDown.Maximum = new decimal(new int[] {
             960,
             0,
@@ -529,12 +670,18 @@ namespace BlueBrick
 			// 
 			// label28
 			// 
+			this.label28.AccessibleDescription = null;
+			this.label28.AccessibleName = null;
 			resources.ApplyResources(this.label28, "label28");
+			this.label28.Font = null;
 			this.label28.Name = "label28";
 			// 
 			// areaTransparencyNumericUpDown
 			// 
+			this.areaTransparencyNumericUpDown.AccessibleDescription = null;
+			this.areaTransparencyNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.areaTransparencyNumericUpDown, "areaTransparencyNumericUpDown");
+			this.areaTransparencyNumericUpDown.Font = null;
 			this.areaTransparencyNumericUpDown.Name = "areaTransparencyNumericUpDown";
 			this.areaTransparencyNumericUpDown.Value = new decimal(new int[] {
             30,
@@ -544,22 +691,32 @@ namespace BlueBrick
 			// 
 			// groupBox7
 			// 
+			this.groupBox7.AccessibleDescription = null;
+			this.groupBox7.AccessibleName = null;
+			resources.ApplyResources(this.groupBox7, "groupBox7");
+			this.groupBox7.BackgroundImage = null;
 			this.groupBox7.Controls.Add(this.label22);
 			this.groupBox7.Controls.Add(this.gridSubdivisionNumericUpDown);
 			this.groupBox7.Controls.Add(this.label21);
 			this.groupBox7.Controls.Add(this.gridSizeNumericUpDown);
-			resources.ApplyResources(this.groupBox7, "groupBox7");
+			this.groupBox7.Font = null;
 			this.groupBox7.Name = "groupBox7";
 			this.groupBox7.TabStop = false;
 			// 
 			// label22
 			// 
+			this.label22.AccessibleDescription = null;
+			this.label22.AccessibleName = null;
 			resources.ApplyResources(this.label22, "label22");
+			this.label22.Font = null;
 			this.label22.Name = "label22";
 			// 
 			// gridSubdivisionNumericUpDown
 			// 
+			this.gridSubdivisionNumericUpDown.AccessibleDescription = null;
+			this.gridSubdivisionNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.gridSubdivisionNumericUpDown, "gridSubdivisionNumericUpDown");
+			this.gridSubdivisionNumericUpDown.Font = null;
 			this.gridSubdivisionNumericUpDown.Maximum = new decimal(new int[] {
             32,
             0,
@@ -569,17 +726,23 @@ namespace BlueBrick
 			// 
 			// label21
 			// 
+			this.label21.AccessibleDescription = null;
+			this.label21.AccessibleName = null;
 			resources.ApplyResources(this.label21, "label21");
+			this.label21.Font = null;
 			this.label21.Name = "label21";
 			// 
 			// gridSizeNumericUpDown
 			// 
+			this.gridSizeNumericUpDown.AccessibleDescription = null;
+			this.gridSizeNumericUpDown.AccessibleName = null;
+			resources.ApplyResources(this.gridSizeNumericUpDown, "gridSizeNumericUpDown");
+			this.gridSizeNumericUpDown.Font = null;
 			this.gridSizeNumericUpDown.Increment = new decimal(new int[] {
             8,
             0,
             0,
             0});
-			resources.ApplyResources(this.gridSizeNumericUpDown, "gridSizeNumericUpDown");
 			this.gridSizeNumericUpDown.Maximum = new decimal(new int[] {
             384,
             0,
@@ -599,44 +762,67 @@ namespace BlueBrick
 			// 
 			// groupBox6
 			// 
+			this.groupBox6.AccessibleDescription = null;
+			this.groupBox6.AccessibleName = null;
+			resources.ApplyResources(this.groupBox6, "groupBox6");
+			this.groupBox6.BackgroundImage = null;
 			this.groupBox6.Controls.Add(this.defaultFontNameLabel);
 			this.groupBox6.Controls.Add(this.defaultFontColorLabel);
 			this.groupBox6.Controls.Add(this.defaultFontColorPictureBox);
 			this.groupBox6.Controls.Add(this.defaultFontButton);
-			resources.ApplyResources(this.groupBox6, "groupBox6");
+			this.groupBox6.Font = null;
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.TabStop = false;
 			// 
 			// defaultFontNameLabel
 			// 
+			this.defaultFontNameLabel.AccessibleDescription = null;
+			this.defaultFontNameLabel.AccessibleName = null;
+			resources.ApplyResources(this.defaultFontNameLabel, "defaultFontNameLabel");
 			this.defaultFontNameLabel.BackColor = System.Drawing.SystemColors.InactiveBorder;
 			this.defaultFontNameLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			resources.ApplyResources(this.defaultFontNameLabel, "defaultFontNameLabel");
+			this.defaultFontNameLabel.Font = null;
 			this.defaultFontNameLabel.Name = "defaultFontNameLabel";
 			// 
 			// defaultFontColorLabel
 			// 
+			this.defaultFontColorLabel.AccessibleDescription = null;
+			this.defaultFontColorLabel.AccessibleName = null;
 			resources.ApplyResources(this.defaultFontColorLabel, "defaultFontColorLabel");
+			this.defaultFontColorLabel.Font = null;
 			this.defaultFontColorLabel.Name = "defaultFontColorLabel";
 			// 
 			// defaultFontColorPictureBox
 			// 
-			this.defaultFontColorPictureBox.BackColor = System.Drawing.Color.White;
-			this.defaultFontColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.defaultFontColorPictureBox.AccessibleDescription = null;
+			this.defaultFontColorPictureBox.AccessibleName = null;
 			resources.ApplyResources(this.defaultFontColorPictureBox, "defaultFontColorPictureBox");
+			this.defaultFontColorPictureBox.BackColor = System.Drawing.Color.White;
+			this.defaultFontColorPictureBox.BackgroundImage = null;
+			this.defaultFontColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.defaultFontColorPictureBox.Font = null;
+			this.defaultFontColorPictureBox.ImageLocation = null;
 			this.defaultFontColorPictureBox.Name = "defaultFontColorPictureBox";
 			this.defaultFontColorPictureBox.TabStop = false;
 			this.defaultFontColorPictureBox.Click += new System.EventHandler(this.defaultFontColorPictureBox_Click);
 			// 
 			// defaultFontButton
 			// 
+			this.defaultFontButton.AccessibleDescription = null;
+			this.defaultFontButton.AccessibleName = null;
 			resources.ApplyResources(this.defaultFontButton, "defaultFontButton");
+			this.defaultFontButton.BackgroundImage = null;
+			this.defaultFontButton.Font = null;
 			this.defaultFontButton.Name = "defaultFontButton";
 			this.defaultFontButton.UseVisualStyleBackColor = true;
 			this.defaultFontButton.Click += new System.EventHandler(this.defaultFontButton_Click);
 			// 
 			// groupBox5
 			// 
+			this.groupBox5.AccessibleDescription = null;
+			this.groupBox5.AccessibleName = null;
+			resources.ApplyResources(this.groupBox5, "groupBox5");
+			this.groupBox5.BackgroundImage = null;
 			this.groupBox5.Controls.Add(this.displayGeneralInfoWatermarkCheckBox);
 			this.groupBox5.Controls.Add(this.displayFreeConnexionPointCheckBox);
 			this.groupBox5.Controls.Add(this.label25);
@@ -654,220 +840,350 @@ namespace BlueBrick
 			this.groupBox5.Controls.Add(this.label16);
 			this.groupBox5.Controls.Add(this.label15);
 			this.groupBox5.Controls.Add(this.colorSchemeComboBox);
-			resources.ApplyResources(this.groupBox5, "groupBox5");
+			this.groupBox5.Font = null;
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.TabStop = false;
 			// 
+			// displayGeneralInfoWatermarkCheckBox
+			// 
+			this.displayGeneralInfoWatermarkCheckBox.AccessibleDescription = null;
+			this.displayGeneralInfoWatermarkCheckBox.AccessibleName = null;
+			resources.ApplyResources(this.displayGeneralInfoWatermarkCheckBox, "displayGeneralInfoWatermarkCheckBox");
+			this.displayGeneralInfoWatermarkCheckBox.BackgroundImage = null;
+			this.displayGeneralInfoWatermarkCheckBox.Checked = true;
+			this.displayGeneralInfoWatermarkCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.displayGeneralInfoWatermarkCheckBox.Font = null;
+			this.displayGeneralInfoWatermarkCheckBox.Name = "displayGeneralInfoWatermarkCheckBox";
+			this.displayGeneralInfoWatermarkCheckBox.UseVisualStyleBackColor = true;
+			// 
 			// displayFreeConnexionPointCheckBox
 			// 
+			this.displayFreeConnexionPointCheckBox.AccessibleDescription = null;
+			this.displayFreeConnexionPointCheckBox.AccessibleName = null;
 			resources.ApplyResources(this.displayFreeConnexionPointCheckBox, "displayFreeConnexionPointCheckBox");
+			this.displayFreeConnexionPointCheckBox.BackgroundImage = null;
 			this.displayFreeConnexionPointCheckBox.Checked = true;
 			this.displayFreeConnexionPointCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.displayFreeConnexionPointCheckBox.Font = null;
 			this.displayFreeConnexionPointCheckBox.Name = "displayFreeConnexionPointCheckBox";
 			this.displayFreeConnexionPointCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// label25
 			// 
+			this.label25.AccessibleDescription = null;
+			this.label25.AccessibleName = null;
 			resources.ApplyResources(this.label25, "label25");
+			this.label25.Font = null;
 			this.label25.Name = "label25";
 			// 
 			// label24
 			// 
+			this.label24.AccessibleDescription = null;
+			this.label24.AccessibleName = null;
 			resources.ApplyResources(this.label24, "label24");
+			this.label24.Font = null;
 			this.label24.Name = "label24";
 			// 
 			// GammaForSnappingNumericUpDown
 			// 
+			this.GammaForSnappingNumericUpDown.AccessibleDescription = null;
+			this.GammaForSnappingNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.GammaForSnappingNumericUpDown, "GammaForSnappingNumericUpDown");
+			this.GammaForSnappingNumericUpDown.Font = null;
 			this.GammaForSnappingNumericUpDown.Name = "GammaForSnappingNumericUpDown";
 			this.GammaForSnappingNumericUpDown.ValueChanged += new System.EventHandler(this.GammaForSnappingNumericUpDown_ValueChanged);
 			// 
 			// GammaForSelectionNumericUpDown
 			// 
+			this.GammaForSelectionNumericUpDown.AccessibleDescription = null;
+			this.GammaForSelectionNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.GammaForSelectionNumericUpDown, "GammaForSelectionNumericUpDown");
+			this.GammaForSelectionNumericUpDown.Font = null;
 			this.GammaForSelectionNumericUpDown.Name = "GammaForSelectionNumericUpDown";
 			this.GammaForSelectionNumericUpDown.ValueChanged += new System.EventHandler(this.GammaForSelectionNumericUpDown_ValueChanged);
 			// 
 			// label20
 			// 
+			this.label20.AccessibleDescription = null;
+			this.label20.AccessibleName = null;
 			resources.ApplyResources(this.label20, "label20");
+			this.label20.Font = null;
 			this.label20.Name = "label20";
 			// 
 			// samplePictureBox
 			// 
-			this.samplePictureBox.BackColor = System.Drawing.Color.White;
-			this.samplePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.samplePictureBox.AccessibleDescription = null;
+			this.samplePictureBox.AccessibleName = null;
 			resources.ApplyResources(this.samplePictureBox, "samplePictureBox");
+			this.samplePictureBox.BackColor = System.Drawing.Color.White;
+			this.samplePictureBox.BackgroundImage = null;
+			this.samplePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.samplePictureBox.Font = null;
+			this.samplePictureBox.ImageLocation = null;
 			this.samplePictureBox.Name = "samplePictureBox";
 			this.samplePictureBox.TabStop = false;
 			// 
 			// label19
 			// 
+			this.label19.AccessibleDescription = null;
+			this.label19.AccessibleName = null;
 			resources.ApplyResources(this.label19, "label19");
+			this.label19.Font = null;
 			this.label19.Name = "label19";
 			// 
 			// subGridColorPictureBox
 			// 
-			this.subGridColorPictureBox.BackColor = System.Drawing.Color.White;
-			this.subGridColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.subGridColorPictureBox.AccessibleDescription = null;
+			this.subGridColorPictureBox.AccessibleName = null;
 			resources.ApplyResources(this.subGridColorPictureBox, "subGridColorPictureBox");
+			this.subGridColorPictureBox.BackColor = System.Drawing.Color.White;
+			this.subGridColorPictureBox.BackgroundImage = null;
+			this.subGridColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.subGridColorPictureBox.Font = null;
+			this.subGridColorPictureBox.ImageLocation = null;
 			this.subGridColorPictureBox.Name = "subGridColorPictureBox";
 			this.subGridColorPictureBox.TabStop = false;
 			this.subGridColorPictureBox.Click += new System.EventHandler(this.subGridColorPictureBox_Click);
 			// 
 			// label18
 			// 
+			this.label18.AccessibleDescription = null;
+			this.label18.AccessibleName = null;
 			resources.ApplyResources(this.label18, "label18");
+			this.label18.Font = null;
 			this.label18.Name = "label18";
 			// 
 			// gridColorPictureBox
 			// 
-			this.gridColorPictureBox.BackColor = System.Drawing.Color.White;
-			this.gridColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.gridColorPictureBox.AccessibleDescription = null;
+			this.gridColorPictureBox.AccessibleName = null;
 			resources.ApplyResources(this.gridColorPictureBox, "gridColorPictureBox");
+			this.gridColorPictureBox.BackColor = System.Drawing.Color.White;
+			this.gridColorPictureBox.BackgroundImage = null;
+			this.gridColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.gridColorPictureBox.Font = null;
+			this.gridColorPictureBox.ImageLocation = null;
 			this.gridColorPictureBox.Name = "gridColorPictureBox";
 			this.gridColorPictureBox.TabStop = false;
 			this.gridColorPictureBox.Click += new System.EventHandler(this.gridColorPictureBox_Click);
 			// 
 			// label17
 			// 
+			this.label17.AccessibleDescription = null;
+			this.label17.AccessibleName = null;
 			resources.ApplyResources(this.label17, "label17");
+			this.label17.Font = null;
 			this.label17.Name = "label17";
 			// 
 			// backgroundColorPictureBox
 			// 
-			this.backgroundColorPictureBox.BackColor = System.Drawing.Color.White;
-			this.backgroundColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.backgroundColorPictureBox.AccessibleDescription = null;
+			this.backgroundColorPictureBox.AccessibleName = null;
 			resources.ApplyResources(this.backgroundColorPictureBox, "backgroundColorPictureBox");
+			this.backgroundColorPictureBox.BackColor = System.Drawing.Color.White;
+			this.backgroundColorPictureBox.BackgroundImage = null;
+			this.backgroundColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.backgroundColorPictureBox.Font = null;
+			this.backgroundColorPictureBox.ImageLocation = null;
 			this.backgroundColorPictureBox.Name = "backgroundColorPictureBox";
 			this.backgroundColorPictureBox.TabStop = false;
 			this.backgroundColorPictureBox.Click += new System.EventHandler(this.backgroundColorPictureBox_Click);
 			// 
 			// label16
 			// 
+			this.label16.AccessibleDescription = null;
+			this.label16.AccessibleName = null;
 			resources.ApplyResources(this.label16, "label16");
+			this.label16.Font = null;
 			this.label16.Name = "label16";
 			// 
 			// label15
 			// 
+			this.label15.AccessibleDescription = null;
+			this.label15.AccessibleName = null;
 			resources.ApplyResources(this.label15, "label15");
+			this.label15.Font = null;
 			this.label15.Name = "label15";
 			// 
 			// colorSchemeComboBox
 			// 
-			this.colorSchemeComboBox.FormattingEnabled = true;
+			this.colorSchemeComboBox.AccessibleDescription = null;
+			this.colorSchemeComboBox.AccessibleName = null;
 			resources.ApplyResources(this.colorSchemeComboBox, "colorSchemeComboBox");
+			this.colorSchemeComboBox.BackgroundImage = null;
+			this.colorSchemeComboBox.Font = null;
+			this.colorSchemeComboBox.FormattingEnabled = true;
 			this.colorSchemeComboBox.Name = "colorSchemeComboBox";
 			this.colorSchemeComboBox.SelectedIndexChanged += new System.EventHandler(this.colorSchemeComboBox_SelectedIndexChanged);
 			// 
 			// partLibTabPage
 			// 
+			this.partLibTabPage.AccessibleDescription = null;
+			this.partLibTabPage.AccessibleName = null;
+			resources.ApplyResources(this.partLibTabPage, "partLibTabPage");
+			this.partLibTabPage.BackgroundImage = null;
 			this.partLibTabPage.Controls.Add(this.groupBox13);
 			this.partLibTabPage.Controls.Add(this.groupBox12);
 			this.partLibTabPage.Controls.Add(this.groupBox11);
-			resources.ApplyResources(this.partLibTabPage, "partLibTabPage");
+			this.partLibTabPage.Font = null;
 			this.partLibTabPage.Name = "partLibTabPage";
 			this.partLibTabPage.UseVisualStyleBackColor = true;
 			// 
 			// groupBox13
 			// 
+			this.groupBox13.AccessibleDescription = null;
+			this.groupBox13.AccessibleName = null;
+			resources.ApplyResources(this.groupBox13, "groupBox13");
+			this.groupBox13.BackgroundImage = null;
 			this.groupBox13.Controls.Add(this.label26);
 			this.groupBox13.Controls.Add(this.PartLibBackColorPictureBox);
-			resources.ApplyResources(this.groupBox13, "groupBox13");
+			this.groupBox13.Font = null;
 			this.groupBox13.Name = "groupBox13";
 			this.groupBox13.TabStop = false;
 			// 
 			// label26
 			// 
+			this.label26.AccessibleDescription = null;
+			this.label26.AccessibleName = null;
 			resources.ApplyResources(this.label26, "label26");
+			this.label26.Font = null;
 			this.label26.Name = "label26";
 			// 
 			// PartLibBackColorPictureBox
 			// 
-			this.PartLibBackColorPictureBox.BackColor = System.Drawing.Color.White;
-			this.PartLibBackColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.PartLibBackColorPictureBox.AccessibleDescription = null;
+			this.PartLibBackColorPictureBox.AccessibleName = null;
 			resources.ApplyResources(this.PartLibBackColorPictureBox, "PartLibBackColorPictureBox");
+			this.PartLibBackColorPictureBox.BackColor = System.Drawing.Color.White;
+			this.PartLibBackColorPictureBox.BackgroundImage = null;
+			this.PartLibBackColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.PartLibBackColorPictureBox.Font = null;
+			this.PartLibBackColorPictureBox.ImageLocation = null;
 			this.PartLibBackColorPictureBox.Name = "PartLibBackColorPictureBox";
 			this.PartLibBackColorPictureBox.TabStop = false;
 			this.PartLibBackColorPictureBox.Click += new System.EventHandler(this.PartLibBackColorPictureBox_Click);
 			// 
 			// groupBox12
 			// 
+			this.groupBox12.AccessibleDescription = null;
+			this.groupBox12.AccessibleName = null;
+			resources.ApplyResources(this.groupBox12, "groupBox12");
+			this.groupBox12.BackgroundImage = null;
 			this.groupBox12.Controls.Add(this.displayPartDescriptionCheckBox);
 			this.groupBox12.Controls.Add(this.displayPartColorCheckBox);
 			this.groupBox12.Controls.Add(this.displayPartIDCheckBox);
 			this.groupBox12.Controls.Add(this.displayBubbleInfoCheckBox);
-			resources.ApplyResources(this.groupBox12, "groupBox12");
+			this.groupBox12.Font = null;
 			this.groupBox12.Name = "groupBox12";
 			this.groupBox12.TabStop = false;
 			// 
 			// displayPartDescriptionCheckBox
 			// 
+			this.displayPartDescriptionCheckBox.AccessibleDescription = null;
+			this.displayPartDescriptionCheckBox.AccessibleName = null;
 			resources.ApplyResources(this.displayPartDescriptionCheckBox, "displayPartDescriptionCheckBox");
+			this.displayPartDescriptionCheckBox.BackgroundImage = null;
 			this.displayPartDescriptionCheckBox.Checked = true;
 			this.displayPartDescriptionCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.displayPartDescriptionCheckBox.Font = null;
 			this.displayPartDescriptionCheckBox.Name = "displayPartDescriptionCheckBox";
 			this.displayPartDescriptionCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// displayPartColorCheckBox
 			// 
+			this.displayPartColorCheckBox.AccessibleDescription = null;
+			this.displayPartColorCheckBox.AccessibleName = null;
 			resources.ApplyResources(this.displayPartColorCheckBox, "displayPartColorCheckBox");
+			this.displayPartColorCheckBox.BackgroundImage = null;
+			this.displayPartColorCheckBox.Font = null;
 			this.displayPartColorCheckBox.Name = "displayPartColorCheckBox";
 			this.displayPartColorCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// displayPartIDCheckBox
 			// 
+			this.displayPartIDCheckBox.AccessibleDescription = null;
+			this.displayPartIDCheckBox.AccessibleName = null;
 			resources.ApplyResources(this.displayPartIDCheckBox, "displayPartIDCheckBox");
+			this.displayPartIDCheckBox.BackgroundImage = null;
+			this.displayPartIDCheckBox.Font = null;
 			this.displayPartIDCheckBox.Name = "displayPartIDCheckBox";
 			this.displayPartIDCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// displayBubbleInfoCheckBox
 			// 
+			this.displayBubbleInfoCheckBox.AccessibleDescription = null;
+			this.displayBubbleInfoCheckBox.AccessibleName = null;
 			resources.ApplyResources(this.displayBubbleInfoCheckBox, "displayBubbleInfoCheckBox");
+			this.displayBubbleInfoCheckBox.BackgroundImage = null;
+			this.displayBubbleInfoCheckBox.Font = null;
 			this.displayBubbleInfoCheckBox.Name = "displayBubbleInfoCheckBox";
 			this.displayBubbleInfoCheckBox.UseVisualStyleBackColor = true;
 			this.displayBubbleInfoCheckBox.CheckedChanged += new System.EventHandler(this.displayBubbleInfoCheckBox_CheckedChanged);
 			// 
 			// groupBox11
 			// 
+			this.groupBox11.AccessibleDescription = null;
+			this.groupBox11.AccessibleName = null;
+			resources.ApplyResources(this.groupBox11, "groupBox11");
+			this.groupBox11.BackgroundImage = null;
 			this.groupBox11.Controls.Add(this.alphabeticOrderButton);
 			this.groupBox11.Controls.Add(this.PartLibTabListBox);
 			this.groupBox11.Controls.Add(this.MoveDownButton);
 			this.groupBox11.Controls.Add(this.MoveUpButton);
-			resources.ApplyResources(this.groupBox11, "groupBox11");
+			this.groupBox11.Font = null;
 			this.groupBox11.Name = "groupBox11";
 			this.groupBox11.TabStop = false;
 			// 
 			// alphabeticOrderButton
 			// 
+			this.alphabeticOrderButton.AccessibleDescription = null;
+			this.alphabeticOrderButton.AccessibleName = null;
 			resources.ApplyResources(this.alphabeticOrderButton, "alphabeticOrderButton");
+			this.alphabeticOrderButton.BackgroundImage = null;
+			this.alphabeticOrderButton.Font = null;
 			this.alphabeticOrderButton.Name = "alphabeticOrderButton";
 			this.alphabeticOrderButton.UseVisualStyleBackColor = true;
 			this.alphabeticOrderButton.Click += new System.EventHandler(this.alphabeticOrderButton_Click);
 			// 
 			// PartLibTabListBox
 			// 
-			this.PartLibTabListBox.FormattingEnabled = true;
+			this.PartLibTabListBox.AccessibleDescription = null;
+			this.PartLibTabListBox.AccessibleName = null;
 			resources.ApplyResources(this.PartLibTabListBox, "PartLibTabListBox");
+			this.PartLibTabListBox.BackgroundImage = null;
+			this.PartLibTabListBox.Font = null;
+			this.PartLibTabListBox.FormattingEnabled = true;
 			this.PartLibTabListBox.Name = "PartLibTabListBox";
 			this.PartLibTabListBox.SelectedValueChanged += new System.EventHandler(this.PartLibTabListBox_SelectedValueChanged);
 			// 
 			// MoveDownButton
 			// 
+			this.MoveDownButton.AccessibleDescription = null;
+			this.MoveDownButton.AccessibleName = null;
 			resources.ApplyResources(this.MoveDownButton, "MoveDownButton");
+			this.MoveDownButton.BackgroundImage = null;
+			this.MoveDownButton.Font = null;
 			this.MoveDownButton.Name = "MoveDownButton";
 			this.MoveDownButton.UseVisualStyleBackColor = true;
 			this.MoveDownButton.Click += new System.EventHandler(this.MoveDownButton_Click);
 			// 
 			// MoveUpButton
 			// 
+			this.MoveUpButton.AccessibleDescription = null;
+			this.MoveUpButton.AccessibleName = null;
 			resources.ApplyResources(this.MoveUpButton, "MoveUpButton");
+			this.MoveUpButton.BackgroundImage = null;
+			this.MoveUpButton.Font = null;
 			this.MoveUpButton.Name = "MoveUpButton";
 			this.MoveUpButton.UseVisualStyleBackColor = true;
 			this.MoveUpButton.Click += new System.EventHandler(this.MoveUpButton_Click);
 			// 
 			// shortcutKeysTabPage
 			// 
+			this.shortcutKeysTabPage.AccessibleDescription = null;
+			this.shortcutKeysTabPage.AccessibleName = null;
+			resources.ApplyResources(this.shortcutKeysTabPage, "shortcutKeysTabPage");
+			this.shortcutKeysTabPage.BackgroundImage = null;
 			this.shortcutKeysTabPage.Controls.Add(this.comboBoxConnexion);
 			this.shortcutKeysTabPage.Controls.Add(this.comboBoxPartNum);
 			this.shortcutKeysTabPage.Controls.Add(this.label13);
@@ -878,60 +1194,87 @@ namespace BlueBrick
 			this.shortcutKeysTabPage.Controls.Add(this.comboBoxKey);
 			this.shortcutKeysTabPage.Controls.Add(this.label12);
 			this.shortcutKeysTabPage.Controls.Add(this.listViewShortcutKeys);
-			resources.ApplyResources(this.shortcutKeysTabPage, "shortcutKeysTabPage");
+			this.shortcutKeysTabPage.Font = null;
 			this.shortcutKeysTabPage.Name = "shortcutKeysTabPage";
 			this.shortcutKeysTabPage.UseVisualStyleBackColor = true;
 			// 
 			// comboBoxConnexion
 			// 
+			this.comboBoxConnexion.AccessibleDescription = null;
+			this.comboBoxConnexion.AccessibleName = null;
+			resources.ApplyResources(this.comboBoxConnexion, "comboBoxConnexion");
 			this.comboBoxConnexion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.comboBoxConnexion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.comboBoxConnexion.BackgroundImage = null;
 			this.comboBoxConnexion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxConnexion.Font = null;
 			this.comboBoxConnexion.FormattingEnabled = true;
-			resources.ApplyResources(this.comboBoxConnexion, "comboBoxConnexion");
 			this.comboBoxConnexion.Name = "comboBoxConnexion";
 			this.comboBoxConnexion.Sorted = true;
 			// 
 			// comboBoxPartNum
 			// 
+			this.comboBoxPartNum.AccessibleDescription = null;
+			this.comboBoxPartNum.AccessibleName = null;
+			resources.ApplyResources(this.comboBoxPartNum, "comboBoxPartNum");
 			this.comboBoxPartNum.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.comboBoxPartNum.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.comboBoxPartNum.BackgroundImage = null;
 			this.comboBoxPartNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxPartNum.Font = null;
 			this.comboBoxPartNum.FormattingEnabled = true;
-			resources.ApplyResources(this.comboBoxPartNum, "comboBoxPartNum");
 			this.comboBoxPartNum.Name = "comboBoxPartNum";
 			this.comboBoxPartNum.Sorted = true;
 			this.comboBoxPartNum.SelectedIndexChanged += new System.EventHandler(this.comboBoxPartNum_SelectedIndexChanged);
 			// 
 			// label13
 			// 
+			this.label13.AccessibleDescription = null;
+			this.label13.AccessibleName = null;
 			resources.ApplyResources(this.label13, "label13");
+			this.label13.Font = null;
 			this.label13.Name = "label13";
 			// 
 			// labelHintAdd
 			// 
+			this.labelHintAdd.AccessibleDescription = null;
+			this.labelHintAdd.AccessibleName = null;
 			resources.ApplyResources(this.labelHintAdd, "labelHintAdd");
+			this.labelHintAdd.Font = null;
 			this.labelHintAdd.Name = "labelHintAdd";
 			// 
 			// buttonDelete
 			// 
+			this.buttonDelete.AccessibleDescription = null;
+			this.buttonDelete.AccessibleName = null;
 			resources.ApplyResources(this.buttonDelete, "buttonDelete");
+			this.buttonDelete.BackgroundImage = null;
+			this.buttonDelete.Font = null;
 			this.buttonDelete.Name = "buttonDelete";
 			this.buttonDelete.UseVisualStyleBackColor = true;
 			this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
 			// 
 			// buttonAdd
 			// 
+			this.buttonAdd.AccessibleDescription = null;
+			this.buttonAdd.AccessibleName = null;
 			resources.ApplyResources(this.buttonAdd, "buttonAdd");
+			this.buttonAdd.BackgroundImage = null;
+			this.buttonAdd.Font = null;
 			this.buttonAdd.Name = "buttonAdd";
 			this.buttonAdd.UseVisualStyleBackColor = true;
 			this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
 			// 
 			// comboBoxAction
 			// 
+			this.comboBoxAction.AccessibleDescription = null;
+			this.comboBoxAction.AccessibleName = null;
+			resources.ApplyResources(this.comboBoxAction, "comboBoxAction");
 			this.comboBoxAction.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.comboBoxAction.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.comboBoxAction.BackgroundImage = null;
 			this.comboBoxAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxAction.Font = null;
 			this.comboBoxAction.FormattingEnabled = true;
 			this.comboBoxAction.Items.AddRange(new object[] {
             resources.GetString("comboBoxAction.Items"),
@@ -943,15 +1286,19 @@ namespace BlueBrick
             resources.GetString("comboBoxAction.Items6"),
             resources.GetString("comboBoxAction.Items7"),
             resources.GetString("comboBoxAction.Items8")});
-			resources.ApplyResources(this.comboBoxAction, "comboBoxAction");
 			this.comboBoxAction.Name = "comboBoxAction";
 			this.comboBoxAction.SelectedIndexChanged += new System.EventHandler(this.comboBoxAction_SelectedIndexChanged);
 			// 
 			// comboBoxKey
 			// 
+			this.comboBoxKey.AccessibleDescription = null;
+			this.comboBoxKey.AccessibleName = null;
+			resources.ApplyResources(this.comboBoxKey, "comboBoxKey");
 			this.comboBoxKey.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.comboBoxKey.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.comboBoxKey.BackgroundImage = null;
 			this.comboBoxKey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxKey.Font = null;
 			this.comboBoxKey.FormattingEnabled = true;
 			this.comboBoxKey.Items.AddRange(new object[] {
             resources.GetString("comboBoxKey.Items"),
@@ -1031,25 +1378,31 @@ namespace BlueBrick
             resources.GetString("comboBoxKey.Items74"),
             resources.GetString("comboBoxKey.Items75"),
             resources.GetString("comboBoxKey.Items76")});
-			resources.ApplyResources(this.comboBoxKey, "comboBoxKey");
 			this.comboBoxKey.Name = "comboBoxKey";
 			// 
 			// label12
 			// 
+			this.label12.AccessibleDescription = null;
+			this.label12.AccessibleName = null;
 			resources.ApplyResources(this.label12, "label12");
+			this.label12.Font = null;
 			this.label12.Name = "label12";
 			// 
 			// listViewShortcutKeys
 			// 
+			this.listViewShortcutKeys.AccessibleDescription = null;
+			this.listViewShortcutKeys.AccessibleName = null;
+			resources.ApplyResources(this.listViewShortcutKeys, "listViewShortcutKeys");
+			this.listViewShortcutKeys.BackgroundImage = null;
 			this.listViewShortcutKeys.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Key,
             this.Action,
             this.PartNumber,
             this.Connection});
+			this.listViewShortcutKeys.Font = null;
 			this.listViewShortcutKeys.FullRowSelect = true;
 			this.listViewShortcutKeys.GridLines = true;
 			this.listViewShortcutKeys.HideSelection = false;
-			resources.ApplyResources(this.listViewShortcutKeys, "listViewShortcutKeys");
 			this.listViewShortcutKeys.Name = "listViewShortcutKeys";
 			this.listViewShortcutKeys.Sorting = System.Windows.Forms.SortOrder.Descending;
 			this.listViewShortcutKeys.UseCompatibleStateImageBehavior = false;
@@ -1075,51 +1428,62 @@ namespace BlueBrick
 			// 
 			// cancelButton
 			// 
-			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.AccessibleDescription = null;
+			this.cancelButton.AccessibleName = null;
 			resources.ApplyResources(this.cancelButton, "cancelButton");
+			this.cancelButton.BackgroundImage = null;
+			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.Font = null;
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
 			// 
 			// okButton
 			// 
-			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.AccessibleDescription = null;
+			this.okButton.AccessibleName = null;
 			resources.ApplyResources(this.okButton, "okButton");
+			this.okButton.BackgroundImage = null;
+			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.Font = null;
 			this.okButton.Name = "okButton";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.buttonOk_Click);
 			// 
 			// numericUpDown1
 			// 
+			this.numericUpDown1.AccessibleDescription = null;
+			this.numericUpDown1.AccessibleName = null;
 			resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
+			this.numericUpDown1.Font = null;
 			this.numericUpDown1.Name = "numericUpDown1";
 			// 
 			// restoreDefaultButton
 			// 
+			this.restoreDefaultButton.AccessibleDescription = null;
+			this.restoreDefaultButton.AccessibleName = null;
 			resources.ApplyResources(this.restoreDefaultButton, "restoreDefaultButton");
+			this.restoreDefaultButton.BackgroundImage = null;
+			this.restoreDefaultButton.Font = null;
 			this.restoreDefaultButton.Name = "restoreDefaultButton";
 			this.restoreDefaultButton.UseVisualStyleBackColor = true;
 			this.restoreDefaultButton.Click += new System.EventHandler(this.restoreDefaultButton_Click);
 			// 
-			// displayGeneralInfoWatermarkCheckBox
-			// 
-			resources.ApplyResources(this.displayGeneralInfoWatermarkCheckBox, "displayGeneralInfoWatermarkCheckBox");
-			this.displayGeneralInfoWatermarkCheckBox.Checked = true;
-			this.displayGeneralInfoWatermarkCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.displayGeneralInfoWatermarkCheckBox.Name = "displayGeneralInfoWatermarkCheckBox";
-			this.displayGeneralInfoWatermarkCheckBox.UseVisualStyleBackColor = true;
-			// 
 			// GlobalOptionsForm
 			// 
 			this.AcceptButton = this.okButton;
+			this.AccessibleDescription = null;
+			this.AccessibleName = null;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackgroundImage = null;
 			this.CancelButton = this.cancelButton;
 			this.Controls.Add(this.restoreDefaultButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.optionsTabControl);
 			this.DoubleBuffered = true;
+			this.Font = null;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

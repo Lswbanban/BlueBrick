@@ -213,6 +213,9 @@
   <data name="ActionRemoveLayer" xml:space="preserve">
     <value>Effacer le calque "&amp;"</value>
   </data>
+  <data name="ActionReplaceBrick" xml:space="preserve">
+    <value>Remplacer la pièce &amp;</value>
+  </data>
   <data name="ActionRotateBrick" xml:space="preserve">
     <value>Tourner la pièce &amp;</value>
   </data>
