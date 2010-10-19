@@ -38,11 +38,12 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - [target 1.7] MISSING FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder)
-- [target 1.7] MISSING FEATURE (Alban): make configurable connexion points
+- [target 1.7] MISSING FEATURE (Larry): Save the export image settings in the BBM file
 - [target 1.7] MISSING FEATURE (Alban): Add the polarity check
 - [target 1.7] MISSING FEATURE (Alban): support new flex PF track.
-- [target 1.7] MISSING FEATURE (Alban): Display the general info on top of the map (optionnal)
-- [target 1.7] MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
+- [target 1.7] MISSING FEATURE (Larry): Display the XML exception when BB can not load XML files
+- [target 1.8] MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
+- [target 1.8] MISSING FEATURE (Larry): Select parts in multiple layers
 - MISSING FEATURE (Alban): Autosave.
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
@@ -50,7 +51,9 @@ Open bugs:
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating)
 - MISSING FEATURE (Larry): Shortcut parts (being able to have a meta XML part file describing an assembly of parts) or grouping parts.
+- [target 1.7] BUG (Larry): CRASH! when opening a BBM file which is write protected.
 - [target 1.7] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
+- [target 1.7] BUG (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
@@ -59,6 +62,8 @@ Open bugs:
 
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Denis): Feature to search and replace a set of brick type by another one.
+- NEW FEATURE (Alban): The connection points are now configurable and extendable in an XML file
+- NEW FEATURE (Alban): Display the general info on top of the map (this can be disable in the option settings)
 
 Bug fixed in 1.6.1.0:
 - NEW FEATURE (Alex & Alban): Add a context menu in the part lib to choose more options: large/small icons, respect proportions, display bubble info

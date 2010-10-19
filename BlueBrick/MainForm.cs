@@ -737,14 +737,27 @@ namespace BlueBrick
 			return true;
 		}
 
-		private void createNewMap()
+		private void reinitializeCurrentMap()
 		{
-			// create a new map
+			// create a new map to trash the previous one
 			Map.Instance = new Map();
 			Layer.resetNameInstanceCounter();
 			ActionManager.Instance.clearStacks();
 			// reset the current file name
 			changeCurrentMapFileName(Properties.Resources.DefaultSaveFileName, false);
+			// reset the modified flag
+			Map.Instance.WasModified = false;
+			// update the view any way
+			this.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.FULL);
+			mPartListForm.rebuildList();
+			// force a garbage collect because we just trashed the previous map
+			GC.Collect();
+		}
+
+		private void createNewMap()
+		{
+			// trash the previous map
+			reinitializeCurrentMap();
 			// check if we need to add layer
 			if (Properties.Settings.Default.AddGridLayerOnNewMap)
 				ActionManager.Instance.doAction(new AddLayer("LayerGrid"));
@@ -755,9 +768,6 @@ namespace BlueBrick
 			Map.Instance.WasModified = false;
 			// update the view any way
 			this.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.FULL);
-			mPartListForm.rebuildList();
-			// force a garbage collect because we just trashed the previous map
-			GC.Collect();
 		}
 
 		private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1024,12 +1034,13 @@ namespace BlueBrick
 				this.partsTabControl.clearAllData();
 				BrickLibrary.Instance.clearAllData();
 
-				// create a new map (in order to unload the current one)
-				createNewMap();
+				// destroy the current map
+				reinitializeCurrentMap();
 
 				// call the GC to be sure that all the image are correctly released, and no files stay locked
 				// even if the GC was normally already called in the create new map function
-				GC.Collect();
+				// but the GC was called at then end of the reinitializeCurrentMap function
+				//GC.Collect();
 
 				// then display a waiting message box, giving the user the oppotunity to change the
 				// data before reloading
@@ -1042,7 +1053,7 @@ namespace BlueBrick
 				loadPartLibraryFromDisk();
 				this.Cursor = Cursors.Default;
 
-				// finally reload the previous map
+				// finally reload the previous map or create a new one
 				if (previousOpenMapFileName != null)
 				{
 					openMap(previousOpenMapFileName);
@@ -1052,6 +1063,10 @@ namespace BlueBrick
 					foreach (Layer layer in Map.Instance.LayerList)
 						if (layer.GetType().Name == "LayerBrick")
 							(layer as LayerBrick).updateFullBrickConnectivity();
+				}
+				else
+				{
+					createNewMap();
 				}
 			}
 		}
