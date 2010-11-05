@@ -1207,12 +1207,12 @@ namespace BlueBrick.MapData
 		/// Paste (duplicate) the list of bricks that was previously copied with a call to copyCurrentSelection()
 		/// This method should be called on a CTRL+V
 		/// </summary>
-		public void pasteCopiedList(float positionShift)
+		public void pasteCopiedList()
 		{
 			// To paste, we need to have copied something
 			if (sCopyItems.Count > 0)
 			{
-				mLastDuplicateBrickAction = new DuplicateBrick(this, sCopyItems, positionShift, positionShift);
+				mLastDuplicateBrickAction = new DuplicateBrick(this, sCopyItems);
 				ActionManager.Instance.doAction(mLastDuplicateBrickAction);
 			}
 		}
@@ -1734,7 +1734,7 @@ namespace BlueBrick.MapData
 						if (!mMouseHasMoved)
 						{
 							this.copyCurrentSelection();
-							this.pasteCopiedList(0.0f);
+							this.pasteCopiedList();
 							// set the flag
 							wereBrickJustDuplicated = true;
 						}

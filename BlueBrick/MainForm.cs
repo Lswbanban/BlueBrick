@@ -1206,7 +1206,7 @@ namespace BlueBrick
 						layerTypeLocalizedName = Properties.Resources.ErrorMsgLayerTypeText;
 						if (itemTypeName.Equals("TextCell"))
 						{
-							(selectedLayer as LayerText).pasteCopiedList(10.0f);
+							(selectedLayer as LayerText).pasteCopiedList();
 							typeMismatch = false;
 						}
 						break;
@@ -1214,7 +1214,7 @@ namespace BlueBrick
 						layerTypeLocalizedName = Properties.Resources.ErrorMsgLayerTypeBrick;
 						if (itemTypeName.Equals("Brick"))
 						{
-							(selectedLayer as LayerBrick).pasteCopiedList(10.0f);
+							(selectedLayer as LayerBrick).pasteCopiedList();
 							typeMismatch = false;
 						}
 						break;

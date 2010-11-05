@@ -51,7 +51,6 @@ Open bugs:
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating)
 - MISSING FEATURE (Larry): Shortcut parts (being able to have a meta XML part file describing an assembly of parts) or grouping parts.
 - [target 1.7] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
-- [target 1.7] BUG (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
@@ -64,6 +63,7 @@ Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): Display the general info on top of the map (this can be disable in the option settings)
 - NEW FEATURE (Larry): Display the XML exception when BB can not load XML files
 - BUGFIX (Larry): CRASH! when opening a BBM file which is write protected.
+- BUGFIX (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
 
 Bug fixed in 1.6.1.0:
 - NEW FEATURE (Alex & Alban): Add a context menu in the part lib to choose more options: large/small icons, respect proportions, display bubble info

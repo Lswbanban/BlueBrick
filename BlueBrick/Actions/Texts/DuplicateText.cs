@@ -26,7 +26,7 @@ namespace BlueBrick.Actions.Texts
 		private List<Layer.LayerItem> mTexts = null;
 		private List<int> mTextIndex = null; // this list of index is for the redo, to add each text at the same place
 
-		public DuplicateText(LayerText layer, List<Layer.LayerItem> textsToAdd, float positionShiftX, float positionShiftY)
+		public DuplicateText(LayerText layer, List<Layer.LayerItem> textsToAdd)
 		{
 			// init the layer
 			mTextLayer = layer;
@@ -40,11 +40,6 @@ namespace BlueBrick.Actions.Texts
 			{
 				// clone the item (because the same list of text to add can be paste several times)
 				LayerText.TextCell duplicatedText = (item as LayerText.TextCell).Clone();
-				// move it a little bit 
-				PointF newPosition = duplicatedText.Position;
-				newPosition.X += positionShiftX;
-				newPosition.Y += positionShiftY;
-				duplicatedText.Position = newPosition;
 				// add the duplicated item in the list
 				mTexts.Add(duplicatedText);
 			}
