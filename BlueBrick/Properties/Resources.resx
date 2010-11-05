@@ -349,6 +349,9 @@
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
     <value>Warning</value>
   </data>
+  <data name="HideDetails" xml:space="preserve">
+    <value>Hide Details</value>
+  </data>
   <data name="LanguageChineese" xml:space="preserve">
     <value>Chineese</value>
   </data>
@@ -396,6 +399,9 @@
   </data>
   <data name="PartLibMenuItemRespectProportion" xml:space="preserve">
     <value>Respect Proportion</value>
+  </data>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Show Details</value>
   </data>
   <data name="SnapGridOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\SnapGridOff.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

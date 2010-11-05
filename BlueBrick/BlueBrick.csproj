@@ -153,6 +153,12 @@
     <Compile Include="LayerTextPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LoadErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadErrorForm.Designer.cs">
+      <DependentUpon>LoadErrorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -623,6 +629,34 @@
     <EmbeddedResource Include="LayerGridOptionForm.it.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LayerGridOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadErrorForm.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoadErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadErrorForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoadErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadErrorForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoadErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadErrorForm.it.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoadErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadErrorForm.nl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoadErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadErrorForm.pt.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoadErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadErrorForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoadErrorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.it.resx">
       <SubType>Designer</SubType>

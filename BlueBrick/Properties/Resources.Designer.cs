@@ -748,6 +748,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide Details.
+        /// </summary>
+        internal static string HideDetails {
+            get {
+                return ResourceManager.GetString("HideDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chineese.
         /// </summary>
         internal static string LanguageChineese {
@@ -878,6 +887,15 @@ namespace BlueBrick.Properties {
         internal static string PartLibMenuItemRespectProportion {
             get {
                 return ResourceManager.GetString("PartLibMenuItemRespectProportion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Details.
+        /// </summary>
+        internal static string ShowDetails {
+            get {
+                return ResourceManager.GetString("ShowDetails", resourceCulture);
             }
         }
         

@@ -50,6 +50,21 @@ namespace BlueBrick
 			}
 		};
 
+		private class FileNameWithException
+		{
+			public string mFilename;
+			public string mException;
+			public string ShortFileName
+			{
+				get { return (new FileInfo(mFilename)).Name; }
+			}
+			public FileNameWithException(string filename, string exception)
+			{
+				mFilename = filename;
+				mException = exception;
+			}
+		}
+
 		public PartLibraryPanel()
 		{
 			InitializeComponent();
@@ -182,8 +197,8 @@ namespace BlueBrick
 		{
 			// create a list of image to load all the images in a list
 			List<Image> imageList = new List<Image>();
-			List<string> imageFileUnloadable = new List<string>();
-			List<string> xmlFileUnloadable = new List<string>();
+			List<FileNameWithException> imageFileUnloadable = new List<FileNameWithException>();
+			List<FileNameWithException> xmlFileUnloadable = new List<FileNameWithException>();
 			List<string> xmlFileLoaded = new List<string>();
 
 			// get the list of image in the folder
@@ -224,16 +239,16 @@ namespace BlueBrick
 						listViewToFill.Items.Add(newItem);
 						imageIndex++;
 					}
-					catch
+					catch (Exception e)
 					{
 						// add the file that can't be loaded in the list of problems
-						xmlFileUnloadable.Add(xmlFileName);
+						xmlFileUnloadable.Add(new FileNameWithException(xmlFileName, e.Message));
 					}
 				}
-				catch
+				catch (Exception e)
 				{
 					// add the file that can't be loaded in the list of problems
-					imageFileUnloadable.Add(file.FullName);
+					imageFileUnloadable.Add(new FileNameWithException(file.FullName, e.Message));
 				}
 			}
 
@@ -252,21 +267,25 @@ namespace BlueBrick
 						BrickLibrary.Instance.AddBrick(name, null, file.FullName);
 					}
 				}
-				catch
+				catch (Exception e)
 				{
 					// add the file that can't be loaded in the list of problems
-					xmlFileUnloadable.Add(file.FullName);
+					xmlFileUnloadable.Add(new FileNameWithException(file.FullName, e.Message));
 				}
 			}
 
 			// check if there was some error with some files
 			string message = null;
+			string details = "";
 			if (imageFileUnloadable.Count > 0)
 			{
 				// display a warning message
 				message = Properties.Resources.ErrorMsgCanNotLoadImage;
-				foreach (string filename in imageFileUnloadable)
-					message += "\n" + filename;
+				foreach (FileNameWithException error in imageFileUnloadable)
+				{
+					message += "\n" + error.mFilename;
+					details += error.ShortFileName + ":\r\n" + error.mException + "\r\n\r\n";
+				}
 			}
 			if (xmlFileUnloadable.Count > 0)
 			{
@@ -276,16 +295,20 @@ namespace BlueBrick
 					message += "\n\n";
 				// display a warning message
 				message += Properties.Resources.ErrorMsgCanNotLoadPartXML;
-				foreach (string filename in xmlFileUnloadable)
-					message += "\n" + filename;
+				foreach (FileNameWithException error in xmlFileUnloadable)
+				{
+					message += "\n" + error.mFilename;
+					details += error.ShortFileName + ":\r\n" + error.mException + "\r\n\r\n";
+				}
 			}
 
 			// display the error message if there was some errors
 			if (message != null)
 			{
-				MessageBox.Show(null, message,
-					Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
-					MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+				LoadErrorForm messageBox = new LoadErrorForm();
+				messageBox.setMessageText(message);
+				messageBox.setDetailsText(details);
+				messageBox.Show();
 			}
 
 			// then fill the list view
