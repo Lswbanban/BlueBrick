@@ -32,32 +32,52 @@ namespace BlueBrick
 		{
 			if (File.Exists(filename))
 			{
-				string filenameLower = filename.ToLower();
+				try
+				{
+					string filenameLower = filename.ToLower();
 
-				if (filenameLower.EndsWith("ldr") || filenameLower.EndsWith("dat"))
-					return loadLDR(filename);
-				else if (filenameLower.EndsWith("mpd"))
-					return loadMDP(filename);
-				else if (filenameLower.EndsWith("tdl"))
-					return loadTDL(filename);
-				else
-					return loadBBM(filename);
+					if (filenameLower.EndsWith("ldr") || filenameLower.EndsWith("dat"))
+						return loadLDR(filename);
+					else if (filenameLower.EndsWith("mpd"))
+						return loadMDP(filename);
+					else if (filenameLower.EndsWith("tdl"))
+						return loadTDL(filename);
+					else
+						return loadBBM(filename);
+				}
+				catch (Exception e)
+				{
+					string message = Properties.Resources.ErrorMsgCannotOpenMap.Replace("&", filename);
+					LoadErrorForm errorMessageDialog = new LoadErrorForm(Properties.Resources.ErrorMsgTitleError, message, e.Message);
+					errorMessageDialog.ShowDialog();
+					return false;
+				}
 			}
 			return false;
 		}
 
-		public static void save(string filename)
+		public static bool save(string filename)
 		{
-			string filenameLower = filename.ToLower();
+			try
+			{
+				string filenameLower = filename.ToLower();
 
-			if (filenameLower.EndsWith("ldr") || filenameLower.EndsWith("dat"))
-				saveLDR(filename);
-			else if (filenameLower.EndsWith("mpd"))
-				saveMDP(filename);
-			else if (filenameLower.EndsWith("tdl"))
-				saveTDL(filename);
-			else
-				saveBBM(filename);
+				if (filenameLower.EndsWith("ldr") || filenameLower.EndsWith("dat"))
+					return saveLDR(filename);
+				else if (filenameLower.EndsWith("mpd"))
+					return saveMDP(filename);
+				else if (filenameLower.EndsWith("tdl"))
+					return saveTDL(filename);
+				else
+					return saveBBM(filename);
+			}
+			catch (Exception e)
+			{
+				string message = Properties.Resources.ErrorMsgCannotSaveMap.Replace("&", filename);
+				LoadErrorForm errorMessageDialog = new LoadErrorForm(Properties.Resources.ErrorMsgTitleError, message, e.Message);
+				errorMessageDialog.ShowDialog();
+				return false;
+			}
 		}
 
 		private static List<string> slitLine(string line)
@@ -96,7 +116,7 @@ namespace BlueBrick
 			return true;
 		}
 
-		private static void saveBBM(string filename)
+		private static bool saveBBM(string filename)
 		{
 			// the current file name must be valid to call this function
 			XmlSerializer mySerializer = new XmlSerializer(typeof(Map));
@@ -104,6 +124,7 @@ namespace BlueBrick
 			mySerializer.Serialize(myWriter, Map.Instance);
 			myWriter.Close();
 			myWriter.Dispose();
+			return true;
 		}
 
 		#endregion
@@ -380,7 +401,7 @@ namespace BlueBrick
 			}
 		}
 
-		private static void saveLDR(string filename)
+		private static bool saveLDR(string filename)
 		{
 			// init the progress bar with the number of items (+1 for init remap +1 for header)
 			int nbItems = 0;
@@ -418,9 +439,10 @@ namespace BlueBrick
 			}
 			// close the file
 			textWriter.Close();
+			return true;
 		}
 
-		private static void saveMDP(string filename)
+		private static bool saveMDP(string filename)
 		{
 			// init the progress bar with the number of items (+1 for init remap +2 for header)
 			int nbItems = 0;
@@ -496,6 +518,7 @@ namespace BlueBrick
 			}
 			// close the file
 			textWriter.Close();
+			return true;
 		}
 
 		private static void saveHeaderInLDRAW(StreamWriter textWriter)
@@ -997,7 +1020,7 @@ namespace BlueBrick
 			return (105 + descriptionStringSize + commentStringSize + pieceListSize);
 		}
 
-		private static void saveTDL(string filename)
+		private static bool saveTDL(string filename)
 		{
 			// compute the number of brick to save
 			int nbItems = 0;
@@ -1071,6 +1094,8 @@ namespace BlueBrick
 
 			// finish the progressbar to hide it
 			MainForm.Instance.finishProgressBar();
+
+			return true;
 		}
 
 		private static int getConnectedBrickOtherBBConnexionIndex(LayerBrick.Brick brick, int connexionIndexOnBrick, LayerBrick.Brick connectedBrick)

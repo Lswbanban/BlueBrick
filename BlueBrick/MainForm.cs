@@ -899,12 +899,15 @@ namespace BlueBrick
 			// set the wait cursor
 			this.Cursor = Cursors.WaitCursor;
 			// save the file
-			SaveLoadManager.save(mCurrentMapFileName);
-			// after saving the map in any kind of format, we reset the WasModified flag of the map
-			// (and before the update of the title bar)
-			Map.Instance.WasModified = false;
-			// call the update view with NONE, because we just need to update the title bar
-			this.updateView(Action.UpdateViewType.NONE, Action.UpdateViewType.NONE);
+			bool saveDone = SaveLoadManager.save(mCurrentMapFileName);
+			if (saveDone)
+			{
+				// after saving the map in any kind of format, we reset the WasModified flag of the map
+				// (and before the update of the title bar)
+				Map.Instance.WasModified = false;
+				// call the update view with NONE, because we just need to update the title bar
+				this.updateView(Action.UpdateViewType.NONE, Action.UpdateViewType.NONE);
+			}
 			// restore the cursor
 			this.Cursor = Cursors.Default;
 		}

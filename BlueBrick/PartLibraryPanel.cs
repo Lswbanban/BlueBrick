@@ -305,7 +305,7 @@ namespace BlueBrick
 			// display the error message if there was some errors
 			if (message != null)
 			{
-				LoadErrorForm messageBox = new LoadErrorForm(message, details);
+				LoadErrorForm messageBox = new LoadErrorForm(Properties.Resources.ErrorMsgTitleWarning, message, details);
 				messageBox.Show();
 			}
 

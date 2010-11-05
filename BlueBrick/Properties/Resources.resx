@@ -289,8 +289,14 @@
   <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
     <value>BlueBrick had encountered problems while loading XML files from the parts database. These XML files have been ignored. This problem may happen if an XML file contains syntax errors. Fix the syntax or delete the XML files to remove this warning. The file(s) concerned is/are:</value>
   </data>
+  <data name="ErrorMsgCannotOpenMap" xml:space="preserve">
+    <value>Cannot open the map &amp;.</value>
+  </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>Can not paste items of type &amp; in the current selected layer which is of type &amp;&amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveMap" xml:space="preserve">
+    <value>Cannot save the map &amp;.</value>
   </data>
   <data name="ErrorMsgConfirmRestoreDefault" xml:space="preserve">
     <value>Are you sure you want to restore the default settings?</value>

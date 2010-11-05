@@ -10,14 +10,14 @@ namespace BlueBrick
 {
 	public partial class LoadErrorForm : Form
 	{
-		public LoadErrorForm(string message, string details)
+		public LoadErrorForm(string title, string message, string details)
 		{
 			InitializeComponent();
 			// set the message and detail texts
 			this.MessageLabel.Text = message;
 			this.DetailsTextBox.Text = details;
 			// set the title
-			this.Text = Properties.Resources.ErrorMsgTitleWarning;
+			this.Text = title;
 			this.DetailButton.Text = Properties.Resources.ShowDetails;
 		}
 

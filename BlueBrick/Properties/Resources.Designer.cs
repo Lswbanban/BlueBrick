@@ -568,11 +568,29 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot open the map &amp;..
+        /// </summary>
+        internal static string ErrorMsgCannotOpenMap {
+            get {
+                return ResourceManager.GetString("ErrorMsgCannotOpenMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can not paste items of type &amp; in the current selected layer which is of type &amp;&amp;..
         /// </summary>
         internal static string ErrorMsgCanNotPaste {
             get {
                 return ResourceManager.GetString("ErrorMsgCanNotPaste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot save the map &amp;..
+        /// </summary>
+        internal static string ErrorMsgCannotSaveMap {
+            get {
+                return ResourceManager.GetString("ErrorMsgCannotSaveMap", resourceCulture);
             }
         }
         
