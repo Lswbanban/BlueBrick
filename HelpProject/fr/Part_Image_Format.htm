@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Part Image Format</Title>
+</HEAD>
+<BODY>
+<H1>Part Image Format</H1>
+<H2>Format</H2>
+<P>BlueBrick only parses GIF images in the subfolders of the parts folder (see the <A HREF="Part_Library_Folders.htm">Folder Organization</A> for more details). The GIF image can contain a transparent color.</P>
+<P>It doesn't matter in which orientation you place the top view of the part in the image, but to facilitate the integration of your part with LDraw, I recommend you to use the same orientation as the LDraw part. Otherwise, you will have to modify the <A HREF="LDraw_Remaping_File.htm">LDraw Remap file</A>.</P>
+
+<H2>Scale</H2>
+<P>The scale of the parts is <FONT CLASS="Important">1 stud = 8 pixels</FONT>. Since a stud is equal to 8 millimeters in real life, another way to memorize the scale is 1 pixel = 1 millimeter.</P>
+
+<H2>Authorized Characters for File Name</H2>
+<P>The names of the parts are not case sensitive, as BlueBrick converts all the names into upper case when creating its part library. Therefore if you create two parts that have the same name but with different cases, they will be considered as the same part. You can use any authorized character to name your parts (including spaces), but I strongly recommend you to use English characters only to facilitate the share of your map internationally. Also avoid using the period (full-stop) character since this character is used to separate the file name from the extension and is also used by BlueBrick to separate the part number from the color.</P>
+
+<H2>File Name Convention</H2>
+<P>BlueBrick doesn't mind how you name your parts.  The only constraint is that the name must be unique in the whole library. You cannot name two parts with the same name even if they are in different folders. Moreover this name becomes a unique id that is saved in the layout BBM files. So to avoid naming collisions in the library and to make your BBM files portable, <FONT CLASS="Important">one commonly uses the part or set number</FONT>. This is just a common practice, but I strongly recommend you to follow it. The official BlueBrick library will use this method.</P>
+
+<H3>File Name Convention for a Set</H3>
+<P>Since there are some Lego&copy; parts and Lego&copy; sets that have the same number, to avoid conflicts, the common practice is to add ".set" as a suffix to the set number. Do not use a numerical suffix (like ".1"), otherwise this suffix will be interpreted as a color (see below for more details), and the color information is irrelevant for a set.</P>
+
+<DIV class="TechNote">
+<PRE><PRE>&lt;SetNumber&gt;.set.gif
+&lt;SetNumber&gt;.set.xml
+
+For example the naming convention for the set #2150 is:
+<B>2150.set.gif</B>
+
+Moreover if you want to split a set in different gif images, you can name them like:
+6399.set1.gif
+6399.set2.gif
+6399.set3.gif
+etc...</PRE>
+</DIV>
+
+<H3>File Name Convention for a Part</H3>
+
+<P>The common standard for naming a LEGO&copy; part is to use the full part number, followed by a dot and then by the color code of the part according to the LDRAW color table, and finally by the extension.</P>
+
+<DIV class="TechNote">
+<PRE>&lt;PartNumber&gt;.&lt;Color&gt;.gif
+&lt;PartNumber&gt;.&lt;Color&gt;.xml
+
+For example the naming convention for a Blue Baseplate 32 x 32 is:
+<B>3811.1.gif</B>
+
+<B>The LDRAW color table is:</B>
+  0 Black               28 Dark Tan               134 Pearl Copper
+  1 Blue                29 Light Purple           135 Pearl Gray
+  2 Green               33 Trans Blue             137 Pearl Sand Blue
+  3 Teal                34 Trans Green            142 Pearl Gold
+  4 Red                 36 Trans Red              151 Light Stone
+  5 Dark Pink           37 Trans Violet           256 Rubber Black
+  6 Brown               40 Trans Gray             272 Dark Blue
+  7 Gray                41 Trans Light Cyan       273 Rubber Blue
+  8 Dark Gray           42 Trans Flu Lime         288 Dark Green
+  9 Light Blue          45 Trans Pink             313 Maersk Blue
+ 10 Bright Green        46 Trans Yellow           320 Dark Red
+ 11 Turquiose           47 Clear                  324 Rubber Red
+ 12 Light Red           57 Trans Flu Orange       334 Chrome Gold
+ 13 Pink                69 Bright Purple          335 Sand Red
+ 14 Yellow              70 Reddish Brown          366 Earth Orange
+ 15 White               71 Stone Gray             373 Sand Violet
+ 17 Light Green         72 Dark Stone Gray        375 Rubber Gray
+ 18 Light Yellow        73 Medium Blue            378 Sand Green
+ 19 Tan                 74 Medium Green           379 Sand Blue
+ 20 Light Violet        77 Paradisa Pink          383 Chrome Silver
+ 21 Phosphor White      78 Light Flesh            462 Light Orange
+ 22 Violet              79 Translucent White      484 Dark Orange
+ 23 Violet Blue         85 Medium Lilac           494 Electric Contact
+ 25 Orange              86 Dark Flesh             503 Light Gray
+ 26 Magenta             89 Royal Blue             511 Rubber White
+ 27 Lime                92 Flesh</PRE>
+</DIV>
+
+</BODY>
+</HTML>

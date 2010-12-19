@@ -1,0 +1,57 @@
+<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Specify the Margins for Snaping</Title>
+</HEAD>
+<BODY>
+<H1>Specify the Margins for Snaping</H1>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;SnapMargin&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;left&gt;...&lt;/left&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;right&gt;...&lt;/right&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;top&gt;...&lt;/top&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;bottom&gt;...&lt;/bottom&gt;<BR>
+		&lt;/SnapMargin&gt;
+	</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Default Value:</TD>
+	<TD>0 on every side (the part is snapped with the border of image)</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Description:</TD>
+	<TD>The inside margin in <FONT CLASS="Important">Stud coordinates</FONT> that must be stripped inside the part to snap the part at the correct place on the grid.</TD>
+</TR>  
+</TABLE>
+
+<P>Most of the time, you can keep the default value (no margin) for the snapping. For example you want to snap the border of a base plate with the grid line. But if you take a 9V straight track for example, this part is 17 studs long: 16 stud for the rail itself, and half a stud on both side overtake for connection purpose. In that case you don't want to snap this part based on the extremity of its connection pin. If you do so, you will end up with a gap between the grid and the layout of the parts like in this example:</P>
+
+<CENTER><IMG SRC="../SnapMargin2.png"></CENTER>
+
+<P>That's why this part has a 0.5 stud margin on both left and right side in its XML file, as you can see:</P>
+
+<DIV CLASS="TechNote">
+<IMG SRC="../SnapMargin1.png" ALIGN="right">
+<PRE>
+&lt;SnapMargin&gt;
+    &lt;left&gt;0.5&lt;/left&gt;
+    &lt;right&gt;0.5&lt;/right&gt;
+    &lt;top&gt;0&lt;/top&gt;
+    &lt;bottom&gt;0&lt;/bottom&gt;
+&lt;/SnapMargin&gt;
+
+
+
+
+
+
+
+</PRE>
+</DIV>
+
+</BODY>
+</HTML>

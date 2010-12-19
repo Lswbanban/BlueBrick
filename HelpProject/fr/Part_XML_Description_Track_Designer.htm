@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Add information for Track Designer Compatibility</Title>
+</HEAD>
+<BODY>
+<H1>Add information for Track Designer Compatibility</H1>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;TrackDesigner&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;ID&gt;...&lt;/ID&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;Flag&gt;...&lt;/Flag&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;HasSeveralGeometries&gt;...&lt;/HasSeveralGeometries&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;TDBitmapList&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;TDBitmap&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;BBConnexionPointIndex&gt;...&lt;/BBConnexionPointIndex&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Type&gt;...&lt;/Type&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Polarity&gt;...&lt;/Polarity&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;AngleBetweenTDandBB&gt;...&lt;/AngleBetweenTDandBB&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/TDBitmap&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;/TDBitmapList&gt;<BR>
+		&lt;/TrackDesigner&gt;<BR>
+		<BR>
+		<BR>
+		<I>Note: The &lt;ID&gt; tag can be replaced by a list of ids that has this syntax:</I><BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;IDList&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ID registry="..."&gt;...&lt;/ID&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;/IDList&gt;<BR>
+	</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Default Value:</TD>
+	<TD>If there is no &lt;TrackDesigner&gt; tag, the part is not compatible with TrackDesigner.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Description:</TD>
+	<TD>A set of information used by BlueBrick to convert Track Designer parts to BlueBrick parts and vice and versa.</TD>
+</TR>  
+</TABLE>
+
+<P>BlueBrick can save and load files in Track Designer format (TDL). Because the part numbers and other information are different between BlueBrick and Track Designer, BlueBrick needs to have information on how to convert the file when saving or loading a TDL format.</P>
+
+<P>Normally, you only need to add this XML tag if you add a part that is supported by Track Designer. BlueBrick already comes with the full support of Track Designer's default library so you will probably never need to add this information. However, since Track Designer also has a feature to expand the library, it can happen that you want to support the custom part you made for Track Designer (in order to load your TDL file created with your custom TD library).</P>
+
+<P>The <FONT CLASS="Important">ID field</FONT> contains the full Track Designer ID (this can be seen in the parts properties window by right clicking on the part in Track Designer, and choosing "Properties"). This ID is used to make the link between the Track Designer part and the corresponding BlueBrick part. A default value is not possible, this field must always have an entry.</P>
+
+<P>Since it is possible to assign any ID to a part in a TD registry, it may happen that the same parts have different IDs in different custom registries, making these two registries incompatible. BlueBrick, however, can still load two different TDL files saved with incompatible TD registries. If a part is known to have different TD IDs in different registries, you can replace the <FONT CLASS="Important">ID field</FONT> by a <FONT CLASS="Important">IDList field</FONT> in which you list all the known IDs.</P>
+
+<P>The <FONT CLASS="Important">ID field</FONT> contains an attribute named <FONT CLASS="Important">registry</FONT>. The value of this attribute is a keyword that refers to the registry in which the part has this ID. As a keyword, you can use the name of the LUG/LTC that uses the registry, or the name of the website that distribute this registry. Then in the "config" folder of the BlueBrick installation folder, you can find a configuration file named "TDRegistryList.txt" in which you can associate your keyword with the actual file name of the registry.</P>
+
+<P>The <FONT CLASS="Important">Flag field</FONT> contains an integer value needed by Track Designer. This field can have only four values:
+<UL>
+	<LI>0 = no flag</LI>
+	<LI>1 = piece is an attachment</LI>
+	<LI>2 = piece is used to support elevation</LI>
+	<LI>3 = piece is an attachment and is used to support elevation</LI>
+</UL>
+Unfortunately there's no way to find this Flag in the part registry of Track Designer. I suspect these flags are computed dynamically by, but as I don't know how to compute them, I added them as fixed values in the XML description for now. Most of the time you can use 0 as the default value. BlueBrick also uses 0 as the default value.</P>
+
+<P>The <FONT CLASS="Important">HasSeveralGeometries field</FONT> contains a boolean flag ("true" or "false" in lower case without the quotes) to tell if the part has several <I>Geometries</I> in Track Designer. To know if a Track Designer part has several geometries, open the Track Designer Registry and click on the part. If you can see more than one item under the "Geometries" field, you should set the <FONT CLASS="Important">HasSeveralGeometries field</FONT> to true. If this field is false, BlueBrick will always use the port ID "0" as the origin of the part when saving the file. The default value is "false".</P>
+
+<CENTER><IMG SRC="../TrackDesignerRegistry1.png"></CENTER>
+
+<P>The <FONT CLASS="Important">TDBitmapList field</FONT> contains a list containing each connection that the Track Designer part has. This field allows you to remap the Track Designer connection point with the BlueBrick connection point. In this list, just enter one <FONT CLASS="Important">TDBitmap field</FONT> for each Track Designer connection points; if the BlueBrick part has more connection point than the Track Designer one, ignore them. If the Track Designer part has more connection points than the BlueBrick part, then create and add them in the connection list of the BlueBrick XML file. Pay special attention to the order of the <FONT CLASS="Important">TDBitmap field</FONT>! This is important as the entries must be in the same order as the bitmap ID order in the Track Designer registry.</P>
+
+<P>The <FONT CLASS="Important">BBConnexionPointIndex field</FONT> contains the BlueBrick connexion 0-based index which indicates how the part will be connected in Track Designer when using this bitmap index. In the BlueBrick part description of the XML file, the connection points are described inside the ConnexionList field (see how to <A HREF="Part_XML_Description_Connection.htm">Describe the Connection Points</A> section for more details). The index of the BlueBrick connection refers to the order in which the connections appear.</P>
+
+<P>The <FONT CLASS="Important">Type field</FONT> contains an integer value that describes the Track Designer type of the connection. This number can take a value between 0 and 20:
+<UL>
+	<LI>0 = Straight</LI>
+	<LI>1 = Left Curve</LI>
+	<LI>2 = Right Curve</LI>
+	<LI>3 = Left Split</LI>
+	<LI>4 = Right Split</LI>
+	<LI>5 = Left Merge</LI>
+	<LI>6 = Right Merge</LI>
+	<LI>7 = Left Join</LI>
+	<LI>8 = Right Join</LI>
+	<LI>9 = Crossover</LI>
+	<LI>10 = T Junction</LI>
+	<LI>11 = Up Ramp</LI>
+	<LI>12 = Down Ramp</LI>
+	<LI>13 = Short Straight</LI>
+	<LI>14 = Short Left Curve In</LI>
+	<LI>15 = Short Right Curve In</LI>
+	<LI>16 = Short Left Curve Out</LI>
+	<LI>17 = Short Right Curve Out</LI>
+	<LI>18 = Left Reverse Switch</LI>
+	<LI>19 = Right Reverse Switch</LI>
+	<LI>20 = Custom</LI>
+</UL></P>
+
+<CENTER><IMG SRC="../TrackDesignerRegistry2.png"></CENTER>
+
+<P>The <FONT CLASS="Important">Polarity field</FONT> contains only one character that describes the polarity of the connection. The value can be one of these three characters (case sensitive):
+<UL>
+	<LI>0 (zero) = Unasasigned (no polarity)</LI>
+	<LI>P = Positive (+ve)</LI>
+	<LI>N = Negative (-ve)</LI>
+</UL></P>
+
+<P>The <FONT CLASS="Important">AngleBetweenTDandBB field</FONT> contains a decimal value that is the angle difference (in degrees) between the orientation of the BlueBrick and TrackDesigner parts.</P>
+
+</BODY>
+</HTML>

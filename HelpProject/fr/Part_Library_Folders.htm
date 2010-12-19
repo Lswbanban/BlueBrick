@@ -1,0 +1,132 @@
+<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Part Library Folders</Title>
+</HEAD>
+<BODY>
+<H1>Part Library Folders</H1>
+<H2>Folder Organisation</H2>
+<P>The part library is made of <A HREF="Part_Image_Format.htm">GIF format images</A> and <A HREF="Part_XML_Description.htm">XML files</A> all stored inside the subfolder named "parts" of the BlueBrick installation folder.</P>
+
+<CENTER>
+<DIV STYLE="background-image:url(../parts_folder.png); width:455px; height:331px; margin:0px;">
+<DIV STYLE="height:162px; margin:0px;">&nbsp;</DIV><BR>
+<DIV STYLE="color:red; text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x2190; This is the part library folder.</DIV>
+</DIV>
+</CENTER>
+
+<P>This folder is parsed when the application is launched and is needed for BlueBrick to run. You can create as many subfolders as you want in the "parts" folder, but <FONT CLASS="Important">only one depth level is supported</FONT>. Parts placed in folders within a subfolder will be ignored. Parts which are placed directly in the "parts" folder will also be ignored.</P>
+ 
+<DIV class="TechNote">
+<PRE><B>The original organisation of the "parts" folder is:</B>
+parts
+  &#x251C;&#x2500; Baseplate
+  &#x251C;&#x2500; Custom
+  &#x251C;&#x2500; Duplo
+  &#x251C;&#x2500; Logo
+  &#x251C;&#x2500; Rail
+  &#x251C;&#x2500; Road
+  &#x2514;&#x2500; Set
+
+<B>And here is an example of modification of the parts folder:</B>
+parts<FONT COLOR=red>    &#x2190; If you add parts in this folder they will be ignored</FONT>
+  &#x251C;&#x2500; Baseplate
+  &#x2502;<FONT COLOR=red>  &#x2514;&#x2500; My Baseplate    &#x2190; This folder will be ignored</FONT>
+  &#x251C;&#x2500; Custom
+  &#x251C;&#x2500; Duplo
+  &#x251C;&#x2500; Logo
+<FONT COLOR=green>  &#x251C;&#x2500; My Parts    &#x2190; This folder is ok</FONT>
+  &#x251C;&#x2500; Rail
+  &#x251C;&#x2500; Road
+  &#x2514;&#x2500; Set</PRE>
+</DIV>
+
+<H2>BlueBrick folder parsing</H2>
+<P>For each subfolder of the "parts" folder, BlueBrick will create a Tab page in the parts panel. The name of the Tab page is the same as the folder. You can choose any folder name and include space and accentuated characters. You can also rename, delete or reorganize the original folders as you like as they are not used to identify the parts. The folders are just a convenient container to group the parts together in different Tab Pages in the Brick library. The downside is that <FONT CLASS="Important">every part name in the whole library must be unique</FONT>, and the part name is the id that is saved in the map file. Usually this is not a big problem since every Lego&copy; part already has a unique number.</P>
+
+<P>When creating the parts library, BlueBrick first looks for GIF files in the parts folders. For each GIF file that is found, BlueBrick then checks if an XML file of the same name exists. XML files are optional and if the XML file is missing, default values will be used for this part.</P>
+
+<P>Then BlueBrick looks for XML file without an associated GIF file and will also parse these XML files. These parts however will be ignored by BlueBrick, which means that they will not be visible in the part window pane. Those parts will also not be visible on a layout and won't generate a warning if BlueBrick finds them in a layout file. So if you want to force BlueBrick to ignore some specific parts, you just need to create the correct XML file.</P>
+
+<CENTER>
+<TABLE BORDER=2>
+<TR>
+	<TD></TD><TD ALIGN="center">GIF present</TD><TD ALIGN="center">GIF missing</TD>
+</TR><TR>
+	<TD>XML present</TD>
+	<TD><CENTER><FONT COLOR="green">Valid Part</FONT></CENTER>The part is visible in the library.<BR>The behavior of the part is correct.</TD>
+	<TD><CENTER><FONT COLOR="green">Ignored Part</FONT></CENTER>The part is not visible in BlueBrick.<BR>Some information can be used for export.</TD>
+</TR><TR>
+	<TD>XML missing</TD>
+	<TD><CENTER><FONT COLOR="green">Simple Image</FONT></CENTER>The part is visible in the library.<BR>The part is inert.</TD>
+	<TD><CENTER><FONT COLOR="red">Missing Part</FONT></CENTER>The part will appear as a red cross.<BR>The part is inert.</TD>
+</TR>
+</TABLE>
+</CENTER>
+
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

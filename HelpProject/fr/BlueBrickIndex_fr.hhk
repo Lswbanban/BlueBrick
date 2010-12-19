@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="add">
+		<param name="Name" value="Adding and Deleting Parts">
+		<param name="Local" value="Adding_and_Deleting_Parts.htm">
+		<param name="Name" value="The Layer Toolbar">
+		<param name="Local" value="Layer_Toolbar.htm">
+		<param name="Name" value="How to extend the Part Library">
+		<param name="Local" value="How_to_extend_the_Part_Library.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="layer">
+			<param name="Name" value="The Layer Toolbar">
+			<param name="Local" value="Layer_Toolbar.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="part">
+			<param name="Name" value="Adding and Deleting Parts">
+			<param name="Local" value="Adding_and_Deleting_Parts.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="text">
+			<param name="Name" value="The Four Different Type of Layers">
+			<param name="Local" value="The_Four_Different_Type_of_Layers.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="align">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="area">
+		<param name="Name" value="The Four Different Type of Layers">
+		<param name="Local" value="The_Four_Different_Type_of_Layers.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="author">
+		<param name="Name" value="Start Page">
+		<param name="Local" value="Start_Page.htm">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="axis">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="back">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		<param name="Name" value="Other Options">
+		<param name="Local" value="Other_Options.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="bill">
+		<param name="Name" value="Exporting the Parts List">
+		<param name="Local" value="Exporting_the_Parts_List.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="bmp">
+		<param name="Name" value="Exporting a Layout as an Image">
+		<param name="Local" value="Exporting_a_Layout_as_an_Image.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="bom">
+		<param name="Name" value="Exporting the Parts List">
+		<param name="Local" value="Exporting_the_Parts_List.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="brick">
+		<param name="Name" value="The Four Different Type of Layers">
+		<param name="Local" value="The_Four_Different_Type_of_Layers.htm">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		<param name="Name" value="Window Panes">
+		<param name="Local" value="Window_Panes.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="color">
+		<param name="Name" value="Appearance Options">
+		<param name="Local" value="Appearance_Options.htm">
+		<param name="Name" value="Other Options">
+		<param name="Local" value="Other_Options.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="area">
+			<param name="Name" value="The Four Different Type of Layers">
+			<param name="Local" value="The_Four_Different_Type_of_Layers.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="background">
+			<param name="Name" value="Other Options">
+			<param name="Local" value="Other_Options.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="grid">
+			<param name="Name" value="Appearance Options">
+			<param name="Local" value="Appearance_Options.htm">
+			<param name="Name" value="Other Options">
+			<param name="Local" value="Other_Options.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="id">
+			<param name="Name" value="Part Image Format">
+			<param name="Local" value="Part_Image_Format.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="connection">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		<param name="Name" value="Appearance Options">
+		<param name="Local" value="Appearance_Options.htm">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="convention">
+		<param name="Name" value="Part Image Format">
+		<param name="Local" value="Part_Image_Format.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="coordinates">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="custom">
+		<param name="Name" value="How to extend the Part Library">
+		<param name="Local" value="How_to_extend_the_Part_Library.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="default">
+		<param name="Name" value="Shortcut Keys">
+		<param name="Local" value="Shortcut_Keys.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="delete">
+		<param name="Name" value="Adding and Deleting Parts">
+		<param name="Local" value="Adding_and_Deleting_Parts.htm">
+		<param name="Name" value="The Layer Toolbar">
+		<param name="Local" value="Layer_Toolbar.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="layer">
+			<param name="Name" value="The Layer Toolbar">
+			<param name="Local" value="Layer_Toolbar.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="part">
+			<param name="Name" value="Adding and Deleting Parts">
+			<param name="Local" value="Adding_and_Deleting_Parts.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="description">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		<param name="Name" value="Exporting the Parts List">
+		<param name="Local" value="Exporting_the_Parts_List.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="duplicate">
+		<param name="Name" value="Adding and Deleting Parts">
+		<param name="Local" value="Adding_and_Deleting_Parts.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="export">
+		<param name="Name" value="Exports, Reports and Printing">
+		<param name="Local" value="Export_Report_and_Printing.htm">
+		<param name="Name" value="Exporting a Layout as an Image">
+		<param name="Local" value="Exporting_a_Layout_as_an_Image.htm">
+		<param name="Name" value="Exporting the Parts List">
+		<param name="Local" value="Exporting_the_Parts_List.htm">
+		<param name="Name" value="Saving and Loading">
+		<param name="Local" value="Saving_and_Loading.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="image">
+			<param name="Name" value="Exporting a Layout as an Image">
+			<param name="Local" value="Exporting_a_Layout_as_an_Image.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="ldraw">
+			<param name="Name" value="Saving and Loading">
+			<param name="Local" value="Saving_and_Loading.htm">
+			<param name="Name" value="LDraw Remaping File">
+			<param name="Local" value="LDraw_Remaping_File.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="parts">
+			<param name="Name" value="Exporting the Parts List">
+			<param name="Local" value="Exporting_the_Parts_List.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="tdl">
+			<param name="Name" value="Saving and Loading">
+			<param name="Local" value="Saving_and_Loading.htm">
+			<param name="Name" value="Track Designer Remaping File">
+			<param name="Local" value="Track_Designer_Remaping_File.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="extend">
+		<param name="Name" value="How to extend the Part Library">
+		<param name="Local" value="How_to_extend_the_Part_Library.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="folder">
+		<param name="Name" value="Part Library Folders">
+		<param name="Local" value="Part_Library_Folders.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="font">
+		<param name="Name" value="Appearance Options">
+		<param name="Local" value="Appearance_Options.htm">
+		<param name="Name" value="Other Options">
+		<param name="Local" value="Other_Options.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="format">
+		<param name="Name" value="Part Image Format">
+		<param name="Local" value="Part_Image_Format.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="front">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="gif">
+		<param name="Name" value="Part Image Format">
+		<param name="Local" value="Part_Image_Format.htm">
+		<param name="Name" value="Exporting a Layout as an Image">
+		<param name="Local" value="Exporting_a_Layout_as_an_Image.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="grid">
+		<param name="Name" value="The Four Different Type of Layers">
+		<param name="Local" value="The_Four_Different_Type_of_Layers.htm">
+		<param name="Name" value="Other Options">
+		<param name="Local" value="Other_Options.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="html">
+		<param name="Name" value="Exporting the Parts List">
+		<param name="Local" value="Exporting_the_Parts_List.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="hull">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="image">
+		<param name="Name" value="Part Image Format">
+		<param name="Local" value="Part_Image_Format.htm">
+		<param name="Name" value="Exporting a Layout as an Image">
+		<param name="Local" value="Exporting_a_Layout_as_an_Image.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="export">
+			<param name="Name" value="Exporting a Layout as an Image">
+			<param name="Local" value="Exporting_a_Layout_as_an_Image.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="format">
+			<param name="Name" value="Part Image Format">
+			<param name="Local" value="Part_Image_Format.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="url">
+			<param name="Name" value="Part XML Description">
+			<param name="Local" value="Part_XML_Description.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="import">
+		<param name="Name" value="Saving and Loading">
+		<param name="Local" value="Saving_and_Loading.htm">
+		<param name="Name" value="LDraw Remaping File">
+		<param name="Local" value="LDraw_Remaping_File.htm">
+		<param name="Name" value="Track Designer Remaping File">
+		<param name="Local" value="Track_Designer_Remaping_File.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="ldraw">
+			<param name="Name" value="Saving and Loading">
+			<param name="Local" value="Saving_and_Loading.htm">
+			<param name="Name" value="LDraw Remaping File">
+			<param name="Local" value="LDraw_Remaping_File.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="tdl">
+			<param name="Name" value="Saving and Loading">
+			<param name="Local" value="Saving_and_Loading.htm">
+			<param name="Name" value="Track Designer Remaping File">
+			<param name="Local" value="Track_Designer_Remaping_File.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="jpg">
+		<param name="Name" value="Exporting a Layout as an Image">
+		<param name="Local" value="Exporting_a_Layout_as_an_Image.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="key">
+		<param name="Name" value="Shortcut Keys">
+		<param name="Local" value="Shortcut_Keys.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="language">
+		<param name="Name" value="Choosing a language">
+		<param name="Local" value="Choosing_a_language.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="layer">
+		<param name="Name" value="Window Panes">
+		<param name="Local" value="Window_Panes.htm">
+		<param name="Name" value="Creating and Using Layers">
+		<param name="Local" value="Creating_and_Using_Layers.htm">
+		<param name="Name" value="The Layer Toolbar">
+		<param name="Local" value="Layer_Toolbar.htm">
+		<param name="Name" value="The Four Different Type of Layers">
+		<param name="Local" value="The_Four_Different_Type_of_Layers.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="layout">
+		<param name="Name" value="Window Panes">
+		<param name="Local" value="Window_Panes.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ldr">
+		<param name="Name" value="Saving and Loading">
+		<param name="Local" value="Saving_and_Loading.htm">
+		<param name="Name" value="LDraw Remaping File">
+		<param name="Local" value="LDraw_Remaping_File.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ldraw">
+		<param name="Name" value="Saving and Loading">
+		<param name="Local" value="Saving_and_Loading.htm">
+		<param name="Name" value="LDraw Remaping File">
+		<param name="Local" value="LDraw_Remaping_File.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="legal">
+		<param name="Name" value="Start Page">
+		<param name="Local" value="Start_Page.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="library">
+		<param name="Name" value="Window Panes">
+		<param name="Local" value="Window_Panes.htm">
+		<param name="Name" value="How to extend the Part Library">
+		<param name="Local" value="How_to_extend_the_Part_Library.htm">
+		<param name="Name" value="Reload the Part Library">
+		<param name="Local" value="Reload_the_Part_Library.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="browse">
+			<param name="Name" value="Window Panes">
+			<param name="Local" value="Window_Panes.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="extend">
+			<param name="Name" value="How to extend the Part Library">
+			<param name="Local" value="How_to_extend_the_Part_Library.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="reload">
+			<param name="Name" value="Reload the Part Library">
+			<param name="Local" value="Reload_the_Part_Library.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="license">
+		<param name="Name" value="Start Page">
+		<param name="Local" value="Start_Page.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="link">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		<param name="Name" value="Appearance Options">
+		<param name="Local" value="Appearance_Options.htm">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="list">
+		<param name="Name" value="Exporting the Parts List">
+		<param name="Local" value="Exporting_the_Parts_List.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="load">
+		<param name="Name" value="Saving and Loading">
+		<param name="Local" value="Saving_and_Loading.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="magnet">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="margin">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="mouse">
+		<param name="Name" value="General Options">
+		<param name="Local" value="General_Options.htm">
+		<param name="Name" value="Zooming and Viewing">
+		<param name="Local" value="Zooming_and_Viewing.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="move">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		<param name="Name" value="Zooming and Viewing">
+		<param name="Local" value="Zooming_and_Viewing.htm">
+		<param name="Name" value="The Layer Toolbar">
+		<param name="Local" value="Layer_Toolbar.htm">
+		<param name="Name" value="The Four Different Type of Layers">
+		<param name="Local" value="The_Four_Different_Type_of_Layers.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="area">
+			<param name="Name" value="The Four Different Type of Layers">
+			<param name="Local" value="The_Four_Different_Type_of_Layers.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="grid">
+			<param name="Name" value="Other Options">
+			<param name="Local" value="Other_Options.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="parts">
+			<param name="Name" value="Moving Parts">
+			<param name="Local" value="Moving_Parts.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="text">
+			<param name="Name" value="Moving Parts">
+			<param name="Local" value="Moving_Parts.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="view">
+			<param name="Name" value="Zooming and Viewing">
+			<param name="Local" value="Zooming_and_Viewing.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="mpd">
+		<param name="Name" value="Saving and Loading">
+		<param name="Local" value="Saving_and_Loading.htm">
+		<param name="Name" value="LDraw Remaping File">
+		<param name="Local" value="LDraw_Remaping_File.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="new">
+		<param name="Name" value="Saving and Loading">
+		<param name="Local" value="Saving_and_Loading.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="open">
+		<param name="Name" value="Saving and Loading">
+		<param name="Local" value="Saving_and_Loading.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="option">
+		<param name="Name" value="Global Options">
+		<param name="Local" value="Global_Options.htm">
+		<param name="Name" value="General Options">
+		<param name="Local" value="General_Options.htm">
+		<param name="Name" value="Appearance Options">
+		<param name="Local" value="Appearance_Options.htm">
+		<param name="Name" value="Shortcut Keys">
+		<param name="Local" value="Shortcut_Keys.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="appearance">
+			<param name="Name" value="Appearance Options">
+			<param name="Local" value="Appearance_Options.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="default">
+			<param name="Name" value="Shortcut Keys">
+			<param name="Local" value="Shortcut_Keys.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="general">
+			<param name="Name" value="General Options">
+			<param name="Local" value="General_Options.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="language">
+			<param name="Name" value="Choosing a language">
+			<param name="Local" value="Choosing_a_language.htm">
+			<param name="Name" value="General Options">
+			<param name="Local" value="General_Options.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="layer">
+			<param name="Name" value="Other Options">
+			<param name="Local" value="Other_Options.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="shortcut">
+			<param name="Name" value="Shortcut Keys">
+			<param name="Local" value="Shortcut_Keys.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="order">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="pan">
+		<param name="Name" value="Zooming and Viewing">
+		<param name="Local" value="Zooming_and_Viewing.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="pane">
+		<param name="Name" value="Window Panes">
+		<param name="Local" value="Window_Panes.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="part">
+		<param name="Name" value="Window Panes">
+		<param name="Local" value="Window_Panes.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="alias">
+			<param name="Name" value="Keep a trace of the previous name of a part">
+			<param name="Local" value="Part_XML_Description_OldName.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="coordinates">
+			<param name="Name" value="Part XML Description">
+			<param name="Local" value="Part_XML_Description.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="description">
+			<param name="Name" value="Exporting the Parts List">
+			<param name="Local" value="Exporting_the_Parts_List.htm">
+			<param name="Name" value="Part XML Description">
+			<param name="Local" value="Part_XML_Description.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="hull">
+			<param name="Name" value="Part XML Description">
+			<param name="Local" value="Part_XML_Description.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="id">
+			<param name="Name" value="Part Library Folders">
+			<param name="Local" value="Part_Library_Folders.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="library">
+			<param name="Name" value="Window Panes">
+			<param name="Local" value="Window_Panes.htm">
+			<param name="Name" value="How to extend the Part Library">
+			<param name="Local" value="How_to_extend_the_Part_Library.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="list">
+			<param name="Name" value="Exporting the Parts List">
+			<param name="Local" value="Exporting_the_Parts_List.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="rename">
+			<param name="Name" value="Keep a trace of the previous name of a part">
+			<param name="Local" value="Part_XML_Description_OldName.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="performance">
+		<param name="Name" value="General Options">
+		<param name="Local" value="General_Options.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="png">
+		<param name="Name" value="Exporting a Layout as an Image">
+		<param name="Local" value="Exporting_a_Layout_as_an_Image.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="recent">
+		<param name="Name" value="General Options">
+		<param name="Local" value="General_Options.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="redo">
+		<param name="Name" value="Undo and Redo">
+		<param name="Local" value="Undo_and_Redo.htm">
+		<param name="Name" value="General Options">
+		<param name="Local" value="General_Options.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="reload">
+		<param name="Name" value="Reload the Part Library">
+		<param name="Local" value="Reload_the_Part_Library.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="rename">
+		<param name="Name" value="Keep a trace of the previous name of a part">
+		<param name="Local" value="Part_XML_Description_OldName.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="rotate">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="save">
+		<param name="Name" value="Saving and Loading">
+		<param name="Local" value="Saving_and_Loading.htm">
+		<param name="Name" value="Exporting a Layout as an Image">
+		<param name="Local" value="Exporting_a_Layout_as_an_Image.htm">
+		<param name="Name" value="Exporting the Parts List">
+		<param name="Local" value="Exporting_the_Parts_List.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="image">
+			<param name="Name" value="Exporting a Layout as an Image">
+			<param name="Local" value="Exporting_a_Layout_as_an_Image.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="map">
+			<param name="Name" value="Saving and Loading">
+			<param name="Local" value="Saving_and_Loading.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="parts list">
+			<param name="Name" value="Exporting the Parts List">
+			<param name="Local" value="Exporting_the_Parts_List.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="scale">
+		<param name="Name" value="Part Image Format">
+		<param name="Local" value="Part_Image_Format.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="scheme">
+		<param name="Name" value="Appearance Options">
+		<param name="Local" value="Appearance_Options.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="select">
+		<param name="Name" value="Selecting Parts">
+		<param name="Local" value="Selecting_Parts.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="shortcut">
+		<param name="Name" value="Shortcut Keys">
+		<param name="Local" value="Shortcut_Keys.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="snap">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="tab">
+		<param name="Name" value="Window Panes">
+		<param name="Local" value="Window_Panes.htm">
+		<param name="Name" value="Part Library Folders">
+		<param name="Local" value="Part_Library_Folders.htm">
+		<param name="Name" value="General Options">
+		<param name="Local" value="General_Options.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="tdl">
+		<param name="Name" value="Saving and Loading">
+		<param name="Local" value="Saving_and_Loading.htm">
+		<param name="Name" value="Track Designer Remaping File">
+		<param name="Local" value="Track_Designer_Remaping_File.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="text">
+		<param name="Name" value="The Four Different Type of Layers">
+		<param name="Local" value="The_Four_Different_Type_of_Layers.htm">
+		<param name="Name" value="Moving Parts">
+		<param name="Local" value="Moving_Parts.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="add">
+			<param name="Name" value="The Four Different Type of Layers">
+			<param name="Local" value="The_Four_Different_Type_of_Layers.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="font">
+			<param name="Name" value="Appearance Options">
+			<param name="Local" value="Appearance_Options.htm">
+			<param name="Name" value="Other Options">
+			<param name="Local" value="Other_Options.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="move">
+			<param name="Name" value="Moving Parts">
+			<param name="Local" value="Moving_Parts.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="rotate">
+			<param name="Name" value="Moving Parts">
+			<param name="Local" value="Moving_Parts.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="theme">
+		<param name="Name" value="Appearance Options">
+		<param name="Local" value="Appearance_Options.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="toolbar">
+		<param name="Name" value="Toolbars">
+		<param name="Local" value="Toolbars.htm">
+		<param name="Name" value="The Layer Toolbar">
+		<param name="Local" value="Layer_Toolbar.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="layer">
+			<param name="Name" value="The Layer Toolbar">
+			<param name="Local" value="Layer_Toolbar.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="main">
+			<param name="Name" value="Toolbars">
+			<param name="Local" value="Toolbars.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="undo">
+		<param name="Name" value="Undo and Redo">
+		<param name="Local" value="Undo_and_Redo.htm">
+		<param name="Name" value="General Options">
+		<param name="Local" value="General_Options.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="url">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="view">
+		<param name="Name" value="Zooming and Viewing">
+		<param name="Local" value="Zooming_and_Viewing.htm">
+		<param name="Name" value="Window Panes">
+		<param name="Local" value="Window_Panes.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="pan">
+			<param name="Name" value="Zooming and Viewing">
+			<param name="Local" value="Zooming_and_Viewing.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="zoom">
+			<param name="Name" value="Zooming and Viewing">
+			<param name="Local" value="Zooming_and_Viewing.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="window">
+		<param name="Name" value="Window Panes">
+		<param name="Local" value="Window_Panes.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="xml">
+		<param name="Name" value="Part XML Description">
+		<param name="Local" value="Part_XML_Description.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="zoom">
+		<param name="Name" value="Zooming and Viewing">
+		<param name="Local" value="Zooming_and_Viewing.htm">
+		<param name="Name" value="General Options">
+		<param name="Local" value="General_Options.htm">
+		</OBJECT>
+</UL>
+</BODY></HTML>

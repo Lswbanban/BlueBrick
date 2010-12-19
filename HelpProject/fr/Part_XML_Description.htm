@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Part XML Description</Title>
+</HEAD>
+<BODY>
+<H1>Part XML Description</H1>
+<H2>Overview</H2>
+
+<P>For each GIF image file created in the part library, you can create an XML file with the same name. This XML file will contain useful information to describe the properties of your parts such as its different connection points. But BlueBrick can still assign a default behavior to your part if you don't create an XML file, so this file is optional. The name of the XML file must be exactly the same as the GIF file, except the extension of course.</P>
+
+<P>You can duplicate an existing XML file and modify it to work faster. Be careful, the XML tags are case sensitive. Every field is optional, and the order of the fields does not matter. If one field is missing the default behavior is used instead.</P>
+
+<H2>Structure of the XML file</H2>
+
+<P>If you don't know what an XML file is, and if you are not familiar with its syntax, I strongly recommend you search for some additional help on internet. To summarize it in few words, this format organizes the data in a tree hierarchy by using tags which are identified by being enclosed with the characters &lt; and &gt;. Here is the general structure of an XML part file:</P>
+
+<DIV CLASS="TechNote">
+<PRE>
+&lt;?xml version="1.0"?&gt;
+&lt;part&gt;
+    &lt;Author&gt;...&lt;/Author&gt;
+    &lt;Description&gt;
+        &lt;en&gt;...&lt;/en&gt;
+        ...
+    &lt;/Description&gt;
+    &lt;ImageURL&gt;...&lt;/ImageURL&gt;
+    &lt;OldNameList&gt;
+        ...
+    &lt;/OldNameList&gt;
+    &lt;SnapMargin&gt;
+        ...
+    &lt;/SnapMargin&gt;
+    &lt;ConnexionList&gt;
+        &lt;connexion&gt;
+            ...
+        &lt;/connexion&gt;
+        ...
+    &lt;/ConnexionList&gt;
+    &lt;hull&gt;
+        &lt;point&gt;
+            ...
+        &lt;/point&gt;
+        ...
+    &lt;/hull&gt;
+    &lt;TrackDesigner&gt;
+        ...
+    &lt;/TrackDesigner&gt;
+    &lt;LDraw&gt;
+        ...
+    &lt;/LDraw&gt;
+&lt;/part&gt;</PRE>
+</DIV>
+
+<H2>The different XML tags in details</H2>
+
+<P>For a detailed description of each XML tags, read the following sections:</P>
+
+<UL>
+	<LI><A HREF="Part_XML_Description_Author.htm">Specify the Author</A> (easy)</LI>
+	<LI><A HREF="Part_XML_Description_Description.htm">Add a description in different languages</A> (easy)</LI>
+	<LI><A HREF="Part_XML_Description_Image.htm">Specify an online reference Image</A> (easy)</LI>
+	<LI><A HREF="Part_XML_Description_OldName.htm">Keep a trace of the previous name of a part</A> (easy)</LI>
+	<LI><A HREF="Part_XML_Description_Margin.htm">Specify the Margins for Snaping</A> (medium difficulty)</LI>
+	<LI><A HREF="Part_XML_Description_Connection.htm">Describe the Connection Points</A> (difficult)</LI>
+	<LI><A HREF="Part_XML_Description_Hull.htm">Describe the Hull</A> (medium difficulty)</LI>
+	<LI><A HREF="Part_XML_Description_Track_Designer.htm">Add information for Track Designer Compatibility</A> (difficult)</LI>
+	<LI><A HREF="Part_XML_Description_LDRAW.htm">Add information for LDraw Compatibility</A> (difficult)</LI>
+<UL>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<META NAME="keywords" CONTENT="BlueBrick, Help">
+<META NAME="description" CONTENT="The reference documentation for BlueBrick.">
+<META NAME="author" CONTENT="Alban Nanty">
+<LINK REL=StyleSheet HREF="../BlueBrick.css" TYPE="text/css" MEDIA=screen>
+<Title>Keep a trace of the previous name of a part</Title>
+</HEAD>
+<BODY>
+<H1>Keep a trace of the previous name of a part</H1>
+
+<TABLE CLASS="XMLDescription">
+<TR>
+	<TD CLASS="Tilte">Syntax:</TD>
+	<TD CLASS="XMLCode">&lt;OldNameList&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;&lt;OldName&gt;...&lt;/OldName&gt;<BR>
+		&nbsp;&nbsp;&nbsp;&nbsp;...<BR>
+		&lt;/OldNameList&gt;
+	</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Default Value:</TD>
+	<TD>By default the &lt;OldNameList&gt; tag should be absent, which means that the part was never renamed.</TD>
+</TR><TR>
+	<TD CLASS="Tilte">Description:</TD>
+	<TD>This tag is only usefull if you rename a part (change the GIF and XML file names) to still be able to load BBM files that were saved with the previous name.</TD>
+</TR>  
+</TABLE>
+
+<P>Since the part numbers which are used in a layout are also listed and saved in the BBM files (the layout file), BlueBrick will not find parts which you have renamed and will display them as a red cross image. To avoid this problem you should add a <FONT CLASS="Important">OldNameList field</FONT> in the XML file.</P>
+
+<P>Since a part can be renamed several times, you can add all the previous names of the part inside the <FONT CLASS="Important">OldNameList field</FONT>. This field contains a list of <FONT CLASS="Important">OldName fields</FONT> the contents of which is the full previous BlueBrick number (part number followed by a dot and by the color number).</P>
+
+<P>Of course you only need to add this field if you have previously published that part on the internet. This is important as people may have created layouts with the previous name of that part. To make their lives easier, you should add the <FONT CLASS="Important">OldNameList field</FONT> so that they can reload their previous Layout without missing images. If you are just changing the names for personal use, you don't need to keep a full record of the part names.</P>
+
+<P>Note that if you load a layout file with an old name and save it again, the new name will be used during the save. Nevertheless you should never delete a <FONT CLASS="Important">OldNameList field</FONT> unless you are certaint that all the layout files which were using the old name have been converted. As this feature does not reduce the performance of the BlueBrick software you can leave them forever, just in case.</P>
+
+<P>You can also use the <FONT CLASS="Important">OldNameList field</FONT> as an alias for the part because actually BlueBrick is treating the previous names as an alias. However, if you add in a new part in the library that has the same name as a previous part that you have renamed, the alias for the renamed part will be ignored. This means, that BlueBrick only creates the alias if there is not another part with the same name.</P>
+
+</BODY>
+</HTML>
