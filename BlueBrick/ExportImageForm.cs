@@ -85,16 +85,11 @@ namespace BlueBrick
 			this.imageHeightNumericUpDown.Maximum = (Decimal)MAX_IMAGE_SIZE_IN_PIXEL;
 			this.imageWidthNumericUpDown.Minimum = (Decimal)1;
 			this.imageWidthNumericUpDown.Maximum = (Decimal)MAX_IMAGE_SIZE_IN_PIXEL;
-			
-			// compute the max scale according to the max size of the export image,
-			// and the size of the total area
-			double maxScale = MAX_IMAGE_SIZE_IN_PIXEL / Math.Max(mTotalAreaInStud.Width, mTotalAreaInStud.Height);
-			double minScale = Math.Min(0.01, maxScale / 2); // 0.01 by default, the second value is to handle extrem case where the max is under 0.01
-			double incScale = Math.Min(0.01, maxScale / 4); // 0.01 by default, the second value is to handle extrem case where the distance between min and max is less than 0.01
-			double scaleValue = Math.Max(Math.Min(mTotalScalePixelPerStud, maxScale), minScale); // ensure that the scale value is inside the min and max
-			this.scaleNumericUpDown.Maximum = (Decimal)maxScale;
-			this.scaleNumericUpDown.Minimum = (Decimal)minScale;
-			this.scaleNumericUpDown.Increment = (Decimal)incScale;
+
+			// set the min, max, inc and value for the scale
+			updateMinAndMaxScaleAccordingToSelectedArea();
+			double scaleValue = Math.Max(Math.Min(mTotalScalePixelPerStud, (double)this.scaleNumericUpDown.Maximum),
+										(double)this.scaleNumericUpDown.Minimum); // ensure that the scale value is inside the min and max
 			this.scaleNumericUpDown.Value = (Decimal)scaleValue;
 
 			//init the numericupdown controls for area
@@ -112,6 +107,20 @@ namespace BlueBrick
 			this.areaRightNumericUpDown.Minimum = this.areaLeftNumericUpDown.Minimum;
 			this.areaTopNumericUpDown.Maximum = this.areaBottomNumericUpDown.Maximum;
 			this.areaBottomNumericUpDown.Minimum = this.areaTopNumericUpDown.Minimum;
+		}
+
+		private void updateMinAndMaxScaleAccordingToSelectedArea()
+		{
+			// get the biggest dimension among width and height of the selected area, and ensure it is not null
+			double bigestDimensionOfSelectedArea = Math.Max(1.0, Math.Max(mSelectedAreaInStud.Width, mSelectedAreaInStud.Height));
+			// compute the max scale according to the max size of the export image,
+			// and the size of the total area
+			double maxScale = MAX_IMAGE_SIZE_IN_PIXEL / bigestDimensionOfSelectedArea;
+			double minScale = Math.Min(0.01, maxScale / 2); // 0.01 by default, the second value is to handle extrem case where the max is under 0.01
+			double incScale = Math.Min(0.01, maxScale / 4); // 0.01 by default, the second value is to handle extrem case where the distance between min and max is less than 0.01
+			this.scaleNumericUpDown.Maximum = (Decimal)maxScale;
+			this.scaleNumericUpDown.Minimum = (Decimal)minScale;
+			this.scaleNumericUpDown.Increment = (Decimal)incScale;
 		}
 
 		#region update of the preview image
@@ -253,6 +262,7 @@ namespace BlueBrick
 			float newValue = (float)(this.areaLeftNumericUpDown.Value);
 			mSelectedAreaInStud.Width += mSelectedAreaInStud.X - newValue;
 			mSelectedAreaInStud.X = newValue;
+			updateMinAndMaxScaleAccordingToSelectedArea();
 			updateImage(this.areaLeftNumericUpDown);
 		}
 
@@ -261,6 +271,7 @@ namespace BlueBrick
 			float newValue = (float)(this.areaTopNumericUpDown.Value);
 			mSelectedAreaInStud.Height += mSelectedAreaInStud.Y - newValue;
 			mSelectedAreaInStud.Y = newValue;
+			updateMinAndMaxScaleAccordingToSelectedArea();
 			updateImage(this.areaTopNumericUpDown);
 		}
 
@@ -268,6 +279,7 @@ namespace BlueBrick
 		{
 			float newValue = (float)(this.areaRightNumericUpDown.Value);
 			mSelectedAreaInStud.Width = newValue - mSelectedAreaInStud.X;
+			updateMinAndMaxScaleAccordingToSelectedArea();
 			updateImage(this.areaRightNumericUpDown);
 		}
 
@@ -275,6 +287,7 @@ namespace BlueBrick
 		{
 			float newValue = (float)(this.areaBottomNumericUpDown.Value);
 			mSelectedAreaInStud.Height = newValue - mSelectedAreaInStud.Y;
+			updateMinAndMaxScaleAccordingToSelectedArea();
 			updateImage(this.areaBottomNumericUpDown);
 		}
 
