@@ -48,7 +48,7 @@ Open bugs:
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
 - MISSING FEATURE (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
-- MISSING FEATURE (FreeBee): Mirroring selected (just like rotating)
+- MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Larry): Shortcut parts (being able to have a meta XML part file describing an assembly of parts) or grouping parts.
 - [target 1.7] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
