@@ -60,7 +60,7 @@ Open bugs:
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Denis): Feature to search and replace a set of brick type by another one.
 - NEW FEATURE (Alban): The connection points are now configurable and extendable in an XML file
-- NEW FEATURE (Alban): Display the general info on top of the map (this can be disable in the option settings)
+- NEW FEATURE (Alban): Display the general info on top of the map (this can be disabled in the option settings)
 - NEW FEATURE (Larry): Display the XML exception when BB can not load XML files
 - BUGFIX (Larry): CRASH! when opening a BBM file which is write protected.
 - BUGFIX (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
