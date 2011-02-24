@@ -27,9 +27,10 @@ namespace BlueBrick
 {
 	public partial class DownloadCenterForm : Form
 	{
-		const int SUBITEM_URL_INDEX = 0;
-		const int SUBITEM_DEST_INDEX = 1;
-		const int SUBITEM_PERCENTAGE_INDEX = 2;
+		const int SUBITEM_PERCENTAGE_INDEX = 0;
+		const int SUBITEM_URL_INDEX = 1;
+		const int SUBITEM_DEST_INDEX = 2;
+		const int NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR = 10;
 
 		public DownloadCenterForm()
 		{
@@ -39,7 +40,23 @@ namespace BlueBrick
 		#region event
 		private void StartStopButton_Click(object sender, EventArgs e)
 		{
+			// disable this button
+			this.StartButton.Enabled = false;
+			// set the hourglass except for the cancel button
+			this.Cursor = Cursors.WaitCursor;
+			this.CancelButton.Cursor = Cursors.Default;
+			// launch the download
 			downloadAllTheFile();
+		}
+
+		private void DownloadCenterForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			// cancel the background download thread if the cancel button is pressed.
+			this.downloadBackgroundWorker.CancelAsync();
+			// re-enable the start button
+			this.StartButton.Enabled = true;
+			// reset the default cursor
+			this.Cursor = Cursors.Default;
 		}
 		#endregion
 
@@ -67,14 +84,16 @@ namespace BlueBrick
 
 			// end of the update of the control
 			this.DownloadListView.EndUpdate();
+
+			// set the parameter of the progress bar depending on the total number of files to download
+			if (fileList.Count > 0)
+				this.TotalProgressBar.Maximum = (fileList.Count * NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR);
 		}
 
 		private void updatePercentageOfOneFile(int fileIndex, int percentage)
 		{
 			// get the corresponding download bar subitem
 			ListViewItem.ListViewSubItemCollection subitems = this.DownloadListView.Items[fileIndex].SubItems;
-			if (percentage > 100)
-				percentage = 100;
 
 			// add the percentage bar
 			string percentageString = "";
@@ -95,7 +114,7 @@ namespace BlueBrick
 			subitems[SUBITEM_PERCENTAGE_INDEX].Text = percentageString + " " + percentage.ToString();
 
 			// change the color according to the percentage value
-			subitems[SUBITEM_PERCENTAGE_INDEX].ForeColor = ComputeColorFromPercentage(percentage);
+			subitems[SUBITEM_PERCENTAGE_INDEX].ForeColor = ComputeColorFromPercentage(100 - percentage, false);
 		}
 		#endregion
 
@@ -109,6 +128,8 @@ namespace BlueBrick
 
 		private void downloadAllTheFile()
 		{
+			// reset the total progress bar
+			this.TotalProgressBar.Value = 0;
 			// just call the download on the first file, and then in the event of the background worker complete
 			// it will be called again on the next files.
 			downloadOneFile(0);
@@ -118,6 +139,15 @@ namespace BlueBrick
 		{
 			// the result contains the index of the next file
 			downloadOneFile((int)(e.Result));
+		}
+
+		private void downloadComplete()
+		{
+			// reset the default cursor
+			this.Cursor = Cursors.Default;
+			// Hide the Cancel Button and show the close button
+			this.CancelButton.Hide();
+			this.CloseButton.Show();
 		}
 
 		private void downloadOneFile(int fileIndex)
@@ -135,6 +165,11 @@ namespace BlueBrick
 				// start the download asynchronously by giving the parameters
 				downloadBackgroundWorker.RunWorkerAsync(parameters);
 				// this method will be called again when the background worker will send it complete event
+			}
+			else
+			{
+				// if we reach the end of the list, the download is complete
+				downloadComplete();
 			}
 		}
 
@@ -209,12 +244,26 @@ namespace BlueBrick
 		/// <param name="e"></param>
 		private void downloadBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
 		{
-			updatePercentageOfOneFile((int)(e.UserState), e.ProgressPercentage);
+			// get the parameters
+			int fileIndex = (int)(e.UserState);
+			int percentage = Math.Min(e.ProgressPercentage, 100); // clamp the value to 100
+			// update the progress bar of one file
+			updatePercentageOfOneFile(fileIndex, percentage);
+			// update also the total progress bar
+			this.TotalProgressBar.Value = (fileIndex * NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR) +
+											(percentage / NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR);
 		}
 		#endregion
 
 		#region tool function
-		public static Color ComputeColorFromPercentage(double percentage)
+		/// <summary>
+		/// Compute a gradient color from green to red (if shouldGoToRed is true) or from green to Black depending
+		/// on the percentage value given in parameter
+		/// </summary>
+		/// <param name="percentage">a value between 0 to 100 to compute the gradient of color</param>
+		/// <param name="shouldGoToRed">if true, the color will be red when percent == 100</param>
+		/// <returns></returns>
+		public static Color ComputeColorFromPercentage(int percentage, bool shouldGoToRed)
 		{
 			if (percentage < 0.0)
 			{
@@ -222,27 +271,41 @@ namespace BlueBrick
 			}
 			else if (percentage > 100.0)
 			{
-				return Color.Red;
+				if (shouldGoToRed)
+					return Color.Red;
+				else
+					return Color.Black;
 			}
 			else
 			{
-				const double PERCENTAGE_GAP = 7.5;
-				const double RED_SLOPE = (255 / (50.0 + PERCENTAGE_GAP));
-				const double GREEN_SLOPE = (200 / (50.0 + PERCENTAGE_GAP));
-
-				// compute the red color
+				// the value of green and red
 				int redColor = 0;
-				if (percentage <= (50.0 + PERCENTAGE_GAP))
-					redColor = (int)(RED_SLOPE * percentage);
-				else
-					redColor = 255;
-
-				// compute the green color
 				int greenColor = 0;
-				if (percentage >= (50.0 - PERCENTAGE_GAP))
-					greenColor = 200 - (int)(GREEN_SLOPE * (percentage - (50.0 - PERCENTAGE_GAP)));
+
+				if (shouldGoToRed)
+				{
+					const double PERCENTAGE_GAP = 7.5;
+					const double RED_SLOPE = (255 / (50.0 + PERCENTAGE_GAP));
+					const double GREEN_SLOPE = (200 / (50.0 + PERCENTAGE_GAP));
+
+					// compute the red color
+					if (percentage <= (50.0 + PERCENTAGE_GAP))
+						redColor = (int)(RED_SLOPE * percentage);
+					else
+						redColor = 255;
+
+					// compute the green color
+					if (percentage >= (50.0 - PERCENTAGE_GAP))
+						greenColor = 200 - (int)(GREEN_SLOPE * (percentage - (50.0 - PERCENTAGE_GAP)));
+					else
+						greenColor = 200;
+				}
 				else
-					greenColor = 200;
+				{
+					// the red component stay null
+					// linear inc for the green
+					greenColor = 255 - (int)(2.55 * percentage);
+				}
 
 				return Color.FromArgb(0xFF, redColor, greenColor, 0x00);
 			}
