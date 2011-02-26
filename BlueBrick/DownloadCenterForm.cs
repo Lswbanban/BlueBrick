@@ -119,11 +119,29 @@ namespace BlueBrick
 		#endregion
 
 		#region download
+		/// <summary>
+		/// a small container to provide parameters to the background worker thread
+		/// </summary>
 		private class DownloadParameter
 		{
 			public string url = string.Empty;
 			public string destination = string.Empty;
 			public int fileIndex = 0;
+		}
+
+		/// <summary>
+		/// a small container to send back information from the background thread
+		/// </summary>
+		private class ResultParameter
+		{
+			public int fileIndex = 0;
+			public bool hasErrorOccurs = false;
+
+			public ResultParameter(int index, bool error)
+			{
+				fileIndex = index;
+				hasErrorOccurs = error;
+			}
 		}
 
 		private void downloadAllTheFile()
@@ -137,8 +155,15 @@ namespace BlueBrick
 
 		private void downloadBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
-			// the result contains the index of the next file
-			downloadOneFile((int)(e.Result));
+			// get the result object
+			ResultParameter result = (e.Result) as ResultParameter;
+
+			// check if there was an error to change the color
+			if (result.hasErrorOccurs)
+				this.DownloadListView.Items[result.fileIndex].SubItems[SUBITEM_PERCENTAGE_INDEX].ForeColor = Color.Red;
+
+			// then download the next file
+			downloadOneFile(result.fileIndex + 1);
 		}
 
 		private void downloadComplete()
@@ -179,13 +204,13 @@ namespace BlueBrick
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void downloadBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+		private void downloadBackgroundWorker_DoWork(object sender, DoWorkEventArgs eventArgs)
 		{
 			const int BUFFER_SIZE = 1024;
 			// Get the BackgroundWorker that raised this event.
             BackgroundWorker worker = sender as BackgroundWorker;
 			// and get the parameters
-			DownloadParameter parameters = e.Argument as DownloadParameter;
+			DownloadParameter parameters = eventArgs.Argument as DownloadParameter;
 
 			// create a http request
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(parameters.url);
@@ -198,6 +223,11 @@ namespace BlueBrick
 			{
 				// get the response
 				HttpWebResponse response = (HttpWebResponse)(request.GetResponse());
+				// check if we get a 404 error redirected by the server on a 404 web page
+				// in that case the getResponse will not throw an error
+				if (!response.ResponseUri.AbsoluteUri.Equals(parameters.url))
+					throw new WebException(String.Empty, null, WebExceptionStatus.UnknownError, response);
+
 				// Get the stream associated with the response.
 				Stream receiveStream = response.GetResponseStream();
 				// Pipes the stream to a higher level stream reader with the required encoding format. 
@@ -226,14 +256,39 @@ namespace BlueBrick
 				readStream.Close();
 
 				// if the download was ok, the result is the index of the next file
-				e.Result = parameters.fileIndex + 1;
+				eventArgs.Result = new ResultParameter(parameters.fileIndex, false);
 			}
-			catch (WebException exeption)
+			catch (WebException e)
 			{
-				exeption.Response.Close();
+				if (e.Response != null)
+					e.Response.Close();
+				// return the file index with the error code
+				eventArgs.Result = new ResultParameter(parameters.fileIndex, true);
+			}
+			// the following exception will normally never happen, however, we catch them and ignore them to not
+			// crash the application
+			catch (InvalidOperationException)
+			{
+				// The stream is already in use by a previous call to BeginGetResponse.
+				// -or- 
+				// TransferEncoding is set to a value and SendChunked is false. 
 
-				// if the download had problems, try to download again
-				e.Result = parameters.fileIndex;
+				// Method is GET or HEAD, and either ContentLength is greater or equal to zero or SendChunked is true.
+				// -or- 
+				// KeepAlive is true, AllowWriteStreamBuffering is false, ContentLength is -1, SendChunked is false, and Method is POST or PUT. 
+
+				// return the file index with the error code
+				eventArgs.Result = new ResultParameter(parameters.fileIndex, true);
+			}
+			catch (NotSupportedException)
+			{
+				// The request cache validator indicated that the response for this request can be served from
+				// the cache; however, this request includes data to be sent to the server. Requests that send
+				// data must not use the cache. This exception can occur if you are using a custom cache validator
+				// that is incorrectly implemented. 
+
+				// return the file index with the error code
+				eventArgs.Result = new ResultParameter(parameters.fileIndex, true);
 			}
 		}
 
