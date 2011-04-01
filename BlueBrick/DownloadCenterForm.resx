@@ -141,7 +141,7 @@
   <data name="label1.Text" xml:space="preserve">
     <value>BlueBrick needs to download some files from the internet. In the list below you can check the URL of the files and where it will be copied on your computer. Press the "Start Download" button when you are ready, make sure you have an internet connection and let BlueBrick going through your firewall.
 
-If you prefer, you can also close this dialog window, download the files with your web browser and copy them in the correct folder.</value>
+If you prefer, you can also close this dialog window, download the files with your web browser and copy them in the correct folder (which is relative to the BlueBrick Install Folder).</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -155,23 +155,32 @@ If you prefer, you can also close this dialog window, download the files with yo
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="PercentColumnHeader.Text" xml:space="preserve">
-    <value>Progress</value>
+  <data name="DestinationColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="PercentColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>120</value>
+  <data name="DestinationColumnHeader.Text" xml:space="preserve">
+    <value>Download to...</value>
+  </data>
+  <data name="DestinationColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>160</value>
+  </data>
+  <data name="SourceColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="SourceColumnHeader.Text" xml:space="preserve">
     <value>URL</value>
   </data>
   <data name="SourceColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>259</value>
+    <value>300</value>
   </data>
-  <data name="DestinationColumnHeader.Text" xml:space="preserve">
-    <value>Copied to</value>
+  <data name="PercentColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="DestinationColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>200</value>
+  <data name="PercentColumnHeader.Text" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="PercentColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>120</value>
   </data>
   <data name="DownloadListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -207,7 +216,7 @@ If you prefer, you can also close this dialog window, download the files with yo
     <value>Right</value>
   </data>
   <data name="StartButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>262, 294</value>
+    <value>264, 294</value>
   </data>
   <data name="StartButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 23</value>
@@ -234,13 +243,13 @@ If you prefer, you can also close this dialog window, download the files with yo
     <value>Left, Right</value>
   </data>
   <data name="TotalProgressBar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>403, 294</value>
+    <value>405, 294</value>
   </data>
   <data name="TotalProgressBar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 8, 3</value>
   </data>
   <data name="TotalProgressBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 23</value>
+    <value>190, 23</value>
   </data>
   <data name="TotalProgressBar.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -330,7 +339,7 @@ If you prefer, you can also close this dialog window, download the files with yo
     <value>0, 0, 0, 0</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 40</value>
+    <value>201, 40</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -434,6 +443,12 @@ If you prefer, you can also close this dialog window, download the files with yo
   <data name="$this.Text" xml:space="preserve">
     <value>Download Center</value>
   </data>
+  <data name="&gt;&gt;PercentColumnHeader.Name" xml:space="preserve">
+    <value>PercentColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;PercentColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;SourceColumnHeader.Name" xml:space="preserve">
     <value>SourceColumnHeader</value>
   </data>
@@ -444,12 +459,6 @@ If you prefer, you can also close this dialog window, download the files with yo
     <value>DestinationColumnHeader</value>
   </data>
   <data name="&gt;&gt;DestinationColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PercentColumnHeader.Name" xml:space="preserve">
-    <value>PercentColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;PercentColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;downloadBackgroundWorker.Name" xml:space="preserve">

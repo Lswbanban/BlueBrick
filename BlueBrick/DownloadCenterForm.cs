@@ -27,9 +27,9 @@ namespace BlueBrick
 {
 	public partial class DownloadCenterForm : Form
 	{
-		const int SUBITEM_PERCENTAGE_INDEX = 0;
+		const int SUBITEM_DEST_INDEX = 0;
 		const int SUBITEM_URL_INDEX = 1;
-		const int SUBITEM_DEST_INDEX = 2;
+		const int SUBITEM_PERCENTAGE_INDEX = 2;
 		const int NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR = 10;
 
 		public DownloadCenterForm()
@@ -58,6 +58,16 @@ namespace BlueBrick
 			// reset the default cursor
 			this.Cursor = Cursors.Default;
 		}
+
+		private void DownloadListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
+		{
+			// make sure the label start with the folder separator
+			if (!e.Label.StartsWith(@"\"))
+			{
+				e.CancelEdit = true;
+				this.DownloadListView.Items[e.Item].Text = @"\" + e.Label;
+			}
+		}
 		#endregion
 
 		#region ListView
@@ -74,6 +84,7 @@ namespace BlueBrick
 			{
 				// create an item
 				ListViewItem item = new ListViewItem(file);
+				item.Checked = true; // by default we download all the files
 				// add it to the list
 				this.DownloadListView.Items.Add(item);
 				// call the update of the percentage for updating the color
@@ -206,7 +217,6 @@ namespace BlueBrick
 		/// <param name="e"></param>
 		private void downloadBackgroundWorker_DoWork(object sender, DoWorkEventArgs eventArgs)
 		{
-			const int BUFFER_SIZE = 1024;
 			// Get the BackgroundWorker that raised this event.
             BackgroundWorker worker = sender as BackgroundWorker;
 			// and get the parameters
@@ -222,21 +232,21 @@ namespace BlueBrick
 			try
 			{
 				// get the response
-				HttpWebResponse response = (HttpWebResponse)(request.GetResponse());
+				HttpWebResponse response = request.GetResponse() as HttpWebResponse;
 				// check if we get a 404 error redirected by the server on a 404 web page
 				// in that case the getResponse will not throw an error
 				if (!response.ResponseUri.AbsoluteUri.Equals(parameters.url))
 					throw new WebException(String.Empty, null, WebExceptionStatus.UnknownError, response);
 
-				// Get the stream associated with the response.
-				Stream receiveStream = response.GetResponseStream();
-				// Pipes the stream to a higher level stream reader with the required encoding format. 
-				BinaryReader readStream = new BinaryReader(receiveStream, Encoding.UTF8);
+				// Pipes the stream associated with the response to a higher level stream reader
+				BinaryReader readStream = new BinaryReader(response.GetResponseStream());
 
 				// create a file stream to save the file
 				FileStream file = new FileStream(parameters.destination, FileMode.Create);
 				BinaryWriter binaryWriter = new BinaryWriter(file);
 
+				// write in buffer the data read from the stream reader
+				const int BUFFER_SIZE = 1024;
 				long nbLoop = (response.ContentLength / BUFFER_SIZE) + 1;
 				for (long i = 0; i < nbLoop; i++)
 				{
@@ -251,11 +261,11 @@ namespace BlueBrick
 				binaryWriter.Close();
 				file.Close();
 
-				// close the respons and read Stream
-				response.Close();
+				// close read stream and the response
 				readStream.Close();
+				response.Close();
 
-				// if the download was ok, the result is the index of the next file
+				// save the result object in the result property
 				eventArgs.Result = new ResultParameter(parameters.fileIndex, false);
 			}
 			catch (WebException e)

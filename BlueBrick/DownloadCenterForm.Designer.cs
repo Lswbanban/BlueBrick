@@ -32,15 +32,15 @@ namespace BlueBrick
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.DownloadListView = new System.Windows.Forms.ListView();
+			this.PercentColumnHeader = new System.Windows.Forms.ColumnHeader();
 			this.SourceColumnHeader = new System.Windows.Forms.ColumnHeader();
 			this.DestinationColumnHeader = new System.Windows.Forms.ColumnHeader();
-			this.PercentColumnHeader = new System.Windows.Forms.ColumnHeader();
 			this.StartButton = new System.Windows.Forms.Button();
 			this.TotalProgressBar = new System.Windows.Forms.ProgressBar();
-			this.downloadBackgroundWorker = new System.ComponentModel.BackgroundWorker();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.CancelButton = new System.Windows.Forms.Button();
 			this.CloseButton = new System.Windows.Forms.Button();
+			this.CancelButton = new System.Windows.Forms.Button();
+			this.downloadBackgroundWorker = new System.ComponentModel.BackgroundWorker();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -63,16 +63,25 @@ namespace BlueBrick
 			// 
 			// DownloadListView
 			// 
+			this.DownloadListView.AllowColumnReorder = true;
 			this.DownloadListView.AutoArrange = false;
+			this.DownloadListView.CheckBoxes = true;
 			this.DownloadListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.PercentColumnHeader,
+            this.DestinationColumnHeader,
             this.SourceColumnHeader,
-            this.DestinationColumnHeader});
+            this.PercentColumnHeader});
 			this.tableLayoutPanel1.SetColumnSpan(this.DownloadListView, 3);
 			resources.ApplyResources(this.DownloadListView, "DownloadListView");
+			this.DownloadListView.FullRowSelect = true;
+			this.DownloadListView.LabelEdit = true;
 			this.DownloadListView.Name = "DownloadListView";
 			this.DownloadListView.UseCompatibleStateImageBehavior = false;
 			this.DownloadListView.View = System.Windows.Forms.View.Details;
+			this.DownloadListView.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.DownloadListView_AfterLabelEdit);
+			// 
+			// PercentColumnHeader
+			// 
+			resources.ApplyResources(this.PercentColumnHeader, "PercentColumnHeader");
 			// 
 			// SourceColumnHeader
 			// 
@@ -81,10 +90,6 @@ namespace BlueBrick
 			// DestinationColumnHeader
 			// 
 			resources.ApplyResources(this.DestinationColumnHeader, "DestinationColumnHeader");
-			// 
-			// PercentColumnHeader
-			// 
-			resources.ApplyResources(this.PercentColumnHeader, "PercentColumnHeader");
 			// 
 			// StartButton
 			// 
@@ -99,27 +104,12 @@ namespace BlueBrick
 			this.TotalProgressBar.Name = "TotalProgressBar";
 			this.TotalProgressBar.Step = 1;
 			// 
-			// downloadBackgroundWorker
-			// 
-			this.downloadBackgroundWorker.WorkerReportsProgress = true;
-			this.downloadBackgroundWorker.WorkerSupportsCancellation = true;
-			this.downloadBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.downloadBackgroundWorker_DoWork);
-			this.downloadBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.downloadBackgroundWorker_RunWorkerCompleted);
-			this.downloadBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.downloadBackgroundWorker_ProgressChanged);
-			// 
 			// panel1
 			// 
 			this.panel1.Controls.Add(this.CloseButton);
 			this.panel1.Controls.Add(this.CancelButton);
 			resources.ApplyResources(this.panel1, "panel1");
 			this.panel1.Name = "panel1";
-			// 
-			// CancelButton
-			// 
-			resources.ApplyResources(this.CancelButton, "CancelButton");
-			this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.CancelButton.Name = "CancelButton";
-			this.CancelButton.UseVisualStyleBackColor = true;
 			// 
 			// CloseButton
 			// 
@@ -128,12 +118,26 @@ namespace BlueBrick
 			this.CloseButton.Name = "CloseButton";
 			this.CloseButton.UseVisualStyleBackColor = true;
 			// 
+			// CancelButton
+			// 
+			resources.ApplyResources(this.CancelButton, "CancelButton");
+			this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.CancelButton.Name = "CancelButton";
+			this.CancelButton.UseVisualStyleBackColor = true;
+			// 
+			// downloadBackgroundWorker
+			// 
+			this.downloadBackgroundWorker.WorkerReportsProgress = true;
+			this.downloadBackgroundWorker.WorkerSupportsCancellation = true;
+			this.downloadBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.downloadBackgroundWorker_DoWork);
+			this.downloadBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.downloadBackgroundWorker_RunWorkerCompleted);
+			this.downloadBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.downloadBackgroundWorker_ProgressChanged);
+			// 
 			// DownloadCenterForm
 			// 
 			this.AcceptButton = this.CloseButton;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.CancelButton = this.CancelButton;
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Name = "DownloadCenterForm";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DownloadCenterForm_FormClosing);
