@@ -1253,8 +1253,8 @@ namespace BlueBrick
 
 		private void findAndReplaceToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			FindForm optionForm = new FindForm();
-			optionForm.ShowDialog(this);
+			FindForm findForm = new FindForm();
+			findForm.ShowDialog(this);
 			this.mapPanel.Invalidate();
 		}
 
@@ -1522,6 +1522,9 @@ namespace BlueBrick
 			// update the the recent file list anyway because the user may have click the
 			// clear recent file list button before clicking cancel
 			UpdateRecentFileMenuFromConfigFile();
+
+			// before checking if we need to restart, check if the language package is correctly installed
+			LanguageManager.checkLanguage(BlueBrick.Properties.Settings.Default.Language);
 
 			// check if we need to restart, if yes, ask the user what he wants to do
 			if (optionForm.DoesNeedToRestart)

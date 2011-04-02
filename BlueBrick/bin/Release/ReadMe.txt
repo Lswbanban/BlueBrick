@@ -43,7 +43,9 @@ Open bugs:
 - [target 1.7] MISSING FEATURE (Alban): support new flex PF track.
 - [target 1.8] MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
 - [target 1.8] MISSING FEATURE (Larry): Select parts in multiple layers
+- MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - MISSING FEATURE (Alban): Autosave.
+- MISSING FEATURE (Erik): A new layer type for mesurement tools.
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
 - MISSING FEATURE (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
