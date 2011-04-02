@@ -27,9 +27,10 @@ namespace BlueBrick
 {
 	public partial class DownloadCenterForm : Form
 	{
-		const int SUBITEM_DEST_INDEX = 0;
-		const int SUBITEM_URL_INDEX = 1;
-		const int SUBITEM_PERCENTAGE_INDEX = 2;
+		const int SUBITEM_FILE_INDEX = 0;
+		const int SUBITEM_DEST_INDEX = 1;
+		const int SUBITEM_URL_INDEX = 2;
+		const int SUBITEM_PERCENTAGE_INDEX = 3;
 		const int NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR = 10;
 
 		public DownloadCenterForm()
@@ -125,7 +126,13 @@ namespace BlueBrick
 			subitems[SUBITEM_PERCENTAGE_INDEX].Text = percentageString + " " + percentage.ToString();
 
 			// change the color according to the percentage value
-			subitems[SUBITEM_PERCENTAGE_INDEX].ForeColor = ComputeColorFromPercentage(100 - percentage, false);
+			this.DownloadListView.Items[fileIndex].ForeColor = ComputeColorFromPercentage(100 - percentage, false);
+		}
+
+		private void updatePercentageOfTotalBar(int fileIndex, int percentage)
+		{
+			this.TotalProgressBar.Value = (fileIndex * NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR) +
+											(percentage / NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR);
 		}
 		#endregion
 
@@ -171,7 +178,16 @@ namespace BlueBrick
 
 			// check if there was an error to change the color
 			if (result.hasErrorOccurs)
-				this.DownloadListView.Items[result.fileIndex].SubItems[SUBITEM_PERCENTAGE_INDEX].ForeColor = Color.Red;
+			{
+				// get the item
+				ListViewItem item = this.DownloadListView.Items[result.fileIndex];
+				// change the color for this item to red
+				item.ForeColor = Color.Red;
+				// change the text
+				item.SubItems[SUBITEM_PERCENTAGE_INDEX].Text = BlueBrick.Properties.Resources.ErrorMsgTitleError;
+				// update the overall percentage for this file
+				updatePercentageOfTotalBar(result.fileIndex, 100);
+			}
 
 			// then download the next file
 			downloadOneFile(result.fileIndex + 1);
@@ -191,16 +207,29 @@ namespace BlueBrick
 			// check if we reach the end of the list
 			if (fileIndex < this.DownloadListView.Items.Count)
 			{
-				// get the URL and destination and create a parameter for async work
-				ListViewItem.ListViewSubItemCollection subitems = this.DownloadListView.Items[fileIndex].SubItems;
-				DownloadParameter parameters = new DownloadParameter();
-				parameters.url = subitems[SUBITEM_URL_INDEX].Text;
-				parameters.destination = System.Windows.Forms.Application.StartupPath + subitems[SUBITEM_DEST_INDEX].Text;
-				parameters.fileIndex = fileIndex;
+				// check if we need to download the file or if we need to skip it
+				ListViewItem item = this.DownloadListView.Items[fileIndex];
+				if (item.Checked)
+				{
+					// get the URL and destination and create a parameter for async work
+					ListViewItem.ListViewSubItemCollection subitems = item.SubItems;
+					DownloadParameter parameters = new DownloadParameter();
+					parameters.url = subitems[SUBITEM_URL_INDEX].Text;
+					parameters.destination = System.Windows.Forms.Application.StartupPath + subitems[SUBITEM_DEST_INDEX].Text;
+					parameters.fileIndex = fileIndex;
 
-				// start the download asynchronously by giving the parameters
-				downloadBackgroundWorker.RunWorkerAsync(parameters);
-				// this method will be called again when the background worker will send it complete event
+					// start the download asynchronously by giving the parameters
+					downloadBackgroundWorker.RunWorkerAsync(parameters);
+					// this method will be called again when the background worker will send it complete event
+				}
+				else
+				{
+					// clear the download area
+					item.SubItems[SUBITEM_PERCENTAGE_INDEX].Text = string.Empty;
+					// if we need to skip this file, download the next one
+					updatePercentageOfTotalBar(fileIndex, 100);
+					downloadOneFile(fileIndex + 1);
+				}
 			}
 			else
 			{
@@ -312,11 +341,9 @@ namespace BlueBrick
 			// get the parameters
 			int fileIndex = (int)(e.UserState);
 			int percentage = Math.Min(e.ProgressPercentage, 100); // clamp the value to 100
-			// update the progress bar of one file
+			// update the progress bar of one file and global progress bar
 			updatePercentageOfOneFile(fileIndex, percentage);
-			// update also the total progress bar
-			this.TotalProgressBar.Value = (fileIndex * NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR) +
-											(percentage / NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR);
+			updatePercentageOfTotalBar(fileIndex, percentage);
 		}
 		#endregion
 

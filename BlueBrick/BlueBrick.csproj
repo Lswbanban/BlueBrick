@@ -605,6 +605,10 @@
     <EmbeddedResource Include="Cursor\TextDuplicateCursor.cur" />
     <EmbeddedResource Include="Cursor\BrickArrowCursor.cur" />
     <EmbeddedResource Include="Cursor\BrickDuplicateCursor.cur" />
+    <EmbeddedResource Include="DownloadCenterForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DownloadCenterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DownloadCenterForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>DownloadCenterForm.cs</DependentUpon>
