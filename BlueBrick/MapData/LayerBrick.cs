@@ -37,12 +37,20 @@ namespace BlueBrick.MapData
 		{
 			public class ConnectionPoint
 			{
+				public enum Polarity
+				{
+					NEUTRAL = 0,
+					POSITIVE,
+					NEGATIVE,
+				}
+
 				public static Hashtable sHashtableForLinkRebuilding = new Hashtable(); // this hashtable is used to recreate the link when loading
 
 				public Brick mMyBrick = null; // reference to the brick this connection refer to
 				public PointF mPositionInStudWorldCoord = new PointF(0, 0); // the position of the connection point is world coord stud coord.
 				private ConnectionPoint mConnectionLink = null; // link toward this conection point is connected
 				public int mType = BrickLibrary.ConnectionType.DEFAULT; // 0 if the default brick type (which is a kind of Brick connection)
+				public Polarity mPolarity = Polarity.NEUTRAL;
 
 				/// <summary>
 				/// This default constructor is for the serialization and should not be used in the program
@@ -195,6 +203,8 @@ namespace BlueBrick.MapData
 			private PointF mSnapToGridOffset = new PointF(0, 0); // an offset from the center of the part to the point that should snap to the grid border (in stud)
 			[NonSerialized]
 			private PointF mOffsetFromOriginalImage = new PointF(0, 0); // when the image is rotated, the size is not the same as the orginal one, so this offset handle the difference
+			[NonSerialized]
+			private List<Point> mElectricCircuitIndexList = null; // reference on the array describing the electric circuit for this part
 
 			[NonSerialized]
 			private static Bitmap sInvalidDummyImageToSkip = new Bitmap(1, 1); // a dummy image to indicate the the image is not valid
@@ -210,7 +220,11 @@ namespace BlueBrick.MapData
 				get { return mPartNumber; }
 				set
 				{
+					// set the value
 					mPartNumber = value;
+					// update the associated electric current when the part number change
+					mElectricCircuitIndexList = BrickLibrary.Instance.getElectricCircuitList(value);
+					// update the image
 					updateImage();
 				}
 			}
@@ -410,6 +424,14 @@ namespace BlueBrick.MapData
 					}
 					return null;
 				}
+			}
+
+			/// <summary>
+			/// Return the a list of couple of connection index that describe each an electric circuit on the part
+			/// </summary>
+			public List<Point> ElectricCircuitIndexList
+			{
+				get { return mElectricCircuitIndexList; }
 			}
 
 			/// <summary>
@@ -1467,6 +1489,12 @@ namespace BlueBrick.MapData
 			else
 				mipmapLevel = 0;
 
+			// compute some constante value for the drawing of the electric circuit
+			float ELECTRIC_ARROW_WIDTH = (float)(2.0 * scalePixelPerStud);
+			float ELECTRIC_ARROW_LENGTH = (float)(4.0 * scalePixelPerStud);
+			const float ELECTRIC_ARROW_START_RATIO = 0.7f; // in percentage of the whole length
+			Pen ELECTRIC_PEN = new Pen(Color.DarkOrange, (float)(0.8 * scalePixelPerStud));
+
 			// iterate on all the bricks
 			Rectangle destinationRectangle = new Rectangle();
 			foreach (Brick brick in mBricks)
@@ -1494,6 +1522,42 @@ namespace BlueBrick.MapData
 							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, sImageAttributeForSelection);
 						else
 							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel);
+
+						// draw eventually the electric circuit
+						if (BlueBrick.Properties.Settings.Default.DisplayElectricCircuit)
+							if (brick.ElectricCircuitIndexList != null)
+								foreach (Point index in brick.ElectricCircuitIndexList)
+								{
+									// draw the line between the two connections
+									PointF start = brick.ConnectionPoints[index.X].PositionInStudWorldCoord;
+									PointF end = brick.ConnectionPoints[index.Y].PositionInStudWorldCoord;
+									start.X = (float)((start.X - areaInStud.Left) * scalePixelPerStud);
+									start.Y = (float)((start.Y - areaInStud.Top) * scalePixelPerStud);
+									end.X = (float)((end.X - areaInStud.Left) * scalePixelPerStud);
+									end.Y = (float)((end.Y - areaInStud.Top) * scalePixelPerStud);
+									g.DrawLine(ELECTRIC_PEN, start, end);
+
+									// computre the direction vector of the circuit
+									PointF distance = new PointF(end.X - start.X, end.Y - start.Y);
+									float length = (float)Math.Sqrt((distance.X * distance.X) + (distance.Y * distance.Y));
+									PointF direction = new PointF(distance.X / length, distance.Y / length);
+									// compute the edge of the arrow
+									PointF normal = new PointF(-direction.Y * ELECTRIC_ARROW_WIDTH, direction.X * ELECTRIC_ARROW_WIDTH);
+									PointF arrowBase = new PointF(start.X + (distance.X * ELECTRIC_ARROW_START_RATIO), start.Y + (distance.Y * ELECTRIC_ARROW_START_RATIO));
+									PointF arrowSummit = new PointF(arrowBase.X + (direction.X * ELECTRIC_ARROW_LENGTH), arrowBase.Y + (direction.Y * ELECTRIC_ARROW_LENGTH));
+									// check the polarity to know in which direction draw the arrow
+									if (brick.ConnectionPoints[index.X].mPolarity == Brick.ConnectionPoint.Polarity.NEGATIVE)
+									{
+										PointF swap = arrowBase;
+										arrowBase = arrowSummit;
+										arrowSummit = swap;
+									}
+									// compute the rest of the arrow
+									PointF leftWing = new PointF(arrowBase.X + normal.X, arrowBase.Y + normal.Y);
+									PointF rightWing = new PointF(arrowBase.X - normal.X, arrowBase.Y - normal.Y);
+									PointF[] arrowPositions = new PointF[] { arrowSummit, leftWing, rightWing };
+									g.FillPolygon(Brushes.DarkOrange, arrowPositions);
+								}
 					}
 				}
 			}

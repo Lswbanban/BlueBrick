@@ -71,6 +71,7 @@ namespace BlueBrick.MapData
 				public float mAngleToPrev = 180.0f;
 				public float mAngleToNext = 180.0f;
 				public int mNextPreferedIndex = 0;
+				public int mElectricPlug = 0;
 			};
 
 			public class TDRemapData
@@ -194,6 +195,7 @@ namespace BlueBrick.MapData
 			public Image			mImage = null;	// the image of the brick just as it is loaded from the hardrive. If null, the brick is ignored by BlueBrick.
 			public Margin			mSnapMargin = new Margin(); // the the inside margin that should be use for snapping the part on the grid
 			public List<ConnectionPoint> mConnectionPoints = null; // all the information for each connection
+			public List<Point>		mElectricCircuitList = null; // the list of all the electric circuit for this brick (if any)
 			public List<PointF>		mConnectionPositionList = null; // for optimization reason, the positions of the connections are also saved into a list
 			public List<PointF>		mBoundingBox = new List<PointF>(5); // list of the 4 corner in pixel, plus the origin in stud and from the center
 			public List<PointF>		mHull = new List<PointF>(4); // list of all the points in pixel that describe the hull of the part
@@ -457,6 +459,8 @@ namespace BlueBrick.MapData
 								connectionPoint.mAngleToNext = xmlReader.ReadElementContentAsFloat();
 							else if (xmlReader.Name.Equals("nextConnexionPreference"))
 								connectionPoint.mNextPreferedIndex = xmlReader.ReadElementContentAsInt();
+							else if (xmlReader.Name.Equals("electricPlug"))
+								connectionPoint.mElectricPlug = xmlReader.ReadElementContentAsInt();
 							else
 								xmlReader.Read();
 							// check if we reach the end of the connexion
@@ -473,6 +477,24 @@ namespace BlueBrick.MapData
 					// finish the connexion
 					if (!xmlReader.EOF)
 						xmlReader.ReadEndElement();
+
+					// build the electric circuit if these connections are electrical
+					// to know if there's a circuit between two connections, we must find pairs like
+					// 1/-1 or 2/-2 or 3/-3, etc...
+					if (mConnectionPoints != null)
+					{
+						int nbPossibleCircuits = mConnectionPoints.Count - 1;
+						for (int i = 0; i < nbPossibleCircuits; ++i)
+							for (int j = i + 1; j < mConnectionPoints.Count; ++j)
+								if ((mConnectionPoints[i].mElectricPlug != 0) &&
+									(mConnectionPoints[i].mElectricPlug == -mConnectionPoints[j].mElectricPlug))
+								{
+									// we found a circuit, so create the list if not already done
+									if (this.mElectricCircuitList == null)
+										this.mElectricCircuitList = new List<Point>();
+									this.mElectricCircuitList.Add(new Point(i, j));
+								}
+					}
 				}
 				else
 				{
@@ -1302,6 +1324,15 @@ namespace BlueBrick.MapData
 			if ((brickRef != null) && (brickRef.mConnectionPoints != null))
 				return brickRef.mConnectionPoints[pointIndex].mNextPreferedIndex;
 			return 0;
+		}
+
+		public List<Point> getElectricCircuitList(string partNumber)
+		{
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if (brickRef != null)
+				return brickRef.mElectricCircuitList;
+			return null;
 		}
 
 		public string getImageURL(string partNumber)

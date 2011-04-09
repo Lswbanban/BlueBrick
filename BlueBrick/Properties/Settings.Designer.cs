@@ -714,5 +714,17 @@ namespace BlueBrick.Properties {
                 this["DisplayGeneralInfoWatermark"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DisplayElectricCircuit {
+            get {
+                return ((bool)(this["DisplayElectricCircuit"]));
+            }
+            set {
+                this["DisplayElectricCircuit"] = value;
+            }
+        }
     }
 }
