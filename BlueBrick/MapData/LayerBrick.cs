@@ -37,20 +37,13 @@ namespace BlueBrick.MapData
 		{
 			public class ConnectionPoint
 			{
-				public enum Polarity
-				{
-					NEUTRAL = 0,
-					POSITIVE,
-					NEGATIVE,
-				}
-
 				public static Hashtable sHashtableForLinkRebuilding = new Hashtable(); // this hashtable is used to recreate the link when loading
 
 				public Brick mMyBrick = null; // reference to the brick this connection refer to
 				public PointF mPositionInStudWorldCoord = new PointF(0, 0); // the position of the connection point is world coord stud coord.
 				private ConnectionPoint mConnectionLink = null; // link toward this conection point is connected
 				public int mType = BrickLibrary.ConnectionType.DEFAULT; // 0 if the default brick type (which is a kind of Brick connection)
-				public Polarity mPolarity = Polarity.NEUTRAL;
+				public int mPolarity = 0; // 0=neutral, negative value=negative, and positive value=positive
 
 				/// <summary>
 				/// This default constructor is for the serialization and should not be used in the program
@@ -504,6 +497,8 @@ namespace BlueBrick.MapData
 				base.ReadXml(reader);
 				// avoid using the accessor to reduce the number of call of updateBitmap
 				mPartNumber = BrickLibrary.Instance.getActualPartNumber(reader.ReadElementContentAsString().ToUpper());
+				// but then update its electric list
+				mElectricCircuitIndexList = BrickLibrary.Instance.getElectricCircuitList(mPartNumber);
 				mOrientation = reader.ReadElementContentAsFloat();
 				mActiveConnectionPointIndex = reader.ReadElementContentAsInt();
 				// the altitude
@@ -1290,8 +1285,8 @@ namespace BlueBrick.MapData
 
 		private bool arePositionsEqual(PointF pos1, PointF pos2)
 		{
-			if (Math.Abs(pos1.X - pos2.X) < 0.1)
-				return (Math.Abs(pos1.Y - pos2.Y) < 0.1);
+			if (Math.Abs(pos1.X - pos2.X) < 0.5)
+				return (Math.Abs(pos1.Y - pos2.Y) < 0.5);
 			return false;
 		}
 
@@ -1546,16 +1541,16 @@ namespace BlueBrick.MapData
 									PointF arrowBase = new PointF(start.X + (distance.X * ELECTRIC_ARROW_START_RATIO), start.Y + (distance.Y * ELECTRIC_ARROW_START_RATIO));
 									PointF arrowSummit = new PointF(arrowBase.X + (direction.X * ELECTRIC_ARROW_LENGTH), arrowBase.Y + (direction.Y * ELECTRIC_ARROW_LENGTH));
 									// check the polarity to know in which direction draw the arrow
-									if (brick.ConnectionPoints[index.X].mPolarity == Brick.ConnectionPoint.Polarity.NEGATIVE)
+									if (brick.ConnectionPoints[index.X].mPolarity < 0)
 									{
 										PointF swap = arrowBase;
 										arrowBase = arrowSummit;
 										arrowSummit = swap;
 									}
-									// compute the rest of the arrow
-									PointF leftWing = new PointF(arrowBase.X + normal.X, arrowBase.Y + normal.Y);
-									PointF rightWing = new PointF(arrowBase.X - normal.X, arrowBase.Y - normal.Y);
-									PointF[] arrowPositions = new PointF[] { arrowSummit, leftWing, rightWing };
+									// create the vertex buffer of the arrow and draw it
+									PointF[] arrowPositions = new PointF[] { arrowSummit, 
+											new PointF(arrowBase.X + normal.X, arrowBase.Y + normal.Y),
+											new PointF(arrowBase.X - normal.X, arrowBase.Y - normal.Y) };
 									g.FillPolygon(Brushes.DarkOrange, arrowPositions);
 								}
 					}
