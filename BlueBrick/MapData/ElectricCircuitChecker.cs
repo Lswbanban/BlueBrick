@@ -47,7 +47,7 @@ namespace BlueBrick.MapData
 			mBrickToExplore.Clear();
 			mBrickToExplore.Add(startingBrick);
 			// init the first connection of the starting brick with the new timestamp
-			LayerBrick.Brick.ConnectionPoint firstConnection = startingBrick.ConnectionPoints[startingBrick.ElectricCircuitIndexList[0].X];
+			LayerBrick.Brick.ConnectionPoint firstConnection = startingBrick.ConnectionPoints[startingBrick.ElectricCircuitIndexList[0].mIndex1];
 			firstConnection.mPolarity = sTimeStamp;
 			// if the first connection is connected to another brick, also add this brick in the list
 			if (firstConnection.ConnectionLink != null)
@@ -70,11 +70,11 @@ namespace BlueBrick.MapData
 
 				// iterate on all the brick connection
 				if (brick.ElectricCircuitIndexList != null)
-					foreach (Point index in brick.ElectricCircuitIndexList)
+					foreach (BrickLibrary.Brick.ElectricCircuit circuit in brick.ElectricCircuitIndexList)
 					{
 						// get the connection point of the current circuit inside the brick
-						LayerBrick.Brick.ConnectionPoint start = brick.ConnectionPoints[index.X];
-						LayerBrick.Brick.ConnectionPoint end = brick.ConnectionPoints[index.Y];
+						LayerBrick.Brick.ConnectionPoint start = brick.ConnectionPoints[circuit.mIndex1];
+						LayerBrick.Brick.ConnectionPoint end = brick.ConnectionPoints[circuit.mIndex2];
 
 						// check wich one has the incoming electricity, if it's not the start,
 						// swap the two connections point in order to have only one algorithm in the following

@@ -197,7 +197,7 @@ namespace BlueBrick.MapData
 			[NonSerialized]
 			private PointF mOffsetFromOriginalImage = new PointF(0, 0); // when the image is rotated, the size is not the same as the orginal one, so this offset handle the difference
 			[NonSerialized]
-			private List<Point> mElectricCircuitIndexList = null; // reference on the array describing the electric circuit for this part
+			private List<BrickLibrary.Brick.ElectricCircuit> mElectricCircuitIndexList = null; // reference on the array describing the electric circuit for this part
 
 			[NonSerialized]
 			private static Bitmap sInvalidDummyImageToSkip = new Bitmap(1, 1); // a dummy image to indicate the the image is not valid
@@ -422,7 +422,7 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// Return the a list of couple of connection index that describe each an electric circuit on the part
 			/// </summary>
-			public List<Point> ElectricCircuitIndexList
+			public List<BrickLibrary.Brick.ElectricCircuit> ElectricCircuitIndexList
 			{
 				get { return mElectricCircuitIndexList; }
 			}
@@ -1484,11 +1484,8 @@ namespace BlueBrick.MapData
 			else
 				mipmapLevel = 0;
 
-			// compute some constante value for the drawing of the electric circuit
-			float ELECTRIC_ARROW_WIDTH = (float)(2.0 * scalePixelPerStud);
-			float ELECTRIC_ARROW_LENGTH = (float)(4.0 * scalePixelPerStud);
-			const float ELECTRIC_ARROW_START_RATIO = 0.7f; // in percentage of the whole length
-			Pen ELECTRIC_PEN = new Pen(Color.DarkOrange, (float)(0.8 * scalePixelPerStud));
+			// create a list of visible electric brick
+			List<Brick> visibleElectricBricks = new List<Brick>();
 
 			// iterate on all the bricks
 			Rectangle destinationRectangle = new Rectangle();
@@ -1518,43 +1515,54 @@ namespace BlueBrick.MapData
 						else
 							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel);
 
-						// draw eventually the electric circuit
-						if (BlueBrick.Properties.Settings.Default.DisplayElectricCircuit)
-							if (brick.ElectricCircuitIndexList != null)
-								foreach (Point index in brick.ElectricCircuitIndexList)
-								{
-									// draw the line between the two connections
-									PointF start = brick.ConnectionPoints[index.X].PositionInStudWorldCoord;
-									PointF end = brick.ConnectionPoints[index.Y].PositionInStudWorldCoord;
-									start.X = (float)((start.X - areaInStud.Left) * scalePixelPerStud);
-									start.Y = (float)((start.Y - areaInStud.Top) * scalePixelPerStud);
-									end.X = (float)((end.X - areaInStud.Left) * scalePixelPerStud);
-									end.Y = (float)((end.Y - areaInStud.Top) * scalePixelPerStud);
-									g.DrawLine(ELECTRIC_PEN, start, end);
-
-									// computre the direction vector of the circuit
-									PointF distance = new PointF(end.X - start.X, end.Y - start.Y);
-									float length = (float)Math.Sqrt((distance.X * distance.X) + (distance.Y * distance.Y));
-									PointF direction = new PointF(distance.X / length, distance.Y / length);
-									// compute the edge of the arrow
-									PointF normal = new PointF(-direction.Y * ELECTRIC_ARROW_WIDTH, direction.X * ELECTRIC_ARROW_WIDTH);
-									PointF arrowBase = new PointF(start.X + (distance.X * ELECTRIC_ARROW_START_RATIO), start.Y + (distance.Y * ELECTRIC_ARROW_START_RATIO));
-									PointF arrowSummit = new PointF(arrowBase.X + (direction.X * ELECTRIC_ARROW_LENGTH), arrowBase.Y + (direction.Y * ELECTRIC_ARROW_LENGTH));
-									// check the polarity to know in which direction draw the arrow
-									if (brick.ConnectionPoints[index.X].mPolarity < 0)
-									{
-										PointF swap = arrowBase;
-										arrowBase = arrowSummit;
-										arrowSummit = swap;
-									}
-									// create the vertex buffer of the arrow and draw it
-									PointF[] arrowPositions = new PointF[] { arrowSummit, 
-											new PointF(arrowBase.X + normal.X, arrowBase.Y + normal.Y),
-											new PointF(arrowBase.X - normal.X, arrowBase.Y - normal.Y) };
-									g.FillPolygon(Brushes.DarkOrange, arrowPositions);
-								}
+						// if the brick is electric, add it to the list
+						if (brick.ElectricCircuitIndexList != null)
+							visibleElectricBricks.Add(brick);
 					}
 				}
+			}
+
+			// draw eventually the electric circuit
+			if (BlueBrick.Properties.Settings.Default.DisplayElectricCircuit)
+			{
+				// compute some constant value for the drawing of the electric circuit
+				float ELECTRIC_WIDTH = (float)(2.5 * scalePixelPerStud);
+				Pen ELECTRIC_RED_PEN = new Pen(Color.OrangeRed, (float)(0.5 * scalePixelPerStud));
+				Pen ELECTRIC_BLUE_PEN = new Pen(Color.Cyan, (float)(0.5 * scalePixelPerStud));
+
+				foreach (Brick brick in visibleElectricBricks)
+					foreach (BrickLibrary.Brick.ElectricCircuit circuit in brick.ElectricCircuitIndexList)
+					{
+						// draw the line between the two connections
+						PointF start = brick.ConnectionPoints[circuit.mIndex1].PositionInStudWorldCoord;
+						PointF end = brick.ConnectionPoints[circuit.mIndex2].PositionInStudWorldCoord;
+						start.X = (float)((start.X - areaInStud.Left) * scalePixelPerStud);
+						start.Y = (float)((start.Y - areaInStud.Top) * scalePixelPerStud);
+						end.X = (float)((end.X - areaInStud.Left) * scalePixelPerStud);
+						end.Y = (float)((end.Y - areaInStud.Top) * scalePixelPerStud);
+
+						// computre the direction vector of the circuit
+						PointF direction = new PointF((end.X - start.X) / circuit.mDistance, (end.Y - start.Y) / circuit.mDistance);
+						// compute the normal of the circuit
+						PointF normal = new PointF(-direction.Y * ELECTRIC_WIDTH, direction.X * ELECTRIC_WIDTH);
+
+						// compute the two lines of the circuit
+						PointF start1 = new PointF(start.X + normal.X, start.Y + normal.Y);
+						PointF end1 = new PointF(end.X + normal.X, end.Y + normal.Y);
+						PointF start2 = new PointF(start.X - normal.X, start.Y - normal.Y);
+						PointF end2 = new PointF(end.X - normal.X, end.Y - normal.Y);
+
+						if (brick.ConnectionPoints[circuit.mIndex1].mPolarity < 0)
+						{
+							g.DrawLine(ELECTRIC_BLUE_PEN, start1, end1);
+							g.DrawLine(ELECTRIC_RED_PEN, start2, end2);
+						}
+						else
+						{
+							g.DrawLine(ELECTRIC_RED_PEN, start1, end1);
+							g.DrawLine(ELECTRIC_BLUE_PEN, start2, end2);
+						}
+					}
 			}
 
 			// call the base class to draw the surrounding selection rectangle

@@ -74,6 +74,19 @@ namespace BlueBrick.MapData
 				public int mElectricPlug = 0;
 			};
 
+			public class ElectricCircuit
+			{
+				public int mIndex1 = 0; // index of the first connection that makes the circuit
+				public int mIndex2 = 1; // index of the second connection that makes the circuit
+				public float mDistance = 16.0f; // distance in stud between the two connection
+				public ElectricCircuit(int index1, int index2, float distance)
+				{
+					mIndex1 = index1;
+					mIndex2 = index2;
+					mDistance = distance;
+				}
+			};
+
 			public class TDRemapData
 			{
 				public class ConnexionData
@@ -195,7 +208,7 @@ namespace BlueBrick.MapData
 			public Image			mImage = null;	// the image of the brick just as it is loaded from the hardrive. If null, the brick is ignored by BlueBrick.
 			public Margin			mSnapMargin = new Margin(); // the the inside margin that should be use for snapping the part on the grid
 			public List<ConnectionPoint> mConnectionPoints = null; // all the information for each connection
-			public List<Point>		mElectricCircuitList = null; // the list of all the electric circuit for this brick (if any)
+			public List<ElectricCircuit> mElectricCircuitList = null; // the list of all the electric circuit for this brick (if any)
 			public List<PointF>		mConnectionPositionList = null; // for optimization reason, the positions of the connections are also saved into a list
 			public List<PointF>		mBoundingBox = new List<PointF>(5); // list of the 4 corner in pixel, plus the origin in stud and from the center
 			public List<PointF>		mHull = new List<PointF>(4); // list of all the points in pixel that describe the hull of the part
@@ -491,8 +504,13 @@ namespace BlueBrick.MapData
 								{
 									// we found a circuit, so create the list if not already done
 									if (this.mElectricCircuitList == null)
-										this.mElectricCircuitList = new List<Point>();
-									this.mElectricCircuitList.Add(new Point(i, j));
+										this.mElectricCircuitList = new List<ElectricCircuit>();
+									// compute the distance between the two connection (length of the circuit)
+									PointF distance = new PointF(	mConnectionPoints[i].mPosition.X - mConnectionPoints[j].mPosition.X,
+																	mConnectionPoints[i].mPosition.Y - mConnectionPoints[j].mPosition.Y);
+									float length = (float)Math.Sqrt((distance.X * distance.X) + (distance.Y * distance.Y));
+									// add the new circuit in the list
+									this.mElectricCircuitList.Add(new ElectricCircuit(i, j, length));
 								}
 					}
 				}
@@ -1326,7 +1344,7 @@ namespace BlueBrick.MapData
 			return 0;
 		}
 
-		public List<Point> getElectricCircuitList(string partNumber)
+		public List<Brick.ElectricCircuit> getElectricCircuitList(string partNumber)
 		{
 			Brick brickRef = null;
 			mBrickDictionary.TryGetValue(partNumber, out brickRef);
