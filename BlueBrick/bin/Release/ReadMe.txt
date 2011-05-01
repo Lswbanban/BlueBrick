@@ -68,6 +68,7 @@ Bug fixed in 1.7.0.0:
 - BUGFIX (Larry): CRASH! when opening a BBM file which is write protected.
 - BUGFIX (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
 - BUGFIX (Vincent): In the export window, the maximum scale was limited by the size of the total area, not the size of the selected area.
+- BUGFIX (Alban): The snapping of connected brick tried to snap to free connection point inside the selection, making the snapping becoming crazy
 
 Bug fixed in 1.6.1.0:
 - NEW FEATURE (Alex & Alban): Add a context menu in the part lib to choose more options: large/small icons, respect proportions, display bubble info

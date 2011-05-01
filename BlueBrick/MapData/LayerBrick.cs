@@ -2035,7 +2035,7 @@ namespace BlueBrick.MapData
 							float nearestSquareDistance = float.MaxValue;
 							Brick.ConnectionPoint bestFreeConnection = null;
 							foreach (Brick.ConnectionPoint freeConnexion in mFreeConnectionPoints.getListForType(activeBrickConnexion.Type))
-								if (freeConnexion.mMyBrick != mCurrentBrickUnderMouse)
+								if (!mSelectedObjects.Contains(freeConnexion.mMyBrick))
 								{
 									float dx = freeConnexion.mPositionInStudWorldCoord.X - virtualActiveConnectionPosition.X;
 									float dy = freeConnexion.mPositionInStudWorldCoord.Y - virtualActiveConnectionPosition.Y;
