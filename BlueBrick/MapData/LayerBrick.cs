@@ -1542,7 +1542,8 @@ namespace BlueBrick.MapData
 						end.Y = (float)((end.Y - areaInStud.Top) * scalePixelPerStud);
 
 						// computre the direction vector of the circuit
-						PointF direction = new PointF((end.X - start.X) / circuit.mDistance, (end.Y - start.Y) / circuit.mDistance);
+						float length = (float)(circuit.mDistance * scalePixelPerStud);
+						PointF direction = new PointF((end.X - start.X) / length, (end.Y - start.Y) / length);
 						// compute the normal of the circuit
 						PointF normal = new PointF(-direction.Y * ELECTRIC_WIDTH, direction.X * ELECTRIC_WIDTH);
 
@@ -1563,6 +1564,23 @@ namespace BlueBrick.MapData
 							g.DrawLine(ELECTRIC_BLUE_PEN, start2, end2);
 						}
 					}
+
+				// drawing of the electric shortcut
+				float SHORTCUT_WIDTH = (float)(3.0 * scalePixelPerStud);
+				Pen SHORTCUT_PEN = new Pen(Color.Orange, (float)(1.5 * scalePixelPerStud));
+
+				// draw the shortcut if any
+				foreach (Brick.ConnectionPoint connection in ElectricCircuitChecker.ShortcutList)
+				{
+					PointF center = connection.PositionInStudWorldCoord;
+					center.X = (float)((center.X - areaInStud.Left) * scalePixelPerStud);
+					center.Y = (float)((center.Y - areaInStud.Top) * scalePixelPerStud);
+					PointF[] vertices = new PointF[]{ new PointF(center.X - SHORTCUT_WIDTH, center.Y),
+										new PointF(center.X, center.Y - SHORTCUT_WIDTH),
+										new PointF(center.X, center.Y + SHORTCUT_WIDTH),
+										new PointF(center.X + SHORTCUT_WIDTH, center.Y) };
+					g.DrawLines(SHORTCUT_PEN, vertices);
+				}
 			}
 
 			// call the base class to draw the surrounding selection rectangle

@@ -30,7 +30,15 @@ namespace BlueBrick.MapData
 		private static int sTimeStamp = 1;
 
 		// the list of all the node still to explore
-		private static List<LayerBrick.Brick> mBrickToExplore = new List<LayerBrick.Brick>();
+		private static List<LayerBrick.Brick> mBricksToExplore = new List<LayerBrick.Brick>();
+
+		// the list of all the shortcut found
+		private static List<LayerBrick.Brick.ConnectionPoint> mShortcuts = new List<LayerBrick.Brick.ConnectionPoint>();
+
+		public static List<LayerBrick.Brick.ConnectionPoint> ShortcutList
+		{
+			get { return mShortcuts; }
+		}
 
 		public static void check(LayerBrick.Brick startingBrick)
 		{
@@ -44,8 +52,9 @@ namespace BlueBrick.MapData
 				sTimeStamp = 1;
 
 			// clear the list and add the first node
-			mBrickToExplore.Clear();
-			mBrickToExplore.Add(startingBrick);
+			mShortcuts.Clear();
+			mBricksToExplore.Clear();
+			mBricksToExplore.Add(startingBrick);
 			// init the first connection of the starting brick with the new timestamp
 			LayerBrick.Brick.ConnectionPoint firstConnection = startingBrick.ConnectionPoints[startingBrick.ElectricCircuitIndexList[0].mIndex1];
 			firstConnection.mPolarity = sTimeStamp;
@@ -53,15 +62,15 @@ namespace BlueBrick.MapData
 			if (firstConnection.ConnectionLink != null)
 			{
 				firstConnection.ConnectionLink.mPolarity = -sTimeStamp;
-				mBrickToExplore.Add(firstConnection.ConnectedBrick);
+				mBricksToExplore.Add(firstConnection.ConnectedBrick);
 			}
 
 			//explore while the list is not empty
-			while (mBrickToExplore.Count > 0)
+			while (mBricksToExplore.Count > 0)
 			{
 				// pop the first node of the list
-				LayerBrick.Brick brick = mBrickToExplore[0];
-				mBrickToExplore.RemoveAt(0);
+				LayerBrick.Brick brick = mBricksToExplore[0];
+				mBricksToExplore.RemoveAt(0);
 
 				// declare a boolean variable to check if during the exploration of all the circuits of the
 				// brick, one was ignore. If yes and later we transfert electricity on the brick, we will
@@ -94,7 +103,7 @@ namespace BlueBrick.MapData
 							if (end.mPolarity == start.mPolarity)
 							{
 								// shortcut!!
-								return;
+								addShortcut(start);
 							}
 							// else if no shorcut check if we didn't already transfer the electricity to the end
 							else if (end.mPolarity != -start.mPolarity)
@@ -113,7 +122,7 @@ namespace BlueBrick.MapData
 								// So we reinsert the part if some circuit werz ignored on this part
 								if (needToReexploreTheBrick)
 								{
-									mBrickToExplore.Insert(0, brick);
+									mBricksToExplore.Insert(0, brick);
 									needToReexploreTheBrick = false;
 								}
 
@@ -125,7 +134,7 @@ namespace BlueBrick.MapData
 									if (connectionLink.mPolarity == end.mPolarity)
 									{
 										// shortcut!!
-										return;
+										addShortcut(end);
 									}
 									// if no shortcut, check if we have to to explore the connection
 									else if (connectionLink.mPolarity != -end.mPolarity)
@@ -133,7 +142,7 @@ namespace BlueBrick.MapData
 										// transfert the polarity to the linked connection
 										connectionLink.mPolarity = -end.mPolarity;
 										// and add the new brick in the list for furture exploration
-										mBrickToExplore.Add(end.ConnectedBrick);
+										mBricksToExplore.Add(end.ConnectedBrick);
 									}
 								}
 							}
@@ -148,6 +157,12 @@ namespace BlueBrick.MapData
 						}
 					}
 			}
+		}
+
+		public static void addShortcut(LayerBrick.Brick.ConnectionPoint connection)
+		{
+			// add the connection in the list
+			mShortcuts.Add(connection);
 		}
 	}
 }
