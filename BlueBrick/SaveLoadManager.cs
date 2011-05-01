@@ -1210,7 +1210,7 @@ namespace BlueBrick
 				binaryWriter.Write((double)position.Y);
 				binaryWriter.Write((double)brick.Altitude);
 
-				// le type de la pièce (an int) (0 = Straight, 1 = Left Curve, 2 = Right Curve, 3 = Left Split, 4 = Right Split, 5 = Left Merge, 6 = Right Merge, 7 = Left Join, 8 = Right Join, 9 = Crossover, 10 = T Junction, 11 = Up Ramp, 12 = Down Ramp, 13 = Short Straight, 14 = Short Left Curve In, 15 = Short Right Curve In, 16 = Short Left Curve Out, 17 = Short Right Curve Out, 18 = Left Reverse Switch, 19 = Right Reverse Switch, 20 = Custom)
+				// the type of the part (an int) (0 = Straight, 1 = Left Curve, 2 = Right Curve, 3 = Left Split, 4 = Right Split, 5 = Left Merge, 6 = Right Merge, 7 = Left Join, 8 = Right Join, 9 = Crossover, 10 = T Junction, 11 = Up Ramp, 12 = Down Ramp, 13 = Short Straight, 14 = Short Left Curve In, 15 = Short Right Curve In, 16 = Short Left Curve Out, 17 = Short Right Curve Out, 18 = Left Reverse Switch, 19 = Right Reverse Switch, 20 = Custom)
 				binaryWriter.Write((int)partType);
 
 				// the id of bitmap (an int) when a part (like a curve) has two bitmap in the TrackDesigner part library, or for two baseplase with different color
@@ -1224,10 +1224,6 @@ namespace BlueBrick
 					int connectedBrickOtherPortId = 0;
 					int connectedBrickPolarity = 0;
 
-					// get the polarity
-					if (i < remapData.mConnexionData.Count)
-						connectedBrickPolarity = remapData.mConnexionData[i].mPolarity;
-
 					// check if the brick has some connection point
 					if ((brick.ConnectionPoints != null) && (i < remapData.mConnexionData.Count))
 					{
@@ -1236,6 +1232,12 @@ namespace BlueBrick
 						// check if the connexion index is valid
 						if (BBConnexionIndexForI < brick.ConnectionPoints.Count)
 						{
+							// get the polarity of the connection
+							if (brick.ConnectionPoints[BBConnexionIndexForI].mPolarity < 0)
+								connectedBrickPolarity = 2; // in TD 2 == -ve
+							else if (brick.ConnectionPoints[BBConnexionIndexForI].mPolarity > 0)
+								connectedBrickPolarity = 3; // in TD 3 == +ve
+
 							// get the connected brick at the BB connexion point
 							LayerBrick.Brick connectedBrick = brick.ConnectionPoints[BBConnexionIndexForI].ConnectedBrick;
 							// search the BB connexion index of the connected brick

@@ -93,7 +93,6 @@ namespace BlueBrick.MapData
 				{
 					public int mBBConnexionPointIndex = 0;
 					public int mType = 20; // 20 = Custom
-					public int mPolarity = 0; // 0 unasasigned, 2 -ve, 3 +ve
 					public float mDiffAngleBtwTDandBB = 0.0f;
 				}
 
@@ -661,16 +660,6 @@ namespace BlueBrick.MapData
 							connexionData.mBBConnexionPointIndex = xmlReader.ReadElementContentAsInt();
 						else if (xmlReader.Name.Equals("Type"))
 							connexionData.mType = xmlReader.ReadElementContentAsInt();
-						else if (xmlReader.Name.Equals("Polarity"))
-						{
-							string polarity = xmlReader.ReadElementContentAsString();
-							if (polarity.Equals("N"))
-								connexionData.mPolarity = 2;
-							else if (polarity.Equals("P"))
-								connexionData.mPolarity = 3;
-							else
-								connexionData.mPolarity = 0;
-						}
 						else if (xmlReader.Name.Equals("AngleBetweenTDandBB"))
 							connexionData.mDiffAngleBtwTDandBB = xmlReader.ReadElementContentAsFloat();
 						else
