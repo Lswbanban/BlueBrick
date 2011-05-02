@@ -622,6 +622,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>ExportImageForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FindForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FindForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FindForm.cs</DependentUpon>

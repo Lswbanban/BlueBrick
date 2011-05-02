@@ -312,6 +312,7 @@ namespace BlueBrick
 			this.toolBar.Visible = this.toolbarMenuItem.Checked = Properties.Settings.Default.UIToolbarIsVisible;
 			this.statusBar.Visible = this.statusBarMenuItem.Checked = Properties.Settings.Default.UIStatusbarIsVisible;
 			this.mapPanel.CurrentStatusBarHeight = Properties.Settings.Default.UIStatusbarIsVisible ? this.statusBar.Height : 0;
+			this.electricCircuitsMenuItem.Checked = Properties.Settings.Default.DisplayElectricCircuit;
 		}
 
 		private void saveUISettingInDefaultSettings()
@@ -1460,6 +1461,12 @@ namespace BlueBrick
 			}
 		}
 
+		private void generalInformationToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			GeneralInfoForm infoForm = new GeneralInfoForm();
+			infoForm.ShowDialog();
+		}
+
 		private void mapBackgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			DialogResult result = this.colorDialog.ShowDialog();
@@ -1504,7 +1511,7 @@ namespace BlueBrick
 			}
 		}
 
-		private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+		private void preferencesMenuItem_Click(object sender, EventArgs e)
 		{
 			GlobalOptionsForm optionForm = new GlobalOptionsForm();
 			DialogResult result = optionForm.ShowDialog(this);
@@ -1563,10 +1570,10 @@ namespace BlueBrick
 			this.mapPanel.Invalidate();
 		}
 
-		private void generalInformationToolStripMenuItem_Click(object sender, EventArgs e)
+		private void electricCircuitsMenuItem_Click(object sender, EventArgs e)
 		{
-			GeneralInfoForm infoForm = new GeneralInfoForm();
-			infoForm.ShowDialog();
+			BlueBrick.Properties.Settings.Default.DisplayElectricCircuit = this.electricCircuitsMenuItem.Checked;
+			this.mapPanel.Invalidate();
 		}
 
 		public void partListToolStripMenuItem_Click(object sender, EventArgs e)

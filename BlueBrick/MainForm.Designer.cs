@@ -71,6 +71,8 @@ namespace BlueBrick
 			this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+			this.findAndReplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
 			this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deselectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.selectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,18 +98,17 @@ namespace BlueBrick
 			this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
 			this.paintToolChooseColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+			this.generalInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mapBackgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.currentLayerOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.preferencesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolbarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusBarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.electricCircuitsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.partListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-			this.generalInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
 			this.aboutBlueBrickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolBar = new System.Windows.Forms.ToolStrip();
 			this.toolBarNewButton = new System.Windows.Forms.ToolStripButton();
@@ -146,8 +147,6 @@ namespace BlueBrick
 			this.saveExportImageDialog = new System.Windows.Forms.SaveFileDialog();
 			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.toolTipForMainForm = new System.Windows.Forms.ToolTip(this.components);
-			this.findAndReplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
 			this.mainSplitContainer.Panel1.SuspendLayout();
 			this.mainSplitContainer.Panel2.SuspendLayout();
 			this.mainSplitContainer.SuspendLayout();
@@ -455,9 +454,10 @@ namespace BlueBrick
             this.rotateCCWToolStripMenuItem,
             this.paintToolToolStripMenuItem,
             this.toolStripSeparator10,
+            this.generalInformationToolStripMenuItem,
             this.mapBackgroundColorToolStripMenuItem,
             this.currentLayerOptionsToolStripMenuItem,
-            this.optionsToolStripMenuItem});
+            this.preferencesMenuItem});
 			this.editToolStripMenuItem.Name = "editToolStripMenuItem";
 			resources.ApplyResources(this.editToolStripMenuItem, "editToolStripMenuItem");
 			// 
@@ -506,6 +506,17 @@ namespace BlueBrick
 			// 
 			this.toolStripSeparator5.Name = "toolStripSeparator5";
 			resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
+			// 
+			// findAndReplaceToolStripMenuItem
+			// 
+			this.findAndReplaceToolStripMenuItem.Name = "findAndReplaceToolStripMenuItem";
+			resources.ApplyResources(this.findAndReplaceToolStripMenuItem, "findAndReplaceToolStripMenuItem");
+			this.findAndReplaceToolStripMenuItem.Click += new System.EventHandler(this.findAndReplaceToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator14
+			// 
+			this.toolStripSeparator14.Name = "toolStripSeparator14";
+			resources.ApplyResources(this.toolStripSeparator14, "toolStripSeparator14");
 			// 
 			// selectAllToolStripMenuItem
 			// 
@@ -675,6 +686,12 @@ namespace BlueBrick
 			this.toolStripSeparator10.Name = "toolStripSeparator10";
 			resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
 			// 
+			// generalInformationToolStripMenuItem
+			// 
+			this.generalInformationToolStripMenuItem.Name = "generalInformationToolStripMenuItem";
+			resources.ApplyResources(this.generalInformationToolStripMenuItem, "generalInformationToolStripMenuItem");
+			this.generalInformationToolStripMenuItem.Click += new System.EventHandler(this.generalInformationToolStripMenuItem_Click);
+			// 
 			// mapBackgroundColorToolStripMenuItem
 			// 
 			this.mapBackgroundColorToolStripMenuItem.Name = "mapBackgroundColorToolStripMenuItem";
@@ -687,20 +704,19 @@ namespace BlueBrick
 			resources.ApplyResources(this.currentLayerOptionsToolStripMenuItem, "currentLayerOptionsToolStripMenuItem");
 			this.currentLayerOptionsToolStripMenuItem.Click += new System.EventHandler(this.currentLayerOptionsToolStripMenuItem_Click);
 			// 
-			// optionsToolStripMenuItem
+			// preferencesMenuItem
 			// 
-			this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-			resources.ApplyResources(this.optionsToolStripMenuItem, "optionsToolStripMenuItem");
-			this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
+			this.preferencesMenuItem.Name = "preferencesMenuItem";
+			resources.ApplyResources(this.preferencesMenuItem, "preferencesMenuItem");
+			this.preferencesMenuItem.Click += new System.EventHandler(this.preferencesMenuItem_Click);
 			// 
 			// viewToolStripMenuItem
 			// 
 			this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolbarMenuItem,
             this.statusBarMenuItem,
-            this.partListToolStripMenuItem,
-            this.toolStripSeparator9,
-            this.generalInformationToolStripMenuItem});
+            this.electricCircuitsMenuItem,
+            this.partListToolStripMenuItem});
 			this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
 			resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
 			// 
@@ -722,28 +738,23 @@ namespace BlueBrick
 			resources.ApplyResources(this.statusBarMenuItem, "statusBarMenuItem");
 			this.statusBarMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
 			// 
+			// electricCircuitsMenuItem
+			// 
+			this.electricCircuitsMenuItem.CheckOnClick = true;
+			this.electricCircuitsMenuItem.Name = "electricCircuitsMenuItem";
+			resources.ApplyResources(this.electricCircuitsMenuItem, "electricCircuitsMenuItem");
+			this.electricCircuitsMenuItem.Click += new System.EventHandler(this.electricCircuitsMenuItem_Click);
+			// 
 			// partListToolStripMenuItem
 			// 
 			this.partListToolStripMenuItem.Name = "partListToolStripMenuItem";
 			resources.ApplyResources(this.partListToolStripMenuItem, "partListToolStripMenuItem");
 			this.partListToolStripMenuItem.Click += new System.EventHandler(this.partListToolStripMenuItem_Click);
 			// 
-			// toolStripSeparator9
-			// 
-			this.toolStripSeparator9.Name = "toolStripSeparator9";
-			resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
-			// 
-			// generalInformationToolStripMenuItem
-			// 
-			this.generalInformationToolStripMenuItem.Name = "generalInformationToolStripMenuItem";
-			resources.ApplyResources(this.generalInformationToolStripMenuItem, "generalInformationToolStripMenuItem");
-			this.generalInformationToolStripMenuItem.Click += new System.EventHandler(this.generalInformationToolStripMenuItem_Click);
-			// 
 			// helpToolStripMenuItem
 			// 
 			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.helpContentsToolStripMenuItem,
-            this.toolStripSeparator13,
             this.aboutBlueBrickToolStripMenuItem});
 			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
 			resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
@@ -753,11 +764,6 @@ namespace BlueBrick
 			this.helpContentsToolStripMenuItem.Name = "helpContentsToolStripMenuItem";
 			resources.ApplyResources(this.helpContentsToolStripMenuItem, "helpContentsToolStripMenuItem");
 			this.helpContentsToolStripMenuItem.Click += new System.EventHandler(this.helpContentsToolStripMenuItem_Click);
-			// 
-			// toolStripSeparator13
-			// 
-			this.toolStripSeparator13.Name = "toolStripSeparator13";
-			resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
 			// 
 			// aboutBlueBrickToolStripMenuItem
 			// 
@@ -1031,17 +1037,6 @@ namespace BlueBrick
 			// 
 			this.colorDialog.Color = System.Drawing.Color.Gold;
 			// 
-			// findAndReplaceToolStripMenuItem
-			// 
-			this.findAndReplaceToolStripMenuItem.Name = "findAndReplaceToolStripMenuItem";
-			resources.ApplyResources(this.findAndReplaceToolStripMenuItem, "findAndReplaceToolStripMenuItem");
-			this.findAndReplaceToolStripMenuItem.Click += new System.EventHandler(this.findAndReplaceToolStripMenuItem_Click);
-			// 
-			// toolStripSeparator14
-			// 
-			this.toolStripSeparator14.Name = "toolStripSeparator14";
-			resources.ApplyResources(this.toolStripSeparator14, "toolStripSeparator14");
-			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
@@ -1138,7 +1133,7 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutBlueBrickToolStripMenuItem;
 		private BlueBrick.PartLibraryPanel partsTabControl;
-		private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem preferencesMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
 		private System.Windows.Forms.ToolStripMenuItem exportAsPictureToolStripMenuItem;
 		private System.Windows.Forms.OpenFileDialog openFileDialog;
@@ -1160,9 +1155,7 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
 		private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
 		private System.Windows.Forms.ToolStripMenuItem partListToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem generalInformationToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSplitButton toolBarPaintButton;
 		private System.Windows.Forms.ToolStripMenuItem paintToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem eraseToolStripMenuItem;
@@ -1201,11 +1194,12 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
 		private System.Windows.Forms.ToolTip toolTipForMainForm;
 		private System.Windows.Forms.ToolStripMenuItem helpContentsToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
 		private System.Windows.Forms.ToolStripButton toolBarSendToBackButton;
 		private System.Windows.Forms.ToolStripButton toolBarBringToFrontButton;
 		private System.Windows.Forms.ToolStripMenuItem findAndReplaceToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+		private System.Windows.Forms.ToolStripMenuItem electricCircuitsMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem generalInformationToolStripMenuItem;
 	}
 }
 

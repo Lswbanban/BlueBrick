@@ -169,7 +169,7 @@
     <value>mapPanel</value>
   </data>
   <data name="&gt;&gt;mapPanel.Type" xml:space="preserve">
-    <value>BlueBrick.MapPanel, BlueBrick, Version=1.6.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.MapPanel, BlueBrick, Version=1.7.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mapPanel.Parent" xml:space="preserve">
     <value>mainSplitContainer.Panel1</value>
@@ -214,7 +214,7 @@
     <value>partsTabControl</value>
   </data>
   <data name="&gt;&gt;partsTabControl.Type" xml:space="preserve">
-    <value>BlueBrick.PartLibraryPanel, BlueBrick, Version=1.6.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.PartLibraryPanel, BlueBrick, Version=1.7.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;partsTabControl.Parent" xml:space="preserve">
     <value>toolSplitContainer.Panel1</value>
@@ -271,7 +271,7 @@
     <value>layerStackPanel</value>
   </data>
   <data name="&gt;&gt;layerStackPanel.Type" xml:space="preserve">
-    <value>BlueBrick.LayerStackPanel, BlueBrick, Version=1.6.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.LayerStackPanel, BlueBrick, Version=1.7.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;layerStackPanel.Parent" xml:space="preserve">
     <value>layerSplitContainer.Panel1</value>
@@ -529,7 +529,7 @@
     <value>mainSplitContainer</value>
   </data>
   <data name="&gt;&gt;mainSplitContainer.Type" xml:space="preserve">
-    <value>BlueBrick.MainSplitContainer, BlueBrick, Version=1.6.1.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.MainSplitContainer, BlueBrick, Version=1.7.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mainSplitContainer.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1083,6 +1083,12 @@
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>
   </data>
+  <data name="generalInformationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>206, 22</value>
+  </data>
+  <data name="generalInformationToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;General Information...</value>
+  </data>
   <data name="mapBackgroundColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
@@ -1095,11 +1101,11 @@
   <data name="currentLayerOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>Current &amp;Layer Options...</value>
   </data>
-  <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="preferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
-  <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Global &amp;Options...</value>
+  <data name="preferencesMenuItem.Text" xml:space="preserve">
+    <value>Preferences...</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
@@ -1303,31 +1309,28 @@
     <value>Choose Color...</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="toolbarMenuItem.Text" xml:space="preserve">
     <value>&amp;Toolbar</value>
   </data>
   <data name="statusBarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="statusBarMenuItem.Text" xml:space="preserve">
     <value>&amp;Status Bar</value>
   </data>
+  <data name="electricCircuitsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 22</value>
+  </data>
+  <data name="electricCircuitsMenuItem.Text" xml:space="preserve">
+    <value>&amp;Electric Circuits</value>
+  </data>
   <data name="partListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="partListToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Part List</value>
-  </data>
-  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 6</value>
-  </data>
-  <data name="generalInformationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="generalInformationToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;General Information...</value>
   </data>
   <data name="helpContentsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F1</value>
@@ -1337,9 +1340,6 @@
   </data>
   <data name="helpContentsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Contents and Index</value>
-  </data>
-  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 6</value>
   </data>
   <data name="aboutBlueBrickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
@@ -2019,6 +2019,18 @@
   <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;findAndReplaceToolStripMenuItem.Name" xml:space="preserve">
+    <value>findAndReplaceToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;findAndReplaceToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator14.Name" xml:space="preserve">
+    <value>toolStripSeparator14</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;selectAllToolStripMenuItem.Name" xml:space="preserve">
     <value>selectAllToolStripMenuItem</value>
   </data>
@@ -2169,6 +2181,12 @@
   <data name="&gt;&gt;toolStripSeparator10.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;generalInformationToolStripMenuItem.Name" xml:space="preserve">
+    <value>generalInformationToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;generalInformationToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mapBackgroundColorToolStripMenuItem.Name" xml:space="preserve">
     <value>mapBackgroundColorToolStripMenuItem</value>
   </data>
@@ -2181,10 +2199,10 @@
   <data name="&gt;&gt;currentLayerOptionsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;optionsToolStripMenuItem.Name" xml:space="preserve">
-    <value>optionsToolStripMenuItem</value>
+  <data name="&gt;&gt;preferencesMenuItem.Name" xml:space="preserve">
+    <value>preferencesMenuItem</value>
   </data>
-  <data name="&gt;&gt;optionsToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;preferencesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;viewToolStripMenuItem.Name" xml:space="preserve">
@@ -2205,22 +2223,16 @@
   <data name="&gt;&gt;statusBarMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;electricCircuitsMenuItem.Name" xml:space="preserve">
+    <value>electricCircuitsMenuItem</value>
+  </data>
+  <data name="&gt;&gt;electricCircuitsMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;partListToolStripMenuItem.Name" xml:space="preserve">
     <value>partListToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;partListToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator9.Name" xml:space="preserve">
-    <value>toolStripSeparator9</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;generalInformationToolStripMenuItem.Name" xml:space="preserve">
-    <value>generalInformationToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;generalInformationToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;helpToolStripMenuItem.Name" xml:space="preserve">
@@ -2234,12 +2246,6 @@
   </data>
   <data name="&gt;&gt;helpContentsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator13.Name" xml:space="preserve">
-    <value>toolStripSeparator13</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator13.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;aboutBlueBrickToolStripMenuItem.Name" xml:space="preserve">
     <value>aboutBlueBrickToolStripMenuItem</value>
@@ -2462,18 +2468,6 @@
   </data>
   <data name="&gt;&gt;toolTipForMainForm.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;findAndReplaceToolStripMenuItem.Name" xml:space="preserve">
-    <value>findAndReplaceToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;findAndReplaceToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator14.Name" xml:space="preserve">
-    <value>toolStripSeparator14</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator14.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
