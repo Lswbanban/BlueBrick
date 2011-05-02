@@ -40,16 +40,22 @@ namespace BlueBrick.MapData
 			get { return mShortcuts; }
 		}
 
+		private static void incrementTimeStamp()
+		{
+			// increment the time stamp (check for reboot of the number)
+			sTimeStamp++;
+			if (sTimeStamp == int.MaxValue)
+				sTimeStamp = 1;
+		}
+
 		public static void check(LayerBrick.Brick startingBrick)
 		{
 			// check that the specified brick is an electric brick, else early exit
 			if (startingBrick.ElectricCircuitIndexList == null)
 				return;
 
-			// increment the time stamp (check for reboot of the number)
-			sTimeStamp++;
-			if (sTimeStamp == int.MaxValue)
-				sTimeStamp = 1;
+			// increment the time stamp
+			incrementTimeStamp();
 
 			// clear the list and add the first node
 			mShortcuts.Clear();
@@ -159,10 +165,22 @@ namespace BlueBrick.MapData
 			}
 		}
 
-		public static void addShortcut(LayerBrick.Brick.ConnectionPoint connection)
+		private static void addShortcut(LayerBrick.Brick.ConnectionPoint connection)
 		{
 			// add the connection in the list
 			mShortcuts.Add(connection);
+		}
+
+		public static void check(LayerBrick brickLayer)
+		{
+			// increment the time stamp
+			incrementTimeStamp();
+
+			// check for every brick if not already at the time stamp
+			foreach (LayerBrick.Brick brick in brickLayer.BrickList)
+				if (brick.ElectricCircuitIndexList != null)
+					if (Math.Abs(brick.ConnectionPoints[0].mPolarity) != sTimeStamp)
+						check(brick);
 		}
 	}
 }

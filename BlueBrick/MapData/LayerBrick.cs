@@ -1016,6 +1016,9 @@ namespace BlueBrick.MapData
 						if (connexion.IsFree)
 							mFreeConnectionPoints.add(connexion);
 					}
+
+			// update the electric circuit on the whole layer
+			ElectricCircuitChecker.check(this);
 		}
 
 		public override void WriteXml(System.Xml.XmlWriter writer)
@@ -1088,7 +1091,7 @@ namespace BlueBrick.MapData
 
 					// set the link of the connection (and check all the other connexion  of the brick because maybe the add lock different connection at the same time)
 					if (brickToAdd.ActiveConnectionPoint.Type == selectedBrick.ActiveConnectionPoint.Type)
-						connectTwoConnectionPoints(brickToAdd.ActiveConnectionPoint, selectedBrick.ActiveConnectionPoint);
+						connectTwoConnectionPoints(brickToAdd.ActiveConnectionPoint, selectedBrick.ActiveConnectionPoint, false);
 					foreach (Brick.ConnectionPoint brickConnexion in brickToAdd.ConnectionPoints)
 						if (brickConnexion != brickToAdd.ActiveConnectionPoint)
 							for (int i = 0; i < mFreeConnectionPoints.getListForType(brickConnexion.Type).Count; ++i)
@@ -1097,11 +1100,14 @@ namespace BlueBrick.MapData
 								if ((freeConnexion != brickConnexion) && (freeConnexion.Type == brickConnexion.Type) && 
 									arePositionsEqual(brickConnexion.mPositionInStudWorldCoord, freeConnexion.mPositionInStudWorldCoord))
 								{
-									if (connectTwoConnectionPoints(brickConnexion, freeConnexion))
+									if (connectTwoConnectionPoints(brickConnexion, freeConnexion, false))
 										--i;
 								}
 							}
 					
+					// check the electric current after setting all the connections
+					ElectricCircuitChecker.check(brickToAdd);
+
 					// set the current connection point to the next one
 					brickToAdd.ActiveConnectionPointIndex = nextPreferedActiveConnectionIndex;
 					// and add the brick in the list
@@ -1152,13 +1158,21 @@ namespace BlueBrick.MapData
 				if (brickToRemove.HasConnectionPoint)
 					foreach (Brick.ConnectionPoint connexion in brickToRemove.ConnectionPoints)
 					{
+						// get the eventually connected brick for the current connection before breaking the link
+						Brick connectedBrick = connexion.ConnectedBrick;
+						// break the links if there's a link
 						if (connexion.ConnectionLink != null)
 						{
 							mFreeConnectionPoints.add(connexion.ConnectionLink);
 							connexion.ConnectionLink.ConnectionLink = null;
 						}
+						// remove the connection from the free connection list because we will delete the part
 						mFreeConnectionPoints.remove(connexion);
 						connexion.ConnectionLink = null;
+						// after the link is fully break, update the electric circuit on the connected brick
+						// not on the brick we are removing, since we are removing it
+						if (connectedBrick != null)
+							ElectricCircuitChecker.check(connectedBrick);
 					}
 
 				// remove the brick
@@ -1254,8 +1268,9 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <param name="connexion1">the first connexion to connect with the second one</param>
 		/// <param name="connexion2">the second connexion to connect with the first one</param>
+		/// <param name="checkElectricShortcut">boolean to tell if we need to check the electric circuits</param>
 		/// <returns>true if the connexion was made, else false.</returns>
-		private bool connectTwoConnectionPoints(Brick.ConnectionPoint connexion1, Brick.ConnectionPoint connexion2)
+		private bool connectTwoConnectionPoints(Brick.ConnectionPoint connexion1, Brick.ConnectionPoint connexion2, bool checkElectricShortcut)
 		{
 			// the connexion can never be stolen
 			if (connexion1.IsFree && connexion2.IsFree)
@@ -1264,6 +1279,9 @@ namespace BlueBrick.MapData
 				connexion2.ConnectionLink = connexion1;
 				mFreeConnectionPoints.remove(connexion1);
 				mFreeConnectionPoints.remove(connexion2);
+				// check the current for the new connection (only one call with one brick is enough, since the two bricks are connected)
+				if (checkElectricShortcut)
+					ElectricCircuitChecker.check(connexion1.mMyBrick);
 				return true;
 			}
 			return false;
@@ -1271,6 +1289,7 @@ namespace BlueBrick.MapData
 
 		private void disconnectTwoConnectionPoints(Brick.ConnectionPoint connexion1, Brick.ConnectionPoint connexion2)
 		{
+			// first break the link on both connections
 			if (connexion1 != null)
 			{
 				connexion1.ConnectionLink = null;
@@ -1281,6 +1300,12 @@ namespace BlueBrick.MapData
 				connexion2.ConnectionLink = null;
 				mFreeConnectionPoints.add(connexion2);
 			}
+
+			// check the electric circuit on both brick after the link is broken totally
+			if (connexion1 != null)
+				ElectricCircuitChecker.check(connexion1.mMyBrick);
+			if (connexion2 != null)
+				ElectricCircuitChecker.check(connexion2.mMyBrick);
 		}
 
 		private bool arePositionsEqual(PointF pos1, PointF pos2)
@@ -1333,7 +1358,7 @@ namespace BlueBrick.MapData
 						// try to find a new connection
 						foreach (Brick.ConnectionPoint freeConnexion in freeConnexionPoints.getListForType(i))
 							if (arePositionsEqual(selConnexion.mPositionInStudWorldCoord, freeConnexion.mPositionInStudWorldCoord))
-								connectTwoConnectionPoints(selConnexion, freeConnexion);
+								connectTwoConnectionPoints(selConnexion, freeConnexion, true);
 					}
 			}
 		}
@@ -1354,11 +1379,13 @@ namespace BlueBrick.MapData
 							Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints.getListForType(brickConnexion.Type)[i];
 							if ((freeConnexion.mMyBrick != brick) && arePositionsEqual(freeConnexion.mPositionInStudWorldCoord, brickConnexion.mPositionInStudWorldCoord))
 							{
-								if (connectTwoConnectionPoints(freeConnexion, brickConnexion))
+								if (connectTwoConnectionPoints(freeConnexion, brickConnexion, false))
 									i--;
 							}
 						}
 			}
+			// update the electric circuit on the whole layer
+			ElectricCircuitChecker.check(this);
 		}
 
 		/// <summary>
@@ -1376,10 +1403,12 @@ namespace BlueBrick.MapData
 							Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints.getListForType(brickConnexion.Type)[i];
 							if ((freeConnexion.mMyBrick != brick) && arePositionsEqual(freeConnexion.mPositionInStudWorldCoord, brickConnexion.mPositionInStudWorldCoord))
 							{
-								if (connectTwoConnectionPoints(freeConnexion, brickConnexion))
+								if (connectTwoConnectionPoints(freeConnexion, brickConnexion, false))
 									i--;
 							}
 						}
+			// update the electric circuit on the whole layer
+			ElectricCircuitChecker.check(this);
 		}
 
 		/// <summary>
