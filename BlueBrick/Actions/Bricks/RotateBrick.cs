@@ -98,7 +98,7 @@ namespace BlueBrick.Actions.Bricks
 											mNewConnexionPointIndex = brick.ConnectionPoints.Count - 1;
 										angle += BrickLibrary.Instance.getConnectionAngleToPrev(partNumber, currentConnexionPointIndex);
 										nextConnexionType = BrickLibrary.Instance.getConnexionType(partNumber, mNewConnexionPointIndex);
-									} while (nextConnexionType != connexion.mType);
+									} while (nextConnexionType != connexion.Type);
 								}
 							}
 							else
@@ -113,7 +113,7 @@ namespace BlueBrick.Actions.Bricks
 											mNewConnexionPointIndex = 0;
 										angle += BrickLibrary.Instance.getConnectionAngleToNext(partNumber, currentConnexionPointIndex);
 										nextConnexionType = BrickLibrary.Instance.getConnexionType(partNumber, mNewConnexionPointIndex);
-									} while (nextConnexionType != connexion.mType);
+									} while (nextConnexionType != connexion.Type);
 								}
 							}
 							break;

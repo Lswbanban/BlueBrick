@@ -42,8 +42,9 @@ namespace BlueBrick.MapData
 				public Brick mMyBrick = null; // reference to the brick this connection refer to
 				public PointF mPositionInStudWorldCoord = new PointF(0, 0); // the position of the connection point is world coord stud coord.
 				private ConnectionPoint mConnectionLink = null; // link toward this conection point is connected
-				public int mType = BrickLibrary.ConnectionType.DEFAULT; // 0 if the default brick type (which is a kind of Brick connection)
-				public int mPolarity = 0; // 0=neutral, negative value=negative, and positive value=positive
+				private int mType = BrickLibrary.ConnectionType.DEFAULT; // 0 if the default brick type (which is a kind of Brick connection)
+				private short mPolarity = 0; // 0=neutral, negative value=negative, and positive value=positive
+				private short mHasElectricShortcut = 0; // 0=no shortcut, 1 = has shortcut
 
 				/// <summary>
 				/// This default constructor is for the serialization and should not be used in the program
@@ -67,6 +68,7 @@ namespace BlueBrick.MapData
 				public int Type
 				{
 					get { return mType; }
+					set { mType = value; }
 				}
 
 				public Brick ConnectedBrick
@@ -130,6 +132,22 @@ namespace BlueBrick.MapData
 							return BrickLibrary.Instance.getConnectionAngle(mMyBrick.PartNumber, myIndex);
 						return 0.0f;
 					}
+				}
+
+				public short Polarity
+				{
+					get { return mPolarity; }
+					set
+					{
+						mPolarity = value;
+						mHasElectricShortcut = 0;
+					}
+				}
+
+				public bool HasElectricShortcut
+				{
+					get { return (mHasElectricShortcut != 0); }
+					set { mHasElectricShortcut = (short)(value ? 1 : 0); }
 				}
 
 				#region IXmlSerializable Members
@@ -562,7 +580,7 @@ namespace BlueBrick.MapData
 						{
 							// set the connexion type, if not set during the above creation
 							if (isConnectionValid)
-								connexion.mType = BrickLibrary.Instance.getConnexionType(this.PartNumber, connexionIndex);
+								connexion.Type = BrickLibrary.Instance.getConnexionType(this.PartNumber, connexionIndex);
 						}
 
 						//read the connexion data and add it in the Connection list
@@ -1001,9 +1019,9 @@ namespace BlueBrick.MapData
 						// the same place. This can happen if the file was save with a first version of the
 						// library, and then we change the library and we change the connexion position.
 						// So the parts are not move, but the links should be broken
-						if ( (connexion.mType == BrickLibrary.ConnectionType.DEFAULT) ||
+						if ( (connexion.Type == BrickLibrary.ConnectionType.DEFAULT) ||
 								((connexion.ConnectionLink != null) &&
-									((connexion.ConnectionLink.ConnectionLink.mType == BrickLibrary.ConnectionType.DEFAULT) ||
+									((connexion.ConnectionLink.ConnectionLink.Type == BrickLibrary.ConnectionType.DEFAULT) ||
 									 !arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.ConnectionLink.mPositionInStudWorldCoord))) )
 						{
 							// we don't use the disconnect method here, because the disconnect method
@@ -1582,7 +1600,8 @@ namespace BlueBrick.MapData
 						PointF start2 = new PointF(start.X - normal.X, start.Y - normal.Y);
 						PointF end2 = new PointF(end.X - normal.X, end.Y - normal.Y);
 
-						if (brick.ConnectionPoints[circuit.mIndex1].mPolarity < 0)
+						// draw the two lines according to the polarity of connection one
+						if (brick.ConnectionPoints[circuit.mIndex1].Polarity < 0)
 						{
 							g.DrawLine(ELECTRIC_BLUE_PEN, start1, end1);
 							g.DrawLine(ELECTRIC_RED_PEN, start2, end2);
@@ -1591,25 +1610,37 @@ namespace BlueBrick.MapData
 						{
 							g.DrawLine(ELECTRIC_RED_PEN, start1, end1);
 							g.DrawLine(ELECTRIC_BLUE_PEN, start2, end2);
-						}
+						}						
 					}
 
-				// drawing of the electric shortcut
+				// pen for the electric shortcut sign
 				float SHORTCUT_WIDTH = (float)(3.0 * scalePixelPerStud);
 				Pen SHORTCUT_PEN = new Pen(Color.Orange, (float)(1.5 * scalePixelPerStud));
 
-				// draw the shortcut if any
-				foreach (Brick.ConnectionPoint connection in ElectricCircuitChecker.ShortcutList)
-				{
-					PointF center = connection.PositionInStudWorldCoord;
-					center.X = (float)((center.X - areaInStud.Left) * scalePixelPerStud);
-					center.Y = (float)((center.Y - areaInStud.Top) * scalePixelPerStud);
-					PointF[] vertices = new PointF[]{ new PointF(center.X - SHORTCUT_WIDTH, center.Y),
+				foreach (Brick brick in visibleElectricBricks)
+					foreach (BrickLibrary.Brick.ElectricCircuit circuit in brick.ElectricCircuitIndexList)
+					{
+						// check if there's a shortcut among the two connections
+						int index = -1;
+						if (brick.ConnectionPoints[circuit.mIndex1].HasElectricShortcut)
+							index = circuit.mIndex1;
+						else if (brick.ConnectionPoints[circuit.mIndex2].HasElectricShortcut)
+							index = circuit.mIndex2;
+
+						// draw the electric shortcut sign if any
+						if (index > -1)
+						{
+							PointF center = brick.ConnectionPoints[index].PositionInStudWorldCoord;
+							center.X = (float)((center.X - areaInStud.Left) * scalePixelPerStud);
+							center.Y = (float)((center.Y - areaInStud.Top) * scalePixelPerStud);
+
+							PointF[] vertices = new PointF[]{ new PointF(center.X - SHORTCUT_WIDTH, center.Y),
 										new PointF(center.X, center.Y - SHORTCUT_WIDTH),
 										new PointF(center.X, center.Y + SHORTCUT_WIDTH),
 										new PointF(center.X + SHORTCUT_WIDTH, center.Y) };
-					g.DrawLines(SHORTCUT_PEN, vertices);
-				}
+							g.DrawLines(SHORTCUT_PEN, vertices);
+						}
+					}
 			}
 
 			// call the base class to draw the surrounding selection rectangle

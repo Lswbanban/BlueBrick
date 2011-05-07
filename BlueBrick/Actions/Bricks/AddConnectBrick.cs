@@ -38,7 +38,7 @@ namespace BlueBrick.Actions.Bricks
 				if (selectedBrick.HasConnectionPoint && mBrick.HasConnectionPoint)
 				{
 					// get the type of the active connexion of the selected brick
-					int selectedConnexionType = selectedBrick.ActiveConnectionPoint.mType;
+					int selectedConnexionType = selectedBrick.ActiveConnectionPoint.Type;
 
 					// try to give the correct connexion point, either the specified wanted one, or if
 					// we add the same brick do a special case
@@ -48,7 +48,7 @@ namespace BlueBrick.Actions.Bricks
 						// set the active connexion point with the wanted one
 						mBrick.ActiveConnectionPointIndex = wantedConnexion;
 						// check that the wanted connection type is the same as the selected brick
-						isActiveConnectionPointChosen = (mBrick.ActiveConnectionPoint.mType == selectedConnexionType);
+						isActiveConnectionPointChosen = (mBrick.ActiveConnectionPoint.Type == selectedConnexionType);
 					}
 					else if (selectedBrick.PartNumber == partNumber)
 					{
@@ -56,14 +56,14 @@ namespace BlueBrick.Actions.Bricks
 						// then we choose the previous connection point, but check if it is the same type
 						mBrick.ActiveConnectionPointIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(partNumber, selectedBrick.ActiveConnectionPointIndex);
 						// check that the connection type is the same
-						isActiveConnectionPointChosen = (mBrick.ActiveConnectionPoint.mType == selectedConnexionType);
+						isActiveConnectionPointChosen = (mBrick.ActiveConnectionPoint.Type == selectedConnexionType);
 					}
 
 					// if we didn't find any valid active connexion point, set the active connection
 					// with the first connexion of the same type that we can find (if the brick as any connection point)
 					if (!isActiveConnectionPointChosen)
 						for (int i = 0; i < mBrick.ConnectionPoints.Count; ++i)
-							if (mBrick.ConnectionPoints[i].mType == selectedConnexionType)
+							if (mBrick.ConnectionPoints[i].Type == selectedConnexionType)
 							{
 								mBrick.ActiveConnectionPointIndex = i;
 								break;

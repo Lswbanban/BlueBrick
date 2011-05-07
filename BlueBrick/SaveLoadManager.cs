@@ -1233,9 +1233,9 @@ namespace BlueBrick
 						if (BBConnexionIndexForI < brick.ConnectionPoints.Count)
 						{
 							// get the polarity of the connection
-							if (brick.ConnectionPoints[BBConnexionIndexForI].mPolarity < 0)
+							if (brick.ConnectionPoints[BBConnexionIndexForI].Polarity < 0)
 								connectedBrickPolarity = 2; // in TD 2 == -ve
-							else if (brick.ConnectionPoints[BBConnexionIndexForI].mPolarity > 0)
+							else if (brick.ConnectionPoints[BBConnexionIndexForI].Polarity > 0)
 								connectedBrickPolarity = 3; // in TD 3 == +ve
 
 							// get the connected brick at the BB connexion point

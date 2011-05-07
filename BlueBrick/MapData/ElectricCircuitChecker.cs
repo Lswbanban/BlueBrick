@@ -27,47 +27,66 @@ namespace BlueBrick.MapData
 	class ElectricCircuitChecker
 	{
 		// the current iteration number, it will increment each time the check() method is called
-		private static int sTimeStamp = 1;
+		private static short sTimeStamp = 1;
 
 		// the list of all the node still to explore
 		private static List<LayerBrick.Brick> mBricksToExplore = new List<LayerBrick.Brick>();
 
-		// the list of all the shortcut found
-		private static List<LayerBrick.Brick.ConnectionPoint> mShortcuts = new List<LayerBrick.Brick.ConnectionPoint>();
-
-		public static List<LayerBrick.Brick.ConnectionPoint> ShortcutList
+		public static void check(LayerBrick.Brick startingBrick)
 		{
-			get { return mShortcuts; }
+			// check that the specified brick is an electric brick, else do nothing
+			if (startingBrick.ElectricCircuitIndexList != null)
+			{
+				// increment the time stamp
+				incrementTimeStamp();
+				// call the main method
+				checkFromOneBrick(startingBrick);
+			}
 		}
 
+		public static void check(LayerBrick brickLayer)
+		{
+			// increment the time stamp
+			incrementTimeStamp();
+
+			// check for every brick if not already at the time stamp
+			foreach (LayerBrick.Brick brick in brickLayer.BrickList)
+				if (brick.ElectricCircuitIndexList != null)
+					if (Math.Abs(brick.ConnectionPoints[0].Polarity) != sTimeStamp)
+						checkFromOneBrick(brick);
+		}
+
+		/// <summary>
+		/// Increment the time stamp used at the beggining of a check.
+		/// </summary>
 		private static void incrementTimeStamp()
 		{
 			// increment the time stamp (check for reboot of the number)
 			sTimeStamp++;
-			if (sTimeStamp == int.MaxValue)
+			if (sTimeStamp == short.MaxValue)
 				sTimeStamp = 1;
 		}
 
-		public static void check(LayerBrick.Brick startingBrick)
+		/// <summary>
+		/// This function check all the electric circuit connected to the specified brick, starting from
+		/// the specified brick. The startingBrick must have an ElectricCircuitIndexList not null.
+		/// </summary>
+		/// <param name="startingBrick">The brick to start from.</param>
+		private static void checkFromOneBrick(LayerBrick.Brick startingBrick)
 		{
-			// check that the specified brick is an electric brick, else early exit
-			if (startingBrick.ElectricCircuitIndexList == null)
-				return;
-
-			// increment the time stamp
-			incrementTimeStamp();
+			// the list of all the shortcut found
+			List<LayerBrick.Brick.ConnectionPoint> shortcuts = new List<LayerBrick.Brick.ConnectionPoint>();
 
 			// clear the list and add the first node
-			mShortcuts.Clear();
 			mBricksToExplore.Clear();
 			mBricksToExplore.Add(startingBrick);
 			// init the first connection of the starting brick with the new timestamp
 			LayerBrick.Brick.ConnectionPoint firstConnection = startingBrick.ConnectionPoints[startingBrick.ElectricCircuitIndexList[0].mIndex1];
-			firstConnection.mPolarity = sTimeStamp;
+			firstConnection.Polarity = sTimeStamp;
 			// if the first connection is connected to another brick, also add this brick in the list
 			if (firstConnection.ConnectionLink != null)
 			{
-				firstConnection.ConnectionLink.mPolarity = -sTimeStamp;
+				firstConnection.ConnectionLink.Polarity = (short)(-sTimeStamp);
 				mBricksToExplore.Add(firstConnection.ConnectedBrick);
 			}
 
@@ -94,7 +113,7 @@ namespace BlueBrick.MapData
 						// check wich one has the incoming electricity, if it's not the start,
 						// swap the two connections point in order to have only one algorithm in the following
 						// after this swap, normally we should have the start +/-timestamp
-						if (Math.Abs(end.mPolarity) == sTimeStamp)
+						if (Math.Abs(end.Polarity) == sTimeStamp)
 						{
 							LayerBrick.Brick.ConnectionPoint swap = start;
 							start = end;
@@ -102,23 +121,23 @@ namespace BlueBrick.MapData
 						}
 
 						// transfert the time stamp from the start to the end
-						if (Math.Abs(start.mPolarity) == sTimeStamp)
+						if (Math.Abs(start.Polarity) == sTimeStamp)
 						{
 							// check if we have a shortcut in the current circuit.
 							// If the end is already set with the same polarity than the start, we have a shortcut
-							if (end.mPolarity == start.mPolarity)
+							if (end.Polarity == start.Polarity)
 							{
 								// shortcut!!
-								addShortcut(start);
+								shortcuts.Add(start);
 							}
 							// else if no shorcut check if we didn't already transfer the electricity to the end
-							else if (end.mPolarity != -start.mPolarity)
+							else if (end.Polarity != -start.Polarity)
 							{
 								// the end connection was not explored yet, so we will set its timestamp and push
 								// his neighbor for future exploration.
 
 								// transfert the electricity to the end
-								end.mPolarity = -start.mPolarity;
+								end.Polarity = (short)(-start.Polarity);
 
 								// for complex part that has several circuit in it, if we transfert electricity
 								// in a circuit, this circuit may also be linked to a previous one already iterated.
@@ -137,16 +156,16 @@ namespace BlueBrick.MapData
 								if (connectionLink != null)
 								{
 									// check if we have a shortcut
-									if (connectionLink.mPolarity == end.mPolarity)
+									if (connectionLink.Polarity == end.Polarity)
 									{
 										// shortcut!!
-										addShortcut(end);
+										shortcuts.Add(end);
 									}
 									// if no shortcut, check if we have to to explore the connection
-									else if (connectionLink.mPolarity != -end.mPolarity)
+									else if (connectionLink.Polarity != -end.Polarity)
 									{
 										// transfert the polarity to the linked connection
-										connectionLink.mPolarity = -end.mPolarity;
+										connectionLink.Polarity = (short)(-end.Polarity);
 										// and add the new brick in the list for furture exploration
 										mBricksToExplore.Add(end.ConnectedBrick);
 									}
@@ -163,24 +182,10 @@ namespace BlueBrick.MapData
 						}
 					}
 			}
-		}
 
-		private static void addShortcut(LayerBrick.Brick.ConnectionPoint connection)
-		{
-			// add the connection in the list
-			mShortcuts.Add(connection);
-		}
-
-		public static void check(LayerBrick brickLayer)
-		{
-			// increment the time stamp
-			incrementTimeStamp();
-
-			// check for every brick if not already at the time stamp
-			foreach (LayerBrick.Brick brick in brickLayer.BrickList)
-				if (brick.ElectricCircuitIndexList != null)
-					if (Math.Abs(brick.ConnectionPoints[0].mPolarity) != sTimeStamp)
-						check(brick);
+			// set the polarity to 0 for all the connection where we found the shortcuts
+			foreach (LayerBrick.Brick.ConnectionPoint connection in shortcuts)
+				connection.HasElectricShortcut = true;
 		}
 	}
 }
