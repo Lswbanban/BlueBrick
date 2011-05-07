@@ -68,7 +68,9 @@ Bug fixed in 1.7.0.0:
 - BUGFIX (Larry): CRASH! when opening a BBM file which is write protected.
 - BUGFIX (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
 - BUGFIX (Vincent): In the export window, the maximum scale was limited by the size of the total area, not the size of the selected area.
-- BUGFIX (Alban): The snapping of connected brick tried to snap to free connection point inside the selection, making the snapping becoming crazy
+- BUGFIX (Alban): The snapping of connected brick tried to snap to free connection point inside the selection, making the snapping becoming crazy.
+- BUGFIX (Alban): Another bug on the snapping of connected brick: now the selected bricks are unlinked from the non selected brick during the mouse down to have a stable snapping.
+- BUGFIX (Alban): When applying 2 times in a row a brick duplication with the first duplication rotated, during the second duplication, the rotation of the first one was canceled.
 
 Bug fixed in 1.6.1.0:
 - NEW FEATURE (Alex & Alban): Add a context menu in the part lib to choose more options: large/small icons, respect proportions, display bubble info

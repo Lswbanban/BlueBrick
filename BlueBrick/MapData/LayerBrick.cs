@@ -1839,7 +1839,24 @@ namespace BlueBrick.MapData
 				if (mSelectedObjects.Count == 0)
 					addObjectInSelection(mCurrentBrickUnderMouse);
 
-				// update the active connexion point
+				// Break all the connections between the selected bricks and the non selected bricks
+				// meaning iterate on all the brick of the selection and when we find a link to a brick which
+				// is not in the selection, cut it. This way all the bridges between the selected group and the
+				// non selected group are cut. What will happen is at the moment the mouse is click the user see
+				// the selected group separated from the other bricks.
+				// This is important to fix a shaking bug in the snapping algo: in the snapping algo we search
+				// for free connection points from the active connection point of the grabbed brick. If the grabbed
+				// brick is not free, the snapping algo will snap on the grid for the first little move of the mouse
+				// then the brick becomes free, and the snapping algo choose again the previous linked brick for the
+				// second little move. By breaking the link now, the snapping algo will always choose the previous
+				// linked brick unless you start to do a big move.
+				if (!mMouseMoveIsADuplicate)
+					foreach (Brick brick in mSelectedObjects)
+						foreach (Brick.ConnectionPoint connection in brick.ConnectionPoints)
+							if (connection.ConnectedBrick != null && !mSelectedObjects.Contains(connection.ConnectedBrick))
+								disconnectTwoConnectionPoints(connection, connection.ConnectionLink);
+
+				// update the active connexion point (after cutting the bridge with non selected parts)
 				mCurrentBrickUnderMouse.setActiveConnectionPointUnder(mouseCoordInStud);
 				// and call again the function to recompute the grab distance from the modified active connection point
 				setBrickUnderMouse(mCurrentBrickUnderMouse, mouseCoordInStud);
@@ -1884,8 +1901,8 @@ namespace BlueBrick.MapData
 							wereBrickJustDuplicated = true;
 						}
 					}
-					// this is move of the selection, not a duplicate selection
-					// move all the selected brick if the delta move is not null
+					// the duplication above will change the current selection
+					// The code below is to move the selection, either the original one or the duplicated one
 					foreach (LayerBrick.Brick brick in mSelectedObjects)
 						brick.Center = new PointF(brick.Center.X + deltaMove.X, brick.Center.Y + deltaMove.Y);
 					// update the free connexion list
@@ -1909,7 +1926,14 @@ namespace BlueBrick.MapData
 					// give a second chance to duplicate if the user press the duplicate key
 					// after pressing down the mouse key, but not if the user already moved
 					if (!mMouseHasMoved && !mMouseMoveIsADuplicate)
+					{
+						// check if the duplicate key is pressed
 						mMouseMoveIsADuplicate = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+						// if finally the user press the duplicate key, reconnect the selection because we broke
+						// the connnection between selected brick and non-selected bricks in the mouse down event.
+						if (mMouseMoveIsADuplicate)
+							updateBrickConnectivityOfSelection(false);
+					}
 				}
 			}
 			return false;
@@ -1922,7 +1946,7 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			// check if we moved the selected text
+			// check if we moved the selected bricks
 			if (mMouseHasMoved && (mSelectedObjects.Count > 0))
 			{
 				// reset the flag
@@ -1940,6 +1964,9 @@ namespace BlueBrick.MapData
 					{
 						mLastDuplicateBrickAction.updatePositionShift(deltaMove.X, deltaMove.Y);
 						mLastDuplicateBrickAction = null;
+						// clear also the rotation snapping, in case of a series of duplication, but do not
+						// undo it, since we want to keep the rotation applied on the duplicated bricks.
+						mRotationForSnappingDuringBrickMove = null;
 					}
 					else
 					{
@@ -1969,7 +1996,7 @@ namespace BlueBrick.MapData
 				}
 				else
 				{
-					// update the free connexion list if the use move the brick and then go back
+					// update the free connexion list if the user move the brick and then go back
 					// to the original place (deltaMove is null), so the link was broken because
 					// of the move, so we need to recreate the link
 					updateBrickConnectivityOfSelection(false);
@@ -1979,6 +2006,10 @@ namespace BlueBrick.MapData
 			}
 			else
 			{
+				// update the connection for the selection, because we broke the connnection between selected 
+				// brick and non-selected bricks in the mouse down event.
+				updateBrickConnectivityOfSelection(false);
+
 				// if we didn't move the item and use the control key, we need to add or remove object from the selection
 				// we must do it in the up event because if we do it in the down, we may remove an object before moving
 				// we do this only if the mMouseHasMoved flag is not set to avoid this change if we move
