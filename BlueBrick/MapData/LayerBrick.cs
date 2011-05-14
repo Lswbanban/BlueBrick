@@ -1852,9 +1852,10 @@ namespace BlueBrick.MapData
 				// linked brick unless you start to do a big move.
 				if (!mMouseMoveIsADuplicate)
 					foreach (Brick brick in mSelectedObjects)
-						foreach (Brick.ConnectionPoint connection in brick.ConnectionPoints)
-							if (connection.ConnectedBrick != null && !mSelectedObjects.Contains(connection.ConnectedBrick))
-								disconnectTwoConnectionPoints(connection, connection.ConnectionLink);
+						if (brick.ConnectionPoints != null)
+							foreach (Brick.ConnectionPoint connection in brick.ConnectionPoints)
+								if (connection.ConnectedBrick != null && !mSelectedObjects.Contains(connection.ConnectedBrick))
+									disconnectTwoConnectionPoints(connection, connection.ConnectionLink);
 
 				// update the active connexion point (after cutting the bridge with non selected parts)
 				mCurrentBrickUnderMouse.setActiveConnectionPointUnder(mouseCoordInStud);

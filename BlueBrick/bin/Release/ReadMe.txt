@@ -38,21 +38,19 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - [target 1.7] MISSING FEATURE (Larry): Save the export image settings in the BBM file
-- [target 1.7] MISSING FEATURE (Alban): Add the polarity check
 - [target 1.7] MISSING FEATURE (Alban): support new flex PF track.
 - [target 1.8] MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
 - [target 1.8] MISSING FEATURE (Larry): Select parts in multiple layers
-- MISSING FEATURE (Alban): A feature to check if there's new parts available online.
+- [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
+- [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - MISSING FEATURE (Alban): Autosave.
-- MISSING FEATURE (Erik): A new layer type for mesurement tools.
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
 - MISSING FEATURE (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
 - MISSING FEATURE (Larry): Shortcut parts (being able to have a meta XML part file describing an assembly of parts) or grouping parts.
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
-- [target 1.7] BUG (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude)
-- [target 1.7] BUG (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
+- [target 1.8] BUG (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
@@ -60,14 +58,16 @@ Open bugs:
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
 Bug fixed in 1.7.0.0:
-- NEW FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder)
+- NEW FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder).
 - NEW FEATURE (Denis): Feature to search and replace a set of brick type by another one.
-- NEW FEATURE (Alban): The connection points are now configurable and extendable in an XML file
-- NEW FEATURE (Alban): Display the general info on top of the map (this can be disabled in the option settings)
-- NEW FEATURE (Larry): Display the XML exception when BB can not load XML files
+- NEW FEATURE (Alban): The connection points are now configurable and extendable in an XML file.
+- NEW FEATURE (Alban): Display the general info on top of the map (this can be disabled in the option settings).
+- NEW FEATURE (Larry): Display the XML exception when BB can not load XML files.
+- NEW FEATURE (Alban): The polarity check for electric shortcut is now available.
 - BUGFIX (Larry): CRASH! when opening a BBM file which is write protected.
 - BUGFIX (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
 - BUGFIX (Vincent): In the export window, the maximum scale was limited by the size of the total area, not the size of the selected area.
+- BUGFIX (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude). Well Slope is still not handle, but I don't plan to do more for now.
 - BUGFIX (Alban): The snapping of connected brick tried to snap to free connection point inside the selection, making the snapping becoming crazy.
 - BUGFIX (Alban): Another bug on the snapping of connected brick: now the selected bricks are unlinked from the non selected brick during the mouse down to have a stable snapping.
 - BUGFIX (Alban): When applying 2 times in a row a brick duplication with the first duplication rotated, during the second duplication, the rotation of the first one was canceled.

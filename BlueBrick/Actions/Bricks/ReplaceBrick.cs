@@ -40,6 +40,10 @@ namespace BlueBrick.Actions.Bricks
 		private List<List<BrickPair>> mBrickPairList = null;
 		private string mPartNumberToReplace = string.Empty;
 
+		// for selection of the replaced bricks
+		private LayerBrick mLayerWhereToSelectTheReplacedBricks = null;
+		private List<BrickPair> mReplacedBricksToSelect = new List<BrickPair>();
+
 		public ReplaceBrick(List<LayerBrick> layerList, string partNumberToReplace, string newPartNumber, bool replaceInSelectionOnly)
 		{
 			// store the list of layer for which this action apply and create a list of the same size for the bricks
@@ -49,6 +53,9 @@ namespace BlueBrick.Actions.Bricks
 			// iterate on all the layers
 			foreach (LayerBrick layer in layerList)
 			{
+				// memorize the layer that has the selected bricks
+				if (layer.SelectedObjects.Count > 0)
+					mLayerWhereToSelectTheReplacedBricks = layer;
 				// add the list of brick pair (that can stay empty if no brick is found in that layer)
 				List<BrickPair> currentPairList = new List<BrickPair>();
 				mBrickPairList.Add(currentPairList);
@@ -56,12 +63,12 @@ namespace BlueBrick.Actions.Bricks
 				if (replaceInSelectionOnly)
 				{
 					foreach (Layer.LayerItem item in layer.SelectedObjects)
-						createBrickPairIfNeeded(currentPairList, (item as LayerBrick.Brick), newPartNumber);
+						createBrickPairIfNeeded(layer, currentPairList, (item as LayerBrick.Brick), newPartNumber);
 				}
 				else
 				{
 					foreach (LayerBrick.Brick brick in layer.BrickList)
-						createBrickPairIfNeeded(currentPairList, brick, newPartNumber);
+						createBrickPairIfNeeded(layer, currentPairList, brick, newPartNumber);
 				}
 			}
 		}
@@ -73,7 +80,7 @@ namespace BlueBrick.Actions.Bricks
 			return actionName;
 		}
 
-		private void createBrickPairIfNeeded(List<BrickPair> currentPairList, LayerBrick.Brick brick, string newPartNumber)
+		private void createBrickPairIfNeeded(LayerBrick currentLayer, List<BrickPair> currentPairList, LayerBrick.Brick brick, string newPartNumber)
 		{
 			if (brick.PartNumber.Equals(mPartNumberToReplace))
 			{
@@ -85,6 +92,9 @@ namespace BlueBrick.Actions.Bricks
 				// create the pair and add it to the list
 				BrickPair brickPair = new BrickPair(brick, newBrick);
 				currentPairList.Add(brickPair);
+				// check if we also need to add this pair to the list of brick to reselect
+				if (currentLayer.SelectedObjects.Contains(brick))
+					mReplacedBricksToSelect.Add(brickPair);
 			}
 		}
 
@@ -127,6 +137,17 @@ namespace BlueBrick.Actions.Bricks
 					// clear the selection again (it was only use for fast connectivity update)
 					currentLayer.clearSelection();
 				}
+
+				// If the current layer is the one which has the selection
+				// reselect all the new brick
+				if (currentLayer == mLayerWhereToSelectTheReplacedBricks)
+					foreach (BrickPair brickPair in mReplacedBricksToSelect)
+					{
+						if (newByOld)
+							currentLayer.addObjectInSelection(brickPair.mOldBrick);
+						else
+							currentLayer.addObjectInSelection(brickPair.mNewBrick);
+					}
 			}
 		}
 
