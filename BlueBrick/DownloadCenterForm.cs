@@ -63,10 +63,10 @@ namespace BlueBrick
 		private void DownloadListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
 		{
 			// make sure the label start with the folder separator
-			if (!e.Label.StartsWith(@"\"))
+            if (!e.Label.StartsWith(@"\") || !e.Label.StartsWith(@"/"))
 			{
 				e.CancelEdit = true;
-				this.DownloadListView.Items[e.Item].Text = @"\" + e.Label;
+				this.DownloadListView.Items[e.Item].Text = @"/" + e.Label;
 			}
 		}
 		#endregion
