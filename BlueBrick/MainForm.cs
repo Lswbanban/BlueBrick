@@ -928,6 +928,10 @@ namespace BlueBrick
 			// but remove the extension, such as the user can easily change the extension in
 			// the save dialog drop list, and the save dialog will add it automatically
 			this.saveFileDialog.FileName = Path.GetFileNameWithoutExtension(mCurrentMapFileName);
+            // if there's no initial directory, choose the My Documents directory
+            this.saveFileDialog.InitialDirectory = Path.GetDirectoryName(mCurrentMapFileName);
+            if (this.saveFileDialog.InitialDirectory.Length == 0)
+                this.saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 			// open the save as dialog
 			DialogResult result = this.saveFileDialog.ShowDialog();
 			if (result == DialogResult.OK)
@@ -976,6 +980,8 @@ namespace BlueBrick
 				// remove the extension from the full file name and also set the starting directory
                 this.saveExportImageDialog.FileName = Path.GetFileNameWithoutExtension(fullFileName);
                 this.saveExportImageDialog.InitialDirectory = Path.GetDirectoryName(fullFileName);
+                if (this.saveExportImageDialog.InitialDirectory.Length == 0)
+                    this.saveExportImageDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 				// open the save dialog
 				result = this.saveExportImageDialog.ShowDialog();
 				if (result == DialogResult.OK)
