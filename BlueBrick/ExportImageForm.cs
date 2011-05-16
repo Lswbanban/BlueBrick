@@ -67,8 +67,13 @@ namespace BlueBrick
 			// compute the total area of the map, and the total scale in order to display the full map
 			// in the preview window and assign the selected area with the same value
 			mTotalAreaInStud = Map.Instance.getTotalAreaInStud(false);
-			// select the total area
-			mSelectedAreaInStud = mTotalAreaInStud;
+
+			// select the total area. It depends if we already have exported this file
+			if (Map.Instance.ExportArea.Width != 0.0f && Map.Instance.ExportArea.Height != 0.0f)
+				mSelectedAreaInStud = Map.Instance.ExportArea;
+			else
+				mSelectedAreaInStud = mTotalAreaInStud;
+
 			// add a margin to the total area
 			mTotalAreaInStud.X -= 32.0f;
 			mTotalAreaInStud.Y -= 32.0f;
@@ -88,8 +93,13 @@ namespace BlueBrick
 
 			// set the min, max, inc and value for the scale
 			updateMinAndMaxScaleAccordingToSelectedArea();
-			double scaleValue = Math.Max(Math.Min(mTotalScalePixelPerStud, (double)this.scaleNumericUpDown.Maximum),
-										(double)this.scaleNumericUpDown.Minimum); // ensure that the scale value is inside the min and max
+			// check if we need to use the previous scaled saved in the map
+			double scaleValue = mTotalScalePixelPerStud;
+			if (Map.Instance.ExportScale != 0.0)
+				scaleValue = Map.Instance.ExportScale;
+			// ensure that the scale value is inside the min and max and set it the numeric updown control
+			scaleValue = Math.Max(Math.Min(scaleValue, (double)this.scaleNumericUpDown.Maximum),
+									(double)this.scaleNumericUpDown.Minimum);
 			this.scaleNumericUpDown.Value = (Decimal)scaleValue;
 
 			//init the numericupdown controls for area
@@ -431,6 +441,11 @@ namespace BlueBrick
 			drawPreviewImage();
 		}
 
+		private void okButton_Click(object sender, EventArgs e)
+		{
+			// save the setting chosen in the map
+			Map.Instance.saveExportAreaSettings(mSelectedAreaInStud, (double)(this.scaleNumericUpDown.Value));
+		}
 		#endregion
 	}
 }

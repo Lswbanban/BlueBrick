@@ -967,7 +967,18 @@ namespace BlueBrick
 			DialogResult result = exportImageForm.ShowDialog();
 			if (result == DialogResult.OK)
 			{
-				// option were set, now open the save dialog
+				// option were set, check if we need to use the export settings saved in the file
+				this.saveExportImageDialog.FilterIndex = Map.Instance.ExportFileTypeIndex; // it's 0 by default anyway
+				// by default set the same name for the exported picture than the name of the map
+				string fullFileName = this.mCurrentMapFileName;
+				if (Map.Instance.ExportFileName != string.Empty)
+					fullFileName = Map.Instance.ExportFileName;
+				// remove the extension from the full file name and also set the starting directory
+				FileInfo fileInfo = new FileInfo(fullFileName);
+				this.saveExportImageDialog.FileName = fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length);
+				// set the same directory as the map file if any
+				this.saveExportImageDialog.InitialDirectory = fileInfo.DirectoryName;
+				// open the save dialog
 				result = this.saveExportImageDialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
@@ -993,13 +1004,25 @@ namespace BlueBrick
 					{
 						string extension = fileName.Substring(lastExtensionIndex + 1).ToLower();
 						if (extension.Equals("bmp"))
+						{
 							choosenFormat = ImageFormat.Bmp;
+							saveExportImageDialog.FilterIndex = 1;
+						}
 						else if (extension.Equals("gif"))
+						{
 							choosenFormat = ImageFormat.Gif;
+							saveExportImageDialog.FilterIndex = 2;
+						}
 						else if (extension.Equals("jpg"))
+						{
 							choosenFormat = ImageFormat.Jpeg;
+							saveExportImageDialog.FilterIndex = 3;
+						}
 						else if (extension.Equals("png"))
+						{
 							choosenFormat = ImageFormat.Png;
+							saveExportImageDialog.FilterIndex = 4;
+						}
 						else
 						{
 							// the extension is not a valid extension (like "txt" for example)
@@ -1015,9 +1038,15 @@ namespace BlueBrick
 							}
 						}
 					}
+					// save the new settings in the map
+					Map.Instance.saveExportFileSettings(this.mCurrentMapFileName, fileName, saveExportImageDialog.FilterIndex);
 					// save the bitmap in a file
 					image.Save(fileName, choosenFormat);
 				}
+				// if some export window (at least the first one) were validated, we need to update the view
+				// to set the little "*" after the name of the file in the tittle bar, because the export options
+				// have been saved in the map, therefore the map was modified.
+				updateView(Action.UpdateViewType.NONE, Action.UpdateViewType.NONE);
 			}
 			// reset the flag with the previous value
 			BlueBrick.Properties.Settings.Default.DisplayFreeConnexionPoints = saveDrawFreeConnexionPointFlag;

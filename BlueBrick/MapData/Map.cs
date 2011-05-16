@@ -52,6 +52,13 @@ namespace BlueBrick.MapData
 		private Color mBackgroundColor = BlueBrick.Properties.Settings.Default.DefaultBackgroundColor;
 		private string mGeneralInfoWatermark = "";
 
+		// data for the image export (this contains the last export settings for this map)
+		private string mExportFileName = string.Empty; // file name including local path from BBM file
+		private int mExportFileTypeIndex = 1; // index in the combobox for the different type of export
+		private RectangleF mExportArea = new RectangleF();
+		private double mExportScale = 0.0;
+		private bool mHasExportSettingsChanged = false; // a boolean flag indicating that the settings has changed and that the file need to be saved
+
 		// some data for compatibility with Track designer
 		private bool mAllowElectricShortCuts = false;
 		private bool mAllowUnderground = false;
@@ -159,14 +166,23 @@ namespace BlueBrick.MapData
 
 		public bool WasModified
 		{
-			get { return (mNumberOfModificationSinceLastSave != 0); }
-			set { if (!value) mNumberOfModificationSinceLastSave = 0; }
+			get { return ((mNumberOfModificationSinceLastSave != 0) || mHasExportSettingsChanged); }
+			set
+			{
+				// if the value is false (meaning we just saved the file), reset all the flags
+				if (!value)
+				{
+					mNumberOfModificationSinceLastSave = 0;
+					mHasExportSettingsChanged = false;
+				}
+			}
 		}
 
 		public static int DataVersionOfTheFileLoaded
 		{
 			get { return mDataVersionOfTheFileLoaded; }
 		}
+
 		/// <summary>
 		/// The current selected layer
 		/// </summary>
@@ -198,12 +214,24 @@ namespace BlueBrick.MapData
 			}
 		}
 
-		/// <summary>
-		/// Compute the string displayed on top of the map from some general infos
-		/// </summary>
-		private void computeGeneralInfoWatermark()
+		public string ExportFileName
 		{
-			mGeneralInfoWatermark = this.Author + ", " + this.LUG + ", " + this.Show + " (" + this.Date.ToShortDateString() + ")";
+			get { return mExportFileName; }
+		}
+
+		public int ExportFileTypeIndex
+		{
+			get { return mExportFileTypeIndex; }
+		}
+
+		public RectangleF ExportArea
+		{
+			get { return mExportArea; }
+		}
+
+		public double ExportScale
+		{
+			get { return mExportScale; }
 		}
 		#endregion
 
@@ -223,6 +251,14 @@ namespace BlueBrick.MapData
 				mShow = BlueBrick.Properties.Resources.DefaultShow;
 			// and construct the watermark
 			computeGeneralInfoWatermark();
+		}
+
+		/// <summary>
+		/// Compute the string displayed on top of the map from some general infos
+		/// </summary>
+		private void computeGeneralInfoWatermark()
+		{
+			mGeneralInfoWatermark = this.Author + ", " + this.LUG + ", " + this.Show + " (" + this.Date.ToShortDateString() + ")";
 		}
 		#endregion
 
@@ -383,6 +419,9 @@ namespace BlueBrick.MapData
 			}
 			writer.WriteEndElement();
 		}
+		#endregion
+
+		#region update of map data
 
 		public void increaseModificationCounter()
 		{
@@ -392,6 +431,20 @@ namespace BlueBrick.MapData
 		public void decreaseModificationCounter()
 		{
 			--mNumberOfModificationSinceLastSave;
+		}
+
+		public void saveExportFileSettings(string mapFileName, string exportFileName, int exportFileTypeIndex)
+		{
+			mExportFileName = exportFileName;
+			mExportFileTypeIndex = exportFileTypeIndex;
+			mHasExportSettingsChanged = true;
+		}
+
+		public void saveExportAreaSettings(RectangleF exportArea, double exportScale)
+		{
+			mExportArea = exportArea;
+			mExportScale = exportScale;
+			mHasExportSettingsChanged = true;
 		}
 
 		#endregion
