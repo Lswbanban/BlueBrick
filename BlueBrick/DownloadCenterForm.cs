@@ -45,7 +45,7 @@ namespace BlueBrick
 			this.StartButton.Enabled = false;
 			// set the hourglass except for the cancel button
 			this.Cursor = Cursors.WaitCursor;
-			this.CancelButton.Cursor = Cursors.Default;
+			this.cancelButton.Cursor = Cursors.Default;
 			// launch the download
 			downloadAllTheFile();
 		}
@@ -198,8 +198,8 @@ namespace BlueBrick
 			// reset the default cursor
 			this.Cursor = Cursors.Default;
 			// Hide the Cancel Button and show the close button
-			this.CancelButton.Hide();
-			this.CloseButton.Show();
+			this.cancelButton.Hide();
+			this.closeButton.Show();
 		}
 
 		private void downloadOneFile(int fileIndex)
