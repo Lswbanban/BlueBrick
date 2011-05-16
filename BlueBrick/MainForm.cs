@@ -968,16 +968,14 @@ namespace BlueBrick
 			if (result == DialogResult.OK)
 			{
 				// option were set, check if we need to use the export settings saved in the file
-				this.saveExportImageDialog.FilterIndex = Map.Instance.ExportFileTypeIndex; // it's 0 by default anyway
+				this.saveExportImageDialog.FilterIndex = Map.Instance.ExportFileTypeIndex; // it's 1 by default anyway
 				// by default set the same name for the exported picture than the name of the map
 				string fullFileName = this.mCurrentMapFileName;
-				if (Map.Instance.ExportFileName != string.Empty)
-					fullFileName = Map.Instance.ExportFileName;
+				if (Map.Instance.ExportAbsoluteFileName != string.Empty)
+                    fullFileName = Map.Instance.ExportAbsoluteFileName;
 				// remove the extension from the full file name and also set the starting directory
-				FileInfo fileInfo = new FileInfo(fullFileName);
-				this.saveExportImageDialog.FileName = fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length);
-				// set the same directory as the map file if any
-				this.saveExportImageDialog.InitialDirectory = fileInfo.DirectoryName;
+                this.saveExportImageDialog.FileName = Path.GetFileNameWithoutExtension(fullFileName);
+                this.saveExportImageDialog.InitialDirectory = Path.GetDirectoryName(fullFileName);
 				// open the save dialog
 				result = this.saveExportImageDialog.ShowDialog();
 				if (result == DialogResult.OK)

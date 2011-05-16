@@ -22,6 +22,7 @@ using BlueBrick.Actions;
 using BlueBrick.Actions.Bricks;
 using BlueBrick.Actions.Layers;
 using BlueBrick.Actions.Maps;
+using System.IO;
 
 namespace BlueBrick.MapData
 {
@@ -53,8 +54,9 @@ namespace BlueBrick.MapData
 		private string mGeneralInfoWatermark = "";
 
 		// data for the image export (this contains the last export settings for this map)
-		private string mExportFileName = string.Empty; // file name including local path from BBM file
-		private int mExportFileTypeIndex = 1; // index in the combobox for the different type of export
+		private string mExportAbsoluteFileName = string.Empty; // file name including full path from root
+        private string mExportRelativeFileName = string.Empty; // file name including local path from BBM file
+        private int mExportFileTypeIndex = 1; // index in the combobox for the different type of export
 		private RectangleF mExportArea = new RectangleF();
 		private double mExportScale = 0.0;
 		private bool mHasExportSettingsChanged = false; // a boolean flag indicating that the settings has changed and that the file need to be saved
@@ -214,12 +216,17 @@ namespace BlueBrick.MapData
 			}
 		}
 
-		public string ExportFileName
+        public string ExportAbsoluteFileName
 		{
-			get { return mExportFileName; }
+			get { return mExportAbsoluteFileName; }
 		}
 
-		public int ExportFileTypeIndex
+        public string ExportRelativeFileName
+        {
+            get { return mExportRelativeFileName; }
+        }
+        
+        public int ExportFileTypeIndex
 		{
 			get { return mExportFileTypeIndex; }
 		}
@@ -433,9 +440,67 @@ namespace BlueBrick.MapData
 			--mNumberOfModificationSinceLastSave;
 		}
 
+        private string computeRelativePath(string fromFullPath, string toFullPath)
+        {
+            // both path should not be empty
+            if (fromFullPath.Length == 0 || toFullPath.Length == 0)
+                return string.Empty;
+
+            // both path must be rooted, otherwise, we cannot compute the relative path
+            if (!Path.IsPathRooted(fromFullPath) || !Path.IsPathRooted(toFullPath))
+                return string.Empty;
+
+            // if the two paths are not on the same drive this function cannot compute a relative path
+            // for that we check the first letter. On Windows it will check the drive letter
+            // on linux both path start with the directory separtor
+            if (fromFullPath[0] != toFullPath[0])
+                return string.Empty;
+
+            // cut the drive letter for windows, assuming on linux the function to get the root return an empty string
+            fromFullPath = fromFullPath.Remove(0, Path.GetPathRoot(fromFullPath).Length);
+            toFullPath = toFullPath.Remove(0, Path.GetPathRoot(toFullPath).Length);
+            if (fromFullPath[0] == Path.DirectorySeparatorChar)
+                fromFullPath = fromFullPath.Remove(0, 1);
+            if (toFullPath[0] == Path.DirectorySeparatorChar)
+                toFullPath = toFullPath.Remove(0, 1);
+
+            // finally it seems the conditions are ok to compute a relative path
+            // split the two paths in a serie of folders
+            char[] separatorList = new char[] { Path.DirectorySeparatorChar, '/', '\\' };
+            string[] fromFolders = fromFullPath.Split(separatorList);
+            string[] toFolders = toFullPath.Split(separatorList);
+
+            // iterate while we find the same folders
+            int divergenceStartingIndex = 0;
+            int maxIndex = Math.Min(fromFolders.Length, toFolders.Length);
+            for (int i = 0; i < maxIndex; ++i)
+            {
+                divergenceStartingIndex = i;
+                if (fromFolders[i] != toFolders[i])
+                    break;
+            }
+
+            // count how many times we will have to go back
+            int goBackCount = fromFolders.Length - divergenceStartingIndex - 1; // -1 because the last one is the file name, not a folder
+
+            // construct the relative path
+            string relativePath = string.Empty;
+            for (int i = 0; i < goBackCount; ++i)
+                relativePath += @"../";
+            for (int i = divergenceStartingIndex; i < toFolders.Length - 1; ++i)
+                relativePath += toFolders[i] + @"/";
+            relativePath += toFolders[toFolders.Length - 1];
+
+            // return it
+            return relativePath;
+        }
+
 		public void saveExportFileSettings(string mapFileName, string exportFileName, int exportFileTypeIndex)
 		{
-			mExportFileName = exportFileName;
+            // To maximize the compatilities between different computers and different OS, we save the 
+            // export file name in relative path
+            mExportRelativeFileName = computeRelativePath(mapFileName, exportFileName);
+			mExportAbsoluteFileName = exportFileName;
 			mExportFileTypeIndex = exportFileTypeIndex;
 			mHasExportSettingsChanged = true;
 		}
