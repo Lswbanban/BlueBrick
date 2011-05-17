@@ -444,29 +444,36 @@ namespace BlueBrick.MapData
         {
             // both path should not be empty
             if (fromFullPath.Length == 0 || toFullPath.Length == 0)
-                return string.Empty;
+                return Path.GetFileName(toFullPath);
 
             // both path must be rooted, otherwise, we cannot compute the relative path
             if (!Path.IsPathRooted(fromFullPath) || !Path.IsPathRooted(toFullPath))
-                return string.Empty;
+                return Path.GetFileName(toFullPath);
 
             // if the two paths are not on the same drive this function cannot compute a relative path
             // for that we check the first letter. On Windows it will check the drive letter
             // on linux both path start with the directory separtor
             if (fromFullPath[0] != toFullPath[0])
-                return string.Empty;
+                return Path.GetFileName(toFullPath);
+
+            // declare an array to store all the directory separator for all platform because one file
+            // save on Windows could be open on Linux and vice and versa
+            char[] separatorList = new char[] { Path.DirectorySeparatorChar, '/', '\\' };
 
             // cut the drive letter for windows, assuming on linux the function to get the root return an empty string
             fromFullPath = fromFullPath.Remove(0, Path.GetPathRoot(fromFullPath).Length);
             toFullPath = toFullPath.Remove(0, Path.GetPathRoot(toFullPath).Length);
-            if (fromFullPath[0] == Path.DirectorySeparatorChar)
-                fromFullPath = fromFullPath.Remove(0, 1);
-            if (toFullPath[0] == Path.DirectorySeparatorChar)
-                toFullPath = toFullPath.Remove(0, 1);
+            // remove also the first directory separator if any
+            for (int i = 0; i < separatorList.Length; ++i)
+            {
+                if (fromFullPath[0] == separatorList[i])
+                    fromFullPath = fromFullPath.Remove(0, 1);
+                if (toFullPath[0] == separatorList[i])
+                    toFullPath = toFullPath.Remove(0, 1);
+            }
 
             // finally it seems the conditions are ok to compute a relative path
             // split the two paths in a serie of folders
-            char[] separatorList = new char[] { Path.DirectorySeparatorChar, '/', '\\' };
             string[] fromFolders = fromFullPath.Split(separatorList);
             string[] toFolders = toFullPath.Split(separatorList);
 
@@ -493,6 +500,33 @@ namespace BlueBrick.MapData
 
             // return it
             return relativePath;
+        }
+
+        private string computeAbsolutePath(string absoluteStartPath, string relativeCompletivePath)
+        {
+            char[] separatorList = new char[] { Path.DirectorySeparatorChar, '/', '\\' };
+
+            // get only the directory, remove the file name
+            string resultPath = Path.GetDirectoryName(absoluteStartPath);
+            absoluteStartPath = resultPath;
+
+            //remove the back track path
+            while (relativeCompletivePath.StartsWith(".."))
+            {
+                // find the last folder position
+                int separatorIndex = resultPath.LastIndexOfAny(separatorList);
+                // If the absolute path is too short for supporting all the backtracking of the relative path
+                // just return the same path as the absolute one, with the file name of the relative one.
+                if (separatorIndex == -1)
+                    return Path.Combine(absoluteStartPath, Path.GetFileName(relativeCompletivePath));
+                // remove the last folder from the resulting path
+                resultPath = resultPath.Remove(separatorIndex);
+                // remove the two dots and the path separator
+                relativeCompletivePath = relativeCompletivePath.Remove(0, 3);
+            }
+            
+            // the return the concatanation
+            return Path.Combine(resultPath, relativeCompletivePath);
         }
 
 		public void saveExportFileSettings(string mapFileName, string exportFileName, int exportFileTypeIndex)
