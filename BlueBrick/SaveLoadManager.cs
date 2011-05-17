@@ -109,6 +109,9 @@ namespace BlueBrick
 			MainForm.Instance.resetProgressBar((int)(myFileStream.Length / 900));
 			// parse and copy the data into this
 			Map.Instance = mySerializer.Deserialize(myFileStream) as Map;
+            // recompute the absolute export file name, from the relative one saved in the BBM file
+            // (and save temporarly in the absolute variable during the xml parsing)
+            Map.Instance.computeAbsoluteExportPathAfterLoading(filename, Map.Instance.ExportAbsoluteFileName);
 			// release the file stream
 			myFileStream.Close();
 			myFileStream.Dispose();

@@ -39,7 +39,7 @@ namespace BlueBrick.MapData
 	public class Map : IXmlSerializable
 	{
 		// the current version of the data this version of BlueBrick can read/write
-		private const int CURRENT_DATA_VERSION = 4;
+		private const int CURRENT_DATA_VERSION = 5;
 
 		// the current version of the data
 		private static int mDataVersionOfTheFileLoaded = CURRENT_DATA_VERSION;
@@ -341,6 +341,25 @@ namespace BlueBrick.MapData
 				reader.ReadElementContentAsBoolean(); // SnapGridEnabled
 				reader.ReadElementContentAsFloat(); // CurrentRotationStep
 			}
+
+            // read the export data if the version is 5 or higher
+            if (mDataVersionOfTheFileLoaded > 4)
+            {
+                reader.ReadToDescendant("ExportPath");
+                // read the relative export path and store it temporarly in the absolute path variable
+                // the absolute path will be computed after the xml serialization is finished
+                mExportAbsoluteFileName = reader.ReadElementContentAsString();
+                // read the other export info
+                mExportFileTypeIndex = reader.ReadElementContentAsInt();
+                float x = reader.ReadElementContentAsFloat();
+                float y = reader.ReadElementContentAsFloat();
+                float width = reader.ReadElementContentAsFloat();
+                float height = reader.ReadElementContentAsFloat();
+                mExportArea = new RectangleF(x, y, width, height);
+                mExportScale = reader.ReadElementContentAsFloat();
+                reader.ReadEndElement();
+            }
+
 			// selected layer
 			int selectedLayerIndex = reader.ReadElementContentAsInt();
 			// step the progress bar after the read of the header
@@ -419,6 +438,15 @@ namespace BlueBrick.MapData
 
             // the export data
             string exportRelativeFileName = computeRelativePath(mMapFileName, mExportAbsoluteFileName);
+            writer.WriteStartElement("ExportInfo");
+                writer.WriteElementString("ExportPath", exportRelativeFileName);
+                writer.WriteElementString("ExportFileType", mExportFileTypeIndex.ToString());
+                writer.WriteElementString("ExportAreaX", mExportArea.X.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                writer.WriteElementString("ExportAreaY", mExportArea.Y.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                writer.WriteElementString("ExportAreaWidth", mExportArea.Width.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                writer.WriteElementString("ExportAreaHeight", mExportArea.Height.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                writer.WriteElementString("ExportScale", mExportScale.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            writer.WriteEndElement();
 
 			// selected layer index
 			int selectedLayerIndex = -1;
@@ -515,7 +543,7 @@ namespace BlueBrick.MapData
             return relativePath;
         }
 
-        private string computeAbsolutePath(string absoluteStartPath, string relativeCompletivePath)
+        public void computeAbsoluteExportPathAfterLoading(string absoluteStartPath, string relativeCompletivePath)
         {
             char[] separatorList = new char[] { Path.DirectorySeparatorChar, '/', '\\' };
 
@@ -531,15 +559,18 @@ namespace BlueBrick.MapData
                 // If the absolute path is too short for supporting all the backtracking of the relative path
                 // just return the same path as the absolute one, with the file name of the relative one.
                 if (separatorIndex == -1)
-                    return Path.Combine(absoluteStartPath, Path.GetFileName(relativeCompletivePath));
+                {
+                    mExportAbsoluteFileName = Path.Combine(absoluteStartPath, Path.GetFileName(relativeCompletivePath));
+                    return;
+                }
                 // remove the last folder from the resulting path
                 resultPath = resultPath.Remove(separatorIndex);
                 // remove the two dots and the path separator
                 relativeCompletivePath = relativeCompletivePath.Remove(0, 3);
             }
             
-            // the return the concatanation
-            return Path.Combine(resultPath, relativeCompletivePath);
+            // compute the path as a concatanation
+            mExportAbsoluteFileName = Path.Combine(resultPath, relativeCompletivePath);
         }
 
 		public void saveExportFileSettings(string exportFileName, int exportFileTypeIndex)
