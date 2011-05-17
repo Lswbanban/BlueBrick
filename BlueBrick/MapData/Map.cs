@@ -44,6 +44,10 @@ namespace BlueBrick.MapData
 		// the current version of the data
 		private static int mDataVersionOfTheFileLoaded = CURRENT_DATA_VERSION;
 
+        // for the current map
+        private string mMapFileName = Properties.Resources.DefaultSaveFileName;
+        private bool mIsMapNameValid = false;
+
 		// data global to the map that can change the user
 		private string mAuthor = BlueBrick.Properties.Settings.Default.DefaultAuthor;
 		private string mLUG = BlueBrick.Properties.Settings.Default.DefaultLUG;
@@ -55,7 +59,6 @@ namespace BlueBrick.MapData
 
 		// data for the image export (this contains the last export settings for this map)
 		private string mExportAbsoluteFileName = string.Empty; // file name including full path from root
-        private string mExportRelativeFileName = string.Empty; // file name including local path from BBM file
         private int mExportFileTypeIndex = 1; // index in the combobox for the different type of export
 		private RectangleF mExportArea = new RectangleF();
 		private double mExportScale = 0.0;
@@ -90,6 +93,18 @@ namespace BlueBrick.MapData
 			get { return sInstance; }
 			set	{ sInstance = value; }
 		}
+
+        public string MapFileName
+        {
+            get { return mMapFileName; }
+            set { mMapFileName = value; }
+        }
+
+        public bool IsMapNameValid
+        {
+            get { return mIsMapNameValid; }
+            set { mIsMapNameValid = value; }
+        }
 
 		public string Author
 		{
@@ -221,11 +236,6 @@ namespace BlueBrick.MapData
 			get { return mExportAbsoluteFileName; }
 		}
 
-        public string ExportRelativeFileName
-        {
-            get { return mExportRelativeFileName; }
-        }
-        
         public int ExportFileTypeIndex
 		{
 			get { return mExportFileTypeIndex; }
@@ -407,6 +417,9 @@ namespace BlueBrick.MapData
 			writer.WriteEndElement();
 			writer.WriteElementString("Comment", mComment);
 
+            // the export data
+            string exportRelativeFileName = computeRelativePath(mMapFileName, mExportAbsoluteFileName);
+
 			// selected layer index
 			int selectedLayerIndex = -1;
 			if (mSelectedLayer != null)
@@ -529,11 +542,10 @@ namespace BlueBrick.MapData
             return Path.Combine(resultPath, relativeCompletivePath);
         }
 
-		public void saveExportFileSettings(string mapFileName, string exportFileName, int exportFileTypeIndex)
+		public void saveExportFileSettings(string exportFileName, int exportFileTypeIndex)
 		{
             // To maximize the compatilities between different computers and different OS, we save the 
             // export file name in relative path
-            mExportRelativeFileName = computeRelativePath(mapFileName, exportFileName);
 			mExportAbsoluteFileName = exportFileName;
 			mExportFileTypeIndex = exportFileTypeIndex;
 			mHasExportSettingsChanged = true;

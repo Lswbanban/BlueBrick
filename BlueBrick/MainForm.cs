@@ -73,10 +73,6 @@ namespace BlueBrick
 		private Bitmap mPaintIcon = null; // the paint icon contains the color of the paint in the background
 		private Color mCurrentPaintIconColor = Color.Empty;
 
-		// for the current map
-		private string mCurrentMapFileName = Properties.Resources.DefaultSaveFileName;
-		private bool mIsCurrentMapNameValid = false;
-
 		// the part list view
 		private PartListForm mPartListForm = null;
 
@@ -781,8 +777,8 @@ namespace BlueBrick
 		private void changeCurrentMapFileName(string filename, bool isAValidName)
 		{
 			// save the filename
-			mCurrentMapFileName = filename;
-			mIsCurrentMapNameValid = isAValidName;
+            Map.Instance.MapFileName = filename;
+			Map.Instance.IsMapNameValid = isAValidName;
 			// update the name (not the full path) of the title bar with the name of the file
 			FileInfo fileInfo = new FileInfo(filename);
 			this.Text = "BlueBrick - " + fileInfo.Name;
@@ -900,7 +896,7 @@ namespace BlueBrick
 			// set the wait cursor
 			this.Cursor = Cursors.WaitCursor;
 			// save the file
-			bool saveDone = SaveLoadManager.save(mCurrentMapFileName);
+            bool saveDone = SaveLoadManager.save(Map.Instance.MapFileName);
 			if (saveDone)
 			{
 				// after saving the map in any kind of format, we reset the WasModified flag of the map
@@ -916,7 +912,7 @@ namespace BlueBrick
 		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// if the current file name is not defined we do a "save as..."
-			if (mIsCurrentMapNameValid)
+            if (Map.Instance.IsMapNameValid)
 				saveMap();
 			else
 				saveasToolStripMenuItem_Click(sender, e);
@@ -927,9 +923,9 @@ namespace BlueBrick
 			// put the current file name in the dialog (which can be the default one)
 			// but remove the extension, such as the user can easily change the extension in
 			// the save dialog drop list, and the save dialog will add it automatically
-			this.saveFileDialog.FileName = Path.GetFileNameWithoutExtension(mCurrentMapFileName);
+            this.saveFileDialog.FileName = Path.GetFileNameWithoutExtension(Map.Instance.MapFileName);
             // if there's no initial directory, choose the My Documents directory
-            this.saveFileDialog.InitialDirectory = Path.GetDirectoryName(mCurrentMapFileName);
+            this.saveFileDialog.InitialDirectory = Path.GetDirectoryName(Map.Instance.MapFileName);
             if (this.saveFileDialog.InitialDirectory.Length == 0)
                 this.saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 			// open the save as dialog
@@ -974,7 +970,7 @@ namespace BlueBrick
 				// option were set, check if we need to use the export settings saved in the file
 				this.saveExportImageDialog.FilterIndex = Map.Instance.ExportFileTypeIndex; // it's 1 by default anyway
 				// by default set the same name for the exported picture than the name of the map
-				string fullFileName = this.mCurrentMapFileName;
+                string fullFileName = Map.Instance.MapFileName;
 				if (Map.Instance.ExportAbsoluteFileName != string.Empty)
                     fullFileName = Map.Instance.ExportAbsoluteFileName;
 				// remove the extension from the full file name and also set the starting directory
@@ -1043,7 +1039,7 @@ namespace BlueBrick
 						}
 					}
 					// save the new settings in the map
-					Map.Instance.saveExportFileSettings(this.mCurrentMapFileName, fileName, saveExportImageDialog.FilterIndex);
+                    Map.Instance.saveExportFileSettings(fileName, saveExportImageDialog.FilterIndex);
 					// save the bitmap in a file
 					image.Save(fileName, choosenFormat);
 				}
@@ -1064,8 +1060,8 @@ namespace BlueBrick
 			{
 				// save the name of the current map open to reload it (if it is valid)
 				string previousOpenMapFileName = null;
-				if (mIsCurrentMapNameValid)
-					previousOpenMapFileName = mCurrentMapFileName;
+                if (Map.Instance.IsMapNameValid)
+                    previousOpenMapFileName = Map.Instance.MapFileName;
 
 				// then clear the part lib panel and the brick library (before creating the new map)
 				this.partsTabControl.clearAllData();
