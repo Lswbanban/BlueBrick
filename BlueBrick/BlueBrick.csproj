@@ -30,7 +30,7 @@
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <ApplicationIcon>BlueBrickIcon.ico</ApplicationIcon>
+    <ApplicationIcon>icons\BlueBrickIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -594,7 +594,7 @@
     <None Include="icons\alignleft.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BlueBrickIcon.ico" />
+    <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />
     <Content Include="icons\SendToBack.bmp" />
