@@ -394,11 +394,23 @@ namespace BlueBrick.MapData
 				// read the next layer
 				layerFound = reader.ReadToNextSibling("Layer");
 			}
+			reader.ReadEndElement(); // end of Layers
 			// if the selected index is valid, reset the selected layer
 			if ((selectedLayerIndex >= 0) && (selectedLayerIndex < mLayers.Count))
 				mSelectedLayer = mLayers[selectedLayerIndex];
 			else
 				mSelectedLayer = null;
+			// read the url of all the parts for version 5 or later
+			if (mDataVersionOfTheFileLoaded > 4)
+			{
+				bool urlFound = reader.ReadToDescendant("BrickUrl");
+				while (urlFound)
+				{
+					// read the next url
+					urlFound = reader.ReadToNextSibling("BrickUrl");
+				}
+				reader.ReadEndElement();
+			}
 			// construct the watermark
 			computeGeneralInfoWatermark();
 			// for old version, make disapear the progress bar, since it was just an estimation
@@ -465,6 +477,31 @@ namespace BlueBrick.MapData
 				layer.WriteXml(writer);
 				writer.WriteEndElement();
 			}
+			writer.WriteEndElement();
+
+			// write the brick url for all the bricks in the map
+			writer.WriteStartElement("BrickUrlList");
+			// we use a hastable for fast hash search
+			System.Collections.Hashtable partList = new System.Collections.Hashtable();
+			foreach (Layer layer in mLayers)
+				if (layer.GetType().Name.Equals("LayerBrick"))
+					foreach (LayerBrick.Brick brick in (layer as LayerBrick).BrickList)
+						if (!partList.ContainsKey(brick.PartNumber))
+						{
+							// add the part in the hash map
+							partList.Add(brick.PartNumber, null);
+							// get the part from the Brick Library
+							string url = BrickLibrary.Instance.getImageURL(brick.PartNumber);
+							// serialize its url
+							if (url != null)
+							{
+								writer.WriteStartElement("BrickUrl");
+								writer.WriteAttributeString("id", brick.PartNumber);
+								writer.WriteAttributeString("official", "yes");
+								writer.WriteString(url);
+								writer.WriteEndElement();
+							}
+						}
 			writer.WriteEndElement();
 		}
 		#endregion
