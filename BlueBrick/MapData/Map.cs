@@ -612,18 +612,23 @@ namespace BlueBrick.MapData
 
 		public void saveExportFileSettings(string exportFileName, int exportFileTypeIndex)
 		{
-            // To maximize the compatilities between different computers and different OS, we save the 
-            // export file name in relative path
+            // set the flag to true if there's any change. If the flag was changed previously, keep the info.
+            mHasExportSettingsChanged = mHasExportSettingsChanged ||
+                                        (mExportAbsoluteFileName != exportFileName) ||
+                                        (mExportFileTypeIndex != exportFileTypeIndex);
+            // then remember the settings
 			mExportAbsoluteFileName = exportFileName;
 			mExportFileTypeIndex = exportFileTypeIndex;
-			mHasExportSettingsChanged = true;
 		}
 
 		public void saveExportAreaSettings(RectangleF exportArea, double exportScale)
 		{
-			mExportArea = exportArea;
-			mExportScale = exportScale;
-			mHasExportSettingsChanged = true;
+            // set the flag to true if there's any change. If the flag was changed previously, keep the info.
+            mHasExportSettingsChanged = mHasExportSettingsChanged || 
+                                        (mExportArea != exportArea) || (mExportScale != exportScale);
+            // then remember the settings
+            mExportArea = exportArea;
+			mExportScale = exportScale;			
 		}
 
 		#endregion
