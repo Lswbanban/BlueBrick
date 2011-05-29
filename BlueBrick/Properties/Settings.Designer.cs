@@ -726,5 +726,29 @@ namespace BlueBrick.Properties {
                 this["DisplayElectricCircuit"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DefaultGridEnabled {
+            get {
+                return ((bool)(this["DefaultGridEnabled"]));
+            }
+            set {
+                this["DefaultGridEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DefaultSubGridEnabled {
+            get {
+                return ((bool)(this["DefaultSubGridEnabled"]));
+            }
+            set {
+                this["DefaultSubGridEnabled"] = value;
+            }
+        }
     }
 }

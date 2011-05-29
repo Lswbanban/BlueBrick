@@ -70,6 +70,8 @@ namespace BlueBrick.Actions.Maps
 						{
 							newLayerData.GridSizeInStud = BlueBrick.Properties.Settings.Default.DefaultGridSize;
 							newLayerData.SubDivisionNumber = BlueBrick.Properties.Settings.Default.DefaultSubDivisionNumber;
+							newLayerData.DisplayGrid = BlueBrick.Properties.Settings.Default.DefaultGridEnabled;
+							newLayerData.DisplaySubGrid = BlueBrick.Properties.Settings.Default.DefaultSubGridEnabled;
 						}
 
 						// create a new entry for the list and store it in the list

@@ -240,7 +240,7 @@ da célula (em studs)</value>
     <value>9, 16</value>
   </data>
   <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 28</value>
+    <value>178, 28</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Tamanho da grelha
