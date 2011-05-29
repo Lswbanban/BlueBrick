@@ -298,7 +298,7 @@ um die Änderung auszuführen.</value>
     <value>Standard Anzahl der Unterteilungen</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
-    <value>Standard Rasterweite (in Noppen) </value>
+    <value>Standard Rasterweite (in Noppen)</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Standard Textformat</value>

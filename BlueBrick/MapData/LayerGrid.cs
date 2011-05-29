@@ -36,9 +36,9 @@ namespace BlueBrick.MapData
 		private Pen mGridLinePen = new Pen(Properties.Settings.Default.DefaultGridColor, 2);
 		private Pen mSubGridLinePen = new Pen(Properties.Settings.Default.DefaultSubGridColor, 1);
 		private int mGridSizeInStud = Properties.Settings.Default.DefaultGridSize;
-		private int mSubDivisionNumber = Properties.Settings.Default.DefaultSubDivisionNumber;
-		private bool mDisplayGrid = true;
-		private bool mDisplaySubGrid = true;
+		private int mSubDivisionNumber = Math.Max(Properties.Settings.Default.DefaultSubDivisionNumber, 2); // to avoid a division by 0
+		private bool mDisplayGrid = Properties.Settings.Default.DefaultGridEnabled;
+		private bool mDisplaySubGrid = Properties.Settings.Default.DefaultSubGridEnabled;
 
 		// cell index
 		private bool mDisplayCellIndex = true;
@@ -66,7 +66,7 @@ namespace BlueBrick.MapData
 		public int SubDivisionNumber
 		{
 			get { return mSubDivisionNumber; }
-			set { mSubDivisionNumber = value; }
+			set { mSubDivisionNumber = Math.Max(value, 2); }
 		}
 
 		public bool DisplaySubGrid
@@ -201,7 +201,7 @@ namespace BlueBrick.MapData
 			SubGridColor = XmlReadWrite.readColor(reader);
 			SubGridThickness = reader.ReadElementContentAsFloat();
 			mGridSizeInStud = reader.ReadElementContentAsInt();
-			mSubDivisionNumber = reader.ReadElementContentAsInt();
+			mSubDivisionNumber = Math.Max(reader.ReadElementContentAsInt(), 2);
 			if (reader.Name.Equals("DisplayGrid"))
 				mDisplayGrid = reader.ReadElementContentAsBoolean();
 			mDisplaySubGrid = reader.ReadElementContentAsBoolean();

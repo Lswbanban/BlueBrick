@@ -131,8 +131,12 @@ namespace BlueBrick
 			setGammaToNumericUpDown(this.GammaForSelectionNumericUpDown, Settings.Default.GammaForSelection);
 			setGammaToNumericUpDown(this.GammaForSnappingNumericUpDown, Settings.Default.GammaForSnappingPart);
 			// grid size
-			this.gridSizeNumericUpDown.Value = (Decimal)Settings.Default.DefaultGridSize;
-			this.gridSubdivisionNumericUpDown.Value = (Decimal)Settings.Default.DefaultSubDivisionNumber;
+			this.gridSizeNumericUpDown.Value = (Decimal)Math.Min(this.gridSizeNumericUpDown.Maximum,
+														Math.Max(this.gridSizeNumericUpDown.Minimum, Settings.Default.DefaultGridSize));
+			this.gridSubdivisionNumericUpDown.Value = (Decimal)Math.Min(this.gridSubdivisionNumericUpDown.Maximum,
+														Math.Max(this.gridSubdivisionNumericUpDown.Minimum, Settings.Default.DefaultSubDivisionNumber));
+			this.gridEnabledCheckBox.Checked = Settings.Default.DefaultGridEnabled;
+			this.subGridEnabledCheckBox.Checked = Settings.Default.DefaultSubGridEnabled;
 			// redraw the sample box only after having set the colors
 			redrawSamplePictureBox();
 			// only set the color scheme after having set the colors
@@ -201,7 +205,9 @@ namespace BlueBrick
 			destination.GammaForSnappingPart = source.GammaForSnappingPart;
 			destination.DefaultGridColor = source.DefaultGridColor;
 			destination.DefaultGridSize = source.DefaultGridSize;
+			destination.DefaultGridEnabled = source.DefaultGridEnabled;
 			destination.DefaultSubDivisionNumber = source.DefaultSubDivisionNumber;
+			destination.DefaultSubGridEnabled = source.DefaultSubGridEnabled;
 			destination.DefaultSubGridColor = source.DefaultSubGridColor;
 			destination.DefaultTextColor = source.DefaultTextColor;
 			destination.DefaultTextFont = source.DefaultTextFont.Clone() as Font;
@@ -271,9 +277,13 @@ namespace BlueBrick
 			Settings.Default.DefaultTextColor = this.defaultFontColorPictureBox.BackColor;
 			// grid size
 			bool isSizeModified = (mOldSettings.DefaultGridSize != (int)this.gridSizeNumericUpDown.Value) ||
-									(mOldSettings.DefaultSubDivisionNumber != (int)this.gridSubdivisionNumericUpDown.Value);
+									(mOldSettings.DefaultSubDivisionNumber != (int)this.gridSubdivisionNumericUpDown.Value) ||
+									(mOldSettings.DefaultGridEnabled != this.gridEnabledCheckBox.Checked) ||
+									(mOldSettings.DefaultSubGridEnabled != this.subGridEnabledCheckBox.Checked);
 			Settings.Default.DefaultGridSize = (int)this.gridSizeNumericUpDown.Value;
 			Settings.Default.DefaultSubDivisionNumber = (int)this.gridSubdivisionNumericUpDown.Value;
+			Settings.Default.DefaultGridEnabled = this.gridEnabledCheckBox.Checked;
+			Settings.Default.DefaultSubGridEnabled = this.subGridEnabledCheckBox.Checked;
 
 			//area
 			bool doesAreaChanged = (mOldSettings.DefaultAreaTransparency != (int)this.areaTransparencyNumericUpDown.Value) ||
@@ -710,6 +720,17 @@ namespace BlueBrick
 				this.defaultFontColorPictureBox.BackColor = this.colorDialog.Color;
 				this.defaultFontNameLabel.ForeColor = this.colorDialog.Color;
 			}
+		}
+
+
+		private void gridEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			this.gridSizeNumericUpDown.Enabled = this.gridEnabledCheckBox.Checked;
+		}
+
+		private void subGridEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			this.gridSubdivisionNumericUpDown.Enabled = this.subGridEnabledCheckBox.Checked;
 		}
 		#endregion
 
