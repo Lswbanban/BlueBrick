@@ -13,7 +13,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ManifestCertificateThumbprint>9A2553C210508483ADFF3955A7E66C26068642D5</ManifestCertificateThumbprint>
     <ManifestKeyFile>BlueBrick_TemporaryKey.pfx</ManifestKeyFile>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
     <SignManifests>true</SignManifests>
     <PublishUrl>H:\temp\PublishBB\</PublishUrl>
     <Install>true</Install>
@@ -31,6 +31,7 @@
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <ApplicationIcon>icons\BlueBrickIcon.ico</ApplicationIcon>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -598,6 +599,7 @@
     <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />
+    <BaseApplicationManifest Include="Properties\app.manifest" />
     <Content Include="icons\SendToBack.bmp" />
     <EmbeddedResource Include="Cursor\AreaEraserCursor.cur" />
     <EmbeddedResource Include="Cursor\AreaPaintCursor.cur" />
