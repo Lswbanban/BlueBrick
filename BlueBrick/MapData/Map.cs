@@ -351,11 +351,7 @@ namespace BlueBrick.MapData
                 mExportAbsoluteFileName = reader.ReadElementContentAsString();
                 // read the other export info
                 mExportFileTypeIndex = reader.ReadElementContentAsInt();
-                float x = reader.ReadElementContentAsFloat();
-                float y = reader.ReadElementContentAsFloat();
-                float width = reader.ReadElementContentAsFloat();
-                float height = reader.ReadElementContentAsFloat();
-                mExportArea = new RectangleF(x, y, width, height);
+                mExportArea = XmlReadWrite.readRectangleF(reader);
                 mExportScale = reader.ReadElementContentAsFloat();
                 reader.ReadEndElement();
             }
@@ -453,10 +449,7 @@ namespace BlueBrick.MapData
             writer.WriteStartElement("ExportInfo");
                 writer.WriteElementString("ExportPath", exportRelativeFileName);
                 writer.WriteElementString("ExportFileType", mExportFileTypeIndex.ToString());
-                writer.WriteElementString("ExportAreaX", mExportArea.X.ToString(System.Globalization.CultureInfo.InvariantCulture));
-                writer.WriteElementString("ExportAreaY", mExportArea.Y.ToString(System.Globalization.CultureInfo.InvariantCulture));
-                writer.WriteElementString("ExportAreaWidth", mExportArea.Width.ToString(System.Globalization.CultureInfo.InvariantCulture));
-                writer.WriteElementString("ExportAreaHeight", mExportArea.Height.ToString(System.Globalization.CultureInfo.InvariantCulture));
+				XmlReadWrite.writeRectangleF(writer, "ExportArea", mExportArea);
                 writer.WriteElementString("ExportScale", mExportScale.ToString(System.Globalization.CultureInfo.InvariantCulture));
             writer.WriteEndElement();
 
@@ -623,9 +616,12 @@ namespace BlueBrick.MapData
 
 		public void saveExportAreaSettings(RectangleF exportArea, double exportScale)
 		{
+			// epsilon value to compare double values.
+			const double epsilon = 0.000000001;
             // set the flag to true if there's any change. If the flag was changed previously, keep the info.
             mHasExportSettingsChanged = mHasExportSettingsChanged || 
-                                        (mExportArea != exportArea) || (mExportScale != exportScale);
+                                        (mExportArea != exportArea) ||
+										Math.Abs(mExportScale - exportScale) > epsilon;
             // then remember the settings
             mExportArea = exportArea;
 			mExportScale = exportScale;			
