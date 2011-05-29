@@ -123,7 +123,7 @@
     <Compile Include="GlobalOptionsForm.Designer.cs">
       <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LanguageManager.cs" />
+    <Compile Include="SaveLoad\LanguageManager.cs" />
     <Compile Include="LayerAreaOptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,10 +179,11 @@
     <Compile Include="MapData\BrickLibrary.cs" />
     <Compile Include="MapData\ElectricCircuitChecker.cs" />
     <Compile Include="MapData\FreeConnectionSet.cs" />
+    <Compile Include="MapData\FlexTrack\IKSolver.cs" />
     <Compile Include="MapData\LayerArea.cs" />
     <Compile Include="MapData\LayerBrick.cs" />
     <Compile Include="MapData\LayerText.cs" />
-    <Compile Include="MapData\XmlReadWrite.cs" />
+    <Compile Include="SaveLoad\XmlReadWrite.cs" />
     <Compile Include="MapPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -540,7 +541,7 @@
     <Compile Include="GeneralInfoForm.Designer.cs">
       <DependentUpon>GeneralInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SaveLoadManager.cs" />
+    <Compile Include="SaveLoad\SaveLoadManager.cs" />
     <Compile Include="SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
