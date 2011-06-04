@@ -271,6 +271,19 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// Update the gamma setting for the selections of bricks in brick layers
+		/// </summary>
+		public void updateGammaFromSettings()
+		{
+			foreach (Layer layer in mLayers)
+			{
+				LayerBrick brickLayer = layer as LayerBrick;
+				if (brickLayer != null)
+					brickLayer.updateGammaFromSettings();
+			}
+		}
+
+		/// <summary>
 		/// Compute the string displayed on top of the map from some general infos
 		/// </summary>
 		private void computeGeneralInfoWatermark()
