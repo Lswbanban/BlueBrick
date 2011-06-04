@@ -925,8 +925,9 @@ namespace BlueBrick.MapData
 		}
 
 		[NonSerialized]
-		private static ImageAttributes sImageAttributeForSelection = new ImageAttributes();
-		private static ImageAttributes sImageAttributeForSnapping = new ImageAttributes();
+		private ImageAttributes mImageAttributeForSelection = new ImageAttributes();
+		private ImageAttributes mImageAttributeForSnapping = new ImageAttributes();
+		private ImageAttributes mImageAttributeDefault = new ImageAttributes();
 
 		// list of bricks and connection points
 		private List<Brick> mBricks = new List<Brick>(); // all the bricks in the layer
@@ -953,11 +954,26 @@ namespace BlueBrick.MapData
 		{
 			get { return mBricks; }
 		}
+
+		public new float Transparency
+		{
+			set
+			{
+				mTransparency = value;
+				ColorMatrix colorMatrix = new ColorMatrix();
+				colorMatrix.Matrix33 = value;
+				mImageAttributeDefault.SetColorMatrix(colorMatrix);
+				mImageAttributeForSelection.SetColorMatrix(colorMatrix);
+				mImageAttributeForSnapping.SetColorMatrix(colorMatrix);
+			}
+		}
 		#endregion
 
 		#region constructor
 		public LayerBrick()
 		{
+			// update the gamma setting when the layer is created
+			updateGammaFromSettings();
 		}
 
 		public override int getNbItems()
@@ -965,10 +981,10 @@ namespace BlueBrick.MapData
 			return mBricks.Count;
 		}
 
-		public static void sUpdateGammaFromSettings()
+		public void updateGammaFromSettings()
 		{
-			sImageAttributeForSelection.SetGamma(Properties.Settings.Default.GammaForSelection);
-			sImageAttributeForSnapping.SetGamma(Properties.Settings.Default.GammaForSnappingPart);
+			mImageAttributeForSelection.SetGamma(Properties.Settings.Default.GammaForSelection);
+			mImageAttributeForSnapping.SetGamma(Properties.Settings.Default.GammaForSnappingPart);
 		}
 		#endregion
 		#region IXmlSerializable Members
@@ -1531,6 +1547,9 @@ namespace BlueBrick.MapData
 			else
 				mipmapLevel = 0;
 
+			// compute the transparency on one byte
+			int layerTransparency = (int)(255 * mTransparency);
+
 			// create a list of visible electric brick
 			List<Brick> visibleElectricBricks = new List<Brick>();
 
@@ -1556,11 +1575,11 @@ namespace BlueBrick.MapData
 
 						// draw the current brick eventually highlighted
 						if (brick == mCurrentBrickUnderMouse)
-							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, sImageAttributeForSnapping);
+							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSnapping);
 						else if (mSelectedObjects.Contains(brick))
-							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, sImageAttributeForSelection);
+							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSelection);
 						else
-							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel);
+							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeDefault);
 
 						// if the brick is electric, add it to the list
 						if (brick.ElectricCircuitIndexList != null)
@@ -1574,8 +1593,8 @@ namespace BlueBrick.MapData
 			{
 				// compute some constant value for the drawing of the electric circuit
 				float ELECTRIC_WIDTH = (float)(2.5 * scalePixelPerStud);
-				Pen ELECTRIC_RED_PEN = new Pen(Color.OrangeRed, (float)(0.5 * scalePixelPerStud));
-				Pen ELECTRIC_BLUE_PEN = new Pen(Color.Cyan, (float)(0.5 * scalePixelPerStud));
+				Pen ELECTRIC_RED_PEN = new Pen(Color.FromArgb(layerTransparency, Color.OrangeRed), (float)(0.5 * scalePixelPerStud));
+				Pen ELECTRIC_BLUE_PEN = new Pen(Color.FromArgb(layerTransparency, Color.Cyan), (float)(0.5 * scalePixelPerStud));
 
 				foreach (Brick brick in visibleElectricBricks)
 					foreach (BrickLibrary.Brick.ElectricCircuit circuit in brick.ElectricCircuitIndexList)
@@ -1615,7 +1634,7 @@ namespace BlueBrick.MapData
 
 				// pen for the electric shortcut sign
 				float SHORTCUT_WIDTH = (float)(3.0 * scalePixelPerStud);
-				Pen SHORTCUT_PEN = new Pen(Color.Orange, (float)(1.5 * scalePixelPerStud));
+				Pen SHORTCUT_PEN = new Pen(Color.FromArgb(layerTransparency, Color.Orange), (float)(1.5 * scalePixelPerStud));
 
 				foreach (Brick brick in visibleElectricBricks)
 					foreach (BrickLibrary.Brick.ElectricCircuit circuit in brick.ElectricCircuitIndexList)
@@ -1667,21 +1686,25 @@ namespace BlueBrick.MapData
 				float x = (float)((brickThatHasActiveConnection.ActiveConnectionPosition.X - sizeInStud - areaInStud.Left) * scalePixelPerStud);
 				float y = (float)((brickThatHasActiveConnection.ActiveConnectionPosition.Y - sizeInStud - areaInStud.Top) * scalePixelPerStud);
 				float size = (float)(sizeInStud * 2 * scalePixelPerStud);
-				g.FillEllipse(BrickLibrary.ConnectionType.sSelectedConnection.Brush, x, y, size, size);
+				Brush brush = new SolidBrush(Color.FromArgb((int)(mTransparency * BrickLibrary.ConnectionType.sSelectedConnection.Color.A), BrickLibrary.ConnectionType.sSelectedConnection.Color));
+				g.FillEllipse(brush, x, y, size, size);
 			}
 
 			// draw the free connexion points if needed
 			if (BlueBrick.Properties.Settings.Default.DisplayFreeConnexionPoints)
 				for (int i = 1; i < mFreeConnectionPoints.ConnectionTypeCount; ++i)
+				{
+					BrickLibrary.ConnectionType connectionType = BrickLibrary.Instance.ConnectionTypes[i];
+					Brush brush = new SolidBrush(Color.FromArgb((int)(mTransparency * connectionType.Color.A), connectionType.Color));
 					foreach (Brick.ConnectionPoint connexion in mFreeConnectionPoints.getListForType(i))
 					{
-						BrickLibrary.ConnectionType connectionType = BrickLibrary.Instance.ConnectionTypes[i];
 						float sizeInStud = connectionType.Size;
 						float x = (float)((connexion.mPositionInStudWorldCoord.X - sizeInStud - areaInStud.Left) * scalePixelPerStud);
 						float y = (float)((connexion.mPositionInStudWorldCoord.Y - sizeInStud - areaInStud.Top) * scalePixelPerStud);
 						float sizeInPixel = (float)(sizeInStud * 2 * scalePixelPerStud);
-						g.FillEllipse(connectionType.Brush, x, y, sizeInPixel, sizeInPixel);
+						g.FillEllipse(brush, x, y, sizeInPixel, sizeInPixel);
 					}
+				}
 		}
 		#endregion
 

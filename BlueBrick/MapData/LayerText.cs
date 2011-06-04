@@ -20,6 +20,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using BlueBrick.Actions;
 using BlueBrick.Actions.Texts;
+using System.Drawing.Imaging;
 
 namespace BlueBrick.MapData
 {
@@ -206,15 +207,33 @@ namespace BlueBrick.MapData
 
 		private List<TextCell> mTexts = new List<TextCell>();
 
+		// the image attribute to draw the text including the layer transparency
+		private ImageAttributes mImageAttribute = new ImageAttributes();
+
 		// related to selection
+		private const int BASE_SELECTION_TRANSPARENCY = 112;
 		private TextCell mCurrentTextCellUnderMouse = null;
-		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb((int)0x70FFFFFF));
+		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb(BASE_SELECTION_TRANSPARENCY, 255, 255, 255));
 		private PointF mMouseDownInitialPosition;
 		private PointF mMouseDownLastPosition;
 		private bool mMouseIsBetweenDownAndUpEvent = false;
 		private bool mMouseHasMoved = false;
 		private bool mMouseMoveIsADuplicate = false;
 		private DuplicateText mLastDuplicateTextAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
+
+		#region set/get
+		public new float Transparency
+		{
+			set
+			{
+				mTransparency = value;
+				ColorMatrix colorMatrix = new ColorMatrix();
+				colorMatrix.Matrix33 = value;
+				mImageAttribute.SetColorMatrix(colorMatrix);
+				mSelectionBrush = new SolidBrush(Color.FromArgb((int)(BASE_SELECTION_TRANSPARENCY * value), 255, 255, 255));
+			}
+		}
+		#endregion
 
 		/// <summary>
 		///	Constructor
@@ -385,6 +404,7 @@ namespace BlueBrick.MapData
 			if (!Visible)
 				return;
 
+			Rectangle destinationRectangle = new Rectangle();
 			foreach (TextCell cell in mTexts)
 			{
 				float left = cell.Position.X;
@@ -394,17 +414,17 @@ namespace BlueBrick.MapData
 				if ((right >= areaInStud.Left) && (left <= areaInStud.Right) && (bottom >= areaInStud.Top) && (top <= areaInStud.Bottom))
 				{
 					// compute the position of the text in pixel coord
-					float x = (float)((left - areaInStud.Left) * scalePixelPerStud);
-					float y = (float)((top - areaInStud.Top) * scalePixelPerStud);
+					destinationRectangle.X = (int)((left - areaInStud.Left) * scalePixelPerStud);
+					destinationRectangle.Y = (int)((top - areaInStud.Top) * scalePixelPerStud);
+					destinationRectangle.Width = (int)(cell.Width * scalePixelPerStud);
+					destinationRectangle.Height = (int)(cell.Height * scalePixelPerStud);
 
 					// draw the image containing the text
-					float widthInPixel = (float)(cell.Width * scalePixelPerStud);
-					float heightInPixel = (float)(cell.Height * scalePixelPerStud);
-					g.DrawImage(cell.Image, x, y, widthInPixel, heightInPixel);
+					g.DrawImage(cell.Image, destinationRectangle, 0, 0, cell.Image.Width, cell.Image.Height, GraphicsUnit.Pixel, mImageAttribute);
 
 					// draw a frame around the selected cell while the text size is still in pixel
 					if (mSelectedObjects.Contains(cell))
-						g.FillRectangle(mSelectionBrush, x, y, widthInPixel, heightInPixel);
+						g.FillRectangle(mSelectionBrush, destinationRectangle);
 				}
 			}
 

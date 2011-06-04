@@ -208,8 +208,6 @@ namespace BlueBrick
 			loadUISettingFromDefaultSettings();
 			// load the custom cursors
 			LoadEmbededCustomCursors();
-			// init the drawing data for the brick layer
-			LayerBrick.sUpdateGammaFromSettings();
 			// reset the shortcut keys
 			initShortcutKeyArrayFromSettings();
 			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
@@ -1549,7 +1547,7 @@ namespace BlueBrick
 				// reinit the array of shortcut
 				initShortcutKeyArrayFromSettings();
 				// update the gamma for the layer bricks because they may have changed (before redrawing the map)
-				LayerBrick.sUpdateGammaFromSettings();
+				Map.Instance.updateGammaFromSettings();
 				// redraw the map because the color scheme may have changed
 				this.mapPanel.Invalidate();
 				// also redraw the undo stack

@@ -33,7 +33,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 
-namespace BlueBrick.MapData
+namespace BlueBrick.MapData.FlexTrack
 {
 	class IKSolver
 	{
@@ -44,11 +44,12 @@ namespace BlueBrick.MapData
 		///***************************************************************************************
 		private static double SimplifyAngle(double angle)
 		{
-			angle = angle % (2.0 * Math.PI);
+			double twoPi = (2.0 * Math.PI);
+			angle = angle % twoPi;
 			if( angle < -Math.PI )
-				angle += (2.0 * Math.PI);
+				angle += twoPi;
 			else if( angle > Math.PI )
-				angle -= (2.0 * Math.PI);
+				angle -= twoPi;
 			return angle;
 		}
 

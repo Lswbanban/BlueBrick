@@ -32,12 +32,12 @@ namespace BlueBrick.MapData
 
 			// the data used to render the connection
 			private string mName = string.Empty;
-			private SolidBrush mBrush = null;
+			private Color mColor = Color.Empty;
 			private float mSize = 1.0f;
 
-			public Brush Brush
+			public Color Color
 			{
-				get { return mBrush; }
+				get { return mColor; }
 			}
 
 			public float Size
@@ -48,7 +48,7 @@ namespace BlueBrick.MapData
 			public ConnectionType(string name, Color color, float size)
 			{
 				mName = name;
-				mBrush = new SolidBrush(color);
+				mColor = color;
 				mSize = size;
 			}
 		};
