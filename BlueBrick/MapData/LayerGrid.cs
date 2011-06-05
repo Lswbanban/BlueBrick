@@ -146,6 +146,22 @@ namespace BlueBrick.MapData
 			get { return mCellIndexCorner.Y; }
 			set { mCellIndexCorner.Y = value; }
 		}
+
+		public new int Transparency
+		{
+			get { return mTransparency; }
+			set
+			{
+				// set the value
+				mTransparency = value;
+				// compute the new alpha value
+				int alphaValue = (255 * value) / 100;
+				// adjust the values of the pen and brushes used in this layer
+				mGridLinePen.Color = Color.FromArgb(alphaValue, mGridLinePen.Color);
+				mSubGridLinePen.Color = Color.FromArgb(alphaValue, mSubGridLinePen.Color);
+				mCellIndexBrush.Color = Color.FromArgb(alphaValue, mCellIndexBrush.Color);
+			}
+		}
 		#endregion
 
 		#region constructor/copy
