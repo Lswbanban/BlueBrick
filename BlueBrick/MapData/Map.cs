@@ -410,7 +410,7 @@ namespace BlueBrick.MapData
 			else
 				mSelectedLayer = null;
 			// read the url of all the parts for version 5 or later
-			if (mDataVersionOfTheFileLoaded > 4)
+			if ((mDataVersionOfTheFileLoaded > 4) && !reader.IsEmptyElement)
 			{
 				bool urlFound = reader.ReadToDescendant("BrickUrl");
 				while (urlFound)

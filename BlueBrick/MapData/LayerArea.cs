@@ -126,8 +126,10 @@ namespace BlueBrick.MapData
 		public override void ReadXml(System.Xml.XmlReader reader)
 		{
 			base.ReadXml(reader);
-			// read transparency and cell size
-			mTransparency = reader.ReadElementContentAsInt();
+			// before version 5, the transparency was only in the area layer, after it is read in the base class
+			if (Map.DataVersionOfTheFileLoaded < 5)
+				mTransparency = reader.ReadElementContentAsInt();
+			// read the cell size
 			mAreaCellSizeInStud = reader.ReadElementContentAsInt();
 			// the areas list
 			int currentLineIndex = int.MaxValue;
@@ -161,8 +163,7 @@ namespace BlueBrick.MapData
 		{
 			writer.WriteAttributeString("type", "area");
 			base.WriteXml(writer);
-			// write transparency and area cell size
-			writer.WriteElementString("Transparency", mTransparency.ToString());
+			// write area cell size
 			writer.WriteElementString("AreaCellSize", mAreaCellSizeInStud.ToString());
 			// and serialize the area list
 			writer.WriteStartElement("Areas");

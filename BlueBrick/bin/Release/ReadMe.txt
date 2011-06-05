@@ -37,7 +37,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-- [target 1.7] MISSING FEATURE (Larry): Save the export image settings in the BBM file
 - [target 1.7] MISSING FEATURE (Alban): support new flex PF track.
 - [target 1.8] MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
 - [target 1.8] MISSING FEATURE (Larry): Select parts in multiple layers
@@ -64,10 +63,12 @@ Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): Display the general info on top of the map (this can be disabled in the option settings).
 - NEW FEATURE (Larry): Display the XML exception when BB can not load XML files.
 - NEW FEATURE (Alban): The polarity check for electric shortcut is now available.
+- NEW FEATURE (cimddwc): Add the transparency for all the layers (and not only the Area layer)
+- NEW FEATURE (Larry): Save the export image settings in the BBM file.
 - BUGFIX (Larry): CRASH! when opening a BBM file which is write protected.
 - BUGFIX (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
-- BUGFIX (Vincent): In the export window, the maximum scale was limited by the size of the total area, not the size of the selected area.
 - BUGFIX (Vincent): CRASH! In the preference you could set a sub grid number to 0 or 1, leading to a later crash (when relaunching BlueBrick or editing the grid layer options)
+- BUGFIX (Vincent): In the export window, the maximum scale was limited by the size of the total area, not the size of the selected area.
 - BUGFIX (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude). Well Slope is still not handle, but I don't plan to do more for now.
 - BUGFIX (Alban): The snapping of connected brick tried to snap to free connection point inside the selection, making the snapping becoming crazy.
 - BUGFIX (Alban): Another bug on the snapping of connected brick: now the selected bricks are unlinked from the non selected brick during the mouse down to have a stable snapping.
