@@ -65,6 +65,10 @@ namespace BlueBrick
 			this.isVisibleCheckBox = new System.Windows.Forms.CheckBox();
 			this.nameTextBox = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.alphaNumericUpDown = new System.Windows.Forms.NumericUpDown();
+			this.label1 = new System.Windows.Forms.Label();
+			this.alphaProgressBar = new System.Windows.Forms.ProgressBar();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.subGridColorPictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridColorPictureBox)).BeginInit();
@@ -77,6 +81,7 @@ namespace BlueBrick
 			((System.ComponentModel.ISupportInitialize)(this.cellIndexOriginXNumericUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cellIndexColorPictureBox)).BeginInit();
 			this.groupBox3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.alphaNumericUpDown)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -383,6 +388,10 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.label3);
+			this.groupBox3.Controls.Add(this.alphaNumericUpDown);
+			this.groupBox3.Controls.Add(this.label1);
+			this.groupBox3.Controls.Add(this.alphaProgressBar);
 			this.groupBox3.Controls.Add(this.isVisibleCheckBox);
 			this.groupBox3.Controls.Add(this.nameTextBox);
 			this.groupBox3.Controls.Add(this.label2);
@@ -405,6 +414,39 @@ namespace BlueBrick
 			// 
 			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
+			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
+			// alphaNumericUpDown
+			// 
+			resources.ApplyResources(this.alphaNumericUpDown, "alphaNumericUpDown");
+			this.alphaNumericUpDown.Name = "alphaNumericUpDown";
+			this.alphaNumericUpDown.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+			this.alphaNumericUpDown.ValueChanged += new System.EventHandler(this.alphaNumericUpDown_ValueChanged);
+			this.alphaNumericUpDown.KeyUp += new System.Windows.Forms.KeyEventHandler(this.alphaNumericUpDown_KeyUp);
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			// 
+			// alphaProgressBar
+			// 
+			resources.ApplyResources(this.alphaProgressBar, "alphaProgressBar");
+			this.alphaProgressBar.Name = "alphaProgressBar";
+			this.alphaProgressBar.Step = 100;
+			this.alphaProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+			this.alphaProgressBar.Value = 50;
+			this.alphaProgressBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseMove);
+			this.alphaProgressBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseDown);
+			this.alphaProgressBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseUp);
 			// 
 			// LayerGridOptionForm
 			// 
@@ -435,6 +477,7 @@ namespace BlueBrick
 			((System.ComponentModel.ISupportInitialize)(this.cellIndexColorPictureBox)).EndInit();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.alphaNumericUpDown)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -477,5 +520,9 @@ namespace BlueBrick
 		private System.Windows.Forms.Label cellIndexCommaLabel;
 		private System.Windows.Forms.NumericUpDown cellIndexOriginYNumericUpDown;
 		private System.Windows.Forms.CheckBox gridCheckBox;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.NumericUpDown alphaNumericUpDown;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ProgressBar alphaProgressBar;
 	}
 }

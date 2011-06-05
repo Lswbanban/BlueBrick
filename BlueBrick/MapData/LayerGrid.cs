@@ -147,9 +147,8 @@ namespace BlueBrick.MapData
 			set { mCellIndexCorner.Y = value; }
 		}
 
-		public new int Transparency
+		public override int Transparency
 		{
-			get { return mTransparency; }
 			set
 			{
 				// set the value
@@ -180,8 +179,6 @@ namespace BlueBrick.MapData
 		/// <param name="layerToCopy">the model to copy from</param>
 		public override void CopyOptionsFrom(Layer layerToCopy)
 		{
-			// call the base method
-			base.CopyOptionsFrom(layerToCopy);
 			// and try to cast in grid layer
 			LayerGrid gridLayer = layerToCopy as LayerGrid;
 			if (gridLayer != null)
@@ -199,6 +196,8 @@ namespace BlueBrick.MapData
 				mCellIndexRowType = gridLayer.mCellIndexRowType;
 				mCellIndexCorner = gridLayer.mCellIndexCorner;
 			}
+			// call the base method after such as the pen and brush transparency can be correctly set
+			base.CopyOptionsFrom(layerToCopy);
 		}
 
 		public override int getNbItems()

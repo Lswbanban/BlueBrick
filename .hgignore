@@ -18,6 +18,7 @@ BlueBrick\bin\Release\part to integrate
 BlueBrick\BlueBrick.csproj.user
 BlueBrick\bin\Release\BlueBrick*
 BlueBrick.resources.dll
+BlueBrick.userprefs
 
 ; ignore the part HG database
 BlueBrick\bin\Release\.hg

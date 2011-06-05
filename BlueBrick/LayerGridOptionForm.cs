@@ -29,6 +29,7 @@ namespace BlueBrick
 	{
 		private LayerGrid mEditedGridLayer = null;
 		private Font mCurrentChosenFont = null;
+		private bool mIsMouseDown = false;
 
 		public LayerGridOptionForm(LayerGrid gridLayer)
 		{
@@ -39,6 +40,9 @@ namespace BlueBrick
 			// name and visibility
 			this.nameTextBox.Text = gridLayer.Name;
 			this.isVisibleCheckBox.Checked = gridLayer.Visible;
+			// transparency
+			this.alphaNumericUpDown.Value = gridLayer.Transparency;
+			this.alphaProgressBar.Value = gridLayer.Transparency;
 			// grid
 			this.gridCheckBox.Checked = gridLayer.DisplayGrid;
 			this.gridSizeNumericUpDown.Value = gridLayer.GridSizeInStud;
@@ -71,6 +75,8 @@ namespace BlueBrick
 			// name and visibility
 			newLayerData.Name = this.nameTextBox.Text;
 			newLayerData.Visible = this.isVisibleCheckBox.Checked;
+			//transparency
+			newLayerData.Transparency = (int)(this.alphaNumericUpDown.Value);
 			// grid
 			newLayerData.DisplayGrid = this.gridCheckBox.Checked;
 			newLayerData.GridSizeInStud = (int)this.gridSizeNumericUpDown.Value;
@@ -92,6 +98,53 @@ namespace BlueBrick
 
 			// do a change option action
 			ActionManager.Instance.doAction(new ChangeLayerOption(mEditedGridLayer, oldLayerData, newLayerData));
+		}
+
+		private int getPercentageValueFromMouseCoord(int x)
+		{
+			int value = (x * 100) / alphaProgressBar.Width;
+			if (value < 0)
+				value = 0;
+			if (value > 100)
+				value = 100;
+			return value;
+		}
+
+		private void alphaProgressBar_MouseDown(object sender, MouseEventArgs e)
+		{
+			mIsMouseDown = true;
+			int value = getPercentageValueFromMouseCoord(e.X);
+			alphaProgressBar.Value = value;
+			alphaNumericUpDown.Value = value;
+		}
+
+		private void alphaProgressBar_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (mIsMouseDown)
+			{
+				int value = getPercentageValueFromMouseCoord(e.X);
+				alphaProgressBar.Value = value;
+				alphaNumericUpDown.Value = value;
+			}
+		}
+
+		private void alphaProgressBar_MouseUp(object sender, MouseEventArgs e)
+		{
+			mIsMouseDown = false;
+		}
+
+		private void alphaNumericUpDown_ValueChanged(object sender, EventArgs e)
+		{
+			if (!mIsMouseDown)
+			{
+				alphaProgressBar.Value = (int)(alphaNumericUpDown.Value);
+				alphaProgressBar.Invalidate();
+			}
+		}
+
+		private void alphaNumericUpDown_KeyUp(object sender, KeyEventArgs e)
+		{
+			alphaNumericUpDown_ValueChanged(null, null);
 		}
 
 		private void updateChosenFont(Font newFont)

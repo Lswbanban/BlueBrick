@@ -28,6 +28,7 @@ namespace BlueBrick
 	public partial class LayerBrickOptionForm : Form
 	{
 		private Layer mEditedLayer = null;
+		private bool mIsMouseDown = false;
 
 		public LayerBrickOptionForm(Layer layer)
 		{
@@ -38,6 +39,9 @@ namespace BlueBrick
 			// name and visibility
 			this.nameTextBox.Text = layer.Name;
 			this.isVisibleCheckBox.Checked = layer.Visible;
+			// transparency
+			this.alphaNumericUpDown.Value = layer.Transparency;
+			this.alphaProgressBar.Value = layer.Transparency;
 		}
 
 		private void buttonOk_Click(object sender, EventArgs e)
@@ -53,8 +57,58 @@ namespace BlueBrick
 			newLayerData.Name = this.nameTextBox.Text;
 			newLayerData.Visible = this.isVisibleCheckBox.Checked;
 
+			//transparency
+			newLayerData.Transparency = (int)(this.alphaNumericUpDown.Value);
+
 			// do a change option action
 			ActionManager.Instance.doAction(new ChangeLayerOption(mEditedLayer, oldLayerData, newLayerData));
+		}
+
+		private int getPercentageValueFromMouseCoord(int x)
+		{
+			int value = (x * 100) / alphaProgressBar.Width;
+			if (value < 0)
+				value = 0;
+			if (value > 100)
+				value = 100;
+			return value;
+		}
+
+		private void alphaProgressBar_MouseDown(object sender, MouseEventArgs e)
+		{
+			mIsMouseDown = true;
+			int value = getPercentageValueFromMouseCoord(e.X);
+			alphaProgressBar.Value = value;
+			alphaNumericUpDown.Value = value;
+		}
+
+		private void alphaProgressBar_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (mIsMouseDown)
+			{
+				int value = getPercentageValueFromMouseCoord(e.X);
+				alphaProgressBar.Value = value;
+				alphaNumericUpDown.Value = value;
+			}
+		}
+
+		private void alphaProgressBar_MouseUp(object sender, MouseEventArgs e)
+		{
+			mIsMouseDown = false;
+		}
+
+		private void alphaNumericUpDown_ValueChanged(object sender, EventArgs e)
+		{
+			if (!mIsMouseDown)
+			{
+				alphaProgressBar.Value = (int)(alphaNumericUpDown.Value);
+				alphaProgressBar.Invalidate();
+			}
+		}
+
+		private void alphaNumericUpDown_KeyUp(object sender, KeyEventArgs e)
+		{
+			alphaNumericUpDown_ValueChanged(null, null);
 		}
 	}
 }

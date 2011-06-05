@@ -955,9 +955,8 @@ namespace BlueBrick.MapData
 			get { return mBricks; }
 		}
 
-		public new int Transparency
+		public override int Transparency
 		{
-			get { return mTransparency; }
 			set
 			{
 				mTransparency = value;
