@@ -111,7 +111,7 @@ namespace BlueBrick.MapData
 		// common data to all layers
 		protected string mName = BlueBrick.Properties.Resources.DefaultLayerName;
 		protected bool mVisible = true;
-		protected float mTransparency = 1.0f;
+		protected int mTransparency = 100; // percentage (in int because it is easier to modify with a slider)
 
 		// non serialized members
 		private static int nameInstanceCounter = 0; // a counter of instance, just to give a number next to the layer name
@@ -179,7 +179,7 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// The transparency percentage of the layer.
 		/// </summary>
-		public float Transparency
+		public int Transparency
 		{
 			get { return mTransparency; }
 			set	{ mTransparency = value; }

@@ -955,13 +955,14 @@ namespace BlueBrick.MapData
 			get { return mBricks; }
 		}
 
-		public new float Transparency
+		public new int Transparency
 		{
+			get { return mTransparency; }
 			set
 			{
 				mTransparency = value;
 				ColorMatrix colorMatrix = new ColorMatrix();
-				colorMatrix.Matrix33 = value;
+				colorMatrix.Matrix33 = (float)value / 100.0f;
 				mImageAttributeDefault.SetColorMatrix(colorMatrix);
 				mImageAttributeForSelection.SetColorMatrix(colorMatrix);
 				mImageAttributeForSnapping.SetColorMatrix(colorMatrix);
@@ -1548,7 +1549,7 @@ namespace BlueBrick.MapData
 				mipmapLevel = 0;
 
 			// compute the transparency on one byte
-			int layerTransparency = (int)(255 * mTransparency);
+			int alphaValue = (255 * mTransparency) / 100;
 
 			// create a list of visible electric brick
 			List<Brick> visibleElectricBricks = new List<Brick>();
@@ -1593,8 +1594,8 @@ namespace BlueBrick.MapData
 			{
 				// compute some constant value for the drawing of the electric circuit
 				float ELECTRIC_WIDTH = (float)(2.5 * scalePixelPerStud);
-				Pen ELECTRIC_RED_PEN = new Pen(Color.FromArgb(layerTransparency, Color.OrangeRed), (float)(0.5 * scalePixelPerStud));
-				Pen ELECTRIC_BLUE_PEN = new Pen(Color.FromArgb(layerTransparency, Color.Cyan), (float)(0.5 * scalePixelPerStud));
+				Pen ELECTRIC_RED_PEN = new Pen(Color.FromArgb(alphaValue, Color.OrangeRed), (float)(0.5 * scalePixelPerStud));
+				Pen ELECTRIC_BLUE_PEN = new Pen(Color.FromArgb(alphaValue, Color.Cyan), (float)(0.5 * scalePixelPerStud));
 
 				foreach (Brick brick in visibleElectricBricks)
 					foreach (BrickLibrary.Brick.ElectricCircuit circuit in brick.ElectricCircuitIndexList)
@@ -1634,7 +1635,7 @@ namespace BlueBrick.MapData
 
 				// pen for the electric shortcut sign
 				float SHORTCUT_WIDTH = (float)(3.0 * scalePixelPerStud);
-				Pen SHORTCUT_PEN = new Pen(Color.FromArgb(layerTransparency, Color.Orange), (float)(1.5 * scalePixelPerStud));
+				Pen SHORTCUT_PEN = new Pen(Color.FromArgb(alphaValue, Color.Orange), (float)(1.5 * scalePixelPerStud));
 
 				foreach (Brick brick in visibleElectricBricks)
 					foreach (BrickLibrary.Brick.ElectricCircuit circuit in brick.ElectricCircuitIndexList)
@@ -1686,7 +1687,7 @@ namespace BlueBrick.MapData
 				float x = (float)((brickThatHasActiveConnection.ActiveConnectionPosition.X - sizeInStud - areaInStud.Left) * scalePixelPerStud);
 				float y = (float)((brickThatHasActiveConnection.ActiveConnectionPosition.Y - sizeInStud - areaInStud.Top) * scalePixelPerStud);
 				float size = (float)(sizeInStud * 2 * scalePixelPerStud);
-				Brush brush = new SolidBrush(Color.FromArgb((int)(mTransparency * BrickLibrary.ConnectionType.sSelectedConnection.Color.A), BrickLibrary.ConnectionType.sSelectedConnection.Color));
+				Brush brush = new SolidBrush(Color.FromArgb((mTransparency * BrickLibrary.ConnectionType.sSelectedConnection.Color.A) / 100, BrickLibrary.ConnectionType.sSelectedConnection.Color));
 				g.FillEllipse(brush, x, y, size, size);
 			}
 
@@ -1695,7 +1696,7 @@ namespace BlueBrick.MapData
 				for (int i = 1; i < mFreeConnectionPoints.ConnectionTypeCount; ++i)
 				{
 					BrickLibrary.ConnectionType connectionType = BrickLibrary.Instance.ConnectionTypes[i];
-					Brush brush = new SolidBrush(Color.FromArgb((int)(mTransparency * connectionType.Color.A), connectionType.Color));
+					Brush brush = new SolidBrush(Color.FromArgb((mTransparency * connectionType.Color.A) / 100, connectionType.Color));
 					foreach (Brick.ConnectionPoint connexion in mFreeConnectionPoints.getListForType(i))
 					{
 						float sizeInStud = connectionType.Size;
