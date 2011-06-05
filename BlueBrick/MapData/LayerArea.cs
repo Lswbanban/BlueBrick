@@ -29,7 +29,6 @@ namespace BlueBrick.MapData
 		private static Color sCurrentDrawColor = Color.Empty;
 		private static TextureBrush sEraseBrush = null;
 
-		private int mTransparency = Properties.Settings.Default.DefaultAreaTransparency;
 		private int mAreaCellSizeInStud = Properties.Settings.Default.DefaultAreaSize;
 		private Dictionary<int, Dictionary<int, SolidBrush>> mColorMap = new Dictionary<int, Dictionary<int, SolidBrush>>();
 
@@ -47,7 +46,7 @@ namespace BlueBrick.MapData
 			set { sCurrentDrawColor = value; }
 		}
 
-		public int Transparency
+		public new int Transparency
 		{
 			get { return mTransparency; }
 			set
@@ -59,7 +58,7 @@ namespace BlueBrick.MapData
 				// iterate on all the cell to change the brush color
 				foreach (KeyValuePair<int, Dictionary<int, SolidBrush>> line in mColorMap)
 					foreach (KeyValuePair<int, SolidBrush> brush in line.Value)
-						brush.Value.Color = changeAlpha(brush.Value.Color, alpha);
+						brush.Value.Color = Color.FromArgb(alpha, brush.Value.Color);
 			}
 		}
 
@@ -91,13 +90,15 @@ namespace BlueBrick.MapData
 				// create a checker texture
 				Bitmap texture = new Bitmap(16, 16);
 				Graphics g = Graphics.FromImage(texture);
-				g.Clear(changeAlpha(Color.Black, 0x70));
-				SolidBrush whiteBrush = new SolidBrush(changeAlpha(Color.White, 0x70));
+				g.Clear(Color.FromArgb(0x70, Color.Black));
+				SolidBrush whiteBrush = new SolidBrush(Color.FromArgb(0x70, Color.White));
 				g.FillRectangle(whiteBrush, 0, 0, 8, 8);
 				g.FillRectangle(whiteBrush, 8, 8, 8, 8);
 				g.Flush();
 				sEraseBrush = new TextureBrush(texture);
 			}
+			// set the transparency with the default one
+			Transparency = Properties.Settings.Default.DefaultAreaTransparency;
 		}
 
 		/// <summary>
@@ -192,12 +193,6 @@ namespace BlueBrick.MapData
 
 		#region add/remove color cell
 
-		private Color changeAlpha(Color color, int alpha)
-		{
-			int intColor = (alpha << 24) | (color.R << 16) | (color.G << 8) | color.B;
-			return Color.FromArgb(intColor);
-		}
-
 		/// <summary>
 		/// get the brush at the specified cell position
 		/// </summary>
@@ -228,7 +223,7 @@ namespace BlueBrick.MapData
 			// compute the new color by adding the alpha (if not empty)
 			Color newColor = color;
 			if (color != Color.Empty)
-				newColor = changeAlpha(color, AlphaValue);
+				newColor = Color.FromArgb(AlphaValue, color);
 			Color oldColor = Color.Empty;
 			// check if the brush already exist and replace it, or create it
 			Dictionary<int, SolidBrush> line = null;
@@ -489,7 +484,7 @@ namespace BlueBrick.MapData
 				// choose the right brush according to the current draw color
 				Brush brush = null;
 				if (sCurrentDrawColor != Color.Empty)
-					brush = new SolidBrush(changeAlpha(sCurrentDrawColor, 0x70));
+					brush = new SolidBrush(Color.FromArgb(0x70, sCurrentDrawColor));
 				else
 					brush = sEraseBrush;
 				// draw the selection area

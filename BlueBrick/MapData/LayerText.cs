@@ -222,15 +222,16 @@ namespace BlueBrick.MapData
 		private DuplicateText mLastDuplicateTextAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
 
 		#region set/get
-		public new float Transparency
+		public new int Transparency
 		{
+			get { return mTransparency; }
 			set
 			{
 				mTransparency = value;
 				ColorMatrix colorMatrix = new ColorMatrix();
-				colorMatrix.Matrix33 = value;
+				colorMatrix.Matrix33 = (float)value / 100.0f;
 				mImageAttribute.SetColorMatrix(colorMatrix);
-				mSelectionBrush = new SolidBrush(Color.FromArgb((int)(BASE_SELECTION_TRANSPARENCY * value), 255, 255, 255));
+				mSelectionBrush = new SolidBrush(Color.FromArgb((BASE_SELECTION_TRANSPARENCY * value) / 100, 255, 255, 255));
 			}
 		}
 		#endregion
