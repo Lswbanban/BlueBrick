@@ -179,7 +179,7 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// The transparency percentage of the layer.
 		/// </summary>
-		public int Transparency
+		public virtual int Transparency
 		{
 			get { return mTransparency; }
 			set	{ mTransparency = value; }
@@ -230,6 +230,7 @@ namespace BlueBrick.MapData
 		{
 			mName = layerToCopy.mName;
 			mVisible = layerToCopy.mVisible;
+			Transparency = layerToCopy.Transparency;
 		}
 
 		/// <summary>

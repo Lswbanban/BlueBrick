@@ -34,18 +34,18 @@ namespace BlueBrick
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.isVisibleCheckBox = new System.Windows.Forms.CheckBox();
 			this.nameTextBox = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
+			this.alphaNumericUpDown = new System.Windows.Forms.NumericUpDown();
+			this.label1 = new System.Windows.Forms.Label();
+			this.alphaProgressBar = new System.Windows.Forms.ProgressBar();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cellSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.label4 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.alphaNumericUpDown = new System.Windows.Forms.NumericUpDown();
-			this.alphaProgressBar = new System.Windows.Forms.ProgressBar();
-			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.alphaNumericUpDown)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cellSizeNumericUpDown)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.alphaNumericUpDown)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonCancel
@@ -67,7 +67,11 @@ namespace BlueBrick
 			// 
 			this.groupBox3.Controls.Add(this.isVisibleCheckBox);
 			this.groupBox3.Controls.Add(this.nameTextBox);
+			this.groupBox3.Controls.Add(this.label3);
 			this.groupBox3.Controls.Add(this.label2);
+			this.groupBox3.Controls.Add(this.alphaNumericUpDown);
+			this.groupBox3.Controls.Add(this.label1);
+			this.groupBox3.Controls.Add(this.alphaProgressBar);
 			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
@@ -83,19 +87,48 @@ namespace BlueBrick
 			resources.ApplyResources(this.nameTextBox, "nameTextBox");
 			this.nameTextBox.Name = "nameTextBox";
 			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
 			// label2
 			// 
 			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
 			// 
+			// alphaNumericUpDown
+			// 
+			resources.ApplyResources(this.alphaNumericUpDown, "alphaNumericUpDown");
+			this.alphaNumericUpDown.Name = "alphaNumericUpDown";
+			this.alphaNumericUpDown.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+			this.alphaNumericUpDown.ValueChanged += new System.EventHandler(this.alphaNumericUpDown_ValueChanged);
+			this.alphaNumericUpDown.KeyUp += new System.Windows.Forms.KeyEventHandler(this.alphaNumericUpDown_KeyUp);
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			// 
+			// alphaProgressBar
+			// 
+			resources.ApplyResources(this.alphaProgressBar, "alphaProgressBar");
+			this.alphaProgressBar.Name = "alphaProgressBar";
+			this.alphaProgressBar.Step = 100;
+			this.alphaProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+			this.alphaProgressBar.Value = 50;
+			this.alphaProgressBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseMove);
+			this.alphaProgressBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseDown);
+			this.alphaProgressBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseUp);
+			// 
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.cellSizeNumericUpDown);
 			this.groupBox1.Controls.Add(this.label4);
-			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Controls.Add(this.alphaNumericUpDown);
-			this.groupBox1.Controls.Add(this.alphaProgressBar);
-			this.groupBox1.Controls.Add(this.label1);
 			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
@@ -130,39 +163,6 @@ namespace BlueBrick
 			resources.ApplyResources(this.label4, "label4");
 			this.label4.Name = "label4";
 			// 
-			// label3
-			// 
-			resources.ApplyResources(this.label3, "label3");
-			this.label3.Name = "label3";
-			// 
-			// alphaNumericUpDown
-			// 
-			resources.ApplyResources(this.alphaNumericUpDown, "alphaNumericUpDown");
-			this.alphaNumericUpDown.Name = "alphaNumericUpDown";
-			this.alphaNumericUpDown.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-			this.alphaNumericUpDown.ValueChanged += new System.EventHandler(this.alphaNumericUpDown_ValueChanged);
-			this.alphaNumericUpDown.KeyUp += new System.Windows.Forms.KeyEventHandler(this.alphaNumericUpDown_KeyUp);
-			// 
-			// alphaProgressBar
-			// 
-			resources.ApplyResources(this.alphaProgressBar, "alphaProgressBar");
-			this.alphaProgressBar.Name = "alphaProgressBar";
-			this.alphaProgressBar.Step = 100;
-			this.alphaProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-			this.alphaProgressBar.Value = 50;
-			this.alphaProgressBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseMove);
-			this.alphaProgressBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseDown);
-			this.alphaProgressBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseUp);
-			// 
-			// label1
-			// 
-			resources.ApplyResources(this.label1, "label1");
-			this.label1.Name = "label1";
-			// 
 			// LayerAreaOptionForm
 			// 
 			this.AcceptButton = this.buttonOk;
@@ -179,10 +179,9 @@ namespace BlueBrick
 			this.Name = "LayerAreaOptionForm";
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cellSizeNumericUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.alphaNumericUpDown)).EndInit();
+			this.groupBox1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.cellSizeNumericUpDown)).EndInit();
 			this.ResumeLayout(false);
 
 		}

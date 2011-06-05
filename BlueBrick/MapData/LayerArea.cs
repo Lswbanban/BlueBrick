@@ -46,9 +46,8 @@ namespace BlueBrick.MapData
 			set { sCurrentDrawColor = value; }
 		}
 
-		public new int Transparency
+		public override int Transparency
 		{
-			get { return mTransparency; }
 			set
 			{
 				// set the value
@@ -112,10 +111,7 @@ namespace BlueBrick.MapData
 			// and try to cast in area layer
 			LayerArea areaLayer = layerToCopy as LayerArea;
 			if (areaLayer != null)
-			{
-				Transparency = areaLayer.Transparency;
 				AreaCellSizeInStud = areaLayer.AreaCellSizeInStud;
-			}
 		}
 
 		public override int getNbItems()

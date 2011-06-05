@@ -133,14 +133,14 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Nome del Layer</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Trasparenza</value>
+  </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Aspetto</value>
+    <value>Dimensione</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Dimensioni della cella in stud</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Trasparenza</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

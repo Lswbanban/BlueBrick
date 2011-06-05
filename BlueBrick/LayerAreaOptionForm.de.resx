@@ -139,14 +139,14 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Name der Ebene</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Transparenz</value>
+  </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Aussehen</value>
+    <value>Größe</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Zellengröße in Noppen</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Transparenz</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
