@@ -252,12 +252,17 @@ namespace BlueBrick.MapData
 			reader.ReadToDescendant("Name");
 			mName = reader.ReadElementContentAsString();
 			mVisible = reader.ReadElementContentAsBoolean();
+			// read the transparency for all the layers
+			if (Map.DataVersionOfTheFileLoaded > 4)
+				Transparency = reader.ReadElementContentAsInt();
+
 		}
 
 		public virtual void WriteXml(System.Xml.XmlWriter writer)
 		{
 			writer.WriteElementString("Name", mName);
 			writer.WriteElementString("Visible", mVisible.ToString().ToLower());
+			writer.WriteElementString("Transparency", mTransparency.ToString());
 		}
 
 		#endregion
