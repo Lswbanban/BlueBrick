@@ -81,8 +81,7 @@ namespace BlueBrick.Actions.Bricks
 			}
 			// finally reselect all the duplicated brick
 			mBrickLayer.clearSelection();
-			foreach (LayerBrick.Brick brick in mBricks)
-				mBrickLayer.addObjectInSelection(brick);
+			mBrickLayer.addObjectInSelection(mBricks);
 		}
 
 		public override void undo()

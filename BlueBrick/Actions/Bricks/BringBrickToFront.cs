@@ -57,8 +57,7 @@ namespace BlueBrick.Actions.Bricks
 
 			// reselect all the moved brick
 			mBrickLayer.clearSelection();
-			foreach (LayerBrick.Brick brick in mBricks)
-				mBrickLayer.addObjectInSelection(brick);
+			mBrickLayer.addObjectInSelection(mBricks);
 		}
 
 		public override void undo()
@@ -75,8 +74,7 @@ namespace BlueBrick.Actions.Bricks
 
 			// reselect all the moved brick
 			mBrickLayer.clearSelection();
-			foreach (LayerBrick.Brick brick in mBricks)
-				mBrickLayer.addObjectInSelection(brick);
+			mBrickLayer.addObjectInSelection(mBricks);
 		}
 	}
 }

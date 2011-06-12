@@ -101,8 +101,7 @@ namespace BlueBrick.Actions.Bricks
 			}
 			// finally reselect all the undeleted brick
 			mBrickLayer.clearSelection();
-			foreach (LayerBrick.Brick brick in mBricks)
-				mBrickLayer.addObjectInSelection(brick);
+			mBrickLayer.addObjectInSelection(mBricks);
 		}
 	}
 }

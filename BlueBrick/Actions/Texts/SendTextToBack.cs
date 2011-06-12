@@ -57,8 +57,7 @@ namespace BlueBrick.Actions.Texts
 
 			// reselect all the moved brick
 			mTextLayer.clearSelection();
-			foreach (LayerText.TextCell text in mTexts)
-				mTextLayer.addObjectInSelection(text);
+			mTextLayer.addObjectInSelection(mTexts);
 		}
 
 		public override void undo()
@@ -75,8 +74,7 @@ namespace BlueBrick.Actions.Texts
 
 			// reselect all the moved brick
 			mTextLayer.clearSelection();
-			foreach (LayerText.TextCell text in mTexts)
-				mTextLayer.addObjectInSelection(text);
+			mTextLayer.addObjectInSelection(mTexts);
 		}
 	}
 }
