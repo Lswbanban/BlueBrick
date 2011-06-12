@@ -37,7 +37,8 @@ namespace BlueBrick.MapData
 		[Serializable]
 		public class LayerItem : IXmlSerializable
 		{
-			public RectangleF mDisplayArea = new RectangleF(); // in stud coordinate
+			protected RectangleF mDisplayArea = new RectangleF(); // in stud coordinate
+			private Group mMyGroup = null; // the group in which this item is
 
 			#region get/set
 			/// <summary>
@@ -71,7 +72,7 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
-			/// ge the width of this item in stud
+			/// get the width of this item in stud
 			/// </summary>
 			public float Width
 			{
@@ -79,13 +80,20 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
-			/// ge the height of this item in stud
+			/// get the height of this item in stud
 			/// </summary>
 			public float Height
 			{
 				get { return mDisplayArea.Height; }
 			}
 
+			/// <summary>
+			/// get the display area of the item
+			/// </summary>
+			public RectangleF DisplayArea
+			{
+				get { return mDisplayArea; }
+			}
 			#endregion
 
 			#region IXmlSerializable Members
@@ -106,7 +114,46 @@ namespace BlueBrick.MapData
 			}
 
 			#endregion
+
+			#region selection
+			public void select(List<LayerItem> selectionList, bool addToSelection)
+			{
+				// check if this item belong to a group, in that case, call the select
+				// method of the group, such as we can move up to the top of the tree
+				if (mMyGroup != null)
+					mMyGroup.select(selectionList, addToSelection);
+				else
+					selectHierachycally(selectionList, addToSelection);
+			}
+
+			public virtual void selectHierachycally(List<LayerItem> selectionList, bool addToSelection)
+			{
+				// we are on the leaf of the hierarchy, so just select the item
+				if (addToSelection)
+					selectionList.Add(this);
+				else
+					selectionList.Remove(this);
+			}
+			#endregion
 		};
+
+		/// <summary>
+		/// A Group is a class that holds reference on Layer Items that are grouped together.
+		/// A Group is also a LayerItem such as hierachical grouping is possible.
+		/// </summary>
+		public class Group : LayerItem
+		{
+			private List<LayerItem> mItems;
+
+			public virtual void selectHierachycally(List<LayerItem> selectionList, bool addToSelection)
+			{
+				// call the same method on all the items of the group
+				// in order to select the wall tree
+				foreach (LayerItem item in mItems)
+					item.selectHierachycally(selectionList, addToSelection);
+			}
+		}
+
 
 		// common data to all layers
 		protected string mName = BlueBrick.Properties.Resources.DefaultLayerName;
@@ -119,7 +166,7 @@ namespace BlueBrick.MapData
 		protected RectangleF mBoundingSelectionRectangle = new RectangleF(); // the rectangle in stud that surrond all the object selected
 		protected Pen mBoundingSelectionPen = new Pen(Color.Black, 2);
 
-		public const int NUM_PIXEL_PER_STUD_FOR_BRICKS = 8;	// the images save on the disk use 4 pixel per studs
+		public const int NUM_PIXEL_PER_STUD_FOR_BRICKS = 8;	// the images save on the disk use 8 pixel per studs
 
 		// grid snapping
 		private static float mCurrentSnapGridSize = 32; // size of the snap grid in stud
@@ -234,6 +281,15 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// this function reset the instance counter use to name automatically the new layer created.
+		/// This counter is typically reset when a new map is open or created.
+		/// </summary>
+		public static void resetNameInstanceCounter()
+		{
+			nameInstanceCounter = 0;
+		}
+
+		/// <summary>
 		/// Return the number of items in this layer
 		/// </summary>
 		/// <returns>the number of items in this layer</returns>
@@ -270,15 +326,6 @@ namespace BlueBrick.MapData
 		#region selection
 
 		/// <summary>
-		/// this function reset the instance counter use to name automatically the new layer created.
-		/// This counter is typically reset when a new map is open or created.
-		/// </summary>
-		public static void resetNameInstanceCounter()
-		{
-			nameInstanceCounter = 0;
-		}
-
-		/// <summary>
 		/// Compute the bounding rectangle that surround all the object in the
 		/// mSelectedObjects list.
 		/// </summary>
@@ -293,14 +340,14 @@ namespace BlueBrick.MapData
 				float maxY = float.MinValue;
 				foreach (LayerItem item in mSelectedObjects)
 				{
-					if (item.mDisplayArea.Left < minX)
-						minX = item.mDisplayArea.Left;
-					if (item.mDisplayArea.Right > maxX)
-						maxX = item.mDisplayArea.Right;
-					if (item.mDisplayArea.Top < minY)
-						minY = item.mDisplayArea.Top;
-					if (item.mDisplayArea.Bottom > maxY)
-						maxY = item.mDisplayArea.Bottom;
+					if (item.DisplayArea.Left < minX)
+						minX = item.DisplayArea.Left;
+					if (item.DisplayArea.Right > maxX)
+						maxX = item.DisplayArea.Right;
+					if (item.DisplayArea.Top < minY)
+						minY = item.DisplayArea.Top;
+					if (item.DisplayArea.Bottom > maxY)
+						maxY = item.DisplayArea.Bottom;
 				}
 				mBoundingSelectionRectangle = new RectangleF(minX, minY, maxX - minX, maxY - minY);
 			}
@@ -327,7 +374,7 @@ namespace BlueBrick.MapData
 		/// <param name="obj">The object to add</param>
 		public void addObjectInSelection(LayerItem obj)
 		{
-			mSelectedObjects.Add(obj);
+			obj.select(mSelectedObjects, true);
 			updateBoundingSelectionRectangle();
 			// clear a flag for continuous rotation in the rotation action (not very clean I know)
 			Actions.Bricks.RotateBrick.sLastCenterIsValid = false;
@@ -341,9 +388,10 @@ namespace BlueBrick.MapData
 		/// This method also refresh the bouding rectangle.
 		/// </summary>
 		/// <param name="obj">The list of object to add</param>
-		public void addObjectInSelection(List<LayerItem> objList)
+		public void addObjectInSelection<T>(List<T> objList) where T : LayerItem
 		{
-			mSelectedObjects.AddRange(objList);
+			foreach (LayerItem obj in objList)
+				mSelectedObjects.Add(obj);
 			updateBoundingSelectionRectangle();
 			// clear a flag for continuous rotation in the rotation action (not very clean I know)
 			Actions.Bricks.RotateBrick.sLastCenterIsValid = false;
@@ -359,7 +407,7 @@ namespace BlueBrick.MapData
 		/// <param name="obj">The object to remove</param>
 		protected void removeObjectFromSelection(LayerItem obj)
 		{
-			mSelectedObjects.Remove(obj);
+			obj.select(mSelectedObjects, false);
 			updateBoundingSelectionRectangle();
 			// clear a flag for continuous rotation in the rotation action (not very clean I know)
 			Actions.Bricks.RotateBrick.sLastCenterIsValid = false;
@@ -373,7 +421,7 @@ namespace BlueBrick.MapData
 		/// This method also refresh the bouding rectangle.
 		/// </summary>
 		/// <param name="objList">The list of objects to remove</param>
-		public void removeObjectFromSelection(List<LayerItem> objList)
+		public void removeObjectFromSelection<T>(List<T> objList) where T : LayerItem
 		{
 			foreach (LayerItem obj in objList)
 				mSelectedObjects.Remove(obj);
@@ -460,8 +508,8 @@ namespace BlueBrick.MapData
 			for (int i = itemList.Count - 1; i >= 0; --i)
 			{
 				LayerItem item = itemList[i];
-				if ((mouseCoordInStud.X > item.mDisplayArea.Left) && (mouseCoordInStud.X < item.mDisplayArea.Right) &&
-					(mouseCoordInStud.Y > item.mDisplayArea.Top) && (mouseCoordInStud.Y < item.mDisplayArea.Bottom))
+				if ((mouseCoordInStud.X > item.DisplayArea.Left) && (mouseCoordInStud.X < item.DisplayArea.Right) &&
+					(mouseCoordInStud.Y > item.DisplayArea.Top) && (mouseCoordInStud.Y < item.DisplayArea.Bottom))
 				{
 					return item;
 				}

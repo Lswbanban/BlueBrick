@@ -151,8 +151,8 @@ namespace BlueBrick.Actions.Bricks
 			{
 				// copy the list, because the pointer may change (specially if it is the selection)
 				// also compute the center of all the bricks
-				PointF minCenter = new PointF(bricks[0].mDisplayArea.Left, bricks[0].mDisplayArea.Top);
-				PointF maxCenter = new PointF(bricks[0].mDisplayArea.Right, bricks[0].mDisplayArea.Bottom);
+				PointF minCenter = new PointF(bricks[0].DisplayArea.Left, bricks[0].DisplayArea.Top);
+				PointF maxCenter = new PointF(bricks[0].DisplayArea.Right, bricks[0].DisplayArea.Bottom);
 				mBricks = new List<Layer.LayerItem>(bricks.Count);
 				foreach (Layer.LayerItem obj in bricks)
 				{
@@ -160,14 +160,14 @@ namespace BlueBrick.Actions.Bricks
 					//compute the new center if the static one is not valid
 					if (!sLastCenterIsValid)
 					{
-						if (obj.mDisplayArea.Left < minCenter.X)
-							minCenter.X = obj.mDisplayArea.Left;
-						if (obj.mDisplayArea.Top < minCenter.Y)
-							minCenter.Y = obj.mDisplayArea.Top;
-						if (obj.mDisplayArea.Right > maxCenter.X)
-							maxCenter.X = obj.mDisplayArea.Right;
-						if (obj.mDisplayArea.Bottom > maxCenter.Y)
-							maxCenter.Y = obj.mDisplayArea.Bottom;
+						if (obj.DisplayArea.Left < minCenter.X)
+							minCenter.X = obj.DisplayArea.Left;
+						if (obj.DisplayArea.Top < minCenter.Y)
+							minCenter.Y = obj.DisplayArea.Top;
+						if (obj.DisplayArea.Right > maxCenter.X)
+							maxCenter.X = obj.DisplayArea.Right;
+						if (obj.DisplayArea.Bottom > maxCenter.Y)
+							maxCenter.Y = obj.DisplayArea.Bottom;
 					}
 				}
 				// set the center for this rotation action (keep the previous one or compute a new one
