@@ -183,6 +183,9 @@
   <data name="ActionEditText" xml:space="preserve">
     <value>Edit the text "&amp;"</value>
   </data>
+  <data name="ActionGroupItems" xml:space="preserve">
+    <value>Group Items</value>
+  </data>
   <data name="ActionHideLayer" xml:space="preserve">
     <value>Hide the layer "&amp;"</value>
   </data>
