@@ -130,9 +130,14 @@ namespace BlueBrick.MapData
 			{
 				// we are on the leaf of the hierarchy, so just select the item
 				if (addToSelection)
-					selectionList.Add(this);
+				{
+					if (!selectionList.Contains(this))
+						selectionList.Add(this);
+				}
 				else
+				{
 					selectionList.Remove(this);
+				}
 			}
 			#endregion
 		};
@@ -375,12 +380,7 @@ namespace BlueBrick.MapData
 		public void addObjectInSelection(LayerItem obj)
 		{
 			obj.select(mSelectedObjects, true);
-			updateBoundingSelectionRectangle();
-			// clear a flag for continuous rotation in the rotation action (not very clean I know)
-			Actions.Bricks.RotateBrick.sLastCenterIsValid = false;
-			Actions.Texts.RotateText.sLastCenterIsValid = false;
-			// enable the copy on the main form
-			MainForm.Instance.enableCopyButton(true);
+			updateAfterSelectionChange();
 		}
 
 		/// <summary>
@@ -391,13 +391,8 @@ namespace BlueBrick.MapData
 		public void addObjectInSelection<T>(List<T> objList) where T : LayerItem
 		{
 			foreach (LayerItem obj in objList)
-				mSelectedObjects.Add(obj);
-			updateBoundingSelectionRectangle();
-			// clear a flag for continuous rotation in the rotation action (not very clean I know)
-			Actions.Bricks.RotateBrick.sLastCenterIsValid = false;
-			Actions.Texts.RotateText.sLastCenterIsValid = false;
-			// enable the copy on the main form
-			MainForm.Instance.enableCopyButton(mSelectedObjects.Count > 0);
+				obj.select(mSelectedObjects, true);
+			updateAfterSelectionChange();
 		}
 
 		/// <summary>
@@ -408,12 +403,7 @@ namespace BlueBrick.MapData
 		protected void removeObjectFromSelection(LayerItem obj)
 		{
 			obj.select(mSelectedObjects, false);
-			updateBoundingSelectionRectangle();
-			// clear a flag for continuous rotation in the rotation action (not very clean I know)
-			Actions.Bricks.RotateBrick.sLastCenterIsValid = false;
-			Actions.Texts.RotateText.sLastCenterIsValid = false;
-			// disable the copy on the main form if the list is empty
-			MainForm.Instance.enableCopyButton(mSelectedObjects.Count > 0);
+			updateAfterSelectionChange();
 		}
 
 		/// <summary>
@@ -424,13 +414,8 @@ namespace BlueBrick.MapData
 		public void removeObjectFromSelection<T>(List<T> objList) where T : LayerItem
 		{
 			foreach (LayerItem obj in objList)
-				mSelectedObjects.Remove(obj);
-			updateBoundingSelectionRectangle();
-			// clear a flag for continuous rotation in the rotation action (not very clean I know)
-			Actions.Bricks.RotateBrick.sLastCenterIsValid = false;
-			Actions.Texts.RotateText.sLastCenterIsValid = false;
-			// enable the copy on the main form
-			MainForm.Instance.enableCopyButton(mSelectedObjects.Count > 0);
+				obj.select(mSelectedObjects, false);
+			updateAfterSelectionChange();
 		}
 
 		/// <summary>
@@ -439,12 +424,21 @@ namespace BlueBrick.MapData
 		public void clearSelection()
 		{
 			mSelectedObjects.Clear();
+			updateAfterSelectionChange();
+		}
+
+		/// <summary>
+		/// The necessary common update made after any change in the selection list
+		/// </summary>
+		private void updateAfterSelectionChange()
+		{
+			// update the bouding selection rectangle
 			updateBoundingSelectionRectangle();
 			// clear a flag for continuous rotation in the rotation action (not very clean I know)
 			Actions.Bricks.RotateBrick.sLastCenterIsValid = false;
 			Actions.Texts.RotateText.sLastCenterIsValid = false;
-			// disable the copy on the main form if the list is empty
-			MainForm.Instance.enableCopyButton(false);
+			// enable the copy on the main form
+			MainForm.Instance.enableCopyButton(mSelectedObjects.Count > 0);
 		}
 
 		/// <summary>
