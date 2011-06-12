@@ -1150,7 +1150,7 @@ namespace BlueBrick.MapData
 				else
 				{
 					PointF position = selectedBrick.Position;
-					position.X += selectedBrick.mDisplayArea.Width;
+					position.X += selectedBrick.DisplayArea.Width;
 					brickToAdd.Position = position;
 					mBricks.Insert(mBricks.IndexOf(selectedBrick) + 1, brickToAdd);
 				}
@@ -1287,14 +1287,9 @@ namespace BlueBrick.MapData
 		/// </summary>
 		public override void selectAll()
 		{
-			// convert the list of brick into list of item (do you know a better than
-			// just duplicate the list ?????
-			List<LayerItem> brickListAsItem = new List<LayerItem>(mBricks.Count);
-			foreach (Brick brick in mBricks)
-				brickListAsItem.Add(brick);
 			// clear the selection and add all the item of this layer
 			clearSelection();
-			addObjectInSelection(brickListAsItem);
+			addObjectInSelection(mBricks);
 		}
 
 		/// <summary>
@@ -1511,7 +1506,7 @@ namespace BlueBrick.MapData
 			PointF bottomRight = new PointF(float.MinValue, float.MinValue);
 			foreach (Brick brick in mBricks)
 			{
-				RectangleF brickArea = brick.mDisplayArea;
+				RectangleF brickArea = brick.DisplayArea;
 				if (brickArea.X < topLeft.X)
 					topLeft.X = brickArea.X;
 				if (brickArea.Y < topLeft.Y)
@@ -2061,8 +2056,8 @@ namespace BlueBrick.MapData
 			List<LayerItem> objListInRectangle = new List<LayerItem>(mBricks.Count);
 			foreach (Brick brick in mBricks)
 			{
-				if ((selectionRectangeInStud.Right > brick.mDisplayArea.Left) && (selectionRectangeInStud.Left < brick.mDisplayArea.Right) &&
-					(selectionRectangeInStud.Bottom > brick.mDisplayArea.Top) && (selectionRectangeInStud.Top < brick.mDisplayArea.Bottom))
+				if ((selectionRectangeInStud.Right > brick.DisplayArea.Left) && (selectionRectangeInStud.Left < brick.DisplayArea.Right) &&
+					(selectionRectangeInStud.Bottom > brick.DisplayArea.Top) && (selectionRectangeInStud.Top < brick.DisplayArea.Bottom))
 				{
 					objListInRectangle.Add(brick);
 				}
@@ -2233,8 +2228,8 @@ namespace BlueBrick.MapData
 					pointInStud = Layer.snapToGrid(pointInStud);
 					
 					// compute the center shift (including the snap grid margin
-					PointF halfBrickShift = new PointF((mCurrentBrickUnderMouse.mDisplayArea.Width / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.X,
-													(mCurrentBrickUnderMouse.mDisplayArea.Height / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.Y);
+					PointF halfBrickShift = new PointF((mCurrentBrickUnderMouse.DisplayArea.Width / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.X,
+													(mCurrentBrickUnderMouse.DisplayArea.Height / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.Y);
 
 					// compute a snapped grab delta
 					PointF snappedGrabDelta = mMouseGrabDeltaToCenter;

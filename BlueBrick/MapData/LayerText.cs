@@ -358,14 +358,9 @@ namespace BlueBrick.MapData
 		/// </summary>
 		public override void selectAll()
 		{
-			// convert the list of brick into list of item (do you know a better than
-			// just duplicate the list ?????
-			List<LayerItem> brickListAsItem = new List<LayerItem>(mTexts.Count);
-			foreach (TextCell text in mTexts)
-				brickListAsItem.Add(text);
 			// clear the selection and add all the item of this layer
 			clearSelection();
-			addObjectInSelection(brickListAsItem);
+			addObjectInSelection(mTexts);
 		}
 		#endregion
 
@@ -381,7 +376,7 @@ namespace BlueBrick.MapData
 			PointF bottomRight = new PointF(float.MinValue, float.MinValue);
 			foreach (TextCell text in mTexts)
 			{
-				RectangleF textArea = text.mDisplayArea;
+				RectangleF textArea = text.DisplayArea;
 				if (textArea.X < topLeft.X)
 					topLeft.X = textArea.X;
 				if (textArea.Y < topLeft.Y)
@@ -689,8 +684,8 @@ namespace BlueBrick.MapData
 			List<LayerItem> objListInRectangle = new List<LayerItem>(mTexts.Count);
 			foreach (TextCell cell in mTexts)
 			{
-				if ((selectionRectangeInStud.Right > cell.mDisplayArea.Left) && (selectionRectangeInStud.Left < cell.mDisplayArea.Right) &&
-					(selectionRectangeInStud.Bottom > cell.mDisplayArea.Top) && (selectionRectangeInStud.Top < cell.mDisplayArea.Bottom))
+				if ((selectionRectangeInStud.Right > cell.DisplayArea.Left) && (selectionRectangeInStud.Left < cell.DisplayArea.Right) &&
+					(selectionRectangeInStud.Bottom > cell.DisplayArea.Top) && (selectionRectangeInStud.Top < cell.DisplayArea.Bottom))
 				{
 					objListInRectangle.Add(cell);
 				}
