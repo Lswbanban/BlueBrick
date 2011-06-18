@@ -760,13 +760,28 @@ namespace BlueBrick
 
 		private void groupToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			Actions.Items.GroupItems groupAction = new BlueBrick.Actions.Items.GroupItems(null);
-			Actions.ActionManager.Instance.doAction(groupAction);
+			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			{
+				string layerType = Map.Instance.SelectedLayer.GetType().Name;
+				if ((layerType == "LayerBrick") || (layerType == "LayerText"))
+				{
+					Actions.Items.GroupItems groupAction = new BlueBrick.Actions.Items.GroupItems(Map.Instance.SelectedLayer.SelectedObjects);
+					Actions.ActionManager.Instance.doAction(groupAction);
+				}
+			}
 		}
 
 		private void ungroupToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			{
+				string layerType = Map.Instance.SelectedLayer.GetType().Name;
+				if ((layerType == "LayerBrick") || (layerType == "LayerText"))
+				{
+					Actions.Items.UngroupItems ungroupAction = new BlueBrick.Actions.Items.UngroupItems(Map.Instance.SelectedLayer.SelectedObjects);
+					Actions.ActionManager.Instance.doAction(ungroupAction);
+				}
+			}
 		}
 		#endregion
 	}

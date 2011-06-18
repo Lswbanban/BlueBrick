@@ -183,6 +183,9 @@
   <data name="ActionEditText" xml:space="preserve">
     <value>Editer le texte "&amp;"</value>
   </data>
+  <data name="ActionGroupItems" xml:space="preserve">
+    <value>Grouper</value>
+  </data>
   <data name="ActionHideLayer" xml:space="preserve">
     <value>Cacher le calque "&amp;"</value>
   </data>
@@ -239,6 +242,9 @@
   </data>
   <data name="ActionShowLayer" xml:space="preserve">
     <value>Montrer le calque "&amp;"</value>
+  </data>
+  <data name="ActionUngroupItems" xml:space="preserve">
+    <value>Dégrouper</value>
   </data>
   <data name="ChangeLayerOption" xml:space="preserve">
     <value>Changer les options du calque "&amp;"</value>
