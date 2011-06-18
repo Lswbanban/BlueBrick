@@ -19,50 +19,51 @@ using BlueBrick.MapData;
 
 namespace BlueBrick.Actions.Items
 {
-	class GroupItems : Action
+	class UngroupItems : Action
 	{
-		List<Layer.LayerItem> mItemsToGroup = new List<Layer.LayerItem>();
-		Layer.Group mGroup = new Layer.Group();
+		List<Layer.Group> mGroupToUngroup = new List<Layer.Group>();
 
-		public GroupItems(List<Layer.LayerItem> itemsToGroup)
+		public UngroupItems(List<Layer.LayerItem> itemsToUngroup)
 		{
 			// create a search list that we will expend and to keep the original selection intact
-			List<Layer.LayerItem> searchList = new List<Layer.LayerItem>(itemsToGroup);
+			List<Layer.LayerItem> searchList = new List<Layer.LayerItem>(itemsToUngroup);
 
-			// save the item list but don't add them in the group in the constructor.
-			// we do that in the redo. And we only group the top items of the tree.
-			// we cannot use a foreach keyword here because it through an exception when
-			// the list is modified during the iteration, which is exactly what I want to do
+			// Search the top group of the tree, because this action only ungroup the top of the tree
+			// The list of items to ungroup can also be a forest, so keep all the top of the trees
 			for (int i = 0; i < searchList.Count; ++i)
 			{
 				Layer.LayerItem item = searchList[i];
-				if (!mItemsToGroup.Contains(item))
+				if (item.Group == null)
 				{
-					if (item.Group == null)
-						mItemsToGroup.Add(item);
-					else if (!searchList.Contains(item.Group))
-						searchList.Add(item.Group);
+					// check if it is a group or a simple item
+					Layer.Group group = item as Layer.Group;
+					if ((group != null) && !mGroupToUngroup.Contains(group))
+						mGroupToUngroup.Add(group);
+				}
+				else if (!searchList.Contains(item.Group))
+				{
+					searchList.Add(item.Group);
 				}
 			}
 		}
 
 		public override string getName()
 		{
-			return BlueBrick.Properties.Resources.ActionGroupItems;
+			return BlueBrick.Properties.Resources.ActionUngroupItems;
 		}
 
 		public override void redo()
 		{
-			// add all the items in the group
-			foreach (Layer.LayerItem item in mItemsToGroup)
-				mGroup.addItem(item);
+			// disband the groups
+			foreach (Layer.Group group in mGroupToUngroup)
+				group.ungroup();
 		}
 
 		public override void undo()
 		{
-			// remove all the items from the group
-			foreach (Layer.LayerItem item in mItemsToGroup)
-				mGroup.removeItem(item);
+			// reform the groups
+			foreach (Layer.Group group in mGroupToUngroup)
+				group.regroup();
 		}
 	}
 }

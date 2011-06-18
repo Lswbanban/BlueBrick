@@ -80,6 +80,7 @@
     <Compile Include="Actions\Bricks\SendBrickToBack.cs" />
     <Compile Include="Actions\Grid\MoveGridOrigin.cs" />
     <Compile Include="Actions\Items\GroupItems.cs" />
+    <Compile Include="Actions\Items\UngroupItems.cs" />
     <Compile Include="Actions\Layers\AddLayer.cs" />
     <Compile Include="Actions\Bricks\AddBrick.cs" />
     <Compile Include="Actions\Layers\ChangeLayerOption.cs" />

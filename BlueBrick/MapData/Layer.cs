@@ -38,7 +38,7 @@ namespace BlueBrick.MapData
 		public class LayerItem : IXmlSerializable
 		{
 			protected RectangleF mDisplayArea = new RectangleF(); // in stud coordinate
-			private Group mMyGroup = null; // the group in which this item is
+			protected Group mMyGroup = null; // the group in which this item is
 
 			#region get/set
 			/// <summary>
@@ -94,6 +94,15 @@ namespace BlueBrick.MapData
 			{
 				get { return mDisplayArea; }
 			}
+
+			/// <summary>
+			/// set or get the group of this item
+			/// </summary>
+			public Group Group
+			{
+				get { return mMyGroup; }
+				set { mMyGroup = value; }
+			}
 			#endregion
 
 			#region IXmlSerializable Members
@@ -148,9 +157,33 @@ namespace BlueBrick.MapData
 		/// </summary>
 		public class Group : LayerItem
 		{
-			private List<LayerItem> mItems;
+			private List<LayerItem> mItems = new List<LayerItem>();
 
-			public virtual void selectHierachycally(List<LayerItem> selectionList, bool addToSelection)
+			public void addItem(LayerItem item)
+			{
+				mItems.Add(item);
+				item.Group = this;
+			}
+
+			public void removeItem(LayerItem item)
+			{
+				mItems.Remove(item);
+				item.Group = null;
+			}
+
+			public void ungroup()
+			{
+				foreach (LayerItem item in mItems)
+					item.Group = null;
+			}
+
+			public void regroup()
+			{
+				foreach (LayerItem item in mItems)
+					item.Group = this;
+			}
+
+			public override void selectHierachycally(List<LayerItem> selectionList, bool addToSelection)
 			{
 				// call the same method on all the items of the group
 				// in order to select the wall tree

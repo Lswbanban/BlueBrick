@@ -438,6 +438,15 @@ namespace BlueBrick.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Ungroup Items.
+        /// </summary>
+        internal static string ActionUngroupItems {
+            get {
+                return ResourceManager.GetString("ActionUngroupItems", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap aligncentered {
             get {
                 object obj = ResourceManager.GetObject("aligncentered", resourceCulture);
