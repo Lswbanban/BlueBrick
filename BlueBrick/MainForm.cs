@@ -505,6 +505,18 @@ namespace BlueBrick
 			this.selectPathToolStripMenuItem.Enabled = ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.GetType().Name.Equals("LayerBrick")) && (Map.Instance.SelectedLayer.SelectedObjects.Count == 2));
 		}
 
+        /// <summary>
+        /// Enable or disable the group/ungroup menu item in the edit menu and context menu
+        /// </summary>
+        /// <param name="canGroup">if true, the grouping buttons are enabled</param>
+        /// <param name="canUngroup">if true the ungrouping buttons are enabled</param>
+        public void enableGroupingButton(bool canGroup, bool canUngroup)
+        {
+            this.groupToolStripMenuItem.Enabled = canGroup;
+            this.ungroupToolStripMenuItem.Enabled = canUngroup;
+            this.groupMenuToolStripMenuItem.Enabled = canGroup || canUngroup;
+        }
+
 		/// <summary>
 		/// Enable or disable the buttons in the tool bar that allow manipulation of the layer item
 		/// such as snap grid, snap rotation, rotate button and paint/erase
@@ -1322,6 +1334,32 @@ namespace BlueBrick
 				}
 			}
 		}
+
+        public void groupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+            {
+                string layerType = Map.Instance.SelectedLayer.GetType().Name;
+                if ((layerType == "LayerBrick") || (layerType == "LayerText"))
+                {
+                    Actions.Items.GroupItems groupAction = new BlueBrick.Actions.Items.GroupItems(Map.Instance.SelectedLayer.SelectedObjects);
+                    Actions.ActionManager.Instance.doAction(groupAction);
+                }
+            }
+        }
+
+        public void ungroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+            {
+                string layerType = Map.Instance.SelectedLayer.GetType().Name;
+                if ((layerType == "LayerBrick") || (layerType == "LayerText"))
+                {
+                    Actions.Items.UngroupItems ungroupAction = new BlueBrick.Actions.Items.UngroupItems(Map.Instance.SelectedLayer.SelectedObjects);
+                    Actions.ActionManager.Instance.doAction(ungroupAction);
+                }
+            }
+        }
 
 		private void moveStepDisabledToolStripMenuItem_Click(object sender, EventArgs e)
 		{
