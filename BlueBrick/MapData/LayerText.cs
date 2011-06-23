@@ -269,6 +269,9 @@ namespace BlueBrick.MapData
 			}
 			// read the TextCells tag, to finish the list of text cells
 			reader.Read();
+
+            // call the post read function
+            postReadXml(reader);
 		}
 
 		public override void WriteXml(System.Xml.XmlWriter writer)
@@ -285,6 +288,10 @@ namespace BlueBrick.MapData
 				// step the progress bar for each text cell
 				MainForm.Instance.stepProgressBar();
 			}
+
+            // call the post write before closing the list
+            postWriteXml(writer);
+
 			writer.WriteEndElement();
 		}
 
