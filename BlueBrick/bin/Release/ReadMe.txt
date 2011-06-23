@@ -61,10 +61,11 @@ Bug fixed in 1.7.0.0:
 - NEW FEATURE (Denis): Feature to search and replace a set of brick type by another one.
 - NEW FEATURE (Alban): The connection points are now configurable and extendable in an XML file.
 - NEW FEATURE (Alban): Display the general info on top of the map (this can be disabled in the option settings).
-- NEW FEATURE (Larry): Display the XML exception when BB can not load XML files.
+- NEW FEATURE (Larry): Display the XML exception when BB cannot load XML files.
 - NEW FEATURE (Alban): The polarity check for electric shortcut is now available.
 - NEW FEATURE (cimddwc): Add the transparency for all the layers (and not only the Area layer)
 - NEW FEATURE (Larry): Save the export image settings in the BBM file.
+- NEW FEATURE (Alban): You can group/ungroup hierarchically parts and texts.
 - BUGFIX (Larry): CRASH! when opening a BBM file which is write protected.
 - BUGFIX (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
 - BUGFIX (Vincent): CRASH! In the preference you could set a sub grid number to 0 or 1, leading to a later crash (when relaunching BlueBrick or editing the grid layer options)

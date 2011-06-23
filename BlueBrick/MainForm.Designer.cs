@@ -76,6 +76,9 @@ namespace BlueBrick
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deselectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ungroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.moveStepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveStepDisabledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -447,6 +450,7 @@ namespace BlueBrick
             this.selectAllToolStripMenuItem,
             this.deselectAllToolStripMenuItem,
             this.selectPathToolStripMenuItem,
+            this.groupMenuToolStripMenuItem,
             this.toolStripSeparator8,
             this.moveStepToolStripMenuItem,
             this.rotationStepToolStripMenuItem,
@@ -535,6 +539,26 @@ namespace BlueBrick
             this.selectPathToolStripMenuItem.Name = "selectPathToolStripMenuItem";
             resources.ApplyResources(this.selectPathToolStripMenuItem, "selectPathToolStripMenuItem");
             this.selectPathToolStripMenuItem.Click += new System.EventHandler(this.selectPathToolStripMenuItem_Click);
+            // 
+            // groupMenuToolStripMenuItem
+            // 
+            this.groupMenuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.groupToolStripMenuItem,
+            this.ungroupToolStripMenuItem});
+            this.groupMenuToolStripMenuItem.Name = "groupMenuToolStripMenuItem";
+            resources.ApplyResources(this.groupMenuToolStripMenuItem, "groupMenuToolStripMenuItem");
+            // 
+            // groupToolStripMenuItem
+            // 
+            this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
+            resources.ApplyResources(this.groupToolStripMenuItem, "groupToolStripMenuItem");
+            this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
+            // 
+            // ungroupToolStripMenuItem
+            // 
+            this.ungroupToolStripMenuItem.Name = "ungroupToolStripMenuItem";
+            resources.ApplyResources(this.ungroupToolStripMenuItem, "ungroupToolStripMenuItem");
+            this.ungroupToolStripMenuItem.Click += new System.EventHandler(this.ungroupToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
@@ -1200,6 +1224,9 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
 		private System.Windows.Forms.ToolStripMenuItem electricCircuitsMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem generalInformationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem groupMenuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem groupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ungroupToolStripMenuItem;
 	}
 }
 

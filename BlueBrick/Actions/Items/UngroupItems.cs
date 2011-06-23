@@ -21,30 +21,38 @@ namespace BlueBrick.Actions.Items
 {
 	class UngroupItems : Action
 	{
-		List<Layer.Group> mGroupToUngroup = new List<Layer.Group>();
+		List<Layer.Group> mGroupToUngroup = null;
+
+        public static List<Layer.Group> findItemsToUngroup(List<Layer.LayerItem> itemsToUngroup)
+        {
+            // create a search list that we will expend and to keep the original selection intact
+            List<Layer.LayerItem> searchList = new List<Layer.LayerItem>(itemsToUngroup);
+            List<Layer.Group> result = new List<Layer.Group>(itemsToUngroup.Count);
+
+            // Search the top group of the tree, because this action only ungroup the top of the tree
+            // The list of items to ungroup can also be a forest, so keep all the top of the trees
+            for (int i = 0; i < searchList.Count; ++i)
+            {
+                Layer.LayerItem item = searchList[i];
+                if (item.Group == null)
+                {
+                    // check if it is a group or a simple item
+                    Layer.Group group = item as Layer.Group;
+                    if ((group != null) && !result.Contains(group))
+                        result.Add(group);
+                }
+                else if (!searchList.Contains(item.Group))
+                {
+                    searchList.Add(item.Group);
+                }
+            }
+
+            return result;
+        }
 
 		public UngroupItems(List<Layer.LayerItem> itemsToUngroup)
 		{
-			// create a search list that we will expend and to keep the original selection intact
-			List<Layer.LayerItem> searchList = new List<Layer.LayerItem>(itemsToUngroup);
-
-			// Search the top group of the tree, because this action only ungroup the top of the tree
-			// The list of items to ungroup can also be a forest, so keep all the top of the trees
-			for (int i = 0; i < searchList.Count; ++i)
-			{
-				Layer.LayerItem item = searchList[i];
-				if (item.Group == null)
-				{
-					// check if it is a group or a simple item
-					Layer.Group group = item as Layer.Group;
-					if ((group != null) && !mGroupToUngroup.Contains(group))
-						mGroupToUngroup.Add(group);
-				}
-				else if (!searchList.Contains(item.Group))
-				{
-					searchList.Add(item.Group);
-				}
-			}
+            mGroupToUngroup = findItemsToUngroup(itemsToUngroup);
 		}
 
 		public override string getName()

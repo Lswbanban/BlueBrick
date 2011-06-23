@@ -472,7 +472,11 @@ namespace BlueBrick.MapData
 			Actions.Texts.RotateText.sLastCenterIsValid = false;
 			// enable the copy on the main form
 			MainForm.Instance.enableCopyButton(mSelectedObjects.Count > 0);
-		}
+            // enable the grouping button on the main form
+            bool canGroupSelection = Actions.Items.GroupItems.findItemsToGroup(mSelectedObjects).Count > 1;
+            bool canUngroupSelection = Actions.Items.UngroupItems.findItemsToUngroup(mSelectedObjects).Count > 0;
+            MainForm.Instance.enableGroupingButton(canGroupSelection, canUngroupSelection);
+        }
 
 		/// <summary>
 		/// Select all the items in this layer.
