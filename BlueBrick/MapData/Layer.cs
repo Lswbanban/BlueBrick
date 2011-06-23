@@ -20,6 +20,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using BlueBrick.Actions;
+using System.Collections;
 
 namespace BlueBrick.MapData
 {
@@ -37,6 +38,8 @@ namespace BlueBrick.MapData
 		[Serializable]
 		public class LayerItem : IXmlSerializable
 		{
+            public static Hashtable sHashtableForGroupRebuilding = new Hashtable(); // this hashtable is used to recreate the group hierarchy when loading
+
 			protected RectangleF mDisplayArea = new RectangleF(); // in stud coordinate
 			protected Group mMyGroup = null; // the group in which this item is
 
@@ -115,11 +118,44 @@ namespace BlueBrick.MapData
 			public virtual void ReadXml(System.Xml.XmlReader reader)
 			{
 				mDisplayArea = XmlReadWrite.readRectangleF(reader);
+                if (Map.DataVersionOfTheFileLoaded > 4)
+                {
+					// check if we have a group
+                    if (reader.IsEmptyElement)
+                    {
+                        mMyGroup = null;
+                        reader.Read();
+                    }
+                    else
+                    {
+                        // get the group id
+                        int hashCodeOfTheGroup = reader.ReadElementContentAsInt();
+                        // look in the hastable if this connexion alread exists, else create it
+                        Group group = sHashtableForGroupRebuilding[hashCodeOfTheGroup] as Group;
+                        if (group == null)
+                        {
+                            // instanciate a new group, and add it in the hash table
+                            group = new Group();
+                            sHashtableForGroupRebuilding.Add(hashCodeOfTheGroup, group);
+                        }
+                        // then add this item in the group
+                        group.addItem(this);
+                    }
+                }
 			}
 
 			public virtual void WriteXml(System.Xml.XmlWriter writer)
 			{
 				XmlReadWrite.writeRectangleF(writer, "DisplayArea", mDisplayArea);
+                writer.WriteStartElement("Group");
+                if (mMyGroup != null)
+                {
+                    int hashKey = mMyGroup.GetHashCode();
+                    writer.WriteString(hashKey.ToString());
+                    if (!LayerItem.sHashtableForGroupRebuilding.Contains(hashKey))
+                        LayerItem.sHashtableForGroupRebuilding.Add(hashKey, mMyGroup);
+                }
+                writer.WriteEndElement();
 			}
 
 			#endregion
@@ -343,6 +379,9 @@ namespace BlueBrick.MapData
 
 		public virtual void ReadXml(System.Xml.XmlReader reader)
 		{
+            // clear all the content of the hash table
+            LayerItem.sHashtableForGroupRebuilding.Clear();
+            // read the common properties of the layer
 			reader.ReadToDescendant("Name");
 			mName = reader.ReadElementContentAsString();
 			mVisible = reader.ReadElementContentAsBoolean();
@@ -352,13 +391,25 @@ namespace BlueBrick.MapData
 
 		}
 
+        public virtual void postReadXml(System.Xml.XmlReader reader)
+        {
+            // clear the hash table for group to free the memory after loading
+            LayerItem.sHashtableForGroupRebuilding.Clear();
+        }
+
 		public virtual void WriteXml(System.Xml.XmlWriter writer)
 		{
+            // clear all the content of the hash table
+            LayerItem.sHashtableForGroupRebuilding.Clear();
+            // write the common properties
 			writer.WriteElementString("Name", mName);
 			writer.WriteElementString("Visible", mVisible.ToString().ToLower());
 			writer.WriteElementString("Transparency", mTransparency.ToString());
 		}
 
+        public void postWriteXml(System.Xml.XmlWriter writer)
+        {
+        }
 		#endregion
 
 		#region selection

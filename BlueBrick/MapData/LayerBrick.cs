@@ -1015,6 +1015,9 @@ namespace BlueBrick.MapData
 			// clear again the hash table to free the memory after loading
 			Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
 
+            // call the post read function
+            postReadXml(reader);
+
 			// reconstruct the freeConnexion points list by iterating on all the connexion of all the bricks
 			mFreeConnectionPoints.removeAll();
 			foreach (Brick brick in mBricks)
@@ -1069,6 +1072,10 @@ namespace BlueBrick.MapData
 				// step the progress bar for each brick
 				MainForm.Instance.stepProgressBar();
 			}
+
+            // call the post write before closing the list
+            postWriteXml(writer);
+
 			writer.WriteEndElement();
 		}
 
