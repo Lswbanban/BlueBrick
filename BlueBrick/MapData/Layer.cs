@@ -39,6 +39,7 @@ namespace BlueBrick.MapData
 		public class LayerItem : IXmlSerializable
 		{
             public static Hashtable sHashtableForGroupRebuilding = new Hashtable(); // this hashtable is used to recreate the group hierarchy when loading
+			public static List<Group> sListForGroupSaving = new List<Group>(); // this list is used during the saving of BBM file to save all the grouping hierarchy
 
 			protected RectangleF mDisplayArea = new RectangleF(); // in stud coordinate
 			protected Group mMyGroup = null; // the group in which this item is
@@ -118,6 +119,11 @@ namespace BlueBrick.MapData
 			public virtual void ReadXml(System.Xml.XmlReader reader)
 			{
 				mDisplayArea = XmlReadWrite.readRectangleF(reader);
+				readMyGroup(reader);
+			}
+
+			protected void readMyGroup(System.Xml.XmlReader reader)
+			{
                 if (Map.DataVersionOfTheFileLoaded > 4)
                 {
 					// check if we have a group
@@ -147,17 +153,20 @@ namespace BlueBrick.MapData
 			public virtual void WriteXml(System.Xml.XmlWriter writer)
 			{
 				XmlReadWrite.writeRectangleF(writer, "DisplayArea", mDisplayArea);
-                writer.WriteStartElement("Group");
-                if (mMyGroup != null)
-                {
-                    int hashKey = mMyGroup.GetHashCode();
-                    writer.WriteString(hashKey.ToString());
-                    if (!LayerItem.sHashtableForGroupRebuilding.Contains(hashKey))
-                        LayerItem.sHashtableForGroupRebuilding.Add(hashKey, mMyGroup);
-                }
-                writer.WriteEndElement();
+				writeMyGroup(writer);
 			}
 
+			protected void writeMyGroup(System.Xml.XmlWriter writer)
+			{
+				writer.WriteStartElement("MyGroup");
+				if (mMyGroup != null)
+				{
+					writer.WriteString(mMyGroup.GetHashCode().ToString());
+					if (!LayerItem.sListForGroupSaving.Contains(mMyGroup))
+						LayerItem.sListForGroupSaving.Add(mMyGroup);
+				}
+				writer.WriteEndElement();
+			}
 			#endregion
 
 			#region selection
@@ -195,6 +204,23 @@ namespace BlueBrick.MapData
 		{
 			private List<LayerItem> mItems = new List<LayerItem>();
 
+			#region IXmlSerializable Members
+			public virtual void ReadXml(System.Xml.XmlReader reader)
+			{
+				reader.ReadStartElement();
+				readMyGroup(reader);
+			}
+
+			public virtual void WriteXml(System.Xml.XmlWriter writer)
+			{
+				writer.WriteStartElement("Group");
+				writer.WriteAttributeString("id", this.GetHashCode().ToString());
+				writeMyGroup(writer); // we just call the write of the group and not base.WriteXml because we don't need the display area for the group
+				writer.WriteEndElement();
+			}
+			#endregion
+
+			#region grouping management
 			public void addItem(LayerItem item)
 			{
 				mItems.Add(item);
@@ -218,7 +244,9 @@ namespace BlueBrick.MapData
 				foreach (LayerItem item in mItems)
 					item.Group = this;
 			}
+			#endregion
 
+			#region selection
 			public override void selectHierachycally(List<LayerItem> selectionList, bool addToSelection)
 			{
 				// call the same method on all the items of the group
@@ -226,6 +254,7 @@ namespace BlueBrick.MapData
 				foreach (LayerItem item in mItems)
 					item.selectHierachycally(selectionList, addToSelection);
 			}
+			#endregion
 		}
 
 
@@ -370,7 +399,7 @@ namespace BlueBrick.MapData
 		public abstract int getNbItems();
 		#endregion
 
-		#region IXmlSerializable Members
+		#region XmlSerializable Members
 
 		public System.Xml.Schema.XmlSchema GetSchema()
 		{
@@ -393,6 +422,33 @@ namespace BlueBrick.MapData
 
         public virtual void postReadXml(System.Xml.XmlReader reader)
         {
+			if (Map.DataVersionOfTheFileLoaded > 4)
+			{
+				// read the group to reconstruct the hierarchy
+				bool groupFound = reader.ReadToDescendant("Group");
+				while (groupFound)
+				{
+					// read the id of the current group
+					int groupId = int.Parse(reader.GetAttribute(0));
+					// look in the hastable if this group alread exists, else create it
+					Group currentGroup = LayerItem.sHashtableForGroupRebuilding[groupId] as Group;
+					if (currentGroup == null)
+					{
+						// instanciate a new group, and add it in the hash table
+						currentGroup = new Group();
+						LayerItem.sHashtableForGroupRebuilding.Add(groupId, currentGroup);
+					}
+
+					// then read the content of this group
+					currentGroup.ReadXml(reader);
+
+					// then read the next group
+					groupFound = reader.ReadToNextSibling("Group");
+				}
+				// read the Groups tag, to finish the list of group
+				reader.Read();
+			}
+
             // clear the hash table for group to free the memory after loading
             LayerItem.sHashtableForGroupRebuilding.Clear();
         }
@@ -400,8 +456,8 @@ namespace BlueBrick.MapData
 		public virtual void WriteXml(System.Xml.XmlWriter writer)
 		{
             // clear all the content of the hash table
-            LayerItem.sHashtableForGroupRebuilding.Clear();
-            // write the common properties
+			LayerItem.sListForGroupSaving.Clear();
+			// write the common properties
 			writer.WriteElementString("Name", mName);
 			writer.WriteElementString("Visible", mVisible.ToString().ToLower());
 			writer.WriteElementString("Transparency", mTransparency.ToString());
@@ -409,6 +465,22 @@ namespace BlueBrick.MapData
 
         public void postWriteXml(System.Xml.XmlWriter writer)
         {
+			writer.WriteStartElement("Groups");
+			// write the groups: we don't use a foreach because we will grow the list during iteration
+			for (int i = 0; i < LayerItem.sListForGroupSaving.Count; ++i)
+			{
+				// write the group
+				Group currentGroup = LayerItem.sListForGroupSaving[i];
+				currentGroup.WriteXml(writer);
+				// check if this group as a father and add it to the list
+				Group fatherGroup = currentGroup.Group;
+				if ((fatherGroup != null) && !LayerItem.sListForGroupSaving.Contains(fatherGroup))
+					LayerItem.sListForGroupSaving.Add(fatherGroup);
+			}
+			writer.WriteEndElement();
+
+			// clear the list after iteration
+			LayerItem.sListForGroupSaving.Clear();
         }
 		#endregion
 
