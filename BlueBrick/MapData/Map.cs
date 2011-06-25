@@ -409,17 +409,23 @@ namespace BlueBrick.MapData
 				mSelectedLayer = mLayers[selectedLayerIndex];
 			else
 				mSelectedLayer = null;
-			// read the url of all the parts for version 5 or later
-			if ((mDataVersionOfTheFileLoaded > 4) && !reader.IsEmptyElement)
+
+			// DO NOT READ YET THE BRICK URL LIST, BECAUSE THE BRICK DOWNLOAD FEATURE IS NOT READY
+			if (false)
 			{
-				bool urlFound = reader.ReadToDescendant("BrickUrl");
-				while (urlFound)
+				// read the url of all the parts for version 5 or later
+				if ((mDataVersionOfTheFileLoaded > 5) && !reader.IsEmptyElement)
 				{
-					// read the next url
-					urlFound = reader.ReadToNextSibling("BrickUrl");
+					bool urlFound = reader.ReadToDescendant("BrickUrl");
+					while (urlFound)
+					{
+						// read the next url
+						urlFound = reader.ReadToNextSibling("BrickUrl");
+					}
+					reader.ReadEndElement();
 				}
-				reader.ReadEndElement();
 			}
+
 			// construct the watermark
 			computeGeneralInfoWatermark();
 			// for old version, make disapear the progress bar, since it was just an estimation
@@ -485,30 +491,34 @@ namespace BlueBrick.MapData
 			}
 			writer.WriteEndElement();
 
-			// write the brick url for all the bricks in the map
-			writer.WriteStartElement("BrickUrlList");
-			// we use a hastable for fast hash search
-			System.Collections.Hashtable partList = new System.Collections.Hashtable();
-			foreach (Layer layer in mLayers)
-				if (layer.GetType().Name.Equals("LayerBrick"))
-					foreach (LayerBrick.Brick brick in (layer as LayerBrick).BrickList)
-						if (!partList.ContainsKey(brick.PartNumber))
-						{
-							// add the part in the hash map
-							partList.Add(brick.PartNumber, null);
-							// get the part from the Brick Library
-							string url = BrickLibrary.Instance.getImageURL(brick.PartNumber);
-							// serialize its url
-							if (url != null)
+			// DO NOT WRITE YET THE BRICK URL LIST, BECAUSE THE BRICK DOWNLOAD FEATURE IS NOT READY
+			if (false)
+			{
+				// write the brick url for all the bricks in the map
+				writer.WriteStartElement("BrickUrlList");
+				// we use a hastable for fast hash search
+				System.Collections.Hashtable partList = new System.Collections.Hashtable();
+				foreach (Layer layer in mLayers)
+					if (layer.GetType().Name.Equals("LayerBrick"))
+						foreach (LayerBrick.Brick brick in (layer as LayerBrick).BrickList)
+							if (!partList.ContainsKey(brick.PartNumber))
 							{
-								writer.WriteStartElement("BrickUrl");
-								writer.WriteAttributeString("id", brick.PartNumber);
-								writer.WriteAttributeString("official", "yes");
-								writer.WriteString(url);
-								writer.WriteEndElement();
+								// add the part in the hash map
+								partList.Add(brick.PartNumber, null);
+								// get the part from the Brick Library
+								string url = BrickLibrary.Instance.getImageURL(brick.PartNumber);
+								// serialize its url
+								if (url != null)
+								{
+									writer.WriteStartElement("BrickUrl");
+									writer.WriteAttributeString("id", brick.PartNumber);
+									writer.WriteAttributeString("official", "yes");
+									writer.WriteString(url);
+									writer.WriteEndElement();
+								}
 							}
-						}
-			writer.WriteEndElement();
+				writer.WriteEndElement();
+			}
 		}
 		#endregion
 
