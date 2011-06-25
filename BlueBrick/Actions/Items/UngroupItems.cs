@@ -22,6 +22,7 @@ namespace BlueBrick.Actions.Items
 	class UngroupItems : Action
 	{
 		List<Layer.Group> mGroupToUngroup = null;
+		Layer mLayer = null;
 
         public static List<Layer.Group> findItemsToUngroup(List<Layer.LayerItem> itemsToUngroup)
         {
@@ -50,9 +51,10 @@ namespace BlueBrick.Actions.Items
             return result;
         }
 
-		public UngroupItems(List<Layer.LayerItem> itemsToUngroup)
+		public UngroupItems(List<Layer.LayerItem> itemsToUngroup, Layer layer)
 		{
             mGroupToUngroup = findItemsToUngroup(itemsToUngroup);
+			mLayer = layer;
 		}
 
 		public override string getName()
@@ -72,6 +74,14 @@ namespace BlueBrick.Actions.Items
 			// reform the groups
 			foreach (Layer.Group group in mGroupToUngroup)
 				group.regroup();
+
+			// reselect the current selection, because the regroup may affect a currently selected item
+			// and if we don't reselect, we may end up with some items of the same group selected and some
+			// not selected. So by reselecting the current selection, the grouping links will ensure to have
+			// a correct status.
+			List<Layer.LayerItem> currentSelection = new List<Layer.LayerItem>(mLayer.SelectedObjects);
+			mLayer.clearSelection();
+			mLayer.addObjectInSelection(currentSelection);
 		}
 	}
 }
