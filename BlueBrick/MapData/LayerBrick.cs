@@ -887,6 +887,7 @@ namespace BlueBrick.MapData
 			}
 
 			#endregion
+
 			#region get image
 			/// <summary>
 			/// return the current image of the brick depending on it's mipmap level (LOD level)
@@ -987,7 +988,7 @@ namespace BlueBrick.MapData
 			mImageAttributeForSnapping.SetGamma(Properties.Settings.Default.GammaForSnappingPart);
 		}
 		#endregion
-		#region IXmlSerializable Members
+		#region XmlSerializable Members
 
 		public override void ReadXml(System.Xml.XmlReader reader)
 		{
@@ -1011,12 +1012,12 @@ namespace BlueBrick.MapData
 			}
 			// read the Bricks tag, to finish the list of brick
 			reader.Read();
+
+			// call the post read function to read the groups
+			postReadXml(reader);
 			
 			// clear again the hash table to free the memory after loading
 			Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
-
-            // call the post read function
-            postReadXml(reader);
 
 			// reconstruct the freeConnexion points list by iterating on all the connexion of all the bricks
 			mFreeConnectionPoints.removeAll();
@@ -1072,11 +1073,10 @@ namespace BlueBrick.MapData
 				// step the progress bar for each brick
 				MainForm.Instance.stepProgressBar();
 			}
-
-            // call the post write before closing the list
-            postWriteXml(writer);
-
 			writer.WriteEndElement();
+
+			// call the post write to write the group list
+			postWriteXml(writer);
 		}
 
 		#endregion
