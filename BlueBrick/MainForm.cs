@@ -1355,7 +1355,7 @@ namespace BlueBrick
                 string layerType = Map.Instance.SelectedLayer.GetType().Name;
                 if ((layerType == "LayerBrick") || (layerType == "LayerText"))
                 {
-                    Actions.Items.UngroupItems ungroupAction = new BlueBrick.Actions.Items.UngroupItems(Map.Instance.SelectedLayer.SelectedObjects);
+					Actions.Items.UngroupItems ungroupAction = new BlueBrick.Actions.Items.UngroupItems(Map.Instance.SelectedLayer.SelectedObjects, Map.Instance.SelectedLayer);
                     Actions.ActionManager.Instance.doAction(ungroupAction);
                 }
             }
