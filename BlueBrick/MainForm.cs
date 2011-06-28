@@ -1342,7 +1342,7 @@ namespace BlueBrick
                 string layerType = Map.Instance.SelectedLayer.GetType().Name;
                 if ((layerType == "LayerBrick") || (layerType == "LayerText"))
                 {
-                    Actions.Items.GroupItems groupAction = new BlueBrick.Actions.Items.GroupItems(Map.Instance.SelectedLayer.SelectedObjects);
+                    Actions.Items.GroupItems groupAction = new BlueBrick.Actions.Items.GroupItems(Map.Instance.SelectedLayer.SelectedObjects, Map.Instance.SelectedLayer);
                     Actions.ActionManager.Instance.doAction(groupAction);
                 }
             }

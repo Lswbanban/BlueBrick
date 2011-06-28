@@ -23,6 +23,7 @@ namespace BlueBrick.Actions.Items
 	{
 		List<Layer.LayerItem> mItemsToGroup = null;
 		Layer.Group mGroup = new Layer.Group();
+        Layer mLayer = null;
 
         /// <summary>
         /// From a list of items to group, find and construct the top items of the forest, such as
@@ -53,11 +54,12 @@ namespace BlueBrick.Actions.Items
             return result;
         }
 
-		public GroupItems(List<Layer.LayerItem> itemsToGroup)
+        public GroupItems(List<Layer.LayerItem> itemsToGroup, Layer layer)
 		{
             // save the item list but don't add them in the group in the constructor.
             // we do that in the redo. And we only group the top items of the tree.
             mItemsToGroup = findItemsToGroup(itemsToGroup);
+            mLayer = layer;
 		}
 
 		public override string getName()
@@ -70,6 +72,14 @@ namespace BlueBrick.Actions.Items
 			// add all the items in the group
 			foreach (Layer.LayerItem item in mItemsToGroup)
 				mGroup.addItem(item);
+
+            // reselect the current selection, because the regroup may affect a currently selected item
+            // and if we don't reselect, we may end up with some items of the same group selected and some
+            // not selected. So by reselecting the current selection, the grouping links will ensure to have
+            // a correct status.
+            List<Layer.LayerItem> currentSelection = new List<Layer.LayerItem>(mLayer.SelectedObjects);
+            mLayer.clearSelection();
+            mLayer.addObjectInSelection(currentSelection);
 		}
 
 		public override void undo()
