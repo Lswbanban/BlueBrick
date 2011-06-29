@@ -205,13 +205,13 @@ namespace BlueBrick.MapData
 			private List<LayerItem> mItems = new List<LayerItem>();
 
 			#region IXmlSerializable Members
-			public virtual void ReadXml(System.Xml.XmlReader reader)
+			public override void ReadXml(System.Xml.XmlReader reader)
 			{
 				reader.ReadStartElement();
 				readMyGroup(reader);
 			}
 
-			public virtual void WriteXml(System.Xml.XmlWriter writer)
+			public override void WriteXml(System.Xml.XmlWriter writer)
 			{
 				writer.WriteStartElement("Group");
 				writer.WriteAttributeString("id", this.GetHashCode().ToString());
