@@ -65,6 +65,18 @@ namespace BlueBrick
 			}
 		}
 
+		/// <summary>
+		///  This container is used during the loading of the part lib to store some info during loading
+		///  and finish the building after the loading is finished
+		/// </summary>
+		private class CategoryBuildingInfo
+		{
+			public ListView mListView = new ListView(); // the list view for this category folder
+			public List<Image> mImageList = new List<Image>(); // all the image not resized in this folder
+			public bool mRespectProportion = true; // the proportion flag for this category
+			public List<BrickLibrary.Brick> mGroupList = new List<BrickLibrary.Brick>(); // all the group parts in this folder
+		}
+
 		public PartLibraryPanel()
 		{
 			InitializeComponent();
@@ -143,19 +155,31 @@ namespace BlueBrick
 			DirectoryInfo partsFolder = new DirectoryInfo(Application.StartupPath + @"/parts");
 			if (partsFolder.Exists)
 			{
-				// create from the Settings a disctionary to store the display status of each tab
+				// create from the Settings a dictionary to store the display status of each tab
 				Dictionary<string, PartLibDisplaySetting> tabDisplayStatus = new Dictionary<string,PartLibDisplaySetting>();
 				foreach (string tabConfig in Settings.Default.UIPartLibDisplayConfig)
 					tabDisplayStatus.Add(tabConfig.Remove(tabConfig.Length - 2), new PartLibDisplaySetting(tabConfig[tabConfig.Length - 2] == '1', tabConfig[tabConfig.Length - 1] == '1'));
 
 				// get all the folders in the parts folder to create a tab for each folder found
 				DirectoryInfo[] categoryFolder = partsFolder.GetDirectories();
+
+				// create a list to store all the info necessary for the library building for each category
+				List<CategoryBuildingInfo> categoryList = new List<CategoryBuildingInfo>(categoryFolder.Length);
+
+				// iterate on each folder
 				foreach (DirectoryInfo category in categoryFolder)
 				{
 					// try to get the display setting or construct a default one
 					PartLibDisplaySetting displaySetting = null;
 					if (!tabDisplayStatus.TryGetValue(category.Name, out displaySetting))
 						displaySetting = new PartLibDisplaySetting(true, false);
+
+					// create a building info and add it to the list
+					CategoryBuildingInfo buildingInfo = new CategoryBuildingInfo();
+					categoryList.Add(buildingInfo);
+
+					// save the proportion flag in the building info
+					buildingInfo.mRespectProportion = displaySetting.mRespectProportion;
 
 					// add the tab in the tab control, based on the name of the folder
 					TabPage newTabPage = new TabPage(category.Name);
@@ -165,7 +189,7 @@ namespace BlueBrick
 
 					// then for the new tab added, we add a list control to 
 					// fill it with the pictures found in that folder
-					ListView newListView = new ListView();
+					ListView newListView = buildingInfo.mListView; // get a shortcut on the list view
 					// set the property of the list view
 					newListView.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 					newListView.Dock = DockStyle.Fill;
@@ -185,7 +209,17 @@ namespace BlueBrick
 					newTabPage.Controls.Add(newListView);
 
 					// fill the list view with the file name
-					fillListViewWithParts(newListView, category, displaySetting.mRespectProportion);
+					fillListViewWithParts(buildingInfo, category);
+				}
+
+				// reiterate on a second pass on all the list view, because we need to add the group parts
+				foreach (CategoryBuildingInfo buildingInfo in categoryList)
+				{
+					// add the group parts in the list view. We need to do it after parsing the whole library
+					// because a group part can reference any part in any folder
+					fillListViewWithGroups(buildingInfo);
+					// then fill the list view (we cannot pass the building info as parameter because this function is called elsewhere)
+					fillListViewFromImageList(buildingInfo.mListView, buildingInfo.mImageList, buildingInfo.mRespectProportion);
 				}
 
 				// after creating all the tabs, sort them according to the settings
@@ -193,17 +227,30 @@ namespace BlueBrick
 			}
 		}
 
-		private void fillListViewWithParts(ListView listViewToFill, DirectoryInfo folder, bool respectProportion)
+		private void addOnePartInListView(CategoryBuildingInfo buildingInfo, string partName, Bitmap image)
+        {
+            // create a new item for the list view item
+			ListViewItem newItem = new ListViewItem(null as string, buildingInfo.mImageList.Count);
+            newItem.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(partName,
+                                                        Settings.Default.PartLibBubbleInfoPartID,
+                                                        Settings.Default.PartLibBubbleInfoPartColor,
+                                                        Settings.Default.PartLibBubbleInfoPartDescription);
+            newItem.Tag = partName;
+			buildingInfo.mListView.Items.Add(newItem);
+
+			// add the image in the image list (after using the imageList.Count)
+			buildingInfo.mImageList.Add(image);
+        }
+
+		private void fillListViewWithParts(CategoryBuildingInfo buildingInfo, DirectoryInfo folder)
 		{
 			// create a list of image to load all the images in a list
-			List<Image> imageList = new List<Image>();
 			List<FileNameWithException> imageFileUnloadable = new List<FileNameWithException>();
 			List<FileNameWithException> xmlFileUnloadable = new List<FileNameWithException>();
 			List<string> xmlFileLoaded = new List<string>();
 
 			// get the list of image in the folder
 			FileInfo[] imageFiles = folder.GetFiles("*.gif");
-			int imageIndex = 0;
 			foreach (FileInfo file in imageFiles)
 			{
 				try
@@ -226,18 +273,8 @@ namespace BlueBrick
 						// put the image in the database
 						BrickLibrary.Instance.AddBrick(name, image, xmlFileName);
 
-						// add the image in the image list
-						imageList.Add(image);
-
-						// create a new item for the list view item
-						ListViewItem newItem = new ListViewItem(null as string, imageIndex);
-						newItem.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(name,
-																	Settings.Default.PartLibBubbleInfoPartID,
-																	Settings.Default.PartLibBubbleInfoPartColor,
-																	Settings.Default.PartLibBubbleInfoPartDescription);
-						newItem.Tag = name;
-						listViewToFill.Items.Add(newItem);
-						imageIndex++;
+                        // add this part into the listview
+						addOnePartInListView(buildingInfo, name, image);
 					}
 					catch (Exception e)
 					{
@@ -263,8 +300,13 @@ namespace BlueBrick
 					{
 						// get the name without extension and use upper case
 						string name = file.Name.Substring(0, file.Name.Length - 4).ToUpper();
-						// and add the brick with a null image
-						BrickLibrary.Instance.AddBrick(name, null, file.FullName);
+
+                        // add the brick in the library
+                        BrickLibrary.Brick brickAdded = BrickLibrary.Instance.AddBrick(name, null, file.FullName);
+
+                        // if the image is a group, add it to the group list
+                        if (brickAdded.IsAGroup)
+							buildingInfo.mGroupList.Add(brickAdded);
 					}
 				}
 				catch (Exception e)
@@ -308,10 +350,23 @@ namespace BlueBrick
 				LoadErrorForm messageBox = new LoadErrorForm(Properties.Resources.ErrorMsgTitleWarning, message, details);
 				messageBox.Show();
 			}
-
-			// then fill the list view
-			fillListViewFromImageList(listViewToFill, imageList, respectProportion);
 		}
+
+		private void fillListViewWithGroups(CategoryBuildingInfo buildingInfo)
+        {
+			// do a third pass to generate and add the group parts in the library
+			// we need to do it in a third pass in order to have read all the group xml files
+			foreach (BrickLibrary.Brick group in buildingInfo.mGroupList)
+			{
+				// generate the image for the group
+				if (BrickLibrary.Instance.createGroupImage(group))
+				{
+					// add this brick in the list view
+					addOnePartInListView(buildingInfo, group.mPartNumber, group.Image as Bitmap);
+				}
+			}
+
+        }
 
 		private void fillListViewFromImageList(ListView listViewToFill, List<Image> imageList, bool respectProportion)
 		{
