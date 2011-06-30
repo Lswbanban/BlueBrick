@@ -223,18 +223,33 @@ namespace BlueBrick.MapData
 			public string			mImageURL = null; // the URL on internet of the image for part list export in HTML
 			public string			mDescription = BlueBrick.Properties.Resources.TextUnknown; // the description of the part in the current language of the application
 			public string			mPartNumber = null; // the part number (same as the key in the dictionnary), usefull in case of part renaming
-			public Image			mImage = null;	// the image of the brick just as it is loaded from the hardrive. If null, the brick is ignored by BlueBrick.
+			private Image			mImage = null;	// the image of the brick just as it is loaded from the hardrive. If null, the brick is ignored by BlueBrick.
 			public Margin			mSnapMargin = new Margin(); // the the inside margin that should be use for snapping the part on the grid
 			public List<ConnectionPoint> mConnectionPoints = null; // all the information for each connection
 			public List<ElectricCircuit> mElectricCircuitList = null; // the list of all the electric circuit for this brick (if any)
 			public List<PointF>		mConnectionPositionList = null; // for optimization reason, the positions of the connections are also saved into a list
-			public List<PointF>		mBoundingBox = new List<PointF>(5); // list of the 4 corner in pixel
+			public List<PointF>		mBoundingBox = new List<PointF>(4); // list of the 4 corner in pixel
 			public List<PointF>		mHull = new List<PointF>(4); // list of all the points in pixel that describe the hull of the part
             public List<SubPart>    mGroupSubPartList = null; // if this brick is a group, list of all the parts belonging to this group
 			public TDRemapData		mTDRemapData = null;
 			public LDrawRemapData	mLDrawRemapData = null;
 
 			#region get/set
+            public Image Image
+            {
+                get { return mImage; }
+                set
+                {
+                    mImage = value;
+                    // create the bounding box list (usefull for the creation of the rotated parts)
+                    // mImage is not null at this point, but the ref param image can still be null
+                    mBoundingBox.Add(new PointF(0, 0));
+                    mBoundingBox.Add(new PointF((float)(value.Width), 0));
+                    mBoundingBox.Add(new PointF(0, (float)(value.Height)));
+                    mBoundingBox.Add(new PointF((float)(value.Width), (float)(value.Height)));
+                }
+            }
+
 			/// <summary>
 			/// An ignorable brick is a brick not visible in the part library for the user, and also
 			/// not displayed on the layout as an unknown part. This is basically a part that is invisible to
@@ -244,9 +259,25 @@ namespace BlueBrick.MapData
 			{
                 get { return (mBrickType == BrickType.IGNORABLE); }
 			}
-			#endregion
 
-			public Brick(string partNumber, Image image, string xmlFileName, Dictionary<string, int> connectionRemapingDictionary)
+            /// <summary>
+            /// This property tells if this part is a group, meaning is compounds of sub parts from the library
+            /// </summary>
+            public bool IsAGroup
+            {
+                get { return ((mBrickType == BrickType.OPEN_GROUP) || (mBrickType == BrickType.SEALED_GROUP)); }
+            }
+
+            /// <summary>
+            /// This property tells if this part is a group part that can be ungrouped
+            /// </summary>
+            public bool CanUngroup
+            {
+                get { return (mBrickType == BrickType.OPEN_GROUP); }
+            }
+            #endregion
+
+            public Brick(string partNumber, Image image, string xmlFileName, Dictionary<string, int> connectionRemapingDictionary)
 			{
                 // a flag to tell if this part is a group (we'll know it by reading the XML file)
                 bool isGroupPart = false;
@@ -324,33 +355,22 @@ namespace BlueBrick.MapData
                 // check if the image given in parameter is not null. This can happen if we only find an xml file
                 // without a GIF file, and this happen in two situation: either it's a part that should be ignored
                 // or it is a group part. In either we try to create a valid image
-                if (image == null)
+                if (image != null)
                 {
-                    if (isGroupPart)
-                    {
-                        image = BrickLibrary.Instance.createGroupImage(this);
-                        // the brick type was set during the loading
-                    }
-                    else
+                    // assign the image if not null (this is a normal part)
+                    this.Image = image;
+                }
+                else
+                {
+                    // if the image is null check if it is a group or an ignorable part
+                    // and leave the mImage null by default
+                    if (!isGroupPart)
                     {
                         // if the image is null for a normal brick, this brick should be ignored by BlueBrick
                         // The ignore bricks have different meaning than the unknown bricks
                         // if the brick should be ignored, set the brick type and create a dummy small image
-                        image = new Bitmap(1, 1);
                         mBrickType = Brick.BrickType.IGNORABLE;
                     }
-                }
-
-                // assign the image that can still be null for a group whose compounds parts are not loaded yet 
-                mImage = image;
-
-				// create the bounding box list (usefull for the creation of the rotated parts)
-                if (image != null)
-                {
-                    mBoundingBox.Add(new PointF(0, 0));
-                    mBoundingBox.Add(new PointF((float)(image.Width), 0));
-                    mBoundingBox.Add(new PointF(0, (float)(image.Height)));
-                    mBoundingBox.Add(new PointF((float)(image.Width), (float)(image.Height)));
                 }
 									
 				// If there's no hull, we use the bounding box as a default hull
@@ -812,8 +832,44 @@ namespace BlueBrick.MapData
             {
                 if (!xmlReader.IsEmptyElement)
                 {
-                    // TODO
-                    xmlReader.Read();
+                    // start to read the subpart
+                    bool subpartFound = xmlReader.ReadToDescendant("SubPart");
+                    if (subpartFound)
+                        mGroupSubPartList = new List<SubPart>();
+
+                    while (subpartFound)
+                    {
+                        // instanciate a sub part for the current one read
+                        SubPart subPart = new SubPart();
+
+                        // read the id of the sub part
+                        subPart.mSubPartNumber = xmlReader.GetAttribute("id");
+
+                        // read the first child node of the connexion
+                        xmlReader.Read();
+                        bool continueToReadSubPart = (subPart.mSubPartNumber.Length > 0);
+                        while (continueToReadSubPart)
+                        {
+                            if (xmlReader.Name.Equals("position"))
+                                subPart.mPosition = readPointTag(ref xmlReader, "position");
+                            else if (xmlReader.Name.Equals("angle"))
+                                subPart.mAngle = xmlReader.ReadElementContentAsFloat();
+                            else
+                                xmlReader.Read();
+                            // check if we reach the end of the connexion
+                            continueToReadSubPart = !xmlReader.Name.Equals("SubPart") && !xmlReader.EOF;
+                        }
+
+                        // add the current connexion in the list
+                        if (subPart.mSubPartNumber.Length > 0)
+                            mGroupSubPartList.Add(subPart);
+
+                        // go to next connexion
+                        subpartFound = !xmlReader.EOF && xmlReader.ReadToNextSibling("SubPart");
+                    }
+                    // finish the connexion
+                    if (!xmlReader.EOF)
+                        xmlReader.ReadEndElement();
                 }
                 else
                 {
@@ -1249,12 +1305,12 @@ namespace BlueBrick.MapData
         /// create a image from the parts of the group
         /// </summary>
         /// <param name="group">the brick representing the group in the library</param>
-        /// <returns>the new image or null if the image cannot be created</returns>
-        public Bitmap createGroupImage(Brick group)
+        /// <returns>True if the image of the group can sucessfully be created</returns>
+        public bool createGroupImage(Brick group)
         {
             // do nothing if the specified brick is not a group
             if (group.mBrickType != Brick.BrickType.OPEN_GROUP && group.mBrickType != Brick.BrickType.SEALED_GROUP)
-                return null;
+                return false;
 
             // declare 4 variable to get the bounding box of the group part (in stud)
             float minX = float.MaxValue;
@@ -1288,7 +1344,7 @@ namespace BlueBrick.MapData
                 }
                 else
                 {
-                    return null;
+                    return false;
                 }
             }
 			// create a new image with the correct size
@@ -1296,9 +1352,9 @@ namespace BlueBrick.MapData
             int height = (int)((maxY - minY) * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
             if ((width > 0) && (height > 0))
             {
-                Bitmap image = new Bitmap(width, height);
+                group.Image = new Bitmap(width, height);
                 // get the graphic context and draw the referenc image in it with the correct transform and scale
-                Graphics graphics = Graphics.FromImage(image);
+                Graphics graphics = Graphics.FromImage(group.Image);
                 graphics.Clear(Color.Transparent);
                 graphics.CompositingMode = CompositingMode.SourceCopy; // this should be enough since we draw the image on an empty transparent area
                 graphics.SmoothingMode = SmoothingMode.HighQuality;
@@ -1307,12 +1363,12 @@ namespace BlueBrick.MapData
                 foreach (Brick.SubPart subPart in group.mGroupSubPartList)
                 {
                     graphics.Transform = subPart.mTransform;
-                    graphics.DrawImage(subPart.mSubPartBrick.mImage, 0, 0, subPart.mSubPartBrick.mImage.Width, subPart.mSubPartBrick.mImage.Height);
+                    graphics.DrawImage(subPart.mSubPartBrick.Image, 0, 0, subPart.mSubPartBrick.Image.Width, subPart.mSubPartBrick.Image.Height);
                 }
                 graphics.Flush();
-                return image;
+                return true;
             }
-            return null;
+            return false;
         }
 
 		/// <summary>
@@ -1352,22 +1408,28 @@ namespace BlueBrick.MapData
 			mWereUnknownBricksAdded = true;
 		}
 
-		public void AddBrick(string partNumber, Image image, string xmlFileName)
+        public Brick AddBrick(string partNumber, Image image, string xmlFileName)
 		{
-			// instanciate the brick and add it into the dictionnary
-            Brick brick = new Brick(partNumber, image, xmlFileName, mConnectionTypeRemapingDictionnary);
-			// if the creation of the brick launch an exception it will be catched by the calling function.
-			try
-			{
-				mBrickDictionary.Add(partNumber, brick);
-				// add also the link between the TD number and the BB number if there is an available TD remap data
-				if (brick.mTDRemapData != null)
-					brick.mTDRemapData.mTDId.addToAssociationDictionnary(mTrackDesignerPartNumberAssociation, brick);
-			}
-			catch
-			{
-				// we don't care if there is already a part mapped
-			}
+            // check if the brick was not already added
+            Brick brick = null;
+            if (!mBrickDictionary.TryGetValue(partNumber, out brick))
+            {
+                // instanciate the brick and add it into the dictionnary
+                brick = new Brick(partNumber, image, xmlFileName, mConnectionTypeRemapingDictionnary);
+                // if the creation of the brick launch an exception it will be catched by the calling function.
+                try
+                {
+                    mBrickDictionary.Add(partNumber, brick);
+                    // add also the link between the TD number and the BB number if there is an available TD remap data
+                    if (brick.mTDRemapData != null)
+                        brick.mTDRemapData.mTDId.addToAssociationDictionnary(mTrackDesignerPartNumberAssociation, brick);
+                }
+                catch
+                {
+                    // we don't care if there is already a part mapped
+                }
+            }
+            return brick;
 		}
 
 		public Image getImage(string partNumber, ref List<PointF> boundingBox, ref List<PointF> hull)
@@ -1378,7 +1440,7 @@ namespace BlueBrick.MapData
 			{
 				boundingBox = brickRef.mBoundingBox;
 				hull = brickRef.mHull;
-				return brickRef.mImage;
+				return brickRef.Image;
 			}
 			boundingBox = null;
 			hull = null;
@@ -1390,7 +1452,7 @@ namespace BlueBrick.MapData
 			Brick brickRef = null;
 			mBrickDictionary.TryGetValue(partNumber, out brickRef);
 			if (brickRef != null)
-				return brickRef.mImage;
+				return brickRef.Image;
 			return null;
 		}
 
