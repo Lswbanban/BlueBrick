@@ -1306,11 +1306,22 @@ namespace BlueBrick.MapData
         /// </summary>
         /// <param name="group">the brick representing the group in the library</param>
         /// <returns>True if the image of the group can sucessfully be created</returns>
-        public bool createGroupImage(Brick group)
+        public void createGroupImage(Brick group)
         {
-            // do nothing if the specified brick is not a group
-            if (group.mBrickType != Brick.BrickType.OPEN_GROUP && group.mBrickType != Brick.BrickType.SEALED_GROUP)
-                return false;
+			// check if this group already has an image, in that case it was created while creating the image
+			// of an upper group. So in that case we don't need to recreate it
+			if (group.Image == null)
+				createGroupImageRecursive(group, new List<Brick>());
+		}
+
+		private void createGroupImageRecursive(Brick group, List<Brick> parentGroups)
+		{
+			if (group.mGroupSubPartList.Count == 0)
+				throw new Exception("The group is empty. The tag <SubPartList> cannot be empty.");
+
+			// check if we have a cyclic group
+			if (parentGroups.Contains(group))
+				throw new Exception("Cyclic group detected. The group contains itself in its list or contains another group that contains it.");
 
             // declare 4 variable to get the bounding box of the group part (in stud)
             float minX = float.MaxValue;
@@ -1323,6 +1334,14 @@ namespace BlueBrick.MapData
                 // try to get the part from the library, otherwise add an unknown image
                 if (!mBrickDictionary.TryGetValue(subPart.mSubPartNumber, out subPart.mSubPartBrick))
 					subPart.mSubPartBrick = AddUnknownBrick(subPart.mSubPartNumber, 32, 32);
+
+				// check if the current sub part is a group not yet created in that case call the function recursively
+				if ((subPart.mSubPartBrick.IsAGroup) && (subPart.mSubPartBrick.Image == null))
+				{
+					List<Brick> newParentGroups = new List<Brick>(parentGroups);
+					newParentGroups.Add(group);
+					createGroupImageRecursive(subPart.mSubPartBrick, newParentGroups);
+				}
 
 				// create the transform
 		        subPart.mTransform = new Matrix();
@@ -1366,25 +1385,27 @@ namespace BlueBrick.MapData
 			// create a new image with the correct size
 			int width = (int)(maxX - minX);
             int height = (int)(maxY - minY);
-            if ((width > 0) && (height > 0))
-            {
-                group.Image = new Bitmap(width, height);
-                // get the graphic context and draw the referenc image in it with the correct transform and scale
-                Graphics graphics = Graphics.FromImage(group.Image);
-                graphics.Clear(Color.Transparent);
-                graphics.CompositingMode = CompositingMode.SourceCopy; // this should be enough since we draw the image on an empty transparent area
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                graphics.CompositingQuality = CompositingQuality.HighSpeed;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
-                foreach (Brick.SubPart subPart in group.mGroupSubPartList)
-                {
-                    graphics.Transform = subPart.mTransform;
-                    graphics.DrawImage(subPart.mSubPartBrick.Image, 0, 0, subPart.mSubPartBrick.Image.Width, subPart.mSubPartBrick.Image.Height);
-                }
-                graphics.Flush();
-                return true;
-            }
-            return false;
+			if ((width > 0) && (height > 0))
+			{
+				group.Image = new Bitmap(width, height);
+				// get the graphic context and draw the referenc image in it with the correct transform and scale
+				Graphics graphics = Graphics.FromImage(group.Image);
+				graphics.Clear(Color.Transparent);
+				graphics.CompositingMode = CompositingMode.SourceCopy; // this should be enough since we draw the image on an empty transparent area
+				graphics.SmoothingMode = SmoothingMode.HighQuality;
+				graphics.CompositingQuality = CompositingQuality.HighSpeed;
+				graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
+				foreach (Brick.SubPart subPart in group.mGroupSubPartList)
+				{
+					graphics.Transform = subPart.mTransform;
+					graphics.DrawImage(subPart.mSubPartBrick.Image, 0, 0, subPart.mSubPartBrick.Image.Width, subPart.mSubPartBrick.Image.Height);
+				}
+				graphics.Flush();
+			}
+			else
+			{
+				throw new Exception("The group is too small to be visible.");
+			}
         }
 
 		/// <summary>
