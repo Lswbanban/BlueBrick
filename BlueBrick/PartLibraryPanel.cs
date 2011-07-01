@@ -155,6 +155,10 @@ namespace BlueBrick
 			DirectoryInfo partsFolder = new DirectoryInfo(Application.StartupPath + @"/parts");
 			if (partsFolder.Exists)
 			{
+				// create two list to record the exception thrown by some files
+				List<FileNameWithException> imageFileUnloadable = new List<FileNameWithException>();
+				List<FileNameWithException> xmlFileUnloadable = new List<FileNameWithException>();
+
 				// create from the Settings a dictionary to store the display status of each tab
 				Dictionary<string, PartLibDisplaySetting> tabDisplayStatus = new Dictionary<string,PartLibDisplaySetting>();
 				foreach (string tabConfig in Settings.Default.UIPartLibDisplayConfig)
@@ -209,7 +213,7 @@ namespace BlueBrick
 					newTabPage.Controls.Add(newListView);
 
 					// fill the list view with the file name
-					fillListViewWithParts(buildingInfo, category);
+					fillListViewWithParts(buildingInfo, category, imageFileUnloadable, xmlFileUnloadable);
 				}
 
 				// reiterate on a second pass on all the list view, because we need to add the group parts
@@ -217,13 +221,54 @@ namespace BlueBrick
 				{
 					// add the group parts in the list view. We need to do it after parsing the whole library
 					// because a group part can reference any part in any folder
-					fillListViewWithGroups(buildingInfo);
+					fillListViewWithGroups(buildingInfo, imageFileUnloadable, xmlFileUnloadable);
 					// then fill the list view (we cannot pass the building info as parameter because this function is called elsewhere)
 					fillListViewFromImageList(buildingInfo.mListView, buildingInfo.mImageList, buildingInfo.mRespectProportion);
 				}
 
+				// after the loading is finished eventually display the error messages
+				displayErrorMessage(imageFileUnloadable, xmlFileUnloadable);
+
 				// after creating all the tabs, sort them according to the settings
 				updateAppearanceAccordingToSettings(true, false, false);
+			}
+		}
+
+		private void displayErrorMessage(List<FileNameWithException> imageFileUnloadable, List<FileNameWithException> xmlFileUnloadable)
+		{
+			// check if there was some error with some files
+			string message = null;
+			string details = "";
+			if (imageFileUnloadable.Count > 0)
+			{
+				// display a warning message
+				message = Properties.Resources.ErrorMsgCanNotLoadImage;
+				foreach (FileNameWithException error in imageFileUnloadable)
+				{
+					message += "\n" + error.mFilename;
+					details += error.ShortFileName + ":\r\n" + error.mException + "\r\n\r\n";
+				}
+			}
+			if (xmlFileUnloadable.Count > 0)
+			{
+				if (message == null)
+					message = "";
+				else
+					message += "\n\n";
+				// display a warning message
+				message += Properties.Resources.ErrorMsgCanNotLoadPartXML;
+				foreach (FileNameWithException error in xmlFileUnloadable)
+				{
+					message += "\n" + error.mFilename;
+					details += error.ShortFileName + ":\r\n" + error.mException + "\r\n\r\n";
+				}
+			}
+
+			// display the error message if there was some errors
+			if (message != null)
+			{
+				LoadErrorForm messageBox = new LoadErrorForm(Properties.Resources.ErrorMsgTitleWarning, message, details);
+				messageBox.Show();
 			}
 		}
 
@@ -242,11 +287,9 @@ namespace BlueBrick
 			buildingInfo.mImageList.Add(image);
         }
 
-		private void fillListViewWithParts(CategoryBuildingInfo buildingInfo, DirectoryInfo folder)
+		private void fillListViewWithParts(CategoryBuildingInfo buildingInfo, DirectoryInfo folder, List<FileNameWithException> imageFileUnloadable, List<FileNameWithException> xmlFileUnloadable)
 		{
-			// create a list of image to load all the images in a list
-			List<FileNameWithException> imageFileUnloadable = new List<FileNameWithException>();
-			List<FileNameWithException> xmlFileUnloadable = new List<FileNameWithException>();
+			// create a list of image to remember which images were loaded
 			List<string> xmlFileLoaded = new List<string>();
 
 			// get the list of image in the folder
@@ -315,57 +358,27 @@ namespace BlueBrick
 					xmlFileUnloadable.Add(new FileNameWithException(file.FullName, e.Message));
 				}
 			}
-
-			// check if there was some error with some files
-			string message = null;
-			string details = "";
-			if (imageFileUnloadable.Count > 0)
-			{
-				// display a warning message
-				message = Properties.Resources.ErrorMsgCanNotLoadImage;
-				foreach (FileNameWithException error in imageFileUnloadable)
-				{
-					message += "\n" + error.mFilename;
-					details += error.ShortFileName + ":\r\n" + error.mException + "\r\n\r\n";
-				}
-			}
-			if (xmlFileUnloadable.Count > 0)
-			{
-				if (message == null)
-					message = "";
-				else
-					message += "\n\n";
-				// display a warning message
-				message += Properties.Resources.ErrorMsgCanNotLoadPartXML;
-				foreach (FileNameWithException error in xmlFileUnloadable)
-				{
-					message += "\n" + error.mFilename;
-					details += error.ShortFileName + ":\r\n" + error.mException + "\r\n\r\n";
-				}
-			}
-
-			// display the error message if there was some errors
-			if (message != null)
-			{
-				LoadErrorForm messageBox = new LoadErrorForm(Properties.Resources.ErrorMsgTitleWarning, message, details);
-				messageBox.Show();
-			}
 		}
 
-		private void fillListViewWithGroups(CategoryBuildingInfo buildingInfo)
+		private void fillListViewWithGroups(CategoryBuildingInfo buildingInfo, List<FileNameWithException> imageFileUnloadable, List<FileNameWithException> xmlFileUnloadable)
         {
 			// do a third pass to generate and add the group parts in the library
 			// we need to do it in a third pass in order to have read all the group xml files
 			foreach (BrickLibrary.Brick group in buildingInfo.mGroupList)
 			{
-				// generate the image for the group
-				if (BrickLibrary.Instance.createGroupImage(group))
+				try
 				{
+					// generate the image for the group
+					BrickLibrary.Instance.createGroupImage(group);
 					// add this brick in the list view
 					addOnePartInListView(buildingInfo, group.mPartNumber, group.Image as Bitmap);
 				}
+				catch (Exception e)
+				{
+					// add the group that can't be loaded in the list of problems (cyclic group for example)
+					xmlFileUnloadable.Add(new FileNameWithException(group.mPartNumber + ".xml", e.Message));
+				}
 			}
-
         }
 
 		private void fillListViewFromImageList(ListView listViewToFill, List<Image> imageList, bool respectProportion)
