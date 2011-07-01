@@ -653,7 +653,7 @@ namespace BlueBrick.MapData
 			#endregion
 
 			#region update method
-			private PointF getMinMaxAndSize(PointF[] points, ref PointF min, ref PointF max)
+			static public PointF sGetMinMaxAndSize(PointF[] points, ref PointF min, ref PointF max)
 			{
 				min = points[0];
 				max = points[0];
@@ -693,7 +693,7 @@ namespace BlueBrick.MapData
 				// get the min, max and the size of the bounding box
 				PointF boundingMin = new PointF();
 				PointF boundingMax = new PointF();
-				PointF boundingSize = getMinMaxAndSize(boundingPoints, ref boundingMin, ref boundingMax);
+				PointF boundingSize = sGetMinMaxAndSize(boundingPoints, ref boundingMin, ref boundingMax);
 
 				// check if this picture has a specific hull
 				if (hull != boundingBox)
@@ -704,7 +704,7 @@ namespace BlueBrick.MapData
 
 					PointF hullMin = new PointF();
 					PointF hullMax = new PointF();
-					PointF hullSize = getMinMaxAndSize(hullPoints, ref hullMin, ref hullMax);
+					PointF hullSize = sGetMinMaxAndSize(hullPoints, ref hullMin, ref hullMax);
 
 					// compute the offset between the hull and the normal bounding box
 					PointF deltaMin = new PointF(boundingMin.X - hullMin.X, boundingMin.Y - hullMin.Y);
