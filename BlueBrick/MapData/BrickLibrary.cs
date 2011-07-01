@@ -1320,43 +1320,39 @@ namespace BlueBrick.MapData
             // iterate on the bricks to compute the size of the image
             foreach (Brick.SubPart subPart in group.mGroupSubPartList)
             {
-                // try to get the part from the library, otherwise it's impossible to build group image
-                if (mBrickDictionary.TryGetValue(subPart.mSubPartNumber, out subPart.mSubPartBrick))
-                {
-			        // create the transform
-			        subPart.mTransform = new Matrix();
-			        subPart.mTransform.Rotate(subPart.mAngle);
-                    // transform the bounding box (which is in pixel)
-                    PointF[] hullPoints = subPart.mSubPartBrick.mHull.ToArray();
-					subPart.mTransform.TransformVectors(hullPoints);
-					// get the local min and max for this sub part
-					PointF hullMin = new PointF();
-					PointF hullMax = new PointF();
-					PointF hullHalfSize = LayerBrick.Brick.sGetMinMaxAndSize(hullPoints, ref hullMin, ref hullMax);
-					hullHalfSize.X *= 0.5f;
-					hullHalfSize.Y *= 0.5f;
-					// compute the part translation in pixel
-					float translateX = (subPart.mPosition.X * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
-					float translateY = (subPart.mPosition.Y * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
-					// compute the hull min and max inside the whole group (so with the translation of the part)
-					PointF hullMinInsideGroup = new PointF(translateX - hullHalfSize.X, translateY - hullHalfSize.Y);
-					PointF hullMaxInsideGroup = new PointF(translateX + hullHalfSize.X, translateY + hullHalfSize.Y);
-					// add the part transaltion to the transform
-					subPart.mTransform.Translate(hullMinInsideGroup.X - hullMin.X, hullMinInsideGroup.Y - hullMin.Y, MatrixOrder.Append);
-					// check the local min and max with the global ones
-					if (hullMinInsideGroup.X < minX)
-						minX = hullMinInsideGroup.X;
-					if (hullMaxInsideGroup.X > maxX)
-						maxX = hullMaxInsideGroup.X;
-					if (hullMinInsideGroup.Y < minY)
-						minY = hullMinInsideGroup.Y;
-					if (hullMaxInsideGroup.Y > maxY)
-						maxY = hullMaxInsideGroup.Y;
-				}
-                else
-                {
-                    return false;
-                }
+                // try to get the part from the library, otherwise add an unknown image
+                if (!mBrickDictionary.TryGetValue(subPart.mSubPartNumber, out subPart.mSubPartBrick))
+					subPart.mSubPartBrick = AddUnknownBrick(subPart.mSubPartNumber, 32, 32);
+
+				// create the transform
+		        subPart.mTransform = new Matrix();
+		        subPart.mTransform.Rotate(subPart.mAngle);
+                // transform the bounding box (which is in pixel)
+                PointF[] hullPoints = subPart.mSubPartBrick.mHull.ToArray();
+				subPart.mTransform.TransformVectors(hullPoints);
+				// get the local min and max for this sub part
+				PointF hullMin = new PointF();
+				PointF hullMax = new PointF();
+				PointF hullHalfSize = LayerBrick.Brick.sGetMinMaxAndSize(hullPoints, ref hullMin, ref hullMax);
+				hullHalfSize.X *= 0.5f;
+				hullHalfSize.Y *= 0.5f;
+				// compute the part translation in pixel
+				float translateX = (subPart.mPosition.X * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
+				float translateY = (subPart.mPosition.Y * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
+				// compute the hull min and max inside the whole group (so with the translation of the part)
+				PointF hullMinInsideGroup = new PointF(translateX - hullHalfSize.X, translateY - hullHalfSize.Y);
+				PointF hullMaxInsideGroup = new PointF(translateX + hullHalfSize.X, translateY + hullHalfSize.Y);
+				// add the part transaltion to the transform
+				subPart.mTransform.Translate(hullMinInsideGroup.X - hullMin.X, hullMinInsideGroup.Y - hullMin.Y, MatrixOrder.Append);
+				// check the local min and max with the global ones
+				if (hullMinInsideGroup.X < minX)
+					minX = hullMinInsideGroup.X;
+				if (hullMaxInsideGroup.X > maxX)
+					maxX = hullMaxInsideGroup.X;
+				if (hullMinInsideGroup.Y < minY)
+					minY = hullMinInsideGroup.Y;
+				if (hullMaxInsideGroup.Y > maxY)
+					maxY = hullMaxInsideGroup.Y;
             }
 			// add the translation of the real center of the part relative to the origin used in the
 			// declaration of group in the XML: in the xml file, each sub part has a position relative
@@ -1416,7 +1412,7 @@ namespace BlueBrick.MapData
 			return partNumber;
 		}
 
-		public void AddUnknownBrick(string partNumber, int widthInStud, int heightInStud)
+		public Brick AddUnknownBrick(string partNumber, int widthInStud, int heightInStud)
 		{
 			if (widthInStud <= 0)
 				widthInStud = 32;
@@ -1426,6 +1422,7 @@ namespace BlueBrick.MapData
 			Brick brick = new Brick(partNumber, unknownImage, null, mConnectionTypeRemapingDictionnary);
 			mBrickDictionary.Add(partNumber, brick);
 			mWereUnknownBricksAdded = true;
+			return brick;
 		}
 
         public Brick AddBrick(string partNumber, Image image, string xmlFileName)
