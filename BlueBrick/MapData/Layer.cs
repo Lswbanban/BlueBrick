@@ -42,9 +42,19 @@ namespace BlueBrick.MapData
 			public static List<Group> sListForGroupSaving = new List<Group>(); // this list is used during the saving of BBM file to save all the grouping hierarchy
 
 			protected RectangleF mDisplayArea = new RectangleF(); // in stud coordinate
+			protected float mOrientation = 0;	// in degree
 			protected Group mMyGroup = null; // the group in which this item is
 
 			#region get/set
+			/// <summary>
+			/// Get or set the orientation of the Item
+			/// </summary>
+			public float Orientation
+			{
+				get { return mOrientation; }
+				set { mOrientation = value; }
+			}
+
 			/// <summary>
 			///	Set the position in stud coord. The position of a brick is its top left corner.
 			/// </summary>
@@ -106,6 +116,15 @@ namespace BlueBrick.MapData
 			{
 				get { return mMyGroup; }
 				set { mMyGroup = value; }
+			}
+
+			/// <summary>
+			/// This property tells if this Item is a group or not.
+			/// This property is overriden by the group class.
+			/// </summary>
+			public virtual bool IsAGroup
+			{
+				get { return false; }
 			}
 			#endregion
 
@@ -204,6 +223,67 @@ namespace BlueBrick.MapData
 		{
 			private List<LayerItem> mItems = new List<LayerItem>();
 
+			#region get/set
+			public override bool IsAGroup
+			{
+				get { return true; }
+			}
+
+			/// <summary>
+			/// Set the position via the center of the object in stud coord.
+			/// </summary>
+			public new PointF Center
+			{
+				get
+				{
+					return new PointF(mDisplayArea.X + (mDisplayArea.Width / 2), mDisplayArea.Y + (mDisplayArea.Height / 2));
+				}
+
+				set
+				{
+					// compute the new values
+					float newX = value.X - (mDisplayArea.Width / 2);
+					float newY = value.Y - (mDisplayArea.Height / 2);
+					// compute the difference
+					PointF diff = new PointF(newX - mDisplayArea.X, newY - mDisplayArea.Y);
+					// change the center of the group
+					mDisplayArea.X = newX;
+					mDisplayArea.Y = newY;
+					// add a shift for all the items of the group
+					foreach (Layer.LayerItem item in mItems)
+					{
+						PointF newCenter = item.Center;
+						newCenter.X += diff.X;
+						newCenter.Y += diff.Y;
+						item.Center = newCenter;
+					}
+				}
+			}
+			#endregion
+
+			#region constructor
+			public Group()
+			{
+			}
+			
+			public Group(string groupName)
+			{
+				List<BrickLibrary.Brick.SubPart> groupSubPartList = BrickLibrary.Instance.getGroupSubPartList(groupName);
+				if (groupSubPartList != null)
+					foreach (BrickLibrary.Brick.SubPart subPart in groupSubPartList)
+					{
+						// intanciate a new item (can be a group, so we call recursively the constructor)
+						LayerItem newItem = null;
+						if (subPart.mSubPartBrick.IsAGroup)
+							newItem = new Group(subPart.mSubPartNumber);
+						else
+							newItem = new LayerBrick.Brick(subPart.mSubPartNumber, subPart.mPosition, subPart.mAngle);
+						// add the item in this group
+						addItem(newItem);
+					}
+			}
+			#endregion
+
 			#region IXmlSerializable Members
 			public override void ReadXml(System.Xml.XmlReader reader)
 			{
@@ -243,6 +323,27 @@ namespace BlueBrick.MapData
 			{
 				foreach (LayerItem item in mItems)
 					item.Group = this;
+			}
+
+			/// <summary>
+			/// This method start from this group as the top of the tree and return the list of all
+			/// the leaf items (which are not group) in all the branches below this group
+			/// </summary>
+			/// <returns>A flat list of all the items found in the group and sub-group</returns>
+			public List<LayerItem> getAllChildrenItems()
+			{
+				List<LayerItem> resultList = new List<LayerItem>(mItems.Count);
+				getAllChildrenItemsRecursive(resultList);
+				return resultList;
+			}
+
+			private void getAllChildrenItemsRecursive(List<LayerItem> resultList)
+			{
+				foreach (LayerItem item in mItems)
+					if (item.IsAGroup)
+						(item as Group).getAllChildrenItemsRecursive(resultList);
+					else
+						resultList.Add(item);
 			}
 			#endregion
 

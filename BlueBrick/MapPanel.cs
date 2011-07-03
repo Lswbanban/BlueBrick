@@ -61,7 +61,8 @@ namespace BlueBrick
 		private int mCurrentStatusBarHeight = 0;
 
 		//dragndrop of a part on the map
-		private LayerBrick.Brick mCurrentPartDrop = null;
+		private Layer.LayerItem mCurrentPartDrop = null;
+		private string mPartDropNumber = null;
 		private LayerBrick mBrickLayerThatReceivePartDrop = null;
 		private ContextMenuStrip contextMenuStrip;
 		private System.ComponentModel.IContainer components;
@@ -531,11 +532,14 @@ namespace BlueBrick
 							if (Map.Instance.canAddBrick())
 							{
 								// ask the main window if one part was selected in the part lib
-								string partDropNumber = (this.TopLevelControl as MainForm).getSelectedPartNumberInPartLib();
+								mPartDropNumber = (this.TopLevelControl as MainForm).getSelectedPartNumberInPartLib();
 								mBrickLayerThatReceivePartDrop = Map.Instance.SelectedLayer as LayerBrick;
-								if (partDropNumber != null && mBrickLayerThatReceivePartDrop != null)
+								if (mPartDropNumber != null && mBrickLayerThatReceivePartDrop != null)
 								{
-									mCurrentPartDrop = new LayerBrick.Brick(partDropNumber);
+									if (BrickLibrary.Instance.isAGroup(mPartDropNumber))
+										mCurrentPartDrop = new Layer.Group(mPartDropNumber);
+									else
+										mCurrentPartDrop = new LayerBrick.Brick(mPartDropNumber);
 									mBrickLayerThatReceivePartDrop.addTemporaryPartDrop(mCurrentPartDrop);
 									// set the hand cursor
 									this.Cursor = MainForm.Instance.BrickDuplicateCursor;
@@ -549,17 +553,14 @@ namespace BlueBrick
 						}
 
 						// check if we are currently dragging a part
-						if (mCurrentPartDrop != null)
+						if ((mCurrentPartDrop != null) && (mBrickLayerThatReceivePartDrop != null))
 						{
 							// memorise the position of the mouse snapped to the grid
 							PointF partCenter = getScreenPointInStud(e.Location);
-							if (mBrickLayerThatReceivePartDrop != null)
-							{
-								mCurrentPartDrop.Center = mBrickLayerThatReceivePartDrop.getMovedSnapPoint(partCenter);
-								mBrickLayerThatReceivePartDrop.updateBoundingSelectionRectangle();
-								// refresh the view
-								mustRefreshView = true;
-							}
+							mCurrentPartDrop.Center = mBrickLayerThatReceivePartDrop.getMovedSnapPoint(partCenter);
+							mBrickLayerThatReceivePartDrop.updateBoundingSelectionRectangle();
+							// refresh the view
+							mustRefreshView = true;
 						}
 					}
 					break;
@@ -676,9 +677,10 @@ namespace BlueBrick
 							mBrickLayerThatReceivePartDrop = null;
 						}
 						// and add the real new part
-						Map.Instance.addBrick(mCurrentPartDrop.PartNumber, mCurrentPartDrop.Position, mCurrentPartDrop.Orientation);
+						Map.Instance.addBrick(mPartDropNumber, mCurrentPartDrop.Position, mCurrentPartDrop.Orientation);
 						(this.TopLevelControl as MainForm).resetSelectedPartInPartLib();
 						mCurrentPartDrop = null;
+						mPartDropNumber = null;
 						mustRefreshView = true;
 					}
 					break;
@@ -717,6 +719,7 @@ namespace BlueBrick
 					mBrickLayerThatReceivePartDrop = null;
 				}
 				mCurrentPartDrop = null;
+				mPartDropNumber = null;
 				// restore the default cursor
 				this.Cursor = Cursors.Arrow;
 				// update the view
