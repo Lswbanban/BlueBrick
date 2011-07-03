@@ -49,7 +49,7 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// Get or set the orientation of the Item
 			/// </summary>
-			public float Orientation
+			public virtual float Orientation
 			{
 				get { return mOrientation; }
 				set { mOrientation = value; }
@@ -58,7 +58,7 @@ namespace BlueBrick.MapData
 			/// <summary>
 			///	Set the position in stud coord. The position of a brick is its top left corner.
 			/// </summary>
-			public PointF Position
+			public virtual PointF Position
 			{
 				set
 				{
@@ -71,7 +71,7 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// Set the position via the center of the object in stud coord.
 			/// </summary>
-			public PointF Center
+			public virtual PointF Center
 			{
 				get
 				{
@@ -232,30 +232,30 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// Set the position via the center of the object in stud coord.
 			/// </summary>
-			public new PointF Center
+			public override PointF Center
 			{
 				get
 				{
-					return new PointF(mDisplayArea.X + (mDisplayArea.Width / 2), mDisplayArea.Y + (mDisplayArea.Height / 2));
+					return new PointF(mDisplayArea.X + (mDisplayArea.Width * 0.5f), mDisplayArea.Y + (mDisplayArea.Height * 0.5f));
 				}
 
 				set
 				{
 					// compute the new values
-					float newX = value.X - (mDisplayArea.Width / 2);
-					float newY = value.Y - (mDisplayArea.Height / 2);
+					PointF newCorner = new PointF(value.X - (mDisplayArea.Width * 0.5f), value.Y - (mDisplayArea.Height * 0.5f));
 					// compute the difference
-					PointF diff = new PointF(newX - mDisplayArea.X, newY - mDisplayArea.Y);
+					PointF translation = new PointF(newCorner.X - mDisplayArea.X, newCorner.Y - mDisplayArea.Y);
 					// change the center of the group
-					mDisplayArea.X = newX;
-					mDisplayArea.Y = newY;
+					mDisplayArea.X = newCorner.X;
+					mDisplayArea.Y = newCorner.Y;
 					// add a shift for all the items of the group
 					foreach (Layer.LayerItem item in mItems)
 					{
-						PointF newCenter = item.Center;
-						newCenter.X += diff.X;
-						newCenter.Y += diff.Y;
-						item.Center = newCenter;
+						// ask the center first because it computed
+						PointF newItemCenter = item.Center;
+						newItemCenter.X += translation.X;
+						newItemCenter.Y += translation.Y;
+						item.Center = newItemCenter;
 					}
 				}
 			}
@@ -277,7 +277,7 @@ namespace BlueBrick.MapData
 						if (subPart.mSubPartBrick.IsAGroup)
 							newItem = new Group(subPart.mSubPartNumber);
 						else
-							newItem = new LayerBrick.Brick(subPart.mSubPartNumber, subPart.mPosition, subPart.mAngle);
+							newItem = new LayerBrick.Brick(subPart.mSubPartNumber, subPart.getWorldTranslation(), subPart.getWorldOrientation());
 						// add the item in this group
 						addItem(newItem);
 					}

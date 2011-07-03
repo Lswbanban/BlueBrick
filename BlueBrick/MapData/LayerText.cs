@@ -43,9 +43,8 @@ namespace BlueBrick.MapData
 				set { mText = value; updateBitmap(); }
 			}
 
-			public new float Orientation
+			public override float Orientation
 			{
-				get { return mOrientation; }
 				set	{ mOrientation = value;	updateBitmap();	}
 			}
 

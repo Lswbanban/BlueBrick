@@ -242,9 +242,8 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// The current rotation of the image
 			/// </summary>
-			public new float Orientation
+			public override float Orientation
 			{
-				get { return mOrientation; }
 				set
 				{
 					mOrientation = value;
@@ -256,7 +255,7 @@ namespace BlueBrick.MapData
 			/// <summary>
 			///	Set the position in stud coord. The position of a brick is its top left corner.
 			/// </summary>
-			public new PointF Position
+			public override PointF Position
 			{
 				set
 				{
@@ -270,17 +269,13 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// Set the position via the center of the object in stud coord.
 			/// </summary>
-			public new PointF Center
+			public override PointF Center
 			{
 				set
 				{
-					mDisplayArea.X = value.X - (mDisplayArea.Width / 2);
-					mDisplayArea.Y = value.Y - (mDisplayArea.Height / 2);
+					mDisplayArea.X = value.X - (mDisplayArea.Width * 0.5f);
+					mDisplayArea.Y = value.Y - (mDisplayArea.Height * 0.5f);
 					updateConnectionPosition();				
-				}
-				get
-				{
-					return new PointF(mDisplayArea.X + (mDisplayArea.Width / 2), mDisplayArea.Y + (mDisplayArea.Height / 2));
 				}
 			}
 
