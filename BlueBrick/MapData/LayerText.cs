@@ -34,7 +34,6 @@ namespace BlueBrick.MapData
 			private Font mTextFont = Properties.Settings.Default.DefaultTextFont;
 			private SolidBrush mTextBrush = new SolidBrush(Properties.Settings.Default.DefaultTextColor);
 			private string mText = "";
-			private float mOrientation = 0;				// in degree
 			private Bitmap mImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
 
 			#region get/set
@@ -44,7 +43,7 @@ namespace BlueBrick.MapData
 				set { mText = value; updateBitmap(); }
 			}
 
-			public float Orientation
+			public new float Orientation
 			{
 				get { return mOrientation; }
 				set	{ mOrientation = value;	updateBitmap();	}

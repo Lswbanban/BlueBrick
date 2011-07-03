@@ -197,7 +197,6 @@ namespace BlueBrick.MapData
 			}
 
 			private string mPartNumber = null;	// id of the part
-			private float mOrientation = 0;	// in degree
 			private int mActiveConnectionPointIndex = 0; // the current active connection point in the connexion point list
 			private List<ConnectionPoint> mConnectionPoints = null; // list of all the connection point (if this brick can connect)
 			private float mAltitude = 0.0f; //for improving compatibility with LDRAW we save a up coordinate for each brick
@@ -243,7 +242,7 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// The current rotation of the image
 			/// </summary>
-			public float Orientation
+			public new float Orientation
 			{
 				get { return mOrientation; }
 				set
@@ -472,6 +471,24 @@ namespace BlueBrick.MapData
 			public Brick(string partNumber)
 			{
 				init(partNumber);
+			}
+
+			/// <summary>
+			/// This constructor is used by the group constructor to place the part at a specific position and orientation
+			/// </summary>
+			/// <param name="partNumber">the part number used to create this brick</param>
+			/// <param name="centerPosition">the position of the center of the brick</param>
+			/// <param name="orientation">the orientation of the brick</param>
+			public Brick(string partNumber, PointF centerPosition, float orientation)
+			{
+				// set the orientation before calling the init method to compute
+				// the image directly with the correct orientation during init.
+				// We do not use the accessor intentionnaly to not trigger an image building
+				this.mOrientation = orientation;
+				// the init parameter will generate the image
+				init(partNumber);
+				// finally adjust the center position
+				this.Center = centerPosition;
 			}
 
 			/// <summary>
@@ -2264,33 +2281,73 @@ namespace BlueBrick.MapData
 		/// the part library on this layer. The selection and the current part under the mouse
 		/// is then patch with this temporary part.
 		/// </summary>
-		/// <param name="partDrop">The temporary part to add</param>
-		public void addTemporaryPartDrop(Brick partDrop)
+		/// <param name="itemDrop">The temporary part to add which can be a Brick or a Group</param>
+		public void addTemporaryPartDrop(Layer.LayerItem itemDrop)
 		{
-			mBricks.Add(partDrop);
+			// clear the selection to only select the part(s) drop
 			mSelectedObjects.Clear();
-			mSelectedObjects.Add(partDrop);
-			mCurrentBrickUnderMouse = partDrop;
+
+			// grab the brick or group in its center
 			mMouseGrabDeltaToCenter = new PointF(0.0f, 0.0f);
-			Brick.ConnectionPoint activeConnectionPoint = partDrop.ActiveConnectionPoint;
-			if (activeConnectionPoint != null)
-				mMouseGrabDeltaToActiveConnectionPoint = new PointF(partDrop.Center.X - activeConnectionPoint.mPositionInStudWorldCoord.X, partDrop.Center.Y - activeConnectionPoint.mPositionInStudWorldCoord.Y);
+
+			// check if it is a single Brick or a group
+			Brick brickDrop = itemDrop as Brick;
+			if (brickDrop != null)
+			{
+				// the cast succeed, this is a brick
+				mBricks.Add(brickDrop);
+				mSelectedObjects.Add(brickDrop);
+				mCurrentBrickUnderMouse = brickDrop;
+				// check if the brick as connection point to set the garb distance to connection point
+				Brick.ConnectionPoint activeConnectionPoint = brickDrop.ActiveConnectionPoint;
+				if (activeConnectionPoint != null)
+					mMouseGrabDeltaToActiveConnectionPoint = new PointF(brickDrop.Center.X - activeConnectionPoint.mPositionInStudWorldCoord.X,
+																		brickDrop.Center.Y - activeConnectionPoint.mPositionInStudWorldCoord.Y);
+				else
+					mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+			}
 			else
+			{
+				// the cast failed, the part drop is a group
+				List<Layer.LayerItem> partsInTheGroup = (itemDrop as Layer.Group).getAllChildrenItems();
+				foreach (Layer.LayerItem item in partsInTheGroup)
+				{
+					Brick brick = item as Brick;
+					mBricks.Add(brick);
+					mSelectedObjects.Add(brick);
+				}
+				mCurrentBrickUnderMouse = null;
 				mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+			}
 		}
 
 		/// <summary>
 		/// This method is called by the Map Panel when the user finished to drag and drop a part from
 		/// the part library on this layer. The temporary part is removed from the layer.
 		/// </summary>
-		/// <param name="partDrop">The temporary part to remove</param>
-		public void removeTemporaryPartDrop(Brick partDrop)
+		/// <param name="itemDrop">The temporary part to remove which can be a Brick or a Group</param>
+		public void removeTemporaryPartDrop(Layer.LayerItem itemDrop)
 		{
-			mBricks.Remove(partDrop);
+			// clear the data
 			mSelectedObjects.Clear();
 			mCurrentBrickUnderMouse = null;
 			mMouseGrabDeltaToCenter = new PointF(0.0f, 0.0f);
 			mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+
+			// check if it is a single Brick or a group to remove one or several bricks
+			Brick brickDrop = itemDrop as Brick;
+			if (brickDrop != null)
+			{
+				// the cast succeed, this is a brick
+				mBricks.Remove(brickDrop);
+			}
+			else
+			{
+				// the cast failed, the part drop is a group
+				List<Layer.LayerItem> partsInTheGroup = (itemDrop as Layer.Group).getAllChildrenItems();
+				foreach (Layer.LayerItem item in partsInTheGroup)
+					mBricks.Remove(item as Brick);
+			}
 		}
 		#endregion
 	}

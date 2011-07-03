@@ -1591,6 +1591,15 @@ namespace BlueBrick.MapData
 			return null;
 		}
 
+		public List<Brick.SubPart> getGroupSubPartList(string partNumber)
+		{
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if (brickRef != null)
+				return brickRef.mGroupSubPartList;
+			return null;
+		}
+
 		public string getImageURL(string partNumber)
 		{
 			Brick brickRef = null;
@@ -1785,6 +1794,20 @@ namespace BlueBrick.MapData
 			mBrickDictionary.TryGetValue(partNumber, out brickRef);
 			if (brickRef != null)
 				return brickRef.ShouldBeIgnored;
+			return false;
+		}
+
+		/// <summary>
+		/// Tell if the specified brick id (with color which is actually "group") is a group
+		/// </summary>
+		/// <param name="partNumber">the bluebrick part number</param>
+		/// <returns>true if the brick is a group</returns>
+		public bool isAGroup(string partNumber)
+		{
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if (brickRef != null)
+				return brickRef.IsAGroup;
 			return false;
 		}
 	}
