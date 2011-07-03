@@ -208,8 +208,19 @@ namespace BlueBrick.MapData
                 public Brick mSubPartBrick = null;
                 public PointF mPosition = new PointF();
                 public float mAngle = 0.0f;
-                public Matrix mTransform = null;
-            }
+                public Matrix mLocalTransform = null;
+				public Matrix mWorldTransform = null;
+
+				public PointF getWorldTranslation()
+				{
+					return new PointF(mWorldTransform.OffsetX, mWorldTransform.OffsetY);
+				}
+
+				public float getWorldOrientation()
+				{
+					return (float)(Math.Atan2(mWorldTransform.Elements[1], mWorldTransform.Elements[0]) * 180.0 / Math.PI);
+				}
+			}
 
             public enum BrickType
             {
@@ -1311,10 +1322,10 @@ namespace BlueBrick.MapData
 			// check if this group already has an image, in that case it was created while creating the image
 			// of an upper group. So in that case we don't need to recreate it
 			if (group.Image == null)
-				createGroupImageRecursive(group, new List<Brick>());
+				createGroupImageRecursive(group, new List<Brick>(), new Matrix());
 		}
 
-		private void createGroupImageRecursive(Brick group, List<Brick> parentGroups)
+		private void createGroupImageRecursive(Brick group, List<Brick> parentGroups, Matrix parentTransform)
 		{
 			if (group.mGroupSubPartList.Count == 0)
 				throw new Exception("The group is empty. The tag <SubPartList> cannot be empty.");
@@ -1335,20 +1346,31 @@ namespace BlueBrick.MapData
                 if (!mBrickDictionary.TryGetValue(subPart.mSubPartNumber, out subPart.mSubPartBrick))
 					subPart.mSubPartBrick = AddUnknownBrick(subPart.mSubPartNumber, 32, 32);
 
+				// create the rotation transform
+				Matrix rotationTransformOnly = new Matrix();
+				rotationTransformOnly.Rotate(subPart.mAngle);
+
+				// create the local transform with the rotion and the translate only
+				// in case of we need to call this function recursively
+				subPart.mLocalTransform = rotationTransformOnly.Clone();
+				subPart.mLocalTransform.Translate(subPart.mPosition.X, subPart.mPosition.Y, MatrixOrder.Append);
+
+				// compute the world transform based on the transform of the father and the local transform of this subpart
+				subPart.mWorldTransform = subPart.mLocalTransform.Clone();
+				subPart.mWorldTransform.Multiply(parentTransform, MatrixOrder.Append);
+
 				// check if the current sub part is a group not yet created in that case call the function recursively
 				if ((subPart.mSubPartBrick.IsAGroup) && (subPart.mSubPartBrick.Image == null))
 				{
 					List<Brick> newParentGroups = new List<Brick>(parentGroups);
 					newParentGroups.Add(group);
-					createGroupImageRecursive(subPart.mSubPartBrick, newParentGroups);
+					createGroupImageRecursive(subPart.mSubPartBrick, newParentGroups, subPart.mLocalTransform);
 				}
 
-				// create the transform
-		        subPart.mTransform = new Matrix();
-		        subPart.mTransform.Rotate(subPart.mAngle);
-                // transform the bounding box (which is in pixel)
-                PointF[] hullPoints = subPart.mSubPartBrick.mHull.ToArray();
-				subPart.mTransform.TransformVectors(hullPoints);
+				// transform the bounding box (which is in pixel) after that the image is created otherwise the hull may be null
+				PointF[] hullPoints = subPart.mSubPartBrick.mHull.ToArray();
+				rotationTransformOnly.TransformVectors(hullPoints);
+
 				// get the local min and max for this sub part
 				PointF hullMin = new PointF();
 				PointF hullMax = new PointF();
@@ -1362,7 +1384,8 @@ namespace BlueBrick.MapData
 				PointF hullMinInsideGroup = new PointF(translateX - hullHalfSize.X, translateY - hullHalfSize.Y);
 				PointF hullMaxInsideGroup = new PointF(translateX + hullHalfSize.X, translateY + hullHalfSize.Y);
 				// add the part transaltion to the transform
-				subPart.mTransform.Translate(hullMinInsideGroup.X - hullMin.X, hullMinInsideGroup.Y - hullMin.Y, MatrixOrder.Append);
+				subPart.mLocalTransform.Translate(hullMinInsideGroup.X - hullMin.X, hullMinInsideGroup.Y - hullMin.Y, MatrixOrder.Append);
+
 				// check the local min and max with the global ones
 				if (hullMinInsideGroup.X < minX)
 					minX = hullMinInsideGroup.X;
@@ -1380,7 +1403,7 @@ namespace BlueBrick.MapData
 			float centerToOriginX = (Math.Abs(maxX - minX) - (maxX + minX)) * 0.5f;
 			float centerToOriginY = (Math.Abs(maxY - minY) - (maxY + minY)) * 0.5f;
 			foreach (Brick.SubPart subPart in group.mGroupSubPartList)
-				subPart.mTransform.Translate(centerToOriginX, centerToOriginY, MatrixOrder.Append);
+				subPart.mLocalTransform.Translate(centerToOriginX, centerToOriginY, MatrixOrder.Append);
 
 			// create a new image with the correct size
 			int width = (int)(maxX - minX);
@@ -1397,7 +1420,7 @@ namespace BlueBrick.MapData
 				graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
 				foreach (Brick.SubPart subPart in group.mGroupSubPartList)
 				{
-					graphics.Transform = subPart.mTransform;
+					graphics.Transform = subPart.mLocalTransform;
 					graphics.DrawImage(subPart.mSubPartBrick.Image, 0, 0, subPart.mSubPartBrick.Image.Width, subPart.mSubPartBrick.Image.Height);
 				}
 				graphics.Flush();
