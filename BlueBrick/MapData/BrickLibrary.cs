@@ -204,22 +204,11 @@ namespace BlueBrick.MapData
             public class SubPart
             {
                 // we store the number and the brick because not all the brick may have been parsed when the group is parsed
-                public string mSubPartNumber;
+                public string mSubPartNumber = string.Empty;
                 public Brick mSubPartBrick = null;
-                public PointF mPosition = new PointF();
-                public float mAngle = 0.0f;
-                public Matrix mLocalTransform = null;
-				public Matrix mWorldTransform = null;
-
-				public PointF getWorldTranslation()
-				{
-					return new PointF(mWorldTransform.OffsetX, mWorldTransform.OffsetY);
-				}
-
-				public float getWorldOrientation()
-				{
-					return (float)(Math.Atan2(mWorldTransform.Elements[1], mWorldTransform.Elements[0]) * 180.0 / Math.PI);
-				}
+                public float mOrientation = 0.0f;
+				public Matrix mLocalTransformInStud = null;
+				public Matrix mTempLocalTransformInPixelForImageBuilding = null;
 			}
 
             public enum BrickType
@@ -856,20 +845,28 @@ namespace BlueBrick.MapData
                         // read the id of the sub part
                         subPart.mSubPartNumber = xmlReader.GetAttribute("id");
 
+						// variable to store the position of the sub part from which we will construct a transform
+						PointF position = new PointF();
+
                         // read the first child node of the connexion
                         xmlReader.Read();
                         bool continueToReadSubPart = (subPart.mSubPartNumber.Length > 0);
                         while (continueToReadSubPart)
                         {
                             if (xmlReader.Name.Equals("position"))
-                                subPart.mPosition = readPointTag(ref xmlReader, "position");
+								position = readPointTag(ref xmlReader, "position");
                             else if (xmlReader.Name.Equals("angle"))
-                                subPart.mAngle = xmlReader.ReadElementContentAsFloat();
+								subPart.mOrientation = xmlReader.ReadElementContentAsFloat();
                             else
                                 xmlReader.Read();
                             // check if we reach the end of the connexion
                             continueToReadSubPart = !xmlReader.Name.Equals("SubPart") && !xmlReader.EOF;
                         }
+
+						// create the local transform with the rotion and the translate
+						subPart.mLocalTransformInStud = new Matrix();
+						subPart.mLocalTransformInStud.Rotate(subPart.mOrientation);
+						subPart.mLocalTransformInStud.Translate(position.X, position.Y, MatrixOrder.Append);
 
                         // add the current connexion in the list
                         if (subPart.mSubPartNumber.Length > 0)
@@ -1322,10 +1319,10 @@ namespace BlueBrick.MapData
 			// check if this group already has an image, in that case it was created while creating the image
 			// of an upper group. So in that case we don't need to recreate it
 			if (group.Image == null)
-				createGroupImageRecursive(group, new List<Brick>(), new Matrix());
+				createGroupImageRecursive(group, new List<Brick>());
 		}
 
-		private void createGroupImageRecursive(Brick group, List<Brick> parentGroups, Matrix parentTransform)
+		private void createGroupImageRecursive(Brick group, List<Brick> parentGroups)
 		{
 			if (group.mGroupSubPartList.Count == 0)
 				throw new Exception("The group is empty. The tag <SubPartList> cannot be empty.");
@@ -1346,30 +1343,20 @@ namespace BlueBrick.MapData
                 if (!mBrickDictionary.TryGetValue(subPart.mSubPartNumber, out subPart.mSubPartBrick))
 					subPart.mSubPartBrick = AddUnknownBrick(subPart.mSubPartNumber, 32, 32);
 
-				// create the rotation transform
-				Matrix rotationTransformOnly = new Matrix();
-				rotationTransformOnly.Rotate(subPart.mAngle);
-
-				// create the local transform with the rotion and the translate only
-				// in case of we need to call this function recursively
-				subPart.mLocalTransform = rotationTransformOnly.Clone();
-				subPart.mLocalTransform.Translate(subPart.mPosition.X, subPart.mPosition.Y, MatrixOrder.Append);
-
-				// compute the world transform based on the transform of the father and the local transform of this subpart
-				subPart.mWorldTransform = subPart.mLocalTransform.Clone();
-				subPart.mWorldTransform.Multiply(parentTransform, MatrixOrder.Append);
-
 				// check if the current sub part is a group not yet created in that case call the function recursively
 				if ((subPart.mSubPartBrick.IsAGroup) && (subPart.mSubPartBrick.Image == null))
 				{
 					List<Brick> newParentGroups = new List<Brick>(parentGroups);
 					newParentGroups.Add(group);
-					createGroupImageRecursive(subPart.mSubPartBrick, newParentGroups, subPart.mLocalTransform);
+					createGroupImageRecursive(subPart.mSubPartBrick, newParentGroups);
 				}
 
+				// create the transform
+				subPart.mTempLocalTransformInPixelForImageBuilding = new Matrix();
+				subPart.mTempLocalTransformInPixelForImageBuilding.Rotate(subPart.mOrientation);
 				// transform the bounding box (which is in pixel) after that the image is created otherwise the hull may be null
 				PointF[] hullPoints = subPart.mSubPartBrick.mHull.ToArray();
-				rotationTransformOnly.TransformVectors(hullPoints);
+				subPart.mTempLocalTransformInPixelForImageBuilding.TransformVectors(hullPoints);
 
 				// get the local min and max for this sub part
 				PointF hullMin = new PointF();
@@ -1378,13 +1365,13 @@ namespace BlueBrick.MapData
 				hullHalfSize.X *= 0.5f;
 				hullHalfSize.Y *= 0.5f;
 				// compute the part translation in pixel
-				float translateX = (subPart.mPosition.X * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
-				float translateY = (subPart.mPosition.Y * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
+				float translateX = (subPart.mLocalTransformInStud.OffsetX * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
+				float translateY = (subPart.mLocalTransformInStud.OffsetY * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
 				// compute the hull min and max inside the whole group (so with the translation of the part)
 				PointF hullMinInsideGroup = new PointF(translateX - hullHalfSize.X, translateY - hullHalfSize.Y);
 				PointF hullMaxInsideGroup = new PointF(translateX + hullHalfSize.X, translateY + hullHalfSize.Y);
 				// add the part transaltion to the transform
-				subPart.mLocalTransform.Translate(hullMinInsideGroup.X - hullMin.X, hullMinInsideGroup.Y - hullMin.Y, MatrixOrder.Append);
+				subPart.mTempLocalTransformInPixelForImageBuilding.Translate(hullMinInsideGroup.X - hullMin.X, hullMinInsideGroup.Y - hullMin.Y, MatrixOrder.Append);
 
 				// check the local min and max with the global ones
 				if (hullMinInsideGroup.X < minX)
@@ -1403,7 +1390,7 @@ namespace BlueBrick.MapData
 			float centerToOriginX = (Math.Abs(maxX - minX) - (maxX + minX)) * 0.5f;
 			float centerToOriginY = (Math.Abs(maxY - minY) - (maxY + minY)) * 0.5f;
 			foreach (Brick.SubPart subPart in group.mGroupSubPartList)
-				subPart.mLocalTransform.Translate(centerToOriginX, centerToOriginY, MatrixOrder.Append);
+				subPart.mTempLocalTransformInPixelForImageBuilding.Translate(centerToOriginX, centerToOriginY, MatrixOrder.Append);
 
 			// create a new image with the correct size
 			int width = (int)(maxX - minX);
@@ -1420,8 +1407,9 @@ namespace BlueBrick.MapData
 				graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
 				foreach (Brick.SubPart subPart in group.mGroupSubPartList)
 				{
-					graphics.Transform = subPart.mLocalTransform;
+					graphics.Transform = subPart.mTempLocalTransformInPixelForImageBuilding;
 					graphics.DrawImage(subPart.mSubPartBrick.Image, 0, 0, subPart.mSubPartBrick.Image.Width, subPart.mSubPartBrick.Image.Height);
+					subPart.mTempLocalTransformInPixelForImageBuilding = null;
 				}
 				graphics.Flush();
 			}

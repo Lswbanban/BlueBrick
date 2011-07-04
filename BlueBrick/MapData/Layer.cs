@@ -266,18 +266,48 @@ namespace BlueBrick.MapData
 			{
 			}
 			
-			public Group(string groupName)
+			/// <summary>
+			/// The public constructor to construct a specific group based on it's name id.
+			/// This constructor will call the private recursive one, starting with the identity matrix.
+			/// </summary>
+			/// <param name="groupName">The part number to use to construct the group</param>
+			public Group(string groupName): this(groupName, new Matrix())
+			{				
+			}
+
+			/// <summary>
+			/// This private constructor create a whole hierachy of Group by computing the final world transform for
+			/// each Bricks in the leafs. This constructor is then recursive, it will call itself for every node which
+			/// is a Group.
+			/// </summary>
+			/// <param name="groupName">The group name top of the tree</param>
+			/// <param name="parentTransform">The transform matrix (translation and orientation) of the all parents</param>
+			private Group(string groupName, Matrix parentTransform)
 			{
 				List<BrickLibrary.Brick.SubPart> groupSubPartList = BrickLibrary.Instance.getGroupSubPartList(groupName);
 				if (groupSubPartList != null)
 					foreach (BrickLibrary.Brick.SubPart subPart in groupSubPartList)
 					{
-						// intanciate a new item (can be a group, so we call recursively the constructor)
+						// compute the world transform
+						Matrix worldTransform = subPart.mLocalTransformInStud.Clone();
+						worldTransform.Multiply(parentTransform, MatrixOrder.Append);
+
+						// intanciate a new item (can be a group, or a real brick)
 						LayerItem newItem = null;
 						if (subPart.mSubPartBrick.IsAGroup)
-							newItem = new Group(subPart.mSubPartNumber);
+						{
+							// call this group constructor again
+							newItem = new Group(subPart.mSubPartNumber, worldTransform);
+						}
 						else
-							newItem = new LayerBrick.Brick(subPart.mSubPartNumber, subPart.getWorldTranslation(), subPart.getWorldOrientation());
+						{
+							// get the translation and orientation from the world transform
+							PointF translation = new PointF(worldTransform.OffsetX, worldTransform.OffsetY);
+							float orientation = (float)(Math.Atan2(worldTransform.Elements[1], worldTransform.Elements[0]) * 180.0 / Math.PI);
+							// create the new item
+							newItem = new LayerBrick.Brick(subPart.mSubPartNumber, translation, orientation);
+						}
+
 						// add the item in this group
 						addItem(newItem);
 					}
