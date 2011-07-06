@@ -225,7 +225,7 @@ namespace BlueBrick.MapData
 			/// The set of the part number is used by the serializer, but should not be used in the program
 			/// instead consider to delete your brick and create a new one with the appropriate constructor.
 			/// </summary>
-			public string PartNumber
+			public override string PartNumber
 			{
 				get { return mPartNumber; }
 				set
@@ -2286,10 +2286,25 @@ namespace BlueBrick.MapData
 			mMouseGrabDeltaToCenter = new PointF(0.0f, 0.0f);
 
 			// check if it is a single Brick or a group
-			Brick brickDrop = itemDrop as Brick;
-			if (brickDrop != null)
+			if (itemDrop.IsAGroup)
 			{
-				// the cast succeed, this is a brick
+				// the part to drop is a group
+				List<Layer.LayerItem> partsInTheGroup = (itemDrop as Layer.Group).getAllChildrenItems();
+				foreach (Layer.LayerItem item in partsInTheGroup)
+				{
+					Brick brick = item as Brick;
+					mBricks.Add(brick);
+					mSelectedObjects.Add(brick);
+				}
+				mCurrentBrickUnderMouse = null;
+				mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+				// update the brick connectivity for the group after having selected them
+				updateFullBrickConnectivityForSelectedBricksOnly();
+			}
+			else
+			{
+				// the part to drop is a brick
+				Brick brickDrop = itemDrop as Brick;
 				mBricks.Add(brickDrop);
 				mSelectedObjects.Add(brickDrop);
 				mCurrentBrickUnderMouse = brickDrop;
@@ -2300,19 +2315,6 @@ namespace BlueBrick.MapData
 																		brickDrop.Center.Y - activeConnectionPoint.mPositionInStudWorldCoord.Y);
 				else
 					mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
-			}
-			else
-			{
-				// the cast failed, the part drop is a group
-				List<Layer.LayerItem> partsInTheGroup = (itemDrop as Layer.Group).getAllChildrenItems();
-				foreach (Layer.LayerItem item in partsInTheGroup)
-				{
-					Brick brick = item as Brick;
-					mBricks.Add(brick);
-					mSelectedObjects.Add(brick);
-				}
-				mCurrentBrickUnderMouse = null;
-				mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
 			}
 		}
 

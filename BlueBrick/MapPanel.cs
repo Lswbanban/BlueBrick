@@ -62,7 +62,6 @@ namespace BlueBrick
 
 		//dragndrop of a part on the map
 		private Layer.LayerItem mCurrentPartDrop = null;
-		private string mPartDropNumber = null;
 		private LayerBrick mBrickLayerThatReceivePartDrop = null;
 		private ContextMenuStrip contextMenuStrip;
 		private System.ComponentModel.IContainer components;
@@ -532,14 +531,14 @@ namespace BlueBrick
 							if (Map.Instance.canAddBrick())
 							{
 								// ask the main window if one part was selected in the part lib
-								mPartDropNumber = (this.TopLevelControl as MainForm).getSelectedPartNumberInPartLib();
+								string partDropNumber = (this.TopLevelControl as MainForm).getSelectedPartNumberInPartLib();
 								mBrickLayerThatReceivePartDrop = Map.Instance.SelectedLayer as LayerBrick;
-								if (mPartDropNumber != null && mBrickLayerThatReceivePartDrop != null)
+								if (partDropNumber != null && mBrickLayerThatReceivePartDrop != null)
 								{
-									if (BrickLibrary.Instance.isAGroup(mPartDropNumber))
-										mCurrentPartDrop = new Layer.Group(mPartDropNumber);
+									if (BrickLibrary.Instance.isAGroup(partDropNumber))
+										mCurrentPartDrop = new Layer.Group(partDropNumber);
 									else
-										mCurrentPartDrop = new LayerBrick.Brick(mPartDropNumber);
+										mCurrentPartDrop = new LayerBrick.Brick(partDropNumber);
 									mBrickLayerThatReceivePartDrop.addTemporaryPartDrop(mCurrentPartDrop);
 									// set the hand cursor
 									this.Cursor = MainForm.Instance.BrickDuplicateCursor;
@@ -677,10 +676,9 @@ namespace BlueBrick
 							mBrickLayerThatReceivePartDrop = null;
 						}
 						// and add the real new part
-						Map.Instance.addBrick(mPartDropNumber, mCurrentPartDrop.Position, mCurrentPartDrop.Orientation);
+						Map.Instance.addBrick(mCurrentPartDrop);
 						(this.TopLevelControl as MainForm).resetSelectedPartInPartLib();
 						mCurrentPartDrop = null;
-						mPartDropNumber = null;
 						mustRefreshView = true;
 					}
 					break;
@@ -719,7 +717,6 @@ namespace BlueBrick
 					mBrickLayerThatReceivePartDrop = null;
 				}
 				mCurrentPartDrop = null;
-				mPartDropNumber = null;
 				// restore the default cursor
 				this.Cursor = Cursors.Arrow;
 				// update the view

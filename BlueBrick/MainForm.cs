@@ -2166,7 +2166,7 @@ namespace BlueBrick
 								if (Map.Instance.SelectedLayer.SelectedObjects.Count == 1)
 									Map.Instance.addConnectBrick(shortcut.mPartName, shortcut.mConnexion);
 								else
-									Map.Instance.addBrick(shortcut.mPartName, new PointF(0.0f, 0.0f));
+									Map.Instance.addBrick(shortcut.mPartName);
 								break;
 							case shortcutableAction.DELETE_PART:
 								// shortcut to the event handler of the menu

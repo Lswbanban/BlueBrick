@@ -760,15 +760,16 @@ namespace BlueBrick.MapData
 			return ((Map.sInstance.SelectedLayer != null) && (Map.sInstance.SelectedLayer.GetType().Name.Equals("LayerBrick")));
 		}
 
-		public void addBrick(string partNumber, PointF position)
-		{
-			addBrick(partNumber, position, 0.0f);
-		}
-
-		public void addBrick(string partNumber, PointF position, float orientation)
+		public void addBrick(string partNumber)
 		{
 			if (canAddBrick())
-				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, partNumber, position, orientation));
+				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, partNumber));
+		}
+
+		public void addBrick(Layer.LayerItem brickOrGroup)
+		{
+			if (canAddBrick())
+				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, brickOrGroup));
 		}
 
 		public void addConnectBrick(string partNumber)
