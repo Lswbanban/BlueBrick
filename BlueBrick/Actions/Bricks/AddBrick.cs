@@ -23,42 +23,83 @@ namespace BlueBrick.Actions.Bricks
 	class AddBrick : Action
 	{
 		private LayerBrick mBrickLayer = null;
-		private LayerBrick.Brick mBrick = null;
-		private int mBrickIndex = -1; // this index is for the redo, to add the text at the same place
+		private Layer.LayerItem mBrickOrGroup = null;
+		private List<Layer.LayerItem> mBricks = null;
+		private List<int> mBrickIndex = null; // this list of index is for the redo, to add each text at the same place
 
-		public AddBrick(LayerBrick layer, string partNumber, PointF position, float orientation)
+		public AddBrick(LayerBrick layer, string partNumber)
 		{
 			mBrickLayer = layer;
-			mBrick = new LayerBrick.Brick(partNumber);
-			mBrick.Position = position;
-			// set the orientation if it is not the default one
-			if (orientation != 0.0f)
-				mBrick.Orientation = orientation;
+			if (BrickLibrary.Instance.isAGroup(partNumber))
+				mBrickOrGroup = new Layer.Group(partNumber);
+			else
+				mBrickOrGroup = new LayerBrick.Brick(partNumber);
+			// after setting the brick or group, call the init brick list function
+			initBrickList();
+		}
+
+		public AddBrick(LayerBrick layer, Layer.LayerItem brickOrGroup)
+		{
+			mBrickLayer = layer;
+			mBrickOrGroup = brickOrGroup;
+			// after setting the brick or group, call the init brick list function
+			initBrickList();
+		}
+
+		private void initBrickList()
+		{
+			// init the brick to add list
+			if (mBrickOrGroup.IsAGroup)
+			{
+				mBricks = (mBrickOrGroup as Layer.Group).getAllChildrenItems();
+			}
+			else
+			{
+				mBricks = new List<Layer.LayerItem>(1);
+				mBricks.Add(mBrickOrGroup);
+			}
+
+			// init the index list with the same size and fill it with -1
+			mBrickIndex = new List<int>(mBricks.Count);
+			for (int i = 0; i < mBricks.Count; ++i)
+				mBrickIndex.Add(-1);
 		}
 
 		public override string getName()
 		{
 			string actionName = BlueBrick.Properties.Resources.ActionAddBrick;
-			actionName = actionName.Replace("&", mBrick.PartNumber);
+			actionName = actionName.Replace("&", mBrickOrGroup.PartNumber);
 			return actionName;
 		}
 
 		public override void redo()
 		{
-			// and add this text in the list of the layer
-			mBrickLayer.addBrick(mBrick, mBrickIndex);
-			// change the selection to the new added brick (should be done after the add)
+			// and add all the texts in the reverse order
+			for (int i = mBricks.Count - 1; i >= 0; --i)
+			{
+				mBrickLayer.addBrick(mBricks[i] as LayerBrick.Brick, mBrickIndex[i]);
+				// clear the selection to select only current the brick undeleted,
+				// such as we can recompute its connexions, we must do it one by one, else
+				// the bricks inside the group deleted will not be connected.
+				// the other solution is to perform a full connectivity rebuild outside of this loop
+				// but it is not guaranted to be faster.
+				mBrickLayer.clearSelection();
+				mBrickLayer.addObjectInSelection(mBricks[i]);
+				// update the connectivity of the bricks
+				mBrickLayer.updateBrickConnectivityOfSelection(false);
+			}
+			// finally reselect all the undeleted brick
 			mBrickLayer.clearSelection();
-			mBrickLayer.addObjectInSelection(mBrick);
-			// update the connectivity of the bricks after having selected it
-			mBrickLayer.updateBrickConnectivityOfSelection(false);
+			mBrickLayer.addObjectInSelection(mBricks);
 		}
 
 		public override void undo()
 		{
 			// remove the specified brick from the list of the layer,
 			// but do not delete it, also memorise its last position
-			mBrickIndex = mBrickLayer.removeBrick(mBrick);
+			mBrickIndex.Clear();
+			foreach (Layer.LayerItem obj in mBricks)
+				mBrickIndex.Add(mBrickLayer.removeBrick(obj as LayerBrick.Brick));
 			// don't need to update the connectivity of the bricks because we do it specifically for the brick removed
 			// mBrickLayer.updateBrickConnectivityOfSelection(false);
 		}

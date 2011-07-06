@@ -47,6 +47,16 @@ namespace BlueBrick.MapData
 
 			#region get/set
 			/// <summary>
+			/// the part number of the item if any. A layer item always return an empty string as part number.
+			/// This accessor is overriden in the derivated class.
+			/// </summary>
+			public virtual string PartNumber
+			{
+				get { return string.Empty; }
+				set { }
+			}
+
+			/// <summary>
 			/// Get or set the orientation of the Item
 			/// </summary>
 			public virtual float Orientation
@@ -222,11 +232,22 @@ namespace BlueBrick.MapData
 		public class Group : LayerItem
 		{
 			private List<LayerItem> mItems = new List<LayerItem>();
+			private string mPartNumber = string.Empty;	// id of the group if any
 
 			#region get/set
 			public override bool IsAGroup
 			{
 				get { return true; }
+			}
+
+			/// <summary>
+			/// the part number of the group if any.
+			/// If the group is created from a part number of the library, this value is not empty, otherwise
+			/// the accessor return an empty string.
+			/// </summary>
+			public override string PartNumber
+			{
+				get { return mPartNumber; }
 			}
 
 			/// <summary>
@@ -272,7 +293,7 @@ namespace BlueBrick.MapData
 			/// </summary>
 			/// <param name="groupName">The part number to use to construct the group</param>
 			public Group(string groupName): this(groupName, new Matrix())
-			{				
+			{
 			}
 
 			/// <summary>
@@ -284,6 +305,9 @@ namespace BlueBrick.MapData
 			/// <param name="parentTransform">The transform matrix (translation and orientation) of the all parents</param>
 			private Group(string groupName, Matrix parentTransform)
 			{
+				// set the group name
+				mPartNumber = groupName;
+				// create all the parts inside the group
 				List<BrickLibrary.Brick.SubPart> groupSubPartList = BrickLibrary.Instance.getGroupSubPartList(groupName);
 				if (groupSubPartList != null)
 					foreach (BrickLibrary.Brick.SubPart subPart in groupSubPartList)
