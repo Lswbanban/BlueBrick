@@ -1113,6 +1113,26 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// Compute and return the angle that should take the brickToAdd if it is connected to the
+		/// selectedBrick with both their respective active connection point
+		/// </summary>
+		/// <param name="selectedBrick">The brick on the map that doesn't move</param>
+		/// <param name="brickToAdd">The brick to add for which we should compute the angle</param>
+		/// <returns></returns>
+		private float getOrientationOfConnectedBrick(Brick selectedBrick, Brick brickToAdd)
+		{
+			// compute the rotation
+			float newOrientation = selectedBrick.Orientation + selectedBrick.ActiveConnectionAngle + 180 - brickToAdd.ActiveConnectionAngle;
+			// clamp the orientation between 0 and 360
+			if (newOrientation >= 360.0f)
+				newOrientation -= 360.0f;
+			if (newOrientation < 0.0f)
+				newOrientation += 360.0f;
+			// return the value
+			return newOrientation;
+		}
+
+		/// <summary>
 		///	Add the specified brick by connecting it to the current selected brick
 		/// or don't change its position if there's no connection possible
 		/// </summary>
@@ -1128,51 +1148,33 @@ namespace BlueBrick.MapData
 				if (selectedBrick.HasConnectionPoint && brickToAdd.HasConnectionPoint)
 				{
 					// first rotate this brick
-					float newOrientation = selectedBrick.Orientation + selectedBrick.ActiveConnectionAngle + 180 - brickToAdd.ActiveConnectionAngle;
-					// clamp the orientation between 0 and 360
-					if (newOrientation >= 360.0f)
-						newOrientation -= 360.0f;
-					if (newOrientation < 0.0f)
-						newOrientation += 360.0f;
-					// set the new orientation
-					brickToAdd.Orientation = newOrientation;
+					brickToAdd.Orientation = getOrientationOfConnectedBrick(selectedBrick, brickToAdd);
 					// the place the brick to add at the correct position
 					brickToAdd.ActiveConnectionPosition = selectedBrick.ActiveConnectionPosition;
 
 					// get the prefered index now, because the connection of the brick will move automatically the the active connection
 					int nextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(brickToAdd.PartNumber, brickToAdd.ActiveConnectionPointIndex);
 
-					// set the link of the connection (and check all the other connexion  of the brick because maybe the add lock different connection at the same time)
+					// set the link between the two bricks
 					if (brickToAdd.ActiveConnectionPoint.Type == selectedBrick.ActiveConnectionPoint.Type)
-						connectTwoConnectionPoints(brickToAdd.ActiveConnectionPoint, selectedBrick.ActiveConnectionPoint, false);
-					foreach (Brick.ConnectionPoint brickConnexion in brickToAdd.ConnectionPoints)
-						if (brickConnexion != brickToAdd.ActiveConnectionPoint)
-							for (int i = 0; i < mFreeConnectionPoints.getListForType(brickConnexion.Type).Count; ++i)
-							{
-								Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints.getListForType(brickConnexion.Type)[i];
-								if ((freeConnexion != brickConnexion) && (freeConnexion.Type == brickConnexion.Type) && 
-									arePositionsEqual(brickConnexion.mPositionInStudWorldCoord, freeConnexion.mPositionInStudWorldCoord))
-								{
-									if (connectTwoConnectionPoints(brickConnexion, freeConnexion, false))
-										--i;
-								}
-							}
-					
-					// check the electric current after setting all the connections
-					ElectricCircuitChecker.check(brickToAdd);
+						connectTwoConnectionPoints(brickToAdd.ActiveConnectionPoint, selectedBrick.ActiveConnectionPoint, true);
 
+					// Then check all the other connexions of the brick to add
+					// because maybe the add lock different connection at the same time
+					updateFullBrickConnectivityForOneBrick(brickToAdd);
+					
 					// set the current connection point to the next one
 					brickToAdd.ActiveConnectionPointIndex = nextPreferedActiveConnectionIndex;
-					// and add the brick in the list
-					mBricks.Insert(mBricks.IndexOf(selectedBrick) + 1, brickToAdd);
 				}
 				else
 				{
 					PointF position = selectedBrick.Position;
 					position.X += selectedBrick.DisplayArea.Width;
 					brickToAdd.Position = position;
-					mBricks.Insert(mBricks.IndexOf(selectedBrick) + 1, brickToAdd);
 				}
+
+				// and add the brick in the list just after the selected brick
+				mBricks.Insert(mBricks.IndexOf(selectedBrick) + 1, brickToAdd);
 			}
 			else
 			{
@@ -1181,6 +1183,78 @@ namespace BlueBrick.MapData
 
 			// notify the part list view
 			MainForm.Instance.NotifyPartListForBrickAdded(this, brickToAdd);
+		}
+
+		/// <summary>
+		///	Add the specified group of brick by connecting it to the current selected brick
+		/// or don't change its position if there's no connection possible
+		/// </summary>
+		public void addConnectGroup(Group groupToAdd)
+		{
+			// get the flat list of bricks from the hierarchical group
+			List<Layer.LayerItem> bricksInTheGroup = groupToAdd.getAllChildrenItems();
+
+			// add all the free connection points of all the bricks of the group to the free list
+			foreach (Layer.LayerItem item in bricksInTheGroup)
+				foreach (Brick.ConnectionPoint connection in (item as Brick).ConnectionPoints)
+					if (connection.IsFree)
+						mFreeConnectionPoints.add(connection);
+
+			// find the brick of the group that will be connected to the selected brick
+			Brick brickToConnect = bricksInTheGroup[0] as Brick;
+
+			// now place the bricks such as the connection can be made
+			if (mSelectedObjects.Count == 1)
+			{
+				Brick selectedBrick = mSelectedObjects[0] as Brick;
+				if (selectedBrick.HasConnectionPoint && brickToConnect.HasConnectionPoint)
+				{
+					// first rotate all the bricks
+					float newOrientation = getOrientationOfConnectedBrick(selectedBrick, brickToConnect);
+					//TODO
+					// compute the translation to add to all the bricks
+					PointF translation = new PointF(selectedBrick.ActiveConnectionPosition.X - brickToConnect.ActiveConnectionPosition.X,
+													selectedBrick.ActiveConnectionPosition.Y - brickToConnect.ActiveConnectionPosition.Y);
+					groupToAdd.translate(translation);
+
+					// get the prefered index now, because the connection of the brick will move automatically the the active connection
+//					int nextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(brickToAdd.PartNumber, brickToAdd.ActiveConnectionPointIndex);
+					//TODO
+
+					// set the link between the grabbed brick and the unique selected brick
+					if (brickToConnect.ActiveConnectionPoint.Type == selectedBrick.ActiveConnectionPoint.Type)
+						connectTwoConnectionPoints(brickToConnect.ActiveConnectionPoint, selectedBrick.ActiveConnectionPoint, true);
+
+					// Then check all the other connexions of all the bricks in the group to add
+					// because maybe the add lock different connection at the same time
+					foreach (Layer.LayerItem item in bricksInTheGroup)
+						updateFullBrickConnectivityForOneBrick(item as Brick);
+
+					// set the current connection point to the next one
+//					brickToAdd.ActiveConnectionPointIndex = nextPreferedActiveConnectionIndex;
+					//TODO
+				}
+				else
+				{
+					PointF position = selectedBrick.Position;
+					position.X += selectedBrick.DisplayArea.Width;
+					groupToAdd.Position = position;
+				}
+
+				// and add the brick in the list just after the selected brick
+				int insertIndex = mBricks.IndexOf(selectedBrick) + 1;
+				foreach (Layer.LayerItem item in bricksInTheGroup)
+					mBricks.Insert(insertIndex, item as Brick);
+			}
+			else
+			{
+				foreach (Layer.LayerItem item in bricksInTheGroup)
+					mBricks.Add(item as Brick);
+			}
+
+			// notify the part list view
+			foreach (Layer.LayerItem item in bricksInTheGroup)
+				MainForm.Instance.NotifyPartListForBrickAdded(this, item as Brick);
 		}
 
 		/// <summary>
@@ -1412,27 +1486,61 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// update the connectivity of the specified brick with all possible bricks on the map.
+		/// This method doesn't break existing connection for the brick, only create new links.
+		/// </summary>
+		/// <param name="brick">the brick for which we need to check the connectivity</param>
+		public void updateFullBrickConnectivityForOneBrick(Brick brick)
+		{
+			updateFullBrickConnectivityForOneBrick(brick, true);
+		}
+
+		/// <summary>
+		/// update the connectivity of the specified brick with all possible bricks on the map.
+		/// This method doesn't break existing connection for the brick, only create new links.
+		/// </summary>
+		/// <param name="brick">the brick for which we need to check the connectivity</param>
+		/// <param name="checkElectricShortcut">boolean to tell if we need to check the electric circuits</param>
+		private void updateFullBrickConnectivityForOneBrick(Brick brick, bool checkElectricShortcut)
+		{
+			if (brick.HasConnectionPoint)
+				foreach (Brick.ConnectionPoint brickConnexion in brick.ConnectionPoints)
+					if (brickConnexion.IsFree)
+					{
+						// get the list of freeConnection for the specified type
+						List<Brick.ConnectionPoint> freeConnectionList = mFreeConnectionPoints.getListForType(brickConnexion.Type);
+						// ask the Count of the list in the for loop because the list can decrease.
+						for (int i = 0; i < freeConnectionList.Count; ++i)
+						{
+							// get the current free connection
+							Brick.ConnectionPoint freeConnexion = freeConnectionList[i];
+							// check that we are not linking a free connection of the brick with another free connection of
+							// the same brick (avoiding linking the brick to itself and at the same time avoiding linking
+							// the freeconnection with itself which is at the same place of course)
+							// We don't need to check is the type of the connection are the same because we asked the list
+							// of the free connection for the specific type of the current connection.
+							// and of course the most important is to check that the two connection are at the same place
+							if ((freeConnexion.mMyBrick != brick) &&
+								arePositionsEqual(brickConnexion.mPositionInStudWorldCoord, freeConnexion.mPositionInStudWorldCoord))
+							{
+								if (connectTwoConnectionPoints(brickConnexion, freeConnexion, checkElectricShortcut))
+									--i;
+							}
+						}
+					}
+		}
+
+		/// <summary>
 		/// Update the connectivity of all the selected bricks base of their positions.
 		/// This method is quite slow especially if the selection list is big
 		/// </summary>
 		public void updateFullBrickConnectivityForSelectedBricksOnly()
 		{
+			// for optimization reason do not update the electric circuit for every brick
 			foreach (Layer.LayerItem item in mSelectedObjects)
-			{
-				Brick brick = item as Brick;
-				if (brick.HasConnectionPoint)
-					foreach (Brick.ConnectionPoint brickConnexion in brick.ConnectionPoints)
-						for (int i = 0; i < mFreeConnectionPoints.getListForType(brickConnexion.Type).Count; ++i)
-						{
-							Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints.getListForType(brickConnexion.Type)[i];
-							if ((freeConnexion.mMyBrick != brick) && arePositionsEqual(freeConnexion.mPositionInStudWorldCoord, brickConnexion.mPositionInStudWorldCoord))
-							{
-								if (connectTwoConnectionPoints(freeConnexion, brickConnexion, false))
-									i--;
-							}
-						}
-			}
-			// update the electric circuit on the whole layer
+				updateFullBrickConnectivityForOneBrick(item as Brick, false);
+
+			// update the electric circuit for the whole layer
 			ElectricCircuitChecker.check(this);
 		}
 
@@ -1443,19 +1551,11 @@ namespace BlueBrick.MapData
 		/// </summary>
 		public void updateFullBrickConnectivity()
 		{
+			// for optimization reason do not update the electric circuit for every brick
 			foreach (Brick brick in mBricks)
-				if (brick.HasConnectionPoint)
-					foreach (Brick.ConnectionPoint brickConnexion in brick.ConnectionPoints)
-						for (int i = 0; i < mFreeConnectionPoints.getListForType(brickConnexion.Type).Count; ++i)
-						{
-							Brick.ConnectionPoint freeConnexion = mFreeConnectionPoints.getListForType(brickConnexion.Type)[i];
-							if ((freeConnexion.mMyBrick != brick) && arePositionsEqual(freeConnexion.mPositionInStudWorldCoord, brickConnexion.mPositionInStudWorldCoord))
-							{
-								if (connectTwoConnectionPoints(freeConnexion, brickConnexion, false))
-									i--;
-							}
-						}
-			// update the electric circuit on the whole layer
+				updateFullBrickConnectivityForOneBrick(brick, false);
+
+			// update the electric circuit for the whole layer
 			ElectricCircuitChecker.check(this);
 		}
 
