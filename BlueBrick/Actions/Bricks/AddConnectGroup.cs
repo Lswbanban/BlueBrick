@@ -57,13 +57,16 @@ namespace BlueBrick.Actions.Bricks
 
 					// Compute the orientation of the bricks
 					float newOrientation = AddConnectBrick.sGetOrientationOfConnectedBrick(selectedBrick, brickToConnect);
+					newOrientation -= brickToConnect.Orientation;
+					// Rotate all the bricks of the group first before translating
+					RotateBrickOnPivotBrick rotateBricksAction = new RotateBrickOnPivotBrick(layer, mBricksInTheGroup, newOrientation, brickToConnect);
+					rotateBricksAction.MustUpdateBrickConnectivity = false;
+					rotateBricksAction.redo();
+
 					// compute the translation to add to all the bricks
 					PointF translation = new PointF(selectedBrick.ActiveConnectionPosition.X - brickToConnect.ActiveConnectionPosition.X,
 													selectedBrick.ActiveConnectionPosition.Y - brickToConnect.ActiveConnectionPosition.Y);
-
-					// Rotate and move all the bricks of the group
-					RotateAndMoveBrick moveBricksAction = new RotateAndMoveBrick(layer, mBricksInTheGroup, newOrientation, brickToConnect, translation);
-					moveBricksAction.redo();
+					mGroup.translate(translation);
 				}
 				else
 				{
