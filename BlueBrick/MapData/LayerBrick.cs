@@ -1113,79 +1113,6 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
-		/// Compute and return the angle that should take the brickToAdd if it is connected to the
-		/// selectedBrick with both their respective active connection point
-		/// </summary>
-		/// <param name="selectedBrick">The brick on the map that doesn't move</param>
-		/// <param name="brickToAdd">The brick to add for which we should compute the angle</param>
-		/// <returns></returns>
-		private float getOrientationOfConnectedBrick(Brick selectedBrick, Brick brickToAdd)
-		{
-			// compute the rotation
-			float newOrientation = selectedBrick.Orientation + selectedBrick.ActiveConnectionAngle + 180 - brickToAdd.ActiveConnectionAngle;
-			// clamp the orientation between 0 and 360
-			if (newOrientation >= 360.0f)
-				newOrientation -= 360.0f;
-			if (newOrientation < 0.0f)
-				newOrientation += 360.0f;
-			// return the value
-			return newOrientation;
-		}
-
-		/// <summary>
-		///	Add the specified brick by connecting it to the current selected brick
-		/// or don't change its position if there's no connection possible
-		/// </summary>
-		public void addConnectBrick(Brick brickToAdd)
-		{
-			// add its connection points to the free list
-			mFreeConnectionPoints.addAllBrickConnections(brickToAdd);
-
-			// now make the connection
-			if (mSelectedObjects.Count == 1)
-			{
-				Brick selectedBrick = mSelectedObjects[0] as Brick;
-				if (selectedBrick.HasConnectionPoint && brickToAdd.HasConnectionPoint)
-				{
-					// first rotate this brick
-					brickToAdd.Orientation = getOrientationOfConnectedBrick(selectedBrick, brickToAdd);
-					// the place the brick to add at the correct position
-					brickToAdd.ActiveConnectionPosition = selectedBrick.ActiveConnectionPosition;
-
-					// get the prefered index now, because the connection of the brick will move automatically the the active connection
-					int nextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(brickToAdd.PartNumber, brickToAdd.ActiveConnectionPointIndex);
-
-					// set the link between the two bricks
-					if (brickToAdd.ActiveConnectionPoint.Type == selectedBrick.ActiveConnectionPoint.Type)
-						connectTwoConnectionPoints(brickToAdd.ActiveConnectionPoint, selectedBrick.ActiveConnectionPoint, true);
-
-					// Then check all the other connexions of the brick to add
-					// because maybe the add lock different connection at the same time
-					updateFullBrickConnectivityForOneBrick(brickToAdd);
-					
-					// set the current connection point to the next one
-					brickToAdd.ActiveConnectionPointIndex = nextPreferedActiveConnectionIndex;
-				}
-				else
-				{
-					PointF position = selectedBrick.Position;
-					position.X += selectedBrick.DisplayArea.Width;
-					brickToAdd.Position = position;
-				}
-
-				// and add the brick in the list just after the selected brick
-				mBricks.Insert(mBricks.IndexOf(selectedBrick) + 1, brickToAdd);
-			}
-			else
-			{
-				mBricks.Add(brickToAdd);
-			}
-
-			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickAdded(this, brickToAdd);
-		}
-
-		/// <summary>
 		///	Add the specified group of brick by connecting it to the current selected brick
 		/// or don't change its position if there's no connection possible
 		/// </summary>
@@ -1210,25 +1137,29 @@ namespace BlueBrick.MapData
 				if (selectedBrick.HasConnectionPoint && brickToConnect.HasConnectionPoint)
 				{
 					// first rotate all the bricks
-					float newOrientation = getOrientationOfConnectedBrick(selectedBrick, brickToConnect);
-					//TODO
+					float newOrientation = Actions.Bricks.AddConnectBrick.sGetOrientationOfConnectedBrick(selectedBrick, brickToConnect);
+//					RotateBrickOnPivotBrick rotationAction = new RotateBrickOnPivotBrick(this, bricksInTheGroup, newOrientation, brickToConnect);
+
 					// compute the translation to add to all the bricks
 					PointF translation = new PointF(selectedBrick.ActiveConnectionPosition.X - brickToConnect.ActiveConnectionPosition.X,
 													selectedBrick.ActiveConnectionPosition.Y - brickToConnect.ActiveConnectionPosition.Y);
-					groupToAdd.translate(translation);
+//					groupToAdd.translate(translation);
+
+					RotateAndMoveBrick moveBricksAction = new RotateAndMoveBrick(this, bricksInTheGroup, newOrientation, brickToConnect, translation);
+					moveBricksAction.redo();
 
 					// get the prefered index now, because the connection of the brick will move automatically the the active connection
 //					int nextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(brickToAdd.PartNumber, brickToAdd.ActiveConnectionPointIndex);
 					//TODO
 
 					// set the link between the grabbed brick and the unique selected brick
-					if (brickToConnect.ActiveConnectionPoint.Type == selectedBrick.ActiveConnectionPoint.Type)
-						connectTwoConnectionPoints(brickToConnect.ActiveConnectionPoint, selectedBrick.ActiveConnectionPoint, true);
+					//if (brickToConnect.ActiveConnectionPoint.Type == selectedBrick.ActiveConnectionPoint.Type)
+					//    connectTwoConnectionPoints(brickToConnect.ActiveConnectionPoint, selectedBrick.ActiveConnectionPoint, true);
 
 					// Then check all the other connexions of all the bricks in the group to add
 					// because maybe the add lock different connection at the same time
-					foreach (Layer.LayerItem item in bricksInTheGroup)
-						updateFullBrickConnectivityForOneBrick(item as Brick);
+					//foreach (Layer.LayerItem item in bricksInTheGroup)
+					//    updateFullBrickConnectivityForOneBrick(item as Brick);
 
 					// set the current connection point to the next one
 //					brickToAdd.ActiveConnectionPointIndex = nextPreferedActiveConnectionIndex;
