@@ -231,6 +231,7 @@ namespace BlueBrick.MapData
 			public List<PointF>		mBoundingBox = new List<PointF>(4); // list of the 4 corner in pixel
 			public List<PointF>		mHull = new List<PointF>(4); // list of all the points in pixel that describe the hull of the part
             public List<SubPart>    mGroupSubPartList = null; // if this brick is a group, list of all the parts belonging to this group
+			public Dictionary<int, int> mGroupNextPreferedConnection = null; // if this brick is a group, list the prefered connection to select
 			public TDRemapData		mTDRemapData = null;
 			public LDrawRemapData	mLDrawRemapData = null;
 
@@ -341,7 +342,9 @@ namespace BlueBrick.MapData
                                 readCanUngroupTag(ref xmlReader);
                             else if (xmlReader.Name.Equals("SubPartList"))
                                 readSubPartListTag(ref xmlReader);
-                            else
+							else if (xmlReader.Name.Equals("GroupConnectionPreferenceList"))
+								readGroupConnectionPreferenceListTag(ref xmlReader);
+							else
 								xmlReader.Read();
 							// check if we need to continue
 							continueToRead = !(xmlReader.Name.Equals("part") || xmlReader.Name.Equals("group")) && !xmlReader.EOF;
@@ -884,6 +887,37 @@ namespace BlueBrick.MapData
                     xmlReader.Read();
                 }
             }
+
+			private void readGroupConnectionPreferenceListTag(ref System.Xml.XmlReader xmlReader)
+			{
+				if (!xmlReader.IsEmptyElement)
+				{
+					// start to read the subpart
+					bool entryFound = xmlReader.ReadToDescendant("nextIndex");
+					if (entryFound)
+						mGroupNextPreferedConnection = new Dictionary<int,int>();
+
+					while (entryFound)
+					{
+						// read the "from" connection index
+						int from = int.Parse(xmlReader.GetAttribute("from"));
+						int to = xmlReader.ReadElementContentAsInt();
+
+						// store the prefered connection couple
+						mGroupNextPreferedConnection.Add(from, to);
+
+						// go to next index
+						entryFound = !xmlReader.EOF && xmlReader.ReadToNextSibling("nextIndex");
+					}
+					// finish the connexion
+					if (!xmlReader.EOF)
+						xmlReader.ReadEndElement();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
 
 			private string readBlueBrickId(ref System.Xml.XmlReader xmlReader, ref string partNumber, ref string partColor)
 			{
@@ -1588,8 +1622,23 @@ namespace BlueBrick.MapData
 		{
 			Brick brickRef = null;
 			mBrickDictionary.TryGetValue(partNumber, out brickRef);
-			if ((brickRef != null) && (brickRef.mConnectionPoints != null))
-				return brickRef.mConnectionPoints[pointIndex].mNextPreferedIndex;
+			if (brickRef != null)
+			{
+				if (brickRef.IsAGroup)
+				{
+					if (brickRef.mGroupNextPreferedConnection != null)
+					{
+						int result = 0;
+						brickRef.mGroupNextPreferedConnection.TryGetValue(pointIndex, out result);
+						return result;
+					}
+				}
+				else
+				{
+					if (brickRef.mConnectionPoints != null)
+						return brickRef.mConnectionPoints[pointIndex].mNextPreferedIndex;
+				}
+			}
 			return 0;
 		}
 
