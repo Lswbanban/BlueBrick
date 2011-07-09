@@ -774,14 +774,22 @@ namespace BlueBrick.MapData
 
 		public void addConnectBrick(string partNumber)
 		{
-			if (canAddBrick() && (Map.sInstance.SelectedLayer.SelectedObjects.Count == 1))
-				ActionManager.Instance.doAction(new AddConnectBrick(Map.sInstance.SelectedLayer as LayerBrick, partNumber, -1));
+			addConnectBrick(partNumber, -1);
 		}
 
 		public void addConnectBrick(string partNumber, int connexion)
 		{
 			if (canAddBrick() && (Map.sInstance.SelectedLayer.SelectedObjects.Count == 1))
-				ActionManager.Instance.doAction(new AddConnectBrick(Map.sInstance.SelectedLayer as LayerBrick, partNumber, connexion));
+			{
+				// create the correct action depending if the part is a group or not
+				Action action = null;
+				if (BrickLibrary.Instance.isAGroup(partNumber))
+					action = new AddConnectGroup(Map.sInstance.SelectedLayer as LayerBrick, partNumber, connexion);
+				else
+					action = new AddConnectBrick(Map.sInstance.SelectedLayer as LayerBrick, partNumber, connexion);
+				// and add the action in the manager
+				ActionManager.Instance.doAction(action);
+			}
 		}
 
 		/// <summary>
