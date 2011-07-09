@@ -70,6 +70,7 @@
     <Compile Include="Actions\Area\DeleteArea.cs" />
     <Compile Include="Actions\Area\MoveArea.cs" />
     <Compile Include="Actions\Bricks\AddConnectBrick.cs" />
+    <Compile Include="Actions\Bricks\AddConnectGroup.cs" />
     <Compile Include="Actions\Bricks\BringBrickToFront.cs" />
     <Compile Include="Actions\Bricks\DuplicateBrick.cs" />
     <Compile Include="Actions\Bricks\MoveBrick.cs" />

@@ -25,7 +25,7 @@ namespace BlueBrick.Actions.Bricks
 		// data for this action
 		private LayerBrick mBrickLayer = null;
 		private LayerBrick.Brick mBrick = null;
-		private int mBrickIndex = -1; // this index is for the redo, to add the text at the same place
+		private int mBrickIndex = -1; // this index is for the redo, to add the brick at the same place
 		private int mNextPreferedActiveConnectionIndex = 0; // the prefered active connection index according to the brick library
 
 		/// <summary>
@@ -48,6 +48,51 @@ namespace BlueBrick.Actions.Bricks
 			return newOrientation;
 		}
 
+		/// <summary>
+		/// Try to find the best connection index that should be used for the brickToAttach when we attach it
+		/// to the current active connection point of the fixedBrick, and set it.
+		/// </summary>
+		/// <param name="fixedBrick">The brick that doesn't move neither change its connection point</param>
+		/// <param name="brickToAttach">The brick for which computing the best connection point</param>
+		/// <param name="wantedConnexion">The prefered connection index if possible</param>
+		public static void sSetBestConnectionPointIndex(LayerBrick.Brick fixedBrick, LayerBrick.Brick brickToAttach, int wantedConnexion)
+		{
+			// get the type of the active connexion of the selected brick
+			int fixedConnexionType = fixedBrick.ActiveConnectionPoint.Type;
+
+			// try to give the correct connexion point, either the specified wanted one, or if
+			// we add the same brick do a special case
+			bool isActiveConnectionPointChosen = false;
+			if (wantedConnexion >= 0)
+			{
+				// set the active connexion point with the wanted one
+				brickToAttach.ActiveConnectionPointIndex = wantedConnexion;
+				// check that the wanted connection type is the same as the selected brick
+				isActiveConnectionPointChosen = (brickToAttach.ActiveConnectionPoint.Type == fixedConnexionType) &&
+												brickToAttach.ActiveConnectionPoint.IsFree;
+			}
+			else if (fixedBrick.PartNumber == brickToAttach.PartNumber)
+			{
+				// check if the new added brick is the same kind of the selected one, if so,
+				// then we choose the previous connection point, but check if it is the same type
+				brickToAttach.ActiveConnectionPointIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(fixedBrick.PartNumber, fixedBrick.ActiveConnectionPointIndex);
+				// check that the connection type is the same
+				isActiveConnectionPointChosen = (brickToAttach.ActiveConnectionPoint.Type == fixedConnexionType) &&
+												brickToAttach.ActiveConnectionPoint.IsFree;
+			}
+
+			// if we didn't find any valid active connexion point, set the active connection
+			// with the first connexion of the same type that we can find (if the brick as any connection point)
+			if (!isActiveConnectionPointChosen)
+				for (int i = 0; i < brickToAttach.ConnectionPoints.Count; ++i)
+					if ((brickToAttach.ConnectionPoints[i].Type == fixedConnexionType) &&
+						brickToAttach.ConnectionPoints[i].IsFree)
+					{
+						brickToAttach.ActiveConnectionPointIndex = i;
+						break;
+					}
+		}
+
 		public AddConnectBrick(LayerBrick layer, string partNumber, int wantedConnexion)
 		{
 			mBrickLayer = layer;
@@ -59,37 +104,8 @@ namespace BlueBrick.Actions.Bricks
 				LayerBrick.Brick selectedBrick = layer.SelectedObjects[0] as LayerBrick.Brick;
 				if (selectedBrick.HasConnectionPoint && mBrick.HasConnectionPoint)
 				{
-					// get the type of the active connexion of the selected brick
-					int selectedConnexionType = selectedBrick.ActiveConnectionPoint.Type;
-
-					// try to give the correct connexion point, either the specified wanted one, or if
-					// we add the same brick do a special case
-					bool isActiveConnectionPointChosen = false;
-					if (wantedConnexion >= 0)
-					{
-						// set the active connexion point with the wanted one
-						mBrick.ActiveConnectionPointIndex = wantedConnexion;
-						// check that the wanted connection type is the same as the selected brick
-						isActiveConnectionPointChosen = (mBrick.ActiveConnectionPoint.Type == selectedConnexionType);
-					}
-					else if (selectedBrick.PartNumber == partNumber)
-					{
-						// check if the new added brick is the same kind of the selected one, if so,
-						// then we choose the previous connection point, but check if it is the same type
-						mBrick.ActiveConnectionPointIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(partNumber, selectedBrick.ActiveConnectionPointIndex);
-						// check that the connection type is the same
-						isActiveConnectionPointChosen = (mBrick.ActiveConnectionPoint.Type == selectedConnexionType);
-					}
-
-					// if we didn't find any valid active connexion point, set the active connection
-					// with the first connexion of the same type that we can find (if the brick as any connection point)
-					if (!isActiveConnectionPointChosen)
-						for (int i = 0; i < mBrick.ConnectionPoints.Count; ++i)
-							if (mBrick.ConnectionPoints[i].Type == selectedConnexionType)
-							{
-								mBrick.ActiveConnectionPointIndex = i;
-								break;
-							}
+					// choose the best active connection point for the brick
+					sSetBestConnectionPointIndex(selectedBrick, mBrick, wantedConnexion);
 
 					// after setting the active connection point index from which this brick will be attached,
 					// get the prefered index from the library
