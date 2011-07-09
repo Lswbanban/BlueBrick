@@ -885,9 +885,6 @@ namespace BlueBrick
 					// special case for the monorail ramp in TD, it's only one part but in fact it is two part in LDRAW
 					if ((TDPartNumber == 232677) || (TDPartNumber == 232678))
 					{
-						// select the last brick added (the begining of the ramp)
-						currentLayer.clearSelection();
-						currentLayer.addObjectInSelection(brick);
 						// create the second part of the ramp
 						LayerBrick.Brick rampBrick = null;
 						if (TDPartNumber == 232677)
@@ -902,11 +899,10 @@ namespace BlueBrick
 							brick.ActiveConnectionPointIndex = 0;
 							rampBrick.ActiveConnectionPointIndex = 1;
 						}
-						rampBrick.Orientation = (float)angle + diffAngleBtwTDandBB;
-						rampBrick.ActiveConnectionPosition = new PointF((float)x, (float)y);
-						currentLayer.addConnectBrick(rampBrick);
-						// clear the selection again
-						currentLayer.clearSelection();
+						// normally it should be: rampBrick.Orientation = (float)angle + diffAngleBtwTDandBB;
+						rampBrick.Orientation = Actions.Bricks.AddConnectBrick.sGetOrientationOfConnectedBrick(brick, rampBrick);						
+						rampBrick.ActiveConnectionPosition = brick.ActiveConnectionPosition;
+						currentLayer.addBrick(rampBrick, -1);
 					}
 				}
 				else

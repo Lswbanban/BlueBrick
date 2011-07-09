@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using BlueBrick.MapData;
+using System.Drawing;
 
 namespace BlueBrick.Actions.Bricks
 {
@@ -25,6 +26,27 @@ namespace BlueBrick.Actions.Bricks
 		private LayerBrick mBrickLayer = null;
 		private LayerBrick.Brick mBrick = null;
 		private int mBrickIndex = -1; // this index is for the redo, to add the text at the same place
+		private int mNextPreferedActiveConnectionIndex = 0; // the prefered active connection index according to the brick library
+
+		/// <summary>
+		/// Compute and return the angle that should take the brickToAttach if it is connected to the
+		/// fixedBrick with both their respective active connection point.
+		/// </summary>
+		/// <param name="fixedBrick">The brick on the map that doesn't move</param>
+		/// <param name="brickToAttach">The brick to add for which we should compute the angle</param>
+		/// <returns></returns>
+		public static float sGetOrientationOfConnectedBrick(LayerBrick.Brick fixedBrick, LayerBrick.Brick brickToAttach)
+		{
+			// compute the rotation
+			float newOrientation = fixedBrick.Orientation + fixedBrick.ActiveConnectionAngle + 180 - brickToAttach.ActiveConnectionAngle;
+			// clamp the orientation between 0 and 360
+			if (newOrientation >= 360.0f)
+				newOrientation -= 360.0f;
+			if (newOrientation < 0.0f)
+				newOrientation += 360.0f;
+			// return the value
+			return newOrientation;
+		}
 
 		public AddConnectBrick(LayerBrick layer, string partNumber, int wantedConnexion)
 		{
@@ -68,7 +90,25 @@ namespace BlueBrick.Actions.Bricks
 								mBrick.ActiveConnectionPointIndex = i;
 								break;
 							}
+
+					// after setting the active connection point index from which this brick will be attached,
+					// get the prefered index from the library
+					mNextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(partNumber, mBrick.ActiveConnectionPointIndex);
+
+					// then rotate the brick to connect
+					mBrick.Orientation = sGetOrientationOfConnectedBrick(selectedBrick, mBrick);
+					// the place the brick to add at the correct position
+					mBrick.ActiveConnectionPosition = selectedBrick.ActiveConnectionPosition;
 				}
+				else
+				{
+					PointF position = selectedBrick.Position;
+					position.X += selectedBrick.DisplayArea.Width;
+					mBrick.Position = position;
+				}
+
+				// set the index of the brick in the list just after the selected brick
+				mBrickIndex = layer.BrickList.IndexOf(selectedBrick) + 1;
 			}
 		}
 
@@ -82,15 +122,17 @@ namespace BlueBrick.Actions.Bricks
 		public override void redo()
 		{
 			// and add this brick in the list of the layer
-			if (mBrickIndex == -1)
-				mBrickLayer.addConnectBrick(mBrick);
-			else
-				mBrickLayer.addBrick(mBrick, mBrickIndex);
+			mBrickLayer.addBrick(mBrick, mBrickIndex);
+
 			// change the selection to the new added brick (should be done after the add)
 			mBrickLayer.clearSelection();
 			mBrickLayer.addObjectInSelection(mBrick);
 			// update the connectivity of the bricks after selecting it
 			mBrickLayer.updateBrickConnectivityOfSelection(false);
+
+			// set the prefered index after the adding,
+			// because the connection of the brick will move automatically the the active connection
+			mBrick.ActiveConnectionPointIndex = mNextPreferedActiveConnectionIndex;
 		}
 
 		public override void undo()
