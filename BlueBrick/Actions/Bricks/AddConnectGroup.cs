@@ -27,7 +27,7 @@ namespace BlueBrick.Actions.Bricks
 		private Layer.Group mGroup = null;
 		private List<Layer.LayerItem> mBricksInTheGroup = null;
 		private int mInsertIndex = -1; // this index is for the redo, to add the bricks at the same place
-//		private int mNextPreferedActiveConnectionIndex = 0; // the prefered active connection index according to the brick library
+		private int mNextPreferedActiveConnectionIndex = 0; // the prefered active connection index according to the brick library
 
 		public AddConnectGroup(LayerBrick layer, string partNumber, int wantedConnexion)
 		{
@@ -41,19 +41,18 @@ namespace BlueBrick.Actions.Bricks
 			// check if we can attach the group to the unique selected object
 			if (layer.SelectedObjects.Count == 1)
 			{
+				// get the selected brick
+				LayerBrick.Brick selectedBrick = layer.SelectedObjects[0] as LayerBrick.Brick;
+
 				// find the brick of the group that will be connected to the selected brick
-				LayerBrick.Brick brickToConnect = mBricksInTheGroup[0] as LayerBrick.Brick;
+				LayerBrick.Brick brickToConnect = findBrickToConnectAdnSetBestConnectionPointIndex(selectedBrick, ref wantedConnexion);
 
 				// check if the selected brick has connection point
-				LayerBrick.Brick selectedBrick = layer.SelectedObjects[0] as LayerBrick.Brick;
 				if (selectedBrick.HasConnectionPoint && brickToConnect.HasConnectionPoint)
 				{
-					// choose the best active connection point for the brick
-					AddConnectBrick.sSetBestConnectionPointIndex(selectedBrick, brickToConnect, wantedConnexion);
-
 					// after setting the active connection point index from which this brick will be attached,
 					// get the prefered index from the library
-//					mNextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(partNumber, mBrick.ActiveConnectionPointIndex);
+					mNextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(partNumber, wantedConnexion);
 
 					// Compute the orientation of the bricks
 					float newOrientation = AddConnectBrick.sGetOrientationOfConnectedBrick(selectedBrick, brickToConnect);
@@ -78,6 +77,101 @@ namespace BlueBrick.Actions.Bricks
 				// set the index of the brick in the list just after the selected brick
 				mInsertIndex = layer.BrickList.IndexOf(selectedBrick) + 1;
 			}
+		}
+
+		private LayerBrick.Brick setActiveConnectionIndex(int connexionIndex)
+		{
+			// iterate through all the connection of the first bricks to reach the correct brick
+			foreach (Layer.LayerItem item in mBricksInTheGroup)
+			{
+				LayerBrick.Brick brick = item as LayerBrick.Brick;
+				if (brick.HasConnectionPoint)
+				{
+					int connectionCount = brick.ConnectionPoints.Count;
+					if (connexionIndex >= connectionCount)
+					{
+						connexionIndex -= connectionCount;
+					}
+					else
+					{
+						// set the active connexion point with the wanted one
+						brick.ActiveConnectionPointIndex = connexionIndex;
+						return brick;
+					}
+				}
+			}
+			return null;
+		}
+
+		private LayerBrick.Brick findBrickToConnectAdnSetBestConnectionPointIndex(LayerBrick.Brick fixedBrick, ref int wantedConnexion)
+		{
+			// the brick that will be used to attach the group
+			LayerBrick.Brick brickToAttach = null;
+
+			// get the type of the active connexion of the selected brick
+			int fixedConnexionType = fixedBrick.ActiveConnectionPoint.Type;
+
+			// try to give the correct connexion point, either the specified wanted one, or if
+			// we add the same brick do a special case
+			bool isActiveConnectionPointChosen = false;
+			if (wantedConnexion >= 0)
+			{
+				// set the active connexion point with the wanted one
+				brickToAttach = setActiveConnectionIndex(wantedConnexion);
+				// check that the wanted connection type is the same as the selected brick
+				isActiveConnectionPointChosen = (brickToAttach != null) &&
+												(brickToAttach.ActiveConnectionPoint.Type == fixedConnexionType) &&
+												brickToAttach.ActiveConnectionPoint.IsFree;
+			}
+			else if (fixedBrick.PartNumber == mGroup.PartNumber)
+			{
+				// check if the new added brick is the same kind of the selected one, if so,
+				// then we choose the previous connection point, but check if it is the same type
+				wantedConnexion = BrickLibrary.Instance.getConnectionNextPreferedIndex(fixedBrick.PartNumber, fixedBrick.ActiveConnectionPointIndex);
+				brickToAttach = setActiveConnectionIndex(wantedConnexion);
+				// check that the connection type is the same
+				isActiveConnectionPointChosen = (brickToAttach != null) &&
+												(brickToAttach.ActiveConnectionPoint.Type == fixedConnexionType) &&
+												brickToAttach.ActiveConnectionPoint.IsFree;
+			}
+
+			// if we didn't find any valid active connexion point, set the active connection
+			// with the first connexion of the same type that we can find (if the brick as any connection point)
+			if (!isActiveConnectionPointChosen)
+			{
+				wantedConnexion = 0;
+				foreach (Layer.LayerItem item in mBricksInTheGroup)
+				{
+					LayerBrick.Brick brick = item as LayerBrick.Brick;
+					if (brick.HasConnectionPoint)
+						for (int i = 0; i < brick.ConnectionPoints.Count; ++i)
+						{
+							if ((brick.ConnectionPoints[i].Type == fixedConnexionType) &&
+								brick.ConnectionPoints[i].IsFree)
+							{
+								brick.ActiveConnectionPointIndex = i;
+								brickToAttach = brick;
+								isActiveConnectionPointChosen = true;
+								break;
+							}
+							// increase the connection count
+							++wantedConnexion;
+						}
+					// break again if we found it
+					if (isActiveConnectionPointChosen)
+						break;
+				}
+			}
+
+			// if we still didn't find a compatible brick, use the first one of the list
+			if (!isActiveConnectionPointChosen)
+			{
+				brickToAttach = mBricksInTheGroup[0] as LayerBrick.Brick;
+				wantedConnexion = 0;
+			}
+
+			// finally return the brick selected for the attachement
+			return brickToAttach;
 		}
 
 		public override string getName()
@@ -111,7 +205,7 @@ namespace BlueBrick.Actions.Bricks
 
 			// set the prefered index after the adding,
 			// because the connection of the brick will move automatically the the active connection
-//			mBrick.ActiveConnectionPointIndex = mNextPreferedActiveConnectionIndex;
+			setActiveConnectionIndex(mNextPreferedActiveConnectionIndex);
 		}
 
 		public override void undo()

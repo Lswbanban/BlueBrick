@@ -48,6 +48,41 @@ namespace BlueBrick.Actions.Bricks
 			return newOrientation;
 		}
 
+		public AddConnectBrick(LayerBrick layer, string partNumber, int wantedConnexion)
+		{
+			mBrickLayer = layer;
+			mBrick = new LayerBrick.Brick(partNumber);
+
+			if (layer.SelectedObjects.Count == 1)
+			{
+				// check if the selected brick has connection point
+				LayerBrick.Brick selectedBrick = layer.SelectedObjects[0] as LayerBrick.Brick;
+				if (selectedBrick.HasConnectionPoint && mBrick.HasConnectionPoint)
+				{
+					// choose the best active connection point for the brick
+					setBestConnectionPointIndex(selectedBrick, mBrick, wantedConnexion);
+
+					// after setting the active connection point index from which this brick will be attached,
+					// get the prefered index from the library
+					mNextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(partNumber, mBrick.ActiveConnectionPointIndex);
+
+					// then rotate the brick to connect
+					mBrick.Orientation = sGetOrientationOfConnectedBrick(selectedBrick, mBrick);
+					// the place the brick to add at the correct position
+					mBrick.ActiveConnectionPosition = selectedBrick.ActiveConnectionPosition;
+				}
+				else
+				{
+					PointF position = selectedBrick.Position;
+					position.X += selectedBrick.DisplayArea.Width;
+					mBrick.Position = position;
+				}
+
+				// set the index of the brick in the list just after the selected brick
+				mBrickIndex = layer.BrickList.IndexOf(selectedBrick) + 1;
+			}
+		}
+
 		/// <summary>
 		/// Try to find the best connection index that should be used for the brickToAttach when we attach it
 		/// to the current active connection point of the fixedBrick, and set it.
@@ -55,7 +90,7 @@ namespace BlueBrick.Actions.Bricks
 		/// <param name="fixedBrick">The brick that doesn't move neither change its connection point</param>
 		/// <param name="brickToAttach">The brick for which computing the best connection point</param>
 		/// <param name="wantedConnexion">The prefered connection index if possible</param>
-		public static void sSetBestConnectionPointIndex(LayerBrick.Brick fixedBrick, LayerBrick.Brick brickToAttach, int wantedConnexion)
+		private void setBestConnectionPointIndex(LayerBrick.Brick fixedBrick, LayerBrick.Brick brickToAttach, int wantedConnexion)
 		{
 			// get the type of the active connexion of the selected brick
 			int fixedConnexionType = fixedBrick.ActiveConnectionPoint.Type;
@@ -91,41 +126,6 @@ namespace BlueBrick.Actions.Bricks
 						brickToAttach.ActiveConnectionPointIndex = i;
 						break;
 					}
-		}
-
-		public AddConnectBrick(LayerBrick layer, string partNumber, int wantedConnexion)
-		{
-			mBrickLayer = layer;
-			mBrick = new LayerBrick.Brick(partNumber);
-
-			if (layer.SelectedObjects.Count == 1)
-			{
-				// check if the selected brick has connection point
-				LayerBrick.Brick selectedBrick = layer.SelectedObjects[0] as LayerBrick.Brick;
-				if (selectedBrick.HasConnectionPoint && mBrick.HasConnectionPoint)
-				{
-					// choose the best active connection point for the brick
-					sSetBestConnectionPointIndex(selectedBrick, mBrick, wantedConnexion);
-
-					// after setting the active connection point index from which this brick will be attached,
-					// get the prefered index from the library
-					mNextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(partNumber, mBrick.ActiveConnectionPointIndex);
-
-					// then rotate the brick to connect
-					mBrick.Orientation = sGetOrientationOfConnectedBrick(selectedBrick, mBrick);
-					// the place the brick to add at the correct position
-					mBrick.ActiveConnectionPosition = selectedBrick.ActiveConnectionPosition;
-				}
-				else
-				{
-					PointF position = selectedBrick.Position;
-					position.X += selectedBrick.DisplayArea.Width;
-					mBrick.Position = position;
-				}
-
-				// set the index of the brick in the list just after the selected brick
-				mBrickIndex = layer.BrickList.IndexOf(selectedBrick) + 1;
-			}
 		}
 
 		public override string getName()
