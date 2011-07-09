@@ -85,13 +85,13 @@ namespace BlueBrick.MapData
 			{
 				get
 				{
-					return new PointF(mDisplayArea.X + (mDisplayArea.Width / 2), mDisplayArea.Y + (mDisplayArea.Height / 2));
+					return new PointF(mDisplayArea.X + (mDisplayArea.Width * 0.5f), mDisplayArea.Y + (mDisplayArea.Height * 0.5f));
 				}
 
 				set
 				{
-					mDisplayArea.X = value.X - (mDisplayArea.Width / 2);
-					mDisplayArea.Y = value.Y - (mDisplayArea.Height / 2);
+					mDisplayArea.X = value.X - (mDisplayArea.Width * 0.5f);
+					mDisplayArea.Y = value.Y - (mDisplayArea.Height * 0.5f);
 				}
 			}
 
@@ -251,33 +251,27 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			///	Set the position in stud coord. The position of a brick is its top left corner.
+			/// </summary>
+			public override PointF Position
+			{
+				set
+				{
+					// translate the whole group
+					translate(new PointF(value.X - mDisplayArea.X, value.Y - mDisplayArea.Y));
+				}
+			}
+
+			/// <summary>
 			/// Set the position via the center of the object in stud coord.
 			/// </summary>
 			public override PointF Center
 			{
-				get
-				{
-					return new PointF(mDisplayArea.X + (mDisplayArea.Width * 0.5f), mDisplayArea.Y + (mDisplayArea.Height * 0.5f));
-				}
-
 				set
 				{
-					// compute the new values
-					PointF newCorner = new PointF(value.X - (mDisplayArea.Width * 0.5f), value.Y - (mDisplayArea.Height * 0.5f));
-					// compute the difference
-					PointF translation = new PointF(newCorner.X - mDisplayArea.X, newCorner.Y - mDisplayArea.Y);
-					// change the center of the group
-					mDisplayArea.X = newCorner.X;
-					mDisplayArea.Y = newCorner.Y;
-					// add a shift for all the items of the group
-					foreach (Layer.LayerItem item in mItems)
-					{
-						// ask the center first because it computed
-						PointF newItemCenter = item.Center;
-						newItemCenter.X += translation.X;
-						newItemCenter.Y += translation.Y;
-						item.Center = newItemCenter;
-					}
+					// translate the whole group
+					translate(new PointF(value.X - (mDisplayArea.Width * 0.5f) - mDisplayArea.X,
+										value.Y - (mDisplayArea.Height * 0.5f) - mDisplayArea.Y));
 				}
 			}
 			#endregion
@@ -351,6 +345,23 @@ namespace BlueBrick.MapData
 				writer.WriteAttributeString("id", this.GetHashCode().ToString());
 				writeMyGroup(writer); // we just call the write of the group and not base.WriteXml because we don't need the display area for the group
 				writer.WriteEndElement();
+			}
+			#endregion
+
+			#region Transformation on the group
+			public void translate(PointF translation)
+			{
+				// change the position of the group
+				mDisplayArea.X += translation.X;
+				mDisplayArea.Y += translation.Y;
+				// add the same translation for all the items of the group
+				foreach (Layer.LayerItem item in mItems)
+				{
+					PointF newItemPosition = item.Position;
+					newItemPosition.X += translation.X;
+					newItemPosition.Y += translation.Y;
+					item.Position = newItemPosition;
+				}
 			}
 			#endregion
 
