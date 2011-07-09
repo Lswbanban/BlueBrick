@@ -1562,7 +1562,34 @@ namespace BlueBrick.MapData
 			Brick brickRef = null;
 			mBrickDictionary.TryGetValue(partNumber, out brickRef);
 			if (brickRef != null)
-				return brickRef.mConnectionPoints;
+			{
+				if (brickRef.IsAGroup)
+				{
+					List<Brick.ConnectionPoint> result = null;
+					foreach (Brick.SubPart subPart in brickRef.mGroupSubPartList)
+					{
+						List<Brick.ConnectionPoint> subPartList = null;
+						if (subPart.mSubPartBrick.IsAGroup)
+							subPartList = getConnectionList(subPart.mSubPartNumber);
+						else
+							subPartList = subPart.mSubPartBrick.mConnectionPoints;
+						// add the list if not null
+						if (subPartList != null)
+						{
+							// create the result list if not already created
+							if (result == null)
+								result = new List<Brick.ConnectionPoint>(subPartList.Count);
+							// and add the subpart list in it
+							result.AddRange(subPartList);
+						}
+					}
+					return result;
+				}
+				else
+				{
+					return brickRef.mConnectionPoints;
+				}
+			}
 			return null;
 		}
 
