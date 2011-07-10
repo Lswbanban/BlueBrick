@@ -1386,7 +1386,7 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
-		/// Update the connectivity of all the selected bricks base of their positions.
+		/// Update the connectivity of all the selected bricks based on their positions.
 		/// This method is quite slow especially if the selection list is big
 		/// </summary>
 		public void updateFullBrickConnectivityForSelectedBricksOnly()
@@ -1400,7 +1400,7 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
-		/// Update the connectivity of all the bricks base of their positions
+		/// Update the connectivity of all the bricks based on their positions
 		/// This method is slow since the whole connectivity is recompute. It should only be call after
 		/// an import of a map from a file format that doesn't contain the connectivity info, such as LDraw format
 		/// </summary>

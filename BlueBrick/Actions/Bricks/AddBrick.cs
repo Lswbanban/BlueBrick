@@ -78,15 +78,10 @@ namespace BlueBrick.Actions.Bricks
 			for (int i = mBricks.Count - 1; i >= 0; --i)
 			{
 				mBrickLayer.addBrick(mBricks[i] as LayerBrick.Brick, mBrickIndex[i]);
-				// clear the selection to select only current the brick undeleted,
-				// such as we can recompute its connexions, we must do it one by one, else
-				// the bricks inside the group deleted will not be connected.
-				// the other solution is to perform a full connectivity rebuild outside of this loop
-				// but it is not guaranted to be faster.
-				mBrickLayer.clearSelection();
-				mBrickLayer.addObjectInSelection(mBricks[i]);
-				// update the connectivity of the bricks
-				mBrickLayer.updateBrickConnectivityOfSelection(false);
+				// update the connectivity of each brick, in order to also create connections
+				// between bricks inside the same group, otherwise if we update the connectivity of
+				// the selection, the connectivity inside the selection will not change
+				mBrickLayer.updateFullBrickConnectivityForOneBrick(mBricks[i] as LayerBrick.Brick);
 			}
 			// finally reselect all the undeleted brick
 			mBrickLayer.clearSelection();

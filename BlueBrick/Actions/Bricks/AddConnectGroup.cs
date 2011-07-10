@@ -191,17 +191,16 @@ namespace BlueBrick.Actions.Bricks
 			foreach (Layer.LayerItem item in mBricksInTheGroup)
 			{
 				mBrickLayer.addBrick(item as LayerBrick.Brick, insertIndex);
+				// update the connectivity of each brick, in order to also create connections
+				// between bricks inside the same group, otherwise if we update the connectivity of
+				// the selection, the connectivity inside the selection will not change
+				mBrickLayer.updateFullBrickConnectivityForOneBrick(item as LayerBrick.Brick);
+				// select the brick (in order to select the whole group at the end
 				mBrickLayer.addObjectInSelection(item);
 				// increase the index if it is valid
 				if (insertIndex != -1)
 					insertIndex++;
 			}
-
-			// update the connectivity of the bricks after selecting it
-			// we don't need to update the connectivity of the bricks inside the group
-			// because it is already correct and was done in the constructor of the group
-			// so we can just update the connectivity with the parts outside of the group
-			mBrickLayer.updateBrickConnectivityOfSelection(false);
 
 			// set the prefered index after the adding,
 			// because the connection of the brick will move automatically the the active connection

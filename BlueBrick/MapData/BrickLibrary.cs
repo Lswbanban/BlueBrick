@@ -1435,7 +1435,7 @@ namespace BlueBrick.MapData
 				// get the graphic context and draw the referenc image in it with the correct transform and scale
 				Graphics graphics = Graphics.FromImage(group.Image);
 				graphics.Clear(Color.Transparent);
-				graphics.CompositingMode = CompositingMode.SourceCopy; // this should be enough since we draw the image on an empty transparent area
+				graphics.CompositingMode = CompositingMode.SourceOver;
 				graphics.SmoothingMode = SmoothingMode.HighQuality;
 				graphics.CompositingQuality = CompositingQuality.HighSpeed;
 				graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
