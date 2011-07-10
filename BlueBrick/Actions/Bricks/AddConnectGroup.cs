@@ -81,26 +81,8 @@ namespace BlueBrick.Actions.Bricks
 
 		private LayerBrick.Brick setActiveConnectionIndex(int connexionIndex)
 		{
-			// iterate through all the connection of the first bricks to reach the correct brick
-			foreach (Layer.LayerItem item in mBricksInTheGroup)
-			{
-				LayerBrick.Brick brick = item as LayerBrick.Brick;
-				if (brick.HasConnectionPoint)
-				{
-					int connectionCount = brick.ConnectionPoints.Count;
-					if (connexionIndex >= connectionCount)
-					{
-						connexionIndex -= connectionCount;
-					}
-					else
-					{
-						// set the active connexion point with the wanted one
-						brick.ActiveConnectionPointIndex = connexionIndex;
-						return brick;
-					}
-				}
-			}
-			return null;
+			mGroup.ActiveConnectionIndex = connexionIndex;
+			return mGroup.BrickThatHoldsActiveConnection;
 		}
 
 		private LayerBrick.Brick findBrickToConnectAdnSetBestConnectionPointIndex(LayerBrick.Brick fixedBrick, ref int wantedConnexion)
