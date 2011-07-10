@@ -233,6 +233,7 @@ namespace BlueBrick.MapData
 		{
 			private List<LayerItem> mItems = new List<LayerItem>();
 			private string mPartNumber = string.Empty;	// id of the group if any
+			private LayerBrick.Brick mBrickThatHoldsActiveConnection = null;
 
 			#region get/set
 			public override bool IsAGroup
@@ -273,6 +274,51 @@ namespace BlueBrick.MapData
 					translate(new PointF(value.X - (mDisplayArea.Width * 0.5f) - mDisplayArea.X,
 										value.Y - (mDisplayArea.Height * 0.5f) - mDisplayArea.Y));
 				}
+			}
+
+			/// <summary>
+			/// This property is only valid for a group of bricks.
+			/// Set the active connection index of the whole group. The value is among a concatenation of all
+			/// the connections index of the bricks in the group as they are listed in the whole children list
+			/// </summary>
+			public int ActiveConnectionIndex
+			{
+				set
+				{
+					// reset the pointer on the brick and init a connection index variable with the value
+					mBrickThatHoldsActiveConnection = null;
+					int connexionIndex = value;
+					// iterate through all the connection of the first bricks to reach the correct brick
+					List<LayerItem> bricksInTheGroup = getAllChildrenItems();
+					foreach (Layer.LayerItem item in bricksInTheGroup)
+					{
+						LayerBrick.Brick brick = item as LayerBrick.Brick;
+						if ((brick != null) && brick.HasConnectionPoint)
+						{
+							int connectionCount = brick.ConnectionPoints.Count;
+							if (connexionIndex >= connectionCount)
+							{
+								connexionIndex -= connectionCount;
+							}
+							else
+							{
+								// set the active connexion point with the wanted one
+								brick.ActiveConnectionPointIndex = connexionIndex;
+								mBrickThatHoldsActiveConnection = brick;
+								break;
+							}
+						}
+					}
+				}
+			}
+
+			/// <summary>
+			/// This property is only valid for a group of brick. It returns the brick inside the group
+			/// that should hold the active connection point of the whole group.
+			/// </summary>
+			public LayerBrick.Brick BrickThatHoldsActiveConnection
+			{
+				get { return mBrickThatHoldsActiveConnection; }
 			}
 			#endregion
 

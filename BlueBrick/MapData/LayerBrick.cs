@@ -1094,6 +1094,7 @@ namespace BlueBrick.MapData
 		#endregion
 
 		#region action on the layer
+		#region add/remove bricks
 		/// <summary>
 		///	Add the specified brick at the specified position in the list
 		/// </summary>
@@ -1229,7 +1230,9 @@ namespace BlueBrick.MapData
 				ActionManager.Instance.doAction(mLastDuplicateBrickAction);
 			}
 		}
+		#endregion
 
+		#region selection
 		/// <summary>
 		/// Select all the items in this layer.
 		/// </summary>
@@ -1240,6 +1243,50 @@ namespace BlueBrick.MapData
 			addObjectInSelection(mBricks);
 		}
 
+		/// <summary>
+		/// This method return the unique brick in the layer to which you can connect another brick
+		/// or null if there's no suitable brick candidate for connection.
+		/// If there's only one brick selected, this brick is return, otherwise check
+		/// if all the bricks selected belongs to the same hierarchical tree of group,
+		/// meaning the top group parent is the same for all the bricks.
+		/// If yes, then it return the brick that hold the active connection in the group (which can be null)
+		/// </summary>
+		/// <returns>The brick that is connectable and should display its active connection point, or null</returns>
+		public Brick getConnectableBrick()
+		{
+			if (mSelectedObjects.Count == 1)
+			{
+				return (mSelectedObjects[0] as Brick);
+			}
+			else if (mSelectedObjects.Count > 1)
+			{
+				Layer.Group topGroup = null;
+				foreach (Layer.LayerItem item in mSelectedObjects)
+				{
+					// get the group of the item
+					Layer.Group fatherGroup = item.Group;
+					// if any item doesn't have any group, since there's several items selected,
+					// we know that they cannot be in the same group
+					if (fatherGroup == null)
+						return null;
+					// find the top father
+					while (fatherGroup.Group != null)
+						fatherGroup = fatherGroup.Group;
+					// if the top group is not initialized yet, do it now
+					if (topGroup == null)
+						topGroup = fatherGroup;
+					// if we found two different top father, stop the search
+					if (fatherGroup != topGroup)
+						return null;
+				}
+				// iteration finished without finding different top group, so it's ok
+				return topGroup.BrickThatHoldsActiveConnection;
+			}
+			// no object selected (selection is empty)
+			return null;
+		}
+		#endregion
+		#region connectivity
 		/// <summary>
 		/// Connect the two connexion if possible (i.e. if both connexion are free)
 		/// </summary>
@@ -1413,7 +1460,9 @@ namespace BlueBrick.MapData
 			// update the electric circuit for the whole layer
 			ElectricCircuitChecker.check(this);
 		}
+		#endregion 
 
+		#region altitude
 		/// <summary>
 		/// A delegate to compare two bricks by altitude
 		/// </summary>
@@ -1438,7 +1487,8 @@ namespace BlueBrick.MapData
 		{
 			mBricks.Sort(CompareBricksByAltitudeDelegate);
 		}
-
+		#endregion
+		#region recompute image
 		/// <summary>
 		/// recompute all the pictures of all the brick of all the brick layers 
 		/// </summary>
@@ -1447,7 +1497,7 @@ namespace BlueBrick.MapData
 			foreach (Brick brick in mBricks)
 				brick.clearMipmapImages(0, 1);
 		}
-
+		#endregion
 		#endregion
 
 		#region draw
@@ -1642,10 +1692,10 @@ namespace BlueBrick.MapData
 			{
 				brickThatHasActiveConnection = mCurrentBrickUnderMouse;
 			}
-			else if (mSelectedObjects.Count == 1)
+			else
 			{
-				Brick brick = mSelectedObjects[0] as Brick;
-				if (brick.HasConnectionPoint && brick.ActiveConnectionPoint.IsFree)
+				Brick brick = getConnectableBrick();
+				if (brick != null && brick.HasConnectionPoint && brick.ActiveConnectionPoint.IsFree)
 					brickThatHasActiveConnection = brick;
 			}
 			// now if the brick is valid, draw the dot of the selected connection
