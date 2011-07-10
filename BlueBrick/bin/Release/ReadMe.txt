@@ -49,7 +49,10 @@ Open bugs:
 - MISSING FEATURE (Larry): Shortcut parts (being able to have a meta XML part file describing an assembly of parts) or grouping parts.
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
+- MISSING FEATURE (Alban): The selection should be an undoable action
 - [target 1.8] BUG (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
+- [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should replace it (and the selection should modify the combo boxes)
+- [target 1.8] BUG (Alban): The groups are not saved in LDraw format
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image

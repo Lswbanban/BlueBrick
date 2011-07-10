@@ -31,6 +31,10 @@
 			<ColorARGB>FF2FFFAD</ColorARGB>
 			<Size>1</Size>
 		</ConnectionType>
+		<ConnectionType name="flexpivot">
+			<ColorARGB>FF000000</ColorARGB>
+			<Size>0.5</Size>
+		</ConnectionType>
 		<ConnectionType name="magnet">
 			<ColorARGB>FFFFA746</ColorARGB>
 			<Size>1</Size>
