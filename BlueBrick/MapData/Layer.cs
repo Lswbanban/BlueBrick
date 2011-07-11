@@ -319,6 +319,13 @@ namespace BlueBrick.MapData
 			public LayerBrick.Brick BrickThatHoldsActiveConnection
 			{
 				get { return mBrickThatHoldsActiveConnection; }
+				set
+				{
+					if (mItems.Contains(value))
+						mBrickThatHoldsActiveConnection = value;
+					else
+						mBrickThatHoldsActiveConnection = null;
+				}
 			}
 			#endregion
 
@@ -326,7 +333,16 @@ namespace BlueBrick.MapData
 			public Group()
 			{
 			}
-			
+
+			/// <summary>
+			/// Copy constructor , only copy the part number for now
+			/// </summary>
+			/// <param name="model"></param>
+			public Group(Group model)
+			{
+				mPartNumber = model.mPartNumber;
+			}
+
 			/// <summary>
 			/// The public constructor to construct a specific group based on it's name id.
 			/// This constructor will call the private recursive one, starting with the identity matrix.

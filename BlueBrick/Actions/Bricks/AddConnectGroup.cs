@@ -34,16 +34,14 @@ namespace BlueBrick.Actions.Bricks
 			// save the layer and construct the group
 			mBrickLayer = layer;
 			mGroup = new Layer.Group(partNumber);
+			LayerBrick.Brick selectedBrick = layer.getConnectableBrick();
 
 			// get the flat list of bricks from the hierarchical group
 			mBricksInTheGroup = mGroup.getAllChildrenItems();
 
 			// check if we can attach the group to the unique selected object
-			if (layer.SelectedObjects.Count == 1)
+			if (selectedBrick != null)
 			{
-				// get the selected brick
-				LayerBrick.Brick selectedBrick = layer.SelectedObjects[0] as LayerBrick.Brick;
-
 				// find the brick of the group that will be connected to the selected brick
 				LayerBrick.Brick brickToConnect = findBrickToConnectAdnSetBestConnectionPointIndex(selectedBrick, ref wantedConnexion);
 

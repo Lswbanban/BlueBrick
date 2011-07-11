@@ -25,6 +25,7 @@ namespace BlueBrick.Actions.Bricks
 		private LayerBrick mBrickLayer = null;
 		private List<Layer.LayerItem> mBricks = null;
 		private List<int> mBrickIndex = null; // this list of index is for the redo, to add each text at the same place
+		private string mPartNumber = string.Empty; //if the list contains only one brick or one group, this is the name of this specific brick or group
 
 		public DuplicateBrick(LayerBrick layer, List<Layer.LayerItem> bricksToDuplicate)
 		{
@@ -34,24 +35,29 @@ namespace BlueBrick.Actions.Bricks
 			mBrickIndex = new List<int>(bricksToDuplicate.Count);
 			for (int i = 0; i < bricksToDuplicate.Count; ++i)
 				mBrickIndex.Add(-1);
-			// copy the list, because the pointer may change (specially if it is the selection)
+
+			// clone the list, because the pointer may change (specially if it is the selection)
 			// and we also need to duplicate the bricks themselves
-			mBricks = new List<Layer.LayerItem>(bricksToDuplicate.Count);
-			foreach (Layer.LayerItem item in bricksToDuplicate)
+			mBricks = LayerBrick.sCloneBrickList(bricksToDuplicate);
+
+			// try to get a part number (which can be the name of a group)
+			Layer.LayerItem topItem = LayerBrick.sGetTopItemFromList(mBricks);
+			if (topItem != null)
 			{
-				// clone the item (because the same list of text to add can be paste several times)
-				LayerBrick.Brick duplicatedBrick = (item as LayerBrick.Brick).Clone();
-				// add the duplicated item in the list
-				mBricks.Add(duplicatedBrick);
+				if (topItem.IsAGroup)
+					mPartNumber = (topItem as Layer.Group).PartNumber;
+				else
+					mPartNumber = (topItem as LayerBrick.Brick).PartNumber;
 			}
 		}
 
 		public override string getName()
 		{
-			if (mBricks.Count == 1)
+			// if the part number is valid, use the specific message
+			if (mPartNumber != string.Empty)
 			{
 				string actionName = BlueBrick.Properties.Resources.ActionDuplicateBrick;
-				actionName = actionName.Replace("&", (mBricks[0] as LayerBrick.Brick).PartNumber);
+				actionName = actionName.Replace("&", mPartNumber);
 				return actionName;
 			}
 			else
