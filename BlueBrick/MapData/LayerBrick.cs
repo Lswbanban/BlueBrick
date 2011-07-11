@@ -1202,6 +1202,74 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// This static tool method, clone all the item of the specified list into a new list
+		/// This method also clone the groups that may belong to this list of bricks.
+		/// </summary>
+		/// <param name="listToCopy">The original list of brick to copy</param>
+		/// <returns>A clone list of cloned brick with there cloned groups</returns>
+		public static List<LayerItem> sCloneBrickList(List<LayerItem> listToClone)
+		{
+			// the resulting list
+			List<LayerItem> result = new List<LayerItem>(listToClone.Count);
+
+			// use a dictionnary to recreate the groups that may be inside the list of brick to duplicate
+			// this dictionnary makes an association between the group to duplicate and the new duplicated one
+			Dictionary<Group, Group> groupsToCreate = new Dictionary<Group, Group>();
+			// also use a list of item that we will make grow to create all the groups
+			List<LayerItem> fullOriginalItemList = new List<LayerItem>(listToClone);
+
+			// use a for instead of a foreach because the list will grow
+			for (int i = 0; i < fullOriginalItemList.Count; ++i)
+			{
+				// get the current item
+				LayerItem originalItem = fullOriginalItemList[i];
+				LayerItem duplicatedItem = null;
+
+				// check if the item is a group or a brick
+				if (originalItem.IsAGroup)
+				{
+					// if the item is a group that means the list already grown, and that means we also have it in the dictionnary
+					Group associatedGroup = null;
+					groupsToCreate.TryGetValue(originalItem as Group, out associatedGroup);
+					duplicatedItem = associatedGroup;
+				}
+				else
+				{
+					// if the item is a brick, just clone it and add it to the result
+					// clone the item (because the same list of text to add can be paste several times)
+					duplicatedItem = (originalItem as Brick).Clone();
+					// add the duplicated item in the list
+					result.Add(duplicatedItem);
+				}
+
+				// check if the item to clone belongs to a group then also duplicate the group
+				if (originalItem.Group != null)
+				{
+					// get the duplicated group if already created otherwise create it and add it in the dictionary
+					Group duplicatedGroup = null;
+					groupsToCreate.TryGetValue(originalItem.Group, out duplicatedGroup);
+					if (duplicatedGroup == null)
+					{
+						duplicatedGroup = new Group(originalItem.Group);
+						groupsToCreate.Add(originalItem.Group, duplicatedGroup);
+						fullOriginalItemList.Add(originalItem.Group);
+					}
+					// assign the group to the brick
+					duplicatedGroup.addItem(duplicatedItem);
+					// check if we need to also assign the brick that hold the connection point
+					if (originalItem.Group.BrickThatHoldsActiveConnection == originalItem)
+						duplicatedGroup.BrickThatHoldsActiveConnection = (duplicatedItem as Brick);
+				}
+			}
+
+			// delete the dictionary
+			groupsToCreate.Clear();
+			fullOriginalItemList.Clear();
+			// return the cloned list
+			return result;
+		}
+
+		/// <summary>
 		/// Copy the list of the selected bricks in a separate list for later use.
 		/// This method should be called on a CTRL+C
 		/// </summary>
@@ -1209,12 +1277,7 @@ namespace BlueBrick.MapData
 		{
 			// reset the copy list
 			sCopyItems.Clear();
-			// recreate the copy list if the selection is not empty
-			foreach (LayerItem item in SelectedObjects)
-			{
-				// add a duplicated item in the list (because the model may change between this copy and the paste)
-				sCopyItems.Add((item as Brick).Clone());
-			}
+			sCopyItems = sCloneBrickList(SelectedObjects);
 		}
 
 		/// <summary>
@@ -1254,14 +1317,33 @@ namespace BlueBrick.MapData
 		/// <returns>The brick that is connectable and should display its active connection point, or null</returns>
 		public Brick getConnectableBrick()
 		{
-			if (mSelectedObjects.Count == 1)
+			LayerItem topItem = sGetTopItemFromList(mSelectedObjects);
+			if (topItem != null)
 			{
-				return (mSelectedObjects[0] as Brick);
+				if (topItem.IsAGroup)
+					return (topItem as Group).BrickThatHoldsActiveConnection;
+				else
+					return (topItem as Brick);
 			}
-			else if (mSelectedObjects.Count > 1)
+			return null;
+		}
+
+		/// <summary>
+		/// This static tool method return the top item of a hierachical group of bricks, or null if all the
+		/// bricks of the list doesn't belong to the same unique hierarchical group.
+		/// </summary>
+		/// <param name="brickList">a list of bricks among which we should search a top item</param>
+		/// <returns>a Brick or a Group which is at the top of the hierarchical group</returns>
+		public static LayerItem sGetTopItemFromList(List<LayerItem> brickList) 
+		{
+			if (brickList.Count == 1)
+			{
+				return brickList[0];
+			}
+			else if (brickList.Count > 1)
 			{
 				Layer.Group topGroup = null;
-				foreach (Layer.LayerItem item in mSelectedObjects)
+				foreach (Layer.LayerItem item in brickList)
 				{
 					// get the group of the item
 					Layer.Group fatherGroup = item.Group;
@@ -1280,7 +1362,7 @@ namespace BlueBrick.MapData
 						return null;
 				}
 				// iteration finished without finding different top group, so it's ok
-				return topGroup.BrickThatHoldsActiveConnection;
+				return topGroup;
 			}
 			// no object selected (selection is empty)
 			return null;

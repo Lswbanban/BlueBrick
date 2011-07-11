@@ -33,6 +33,7 @@ namespace BlueBrick.Actions.Bricks
 		private bool mRotateCW;
 		private float mRotationStep = 0.0f; // in degree, we need to save it because the current rotation step may change between the do and undo
 		private PointF mCenter = new PointF(0,0);	// in Stud coord
+		private string mPartNumber = string.Empty; //if the list contains only one brick or one group, this is the name of this specific brick or group
 
 		// special case for only one brick connected that we must rotate
 		private PointF mConnexionPosition = new PointF(0, 0);	// in Stud coord
@@ -185,14 +186,25 @@ namespace BlueBrick.Actions.Bricks
 					sLastCenterIsValid = true;
 				}
 			}
+
+			// try to get a part number (which can be the name of a group)
+			Layer.LayerItem topItem = LayerBrick.sGetTopItemFromList(mBricks);
+			if (topItem != null)
+			{
+				if (topItem.IsAGroup)
+					mPartNumber = (topItem as Layer.Group).PartNumber;
+				else
+					mPartNumber = (topItem as LayerBrick.Brick).PartNumber;
+			}
 		}
 
 		public override string getName()
 		{
-			if (mBricks.Count == 1)
+			// if the part number is valid, use the specific message
+			if (mPartNumber != string.Empty)
 			{
 				string actionName = BlueBrick.Properties.Resources.ActionRotateBrick;
-				actionName = actionName.Replace("&", (mBricks[0] as LayerBrick.Brick).PartNumber);
+				actionName = actionName.Replace("&", mPartNumber);
 				return actionName;
 			}
 			else

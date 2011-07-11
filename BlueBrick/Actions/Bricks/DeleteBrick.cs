@@ -24,6 +24,7 @@ namespace BlueBrick.Actions.Bricks
 		private LayerBrick mBrickLayer = null;
 		private List<Layer.LayerItem> mBricks = null;
 		private List<int> mBrickIndex = null; // this list of index is for the redo, to add each text at the same place
+		private string mPartNumber = string.Empty; //if the list contains only one brick or one group, this is the name of this specific brick or group
 
 		public DeleteBrick(LayerBrick layer, List<Layer.LayerItem> bricksToDelete)
 		{
@@ -33,14 +34,25 @@ namespace BlueBrick.Actions.Bricks
 			mBricks = new List<Layer.LayerItem>(bricksToDelete.Count);
 			foreach (Layer.LayerItem obj in bricksToDelete)
 				mBricks.Add(obj);
+
+			// try to get a part number (which can be the name of a group)
+			Layer.LayerItem topItem = LayerBrick.sGetTopItemFromList(mBricks);
+			if (topItem != null)
+			{
+				if (topItem.IsAGroup)
+					mPartNumber = (topItem as Layer.Group).PartNumber;
+				else
+					mPartNumber = (topItem as LayerBrick.Brick).PartNumber;
+			}
 		}
 
 		public override string getName()
 		{
-			if (mBricks.Count == 1)
+			// if the part number is valid, use the specific message
+			if (mPartNumber != string.Empty)
 			{
 				string actionName = BlueBrick.Properties.Resources.ActionDeleteBrick;
-				actionName = actionName.Replace("&", (mBricks[0] as LayerBrick.Brick).PartNumber);
+				actionName = actionName.Replace("&", mPartNumber);
 				return actionName;
 			}
 			else

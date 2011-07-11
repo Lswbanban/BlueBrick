@@ -52,11 +52,11 @@ namespace BlueBrick.Actions.Bricks
 		{
 			mBrickLayer = layer;
 			mBrick = new LayerBrick.Brick(partNumber);
+			LayerBrick.Brick selectedBrick = layer.getConnectableBrick();
 
-			if (layer.SelectedObjects.Count == 1)
+			if (selectedBrick != null)
 			{
 				// check if the selected brick has connection point
-				LayerBrick.Brick selectedBrick = layer.SelectedObjects[0] as LayerBrick.Brick;
 				if (selectedBrick.HasConnectionPoint && mBrick.HasConnectionPoint)
 				{
 					// choose the best active connection point for the brick

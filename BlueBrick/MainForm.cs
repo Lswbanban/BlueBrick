@@ -2162,12 +2162,18 @@ namespace BlueBrick
 						switch (actionIndex)
 						{
 							case shortcutableAction.ADD_PART:
-								// add a connected brick, or if the selection count is different from 1, add a brick in the origin
-								if (Map.Instance.SelectedLayer.SelectedObjects.Count == 1)
-									Map.Instance.addConnectBrick(shortcut.mPartName, shortcut.mConnexion);
-								else
-									Map.Instance.addBrick(shortcut.mPartName);
-								break;
+								{
+									LayerBrick brickLayer = Map.Instance.SelectedLayer as LayerBrick;
+									if (brickLayer != null)
+									{
+										// add a connected brick, or if there's no connectable brick, add a brick in the origin
+										if (brickLayer.getConnectableBrick() != null)
+											Map.Instance.addConnectBrick(shortcut.mPartName, shortcut.mConnexion);
+										else
+											Map.Instance.addBrick(shortcut.mPartName);
+									}
+									break;
+								}
 							case shortcutableAction.DELETE_PART:
 								// shortcut to the event handler of the menu
 								deleteToolStripMenuItem_Click(sender, e);
@@ -2221,14 +2227,19 @@ namespace BlueBrick
 								moveSelectedObjects(false, new PointF(0, moveSize));
 								break;
 							case shortcutableAction.CHANGE_CURRENT_CONNEXION:
-								Layer selectedLayer = Map.Instance.SelectedLayer;
-								if ((selectedLayer != null) && (selectedLayer.GetType().Name.Equals("LayerBrick")) && (selectedLayer.SelectedObjects.Count == 1))
 								{
-									LayerBrick.Brick selectedBrick = (selectedLayer as LayerBrick).SelectedObjects[0] as LayerBrick.Brick;
-									selectedBrick.setActiveConnectionPointWithNextOne();
-									this.mapPanel.updateView();
+									LayerBrick brickLayer = Map.Instance.SelectedLayer as LayerBrick;
+									if (brickLayer != null)
+									{
+										LayerBrick.Brick selectedBrick = brickLayer.getConnectableBrick();
+										if (selectedBrick != null)
+										{
+											selectedBrick.setActiveConnectionPointWithNextOne();
+											this.mapPanel.updateView();
+										}
+									}
+									break;
 								}
-								break;
 						}
 
 						// we need to force the refresh of the map immediatly because the invalidate
