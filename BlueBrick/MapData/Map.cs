@@ -216,17 +216,24 @@ namespace BlueBrick.MapData
 				mSelectedLayer = value;
 
 				// according to the type of the layer selected, enable or disable some tool on the main form
-				switch (mSelectedLayer.GetType().Name)
+				if (mSelectedLayer != null)
 				{
-					case "LayerGrid":
-						MainForm.Instance.enableToolbarButtonOnLayerSelection(false, false);
-						break;
-					case "LayerArea":
-						MainForm.Instance.enableToolbarButtonOnLayerSelection(false, true);
-						break;
-					default:
-						MainForm.Instance.enableToolbarButtonOnLayerSelection(true, false);
-						break;
+					switch (mSelectedLayer.GetType().Name)
+					{
+						case "LayerGrid":
+							MainForm.Instance.enableToolbarButtonOnLayerSelection(false, false);
+							break;
+						case "LayerArea":
+							MainForm.Instance.enableToolbarButtonOnLayerSelection(false, true);
+							break;
+						default:
+							MainForm.Instance.enableToolbarButtonOnLayerSelection(true, false);
+							break;
+					}
+				}
+				else
+				{
+					MainForm.Instance.enableToolbarButtonOnLayerSelection(false, false);
 				}
 			}
 		}
@@ -702,11 +709,18 @@ namespace BlueBrick.MapData
 		/// <param name="layerToAdd">the layer to add</param>
 		public void removeLayer(Layer layerToRemove)
 		{
+			// get the current index of the layer to remove
+			int currentIndex = mLayers.IndexOf(layerToRemove);
 			// remove the layer
 			mLayers.Remove(layerToRemove);
-			// select the first layer to always have a layer selected, unless there's no layer anymore
+			// check if it was the last layer that we removed
+			if (currentIndex == mLayers.Count)
+				currentIndex--;
+			// select the layer with the same index to always have a layer selected, unless there's no layer anymore
 			if (mLayers.Count > 0)
-				SelectedLayer = mLayers[0];
+				SelectedLayer = mLayers[currentIndex];
+			else
+				SelectedLayer = null;
 			// notify the part list
 			MainForm.Instance.NotifyPartListForLayerRemoved(layerToRemove);
 		}
@@ -757,7 +771,7 @@ namespace BlueBrick.MapData
 		#region parts management
 		public bool canAddBrick()
 		{
-			return ((Map.sInstance.SelectedLayer != null) && (Map.sInstance.SelectedLayer.GetType().Name.Equals("LayerBrick")));
+			return ((Map.sInstance.SelectedLayer as LayerBrick) != null);
 		}
 
 		public void addBrick(string partNumber)

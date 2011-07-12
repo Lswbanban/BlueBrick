@@ -81,6 +81,7 @@ Bug fixed in 1.7.0.0:
 - BUGFIX (Alban): Another bug on the snapping of connected brick: now the selected bricks are unlinked from the non selected brick during the mouse down to have a stable snapping.
 - BUGFIX (Alban): When applying 2 times in a row a brick duplication with the first duplication rotated, during the second duplication, the rotation of the first one was canceled.
 - BUGFIX (Alban): When undoing the deletion of the top layer, the top layer where not replaced on the top
+- BUGFIX (Alban): When the last layer deleted was a Brick layer, you could still add parts
 
 Bug fixed in 1.6.1.0:
 - NEW FEATURE (Alex & Alban): Add a context menu in the part lib to choose more options: large/small icons, respect proportions, display bubble info
