@@ -684,8 +684,8 @@ namespace BlueBrick.MapData
 		public void addLayer(Layer layerToAdd, int index)
 		{
 			// clamp the index
-			if (index >= mLayers.Count)
-				index = mLayers.Count - 1;
+			if (index > mLayers.Count)
+				index = mLayers.Count;
 			if (index < 0)
 				index = 0;
 			// insert at the right place
