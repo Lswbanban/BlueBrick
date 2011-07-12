@@ -350,6 +350,8 @@ namespace BlueBrick.MapData
 			/// <param name="groupName">The part number to use to construct the group</param>
 			public Group(string groupName): this(groupName, new Matrix())
 			{
+				// set the active connection to set the brick that hold it
+				this.ActiveConnectionIndex = 0;
 			}
 
 			/// <summary>
