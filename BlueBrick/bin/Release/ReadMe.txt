@@ -58,6 +58,8 @@ Open bugs:
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
+- BUG (Alban): The shortcut key for switching the active connection point doesn't work with group parts
+- BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
 
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder).
@@ -69,6 +71,7 @@ Bug fixed in 1.7.0.0:
 - NEW FEATURE (cimddwc): Add the transparency for all the layers (and not only the Area layer)
 - NEW FEATURE (Larry): Save the export image settings in the BBM file.
 - NEW FEATURE (Alban): You can group/ungroup hierarchically parts and texts.
+- NEW FEATURE (Alban): You can create XML files that are actually groups of parts and see them in the Library
 - BUGFIX (Larry): CRASH! when opening a BBM file which is write protected.
 - BUGFIX (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
 - BUGFIX (Vincent): CRASH! In the preference you could set a sub grid number to 0 or 1, leading to a later crash (when relaunching BlueBrick or editing the grid layer options)
@@ -77,6 +80,7 @@ Bug fixed in 1.7.0.0:
 - BUGFIX (Alban): The snapping of connected brick tried to snap to free connection point inside the selection, making the snapping becoming crazy.
 - BUGFIX (Alban): Another bug on the snapping of connected brick: now the selected bricks are unlinked from the non selected brick during the mouse down to have a stable snapping.
 - BUGFIX (Alban): When applying 2 times in a row a brick duplication with the first duplication rotated, during the second duplication, the rotation of the first one was canceled.
+- BUGFIX (Alban): When undoing the deletion of the top layer, the top layer where not replaced on the top
 
 Bug fixed in 1.6.1.0:
 - NEW FEATURE (Alex & Alban): Add a context menu in the part lib to choose more options: large/small icons, respect proportions, display bubble info
