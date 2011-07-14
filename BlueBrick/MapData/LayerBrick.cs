@@ -394,44 +394,6 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
-			/// Return the list of free point for this brick
-			/// </summary>
-			public List<PointF> FreeConnectionPoints
-			{
-				get
-				{
-					if (mConnectionPoints != null)
-					{
-						List<PointF> result = new List<PointF>(mConnectionPoints.Count);
-						foreach (ConnectionPoint connexion in mConnectionPoints)
-							if (connexion.IsFree)
-								result.Add(connexion.mPositionInStudWorldCoord);
-						return result;
-					}
-					return null;
-				}
-			}
-
-			/// <summary>
-			/// Return the list of free connexion for this brick
-			/// </summary>
-			public List<ConnectionPoint> FreeConnections
-			{
-				get
-				{
-					if (mConnectionPoints != null)
-					{
-						List<ConnectionPoint> result = new List<ConnectionPoint>(mConnectionPoints.Count);
-						foreach (ConnectionPoint connexion in mConnectionPoints)
-							if (connexion.IsFree)
-								result.Add(connexion);
-						return result;
-					}
-					return null;
-				}
-			}
-
-			/// <summary>
 			/// Return the a list of couple of connection index that describe each an electric circuit on the part
 			/// </summary>
 			public List<BrickLibrary.Brick.ElectricCircuit> ElectricCircuitIndexList
@@ -860,41 +822,110 @@ namespace BlueBrick.MapData
 				}
 			}
 
+			/// <summary>
+			/// Return a list of connections that belongs to this brick or to other bricks that belong to the same
+			/// hierarchical group than this brick.
+			/// This function can return an empty list but not null.
+			/// </summary>
+			/// <param name="myTopGroup">If this brick belongs to a group, set the top group in this param, or null otherwise</param>
+			/// <returns>A list of connection in this brick and other brick of the same group (can be empty)</returns>
+			private List<Brick.ConnectionPoint> getConnectionsListForAllMyGroup(out Group myTopGroup)
+			{
+				// get all the bricks in the group of this brick
+				myTopGroup = this.TopGroup;
+				if (myTopGroup != null)
+				{
+					List<LayerItem> brickList = myTopGroup.getAllChildrenItems();
+
+					// create the result list with an estimation of the number of connections
+					List<ConnectionPoint> result = new List<ConnectionPoint>(brickList.Count * 2);
+
+					// now iterate on all the bricks to get all the free connection points
+					foreach (LayerItem item in brickList)
+					{
+						Brick brick = item as Brick;
+						// iterate on the connections points to find the free ones
+						if (brick.mConnectionPoints != null)
+							result.AddRange(brick.mConnectionPoints);
+					}
+
+					// return the result that may be null
+					return result;
+				}
+				else
+				{
+					if (mConnectionPoints != null)
+						return mConnectionPoints;
+					else
+						return (new List<ConnectionPoint>(0));
+				}
+			}
+
 			public void setActiveConnectionPointUnder(PointF positionInStudCoord)
 			{
-				if (mConnectionPoints != null)
-				{
-					float bestSquareDistance = float.MaxValue;
-					for (int i = 0 ; i < mConnectionPoints.Count ; ++i)
-						if (mConnectionPoints[i].IsFree)
+				// get all the connection points
+				Group myTopGroup = null;
+				List<Brick.ConnectionPoint> connectionList = getConnectionsListForAllMyGroup(out myTopGroup);
+
+				// find the closest free connection point from the mouse position
+				float bestSquareDistance = float.MaxValue;
+				int bestConnectionIndex = -1;
+				for (int i = 0; i < connectionList.Count; ++i)
+					if (connectionList[i].IsFree)
+					{
+						PointF point = connectionList[i].mPositionInStudWorldCoord;
+						float dx = positionInStudCoord.X - point.X;
+						float dy = positionInStudCoord.Y - point.Y;
+						float squareDistance = (dx * dx) + (dy * dy);
+						if (squareDistance < bestSquareDistance)
 						{
-							PointF point = mConnectionPoints[i].mPositionInStudWorldCoord;
-							float dx = positionInStudCoord.X - point.X;
-							float dy = positionInStudCoord.Y - point.Y;
-							float squareDistance = (dx * dx) + (dy * dy);
-							if (squareDistance < bestSquareDistance)
-							{
-								bestSquareDistance = squareDistance;
-								mActiveConnectionPointIndex = i;
-							}
+							bestSquareDistance = squareDistance;
+							bestConnectionIndex = i;
 						}
+					}
+
+				// check if we found a connection index to set
+				if (bestConnectionIndex != -1)
+				{
+					// check if this brick belongs to a group
+					if (myTopGroup != null)
+						myTopGroup.ActiveConnectionIndex = bestConnectionIndex;
+					else
+						mActiveConnectionPointIndex = bestConnectionIndex;
 				}
 			}
 
 			public void setActiveConnectionPointWithNextOne()
 			{
-				if (mConnectionPoints != null)
+				// get all the connection points
+				Group myTopGroup = null;
+				List<Brick.ConnectionPoint> connectionList = getConnectionsListForAllMyGroup(out myTopGroup);
+
+				// memorize the current index to know when if we are looping
+				int currentActiveConnectionIndex = mActiveConnectionPointIndex;
+				if (myTopGroup != null)
+					currentActiveConnectionIndex = myTopGroup.ActiveConnectionIndex;
+				// initialize the new connection index with the current one
+				int nextActiveConnectionIndex = currentActiveConnectionIndex;
+
+				// iterate until we find the next free connection point or that we made a full loop
+				do
 				{
-					// memorize the current index to know when if we are looping
-					int previousActiveConnectionIndex = mActiveConnectionPointIndex;
-					do
-					{
-						// go to the next one (and loop if reaching the end of the list)
-						mActiveConnectionPointIndex++;
-						if (mActiveConnectionPointIndex >= mConnectionPoints.Count)
-							mActiveConnectionPointIndex = 0;
-						// until we find a free point or we tested them all
-					} while (!mConnectionPoints[mActiveConnectionPointIndex].IsFree && (mActiveConnectionPointIndex != previousActiveConnectionIndex));
+					// go to the next one (and loop if reaching the end of the list)
+					nextActiveConnectionIndex++;
+					if (nextActiveConnectionIndex >= connectionList.Count)
+						nextActiveConnectionIndex = 0;
+					// until we find a free point or we tested them all
+				} while (!connectionList[nextActiveConnectionIndex].IsFree && (nextActiveConnectionIndex != currentActiveConnectionIndex));
+
+				// check if we found a connection index to set
+				if (nextActiveConnectionIndex != currentActiveConnectionIndex)
+				{
+					// check if this brick belongs to a group
+					if (myTopGroup != null)
+						myTopGroup.ActiveConnectionIndex = nextActiveConnectionIndex;
+					else
+						mActiveConnectionPointIndex = nextActiveConnectionIndex;
 				}
 			}
 

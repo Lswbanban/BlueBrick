@@ -129,6 +129,24 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Get the top group of the whole hierarchy this item belongs to, 
+			/// or null if this item doesn't belong to any group.
+			/// </summary>
+			public Group TopGroup
+			{
+				get
+				{
+					Group topGroup = this.Group;
+					if (topGroup != null)
+					{
+						while (topGroup.Group != null)
+							topGroup = topGroup.Group;
+					}
+					return topGroup;
+				}
+			}
+
+			/// <summary>
 			/// This property tells if this Item is a group or not.
 			/// This property is overriden by the group class.
 			/// </summary>
@@ -283,6 +301,28 @@ namespace BlueBrick.MapData
 			/// </summary>
 			public int ActiveConnectionIndex
 			{
+				get
+				{
+					int resultIndex = 0;
+					// iterate through all the bricks to reach the correct brick
+					List<LayerItem> bricksInTheGroup = getAllChildrenItems();
+					foreach (Layer.LayerItem item in bricksInTheGroup)
+					{
+						LayerBrick.Brick brick = item as LayerBrick.Brick;
+						if ((brick != null) && brick.HasConnectionPoint)
+						{
+							if (brick == mBrickThatHoldsActiveConnection)
+							{
+								resultIndex += brick.ActiveConnectionPointIndex;
+								break;
+							}
+							else
+								resultIndex += brick.ConnectionPoints.Count;
+						}
+					}
+					// return the result
+					return resultIndex;
+				}
 				set
 				{
 					// reset the pointer on the brick and init a connection index variable with the value
