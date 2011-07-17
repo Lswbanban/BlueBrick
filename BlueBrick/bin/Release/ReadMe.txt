@@ -53,11 +53,12 @@ Open bugs:
 - [target 1.8] BUG (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should replace it (and the selection should modify the combo boxes)
 - [target 1.8] BUG (Alban): The groups are not saved in LDraw format
+- [target 1.8] BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
+- [target 1.8] BUG (Alban): The snapping margin defined in the XML file has no effect for a group
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
-- BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
 Bug fixed in 1.7.0.0:

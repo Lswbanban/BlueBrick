@@ -29,12 +29,13 @@ namespace BlueBrick.MapData
 			public const int DEFAULT = 0;
 
 			// there's a specific connection type for rendering the selected connections
-			public static ConnectionType sSelectedConnection = new ConnectionType(string.Empty, Color.Red, 2.5f);
+			public static ConnectionType sSelectedConnection = new ConnectionType(string.Empty, Color.Red, 2.5f, 0.0f);
 
 			// the data used to render the connection
 			private string mName = string.Empty;
 			private Color mColor = Color.Empty;
 			private float mSize = 1.0f;
+			private float mHingeAngle = 0.0f;
 
 			public Color Color
 			{
@@ -46,11 +47,17 @@ namespace BlueBrick.MapData
 				get { return mSize; }
 			}
 
-			public ConnectionType(string name, Color color, float size)
+			public float HingeAngle
+			{
+				get { return mHingeAngle; }
+			}
+
+			public ConnectionType(string name, Color color, float size, float angle)
 			{
 				mName = name;
 				mColor = color;
 				mSize = size;
+				mHingeAngle = angle;
 			}
 		};
 
@@ -1158,7 +1165,7 @@ namespace BlueBrick.MapData
 			mConnectionTypeRemapingDictionnary.Clear();
 
 			// add the default connection at first in the list
-			mConnectionTypes.Add(new ConnectionType(string.Empty, Color.Black, 1.0f));
+			mConnectionTypes.Add(new ConnectionType(string.Empty, Color.Black, 1.0f, 0.0f));
 
 			// try to load the xml file
 			string xmlFileName = Application.StartupPath + @"/config/ConnectionTypeList.xml";
@@ -1191,7 +1198,7 @@ namespace BlueBrick.MapData
 						if (xmlReader.Name.Equals("Size"))
 							size = xmlReader.ReadElementContentAsFloat();
 						// update the selected connection rendering
-						ConnectionType.sSelectedConnection = new ConnectionType(string.Empty, color, size);
+						ConnectionType.sSelectedConnection = new ConnectionType(string.Empty, color, size, 0.0f);
 					}
 					// now parse the list of connection
 					while (continueToRead && !xmlReader.Name.Equals("ConnectionType"))
@@ -1218,9 +1225,14 @@ namespace BlueBrick.MapData
 						if (xmlReader.Name.Equals("Size"))
 							size = xmlReader.ReadElementContentAsFloat();
 
+						// read the rotation angle
+						float hingeAngle = 0.0f;
+						if (xmlReader.Name.Equals("HingeAngle"))
+							hingeAngle = xmlReader.ReadElementContentAsFloat();
+
 						// add the new connection to the list
 						mConnectionTypeRemapingDictionnary.Add(name, mConnectionTypes.Count);
-						mConnectionTypes.Add(new ConnectionType(name, color, size));
+						mConnectionTypes.Add(new ConnectionType(name, color, size, hingeAngle));
 
 						// read the next connection
 						while (continueToRead && !xmlReader.Name.Equals("ConnectionType"))
@@ -1574,6 +1586,13 @@ namespace BlueBrick.MapData
 			if ((brickRef != null) && (brickRef.mConnectionPoints != null))
 				return brickRef.mConnectionPoints[connexionIndex].mType;
 			return ConnectionType.DEFAULT;
+		}
+
+		public float getConnexionHingeAngle(int connexionType)
+		{
+			if ((connexionType >= 0) && (connexionType < mConnectionTypes.Count))
+				return mConnectionTypes[connexionType].HingeAngle;
+			return 0.0f;
 		}
 
 		public Brick.Margin getSnapMargin(string partNumber)
