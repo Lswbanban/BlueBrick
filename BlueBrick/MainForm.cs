@@ -2234,7 +2234,7 @@ namespace BlueBrick
 										LayerBrick.Brick selectedBrick = brickLayer.getConnectableBrick();
 										if (selectedBrick != null)
 										{
-											selectedBrick.setActiveConnectionPointWithNextOne();
+											selectedBrick.setActiveConnectionPointWithNextOne(true);
 											this.mapPanel.updateView();
 										}
 									}
