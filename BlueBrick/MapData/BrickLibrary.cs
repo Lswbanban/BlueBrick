@@ -391,7 +391,7 @@ namespace BlueBrick.MapData
                         // if the image is null for a normal brick, this brick should be ignored by BlueBrick
                         // The ignore bricks have different meaning than the unknown bricks
                         // if the brick should be ignored, set the brick type and create a dummy small image
-                        mBrickType |= Brick.BrickType.IGNORABLE;
+						mBrickType |= Brick.BrickType.IGNORABLE | Brick.BrickType.NOT_LISTED;
                     }
                 }
 									
