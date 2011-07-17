@@ -250,6 +250,7 @@ namespace BlueBrick.MapData
 		public class Group : LayerItem
 		{
 			private List<LayerItem> mItems = new List<LayerItem>();
+			private bool mCanUngroup = true; // this flag tells if the group can be ungrouped or not
 			private string mPartNumber = string.Empty;	// id of the group if any
 			private LayerBrick.Brick mBrickThatHoldsActiveConnection = null;
 
@@ -257,6 +258,14 @@ namespace BlueBrick.MapData
 			public override bool IsAGroup
 			{
 				get { return true; }
+			}
+
+			/// <summary>
+			/// Tell if this group can be splitted and disbanded
+			/// </summary>
+			public bool CanUngroup
+			{
+				get { return mCanUngroup; }
 			}
 
 			/// <summary>
@@ -405,6 +414,8 @@ namespace BlueBrick.MapData
 			{
 				// set the group name
 				mPartNumber = groupName;
+				// set the can ungroup flag
+				mCanUngroup = BrickLibrary.Instance.canUngroup(groupName);				
 				// create all the parts inside the group
 				List<BrickLibrary.Brick.SubPart> groupSubPartList = BrickLibrary.Instance.getGroupSubPartList(groupName);
 				if (groupSubPartList != null)
