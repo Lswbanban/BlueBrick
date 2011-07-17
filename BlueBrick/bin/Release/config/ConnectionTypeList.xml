@@ -34,6 +34,7 @@
 		<ConnectionType name="flexpivot">
 			<ColorARGB>FF000000</ColorARGB>
 			<Size>0.5</Size>
+			<HingeAngle>10</HingeAngle>
 		</ConnectionType>
 		<ConnectionType name="magnet">
 			<ColorARGB>FFFFA746</ColorARGB>
