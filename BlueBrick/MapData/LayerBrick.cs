@@ -2458,6 +2458,9 @@ namespace BlueBrick.MapData
 			mCurrentBrickUnderMouse = null;
 			mMouseGrabDeltaToCenter = new PointF(0.0f, 0.0f);
 			mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+			// clear also the rotation action (but do not undo the action since we want to keep the orientation of the part added)
+			mRotationForSnappingDuringBrickMove = null;
+			mSnappingOrientation = 0.0f;
 
 			// check if it is a single Brick or a group to remove one or several bricks
 			Brick brickDrop = itemDrop as Brick;
