@@ -57,9 +57,8 @@ Open bugs:
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
-- REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
-- BUG (Alban): The shortcut key for switching the active connection point doesn't work with group parts
 - BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
+- REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder).

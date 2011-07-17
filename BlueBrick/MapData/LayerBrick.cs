@@ -110,7 +110,7 @@ namespace BlueBrick.MapData
 								// the link is set, check if the active connection point is me, then force
 								// the brick to choose someone else
 								if (activeConnectionPoint == this)
-									mMyBrick.setActiveConnectionPointWithNextOne();
+									mMyBrick.setActiveConnectionPointWithNextOne(true);
 							}
 						}
 						// finally set the link
@@ -380,7 +380,7 @@ namespace BlueBrick.MapData
 							mActiveConnectionPointIndex = value;
 						// check if the active connection point is Free, else select the next one
 						if (!ActiveConnectionPoint.IsFree)
-							setActiveConnectionPointWithNextOne();
+							setActiveConnectionPointWithNextOne(false);
 					}
 				}
 			}
@@ -895,11 +895,21 @@ namespace BlueBrick.MapData
 				}
 			}
 
-			public void setActiveConnectionPointWithNextOne()
+			/// <summary>
+			/// Set the active connection index with the next one in the list.
+			/// </summary>
+			/// <param name="ignoreIfNotMainBrickOfAGroup">If true, do nothing if this brick belongs to a group and this brick is not the brick that hold the active connection index</param>
+			public void setActiveConnectionPointWithNextOne(bool ignoreIfNotMainBrickOfAGroup)
 			{
 				// get all the connection points
 				Group myTopGroup = null;
 				List<Brick.ConnectionPoint> connectionList = getConnectionsListForAllMyGroup(out myTopGroup);
+
+				// check if we need to ignore this change if this brick belongs to a group
+				// and that you want to change the active connection of the whole group
+				if (ignoreIfNotMainBrickOfAGroup && (myTopGroup != null) &&
+					(myTopGroup.BrickThatHoldsActiveConnection != this))
+					return;
 
 				// memorize the current index to know when if we are looping
 				int currentActiveConnectionIndex = mActiveConnectionPointIndex;
