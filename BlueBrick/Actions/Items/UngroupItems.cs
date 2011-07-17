@@ -35,15 +35,19 @@ namespace BlueBrick.Actions.Items
             for (int i = 0; i < searchList.Count; ++i)
             {
                 Layer.LayerItem item = searchList[i];
+				// check if this item as a father group or is single (top item)
                 if (item.Group == null)
                 {
-                    // check if it is a group or a simple item
+                    // check if this item is a group that can be ungrouped or a simple item by casting it
                     Layer.Group group = item as Layer.Group;
-                    if ((group != null) && !result.Contains(group))
+					// if it is a group that can be ungrouped and not already in the list, add it to the list
+					if ((group != null) && group.CanUngroup && !result.Contains(group))
                         result.Add(group);
                 }
                 else if (!searchList.Contains(item.Group))
                 {
+					// add it to the search list even if this father group is cannot be ungroup because a grand father
+					// could be ungroupable above, so we need to do the exhaustive forest search
                     searchList.Add(item.Group);
                 }
             }

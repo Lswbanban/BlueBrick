@@ -1897,5 +1897,19 @@ namespace BlueBrick.MapData
 				return brickRef.IsAGroup;
 			return false;
 		}
+
+		/// <summary>
+		/// Tell if the specified brick id is a group that can be ungrouped
+		/// </summary>
+		/// <param name="partNumber">the bluebrick part number</param>
+		/// <returns>true if the brick is a group that can be ungrouped, false if it is not a group or a group that cannot be ungrouped</returns>
+		public bool canUngroup(string partNumber)
+		{
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if (brickRef != null)
+				return brickRef.CanUngroup;
+			return false;
+		}
 	}
 }
