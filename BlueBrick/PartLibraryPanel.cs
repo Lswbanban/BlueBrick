@@ -272,19 +272,23 @@ namespace BlueBrick
 			}
 		}
 
-		private void addOnePartInListView(CategoryBuildingInfo buildingInfo, string partName, Bitmap image)
+		private void addOnePartInListView(CategoryBuildingInfo buildingInfo, BrickLibrary.Brick brick)
         {
-            // create a new item for the list view item
-			ListViewItem newItem = new ListViewItem(null as string, buildingInfo.mImageList.Count);
-            newItem.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(partName,
-                                                        Settings.Default.PartLibBubbleInfoPartID,
-                                                        Settings.Default.PartLibBubbleInfoPartColor,
-                                                        Settings.Default.PartLibBubbleInfoPartDescription);
-            newItem.Tag = partName;
-			buildingInfo.mListView.Items.Add(newItem);
+			// add the brick in library if we should do it
+			if (!brick.NotListedInLibrary)
+			{
+				// create a new item for the list view item
+				ListViewItem newItem = new ListViewItem(null as string, buildingInfo.mImageList.Count);
+				newItem.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(brick.mPartNumber,
+															Settings.Default.PartLibBubbleInfoPartID,
+															Settings.Default.PartLibBubbleInfoPartColor,
+															Settings.Default.PartLibBubbleInfoPartDescription);
+				newItem.Tag = brick.mPartNumber;
+				buildingInfo.mListView.Items.Add(newItem);
 
-			// add the image in the image list (after using the imageList.Count)
-			buildingInfo.mImageList.Add(image);
+				// add the image in the image list (after using the imageList.Count)
+				buildingInfo.mImageList.Add(brick.Image);
+			}
         }
 
 		private void fillListViewWithParts(CategoryBuildingInfo buildingInfo, DirectoryInfo folder, List<FileNameWithException> imageFileUnloadable, List<FileNameWithException> xmlFileUnloadable)
@@ -314,10 +318,10 @@ namespace BlueBrick
 						xmlFileLoaded.Add(xmlFileName);
 
 						// put the image in the database
-						BrickLibrary.Instance.AddBrick(name, image, xmlFileName);
+						BrickLibrary.Brick brick = BrickLibrary.Instance.AddBrick(name, image, xmlFileName);
 
                         // add this part into the listview
-						addOnePartInListView(buildingInfo, name, image);
+						addOnePartInListView(buildingInfo, brick);
 					}
 					catch (Exception e)
 					{
@@ -371,7 +375,7 @@ namespace BlueBrick
 					// generate the image for the group
 					BrickLibrary.Instance.createGroupImage(group);
 					// add this brick in the list view
-					addOnePartInListView(buildingInfo, group.mPartNumber, group.Image as Bitmap);
+					addOnePartInListView(buildingInfo, group);
 				}
 				catch (Exception e)
 				{

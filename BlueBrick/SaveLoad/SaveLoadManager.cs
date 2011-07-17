@@ -358,7 +358,7 @@ namespace BlueBrick
 				string partNumber = partNumberWithoutColor + "." + color;
 
 				// check if it is a sleeper that we should ignore
-				if (BrickLibrary.Instance.shouldBeIgnored(partNumber))
+				if (BrickLibrary.Instance.shouldBeIgnoredAtLoading(partNumber))
 					return;
 
 				// compute the orientation angle
