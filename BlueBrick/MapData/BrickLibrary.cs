@@ -211,13 +211,15 @@ namespace BlueBrick.MapData
 				public Matrix mTempLocalTransformInPixelForImageBuilding = null;
 			}
 
+			[Flags]
             public enum BrickType
             {
-                BRICK,
-                SEALED_GROUP,
-                OPEN_GROUP,
-                IGNORABLE,
-            }
+                BRICK = 0x00,			// a simple normal brick
+				GROUP = 0x01,			// this is a group part
+				SEALED_GROUP = 0x02,	// a sealed group should have both the group and sealed flags set
+                IGNORABLE = 0x04,		// ignorable parts when loading a LDRaw file
+				NOT_LISTED = 0x08,		// parts not visible in the library pannel (but still stored in the brick library)
+			}
 
             public BrickType        mBrickType = BrickType.BRICK;
 			public string			mImageURL = null; // the URL on internet of the image for part list export in HTML
@@ -256,9 +258,17 @@ namespace BlueBrick.MapData
 			/// not displayed on the layout as an unknown part. This is basically a part that is invisible to
 			/// the user and that don't create error on the layout.
 			/// </summary>
-			public bool ShouldBeIgnored
+			public bool ShouldBeIgnoredAtLoading
 			{
-                get { return (mBrickType == BrickType.IGNORABLE); }
+				get { return (mBrickType & BrickType.IGNORABLE) != 0; }
+			}
+
+			/// <summary>
+			/// This property tells if this part should be listed or not in the library panel
+			/// </summary>
+			public bool NotListedInLibrary
+			{
+				get { return (mBrickType & BrickType.NOT_LISTED) != 0; }
 			}
 
             /// <summary>
@@ -266,7 +276,7 @@ namespace BlueBrick.MapData
             /// </summary>
             public bool IsAGroup
             {
-                get { return ((mBrickType == BrickType.OPEN_GROUP) || (mBrickType == BrickType.SEALED_GROUP)); }
+				get { return (mBrickType & BrickType.GROUP) != 0; }
             }
 
             /// <summary>
@@ -274,9 +284,9 @@ namespace BlueBrick.MapData
             /// </summary>
             public bool CanUngroup
             {
-                get { return (mBrickType == BrickType.OPEN_GROUP); }
+                get { return (mBrickType & BrickType.SEALED_GROUP) == 0; }
             }
-            #endregion
+			#endregion
 
             public Brick(string partNumber, Image image, string xmlFileName, Dictionary<string, int> connectionRemapingDictionary)
 			{
@@ -310,7 +320,7 @@ namespace BlueBrick.MapData
 
                     // set the brick type if it is a group
                     if (isGroupPart)
-                        mBrickType = Brick.BrickType.OPEN_GROUP;
+                        mBrickType = Brick.BrickType.GROUP;
 
                     // if we found the root node, start to parse it
 					if (rootNodeFound)
@@ -344,6 +354,8 @@ namespace BlueBrick.MapData
                                 readSubPartListTag(ref xmlReader);
 							else if (xmlReader.Name.Equals("GroupConnectionPreferenceList"))
 								readGroupConnectionPreferenceListTag(ref xmlReader);
+							else if (xmlReader.Name.Equals("NotListedInLibrary"))
+								readNotListedInLibraryTag(ref xmlReader);
 							else
 								xmlReader.Read();
 							// check if we need to continue
@@ -372,7 +384,7 @@ namespace BlueBrick.MapData
                         // if the image is null for a normal brick, this brick should be ignored by BlueBrick
                         // The ignore bricks have different meaning than the unknown bricks
                         // if the brick should be ignored, set the brick type and create a dummy small image
-                        mBrickType = Brick.BrickType.IGNORABLE;
+                        mBrickType |= Brick.BrickType.IGNORABLE;
                     }
                 }
 									
@@ -822,8 +834,10 @@ namespace BlueBrick.MapData
                 if (!xmlReader.IsEmptyElement)
                 {
                     bool canUngroup = xmlReader.ReadElementContentAsBoolean();
-                    if (!canUngroup && (this.mBrickType == BrickType.OPEN_GROUP))
-                        this.mBrickType = BrickType.SEALED_GROUP;
+					// we set the flag only if it's false. And also the brick must be a group,
+					// so if we read the "CanUngroup" tag in a normal XML brick file, we just ignore this tag
+                    if (!canUngroup && ((this.mBrickType & BrickType.GROUP) != 0))
+                        this.mBrickType |= BrickType.SEALED_GROUP;
                 }
                 else
                 {
@@ -912,6 +926,20 @@ namespace BlueBrick.MapData
 					// finish the connexion
 					if (!xmlReader.EOF)
 						xmlReader.ReadEndElement();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private void readNotListedInLibraryTag(ref System.Xml.XmlReader xmlReader)
+			{
+				if (!xmlReader.IsEmptyElement)
+				{
+					bool shouldIgnore = xmlReader.ReadElementContentAsBoolean();
+					if (shouldIgnore)
+						this.mBrickType |= BrickType.NOT_LISTED;
 				}
 				else
 				{
@@ -1875,12 +1903,12 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <param name="partNumber">the bluebrick part number</param>
 		/// <returns>true if the brick should be skiped</returns>
-		public bool shouldBeIgnored(string partNumber)
+		public bool shouldBeIgnoredAtLoading(string partNumber)
 		{
 			Brick brickRef = null;
 			mBrickDictionary.TryGetValue(partNumber, out brickRef);
 			if (brickRef != null)
-				return brickRef.ShouldBeIgnored;
+				return brickRef.ShouldBeIgnoredAtLoading;
 			return false;
 		}
 
