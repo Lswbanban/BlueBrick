@@ -74,9 +74,10 @@ namespace BlueBrick.MapData.FlexTrack
 				{
 					// add the link in the list
 					IKSolver.Bone_2D_CCD newBone = new IKSolver.Bone_2D_CCD();
-					newBone.x = (hingedConnection.PositionInStudWorldCoord.X - nextConnection.PositionInStudWorldCoord.X);
-					newBone.y = (hingedConnection.PositionInStudWorldCoord.Y - nextConnection.PositionInStudWorldCoord.Y);
-					newBone.angle = 0;
+					newBone.localX = (hingedConnection.PositionInStudWorldCoord.X - nextConnection.PositionInStudWorldCoord.X);
+					newBone.localY = (hingedConnection.PositionInStudWorldCoord.Y - nextConnection.PositionInStudWorldCoord.Y);
+					newBone.localAngle = 0;
+					newBone.connectionPoint = hingedConnection;
 					flexChain.mBoneList.Add(newBone);
 
 					// advance the current conncetion
@@ -101,6 +102,12 @@ namespace BlueBrick.MapData.FlexTrack
 		public bool reachTarget(double xWorldStudCoord, double yWorldStudCoord)
 		{
 			IKSolver.CCDResult result = IKSolver.CalcIK_2D_CCD(ref mBoneList, xWorldStudCoord, yWorldStudCoord, 0.5);
+			foreach (IKSolver.Bone_2D_CCD bone in mBoneList)
+			{
+				System.Drawing.PointF position = new System.Drawing.PointF(bone.connectionPoint.mMyBrick.Position.X + (float)bone.worldX - bone.connectionPoint.PositionInStudWorldCoord.X,
+					bone.connectionPoint.mMyBrick.Position.Y + (float)bone.worldY - bone.connectionPoint.PositionInStudWorldCoord.Y);
+				bone.connectionPoint.mMyBrick.Position = position;
+			}
 			return (result == IKSolver.CCDResult.Processing);
 		}
 	}

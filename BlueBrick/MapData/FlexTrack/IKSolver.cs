@@ -61,24 +61,15 @@ namespace BlueBrick.MapData.FlexTrack
 		///***************************************************************************************
 		public class Bone_2D_CCD
 		{
-			public double x;     // x position in parent space
-			public double y;     // y position in parent space
-			public double angle; // angle in parent space
-		};
-
-		///***************************************************************************************
-		/// Bone_2D_CCD_World
-		/// This class is used internally by the CalcIK_2D_CCD function to represent a bone in
-		/// world space.
-		/// author: Ryan Juckett
-		///***************************************************************************************
-		private class Bone_2D_CCD_World
-		{
-			public double x;        // x position in world space
-			public double y;        // y position in world space
-			public double angle;    // angle in world space
-			public double cosAngle; // sine of angle
-			public double sinAngle; // cosine of angle
+			public double localX;     // x position in parent space
+			public double localY;     // y position in parent space
+			public double localAngle; // angle in parent space
+			public double worldX;        // x position in world space
+			public double worldY;        // y position in world space
+			public double worldAngle;    // angle in world space
+			public double worldCosAngle; // sine of angle
+			public double worldSinAngle; // cosine of angle
+			public LayerBrick.Brick.ConnectionPoint connectionPoint; // the connection Point related to this bone
 		};
 
 		///***************************************************************************************
@@ -130,39 +121,34 @@ namespace BlueBrick.MapData.FlexTrack
 			double arrivalDistSqr = arrivalDist * arrivalDist;
 
 			//===
-			// Generate the world space bone data.
-			List<Bone_2D_CCD_World> worldBones = new List<Bone_2D_CCD_World>();
+			// Compute the world space bone data.
 
 			// Start with the root bone.
-			Bone_2D_CCD_World rootWorldBone = new Bone_2D_CCD_World();
-			rootWorldBone.x = bones[0].x;
-			rootWorldBone.y = bones[0].y;
-			rootWorldBone.angle = bones[0].angle;
-			rootWorldBone.cosAngle = Math.Cos( rootWorldBone.angle );
-			rootWorldBone.sinAngle = Math.Sin( rootWorldBone.angle );
-			worldBones.Add( rootWorldBone );
+			bones[0].worldX = bones[0].localX;
+			bones[0].worldY = bones[0].localY;
+			bones[0].worldAngle = bones[0].localAngle;
+			bones[0].worldCosAngle = Math.Cos(bones[0].worldAngle);
+			bones[0].worldSinAngle = Math.Sin(bones[0].worldAngle);
 			
 			// Convert child bones to world space.
 			for( int boneIdx = 1; boneIdx < numBones; ++boneIdx )
 			{
-				Bone_2D_CCD_World prevWorldBone	= worldBones[boneIdx-1];
+				Bone_2D_CCD prevWorldBone = bones[boneIdx - 1];
 				Bone_2D_CCD curLocalBone = bones[boneIdx];
 
-				Bone_2D_CCD_World newWorldBone = new Bone_2D_CCD_World();
-				newWorldBone.x = prevWorldBone.x + prevWorldBone.cosAngle*curLocalBone.x
-				                                 - prevWorldBone.sinAngle*curLocalBone.y;
-				newWorldBone.y = prevWorldBone.y + prevWorldBone.sinAngle*curLocalBone.x
-				                                 + prevWorldBone.cosAngle*curLocalBone.y;
-				newWorldBone.angle = prevWorldBone.angle + curLocalBone.angle;
-				newWorldBone.cosAngle = Math.Cos( newWorldBone.angle );
-				newWorldBone.sinAngle = Math.Sin( newWorldBone.angle );
-				worldBones.Add(newWorldBone);
+				curLocalBone.worldX = prevWorldBone.worldX + prevWorldBone.worldCosAngle * curLocalBone.localX
+				                                 - prevWorldBone.worldSinAngle*curLocalBone.localY;
+				curLocalBone.worldY = prevWorldBone.worldY + prevWorldBone.worldSinAngle * curLocalBone.localX
+				                                 + prevWorldBone.worldCosAngle*curLocalBone.localY;
+				curLocalBone.worldAngle = prevWorldBone.worldAngle + curLocalBone.localAngle;
+				curLocalBone.worldCosAngle = Math.Cos(curLocalBone.worldAngle);
+				curLocalBone.worldSinAngle = Math.Sin(curLocalBone.worldAngle);
 			}
 			
 			//===
 			// Track the end effector position (the final bone)
-			double endX = worldBones[numBones-1].x;
-			double endY = worldBones[numBones-1].y;
+			double endX = bones[numBones - 1].worldX;
+			double endY = bones[numBones - 1].worldY;
 
 			//===
 			// Perform CCD on the bones by optimizing each bone in a loop 
@@ -171,13 +157,13 @@ namespace BlueBrick.MapData.FlexTrack
 			for( int boneIdx = numBones-2; boneIdx >= 0; --boneIdx )
 			{
 				// Get the vector from the current bone to the end effector position.
-				double curToEndX = endX - worldBones[boneIdx].x;
-				double curToEndY = endY - worldBones[boneIdx].y;
+				double curToEndX = endX - bones[boneIdx].worldX;
+				double curToEndY = endY - bones[boneIdx].worldY;
 				double curToEndMag = Math.Sqrt((curToEndX * curToEndX) + (curToEndY * curToEndY));
 
 				// Get the vector from the current bone to the target position.
-				double curToTargetX = targetX - worldBones[boneIdx].x;
-				double curToTargetY = targetY - worldBones[boneIdx].y;
+				double curToTargetX = targetX - bones[boneIdx].worldX;
+				double curToTargetY = targetY - bones[boneIdx].worldY;
 				double curToTargetMag = Math.Sqrt((curToTargetX * curToTargetX) + (curToTargetY * curToTargetY));
 
 				// Get rotation to place the end effector on the line from the current
@@ -203,11 +189,11 @@ namespace BlueBrick.MapData.FlexTrack
 					rotAng = -rotAng;
 				
 				// Rotate the end effector position.
-				endX = worldBones[boneIdx].x + cosRotAng*curToEndX - sinRotAng*curToEndY;
-				endY = worldBones[boneIdx].y + sinRotAng*curToEndX + cosRotAng*curToEndY;
+				endX = bones[boneIdx].worldX + cosRotAng * curToEndX - sinRotAng * curToEndY;
+				endY = bones[boneIdx].worldY + sinRotAng * curToEndX + cosRotAng * curToEndY;
 
 				// Rotate the current bone in local space (this value is output to the user)
-				bones[boneIdx].angle = SimplifyAngle( bones[boneIdx].angle + rotAng );
+				bones[boneIdx].localAngle = SimplifyAngle( bones[boneIdx].localAngle + rotAng );
 
 				// Check for termination
 				double endToTargetX = (targetX-endX);

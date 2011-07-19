@@ -46,6 +46,7 @@ namespace BlueBrick
 
 		// custom cursors for the application
 		private Cursor mBrickArrowCursor = null;
+		private Cursor mFlexArrowCursor = null;		
 		private Cursor mBrickDuplicateCursor = null;
 		private Cursor mBrickSelectionCursor = null;
 		private Cursor mTextArrowCursor = null;
@@ -137,6 +138,14 @@ namespace BlueBrick
 		public Cursor BrickArrowCursor
 		{
 			get { return mBrickArrowCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for duplication of layer bricks
+		/// </summary>
+		public Cursor FlexArrowCursor
+		{
+			get { return mFlexArrowCursor; }
 		}
 
 		/// <summary>
@@ -389,6 +398,10 @@ namespace BlueBrick
 			// brick arrow cursor
 			System.IO.Stream stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.BrickArrowCursor.cur");
 			mBrickArrowCursor = new Cursor(stream);
+			stream.Close();
+			// flex arrow cursor
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.FlexArrowCursor.cur");
+			mFlexArrowCursor = new Cursor(stream);
 			stream.Close();
 			// brick duplicate cursor
 			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.BrickDuplicateCursor.cur");
