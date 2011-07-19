@@ -23,6 +23,7 @@ using BlueBrick.Actions;
 using BlueBrick.Actions.Bricks;
 using System.Xml.Serialization;
 using System.Collections;
+using BlueBrick.MapData.FlexTrack;
 
 namespace BlueBrick.MapData
 {
@@ -995,6 +996,8 @@ namespace BlueBrick.MapData
 		private PointF mMouseGrabDeltaToActiveConnectionPoint; // The delta between the grab point of the mouse inside the grabed brick, to the active connection point of that brick
 		private bool mMouseIsBetweenDownAndUpEvent = false;
 		private bool mMouseHasMoved = false;
+		private bool mMouseMoveIsAFlexMove = false;
+		private FlexChain mMouseMoveFlexChain = null;
 		private bool mMouseMoveIsADuplicate = false;
 		private DuplicateBrick mLastDuplicateBrickAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
 		private RotateBrickOnPivotBrick mRotationForSnappingDuringBrickMove = null; // this action is used temporally during the edition, while you are moving the selection next to a connectable brick. The Action is not recorded in the ActionManager because it is a temporary one.
@@ -1961,16 +1964,25 @@ namespace BlueBrick.MapData
 										&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
 										&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
 
+			// check if it is a double click, to see if we need to do a flex move
+			if ((mCurrentBrickUnderMouse != null) && (e.Clicks == 2))
+			{
+				mMouseMoveFlexChain = FlexChain.createFlexChain(this.SelectedObjects, mCurrentBrickUnderMouse);
+				mMouseMoveIsAFlexMove = (mMouseMoveFlexChain != null);
+			}
+
 			// select the appropriate cursor:
 			if (mMouseMoveIsADuplicate)
 				preferedCursor = MainForm.Instance.BrickDuplicateCursor;
+			else if (mMouseMoveIsAFlexMove)
+				preferedCursor = MainForm.Instance.FlexArrowCursor;
 			else if (willMoveSelectedObject)
 				preferedCursor = Cursors.SizeAll;
 			else if (mCurrentBrickUnderMouse == null)
 				preferedCursor = Cursors.Cross;
 
 			// handle the mouse down if we duplicate or move the selected bricks
-			bool willHandleTheMouse = (mMouseMoveIsADuplicate || willMoveSelectedObject);
+			bool willHandleTheMouse = (mMouseMoveIsADuplicate || mMouseMoveIsAFlexMove || willMoveSelectedObject);
 			// reset the brick pointer under the mouse if finally we don't care.
 			if (!willHandleTheMouse)
 				mCurrentBrickUnderMouse = null;
@@ -2045,60 +2057,68 @@ namespace BlueBrick.MapData
 		{
 			if (mSelectedObjects.Count > 0)
 			{
-				// snap the mouse coord to the grid
-				PointF mouseCoordInStudSnapped = getMovedSnapPoint(mouseCoordInStud);
-				// compute the delta move of the mouse
-				PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownLastPosition.X, mouseCoordInStudSnapped.Y - mMouseDownLastPosition.Y);
-				// check if the delta move is not null
-				if (deltaMove.X != 0.0f || deltaMove.Y != 0.0)
+				if (mMouseMoveIsAFlexMove)
 				{
-					bool wereBrickJustDuplicated = false;
-
-					// check if it is a move or a duplicate
-					if (mMouseMoveIsADuplicate)
-					{
-						// this is a duplicate, if we didn't move yet, this is the moment to copy  and paste the selection
-						// and this will change the current selection, that will be move normally after
-						if (!mMouseHasMoved)
-						{
-							this.copyCurrentSelection();
-							this.pasteCopiedList();
-							// set the flag
-							wereBrickJustDuplicated = true;
-						}
-					}
-					// the duplication above will change the current selection
-					// The code below is to move the selection, either the original one or the duplicated one
-					foreach (LayerBrick.Brick brick in mSelectedObjects)
-						brick.Center = new PointF(brick.Center.X + deltaMove.X, brick.Center.Y + deltaMove.Y);
-					// update the free connexion list
-					updateBrickConnectivityOfSelection(true);
-					// move also the bounding rectangle
-					moveBoundingSelectionRectangle(deltaMove);
-					// after we moved the selection check if we need to refresh the current highlighted brick
-					if (wereBrickJustDuplicated)
-					{
-						mCurrentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
-						setBrickUnderMouse(mCurrentBrickUnderMouse, mouseCoordInStud);
-					}
-					// memorize the last position of the mouse
-					mMouseDownLastPosition = mouseCoordInStudSnapped;
-					// set the flag that indicate that we moved the mouse
-					mMouseHasMoved = true;
+					mMouseMoveFlexChain.reachTarget(mouseCoordInStud.X, mouseCoordInStud.Y);
 					return true;
 				}
 				else
 				{
-					// give a second chance to duplicate if the user press the duplicate key
-					// after pressing down the mouse key, but not if the user already moved
-					if (!mMouseHasMoved && !mMouseMoveIsADuplicate)
+					// snap the mouse coord to the grid
+					PointF mouseCoordInStudSnapped = getMovedSnapPoint(mouseCoordInStud);
+					// compute the delta move of the mouse
+					PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownLastPosition.X, mouseCoordInStudSnapped.Y - mMouseDownLastPosition.Y);
+					// check if the delta move is not null
+					if (deltaMove.X != 0.0f || deltaMove.Y != 0.0)
 					{
-						// check if the duplicate key is pressed
-						mMouseMoveIsADuplicate = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
-						// if finally the user press the duplicate key, reconnect the selection because we broke
-						// the connnection between selected brick and non-selected bricks in the mouse down event.
+						bool wereBrickJustDuplicated = false;
+
+						// check if it is a move or a duplicate
 						if (mMouseMoveIsADuplicate)
-							updateBrickConnectivityOfSelection(false);
+						{
+							// this is a duplicate, if we didn't move yet, this is the moment to copy  and paste the selection
+							// and this will change the current selection, that will be move normally after
+							if (!mMouseHasMoved)
+							{
+								this.copyCurrentSelection();
+								this.pasteCopiedList();
+								// set the flag
+								wereBrickJustDuplicated = true;
+							}
+						}
+						// the duplication above will change the current selection
+						// The code below is to move the selection, either the original one or the duplicated one
+						foreach (LayerBrick.Brick brick in mSelectedObjects)
+							brick.Center = new PointF(brick.Center.X + deltaMove.X, brick.Center.Y + deltaMove.Y);
+						// update the free connexion list
+						updateBrickConnectivityOfSelection(true);
+						// move also the bounding rectangle
+						moveBoundingSelectionRectangle(deltaMove);
+						// after we moved the selection check if we need to refresh the current highlighted brick
+						if (wereBrickJustDuplicated)
+						{
+							mCurrentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
+							setBrickUnderMouse(mCurrentBrickUnderMouse, mouseCoordInStud);
+						}
+						// memorize the last position of the mouse
+						mMouseDownLastPosition = mouseCoordInStudSnapped;
+						// set the flag that indicate that we moved the mouse
+						mMouseHasMoved = true;
+						return true;
+					}
+					else
+					{
+						// give a second chance to duplicate if the user press the duplicate key
+						// after pressing down the mouse key, but not if the user already moved
+						if (!mMouseHasMoved && !mMouseMoveIsADuplicate)
+						{
+							// check if the duplicate key is pressed
+							mMouseMoveIsADuplicate = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+							// if finally the user press the duplicate key, reconnect the selection because we broke
+							// the connnection between selected brick and non-selected bricks in the mouse down event.
+							if (mMouseMoveIsADuplicate)
+								updateBrickConnectivityOfSelection(false);
+						}
 					}
 				}
 			}
@@ -2112,84 +2132,92 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			// check if we moved the selected bricks
-			if (mMouseHasMoved && (mSelectedObjects.Count > 0))
+			if (mMouseMoveIsAFlexMove)
 			{
-				// reset the flag
-				mMouseHasMoved = false;
-
-				// compute the delta mouve of the mouse
-				mouseCoordInStud = getMovedSnapPoint(mouseCoordInStud);
-				PointF deltaMove = new PointF(mouseCoordInStud.X - mMouseDownInitialPosition.X, mouseCoordInStud.Y - mMouseDownInitialPosition.Y);
-
-				// create a new action for this move
-				if ((deltaMove.X != 0) || (deltaMove.Y != 0))
+			}
+			else
+			{
+				// check if we moved the selected bricks
+				if (mMouseHasMoved && (mSelectedObjects.Count > 0))
 				{
-					// update the duplicate action or add a move action
-					if (mMouseMoveIsADuplicate)
-					{
-						mLastDuplicateBrickAction.updatePositionShift(deltaMove.X, deltaMove.Y);
-						mLastDuplicateBrickAction = null;
-						// clear also the rotation snapping, in case of a series of duplication, but do not
-						// undo it, since we want to keep the rotation applied on the duplicated bricks.
-						mRotationForSnappingDuringBrickMove = null;
-					}
-					else
-					{
-						// undo the rotation action if needed
-						bool isComplexActionNeeded = false;
-						if (mRotationForSnappingDuringBrickMove != null)
-						{
-							mRotationForSnappingDuringBrickMove.undo();
-							mRotationForSnappingDuringBrickMove = null;
-							isComplexActionNeeded = true;
-						}
-						// reset the initial position to each brick
-						foreach (LayerBrick.Brick brick in mSelectedObjects)
-							brick.Center = new PointF(brick.Center.X - deltaMove.X, brick.Center.Y - deltaMove.Y);
+					// reset the flag
+					mMouseHasMoved = false;
 
-						// create a move or complex move action depending if some roatation are needed
-						if (isComplexActionNeeded)
+					// compute the delta mouve of the mouse
+					mouseCoordInStud = getMovedSnapPoint(mouseCoordInStud);
+					PointF deltaMove = new PointF(mouseCoordInStud.X - mMouseDownInitialPosition.X, mouseCoordInStud.Y - mMouseDownInitialPosition.Y);
+
+					// create a new action for this move
+					if ((deltaMove.X != 0) || (deltaMove.Y != 0))
+					{
+						// update the duplicate action or add a move action
+						if (mMouseMoveIsADuplicate)
 						{
-							ActionManager.Instance.doAction(new RotateAndMoveBrick(this, mSelectedObjects, mSnappingOrientation, mCurrentBrickUnderMouse, deltaMove));
-							mSnappingOrientation = 0.0f;
+							mLastDuplicateBrickAction.updatePositionShift(deltaMove.X, deltaMove.Y);
+							mLastDuplicateBrickAction = null;
+							// clear also the rotation snapping, in case of a series of duplication, but do not
+							// undo it, since we want to keep the rotation applied on the duplicated bricks.
+							mRotationForSnappingDuringBrickMove = null;
 						}
 						else
 						{
-							ActionManager.Instance.doAction(new MoveBrick(this, mSelectedObjects, deltaMove));
+							// undo the rotation action if needed
+							bool isComplexActionNeeded = false;
+							if (mRotationForSnappingDuringBrickMove != null)
+							{
+								mRotationForSnappingDuringBrickMove.undo();
+								mRotationForSnappingDuringBrickMove = null;
+								isComplexActionNeeded = true;
+							}
+							// reset the initial position to each brick
+							foreach (LayerBrick.Brick brick in mSelectedObjects)
+								brick.Center = new PointF(brick.Center.X - deltaMove.X, brick.Center.Y - deltaMove.Y);
+
+							// create a move or complex move action depending if some roatation are needed
+							if (isComplexActionNeeded)
+							{
+								ActionManager.Instance.doAction(new RotateAndMoveBrick(this, mSelectedObjects, mSnappingOrientation, mCurrentBrickUnderMouse, deltaMove));
+								mSnappingOrientation = 0.0f;
+							}
+							else
+							{
+								ActionManager.Instance.doAction(new MoveBrick(this, mSelectedObjects, deltaMove));
+							}
 						}
+					}
+					else
+					{
+						// update the free connexion list if the user move the brick and then go back
+						// to the original place (deltaMove is null), so the link was broken because
+						// of the move, so we need to recreate the link
+						updateBrickConnectivityOfSelection(false);
+						// reset anyway the temp reference for the duplication
+						mLastDuplicateBrickAction = null;
 					}
 				}
 				else
 				{
-					// update the free connexion list if the user move the brick and then go back
-					// to the original place (deltaMove is null), so the link was broken because
-					// of the move, so we need to recreate the link
+					// update the connection for the selection, because we broke the connnection between selected 
+					// brick and non-selected bricks in the mouse down event.
 					updateBrickConnectivityOfSelection(false);
-					// reset anyway the temp reference for the duplication
-					mLastDuplicateBrickAction = null;
-				}
-			}
-			else
-			{
-				// update the connection for the selection, because we broke the connnection between selected 
-				// brick and non-selected bricks in the mouse down event.
-				updateBrickConnectivityOfSelection(false);
 
-				// if we didn't move the item and use the control key, we need to add or remove object from the selection
-				// we must do it in the up event because if we do it in the down, we may remove an object before moving
-				// we do this only if the mMouseHasMoved flag is not set to avoid this change if we move
-				if ((mCurrentBrickUnderMouse != null) && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey))
-				{
-					if (mSelectedObjects.Contains(mCurrentBrickUnderMouse))
-						removeObjectFromSelection(mCurrentBrickUnderMouse);
-					else
-						addObjectInSelection(mCurrentBrickUnderMouse);
+					// if we didn't move the item and use the control key, we need to add or remove object from the selection
+					// we must do it in the up event because if we do it in the down, we may remove an object before moving
+					// we do this only if the mMouseHasMoved flag is not set to avoid this change if we move
+					if ((mCurrentBrickUnderMouse != null) && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey))
+					{
+						if (mSelectedObjects.Contains(mCurrentBrickUnderMouse))
+							removeObjectFromSelection(mCurrentBrickUnderMouse);
+						else
+							addObjectInSelection(mCurrentBrickUnderMouse);
+					}
 				}
 			}
 
 			mMouseIsBetweenDownAndUpEvent = false;
 			mCurrentBrickUnderMouse = null;
+			mMouseMoveIsAFlexMove = false;
+			mMouseMoveFlexChain = null;
 			return true;
 		}
 

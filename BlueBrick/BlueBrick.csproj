@@ -600,6 +600,7 @@
     <None Include="icons\alignleft.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Cursor\FlexArrowCursor.cur" />
     <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />
