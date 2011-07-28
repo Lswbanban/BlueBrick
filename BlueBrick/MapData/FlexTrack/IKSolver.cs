@@ -63,7 +63,7 @@ namespace BlueBrick.MapData.FlexTrack
 		{
 			public double localX;     // x position in parent space
 			public double localY;     // y position in parent space
-			public double localAngle; // angle in parent space
+			public double localAngleInRad; // angle in parent space
 			public double worldX;        // x position in world space
 			public double worldY;        // y position in world space
 			public double worldAngle;    // angle in world space
@@ -124,26 +124,26 @@ namespace BlueBrick.MapData.FlexTrack
 			// Compute the world space bone data.
 
 			// Start with the root bone.
-			bones[0].worldX = bones[0].localX;
-			bones[0].worldY = bones[0].localY;
-			bones[0].worldAngle = bones[0].localAngle;
-			bones[0].worldCosAngle = Math.Cos(bones[0].worldAngle);
-			bones[0].worldSinAngle = Math.Sin(bones[0].worldAngle);
+			//bones[0].worldX = bones[0].localX;
+			//bones[0].worldY = bones[0].localY;
+			//bones[0].worldAngle = bones[0].localAngle;
+			//bones[0].worldCosAngle = Math.Cos(bones[0].worldAngle);
+			//bones[0].worldSinAngle = Math.Sin(bones[0].worldAngle);
 			
-			// Convert child bones to world space.
-			for( int boneIdx = 1; boneIdx < numBones; ++boneIdx )
-			{
-				Bone_2D_CCD prevWorldBone = bones[boneIdx - 1];
-				Bone_2D_CCD curLocalBone = bones[boneIdx];
+			//// Convert child bones to world space.
+			//for( int boneIdx = 1; boneIdx < numBones; ++boneIdx )
+			//{
+			//    Bone_2D_CCD prevWorldBone = bones[boneIdx - 1];
+			//    Bone_2D_CCD curLocalBone = bones[boneIdx];
 
-				curLocalBone.worldX = prevWorldBone.worldX + prevWorldBone.worldCosAngle * curLocalBone.localX
-				                                 - prevWorldBone.worldSinAngle*curLocalBone.localY;
-				curLocalBone.worldY = prevWorldBone.worldY + prevWorldBone.worldSinAngle * curLocalBone.localX
-				                                 + prevWorldBone.worldCosAngle*curLocalBone.localY;
-				curLocalBone.worldAngle = prevWorldBone.worldAngle + curLocalBone.localAngle;
-				curLocalBone.worldCosAngle = Math.Cos(curLocalBone.worldAngle);
-				curLocalBone.worldSinAngle = Math.Sin(curLocalBone.worldAngle);
-			}
+			//    curLocalBone.worldX = prevWorldBone.worldX + prevWorldBone.worldCosAngle * curLocalBone.localX
+			//                                     - prevWorldBone.worldSinAngle*curLocalBone.localY;
+			//    curLocalBone.worldY = prevWorldBone.worldY + prevWorldBone.worldSinAngle * curLocalBone.localX
+			//                                     + prevWorldBone.worldCosAngle*curLocalBone.localY;
+			//    curLocalBone.worldAngle = prevWorldBone.worldAngle + curLocalBone.localAngle;
+			//    curLocalBone.worldCosAngle = Math.Cos(curLocalBone.worldAngle);
+			//    curLocalBone.worldSinAngle = Math.Sin(curLocalBone.worldAngle);
+			//}
 			
 			//===
 			// Track the end effector position (the final bone)
@@ -193,7 +193,7 @@ namespace BlueBrick.MapData.FlexTrack
 				endY = bones[boneIdx].worldY + sinRotAng * curToEndX + cosRotAng * curToEndY;
 
 				// Rotate the current bone in local space (this value is output to the user)
-				bones[boneIdx].localAngle = SimplifyAngle( bones[boneIdx].localAngle + rotAng );
+				bones[boneIdx].localAngleInRad = SimplifyAngle( bones[boneIdx].localAngleInRad + rotAng );
 
 				// Check for termination
 				double endToTargetX = (targetX-endX);

@@ -38,7 +38,11 @@ namespace BlueBrick.Actions.Bricks
 		public static float sGetOrientationOfConnectedBrick(LayerBrick.Brick fixedBrick, LayerBrick.Brick brickToAttach)
 		{
 			// compute the rotation
-			float newOrientation = fixedBrick.Orientation + fixedBrick.ActiveConnectionAngle + 180 - brickToAttach.ActiveConnectionAngle;
+			float newOrientation = fixedBrick.Orientation +
+									BrickLibrary.Instance.getConnectionAngleDifference(fixedBrick.PartNumber,
+												fixedBrick.ActiveConnectionPointIndex,
+												brickToAttach.PartNumber,
+												brickToAttach.ActiveConnectionPointIndex);
 			// clamp the orientation between 0 and 360
 			if (newOrientation >= 360.0f)
 				newOrientation -= 360.0f;
