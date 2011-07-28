@@ -1674,6 +1674,31 @@ namespace BlueBrick.MapData
 			return 0.0f;
 		}
 
+		/// <summary>
+		/// Return the difference of angle between the orientation of the brick 1 and the brick 2,
+		/// when the brick 1 (defined with the part number 1) is connected to the brick 2 (defined with the part number 2)
+		/// through the specified connection points (defined with the index 1 for brick 1 and index 2 for brick 2)
+		/// </summary>
+		/// <param name="partNumber1">The part number of the brick 1</param>
+		/// <param name="pointIndex1">The connection point index of brick 1 used to link to brick 2</param>
+		/// <param name="partNumber2">The part number of the brick 2</param>
+		/// <param name="pointIndex2">The connection point index of brick 2 used to link to brick 1</param>
+		/// <returns>the difference of angle (in degree) to apply to brick 2 to connect it correctly to brick 1 through the specified connection points</returns>
+		public float getConnectionAngleDifference(string partNumber1, int pointIndex1, string partNumber2, int pointIndex2)
+		{
+			float angle1 = getConnectionAngle(partNumber1, pointIndex1);
+			float angle2 = getConnectionAngle(partNumber2, pointIndex2);
+			// compute the result
+			float result = angle1 + 180 - angle2;
+			// clamp the result between 0 and 360
+			if (result >= 360.0f)
+				result -= 360.0f;
+			if (result < 0.0f)
+				result += 360.0f;
+			// and return it
+			return result;
+		}
+
 		public float getConnectionAngleToPrev(string partNumber, int pointIndex)
 		{
 			Brick brickRef = null;
