@@ -25,10 +25,32 @@ namespace BlueBrick.MapData.FlexTrack
 	/// </summary>
 	class FlexChain
 	{
+		// For optimization reason, we create a small class to store the brick connection and the angle 
+		// between the two bricks linked 
+		private class ChainLink
+		{
+			public LayerBrick.Brick.ConnectionPoint mFirstConnection = null;
+			public LayerBrick.Brick.ConnectionPoint mSecondConnection = null;
+			public float mAngleBetween = 0.0f;
+
+			public ChainLink(LayerBrick.Brick.ConnectionPoint firstConnection, LayerBrick.Brick.ConnectionPoint secondConnection)
+			{
+				mFirstConnection = firstConnection;
+				mSecondConnection = secondConnection;
+				if (firstConnection != null)
+				{
+					int firstIndex = firstConnection.mMyBrick.ConnectionPoints.IndexOf(firstConnection);
+					int secondIndex = secondConnection.mMyBrick.ConnectionPoints.IndexOf(secondConnection);
+					mAngleBetween = BrickLibrary.Instance.getConnectionAngleDifference(secondConnection.mMyBrick.PartNumber, secondIndex,
+																					firstConnection.mMyBrick.PartNumber, firstIndex);
+				}
+			}
+		}
+
 		// data members
 		private List<IKSolver.Bone_2D_CCD> mBoneList = null;
-		private List<LayerBrick.Brick.ConnectionPoint> mBrickConnectionList = null;
-		private int mRootHingedConnectionIndex = 0; // the first hinged connection in the chain that can move
+		private List<ChainLink> mFlexChainList = null;
+		private int mRootHingedLinkIndex = 0; // the first hinged connection in the chain that can move
 
 		/// <summary>
 		/// Private constructor because there are condition to create it. Use static method createFlexChain instead.
@@ -36,7 +58,7 @@ namespace BlueBrick.MapData.FlexTrack
 		private FlexChain(int boneCount)
 		{
 			mBoneList = new List<IKSolver.Bone_2D_CCD>(boneCount);
-			mBrickConnectionList = new List<LayerBrick.Brick.ConnectionPoint>(boneCount * 2);
+			mFlexChainList = new List<ChainLink>(boneCount * 2);
 		}
 
 		private static void addNewBone(FlexChain flexChain, LayerBrick.Brick.ConnectionPoint connection)
@@ -72,7 +94,7 @@ namespace BlueBrick.MapData.FlexTrack
 			// start to iterate from the grabbed track
 			LayerBrick.Brick currentBrick = grabbedTrack;
 			LayerBrick.Brick.ConnectionPoint currentFirstConnection = grabbedTrack.ActiveConnectionPoint;
-			LayerBrick.Brick.ConnectionPoint hingedConnection = null;
+			ChainLink hingedLink = null;
 			addNewBone(flexChain, currentFirstConnection);
 			// the chain is made with track that exclusively has 2 connections to make a chain.
 			while ((currentBrick != null) && (currentBrick.ConnectionPoints.Count == 2))
@@ -81,30 +103,39 @@ namespace BlueBrick.MapData.FlexTrack
 				int secondIndex = (currentBrick.ConnectionPoints[0] == currentFirstConnection) ? 1 : 0;
 				LayerBrick.Brick.ConnectionPoint currentSecondConnection = currentBrick.ConnectionPoints[secondIndex];
 				LayerBrick.Brick nextBrick = currentSecondConnection.ConnectedBrick;
+				LayerBrick.Brick.ConnectionPoint nextFirstConnection = currentSecondConnection.ConnectionLink;
 
 				// add the two connections of the brick
-				flexChain.mBrickConnectionList.Insert(0, currentFirstConnection);
-				flexChain.mBrickConnectionList.Insert(0, currentSecondConnection);
+				ChainLink link = new ChainLink(nextFirstConnection, currentSecondConnection);
+				flexChain.mFlexChainList.Insert(0, link);
 
 				// check if the connection can rotate (if it is an hinge)
 				float hingeAngle = BrickLibrary.Instance.getConnexionHingeAngle(currentSecondConnection.Type);
 				if ((hingeAngle != 0.0f) && (nextBrick != null))
 				{
-					// store the root hing connection index if it is the first hinge connection
-					if (hingedConnection == null)
-						flexChain.mRootHingedConnectionIndex = flexChain.mBrickConnectionList.IndexOf(currentFirstConnection);
 					// advance the hinge conncetion
-					hingedConnection = currentSecondConnection;
+					hingedLink = link;
 					// compute the current angle between the hinge connection and set it to the current bone
-					// before adding a new one
-					flexChain.mBoneList[0].localAngleInRad = (currentSecondConnection.mMyBrick.Orientation - nextBrick.Orientation) * (Math.PI / 180);
+					// to do that we use the current angle between the connected brick and remove the static angle between them
+					// to only get the flexible angle.
+					// we do it before adding the bone in order to set the angle to the previous bone
+					float angleInDegree = (currentBrick.Orientation - nextBrick.Orientation) - link.mAngleBetween;
+					flexChain.mBoneList[0].localAngleInRad = 0.0f; // angleInDegree * (Math.PI / 180);
 					// add the link in the list
 					addNewBone(flexChain, currentSecondConnection);
 				}
 
 				// advance to the next link
 				currentBrick = nextBrick;
-				currentFirstConnection = currentSecondConnection.ConnectionLink;
+				currentFirstConnection = nextFirstConnection;
+			}
+
+			// store the root hinge connection index (the last hinge found is the flexible root)
+			if (hingedLink != null)
+			{
+				flexChain.mRootHingedLinkIndex = flexChain.mFlexChainList.IndexOf(hingedLink);
+				if (hingedLink.mSecondConnection == null)
+					flexChain.mRootHingedLinkIndex++;
 			}
 
 			// return the chain
@@ -130,9 +161,6 @@ namespace BlueBrick.MapData.FlexTrack
 		/// </summary>
 		private void computeBrickPositionAndOrientation()
 		{
-			// start with the first hinged connection of the chain (because everything before doesn't move)
-			LayerBrick.Brick.ConnectionPoint previousConnection = mBrickConnectionList[mRootHingedConnectionIndex];
-			PointF previousPosition = previousConnection.PositionInStudWorldCoord;
 			// start with the first bone of the list
 			IKSolver.Bone_2D_CCD currentBone = mBoneList[0];
 			int boneIndex = 0;
@@ -140,11 +168,15 @@ namespace BlueBrick.MapData.FlexTrack
 			float flexibleCumulativeOrientation = 0.0f;
 			float staticCumulativeOrientation = 0.0f;
 
-			// iterate on the brick list and change the world angle everytime we meet an hinge
-			for (int connectionIndex = mRootHingedConnectionIndex + 1; connectionIndex < mBrickConnectionList.Count; ++connectionIndex)
+			// iterate on the link list and change the world angle everytime we meet an hinge
+			// start with the first hinged connection of the chain (because everything before doesn't move)
+			for (int linkIndex = mRootHingedLinkIndex; linkIndex < mFlexChainList.Count; ++linkIndex)
 			{
-				// get the current brick
-				LayerBrick.Brick.ConnectionPoint currentConnection = mBrickConnectionList[connectionIndex];
+				// get the previous and current brick
+				ChainLink currentLink = mFlexChainList[linkIndex];
+				LayerBrick.Brick.ConnectionPoint previousConnection = currentLink.mFirstConnection;
+				PointF previousPosition = previousConnection.PositionInStudWorldCoord;
+				LayerBrick.Brick.ConnectionPoint currentConnection = currentLink.mSecondConnection;
 				LayerBrick.Brick currentBrick = currentConnection.mMyBrick;
 
 				// check if we reach an hinge connection
@@ -164,11 +196,8 @@ namespace BlueBrick.MapData.FlexTrack
 						currentBone = mBoneList[boneIndex];
 				}
 
-				// get the difference of orientation between the previous brick and current brick through their linked connections
-				int currentConnectionIndex = currentBrick.ConnectionPoints.IndexOf(currentConnection);
-				int previousConnectionIndex = previousConnection.mMyBrick.ConnectionPoints.IndexOf(previousConnection);
-				staticCumulativeOrientation += BrickLibrary.Instance.getConnectionAngleDifference(currentBrick.PartNumber, currentConnectionIndex,
-																previousConnection.mMyBrick.PartNumber, previousConnectionIndex);
+				// add the difference of orientation between the previous brick and current brick through their linked connections
+				staticCumulativeOrientation += currentLink.mAngleBetween;
 
 				// set the orientation of the current brick
 				currentBrick.Orientation = flexibleCumulativeOrientation - staticCumulativeOrientation - 180;
@@ -179,19 +208,17 @@ namespace BlueBrick.MapData.FlexTrack
 				newBrickPosition.X += previousPosition.X - currentConnection.PositionInStudWorldCoord.X;
 				newBrickPosition.Y += previousPosition.Y - currentConnection.PositionInStudWorldCoord.Y;
 				currentBrick.Position = newBrickPosition;
-
-				// get the next connection to become the new previous connection
-				connectionIndex++;
-				previousConnection = mBrickConnectionList[connectionIndex];
-				previousPosition = previousConnection.PositionInStudWorldCoord;
 			}
 
 			// update the last bone position
 			if (mBoneList.Count > 0)
 			{
+				// get the last position
+				PointF lastPosition = mFlexChainList[mFlexChainList.Count-1].mFirstConnection.PositionInStudWorldCoord;
+				// and set it in the last bone
 				int lastIndex = mBoneList.Count - 1;
-				mBoneList[lastIndex].worldX = previousPosition.X;
-				mBoneList[lastIndex].worldY = previousPosition.Y;
+				mBoneList[lastIndex].worldX = lastPosition.X;
+				mBoneList[lastIndex].worldY = lastPosition.Y;
 			}
 		}
 	}
