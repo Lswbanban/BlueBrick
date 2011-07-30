@@ -61,14 +61,9 @@ namespace BlueBrick.MapData.FlexTrack
 		///***************************************************************************************
 		public class Bone_2D_CCD
 		{
-			public double localX;     // x position in parent space
-			public double localY;     // y position in parent space
 			public double localAngleInRad; // angle in parent space
 			public double worldX;        // x position in world space
 			public double worldY;        // y position in world space
-			public double worldAngle;    // angle in world space
-			public double worldCosAngle; // sine of angle
-			public double worldSinAngle; // cosine of angle
 			public LayerBrick.Brick.ConnectionPoint connectionPoint; // the connection Point related to this bone
 		};
 
@@ -115,35 +110,10 @@ namespace BlueBrick.MapData.FlexTrack
 
 
 			int numBones = bones.Count;
-			if (numBones == 0)
+			if (numBones < 2)
 				return CCDResult.Failure;
 
 			double arrivalDistSqr = arrivalDist * arrivalDist;
-
-			//===
-			// Compute the world space bone data.
-
-			// Start with the root bone.
-			//bones[0].worldX = bones[0].localX;
-			//bones[0].worldY = bones[0].localY;
-			//bones[0].worldAngle = bones[0].localAngle;
-			//bones[0].worldCosAngle = Math.Cos(bones[0].worldAngle);
-			//bones[0].worldSinAngle = Math.Sin(bones[0].worldAngle);
-			
-			//// Convert child bones to world space.
-			//for( int boneIdx = 1; boneIdx < numBones; ++boneIdx )
-			//{
-			//    Bone_2D_CCD prevWorldBone = bones[boneIdx - 1];
-			//    Bone_2D_CCD curLocalBone = bones[boneIdx];
-
-			//    curLocalBone.worldX = prevWorldBone.worldX + prevWorldBone.worldCosAngle * curLocalBone.localX
-			//                                     - prevWorldBone.worldSinAngle*curLocalBone.localY;
-			//    curLocalBone.worldY = prevWorldBone.worldY + prevWorldBone.worldSinAngle * curLocalBone.localX
-			//                                     + prevWorldBone.worldCosAngle*curLocalBone.localY;
-			//    curLocalBone.worldAngle = prevWorldBone.worldAngle + curLocalBone.localAngle;
-			//    curLocalBone.worldCosAngle = Math.Cos(curLocalBone.worldAngle);
-			//    curLocalBone.worldSinAngle = Math.Sin(curLocalBone.worldAngle);
-			//}
 			
 			//===
 			// Track the end effector position (the final bone)
