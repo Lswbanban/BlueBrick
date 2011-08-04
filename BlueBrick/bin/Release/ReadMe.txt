@@ -50,6 +50,7 @@ Open bugs:
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
+- MISSING FEATURE (Alban): Slide bars on the map view?
 - [target 1.8] BUG (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should replace it (and the selection should modify the combo boxes)
 - [target 1.8] BUG (Alban): The groups are not saved in LDraw format
@@ -60,6 +61,12 @@ Open bugs:
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
+
+Group bug:
+- the drag and drop of a group part cannot be snapped to a connection point
+- change the default snapping value to 4 and zoom a bit more? for beginner users?
+- change controls for zooming/panning on laptop, only use shift
+- copy paste of group does not respect the part order?
 
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder).

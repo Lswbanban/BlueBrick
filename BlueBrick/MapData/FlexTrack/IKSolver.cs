@@ -61,10 +61,10 @@ namespace BlueBrick.MapData.FlexTrack
 		///***************************************************************************************
 		public class Bone_2D_CCD
 		{
-			public double localAngleInRad; // angle in parent space
-			public double worldX;        // x position in world space
-			public double worldY;        // y position in world space
-			public LayerBrick.Brick.ConnectionPoint connectionPoint; // the connection Point related to this bone
+			public double localAngleInRad = 0.0f; // angle in parent space
+			public double worldX = 0.0f;        // x position in world space
+			public double worldY = 0.0f;        // y position in world space
+			public LayerBrick.Brick.ConnectionPoint connectionPoint = null; // the connection Point related to this bone
 		};
 
 		///***************************************************************************************
