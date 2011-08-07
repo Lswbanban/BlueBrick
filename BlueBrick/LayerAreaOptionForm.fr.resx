@@ -127,7 +127,7 @@
     <value>Nom du calque</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Transparence</value>
+    <value>Opacité</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Dimension</value>

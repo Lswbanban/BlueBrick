@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="gridCheckBox.Text" xml:space="preserve">
     <value>Taille de la grille (en stud)</value>
   </data>
@@ -138,6 +137,9 @@
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Taille de la grille</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Numéro de cellule</value>
   </data>
   <data name="cellIndexOriginButton.Text" xml:space="preserve">
     <value>Calcule l'origine</value>
@@ -178,26 +180,24 @@
   <data name="cellIndexRowComboBox.Text" xml:space="preserve">
     <value>Nombres</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cellIndexCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 17</value>
+  </data>
   <data name="cellIndexCheckBox.Text" xml:space="preserve">
     <value>Affiche les numéros de cellule</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Numéro de cellule</value>
-  </data>
-  <data name="buttonOk.Text" xml:space="preserve">
-    <value>Ok</value>
   </data>
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Annuler</value>
   </data>
-  <data name="isVisibleCheckBox.Text" xml:space="preserve">
-    <value>Visible</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Général</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Opacité</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Nom du calque</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Général</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
