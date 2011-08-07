@@ -335,6 +335,10 @@ namespace BlueBrick.MapData
 		{
 			// reset the copy list
 			sCopyItems.Clear();
+			// Sort the seltected list as it is sorted on the layer such as the clone list
+			// will be also sorted as on the layer
+			LayerItemComparer<TextCell> comparer = new LayerItemComparer<TextCell>(mTexts);
+			SelectedObjects.Sort(comparer);
 			// recreate the copy list if the selection is not empty
 			foreach (LayerItem item in SelectedObjects)
 			{

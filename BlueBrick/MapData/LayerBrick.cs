@@ -1246,8 +1246,9 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
-		/// This static tool method, clone all the item of the specified list into a new list
+		/// This static tool method, clone all the item of the specified list into a new list.
 		/// This method also clone the groups that may belong to this list of bricks.
+		/// The cloned bricks are in the same order as the original list
 		/// </summary>
 		/// <param name="listToCopy">The original list of brick to copy</param>
 		/// <returns>A clone list of cloned brick with there cloned groups</returns>
@@ -1321,6 +1322,11 @@ namespace BlueBrick.MapData
 		{
 			// reset the copy list
 			sCopyItems.Clear();
+			// Sort the seltected list as it is sorted on the layer such as the clone list
+			// will be also sorted as on the layer
+			LayerItemComparer<LayerBrick.Brick> comparer = new LayerItemComparer<LayerBrick.Brick>(mBricks);
+			SelectedObjects.Sort(comparer);
+			// and copy the list
 			sCopyItems = sCloneBrickList(SelectedObjects);
 		}
 

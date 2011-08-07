@@ -538,6 +538,25 @@ namespace BlueBrick.MapData
 			#endregion
 		}
 
+		/// <summary>
+		/// This class is used to sort a list of layer item in the same order as in the list provided in the constructor
+		/// </summary>
+		public class LayerItemComparer<T> : System.Collections.Generic.IComparer<LayerItem> where T : LayerItem
+		{
+			private List<T> mListOrderToCopy = null;
+
+			public LayerItemComparer(List<T> list)
+			{
+				mListOrderToCopy = list;
+			}
+
+			public int Compare(Layer.LayerItem item1, Layer.LayerItem item2)
+			{
+				int order1 = mListOrderToCopy.IndexOf(item1 as T);
+				int order2 = mListOrderToCopy.IndexOf(item2 as T);
+				return (order2 - order1);
+			}
+		};
 
 		// common data to all layers
 		protected string mName = BlueBrick.Properties.Resources.DefaultLayerName;
