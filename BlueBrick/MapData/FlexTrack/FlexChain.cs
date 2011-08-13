@@ -44,6 +44,13 @@ namespace BlueBrick.MapData.FlexTrack
 					mAngleBetween = BrickLibrary.Instance.getConnectionAngleDifference(secondConnection.mMyBrick.PartNumber, secondIndex,
 																					firstConnection.mMyBrick.PartNumber, firstIndex);
 				}
+				else
+				{
+					// if the first connection point is null, create a dummy connection point in the world,
+					// at the position of the second connection and not attached to a brick.
+					// The angle between is in that case of course null
+					mFirstConnection = new LayerBrick.Brick.ConnectionPoint(secondConnection.PositionInStudWorldCoord);
+				}
 			}
 		}
 
@@ -59,6 +66,15 @@ namespace BlueBrick.MapData.FlexTrack
 		{
 			mBoneList = new List<IKSolver.Bone_2D_CCD>(boneCount);
 			mFlexChainList = new List<ChainLink>(boneCount * 2);
+		}
+
+		private static float simplifyAngle(float angle)
+		{
+			if (angle < -360.0f)
+				angle += 360.0f;
+			if (angle > 360.0f)
+				angle -= 360.0f;
+			return angle;
 		}
 
 		private static void addNewBone(FlexChain flexChain, LayerBrick.Brick.ConnectionPoint connection)
@@ -111,7 +127,7 @@ namespace BlueBrick.MapData.FlexTrack
 
 				// check if the connection can rotate (if it is an hinge)
 				float hingeAngle = BrickLibrary.Instance.getConnexionHingeAngle(currentSecondConnection.Type);
-				if ((hingeAngle != 0.0f) && (nextBrick != null))
+				if (hingeAngle != 0.0f)
 				{
 					// advance the hinge conncetion
 					hingedLink = link;
@@ -119,8 +135,10 @@ namespace BlueBrick.MapData.FlexTrack
 					// to do that we use the current angle between the connected brick and remove the static angle between them
 					// to only get the flexible angle.
 					// we do it before adding the bone in order to set the angle to the previous bone
-					float angleInDegree = (currentBrick.Orientation - nextBrick.Orientation) - link.mAngleBetween;
-					flexChain.mBoneList[0].localAngleInRad = 0.0f; // angleInDegree * (Math.PI / 180);
+					float angleInDegree = 0.0f;
+					if (nextBrick != null)
+						angleInDegree = simplifyAngle((currentBrick.Orientation - nextBrick.Orientation) + link.mAngleBetween);
+					flexChain.mBoneList[0].localAngleInRad = angleInDegree * (Math.PI / 180);
 					// add the link in the list
 					addNewBone(flexChain, currentSecondConnection);
 				}
@@ -162,8 +180,8 @@ namespace BlueBrick.MapData.FlexTrack
 		private void computeBrickPositionAndOrientation()
 		{
 			// start with the first bone of the list
-			IKSolver.Bone_2D_CCD currentBone = mBoneList[0];
 			int boneIndex = 0;
+			IKSolver.Bone_2D_CCD currentBone = mBoneList[boneIndex];
 			// start with a null total orientation that we will increase with the angle of every bone
 			float flexibleCumulativeOrientation = 0.0f;
 			float staticCumulativeOrientation = 0.0f;
@@ -213,10 +231,10 @@ namespace BlueBrick.MapData.FlexTrack
 			// update the last bone position
 			if (mBoneList.Count > 0)
 			{
-				// get the last position
-				PointF lastPosition = mFlexChainList[mFlexChainList.Count-1].mFirstConnection.PositionInStudWorldCoord;
-				// and set it in the last bone
 				int lastIndex = mBoneList.Count - 1;
+				// get the last position
+				PointF lastPosition = mBoneList[lastIndex].connectionPoint.PositionInStudWorldCoord;
+				// and set it in the last bone
 				mBoneList[lastIndex].worldX = lastPosition.X;
 				mBoneList[lastIndex].worldY = lastPosition.Y;
 			}

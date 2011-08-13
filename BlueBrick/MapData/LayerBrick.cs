@@ -54,6 +54,18 @@ namespace BlueBrick.MapData
 				{
 				}
 
+				/// <summary>
+				/// This constructor is used to create a dummy connection point somewhere in the world at
+				/// the specified position. Be carefull, the brick is null, meaning this connection point
+				/// doesn't belong to a brick and all the other parameters are also default one.
+				/// This dummy connection point is used by the Flex track for attaching a orphean flex part
+				/// on the world and let this part rotate.
+				/// </summary>
+				public ConnectionPoint(PointF positionInStudWorldCoord)
+				{
+					mPositionInStudWorldCoord = positionInStudWorldCoord;
+				}
+
 				public ConnectionPoint(Brick myBrick, int connexionIndex)
 				{
 					mMyBrick = myBrick;
