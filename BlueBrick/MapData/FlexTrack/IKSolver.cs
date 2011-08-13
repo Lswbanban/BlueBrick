@@ -172,6 +172,7 @@ namespace BlueBrick.MapData.FlexTrack
 				}
 				else if (newLocalAngleInRad < -maxLocalAngleInRad)
 				{
+					rotAng -= (newLocalAngleInRad + maxLocalAngleInRad);
 					newLocalAngleInRad = -maxLocalAngleInRad;
 					needToRecomputeCosAndSin = true;
 				}
