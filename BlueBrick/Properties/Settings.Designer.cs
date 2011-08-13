@@ -490,7 +490,7 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("32")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
         public float UISnapGridSize {
             get {
                 return ((float)(this["UISnapGridSize"]));

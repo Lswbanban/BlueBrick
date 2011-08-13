@@ -186,7 +186,7 @@ namespace BlueBrick
             this.mapPanel.Controls.Add(this.statusBar);
             resources.ApplyResources(this.mapPanel, "mapPanel");
             this.mapPanel.Name = "mapPanel";
-            this.mapPanel.ViewScale = 1;
+            this.mapPanel.ViewScale = 1.7;
             // 
             // statusBar
             // 
