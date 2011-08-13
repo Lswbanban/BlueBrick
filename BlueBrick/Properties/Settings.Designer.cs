@@ -751,5 +751,17 @@ namespace BlueBrick.Properties {
                 this["DefaultSubGridEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.7")]
+        public double UIViewScale {
+            get {
+                return ((double)(this["UIViewScale"]));
+            }
+            set {
+                this["UIViewScale"] = value;
+            }
+        }
     }
 }

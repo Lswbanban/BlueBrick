@@ -305,6 +305,8 @@ namespace BlueBrick
 			enableSnapGridButton(Properties.Settings.Default.UISnapGridEnabled, Properties.Settings.Default.UISnapGridSize);
 			// rotation step
 			updateRotationStepButton(Properties.Settings.Default.UIRotationStep);
+			// the zooming value
+			this.mapPanel.ViewScale = Properties.Settings.Default.UIViewScale;
 			// regenerate the paint icon with the right color in the background
 			generatePaintIcon(Properties.Settings.Default.UIPaintColor);
 			if (Properties.Settings.Default.UIIsPaintToolSelected)
@@ -361,10 +363,11 @@ namespace BlueBrick
 			Properties.Settings.Default.UIMainSplitContainerDistance = this.mainSplitContainer.SplitterDistance;
 			Properties.Settings.Default.UIToolSplitContainerDistance = this.toolSplitContainer.SplitterDistance;
 
-			// snap grid size and rotation
+			// snap grid size and rotation and the current zooming value (view scale)
 			Properties.Settings.Default.UISnapGridEnabled = Layer.SnapGridEnabled;
 			Properties.Settings.Default.UISnapGridSize = Layer.CurrentSnapGridSize;
 			Properties.Settings.Default.UIRotationStep = Layer.CurrentRotationStep;
+			Properties.Settings.Default.UIViewScale = this.mapPanel.ViewScale;
 
 			// paint color
 			Properties.Settings.Default.UIPaintColor = mCurrentPaintIconColor;

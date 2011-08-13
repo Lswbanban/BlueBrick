@@ -219,5 +219,8 @@
     <Setting Name="DefaultSubGridEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="UIViewScale" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1.7</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
