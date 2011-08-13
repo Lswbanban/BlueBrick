@@ -77,9 +77,10 @@ namespace BlueBrick.MapData.FlexTrack
 			return angle;
 		}
 
-		private static void addNewBone(FlexChain flexChain, LayerBrick.Brick.ConnectionPoint connection)
+		private static void addNewBone(FlexChain flexChain, LayerBrick.Brick.ConnectionPoint connection, double maxAngleInDeg)
 		{
 			IKSolver.Bone_2D_CCD newBone = new IKSolver.Bone_2D_CCD();
+			newBone.maxAbsoluteAngleInRad = maxAngleInDeg * (Math.PI / 180);
 			newBone.worldX = connection.PositionInStudWorldCoord.X;
 			newBone.worldY = -connection.PositionInStudWorldCoord.Y; // BlueBrick use an indirect coord sys, and the IKSolver a direct one
 			newBone.connectionPoint = connection;
@@ -111,7 +112,7 @@ namespace BlueBrick.MapData.FlexTrack
 			LayerBrick.Brick currentBrick = grabbedTrack;
 			LayerBrick.Brick.ConnectionPoint currentFirstConnection = grabbedTrack.ActiveConnectionPoint;
 			ChainLink hingedLink = null;
-			addNewBone(flexChain, currentFirstConnection);
+			addNewBone(flexChain, currentFirstConnection, 0.0);
 			// the chain is made with track that exclusively has 2 connections to make a chain.
 			while ((currentBrick != null) && (currentBrick.ConnectionPoints.Count == 2))
 			{
@@ -132,7 +133,7 @@ namespace BlueBrick.MapData.FlexTrack
 					// advance the hinge conncetion
 					hingedLink = link;
 					// add the link in the list
-					addNewBone(flexChain, currentSecondConnection);
+					addNewBone(flexChain, currentSecondConnection, hingeAngle);
 					// compute the current angle between the hinge connection and set it to the current bone
 					// to do that we use the current angle between the connected brick and remove the static angle between them
 					// to only get the flexible angle.
