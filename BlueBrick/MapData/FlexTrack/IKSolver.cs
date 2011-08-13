@@ -62,6 +62,7 @@ namespace BlueBrick.MapData.FlexTrack
 		public class Bone_2D_CCD
 		{
 			public double localAngleInRad = 0.0f; // angle in parent space
+			public double maxAbsoluteAngleInRad = Math.PI * 2; // the maximum angle that can take this bone
 			public double worldX = 0.0f;        // x position in world space
 			public double worldY = 0.0f;        // y position in world space
 			public LayerBrick.Brick.ConnectionPoint connectionPoint = null; // the connection Point related to this bone
@@ -158,12 +159,36 @@ namespace BlueBrick.MapData.FlexTrack
 				if( sinRotAng < 0.0 )
 					rotAng = -rotAng;
 				
+				// Rotate the current bone in local space (this value is output to the user)
+				// and clamp the value inside the limit defined in the bone
+				double newLocalAngleInRad = SimplifyAngle(bones[boneIdx].localAngleInRad + rotAng);
+				double maxLocalAngleInRad = bones[boneIdx].maxAbsoluteAngleInRad;
+				bool needToRecomputeCosAndSin = false;
+				if (newLocalAngleInRad > maxLocalAngleInRad)
+				{
+					rotAng -= (newLocalAngleInRad - maxLocalAngleInRad);
+					newLocalAngleInRad = maxLocalAngleInRad;
+					needToRecomputeCosAndSin = true;
+				}
+				else if (newLocalAngleInRad < -maxLocalAngleInRad)
+				{
+					newLocalAngleInRad = -maxLocalAngleInRad;
+					needToRecomputeCosAndSin = true;
+				}
+
+				// Set the angle in the current bone in local space (this value is output to the user)
+				bones[boneIdx].localAngleInRad = newLocalAngleInRad;
+
+				// if we clamped the angle, recompute the cos and sin
+				if (needToRecomputeCosAndSin)
+				{
+					cosRotAng = Math.Cos(rotAng);
+					sinRotAng = Math.Sin(rotAng);
+				}
+
 				// Rotate the end effector position.
 				endX = bones[boneIdx].worldX + cosRotAng * curToEndX - sinRotAng * curToEndY;
 				endY = bones[boneIdx].worldY + sinRotAng * curToEndX + cosRotAng * curToEndY;
-
-				// Rotate the current bone in local space (this value is output to the user)
-				bones[boneIdx].localAngleInRad = SimplifyAngle( bones[boneIdx].localAngleInRad + rotAng );
 
 				// Check for termination
 				double endToTargetX = (targetX-endX);
