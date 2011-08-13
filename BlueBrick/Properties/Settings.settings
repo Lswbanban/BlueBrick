@@ -136,7 +136,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="UISnapGridSize" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">32</Value>
+      <Value Profile="(Default)">4</Value>
     </Setting>
     <Setting Name="UIRotationStep" Type="System.Single" Scope="User">
       <Value Profile="(Default)">90</Value>
