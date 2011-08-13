@@ -70,9 +70,9 @@ namespace BlueBrick.MapData.FlexTrack
 
 		private static float simplifyAngle(float angle)
 		{
-			if (angle < -360.0f)
+			if (angle <= -360.0f)
 				angle += 360.0f;
-			if (angle > 360.0f)
+			if (angle >= 360.0f)
 				angle -= 360.0f;
 			return angle;
 		}
@@ -81,7 +81,7 @@ namespace BlueBrick.MapData.FlexTrack
 		{
 			IKSolver.Bone_2D_CCD newBone = new IKSolver.Bone_2D_CCD();
 			newBone.worldX = connection.PositionInStudWorldCoord.X;
-			newBone.worldY = connection.PositionInStudWorldCoord.Y;
+			newBone.worldY = -connection.PositionInStudWorldCoord.Y; // BlueBrick use an indirect coord sys, and the IKSolver a direct one
 			newBone.connectionPoint = connection;
 			flexChain.mBoneList.Insert(0, newBone);
 		}
@@ -131,16 +131,15 @@ namespace BlueBrick.MapData.FlexTrack
 				{
 					// advance the hinge conncetion
 					hingedLink = link;
+					// add the link in the list
+					addNewBone(flexChain, currentSecondConnection);
 					// compute the current angle between the hinge connection and set it to the current bone
 					// to do that we use the current angle between the connected brick and remove the static angle between them
 					// to only get the flexible angle.
-					// we do it before adding the bone in order to set the angle to the previous bone
 					float angleInDegree = 0.0f;
 					if (nextBrick != null)
-						angleInDegree = simplifyAngle((currentBrick.Orientation - nextBrick.Orientation) + link.mAngleBetween);
+						angleInDegree = simplifyAngle(nextBrick.Orientation - currentBrick.Orientation - link.mAngleBetween);
 					flexChain.mBoneList[0].localAngleInRad = angleInDegree * (Math.PI / 180);
-					// add the link in the list
-					addNewBone(flexChain, currentSecondConnection);
 				}
 
 				// advance to the next link
@@ -168,7 +167,8 @@ namespace BlueBrick.MapData.FlexTrack
 		/// <returns>if true, this method should be called again</returns>
 		public bool reachTarget(double xWorldStudCoord, double yWorldStudCoord)
 		{
-			IKSolver.CCDResult result = IKSolver.CalcIK_2D_CCD(ref mBoneList, xWorldStudCoord, yWorldStudCoord, 0.5);
+			// reverse the Y because BlueBrick use an indirect coord sys, and the IKSolver a direct one
+			IKSolver.CCDResult result = IKSolver.CalcIK_2D_CCD(ref mBoneList, xWorldStudCoord, -yWorldStudCoord, 0.5);
 			computeBrickPositionAndOrientation();
 			return (result == IKSolver.CCDResult.Processing);
 		}
@@ -203,11 +203,9 @@ namespace BlueBrick.MapData.FlexTrack
 					// set the new world position to the current bone with the previous connection position
 					// because the previous brick was already placed at the correct position
 					currentBone.worldX = previousPosition.X;
-					currentBone.worldY = previousPosition.Y;
+					currentBone.worldY = -previousPosition.Y; // BlueBrick use an indirect coord sys, and the IKSolver a direct one
 					// increase the flexible angle
 					flexibleCumulativeOrientation += (float)(currentBone.localAngleInRad * (180.0 / Math.PI));
-					// reset the static orientation
-					staticCumulativeOrientation = 0.0f;
 					// take the next bone
 					boneIndex++;
 					if (boneIndex < mBoneList.Count)
@@ -218,7 +216,7 @@ namespace BlueBrick.MapData.FlexTrack
 				staticCumulativeOrientation += currentLink.mAngleBetween;
 
 				// set the orientation of the current brick
-				currentBrick.Orientation = flexibleCumulativeOrientation - staticCumulativeOrientation - 180;
+				currentBrick.Orientation = -flexibleCumulativeOrientation - staticCumulativeOrientation;
 				
 				// compute the new position of the current brick by putting the current connection at the same
 				// place than the previous connection
@@ -236,7 +234,7 @@ namespace BlueBrick.MapData.FlexTrack
 				PointF lastPosition = mBoneList[lastIndex].connectionPoint.PositionInStudWorldCoord;
 				// and set it in the last bone
 				mBoneList[lastIndex].worldX = lastPosition.X;
-				mBoneList[lastIndex].worldY = lastPosition.Y;
+				mBoneList[lastIndex].worldY = -lastPosition.Y; // BlueBrick use an indirect coord sys, and the IKSolver a direct one
 			}
 		}
 	}
