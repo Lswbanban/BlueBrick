@@ -58,6 +58,7 @@ namespace BlueBrick.MapData.FlexTrack
 		private List<IKSolver.Bone_2D_CCD> mBoneList = null;
 		private List<ChainLink> mFlexChainList = null;
 		private int mRootHingedLinkIndex = 0; // the first hinged connection in the chain that can move
+		private float mInitialStaticCumulativeOrientation = 0.0f;
 
 		/// <summary>
 		/// Private constructor because there are condition to create it. Use static method createFlexChain instead.
@@ -154,7 +155,7 @@ namespace BlueBrick.MapData.FlexTrack
 			ChainLink hingedLink = null;
 			addNewBone(flexChain, currentFirstConnection, 0.0);
 			// the chain is made with track that exclusively has 2 connections to make a chain.
-			while ((currentBrick != null) && (currentBrick.ConnectionPoints.Count == 2))
+			while ((currentBrick != null) && (currentBrick.ConnectionPoints.Count == 2) && trackList.Contains(currentBrick))
 			{
 				// get the other connection on the current brick
 				int secondIndex = (currentBrick.ConnectionPoints[0] == currentFirstConnection) ? 1 : 0;
@@ -181,6 +182,16 @@ namespace BlueBrick.MapData.FlexTrack
 					if (nextBrick != null)
 						angleInDegree = simplifyAngle(nextBrick.Orientation - currentBrick.Orientation - link.mAngleBetween);
 					flexChain.mBoneList[0].localAngleInRad = angleInDegree * (Math.PI / 180);
+
+					// save the initial static cumulative orientation: start with the orientation of the root brick
+					// if the hinge is connected to a brick, otherwise, if the hinge is free (connected to the world)
+					// use the orientation of the hinge brick.
+					// we set the value several time in the loop, in order to set it with the brick directly
+					// connected to the last hinge in the chain
+					if (nextBrick != null)
+						flexChain.mInitialStaticCumulativeOrientation = -nextBrick.Orientation;
+					else
+						flexChain.mInitialStaticCumulativeOrientation = -currentBrick.Orientation;
 				}
 
 				// advance to the next link
@@ -223,9 +234,12 @@ namespace BlueBrick.MapData.FlexTrack
 			// start with the first bone of the list
 			int boneIndex = 0;
 			IKSolver.Bone_2D_CCD currentBone = mBoneList[boneIndex];
-			// start with a null total orientation that we will increase with the angle of every bone
+			// start with a null total flexible orientation that we will increase with the angle of every bone
 			float flexibleCumulativeOrientation = 0.0f;
-			float staticCumulativeOrientation = 0.0f;
+			// init the static cumulative orientation with the one saved in this class.
+			// we cannot use the orientation of the root brick of the chain because this brick orientation
+			// is also changed in the loop, leading to some divergence
+			float staticCumulativeOrientation = mInitialStaticCumulativeOrientation;
 
 			// iterate on the link list and change the world angle everytime we meet an hinge
 			// start with the first hinged connection of the chain (because everything before doesn't move)
