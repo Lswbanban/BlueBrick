@@ -1983,9 +1983,9 @@ namespace BlueBrick.MapData
 										&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
 
 			// check if it is a double click, to see if we need to do a flex move
-			if ((mCurrentBrickUnderMouse != null) && (e.Clicks == 2))
+			if (!mMouseMoveIsADuplicate && (mCurrentBrickUnderMouse != null) && (e.Clicks == 2))
 			{
-				mMouseMoveFlexChain = FlexChain.createFlexChain(this.SelectedObjects, mCurrentBrickUnderMouse);
+				mMouseMoveFlexChain = FlexChain.createFlexChain(this.SelectedObjects, mCurrentBrickUnderMouse, mouseCoordInStud);
 				mMouseMoveIsAFlexMove = (mMouseMoveFlexChain != null);
 			}
 
