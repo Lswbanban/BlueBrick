@@ -95,22 +95,62 @@ namespace BlueBrick.MapData.FlexTrack
 		/// </summary>
 		/// <param name="trackList">A set of track hopefully connected together, and hopefully containing flex track</param>
 		/// <param name="grabbedTrack">The part which will try to reach the target. It should be part of the list.</param>
-		public static FlexChain createFlexChain(List<Layer.LayerItem> trackList, LayerBrick.Brick grabbedTrack)
+		/// <param name="mouseCoordInStud">the coordinate of the mouse in stud coord</param>
+		public static FlexChain createFlexChain(List<Layer.LayerItem> trackList, LayerBrick.Brick grabbedTrack, PointF mouseCoordInStud)
 		{
+			// check that the grabbed part is a part with 2 connection points
+			if (!grabbedTrack.HasConnectionPoint || grabbedTrack.ConnectionPoints.Count != 2)
+				return null;
+
 			// if the grabbed part is not in the list, it failed
 			if (!trackList.Contains(grabbedTrack))
 				return null;
 
-			// the target point should be the free connection point that is grabbed on the grabbed part
-			if (!grabbedTrack.HasConnectionPoint || !grabbedTrack.ActiveConnectionPoint.IsFree)
-				return null;
+			// try to find the best first connection point which will be the end target of the flex.
+			// This is either the one that is connected to a part not in the track list (because
+			// this connection will brake), or a connection that is not flexible if both side are in
+			// the list or both are not, or finally the connection closer to the mouse
+			LayerBrick.Brick.ConnectionPoint grabbedFirstConnection = grabbedTrack.ConnectionPoints[0];
+			LayerBrick.Brick.ConnectionPoint grabbedSecondConnection = grabbedTrack.ConnectionPoints[1];
+			LayerBrick.Brick.ConnectionPoint currentFirstConnection = null;
+			bool isGrabbedFirstNeighborInList = trackList.Contains(grabbedFirstConnection.ConnectedBrick);
+			bool isGrabbedSecondNeighborInList = trackList.Contains(grabbedSecondConnection.ConnectedBrick);
+			if (isGrabbedFirstNeighborInList && !isGrabbedSecondNeighborInList)
+			{
+				currentFirstConnection = grabbedSecondConnection;
+			}
+			else if (!isGrabbedFirstNeighborInList && isGrabbedSecondNeighborInList)
+			{
+				currentFirstConnection = grabbedFirstConnection;
+			}
+			else
+			{
+				// both or neither neighboor in list. by preference choose the not flexible connection
+				float firstHingeAngle = BrickLibrary.Instance.getConnexionHingeAngle(grabbedFirstConnection.Type);
+				float secondHingeAngle = BrickLibrary.Instance.getConnexionHingeAngle(grabbedSecondConnection.Type);
+				if (firstHingeAngle != 0.0f && secondHingeAngle == 0.0f)
+					currentFirstConnection = grabbedSecondConnection;
+				else if (firstHingeAngle == 0.0f && secondHingeAngle != 0.0f)
+					currentFirstConnection = grabbedFirstConnection;
+				else
+				{
+					// both or neither connection are flexibles, so we choose the closest connection to the mouse
+					PointF distToFirstConnection = new PointF(grabbedFirstConnection.PositionInStudWorldCoord.X - mouseCoordInStud.X, grabbedFirstConnection.PositionInStudWorldCoord.Y - mouseCoordInStud.Y);
+					PointF distToSecondConnection = new PointF(grabbedSecondConnection.PositionInStudWorldCoord.X - mouseCoordInStud.X, grabbedSecondConnection.PositionInStudWorldCoord.Y - mouseCoordInStud.Y);
+					float squareDistToFirstConnection = (distToFirstConnection.X * distToFirstConnection.X) + (distToFirstConnection.Y * distToFirstConnection.Y);
+					float squareDistToSecondConnection = (distToSecondConnection.X * distToSecondConnection.X) + (distToSecondConnection.Y * distToSecondConnection.Y);
+					if (squareDistToFirstConnection < squareDistToSecondConnection)
+						currentFirstConnection = grabbedFirstConnection;
+					else
+						currentFirstConnection = grabbedSecondConnection;
+				}
+			}
 
 			// the chain to return
 			FlexChain flexChain = new FlexChain(trackList.Count);
 
 			// start to iterate from the grabbed track
 			LayerBrick.Brick currentBrick = grabbedTrack;
-			LayerBrick.Brick.ConnectionPoint currentFirstConnection = grabbedTrack.ActiveConnectionPoint;
 			ChainLink hingedLink = null;
 			addNewBone(flexChain, currentFirstConnection, 0.0);
 			// the chain is made with track that exclusively has 2 connections to make a chain.
