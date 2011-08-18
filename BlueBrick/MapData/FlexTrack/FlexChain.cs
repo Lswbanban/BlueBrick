@@ -59,6 +59,14 @@ namespace BlueBrick.MapData.FlexTrack
 		private List<ChainLink> mFlexChainList = null;
 		private int mRootHingedLinkIndex = 0; // the first hinged connection in the chain that can move
 		private float mInitialStaticCumulativeOrientation = 0.0f;
+		private List<Layer.LayerItem> mBricksInTheFlexChain = null;
+
+		#region get/set
+		public List<Layer.LayerItem> BricksInTheFlexChain
+		{
+			get { return mBricksInTheFlexChain; }
+		}
+		#endregion
 
 		/// <summary>
 		/// Private constructor because there are condition to create it. Use static method createFlexChain instead.
@@ -67,6 +75,7 @@ namespace BlueBrick.MapData.FlexTrack
 		{
 			mBoneList = new List<IKSolver.Bone_2D_CCD>(boneCount);
 			mFlexChainList = new List<ChainLink>(boneCount * 2);
+			mBricksInTheFlexChain = new List<Layer.LayerItem>(boneCount);
 		}
 
 		private static float simplifyAngle(float angle)
@@ -201,11 +210,14 @@ namespace BlueBrick.MapData.FlexTrack
 
 			// store the root hinge connection index (the last hinge found is the flexible root)
 			if (hingedLink != null)
-			{
 				flexChain.mRootHingedLinkIndex = flexChain.mFlexChainList.IndexOf(hingedLink);
-				if (hingedLink.mSecondConnection == null)
-					flexChain.mRootHingedLinkIndex++;
-			}
+
+			// add the current brick in the list of bricks, by not going further than the root brick
+			LayerBrick.Brick.ConnectionPoint rootConnection = flexChain.mFlexChainList[flexChain.mRootHingedLinkIndex].mFirstConnection;
+			if (rootConnection.mMyBrick != null)
+				flexChain.mBricksInTheFlexChain.Add(rootConnection.mMyBrick);
+			for (int i = flexChain.mRootHingedLinkIndex; i < flexChain.mFlexChainList.Count; ++i)
+				flexChain.mBricksInTheFlexChain.Add(flexChain.mFlexChainList[i].mSecondConnection.mMyBrick);
 
 			// return the chain
 			return flexChain;
