@@ -1987,6 +1987,9 @@ namespace BlueBrick.MapData
 			{
 				mMouseMoveFlexChain = FlexChain.createFlexChain(this.SelectedObjects, mCurrentBrickUnderMouse, mouseCoordInStud);
 				mMouseMoveIsAFlexMove = (mMouseMoveFlexChain != null);
+				// update the selection with only the brick in the flex chain
+				if (mMouseMoveIsAFlexMove)
+					mSelectedObjects = mMouseMoveFlexChain.BricksInTheFlexChain; 
 			}
 
 			// select the appropriate cursor:
