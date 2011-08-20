@@ -78,7 +78,7 @@ namespace BlueBrick.MapData.FlexTrack
 			mBricksInTheFlexChain = new List<Layer.LayerItem>(boneCount);
 		}
 
-		private static float simplifyAngle(float angle)
+		private static float sSimplifyAngle(float angle)
 		{
 			if (angle <= -360.0f)
 				angle += 360.0f;
@@ -87,7 +87,7 @@ namespace BlueBrick.MapData.FlexTrack
 			return angle;
 		}
 
-		private static void addNewBone(FlexChain flexChain, LayerBrick.Brick.ConnectionPoint connection, double maxAngleInDeg)
+		private static void sAddNewBone(FlexChain flexChain, LayerBrick.Brick.ConnectionPoint connection, double maxAngleInDeg)
 		{
 			IKSolver.Bone_2D_CCD newBone = new IKSolver.Bone_2D_CCD();
 			newBone.maxAbsoluteAngleInRad = maxAngleInDeg * (Math.PI / 180);
@@ -95,6 +95,135 @@ namespace BlueBrick.MapData.FlexTrack
 			newBone.worldY = -connection.PositionInStudWorldCoord.Y; // BlueBrick use an indirect coord sys, and the IKSolver a direct one
 			newBone.connectionPoint = connection;
 			flexChain.mBoneList.Insert(0, newBone);
+		}
+
+		/// <summary>
+		/// read and set the two parameter to follow a chain of brick until we found a flexible part. This function only
+		/// advance the search for one step (one link).
+		/// </summary>
+		/// <param name="connectionLead">the current connection point, from which we need to find the next one</param>
+		/// <param name="isConnectionLeadingToFlexiblePart">a flag to tell if a flexible brick is found</param>
+		private static void sFollowConnectionToFindFlexiblePart(ref LayerBrick.Brick.ConnectionPoint connectionLead, ref bool isConnectionLeadingToFlexiblePart)
+		{
+			if (connectionLead != null)
+			{
+				// set the flag if not already true
+				isConnectionLeadingToFlexiblePart |= (BrickLibrary.Instance.getConnexionHingeAngle(connectionLead.Type) != 0.0f);
+				// if we found a flexible part, stop following the path
+				if (isConnectionLeadingToFlexiblePart)
+				{
+					connectionLead = null; // stop following this path
+				}
+				else
+				{
+					// jump to the attach brick accross the link (which may be null, in such case, the search will stop)
+					connectionLead = connectionLead.ConnectionLink;
+					// if there's a brick connected, check if it is a 2 connections brick and take the other
+					if (connectionLead != null)
+					{
+						// get the list of connection point for the first leading brick
+						List<LayerBrick.Brick.ConnectionPoint> connectionList = connectionLead.mMyBrick.ConnectionPoints;
+						if (connectionList.Count == 2)
+						{
+							// check the next connections and set it
+							int otherIndex = (connectionList[0] == connectionLead) ? 1 : 0;
+							connectionLead = connectionList[otherIndex];
+						}
+						else
+						{
+							// if it is a 0, 1 or 3 or more connections brick type, stop the search
+							connectionLead = null;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// This function try different strategy to find the best connection point to use on the specified grabbed part
+		/// to start the flex chain. It is assumed that the grab part only have two connection, then:
+		/// 1) if one connection is flexible and not the other, return this one,
+		/// 2) else if one connection leads to a flexible connection and not the other, return this one
+		/// 3) else if one connection is connected to a brick part of the track list and not the other, return this one,
+		/// 4) else if both connections are or lead to a flexible one, return the connection closest to the mouse click
+		/// 5) else if no connection are or lead to a flexible one, return null (no flexible chain can be created)
+		/// </summary>
+		/// <param name="trackList">A set of track hopefully connected together, and hopefully containing flex track</param>
+		/// <param name="grabbedTrack">The part which will try to reach the target. It should be part of the list.</param>
+		/// <param name="mouseCoordInStud">the coordinate of the mouse in stud coord</param>
+		/// <returns>The best connection point of the grabbed part or null</returns>
+		private static LayerBrick.Brick.ConnectionPoint sFindStartingConnectionPoint(List<Layer.LayerItem> trackList, LayerBrick.Brick grabbedTrack, PointF mouseCoordInStud)
+		{
+			// try to find the best first connection point which will be the end target of the flex.
+			LayerBrick.Brick.ConnectionPoint grabbedFirstConnection = grabbedTrack.ConnectionPoints[0];
+			LayerBrick.Brick.ConnectionPoint grabbedSecondConnection = grabbedTrack.ConnectionPoints[1];
+			// by preference choose the not flexible connection on the grabbed part
+			float firstHingeAngle = BrickLibrary.Instance.getConnexionHingeAngle(grabbedFirstConnection.Type);
+			float secondHingeAngle = BrickLibrary.Instance.getConnexionHingeAngle(grabbedSecondConnection.Type);
+			if (firstHingeAngle != 0.0f && secondHingeAngle == 0.0f)
+				return grabbedSecondConnection;
+			else if (firstHingeAngle == 0.0f && secondHingeAngle != 0.0f)
+				return grabbedFirstConnection;
+			else if (firstHingeAngle == 0.0f && secondHingeAngle == 0.0f)
+			{
+				// neither connection are flexibles on the grab part, so we choose the connection that 
+				// do not lead to a flexible part (and the other connection does)
+				bool firstConnectionLeadToFlexiblePart = false;
+				bool secondConnectionLeadToFlexiblePart = false;
+				LayerBrick.Brick.ConnectionPoint firstConnectionLead = grabbedFirstConnection;
+				LayerBrick.Brick.ConnectionPoint secondConnectionLead = grabbedSecondConnection;
+				// use a clone of the track list because we will remove the tested track to avoid infinite loop
+				// in case of a close track chain
+				List<Layer.LayerItem> remaingTrackToTestList = new List<Layer.LayerItem>(trackList);
+				while ((!firstConnectionLeadToFlexiblePart || !secondConnectionLeadToFlexiblePart) &&
+						(firstConnectionLead != null || secondConnectionLead != null))
+				{
+					// check if the leading bricks are in the trask list otherwise stop to follow the lead
+					LayerBrick.Brick firstBrickLead = (firstConnectionLead != null) ? firstConnectionLead.mMyBrick : null;
+					LayerBrick.Brick secondBrickLead = (secondConnectionLead != null) ? secondConnectionLead.mMyBrick : null;
+					if (!remaingTrackToTestList.Contains(firstBrickLead))
+						firstConnectionLead = null;
+					if (!remaingTrackToTestList.Contains(secondBrickLead))
+						secondConnectionLead = null;
+					// remove those check brick from the list. Do it after and not in the if because first and second brick
+					// may be the same and flexible, so it could be unfair to the second test
+					remaingTrackToTestList.Remove(firstBrickLead);
+					remaingTrackToTestList.Remove(secondBrickLead);
+					// set the flag and follow the lead for the two leads
+					sFollowConnectionToFindFlexiblePart(ref firstConnectionLead, ref firstConnectionLeadToFlexiblePart);
+					sFollowConnectionToFindFlexiblePart(ref secondConnectionLead, ref secondConnectionLeadToFlexiblePart);
+				}
+				// either the loop is finished because we found flexible part on both side, or because we
+				// finished to explore the two paths. Check if we have only one side leading to a flexible part
+				// and choose the other one, otherwise go to the default method
+				if (firstConnectionLeadToFlexiblePart && !secondConnectionLeadToFlexiblePart)
+					return grabbedSecondConnection;
+				else if (!firstConnectionLeadToFlexiblePart && secondConnectionLeadToFlexiblePart)
+					return grabbedFirstConnection;
+				else if (!firstConnectionLeadToFlexiblePart && !secondConnectionLeadToFlexiblePart)
+					return null; // neither connection lead to a flexible part
+			}
+
+			// both connection of the grab part are flexibles, or both side of the grab part
+			// lead to a flexible part, so we choose the connection which neighboor is not in the list
+			bool isGrabbedFirstNeighborInList = trackList.Contains(grabbedFirstConnection.ConnectedBrick);
+			bool isGrabbedSecondNeighborInList = trackList.Contains(grabbedSecondConnection.ConnectedBrick);
+			if (isGrabbedFirstNeighborInList && !isGrabbedSecondNeighborInList)
+				return grabbedSecondConnection;
+			else if (!isGrabbedFirstNeighborInList && isGrabbedSecondNeighborInList)
+				return grabbedFirstConnection;
+			else
+			{
+				// both or neither neighboor are in the list, so we choose the closest connection to the mouse
+				PointF distToFirstConnection = new PointF(grabbedFirstConnection.PositionInStudWorldCoord.X - mouseCoordInStud.X, grabbedFirstConnection.PositionInStudWorldCoord.Y - mouseCoordInStud.Y);
+				PointF distToSecondConnection = new PointF(grabbedSecondConnection.PositionInStudWorldCoord.X - mouseCoordInStud.X, grabbedSecondConnection.PositionInStudWorldCoord.Y - mouseCoordInStud.Y);
+				float squareDistToFirstConnection = (distToFirstConnection.X * distToFirstConnection.X) + (distToFirstConnection.Y * distToFirstConnection.Y);
+				float squareDistToSecondConnection = (distToSecondConnection.X * distToSecondConnection.X) + (distToSecondConnection.Y * distToSecondConnection.Y);
+				if (squareDistToFirstConnection < squareDistToSecondConnection)
+					return grabbedFirstConnection;
+				else
+					return grabbedSecondConnection;
+			}
 		}
 
 		/// <summary>
@@ -106,7 +235,7 @@ namespace BlueBrick.MapData.FlexTrack
 		/// <param name="trackList">A set of track hopefully connected together, and hopefully containing flex track</param>
 		/// <param name="grabbedTrack">The part which will try to reach the target. It should be part of the list.</param>
 		/// <param name="mouseCoordInStud">the coordinate of the mouse in stud coord</param>
-		public static FlexChain createFlexChain(List<Layer.LayerItem> trackList, LayerBrick.Brick grabbedTrack, PointF mouseCoordInStud)
+		public static FlexChain sCeateFlexChain(List<Layer.LayerItem> trackList, LayerBrick.Brick grabbedTrack, PointF mouseCoordInStud)
 		{
 			// check that the grabbed part is a part with 2 connection points
 			if (!grabbedTrack.HasConnectionPoint || grabbedTrack.ConnectionPoints.Count != 2)
@@ -116,45 +245,10 @@ namespace BlueBrick.MapData.FlexTrack
 			if (!trackList.Contains(grabbedTrack))
 				return null;
 
-			// try to find the best first connection point which will be the end target of the flex.
-			// This is either the one that is connected to a part not in the track list (because
-			// this connection will brake), or a connection that is not flexible if both side are in
-			// the list or both are not, or finally the connection closer to the mouse
-			LayerBrick.Brick.ConnectionPoint grabbedFirstConnection = grabbedTrack.ConnectionPoints[0];
-			LayerBrick.Brick.ConnectionPoint grabbedSecondConnection = grabbedTrack.ConnectionPoints[1];
-			LayerBrick.Brick.ConnectionPoint currentFirstConnection = null;
-			bool isGrabbedFirstNeighborInList = trackList.Contains(grabbedFirstConnection.ConnectedBrick);
-			bool isGrabbedSecondNeighborInList = trackList.Contains(grabbedSecondConnection.ConnectedBrick);
-			if (isGrabbedFirstNeighborInList && !isGrabbedSecondNeighborInList)
-			{
-				currentFirstConnection = grabbedSecondConnection;
-			}
-			else if (!isGrabbedFirstNeighborInList && isGrabbedSecondNeighborInList)
-			{
-				currentFirstConnection = grabbedFirstConnection;
-			}
-			else
-			{
-				// both or neither neighboor in list. by preference choose the not flexible connection
-				float firstHingeAngle = BrickLibrary.Instance.getConnexionHingeAngle(grabbedFirstConnection.Type);
-				float secondHingeAngle = BrickLibrary.Instance.getConnexionHingeAngle(grabbedSecondConnection.Type);
-				if (firstHingeAngle != 0.0f && secondHingeAngle == 0.0f)
-					currentFirstConnection = grabbedSecondConnection;
-				else if (firstHingeAngle == 0.0f && secondHingeAngle != 0.0f)
-					currentFirstConnection = grabbedFirstConnection;
-				else
-				{
-					// both or neither connection are flexibles, so we choose the closest connection to the mouse
-					PointF distToFirstConnection = new PointF(grabbedFirstConnection.PositionInStudWorldCoord.X - mouseCoordInStud.X, grabbedFirstConnection.PositionInStudWorldCoord.Y - mouseCoordInStud.Y);
-					PointF distToSecondConnection = new PointF(grabbedSecondConnection.PositionInStudWorldCoord.X - mouseCoordInStud.X, grabbedSecondConnection.PositionInStudWorldCoord.Y - mouseCoordInStud.Y);
-					float squareDistToFirstConnection = (distToFirstConnection.X * distToFirstConnection.X) + (distToFirstConnection.Y * distToFirstConnection.Y);
-					float squareDistToSecondConnection = (distToSecondConnection.X * distToSecondConnection.X) + (distToSecondConnection.Y * distToSecondConnection.Y);
-					if (squareDistToFirstConnection < squareDistToSecondConnection)
-						currentFirstConnection = grabbedFirstConnection;
-					else
-						currentFirstConnection = grabbedSecondConnection;
-				}
-			}
+			// try to find the starting connection point, if the result is null, the flex chain cannot be created
+			LayerBrick.Brick.ConnectionPoint currentFirstConnection = sFindStartingConnectionPoint(trackList, grabbedTrack, mouseCoordInStud);
+			if (currentFirstConnection == null)
+				return null;
 
 			// the chain to return
 			FlexChain flexChain = new FlexChain(trackList.Count);
@@ -162,7 +256,7 @@ namespace BlueBrick.MapData.FlexTrack
 			// start to iterate from the grabbed track
 			LayerBrick.Brick currentBrick = grabbedTrack;
 			ChainLink hingedLink = null;
-			addNewBone(flexChain, currentFirstConnection, 0.0);
+			sAddNewBone(flexChain, currentFirstConnection, 0.0);
 			// the chain is made with track that exclusively has 2 connections to make a chain.
 			while ((currentBrick != null) && (currentBrick.ConnectionPoints.Count == 2) && trackList.Contains(currentBrick))
 			{
@@ -183,13 +277,13 @@ namespace BlueBrick.MapData.FlexTrack
 					// advance the hinge conncetion
 					hingedLink = link;
 					// add the link in the list
-					addNewBone(flexChain, currentSecondConnection, hingeAngle);
+					sAddNewBone(flexChain, currentSecondConnection, hingeAngle);
 					// compute the current angle between the hinge connection and set it to the current bone
 					// to do that we use the current angle between the connected brick and remove the static angle between them
 					// to only get the flexible angle.
 					float angleInDegree = 0.0f;
 					if (nextBrick != null)
-						angleInDegree = simplifyAngle(nextBrick.Orientation - currentBrick.Orientation - link.mAngleBetween);
+						angleInDegree = sSimplifyAngle(nextBrick.Orientation - currentBrick.Orientation - link.mAngleBetween);
 					flexChain.mBoneList[0].localAngleInRad = angleInDegree * (Math.PI / 180);
 
 					// save the initial static cumulative orientation: start with the orientation of the root brick
