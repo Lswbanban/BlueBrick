@@ -43,10 +43,12 @@ namespace BlueBrick.Actions.Bricks
 			if (selectedBrick != null)
 			{
 				// find the brick of the group that will be connected to the selected brick
-				LayerBrick.Brick brickToConnect = findBrickToConnectAdnSetBestConnectionPointIndex(selectedBrick, ref wantedConnexion);
+				LayerBrick.Brick brickToConnect = null;
+				if (selectedBrick.HasConnectionPoint)
+					brickToConnect = findBrickToConnectAdnSetBestConnectionPointIndex(selectedBrick, ref wantedConnexion);
 
 				// check if the selected brick has connection point
-				if (selectedBrick.HasConnectionPoint && brickToConnect.HasConnectionPoint)
+				if (brickToConnect != null && brickToConnect.HasConnectionPoint)
 				{
 					// after setting the active connection point index from which this brick will be attached,
 					// get the prefered index from the library
