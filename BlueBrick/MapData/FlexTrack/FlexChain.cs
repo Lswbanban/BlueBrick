@@ -300,6 +300,11 @@ namespace BlueBrick.MapData.FlexTrack
 				// advance to the next link
 				currentBrick = nextBrick;
 				currentFirstConnection = nextFirstConnection;
+
+				// check if the track is not a loop, otherwise we will have an infinite loop.
+				// but don't add the test in the while because the first iteration must pass
+				if (currentBrick == grabbedTrack)
+					break;
 			}
 
 			// store the root hinge connection index (the last hinge found is the flexible root)
