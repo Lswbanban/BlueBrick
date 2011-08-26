@@ -1989,7 +1989,7 @@ namespace BlueBrick.MapData
 				mMouseMoveIsAFlexMove = (mMouseMoveFlexChain != null);
 				// update the selection with only the brick in the flex chain
 				if (mMouseMoveIsAFlexMove)
-					mSelectedObjects = mMouseMoveFlexChain.BricksInTheFlexChain; 
+					mSelectedObjects = new List<LayerItem>(mMouseMoveFlexChain.BricksInTheFlexChain); 
 			}
 
 			// select the appropriate cursor:
