@@ -430,4 +430,7 @@
   <data name="TextUnknown" xml:space="preserve">
     <value>Unknown</value>
   </data>
+  <data name="ActionFlexMove" xml:space="preserve">
+    <value>Move Flexible Bricks</value>
+  </data>
 </root>

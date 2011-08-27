@@ -1009,7 +1009,7 @@ namespace BlueBrick.MapData
 		private bool mMouseIsBetweenDownAndUpEvent = false;
 		private bool mMouseHasMoved = false;
 		private bool mMouseMoveIsAFlexMove = false;
-		private FlexChain mMouseMoveFlexChain = null;
+		private FlexMove mMouseFlexMoveAction = null;
 		private bool mMouseMoveIsADuplicate = false;
 		private DuplicateBrick mLastDuplicateBrickAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
 		private RotateBrickOnPivotBrick mRotationForSnappingDuringBrickMove = null; // this action is used temporally during the edition, while you are moving the selection next to a connectable brick. The Action is not recorded in the ActionManager because it is a temporary one.
@@ -1985,11 +1985,13 @@ namespace BlueBrick.MapData
 			// check if it is a double click, to see if we need to do a flex move
 			if (!mMouseMoveIsADuplicate && (mCurrentBrickUnderMouse != null) && (e.Clicks == 2))
 			{
-				mMouseMoveFlexChain = FlexChain.sCeateFlexChain(this.SelectedObjects, mCurrentBrickUnderMouse, mouseCoordInStud);
-				mMouseMoveIsAFlexMove = (mMouseMoveFlexChain != null);
+				mMouseFlexMoveAction = new FlexMove(this, this.SelectedObjects, mCurrentBrickUnderMouse, mouseCoordInStud);
+				mMouseMoveIsAFlexMove = mMouseFlexMoveAction.IsValid;
 				// update the selection with only the brick in the flex chain
 				if (mMouseMoveIsAFlexMove)
-					mSelectedObjects = new List<LayerItem>(mMouseMoveFlexChain.BricksInTheFlexChain); 
+					mSelectedObjects = new List<LayerItem>(mMouseFlexMoveAction.BricksInTheFlexChain);
+				else
+					mMouseFlexMoveAction = null;
 			}
 
 			// select the appropriate cursor:
@@ -2080,7 +2082,7 @@ namespace BlueBrick.MapData
 			{
 				if (mMouseMoveIsAFlexMove)
 				{
-					mMouseMoveFlexChain.reachTarget(mouseCoordInStud.X, mouseCoordInStud.Y);
+					mMouseFlexMoveAction.reachTarget(mouseCoordInStud.X, mouseCoordInStud.Y);
 					return true;
 				}
 				else
@@ -2155,6 +2157,13 @@ namespace BlueBrick.MapData
 		{
 			if (mMouseMoveIsAFlexMove)
 			{
+				// finish the action for this move and add it to the manager
+				mMouseFlexMoveAction.finishActionConstruction();
+				ActionManager.Instance.doAction(mMouseFlexMoveAction);
+
+				// reset the flag and forget the action
+				mMouseMoveIsAFlexMove = false;
+				mMouseFlexMoveAction = null;
 			}
 			else
 			{
@@ -2237,8 +2246,6 @@ namespace BlueBrick.MapData
 
 			mMouseIsBetweenDownAndUpEvent = false;
 			mCurrentBrickUnderMouse = null;
-			mMouseMoveIsAFlexMove = false;
-			mMouseMoveFlexChain = null;
 			return true;
 		}
 
