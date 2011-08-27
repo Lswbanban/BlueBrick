@@ -415,7 +415,7 @@ namespace BlueBrick.MapData
 				// set the group name
 				mPartNumber = groupName;
 				// set the can ungroup flag
-				mCanUngroup = BrickLibrary.Instance.canUngroup(groupName);				
+				mCanUngroup = BrickLibrary.Instance.canUngroup(groupName);
 				// create all the parts inside the group
 				List<BrickLibrary.Brick.SubPart> groupSubPartList = BrickLibrary.Instance.getGroupSubPartList(groupName);
 				if (groupSubPartList != null)
@@ -451,6 +451,10 @@ namespace BlueBrick.MapData
 			public override void ReadXml(System.Xml.XmlReader reader)
 			{
 				reader.ReadStartElement();
+				mPartNumber = BrickLibrary.Instance.getActualPartNumber(reader.ReadElementContentAsString().ToUpper());
+				// set the flag according to the group name
+				if (mPartNumber != string.Empty)
+					mCanUngroup = BrickLibrary.Instance.canUngroup(mPartNumber);
 				readMyGroup(reader);
 			}
 
@@ -458,7 +462,16 @@ namespace BlueBrick.MapData
 			{
 				writer.WriteStartElement("Group");
 				writer.WriteAttributeString("id", this.GetHashCode().ToString());
-				writeMyGroup(writer); // we just call the write of the group and not base.WriteXml because we don't need the display area for the group
+				// we don't need the display area for the group, so we don't call base.WriteXml
+				writer.WriteElementString("PartNumber", mPartNumber);
+				// Don't save canUngroup, this property is got from the library.
+				// Also, we don't save here the mBrickThatHoldsActiveConnection, that's not a big deal
+				// since it can be null. This is much easier otherwise we should use another hash table
+				// to get back the brick from the id.
+				// The consequence is that is a group with a active connection is saved, when you reload
+				// the file and select the group via rectangle (no click on it), the group has lost is
+				// active connection. But if you select by clicking on it the active connection will be updated
+				writeMyGroup(writer);
 				writer.WriteEndElement();
 			}
 			#endregion
