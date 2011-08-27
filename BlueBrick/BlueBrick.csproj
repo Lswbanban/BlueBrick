@@ -127,7 +127,7 @@
     <Compile Include="GlobalOptionsForm.Designer.cs">
       <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapData\FlexTrack\FlexChain.cs" />
+    <Compile Include="Actions\Bricks\FlexMove.cs" />
     <Compile Include="SaveLoad\LanguageManager.cs" />
     <Compile Include="LayerAreaOptionForm.cs">
       <SubType>Form</SubType>

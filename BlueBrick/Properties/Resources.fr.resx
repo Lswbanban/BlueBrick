@@ -380,4 +380,7 @@ Le message d'erreur est :
   <data name="TextUnknown" xml:space="preserve">
     <value>Inconnu</value>
   </data>
+  <data name="ActionFlexMove" xml:space="preserve">
+    <value>Déplace des briques flexibles</value>
+  </data>
 </root>
