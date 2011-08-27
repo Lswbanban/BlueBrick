@@ -472,6 +472,10 @@ namespace BlueBrick.Actions.Bricks
 				mBoneList[lastIndex].worldX = lastPosition.X;
 				mBoneList[lastIndex].worldY = -lastPosition.Y; // BlueBrick use an indirect coord sys, and the IKSolver a direct one
 			}
+
+			// update the bounding rectangle and connectivity
+			mBrickLayer.updateBoundingSelectionRectangle();
+			mBrickLayer.updateBrickConnectivityOfSelection(false);
 		}
 		#endregion
 		#endregion
@@ -484,7 +488,11 @@ namespace BlueBrick.Actions.Bricks
 
 		private void recordState(ref List<BrickTransform> state)
 		{
+			// create the list
 			state = new List<BrickTransform>(mBricksInTheFlexChain.Count);
+			// and record all the bricks transform
+			foreach (LayerBrick.Brick brick in mBricksInTheFlexChain)
+				state.Add(new BrickTransform(brick, brick.Position, brick.Orientation));
 		}
 
 		public override void redo()
@@ -504,6 +512,10 @@ namespace BlueBrick.Actions.Bricks
 				transform.mBrick.Orientation = transform.mOrientation;
 				transform.mBrick.Position = transform.mPosition;
 			}
+
+			// update the bounding rectangle and connectivity
+			mBrickLayer.updateBoundingSelectionRectangle();
+			mBrickLayer.updateBrickConnectivityOfSelection(false);
 		}
 		#endregion
 	}
