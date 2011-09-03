@@ -183,6 +183,12 @@
   <data name="ActionEditText" xml:space="preserve">
     <value>Bewerk de tekst "&amp;"</value>
   </data>
+  <data name="ActionFlexMove" xml:space="preserve">
+    <value>Verplaats flexibele blokken</value>
+  </data>
+  <data name="ActionGroupItems" xml:space="preserve">
+    <value>Groepeer onderdelen</value>
+  </data>
   <data name="ActionHideLayer" xml:space="preserve">
     <value>Verberg laag "&amp;"</value>
   </data>
@@ -213,6 +219,9 @@
   <data name="ActionRemoveLayer" xml:space="preserve">
     <value>Verwijder laag "&amp;"</value>
   </data>
+  <data name="ActionReplaceBrick" xml:space="preserve">
+    <value>Vervang onderdeel "&amp;"</value>
+  </data>
   <data name="ActionRotateBrick" xml:space="preserve">
     <value>Draai onderdeel &amp;</value>
   </data>
@@ -236,6 +245,9 @@
   </data>
   <data name="ActionShowLayer" xml:space="preserve">
     <value>Toon laag "&amp;"</value>
+  </data>
+  <data name="ActionUngroupItems" xml:space="preserve">
+    <value>Degroepeer onderdelen</value>
   </data>
   <data name="ChangeLayerOption" xml:space="preserve">
     <value>Wijzeg de opties van laag "&amp;"</value>
@@ -276,8 +288,14 @@
   <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
     <value>BlueBrick heeft een probleem met het laden van XML bestanden voor de onderdelen database. Deze bestanden zijn genegeerd. Dit probleem kan voorkomen als de XML syntax fouten bevat. Verbeter de syntax of verwijder XML bestanden om deze melding te vermijden. De bestand(en) zijn:</value>
   </data>
+  <data name="ErrorMsgCannotOpenMap" xml:space="preserve">
+    <value>Kan het schema "&amp;" niet openen.</value>
+  </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>U kan geen onderdelen van het type &amp; in de huidige laag plakken welke van het type &amp;&amp; is.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveMap" xml:space="preserve">
+    <value>Kan het schema "&amp;" niet bewaren.</value>
   </data>
   <data name="ErrorMsgConfirmRestoreDefault" xml:space="preserve">
     <value>Bent u zeker dat u de standaard instellingen wil herstellen?</value>
@@ -311,6 +329,9 @@ The error message is:
   <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
     <value>Kan het bestand "&amp;" niet openen. Zonder dit bestand kan je de kleur en omschrijving van de onderdelen niet zien in de onderdelenlijst. Controleer of het bestand aanwezig is of herinstalleer BlueBrick.</value>
   </data>
+  <data name="ErrorMsgMissingConnectionTypeInfoFile" xml:space="preserve">
+    <value>Kan het bestand "&amp;" niet openen. Zonder dit bestand kan je de onderdelen niet verbinden.  Controleer of het bestand aanwezig is of herinstalleer BlueBrick.</value>
+  </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
     <value>Sommige onderdelen zijn niet correct geladen omdat ze niet aanwzig zijn in de onderdelenlijst. Er zijn standaard afbeeldingen toegevoegd om deze te vervangen. U kan de auteur van de kaart (&amp;) vragen waar u deze kan vinden.</value>
   </data>
@@ -338,6 +359,9 @@ The error message is:
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
     <value>Waarschuwing</value>
   </data>
+  <data name="HideDetails" xml:space="preserve">
+    <value>Verberg details</value>
+  </data>
   <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
     <value>Tooltip Info</value>
   </data>
@@ -346,6 +370,9 @@ The error message is:
   </data>
   <data name="PartLibMenuItemRespectProportion" xml:space="preserve">
     <value>Respecteer verhoudingen</value>
+  </data>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Toon details</value>
   </data>
   <data name="TextEnterText" xml:space="preserve">
     <value>Typ hier uw tekst...</value>

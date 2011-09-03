@@ -622,6 +622,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>DownloadCenterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DownloadCenterForm.nl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DownloadCenterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DownloadCenterForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>DownloadCenterForm.cs</DependentUpon>
@@ -639,6 +643,10 @@
       <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FindForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindForm.nl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
