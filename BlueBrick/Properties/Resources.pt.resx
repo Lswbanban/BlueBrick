@@ -183,6 +183,12 @@
   <data name="ActionEditText" xml:space="preserve">
     <value>Editar o texto "&amp;"</value>
   </data>
+  <data name="ActionFlexMove" xml:space="preserve">
+    <value>Mover Bricks Flexíveis</value>
+  </data>
+  <data name="ActionGroupItems" xml:space="preserve">
+    <value>Agrupar Itens</value>
+  </data>
   <data name="ActionHideLayer" xml:space="preserve">
     <value>Esconder a camada "&amp;"</value>
   </data>
@@ -213,6 +219,9 @@
   <data name="ActionRemoveLayer" xml:space="preserve">
     <value>Remover a camada "&amp;"</value>
   </data>
+  <data name="ActionReplaceBrick" xml:space="preserve">
+    <value>Substituir a peça "&amp;"</value>
+  </data>
   <data name="ActionRotateBrick" xml:space="preserve">
     <value>Rodar a peça "&amp;"</value>
   </data>
@@ -236,6 +245,9 @@
   </data>
   <data name="ActionShowLayer" xml:space="preserve">
     <value>Mostrar a camada "&amp;"</value>
+  </data>
+  <data name="ActionUngroupItems" xml:space="preserve">
+    <value>Desagrupar Itens</value>
   </data>
   <data name="ChangeLayerOption" xml:space="preserve">
     <value>Mudar as opções da camada "&amp;"</value>
@@ -276,8 +288,14 @@
   <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
     <value>O BlueBrick encontrou problemas no carregamento de alguns ficheiros XML base de dados de peças; esses ficheiros foram ignorados. Este problema pode ter ocorrido porque um dos ficheiros tem erros de sintaxe. Corrija a sintaxe ou apague os ficheiros com erro para remover este aviso. Os ficheiros em causa são:</value>
   </data>
+  <data name="ErrorMsgCannotOpenMap" xml:space="preserve">
+    <value>Não consegue abrir o mapa &amp;.</value>
+  </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>Não pode ser colocado um objecto do tipo &amp; na camada actual que é do tipo &amp;&amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveMap" xml:space="preserve">
+    <value>Não consegue guardar o mapa &amp;.</value>
   </data>
   <data name="ErrorMsgConfirmRestoreDefault" xml:space="preserve">
     <value>Tem a certeza que quer restaurar as opções por defeito?</value>
@@ -306,6 +324,9 @@
   <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
     <value>O ficheiro "&amp;" não consegue ser aberto. Sem este ficheiro não será possível mostrar a cor e descrição das peças na lista de peças. Por favor, verifique a presença deste ficheiro ou re-instale o BlueBrick para corrigir este problema.</value>
   </data>
+  <data name="ErrorMsgMissingConnectionTypeInfoFile" xml:space="preserve">
+    <value>Não consegue abrir o ficheiro "&amp;". Sem este ficheiro o programa não consegue conectar as peças. Por favor verifique a existência deste ficheiro, ou reinstale o programa BlueBrick para resolver o problema.</value>
+  </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
     <value>Algumas peças não foram correctamente carregadas porque não se encontram na biblioteca de peças. Algumas das imagens por defeito foram temporáriamente adicionadas para substituir as originais. Deverá perguntar ao autor do map (&amp;) onde as poderá encontrar.</value>
   </data>
@@ -333,6 +354,9 @@
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
     <value>Aviso</value>
   </data>
+  <data name="HideDetails" xml:space="preserve">
+    <value>Esconder Detalhes</value>
+  </data>
   <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
     <value>Informação em caixa</value>
   </data>
@@ -341,6 +365,9 @@
   </data>
   <data name="PartLibMenuItemRespectProportion" xml:space="preserve">
     <value>Respeitar a proporção</value>
+  </data>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Mostrar Detalhes</value>
   </data>
   <data name="TextEnterText" xml:space="preserve">
     <value>Escreva o seu texto aqui…</value>
