@@ -183,6 +183,12 @@
   <data name="ActionEditText" xml:space="preserve">
     <value>Editar el texto "&amp;"</value>
   </data>
+  <data name="ActionFlexMove" xml:space="preserve">
+    <value>Mover piezas flexibles</value>
+  </data>
+  <data name="ActionGroupItems" xml:space="preserve">
+    <value>Agrupar</value>
+  </data>
   <data name="ActionHideLayer" xml:space="preserve">
     <value>Ocultar la capa "&amp;"</value>
   </data>
@@ -213,6 +219,9 @@
   <data name="ActionRemoveLayer" xml:space="preserve">
     <value>Eliminar la capa "&amp;"</value>
   </data>
+  <data name="ActionReplaceBrick" xml:space="preserve">
+    <value>Remplazar pieza</value>
+  </data>
   <data name="ActionRotateBrick" xml:space="preserve">
     <value>Girar la pieza "&amp;"</value>
   </data>
@@ -236,6 +245,9 @@
   </data>
   <data name="ActionShowLayer" xml:space="preserve">
     <value>Mostrar la capa "&amp;"</value>
+  </data>
+  <data name="ActionUngroupItems" xml:space="preserve">
+    <value>Desagrupar</value>
   </data>
   <data name="ChangeLayerOption" xml:space="preserve">
     <value>Cambiar las opciones de la capa "&amp;"</value>
@@ -276,8 +288,14 @@
   <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
     <value>BlueBrick ha encontrado un problema durante la carga de de los archivos XML de la base de piezas. Estos archivos XML se han ignorado. Este problema puede ocurrir cuando hay un error de sintaxis en el archivo XML. Corrige este error o elimina los archivos afectados para eliminar este aviso. Los archivos afectados son:</value>
   </data>
+  <data name="ErrorMsgCannotOpenMap" xml:space="preserve">
+    <value>No se puede abrir el mapa &amp;.</value>
+  </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>No se puede pegar un objeto del tipo &amp; en la capa actual que es del tipo &amp;&amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveMap" xml:space="preserve">
+    <value>No se puede guardar el mapa &amp;.</value>
   </data>
   <data name="ErrorMsgConfirmRestoreDefault" xml:space="preserve">
     <value>¿Está seguro que quiere restaurar los ajustes por defecto?</value>
@@ -306,11 +324,14 @@
   <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
     <value>No se puede abrir el archivo "&amp;". Sin este archivo no podrá ver el color y la descripción de las piezas en la lista de piezas. Por favor, compruebe que el archivo existe o reinstale BlueBrick para solucionar este problema.</value>
   </data>
+  <data name="ErrorMsgMissingConnectionTypeInfoFile" xml:space="preserve">
+    <value>No se puede abrir el archivo "&amp;". Sin este archivo no podrá conectar piezasPor favor, compruebe que el archivo existe o reinstale BlueBrick para solucionar este problema.</value>
+  </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
     <value>Algunas piezas no se cargaron correctamente porque no las tiene en la biblioteca de piezas. Algunas imágenes por defecto se han añadido temporalmente para reemplazar las originales. Deberá preguntar al autor del mapa (&amp;) dónde puede encontrarlas.</value>
   </data>
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
-    <value>Algunos IDs de piezas de Track Designer  no se encontraron el tu biblioteca BlueBlrick. BlueBrick no pudo cargarlas y las ha ignorado. Asegúrate de tener las piezas necesarias instaladas con el ID correcto de Track Designer incluido en el archivo XML y luego vuelve a abrir el archivo Track Designer. Los IDs que faltan son:</value>
+    <value>Algunos IDs de piezas de Track Designer no se encontraron el tu biblioteca BlueBrick. BlueBrick no pudo cargarlas y las ha ignorado. Asegúrate de tener las piezas necesarias instaladas con el ID correcto de Track Designer incluido en el archivo XML y luego vuelve a abrir el archivo Track Designer. Los IDs que faltan son:</value>
   </data>
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
     <value>BlueBrick no encuentra el archivo de ayuda "Bluebrick.chm" que debería encontrarse en la carpeta de instalación. Reinstalar BlueBrick podría solucionar este problema.</value>
@@ -333,6 +354,9 @@
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
     <value>Aviso</value>
   </data>
+  <data name="HideDetails" xml:space="preserve">
+    <value>Ocultar detalles</value>
+  </data>
   <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
     <value>Burbuja de información</value>
   </data>
@@ -341,6 +365,9 @@
   </data>
   <data name="PartLibMenuItemRespectProportion" xml:space="preserve">
     <value>Respetar proporciones</value>
+  </data>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Mostrar detalles</value>
   </data>
   <data name="TextEnterText" xml:space="preserve">
     <value>Escriba aquí su texto…</value>
