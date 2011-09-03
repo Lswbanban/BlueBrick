@@ -261,6 +261,9 @@ por defeito (em studs)</value>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Cores</value>
   </data>
+  <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
+    <value>Mostra a Informação Geral da Marca Registada</value>
+  </data>
   <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 17</value>
   </data>
@@ -351,7 +354,7 @@ da selecção</value>
     <value>Para remover teclas de atalho, selecione-a na lista e clique este botão:</value>
   </data>
   <data name="labelHintAdd.Text" xml:space="preserve">
-    <value>Para adicionar uma tecla de atalho, ajuste as caixas de combinação no funda da lista e depois clique neste botão:</value>
+    <value>Para adicionar uma tecla de atalho, ajuste as caixas de combinação no fundo da lista e depois clique neste botão:</value>
   </data>
   <data name="buttonDelete.Text" xml:space="preserve">
     <value>Remover Atalho</value>

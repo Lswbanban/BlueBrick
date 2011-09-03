@@ -125,7 +125,9 @@ namespace BlueBrick
             ((System.Windows.Forms.ListViewItem)(resources.GetObject("translatorListView.Items2"))),
             ((System.Windows.Forms.ListViewItem)(resources.GetObject("translatorListView.Items3"))),
             ((System.Windows.Forms.ListViewItem)(resources.GetObject("translatorListView.Items4"))),
-            ((System.Windows.Forms.ListViewItem)(resources.GetObject("translatorListView.Items5")))});
+            ((System.Windows.Forms.ListViewItem)(resources.GetObject("translatorListView.Items5"))),
+            ((System.Windows.Forms.ListViewItem)(resources.GetObject("translatorListView.Items6"))),
+            ((System.Windows.Forms.ListViewItem)(resources.GetObject("translatorListView.Items7")))});
 			this.translatorListView.MultiSelect = false;
 			this.translatorListView.Name = "translatorListView";
 			this.translatorListView.Scrollable = false;
