@@ -37,23 +37,23 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-- [target 1.7] MISSING FEATURE (Alban): support new flex PF track.
 - [target 1.8] MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
 - [target 1.8] MISSING FEATURE (Larry): Select parts in multiple layers
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
+- [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - MISSING FEATURE (Alban): Autosave.
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
 - MISSING FEATURE (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
-- MISSING FEATURE (Larry): Shortcut parts (being able to have a meta XML part file describing an assembly of parts) or grouping parts.
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Slide bars on the map view?
+- MISSING FEATURE (Alban): Propose a new configurable zooming/panning method for laptop
 - [target 1.8] BUG (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should replace it (and the selection should modify the combo boxes)
-- [target 1.8] BUG (Alban): The groups are not saved in LDraw format
+- [target 1.8] BUG (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
 - [target 1.8] BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
 - [target 1.8] BUG (Alban): The snapping margin defined in the XML file has no effect for a group
 - BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
@@ -64,11 +64,9 @@ Open bugs:
 
 Group bug:
 - the drag and drop of a group part cannot be snapped to a connection point
-- change the default snapping value to 4 and zoom a bit more? for beginner users?
-- change controls for zooming/panning on laptop, only use shift
-- copy paste of group does not respect the part order?
 
 Bug fixed in 1.7.0.0:
+- NEW FEATURE (Alban): support Flex PF track.
 - NEW FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder).
 - NEW FEATURE (Denis): Feature to search and replace a set of brick type by another one.
 - NEW FEATURE (Alban): The connection points are now configurable and extendable in an XML file.
@@ -78,7 +76,7 @@ Bug fixed in 1.7.0.0:
 - NEW FEATURE (cimddwc): Add the transparency for all the layers (and not only the Area layer)
 - NEW FEATURE (Larry): Save the export image settings in the BBM file.
 - NEW FEATURE (Alban): You can group/ungroup hierarchically parts and texts.
-- NEW FEATURE (Alban): You can create XML files that are actually groups of parts and see them in the Library
+- NEW FEATURE (Larry): You can create XML files that are actually groups of parts and see them in the Library
 - BUGFIX (Larry): CRASH! when opening a BBM file which is write protected.
 - BUGFIX (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
 - BUGFIX (Larry): The copy/paste of a group of bricks or text didn't copy in the same order

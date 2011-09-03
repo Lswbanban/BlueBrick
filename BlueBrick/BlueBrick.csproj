@@ -614,6 +614,10 @@
     <EmbeddedResource Include="Cursor\TextDuplicateCursor.cur" />
     <EmbeddedResource Include="Cursor\BrickArrowCursor.cur" />
     <EmbeddedResource Include="Cursor\BrickDuplicateCursor.cur" />
+    <EmbeddedResource Include="DownloadCenterForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DownloadCenterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DownloadCenterForm.fr.resx">
       <SubType>Designer</SubType>
       <DependentUpon>DownloadCenterForm.cs</DependentUpon>
@@ -629,6 +633,10 @@
     <EmbeddedResource Include="ExportImageForm.it.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ExportImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FindForm.fr.resx">
       <SubType>Designer</SubType>

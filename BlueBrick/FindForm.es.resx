@@ -117,56 +117,89 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Reemplazar con</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>¿Qué?</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>¿Dónde?</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="bringToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
+  <data name="allLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 17</value>
   </data>
-  <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
-    <value>Traer al frente</value>
+  <data name="allLayerCheckBox.Text" xml:space="preserve">
+    <value>Todas las capas</value>
   </data>
-  <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
+  <data name="inLayerRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 17</value>
   </data>
-  <data name="sendToBackToolStripMenuItem.Text" xml:space="preserve">
-    <value>Enviar al fondo</value>
+  <data name="inLayerRadioButton.Text" xml:space="preserve">
+    <value>En la(s) siguiente(s) capa(s) :</value>
   </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 6</value>
+  <data name="inCurrentSelectionRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 17</value>
   </data>
-  <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
+  <data name="inCurrentSelectionRadioButton.Text" xml:space="preserve">
+    <value>En la selacción actual</value>
   </data>
-  <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ReplaceButton.Text" xml:space="preserve">
+    <value>Reemplazar todo</value>
+  </data>
+  <data name="SelectAllButton.Text" xml:space="preserve">
     <value>Seleccionar todo</value>
   </data>
-  <data name="deselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAAAAAACACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAB
+        AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAwMDAAMDcwADwyqYAACBAAAAgYAAAIIAAACCgAAAg
+        wAAAIOAAAEAAAABAIAAAQEAAAEBgAABAgAAAQKAAAEDAAABA4AAAYAAAAGAgAABgQAAAYGAAAGCAAABg
+        oAAAYMAAAGDgAACAAAAAgCAAAIBAAACAYAAAgIAAAICgAACAwAAAgOAAAKAAAACgIAAAoEAAAKBgAACg
+        gAAAoKAAAKDAAACg4AAAwAAAAMAgAADAQAAAwGAAAMCAAADAoAAAwMAAAMDgAADgAAAA4CAAAOBAAADg
+        YAAA4IAAAOCgAADgwAAA4OAAQAAAAEAAIABAAEAAQABgAEAAgABAAKAAQADAAEAA4ABAIAAAQCAgAEAg
+        QABAIGAAQCCAAEAgoABAIMAAQCDgAEBAAABAQCAAQEBAAEBAYABAQIAAQECgAEBAwABAQOAAQGAAAEBg
+        IABAYEAAQGBgAEBggABAYKAAQGDAAEBg4ABAgAAAQIAgAECAQABAgGAAQICAAECAoABAgMAAQIDgAECg
+        AABAoCAAQKBAAECgYABAoIAAQKCgAECgwABAoOAAQMAAAEDAIABAwEAAQMBgAEDAgABAwKAAQMDAAEDA
+        4ABA4AAAQOAgAEDgQABA4GAAQOCAAEDgoABA4MAAQODgAIAAAACAACAAgABAAIAAYACAAIAAgACgAIAA
+        wACAAOAAgCAAAIAgIACAIEAAgCBgAIAggACAIKAAgCDAAIAg4ACAQAAAgEAgAIBAQACAQGAAgECAAIBA
+        oACAQMAAgEDgAIBgAACAYCAAgGBAAIBgYACAYIAAgGCgAIBgwACAYOAAgIAAAICAIACAgEAAgIBgAICA
+        gACAgKAAgIDAAICA4ACAoAAAgKAgAICgQACAoGAAgKCAAICgoACAoMAAgKDgAIDAAACAwCAAgMBAAIDA
+        YACAwIAAgMCgAIDAwACAwOAAgOAAAIDgIACA4EAAgOBgAIDggACA4KAAgODAAIDg4ADAAAAAwAAgAMAA
+        QADAAGAAwACAAMAAoADAAMAAwADgAMAgAADAICAAwCBAAMAgYADAIIAAwCCgAMAgwADAIOAAwEAAAMBA
+        IADAQEAAwEBgAMBAgADAQKAAwEDAAMBA4ADAYAAAwGAgAMBgQADAYGAAwGCAAMBgoADAYMAAwGDgAMCA
+        AADAgCAAwIBAAMCAYADAgIAAwICgAMCAwADAgOAAwKAAAMCgIADAoEAAwKBgAMCggADAoKAAwKDAAMCg
+        4ADAwAAAwMAgAMDAQADAwGAAwMCAAMDAoADw+/8ApKCgAICAgAAAAP8AAP8AAAD//wD/AAAA/wD/AP//
+        AAD///8AAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIhAiIgAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAQECIiEDQiIibAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECI0NCIQNDQiEBA
+        kQAAAAAAAAAAAAAAAAAAAAAAAEBAiNDQ0IhA0IhAiEBAQAAAAAAAAAAAAAAAAAAAAABAiNDQ0NDQiEDQ
+        QIhA0NDQQIgAAAAAAAAAAAAAAAAAQIjQ0NDQ0NCIQNBAiEDQ0NBAiIgAAAAAAAAAAAAAAABA0NDQ0NDQ
+        0IhA0ECIQIjQ0ECI0IiSAAAAAAAAAAAAAEDQ0NDQ0NDQiEDQQIjQQIiIQMjQQEBAkgAAAAAAAAAAQMjQ
+        0NDQ0NCIQNDQQIjQQEDQ0EBAiNBAmgAAAAAAAABAyNDQ0NDQ0IhA0NDQQECI0NDQQIhA0NBAAAAAAAAA
+        AEDQ0NDQ0NDQiEDQ0NDQiNDQ0NBAiECI0EAAAAAAAAAAQNDQ0NDQ0NCIQNDQ0NCIiNDQ0ECIiECIQAAA
+        AAAAAABA0NDQ0NDQ0IhA0NCIiEBAiNDQ0ECIkEBAAAAAAAAAAEDQ0NDQ0NDQiEDQiEBA0NBAiNDQ0EBA
+        QNAAAAAAAAAAQNDQ0NDQ0NCIQNBAiEDQ0NBA0NDQ0NDQ0AAAAAAAAABA0NDQ0NDQ0IhA0ECIQMjQ0ECI
+        0NDQ0NCIAAAAAAAAAEDQ0NDQ0NDQiEDQQIhAiNDQQIjQ0IhAQIgAAAAAAAAAQNDQ0NDQ0NCIQNBAiNBA
+        iNBAiNBAQNCIQAAAAAAAAABA0NDQ0NDQ0IhA0NBAiNBAQIjQQIhAiNCIQAAAAAAAAEDQ0NDQ0NCIQEBA
+        iNBAQEDQ0NBAiECI0IhAAAAAAAAAQNDQ0NCIQECI0IhAQIjQ0NDQ0ECIiEDI0EAAAAAAAABA0NCIQECI
+        0NDQ0NCIQECI0NDQ0EDQiECIQAAAAAAAAECIQECI0NDQ0NDQ0NDQiEBAiNDQ0EDQiEAAAAAAAAAAQECI
+        0NDQ0NDQ0NDQ0NDQ0IhAQIjQiEBAiAAAAAAAAAAAAEBAiNDQ0NDQ0NDQ0NDQ0NCIQECI0NDQAAAAAAAA
+        AAAAAABAQIjQ0NDQ0NDQ0NDQ0NDQiEBAiMgAAAAAAAAAAAAAAAAAQECI0NDQ0NDQ0NDQ0NDQ0NBAQAAA
+        AAAAAAAAAAAAAAAAAEBAiNDQ0NDQ0NDQ0IiIQEAAAAAAAAAAAAAAAAAAAAAAAABAQIjQ0NDQ0NCIQEAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAQECI0NCIQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAA
+        AAAAAAAAAAAAAP/n////wf///wB///4AH//4AA//8AAD/+AAAf/gAAB/4AAAH+AAAA/gAAAP4AAAD+AA
+        AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
+        AA//4AAf//gAf//+Af///4f/
+</value>
   </data>
-  <data name="deselectAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>Eliminar selección</value>
-  </data>
-  <data name="selectPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
-  </data>
-  <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Seleccionar tramo</value>
-  </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 6</value>
-  </data>
-  <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
-  </data>
-  <data name="groupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Agrupar</value>
-  </data>
-  <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
-  </data>
-  <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Desagrupar</value>
-  </data>
-  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 170</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Buscar y reemplazar</value>
   </data>
 </root>
