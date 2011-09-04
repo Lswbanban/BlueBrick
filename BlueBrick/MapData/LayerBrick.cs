@@ -2473,15 +2473,27 @@ namespace BlueBrick.MapData
 			if (itemDrop.IsAGroup)
 			{
 				// the part to drop is a group
-				List<Layer.LayerItem> partsInTheGroup = (itemDrop as Layer.Group).getAllChildrenItems();
+				Layer.Group groupDrop = itemDrop as Layer.Group;
+				// the part to drop is a group
+				List<Layer.LayerItem> partsInTheGroup = groupDrop.getAllChildrenItems();
 				foreach (Layer.LayerItem item in partsInTheGroup)
 				{
 					Brick brick = item as Brick;
 					mBricks.Add(brick);
 					mSelectedObjects.Add(brick);
 				}
-				mCurrentBrickUnderMouse = null;
+				
+				// and get the corresponding brick that hold the connection
 				mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+				mCurrentBrickUnderMouse = null; // groupDrop.BrickThatHoldsActiveConnection;
+				if (mCurrentBrickUnderMouse != null)
+				{
+					Brick.ConnectionPoint activeConnectionPoint = mCurrentBrickUnderMouse.ActiveConnectionPoint;
+					if (activeConnectionPoint != null)
+						mMouseGrabDeltaToActiveConnectionPoint = new PointF(groupDrop.Center.X - mCurrentBrickUnderMouse.Center.X - activeConnectionPoint.mPositionInStudWorldCoord.X,
+																			groupDrop.Center.Y - mCurrentBrickUnderMouse.Center.Y - activeConnectionPoint.mPositionInStudWorldCoord.Y);
+				}
+
 				// update the brick connectivity for the group after having selected them
 				updateFullBrickConnectivityForSelectedBricksOnly();
 			}

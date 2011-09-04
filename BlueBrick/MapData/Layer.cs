@@ -416,6 +416,11 @@ namespace BlueBrick.MapData
 				mPartNumber = groupName;
 				// set the can ungroup flag
 				mCanUngroup = BrickLibrary.Instance.canUngroup(groupName);
+				// init the display area with the max values
+				mDisplayArea.X = float.MaxValue;
+				mDisplayArea.Y = float.MaxValue;
+				mDisplayArea.Width = 0.0f;
+				mDisplayArea.Height = 0.0f;
 				// create all the parts inside the group
 				List<BrickLibrary.Brick.SubPart> groupSubPartList = BrickLibrary.Instance.getGroupSubPartList(groupName);
 				if (groupSubPartList != null)
@@ -498,6 +503,15 @@ namespace BlueBrick.MapData
 			{
 				mItems.Add(item);
 				item.Group = this;
+				// check if the new item added increase the size of the display area
+				if (item.DisplayArea.X < mDisplayArea.X)
+					mDisplayArea.X = item.DisplayArea.X;
+				if (item.DisplayArea.Y < mDisplayArea.Y)
+					mDisplayArea.Y = item.DisplayArea.Y;
+				if (item.DisplayArea.Right > mDisplayArea.Right)
+					mDisplayArea.Width = item.DisplayArea.Right - mDisplayArea.Left;
+				if (item.DisplayArea.Bottom > mDisplayArea.Bottom)
+					mDisplayArea.Height = item.DisplayArea.Bottom - mDisplayArea.Top;
 			}
 
 			public void removeItem(LayerItem item)
