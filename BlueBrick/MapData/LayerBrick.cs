@@ -2088,7 +2088,7 @@ namespace BlueBrick.MapData
 				else
 				{
 					// snap the mouse coord to the grid
-					PointF mouseCoordInStudSnapped = getMovedSnapPoint(mouseCoordInStud);
+					PointF mouseCoordInStudSnapped = getMovedSnapPoint(mouseCoordInStud, mCurrentBrickUnderMouse);
 					// compute the delta move of the mouse
 					PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownLastPosition.X, mouseCoordInStudSnapped.Y - mMouseDownLastPosition.Y);
 					// check if the delta move is not null
@@ -2174,7 +2174,7 @@ namespace BlueBrick.MapData
 					mMouseHasMoved = false;
 
 					// compute the delta mouve of the mouse
-					mouseCoordInStud = getMovedSnapPoint(mouseCoordInStud);
+					mouseCoordInStud = getMovedSnapPoint(mouseCoordInStud, mCurrentBrickUnderMouse);
 					PointF deltaMove = new PointF(mouseCoordInStud.X - mMouseDownInitialPosition.X, mouseCoordInStud.Y - mMouseDownInitialPosition.Y);
 
 					// create a new action for this move
@@ -2343,9 +2343,10 @@ namespace BlueBrick.MapData
 		/// we want to snap the group by snapping the hold brick on the connexion point.
 		/// Here again we look at the brick under the mouse which is the master brick to move and snap.
 		/// </summary>
-		/// <param name="pointInStud">the point to snap</param>
+		/// <param name="pointInStud">the rough point to snap</param>
+		/// <param name="itemWhichCenterIsSnapped">if one brick is grabbed, compute a snapping position for the center of this specified item. Can be null if no brick is grabbed.</param>
 		/// <returns>a near snap point</returns>
-		public PointF getMovedSnapPoint(PointF pointInStud)
+		public PointF getMovedSnapPoint(PointF pointInStud, Layer.LayerItem itemWhichCenterIsSnapped)
 		{
 			if (SnapGridEnabled)
 			{
@@ -2417,8 +2418,8 @@ namespace BlueBrick.MapData
 
 								// compute the position from the connection points
 								PointF snapPosition = bestFreeConnection.mPositionInStudWorldCoord;
-								snapPosition.X += mCurrentBrickUnderMouse.Center.X - activeBrickConnexion.mPositionInStudWorldCoord.X;
-								snapPosition.Y += mCurrentBrickUnderMouse.Center.Y - activeBrickConnexion.mPositionInStudWorldCoord.Y;
+								snapPosition.X += itemWhichCenterIsSnapped.Center.X - activeBrickConnexion.mPositionInStudWorldCoord.X;
+								snapPosition.Y += itemWhichCenterIsSnapped.Center.Y - activeBrickConnexion.mPositionInStudWorldCoord.Y;
 
 								// return the position
 								return snapPosition;
@@ -2483,15 +2484,16 @@ namespace BlueBrick.MapData
 					mSelectedObjects.Add(brick);
 				}
 				
-				// and get the corresponding brick that hold the connection
+				// by default the active connection index of a group is 0
+				// and get the corresponding brick that hold the active connection index
 				mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
-				mCurrentBrickUnderMouse = null; // groupDrop.BrickThatHoldsActiveConnection;
+				mCurrentBrickUnderMouse = groupDrop.BrickThatHoldsActiveConnection;
 				if (mCurrentBrickUnderMouse != null)
 				{
 					Brick.ConnectionPoint activeConnectionPoint = mCurrentBrickUnderMouse.ActiveConnectionPoint;
 					if (activeConnectionPoint != null)
-						mMouseGrabDeltaToActiveConnectionPoint = new PointF(groupDrop.Center.X - mCurrentBrickUnderMouse.Center.X - activeConnectionPoint.mPositionInStudWorldCoord.X,
-																			groupDrop.Center.Y - mCurrentBrickUnderMouse.Center.Y - activeConnectionPoint.mPositionInStudWorldCoord.Y);
+						mMouseGrabDeltaToActiveConnectionPoint = new PointF(groupDrop.Center.X - activeConnectionPoint.mPositionInStudWorldCoord.X,
+																			groupDrop.Center.Y - activeConnectionPoint.mPositionInStudWorldCoord.Y);
 				}
 
 				// update the brick connectivity for the group after having selected them

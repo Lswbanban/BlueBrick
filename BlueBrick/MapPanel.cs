@@ -556,7 +556,7 @@ namespace BlueBrick
 						{
 							// memorise the position of the mouse snapped to the grid
 							PointF partCenter = getScreenPointInStud(e.Location);
-							mCurrentPartDrop.Center = mBrickLayerThatReceivePartDrop.getMovedSnapPoint(partCenter);
+							mCurrentPartDrop.Center = mBrickLayerThatReceivePartDrop.getMovedSnapPoint(partCenter, mCurrentPartDrop);
 							mBrickLayerThatReceivePartDrop.updateBoundingSelectionRectangle();
 							// refresh the view
 							mustRefreshView = true;
