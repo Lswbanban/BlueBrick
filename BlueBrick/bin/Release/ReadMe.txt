@@ -62,9 +62,6 @@ Open bugs:
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
-Group bug:
-- the drag and drop of a group part cannot be snapped to a connection point
-
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): support Flex PF track.
 - NEW FEATURE (Alban): The application may support dynamically language addition/removal (dll and chm file inside the folder).

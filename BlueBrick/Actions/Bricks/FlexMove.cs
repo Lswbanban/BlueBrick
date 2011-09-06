@@ -18,6 +18,7 @@ using System.Text;
 using System.Drawing;
 using BlueBrick.MapData;
 using BlueBrick.MapData.FlexTrack;
+using System.Drawing.Drawing2D;
 
 namespace BlueBrick.Actions.Bricks
 {
@@ -85,6 +86,8 @@ namespace BlueBrick.Actions.Bricks
 		private List<ChainLink> mFlexChainList = null;
 		private int mRootHingedLinkIndex = 0; // the first hinged connection in the chain that can move
 		private float mInitialStaticCumulativeOrientation = 0.0f;
+		private PointF mLastBoneVector = new PointF(); // the vector in world stud coord of the last bone for a null angle
+		private LayerBrick.Brick.ConnectionPoint mEndConnection = null; // the connection at the end of the flex chain (opposite to the root of the chain)
 
 		// data members for action undo/redo purpose
 		private LayerBrick mBrickLayer = null;
@@ -121,18 +124,30 @@ namespace BlueBrick.Actions.Bricks
 		{
 			// first we check if we can create a valid flex chain
 			mIsValid = false;
-			// check that the grabbed part is a part with 2 connection points
-			if (!grabbedTrack.HasConnectionPoint || grabbedTrack.ConnectionPoints.Count != 2)
+			// check that the grabbed part is a part has 1 or 2 connection points (no more no less)
+			if (!grabbedTrack.HasConnectionPoint || grabbedTrack.ConnectionPoints.Count > 2)
 				return;
 
 			// if the grabbed part is not in the list, it failed
 			if (!trackList.Contains(grabbedTrack))
 				return;
 
-			// try to find the starting connection point, if the result is null, the flex chain cannot be created
-			LayerBrick.Brick.ConnectionPoint currentFirstConnection = findStartingConnectionPoint(trackList, grabbedTrack, mouseCoordInStud);
-			if (currentFirstConnection == null)
-				return;
+			// declare a variable to know from which connection to start the flex chain
+			if (grabbedTrack.ConnectionPoints.Count == 1)
+			{
+				// if there's only one connection, if must be a flexible one, and 
+				// the starting connection will be the brick itself
+				// and the only connection will be the second one from which starting the chain
+				if (BrickLibrary.Instance.getConnexionHingeAngle(grabbedTrack.ConnectionPoints[0].Type) == 0.0f)
+					return;
+			}
+			else
+			{
+				// try to find the starting connection point, if the result is null, the flex chain cannot be created
+				mEndConnection = findStartingConnectionPoint(trackList, grabbedTrack, mouseCoordInStud);
+				if (mEndConnection == null)
+					return;
+			}
 
 			// if we pass all the tests, the flex move is valid
 			mIsValid = true;
@@ -140,7 +155,7 @@ namespace BlueBrick.Actions.Bricks
 			// init other data member
 			mBrickLayer = layer;
 			//create the edition data
-			ceateFlexChain(trackList, grabbedTrack, currentFirstConnection);
+			ceateFlexChain(trackList, grabbedTrack, mEndConnection);
 			// and save the action data
 			recordState(ref mInitState);
 		}
@@ -173,8 +188,16 @@ namespace BlueBrick.Actions.Bricks
 		{
 			IKSolver.Bone_2D_CCD newBone = new IKSolver.Bone_2D_CCD();
 			newBone.maxAbsoluteAngleInRad = maxAngleInDeg * (Math.PI / 180);
-			newBone.worldX = connection.PositionInStudWorldCoord.X;
-			newBone.worldY = -connection.PositionInStudWorldCoord.Y; // BlueBrick use an indirect coord sys, and the IKSolver a direct one
+			if (connection != null)
+			{
+				newBone.worldX = connection.PositionInStudWorldCoord.X;
+				newBone.worldY = -connection.PositionInStudWorldCoord.Y; // BlueBrick use an indirect coord sys, and the IKSolver a direct one
+			}
+			else
+			{
+				newBone.worldX = 0.0f;
+				newBone.worldY = 0.0f; // BlueBrick use an indirect coord sys, and the IKSolver a direct one
+			}
 			newBone.connectionPoint = connection;
 			mBoneList.Insert(0, newBone);
 		}
@@ -316,7 +339,7 @@ namespace BlueBrick.Actions.Bricks
 		/// </summary>
 		/// <param name="trackList">A set of track hopefully connected together, and hopefully containing flex track</param>
 		/// <param name="grabbedTrack">The part which will try to reach the target. It should be part of the list.</param>
-		/// <param name="currentFirstConnection">The first connection from which to start, which is not null and belongs to the grabbed track</param>
+		/// <param name="currentFirstConnection">The first connection from which to start, which can be null and belongs to the grabbed track</param>
 		public void ceateFlexChain(List<Layer.LayerItem> trackList, LayerBrick.Brick grabbedTrack, LayerBrick.Brick.ConnectionPoint currentFirstConnection)
 		{
 			// init all the arrays
@@ -329,8 +352,11 @@ namespace BlueBrick.Actions.Bricks
 			LayerBrick.Brick currentBrick = grabbedTrack;
 			ChainLink hingedLink = null;
 			addNewBone(currentFirstConnection, 0.0);
-			// the chain is made with track that exclusively has 2 connections to make a chain.
-			while ((currentBrick != null) && (currentBrick.ConnectionPoints.Count == 2) && trackList.Contains(currentBrick))
+			// continue to iterate until we reach the end (no current brick) or the end of the selection
+			// and continue only if the chain is made with track that exclusively has 2 connections to make a chain
+			// (or one for the first iteration).
+			while ((currentBrick != null) && trackList.Contains(currentBrick) &&
+					((currentFirstConnection == null) || (currentBrick.ConnectionPoints.Count == 2)))
 			{
 				// get the other connection on the current brick
 				int secondIndex = (currentBrick.ConnectionPoints[0] == currentFirstConnection) ? 1 : 0;
@@ -383,6 +409,24 @@ namespace BlueBrick.Actions.Bricks
 			if (hingedLink != null)
 				mRootHingedLinkIndex = mFlexChainList.IndexOf(hingedLink);
 
+			// compute the last bone vector if there is enough bones
+			if (mBoneList.Count > 2)
+			{
+				int lastIndex = mBoneList.Count - 1;
+				int beforeLastIndex = lastIndex - 1;
+				mLastBoneVector = new PointF((float)(mBoneList[beforeLastIndex].worldX - mBoneList[lastIndex].worldX),
+											(float)(mBoneList[beforeLastIndex].worldY - mBoneList[lastIndex].worldY));
+				// rotate the vector such as to compute it for a null angle
+				if (mEndConnection != null)
+				{
+					PointF[] translation = { mLastBoneVector };
+					Matrix rotation = new Matrix();
+					rotation.Rotate(mEndConnection.mMyBrick.Orientation);
+					rotation.TransformVectors(translation);
+					mLastBoneVector = translation[0];
+				}
+			}
+
 			// add the current brick in the list of bricks, by not going further than the root brick
 			LayerBrick.Brick.ConnectionPoint rootConnection = mFlexChainList[mRootHingedLinkIndex].mFirstConnection;
 			if (rootConnection.mMyBrick != null)
@@ -400,8 +444,37 @@ namespace BlueBrick.Actions.Bricks
 		/// <returns>if true, this method should be called again</returns>
 		public bool reachTarget(double xWorldStudCoord, double yWorldStudCoord)
 		{
+			// the snapping distance
+			double REACH_MIN_TARGET_DISTANCE_IN_STUD = 0.5;
+
+			// check if we need to compute a second target position
+			double xSecondWorldStudCoord = 0.0f;
+			double ySecondWorldStudCoord = 0.0f;
+			bool useTwoTargets = !mEndConnection.IsFree;
+			if (useTwoTargets)
+			{
+				// rotate the second target vector according to the orientation of the snapped connection
+				PointF[] translation = { mLastBoneVector };
+				Matrix rotation = new Matrix();
+				rotation.Rotate(mEndConnection.ConnectedBrick.Orientation + mEndConnection.ConnectionLink.Angle + 180);
+				rotation.TransformVectors(translation);
+
+				// check if we need to snap the first target
+				PointF snapPosition = mEndConnection.ConnectionLink.PositionInStudWorldCoord;
+				PointF distanceVector = new PointF(snapPosition.X - (float)xWorldStudCoord, snapPosition.Y - (float)yWorldStudCoord);
+				if ((distanceVector.X * distanceVector.X) + (distanceVector.Y * distanceVector.Y) < REACH_MIN_TARGET_DISTANCE_IN_STUD * REACH_MIN_TARGET_DISTANCE_IN_STUD)
+				{
+					xWorldStudCoord = snapPosition.X;
+					yWorldStudCoord = snapPosition.Y;
+				}
+				// translate the target with the rotated vector for the second target
+				xSecondWorldStudCoord = xWorldStudCoord + translation[0].X;
+				ySecondWorldStudCoord = yWorldStudCoord + translation[0].Y;
+			}
+
 			// reverse the Y because BlueBrick use an indirect coord sys, and the IKSolver a direct one
-			IKSolver.CCDResult result = IKSolver.CalcIK_2D_CCD(ref mBoneList, xWorldStudCoord, -yWorldStudCoord, 0.5);
+			IKSolver.CCDResult result = IKSolver.CalcIK_2D_CCD(ref mBoneList, xWorldStudCoord, -yWorldStudCoord, REACH_MIN_TARGET_DISTANCE_IN_STUD, 
+																useTwoTargets, xSecondWorldStudCoord, -ySecondWorldStudCoord);
 			computeBrickPositionAndOrientation();
 			return (result == IKSolver.CCDResult.Processing);
 		}
@@ -516,6 +589,47 @@ namespace BlueBrick.Actions.Bricks
 			// update the bounding rectangle and connectivity
 			mBrickLayer.updateBoundingSelectionRectangle();
 			mBrickLayer.updateBrickConnectivityOfSelection(false);
+		}
+		#endregion
+
+		#region draw debug info
+		/// <summary>
+		/// Draw some debug information like the chain bones
+		/// </summary>
+		/// <param name="g">the graphic context in which draw</param>
+		/// <param name="areaInStud">the area in which draw</param>
+		/// <param name="scalePixelPerStud">the current scale</param>
+		public void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud)
+		{
+			// draw the bones
+			for (int i = 0; i < mBoneList.Count - 1; i++)
+			{
+				IKSolver.Bone_2D_CCD firstBone = mBoneList[i];
+				IKSolver.Bone_2D_CCD nextBone = mBoneList[i+1];
+
+				g.DrawLine(Pens.Black, (float)((firstBone.worldX - areaInStud.Left) * scalePixelPerStud),
+							(float)((-firstBone.worldY - areaInStud.Top) * scalePixelPerStud),
+							(float)((nextBone.worldX - areaInStud.Left) * scalePixelPerStud),
+							(float)((-nextBone.worldY - areaInStud.Top) * scalePixelPerStud));
+			}
+
+			// the last bone vector
+			if (!mEndConnection.IsFree)
+			{
+				// rotate the second target vector according to the orientation of the snapped connection
+				PointF[] translation = { mLastBoneVector };
+				Matrix rotation = new Matrix();
+				rotation.Rotate(mEndConnection.ConnectedBrick.Orientation + mEndConnection.ConnectionLink.Angle + 180);
+				rotation.TransformVectors(translation);
+
+				// draw the translation
+				IKSolver.Bone_2D_CCD lastBone = mBoneList[mBoneList.Count - 1];
+				float endX = (float)(lastBone.worldX - areaInStud.Left);
+				float endY = (float)(-lastBone.worldY - areaInStud.Top);
+				g.DrawLine(Pens.Green, endX * (float)scalePixelPerStud, endY * (float)scalePixelPerStud,
+							(endX + translation[0].X) * (float)scalePixelPerStud,
+							(endY + translation[0].Y) * (float)scalePixelPerStud);
+			}
 		}
 		#endregion
 	}
