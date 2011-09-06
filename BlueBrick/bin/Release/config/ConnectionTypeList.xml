@@ -40,5 +40,10 @@
 			<ColorARGB>FFFFA746</ColorARGB>
 			<Size>1</Size>
 		</ConnectionType>
-	</ConnectionTypeList>
+    <ConnectionType name="threequarterhinge">
+      <ColorARGB>77000000</ColorARGB>
+      <Size>0.5</Size>
+      <HingeAngle>135</HingeAngle>
+    </ConnectionType>
+  </ConnectionTypeList>
 </info>

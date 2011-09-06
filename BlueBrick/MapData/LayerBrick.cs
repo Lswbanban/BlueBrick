@@ -1868,6 +1868,10 @@ namespace BlueBrick.MapData
 						g.FillEllipse(brush, x, y, sizeInPixel, sizeInPixel);
 					}
 				}
+
+			// debug draw for the flex
+			if (mMouseFlexMoveAction != null)
+				mMouseFlexMoveAction.draw(g, areaInStud, scalePixelPerStud);
 		}
 		#endregion
 
