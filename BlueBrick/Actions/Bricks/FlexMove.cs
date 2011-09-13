@@ -439,41 +439,30 @@ namespace BlueBrick.Actions.Bricks
 		/// <summary>
 		/// Try to reach the specify target position with this chain
 		/// </summary>
-		/// <param name="xWorldStudCoord">the x target position in world stud coord</param>
-		/// <param name="yWorldStudCoord">the y target position in world stud coord</param>
+		/// <param name="targetInWorldStudCoord">the target position in world stud coord</param>
+		/// <param name="targetConnection">If the end of the flex chain need to be connected to a connection, this parameter indicates which one, otherwise it is null</param>
 		/// <returns>if true, this method should be called again</returns>
-		public bool reachTarget(double xWorldStudCoord, double yWorldStudCoord)
+		public bool reachTarget(PointF targetInWorldStudCoord, LayerBrick.Brick.ConnectionPoint targetConnection)
 		{
-			// the snapping distance
-			double REACH_MIN_TARGET_DISTANCE_IN_STUD = 0.5;
-
 			// check if we need to compute a second target position
 			double xSecondWorldStudCoord = 0.0f;
 			double ySecondWorldStudCoord = 0.0f;
-			bool useTwoTargets = !mEndConnection.IsFree;
+			bool useTwoTargets = (targetConnection != null);
 			if (useTwoTargets)
 			{
 				// rotate the second target vector according to the orientation of the snapped connection
 				PointF[] translation = { mLastBoneVector };
 				Matrix rotation = new Matrix();
-				rotation.Rotate(mEndConnection.ConnectedBrick.Orientation + mEndConnection.ConnectionLink.Angle + 180);
+				rotation.Rotate(targetConnection.mMyBrick.Orientation + targetConnection.Angle + 180);
 				rotation.TransformVectors(translation);
 
-				// check if we need to snap the first target
-				PointF snapPosition = mEndConnection.ConnectionLink.PositionInStudWorldCoord;
-				PointF distanceVector = new PointF(snapPosition.X - (float)xWorldStudCoord, snapPosition.Y - (float)yWorldStudCoord);
-				if ((distanceVector.X * distanceVector.X) + (distanceVector.Y * distanceVector.Y) < REACH_MIN_TARGET_DISTANCE_IN_STUD * REACH_MIN_TARGET_DISTANCE_IN_STUD)
-				{
-					xWorldStudCoord = snapPosition.X;
-					yWorldStudCoord = snapPosition.Y;
-				}
 				// translate the target with the rotated vector for the second target
-				xSecondWorldStudCoord = xWorldStudCoord + translation[0].X;
-				ySecondWorldStudCoord = yWorldStudCoord + translation[0].Y;
+				xSecondWorldStudCoord = targetInWorldStudCoord.X + translation[0].X;
+				ySecondWorldStudCoord = targetInWorldStudCoord.Y + translation[0].Y;
 			}
 
 			// reverse the Y because BlueBrick use an indirect coord sys, and the IKSolver a direct one
-			IKSolver.CCDResult result = IKSolver.CalcIK_2D_CCD(ref mBoneList, xWorldStudCoord, -yWorldStudCoord, REACH_MIN_TARGET_DISTANCE_IN_STUD, 
+			IKSolver.CCDResult result = IKSolver.CalcIK_2D_CCD(ref mBoneList, targetInWorldStudCoord.X, -targetInWorldStudCoord.Y, 0.1, 
 																useTwoTargets, xSecondWorldStudCoord, -ySecondWorldStudCoord);
 			computeBrickPositionAndOrientation();
 			return (result == IKSolver.CCDResult.Processing);
@@ -548,7 +537,6 @@ namespace BlueBrick.Actions.Bricks
 
 			// update the bounding rectangle and connectivity
 			mBrickLayer.updateBoundingSelectionRectangle();
-			mBrickLayer.updateBrickConnectivityOfSelection(false);
 		}
 		#endregion
 		#endregion
