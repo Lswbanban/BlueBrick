@@ -2084,15 +2084,18 @@ namespace BlueBrick.MapData
 		{
 			if (mSelectedObjects.Count > 0)
 			{
+				// snap the mouse coord to the grid
+				Brick.ConnectionPoint snappedConnection = null;
+				PointF mouseCoordInStudSnapped = getMovedSnapPoint(mouseCoordInStud, mCurrentBrickUnderMouse, out snappedConnection);
+
+				// check if it is a flex move or normal move
 				if (mMouseMoveIsAFlexMove)
 				{
-					mMouseFlexMoveAction.reachTarget(mouseCoordInStud.X, mouseCoordInStud.Y);
+					mMouseFlexMoveAction.reachTarget(mouseCoordInStudSnapped, snappedConnection);
 					return true;
 				}
 				else
 				{
-					// snap the mouse coord to the grid
-					PointF mouseCoordInStudSnapped = getMovedSnapPoint(mouseCoordInStud, mCurrentBrickUnderMouse);
 					// compute the delta move of the mouse
 					PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownLastPosition.X, mouseCoordInStudSnapped.Y - mMouseDownLastPosition.Y);
 					// check if the delta move is not null
@@ -2335,6 +2338,18 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// See the doc of the other signature method
+		/// </summary>
+		/// <param name="pointInStud">the rough point to snap</param>
+		/// <param name="itemWhichCenterIsSnapped">if one brick is grabbed, compute a snapping position for the center of this specified item. Can be null if no brick is grabbed.</param>
+		/// <returns>a near snap point</returns>
+		public PointF getMovedSnapPoint(PointF pointInStud, Layer.LayerItem itemWhichCenterIsSnapped)
+		{
+			Brick.ConnectionPoint ignoredSnappedConnection = null;
+			return getMovedSnapPoint(pointInStud, itemWhichCenterIsSnapped, out ignoredSnappedConnection);
+		}
+
+		/// <summary>
 		/// This method return a snap point near the specified point according to different
 		/// snapping rules that are specific of this brick layer:
 		/// If the mouse is not under a selected brick, that means the player is moving a group
@@ -2349,9 +2364,13 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <param name="pointInStud">the rough point to snap</param>
 		/// <param name="itemWhichCenterIsSnapped">if one brick is grabbed, compute a snapping position for the center of this specified item. Can be null if no brick is grabbed.</param>
+		/// <param name="snappedConnection">If the brick should snap to a connection, this is the one, otherwise null</param>
 		/// <returns>a near snap point</returns>
-		public PointF getMovedSnapPoint(PointF pointInStud, Layer.LayerItem itemWhichCenterIsSnapped)
+		public PointF getMovedSnapPoint(PointF pointInStud, Layer.LayerItem itemWhichCenterIsSnapped, out Brick.ConnectionPoint snappedConnection)
 		{
+			// init the output value
+			snappedConnection = null;
+			// don't do anything is the snapping is not enabled
 			if (SnapGridEnabled)
 			{
 				// check if there is a master brick
@@ -2400,36 +2419,52 @@ namespace BlueBrick.MapData
 								mSnappingOrientation = 0.0f;
 							}
 
+							// compute the snapping value from the grid snapping
+							// but with of 4 or 8 studs minimum (depending if it is a flex move)
+							float threshold = Math.Max(CurrentSnapGridSize, mMouseMoveIsAFlexMove ? 4.0f : 8.0f);
 							// check if the nearest free connexion if close enough to snap
-							float threshold = 64.0f; // snapping of 8 studs minimum
-							if (CurrentSnapGridSize > 8)
-								threshold = CurrentSnapGridSize * CurrentSnapGridSize;
-							if (nearestSquareDistance < threshold)
+							if (nearestSquareDistance < threshold * threshold)
 							{
-								// rotate the selection
-								mSnappingOrientation = bestFreeConnection.mMyBrick.Orientation - mCurrentBrickUnderMouse.Orientation;
-								mSnappingOrientation += bestFreeConnection.Angle + 180 - activeBrickConnexion.Angle;
-								// clamp the orientation between 0 and 360
-								if (mSnappingOrientation >= 360.0f)
-									mSnappingOrientation -= 360.0f;
-								if (mSnappingOrientation < 0.0f)
-									mSnappingOrientation += 360.0f;
+								// the distance to the closest connection is under the max threshold distance, so set the output value
+								snappedConnection = bestFreeConnection;
 
-								// and create a new action for the new angle
-								mRotationForSnappingDuringBrickMove = new RotateBrickOnPivotBrick(this, SelectedObjects, mSnappingOrientation, mCurrentBrickUnderMouse);
-								mRotationForSnappingDuringBrickMove.MustUpdateBrickConnectivity = false;
-                                mRotationForSnappingDuringBrickMove.redo();
+								// we found a snapping connection, start to compute the snap position for the best connection
+								PointF snapPosition = snappedConnection.mPositionInStudWorldCoord;
 
-								// compute the position from the connection points
-								PointF snapPosition = bestFreeConnection.mPositionInStudWorldCoord;
-								snapPosition.X += itemWhichCenterIsSnapped.Center.X - activeBrickConnexion.mPositionInStudWorldCoord.X;
-								snapPosition.Y += itemWhichCenterIsSnapped.Center.Y - activeBrickConnexion.mPositionInStudWorldCoord.Y;
+								// if it is not a flex move, rotate the selection
+								if (!mMouseMoveIsAFlexMove)
+								{
+									// rotate the selection
+									mSnappingOrientation = snappedConnection.mMyBrick.Orientation - mCurrentBrickUnderMouse.Orientation;
+									mSnappingOrientation += snappedConnection.Angle + 180 - activeBrickConnexion.Angle;
+									// clamp the orientation between 0 and 360
+									if (mSnappingOrientation >= 360.0f)
+										mSnappingOrientation -= 360.0f;
+									if (mSnappingOrientation < 0.0f)
+										mSnappingOrientation += 360.0f;
+
+									// and create a new action for the new angle
+									mRotationForSnappingDuringBrickMove = new RotateBrickOnPivotBrick(this, SelectedObjects, mSnappingOrientation, mCurrentBrickUnderMouse);
+									mRotationForSnappingDuringBrickMove.MustUpdateBrickConnectivity = false;
+									mRotationForSnappingDuringBrickMove.redo();
+
+									// compute the position from the connection points
+									snapPosition.X += itemWhichCenterIsSnapped.Center.X - activeBrickConnexion.mPositionInStudWorldCoord.X;
+									snapPosition.Y += itemWhichCenterIsSnapped.Center.Y - activeBrickConnexion.mPositionInStudWorldCoord.Y;
+								}
+								// otherwise, for a flex move, just keep the best connection as the snapping value
 
 								// return the position
 								return snapPosition;
 							}
 						}
 					}
+
+					// if we didn't find any connection to snap to, and if it is a flex move, just
+					// return the value without snaping, otherwise, we will snap the part on the grid
+					if (mMouseMoveIsAFlexMove)
+						return pointInStud;
+
 					// This is the normal case for snapping the brick under the mouse.
 					// Snap the position of the mouse on the grid (the snapping is a Floor style one)
 					// then add the center shift of the part and the snapping offset

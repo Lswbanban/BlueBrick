@@ -314,19 +314,22 @@ namespace BlueBrick.MapData
 				{
 					int resultIndex = 0;
 					// iterate through all the bricks to reach the correct brick
-					List<LayerItem> bricksInTheGroup = getAllChildrenItems();
-					foreach (Layer.LayerItem item in bricksInTheGroup)
+					if (mBrickThatHoldsActiveConnection != null)
 					{
-						LayerBrick.Brick brick = item as LayerBrick.Brick;
-						if ((brick != null) && brick.HasConnectionPoint)
+						List<LayerItem> bricksInTheGroup = getAllChildrenItems();
+						foreach (Layer.LayerItem item in bricksInTheGroup)
 						{
-							if (brick == mBrickThatHoldsActiveConnection)
+							LayerBrick.Brick brick = item as LayerBrick.Brick;
+							if ((brick != null) && brick.HasConnectionPoint)
 							{
-								resultIndex += brick.ActiveConnectionPointIndex;
-								break;
+								if (brick == mBrickThatHoldsActiveConnection)
+								{
+									resultIndex += brick.ActiveConnectionPointIndex;
+									break;
+								}
+								else
+									resultIndex += brick.ConnectionPoints.Count;
 							}
-							else
-								resultIndex += brick.ConnectionPoints.Count;
 						}
 					}
 					// return the result
