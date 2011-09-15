@@ -100,9 +100,7 @@ namespace BlueBrick.MapData.FlexTrack
 			double targetX,              // Target x position for the end effector
 			double targetY,              // Target y position for the end effector
 			double arrivalDist,           // Must get within this range of the target
-			bool useTwoTargets,			// if true, the end target is shifted for the second bone
-			double secondTargetX,        // Target x position for the end effector
-			double secondTargetY        // Target y position for the end effector
+			int numBones				// the number of bones to use in the bone list
 		)
 		{
 			// Set an epsilon value to prevent division by small numbers.
@@ -112,8 +110,6 @@ namespace BlueBrick.MapData.FlexTrack
 			// so that we can detect a failure state.
 			const double trivialArcLength = 0.00001; 
 
-
-			int numBones = bones.Count;
 			if (numBones < 2)
 				return CCDResult.Failure;
 
@@ -130,15 +126,6 @@ namespace BlueBrick.MapData.FlexTrack
 			bool modifiedBones = false;
 			for( int boneIdx = numBones-2; boneIdx >= 0; --boneIdx )
 			{
-				// test if we need to shit the target and end effector
-				if (useTwoTargets && (boneIdx == numBones-3))
-				{
-					targetX = secondTargetX;
-					targetY = secondTargetY;
-					endX = bones[numBones - 2].worldX;
-					endY = bones[numBones - 2].worldY;
-				}
-
 				// Get the vector from the current bone to the end effector position.
 				double curToEndX = endX - bones[boneIdx].worldX;
 				double curToEndY = endY - bones[boneIdx].worldY;
@@ -204,16 +191,13 @@ namespace BlueBrick.MapData.FlexTrack
 				endY = bones[boneIdx].worldY + sinRotAng * curToEndX + cosRotAng * curToEndY;
 
 				// Check for termination (except if we need to swap the target
-				if (!useTwoTargets || (boneIdx != numBones-2))
-				{
-					double endToTargetX = (targetX-endX);
-					double endToTargetY = (targetY-endY);
-					if (endToTargetX*endToTargetX + endToTargetY*endToTargetY <= arrivalDistSqr)
-					{
-						// We found a valid solution.
-						return CCDResult.Success;
-					}
-				}
+			    double endToTargetX = (targetX-endX);
+			    double endToTargetY = (targetY-endY);
+			    if (endToTargetX*endToTargetX + endToTargetY*endToTargetY <= arrivalDistSqr)
+			    {
+			        // We found a valid solution.
+			        return CCDResult.Success;
+			    }
 
 				// Track if the arc length that we moved the end effector was
 				// a nontrivial distance.
