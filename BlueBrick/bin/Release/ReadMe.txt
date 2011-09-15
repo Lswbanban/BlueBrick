@@ -69,8 +69,9 @@ Bug fixed in 1.7.0.0:
 - NEW FEATURE (Denis): Feature to search and replace a set of brick type by another one.
 - NEW FEATURE (Alban): The connection points are now configurable and extendable in an XML file.
 - NEW FEATURE (Alban): Display the general info on top of the map (this can be disabled in the option settings).
+- NEW FEATURE (Alban): Display the mouse coordinates in stud in the status bar
 - NEW FEATURE (Larry): Display the XML exception when BB cannot load XML files.
-- NEW FEATURE (Alban): The polarity check for electric shortcut is now available.
+- NEW FEATURE (Alban): Add the polarity check for detecting electric shortcut.
 - NEW FEATURE (cimddwc): Add the transparency for all the layers (and not only the Area layer)
 - NEW FEATURE (Larry): Save the export image settings in the BBM file.
 - NEW FEATURE (Alban): You can group/ungroup hierarchically parts and texts.

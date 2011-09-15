@@ -482,6 +482,8 @@ namespace BlueBrick
 		private void MapPanel_MouseMove(object sender, MouseEventArgs e)
 		{
 			bool mustRefreshView = false;
+			PointF mouseCoordInStud = getMouseCoordInStud(e);
+			string statusBarMessage = "(" + mouseCoordInStud.X.ToString("F1") + " / " + mouseCoordInStud.Y.ToString("F1") + ") ";
 
 			switch (e.Button)
 			{
@@ -503,7 +505,7 @@ namespace BlueBrick
 					else if (mIsMouseHandledByMap)
 					{
 						// left button is handle by layers (so give it to the map)
-						mustRefreshView = Map.Instance.mouseMove(e, getMouseCoordInStud(e));
+						mustRefreshView = Map.Instance.mouseMove(e, mouseCoordInStud);
 					}
 					else if (mIsZooming)
 					{
@@ -580,38 +582,39 @@ namespace BlueBrick
 					if ((mLastMousePos.X != e.X) || (mLastMousePos.Y != e.Y))
 					{
 						// set the cursor with the preference
-						this.Cursor = getDefaultCursor(getMouseCoordInStud(e));
+						this.Cursor = getDefaultCursor(mouseCoordInStud);
 
 						// if there's a brick under the mouse, and the player don't use a button,
 						// display the description of the brick in the status bar
-						string message = "";
 						LayerBrick brickLayer = Map.Instance.SelectedLayer as LayerBrick;
 						if (brickLayer != null)
 						{
-							LayerBrick.Brick brickUnderMouse = brickLayer.getBrickUnderMouse(getMouseCoordInStud(e));
+							LayerBrick.Brick brickUnderMouse = brickLayer.getBrickUnderMouse(mouseCoordInStud);
 							if (brickUnderMouse != null)
-								message = BrickLibrary.Instance.getFormatedBrickInfo(brickUnderMouse.PartNumber, true, true, true);
+								statusBarMessage += BrickLibrary.Instance.getFormatedBrickInfo(brickUnderMouse.PartNumber, true, true, true);
 						}
 						else
 						{
 							LayerText textLayer = Map.Instance.SelectedLayer as LayerText;
 							if (textLayer != null)
 							{
-								LayerText.TextCell textUnderMouse = textLayer.getTextCellUnderMouse(getMouseCoordInStud(e));
+								LayerText.TextCell textUnderMouse = textLayer.getTextCellUnderMouse(mouseCoordInStud);
 								if (textUnderMouse != null)
 								{
-									message = textUnderMouse.Text.Replace("\r", "");
-									message = message.Replace('\n', ' ');
-									if (message.Length > 20)
-										message = message.Substring(0, 20) + "...";
+									statusBarMessage += textUnderMouse.Text.Replace("\r", "");
+									statusBarMessage = statusBarMessage.Replace('\n', ' ');
+									if (statusBarMessage.Length > 80)
+										statusBarMessage = statusBarMessage.Substring(0, 80) + "...";
 								}
 							}
 						}
-						//display the message in the status bar
-						MainForm.Instance.setStatusBarMessage(message);
 					}
 					break;
 			}
+
+			//display the message in the status bar
+			if ((mLastMousePos.X != e.X) || (mLastMousePos.Y != e.Y))
+				MainForm.Instance.setStatusBarMessage(statusBarMessage);
 
 			// save the last mouse position anyway
 			mLastMousePos = e.Location;
