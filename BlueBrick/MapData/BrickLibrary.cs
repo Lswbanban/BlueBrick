@@ -487,7 +487,7 @@ namespace BlueBrick.MapData
 					{
 						if (xmlReader.Name.Equals("OldName"))
 						{
-							string oldName = xmlReader.ReadElementContentAsString().ToUpper();
+							string oldName = xmlReader.ReadElementContentAsString().ToUpperInvariant();
 							BrickLibrary.Instance.AddToTempRenamedPartList(oldName, this);
 						}
 						else
@@ -867,7 +867,7 @@ namespace BlueBrick.MapData
                         SubPart subPart = new SubPart();
 
                         // read the id of the sub part
-                        subPart.mSubPartNumber = xmlReader.GetAttribute("id");
+                        subPart.mSubPartNumber = xmlReader.GetAttribute("id").ToUpperInvariant();
 
 						// variable to store the position of the sub part from which we will construct a transform
 						PointF position = new PointF();
@@ -957,7 +957,7 @@ namespace BlueBrick.MapData
 			private string readBlueBrickId(ref System.Xml.XmlReader xmlReader, ref string partNumber, ref string partColor)
 			{
 				char[] partNumberSpliter = { '.' };
-				string fullPartId = xmlReader.ReadElementContentAsString().ToUpper();
+				string fullPartId = xmlReader.ReadElementContentAsString().ToUpperInvariant();
 				string[] partNumberAndColor = fullPartId.Split(partNumberSpliter);
 				if (partNumberAndColor.Length > 0)
 				{

@@ -454,7 +454,7 @@ namespace BlueBrick.MapData
 			public override void ReadXml(System.Xml.XmlReader reader)
 			{
 				reader.ReadStartElement();
-				mPartNumber = BrickLibrary.Instance.getActualPartNumber(reader.ReadElementContentAsString().ToUpper());
+				mPartNumber = BrickLibrary.Instance.getActualPartNumber(reader.ReadElementContentAsString().ToUpperInvariant());
 				// set the flag according to the group name
 				if (mPartNumber != string.Empty)
 					mCanUngroup = BrickLibrary.Instance.canUngroup(mPartNumber);

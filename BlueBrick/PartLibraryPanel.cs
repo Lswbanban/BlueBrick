@@ -311,7 +311,7 @@ namespace BlueBrick
 					try
 					{
 						// get the name without extension and use upper case
-						string name = file.Name.Substring(0, file.Name.Length - 4).ToUpper();
+						string name = file.Name.Substring(0, file.Name.Length - 4).ToUpperInvariant();
 
 						// push the xml file name in the list first because we don't want to try to load
 						// it a second time if an exception is raised.
@@ -346,7 +346,7 @@ namespace BlueBrick
 					if (!xmlFileLoaded.Contains(file.FullName))
 					{
 						// get the name without extension and use upper case
-						string name = file.Name.Substring(0, file.Name.Length - 4).ToUpper();
+						string name = file.Name.Substring(0, file.Name.Length - 4).ToUpperInvariant();
 
                         // add the brick in the library
                         BrickLibrary.Brick brickAdded = BrickLibrary.Instance.AddBrick(name, null, file.FullName);
