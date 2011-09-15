@@ -249,7 +249,7 @@ namespace BlueBrick
 						{
 							// check if it is a sub model or a simple part hidden
 							string partFullName = token[17];
-							if (Path.GetExtension(partFullName.ToUpper()).Equals(".LDR"))
+							if (Path.GetExtension(partFullName.ToUpperInvariant()).Equals(".LDR"))
 								hiddenLayerNames.Add(Path.GetFileNameWithoutExtension(partFullName));
 						}
 					}
@@ -341,7 +341,7 @@ namespace BlueBrick
 		{
 			// only parse the DAT part, if the part is a ldr (i.e submodel, we just skip it)
 			string partFullName = token[startIndex + 13];
-			if (!Path.GetExtension(partFullName.ToUpper()).Equals(".DAT"))
+			if (!Path.GetExtension(partFullName.ToUpperInvariant()).Equals(".DAT"))
 				return;
 
 			try
@@ -354,7 +354,7 @@ namespace BlueBrick
 				startIndex++; // skip b
 				float c = float.Parse(token[startIndex++], System.Globalization.CultureInfo.InvariantCulture);
 				startIndex += 6; // skip d f g h i j
-				string partNumberWithoutColor = Path.GetFileNameWithoutExtension(partFullName).ToUpper();
+				string partNumberWithoutColor = Path.GetFileNameWithoutExtension(partFullName).ToUpperInvariant();
 				string partNumber = partNumberWithoutColor + "." + color;
 
 				// check if it is a sleeper that we should ignore

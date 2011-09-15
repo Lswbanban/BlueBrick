@@ -501,7 +501,7 @@ namespace BlueBrick.MapData
 			{
 				base.ReadXml(reader);
 				// avoid using the accessor to reduce the number of call of updateBitmap
-				mPartNumber = BrickLibrary.Instance.getActualPartNumber(reader.ReadElementContentAsString().ToUpper());
+				mPartNumber = BrickLibrary.Instance.getActualPartNumber(reader.ReadElementContentAsString().ToUpperInvariant());
 				// but then update its electric list
 				mElectricCircuitIndexList = BrickLibrary.Instance.getElectricCircuitList(mPartNumber);
 				mOrientation = reader.ReadElementContentAsFloat();
