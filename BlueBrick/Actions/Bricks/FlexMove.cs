@@ -89,6 +89,12 @@ namespace BlueBrick.Actions.Bricks
 		private PointF mLastBoneVector = new PointF(); // the vector in world stud coord of the last bone for a null angle
 		private LayerBrick.Brick.ConnectionPoint mEndConnection = null; // the connection at the end of the flex chain (opposite to the root of the chain)
 
+		// update members
+		private PointF mPrimaryTarget = new PointF();
+		private PointF mSecondaryTarget = new PointF();
+		private bool mUseTwoTargets = false;
+		private IKSolver.CCDResult mCurrentUpdateStatus = IKSolver.CCDResult.Failure;
+
 		// data members for action undo/redo purpose
 		private LayerBrick mBrickLayer = null;
 		private List<BrickTransform> mInitState = null;
@@ -442,15 +448,14 @@ namespace BlueBrick.Actions.Bricks
 		/// </summary>
 		/// <param name="targetInWorldStudCoord">the target position in world stud coord</param>
 		/// <param name="targetConnection">If the end of the flex chain need to be connected to a connection, this parameter indicates which one, otherwise it is null</param>
-		/// <returns>if true, this method should be called again</returns>
-		public bool reachTarget(PointF targetInWorldStudCoord, LayerBrick.Brick.ConnectionPoint targetConnection)
+		public void reachTarget(PointF targetInWorldStudCoord, LayerBrick.Brick.ConnectionPoint targetConnection)
 		{
-			// a threshold tuning variable for reaching target
-			const double REACH_TARGET_PRECISION_IN_STUD = 0.1;
-			int lastBone = mBoneList.Count;
+			// save the primary target
+			mPrimaryTarget = targetInWorldStudCoord;
 
 			// check if we need to compute a second target position
-			if (targetConnection != null)
+			mUseTwoTargets = (targetConnection != null);
+			if (mUseTwoTargets)
 			{
 				// rotate the second target vector according to the orientation of the snapped connection
 				PointF[] translation = { mLastBoneVector };
@@ -459,24 +464,47 @@ namespace BlueBrick.Actions.Bricks
 				rotation.TransformVectors(translation);
 
 				// translate the target with the rotated vector for the second target
-				double xSecondWorldStudCoord = targetInWorldStudCoord.X + translation[0].X;
-				double ySecondWorldStudCoord = targetInWorldStudCoord.Y + translation[0].Y;
+				mSecondaryTarget.X = targetInWorldStudCoord.X + translation[0].X;
+				mSecondaryTarget.Y = targetInWorldStudCoord.Y + translation[0].Y;
+			}
 
-				// if we use two targets, do the first pass on the second target
+			// reset the status flag
+			mCurrentUpdateStatus = IKSolver.CCDResult.Processing;
+
+			// and call the update method
+			update();
+		}
+
+		/// <summary>
+		/// This method can be called when the flex move didn't reach the target yet, to continue to converge
+		/// <returns>true if the flex move still need to be updated</returns>
+		/// </summary>
+		public bool update()
+		{
+			if (mCurrentUpdateStatus == IKSolver.CCDResult.Processing)
+			{
+				// a threshold tuning variable for reaching target
+				const double REACH_TARGET_PRECISION_IN_STUD = 0.1;
+				int lastBone = mBoneList.Count;
+
+				if (mUseTwoTargets)
+				{
+					// if we use two targets, do the first pass on the second target
+					// reverse the Y because BlueBrick use an indirect coord sys, and the IKSolver a direct one
+					IKSolver.CalcIK_2D_CCD(ref mBoneList, mSecondaryTarget.X, -mSecondaryTarget.Y,
+											REACH_TARGET_PRECISION_IN_STUD, lastBone - 1);
+					computeBrickPositionAndOrientation();
+				}
+
+				// do the normal pass on the final target	
 				// reverse the Y because BlueBrick use an indirect coord sys, and the IKSolver a direct one
-				IKSolver.CalcIK_2D_CCD(ref mBoneList, xSecondWorldStudCoord, -ySecondWorldStudCoord,
-										REACH_TARGET_PRECISION_IN_STUD, lastBone - 1);
+				mCurrentUpdateStatus = IKSolver.CalcIK_2D_CCD(ref mBoneList, mPrimaryTarget.X, -mPrimaryTarget.Y,
+																	REACH_TARGET_PRECISION_IN_STUD, lastBone);
 				computeBrickPositionAndOrientation();
 			}
 
-			// do the normal pass on the final target	
-			// reverse the Y because BlueBrick use an indirect coord sys, and the IKSolver a direct one
-			IKSolver.CCDResult result = IKSolver.CalcIK_2D_CCD(ref mBoneList, targetInWorldStudCoord.X, -targetInWorldStudCoord.Y,
-																REACH_TARGET_PRECISION_IN_STUD, lastBone);
-			computeBrickPositionAndOrientation();
-
-
-			return (result == IKSolver.CCDResult.Processing);
+			// return true if we still need to update
+			return (mCurrentUpdateStatus == IKSolver.CCDResult.Processing);
 		}
 
 		/// <summary>

@@ -1869,9 +1869,16 @@ namespace BlueBrick.MapData
 					}
 				}
 
-			// debug draw for the flex
+			// check if we need to continue to update the flex move after the drawing
+			// the update of the flex move cannot be called during a draw
 			if (mMouseFlexMoveAction != null)
-				mMouseFlexMoveAction.draw(g, areaInStud, scalePixelPerStud);
+			{
+				bool needRedraw = mMouseFlexMoveAction.update();
+				if (needRedraw)
+					MainForm.Instance.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.NONE);
+				// debug draw for the flex
+				// mMouseFlexMoveAction.draw(g, areaInStud, scalePixelPerStud);
+			}
 		}
 		#endregion
 
