@@ -174,7 +174,7 @@ namespace BlueBrick.Actions.Bricks
 
 		#endregion
 
-		#region flex move edition
+		#region flex move creation
 		private float simplifyAngle(float angle)
 		{
 			if (angle <= -360.0f)
@@ -434,6 +434,7 @@ namespace BlueBrick.Actions.Bricks
 			for (int i = mRootHingedLinkIndex; i < mFlexChainList.Count; ++i)
 				mBricksInTheFlexChain.Add(mFlexChainList[i].mSecondConnection.mMyBrick);
 		}
+		#endregion
 
 		#region update
 		/// <summary>
@@ -444,11 +445,12 @@ namespace BlueBrick.Actions.Bricks
 		/// <returns>if true, this method should be called again</returns>
 		public bool reachTarget(PointF targetInWorldStudCoord, LayerBrick.Brick.ConnectionPoint targetConnection)
 		{
+			// a threshold tuning variable for reaching target
+			const double REACH_TARGET_PRECISION_IN_STUD = 0.1;
+			int lastBone = mBoneList.Count;
+
 			// check if we need to compute a second target position
-			double xSecondWorldStudCoord = 0.0f;
-			double ySecondWorldStudCoord = 0.0f;
-			bool useTwoTargets = (targetConnection != null);
-			if (useTwoTargets)
+			if (targetConnection != null)
 			{
 				// rotate the second target vector according to the orientation of the snapped connection
 				PointF[] translation = { mLastBoneVector };
@@ -457,14 +459,23 @@ namespace BlueBrick.Actions.Bricks
 				rotation.TransformVectors(translation);
 
 				// translate the target with the rotated vector for the second target
-				xSecondWorldStudCoord = targetInWorldStudCoord.X + translation[0].X;
-				ySecondWorldStudCoord = targetInWorldStudCoord.Y + translation[0].Y;
+				double xSecondWorldStudCoord = targetInWorldStudCoord.X + translation[0].X;
+				double ySecondWorldStudCoord = targetInWorldStudCoord.Y + translation[0].Y;
+
+				// if we use two targets, do the first pass on the second target
+				// reverse the Y because BlueBrick use an indirect coord sys, and the IKSolver a direct one
+				IKSolver.CalcIK_2D_CCD(ref mBoneList, xSecondWorldStudCoord, -ySecondWorldStudCoord,
+										REACH_TARGET_PRECISION_IN_STUD, lastBone - 1);
+				computeBrickPositionAndOrientation();
 			}
 
+			// do the normal pass on the final target	
 			// reverse the Y because BlueBrick use an indirect coord sys, and the IKSolver a direct one
-			IKSolver.CCDResult result = IKSolver.CalcIK_2D_CCD(ref mBoneList, targetInWorldStudCoord.X, -targetInWorldStudCoord.Y, 0.1, 
-																useTwoTargets, xSecondWorldStudCoord, -ySecondWorldStudCoord);
+			IKSolver.CCDResult result = IKSolver.CalcIK_2D_CCD(ref mBoneList, targetInWorldStudCoord.X, -targetInWorldStudCoord.Y,
+																REACH_TARGET_PRECISION_IN_STUD, lastBone);
 			computeBrickPositionAndOrientation();
+
+
 			return (result == IKSolver.CCDResult.Processing);
 		}
 
@@ -538,7 +549,6 @@ namespace BlueBrick.Actions.Bricks
 			// update the bounding rectangle and connectivity
 			mBrickLayer.updateBoundingSelectionRectangle();
 		}
-		#endregion
 		#endregion
 
 		#region	Action method
