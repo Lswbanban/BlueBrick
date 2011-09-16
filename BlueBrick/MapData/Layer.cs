@@ -494,6 +494,41 @@ namespace BlueBrick.MapData
 					item.Position = newItemPosition;
 				}
 			}
+
+			private void computeDisplayArea()
+			{
+				if (mItems.Count > 0)
+				{
+					// init the display area with the one of the first item
+					mDisplayArea = mItems[0].DisplayArea;
+					// then iterate on all the items
+					foreach (Layer.LayerItem item in mItems)
+						increaseDisplayAreaWithThisItem(item);
+				}
+				else
+				{
+					mDisplayArea.X = mDisplayArea.Y = mDisplayArea.Width = mDisplayArea.Height = 0.0f;
+				}
+			}
+
+			private void increaseDisplayAreaWithThisItem(Layer.LayerItem item)
+			{
+				// check if the new item added increase the size of the display area
+				if (item.DisplayArea.Left < mDisplayArea.Left)
+				{
+					mDisplayArea.Width = mDisplayArea.Right - item.DisplayArea.Left;
+					mDisplayArea.X = item.DisplayArea.Left;
+				}
+				if (item.DisplayArea.Top < mDisplayArea.Top)
+				{
+					mDisplayArea.Height = mDisplayArea.Bottom - item.DisplayArea.Top;
+					mDisplayArea.Y = item.DisplayArea.Top;
+				}
+				if (item.DisplayArea.Right > mDisplayArea.Right)
+					mDisplayArea.Width = item.DisplayArea.Right - mDisplayArea.Left;
+				if (item.DisplayArea.Bottom > mDisplayArea.Bottom)
+					mDisplayArea.Height = item.DisplayArea.Bottom - mDisplayArea.Top;
+			}
 			#endregion
 
 			#region grouping management
@@ -503,33 +538,35 @@ namespace BlueBrick.MapData
 				item.Group = this;
 				// if this item is the first added to the group, use its display area for the group
 				if (mItems.Count == 1)
-				{
 					mDisplayArea = item.DisplayArea;
-				}
 				else
-				{
-					// check if the new item added increase the size of the display area
-					if (item.DisplayArea.Left < mDisplayArea.Left)
-					{
-						mDisplayArea.Width = mDisplayArea.Right - item.DisplayArea.Left;
-						mDisplayArea.X = item.DisplayArea.Left;
-					}
-					if (item.DisplayArea.Top < mDisplayArea.Top)
-					{
-						mDisplayArea.Height = mDisplayArea.Bottom - item.DisplayArea.Top;
-						mDisplayArea.Y = item.DisplayArea.Top;
-					}
-					if (item.DisplayArea.Right > mDisplayArea.Right)
-						mDisplayArea.Width = item.DisplayArea.Right - mDisplayArea.Left;
-					if (item.DisplayArea.Bottom > mDisplayArea.Bottom)
-						mDisplayArea.Height = item.DisplayArea.Bottom - mDisplayArea.Top;
-				}
+					increaseDisplayAreaWithThisItem(item);
+			}
+
+			public void addItem(List<Layer.LayerItem> itemList)
+			{
+				foreach (Layer.LayerItem item in itemList)
+					addItem(item);
 			}
 
 			public void removeItem(LayerItem item)
 			{
 				mItems.Remove(item);
 				item.Group = null;
+				// recompute the whole display area of the group
+				computeDisplayArea();
+			}
+
+			public void removeItem(List<Layer.LayerItem> itemList)
+			{
+				// for optim reason call the compute display area one time after removing all the items
+				foreach (Layer.LayerItem item in itemList)
+				{
+					mItems.Remove(item);
+					item.Group = null;
+				}
+				// recompute the whole display area of the group
+				computeDisplayArea();
 			}
 
 			public void ungroup()

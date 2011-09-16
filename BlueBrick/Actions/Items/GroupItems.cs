@@ -70,8 +70,7 @@ namespace BlueBrick.Actions.Items
 		public override void redo()
 		{
 			// add all the items in the group
-			foreach (Layer.LayerItem item in mItemsToGroup)
-				mGroup.addItem(item);
+			mGroup.addItem(mItemsToGroup);
 
             // reselect the current selection, because the regroup may affect a currently selected item
             // and if we don't reselect, we may end up with some items of the same group selected and some
@@ -85,8 +84,7 @@ namespace BlueBrick.Actions.Items
 		public override void undo()
 		{
 			// remove all the items from the group
-			foreach (Layer.LayerItem item in mItemsToGroup)
-				mGroup.removeItem(item);
+			mGroup.removeItem(mItemsToGroup);
 		}
 	}
 }
