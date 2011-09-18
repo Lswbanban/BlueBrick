@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Allmänt</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Utseende</value>
+  </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Kloss-bibliotek</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Kortkommandon</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Senast använda filer</value>
+  </data>
+  <data name="clearRecentFilesButton.Text" xml:space="preserve">
+    <value>Töm senast använda filer</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Antal senast använda filer</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Prestanda</value>
+  </data>
+  <data name="optimComboBox.Items" xml:space="preserve">
+    <value>Snabbare</value>
+  </data>
+  <data name="optimComboBox.Items1" xml:space="preserve">
+    <value>Balanserat</value>
+  </data>
+  <data name="optimComboBox.Items2" xml:space="preserve">
+    <value>Mindre minne</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Minne/Hastighet</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Ångra/Upprepa</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Ju fler gånger du vill kunna ångra, desto mer minne kommer programmet behöva.</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Antal Ångra-steg som visas</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Antal Ångra-steg</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Ny layout,Standardinställningar</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Skapad av</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 17</value>
+  </data>
+  <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
+    <value>Lägg till kloss-lager på ny layout</value>
+  </data>
+  <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 17</value>
+  </data>
+  <data name="addGridLayerCheckBox.Text" xml:space="preserve">
+    <value>Lägg till rutnätslager på ny layout</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Mus</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Kopiera Markering</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Markera flera</value>
+  </data>
+  <data name="mouseZoomCenteredCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 17</value>
+  </data>
+  <data name="mouseZoomCenteredCheckBox.Text" xml:space="preserve">
+    <value>Centrera zoomning på muspekaren</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Zoom-hastighet</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Språk</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Om Du ändrar språk, behöver Du starta om programmet för att ändringarna ska träda i kraft.</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Språk</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Standardutseende område</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Standardstorlek ruta (knoppar)</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Standard Genomskinlighet (i %)</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Standardstorlek rutnät</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Antal undernivåer standard</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Standardstorlek rutnät (knoppar)</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Standardtextformat</value>
+  </data>
+  <data name="defaultFontNameLabel.Text" xml:space="preserve">
+    <value>Teckensnitt</value>
+  </data>
+  <data name="defaultFontColorLabel.Text" xml:space="preserve">
+    <value>Färg</value>
+  </data>
+  <data name="defaultFontButton.Text" xml:space="preserve">
+    <value>Ändra teckensnitt</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Färger</value>
+  </data>
+  <data name="displayGeneralInfoWatermarkCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 41</value>
+  </data>
+  <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
+    <value>Visa Allmän information på layout</value>
+  </data>
+  <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 17</value>
+  </data>
+  <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
+    <value>Visa lediga förbindelsepunkter</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Färg på vald bit</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Färg markering</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 13</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Förhandsgranska</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Standardfärg
+underliggande rutnät</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Standardfärg Rutnät</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Bakgrundsfärg</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Välj ett fördefinierat färgschema eller välj dina egna färger.</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Färgschema</value>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>Utseende</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Bakgrundsfärg på kloss-bibliotek</value>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Hjälpruta</value>
+  </data>
+  <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 17</value>
+  </data>
+  <data name="displayPartDescriptionCheckBox.Text" xml:space="preserve">
+    <value>Benämning</value>
+  </data>
+  <data name="displayPartColorCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 17</value>
+  </data>
+  <data name="displayPartColorCheckBox.Text" xml:space="preserve">
+    <value>Färg</value>
+  </data>
+  <data name="displayPartIDCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 17</value>
+  </data>
+  <data name="displayPartIDCheckBox.Text" xml:space="preserve">
+    <value>Kloss-ID</value>
+  </data>
+  <data name="displayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 17</value>
+  </data>
+  <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
+    <value>Innehåll i hjälpruta:</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Tab-ordning</value>
+  </data>
+  <data name="alphabeticOrderButton.Text" xml:space="preserve">
+    <value>Alfabetisk ordning</value>
+  </data>
+  <data name="MoveDownButton.Text" xml:space="preserve">
+    <value>Flytta ner</value>
+  </data>
+  <data name="MoveUpButton.Text" xml:space="preserve">
+    <value>Flytta upp</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>För att ta bort kortkommando, välj kommando i listan och klicka här:</value>
+  </data>
+  <data name="labelHintAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 145</value>
+  </data>
+  <data name="labelHintAdd.Text" xml:space="preserve">
+    <value>För att lägga till kortkommando, välj värden i comboboxarna och klicka här:</value>
+  </data>
+  <data name="buttonDelete.Text" xml:space="preserve">
+    <value>Ta bort
+kortkommando</value>
+  </data>
+  <data name="buttonAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>476, 360</value>
+  </data>
+  <data name="buttonAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 39</value>
+  </data>
+  <data name="buttonAdd.Text" xml:space="preserve">
+    <value>Lägg till kortkommando</value>
+  </data>
+  <data name="comboBoxAction.Items" xml:space="preserve">
+    <value>Lägg till Kloss</value>
+  </data>
+  <data name="comboBoxAction.Items1" xml:space="preserve">
+    <value>Ta bort markerade klossar</value>
+  </data>
+  <data name="comboBoxAction.Items2" xml:space="preserve">
+    <value>Rotera markering vänster</value>
+  </data>
+  <data name="comboBoxAction.Items3" xml:space="preserve">
+    <value>Rotera markering höger</value>
+  </data>
+  <data name="comboBoxAction.Items4" xml:space="preserve">
+    <value>Flytta markering åt vänster</value>
+  </data>
+  <data name="comboBoxAction.Items5" xml:space="preserve">
+    <value>Flytta markering åt vänster</value>
+  </data>
+  <data name="comboBoxAction.Items6" xml:space="preserve">
+    <value>Flytta markering åt vänster</value>
+  </data>
+  <data name="comboBoxAction.Items7" xml:space="preserve">
+    <value>Flytta markering åt vänster</value>
+  </data>
+  <data name="comboBoxAction.Items8" xml:space="preserve">
+    <value>Ändra aktiv förbindelse</value>
+  </data>
+  <data name="comboBoxKey.Items36" xml:space="preserve">
+    <value>Blanksteg</value>
+  </data>
+  <data name="comboBoxKey.Items67" xml:space="preserve">
+    <value>Vänsterpil</value>
+  </data>
+  <data name="comboBoxKey.Items68" xml:space="preserve">
+    <value>Högerpil</value>
+  </data>
+  <data name="comboBoxKey.Items69" xml:space="preserve">
+    <value>Uppåtpil</value>
+  </data>
+  <data name="comboBoxKey.Items70" xml:space="preserve">
+    <value>Nedåtpil</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 13</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Lista över kortkommandon:</value>
+  </data>
+  <data name="Key.Text" xml:space="preserve">
+    <value>Tangent</value>
+  </data>
+  <data name="Action.Text" xml:space="preserve">
+    <value>Kommando</value>
+  </data>
+  <data name="PartNumber.Text" xml:space="preserve">
+    <value>Del</value>
+  </data>
+  <data name="Connection.Text" xml:space="preserve">
+    <value>Förbindelse</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="okButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="restoreDefaultButton.Text" xml:space="preserve">
+    <value>Standardinställningar</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAAAAAACACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAB
+        AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAwMDAAMDcwADwyqYAACBAAAAgYAAAIIAAACCgAAAg
+        wAAAIOAAAEAAAABAIAAAQEAAAEBgAABAgAAAQKAAAEDAAABA4AAAYAAAAGAgAABgQAAAYGAAAGCAAABg
+        oAAAYMAAAGDgAACAAAAAgCAAAIBAAACAYAAAgIAAAICgAACAwAAAgOAAAKAAAACgIAAAoEAAAKBgAACg
+        gAAAoKAAAKDAAACg4AAAwAAAAMAgAADAQAAAwGAAAMCAAADAoAAAwMAAAMDgAADgAAAA4CAAAOBAAADg
+        YAAA4IAAAOCgAADgwAAA4OAAQAAAAEAAIABAAEAAQABgAEAAgABAAKAAQADAAEAA4ABAIAAAQCAgAEAg
+        QABAIGAAQCCAAEAgoABAIMAAQCDgAEBAAABAQCAAQEBAAEBAYABAQIAAQECgAEBAwABAQOAAQGAAAEBg
+        IABAYEAAQGBgAEBggABAYKAAQGDAAEBg4ABAgAAAQIAgAECAQABAgGAAQICAAECAoABAgMAAQIDgAECg
+        AABAoCAAQKBAAECgYABAoIAAQKCgAECgwABAoOAAQMAAAEDAIABAwEAAQMBgAEDAgABAwKAAQMDAAEDA
+        4ABA4AAAQOAgAEDgQABA4GAAQOCAAEDgoABA4MAAQODgAIAAAACAACAAgABAAIAAYACAAIAAgACgAIAA
+        wACAAOAAgCAAAIAgIACAIEAAgCBgAIAggACAIKAAgCDAAIAg4ACAQAAAgEAgAIBAQACAQGAAgECAAIBA
+        oACAQMAAgEDgAIBgAACAYCAAgGBAAIBgYACAYIAAgGCgAIBgwACAYOAAgIAAAICAIACAgEAAgIBgAICA
+        gACAgKAAgIDAAICA4ACAoAAAgKAgAICgQACAoGAAgKCAAICgoACAoMAAgKDgAIDAAACAwCAAgMBAAIDA
+        YACAwIAAgMCgAIDAwACAwOAAgOAAAIDgIACA4EAAgOBgAIDggACA4KAAgODAAIDg4ADAAAAAwAAgAMAA
+        QADAAGAAwACAAMAAoADAAMAAwADgAMAgAADAICAAwCBAAMAgYADAIIAAwCCgAMAgwADAIOAAwEAAAMBA
+        IADAQEAAwEBgAMBAgADAQKAAwEDAAMBA4ADAYAAAwGAgAMBgQADAYGAAwGCAAMBgoADAYMAAwGDgAMCA
+        AADAgCAAwIBAAMCAYADAgIAAwICgAMCAwADAgOAAwKAAAMCgIADAoEAAwKBgAMCggADAoKAAwKDAAMCg
+        4ADAwAAAwMAgAMDAQADAwGAAwMCAAMDAoADw+/8ApKCgAICAgAAAAP8AAP8AAAD//wD/AAAA/wD/AP//
+        AAD///8AAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIhAiIgAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAQECIiEDQiIibAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECI0NCIQNDQiEBA
+        kQAAAAAAAAAAAAAAAAAAAAAAAEBAiNDQ0IhA0IhAiEBAQAAAAAAAAAAAAAAAAAAAAABAiNDQ0NDQiEDQ
+        QIhA0NDQQIgAAAAAAAAAAAAAAAAAQIjQ0NDQ0NCIQNBAiEDQ0NBAiIgAAAAAAAAAAAAAAABA0NDQ0NDQ
+        0IhA0ECIQIjQ0ECI0IiSAAAAAAAAAAAAAEDQ0NDQ0NDQiEDQQIjQQIiIQMjQQEBAkgAAAAAAAAAAQMjQ
+        0NDQ0NCIQNDQQIjQQEDQ0EBAiNBAmgAAAAAAAABAyNDQ0NDQ0IhA0NDQQECI0NDQQIhA0NBAAAAAAAAA
+        AEDQ0NDQ0NDQiEDQ0NDQiNDQ0NBAiECI0EAAAAAAAAAAQNDQ0NDQ0NCIQNDQ0NCIiNDQ0ECIiECIQAAA
+        AAAAAABA0NDQ0NDQ0IhA0NCIiEBAiNDQ0ECIkEBAAAAAAAAAAEDQ0NDQ0NDQiEDQiEBA0NBAiNDQ0EBA
+        QNAAAAAAAAAAQNDQ0NDQ0NCIQNBAiEDQ0NBA0NDQ0NDQ0AAAAAAAAABA0NDQ0NDQ0IhA0ECIQMjQ0ECI
+        0NDQ0NCIAAAAAAAAAEDQ0NDQ0NDQiEDQQIhAiNDQQIjQ0IhAQIgAAAAAAAAAQNDQ0NDQ0NCIQNBAiNBA
+        iNBAiNBAQNCIQAAAAAAAAABA0NDQ0NDQ0IhA0NBAiNBAQIjQQIhAiNCIQAAAAAAAAEDQ0NDQ0NCIQEBA
+        iNBAQEDQ0NBAiECI0IhAAAAAAAAAQNDQ0NCIQECI0IhAQIjQ0NDQ0ECIiEDI0EAAAAAAAABA0NCIQECI
+        0NDQ0NCIQECI0NDQ0EDQiECIQAAAAAAAAECIQECI0NDQ0NDQ0NDQiEBAiNDQ0EDQiEAAAAAAAAAAQECI
+        0NDQ0NDQ0NDQ0NDQ0IhAQIjQiEBAiAAAAAAAAAAAAEBAiNDQ0NDQ0NDQ0NDQ0NCIQECI0NDQAAAAAAAA
+        AAAAAABAQIjQ0NDQ0NDQ0NDQ0NDQiEBAiMgAAAAAAAAAAAAAAAAAQECI0NDQ0NDQ0NDQ0NDQ0NBAQAAA
+        AAAAAAAAAAAAAAAAAEBAiNDQ0NDQ0NDQ0IiIQEAAAAAAAAAAAAAAAAAAAAAAAABAQIjQ0NDQ0NCIQEAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAQECI0NCIQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAA
+        AAAAAAAAAAAAAP/n////wf///wB///4AH//4AA//8AAD/+AAAf/gAAB/4AAAH+AAAA/gAAAP4AAAD+AA
+        AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
+        AA//4AAf//gAf//+Af///4f/
+</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Alternativ</value>
+  </data>
+</root>

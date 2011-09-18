@@ -54,7 +54,7 @@ namespace BlueBrick
 			new LanguageCodeAndName("es", Resources.LanguageSpanish),
 			new LanguageCodeAndName("it", Resources.LanguageItalian),
 			new LanguageCodeAndName("no", Resources.LanguageNorwegian),
-			new LanguageCodeAndName("sw", Resources.LanguageSwedish)
+			new LanguageCodeAndName("sv", Resources.LanguageSwedish)
 			//new LanguageCodeAndName("cn", Resources.LanguageChinese) //not integrated yet
 		};
 

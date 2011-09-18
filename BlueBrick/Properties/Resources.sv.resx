@@ -118,325 +118,264 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionAddArea" xml:space="preserve">
-    <value>Paint an Area</value>
+    <value>Färglägg område</value>
   </data>
   <data name="ActionAddBrick" xml:space="preserve">
-    <value>Add part &amp;</value>
+    <value>Lägg till Kloss "&amp;"</value>
   </data>
   <data name="ActionAddLayerArea" xml:space="preserve">
-    <value>Add an Area Layer</value>
+    <value>Lägg till områdeslager</value>
   </data>
   <data name="ActionAddLayerBrick" xml:space="preserve">
-    <value>Add a Brick Layer</value>
+    <value>Lägg till klosslager</value>
   </data>
   <data name="ActionAddLayerGrid" xml:space="preserve">
-    <value>Add a Grid layer</value>
+    <value>Lägg till rutnätslager</value>
   </data>
   <data name="ActionAddLayerText" xml:space="preserve">
-    <value>Add a Text Layer</value>
+    <value>Lägg till textlager</value>
   </data>
   <data name="ActionAddText" xml:space="preserve">
-    <value>Add a new text</value>
+    <value>Lägg till ny text</value>
   </data>
   <data name="ActionBringBrickToFront" xml:space="preserve">
-    <value>Bring selected Bricks to Front</value>
+    <value>Placera markerade bitar längst fram</value>
   </data>
   <data name="ActionBringTextToFront" xml:space="preserve">
-    <value>Bring selected Texts to Front</value>
+    <value>Placera markerad text längst fram</value>
   </data>
   <data name="ActionChangeBackgroundColor" xml:space="preserve">
-    <value>Change the background color</value>
+    <value>Ändra bakgrundsfärg</value>
   </data>
   <data name="ActionChangeGeneralInfo" xml:space="preserve">
-    <value>Change Map General Info</value>
+    <value>Ändra allmän information på layout</value>
   </data>
   <data name="ActionChangeMapAppearance" xml:space="preserve">
-    <value>Change map appearance</value>
+    <value>Ändra utseende på layout</value>
   </data>
   <data name="ActionDeleteArea" xml:space="preserve">
-    <value>Erase an Area</value>
+    <value>Ta bort område</value>
   </data>
   <data name="ActionDeleteBrick" xml:space="preserve">
-    <value>Delete part &amp;</value>
+    <value>Ta bort Kloss "&amp;"</value>
   </data>
   <data name="ActionDeleteSeveralBricks" xml:space="preserve">
-    <value>Delete several parts</value>
+    <value>Ta bort flera bitar</value>
   </data>
   <data name="ActionDeleteSeveralTexts" xml:space="preserve">
-    <value>Delete several texts</value>
+    <value>Ta bort flera texter</value>
   </data>
   <data name="ActionDeleteText" xml:space="preserve">
-    <value>Delete the text "&amp;"</value>
+    <value>Ta bort texten "&amp;"</value>
   </data>
   <data name="ActionDuplicateBrick" xml:space="preserve">
-    <value>Duplicate the part &amp;</value>
+    <value>Kopiera Kloss "&amp;"</value>
   </data>
   <data name="ActionDuplicateSeveralBricks" xml:space="preserve">
-    <value>Duplicate several parts</value>
+    <value>Kopiera flera bitar</value>
   </data>
   <data name="ActionDuplicateSeveralTexts" xml:space="preserve">
-    <value>Duplicate several texts</value>
+    <value>Koperia flera texter</value>
   </data>
   <data name="ActionDuplicateText" xml:space="preserve">
-    <value>Duplicate the text "&amp;"</value>
+    <value>Kopiera texten "&amp;"</value>
   </data>
   <data name="ActionEditText" xml:space="preserve">
-    <value>Edit the text "&amp;"</value>
+    <value>Redigera texten "&amp;"</value>
   </data>
   <data name="ActionGroupItems" xml:space="preserve">
-    <value>Group Items</value>
+    <value>Gruppera objekt</value>
   </data>
   <data name="ActionHideLayer" xml:space="preserve">
-    <value>Hide the layer "&amp;"</value>
+    <value>Dölj lagret "&amp;"</value>
   </data>
   <data name="ActionMoveArea" xml:space="preserve">
-    <value>Move the Areas</value>
+    <value>Flytta områden</value>
   </data>
   <data name="ActionMoveBrick" xml:space="preserve">
-    <value>Move the part &amp;</value>
+    <value>Flytta biten "&amp;"</value>
   </data>
   <data name="ActionMoveGridOrigin" xml:space="preserve">
-    <value>Move the grid origin</value>
+    <value>Flytta utgångspunkt för rutnät</value>
   </data>
   <data name="ActionMoveLayerDown" xml:space="preserve">
-    <value>Move the layer "&amp;" Down</value>
+    <value>Flytta lagret "&amp;" nedåt</value>
   </data>
   <data name="ActionMoveLayerUp" xml:space="preserve">
-    <value>Move the layer "&amp;" Up</value>
+    <value>Flytta lagret "&amp;" uppåt</value>
   </data>
   <data name="ActionMoveSeveralBricks" xml:space="preserve">
-    <value>Move several parts</value>
+    <value>Flytta flera bitar</value>
   </data>
   <data name="ActionMoveSeveralTexts" xml:space="preserve">
-    <value>Move several texts</value>
+    <value>Flytta flera texter</value>
   </data>
   <data name="ActionMoveText" xml:space="preserve">
-    <value>Move the text "&amp;"</value>
+    <value>Flytta texten "&amp;"</value>
   </data>
   <data name="ActionRemoveLayer" xml:space="preserve">
-    <value>Remove the layer "&amp;"</value>
+    <value>Ta bort lagret "&amp;"</value>
   </data>
   <data name="ActionReplaceBrick" xml:space="preserve">
-    <value>Replace the part &amp;</value>
+    <value>Ersätt biten "&amp;"</value>
   </data>
   <data name="ActionRotateBrick" xml:space="preserve">
-    <value>Rotate the part &amp;</value>
+    <value>Rotera biten "&amp;"</value>
   </data>
   <data name="ActionRotateSeveralBricks" xml:space="preserve">
-    <value>Rotate several parts</value>
+    <value>Rotera flera bitar</value>
   </data>
   <data name="ActionRotateSeveralTexts" xml:space="preserve">
-    <value>Rotate several texts</value>
+    <value>Rotera flera texter</value>
   </data>
   <data name="ActionRotateText" xml:space="preserve">
-    <value>Rotate the text "&amp;"</value>
+    <value>Rotera texten "&amp;"</value>
   </data>
   <data name="ActionSelectLayer" xml:space="preserve">
-    <value>Select layer "&amp;"</value>
+    <value>Markera lager "&amp;"</value>
   </data>
   <data name="ActionSendBrickToBack" xml:space="preserve">
-    <value>Send selected Bricks to Back</value>
+    <value>Placera markerade bitar längst bak</value>
   </data>
   <data name="ActionSendTextToBack" xml:space="preserve">
-    <value>Send selected Texts to Back</value>
+    <value>Placera markerad text längst bak</value>
   </data>
   <data name="ActionShowLayer" xml:space="preserve">
-    <value>Show layer "&amp;"</value>
+    <value>Visa lagret "&amp;"</value>
   </data>
   <data name="ActionUngroupItems" xml:space="preserve">
-    <value>Ungroup Items</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="aligncentered" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\aligncentered.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="alignleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\alignleft.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="alignright" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\alignright.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Lös upp grupp</value>
   </data>
   <data name="ChangeLayerOption" xml:space="preserve">
-    <value>Change the options of layer "&amp;"</value>
+    <value>Ändra inställningar för "&amp;"</value>
   </data>
   <data name="ColorSchemeBluePrint" xml:space="preserve">
-    <value>Blue Print</value>
+    <value>Ritning</value>
   </data>
   <data name="ColorSchemeClassic" xml:space="preserve">
-    <value>Classic (printer friendly)</value>
+    <value>Klassisk (Utskriftsvänlig)</value>
   </data>
   <data name="ColorSchemeCustom" xml:space="preserve">
-    <value>Custom</value>
+    <value>Egendefinierad</value>
   </data>
   <data name="ColorSchemeParchment" xml:space="preserve">
-    <value>Parchment</value>
+    <value>Pergament</value>
   </data>
   <data name="DefaultAuthor" xml:space="preserve">
-    <value>Unknown Author</value>
+    <value>Okänd upphovsman</value>
   </data>
   <data name="DefaultLayerName" xml:space="preserve">
-    <value>Layer</value>
+    <value>Lager</value>
   </data>
   <data name="DefaultLUG" xml:space="preserve">
-    <value>Unknown LUG</value>
+    <value>Okänd LUG</value>
   </data>
   <data name="DefaultSaveFileName" xml:space="preserve">
-    <value>Untitled.bbm</value>
+    <value>Namnlös.bbm</value>
   </data>
   <data name="DefaultShow" xml:space="preserve">
-    <value>Unknown Event</value>
+    <value>Okänt event</value>
   </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
-    <value>You have modified some default appearance settings. These settings will be used when you create new maps, but do you want to also apply these settings to your current map?</value>
+    <value>Du har ändrat standardinställningar. De nya inställningarna används när du skapar nya lager. Vill du även använda inställningarna på aktuell layout?</value>
   </data>
   <data name="ErrorMsgCanNotLoadImage" xml:space="preserve">
-    <value>BlueBrick had encountered problems while loading images from the parts database. These images have been ignored. This problem may happen if an image is corrupted or too big. Remove the image(s) from your database to remove this warning. The image(s) concerned is/are: </value>
+    <value>BlueBrick har stött på problem med att ladda bilder från databasen. Dessa bilder kommer ignoreras. Problemet kan uppstå om en bild är korrupt eller för stor. Ta bort bild/erna från din databas för att slippa den här varningen. Bilderna är:</value>
   </data>
   <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
-    <value>BlueBrick had encountered problems while loading XML files from the parts database. These XML files have been ignored. This problem may happen if an XML file contains syntax errors. Fix the syntax or delete the XML files to remove this warning. The file(s) concerned is/are:</value>
+    <value>Bluebrick har stött på problem med att ladda XML-filer från databasen. Dessa filer kommer ignoreras. Problemet kan uppstå om en fil innehåller syntaxfel. Rätta felen eller ta bort filerna från din databas för att slippa den här varningen. Filerna är:</value>
   </data>
   <data name="ErrorMsgCannotOpenMap" xml:space="preserve">
-    <value>Cannot open the map &amp;.</value>
+    <value>Kan inte öppna layouten &amp;.</value>
   </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
-    <value>Can not paste items of type &amp; in the current selected layer which is of type &amp;&amp;.</value>
+    <value>Kan inte klistra in objekt av typen &amp; i aktuellt lager av typen &amp;&amp;.</value>
   </data>
   <data name="ErrorMsgCannotSaveMap" xml:space="preserve">
-    <value>Cannot save the map &amp;.</value>
+    <value>Kan inte spara layouten &amp;.</value>
   </data>
   <data name="ErrorMsgConfirmRestoreDefault" xml:space="preserve">
-    <value>Are you sure you want to restore the default settings?</value>
+    <value>Är du helt säker på att du vill återställa standardinställningar?</value>
   </data>
   <data name="ErrorMsgCrash" xml:space="preserve">
-    <value>BlueBrick Copyright (C) 2008 Alban NANTY. This program is free software under the GPLv3 license and comes with ABSOLUTELY NO WARRANTY. This program encountered a fatal error and will close. Please report this error to banban@lswproject.com. The error message is:</value>
+    <value>BlueBrick Copyright © Alban NANTY. Detta program är freeware under villkoren för GPLv3 och laddas ner HELT UTAN GARANTIER. Det har uppstått ett kritiskt fel och programmet kommer att stängas. Var vänlig och rapportera felet till banban@lswproject.com. Felmeddelande:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
-    <value>You changed the language but this will not take effect until you restart the application. Do you want to restart now?</value>
+    <value>Du har ändrat språk men ändringen träder inte i kraft förrän du startat om programmet. Vill du starta om nu?</value>
   </data>
   <data name="ErrorMsgLayerTypeArea" xml:space="preserve">
-    <value>Area</value>
+    <value>Område</value>
   </data>
   <data name="ErrorMsgLayerTypeBrick" xml:space="preserve">
-    <value>Brick</value>
+    <value>Bit</value>
   </data>
   <data name="ErrorMsgLayerTypeGrid" xml:space="preserve">
-    <value>Grid</value>
+    <value>Rutnät</value>
   </data>
   <data name="ErrorMsgLayerTypeText" xml:space="preserve">
     <value>Text</value>
   </data>
   <data name="ErrorMsgMapWasModified" xml:space="preserve">
-    <value>Your current map is not saved. Do you want to save your modification?</value>
+    <value>Aktuell layout är inte sparad. Vill du spara dina ändringar?</value>
   </data>
   <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
-    <value>Can not open the "&amp;" file. Without this file you will not be able to see the color and description of the parts in the part list. Please verify the presence of this file, or reinstall BlueBrick to fix the problem.</value>
+    <value>Kan inte öppna filen &amp;. Utan filen kommer du inte kunna se färgen och benämningen på bitarna i kloss-listan. Var vänlig kontrollera att filen finns på rätt plats eller ominstallera BlueBrick för att lösa problemet.</value>
   </data>
   <data name="ErrorMsgMissingConnectionTypeInfoFile" xml:space="preserve">
-    <value>Can not open the "&amp;" file. Without this file you will not be able to connect the parts together. Please verify the presence of this file, or reinstall BlueBrick to fix the problem.</value>
+    <value>Kan inte öppna filen &amp;. Utan denna fil kommer du inte kunna koppla ihop delarna. Var vänlig kontrollera att filen finns på rätt plats eller ominstallera BlueBrick för att lösa problemet.</value>
   </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
-    <value>Some parts were not correctly loaded because you don't have them in your parts library. Some default images have been temporarily added to replace the original ones. You should ask the map's author (&amp;) where you can find them.</value>
+    <value>Vissa delar laddades inte in korrekt då de inte finns i kloss-biblioteket. Vissa standardbilder har tillfälligt lagts till för att ersätta ursprungsbilderna. Kontakta layoutens skapare &amp; för att få tillgång till dem.</value>
   </data>
   <data name="ErrorMsgMissingTDRemap" xml:space="preserve">
-    <value>Some Track Designer part ID's were not found in your BlueBrick library. BlueBrick was not able to load them and has ignored them. You should ensure that you have the corresponding part in your BlueBrick library with the correct Track Designer ID set in the XML file and then try to re-open the Track Designer file. The missing ID's were:</value>
+    <value>Vissa Track Designer-bitars ID kunde inte hittas i din BlueBrick-databas. BlueBrick kunde inte ladda dessa delar och ignorerar dem. Försäkra dig om att du har motsvarande bit i din BlueBrick-databas med korrekt Track Designer-ID i XML-filen och försök öppna Track Designer-filen. ID:n som fattas:</value>
   </data>
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
-    <value>BlueBrick can not find the help file named "BlueBrick.chm" which is supposed to be in the installation folder. Reinstalling BlueBrick may fix the problem.</value>
+    <value>BlueBrick kan inte hitta hjälpfilen "BlueBrick.chm" som ska finnas i installationsmappen. Att installera om BlueBrick kan lösa problemet.</value>
   </data>
   <data name="ErrorMsgNotSavingInBBM" xml:space="preserve">
-    <value>The format you have selected can not save all the data contained in your Layout. Grid, Area and Text information will be lost. Only the native BBM format can save all the data. Do you want to continue anyway?</value>
+    <value>Formatet du valt kan inte spara all information i din layout. Rutnät, område och text kommer att gå förlorat. Bara bbm-formatet kan spara all information. Vill du fortsätta ändå?</value>
   </data>
   <data name="ErrorMsgOldTDFile" xml:space="preserve">
-    <value>Sorry, the Track Designer file you are trying to load has an old version format. To fix this problem, open this file with Track Designer, and save it again. Now you should be able to load it with BlueBrick.</value>
+    <value>Tyvärr har Track Designer-filen du försöker ladda ett för gammalt filformat. Öppna filen i Track Designer och spara på nytt. Sedan ska det gå att öppna med BlueBrick.</value>
   </data>
   <data name="ErrorMsgProgramObsolete" xml:space="preserve">
-    <value>Cannot load this file. Your version of BlueBrick is obsolete or the file may not be a valid BlueBrick file. Try downloading and installing the latest version of BlueBrick.</value>
+    <value>Kan inte ladda filen. Din version av BlueBrick är föråldrad eller så är det inte en giltig BlueBrick-fil. Ladda hem och installera senaste versionen av BlueBrick.</value>
   </data>
   <data name="ErrorMsgReadyToReloadPartLib" xml:space="preserve">
-    <value>The parts library was unloaded, you can now modify the files in it. Click ok when you are ready to reload it.</value>
+    <value>Databasen har inte laddats in och du kan nu redigera databasens filer. Klicka OK när du vill ladda in databasen på nytt.</value>
   </data>
   <data name="ErrorMsgTitleError" xml:space="preserve">
-    <value>Error</value>
+    <value>Fel</value>
   </data>
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
-    <value>Warning</value>
+    <value>Varning</value>
   </data>
   <data name="HideDetails" xml:space="preserve">
-    <value>Hide Details</value>
-  </data>
-  <data name="LanguageChineese" xml:space="preserve">
-    <value>Chineese</value>
-  </data>
-  <data name="LanguageDutch" xml:space="preserve">
-    <value>Nederlands</value>
-  </data>
-  <data name="LanguageEnglish" xml:space="preserve">
-    <value>English (default)</value>
-  </data>
-  <data name="LanguageFrench" xml:space="preserve">
-    <value>Français</value>
-  </data>
-  <data name="LanguageGerman" xml:space="preserve">
-    <value>Deutsch</value>
-  </data>
-  <data name="LanguageItalian" xml:space="preserve">
-    <value>Italiano</value>
-  </data>
-  <data name="LanguagePortuguese" xml:space="preserve">
-    <value>Português</value>
-  </data>
-  <data name="LanguageSpanish" xml:space="preserve">
-    <value>Español</value>
-  </data>
-  <data name="layerTypeArea" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\newlayerarea.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="layerTypeBrick" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\newlayerbrick.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="layerTypeGrid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\newlayergrid.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="layerTypeText" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\newlayerText.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PartForOptionPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\PartForOptionPreview.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Dölj detaljer</value>
   </data>
   <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
-    <value>Bubble Information</value>
+    <value>Hjälpruta</value>
   </data>
   <data name="PartLibMenuItemLargeIcons" xml:space="preserve">
-    <value>Large Icons</value>
+    <value>Stora ikoner</value>
   </data>
   <data name="PartLibMenuItemRespectProportion" xml:space="preserve">
-    <value>Respect Proportion</value>
+    <value>Behåll proportioner</value>
   </data>
   <data name="ShowDetails" xml:space="preserve">
-    <value>Show Details</value>
-  </data>
-  <data name="SnapGridOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\SnapGridOff.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SnapGridOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\SnapGridOn.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Visa detaljer</value>
   </data>
   <data name="TextEnterText" xml:space="preserve">
-    <value>Type your text here...</value>
+    <value>Skriv in din text här...</value>
   </data>
   <data name="TextNA" xml:space="preserve">
-    <value>N/A</value>
+    <value>Inte tillgängligt</value>
   </data>
   <data name="TextUnknown" xml:space="preserve">
-    <value>Unknown</value>
+    <value>Okänt</value>
   </data>
   <data name="ActionFlexMove" xml:space="preserve">
-    <value>Move Flexible Bricks</value>
-  </data>
-  <data name="LanguageNorwegian" xml:space="preserve">
-    <value>Norsk</value>
-  </data>
-  <data name="LanguageSwedish" xml:space="preserve">
-    <value>Svenska</value>
+    <value>Flytta flexibla bitar</value>
   </data>
 </root>
