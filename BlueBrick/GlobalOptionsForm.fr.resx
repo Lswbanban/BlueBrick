@@ -245,10 +245,10 @@
     <value>Couleurs</value>
   </data>
   <data name="displayGeneralInfoWatermarkCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 17</value>
+    <value>210, 30</value>
   </data>
   <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
-    <value>Afficher l'emprunte des Infos Générales</value>
+    <value>Afficher l'empreinte des Infos Générales</value>
   </data>
   <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 17</value>
@@ -509,6 +509,6 @@ racourcis</value>
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Options de BlueBrick</value>
+    <value>Préférences de BlueBrick</value>
   </data>
 </root>
