@@ -213,7 +213,7 @@
 de la célula (en studs)</value>
   </data>
   <data name="label28.Text" xml:space="preserve">
-    <value>Transparencia por defecto (en %)</value>
+    <value>Opacidad por defecto (en %)</value>
   </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Apariencia por defecto del área</value>

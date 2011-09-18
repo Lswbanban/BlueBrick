@@ -204,6 +204,9 @@ cuadrícula (en studs)</value>
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Opacidad</value>
+  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 17</value>
   </data>

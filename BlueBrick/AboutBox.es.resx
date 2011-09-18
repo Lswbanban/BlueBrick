@@ -159,6 +159,12 @@
 http://www.fsf.org/licensing/licenses/gpl.html e
 http://www.gnu.org/licenses/</value>
   </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Traducido en</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>por</value>
+  </data>
   <data name="translatorListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
@@ -287,16 +293,16 @@ http://www.gnu.org/licenses/</value>
         dAlGb3JlQ29sb3IXVXNlSXRlbVN0eWxlRm9yU3ViSXRlbXMBAAAEBAAEBAAICDFTeXN0ZW0uV2luZG93
         cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlzdFZpZXdTdWJJdGVtAgAAABRTeXN0ZW0uRHJhd2luZy5Db2xv
         cgMAAAABE1N5c3RlbS5EcmF3aW5nLkZvbnQDAAAAFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAECAAAA
-        BgQAAAAJTm9yd2VnaWFu/////wIAAAAJBQAAAAX6////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARu
-        YW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAAAUAAQAACQcAAAAB+P//
-        //r///8KAAAAAAAAAAAaAAEAAQUFAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStM
-        aXN0Vmlld1N1Ykl0ZW0EAAAABHRleHQEbmFtZQVzdHlsZQh1c2VyRGF0YQEBBAI+U3lzdGVtLldpbmRv
-        d3MuRm9ybXMuTGlzdFZpZXdJdGVtK0xpc3RWaWV3U3ViSXRlbStTdWJJdGVtU3R5bGUCAAAAAgAAAAYJ
-        AAAADUFyZSBIZWlzZWxkYWwKCgoFBwAAABNTeXN0ZW0uRHJhd2luZy5Gb250BAAAAAROYW1lBFNpemUF
-        U3R5bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQMAAAAbU3lzdGVtLkRyYXdpbmcu
-        R3JhcGhpY3NVbml0AwAAAAMAAAAGCgAAABRNaWNyb3NvZnQgU2FucyBTZXJpZgAABEEF9f///xhTeXN0
-        ZW0uRHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMAAAAAAAAABfT///8bU3lzdGVtLkRyYXdp
-        bmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
+        BgQAAAAHTm9ydWVnb/////8CAAAACQUAAAAF+v///xRTeXN0ZW0uRHJhd2luZy5Db2xvcgQAAAAEbmFt
+        ZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwMAAAAKAAAAAAAAAAAFAAEAAAkHAAAAAfj////6
+        ////CgAAAAAAAAAAGgABAAEFBQAAADFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlz
+        dFZpZXdTdWJJdGVtBAAAAAR0ZXh0BG5hbWUFc3R5bGUIdXNlckRhdGEBAQQCPlN5c3RlbS5XaW5kb3dz
+        LkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0rU3ViSXRlbVN0eWxlAgAAAAIAAAAGCQAA
+        AA1BcmUgSGVpc2VsZGFsCgoKBQcAAAATU3lzdGVtLkRyYXdpbmcuRm9udAQAAAAETmFtZQRTaXplBVN0
+        eWxlBFVuaXQBAAQECxhTeXN0ZW0uRHJhd2luZy5Gb250U3R5bGUDAAAAG1N5c3RlbS5EcmF3aW5nLkdy
+        YXBoaWNzVW5pdAMAAAADAAAABgoAAAAUTWljcm9zb2Z0IFNhbnMgU2VyaWYAAARBBfX///8YU3lzdGVt
+        LkRyYXdpbmcuRm9udFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAAAAAAAAX0////G1N5c3RlbS5EcmF3aW5n
+        LkdyYXBoaWNzVW5pdAEAAAAHdmFsdWVfXwAIAwAAAAMAAAAL
 </value>
   </data>
   <data name="translatorListView.Items6" mimetype="application/x-microsoft.net.object.binary.base64">
@@ -332,26 +338,20 @@ http://www.gnu.org/licenses/</value>
         dAlGb3JlQ29sb3IXVXNlSXRlbVN0eWxlRm9yU3ViSXRlbXMBAAAEBAAEBAAICDFTeXN0ZW0uV2luZG93
         cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlzdFZpZXdTdWJJdGVtAgAAABRTeXN0ZW0uRHJhd2luZy5Db2xv
         cgMAAAABE1N5c3RlbS5EcmF3aW5nLkZvbnQDAAAAFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAECAAAA
-        BgQAAAAHU3dlZGlzaP////8CAAAACQUAAAAF+v///xRTeXN0ZW0uRHJhd2luZy5Db2xvcgQAAAAEbmFt
-        ZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwMAAAAKAAAAAAAAAAAFAAEAAAkHAAAAAfj////6
-        ////CgAAAAAAAAAAGgABAAEFBQAAADFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlz
-        dFZpZXdTdWJJdGVtBAAAAAR0ZXh0BG5hbWUFc3R5bGUIdXNlckRhdGEBAQQCPlN5c3RlbS5XaW5kb3dz
-        LkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0rU3ViSXRlbVN0eWxlAgAAAAIAAAAGCQAA
-        AA1SYWxmIEpvbmFzc29uCgoKBQcAAAATU3lzdGVtLkRyYXdpbmcuRm9udAQAAAAETmFtZQRTaXplBVN0
-        eWxlBFVuaXQBAAQECxhTeXN0ZW0uRHJhd2luZy5Gb250U3R5bGUDAAAAG1N5c3RlbS5EcmF3aW5nLkdy
-        YXBoaWNzVW5pdAMAAAADAAAABgoAAAAUTWljcm9zb2Z0IFNhbnMgU2VyaWYAAARBBfX///8YU3lzdGVt
-        LkRyYXdpbmcuRm9udFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAAAAAAAAX0////G1N5c3RlbS5EcmF3aW5n
-        LkdyYXBoaWNzVW5pdAEAAAAHdmFsdWVfXwAIAwAAAAMAAAAL
+        BgQAAAAFU3VlY2//////AgAAAAkFAAAABfr///8UU3lzdGVtLkRyYXdpbmcuQ29sb3IEAAAABG5hbWUF
+        dmFsdWUKa25vd25Db2xvcgVzdGF0ZQEAAAAJBwcDAAAACgAAAAAAAAAABQABAAAJBwAAAAH4////+v//
+        /woAAAAAAAAAABoAAQABBQUAAAAxU3lzdGVtLldpbmRvd3MuRm9ybXMuTGlzdFZpZXdJdGVtK0xpc3RW
+        aWV3U3ViSXRlbQQAAAAEdGV4dARuYW1lBXN0eWxlCHVzZXJEYXRhAQEEAj5TeXN0ZW0uV2luZG93cy5G
+        b3Jtcy5MaXN0Vmlld0l0ZW0rTGlzdFZpZXdTdWJJdGVtK1N1Ykl0ZW1TdHlsZQIAAAACAAAABgkAAAAN
+        UmFsZiBKb25hc3NvbgoKCgUHAAAAE1N5c3RlbS5EcmF3aW5nLkZvbnQEAAAABE5hbWUEU2l6ZQVTdHls
+        ZQRVbml0AQAEBAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAABtTeXN0ZW0uRHJhd2luZy5HcmFw
+        aGljc1VuaXQDAAAAAwAAAAYKAAAAFE1pY3Jvc29mdCBTYW5zIFNlcmlmAAAEQQX1////GFN5c3RlbS5E
+        cmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAF9P///xtTeXN0ZW0uRHJhd2luZy5H
+        cmFwaGljc1VuaXQBAAAAB3ZhbHVlX18ACAMAAAADAAAACw==
 </value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>¡Muchas gracias a Alexander McKenna!</value>
-  </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Traducido en</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>por</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
