@@ -604,6 +604,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox.sv.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cursor\FlexArrowCursor.cur" />
     <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
@@ -646,6 +650,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>DownloadCenterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DownloadCenterForm.sv.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DownloadCenterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditTextForm.it.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EditTextForm.cs</DependentUpon>
@@ -654,11 +662,19 @@
       <SubType>Designer</SubType>
       <DependentUpon>EditTextForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditTextForm.sv.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditTextForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExportImageForm.it.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ExportImageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExportImageForm.no.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExportImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportImageForm.sv.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ExportImageForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -690,11 +706,19 @@
       <SubType>Designer</SubType>
       <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FindForm.sv.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GeneralInfoForm.it.resx">
       <SubType>Designer</SubType>
       <DependentUpon>GeneralInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralInfoForm.no.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralInfoForm.sv.resx">
       <SubType>Designer</SubType>
       <DependentUpon>GeneralInfoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -706,11 +730,19 @@
       <SubType>Designer</SubType>
       <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GlobalOptionsForm.sv.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LayerAreaOptionForm.it.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LayerAreaOptionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LayerAreaOptionForm.no.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerAreaOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerAreaOptionForm.sv.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LayerAreaOptionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -722,11 +754,19 @@
       <SubType>Designer</SubType>
       <DependentUpon>LayerBrickOptionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LayerBrickOptionForm.sv.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerBrickOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LayerGridOptionForm.it.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LayerGridOptionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LayerGridOptionForm.no.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LayerGridOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerGridOptionForm.sv.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LayerGridOptionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -762,11 +802,19 @@
       <SubType>Designer</SubType>
       <DependentUpon>LoadErrorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoadErrorForm.sv.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoadErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.it.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.no.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.sv.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -778,6 +826,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>MapPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MapPanel.sv.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MapPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PartListForm.it.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PartListForm.cs</DependentUpon>
@@ -786,10 +838,17 @@
       <SubType>Designer</SubType>
       <DependentUpon>PartListForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PartListForm.sv.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PartListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.it.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.no.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.sv.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

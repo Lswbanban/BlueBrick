@@ -883,7 +883,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Swedish.
+        ///   Looks up a localized string similar to Svenska.
         /// </summary>
         internal static string LanguageSwedish {
             get {
