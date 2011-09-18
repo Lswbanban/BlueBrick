@@ -165,6 +165,12 @@
   <data name="cellIndexFontNameLabel.Text" xml:space="preserve">
     <value>nome da fonte</value>
   </data>
+  <data name="cellIndexColorLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>392, 50</value>
+  </data>
+  <data name="cellIndexColorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 13</value>
+  </data>
   <data name="cellIndexColorLabel.Text" xml:space="preserve">
     <value>Cor</value>
   </data>
@@ -212,6 +218,9 @@
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Geral</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Opacidade</value>
   </data>
   <data name="isVisibleCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 17</value>
