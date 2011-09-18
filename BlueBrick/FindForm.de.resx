@@ -117,40 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Abbrechen</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="isVisibleCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 17</value>
-  </data>
-  <data name="isVisibleCheckBox.Text" xml:space="preserve">
-    <value>Sichtbar</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 15</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 32</value>
-  </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Name der Ebene</value>
+    <value>Ersetzen durch</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Opazität</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Allgemein</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Zellengröße in Noppen</value>
+    <value>Suchen nach</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Größe</value>
+    <value>Was?</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="allLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 17</value>
+  </data>
+  <data name="allLayerCheckBox.Text" xml:space="preserve">
+    <value>Alle Ebenen</value>
+  </data>
+  <data name="inLayerRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 17</value>
+  </data>
+  <data name="inLayerRadioButton.Text" xml:space="preserve">
+    <value>In folgenden Ebenen:</value>
+  </data>
+  <data name="inCurrentSelectionRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 17</value>
+  </data>
+  <data name="inCurrentSelectionRadioButton.Text" xml:space="preserve">
+    <value>In den gerade ausgewählten Teilen</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Wo?</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
+  <data name="ReplaceButton.Text" xml:space="preserve">
+    <value>Alle Ersetzen</value>
+  </data>
+  <data name="SelectAllButton.Text" xml:space="preserve">
+    <value>Alle Auswählen</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        AAABAAEAICAAAAAAAACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAgAQAAAAAAAAAAAAAAAEAAAAA
+        AAABAAEAICAAAAAACACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAB
         AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAwMDAAMDcwADwyqYAACBAAAAgYAAAIIAAACCgAAAg
         wAAAIOAAAEAAAABAIAAAQEAAAEBgAABAgAAAQKAAAEDAAABA4AAAYAAAAGAgAABgQAAAYGAAAGCAAABg
         oAAAYMAAAGDgAACAAAAAgCAAAIBAAACAYAAAgIAAAICgAACAwAAAgOAAAKAAAACgIAAAoEAAAKBgAACg
@@ -172,8 +181,8 @@
         AAAAAAAAAAAAAAAAAAAAAAAAQECIiEDQiIibAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECI0NCIQNDQiEBA
         kQAAAAAAAAAAAAAAAAAAAAAAAEBAiNDQ0IhA0IhAiEBAQAAAAAAAAAAAAAAAAAAAAABAiNDQ0NDQiEDQ
         QIhA0NDQQIgAAAAAAAAAAAAAAAAAQIjQ0NDQ0NCIQNBAiEDQ0NBAiIgAAAAAAAAAAAAAAABA0NDQ0NDQ
-        0IhA0ECIQIjQ0ECI0IiSAP8AAAAAAAAAAEDQ0NDQ0NDQiEDQQIjQQIiIQMjQQEBAkgAAAAAAAAD/QMjQ
-        0NDQ0NCIQNDQQIjQQEDQ0EBAiNBAmv8AAAAAAP9AyNDQ0NDQ0IhA0NDQQECI0NDQQIhA0NBA/wAAAAAA
+        0IhA0ECIQIjQ0ECI0IiSAAAAAAAAAAAAAEDQ0NDQ0NDQiEDQQIjQQIiIQMjQQEBAkgAAAAAAAAAAQMjQ
+        0NDQ0NCIQNDQQIjQQEDQ0EBAiNBAmgAAAAAAAABAyNDQ0NDQ0IhA0NDQQECI0NDQQIhA0NBAAAAAAAAA
         AEDQ0NDQ0NDQiEDQ0NDQiNDQ0NBAiECI0EAAAAAAAAAAQNDQ0NDQ0NCIQNDQ0NCIiNDQ0ECIiECIQAAA
         AAAAAABA0NDQ0NDQ0IhA0NCIiEBAiNDQ0ECIkEBAAAAAAAAAAEDQ0NDQ0NDQiEDQiEBA0NBAiNDQ0EBA
         QNAAAAAAAAAAQNDQ0NDQ0NCIQNBAiEDQ0NBA0NDQ0NDQ0AAAAAAAAABA0NDQ0NDQ0IhA0ECIQMjQ0ECI
@@ -185,12 +194,12 @@
         AAAAAABAQIjQ0NDQ0NDQ0NDQ0NDQiEBAiMgAAAAAAAAAAAAAAAAAQECI0NDQ0NDQ0NDQ0NDQ0NBAQAAA
         AAAAAAAAAAAAAAAAAEBAiNDQ0NDQ0NDQ0IiIQEAAAAAAAAAAAAAAAAAAAAAAAABAQIjQ0NDQ0NCIQEAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAQECI0NCIQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAA
-        AAAAAAAAAAAAAP/n////wf///wB///4AH//4AA//8AAD/+AAAf/gAABf4AAAH8AAAAfAAAAH4AAAD+AA
+        AAAAAAAAAAAAAP/n////wf///wB///4AH//4AA//8AAD/+AAAf/gAAB/4AAAH+AAAA/gAAAP4AAAD+AA
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Einstellungen für Flächenebene </value>
+    <value>Suchen und Ersetzen</value>
   </data>
 </root>
