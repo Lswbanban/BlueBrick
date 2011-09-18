@@ -124,19 +124,15 @@
   <data name="&gt;&gt;cellSizeNumericUpDown.Name" xml:space="preserve">
     <value>cellSizeNumericUpDown</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cellSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 20</value>
-  </data>
   <data name="&gt;&gt;buttonOk.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="alphaNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -144,6 +140,7 @@
   <data name="groupBox3.Text" xml:space="preserve">
     <value>General</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 20</value>
   </data>
@@ -189,41 +186,38 @@
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>494, 95</value>
-  </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="nameTextBox.MaxLength" type="System.Int32, mscorlib">
     <value>256</value>
   </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Cell Size in Studs</value>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>494, 95</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="cellSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 20</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;alphaNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;alphaProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 16</value>
@@ -258,8 +252,8 @@
   <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;alphaNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 110</value>
   </data>
   <data name="&gt;&gt;alphaProgressBar.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -267,8 +261,8 @@
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="isVisibleCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>404, 22</value>
@@ -285,14 +279,14 @@
   <data name="isVisibleCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>LayerAreaOptionForm</value>
+  <data name="isVisibleCheckBox.Text" xml:space="preserve">
+    <value>Visible</value>
   </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 110</value>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Opacity</value>
   </data>
   <data name="isVisibleCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -312,11 +306,20 @@
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>LayerAreaOptionForm</value>
+  </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 9</value>
   </data>
   <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Options for Area Layer</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 23</value>
@@ -329,6 +332,9 @@
   </data>
   <data name="&gt;&gt;alphaNumericUpDown.Parent" xml:space="preserve">
     <value>groupBox3</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Cell Size in Studs</value>
   </data>
   <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -357,8 +363,8 @@
   <data name="&gt;&gt;buttonOk.Name" xml:space="preserve">
     <value>buttonOk</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -381,14 +387,11 @@
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Options for Area Layer</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>441, 60</value>
+  </data>
+  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>101, 20</value>
@@ -399,8 +402,8 @@
   <data name="alphaProgressBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>274, 13</value>
   </data>
-  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="alphaNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;label4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -410,9 +413,6 @@
   </data>
   <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
     <value>427, 172</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -459,11 +459,14 @@
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="isVisibleCheckBox.Text" xml:space="preserve">
-    <value>Visible</value>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;isVisibleCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
     <value>buttonCancel</value>
@@ -479,9 +482,6 @@
   </data>
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Opacity</value>
   </data>
   <data name="&gt;&gt;cellSizeNumericUpDown.Parent" xml:space="preserve">
     <value>groupBox1</value>
