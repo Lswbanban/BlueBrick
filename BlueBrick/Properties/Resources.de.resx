@@ -183,6 +183,12 @@
   <data name="ActionEditText" xml:space="preserve">
     <value>Bearbeite den Text "&amp;"</value>
   </data>
+  <data name="ActionFlexMove" xml:space="preserve">
+    <value>Bewege flexible Steine</value>
+  </data>
+  <data name="ActionGroupItems" xml:space="preserve">
+    <value>Gruppierung</value>
+  </data>
   <data name="ActionHideLayer" xml:space="preserve">
     <value>Verstecke die Ebene "&amp;"</value>
   </data>
@@ -213,6 +219,9 @@
   <data name="ActionRemoveLayer" xml:space="preserve">
     <value>Entferne die Schicht "&amp;"</value>
   </data>
+  <data name="ActionReplaceBrick" xml:space="preserve">
+    <value>Ersetze das Teil &amp;</value>
+  </data>
   <data name="ActionRotateBrick" xml:space="preserve">
     <value>Rotiere das Teil "&amp;"</value>
   </data>
@@ -236,6 +245,9 @@
   </data>
   <data name="ActionShowLayer" xml:space="preserve">
     <value>Zeige die Schicht "&amp;" an</value>
+  </data>
+  <data name="ActionUngroupItems" xml:space="preserve">
+    <value>Gruppierung aufheben</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="aligncentered" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -286,8 +298,14 @@
   <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
     <value>BlueBrick hat ein Problem beim Laden der XML-Dateien aus der Teilebibliothek festgestellt. Dieses Problem kann auftreten wenn eine XML-Datei Syntaxfehler enthält. Um diese Warnung zu beseitigen muss entweder der Syntaxfehler behoben oder die fehlerhafte XML-Datei gelöscht werden. Dieses betrifft folgende Datei(en):</value>
   </data>
+  <data name="ErrorMsgCannotOpenMap" xml:space="preserve">
+    <value>Gleisplan &amp; kann nicht geöffnet werden.</value>
+  </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>Die Objekte der Art &amp; können nicht in die gerade aktivierte Schicht der Art &amp;&amp; eingefügt werden.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveMap" xml:space="preserve">
+    <value>Gleisplan &amp; kann nicht gespeichert werden.</value>
   </data>
   <data name="ErrorMsgConfirmRestoreDefault" xml:space="preserve">
     <value>Willst du wirklich alles auf die Standardeinstellungen zurücksetzen?</value>
@@ -319,6 +337,9 @@ Die Fehlermeldung lautet:</value>
   <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
     <value>Kann die Datei "&amp;" nicht öffnen. Ohne diese Datei können die Farben und Beschreibungen der Teile in der Stückliste nicht richtig dargestellt werden. Für ein korrektes Ergebnis überprüfe bitte die Anwesenheit dieser Datei oder installiere BlueBrick erneut um das problem zu lösen.</value>
   </data>
+  <data name="ErrorMsgMissingConnectionTypeInfoFile" xml:space="preserve">
+    <value>Die Datei "&amp;" kann nicht geöffnet werden. Ohne diese Datei können Teile nicht miteinander verbunden werden. Bitte Existenz dieser Datei überprüfen oder BlueBrick neu installieren um das Problem zu lösen.</value>
+  </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
     <value>Einige Teile wurden nicht richtig geladen, da sie nicht in der Teilenbibliothek gefunden wurden. Einige Ersatzbilder wurden an ihrer Stelle eingefügt. Du solltest den ursprünglichen Autor (&amp;) fragen, wo du sie finden kannst.</value>
   </data>
@@ -346,6 +367,9 @@ Die Fehlermeldung lautet:</value>
   <data name="ErrorMsgTitleWarning" xml:space="preserve">
     <value>Warnung</value>
   </data>
+  <data name="HideDetails" xml:space="preserve">
+    <value>Details ausblenden</value>
+  </data>
   <data name="layerTypeArea" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\newlayerarea.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -366,6 +390,9 @@ Die Fehlermeldung lautet:</value>
   </data>
   <data name="PartLibMenuItemRespectProportion" xml:space="preserve">
     <value>Seitenverhältnis beibehalten</value>
+  </data>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Details einblenden</value>
   </data>
   <data name="SnapGridOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\SnapGridOff.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
