@@ -588,6 +588,11 @@ namespace BlueBrick.MapData
 					else
 						ActionManager.Instance.doAction(new AddText(this, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment, mouseCoordInStud));
 				}
+
+				// reset the flag because the popup a dialog canceled the trigger the mouse up
+				mMouseIsBetweenDownAndUpEvent = false;
+				mMouseMoveWillAddOrEditText = false;
+				mCurrentTextCellUnderMouse = null;
 			}
 
 			return mustRefresh;
