@@ -394,23 +394,6 @@ namespace BlueBrick
 			return getPointCoordInStud(pointInScreenCoord);
 		}
 
-		private void addTextCellAtPosition(PointF position)
-		{
-			// check if a text layer is selected
-			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.GetType().Name == "LayerText"))
-			{
-				// open the edit text dialog in modal
-				EditTextForm editTextForm = new EditTextForm(null);
-				editTextForm.ShowDialog(this.TopLevelControl);
-				if (editTextForm.DialogResult == DialogResult.OK)
-				{
-					LayerText layerInWhichAdd = (Map.Instance.SelectedLayer as LayerText);
-					// add the text cell
-					ActionManager.Instance.doAction(new AddText(layerInWhichAdd, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment, position));
-				}
-			}
-		}
-
 		private void MapPanel_MouseDown(object sender, MouseEventArgs e)
 		{
 			bool mustRefreshView = false;
@@ -458,7 +441,6 @@ namespace BlueBrick
 					{
 						// this is a double click
 						mIsSelectionRectangleOn = false;
-						addTextCellAtPosition(mouseCoordInStud);
 						preferedCursor = Cursors.Arrow;
 					}
 
