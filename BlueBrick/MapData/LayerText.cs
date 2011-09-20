@@ -217,6 +217,7 @@ namespace BlueBrick.MapData
 		private bool mMouseIsBetweenDownAndUpEvent = false;
 		private bool mMouseHasMoved = false;
 		private bool mMouseMoveIsADuplicate = false;
+		private bool mMouseMoveWillAddOrEditText = false;
 		private DuplicateText mLastDuplicateTextAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
 
 		#region set/get
@@ -452,7 +453,7 @@ namespace BlueBrick.MapData
 				if (mMouseMoveIsADuplicate ||
 					(!mMouseHasMoved && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)))
 					return MainForm.Instance.TextDuplicateCursor;
-				else
+				else if (!mMouseMoveWillAddOrEditText)
 					return Cursors.SizeAll;
 			}
 			else
@@ -508,7 +509,7 @@ namespace BlueBrick.MapData
 			// We search if there is a cell under the mouse but in priority we choose from the current selected cells
 			mCurrentTextCellUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as TextCell;
 
-			// if the current selected brick is not under the mouse we search among the other bricks
+			// if the current selected text is not under the mouse we search among the other bricks
 			// but in reverse order to choose first the brick on top
 			if (mCurrentTextCellUnderMouse == null)
 				mCurrentTextCellUnderMouse = getTextCellUnderMouse(mouseCoordInStud);
@@ -520,21 +521,26 @@ namespace BlueBrick.MapData
 									(Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
 
 			// if we move the brick, use 4 directionnal arrows
-			// if there's a brick under the mouse, use the hand
+			// if there's a text under the mouse, use the hand
 			bool willMoveSelectedObject = (isMouseInsideSelectedObjects || (mCurrentTextCellUnderMouse != null))
 											&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
 											&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+			
+			// we will add or edit a text if we double click
+			mMouseMoveWillAddOrEditText = (e.Clicks == 2);
 
 			// select the appropriate cursor:
 			if (mMouseMoveIsADuplicate)
 				preferedCursor = MainForm.Instance.TextDuplicateCursor;
 			else if (willMoveSelectedObject)
 				preferedCursor = Cursors.SizeAll;
+			else if (mMouseMoveWillAddOrEditText)
+				preferedCursor = MainForm.Instance.TextArrowCursor;
 			else if (mCurrentTextCellUnderMouse == null)
 				preferedCursor = Cursors.Cross;
 
-			// handle the mouse down if we duplicate or move the selected texts
-			return (mMouseMoveIsADuplicate || willMoveSelectedObject);
+			// handle the mouse down if we duplicate or move the selected texts, or edit a text
+			return (mMouseMoveIsADuplicate || willMoveSelectedObject || mMouseMoveWillAddOrEditText);
 		}
 
 		/// <summary>
@@ -567,15 +573,20 @@ namespace BlueBrick.MapData
 			mMouseHasMoved = false;
 
 			// if it's a double click, we should prompt a box for text editing
-			if (e.Clicks == 2)
+			if (mMouseMoveWillAddOrEditText)
 			{
 				// open the edit text dialog in modal
 				EditTextForm editTextForm = new EditTextForm(mCurrentTextCellUnderMouse);
 				editTextForm.ShowDialog();
 				if (editTextForm.DialogResult == DialogResult.OK)
 				{
-					ActionManager.Instance.doAction(new EditText(this, mCurrentTextCellUnderMouse, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment));
+					// we need to refresh the view if the user added or edited the text
 					mustRefresh = true;
+					// check if it is an edition of an existing text or a new text
+					if (mCurrentTextCellUnderMouse != null)
+						ActionManager.Instance.doAction(new EditText(this, mCurrentTextCellUnderMouse, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment));
+					else
+						ActionManager.Instance.doAction(new AddText(this, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment, mouseCoordInStud));
 				}
 			}
 
@@ -589,6 +600,8 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud)
 		{
+			mMouseMoveWillAddOrEditText = false;
+
 			if (mSelectedObjects.Count > 0)
 			{
 				// give a second chance to duplicate if the user press the duplicate key
@@ -678,6 +691,7 @@ namespace BlueBrick.MapData
 			}
 
 			mMouseIsBetweenDownAndUpEvent = false;
+			mMouseMoveWillAddOrEditText = false;
 			mCurrentTextCellUnderMouse = null;
 			return true;
 		}
