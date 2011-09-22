@@ -266,14 +266,9 @@ namespace BlueBrick
 				BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey = Keys.Alt;
 				needToSave = true;
 			}
-			if (BlueBrick.Properties.Settings.Default.MouseZoomKey == Keys.None)
+			if (BlueBrick.Properties.Settings.Default.MouseZoomPanKey == Keys.None)
 			{
-				BlueBrick.Properties.Settings.Default.MouseZoomKey = Keys.Control | Keys.Shift;
-				needToSave = true;
-			}
-			if (BlueBrick.Properties.Settings.Default.MousePanKey == Keys.None)
-			{
-				BlueBrick.Properties.Settings.Default.MousePanKey = Keys.Alt | Keys.Shift;
+				BlueBrick.Properties.Settings.Default.MouseZoomPanKey = Keys.Shift;
 				needToSave = true;
 			}
 

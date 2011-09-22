@@ -35,6 +35,18 @@ namespace BlueBrick
 	{
 		#region Fields
 
+		/// <summary>
+		/// This small internal enum is used to avoid duplcation of code in the mouse event handler
+		/// because, you can actually perform one action with different key combination, so the event
+		/// handler can first decide which action to do before writing the code that execute it
+		/// </summary>
+		private enum ActionToDoInMouseEvent
+		{
+			NONE,
+			SCROLL_VIEW,
+			ZOOM_VIEW
+		};
+
 		// scroll position
 		private bool mIsScrolling = false;
 		private Point mLastScrollMousePos = new Point();
@@ -396,6 +408,7 @@ namespace BlueBrick
 
 		private void MapPanel_MouseDown(object sender, MouseEventArgs e)
 		{
+			ActionToDoInMouseEvent actionToDo = ActionToDoInMouseEvent.NONE;
 			bool mustRefreshView = false;
 
 			// take the focus anyway if we clik in the map view
@@ -409,23 +422,14 @@ namespace BlueBrick
 			switch (e.Button)
 			{
 				case MouseButtons.Left:
-					// left button is handle by layers (so give it to the map)
-					if (Control.ModifierKeys == Settings.Default.MouseZoomKey)
-					{
-						// this is the zoom with the keys, not the wheel, save the initial position of the mouse
-						mIsZooming = true;
-						mFirstZoomMousePos = e.Location;
-						mLastZoomMousePos = e.Location;
-					}
-					else if (Control.ModifierKeys == Settings.Default.MousePanKey)
+					if (Control.ModifierKeys == Settings.Default.MouseZoomPanKey)
 					{
 						// this is the pan with the keys, not the wheel
-						mIsScrolling = true;
-						mLastScrollMousePos = e.Location;
-						preferedCursor = Cursors.NoMove2D;
+						actionToDo = ActionToDoInMouseEvent.SCROLL_VIEW;
 					}
 					else if (Map.Instance.handleMouseDown(e, mouseCoordInStud, ref preferedCursor))
 					{
+						// left button is handle by layers (so give it to the map)
 						mustRefreshView = Map.Instance.mouseDown(e, mouseCoordInStud);
 						mIsMouseHandledByMap = true;
 					}
@@ -445,11 +449,30 @@ namespace BlueBrick
 					}
 
 					break;
+
 				case MouseButtons.Middle:
 					// middle button is used to scroll
+					actionToDo = ActionToDoInMouseEvent.SCROLL_VIEW;
+					break;
+
+				case MouseButtons.Right:
+					if (Control.ModifierKeys == Settings.Default.MouseZoomPanKey)
+						actionToDo = ActionToDoInMouseEvent.ZOOM_VIEW;
+					break;
+			}
+
+			switch (actionToDo)
+			{
+				case ActionToDoInMouseEvent.SCROLL_VIEW:
 					mIsScrolling = true;
 					mLastScrollMousePos = e.Location;
 					preferedCursor = Cursors.NoMove2D;
+					break;
+
+				case ActionToDoInMouseEvent.ZOOM_VIEW:
+					mIsZooming = true;
+					mFirstZoomMousePos = e.Location;
+					mLastZoomMousePos = e.Location;
 					break;
 			}
 
@@ -463,6 +486,7 @@ namespace BlueBrick
 
 		private void MapPanel_MouseMove(object sender, MouseEventArgs e)
 		{
+			ActionToDoInMouseEvent actionToDo = ActionToDoInMouseEvent.NONE;
 			bool mustRefreshView = false;
 			PointF mouseCoordInStud = getMouseCoordInStud(e);
 			string statusBarMessage = "(" + mouseCoordInStud.X.ToString("F1") + " / " + mouseCoordInStud.Y.ToString("F1") + ") ";
@@ -491,20 +515,11 @@ namespace BlueBrick
 					}
 					else if (mIsZooming)
 					{
-						int yDiff = e.Y - mLastZoomMousePos.Y;
-						mLastZoomMousePos = e.Location;
-						zoom((float)(1.0f + (yDiff * 4.0f * Settings.Default.WheelMouseZoomSpeed)),
-								Settings.Default.WheelMouseIsZoomOnCursor, mFirstZoomMousePos);
-						// the zoom function already update the view, don't need to set the bool flag here
+						actionToDo = ActionToDoInMouseEvent.ZOOM_VIEW;
 					}
 					else if (mIsScrolling)
 					{
-						mViewCornerX += (mLastScrollMousePos.X - e.X) / mViewScale;
-						mViewCornerY += (mLastScrollMousePos.Y - e.Y) / mViewScale;
-						mLastScrollMousePos.X = e.X;
-						mLastScrollMousePos.Y = e.Y;
-						// update the view continuously
-						mustRefreshView = true;
+						actionToDo = ActionToDoInMouseEvent.SCROLL_VIEW;
 					}
 					else if (e.Clicks == 0)
 					{
@@ -547,18 +562,17 @@ namespace BlueBrick
 						}
 					}
 					break;
+
 				case MouseButtons.Middle:
 					// middle button is used to scroll
-					if (mIsScrolling)
-					{
-						mViewCornerX += (mLastScrollMousePos.X - e.X) / mViewScale;
-						mViewCornerY += (mLastScrollMousePos.Y - e.Y) / mViewScale;
-						mLastScrollMousePos.X = e.X;
-						mLastScrollMousePos.Y = e.Y;
-						// update the view continuously
-						mustRefreshView = true;
-					}
+					actionToDo = ActionToDoInMouseEvent.SCROLL_VIEW;
 					break;
+
+				case MouseButtons.Right:
+					if (mIsZooming)
+						actionToDo = ActionToDoInMouseEvent.ZOOM_VIEW;
+					break;
+
 				case MouseButtons.None:
 					// nothing to do if we didn't move
 					if ((mLastMousePos.X != e.X) || (mLastMousePos.Y != e.Y))
@@ -594,6 +608,26 @@ namespace BlueBrick
 					break;
 			}
 
+			switch (actionToDo)
+			{
+				case ActionToDoInMouseEvent.SCROLL_VIEW:
+					mViewCornerX += (mLastScrollMousePos.X - e.X) / mViewScale;
+					mViewCornerY += (mLastScrollMousePos.Y - e.Y) / mViewScale;
+					mLastScrollMousePos.X = e.X;
+					mLastScrollMousePos.Y = e.Y;
+					// update the view continuously
+					mustRefreshView = true;
+					break;
+
+				case ActionToDoInMouseEvent.ZOOM_VIEW:
+					int yDiff = e.Y - mLastZoomMousePos.Y;
+					mLastZoomMousePos = e.Location;
+					zoom((float)(1.0f + (yDiff * 4.0f * Settings.Default.WheelMouseZoomSpeed)),
+							Settings.Default.WheelMouseIsZoomOnCursor, mFirstZoomMousePos);
+					// the zoom function already update the view, don't need to set the bool flag here
+					break;
+			}
+
 			//display the message in the status bar
 			if ((mLastMousePos.X != e.X) || (mLastMousePos.Y != e.Y))
 				MainForm.Instance.setStatusBarMessage(statusBarMessage);
@@ -611,68 +645,57 @@ namespace BlueBrick
 			bool mustRefreshView = false;
 			PointF mouseCoordInStud = getMouseCoordInStud(e);
 
-			switch (e.Button)
+			// check if we are using a selecion rectangle
+			if (mIsSelectionRectangleOn)
 			{
-				case MouseButtons.Left:
-					// check if we are using a selecion rectangle
-					if (mIsSelectionRectangleOn)
-					{
-						mSelectionRectangle.X = Math.Min(e.X, mSelectionRectangleInitialPosition.X);
-						mSelectionRectangle.Y = Math.Min(e.Y, mSelectionRectangleInitialPosition.Y);
-						mSelectionRectangle.Width = Math.Abs(e.X - mSelectionRectangleInitialPosition.X);
-						mSelectionRectangle.Height = Math.Abs(e.Y - mSelectionRectangleInitialPosition.Y);
+				mSelectionRectangle.X = Math.Min(e.X, mSelectionRectangleInitialPosition.X);
+				mSelectionRectangle.Y = Math.Min(e.Y, mSelectionRectangleInitialPosition.Y);
+				mSelectionRectangle.Width = Math.Abs(e.X - mSelectionRectangleInitialPosition.X);
+				mSelectionRectangle.Height = Math.Abs(e.Y - mSelectionRectangleInitialPosition.Y);
 
-						// compute the new selection rectangle in stud and call the selection on the map
-						PointF topLeftCorner = getScreenPointInStud(mSelectionRectangle.Location);
-						PointF BottomRightCorner = getScreenPointInStud(new Point(mSelectionRectangle.Right, mSelectionRectangle.Bottom));
-						RectangleF selectionRectangeInStud = new RectangleF(topLeftCorner.X, topLeftCorner.Y, BottomRightCorner.X - topLeftCorner.X, BottomRightCorner.Y - topLeftCorner.Y);
-						Map.Instance.selectInRectangle(selectionRectangeInStud);
+				// compute the new selection rectangle in stud and call the selection on the map
+				PointF topLeftCorner = getScreenPointInStud(mSelectionRectangle.Location);
+				PointF BottomRightCorner = getScreenPointInStud(new Point(mSelectionRectangle.Right, mSelectionRectangle.Bottom));
+				RectangleF selectionRectangeInStud = new RectangleF(topLeftCorner.X, topLeftCorner.Y, BottomRightCorner.X - topLeftCorner.X, BottomRightCorner.Y - topLeftCorner.Y);
+				Map.Instance.selectInRectangle(selectionRectangeInStud);
 
-						// delete the selection rectangle
-						mIsSelectionRectangleOn = false;
-						// refresh the view
-						mustRefreshView = true;
-					}
-					else if (mIsMouseHandledByMap)
-					{
-						// left button is handle by layers (so give it to the map)
-						mustRefreshView = Map.Instance.mouseUp(e, mouseCoordInStud);
-						mIsMouseHandledByMap = false;
-					}
-					else if (mIsZooming)
-					{
-						// the zoom is finished
-						mIsZooming = false;
-						// no need to update the view
-					}
-					else if (mIsScrolling)
-					{
-						// the scroll is finished
-						mIsScrolling = false;
-						// update the view at the end of the scroll
-						mustRefreshView = true;
-					}
-					else if (mCurrentPartDrop != null)
-					{
-						// we have finished a dragndrop, remove the temporary part
-						if (mBrickLayerThatReceivePartDrop != null)
-						{
-							mBrickLayerThatReceivePartDrop.removeTemporaryPartDrop(mCurrentPartDrop);
-							mBrickLayerThatReceivePartDrop = null;
-						}
-						// and add the real new part
-						Map.Instance.addBrick(mCurrentPartDrop);
-						(this.TopLevelControl as MainForm).resetSelectedPartInPartLib();
-						mCurrentPartDrop = null;
-						mustRefreshView = true;
-					}
-					break;
-				case MouseButtons.Middle:
-					// middle button is used to scroll
-					mIsScrolling = false;
-					// update the view at the end of the scroll
-					mustRefreshView = true;
-					break;
+				// delete the selection rectangle
+				mIsSelectionRectangleOn = false;
+				// refresh the view
+				mustRefreshView = true;
+			}
+			else if (mIsMouseHandledByMap)
+			{
+				// left button is handle by layers (so give it to the map)
+				mustRefreshView = Map.Instance.mouseUp(e, mouseCoordInStud);
+				mIsMouseHandledByMap = false;
+			}
+			else if (mIsZooming)
+			{
+				// the zoom is finished
+				mIsZooming = false;
+				// no need to update the view
+			}
+			else if (mIsScrolling)
+			{
+				// the scroll is finished
+				mIsScrolling = false;
+				// update the view at the end of the scroll
+				mustRefreshView = true;
+			}
+			else if (mCurrentPartDrop != null)
+			{
+				// we have finished a dragndrop, remove the temporary part
+				if (mBrickLayerThatReceivePartDrop != null)
+				{
+					mBrickLayerThatReceivePartDrop.removeTemporaryPartDrop(mCurrentPartDrop);
+					mBrickLayerThatReceivePartDrop = null;
+				}
+				// and add the real new part
+				Map.Instance.addBrick(mCurrentPartDrop);
+				(this.TopLevelControl as MainForm).resetSelectedPartInPartLib();
+				mCurrentPartDrop = null;
+				mustRefreshView = true;
 			}
 
 			// restore the default cursor
@@ -750,21 +773,29 @@ namespace BlueBrick
 
 		private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			bool enableItemRelatedToSelection = ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0));
-			this.bringToFrontToolStripMenuItem.Enabled = enableItemRelatedToSelection;
-			this.sendToBackToolStripMenuItem.Enabled = enableItemRelatedToSelection;
-			this.deselectAllToolStripMenuItem.Enabled = enableItemRelatedToSelection;
-		    this.selectPathToolStripMenuItem.Enabled = ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count == 2));
-            if (Map.Instance.SelectedLayer != null)
-            {
-                this.groupToolStripMenuItem.Enabled = Actions.Items.GroupItems.findItemsToGroup(Map.Instance.SelectedLayer.SelectedObjects).Count > 1;
-                this.ungroupToolStripMenuItem.Enabled = Actions.Items.UngroupItems.findItemsToUngroup(Map.Instance.SelectedLayer.SelectedObjects).Count > 0;
-            }
-            else
-            {
-                this.groupToolStripMenuItem.Enabled = false;
-                this.ungroupToolStripMenuItem.Enabled = false;
-            }
+			// if the zoom modifier key is pressed, cancel the opening of the context menu
+			if (mIsZooming || (Control.ModifierKeys == Settings.Default.MouseZoomPanKey))
+			{
+				e.Cancel = true;
+			}
+			else
+			{
+				bool enableItemRelatedToSelection = ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0));
+				this.bringToFrontToolStripMenuItem.Enabled = enableItemRelatedToSelection;
+				this.sendToBackToolStripMenuItem.Enabled = enableItemRelatedToSelection;
+				this.deselectAllToolStripMenuItem.Enabled = enableItemRelatedToSelection;
+				this.selectPathToolStripMenuItem.Enabled = ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count == 2));
+				if (Map.Instance.SelectedLayer != null)
+				{
+					this.groupToolStripMenuItem.Enabled = Actions.Items.GroupItems.findItemsToGroup(Map.Instance.SelectedLayer.SelectedObjects).Count > 1;
+					this.ungroupToolStripMenuItem.Enabled = Actions.Items.UngroupItems.findItemsToUngroup(Map.Instance.SelectedLayer.SelectedObjects).Count > 0;
+				}
+				else
+				{
+					this.groupToolStripMenuItem.Enabled = false;
+					this.ungroupToolStripMenuItem.Enabled = false;
+				}
+			}
 		}
 		#endregion
 

@@ -50,10 +50,7 @@
     <Setting Name="MouseMultipleSelectionKey" Type="System.Windows.Forms.Keys" Scope="User">
       <Value Profile="(Default)">None</Value>
     </Setting>
-    <Setting Name="MouseZoomKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">None</Value>
-    </Setting>
-    <Setting Name="MousePanKey" Type="System.Windows.Forms.Keys" Scope="User">
+    <Setting Name="MouseZoomPanKey" Type="System.Windows.Forms.Keys" Scope="User">
       <Value Profile="(Default)">None</Value>
     </Setting>
     <Setting Name="DefaultGridSize" Type="System.Int32" Scope="User">
