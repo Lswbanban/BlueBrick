@@ -218,24 +218,12 @@ namespace BlueBrick.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("None")]
-        public global::System.Windows.Forms.Keys MouseZoomKey {
+        public global::System.Windows.Forms.Keys MouseZoomPanKey {
             get {
-                return ((global::System.Windows.Forms.Keys)(this["MouseZoomKey"]));
+                return ((global::System.Windows.Forms.Keys)(this["MouseZoomPanKey"]));
             }
             set {
-                this["MouseZoomKey"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("None")]
-        public global::System.Windows.Forms.Keys MousePanKey {
-            get {
-                return ((global::System.Windows.Forms.Keys)(this["MousePanKey"]));
-            }
-            set {
-                this["MousePanKey"] = value;
+                this["MouseZoomPanKey"] = value;
             }
         }
         

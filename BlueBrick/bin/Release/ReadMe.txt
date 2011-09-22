@@ -50,7 +50,6 @@ Open bugs:
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Slide bars on the map view?
-- MISSING FEATURE (Alban): Propose a new configurable zooming/panning method for laptop
 - [target 1.8] BUG (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should replace it (and the selection should modify the combo boxes)
 - [target 1.8] BUG (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
@@ -76,6 +75,7 @@ Bug fixed in 1.7.0.0:
 - NEW FEATURE (Larry): Save the export image settings in the BBM file.
 - NEW FEATURE (Alban): You can group/ungroup hierarchically parts and texts.
 - NEW FEATURE (Larry): You can create XML files that are actually groups of parts and see them in the Library
+- NEW FEATURE (Alban): New secondary zooming/panning method much easier for laptop, that replace CTRL+SHIFT+LMB and ALT+SHIFT+LMB. Now it is SHIFT+LMB and SHIFT+RMB. Mouse Wheel still supported.
 - BUGFIX (Larry): CRASH! when opening a BBM file which is write protected.
 - BUGFIX (Larry): Remove the offset when copying parts (was handy before, but now seems a bit odd)
 - BUGFIX (Larry): The copy/paste of a group of bricks or text didn't copy in the same order
