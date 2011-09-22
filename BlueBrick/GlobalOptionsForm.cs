@@ -75,6 +75,9 @@ namespace BlueBrick
 		// flag for the main application
 		private bool mDoesNeedToRestart = false;
 
+		// the zoom pan key doesn't have control to edit it, it is deducted from the edition of the multi select key and duplicate key
+		private int mZoomPanKeySelectedIndex = 0;
+
 		#region properties
 		public bool DoesNeedToRestart
 		{
@@ -418,6 +421,14 @@ namespace BlueBrick
 				case 1: Settings.Default.MouseDuplicateSelectionKey = Keys.Alt; break;
 				case 2: Settings.Default.MouseDuplicateSelectionKey = Keys.Shift; break;
 			}
+
+			// zoompan
+			switch (mZoomPanKeySelectedIndex)
+			{
+				case 0: Settings.Default.MouseZoomPanKey = Keys.Control; break;
+				case 1: Settings.Default.MouseZoomPanKey = Keys.Alt; break;
+				case 2: Settings.Default.MouseZoomPanKey = Keys.Shift; break;
+			}
 		}
 
 		private void languageComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -449,28 +460,45 @@ namespace BlueBrick
 			Resources.Culture = previousCultureInfo;
 		}
 
+		/// <summary>
+		/// Return the third value among {0, 1, 2} which is not one of the two specified
+		/// </summary>
+		/// <param name="firstOne">a value among {0, 1, 2}</param>
+		/// <param name="secondOne">a value among {0, 1, 2}</param>
+		/// <returns></returns>
+		private int getTheThirdOne(int firstOne, int secondOne)
+		{
+			int thirdOne = 0;
+
+			switch (firstOne)
+			{
+				case 0: thirdOne = (secondOne == 1) ? 2 : 1; break;
+				case 1: thirdOne = (secondOne == 0) ? 2 : 0; break;
+				case 2: thirdOne = (secondOne == 1) ? 0 : 1; break;
+			}
+			return thirdOne;
+		}
+
 		private void mouseDuplicateSelKeyComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			// avoid to have the multiple selection and the duplicate on the same key
+			// avoid to have the multiple selection, the duplicate and the zoompan on the same key
+			// we are in the event of the duplicate key, so don't change this one,
+			// change one of the two others.
 			if (this.mouseDuplicateSelKeyComboBox.SelectedIndex == this.mouseMultipleSelKeyComboBox.SelectedIndex)
-			{
-				if (this.mouseMultipleSelKeyComboBox.SelectedIndex == 2)
-					this.mouseMultipleSelKeyComboBox.SelectedIndex = 0;
-				else
-					this.mouseMultipleSelKeyComboBox.SelectedIndex = this.mouseMultipleSelKeyComboBox.SelectedIndex + 1;
-			}
+				this.mouseMultipleSelKeyComboBox.SelectedIndex = getTheThirdOne(this.mouseDuplicateSelKeyComboBox.SelectedIndex, mZoomPanKeySelectedIndex);
+			else
+				mZoomPanKeySelectedIndex = getTheThirdOne(this.mouseDuplicateSelKeyComboBox.SelectedIndex, this.mouseMultipleSelKeyComboBox.SelectedIndex);
 		}
 
 		private void mouseMultipleSelKeyComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			// avoid to have the multiple selection and the duplicate on the same key
+			// avoid to have the multiple selection, the duplicate and the zoompan on the same key
+			// we are in the event of the multiple select key, so don't change this one,
+			// change one of the two others.
 			if (this.mouseMultipleSelKeyComboBox.SelectedIndex == this.mouseDuplicateSelKeyComboBox.SelectedIndex)
-			{
-				if (this.mouseDuplicateSelKeyComboBox.SelectedIndex == 2)
-					this.mouseDuplicateSelKeyComboBox.SelectedIndex = 0;
-				else
-					this.mouseDuplicateSelKeyComboBox.SelectedIndex = this.mouseDuplicateSelKeyComboBox.SelectedIndex + 1;
-			}
+				this.mouseDuplicateSelKeyComboBox.SelectedIndex = getTheThirdOne(this.mouseMultipleSelKeyComboBox.SelectedIndex, mZoomPanKeySelectedIndex);
+			else
+				mZoomPanKeySelectedIndex = getTheThirdOne(this.mouseMultipleSelKeyComboBox.SelectedIndex, this.mouseDuplicateSelKeyComboBox.SelectedIndex);
 		}
 
 		private void fillAndSelectMultipleAndDuplicateSelectionKeyComboBox()
@@ -489,6 +517,14 @@ namespace BlueBrick
 				case Keys.Control: this.mouseDuplicateSelKeyComboBox.SelectedIndex = 0; break;
 				case Keys.Alt: this.mouseDuplicateSelKeyComboBox.SelectedIndex = 1; break;
 				case Keys.Shift: this.mouseDuplicateSelKeyComboBox.SelectedIndex = 2; break;
+			}
+
+			// select the correct index for zoompan
+			switch (Settings.Default.MouseZoomPanKey)
+			{
+				case Keys.Control: mZoomPanKeySelectedIndex = 0; break;
+				case Keys.Alt: mZoomPanKeySelectedIndex = 1; break;
+				case Keys.Shift: mZoomPanKeySelectedIndex = 2; break;
 			}
 		}
 
