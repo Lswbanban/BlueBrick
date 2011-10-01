@@ -517,6 +517,6 @@ por defecto (en studs)</value>
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Opciones de BlueBrick</value>
+    <value>Preferencias de BlueBrick</value>
   </data>
 </root>
