@@ -187,10 +187,10 @@ kan brukes</value>
     <value>Opphavsperson</value>
   </data>
   <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 17</value>
+    <value>178, 17</value>
   </data>
   <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
-    <value>Legg til et brikke-lag på nytt kart</value>
+    <value>Legg til et klosse-lag på nytt kart</value>
   </data>
   <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 17</value>
@@ -256,7 +256,7 @@ kan brukes</value>
     <value>Standard rutenett-størrelse</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
-    <value>Standard antall underavdelinger</value>
+    <value>Standard antall undernivåer</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Standard rutenett-størrelse (studs)</value>
@@ -280,10 +280,10 @@ kan brukes</value>
     <value>Vis vannmerke med generell informasjon</value>
   </data>
   <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 17</value>
+    <value>166, 17</value>
   </data>
   <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
-    <value>Vis frie forbindelsespunkter</value>
+    <value>Vis ledige forbindelsespunkter</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Farge på valgt del</value>
@@ -301,7 +301,7 @@ kan brukes</value>
     <value>236, 92</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>Standard farge på under-rutenett</value>
+    <value>Standard farge på underliggende rutenett</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Standard farge på rutenett</value>
@@ -325,7 +325,7 @@ kan brukes</value>
     <value>Bakgrunnsfarge på delebibliotek</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
-    <value>Pop-up-boble</value>
+    <value>Tips-boble</value>
   </data>
   <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 17</value>
@@ -346,10 +346,10 @@ kan brukes</value>
     <value>Delens ID</value>
   </data>
   <data name="displayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 17</value>
+    <value>123, 17</value>
   </data>
   <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
-    <value>Innhold i pop-up-boblen:</value>
+    <value>Innhold i tips-boblen:</value>
   </data>
   <data name="groupBox11.Text" xml:space="preserve">
     <value>Tabulatorrekkefølge</value>
@@ -407,67 +407,64 @@ snarvei</value>
     <value>Mellomrom</value>
   </data>
   <data name="comboBoxKey.Items37" xml:space="preserve">
-    <value>0 på numerisk tastatur</value>
+    <value>0 (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items38" xml:space="preserve">
-    <value>1 på numerisk tastatur</value>
+    <value>1 (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items39" xml:space="preserve">
-    <value>2 på numerisk tastatur</value>
+    <value>2 (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items40" xml:space="preserve">
-    <value>3 på numerisk tastatur</value>
+    <value>3 (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items41" xml:space="preserve">
-    <value>4 på numerisk tastatur</value>
+    <value>4 (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items42" xml:space="preserve">
-    <value>5 på numerisk tastatur</value>
+    <value>5 (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items43" xml:space="preserve">
-    <value>6 på numerisk tastatur</value>
+    <value>6 (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items44" xml:space="preserve">
-    <value>7 på numerisk tastatur</value>
+    <value>7 (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items45" xml:space="preserve">
-    <value>8 på numerisk tastatur</value>
+    <value>8 (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items46" xml:space="preserve">
-    <value>9 på numerisk tastatur</value>
+    <value>9 (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items47" xml:space="preserve">
-    <value>/ på numerisk tastatur</value>
+    <value>/ (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items48" xml:space="preserve">
-    <value>* på numerisk tastatur</value>
+    <value>* (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items49" xml:space="preserve">
-    <value>- på numerisk tastatur</value>
+    <value>- (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items50" xml:space="preserve">
-    <value>+ på numerisk tastatur</value>
+    <value>+ (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items51" xml:space="preserve">
-    <value>. på numerisk tastatur</value>
+    <value>. (på Num Pad)</value>
   </data>
   <data name="comboBoxKey.Items65" xml:space="preserve">
     <value>Tilbake</value>
   </data>
   <data name="comboBoxKey.Items67" xml:space="preserve">
-    <value>Venstre piltast</value>
+    <value>Venstre pil</value>
   </data>
   <data name="comboBoxKey.Items68" xml:space="preserve">
-    <value>Høyre piltast</value>
+    <value>Høyre pil</value>
   </data>
   <data name="comboBoxKey.Items69" xml:space="preserve">
-    <value>Oppover-piltast</value>
+    <value>Oppoverpil</value>
   </data>
   <data name="comboBoxKey.Items70" xml:space="preserve">
-    <value>Nedover-piltast</value>
-  </data>
-  <data name="comboBoxKey.Items74" xml:space="preserve">
-    <value>Endre skrifttype</value>
+    <value>Nedoverpil</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>230, 13</value>

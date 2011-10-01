@@ -124,7 +124,7 @@
   <data name="label1.Text" xml:space="preserve">
     <value>BlueBrick trenger å laste ned noen filer fra internett. I listen under kan du sjekke filenes webadresser og hvor de vil legge seg på datamaskinen din. Noen av filene kan du hoppe over ved å velge dem bort. Trykk på "Start nedlasting" når du er klar. Pass på at du er koblet til internett og at BlueBrick slipper gjennom brannmuren.
 
-Hvis du heller foretrekker det kan du lukke dette vinduet, laste ned filene ved hjelp av nettleseren din og så kopiere dem til de riktige mappene (i henhold til mappen BlueBrick Install Folder).</value>
+Hvis du heller foretrekker det kan du lukke dette vinduet, laste ned filene ved hjelp av nettleseren din og så kopiere dem til riktig mappe (i henhold til mappen BlueBrick Install Folder).</value>
   </data>
   <data name="StartButton.Text" xml:space="preserve">
     <value>Start nedlasting</value>
