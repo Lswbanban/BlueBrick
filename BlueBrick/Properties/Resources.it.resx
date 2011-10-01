@@ -281,7 +281,7 @@
 Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favore, inoltra questo problema a banban@lswproject.com. Il messaggio di errore è:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
-    <value>Hai cambiato il linguaggio, ma la modifica sarà effettiva la prossima volta che lancerai l'applicazione.</value>
+    <value>Hai cambiato il linguaggio, ma la modifica sarà effettiva la prossima volta che lancerai l'applicazione. Do you want to restart now?</value>
   </data>
   <data name="ErrorMsgLayerTypeArea" xml:space="preserve">
     <value>Area</value>
