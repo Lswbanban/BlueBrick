@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Aussehen</value>
+  </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Teilebibliothek</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Tastenkürzel</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Zuletzt benutzte Dateien</value>
+  </data>
   <data name="clearRecentFilesButton.Text" xml:space="preserve">
     <value>Liste der zuletzt benutzten Dateien leeren</value>
   </data>
@@ -124,8 +139,8 @@
     <value>Anzahl der zuletzt
 benutzten Dateien</value>
   </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Zuletzt benutzte Dateien</value>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Leistung</value>
   </data>
   <data name="optimComboBox.Items" xml:space="preserve">
     <value>Schneller</value>
@@ -152,8 +167,8 @@ benutzten Dateien</value>
   <data name="label11.Text" xml:space="preserve">
     <value>Speicher / Geschwindigkeit Ausgleich</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Leistung</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Rückgängig / Wiederherstellen</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Je mehr "Rückgängige" Schritte gespeichert werden, umso mehr Speicher wird verbraucht.</value>
@@ -176,8 +191,8 @@ benutzten Dateien</value>
   <data name="label8.Text" xml:space="preserve">
     <value>Anzahl der gespeicherten, Rückgängigen Schritte.</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Rückgängig / Wiederherstellen</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Standardeinstellungen für neue Karten</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 137</value>
@@ -203,8 +218,8 @@ benutzten Dateien</value>
   <data name="addGridLayerCheckBox.Text" xml:space="preserve">
     <value>Füge eine Rasterebene auf der neuen Karte hinzu</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Standardeinstellungen für neue Karten</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Maus</value>
   </data>
   <data name="mouseDuplicateSelKeyComboBox.Items" xml:space="preserve">
     <value>Strg</value>
@@ -251,8 +266,8 @@ benutzten Dateien</value>
   <data name="label3.Text" xml:space="preserve">
     <value>Mausrad Vergrößerungstempo</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Maus</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Sprache</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Wenn die Sprache geändert wird, muss die Anwendung neu gestartet werden
@@ -261,11 +276,8 @@ um die Änderung auszuführen.</value>
   <data name="label1.Text" xml:space="preserve">
     <value>Sprache</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Sprache</value>
-  </data>
-  <data name="generalTabPage.Text" xml:space="preserve">
-    <value>Allgemein</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Standard Aussehen der Flächen</value>
   </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 47</value>
@@ -277,10 +289,10 @@ um die Änderung auszuführen.</value>
     <value>Standard Zellenflächengröße (in Noppen)</value>
   </data>
   <data name="label28.Text" xml:space="preserve">
-    <value>Standard Opazität (in %)</value>
+    <value>Standard Intransparenz (in %)</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Standard Aussehen der Flächen</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Standard Rasterweite</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Standard Anzahl der Unterteilungen</value>
@@ -288,8 +300,8 @@ um die Änderung auszuführen.</value>
   <data name="label21.Text" xml:space="preserve">
     <value>Standard Rasterweite (in Noppen)</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Standard Rasterweite</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Standard Textformat</value>
   </data>
   <data name="defaultFontNameLabel.Text" xml:space="preserve">
     <value>Schriftartname</value>
@@ -300,8 +312,8 @@ um die Änderung auszuführen.</value>
   <data name="defaultFontButton.Text" xml:space="preserve">
     <value>Schriftart wechseln</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Standard Textformat</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Farben</value>
   </data>
   <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
     <value>Gleisplaninformationen unten rechts anzeigen</value>
@@ -355,17 +367,14 @@ des geführten Teils</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Farbschema</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Farben</value>
-  </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
+  <data name="groupBox13.Text" xml:space="preserve">
     <value>Aussehen</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Hintergrundfarbe der Teilebibliothek</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>Aussehen</value>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Pop-up-Info</value>
   </data>
   <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 17</value>
@@ -391,8 +400,8 @@ des geführten Teils</value>
   <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
     <value>Inhalt der Pop-up-Info:</value>
   </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Pop-up-Info</value>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Reihenfolge Karteireiter</value>
   </data>
   <data name="alphabeticOrderButton.Text" xml:space="preserve">
     <value>Alphabetische Reihenfolge</value>
@@ -402,12 +411,6 @@ des geführten Teils</value>
   </data>
   <data name="MoveUpButton.Text" xml:space="preserve">
     <value>Nach oben schieben</value>
-  </data>
-  <data name="groupBox11.Text" xml:space="preserve">
-    <value>Reihenfolge Karteireiter</value>
-  </data>
-  <data name="partLibTabPage.Text" xml:space="preserve">
-    <value>Teilebibliothek</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Um Tastenkürzel zu entfernen, wähle sie in der Liste aus und drücke dann auf diese Taste.</value>
@@ -559,9 +562,6 @@ des geführten Teils</value>
   <data name="Connection.Text" xml:space="preserve">
     <value>Verbindung</value>
   </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Tastenkürzel</value>
-  </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
@@ -611,6 +611,6 @@ des geführten Teils</value>
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>BlueBrick Optionen</value>
+    <value>BlueBrick Einstellungen</value>
   </data>
 </root>
