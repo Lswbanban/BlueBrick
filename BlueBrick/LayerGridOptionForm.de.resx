@@ -209,7 +209,7 @@
     <value>Abbrechen</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Opazität</value>
+    <value>Intransparenz</value>
   </data>
   <data name="isVisibleCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 17</value>

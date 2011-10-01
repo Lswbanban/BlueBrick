@@ -137,7 +137,7 @@
     <value>Name der Ebene</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Opazität</value>
+    <value>Intransparenz</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Allgemein</value>
