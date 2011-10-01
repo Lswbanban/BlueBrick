@@ -117,29 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="generalTabPage.Text" xml:space="preserve">
-    <value>Allmänt</value>
-  </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
-    <value>Utseende</value>
-  </data>
-  <data name="partLibTabPage.Text" xml:space="preserve">
-    <value>Kloss-bibliotek</value>
-  </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Kortkommandon</value>
-  </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Senast använda filer</value>
-  </data>
   <data name="clearRecentFilesButton.Text" xml:space="preserve">
     <value>Töm senast använda filer</value>
   </data>
   <data name="label23.Text" xml:space="preserve">
     <value>Antal senast använda filer</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Prestanda</value>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Senast använda filer</value>
   </data>
   <data name="optimComboBox.Items" xml:space="preserve">
     <value>Snabbare</value>
@@ -153,8 +138,8 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Minne/Hastighet</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Ångra/Upprepa</value>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Prestanda</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Ju fler gånger du vill kunna ångra, desto mer minne kommer programmet behöva.</value>
@@ -165,8 +150,8 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Antal Ångra-steg</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Ny layout,Standardinställningar</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Ångra/Upprepa</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Skapad av</value>
@@ -184,8 +169,8 @@
   <data name="addGridLayerCheckBox.Text" xml:space="preserve">
     <value>Lägg till rutnätslager på ny layout</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Mus</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Ny layout,Standardinställningar</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Kopiera Markering</value>
@@ -202,8 +187,8 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Zoom-hastighet</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Språk</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Mus</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Om Du ändrar språk, behöver Du starta om programmet för att ändringarna ska träda i kraft.</value>
@@ -211,8 +196,11 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Språk</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Standardutseende område</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Språk</value>
+  </data>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Allmänt</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>Standardstorlek ruta (knoppar)</value>
@@ -220,8 +208,8 @@
   <data name="label28.Text" xml:space="preserve">
     <value>Standard Genomskinlighet (i %)</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Standardstorlek rutnät</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Standardutseende område</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Antal undernivåer standard</value>
@@ -229,8 +217,8 @@
   <data name="label21.Text" xml:space="preserve">
     <value>Standardstorlek rutnät (knoppar)</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Standardtextformat</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Standardstorlek rutnät</value>
   </data>
   <data name="defaultFontNameLabel.Text" xml:space="preserve">
     <value>Teckensnitt</value>
@@ -241,8 +229,8 @@
   <data name="defaultFontButton.Text" xml:space="preserve">
     <value>Ändra teckensnitt</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Färger</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Standardtextformat</value>
   </data>
   <data name="displayGeneralInfoWatermarkCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 41</value>
@@ -287,14 +275,17 @@ underliggande rutnät</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Färgschema</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Färger</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
     <value>Utseende</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Bakgrundsfärg på kloss-bibliotek</value>
   </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Hjälpruta</value>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>Utseende</value>
   </data>
   <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 17</value>
@@ -320,8 +311,8 @@ underliggande rutnät</value>
   <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
     <value>Innehåll i hjälpruta:</value>
   </data>
-  <data name="groupBox11.Text" xml:space="preserve">
-    <value>Tab-ordning</value>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Hjälpruta</value>
   </data>
   <data name="alphabeticOrderButton.Text" xml:space="preserve">
     <value>Alfabetisk ordning</value>
@@ -331,6 +322,12 @@ underliggande rutnät</value>
   </data>
   <data name="MoveUpButton.Text" xml:space="preserve">
     <value>Flytta upp</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Tab-ordning</value>
+  </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Kloss-bibliotek</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>För att ta bort kortkommando, välj kommando i listan och klicka här:</value>
@@ -384,6 +381,51 @@ kortkommando</value>
   <data name="comboBoxKey.Items36" xml:space="preserve">
     <value>Blanksteg</value>
   </data>
+  <data name="comboBoxKey.Items37" xml:space="preserve">
+    <value>0 (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items38" xml:space="preserve">
+    <value>1 (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items39" xml:space="preserve">
+    <value>2 (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items40" xml:space="preserve">
+    <value>3 (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items41" xml:space="preserve">
+    <value>4 (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items42" xml:space="preserve">
+    <value>5 (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items43" xml:space="preserve">
+    <value>6 (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items44" xml:space="preserve">
+    <value>7 (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items45" xml:space="preserve">
+    <value>8 (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items46" xml:space="preserve">
+    <value>9 (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items47" xml:space="preserve">
+    <value>/ (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items48" xml:space="preserve">
+    <value>* (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items49" xml:space="preserve">
+    <value>- (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items50" xml:space="preserve">
+    <value>+ (Num)</value>
+  </data>
+  <data name="comboBoxKey.Items51" xml:space="preserve">
+    <value>. (Num)</value>
+  </data>
   <data name="comboBoxKey.Items67" xml:space="preserve">
     <value>Vänsterpil</value>
   </data>
@@ -413,6 +455,9 @@ kortkommando</value>
   </data>
   <data name="Connection.Text" xml:space="preserve">
     <value>Förbindelse</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Kortkommandon</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Avbryt</value>
@@ -466,6 +511,6 @@ kortkommando</value>
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Alternativ</value>
+    <value>Bluebrick - Inställningar</value>
   </data>
 </root>
