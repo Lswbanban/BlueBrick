@@ -121,13 +121,13 @@
     <value>Fargelegg område</value>
   </data>
   <data name="ActionAddBrick" xml:space="preserve">
-    <value>Legg til delen &amp;</value>
+    <value>Legg til delen "&amp;"</value>
   </data>
   <data name="ActionAddLayerArea" xml:space="preserve">
     <value>Legg til område-lag</value>
   </data>
   <data name="ActionAddLayerBrick" xml:space="preserve">
-    <value>Legg til brikke-lag</value>
+    <value>Legg til klosse-lag</value>
   </data>
   <data name="ActionAddLayerGrid" xml:space="preserve">
     <value>Legg til rutenett-lag</value>
@@ -139,10 +139,10 @@
     <value>Legg til ny tekst</value>
   </data>
   <data name="ActionBringBrickToFront" xml:space="preserve">
-    <value>Flytt valgte brikker øverst</value>
+    <value>Legg valgte klosser øverst</value>
   </data>
   <data name="ActionBringTextToFront" xml:space="preserve">
-    <value>Flytt valgt tekst øverst</value>
+    <value>Legg valgt tekst øverst</value>
   </data>
   <data name="ActionChangeBackgroundColor" xml:space="preserve">
     <value>Endre bakgrunnsfarge</value>
@@ -157,7 +157,7 @@
     <value>Fjern område</value>
   </data>
   <data name="ActionDeleteBrick" xml:space="preserve">
-    <value>Fjern delen &amp;</value>
+    <value>Fjern delen "&amp;"</value>
   </data>
   <data name="ActionDeleteSeveralBricks" xml:space="preserve">
     <value>Fjern flere deler</value>
@@ -169,7 +169,7 @@
     <value>Fjern teksten "&amp;"</value>
   </data>
   <data name="ActionDuplicateBrick" xml:space="preserve">
-    <value>Duplisér delen &amp;</value>
+    <value>Duplisér delen "&amp;"</value>
   </data>
   <data name="ActionDuplicateSeveralBricks" xml:space="preserve">
     <value>Duplisér flere deler</value>
@@ -193,7 +193,7 @@
     <value>Flytt områder</value>
   </data>
   <data name="ActionMoveBrick" xml:space="preserve">
-    <value>Flytt delen &amp;</value>
+    <value>Flytt delen "&amp;"</value>
   </data>
   <data name="ActionMoveGridOrigin" xml:space="preserve">
     <value>Flytt utgangspunkt for rutenettet</value>
@@ -217,10 +217,10 @@
     <value>Fjern laget "&amp;"</value>
   </data>
   <data name="ActionReplaceBrick" xml:space="preserve">
-    <value>Bytt ut delen &amp;</value>
+    <value>Bytt ut delen "&amp;"</value>
   </data>
   <data name="ActionRotateBrick" xml:space="preserve">
-    <value>Rotér delen &amp;</value>
+    <value>Rotér delen "&amp;"</value>
   </data>
   <data name="ActionRotateSeveralBricks" xml:space="preserve">
     <value>Rotér flere deler</value>
@@ -235,10 +235,10 @@
     <value>Velg laget "&amp;"</value>
   </data>
   <data name="ActionSendBrickToBack" xml:space="preserve">
-    <value>Send valgte brikker bakover</value>
+    <value>Legg valgte klosser underst</value>
   </data>
   <data name="ActionSendTextToBack" xml:space="preserve">
-    <value>Send valgte tekster bakover</value>
+    <value>Legg valgte tekster underst</value>
   </data>
   <data name="ActionShowLayer" xml:space="preserve">
     <value>Vis laget "&amp;"</value>
@@ -290,7 +290,7 @@
     <value>Du har endret enkelte standardinnstillinger. De nye innstillingene vil bli brukt når du lager nye kart, men vil du også bruke disse innstillingene på det gjeldende kartet?</value>
   </data>
   <data name="ErrorMsgCanNotLoadImage" xml:space="preserve">
-    <value>BlueBrick har problemer med å hente bilder fra dele-databasen. Bildet eller bildene er blitt ignorert. Disse problemene kan oppstå hvis et bilde er ødelagt eller for stort. Fjern bildet eller bildene fra databasen for å fjerne denne advarselen. Bildet eller bildene er:</value>
+    <value>BlueBrick har problemer med å hente bilder fra databasen. Bildet eller bildene er blitt ignorert. Disse problemene kan oppstå hvis et bilde er ødelagt eller for stort. Fjern bildet eller bildene fra databasen for å fjerne denne advarselen. Bildet eller bildene er:</value>
   </data>
   <data name="ErrorMsgCanNotLoadPartXML" xml:space="preserve">
     <value>BlueBrick har problemer med å hente XML-filer fra dele-databasen. XML-filen(e) er blitt ignorert. Disse problemene kan oppstå hvis en XML-fil inneholder syntaksfeil. Reparér syntaksfeilen eller fjern filen(e) fra databasen for å fjerne denne advarselen. Filen(e) er:</value>
@@ -317,7 +317,7 @@
     <value>Område</value>
   </data>
   <data name="ErrorMsgLayerTypeBrick" xml:space="preserve">
-    <value>Brikker</value>
+    <value>Kloss</value>
   </data>
   <data name="ErrorMsgLayerTypeGrid" xml:space="preserve">
     <value>Rutenett</value>
@@ -344,7 +344,7 @@
     <value>BlueBrick kan ikke finne hjelpefilen "BlueBrick.chm" som skal være i installasjonsmappen. Å installere BlueBrick på nytt kan løse problemet.</value>
   </data>
   <data name="ErrorMsgNotSavingInBBM" xml:space="preserve">
-    <value>Formatet du har valgt kan ikke brukes til å lagre all informasjon i din layout. Rutenett-, område- og tekstinformasjon vil gå tapt. Bare standardformatet BBM kan lagre all informasjon. Vil du fortsette likevel?</value>
+    <value>Formatet du har valgt kan ikke brukes til å lagre all informasjon i din layout. Rutenett-, område- og tekstinformasjon vil gå tapt. Bare BBM-formatet kan lagre all informasjon. Vil du fortsette likevel?</value>
   </data>
   <data name="ErrorMsgOldTDFile" xml:space="preserve">
     <value>Beklager, Track Designer-filen du prøver å laste har et gammelt filformat. For å løse dette problemet kan du åpne filen i Track Designer, og lagre den på nytt. Da burde du kunne laste den i BlueBrick.</value>
@@ -380,7 +380,7 @@
     <value>..\icons\PartForOptionPreview.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
-    <value>Pop-up-informasjon</value>
+    <value>Tips-boble</value>
   </data>
   <data name="PartLibMenuItemLargeIcons" xml:space="preserve">
     <value>Store ikoner</value>
@@ -407,6 +407,6 @@
     <value>Ukjent</value>
   </data>
   <data name="ActionFlexMove" xml:space="preserve">
-    <value>Flytt fleksible brikker</value>
+    <value>Flytt fleksible klosser</value>
   </data>
 </root>
