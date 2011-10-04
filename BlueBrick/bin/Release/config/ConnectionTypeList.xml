@@ -40,10 +40,15 @@
 			<ColorARGB>FFFFA746</ColorARGB>
 			<Size>1</Size>
 		</ConnectionType>
-    <ConnectionType name="threequarterhinge">
-      <ColorARGB>77000000</ColorARGB>
-      <Size>0.5</Size>
-      <HingeAngle>90</HingeAngle>
-    </ConnectionType>
+		<ConnectionType name="threequarterhinge">
+			<ColorARGB>77000000</ColorARGB>
+			<Size>0.5</Size>
+			<HingeAngle>90</HingeAngle>
+		</ConnectionType>
+		<ConnectionType name="halfhinge">
+			<ColorARGB>77000000</ColorARGB>
+			<Size>0.5</Size>
+			<HingeAngle>45</HingeAngle>
+		</ConnectionType>
   </ConnectionTypeList>
 </info>
