@@ -168,34 +168,48 @@ namespace BlueBrick
 			// clear all the selection before the export
 			Map.Instance.clearAllSelection();
 			// create the map image with the correct size
-			mMapImage = new Bitmap(this.previewPictureBox.Width, this.previewPictureBox.Height);
-			// get the graphic context from the preview picture box
-			Graphics graphics = Graphics.FromImage(mMapImage);
-			graphics.Clear(Map.Instance.BackgroundColor);
-			graphics.CompositingMode = CompositingMode.SourceOver;
-			graphics.SmoothingMode = SmoothingMode.None;
-			graphics.CompositingQuality = CompositingQuality.HighSpeed;
-			graphics.InterpolationMode = InterpolationMode.Low;
-			// draw the bitmap
-			Map.Instance.draw(graphics, mTotalAreaInStud, mTotalScalePixelPerStud);
+			// check that the size is not null, which can happen if the window is minimized
+			if ((this.previewPictureBox.Width != 0) && (this.previewPictureBox.Height != 0))
+			{
+				mMapImage = new Bitmap(this.previewPictureBox.Width, this.previewPictureBox.Height);
+				// get the graphic context from the preview picture box
+				Graphics graphics = Graphics.FromImage(mMapImage);
+				graphics.Clear(Map.Instance.BackgroundColor);
+				graphics.CompositingMode = CompositingMode.SourceOver;
+				graphics.SmoothingMode = SmoothingMode.None;
+				graphics.CompositingQuality = CompositingQuality.HighSpeed;
+				graphics.InterpolationMode = InterpolationMode.Low;
+				// draw the bitmap
+				Map.Instance.draw(graphics, mTotalAreaInStud, mTotalScalePixelPerStud);
+			}
+			else
+			{
+				// otherwise delete the map image to avoid setting the picture box image
+				mMapImage.Dispose();
+				mMapImage = null;
+			}
 		}
 
 		private void drawPreviewImage()
 		{
-			// recreate the preview image
-			this.previewPictureBox.Image = new Bitmap(mMapImage);
-			// get the graphic context from the preview picture box
-			Graphics graphics = Graphics.FromImage(this.previewPictureBox.Image);
-			graphics.CompositingMode = CompositingMode.SourceOver;
-			graphics.SmoothingMode = SmoothingMode.None;
-			graphics.CompositingQuality = CompositingQuality.HighSpeed;
-			graphics.InterpolationMode = InterpolationMode.Low;
-			// and draw the selected area
-			graphics.DrawRectangle(mSelectionPen,
-				(float)((mSelectedAreaInStud.X - mTotalAreaInStud.X) * mTotalScalePixelPerStud),
-				(float)((mSelectedAreaInStud.Y - mTotalAreaInStud.Y) * mTotalScalePixelPerStud),
-				(float)(mSelectedAreaInStud.Width * mTotalScalePixelPerStud),
-				(float)(mSelectedAreaInStud.Height * mTotalScalePixelPerStud));
+			// the preview image is created from the map image so check that the map image is not null
+			if (mMapImage != null)
+			{
+				// recreate the preview image
+				this.previewPictureBox.Image = new Bitmap(mMapImage);
+				// get the graphic context from the preview picture box
+				Graphics graphics = Graphics.FromImage(this.previewPictureBox.Image);
+				graphics.CompositingMode = CompositingMode.SourceOver;
+				graphics.SmoothingMode = SmoothingMode.None;
+				graphics.CompositingQuality = CompositingQuality.HighSpeed;
+				graphics.InterpolationMode = InterpolationMode.Low;
+				// and draw the selected area
+				graphics.DrawRectangle(mSelectionPen,
+					(float)((mSelectedAreaInStud.X - mTotalAreaInStud.X) * mTotalScalePixelPerStud),
+					(float)((mSelectedAreaInStud.Y - mTotalAreaInStud.Y) * mTotalScalePixelPerStud),
+					(float)(mSelectedAreaInStud.Width * mTotalScalePixelPerStud),
+					(float)(mSelectedAreaInStud.Height * mTotalScalePixelPerStud));
+			}
 		}
 
 		private void updateImage(NumericUpDown firstSender)

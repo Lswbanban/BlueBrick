@@ -42,6 +42,10 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
+- MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
+- MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optionnal.
+- MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels.
+- MISSING FEATURE (Alban): Add a filter combobox in the bottom of the library
 - MISSING FEATURE (Alban): Autosave.
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
@@ -81,6 +85,7 @@ Bug fixed in 1.7.0.0:
 - BUGFIX (Larry): The copy/paste of a group of bricks or text didn't copy in the same order
 - BUGFIX (Vincent): CRASH! In the preference you could set a sub grid number to 0 or 1, leading to a later crash (when relaunching BlueBrick or editing the grid layer options)
 - BUGFIX (Vincent): In the export window, the maximum scale was limited by the size of the total area, not the size of the selected area.
+- BUGFIX (Daniel): CRASH! When the export window is minimized.
 - BUGFIX (Alban): The saving of TDL file is not perfect (problems with polarity, flags, slopes and altitude). Well Slope is still not handle, but I don't plan to do more for now.
 - BUGFIX (Alban): The snapping of connected brick tried to snap to free connection point inside the selection, making the snapping becoming crazy.
 - BUGFIX (Alban): Another bug on the snapping of connected brick: now the selected bricks are unlinked from the non selected brick during the mouse down to have a stable snapping.

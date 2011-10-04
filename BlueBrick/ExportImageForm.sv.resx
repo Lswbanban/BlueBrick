@@ -123,9 +123,6 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Avbryt</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Storlek i knoppar</value>
-  </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Överkant</value>
   </data>
@@ -138,8 +135,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Höger</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Bildstorlek i pixlar</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Storlek i knoppar</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Bredd</value>
@@ -159,6 +156,9 @@
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Pixlar/Knopp</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Bildstorlek i pixlar</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Välj det område du vill exportera genom dra och släppa det på förhandsgranskningen eller genom att justera värdena och välja storlek på området. Klicka sedan OK för att välja filnamn.</value>
