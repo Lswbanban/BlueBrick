@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.6.1.0 |
+                    | BlueBrick version 1.7.0.0 |
                     +---------------------------+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -44,6 +44,7 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
 - MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optionnal.
+- MISSING FEATURE (Alban): Enhance the part list export in HTML to export the group set only one time.
 - MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels.
 - MISSING FEATURE (Alban): Add a filter combobox in the bottom of the library
 - MISSING FEATURE (Alban): Autosave.
@@ -60,7 +61,9 @@ Open bugs:
 - [target 1.8] BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
 - [target 1.8] BUG (Alban): The snapping margin defined in the XML file has no effect for a group
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
+- [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - [target 1.8] BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
+- [target 1.8] BUG (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
