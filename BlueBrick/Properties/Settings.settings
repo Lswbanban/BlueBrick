@@ -195,9 +195,11 @@
   &lt;string&gt;Baseplate11&lt;/string&gt;
   &lt;string&gt;Road11&lt;/string&gt;
   &lt;string&gt;Track10&lt;/string&gt;
-  &lt;string&gt;Train10&lt;/string&gt;
+  &lt;string&gt;Train Set11&lt;/string&gt;
   &lt;string&gt;Town10&lt;/string&gt;
+  &lt;string&gt;Train10&lt;/string&gt;
   &lt;string&gt;Space10&lt;/string&gt;
+  &lt;string&gt;Castle10&lt;/string&gt;
   &lt;string&gt;Table10&lt;/string&gt;
   &lt;string&gt;Custom10&lt;/string&gt;
   &lt;string&gt;Logo10&lt;/string&gt;
