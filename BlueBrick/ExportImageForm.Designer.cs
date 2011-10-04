@@ -310,8 +310,6 @@ namespace BlueBrick
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.tableLayoutPanel);
 			this.DoubleBuffered = true;
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.Name = "ExportImageForm";
 			this.SizeChanged += new System.EventHandler(this.ExportImageForm_SizeChanged);
 			this.groupBox1.ResumeLayout(false);

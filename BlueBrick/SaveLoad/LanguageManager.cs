@@ -69,7 +69,7 @@ namespace BlueBrick
 				filesToDownload.Add(new string[] { dllName, destinationFolder + dllName, url + dllName, string.Empty });
 
 			// check also the presence of the chm help file for certain languages
-			List<string> languageWithHelpFile = new List<string>(new string[] {"de", "nl"});
+			List<string> languageWithHelpFile = new List<string>(new string[] {"de", "nl", "fr", "es"});
 			if (languageWithHelpFile.Contains(languageCode))
 			{
 				FileInfo helpFile = new FileInfo(folderPath + @"/" + chmName);
