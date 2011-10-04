@@ -675,9 +675,11 @@ namespace BlueBrick.Properties {
   <string>Baseplate11</string>
   <string>Road11</string>
   <string>Track10</string>
-  <string>Train10</string>
+  <string>Train Set11</string>
   <string>Town10</string>
+  <string>Train10</string>
   <string>Space10</string>
+  <string>Castle10</string>
   <string>Table10</string>
   <string>Custom10</string>
   <string>Logo10</string>
