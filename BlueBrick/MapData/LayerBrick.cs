@@ -1096,21 +1096,27 @@ namespace BlueBrick.MapData
 						// 1)
 						// check if we need to break a link because it is not valid 
 						// this situation can happen when you load an unknow part that had
-						// some connexion point before in the XML file
+						// some connexion point before in the XML file. In that case the type
+						// will be the DEFAULT one because the brick is unknown to the library
+						// so the library doesn't know which type are the connection of this brick
 						// 2)
 						// Also happen when a part description changed in the part lib, so all
-						// the connection of type BRICK are the trailing connection in the file
+						// the connection of type DEFAULT are the trailing connection in the file
 						// that does not exist anymore in the part library. So if any of the
-						// two connection is of type BRICK, we can break the connection.
+						// two connection is of type DEFAULT, we can break the connection.
+						// But you can also change a part description by changing the type of the
+						// connection, so the link saved in the BBM file should be broken if one
+						// connection change its type and not the other one, that's why we check
+						// if the two connections of the link are still of the same type.
 						// 3)
 						// check if we need to break the link because two connexion point are not anymore at
 						// the same place. This can happen if the file was save with a first version of the
 						// library, and then we change the library and we change the connexion position.
 						// So the parts are not move, but the links should be broken
-						if ( (connexion.Type == BrickLibrary.ConnectionType.DEFAULT) ||
+						if ((connexion.Type == BrickLibrary.ConnectionType.DEFAULT) || // case 1)
 								((connexion.ConnectionLink != null) &&
-									((connexion.ConnectionLink.ConnectionLink.Type == BrickLibrary.ConnectionType.DEFAULT) ||
-									 !arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.ConnectionLink.mPositionInStudWorldCoord))) )
+									((connexion.ConnectionLink.Type != connexion.Type) || // case 2)
+									 !arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.ConnectionLink.mPositionInStudWorldCoord)))) // case 3)
 						{
 							// we don't use the disconnect method here, because the disconnect method
 							// add the two connexion in the free connexion list, but we want to do it after.
