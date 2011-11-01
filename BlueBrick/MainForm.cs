@@ -917,15 +917,29 @@ namespace BlueBrick
 
 		private void UpdateRecentFileMenuFromConfigFile(string fileName, bool isAdded)
 		{
+			// get a reference on the list
+			System.Collections.Specialized.StringCollection recentFiles = BlueBrick.Properties.Settings.Default.RecentFiles;
 			// first update the settings
 			// remove the file from this list since it will be re-added (or not) on top of the list
-			BlueBrick.Properties.Settings.Default.RecentFiles.Remove(fileName);
+			recentFiles.Remove(fileName);
 			// add the filename on top of the list (according to the parameter)
 			if (isAdded)
-				BlueBrick.Properties.Settings.Default.RecentFiles.Insert(0, fileName);
+				recentFiles.Insert(0, fileName);
 			// if the maximum files is reached, we delete the last one (the old one)
-			if (BlueBrick.Properties.Settings.Default.RecentFiles.Count > 20)
-				BlueBrick.Properties.Settings.Default.RecentFiles.RemoveAt(20);
+			if (recentFiles.Count > 20)
+				recentFiles.RemoveAt(20);
+			// In order to save the change we need to recreate the list due to a Mono BUG:
+			// if you just modify the list in the default settings, Mono didn't detect it and think no modification
+			// was made, therefore the Save() method does nothing (don't save the modified list)
+			// Moreover, if you just try to assign the recentFile list to Default.RecentFiles an exception is raised
+			// because I guess it references the same list.
+			// Moreover the Specialized.StringCollection class do not have a constructor to clone the list.
+			// Therefore the only way is to recreate an empty list and fill it again. While doing it I clean it
+			// a bit by removing the empty string (because the list is initiallized with empty string)
+			BlueBrick.Properties.Settings.Default.RecentFiles = new System.Collections.Specialized.StringCollection();
+			foreach (string name in recentFiles)
+				if (name.Length > 0)
+					BlueBrick.Properties.Settings.Default.RecentFiles.Add(name);
 			// save the change
 			BlueBrick.Properties.Settings.Default.Save();
 			// then update the menu item list
