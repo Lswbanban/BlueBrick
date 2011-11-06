@@ -45,10 +45,6 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.AccessibleDescription = null;
-			this.groupBox3.AccessibleName = null;
-			resources.ApplyResources(this.groupBox3, "groupBox3");
-			this.groupBox3.BackgroundImage = null;
 			this.groupBox3.Controls.Add(this.label3);
 			this.groupBox3.Controls.Add(this.alphaNumericUpDown);
 			this.groupBox3.Controls.Add(this.label1);
@@ -56,24 +52,18 @@ namespace BlueBrick
 			this.groupBox3.Controls.Add(this.isVisibleCheckBox);
 			this.groupBox3.Controls.Add(this.nameTextBox);
 			this.groupBox3.Controls.Add(this.label2);
-			this.groupBox3.Font = null;
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 
 			// label3
 			// 
-			this.label3.AccessibleDescription = null;
-			this.label3.AccessibleName = null;
 			resources.ApplyResources(this.label3, "label3");
-			this.label3.Font = null;
 			this.label3.Name = "label3";
 			// 
 			// alphaNumericUpDown
 			// 
-			this.alphaNumericUpDown.AccessibleDescription = null;
-			this.alphaNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.alphaNumericUpDown, "alphaNumericUpDown");
-			this.alphaNumericUpDown.Font = null;
 			this.alphaNumericUpDown.Name = "alphaNumericUpDown";
 			this.alphaNumericUpDown.Value = new decimal(new int[] {
             50,
@@ -85,19 +75,13 @@ namespace BlueBrick
 			// 
 			// label1
 			// 
-			this.label1.AccessibleDescription = null;
-			this.label1.AccessibleName = null;
 			resources.ApplyResources(this.label1, "label1");
-			this.label1.Font = null;
 			this.label1.Name = "label1";
 			// 
 			// alphaProgressBar
 			// 
-			this.alphaProgressBar.AccessibleDescription = null;
-			this.alphaProgressBar.AccessibleName = null;
+			this.alphaProgressBar.Cursor = System.Windows.Forms.Cursors.VSplit;
 			resources.ApplyResources(this.alphaProgressBar, "alphaProgressBar");
-			this.alphaProgressBar.BackgroundImage = null;
-			this.alphaProgressBar.Font = null;
 			this.alphaProgressBar.Name = "alphaProgressBar";
 			this.alphaProgressBar.Step = 100;
 			this.alphaProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -108,50 +92,31 @@ namespace BlueBrick
 			// 
 			// isVisibleCheckBox
 			// 
-			this.isVisibleCheckBox.AccessibleDescription = null;
-			this.isVisibleCheckBox.AccessibleName = null;
 			resources.ApplyResources(this.isVisibleCheckBox, "isVisibleCheckBox");
-			this.isVisibleCheckBox.BackgroundImage = null;
-			this.isVisibleCheckBox.Font = null;
 			this.isVisibleCheckBox.Name = "isVisibleCheckBox";
 			this.isVisibleCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// nameTextBox
 			// 
-			this.nameTextBox.AccessibleDescription = null;
-			this.nameTextBox.AccessibleName = null;
 			resources.ApplyResources(this.nameTextBox, "nameTextBox");
-			this.nameTextBox.BackgroundImage = null;
-			this.nameTextBox.Font = null;
 			this.nameTextBox.Name = "nameTextBox";
 			// 
 			// label2
 			// 
-			this.label2.AccessibleDescription = null;
-			this.label2.AccessibleName = null;
 			resources.ApplyResources(this.label2, "label2");
-			this.label2.Font = null;
 			this.label2.Name = "label2";
 			// 
 			// buttonCancel
 			// 
-			this.buttonCancel.AccessibleDescription = null;
-			this.buttonCancel.AccessibleName = null;
-			resources.ApplyResources(this.buttonCancel, "buttonCancel");
-			this.buttonCancel.BackgroundImage = null;
 			this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonCancel.Font = null;
+			resources.ApplyResources(this.buttonCancel, "buttonCancel");
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.UseVisualStyleBackColor = true;
 			// 
 			// buttonOk
 			// 
-			this.buttonOk.AccessibleDescription = null;
-			this.buttonOk.AccessibleName = null;
-			resources.ApplyResources(this.buttonOk, "buttonOk");
-			this.buttonOk.BackgroundImage = null;
 			this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonOk.Font = null;
+			resources.ApplyResources(this.buttonOk, "buttonOk");
 			this.buttonOk.Name = "buttonOk";
 			this.buttonOk.UseVisualStyleBackColor = true;
 			this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
@@ -159,16 +124,12 @@ namespace BlueBrick
 			// LayerBrickOptionForm
 			// 
 			this.AcceptButton = this.buttonOk;
-			this.AccessibleDescription = null;
-			this.AccessibleName = null;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = null;
 			this.CancelButton = this.buttonCancel;
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.buttonOk);
 			this.Controls.Add(this.groupBox3);
-			this.Font = null;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

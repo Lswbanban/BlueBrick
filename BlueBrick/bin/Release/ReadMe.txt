@@ -66,11 +66,11 @@ Open bugs:
 	- The Error Window was not displayed correctly
 	- Patch to catch an exception while loading the 17th part and the following
 	- the size of the layer window is bigger than necessary at the launch time, or when you move the horizontal splitter
+	- No cursor when editing the name of a Text or Brick layer
 	+++ drag and drop of file is not working (and confusing with the drag and drop of parts)
 	++ wrong icon for the drag and drop of a part into a text layer
 	++ The text edit window is not displayed correctly
 	+++ Cannot move or edit text by double-clicking it
-	+ No cursor when editing the name of a Text layer
 	+ No cursor in the Text edit window
 	++ Part List Window was not displayed correctly
 	++ The Export picture window is not displayed correctly
