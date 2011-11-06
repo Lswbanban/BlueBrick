@@ -35,8 +35,9 @@ namespace BlueBrick
 			{
 				Control parent = container as Control;
 
-				// Use DisplayRectangle so that parent.Padding is honored.
-				Rectangle parentDisplayRectangle = parent.DisplayRectangle;
+				// Use ClientRectangle so that parent.Padding is honored.
+				// do not use DisplayRectangle because this rectangle is not correctly computed in Mono
+				Rectangle parentDisplayRectangle = parent.ClientRectangle;
 				Point nextControlLocation = new Point(parentDisplayRectangle.Left, parentDisplayRectangle.Bottom);
 
 				// compute the total height of the child control (a layer) including the margin
@@ -115,15 +116,14 @@ namespace BlueBrick
 			this.SuspendLayout();
 			// 
 			// LayerStackPanel
-			//
+			// 
 			this.AutoScroll = true;
-			this.HorizontalScroll.Enabled = false;
-			this.HorizontalScroll.Visible = false;
 			this.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.Margin = new System.Windows.Forms.Padding(0);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LayerStackPanel_MouseDown);
 			this.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.LayerStackPanel_ControlAdded);
 			this.ResumeLayout(false);
+
 		}
 
 		public LayerStackPanel()
@@ -217,6 +217,11 @@ namespace BlueBrick
 		{
 			// resize the added control
 			e.Control.Width = this.ClientSize.Width - 6;
+			// there's a bug in Mono, the scrollbar doesn't appear if the number of controls is more
+			// than this panel size. Touching the size will actually force the recomputation of the 
+			// need for the vertical scroll bar but since anyway this panel is docked it will not 
+			// actually change the size in the long term.
+			this.Height += 1;
 		}
 
 		private void LayerStackPanel_MouseDown(object sender, MouseEventArgs e)

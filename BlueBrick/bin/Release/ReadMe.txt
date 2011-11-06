@@ -65,6 +65,7 @@ Open bugs:
 - [target 1.7.1] BUG (Alban): Fix the maximum of bugs under Mono while keeping dot net working:
 	- The Error Window was not displayed correctly
 	- Patch to catch an exception while loading the 17th part and the following
+	- the size of the layer window is bigger than necessary at the launch time, or when you move the horizontal splitter
 	+++ drag and drop of file is not working (and confusing with the drag and drop of parts)
 	++ wrong icon for the drag and drop of a part into a text layer
 	++ The text edit window is not displayed correctly
@@ -73,7 +74,6 @@ Open bugs:
 	+ No cursor in the Text edit window
 	++ Part List Window was not displayed correctly
 	++ The Export picture window is not displayed correctly
-	++ the size of the layer window is bigger than necessary at the launch time
 	+ wrong cursor when pressing SHIFT+LMB
 	+ General Info window: no cursor for editing the first fields
 	++ No scrollbar for the translator and strange title color in the About Box
