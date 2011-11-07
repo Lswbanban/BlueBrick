@@ -67,7 +67,6 @@ Open bugs:
 	- Patch to catch an exception while loading the 17th part and the following
 	- the size of the layer window is bigger than necessary at the launch time, or when you move the horizontal splitter
 	- No cursor when editing the name of a Text or Brick layer
-	+++ drag and drop of file is not working (and confusing with the drag and drop of parts)
 	++ wrong icon for the drag and drop of a part into a text layer
 	++ The text edit window is not displayed correctly
 	+++ Cannot move or edit text by double-clicking it
@@ -77,6 +76,8 @@ Open bugs:
 	+ wrong cursor when pressing SHIFT+LMB
 	+ General Info window: no cursor for editing the first fields
 	++ No scrollbar for the translator and strange title color in the About Box
+	+ add a hourglass when loading the images of one panel (for mono)
+	+ drag and drop of file is not working in release (works in debug)
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
@@ -93,8 +94,8 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUGFIX (Alban): The selection/duplication keys were not reset to the default value when clicking the "restore default" button in the Preferences Window
 - BUGFIX (Alban): The order of the shortcut key list was switching when the "restore default" button was clicked in the Preferences Window
-- BUGFIX (Ghislain): Under Linux (with Mono) the drag and drop of part is not working
 - BUGFIX (Steve): Double-clicking on a Text Layer brings up the options box for a Brick Layer (in fact the title is incorrect).
+- BUGFIX (Ghislain): Under Linux (with Mono) the drag and drop of part is not working
 
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): support Flex PF track.

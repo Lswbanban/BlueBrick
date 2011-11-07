@@ -632,8 +632,8 @@ namespace BlueBrick
 				if (Map.Instance.canAddBrick())
 				{
 					// ask the main window if one part was selected in the part lib
-					// because the getData from the event doesn't work well under mono, normally it should be: e.Data.GetData("System.String") as string
-					string partDropNumber = (this.TopLevelControl as MainForm).getSelectedPartNumberInPartLib();
+					// because the getData from the event doesn't work well under mono, normally it should be: e.Data.GetData(DataFormats.SystemString) as string
+					string partDropNumber = (this.TopLevelControl as MainForm).getDraggingPartNumberInPartLib();
 					mBrickLayerThatReceivePartDrop = Map.Instance.SelectedLayer as LayerBrick;
 					if (partDropNumber != null && mBrickLayerThatReceivePartDrop != null)
 					{
@@ -649,6 +649,10 @@ namespace BlueBrick
 					}
 				}
 			}
+
+			// check again if we are not dragging a part, maybe we drag a file
+			if (mCurrentPartDrop == null)
+				(this.TopLevelControl as MainForm).MainForm_DragEnter(sender, e);
 		}
 
 		private void MapPanel_DragOver(object sender, DragEventArgs e)
@@ -677,12 +681,19 @@ namespace BlueBrick
 				}
 				// and add the real new part
 				Map.Instance.addBrick(mCurrentPartDrop);
+				// reset the dropping part number here and there
 				mCurrentPartDrop = null;
+				(this.TopLevelControl as MainForm).resetDraggingPartNumberInPartLib();
 				// refresh the view
 				updateView();
 				// and give the focus to the map panel such as if the user use the wheel to zoom
 				// just after after the drop, the zoom is performed instead of the part lib scrolling
 				this.Focus();
+			}
+			else
+			{
+				// if it is not a string, call the drag enter of the main app
+				(this.TopLevelControl as MainForm).MainForm_DragDrop(sender, e);
 			}
 		}
 
