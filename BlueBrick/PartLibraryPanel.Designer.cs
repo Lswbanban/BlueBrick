@@ -28,6 +28,13 @@ namespace BlueBrick
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.SuspendLayout();
+			// 
+			// PartLibraryPanel
+			// 
+			this.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.PartLibraryPanel_GiveFeedback);
+			this.ResumeLayout(false);
+
 		}
 
 		#endregion

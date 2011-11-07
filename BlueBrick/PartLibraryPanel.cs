@@ -712,6 +712,21 @@ namespace BlueBrick
 					}
 			}
 		}
+
+		private void PartLibraryPanel_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+		{
+			// we use our own cursors
+			e.UseDefaultCursors = false;
+			// by default use the NO cursor
+			// but first set it to Arrow cursor because there's a bug in Mono, if the Cursor.Current is already
+			// set to No, but actually the cursor was changed elsewhere, it doesn't change it again. So change it
+			// first to anything else to be sure that it will be changed really to NO cursor
+			Cursor.Current = Cursors.Arrow;
+			Cursor.Current = Cursors.No;
+			// check if the selected layer is a brick layer, otherwise, we can't drop a part
+			if ((e.Effect == DragDropEffects.Copy) && (Map.Instance.canAddBrick()))
+				Cursor.Current = MainForm.Instance.BrickDuplicateCursor;
+		}
 		#endregion
 	}
 }

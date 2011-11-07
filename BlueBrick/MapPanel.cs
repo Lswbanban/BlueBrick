@@ -617,17 +617,12 @@ namespace BlueBrick
 
 		private void MapPanel_DragEnter(object sender, DragEventArgs e)
 		{
-			// set the default cursor
-			this.Cursor = getDefaultCursor(PointF.Empty);
-
 			// if the number of click is null, that means it can be a dragndrop from another view, such as the part lib
 			// check if we need to search the image dropped, or if we already have it
 			if (mCurrentPartDrop == null)
 			{
 				// by default do not accept the drop
 				e.Effect = DragDropEffects.None;
-				// set the no cursor
-				this.Cursor = Cursors.No;
 
 				if (Map.Instance.canAddBrick())
 				{
@@ -642,8 +637,6 @@ namespace BlueBrick
 						else
 							mCurrentPartDrop = new LayerBrick.Brick(partDropNumber);
 						mBrickLayerThatReceivePartDrop.addTemporaryPartDrop(mCurrentPartDrop);
-						// set the hand cursor
-						this.Cursor = MainForm.Instance.BrickDuplicateCursor;
 						// set the effect in order to get the drop event
 						e.Effect = DragDropEffects.Copy;
 					}
@@ -710,8 +703,6 @@ namespace BlueBrick
 					mBrickLayerThatReceivePartDrop = null;
 				}
 				mCurrentPartDrop = null;
-				// restore the default cursor
-				this.Cursor = Cursors.Arrow;
 				// update the view
 				updateView();
 			}
