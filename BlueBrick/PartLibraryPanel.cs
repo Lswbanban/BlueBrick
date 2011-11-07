@@ -77,6 +77,16 @@ namespace BlueBrick
 			public List<BrickLibrary.Brick> mGroupList = new List<BrickLibrary.Brick>(); // all the group parts in this folder
 		}
 
+		// we store the part we drag because the drag and drop is buggy in Mono and I cannot pass the data in
+		// the drag and drop. Null means no parts are droped
+		private string mDraggingPartNumber = null;
+
+		public string DraggingPartNumber
+		{
+			set { mDraggingPartNumber = value; }
+			get { return mDraggingPartNumber; }
+		}
+
 		public PartLibraryPanel()
 		{
 			InitializeComponent();
@@ -626,13 +636,6 @@ namespace BlueBrick
 			}
 		}
 
-		public string getSelectedPartNumber()
-		{
-			if (this.SelectedTab != null)
-				return getSelectedPartNumberInListView(this.SelectedTab.Controls[0] as ListView);
-			return null;
-		}
-
 		private string getSelectedPartNumberInListView(ListView listView)
 		{
 			if (listView.SelectedItems.Count > 0)
@@ -696,7 +699,14 @@ namespace BlueBrick
 						{
 							string partNumber = getSelectedPartNumberInListView(listView);
 							if (partNumber != null)
-								this.DoDragDrop(partNumber, DragDropEffects.Copy);
+							{
+								// set the internal part number because the data cannot be passed in mono
+								DraggingPartNumber = partNumber;
+								// the normal code to do a drag and drop
+								DataObject data = new DataObject();
+								data.SetData(DataFormats.StringFormat, partNumber);
+								this.DoDragDrop(data, DragDropEffects.Copy);
+							}
 						}
 						break;
 					}

@@ -2037,33 +2037,33 @@ namespace BlueBrick
 		#endregion
 
 		#region event handler for drag and drop file
-		private void MainForm_DragEnter(object sender, DragEventArgs e)
+		public void MainForm_DragEnter(object sender, DragEventArgs e)
 		{
+			// by default do not accept the drop
+			e.Effect = DragDropEffects.None;
+
 			// we accept the drop if the data is a file name
-			if (e.Data.GetDataPresent("FileNameW"))
+			if (e.Data.GetDataPresent(DataFormats.FileDrop))
 			{
 				// check if the first file has a valid suported extension
-				string filename = ((string[])(e.Data.GetData("FileNameW")))[0];
-
-				// authorize the drop if it's a file with the good extension
-				if (canOpenThisFile(filename))
-					e.Effect = DragDropEffects.Copy;
-				else
-					e.Effect = DragDropEffects.None;
-			}
-			else
-			{
-				e.Effect = DragDropEffects.None;
+				string[] filenames = (string[])(e.Data.GetData(DataFormats.FileDrop));
+				if (filenames.Length > 0)
+				{
+					// authorize the drop if it's a file with the good extension
+					if (canOpenThisFile(filenames[0]))
+						e.Effect = DragDropEffects.Copy;
+				}
 			}
 		}
 
-		private void MainForm_DragDrop(object sender, DragEventArgs e)
+		public void MainForm_DragDrop(object sender, DragEventArgs e)
 		{
-			// check if the current map is not save and display a warning message
-			if (checkForUnsavedMap())
+			string[] filenames = (string[])(e.Data.GetData(DataFormats.FileDrop));
+			if (filenames.Length > 0)
 			{
-				string[] filenames = (string[])(e.Data.GetData("FileNameW"));
-				openMap(filenames[0]);
+				// check if the current map is not save and display a warning message
+				if (checkForUnsavedMap())
+					openMap(filenames[0]);
 			}
 		}
 		#endregion
@@ -2368,9 +2368,14 @@ namespace BlueBrick
 		#endregion
 
 		#region function related to parts library
-		public string getSelectedPartNumberInPartLib()
+		public string getDraggingPartNumberInPartLib()
 		{
-			return this.partsTabControl.getSelectedPartNumber();
+			return this.partsTabControl.DraggingPartNumber;
+		}
+
+		public void resetDraggingPartNumberInPartLib()
+		{
+			this.partsTabControl.DraggingPartNumber = null;
 		}
 		#endregion
 	}
