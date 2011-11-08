@@ -70,11 +70,11 @@ Open bugs:
 	- wrong icon for the drag and drop of a part
 	- The text edit window is not displayed correctly and there's no cursor in the Text edit window
 	- Part List Window was not displayed correctly
+	- No scrollbar for the translator
 	+++ Cannot move or edit text by double-clicking it
 	++ The Export picture window is not displayed correctly
 	+ wrong cursor when pressing SHIFT+LMB
 	+ General Info window: no cursor for editing the first fields
-	++ No scrollbar for the translator and strange title color in the About Box
 	+ add a hourglass when loading the images of one panel (for mono)
 	+ drag and drop of file is not working in release (works in debug)
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
