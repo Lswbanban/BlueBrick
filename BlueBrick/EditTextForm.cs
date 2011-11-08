@@ -100,6 +100,12 @@ namespace BlueBrick
 			this.textBox.Font = new Font(mEditedFont.FontFamily, FONT_SIZE_FOR_EDITION, mEditedFont.Style);
 		}
 
+		private void EditTextForm_Shown(object sender, EventArgs e)
+		{
+			// focus the text box such as the user can type the text immediately
+			this.textBox.Focus();
+		}
+
 		private void alignLeftButton_Click(object sender, EventArgs e)
 		{
 			this.textBox.TextAlign = HorizontalAlignment.Left;
