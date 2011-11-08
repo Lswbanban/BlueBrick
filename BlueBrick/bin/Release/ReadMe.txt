@@ -69,8 +69,8 @@ Open bugs:
 	- No cursor when editing the name of a Text or Brick layer
 	- wrong icon for the drag and drop of a part
 	- The text edit window is not displayed correctly and there's no cursor in the Text edit window
+	- Part List Window was not displayed correctly
 	+++ Cannot move or edit text by double-clicking it
-	++ Part List Window was not displayed correctly
 	++ The Export picture window is not displayed correctly
 	+ wrong cursor when pressing SHIFT+LMB
 	+ General Info window: no cursor for editing the first fields
