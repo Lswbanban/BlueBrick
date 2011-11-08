@@ -130,7 +130,6 @@ namespace BlueBrick
             ((System.Windows.Forms.ListViewItem)(resources.GetObject("translatorListView.Items7")))});
 			this.translatorListView.MultiSelect = false;
 			this.translatorListView.Name = "translatorListView";
-			this.translatorListView.Scrollable = false;
 			this.translatorListView.ShowGroups = false;
 			this.translatorListView.UseCompatibleStateImageBehavior = false;
 			this.translatorListView.View = System.Windows.Forms.View.Details;
