@@ -39,23 +39,22 @@ namespace BlueBrick
 			this.buttonExport = new System.Windows.Forms.Button();
 			this.useGroupCheckBox = new System.Windows.Forms.CheckBox();
 			this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.tableLayoutPanel.SuspendLayout();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// listView
 			// 
-			this.listView.AccessibleDescription = null;
-			this.listView.AccessibleName = null;
-			resources.ApplyResources(this.listView, "listView");
 			this.listView.AllowColumnReorder = true;
-			this.listView.BackgroundImage = null;
 			this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.partColumnHeader,
             this.quantiyColumnHeader,
             this.colorColumnHeader,
             this.descriptionColumnHeader});
-			this.tableLayoutPanel.SetColumnSpan(this.listView, 3);
-			this.listView.Font = null;
+			resources.ApplyResources(this.listView, "listView");
 			this.listView.FullRowSelect = true;
 			this.listView.Name = "listView";
 			this.listView.Sorting = System.Windows.Forms.SortOrder.Ascending;
@@ -81,49 +80,32 @@ namespace BlueBrick
 			// 
 			// tableLayoutPanel
 			// 
-			this.tableLayoutPanel.AccessibleDescription = null;
-			this.tableLayoutPanel.AccessibleName = null;
 			resources.ApplyResources(this.tableLayoutPanel, "tableLayoutPanel");
-			this.tableLayoutPanel.BackgroundImage = null;
-			this.tableLayoutPanel.Controls.Add(this.buttonClose, 2, 1);
-			this.tableLayoutPanel.Controls.Add(this.listView, 0, 0);
-			this.tableLayoutPanel.Controls.Add(this.buttonExport, 0, 1);
-			this.tableLayoutPanel.Controls.Add(this.useGroupCheckBox, 1, 1);
-			this.tableLayoutPanel.Font = null;
+			this.tableLayoutPanel.Controls.Add(this.buttonClose, 2, 0);
+			this.tableLayoutPanel.Controls.Add(this.buttonExport, 0, 0);
+			this.tableLayoutPanel.Controls.Add(this.useGroupCheckBox, 1, 0);
 			this.tableLayoutPanel.Name = "tableLayoutPanel";
 			// 
 			// buttonClose
 			// 
-			this.buttonClose.AccessibleDescription = null;
-			this.buttonClose.AccessibleName = null;
-			resources.ApplyResources(this.buttonClose, "buttonClose");
-			this.buttonClose.BackgroundImage = null;
 			this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonClose.Font = null;
+			resources.ApplyResources(this.buttonClose, "buttonClose");
 			this.buttonClose.Name = "buttonClose";
 			this.buttonClose.UseVisualStyleBackColor = true;
 			this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
 			// 
 			// buttonExport
 			// 
-			this.buttonExport.AccessibleDescription = null;
-			this.buttonExport.AccessibleName = null;
 			resources.ApplyResources(this.buttonExport, "buttonExport");
-			this.buttonExport.BackgroundImage = null;
-			this.buttonExport.Font = null;
 			this.buttonExport.Name = "buttonExport";
 			this.buttonExport.UseVisualStyleBackColor = true;
 			this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
 			// 
 			// useGroupCheckBox
 			// 
-			this.useGroupCheckBox.AccessibleDescription = null;
-			this.useGroupCheckBox.AccessibleName = null;
 			resources.ApplyResources(this.useGroupCheckBox, "useGroupCheckBox");
-			this.useGroupCheckBox.BackgroundImage = null;
 			this.useGroupCheckBox.Checked = true;
 			this.useGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.useGroupCheckBox.Font = null;
 			this.useGroupCheckBox.Name = "useGroupCheckBox";
 			this.useGroupCheckBox.UseVisualStyleBackColor = true;
 			this.useGroupCheckBox.CheckedChanged += new System.EventHandler(this.useGroupCheckBox_CheckedChanged);
@@ -134,21 +116,34 @@ namespace BlueBrick
 			resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
 			this.saveFileDialog.SupportMultiDottedExtensions = true;
 			// 
+			// splitContainer1
+			// 
+			resources.ApplyResources(this.splitContainer1, "splitContainer1");
+			this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.listView);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel);
+			// 
 			// PartListForm
 			// 
-			this.AccessibleDescription = null;
-			this.AccessibleName = null;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = null;
-			this.Controls.Add(this.tableLayoutPanel);
+			this.Controls.Add(this.splitContainer1);
 			this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::BlueBrick.Properties.Settings.Default, "UIPartListFormLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-			this.Font = null;
 			this.Location = global::BlueBrick.Properties.Settings.Default.UIPartListFormLocation;
 			this.Name = "PartListForm";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PartListForm_FormClosing);
 			this.tableLayoutPanel.ResumeLayout(false);
 			this.tableLayoutPanel.PerformLayout();
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			this.splitContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -165,5 +160,6 @@ namespace BlueBrick
 		private System.Windows.Forms.Button buttonClose;
 		private System.Windows.Forms.CheckBox useGroupCheckBox;
 		private System.Windows.Forms.SaveFileDialog saveFileDialog;
+		private System.Windows.Forms.SplitContainer splitContainer1;
 	}
 }
