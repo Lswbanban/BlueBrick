@@ -220,7 +220,7 @@ namespace BlueBrick
 			// reset the shortcut keys
 			initShortcutKeyArrayFromSettings();
 			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
-			SaveDefaultKeyInDefaultSettings();
+			PreferencesForm.sSaveDefaultKeyInSettings();
 			// load the part info
 			loadPartLibraryFromDisk();
 			// check if we need to open a file or create a new map
@@ -245,43 +245,6 @@ namespace BlueBrick
 			// correct if the window was maximise
 			this.mainSplitContainer.SplitterDistance = Properties.Settings.Default.UIMainSplitContainerDistance;
 			this.toolSplitContainer.SplitterDistance = Properties.Settings.Default.UIToolSplitContainerDistance;
-		}
-
-		private void SaveDefaultKeyInDefaultSettings()
-		{
-			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
-			// Indeed the "Ctrl" string doesn't not exist on german OS (the key name is "Strg"),
-			// so the default setting fail to load if you put a CTRL as default key in the default
-			// Setting. So instead we save the default key here if the default key is not saved
-			// and then after the application will be able to reload correctly the settings
-			bool needToSave = false;
-
-			if (BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey == Keys.None)
-			{
-				BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey = Keys.Control;
-				needToSave = true;
-			}
-			if (BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey == Keys.None)
-			{
-				BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey = Keys.Alt;
-				needToSave = true;
-			}
-			if (BlueBrick.Properties.Settings.Default.MouseZoomPanKey == Keys.None)
-			{
-				BlueBrick.Properties.Settings.Default.MouseZoomPanKey = Keys.Shift;
-				needToSave = true;
-			}
-
-			// try to save (never mind if we can not (for example BlueBrick is launched
-			// from a write protected drive)
-			try
-			{
-				if (needToSave)
-					BlueBrick.Properties.Settings.Default.Save();
-			}
-			catch
-			{
-			}
 		}
 
 		private void loadUISettingFromDefaultSettings()
