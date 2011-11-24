@@ -95,6 +95,49 @@ namespace BlueBrick
 		}
 		#endregion
 		#region init / close
+
+		public static void sSaveDefaultKeyInSettings()
+		{
+			sSaveDefaultKeyInSettings(Settings.Default, true);
+		}
+
+		private static void sSaveDefaultKeyInSettings(Settings settings, bool saveOnDisk)
+		{
+			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
+			// Indeed the "Ctrl" string doesn't not exist on german OS (the key name is "Strg"),
+			// so the default setting fail to load if you put a CTRL as default key in the default
+			// Setting. So instead we save the default key here if the default key is not saved
+			// and then after the application will be able to reload correctly the settings
+			bool needToSave = false;
+
+			if (settings.MouseMultipleSelectionKey == Keys.None)
+			{
+				settings.MouseMultipleSelectionKey = Keys.Control;
+				needToSave = true;
+			}
+			if (settings.MouseDuplicateSelectionKey == Keys.None)
+			{
+				settings.MouseDuplicateSelectionKey = Keys.Alt;
+				needToSave = true;
+			}
+			if (settings.MouseZoomPanKey == Keys.None)
+			{
+				settings.MouseZoomPanKey = Keys.Shift;
+				needToSave = true;
+			}
+
+			// try to save (never mind if we can not (for example BlueBrick is launched
+			// from a write protected drive)
+			try
+			{
+				if (saveOnDisk && needToSave)
+					settings.Save();
+			}
+			catch
+			{
+			}
+		}
+
 		public PreferencesForm()
 		{
 			InitializeComponent();
@@ -383,6 +426,7 @@ namespace BlueBrick
 				string currentLanguage = Settings.Default.Language;
 				Settings.Default.Upgrade();
 				Settings.Default.Reset();
+				sSaveDefaultKeyInSettings(Settings.Default, false);
 				// restore the language
 				Settings.Default.Language = currentLanguage;
 				// init the controls
@@ -403,6 +447,7 @@ namespace BlueBrick
 				Settings defaultSetting = new Settings();
 				defaultSetting.Upgrade();
 				defaultSetting.Reset();
+				sSaveDefaultKeyInSettings(defaultSetting, false);
 				// restore the language
 				defaultSetting.Language = currentLanguage;
 				// now copy only the current page with the default settings
