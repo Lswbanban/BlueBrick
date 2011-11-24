@@ -244,8 +244,13 @@ namespace BlueBrick
 				// test if there's at list one part in the library, else an exception is raised when seting the selected index
 				if (this.comboBoxPartNum.Items.Count > 0)
 					this.comboBoxPartNum.SelectedIndex = 0;
-				// click on the first column to add the little sign of the sort order
-				listViewShortcutKeys_ColumnClick(this, new ColumnClickEventArgs(0));
+				// add the little sign of the sort order
+				// Be careful, do not set mGlobalStatsLastColumnSorted before calling the method,
+				// it must be set inside the method
+				if (mGlobalStatsLastColumnSorted == -1)
+					setSortIcon(0);
+				else
+					setSortIcon(mGlobalStatsLastColumnSorted);
 			}
 		}
 
@@ -1118,21 +1123,8 @@ namespace BlueBrick
 				this.listViewShortcutKeys.Sorting = oldOrder;
 			}
 
-			// remove the order sign on the previous sorted column
-			if (mGlobalStatsLastColumnSorted != -1)
-			{
-				string header = this.listViewShortcutKeys.Columns[mGlobalStatsLastColumnSorted].Text;
-				this.listViewShortcutKeys.Columns[mGlobalStatsLastColumnSorted].Text = header.Substring(0, header.Length - 2);
-			}
-
-			// keep in mind the last sorted column
-			mGlobalStatsLastColumnSorted = e.Column;
-
-			// add a descending or ascending sign to the header of the column
-			if (this.listViewShortcutKeys.Sorting == SortOrder.Ascending)
-				this.listViewShortcutKeys.Columns[e.Column].Text += " " + char.ConvertFromUtf32(0x25B2);
-			else
-				this.listViewShortcutKeys.Columns[e.Column].Text += " " + char.ConvertFromUtf32(0x25BC);
+			// remove the previous sorting icon, and add the icon to the new column
+			setSortIcon(e.Column);
 
 			// create a new comparer with the right column then call the sort method
 			this.listViewShortcutKeys.ListViewItemSorter = new MyListViewItemComparer(e.Column, this.listViewShortcutKeys.Sorting);
@@ -1141,6 +1133,26 @@ namespace BlueBrick
 			// end of the update of the control
 			this.listViewShortcutKeys.EndUpdate();
 		}
+
+		private void setSortIcon(int columnIndex)
+		{
+			// remove the order sign on the previous sorted column
+			if (mGlobalStatsLastColumnSorted != -1)
+			{
+				string header = this.listViewShortcutKeys.Columns[mGlobalStatsLastColumnSorted].Text;
+				this.listViewShortcutKeys.Columns[mGlobalStatsLastColumnSorted].Text = header.Substring(0, header.Length - 2);
+			}
+
+			// save the new current column index
+			mGlobalStatsLastColumnSorted = columnIndex;
+
+			// add a descending or ascending sign to the header of the column
+			if (this.listViewShortcutKeys.Sorting == SortOrder.Ascending)
+				this.listViewShortcutKeys.Columns[columnIndex].Text += " " + char.ConvertFromUtf32(0x25B2);
+			else
+				this.listViewShortcutKeys.Columns[columnIndex].Text += " " + char.ConvertFromUtf32(0x25BC);
+		}
+
 		#endregion
 	}
 }

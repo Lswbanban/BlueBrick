@@ -71,6 +71,8 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (ZueriHB): CRASH! When opening some BBM files (when checking if some links should be broken).
 - BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUGFIX (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
+- BUGFIX (Alban): The selection/duplication keys were not reset to the default value when clicking the "restore default" button in the Preferences Window
+- BUGFIX (Alban): The order of the shortcut key list was switching when the "restore default" button was clicked in the Preferences Window
 
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): support Flex PF track.
