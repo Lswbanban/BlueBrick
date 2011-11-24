@@ -307,14 +307,13 @@ namespace BlueBrick.MapData
 				if (System.IO.File.Exists(xmlFileName))
 				{
 					// create an XML reader to parse the data
-					System.Xml.XmlParserContext xmlContext = new System.Xml.XmlParserContext(null, null, "", System.Xml.XmlSpace.Default, System.Text.Encoding.UTF7);
 					System.Xml.XmlReaderSettings xmlSettings = new System.Xml.XmlReaderSettings();
 					xmlSettings.ConformanceLevel = System.Xml.ConformanceLevel.Document;
 					xmlSettings.IgnoreWhitespace = true;
 					xmlSettings.IgnoreComments = true;
 					xmlSettings.CheckCharacters = false;
 					xmlSettings.CloseInput = true;
-					System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(xmlFileName, xmlSettings, xmlContext);
+					System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(xmlFileName, xmlSettings);
 
 					// first find and enter the unique root tag
                     bool rootNodeFound = false;

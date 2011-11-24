@@ -55,14 +55,12 @@ Open bugs:
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Slide bars on the map view?
-- [target 1.8] BUG (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should replace it (and the selection should modify the combo boxes)
 - [target 1.8] BUG (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
 - [target 1.8] BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
 - [target 1.8] BUG (Alban): The snapping margin defined in the XML file has no effect for a group
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1)
-- [target 1.8] BUG (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - [target 1.8] BUG (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
 - BUG (Ghislain): Under Linux the drag and drop of part is not working
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
@@ -71,6 +69,8 @@ Open bugs:
 
 Bug fixed in 1.7.1.0:
 - BUGFIX (ZueriHB): CRASH! When opening some BBM files (when checking if some links should be broken).
+- BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
+- BUGFIX (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): support Flex PF track.

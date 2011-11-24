@@ -1,6 +1,6 @@
 namespace BlueBrick
 {
-	partial class GlobalOptionsForm
+	partial class PreferencesForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@ namespace BlueBrick
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GlobalOptionsForm));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreferencesForm));
 			this.optionsTabControl = new System.Windows.Forms.TabControl();
 			this.generalTabPage = new System.Windows.Forms.TabPage();
 			this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -134,8 +134,9 @@ namespace BlueBrick
 			this.okButton = new System.Windows.Forms.Button();
 			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
 			this.colorDialog = new System.Windows.Forms.ColorDialog();
-			this.restoreDefaultButton = new System.Windows.Forms.Button();
+			this.restoreAllDefaultButton = new System.Windows.Forms.Button();
 			this.fontDialog = new System.Windows.Forms.FontDialog();
+			this.restoreTabDefaultButton = new System.Windows.Forms.Button();
 			this.optionsTabControl.SuspendLayout();
 			this.generalTabPage.SuspendLayout();
 			this.groupBox10.SuspendLayout();
@@ -1498,18 +1499,29 @@ namespace BlueBrick
 			this.numericUpDown1.Font = null;
 			this.numericUpDown1.Name = "numericUpDown1";
 			// 
-			// restoreDefaultButton
+			// restoreAllDefaultButton
 			// 
-			this.restoreDefaultButton.AccessibleDescription = null;
-			this.restoreDefaultButton.AccessibleName = null;
-			resources.ApplyResources(this.restoreDefaultButton, "restoreDefaultButton");
-			this.restoreDefaultButton.BackgroundImage = null;
-			this.restoreDefaultButton.Font = null;
-			this.restoreDefaultButton.Name = "restoreDefaultButton";
-			this.restoreDefaultButton.UseVisualStyleBackColor = true;
-			this.restoreDefaultButton.Click += new System.EventHandler(this.restoreDefaultButton_Click);
+			this.restoreAllDefaultButton.AccessibleDescription = null;
+			this.restoreAllDefaultButton.AccessibleName = null;
+			resources.ApplyResources(this.restoreAllDefaultButton, "restoreAllDefaultButton");
+			this.restoreAllDefaultButton.BackgroundImage = null;
+			this.restoreAllDefaultButton.Font = null;
+			this.restoreAllDefaultButton.Name = "restoreAllDefaultButton";
+			this.restoreAllDefaultButton.UseVisualStyleBackColor = true;
+			this.restoreAllDefaultButton.Click += new System.EventHandler(this.restoreAllDefaultButton_Click);
 			// 
-			// GlobalOptionsForm
+			// restoreTabDefaultButton
+			// 
+			this.restoreTabDefaultButton.AccessibleDescription = null;
+			this.restoreTabDefaultButton.AccessibleName = null;
+			resources.ApplyResources(this.restoreTabDefaultButton, "restoreTabDefaultButton");
+			this.restoreTabDefaultButton.BackgroundImage = null;
+			this.restoreTabDefaultButton.Font = null;
+			this.restoreTabDefaultButton.Name = "restoreTabDefaultButton";
+			this.restoreTabDefaultButton.UseVisualStyleBackColor = true;
+			this.restoreTabDefaultButton.Click += new System.EventHandler(this.restoreTabDefaultButton_Click);
+			// 
+			// PreferencesForm
 			// 
 			this.AcceptButton = this.okButton;
 			this.AccessibleDescription = null;
@@ -1518,7 +1530,8 @@ namespace BlueBrick
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackgroundImage = null;
 			this.CancelButton = this.cancelButton;
-			this.Controls.Add(this.restoreDefaultButton);
+			this.Controls.Add(this.restoreTabDefaultButton);
+			this.Controls.Add(this.restoreAllDefaultButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.optionsTabControl);
@@ -1527,7 +1540,7 @@ namespace BlueBrick
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "GlobalOptionsForm";
+			this.Name = "PreferencesForm";
 			this.optionsTabControl.ResumeLayout(false);
 			this.generalTabPage.ResumeLayout(false);
 			this.groupBox10.ResumeLayout(false);
@@ -1618,7 +1631,7 @@ namespace BlueBrick
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.PictureBox gridColorPictureBox;
 		private System.Windows.Forms.ColorDialog colorDialog;
-		private System.Windows.Forms.Button restoreDefaultButton;
+		private System.Windows.Forms.Button restoreAllDefaultButton;
 		private System.Windows.Forms.Label defaultFontNameLabel;
 		private System.Windows.Forms.Label defaultFontColorLabel;
 		private System.Windows.Forms.PictureBox defaultFontColorPictureBox;
@@ -1682,5 +1695,6 @@ namespace BlueBrick
 		private System.Windows.Forms.CheckBox displayGeneralInfoWatermarkCheckBox;
 		private System.Windows.Forms.CheckBox subGridEnabledCheckBox;
 		private System.Windows.Forms.CheckBox gridEnabledCheckBox;
+		private System.Windows.Forms.Button restoreTabDefaultButton;
 	}
 }

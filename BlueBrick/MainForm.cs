@@ -1589,8 +1589,8 @@ namespace BlueBrick
 
 		private void preferencesMenuItem_Click(object sender, EventArgs e)
 		{
-			GlobalOptionsForm optionForm = new GlobalOptionsForm();
-			DialogResult result = optionForm.ShowDialog(this);
+			PreferencesForm preferenceForm = new PreferencesForm();
+			DialogResult result = preferenceForm.ShowDialog(this);
 			if (result == DialogResult.OK)
 			{
 				// reinit the array of shortcut
@@ -1610,7 +1610,7 @@ namespace BlueBrick
 			LanguageManager.checkLanguage(BlueBrick.Properties.Settings.Default.Language);
 
 			// check if we need to restart, if yes, ask the user what he wants to do
-			if (optionForm.DoesNeedToRestart)
+			if (preferenceForm.DoesNeedToRestart)
 			{
 				DialogResult doesUserWantRestart = MessageBox.Show(this, Properties.Resources.ErrorMsgLanguageHasChanged,
 					Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNo,
