@@ -27,7 +27,7 @@ using BlueBrick.MapData;
 
 namespace BlueBrick
 {
-	public partial class GlobalOptionsForm : Form
+	public partial class PreferencesForm : Form
 	{
 		private enum ColorScheme
 		{
@@ -35,6 +35,16 @@ namespace BlueBrick
 			BLUEPRINT,
 			PARCHMENT,
 			CLASSIC,
+		};
+
+		[Flags]
+		private enum TabPageFilter
+		{
+			GENERAL = 1,
+			APPEARANCE = 2,
+			PART_LIBRARY = 4,
+			SHORTCUT_KEYS = 8,
+			ALL = GENERAL | APPEARANCE | PART_LIBRARY | SHORTCUT_KEYS,
 		};
 
 		private class LanguageCodeAndName
@@ -85,150 +95,174 @@ namespace BlueBrick
 		}
 		#endregion
 		#region init / close
-		public GlobalOptionsForm()
+		public PreferencesForm()
 		{
 			InitializeComponent();
-			initControlValues(false);
+			initControlValues(false, TabPageFilter.ALL);
 			// save the old settings
-			copySettings(mOldSettings, Settings.Default);
+			copySettings(mOldSettings, Settings.Default, TabPageFilter.ALL);
 		}
 
-		private void initControlValues(bool isForResetingDefaultSetting)
+		private void initControlValues(bool isForResetingDefaultSetting, TabPageFilter tabPageFilter)
 		{
 			// init the controls
 
 			// -- tab general
-			fillAndSelectLanguageComboBox();
-			this.mouseZoomCenteredCheckBox.Checked = Settings.Default.WheelMouseIsZoomOnCursor;
-			this.mouseZoomSpeedNumericUpDown.Value = (Decimal)Settings.Default.WheelMouseZoomSpeed;
-			fillAndSelectMultipleAndDuplicateSelectionKeyComboBox();
-			this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
-			// new map
-			GeneralInfoForm.sFillLUGComboBox(this.lugComboBox, @"/config/LugList.txt");
-			GeneralInfoForm.sFillLUGComboBox(this.showComboBox, @"/config/EventList.txt");
-			this.addGridLayerCheckBox.Checked = Settings.Default.AddGridLayerOnNewMap;
-			this.addBrickLayerCheckBox.Checked = Settings.Default.AddBrickLayerOnNewMap;
-			if (Settings.Default.DefaultAuthor.Equals("***NotInitialized***"))
-				this.authorTextBox.Text = Resources.DefaultAuthor;
-			else
-				this.authorTextBox.Text = Settings.Default.DefaultAuthor;
-			if (Settings.Default.DefaultLUG.Equals("***NotInitialized***"))
-				this.lugComboBox.Text = Resources.DefaultLUG;
-			else
-				this.lugComboBox.Text = Settings.Default.DefaultLUG;
-			if (Settings.Default.DefaultShow.Equals("***NotInitialized***"))
-				this.showComboBox.Text = Resources.DefaultShow;
-			else
-				this.showComboBox.Text = Settings.Default.DefaultShow;
-			// recent files
-			this.RecentFilesNumericUpDown.Value = Settings.Default.MaxRecentFilesNum;
-			this.clearRecentFilesButton.Enabled = (Settings.Default.RecentFiles.Count > 0);
-			// undo
-			this.undoRecordedNumericUpDown.Value = Settings.Default.UndoStackDepth;
-			this.undoDisplayedNumericUpDown.Value = Settings.Default.UndoStackDisplayedDepth;
+			if ((tabPageFilter & TabPageFilter.GENERAL) != 0)
+			{
+				fillAndSelectLanguageComboBox();
+				this.mouseZoomCenteredCheckBox.Checked = Settings.Default.WheelMouseIsZoomOnCursor;
+				this.mouseZoomSpeedNumericUpDown.Value = (Decimal)Settings.Default.WheelMouseZoomSpeed;
+				fillAndSelectMultipleAndDuplicateSelectionKeyComboBox();
+				this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
+				// new map
+				GeneralInfoForm.sFillLUGComboBox(this.lugComboBox, @"/config/LugList.txt");
+				GeneralInfoForm.sFillLUGComboBox(this.showComboBox, @"/config/EventList.txt");
+				this.addGridLayerCheckBox.Checked = Settings.Default.AddGridLayerOnNewMap;
+				this.addBrickLayerCheckBox.Checked = Settings.Default.AddBrickLayerOnNewMap;
+				if (Settings.Default.DefaultAuthor.Equals("***NotInitialized***"))
+					this.authorTextBox.Text = Resources.DefaultAuthor;
+				else
+					this.authorTextBox.Text = Settings.Default.DefaultAuthor;
+				if (Settings.Default.DefaultLUG.Equals("***NotInitialized***"))
+					this.lugComboBox.Text = Resources.DefaultLUG;
+				else
+					this.lugComboBox.Text = Settings.Default.DefaultLUG;
+				if (Settings.Default.DefaultShow.Equals("***NotInitialized***"))
+					this.showComboBox.Text = Resources.DefaultShow;
+				else
+					this.showComboBox.Text = Settings.Default.DefaultShow;
+				// recent files
+				this.RecentFilesNumericUpDown.Value = Settings.Default.MaxRecentFilesNum;
+				this.clearRecentFilesButton.Enabled = (Settings.Default.RecentFiles.Count > 0);
+				// undo
+				this.undoRecordedNumericUpDown.Value = Settings.Default.UndoStackDepth;
+				this.undoDisplayedNumericUpDown.Value = Settings.Default.UndoStackDisplayedDepth;
+			}
 
 			// -- tab appearance
-			this.backgroundColorPictureBox.BackColor = Settings.Default.DefaultBackgroundColor;
-			this.gridColorPictureBox.BackColor = Settings.Default.DefaultGridColor;
-			this.subGridColorPictureBox.BackColor = Settings.Default.DefaultSubGridColor;
-			this.displayFreeConnexionPointCheckBox.Checked = Settings.Default.DisplayFreeConnexionPoints;
-			this.displayGeneralInfoWatermarkCheckBox.Checked = Settings.Default.DisplayGeneralInfoWatermark;
-			setGammaToNumericUpDown(this.GammaForSelectionNumericUpDown, Settings.Default.GammaForSelection);
-			setGammaToNumericUpDown(this.GammaForSnappingNumericUpDown, Settings.Default.GammaForSnappingPart);
-			// grid size
-			this.gridSizeNumericUpDown.Value = (Decimal)Math.Min(this.gridSizeNumericUpDown.Maximum,
-														Math.Max(this.gridSizeNumericUpDown.Minimum, Settings.Default.DefaultGridSize));
-			this.gridSubdivisionNumericUpDown.Value = (Decimal)Math.Min(this.gridSubdivisionNumericUpDown.Maximum,
-														Math.Max(this.gridSubdivisionNumericUpDown.Minimum, Settings.Default.DefaultSubDivisionNumber));
-			this.gridEnabledCheckBox.Checked = Settings.Default.DefaultGridEnabled;
-			this.subGridEnabledCheckBox.Checked = Settings.Default.DefaultSubGridEnabled;
-			// redraw the sample box only after having set the colors
-			redrawSamplePictureBox();
-			// only set the color scheme after having set the colors
-			fillColorSchemeComboBox();
-			findCorectColorSchemeAccordingToColors();
-			// font
-			this.defaultFontColorPictureBox.BackColor = Settings.Default.DefaultTextColor;
-			this.defaultFontNameLabel.ForeColor = Settings.Default.DefaultTextColor;
-			updateChosenFont(Settings.Default.DefaultTextFont);
-			// area
-			this.areaTransparencyNumericUpDown.Value = (Decimal)Settings.Default.DefaultAreaTransparency;
-			this.areaCellSizeNumericUpDown.Value = (Decimal)Settings.Default.DefaultAreaSize;
+			if ((tabPageFilter & TabPageFilter.APPEARANCE) != 0)
+			{
+				this.backgroundColorPictureBox.BackColor = Settings.Default.DefaultBackgroundColor;
+				this.gridColorPictureBox.BackColor = Settings.Default.DefaultGridColor;
+				this.subGridColorPictureBox.BackColor = Settings.Default.DefaultSubGridColor;
+				this.displayFreeConnexionPointCheckBox.Checked = Settings.Default.DisplayFreeConnexionPoints;
+				this.displayGeneralInfoWatermarkCheckBox.Checked = Settings.Default.DisplayGeneralInfoWatermark;
+				setGammaToNumericUpDown(this.GammaForSelectionNumericUpDown, Settings.Default.GammaForSelection);
+				setGammaToNumericUpDown(this.GammaForSnappingNumericUpDown, Settings.Default.GammaForSnappingPart);
+				// grid size
+				this.gridSizeNumericUpDown.Value = (Decimal)Math.Min(this.gridSizeNumericUpDown.Maximum,
+															Math.Max(this.gridSizeNumericUpDown.Minimum, Settings.Default.DefaultGridSize));
+				this.gridSubdivisionNumericUpDown.Value = (Decimal)Math.Min(this.gridSubdivisionNumericUpDown.Maximum,
+															Math.Max(this.gridSubdivisionNumericUpDown.Minimum, Settings.Default.DefaultSubDivisionNumber));
+				this.gridEnabledCheckBox.Checked = Settings.Default.DefaultGridEnabled;
+				this.subGridEnabledCheckBox.Checked = Settings.Default.DefaultSubGridEnabled;
+				// redraw the sample box only after having set the colors
+				redrawSamplePictureBox();
+				// only set the color scheme after having set the colors
+				fillColorSchemeComboBox();
+				findCorectColorSchemeAccordingToColors();
+				// font
+				this.defaultFontColorPictureBox.BackColor = Settings.Default.DefaultTextColor;
+				this.defaultFontNameLabel.ForeColor = Settings.Default.DefaultTextColor;
+				updateChosenFont(Settings.Default.DefaultTextFont);
+				// area
+				this.areaTransparencyNumericUpDown.Value = (Decimal)Settings.Default.DefaultAreaTransparency;
+				this.areaCellSizeNumericUpDown.Value = (Decimal)Settings.Default.DefaultAreaSize;
+			}
 
 			// -- tab part lib
-			fillPartLibraryListBox(isForResetingDefaultSetting);
-			this.PartLibBackColorPictureBox.BackColor = Settings.Default.PartLibBackColor;
-			this.displayPartIDCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartID;
-			this.displayPartColorCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartColor;
-			this.displayPartDescriptionCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartDescription;
-			this.displayBubbleInfoCheckBox.Checked = Settings.Default.PartLibDisplayBubbleInfo;
+			if ((tabPageFilter & TabPageFilter.PART_LIBRARY) != 0)
+			{
+				fillPartLibraryListBox(isForResetingDefaultSetting);
+				this.PartLibBackColorPictureBox.BackColor = Settings.Default.PartLibBackColor;
+				this.displayPartIDCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartID;
+				this.displayPartColorCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartColor;
+				this.displayPartDescriptionCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartDescription;
+				this.displayBubbleInfoCheckBox.Checked = Settings.Default.PartLibDisplayBubbleInfo;
+			}
 
 			// -- tab shortcut key
-			// init the list view
-			this.listViewShortcutKeys.Items.Clear();
-			char[] separator = { '|' };
-			foreach (string text in Settings.Default.ShortcutKey)
+			if ((tabPageFilter & TabPageFilter.SHORTCUT_KEYS) != 0)
 			{
-				string[] itemNames = text.Split(separator);
-				addShortcutKey(itemNames);
+				// init the list view
+				this.listViewShortcutKeys.Items.Clear();
+				char[] separator = { '|' };
+				foreach (string text in Settings.Default.ShortcutKey)
+				{
+					string[] itemNames = text.Split(separator);
+					addShortcutKey(itemNames);
+				}
+				// fill the part combobox
+				this.comboBoxPartNum.Items.AddRange(BrickLibrary.Instance.getBrickNameList());
+				// init the combobox selections (the selection for connexion is set in the event handler of the selection of part num)
+				this.comboBoxKey.SelectedIndex = 0;
+				this.comboBoxAction.SelectedIndex = 0;
+				// test if there's at list one part in the library, else an exception is raised when seting the selected index
+				if (this.comboBoxPartNum.Items.Count > 0)
+					this.comboBoxPartNum.SelectedIndex = 0;
+				// click on the first column to add the little sign of the sort order
+				listViewShortcutKeys_ColumnClick(this, new ColumnClickEventArgs(0));
 			}
-			// fill the part combobox
-			this.comboBoxPartNum.Items.AddRange(BrickLibrary.Instance.getBrickNameList());
-			// init the combobox selections (the selection for connexion is set in the event handler of the selection of part num)
-			this.comboBoxKey.SelectedIndex = 0;
-			this.comboBoxAction.SelectedIndex = 0;
-			// test if there's at list one part in the library, else an exception is raised when seting the selected index
-			if (this.comboBoxPartNum.Items.Count > 0)
-				this.comboBoxPartNum.SelectedIndex = 0;
-			// click on the first column to add the little sign of the sort order
-			listViewShortcutKeys_ColumnClick(this, new ColumnClickEventArgs(0));
 		}
 
-		private void copySettings(Settings destination, Settings source)
+		private void copySettings(Settings destination, Settings source, TabPageFilter tabPageFilter)
 		{
 			// general
-			destination.AddBrickLayerOnNewMap = source.AddBrickLayerOnNewMap;
-			destination.AddGridLayerOnNewMap = source.AddGridLayerOnNewMap;
-			destination.DefaultBackgroundColor = source.DefaultBackgroundColor;
-			destination.DefaultAuthor = source.DefaultAuthor.Clone() as string;
-			destination.DefaultLUG = source.DefaultLUG.Clone() as string;
-			destination.DefaultShow = source.DefaultShow.Clone() as string;
-			destination.Language = source.Language.Clone() as string;
-			destination.MouseMultipleSelectionKey = source.MouseMultipleSelectionKey;
-			destination.UndoStackDepth = source.UndoStackDepth;
-			destination.UndoStackDisplayedDepth = source.UndoStackDisplayedDepth;
-			destination.WheelMouseIsZoomOnCursor = source.WheelMouseIsZoomOnCursor;
-			destination.WheelMouseZoomSpeed = source.WheelMouseZoomSpeed;
-			destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
-			destination.MaxRecentFilesNum = source.MaxRecentFilesNum;
+			if ((tabPageFilter & TabPageFilter.GENERAL) != 0)
+			{
+				destination.AddBrickLayerOnNewMap = source.AddBrickLayerOnNewMap;
+				destination.AddGridLayerOnNewMap = source.AddGridLayerOnNewMap;
+				destination.DefaultBackgroundColor = source.DefaultBackgroundColor;
+				destination.DefaultAuthor = source.DefaultAuthor.Clone() as string;
+				destination.DefaultLUG = source.DefaultLUG.Clone() as string;
+				destination.DefaultShow = source.DefaultShow.Clone() as string;
+				destination.Language = source.Language.Clone() as string;
+				destination.MouseMultipleSelectionKey = source.MouseMultipleSelectionKey;
+				destination.UndoStackDepth = source.UndoStackDepth;
+				destination.UndoStackDisplayedDepth = source.UndoStackDisplayedDepth;
+				destination.WheelMouseIsZoomOnCursor = source.WheelMouseIsZoomOnCursor;
+				destination.WheelMouseZoomSpeed = source.WheelMouseZoomSpeed;
+				destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
+				destination.MaxRecentFilesNum = source.MaxRecentFilesNum;
+			}
 			// appearance
-			destination.DefaultAreaTransparency = source.DefaultAreaTransparency;
-			destination.DefaultAreaSize = source.DefaultAreaSize;
-			destination.DisplayFreeConnexionPoints = source.DisplayFreeConnexionPoints;
-			destination.DisplayGeneralInfoWatermark = source.DisplayGeneralInfoWatermark;
-			destination.GammaForSelection = source.GammaForSelection;
-			destination.GammaForSnappingPart = source.GammaForSnappingPart;
-			destination.DefaultGridColor = source.DefaultGridColor;
-			destination.DefaultGridSize = source.DefaultGridSize;
-			destination.DefaultGridEnabled = source.DefaultGridEnabled;
-			destination.DefaultSubDivisionNumber = source.DefaultSubDivisionNumber;
-			destination.DefaultSubGridEnabled = source.DefaultSubGridEnabled;
-			destination.DefaultSubGridColor = source.DefaultSubGridColor;
-			destination.DefaultTextColor = source.DefaultTextColor;
-			destination.DefaultTextFont = source.DefaultTextFont.Clone() as Font;
+			if ((tabPageFilter & TabPageFilter.APPEARANCE) != 0)
+			{
+				destination.DefaultAreaTransparency = source.DefaultAreaTransparency;
+				destination.DefaultAreaSize = source.DefaultAreaSize;
+				destination.DisplayFreeConnexionPoints = source.DisplayFreeConnexionPoints;
+				destination.DisplayGeneralInfoWatermark = source.DisplayGeneralInfoWatermark;
+				destination.GammaForSelection = source.GammaForSelection;
+				destination.GammaForSnappingPart = source.GammaForSnappingPart;
+				destination.DefaultGridColor = source.DefaultGridColor;
+				destination.DefaultGridSize = source.DefaultGridSize;
+				destination.DefaultGridEnabled = source.DefaultGridEnabled;
+				destination.DefaultSubDivisionNumber = source.DefaultSubDivisionNumber;
+				destination.DefaultSubGridEnabled = source.DefaultSubGridEnabled;
+				destination.DefaultSubGridColor = source.DefaultSubGridColor;
+				destination.DefaultTextColor = source.DefaultTextColor;
+				destination.DefaultTextFont = source.DefaultTextFont.Clone() as Font;
+			}
 			// part lib
-			destination.PartLibTabOrder = new System.Collections.Specialized.StringCollection();
-			foreach (string text in source.PartLibTabOrder)
-				destination.PartLibTabOrder.Add(text.Clone() as string);
-			destination.PartLibBackColor = source.PartLibBackColor;
-			destination.PartLibBubbleInfoPartID = source.PartLibBubbleInfoPartID;
-			destination.PartLibBubbleInfoPartColor = source.PartLibBubbleInfoPartColor;
-			destination.PartLibBubbleInfoPartDescription = source.PartLibBubbleInfoPartDescription;
-			destination.PartLibDisplayBubbleInfo = source.PartLibDisplayBubbleInfo;
+			if ((tabPageFilter & TabPageFilter.PART_LIBRARY) != 0)
+			{
+				destination.PartLibTabOrder = new System.Collections.Specialized.StringCollection();
+				foreach (string text in source.PartLibTabOrder)
+					destination.PartLibTabOrder.Add(text.Clone() as string);
+				destination.PartLibBackColor = source.PartLibBackColor;
+				destination.PartLibBubbleInfoPartID = source.PartLibBubbleInfoPartID;
+				destination.PartLibBubbleInfoPartColor = source.PartLibBubbleInfoPartColor;
+				destination.PartLibBubbleInfoPartDescription = source.PartLibBubbleInfoPartDescription;
+				destination.PartLibDisplayBubbleInfo = source.PartLibDisplayBubbleInfo;
+			}
 			// shortcut
-			destination.ShortcutKey = new System.Collections.Specialized.StringCollection();
-			foreach (string text in source.ShortcutKey)
-				destination.ShortcutKey.Add(text.Clone() as string);
+			if ((tabPageFilter & TabPageFilter.SHORTCUT_KEYS) != 0)
+			{
+				destination.ShortcutKey = new System.Collections.Specialized.StringCollection();
+				foreach (string text in source.ShortcutKey)
+					destination.ShortcutKey.Add(text.Clone() as string);
+			}
 		}
 
 		private void buttonOk_Click(object sender, EventArgs e)
@@ -337,7 +371,7 @@ namespace BlueBrick
 			Settings.Default.Save();
 		}
 
-		private void restoreDefaultButton_Click(object sender, EventArgs e)
+		private void restoreAllDefaultButton_Click(object sender, EventArgs e)
 		{
 			DialogResult result = MessageBox.Show(this,
 				Resources.ErrorMsgConfirmRestoreDefault,
@@ -352,14 +386,37 @@ namespace BlueBrick
 				// restore the language
 				Settings.Default.Language = currentLanguage;
 				// init the controls
-				initControlValues(true);
+				initControlValues(true, TabPageFilter.ALL);
+			}
+		}
+
+		private void restoreTabDefaultButton_Click(object sender, EventArgs e)
+		{
+			DialogResult result = MessageBox.Show(this,
+				Resources.ErrorMsgConfirmRestoreDefault,
+				Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNo,
+				MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+			if (result == DialogResult.Yes)
+			{
+				// reset the settings (except the language)
+				string currentLanguage = Settings.Default.Language;
+				Settings defaultSetting = new Settings();
+				defaultSetting.Upgrade();
+				defaultSetting.Reset();
+				// restore the language
+				defaultSetting.Language = currentLanguage;
+				// now copy only the current page with the default settings
+				TabPageFilter tabPageFilter = (TabPageFilter)(1 << this.optionsTabControl.SelectedIndex);
+				copySettings(Settings.Default, defaultSetting, tabPageFilter);
+				// init the controls
+				initControlValues(true, tabPageFilter);
 			}
 		}
 
 		private void cancelButton_Click(object sender, EventArgs e)
 		{
 			// copy back the original setting that may have changed if the user clicked on the restore button
-			copySettings(Settings.Default, mOldSettings);
+			copySettings(Settings.Default, mOldSettings, TabPageFilter.ALL);
 		}
 		#endregion
 

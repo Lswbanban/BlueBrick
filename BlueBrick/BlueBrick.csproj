@@ -14,7 +14,7 @@
     <ManifestCertificateThumbprint>9A2553C210508483ADFF3955A7E66C26068642D5</ManifestCertificateThumbprint>
     <ManifestKeyFile>BlueBrick_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>false</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <PublishUrl>H:\temp\PublishBB\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -121,11 +121,11 @@
     <Compile Include="FindForm.Designer.cs">
       <DependentUpon>FindForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalOptionsForm.cs">
+    <Compile Include="PreferencesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GlobalOptionsForm.Designer.cs">
-      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+    <Compile Include="PreferencesForm.Designer.cs">
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Actions\Bricks\FlexMove.cs" />
     <Compile Include="SaveLoad\LanguageManager.cs" />
@@ -301,29 +301,29 @@
       <SubType>Designer</SubType>
       <DependentUpon>GeneralInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalOptionsForm.de.resx">
+    <EmbeddedResource Include="PreferencesForm.de.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalOptionsForm.es.resx">
+    <EmbeddedResource Include="PreferencesForm.es.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalOptionsForm.fr.resx">
+    <EmbeddedResource Include="PreferencesForm.fr.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalOptionsForm.nl.resx">
-      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+    <EmbeddedResource Include="PreferencesForm.nl.resx">
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalOptionsForm.pt.resx">
+    <EmbeddedResource Include="PreferencesForm.pt.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalOptionsForm.resx">
+    <EmbeddedResource Include="PreferencesForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LayerAreaOptionForm.de.resx">
       <SubType>Designer</SubType>
@@ -722,17 +722,17 @@
       <SubType>Designer</SubType>
       <DependentUpon>GeneralInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalOptionsForm.it.resx">
+    <EmbeddedResource Include="PreferencesForm.it.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalOptionsForm.no.resx">
+    <EmbeddedResource Include="PreferencesForm.no.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalOptionsForm.sv.resx">
+    <EmbeddedResource Include="PreferencesForm.sv.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>GlobalOptionsForm.cs</DependentUpon>
+      <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LayerAreaOptionForm.it.resx">
       <SubType>Designer</SubType>
