@@ -29,42 +29,31 @@ namespace BlueBrick
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadErrorForm));
-			this.MessageLabel = new System.Windows.Forms.Label();
 			this.CloseButton = new System.Windows.Forms.Button();
 			this.DetailButton = new System.Windows.Forms.Button();
 			this.DetailsTextBox = new System.Windows.Forms.TextBox();
-			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.tableLayoutPanel1.SuspendLayout();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.MessageTextBox = new System.Windows.Forms.TextBox();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
+			this.splitContainer2.Panel1.SuspendLayout();
+			this.splitContainer2.Panel2.SuspendLayout();
+			this.splitContainer2.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// MessageLabel
-			// 
-			this.MessageLabel.AccessibleDescription = null;
-			this.MessageLabel.AccessibleName = null;
-			resources.ApplyResources(this.MessageLabel, "MessageLabel");
-			this.tableLayoutPanel1.SetColumnSpan(this.MessageLabel, 2);
-			this.MessageLabel.Font = null;
-			this.MessageLabel.Name = "MessageLabel";
 			// 
 			// CloseButton
 			// 
-			this.CloseButton.AccessibleDescription = null;
-			this.CloseButton.AccessibleName = null;
-			resources.ApplyResources(this.CloseButton, "CloseButton");
-			this.CloseButton.BackgroundImage = null;
 			this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.CloseButton.Font = null;
+			resources.ApplyResources(this.CloseButton, "CloseButton");
 			this.CloseButton.Name = "CloseButton";
 			this.CloseButton.UseVisualStyleBackColor = true;
 			this.CloseButton.Click += new System.EventHandler(this.OkButton_Click);
 			// 
 			// DetailButton
 			// 
-			this.DetailButton.AccessibleDescription = null;
-			this.DetailButton.AccessibleName = null;
 			resources.ApplyResources(this.DetailButton, "DetailButton");
-			this.DetailButton.BackgroundImage = null;
-			this.DetailButton.Font = null;
 			this.DetailButton.Name = "DetailButton";
 			this.DetailButton.UseVisualStyleBackColor = true;
 			this.DetailButton.Click += new System.EventHandler(this.DetailButton_Click);
@@ -73,47 +62,70 @@ namespace BlueBrick
 			// 
 			this.DetailsTextBox.AcceptsReturn = true;
 			this.DetailsTextBox.AcceptsTab = true;
-			this.DetailsTextBox.AccessibleDescription = null;
-			this.DetailsTextBox.AccessibleName = null;
+			this.DetailsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			resources.ApplyResources(this.DetailsTextBox, "DetailsTextBox");
-			this.DetailsTextBox.BackgroundImage = null;
-			this.tableLayoutPanel1.SetColumnSpan(this.DetailsTextBox, 2);
-			this.DetailsTextBox.Font = null;
 			this.DetailsTextBox.HideSelection = false;
 			this.DetailsTextBox.Name = "DetailsTextBox";
 			this.DetailsTextBox.ReadOnly = true;
 			this.DetailsTextBox.TabStop = false;
 			// 
-			// tableLayoutPanel1
+			// splitContainer1
 			// 
-			this.tableLayoutPanel1.AccessibleDescription = null;
-			this.tableLayoutPanel1.AccessibleName = null;
-			resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-			this.tableLayoutPanel1.BackgroundImage = null;
-			this.tableLayoutPanel1.Controls.Add(this.CloseButton, 1, 2);
-			this.tableLayoutPanel1.Controls.Add(this.DetailsTextBox, 0, 1);
-			this.tableLayoutPanel1.Controls.Add(this.MessageLabel, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.DetailButton, 0, 2);
-			this.tableLayoutPanel1.Font = null;
-			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+			resources.ApplyResources(this.splitContainer1, "splitContainer1");
+			this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+			resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.CloseButton);
+			this.splitContainer1.Panel2.Controls.Add(this.DetailButton);
+			resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
+			// 
+			// splitContainer2
+			// 
+			resources.ApplyResources(this.splitContainer2, "splitContainer2");
+			this.splitContainer2.Name = "splitContainer2";
+			// 
+			// splitContainer2.Panel1
+			// 
+			this.splitContainer2.Panel1.Controls.Add(this.MessageTextBox);
+			// 
+			// splitContainer2.Panel2
+			// 
+			this.splitContainer2.Panel2.Controls.Add(this.DetailsTextBox);
+			// 
+			// MessageTextBox
+			// 
+			this.MessageTextBox.BackColor = System.Drawing.SystemColors.Control;
+			this.MessageTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			resources.ApplyResources(this.MessageTextBox, "MessageTextBox");
+			this.MessageTextBox.Name = "MessageTextBox";
+			this.MessageTextBox.ReadOnly = true;
 			// 
 			// LoadErrorForm
 			// 
 			this.AcceptButton = this.CloseButton;
-			this.AccessibleDescription = null;
-			this.AccessibleName = null;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = null;
 			this.CancelButton = this.CloseButton;
-			this.Controls.Add(this.tableLayoutPanel1);
-			this.Font = null;
+			this.Controls.Add(this.splitContainer1);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "LoadErrorForm";
 			this.TopMost = true;
-			this.tableLayoutPanel1.ResumeLayout(false);
-			this.tableLayoutPanel1.PerformLayout();
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			this.splitContainer1.ResumeLayout(false);
+			this.splitContainer2.Panel1.ResumeLayout(false);
+			this.splitContainer2.Panel1.PerformLayout();
+			this.splitContainer2.Panel2.ResumeLayout(false);
+			this.splitContainer2.Panel2.PerformLayout();
+			this.splitContainer2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -122,8 +134,9 @@ namespace BlueBrick
 
 		private System.Windows.Forms.Button CloseButton;
 		private System.Windows.Forms.Button DetailButton;
-		private System.Windows.Forms.Label MessageLabel;
 		private System.Windows.Forms.TextBox DetailsTextBox;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.SplitContainer splitContainer2;
+		private System.Windows.Forms.TextBox MessageTextBox;
 	}
 }
