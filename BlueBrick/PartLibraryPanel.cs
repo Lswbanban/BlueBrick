@@ -277,17 +277,32 @@ namespace BlueBrick
 			// add the brick in library if we should do it
 			if (!brick.NotListedInLibrary)
 			{
+				int imageIndex = buildingInfo.mImageList.Count;
+
+				// add the image in the image list (after using the imageList.Count, but before creating the item, otherwise mono is not happy cause it tries to access the image while creating the item)
+				buildingInfo.mImageList.Add(brick.Image);
+
 				// create a new item for the list view item
-				ListViewItem newItem = new ListViewItem(null as string, buildingInfo.mImageList.Count);
+				ListViewItem newItem = new ListViewItem(null as string, imageIndex);
 				newItem.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(brick.mPartNumber,
 															Settings.Default.PartLibBubbleInfoPartID,
 															Settings.Default.PartLibBubbleInfoPartColor,
 															Settings.Default.PartLibBubbleInfoPartDescription);
-				newItem.Tag = brick.mPartNumber;
-				buildingInfo.mListView.Items.Add(newItem);
 
-				// add the image in the image list (after using the imageList.Count)
-				buildingInfo.mImageList.Add(brick.Image);
+				// set the tag to the item 
+				newItem.Tag = brick.mPartNumber;
+				// and insert the item
+				try
+				{
+					// for a strange reason, on mono, this method throw an exception for all the
+					// item added after the 16th one added (but the item is still added).
+					// Probably a bug from Mono.
+					buildingInfo.mListView.Items.Add(newItem);
+				}
+				catch
+				{
+					// so ignore this exception for mono, otherwise it is displayed in the error message box
+				}
 			}
         }
 
