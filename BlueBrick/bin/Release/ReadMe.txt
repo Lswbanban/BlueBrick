@@ -62,10 +62,8 @@ Open bugs:
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - [target 1.8] BUG (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
-- [target 1.7.1] BUG (Ghislain): Under Linux (with Mono) the drag and drop of part is not working
-- [target 1.7.1] BUG (Alban): Fix all the graphical bugs under Mono
+- [target 1.7.1] BUG (Alban): Fix the maximum of bugs under Mono while keeping dot net working (the error window, error while loading the part xml files, )
 	+ Part List Window
-	+ error while loading the part xml files
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
@@ -76,6 +74,7 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUGFIX (Alban): The selection/duplication keys were not reset to the default value when clicking the "restore default" button in the Preferences Window
 - BUGFIX (Alban): The order of the shortcut key list was switching when the "restore default" button was clicked in the Preferences Window
+- BUGFIX (Ghislain): Under Linux (with Mono) the drag and drop of part is not working
 
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): support Flex PF track.
