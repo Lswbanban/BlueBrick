@@ -2344,21 +2344,5 @@ namespace BlueBrick
 			}
 		}
 		#endregion
-
-		#region function related to parts library
-		public string getSelectedPartNumberInPartLib()
-		{
-			ListView selectedListView = this.partsTabControl.SelectedTab.Controls[0] as ListView;
-			if (selectedListView.SelectedItems.Count > 0)
-				return (selectedListView.SelectedItems[0].Tag as string);
-			return null;
-		}
-
-		public void resetSelectedPartInPartLib()
-		{
-			ListView selectedListView = this.partsTabControl.SelectedTab.Controls[0] as ListView;
-			selectedListView.SelectedItems.Clear();
-		}
-		#endregion
 	}
 }
