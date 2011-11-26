@@ -632,7 +632,8 @@ namespace BlueBrick
 				if (Map.Instance.canAddBrick())
 				{
 					// ask the main window if one part was selected in the part lib
-					string partDropNumber = e.Data.GetData("System.String") as string;
+					// because the getData from the event doesn't work well under mono, normally it should be: e.Data.GetData("System.String") as string
+					string partDropNumber = (this.TopLevelControl as MainForm).getSelectedPartNumberInPartLib();
 					mBrickLayerThatReceivePartDrop = Map.Instance.SelectedLayer as LayerBrick;
 					if (partDropNumber != null && mBrickLayerThatReceivePartDrop != null)
 					{
