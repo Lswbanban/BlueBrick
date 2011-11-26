@@ -64,6 +64,7 @@ Open bugs:
 - [target 1.8] BUG (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
 - [target 1.7.1] BUG (Alban): Fix the maximum of bugs under Mono while keeping dot net working (the error window, error while loading the part xml files, )
 	+ Part List Window
+- [target 1.7.1] BUG (Steve): Double-clicking on the tab for a Text Layer brings up the options box appropriate for a Brick Layer.
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
