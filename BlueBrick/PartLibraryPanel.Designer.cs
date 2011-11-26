@@ -28,13 +28,6 @@ namespace BlueBrick
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// PartLibraryPanel
-			// 
-			this.MouseLeave += new System.EventHandler(this.PartLibraryPanel_MouseLeave);
-			this.ResumeLayout(false);
-
 		}
 
 		#endregion

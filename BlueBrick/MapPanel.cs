@@ -153,11 +153,6 @@ namespace BlueBrick
 			// 
 			// contextMenuStrip
 			// 
-			this.contextMenuStrip.AccessibleDescription = null;
-			this.contextMenuStrip.AccessibleName = null;
-			resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
-			this.contextMenuStrip.BackgroundImage = null;
-			this.contextMenuStrip.Font = null;
 			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bringToFrontToolStripMenuItem,
             this.sendToBackToolStripMenuItem,
@@ -169,104 +164,72 @@ namespace BlueBrick
             this.groupToolStripMenuItem,
             this.ungroupToolStripMenuItem});
 			this.contextMenuStrip.Name = "contextMenuStrip";
+			resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
 			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
 			// 
 			// bringToFrontToolStripMenuItem
 			// 
-			this.bringToFrontToolStripMenuItem.AccessibleDescription = null;
-			this.bringToFrontToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.bringToFrontToolStripMenuItem, "bringToFrontToolStripMenuItem");
-			this.bringToFrontToolStripMenuItem.BackgroundImage = null;
 			this.bringToFrontToolStripMenuItem.Name = "bringToFrontToolStripMenuItem";
-			this.bringToFrontToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.bringToFrontToolStripMenuItem, "bringToFrontToolStripMenuItem");
 			this.bringToFrontToolStripMenuItem.Click += new System.EventHandler(this.bringToFrontToolStripMenuItem_Click);
 			// 
 			// sendToBackToolStripMenuItem
 			// 
-			this.sendToBackToolStripMenuItem.AccessibleDescription = null;
-			this.sendToBackToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.sendToBackToolStripMenuItem, "sendToBackToolStripMenuItem");
-			this.sendToBackToolStripMenuItem.BackgroundImage = null;
 			this.sendToBackToolStripMenuItem.Name = "sendToBackToolStripMenuItem";
-			this.sendToBackToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.sendToBackToolStripMenuItem, "sendToBackToolStripMenuItem");
 			this.sendToBackToolStripMenuItem.Click += new System.EventHandler(this.sendToBackToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
-			this.toolStripSeparator1.AccessibleDescription = null;
-			this.toolStripSeparator1.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
 			// 
 			// selectAllToolStripMenuItem
 			// 
-			this.selectAllToolStripMenuItem.AccessibleDescription = null;
-			this.selectAllToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
-			this.selectAllToolStripMenuItem.BackgroundImage = null;
 			this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-			this.selectAllToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
 			this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
 			// 
 			// deselectAllToolStripMenuItem
 			// 
-			this.deselectAllToolStripMenuItem.AccessibleDescription = null;
-			this.deselectAllToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.deselectAllToolStripMenuItem, "deselectAllToolStripMenuItem");
-			this.deselectAllToolStripMenuItem.BackgroundImage = null;
 			this.deselectAllToolStripMenuItem.Name = "deselectAllToolStripMenuItem";
-			this.deselectAllToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.deselectAllToolStripMenuItem, "deselectAllToolStripMenuItem");
 			this.deselectAllToolStripMenuItem.Click += new System.EventHandler(this.deselectAllToolStripMenuItem_Click);
 			// 
 			// selectPathToolStripMenuItem
 			// 
-			this.selectPathToolStripMenuItem.AccessibleDescription = null;
-			this.selectPathToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.selectPathToolStripMenuItem, "selectPathToolStripMenuItem");
-			this.selectPathToolStripMenuItem.BackgroundImage = null;
 			this.selectPathToolStripMenuItem.Name = "selectPathToolStripMenuItem";
-			this.selectPathToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.selectPathToolStripMenuItem, "selectPathToolStripMenuItem");
 			this.selectPathToolStripMenuItem.Click += new System.EventHandler(this.selectPathToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
-			this.toolStripSeparator2.AccessibleDescription = null;
-			this.toolStripSeparator2.AccessibleName = null;
-			resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
 			// 
 			// groupToolStripMenuItem
 			// 
-			this.groupToolStripMenuItem.AccessibleDescription = null;
-			this.groupToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.groupToolStripMenuItem, "groupToolStripMenuItem");
-			this.groupToolStripMenuItem.BackgroundImage = null;
 			this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-			this.groupToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.groupToolStripMenuItem, "groupToolStripMenuItem");
 			this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
 			// 
 			// ungroupToolStripMenuItem
 			// 
-			this.ungroupToolStripMenuItem.AccessibleDescription = null;
-			this.ungroupToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.ungroupToolStripMenuItem, "ungroupToolStripMenuItem");
-			this.ungroupToolStripMenuItem.BackgroundImage = null;
 			this.ungroupToolStripMenuItem.Name = "ungroupToolStripMenuItem";
-			this.ungroupToolStripMenuItem.ShortcutKeyDisplayString = null;
+			resources.ApplyResources(this.ungroupToolStripMenuItem, "ungroupToolStripMenuItem");
 			this.ungroupToolStripMenuItem.Click += new System.EventHandler(this.ungroupToolStripMenuItem_Click);
 			// 
 			// MapPanel
 			// 
-			this.AccessibleDescription = null;
-			this.AccessibleName = null;
-			resources.ApplyResources(this, "$this");
-			this.BackgroundImage = null;
+			this.AllowDrop = true;
 			this.ContextMenuStrip = this.contextMenuStrip;
-			this.Font = null;
-			this.MouseLeave += new System.EventHandler(this.MapPanel_MouseLeave);
+			this.DragOver += new System.Windows.Forms.DragEventHandler(this.MapPanel_DragOver);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapPanel_MouseMove);
+			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MapPanel_DragDrop);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapPanel_MouseDown);
+			this.DragLeave += new System.EventHandler(this.MapPanel_DragLeave);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MapPanel_MouseUp);
+			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MapPanel_DragEnter);
 			this.MouseEnter += new System.EventHandler(this.MapPanel_MouseEnter);
 			this.contextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -521,46 +484,6 @@ namespace BlueBrick
 					{
 						actionToDo = ActionToDoInMouseEvent.SCROLL_VIEW;
 					}
-					else if (e.Clicks == 0)
-					{
-						// if the number of click is null, that means it can be a dragndrop from another view, such as the part lib
-						// check if we need to search the image dropped, or if we already have it
-						if (mCurrentPartDrop == null)
-						{
-							if (Map.Instance.canAddBrick())
-							{
-								// ask the main window if one part was selected in the part lib
-								string partDropNumber = (this.TopLevelControl as MainForm).getSelectedPartNumberInPartLib();
-								mBrickLayerThatReceivePartDrop = Map.Instance.SelectedLayer as LayerBrick;
-								if (partDropNumber != null && mBrickLayerThatReceivePartDrop != null)
-								{
-									if (BrickLibrary.Instance.isAGroup(partDropNumber))
-										mCurrentPartDrop = new Layer.Group(partDropNumber);
-									else
-										mCurrentPartDrop = new LayerBrick.Brick(partDropNumber);
-									mBrickLayerThatReceivePartDrop.addTemporaryPartDrop(mCurrentPartDrop);
-									// set the hand cursor
-									this.Cursor = MainForm.Instance.BrickDuplicateCursor;
-								}
-							}
-							else
-							{
-								// set the no cursor
-								this.Cursor = Cursors.No;
-							}
-						}
-
-						// check if we are currently dragging a part
-						if ((mCurrentPartDrop != null) && (mBrickLayerThatReceivePartDrop != null))
-						{
-							// memorise the position of the mouse snapped to the grid
-							PointF partCenter = getScreenPointInStud(e.Location);
-							mCurrentPartDrop.Center = mBrickLayerThatReceivePartDrop.getMovedSnapPoint(partCenter, mCurrentPartDrop);
-							mBrickLayerThatReceivePartDrop.updateBoundingSelectionRectangle();
-							// refresh the view
-							mustRefreshView = true;
-						}
-					}
 					break;
 
 				case MouseButtons.Middle:
@@ -683,7 +606,67 @@ namespace BlueBrick
 				// update the view at the end of the scroll
 				mustRefreshView = true;
 			}
-			else if (mCurrentPartDrop != null)
+
+			// restore the default cursor
+			this.Cursor = getDefaultCursor(mouseCoordInStud);
+
+			// check if we need to update the view
+			if (mustRefreshView)
+				updateView();
+		}
+
+		private void MapPanel_DragEnter(object sender, DragEventArgs e)
+		{
+			// set the default cursor
+			this.Cursor = getDefaultCursor(PointF.Empty);
+
+			// if the number of click is null, that means it can be a dragndrop from another view, such as the part lib
+			// check if we need to search the image dropped, or if we already have it
+			if (mCurrentPartDrop == null)
+			{
+				// by default do not accept the drop
+				e.Effect = DragDropEffects.None;
+				// set the no cursor
+				this.Cursor = Cursors.No;
+
+				if (Map.Instance.canAddBrick())
+				{
+					// ask the main window if one part was selected in the part lib
+					string partDropNumber = (this.TopLevelControl as MainForm).getSelectedPartNumberInPartLib();
+					mBrickLayerThatReceivePartDrop = Map.Instance.SelectedLayer as LayerBrick;
+					if (partDropNumber != null && mBrickLayerThatReceivePartDrop != null)
+					{
+						if (BrickLibrary.Instance.isAGroup(partDropNumber))
+							mCurrentPartDrop = new Layer.Group(partDropNumber);
+						else
+							mCurrentPartDrop = new LayerBrick.Brick(partDropNumber);
+						mBrickLayerThatReceivePartDrop.addTemporaryPartDrop(mCurrentPartDrop);
+						// set the hand cursor
+						this.Cursor = MainForm.Instance.BrickDuplicateCursor;
+						// set the effect in order to get the drop event
+						e.Effect = DragDropEffects.Copy;
+					}
+				}
+			}
+		}
+
+		private void MapPanel_DragOver(object sender, DragEventArgs e)
+		{
+			// check if we are currently dragging a part
+			if ((mCurrentPartDrop != null) && (mBrickLayerThatReceivePartDrop != null))
+			{
+				// memorise the position of the mouse snapped to the grid
+				PointF partCenter = getScreenPointInStud(this.PointToClient(new Point(e.X, e.Y)));
+				mCurrentPartDrop.Center = mBrickLayerThatReceivePartDrop.getMovedSnapPoint(partCenter, mCurrentPartDrop);
+				mBrickLayerThatReceivePartDrop.updateBoundingSelectionRectangle();
+				// refresh the view
+				updateView();
+			}
+		}
+
+		private void MapPanel_DragDrop(object sender, DragEventArgs e)
+		{
+			if (mCurrentPartDrop != null)
 			{
 				// we have finished a dragndrop, remove the temporary part
 				if (mBrickLayerThatReceivePartDrop != null)
@@ -695,24 +678,12 @@ namespace BlueBrick
 				Map.Instance.addBrick(mCurrentPartDrop);
 				(this.TopLevelControl as MainForm).resetSelectedPartInPartLib();
 				mCurrentPartDrop = null;
-				mustRefreshView = true;
-			}
-
-			// restore the default cursor
-			this.Cursor = getDefaultCursor(mouseCoordInStud);
-
-			// check if we need to update the view
-			if (mustRefreshView)
+				// refresh the view
 				updateView();
+			}
 		}
 
-		private void MapPanel_MouseEnter(object sender, EventArgs e)
-		{
-			// set the default cursor
-			this.Cursor = getDefaultCursor(PointF.Empty);
-		}
-
-		private void MapPanel_MouseLeave(object sender, EventArgs e)
+		private void MapPanel_DragLeave(object sender, EventArgs e)
 		{
 			// if the user leave the panel while is was dropping a part,
 			// just cancel the drop
@@ -730,6 +701,12 @@ namespace BlueBrick
 				// update the view
 				updateView();
 			}
+		}
+
+		private void MapPanel_MouseEnter(object sender, EventArgs e)
+		{
+			// set the default cursor
+			this.Cursor = getDefaultCursor(PointF.Empty);
 		}
 
 		public void MapPanel_MouseWheel(object sender, MouseEventArgs e)
