@@ -156,12 +156,6 @@
 Weitere Information unter http://www.fsf.org/licensing/licenses/gpl.html
 and http://www.gnu.org/licenses/</value>
   </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Übersetzt nach</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>von</value>
-  </data>
   <data name="translatorListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
@@ -352,7 +346,13 @@ and http://www.gnu.org/licenses/</value>
 </value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Vielen Dank an Alexander McKenna-Klein!</value>
+    <value>Vielen Dank an Alex McKenna!</value>
+  </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Übersetzt nach</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>von</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
