@@ -611,6 +611,13 @@ namespace BlueBrick
 			}
 		}
 
+		private string getSelectedPartNumberInListView(ListView listView)
+		{
+			if (listView.SelectedItems.Count > 0)
+				return (listView.SelectedItems[0].Tag as string);
+			return null;
+		}
+
 		private void listView_MouseClick(object sender, MouseEventArgs e)
 		{
 			// try to get the list view (it can also be the tab page that contains the list view)
@@ -622,7 +629,7 @@ namespace BlueBrick
 				{
 					case MouseButtons.Left:
 						{
-							string partNumber = MainForm.Instance.getSelectedPartNumberInPartLib();
+							string partNumber = getSelectedPartNumberInListView(listView);
 							if (partNumber != null)
 								Map.Instance.addConnectBrick(partNumber);
 							break;
@@ -633,6 +640,11 @@ namespace BlueBrick
 
 		private void listView_MouseMove(object sender, MouseEventArgs e)
 		{
+			// get the sender listview
+			ListView listView = sender as ListView;
+			if (listView == null)
+				listView = this.SelectedTab.Controls[0] as ListView;
+
 			// move the mouse on the part lib with or without a button pressed.
 			// Without: display the info
 			// With: start a drag and drop
@@ -642,10 +654,6 @@ namespace BlueBrick
 					{
 						// display the part description but only if there's no button press
 						// because else it means we are doing a drag of a part on the map
-						ListView listView = sender as ListView;
-						if (listView == null)
-							listView = this.SelectedTab.Controls[0] as ListView;
-
 						if (listView != null)
 						{
 							ListViewItem item = listView.GetItemAt(e.X, e.Y);
@@ -662,9 +670,12 @@ namespace BlueBrick
 					}
 				case MouseButtons.Left:
 					{
-						string partNumber = MainForm.Instance.getSelectedPartNumberInPartLib();
-						if (partNumber != null)
-							this.DoDragDrop(partNumber, DragDropEffects.Copy);
+						if (listView != null)
+						{
+							string partNumber = getSelectedPartNumberInListView(listView);
+							if (partNumber != null)
+								this.DoDragDrop(partNumber, DragDropEffects.Copy);
+						}
 						break;
 					}
 			}

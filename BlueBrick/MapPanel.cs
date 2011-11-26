@@ -632,7 +632,7 @@ namespace BlueBrick
 				if (Map.Instance.canAddBrick())
 				{
 					// ask the main window if one part was selected in the part lib
-					string partDropNumber = (this.TopLevelControl as MainForm).getSelectedPartNumberInPartLib();
+					string partDropNumber = e.Data.GetData("System.String") as string;
 					mBrickLayerThatReceivePartDrop = Map.Instance.SelectedLayer as LayerBrick;
 					if (partDropNumber != null && mBrickLayerThatReceivePartDrop != null)
 					{
@@ -676,10 +676,12 @@ namespace BlueBrick
 				}
 				// and add the real new part
 				Map.Instance.addBrick(mCurrentPartDrop);
-				(this.TopLevelControl as MainForm).resetSelectedPartInPartLib();
 				mCurrentPartDrop = null;
 				// refresh the view
 				updateView();
+				// and give the focus to the map panel such as if the user use the wheel to zoom
+				// just after after the drop, the zoom is performed instead of the part lib scrolling
+				this.Focus();
 			}
 		}
 
