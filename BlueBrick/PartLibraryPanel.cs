@@ -611,6 +611,13 @@ namespace BlueBrick
 			}
 		}
 
+		public string getSelectedPartNumber()
+		{
+			if (this.SelectedTab != null)
+				return getSelectedPartNumberInListView(this.SelectedTab.Controls[0] as ListView);
+			return null;
+		}
+
 		private string getSelectedPartNumberInListView(ListView listView)
 		{
 			if (listView.SelectedItems.Count > 0)

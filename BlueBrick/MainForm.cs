@@ -2344,5 +2344,12 @@ namespace BlueBrick
 			}
 		}
 		#endregion
+
+		#region function related to parts library
+		public string getSelectedPartNumberInPartLib()
+		{
+			return this.partsTabControl.getSelectedPartNumber();
+		}
+		#endregion
 	}
 }
