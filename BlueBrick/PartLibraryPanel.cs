@@ -617,7 +617,7 @@ namespace BlueBrick
 			ListView listView = sender as ListView;
 			if (listView != null)
 			{
-				// for a right click
+				// for a left click
 				switch (e.Button)
 				{
 					case MouseButtons.Left:
@@ -633,40 +633,40 @@ namespace BlueBrick
 
 		private void listView_MouseMove(object sender, MouseEventArgs e)
 		{
-			// display the part description but only if there's no button press
-			// because else it means we are doing a drag of a part on the map
-			if (e.Button == MouseButtons.None)
+			// move the mouse on the part lib with or without a button pressed.
+			// Without: display the info
+			// With: start a drag and drop
+			switch (e.Button)
 			{
-				ListView listView = sender as ListView;
-				if (listView == null)
-					listView = this.SelectedTab.Controls[0] as ListView;
+				case MouseButtons.None:
+					{
+						// display the part description but only if there's no button press
+						// because else it means we are doing a drag of a part on the map
+						ListView listView = sender as ListView;
+						if (listView == null)
+							listView = this.SelectedTab.Controls[0] as ListView;
 
-				if (listView != null)
-				{
-					ListViewItem item = listView.GetItemAt(e.X, e.Y);
-					// construct the message to display
-					string message = "";
-					if (item != null)
-						message = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string, true, true, true);
+						if (listView != null)
+						{
+							ListViewItem item = listView.GetItemAt(e.X, e.Y);
+							// construct the message to display
+							string message = "";
+							if (item != null)
+								message = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string, true, true, true);
 
-					//display the message in the status bar
-					MainForm.Instance.setStatusBarMessage(message);
-				}
-			}
-		}
+							//display the message in the status bar
+							MainForm.Instance.setStatusBarMessage(message);
+						}
 
-		private void PartLibraryPanel_MouseLeave(object sender, EventArgs e)
-		{
-			// clear the selected item when the mouse leave the control unless
-			// the left button is still press (that means the user wants to do
-			// a drag'n'drop of a part.
-			if ((Control.MouseButtons != MouseButtons.Left) && (this.SelectedTab != null))
-			{
-				if (this.SelectedTab.Controls.Count > 0)
-				{
-					ListView selectedListView = this.SelectedTab.Controls[0] as ListView;
-					selectedListView.SelectedItems.Clear();
-				}
+						break;
+					}
+				case MouseButtons.Left:
+					{
+						string partNumber = MainForm.Instance.getSelectedPartNumberInPartLib();
+						if (partNumber != null)
+							this.DoDragDrop(partNumber, DragDropEffects.Copy);
+						break;
+					}
 			}
 		}
 		#endregion
