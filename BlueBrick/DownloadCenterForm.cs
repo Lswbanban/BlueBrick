@@ -27,10 +27,9 @@ namespace BlueBrick
 {
 	public partial class DownloadCenterForm : Form
 	{
-		const int SUBITEM_FILE_INDEX = 0;
-		const int SUBITEM_DEST_INDEX = 1;
-		const int SUBITEM_URL_INDEX = 2;
-		const int SUBITEM_PERCENTAGE_INDEX = 3;
+		const int SUBITEM_DEST_INDEX = 0;
+		const int SUBITEM_URL_INDEX = 1;
+		const int SUBITEM_PERCENTAGE_INDEX = 2;
 		const int NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR = 10;
 
 		public DownloadCenterForm()
@@ -62,11 +61,15 @@ namespace BlueBrick
 
 		private void DownloadListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
 		{
-			// make sure the label start with the folder separator
-            if (!e.Label.StartsWith(@"\") || !e.Label.StartsWith(@"/"))
+			// The event can be sent with a null label if the label was not changed
+			if (e.Label != null)
 			{
-				e.CancelEdit = true;
-				this.DownloadListView.Items[e.Item].Text = @"/" + e.Label;
+				// make sure the label start with the folder separator
+				if (!e.Label.StartsWith(@"\") && !e.Label.StartsWith(@"/"))
+				{
+					e.CancelEdit = true;
+					this.DownloadListView.Items[e.Item].Text = @"/" + e.Label;
+				}
 			}
 		}
 		#endregion
