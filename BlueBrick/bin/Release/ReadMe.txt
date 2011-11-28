@@ -62,7 +62,6 @@ Open bugs:
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - [target 1.8] BUG (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
-- [target 1.7.1] BUG (Alban): The Find and Replace window is resizable but controls in it doesn't resize
 - [target 1.7.1] BUG (Alban): Fix the maximum of bugs under Mono while keeping dot net working:
 	- The Error Window was not displayed correctly
 	- Patch to catch an exception while loading the 17th part and the following
@@ -87,6 +86,7 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (ZueriHB): CRASH! When opening some BBM files (when checking if some links should be broken).
 - BUGFIX (Alban): CRASH!! In the download window, crash when attempting to rename a file to download without changing his name.
 - BUGFIX (Alban): In the download window, remove the useless File column and fix a bug about the edition of the file name.
+- BUGFIX (Alban): The Find and Replace window is resizable but controls in it doesn't resize
 - BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUGFIX (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUGFIX (Alban): The selection/duplication keys were not reset to the default value when clicking the "restore default" button in the Preferences Window
