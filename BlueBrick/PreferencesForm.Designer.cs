@@ -1163,7 +1163,6 @@ namespace BlueBrick
 			this.DoubleBuffered = true;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.Name = "PreferencesForm";
 			this.optionsTabControl.ResumeLayout(false);
 			this.generalTabPage.ResumeLayout(false);

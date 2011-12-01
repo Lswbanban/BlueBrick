@@ -62,15 +62,32 @@ Open bugs:
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - [target 1.8] BUG (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
-- [target 1.7.1] BUG (Alban): Fix the maximum of bugs under Mono while keeping dot net working (the error window, error while loading the part xml files, )
-	+ Part List Window
 - [target 1.7.1] BUG (Steve): Double-clicking on the tab for a Text Layer brings up the options box appropriate for a Brick Layer.
+- [target 1.7.1] BUG (Alban): Fix the maximum of bugs under Mono while keeping dot net working:
+	- The Error Window was not displayed correctly
+	- Patch to catch an exception while loading the 17th part and the following
+	+++ drag and drop of file is not working (and confusing with the drag and drop of parts)
+	++ wrong icon for the drag and drop of a part into a text layer
+	++ The text edit window is not displayed correctly
+	+++ Cannot move or edit text by double-clicking it
+	+ No cursor when editing the name of a Text layer
+	+ No cursor in the Text edit window
+	++ Part List Window was not displayed correctly
+	++ The Export picture window is not displayed correctly
+	++ the size of the layer window is bigger than necessary at the launch time
+	+ wrong cursor when pressing SHIFT+LMB
+	+ General Info window: no cursor for editing the first fields
+	++ No scrollbar for the translator and strange title color in the About Box
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
 Bug fixed in 1.7.1.0:
 - BUGFIX (ZueriHB): CRASH! When opening some BBM files (when checking if some links should be broken).
+- BUGFIX (Alban): CRASH!! In the download window, crash when attempting to rename a file to download without changing his name.
+- BUGFIX (Alban): CRASH!! Press enter key on a part without connection makes the application crash
+- BUGFIX (Alban): In the download window, remove the useless File column and fix a bug about the edition of the file name.
+- BUGFIX (Alban): The Find and Replace window was resizable but controls in it were not resized
 - BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUGFIX (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUGFIX (Alban): The selection/duplication keys were not reset to the default value when clicking the "restore default" button in the Preferences Window
