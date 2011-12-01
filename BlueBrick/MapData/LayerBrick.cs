@@ -914,9 +914,13 @@ namespace BlueBrick.MapData
 			/// <param name="ignoreIfNotMainBrickOfAGroup">If true, do nothing if this brick belongs to a group and this brick is not the brick that hold the active connection index</param>
 			public void setActiveConnectionPointWithNextOne(bool ignoreIfNotMainBrickOfAGroup)
 			{
-				// get all the connection points
+				// get all the connection points for this brick or among all the connection of my group (if I belong to a group)
 				Group myTopGroup = null;
 				List<Brick.ConnectionPoint> connectionList = getConnectionsListForAllMyGroup(out myTopGroup);
+
+				// if there is no connection on this part neither inside my group, just exit the function
+				if (connectionList.Count == 0)
+					return;
 
 				// check if we need to ignore this change if this brick belongs to a group
 				// and that you want to change the active connection of the whole group
