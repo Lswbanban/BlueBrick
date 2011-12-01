@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.7.0.0 |
+                    | BlueBrick version 1.7.1.0 |
                     +---------------------------+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,17 +14,29 @@ This software was designed specially for the AFOLs who want to prepare the layou
 2) Install
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-If your OS is Vista or Windows 7, nothing special need to be install first. If your OS is Windows XP, you need to download and install the Microsoft .NET FrameWork (at least version 2.0), that can be found on the Microsoft website (if not already install on your machine):
+2.1) Windows Vista or Windows 7
+иииииииииииииииииииииииииииииии
+Nothing special need to be install first. Simply extract the files contained in the zip, somewhere on your hardrive, by keeping the same folders organization.
 
+2.2) Windows XP
+иииииииииииииии
+You need to download and install the Microsoft .NET FrameWork (at least version 2.0), that can be found on the Microsoft website (if not already install on your machine):
 Microsoft .NET FrameWork version 3.5 SP1
 http://msdn.microsoft.com/en-us/netframework/aa569263.aspx
-
 or Microsoft .NET FrameWork version 2.0
 http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5&DisplayLang=en
 
 The version 2.0 is enough to run BlueBrick.
-
 Then extract the files contained in the zip, somewhere on your hardrive, by keeping the same folders organization.
+
+2.3) Linux
+ииииииииии
+You need to install Mono for linux first
+
+2.4) Mac OSX
+ииииииииииии
+You need to install Mono for Mac first
+
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 3) Help
@@ -71,7 +83,7 @@ Open bugs:
 	- The text edit window is not displayed correctly and there's no cursor in the Text edit window
 	- Part List Window was not displayed correctly
 	- No scrollbar for the translator
-	+++ Cannot move or edit text by double-clicking it
+	- Cannot move or edit text by double-clicking it
 	++ The Export picture window is not displayed correctly
 	+ wrong cursor when pressing SHIFT+LMB
 	+ General Info window: no cursor for editing the first fields
