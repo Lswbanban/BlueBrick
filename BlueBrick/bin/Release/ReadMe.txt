@@ -75,7 +75,6 @@ Open bugs:
 	++ The Export picture window is not displayed correctly
 	++ the size of the layer window is bigger than necessary at the launch time
 	+ wrong cursor when pressing SHIFT+LMB
-	+++ press enter on a part without connection (crash exit)
 	+ General Info window: no cursor for editing the first fields
 	++ No scrollbar for the translator and strange title color in the About Box
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
@@ -85,8 +84,9 @@ Open bugs:
 Bug fixed in 1.7.1.0:
 - BUGFIX (ZueriHB): CRASH! When opening some BBM files (when checking if some links should be broken).
 - BUGFIX (Alban): CRASH!! In the download window, crash when attempting to rename a file to download without changing his name.
+- BUGFIX (Alban): CRASH!! Press enter key on a part without connection makes the application crash
 - BUGFIX (Alban): In the download window, remove the useless File column and fix a bug about the edition of the file name.
-- BUGFIX (Alban): The Find and Replace window is resizable but controls in it doesn't resize
+- BUGFIX (Alban): The Find and Replace window was resizable but controls in it were not resized
 - BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUGFIX (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUGFIX (Alban): The selection/duplication keys were not reset to the default value when clicking the "restore default" button in the Preferences Window
