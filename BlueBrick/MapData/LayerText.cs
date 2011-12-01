@@ -572,29 +572,6 @@ namespace BlueBrick.MapData
 			mMouseDownLastPosition = mouseCoordInStud;
 			mMouseHasMoved = false;
 
-			// if it's a double click, we should prompt a box for text editing
-			if (mMouseMoveWillAddOrEditText)
-			{
-				// open the edit text dialog in modal
-				EditTextForm editTextForm = new EditTextForm(mCurrentTextCellUnderMouse);
-				editTextForm.ShowDialog();
-				if (editTextForm.DialogResult == DialogResult.OK)
-				{
-					// we need to refresh the view if the user added or edited the text
-					mustRefresh = true;
-					// check if it is an edition of an existing text or a new text
-					if (mCurrentTextCellUnderMouse != null)
-						ActionManager.Instance.doAction(new EditText(this, mCurrentTextCellUnderMouse, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment));
-					else
-						ActionManager.Instance.doAction(new AddText(this, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment, mouseCoordInStud));
-				}
-
-				// reset the flag because the popup a dialog canceled the trigger the mouse up
-				mMouseIsBetweenDownAndUpEvent = false;
-				mMouseMoveWillAddOrEditText = false;
-				mCurrentTextCellUnderMouse = null;
-			}
-
 			return mustRefresh;
 		}
 
@@ -651,8 +628,25 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			// check if we moved the selected text
-			if (mMouseHasMoved && (mSelectedObjects.Count > 0))
+			// if it's a double click, we should prompt a box for text editing
+			// WARNING: prompt the box in the mouse up event,
+			// otherwise, if you do it in the mouse down, the mouse up is not triggered (both under dot net and mono)
+			// and this can mess up the click count in mono
+			if (mMouseMoveWillAddOrEditText)
+			{
+				// open the edit text dialog in modal
+				EditTextForm editTextForm = new EditTextForm(mCurrentTextCellUnderMouse);
+				editTextForm.ShowDialog();
+				if (editTextForm.DialogResult == DialogResult.OK)
+				{
+					// check if it is an edition of an existing text or a new text
+					if (mCurrentTextCellUnderMouse != null)
+						ActionManager.Instance.doAction(new EditText(this, mCurrentTextCellUnderMouse, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment));
+					else
+						ActionManager.Instance.doAction(new AddText(this, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment, mouseCoordInStud));
+				}
+			}
+			else if (mMouseHasMoved && (mSelectedObjects.Count > 0)) // check if we moved the selected text
 			{
 				// reset the flag
 				mMouseHasMoved = false;
@@ -698,6 +692,8 @@ namespace BlueBrick.MapData
 			mMouseIsBetweenDownAndUpEvent = false;
 			mMouseMoveWillAddOrEditText = false;
 			mCurrentTextCellUnderMouse = null;
+
+			// refresh in any case
 			return true;
 		}
 
