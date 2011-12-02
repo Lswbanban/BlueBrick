@@ -67,6 +67,7 @@ Open bugs:
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Slide bars on the map view?
+- MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should replace it (and the selection should modify the combo boxes)
 - [target 1.8] BUG (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
 - [target 1.8] BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
@@ -86,9 +87,8 @@ Open bugs:
 	- Cannot move or edit text by double-clicking it
 	- wrong cursor when pressing SHIFT+LMB
 	++ The Export picture window is not displayed correctly
-	+ General Info window: no cursor for editing the first fields
-	+ add a hourglass when loading the images of one panel (for mono)
-	+ drag and drop of file is not working in release (works in debug)
+	- General Info window: no cursor for editing the first fields
+- BUG (Alban): The drag and drop of file is not working in release under Mono (but it works in debug), probably a bug from Mono
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)

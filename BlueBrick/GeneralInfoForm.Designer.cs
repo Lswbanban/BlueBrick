@@ -259,6 +259,7 @@ namespace BlueBrick
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.MaximizeBox = false;
 			this.Name = "GeneralInfoForm";
+			this.Shown += new System.EventHandler(this.GeneralInfoForm_Shown);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

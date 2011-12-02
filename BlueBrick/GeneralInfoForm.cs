@@ -59,6 +59,16 @@ namespace BlueBrick
 			this.labelHeightFeet.Text = (totalArea.Height * 0.026248f).ToString("N2");
 		}
 
+		private void GeneralInfoForm_Shown(object sender, EventArgs e)
+		{
+			// focus the comment text box before focusing the author text box to workaround a Mono bug:
+			// the cursor doesn't apear if you focus the first text box already focused
+			// however, it's still buggy in Mono since you cannot directly type text, you have to click
+			// first on the window because it's the main window that receive the key input
+			this.commentTextBox.Focus();
+			this.AuthorTextBox.Focus();
+		}
+
 		private void ButtonOk_Click(object sender, EventArgs e)
 		{
 			// save the data to the map (must do an action for that)
