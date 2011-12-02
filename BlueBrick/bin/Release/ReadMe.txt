@@ -84,8 +84,8 @@ Open bugs:
 	- Part List Window was not displayed correctly
 	- No scrollbar for the translator
 	- Cannot move or edit text by double-clicking it
+	- wrong cursor when pressing SHIFT+LMB
 	++ The Export picture window is not displayed correctly
-	+ wrong cursor when pressing SHIFT+LMB
 	+ General Info window: no cursor for editing the first fields
 	+ add a hourglass when loading the images of one panel (for mono)
 	+ drag and drop of file is not working in release (works in debug)
@@ -95,6 +95,7 @@ Open bugs:
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)
+- NEW FEATURE (Alban): Add two new cursors for panning and zooming the view (mainly for Mono support reason)
 - BUGFIX (ZueriHB): CRASH! When opening some BBM files (when checking if some links should be broken).
 - BUGFIX #34 (Alban+Steffen): CRASH! When saving a file with rail tracks in LDraw format (bug introduced in 1.7.0)
 - BUGFIX (Alban): CRASH!! In the download window, crash when attempting to rename a file to download without changing his name.

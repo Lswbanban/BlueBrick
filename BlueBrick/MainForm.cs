@@ -54,6 +54,8 @@ namespace BlueBrick
 		private Cursor mTextSelectionCursor = null;
 		private Cursor mAreaPaintCursor = null;
 		private Cursor mAreaEraserCursor = null;
+		private Cursor mPanViewCursor = null;
+		private Cursor mZoomCursor = null;
 		
 		// for shortcut key
 		// var for updating the move
@@ -204,6 +206,22 @@ namespace BlueBrick
 		public Cursor AreaEraserCursor
 		{
 			get { return mAreaEraserCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for panning the view
+		/// </summary>
+		public Cursor PanViewCursor
+		{
+			get { return mPanViewCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for zooming the view
+		/// </summary>
+		public Cursor ZoomCursor
+		{
+			get { return mZoomCursor; }
 		}
 		#endregion
 
@@ -393,6 +411,14 @@ namespace BlueBrick
 			// area erase cursor
 			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.AreaEraserCursor.cur");
 			mAreaEraserCursor = new Cursor(stream);
+			stream.Close();
+			// pan view cursor
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.PanViewCursor.cur");
+			mPanViewCursor = new Cursor(stream);
+			stream.Close();
+			// zoom view cursor
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.ZoomCursor.cur");
+			mZoomCursor = new Cursor(stream);
 			stream.Close();
 		}
 

@@ -609,6 +609,8 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cursor\FlexArrowCursor.cur" />
+    <EmbeddedResource Include="Cursor\PanViewCursor.cur" />
+    <EmbeddedResource Include="Cursor\ZoomCursor.cur" />
     <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />

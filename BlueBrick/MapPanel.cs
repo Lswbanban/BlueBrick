@@ -429,13 +429,14 @@ namespace BlueBrick
 				case ActionToDoInMouseEvent.SCROLL_VIEW:
 					mIsScrolling = true;
 					mLastScrollMousePos = e.Location;
-					preferedCursor = Cursors.NoMove2D;
+					preferedCursor = BlueBrick.MainForm.Instance.PanViewCursor;
 					break;
 
 				case ActionToDoInMouseEvent.ZOOM_VIEW:
 					mIsZooming = true;
 					mFirstZoomMousePos = e.Location;
 					mLastZoomMousePos = e.Location;
+					preferedCursor = BlueBrick.MainForm.Instance.ZoomCursor;
 					break;
 			}
 
