@@ -29,8 +29,19 @@ namespace BlueBrick
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExportImageForm));
-			this.okButton = new System.Windows.Forms.Button();
+			this.label8 = new System.Windows.Forms.Label();
+			this.previewPictureBox = new System.Windows.Forms.PictureBox();
+			this.settingAndButtonTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
 			this.cancelButton = new System.Windows.Forms.Button();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.imageWidthNumericUpDown = new System.Windows.Forms.NumericUpDown();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.scaleNumericUpDown = new System.Windows.Forms.NumericUpDown();
+			this.imageHeightNumericUpDown = new System.Windows.Forms.NumericUpDown();
+			this.okButton = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
@@ -40,30 +51,140 @@ namespace BlueBrick
 			this.label1 = new System.Windows.Forms.Label();
 			this.areaBottomNumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.areaRightNumericUpDown = new System.Windows.Forms.NumericUpDown();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.imageWidthNumericUpDown = new System.Windows.Forms.NumericUpDown();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
-			this.scaleNumericUpDown = new System.Windows.Forms.NumericUpDown();
-			this.imageHeightNumericUpDown = new System.Windows.Forms.NumericUpDown();
-			this.previewPictureBox = new System.Windows.Forms.PictureBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.areaTopNumericUpDown)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.areaLeftNumericUpDown)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.areaBottomNumericUpDown)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.areaRightNumericUpDown)).BeginInit();
+			this.topTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+			((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).BeginInit();
+			this.settingAndButtonTableLayoutPanel.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.imageWidthNumericUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.scaleNumericUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.imageHeightNumericUpDown)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).BeginInit();
-			this.tableLayoutPanel.SuspendLayout();
+			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.areaTopNumericUpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.areaLeftNumericUpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.areaBottomNumericUpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.areaRightNumericUpDown)).BeginInit();
+			this.topTableLayoutPanel.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// label8
+			// 
+			resources.ApplyResources(this.label8, "label8");
+			this.label8.Name = "label8";
+			// 
+			// previewPictureBox
+			// 
+			resources.ApplyResources(this.previewPictureBox, "previewPictureBox");
+			this.previewPictureBox.Name = "previewPictureBox";
+			this.previewPictureBox.TabStop = false;
+			this.previewPictureBox.DoubleClick += new System.EventHandler(this.previewPictureBox_DoubleClick);
+			this.previewPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.previewPictureBox_MouseMove);
+			this.previewPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.previewPictureBox_MouseDown);
+			this.previewPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.previewPictureBox_MouseUp);
+			// 
+			// settingAndButtonTableLayoutPanel
+			// 
+			resources.ApplyResources(this.settingAndButtonTableLayoutPanel, "settingAndButtonTableLayoutPanel");
+			this.settingAndButtonTableLayoutPanel.Controls.Add(this.cancelButton, 0, 1);
+			this.settingAndButtonTableLayoutPanel.Controls.Add(this.groupBox2, 1, 0);
+			this.settingAndButtonTableLayoutPanel.Controls.Add(this.okButton, 1, 1);
+			this.settingAndButtonTableLayoutPanel.Controls.Add(this.groupBox1, 0, 0);
+			this.settingAndButtonTableLayoutPanel.Name = "settingAndButtonTableLayoutPanel";
+			// 
+			// cancelButton
+			// 
+			resources.ApplyResources(this.cancelButton, "cancelButton");
+			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.UseVisualStyleBackColor = true;
+			// 
+			// groupBox2
+			// 
+			resources.ApplyResources(this.groupBox2, "groupBox2");
+			this.groupBox2.Controls.Add(this.label4);
+			this.groupBox2.Controls.Add(this.pictureBox1);
+			this.groupBox2.Controls.Add(this.imageWidthNumericUpDown);
+			this.groupBox2.Controls.Add(this.label3);
+			this.groupBox2.Controls.Add(this.label7);
+			this.groupBox2.Controls.Add(this.scaleNumericUpDown);
+			this.groupBox2.Controls.Add(this.imageHeightNumericUpDown);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.TabStop = false;
+			// 
+			// label4
+			// 
+			resources.ApplyResources(this.label4, "label4");
+			this.label4.Name = "label4";
+			// 
+			// pictureBox1
+			// 
+			resources.ApplyResources(this.pictureBox1, "pictureBox1");
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.TabStop = false;
+			// 
+			// imageWidthNumericUpDown
+			// 
+			resources.ApplyResources(this.imageWidthNumericUpDown, "imageWidthNumericUpDown");
+			this.imageWidthNumericUpDown.Maximum = new decimal(new int[] {
+            4096,
+            0,
+            0,
+            0});
+			this.imageWidthNumericUpDown.Minimum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+			this.imageWidthNumericUpDown.Name = "imageWidthNumericUpDown";
+			this.imageWidthNumericUpDown.Value = new decimal(new int[] {
+            800,
+            0,
+            0,
+            0});
+			this.imageWidthNumericUpDown.ValueChanged += new System.EventHandler(this.imageWidthNumericUpDown_ValueChanged);
+			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
+			// label7
+			// 
+			resources.ApplyResources(this.label7, "label7");
+			this.label7.Name = "label7";
+			// 
+			// scaleNumericUpDown
+			// 
+			resources.ApplyResources(this.scaleNumericUpDown, "scaleNumericUpDown");
+			this.scaleNumericUpDown.DecimalPlaces = 2;
+			this.scaleNumericUpDown.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+			this.scaleNumericUpDown.Name = "scaleNumericUpDown";
+			this.scaleNumericUpDown.ValueChanged += new System.EventHandler(this.scaleNumericUpDown_ValueChanged);
+			// 
+			// imageHeightNumericUpDown
+			// 
+			resources.ApplyResources(this.imageHeightNumericUpDown, "imageHeightNumericUpDown");
+			this.imageHeightNumericUpDown.Maximum = new decimal(new int[] {
+            4096,
+            0,
+            0,
+            0});
+			this.imageHeightNumericUpDown.Minimum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+			this.imageHeightNumericUpDown.Name = "imageHeightNumericUpDown";
+			this.imageHeightNumericUpDown.Value = new decimal(new int[] {
+            600,
+            0,
+            0,
+            0});
+			this.imageHeightNumericUpDown.ValueChanged += new System.EventHandler(this.imageHeightNumericUpDown_ValueChanged);
 			// 
 			// okButton
 			// 
@@ -72,13 +193,6 @@ namespace BlueBrick
 			this.okButton.Name = "okButton";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.okButton_Click);
-			// 
-			// cancelButton
-			// 
-			resources.ApplyResources(this.cancelButton, "cancelButton");
-			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// groupBox1
 			// 
@@ -188,143 +302,36 @@ namespace BlueBrick
             0});
 			this.areaRightNumericUpDown.ValueChanged += new System.EventHandler(this.areaRightNumericUpDown_ValueChanged);
 			// 
-			// groupBox2
+			// topTableLayoutPanel
 			// 
-			resources.ApplyResources(this.groupBox2, "groupBox2");
-			this.groupBox2.Controls.Add(this.label4);
-			this.groupBox2.Controls.Add(this.pictureBox1);
-			this.groupBox2.Controls.Add(this.imageWidthNumericUpDown);
-			this.groupBox2.Controls.Add(this.label3);
-			this.groupBox2.Controls.Add(this.label7);
-			this.groupBox2.Controls.Add(this.scaleNumericUpDown);
-			this.groupBox2.Controls.Add(this.imageHeightNumericUpDown);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.TabStop = false;
-			// 
-			// label4
-			// 
-			resources.ApplyResources(this.label4, "label4");
-			this.label4.Name = "label4";
-			// 
-			// pictureBox1
-			// 
-			resources.ApplyResources(this.pictureBox1, "pictureBox1");
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.TabStop = false;
-			// 
-			// imageWidthNumericUpDown
-			// 
-			resources.ApplyResources(this.imageWidthNumericUpDown, "imageWidthNumericUpDown");
-			this.imageWidthNumericUpDown.Maximum = new decimal(new int[] {
-            4096,
-            0,
-            0,
-            0});
-			this.imageWidthNumericUpDown.Minimum = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-			this.imageWidthNumericUpDown.Name = "imageWidthNumericUpDown";
-			this.imageWidthNumericUpDown.Value = new decimal(new int[] {
-            800,
-            0,
-            0,
-            0});
-			this.imageWidthNumericUpDown.ValueChanged += new System.EventHandler(this.imageWidthNumericUpDown_ValueChanged);
-			// 
-			// label3
-			// 
-			resources.ApplyResources(this.label3, "label3");
-			this.label3.Name = "label3";
-			// 
-			// label7
-			// 
-			resources.ApplyResources(this.label7, "label7");
-			this.label7.Name = "label7";
-			// 
-			// scaleNumericUpDown
-			// 
-			resources.ApplyResources(this.scaleNumericUpDown, "scaleNumericUpDown");
-			this.scaleNumericUpDown.DecimalPlaces = 2;
-			this.scaleNumericUpDown.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-			this.scaleNumericUpDown.Name = "scaleNumericUpDown";
-			this.scaleNumericUpDown.ValueChanged += new System.EventHandler(this.scaleNumericUpDown_ValueChanged);
-			// 
-			// imageHeightNumericUpDown
-			// 
-			resources.ApplyResources(this.imageHeightNumericUpDown, "imageHeightNumericUpDown");
-			this.imageHeightNumericUpDown.Maximum = new decimal(new int[] {
-            4096,
-            0,
-            0,
-            0});
-			this.imageHeightNumericUpDown.Minimum = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-			this.imageHeightNumericUpDown.Name = "imageHeightNumericUpDown";
-			this.imageHeightNumericUpDown.Value = new decimal(new int[] {
-            600,
-            0,
-            0,
-            0});
-			this.imageHeightNumericUpDown.ValueChanged += new System.EventHandler(this.imageHeightNumericUpDown_ValueChanged);
-			// 
-			// previewPictureBox
-			// 
-			resources.ApplyResources(this.previewPictureBox, "previewPictureBox");
-			this.tableLayoutPanel.SetColumnSpan(this.previewPictureBox, 2);
-			this.previewPictureBox.Name = "previewPictureBox";
-			this.previewPictureBox.TabStop = false;
-			this.previewPictureBox.DoubleClick += new System.EventHandler(this.previewPictureBox_DoubleClick);
-			this.previewPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.previewPictureBox_MouseMove);
-			this.previewPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.previewPictureBox_MouseDown);
-			this.previewPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.previewPictureBox_MouseUp);
-			// 
-			// label8
-			// 
-			this.tableLayoutPanel.SetColumnSpan(this.label8, 2);
-			resources.ApplyResources(this.label8, "label8");
-			this.label8.Name = "label8";
-			// 
-			// tableLayoutPanel
-			// 
-			resources.ApplyResources(this.tableLayoutPanel, "tableLayoutPanel");
-			this.tableLayoutPanel.Controls.Add(this.label8, 0, 0);
-			this.tableLayoutPanel.Controls.Add(this.cancelButton, 0, 3);
-			this.tableLayoutPanel.Controls.Add(this.groupBox2, 1, 2);
-			this.tableLayoutPanel.Controls.Add(this.okButton, 1, 3);
-			this.tableLayoutPanel.Controls.Add(this.previewPictureBox, 0, 1);
-			this.tableLayoutPanel.Controls.Add(this.groupBox1, 0, 2);
-			this.tableLayoutPanel.Name = "tableLayoutPanel";
+			resources.ApplyResources(this.topTableLayoutPanel, "topTableLayoutPanel");
+			this.topTableLayoutPanel.Controls.Add(this.settingAndButtonTableLayoutPanel, 0, 2);
+			this.topTableLayoutPanel.Controls.Add(this.previewPictureBox, 0, 1);
+			this.topTableLayoutPanel.Controls.Add(this.label8, 0, 0);
+			this.topTableLayoutPanel.Name = "topTableLayoutPanel";
 			// 
 			// ExportImageForm
 			// 
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.tableLayoutPanel);
+			this.Controls.Add(this.topTableLayoutPanel);
 			this.DoubleBuffered = true;
 			this.Name = "ExportImageForm";
 			this.SizeChanged += new System.EventHandler(this.ExportImageForm_SizeChanged);
-			this.groupBox1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.areaTopNumericUpDown)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.areaLeftNumericUpDown)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.areaBottomNumericUpDown)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.areaRightNumericUpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).EndInit();
+			this.settingAndButtonTableLayoutPanel.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.imageWidthNumericUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.scaleNumericUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.imageHeightNumericUpDown)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).EndInit();
-			this.tableLayoutPanel.ResumeLayout(false);
+			this.groupBox1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.areaTopNumericUpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.areaLeftNumericUpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.areaBottomNumericUpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.areaRightNumericUpDown)).EndInit();
+			this.topTableLayoutPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -351,7 +358,8 @@ namespace BlueBrick
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.NumericUpDown scaleNumericUpDown;
 		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
+		private System.Windows.Forms.TableLayoutPanel settingAndButtonTableLayoutPanel;
 		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.TableLayoutPanel topTableLayoutPanel;
 	}
 }

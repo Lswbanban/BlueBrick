@@ -79,6 +79,10 @@ namespace BlueBrick
 		// the part list view
 		private PartListForm mPartListForm = null;
 
+		// for some strange reason, under Mono, the export form crash in the ctor when instanciated a second time.
+		// so instanciate only one time and keep the instance
+		private ExportImageForm mExportImageForm = new ExportImageForm();
+
 		// for the selection Path
 		AStar mAStar = new AStar();
 
@@ -975,8 +979,8 @@ namespace BlueBrick
 			bool saveDrawFreeConnexionPointFlag = BlueBrick.Properties.Settings.Default.DisplayFreeConnexionPoints;
 			BlueBrick.Properties.Settings.Default.DisplayFreeConnexionPoints = false;
 			// open the export form
-			ExportImageForm exportImageForm = new ExportImageForm();
-			DialogResult result = exportImageForm.ShowDialog();
+			mExportImageForm.init();
+			DialogResult result = mExportImageForm.ShowDialog();
 			if (result == DialogResult.OK)
 			{
 				// option were set, check if we need to use the export settings saved in the file
@@ -995,7 +999,7 @@ namespace BlueBrick
 				if (result == DialogResult.OK)
 				{
 					// create the Bitmap and get the graphic context from it
-					Bitmap image = new Bitmap(exportImageForm.ImageWidth, exportImageForm.ImageHeight, PixelFormat.Format24bppRgb);
+					Bitmap image = new Bitmap(mExportImageForm.ImageWidth, mExportImageForm.ImageHeight, PixelFormat.Format24bppRgb);
 					Graphics graphics = Graphics.FromImage(image);
 					graphics.Clear(Map.Instance.BackgroundColor);
 					graphics.SmoothingMode = SmoothingMode.Default; // the HighQuality let appears some grid line above the area cells
@@ -1003,7 +1007,7 @@ namespace BlueBrick
 					graphics.CompositingMode = CompositingMode.SourceOver;
 					graphics.InterpolationMode = InterpolationMode.High; // this one need to be high else there's some rendering bug appearing with a lower mode, the scale of the stud looks not correct when zooming out.
 					// draw the bitmap
-					Map.Instance.draw(graphics, exportImageForm.AreaInStud, exportImageForm.ScalePixelPerStud);
+					Map.Instance.draw(graphics, mExportImageForm.AreaInStud, mExportImageForm.ScalePixelPerStud);
 					// find the correct format according to the last extension.
 					// Normally the FileName MUST have a valid extension because the SaveFileDialog
 					// automatically add an extension if the user forgot to precise one, or if

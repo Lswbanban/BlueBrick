@@ -117,11 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="okButton.Text" xml:space="preserve">
-    <value>Aceptar</value>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Selecciona el área que quieres exportar, pinchando y arrastrando sobre la previsualización o editando los valores y seleccionando el tamaño de la imagen. Luego pulsa en Aceptar para especificar el nombre del archivo.</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancelar</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Anchura</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhEQAIAIEAAAAAAP///5qamv///yH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAADACwAAAAAEQAI
+        AAAIPQAHDABAcCDBggcFDhTAEADDhw4bLhRAsGFFihErAliI0OFGjx4NUuT4EaNFixkzTmwI8eFIgQc/
+        diw4ICAAOw==
+</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Altura</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Tamaño de imagen en studs</value>
+  </data>
+  <data name="okButton.Text" xml:space="preserve">
+    <value>Aceptar</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Arriba</value>
@@ -137,25 +157,6 @@
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Área en studs</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Anchura</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEQAIAPEAAAAAAP///5qamv///yH5BAEAAAMALAAAAAARAAgAAAIj3ICHuXYCAZwyPoFixjWD
-        x0ifKCoYOHKa1nVXRE2nsYxhMhQAOw==
-</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Altura</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Tamaño de imagen en studs</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Selecciona el área que quieres exportar, pinchando y arrastrando sobre la previsualización o editando los valores y seleccionando el tamaño de la imagen. Luego pulsa en Aceptar para especificar el nombre del archivo.</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -117,11 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="okButton.Text" xml:space="preserve">
-    <value>OK</value>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Välj det område du vill exportera genom dra och släppa det på förhandsgranskningen eller genom att justera värdena och välja storlek på området. Klicka sedan OK för att välja filnamn.</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Avbryt</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Bredd</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhEQAIAIEAAAAAAP///5qamv///yH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAADACwAAAAAEQAI
+        AAAIPQAHDABAcCDBggcFDhTAEADDhw4bLhRAsGFFihErAliI0OFGjx4NUuT4EaNFixkzTmwI8eFIgQc/
+        diw4ICAAOw==
+</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Höjd</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 13</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Pixlar/Knopp</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Bildstorlek i pixlar</value>
+  </data>
+  <data name="okButton.Text" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Överkant</value>
@@ -137,31 +163,6 @@
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Storlek i knoppar</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Bredd</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEQAIAPEAAAAAAP///5qamv///yH5BAEAAAMALAAAAAARAAgAAAIj3ICHuXYCAZwyPoFixjWD
-        x0ifKCoYOHKa1nVXRE2nsYxhMhQAOw==
-</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Höjd</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Pixlar/Knopp</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Bildstorlek i pixlar</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Välj det område du vill exportera genom dra och släppa det på förhandsgranskningen eller genom att justera värdena och välja storlek på området. Klicka sedan OK för att välja filnamn.</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
