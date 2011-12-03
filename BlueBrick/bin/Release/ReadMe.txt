@@ -75,19 +75,6 @@ Open bugs:
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - [target 1.8] BUG (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
-- [target 1.7.1] BUG (Alban): Fix the maximum of bugs under Mono while keeping dot net working:
-	- The Error Window was not displayed correctly
-	- Patch to catch an exception while loading the 17th part and the following
-	- the size of the layer window is bigger than necessary at the launch time, or when you move the horizontal splitter
-	- No cursor when editing the name of a Text or Brick layer
-	- wrong icon for the drag and drop of a part
-	- The text edit window is not displayed correctly and there's no cursor in the Text edit window
-	- Part List Window was not displayed correctly
-	- No scrollbar for the translator
-	- Cannot move or edit text by double-clicking it
-	- wrong cursor when pressing SHIFT+LMB
-	++ The Export picture window is not displayed correctly
-	- General Info window: no cursor for editing the first fields
 - BUG (Alban): The drag and drop of file is not working in release under Mono (but it works in debug), probably a bug from Mono
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
@@ -108,6 +95,19 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (Alban): The order of the shortcut key list was switching when the "restore default" button was clicked in the Preferences Window
 - BUGFIX (Steve): Double-clicking on a Text Layer brings up the options box for a Brick Layer (in fact the title is incorrect).
 - BUGFIX (Ghislain): Under Linux (with Mono) the drag and drop of part is not working
+- BUGFIX (Alban): Fix the maximum of bugs under Mono while keeping dot net working:
+	- The Error Window was not displayed correctly
+	- Patch to catch an exception while loading the 17th part and the following
+	- the size of the layer window is bigger than necessary at the launch time, or when you move the horizontal splitter
+	- No cursor when editing the name of a Text or Brick layer
+	- wrong icon for the drag and drop of a part
+	- The text edit window is not displayed correctly and there's no cursor in the Text edit window
+	- Part List Window was not displayed correctly
+	- No scrollbar for the translator
+	- Cannot move or edit text by double-clicking it
+	- wrong cursor when pressing SHIFT+LMB
+	- The Export picture window is not displayed correctly
+	- General Info window: no cursor for editing the first fields
 
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): support Flex PF track.

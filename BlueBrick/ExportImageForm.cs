@@ -63,7 +63,10 @@ namespace BlueBrick
 		public ExportImageForm()
 		{
 			InitializeComponent();
+		}
 
+		public void init()
+		{
 			// compute the total area of the map, and the total scale in order to display the full map
 			// in the preview window and assign the selected area with the same value
 			mTotalAreaInStud = Map.Instance.getTotalAreaInStud(false);
@@ -103,11 +106,6 @@ namespace BlueBrick
 			this.scaleNumericUpDown.Value = (Decimal)scaleValue;
 
 			//init the numericupdown controls for area
-			this.areaLeftNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Left);
-			this.areaRightNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Right);
-			this.areaTopNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Top);
-			this.areaBottomNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Bottom);
-
 			this.areaLeftNumericUpDown.Minimum = (Decimal)(mTotalAreaInStud.Left);
 			this.areaRightNumericUpDown.Maximum = (Decimal)(mTotalAreaInStud.Right);
 			this.areaTopNumericUpDown.Minimum = (Decimal)(mTotalAreaInStud.Top);
@@ -117,6 +115,12 @@ namespace BlueBrick
 			this.areaRightNumericUpDown.Minimum = this.areaLeftNumericUpDown.Minimum;
 			this.areaTopNumericUpDown.Maximum = this.areaBottomNumericUpDown.Maximum;
 			this.areaBottomNumericUpDown.Minimum = this.areaTopNumericUpDown.Minimum;
+
+			// set the value after setting the minimum and maximum otherwise we can raise an exeption
+			this.areaLeftNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Left);
+			this.areaRightNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Right);
+			this.areaTopNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Top);
+			this.areaBottomNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Bottom);
 		}
 
 		private void updateMinAndMaxScaleAccordingToSelectedArea()
@@ -137,8 +141,8 @@ namespace BlueBrick
 		private void computePreviewPictureSizeAndPos()
 		{
 			// get the new available width and height
-			int parentWidth = this.tableLayoutPanel.ClientSize.Width - 4;
-			int parentHeight = this.tableLayoutPanel.ClientSize.Height - 154;
+			int parentWidth = this.topTableLayoutPanel.ClientSize.Width - 4;
+			int parentHeight = this.topTableLayoutPanel.ClientSize.Height - 154;
 			// compute the scale of the preview and rescale and center the preview image
 			double xScale = (double)(parentWidth - 2) / mTotalAreaInStud.Width;
 			double yScale = (double)(parentHeight - 2) / mTotalAreaInStud.Height;
