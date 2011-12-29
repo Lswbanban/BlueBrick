@@ -42,6 +42,7 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
+- [target 1.7.1] MISSING FEATURE (cimddwc): A shortcut key to bring selection to front or send to back
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
 - MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optionnal.
 - MISSING FEATURE (Alban): Enhance the part list export in HTML to export the group set only one time.
@@ -71,6 +72,7 @@ Open bugs:
 
 Bug fixed in 1.7.1.0:
 - BUGFIX (ZueriHB): CRASH! When opening some BBM files (when checking if some links should be broken).
+- BUGFIX (Alban): CRASH! When saving a file with rail tracks in LDraw format (bug introduced in 1.7.0)
 - BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUGFIX (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUGFIX (Alban): The selection/duplication keys were not reset to the default value when clicking the "restore default" button in the Preferences Window

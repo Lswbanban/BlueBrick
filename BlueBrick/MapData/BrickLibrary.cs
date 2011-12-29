@@ -384,13 +384,16 @@ namespace BlueBrick.MapData
                 else
                 {
                     // if the image is null check if it is a group or an ignorable part
-                    // and leave the mImage null by default
+                    // and leave the mImage null if it is a group, because the image will be created later
                     if (!isGroupPart)
                     {
                         // if the image is null for a normal brick, this brick should be ignored by BlueBrick
                         // The ignore bricks have different meaning than the unknown bricks
                         // if the brick should be ignored, set the brick type and create a dummy small image
-						mBrickType |= Brick.BrickType.IGNORABLE | Brick.BrickType.NOT_LISTED;
+						this.mBrickType |= Brick.BrickType.IGNORABLE | Brick.BrickType.NOT_LISTED;
+						// create a default image otherwise when instanciating this brick, we will try to add
+						// it again to the library as an unknown brick.
+						this.Image = new Bitmap(1, 1); // call the setter to also set the bounding box
                     }
                 }
 									
