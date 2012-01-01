@@ -302,97 +302,124 @@
     <value>&amp;Editar</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="undoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Deshacer</value>
   </data>
   <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="redoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Rehacer</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 6</value>
+    <value>230, 6</value>
   </data>
   <data name="cutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="cutToolStripMenuItem.Text" xml:space="preserve">
     <value>Cortar</value>
   </data>
   <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Copiar</value>
   </data>
   <data name="pasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="pasteToolStripMenuItem.Text" xml:space="preserve">
     <value>Pegar</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>Eliminar</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 6</value>
+    <value>230, 6</value>
   </data>
   <data name="findAndReplaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="findAndReplaceToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Encontrar y reemplazar…</value>
   </data>
   <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 6</value>
+    <value>230, 6</value>
   </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Seleccionar Todo</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Quitar selección</value>
   </data>
   <data name="selectPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Seleccionar tramo</value>
   </data>
   <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
     <value>Agrupar</value>
   </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="groupToolStripMenuItem.Text" xml:space="preserve">
     <value>Agrupar</value>
   </data>
   <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Desagrupar</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 6</value>
+    <value>230, 6</value>
+  </data>
+  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="rotateCWToolStripMenuItem.Text" xml:space="preserve">
+    <value>Girar en el sentido del reloj</value>
+  </data>
+  <data name="rotateCCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
+    <value>Girar en contra del sentido del reloj</value>
+  </data>
+  <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="sendToBackToolStripMenuItem.Text" xml:space="preserve">
+    <value>Enviar al fondo</value>
+  </data>
+  <data name="bringToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
+    <value>Traer al frente</value>
   </data>
   <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Distancia de ajuste</value>
@@ -422,7 +449,7 @@
     <value>133, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotación</value>
@@ -430,20 +457,8 @@
   <data name="rotationStep22ToolStripMenuItem.Text" xml:space="preserve">
     <value>22,5°</value>
   </data>
-  <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="rotateCWToolStripMenuItem.Text" xml:space="preserve">
-    <value>Girar en el sentido del reloj</value>
-  </data>
-  <data name="rotateCCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
-    <value>Girar en contra del sentido del reloj</value>
-  </data>
   <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
     <value>Herramienta de pintura</value>
@@ -470,28 +485,28 @@
     <value>Seleccionar color...</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 6</value>
+    <value>230, 6</value>
   </data>
   <data name="generalInformationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="generalInformationToolStripMenuItem.Text" xml:space="preserve">
     <value>Información general...</value>
   </data>
   <data name="mapBackgroundColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="mapBackgroundColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Color de fondo del mapa...</value>
   </data>
   <data name="currentLayerOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="currentLayerOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>Opciones de la capa actual...</value>
   </data>
   <data name="preferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>233, 22</value>
   </data>
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>Preferencias...</value>

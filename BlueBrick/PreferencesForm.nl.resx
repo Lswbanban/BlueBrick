@@ -377,6 +377,12 @@ toevoegen</value>
   <data name="comboBoxAction.Items8" xml:space="preserve">
     <value>Wijzig actieve verbinding</value>
   </data>
+  <data name="comboBoxAction.Items9" xml:space="preserve">
+    <value>Naar de achtergrond brengen</value>
+  </data>
+  <data name="comboBoxAction.Items10" xml:space="preserve">
+    <value>Naar de voorgrond brengen</value>
+  </data>
   <data name="comboBoxKey.Items36" xml:space="preserve">
     <value>Spatie</value>
   </data>
@@ -406,9 +412,6 @@ toevoegen</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>&amp;OK</value>
-  </data>
-  <data name="restoreDefaultButton.Text" xml:space="preserve">
-    <value>Herstel standaarden</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

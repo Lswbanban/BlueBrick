@@ -92,6 +92,8 @@ namespace BlueBrick
 			MOVE_UP,
 			MOVE_DOWN,
 			CHANGE_CURRENT_CONNEXION,
+			SEND_TO_BACK,
+			BRING_TO_FRONT,
 			NB_ACTIONS
 		};
 		private class KeyAndPart
@@ -1335,6 +1337,70 @@ namespace BlueBrick
             }
         }
 
+		private void rotateCWToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// first get the current selected layer
+			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			{
+				switch (Map.Instance.SelectedLayer.GetType().Name)
+				{
+					case "LayerBrick":
+						ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects, 1));
+						break;
+					case "LayerText":
+						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, 1));
+						break;
+				}
+			}
+		}
+
+		private void rotateCCWToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// first get the current selected layer
+			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			{
+				switch (Map.Instance.SelectedLayer.GetType().Name)
+				{
+					case "LayerBrick":
+						ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects, -1));
+						break;
+					case "LayerText":
+						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, -1));
+						break;
+				}
+			}
+		}
+
+		private void sendToBackToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			{
+				if (Map.Instance.SelectedLayer.GetType().Name == "LayerBrick")
+				{
+					ActionManager.Instance.doAction(new SendBrickToBack(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects));
+				}
+				else if (Map.Instance.SelectedLayer.GetType().Name == "LayerText")
+				{
+					ActionManager.Instance.doAction(new SendTextToBack(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects));
+				}
+			}
+		}
+
+		private void bringToFrontToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			{
+				if (Map.Instance.SelectedLayer.GetType().Name == "LayerBrick")
+				{
+					ActionManager.Instance.doAction(new BringBrickToFront(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects));
+				}
+				else if (Map.Instance.SelectedLayer.GetType().Name == "LayerText")
+				{
+					ActionManager.Instance.doAction(new BringTextToFront(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects));
+				}
+			}
+		}
+
 		private void moveStepDisabledToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			enableSnapGridButton(false, Layer.CurrentSnapGridSize);
@@ -1410,40 +1476,6 @@ namespace BlueBrick
 		private void rotationStep1ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			updateRotationStepButton(1.0f);
-		}
-
-		private void rotateCWToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			// first get the current selected layer
-			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
-			{
-				switch (Map.Instance.SelectedLayer.GetType().Name)
-				{
-					case "LayerBrick":
-						ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects, 1));
-						break;
-					case "LayerText":
-						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, 1));
-						break;
-				}
-			}
-		}
-
-		private void rotateCCWToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			// first get the current selected layer
-			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
-			{
-				switch (Map.Instance.SelectedLayer.GetType().Name)
-				{
-					case "LayerBrick":
-						ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects, -1));
-						break;
-					case "LayerText":
-						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, -1));
-						break;
-				}
-			}
 		}
 
 		private void paintToolPaintToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1795,32 +1827,14 @@ namespace BlueBrick
 
 		public void toolBarSendToBackButton_Click(object sender, EventArgs e)
 		{
-			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
-			{
-				if (Map.Instance.SelectedLayer.GetType().Name == "LayerBrick")
-				{
-					ActionManager.Instance.doAction(new SendBrickToBack(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects));
-				}
-				else if (Map.Instance.SelectedLayer.GetType().Name == "LayerText")
-				{
-					ActionManager.Instance.doAction(new SendTextToBack(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects));
-				}
-			}
+			// call the event handler of the menu
+			sendToBackToolStripMenuItem_Click(sender, e);
 		}
 
 		public void toolBarBringToFrontButton_Click(object sender, EventArgs e)
 		{
-			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
-			{
-				if (Map.Instance.SelectedLayer.GetType().Name == "LayerBrick")
-				{
-					ActionManager.Instance.doAction(new BringBrickToFront(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects));
-				}
-				else if (Map.Instance.SelectedLayer.GetType().Name == "LayerText")
-				{
-					ActionManager.Instance.doAction(new BringTextToFront(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects));
-				}
-			}
+			// call the event handler of the menu
+			bringToFrontToolStripMenuItem_Click(sender, e);
 		}
 
 		private void toolBarPaintButton_ButtonClick(object sender, EventArgs e)
@@ -2214,6 +2228,14 @@ namespace BlueBrick
 									}
 									break;
 								}
+							case shortcutableAction.SEND_TO_BACK:
+								// shortcut to the event handler of the menu
+								sendToBackToolStripMenuItem_Click(sender, e);
+								break;
+							case shortcutableAction.BRING_TO_FRONT:
+								// shortcut to the event handler of the menu
+								bringToFrontToolStripMenuItem_Click(sender, e);
+								break;
 						}
 
 						// we need to force the refresh of the map immediatly because the invalidate

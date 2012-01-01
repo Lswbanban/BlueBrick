@@ -408,6 +408,12 @@ por defecto (en studs)</value>
   <data name="comboBoxAction.Items8" xml:space="preserve">
     <value>Cambiar conexión activa</value>
   </data>
+  <data name="comboBoxAction.Items9" xml:space="preserve">
+    <value>Enviar al fondo</value>
+  </data>
+  <data name="comboBoxAction.Items10" xml:space="preserve">
+    <value>Traer al frente</value>
+  </data>
   <data name="comboBoxKey.Items36" xml:space="preserve">
     <value>Espacio</value>
   </data>
@@ -470,9 +476,6 @@ por defecto (en studs)</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>Aceptar</value>
-  </data>
-  <data name="restoreDefaultButton.Text" xml:space="preserve">
-    <value>Restaurar valores por defecto</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
