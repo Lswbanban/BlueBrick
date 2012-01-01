@@ -334,6 +334,12 @@ della Griglia (in Stud)</value>
   <data name="comboBoxAction.Items8" xml:space="preserve">
     <value>Cambia la connessione attiva</value>
   </data>
+  <data name="comboBoxAction.Items9" xml:space="preserve">
+    <value>Sposta in secondo piano</value>
+  </data>
+  <data name="comboBoxAction.Items10" xml:space="preserve">
+    <value>Porta in primo piano</value>
+  </data>
   <data name="comboBoxKey.Items36" xml:space="preserve">
     <value>Spazio</value>
   </data>
@@ -393,9 +399,6 @@ della Griglia (in Stud)</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annulla</value>
-  </data>
-  <data name="restoreDefaultButton.Text" xml:space="preserve">
-    <value>Ripristina i default</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

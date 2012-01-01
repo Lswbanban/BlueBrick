@@ -378,6 +378,12 @@ kortkommando</value>
   <data name="comboBoxAction.Items8" xml:space="preserve">
     <value>Ändra aktiv förbindelse</value>
   </data>
+  <data name="comboBoxAction.Items9" xml:space="preserve">
+    <value>Placera längst bak</value>
+  </data>
+  <data name="comboBoxAction.Items10" xml:space="preserve">
+    <value>Placera längst fram</value>
+  </data>
   <data name="comboBoxKey.Items36" xml:space="preserve">
     <value>Blanksteg</value>
   </data>
@@ -464,9 +470,6 @@ kortkommando</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>OK</value>
-  </data>
-  <data name="restoreDefaultButton.Text" xml:space="preserve">
-    <value>Standardinställningar</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

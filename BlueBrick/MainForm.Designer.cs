@@ -80,6 +80,11 @@ namespace BlueBrick
 			this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ungroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+			this.transformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotateCWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotateCCWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.sendToBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.bringToFrontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.moveStepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.moveStepDisabledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.moveStep32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,8 +98,6 @@ namespace BlueBrick
 			this.rotationStep45ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.rotationStep22ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.rotationStep1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotateCWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotateCCWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.paintToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.paintToolPaintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.paintToolEraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -201,6 +204,7 @@ namespace BlueBrick
 			// 
 			this.mapPanel.AccessibleDescription = null;
 			this.mapPanel.AccessibleName = null;
+			this.mapPanel.AllowDrop = true;
 			resources.ApplyResources(this.mapPanel, "mapPanel");
 			this.mapPanel.BackColor = System.Drawing.Color.CornflowerBlue;
 			this.mapPanel.BackgroundImage = null;
@@ -620,10 +624,9 @@ namespace BlueBrick
             this.selectPathToolStripMenuItem,
             this.groupMenuToolStripMenuItem,
             this.toolStripSeparator8,
+            this.transformToolStripMenuItem,
             this.moveStepToolStripMenuItem,
             this.rotationStepToolStripMenuItem,
-            this.rotateCWToolStripMenuItem,
-            this.rotateCCWToolStripMenuItem,
             this.paintToolToolStripMenuItem,
             this.toolStripSeparator10,
             this.generalInformationToolStripMenuItem,
@@ -793,6 +796,60 @@ namespace BlueBrick
 			resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
 			this.toolStripSeparator8.Name = "toolStripSeparator8";
 			// 
+			// transformToolStripMenuItem
+			// 
+			this.transformToolStripMenuItem.AccessibleDescription = null;
+			this.transformToolStripMenuItem.AccessibleName = null;
+			resources.ApplyResources(this.transformToolStripMenuItem, "transformToolStripMenuItem");
+			this.transformToolStripMenuItem.BackgroundImage = null;
+			this.transformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rotateCWToolStripMenuItem,
+            this.rotateCCWToolStripMenuItem,
+            this.sendToBackToolStripMenuItem,
+            this.bringToFrontToolStripMenuItem});
+			this.transformToolStripMenuItem.Name = "transformToolStripMenuItem";
+			this.transformToolStripMenuItem.ShortcutKeyDisplayString = null;
+			// 
+			// rotateCWToolStripMenuItem
+			// 
+			this.rotateCWToolStripMenuItem.AccessibleDescription = null;
+			this.rotateCWToolStripMenuItem.AccessibleName = null;
+			resources.ApplyResources(this.rotateCWToolStripMenuItem, "rotateCWToolStripMenuItem");
+			this.rotateCWToolStripMenuItem.BackgroundImage = null;
+			this.rotateCWToolStripMenuItem.Name = "rotateCWToolStripMenuItem";
+			this.rotateCWToolStripMenuItem.ShortcutKeyDisplayString = null;
+			this.rotateCWToolStripMenuItem.Click += new System.EventHandler(this.rotateCWToolStripMenuItem_Click);
+			// 
+			// rotateCCWToolStripMenuItem
+			// 
+			this.rotateCCWToolStripMenuItem.AccessibleDescription = null;
+			this.rotateCCWToolStripMenuItem.AccessibleName = null;
+			resources.ApplyResources(this.rotateCCWToolStripMenuItem, "rotateCCWToolStripMenuItem");
+			this.rotateCCWToolStripMenuItem.BackgroundImage = null;
+			this.rotateCCWToolStripMenuItem.Name = "rotateCCWToolStripMenuItem";
+			this.rotateCCWToolStripMenuItem.ShortcutKeyDisplayString = null;
+			this.rotateCCWToolStripMenuItem.Click += new System.EventHandler(this.rotateCCWToolStripMenuItem_Click);
+			// 
+			// sendToBackToolStripMenuItem
+			// 
+			this.sendToBackToolStripMenuItem.AccessibleDescription = null;
+			this.sendToBackToolStripMenuItem.AccessibleName = null;
+			resources.ApplyResources(this.sendToBackToolStripMenuItem, "sendToBackToolStripMenuItem");
+			this.sendToBackToolStripMenuItem.BackgroundImage = null;
+			this.sendToBackToolStripMenuItem.Name = "sendToBackToolStripMenuItem";
+			this.sendToBackToolStripMenuItem.ShortcutKeyDisplayString = null;
+			this.sendToBackToolStripMenuItem.Click += new System.EventHandler(this.sendToBackToolStripMenuItem_Click);
+			// 
+			// bringToFrontToolStripMenuItem
+			// 
+			this.bringToFrontToolStripMenuItem.AccessibleDescription = null;
+			this.bringToFrontToolStripMenuItem.AccessibleName = null;
+			resources.ApplyResources(this.bringToFrontToolStripMenuItem, "bringToFrontToolStripMenuItem");
+			this.bringToFrontToolStripMenuItem.BackgroundImage = null;
+			this.bringToFrontToolStripMenuItem.Name = "bringToFrontToolStripMenuItem";
+			this.bringToFrontToolStripMenuItem.ShortcutKeyDisplayString = null;
+			this.bringToFrontToolStripMenuItem.Click += new System.EventHandler(this.bringToFrontToolStripMenuItem_Click);
+			// 
 			// moveStepToolStripMenuItem
 			// 
 			this.moveStepToolStripMenuItem.AccessibleDescription = null;
@@ -937,26 +994,6 @@ namespace BlueBrick
 			this.rotationStep1ToolStripMenuItem.Name = "rotationStep1ToolStripMenuItem";
 			this.rotationStep1ToolStripMenuItem.ShortcutKeyDisplayString = null;
 			this.rotationStep1ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep1ToolStripMenuItem_Click);
-			// 
-			// rotateCWToolStripMenuItem
-			// 
-			this.rotateCWToolStripMenuItem.AccessibleDescription = null;
-			this.rotateCWToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.rotateCWToolStripMenuItem, "rotateCWToolStripMenuItem");
-			this.rotateCWToolStripMenuItem.BackgroundImage = null;
-			this.rotateCWToolStripMenuItem.Name = "rotateCWToolStripMenuItem";
-			this.rotateCWToolStripMenuItem.ShortcutKeyDisplayString = null;
-			this.rotateCWToolStripMenuItem.Click += new System.EventHandler(this.rotateCWToolStripMenuItem_Click);
-			// 
-			// rotateCCWToolStripMenuItem
-			// 
-			this.rotateCCWToolStripMenuItem.AccessibleDescription = null;
-			this.rotateCCWToolStripMenuItem.AccessibleName = null;
-			resources.ApplyResources(this.rotateCCWToolStripMenuItem, "rotateCCWToolStripMenuItem");
-			this.rotateCCWToolStripMenuItem.BackgroundImage = null;
-			this.rotateCCWToolStripMenuItem.Name = "rotateCCWToolStripMenuItem";
-			this.rotateCCWToolStripMenuItem.ShortcutKeyDisplayString = null;
-			this.rotateCCWToolStripMenuItem.Click += new System.EventHandler(this.rotateCCWToolStripMenuItem_Click);
 			// 
 			// paintToolToolStripMenuItem
 			// 
@@ -1666,8 +1703,6 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripMenuItem rotationStep45ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem rotationStep22ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem rotationStep1ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem rotateCWToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem rotateCCWToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem paintToolToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem paintToolPaintToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem paintToolEraseToolStripMenuItem;
@@ -1695,6 +1730,11 @@ namespace BlueBrick
         private System.Windows.Forms.ToolStripMenuItem groupMenuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem groupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ungroupToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem transformToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem rotateCWToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem rotateCCWToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem sendToBackToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem bringToFrontToolStripMenuItem;
 	}
 }
 

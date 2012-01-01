@@ -229,6 +229,15 @@
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Flytt valgt lag oppover</value>
   </data>
+  <data name="menuBar.Text" xml:space="preserve">
+    <value>Menylinje</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Fil</value>
+  </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 22</value>
   </data>
@@ -286,11 +295,11 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>A&amp;vslutt</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 20</value>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 20</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Fil</value>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Rediger</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 22</value>
@@ -361,6 +370,12 @@
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Velg &amp;filbane</value>
   </data>
+  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 22</value>
+  </data>
+  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Gruppér</value>
+  </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
   </data>
@@ -373,14 +388,41 @@
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Løs opp gruppe</value>
   </data>
-  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
-  </data>
-  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Gruppér</value>
-  </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>217, 6</value>
+  </data>
+  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 22</value>
+  </data>
+  <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="rotateCWToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rotér med klokken</value>
+  </data>
+  <data name="rotateCCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rotér mot klokken</value>
+  </data>
+  <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="sendToBackToolStripMenuItem.Text" xml:space="preserve">
+    <value>Legg underst</value>
+  </data>
+  <data name="bringToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
+    <value>Legg øverst</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 22</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Forflytningssteg</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
@@ -406,29 +448,17 @@
   <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
-  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
-  </data>
-  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Forflytningssteg</value>
-  </data>
   <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotasjonssteg</value>
   </data>
-  <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 22</value>
   </data>
-  <data name="rotateCWToolStripMenuItem.Text" xml:space="preserve">
-    <value>Rotér med klokken</value>
-  </data>
-  <data name="rotateCCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
-  </data>
-  <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
-    <value>Rotér mot klokken</value>
+  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fargeleggingsverktøy</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 22</value>
@@ -450,12 +480,6 @@
   </data>
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Velg farge...</value>
-  </data>
-  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
-  </data>
-  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Fargeleggingsverktøy</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>217, 6</value>
@@ -484,11 +508,11 @@
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>Innstillinger...</value>
   </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 20</value>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 20</value>
   </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Rediger</value>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Vis</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 22</value>
@@ -514,11 +538,11 @@
   <data name="partListToolStripMenuItem.Text" xml:space="preserve">
     <value>Deleliste</value>
   </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 20</value>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
   </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Vis</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hjelp</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 22</value>
@@ -532,14 +556,8 @@
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Om BlueBrick...</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hjelp</value>
-  </data>
-  <data name="menuBar.Text" xml:space="preserve">
-    <value>Menylinje</value>
+  <data name="toolBar.Text" xml:space="preserve">
+    <value>Verktøylinje</value>
   </data>
   <data name="toolBarNewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -742,6 +760,17 @@
   <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
     <value>Legg øverst</value>
   </data>
+  <data name="toolBarPaintButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
+        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
+        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolBarPaintButton.ToolTipText" xml:space="preserve">
+    <value>Velg fargeleggingsverktøy for område-lag</value>
+  </data>
   <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -769,20 +798,6 @@
   </data>
   <data name="eraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Visk ut</value>
-  </data>
-  <data name="toolBarPaintButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
-        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
-        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="toolBarPaintButton.ToolTipText" xml:space="preserve">
-    <value>Velg fargeleggingsverktøy for område-lag</value>
-  </data>
-  <data name="toolBar.Text" xml:space="preserve">
-    <value>Verktøylinje</value>
   </data>
   <data name="openFileDialog.Title" xml:space="preserve">
     <value>Åpne BlueBrick-kart</value>

@@ -457,6 +457,12 @@ des geführten Teils</value>
   <data name="comboBoxAction.Items8" xml:space="preserve">
     <value>Ändere die aktive Verbindung</value>
   </data>
+  <data name="comboBoxAction.Items9" xml:space="preserve">
+    <value>In den Hintergrund</value>
+  </data>
+  <data name="comboBoxAction.Items10" xml:space="preserve">
+    <value>In den Vordergrund</value>
+  </data>
   <data name="comboBoxKey.Items36" xml:space="preserve">
     <value>Leertaste</value>
   </data>

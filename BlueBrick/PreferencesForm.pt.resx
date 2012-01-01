@@ -386,6 +386,12 @@ da selecção</value>
   <data name="comboBoxAction.Items8" xml:space="preserve">
     <value>Mudar a Conexão Activa</value>
   </data>
+  <data name="comboBoxAction.Items9" xml:space="preserve">
+    <value>Enviar para Trás</value>
+  </data>
+  <data name="comboBoxAction.Items10" xml:space="preserve">
+    <value>Trazer para a Frente</value>
+  </data>
   <data name="comboBoxKey.Items36" xml:space="preserve">
     <value>Espaço</value>
   </data>
@@ -424,9 +430,6 @@ da selecção</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancelar</value>
-  </data>
-  <data name="restoreDefaultButton.Text" xml:space="preserve">
-    <value>Restaurar por Defeito</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
