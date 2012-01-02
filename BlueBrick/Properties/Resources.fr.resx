@@ -383,4 +383,7 @@ Le message d'erreur est :
   <data name="ActionFlexMove" xml:space="preserve">
     <value>Déplace des briques flexibles</value>
   </data>
+  <data name="LayerTextOptionTitle" xml:space="preserve">
+    <value>Options pour le calque texte</value>
+  </data>
 </root>

@@ -62,7 +62,6 @@ Open bugs:
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - [target 1.8] BUG (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
-- [target 1.7.1] BUG (Steve): Double-clicking on the tab for a Text Layer brings up the options box appropriate for a Brick Layer.
 - [target 1.7.1] BUG (Alban): Fix the maximum of bugs under Mono while keeping dot net working:
 	- The Error Window was not displayed correctly
 	- Patch to catch an exception while loading the 17th part and the following
@@ -95,6 +94,7 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (Alban): The selection/duplication keys were not reset to the default value when clicking the "restore default" button in the Preferences Window
 - BUGFIX (Alban): The order of the shortcut key list was switching when the "restore default" button was clicked in the Preferences Window
 - BUGFIX (Ghislain): Under Linux (with Mono) the drag and drop of part is not working
+- BUGFIX (Steve): Double-clicking on a Text Layer brings up the options box for a Brick Layer (in fact the title is incorrect).
 
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): support Flex PF track.

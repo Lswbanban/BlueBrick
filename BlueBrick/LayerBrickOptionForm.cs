@@ -35,6 +35,9 @@ namespace BlueBrick
 			InitializeComponent();
 			// save the reference on the layer that we are editing
 			mEditedLayer = layer;
+			// change the title if it is a text layer, otherwise, leave the default brick layer title
+			if (layer.GetType().Name.Equals("LayerText"))
+				this.Text = BlueBrick.Properties.Resources.LayerTextOptionTitle;
 			// update the controls with the data of the gridLayer
 			// name and visibility
 			this.nameTextBox.Text = layer.Name;

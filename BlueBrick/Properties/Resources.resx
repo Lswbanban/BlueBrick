@@ -439,4 +439,7 @@
   <data name="LanguageSwedish" xml:space="preserve">
     <value>Svenska</value>
   </data>
+  <data name="LayerTextOptionTitle" xml:space="preserve">
+    <value>Options for Text Layer</value>
+  </data>
 </root>
