@@ -31,12 +31,26 @@ Then extract the files contained in the zip, somewhere on your hardrive, by keep
 
 2.3) Linux
 ииииииииии
-You need to install Mono for linux first
+You need to install Mono for Linux first, please download Mono for Mac at this URL:
+http://www.go-mono.com/mono-downloads/download.html
+
+To run BlueBrick, in a Terminal Shell type:
+$ mono BlueBrick.exe
+
+You can also create a Shell Script (adjust the path to where you have unzipped BlueBrick):
+#!/bin/sh<BR>
+/usr/bin/mono /usr/lib/APPLICATION/BlueBrick/BlueBrick.exe "$@"
 
 2.4) Mac OSX
 ииииииииииии
-You need to install Mono for Mac first
+You need to install Mono for Mac first, please download Mono for Mac at this URL:
+http://www.go-mono.com/mono-downloads/download.html
 
+If you want some help on installing Mono, please visit:
+http://www.mono-project.com/Mono:OSX
+
+To run BlueBrick, in a Terminal Shell type:
+$ mono BlueBrick.exe
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 3) Help
