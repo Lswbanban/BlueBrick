@@ -409,4 +409,7 @@
   <data name="ActionFlexMove" xml:space="preserve">
     <value>Flytt fleksible klosser</value>
   </data>
+  <data name="LayerTextOptionTitle" xml:space="preserve">
+    <value>Alternativer for tekst-lag</value>
+  </data>
 </root>

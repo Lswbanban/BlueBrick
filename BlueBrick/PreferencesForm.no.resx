@@ -117,14 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Generelt</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Utseende</value>
+  </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Delebibliotek</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Snarveier på tastaturet</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Nylig brukte filer</value>
+  </data>
   <data name="clearRecentFilesButton.Text" xml:space="preserve">
     <value>Tøm liste over nylig brukte filer</value>
   </data>
   <data name="label23.Text" xml:space="preserve">
     <value>Antall nylig brukte filer</value>
   </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Nylig brukte filer</value>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Ytelse</value>
   </data>
   <data name="optimComboBox.Items" xml:space="preserve">
     <value>Raskere</value>
@@ -138,8 +153,8 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Balanse mellom minne og hastighet</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Ytelse</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Angre/gjenta</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Jo flere ganger du ønsker at angremuligheten skal kunne brukes, jo mer minne vil programmet behøve.</value>
@@ -165,8 +180,8 @@ kan vises</value>
     <value>Antall ganger angremuligheten
 kan brukes</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Angre/gjenta</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Nye kartinnstillinger</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Opphavsperson</value>
@@ -183,8 +198,8 @@ kan brukes</value>
   <data name="addGridLayerCheckBox.Text" xml:space="preserve">
     <value>Legg til et rutenett-lag på nytt kart</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Nye kartinnstillinger</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Mus</value>
   </data>
   <data name="mouseDuplicateSelKeyComboBox.Items" xml:space="preserve">
     <value>Ctrl</value>
@@ -219,8 +234,8 @@ kan brukes</value>
   <data name="label3.Text" xml:space="preserve">
     <value>Zoom-hastighet på musehjulet</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Mus</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Språk</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Hvis du endrer språk må du starte programmet på nytt for at endringene skal tre i kraft.</value>
@@ -228,11 +243,8 @@ kan brukes</value>
   <data name="label1.Text" xml:space="preserve">
     <value>Språk</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Språk</value>
-  </data>
-  <data name="generalTabPage.Text" xml:space="preserve">
-    <value>Generelt</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Standard utseende på område</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>Standard størrelse på celleflate (studs)</value>
@@ -240,8 +252,8 @@ kan brukes</value>
   <data name="label28.Text" xml:space="preserve">
     <value>Standard gjennomsiktighet (i %)</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Standard utseende på område</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Standard rutenett-størrelse</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Standard antall undernivåer</value>
@@ -249,8 +261,8 @@ kan brukes</value>
   <data name="label21.Text" xml:space="preserve">
     <value>Standard rutenett-størrelse (studs)</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Standard rutenett-størrelse</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Standard tekstformat</value>
   </data>
   <data name="defaultFontNameLabel.Text" xml:space="preserve">
     <value>Skrifttype</value>
@@ -261,8 +273,8 @@ kan brukes</value>
   <data name="defaultFontButton.Text" xml:space="preserve">
     <value>Endre skrifttype</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Standard tekstformat</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Farger</value>
   </data>
   <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
     <value>Vis vannmerke med generell informasjon</value>
@@ -306,17 +318,14 @@ kan brukes</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Fargeinnstilling</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Farger</value>
-  </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
+  <data name="groupBox13.Text" xml:space="preserve">
     <value>Utseende</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Bakgrunnsfarge på delebibliotek</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>Utseende</value>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Tips-boble</value>
   </data>
   <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 17</value>
@@ -342,8 +351,8 @@ kan brukes</value>
   <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
     <value>Innhold i tips-boblen:</value>
   </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Tips-boble</value>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Tab-rekkefølge</value>
   </data>
   <data name="alphabeticOrderButton.Text" xml:space="preserve">
     <value>Alfabetisk rekkefølge</value>
@@ -353,12 +362,6 @@ kan brukes</value>
   </data>
   <data name="MoveUpButton.Text" xml:space="preserve">
     <value>Flytt opp</value>
-  </data>
-  <data name="groupBox11.Text" xml:space="preserve">
-    <value>Tabulatorrekkefølge</value>
-  </data>
-  <data name="partLibTabPage.Text" xml:space="preserve">
-    <value>Delebibliotek</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>For å fjerne snarveitastene, velg dem fra listen og klikk på denne knappen:</value>
@@ -487,14 +490,17 @@ snarvei</value>
   <data name="Connection.Text" xml:space="preserve">
     <value>Forbindelse</value>
   </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Snarveier på tastaturet</value>
-  </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Avbryt</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="restoreAllDefaultButton.Text" xml:space="preserve">
+    <value>Tilbakestill til standard</value>
+  </data>
+  <data name="restoreTabDefaultButton.Text" xml:space="preserve">
+    <value>Tilbakestill tab til standard</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

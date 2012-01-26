@@ -283,6 +283,7 @@ namespace BlueBrick
 			this.partsTabControl.AccessibleName = null;
 			resources.ApplyResources(this.partsTabControl, "partsTabControl");
 			this.partsTabControl.BackgroundImage = null;
+			this.partsTabControl.DraggingPartNumber = null;
 			this.partsTabControl.Font = null;
 			this.partsTabControl.Name = "partsTabControl";
 			this.partsTabControl.SelectedIndex = 0;

@@ -394,6 +394,9 @@
   <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 22</value>
   </data>
+  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Endre</value>
+  </data>
   <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 22</value>
   </data>
