@@ -357,6 +357,9 @@
   <data name="HideDetails" xml:space="preserve">
     <value>Ocultar detalles</value>
   </data>
+  <data name="LayerTextOptionTitle" xml:space="preserve">
+    <value>Opciones para capa de texto</value>
+  </data>
   <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
     <value>Burbuja de información</value>
   </data>

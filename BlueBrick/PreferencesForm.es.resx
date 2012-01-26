@@ -471,11 +471,38 @@ por defecto (en studs)</value>
   <data name="shortcutKeysTabPage.Text" xml:space="preserve">
     <value>Atajos de teclado</value>
   </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 439</value>
+  </data>
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 23</value>
+  </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>528, 439</value>
+  </data>
+  <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>Aceptar</value>
+  </data>
+  <data name="restoreAllDefaultButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 439</value>
+  </data>
+  <data name="restoreAllDefaultButton.Text" xml:space="preserve">
+    <value>Restaurar todos los valores por defecto</value>
+  </data>
+  <data name="restoreTabDefaultButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>293, 439</value>
+  </data>
+  <data name="restoreTabDefaultButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 23</value>
+  </data>
+  <data name="restoreTabDefaultButton.Text" xml:space="preserve">
+    <value>Restaurar esta pestaña a valores por defecto</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
