@@ -362,6 +362,9 @@ The error message is:
   <data name="HideDetails" xml:space="preserve">
     <value>Verberg details</value>
   </data>
+  <data name="LayerTextOptionTitle" xml:space="preserve">
+    <value>Tekst laag opties</value>
+  </data>
   <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
     <value>Tooltip Info</value>
   </data>
