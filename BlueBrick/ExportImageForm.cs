@@ -196,7 +196,8 @@ namespace BlueBrick
 			else
 			{
 				// otherwise delete the map image to avoid setting the picture box image
-				mMapImage.Dispose();
+				if (mMapImage != null)
+					mMapImage.Dispose();
 				mMapImage = null;
 			}
 		}
