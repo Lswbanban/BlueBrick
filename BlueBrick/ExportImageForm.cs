@@ -143,6 +143,12 @@ namespace BlueBrick
 			// get the new available width and height
 			int parentWidth = this.topTableLayoutPanel.ClientSize.Width - 4;
 			int parentHeight = this.topTableLayoutPanel.ClientSize.Height - 154;
+			// check that the width and height are not negative, this can happen
+			// when the sizeChanged event is called before the tableLayout has its correct size
+			if (parentWidth < 4)
+				parentWidth = 4;
+			if (parentHeight < 4)
+				parentHeight = 4;
 			// compute the scale of the preview and rescale and center the preview image
 			double xScale = (double)(parentWidth - 2) / mTotalAreaInStud.Width;
 			double yScale = (double)(parentHeight - 2) / mTotalAreaInStud.Height;
@@ -173,8 +179,9 @@ namespace BlueBrick
 			Map.Instance.clearAllSelection();
 			// create the map image with the correct size
 			// check that the size is not null, which can happen if the window is minimized
-			if ((this.previewPictureBox.Width != 0) && (this.previewPictureBox.Height != 0))
+			if ((this.previewPictureBox.Width >= 0) && (this.previewPictureBox.Height >= 0))
 			{
+				// the constructor of the bitmap throw an exception if the size of the image is negative or null
 				mMapImage = new Bitmap(this.previewPictureBox.Width, this.previewPictureBox.Height);
 				// get the graphic context from the preview picture box
 				Graphics graphics = Graphics.FromImage(mMapImage);
