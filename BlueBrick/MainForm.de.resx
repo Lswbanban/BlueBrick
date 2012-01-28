@@ -117,6 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="statusBar.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mapPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mainSplitContainer.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="partsTabControl.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolSplitContainer.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="layerStackPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="layerSplitContainer.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -126,6 +147,9 @@
   </data>
   <data name="trashLayerButton.ToolTip" xml:space="preserve">
     <value>Markierte Ebene löschen</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="newLayerBrickButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -211,6 +235,9 @@
   <data name="newLayerTextButton.ToolTip" xml:space="preserve">
     <value>Füge eine Textschicht hinzu</value>
   </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhEAAQAPEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAQABAAAAIglI+pBrDbXmpRMmoFxXJX
@@ -229,14 +256,26 @@
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Verschiebe die Ebene nach Unten</value>
   </data>
-  <data name="menuBar.Text" xml:space="preserve">
-    <value>Menüleiste</value>
+  <data name="LayerButtonFlowLayoutPanel.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
+  <data name="layerSplitContainer.Panel2.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Datei</value>
+  <data name="layerSplitContainer.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolSplitContainer.Panel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolSplitContainer.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mainSplitContainer.Panel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mainSplitContainer.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 22</value>
@@ -295,11 +334,11 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Beenden</value>
   </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 20</value>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
   </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Bearbeiten</value>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Datei</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 22</value>
@@ -370,12 +409,6 @@
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Pfad Auswählen</value>
   </data>
-  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 22</value>
-  </data>
-  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Gruppierung</value>
-  </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 22</value>
   </data>
@@ -388,11 +421,14 @@
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Gruppierung aufheben</value>
   </data>
+  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 22</value>
+  </data>
+  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Gruppierung</value>
+  </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>254, 6</value>
-  </data>
-  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 22</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>268, 22</value>
@@ -418,11 +454,11 @@
   <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
     <value>In den Vordergrund</value>
   </data>
-  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 22</value>
   </data>
-  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bewegungsschritt </value>
+  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Position ändern</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
@@ -466,11 +502,11 @@
   <data name="moveStep05ToolStripMenuItem.Text" xml:space="preserve">
     <value>1/2 Noppe</value>
   </data>
-  <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 22</value>
   </data>
-  <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Drehschritte</value>
+  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bewegungsschritt </value>
   </data>
   <data name="rotationStep90ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 22</value>
@@ -496,11 +532,11 @@
   <data name="rotationStep1ToolStripMenuItem.Text" xml:space="preserve">
     <value>1 Grad</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 22</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mal Werkzeug</value>
+  <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Drehschritte</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 22</value>
@@ -522,6 +558,12 @@
   </data>
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Farbe wählen...</value>
+  </data>
+  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 22</value>
+  </data>
+  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mal Werkzeug</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>254, 6</value>
@@ -550,11 +592,11 @@
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>Einstellungen…</value>
   </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 20</value>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 20</value>
   </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ansicht</value>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Bearbeiten</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 22</value>
@@ -580,8 +622,11 @@
   <data name="partListToolStripMenuItem.Text" xml:space="preserve">
     <value>Stückliste</value>
   </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hilfe</value>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 20</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ansicht</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
@@ -595,8 +640,14 @@
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Über BlueBrick...</value>
   </data>
-  <data name="toolBar.Text" xml:space="preserve">
-    <value>Werkzeugleiste</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hilfe</value>
+  </data>
+  <data name="menuBar.Text" xml:space="preserve">
+    <value>Menüleiste</value>
+  </data>
+  <data name="menuBar.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="toolBarNewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -731,18 +782,6 @@
   <data name="toolBarPasteButton.ToolTipText" xml:space="preserve">
     <value>Ausgewählte Objekte einfügen</value>
   </data>
-  <data name="toolBarSnapGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAIVJREFUOE+1k4EK
-        gCAQQwW/xJ/zh/sga8FkmmenkXCY4cbda4UgK6VU9Ixn77tb573c3MPhSzUdb3XwF4MK09uVQoSY9Q5W
-        AV6qgoJBztkFtyKgGPsR4/oINFBxlw3b1BKLwZzLzEC5cN5HEvv5CVaNrbQOIVpAhx1oEvkFAJK1E6Sl
-        /+MEqkCwRnSpGMgAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
-    <value>Wähle die Raster-Fangstufen</value>
-  </data>
   <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
@@ -779,17 +818,17 @@
   <data name="toolBarGrid05Button.Text" xml:space="preserve">
     <value>1/2 Noppe</value>
   </data>
-  <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolBarSnapGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAKVJREFUOE+tU9sN
-        gCAMNMFFGIQ/Z2EEF3Ug9ZCDChQ0atKo0HsVnaa/rnlZd8mFd9YjDRK0QF0i51xQfqImXVprL8d4AIm0
-        XMYpoxGT1quFa+c2EzYrvdlJbASYNRLKBsF+okKBwHufXKjKMh/BuG/GvAPH0EEdYJ5OodycCyeWwDyd
-        BriaS0pA+9I6N+Vc1K9Sy98jrsgkiUY4/C84RERhDUFfGg4Ng5ZNxi8dRwAAAABJRU5ErkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAIVJREFUOE+1k4EK
+        gCAQQwW/xJ/zh/sga8FkmmenkXCY4cbda4UgK6VU9Ixn77tb573c3MPhSzUdb3XwF4MK09uVQoSY9Q5W
+        AV6qgoJBztkFtyKgGPsR4/oINFBxlw3b1BKLwZzLzEC5cN5HEvv5CVaNrbQOIVpAhx1oEvkFAJK1E6Sl
+        /+MEqkCwRnSpGMgAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
-    <value>Wähle die Rotationsschritte</value>
+  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
+    <value>Wähle die Raster-Fangstufen</value>
   </data>
   <data name="toolBarAngle90Button.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 22</value>
@@ -814,6 +853,18 @@
   </data>
   <data name="toolBarAngle1Button.Text" xml:space="preserve">
     <value>1 Grad</value>
+  </data>
+  <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAKVJREFUOE+tU9sN
+        gCAMNMFFGIQ/Z2EEF3Ug9ZCDChQ0atKo0HsVnaa/rnlZd8mFd9YjDRK0QF0i51xQfqImXVprL8d4AIm0
+        XMYpoxGT1quFa+c2EzYrvdlJbASYNRLKBsF+okKBwHufXKjKMh/BuG/GvAPH0EEdYJ5OodycCyeWwDyd
+        BriaS0pA+9I6N+Vc1K9Sy98jrsgkiUY4/C84RERhDUFfGg4Ng5ZNxi8dRwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
+    <value>Wähle die Rotationsschritte</value>
   </data>
   <data name="toolBarRotateCCWButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -859,17 +910,6 @@
   <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
     <value>In den Vordergrund</value>
   </data>
-  <data name="toolBarPaintButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
-        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
-        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="toolBarPaintButton.ToolTipText" xml:space="preserve">
-    <value>Werkzeug zum Anmalen der Flächenebenen</value>
-  </data>
   <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -897,6 +937,23 @@
   </data>
   <data name="eraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Löschen</value>
+  </data>
+  <data name="toolBarPaintButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
+        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
+        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolBarPaintButton.ToolTipText" xml:space="preserve">
+    <value>Werkzeug zum Anmalen der Flächenebenen</value>
+  </data>
+  <data name="toolBar.Text" xml:space="preserve">
+    <value>Werkzeugleiste</value>
+  </data>
+  <data name="toolBar.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="openFileDialog.Title" xml:space="preserve">
     <value>Öffne eine BlueBrick Datei</value>
@@ -948,5 +1005,8 @@
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>
