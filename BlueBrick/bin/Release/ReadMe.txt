@@ -63,16 +63,18 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-- [target 1.8] MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
-- [target 1.8] MISSING FEATURE (Larry): Select parts in multiple layers
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
+- [target 1.8] MISSING FEATURE (Alban): Add a filter combobox in the bottom of the library
+- [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the options and context menu)
+- [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
+- MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
+- MISSING FEATURE (Larry): Select parts in multiple layers
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
 - MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optionnal.
 - MISSING FEATURE (Alban): Enhance the part list export in HTML to export the group set only one time.
 - MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels.
-- MISSING FEATURE (Alban): Add a filter combobox in the bottom of the library
 - MISSING FEATURE (Alban): Autosave.
 - MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
@@ -80,7 +82,6 @@ Open bugs:
 - MISSING FEATURE (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
-- MISSING FEATURE (Alban): Slide bars on the map view?
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should replace it (and the selection should modify the combo boxes)
 - [target 1.8] BUG (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
@@ -101,15 +102,16 @@ Bug fixed in 1.7.1.0:
 - BUGFIX #34 (Alban+Steffen): CRASH! When saving a file with rail tracks in LDraw format (bug introduced in 1.7.0)
 - BUGFIX (Alban): CRASH!! In the download window, crash when attempting to rename a file to download without changing his name.
 - BUGFIX (Alban): CRASH!! Press enter key on a part without connection makes the application crash
+- BUGFIX (Lesgoss+Daniel): CRASH! When opening the Export Window (negative size computed for the preview bitmap)
 - BUGFIX (Alban): In the download window, remove the useless File column and fix a bug about the edition of the file name.
 - BUGFIX (Alban): The Find and Replace window was resizable but controls in it were not resized
-- BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUGFIX (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUGFIX (Alban): The selection/duplication keys were not reset to the default value when clicking the "restore default" button in the Preferences Window
 - BUGFIX (Alban): The order of the shortcut key list was switching when the "restore default" button was clicked in the Preferences Window
-- BUGFIX (Steve): Double-clicking on a Text Layer brings up the options box for a Brick Layer (in fact the title is incorrect).
+- BUGFIX (Steve): Double-clicking on a Text Layer brings up the options box for a Brick Layer (in fact the title was incorrect).
+- BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUGFIX (Ghislain): Under Linux (with Mono) the drag and drop of part is not working
-- BUGFIX (Alban): Fix the maximum of bugs under Mono while keeping dot net working:
+- BUGFIX (Alban): Fix the maximum of bugs under Mono while keeping Dot Net working:
 	- The Error Window was not displayed correctly
 	- Patch to catch an exception while loading the 17th part and the following
 	- the size of the layer window is bigger than necessary at the launch time, or when you move the horizontal splitter
