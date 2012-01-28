@@ -247,6 +247,12 @@ namespace BlueBrick
 			PreferencesForm.sSaveDefaultKeyInSettings();
 			// load the part info
 			loadPartLibraryFromDisk();
+			// disbale all the buttons of the toolbar and menu items by default
+			// the open of the file or the creation of new map will enable the correct buttons
+			enableGroupingButton(false, false);
+			enablePasteButton(false);
+			enableToolbarButtonOnItemSelection(false);
+			enableToolbarButtonOnLayerSelection(false, false);
 			// check if we need to open a file or create a new map
 			if ((fileToOpen != null) && canOpenThisFile(fileToOpen))
 			{

@@ -412,10 +412,11 @@ namespace BlueBrick.MapData
 			}
 			reader.ReadEndElement(); // end of Layers
 			// if the selected index is valid, reset the selected layer
+			// use the setter in order to enable the toolbar buttons
 			if ((selectedLayerIndex >= 0) && (selectedLayerIndex < mLayers.Count))
-				mSelectedLayer = mLayers[selectedLayerIndex];
+				SelectedLayer = mLayers[selectedLayerIndex];
 			else
-				mSelectedLayer = null;
+				SelectedLayer = null;
 
 			// DO NOT READ YET THE BRICK URL LIST, BECAUSE THE BRICK DOWNLOAD FEATURE IS NOT READY
 			if (false)
