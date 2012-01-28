@@ -110,6 +110,7 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (Alban): The order of the shortcut key list was switching when the "restore default" button was clicked in the Preferences Window
 - BUGFIX (Steve): Double-clicking on a Text Layer brings up the options box for a Brick Layer (in fact the title was incorrect).
 - BUGFIX (Alban): Fix some enabling/disabling issues for the toolbar buttons and the menu items
+- BUGFIX (Alban): The red rectangle was not drawn on the preview image of the export window at the first display after loading a file
 - BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUGFIX (Ghislain): Under Linux (with Mono) the drag and drop of part is not working
 - BUGFIX (Alban): Fix the maximum of bugs under Mono while keeping Dot Net working:

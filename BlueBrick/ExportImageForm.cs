@@ -77,6 +77,13 @@ namespace BlueBrick
 			else
 				mSelectedAreaInStud = mTotalAreaInStud;
 
+			// save the selected area in a local variable to set the correct values of the numeric up down
+			// because, setting the min and max for the numeric up down can trigger the value changed event
+			// (the min/max value can clamp the current value not set yet), and in these value changed event
+			// we change the mSelectedAreaInStud. So after setting the min/max, we set the correct values
+			// with the local saved area
+			RectangleF initialSelectedAreaInStud = mSelectedAreaInStud;
+
 			// add a margin to the total area
 			mTotalAreaInStud.X -= 32.0f;
 			mTotalAreaInStud.Y -= 32.0f;
@@ -106,6 +113,7 @@ namespace BlueBrick
 			this.scaleNumericUpDown.Value = (Decimal)scaleValue;
 
 			//init the numericupdown controls for area
+			// start by setting the min/max to avoid an out of bound exception when setting the value
 			this.areaLeftNumericUpDown.Minimum = (Decimal)(mTotalAreaInStud.Left);
 			this.areaRightNumericUpDown.Maximum = (Decimal)(mTotalAreaInStud.Right);
 			this.areaTopNumericUpDown.Minimum = (Decimal)(mTotalAreaInStud.Top);
@@ -117,10 +125,12 @@ namespace BlueBrick
 			this.areaBottomNumericUpDown.Minimum = this.areaTopNumericUpDown.Minimum;
 
 			// set the value after setting the minimum and maximum otherwise we can raise an exeption
-			this.areaLeftNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Left);
-			this.areaRightNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Right);
-			this.areaTopNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Top);
-			this.areaBottomNumericUpDown.Value = (Decimal)(mSelectedAreaInStud.Bottom);
+			// and used the local saved variable because the min/max setting may have already call
+			// the value changed event to clamp the value, and in the event the mSelectedAreaInStud is changed
+			this.areaLeftNumericUpDown.Value = (Decimal)(initialSelectedAreaInStud.Left);
+			this.areaRightNumericUpDown.Value = (Decimal)(initialSelectedAreaInStud.Right);
+			this.areaTopNumericUpDown.Value = (Decimal)(initialSelectedAreaInStud.Top);
+			this.areaBottomNumericUpDown.Value = (Decimal)(initialSelectedAreaInStud.Bottom);
 		}
 
 		private void updateMinAndMaxScaleAccordingToSelectedArea()
