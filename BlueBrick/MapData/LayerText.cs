@@ -346,6 +346,8 @@ namespace BlueBrick.MapData
 				// add a duplicated item in the list (because the model may change between this copy and the paste)
 				sCopyItems.Add((item as TextCell).Clone());
 			}
+			// enable the paste buttons
+			MainForm.Instance.enablePasteButton(true);
 		}
 
 		/// <summary>

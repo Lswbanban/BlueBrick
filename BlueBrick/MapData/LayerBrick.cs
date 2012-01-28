@@ -1350,6 +1350,8 @@ namespace BlueBrick.MapData
 			SelectedObjects.Sort(comparer);
 			// and copy the list
 			sCopyItems = sCloneBrickList(SelectedObjects);
+			// enable the paste buttons
+			MainForm.Instance.enablePasteButton(true);
 		}
 
 		/// <summary>

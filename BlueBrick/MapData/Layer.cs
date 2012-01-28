@@ -744,8 +744,9 @@ namespace BlueBrick.MapData
 			// increase the layer number and add it to the name
 			++nameInstanceCounter;
 			mName += " " + nameInstanceCounter.ToString();
-			// disable the copy on the main form if the list is empty
-			MainForm.Instance.enableCopyButton(false);
+			// A new layer is created, of course the selection is empty so 
+			// disable some buttons in the toolbar related to an empty selection
+			MainForm.Instance.enableToolbarButtonOnItemSelection(false);
 		}
 
 		/// <summary>
@@ -969,8 +970,8 @@ namespace BlueBrick.MapData
 			// clear a flag for continuous rotation in the rotation action (not very clean I know)
 			Actions.Bricks.RotateBrick.sLastCenterIsValid = false;
 			Actions.Texts.RotateText.sLastCenterIsValid = false;
-			// enable the copy on the main form
-			MainForm.Instance.enableCopyButton(mSelectedObjects.Count > 0);
+			// enable or disable the toolbar buttons related to the selection (if it is empty or not)
+			MainForm.Instance.enableToolbarButtonOnItemSelection(mSelectedObjects.Count > 0);
             // enable the grouping button on the main form
             bool canGroupSelection = Actions.Items.GroupItems.findItemsToGroup(mSelectedObjects).Count > 1;
             bool canUngroupSelection = Actions.Items.UngroupItems.findItemsToUngroup(mSelectedObjects).Count > 0;

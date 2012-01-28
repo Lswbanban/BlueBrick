@@ -495,22 +495,6 @@ namespace BlueBrick
 			updateUndoRedoMenuItems();
 		}
 
-		/// <summary>
-		/// Enable or disable the copy/cut/delete menu item and copy/cut/delete toolbar button
-		/// </summary>
-		/// <param name="enable"></param>
-		public void enableCopyButton(bool enable)
-		{
-			this.copyToolStripMenuItem.Enabled = enable;
-			this.cutToolStripMenuItem.Enabled = enable;
-			this.deleteToolStripMenuItem.Enabled = enable;
-			this.toolBarCopyButton.Enabled = enable;
-			this.toolBarCutButton.Enabled = enable;
-			this.toolBarDeleteButton.Enabled = enable;
-			this.deselectAllToolStripMenuItem.Enabled = enable;
-			this.selectPathToolStripMenuItem.Enabled = ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.GetType().Name.Equals("LayerBrick")) && (Map.Instance.SelectedLayer.SelectedObjects.Count == 2));
-		}
-
         /// <summary>
         /// Enable or disable the group/ungroup menu item in the edit menu and context menu
         /// </summary>
@@ -524,45 +508,105 @@ namespace BlueBrick
         }
 
 		/// <summary>
+		/// Enable or disable the paste item button depending on the parameter and also if there's something
+		/// to paste. So if the parameter is true but nothing was copied, the paste button will stay disabled
+		/// <param name="canPaste">if true that means you can enable the button is needed</param>
+		/// </summary>
+		public void enablePasteButton(bool canPaste)
+		{
+			if (canPaste)
+			{
+				bool isThereAnyItemCopied = (Layer.CopyItems.Count > 0);
+				this.pasteToolStripMenuItem.Enabled = isThereAnyItemCopied;
+				this.toolBarPasteButton.Enabled = isThereAnyItemCopied;
+			}
+			else
+			{
+				this.pasteToolStripMenuItem.Enabled = false;
+				this.toolBarPasteButton.Enabled = false;
+			}
+		}
+
+		/// <summary>
 		/// Enable or disable the buttons in the tool bar that allow manipulation of the layer item
-		/// such as snap grid, snap rotation, rotate button and paint/erase
+		/// such as cut/copy/delete and rotate and sned to back/bring to front button WHEN the item selection
+		/// changed on the current layer.
+		/// <param name="isThereAnyItemSelected">if true that means no item is selected on the current layer</param>
+		/// </summary>
+		public void enableToolbarButtonOnItemSelection(bool isThereAnyItemSelected)
+		{
+			// enable/disable the copy button (toolbar and menu)
+			this.toolBarCopyButton.Enabled = isThereAnyItemSelected;
+			this.copyToolStripMenuItem.Enabled = isThereAnyItemSelected;
+
+			// enable/disable the cut button (toolbar and menu)
+			this.toolBarCutButton.Enabled = isThereAnyItemSelected;
+			this.cutToolStripMenuItem.Enabled = isThereAnyItemSelected;
+
+			// enable/disable the delete button (toolbar and menu)
+			this.toolBarDeleteButton.Enabled = isThereAnyItemSelected;
+			this.deleteToolStripMenuItem.Enabled = isThereAnyItemSelected;
+
+			// enable/disable the sub menu item Transform (only menu)
+			this.transformToolStripMenuItem.Enabled = isThereAnyItemSelected;
+
+			// enable/disable the rotate buttons (toolbar and menu)
+			this.toolBarRotateCCWButton.Enabled = isThereAnyItemSelected;
+			this.toolBarRotateCWButton.Enabled = isThereAnyItemSelected;
+			this.rotateCCWToolStripMenuItem.Enabled = isThereAnyItemSelected;
+			this.rotateCWToolStripMenuItem.Enabled = isThereAnyItemSelected;
+
+			// enable/disable the send to back/bring to front buttons (toolbar and menu)
+			this.toolBarBringToFrontButton.Enabled = isThereAnyItemSelected;
+			this.toolBarSendToBackButton.Enabled = isThereAnyItemSelected;
+			this.bringToFrontToolStripMenuItem.Enabled = isThereAnyItemSelected;
+			this.sendToBackToolStripMenuItem.Enabled = isThereAnyItemSelected;
+
+			// enable/disable the deselect all button (menu only)
+			this.deselectAllToolStripMenuItem.Enabled = isThereAnyItemSelected;
+
+			// enable/disable the select path button (menu only)
+			this.selectPathToolStripMenuItem.Enabled = ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.GetType().Name.Equals("LayerBrick")) && (Map.Instance.SelectedLayer.SelectedObjects.Count == 2));
+		}
+
+		/// <summary>
+		/// Enable or disable the buttons in the tool bar that allow manipulation of the layer item
+		/// such as snap grid, snap rotation, rotate button and paint/erase WHEN the selected layer is changed.
+		/// This method do not affect the cut/copy/delete and rotate and sned to back/bring to front button
+		/// because these buttons depends on the items selected on the layer, not on the layer type.
 		/// </summary>
 		/// <param name="enableMoveRotateButton">enable the button related to move and rotate</param>
 		/// <param name="enablePaintButton">enable the button related to paint</param>
 		public void enableToolbarButtonOnLayerSelection(bool enableMoveRotateButton, bool enablePaintButton)
 		{
-			// enable the copy/paste button
-			if (enableMoveRotateButton)
-			{
-				this.pasteToolStripMenuItem.Enabled = true;
-				this.toolBarPasteButton.Enabled = true;
-				// do not enable copy button now, it will be enable when the selection is not null
-			}
-			else
-			{
-				// this is a layer without selectionnable items, disable all copy/paste button
-				this.pasteToolStripMenuItem.Enabled = false;
-				this.toolBarPasteButton.Enabled = false;
-				enableCopyButton(false);
-			}
+			// enable the paste button if a layer with item has been selected (brick ot text layer)
+			enablePasteButton(enableMoveRotateButton);
 
-			// enable/disable the move rotate buttons
-			// toolbar
+			// enable/disable the snapping grid (toolbar and menu)
 			this.toolBarSnapGridButton.Enabled = enableMoveRotateButton;
-			this.toolBarRotationAngleButton.Enabled = enableMoveRotateButton;
-			this.toolBarRotateCCWButton.Enabled = enableMoveRotateButton;
-			this.toolBarRotateCWButton.Enabled = enableMoveRotateButton;
-			this.toolBarBringToFrontButton.Enabled = enableMoveRotateButton;
-			this.toolBarSendToBackButton.Enabled = enableMoveRotateButton;
-			//menu
 			this.moveStepToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.moveStepDisabledToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.moveStep32ToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.moveStep16ToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.moveStep8ToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.moveStep4ToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.moveStep1ToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.moveStep05ToolStripMenuItem.Enabled = enableMoveRotateButton;
+
+			// enable/disable the rotation step (toolbar and menu)
+			this.toolBarRotationAngleButton.Enabled = enableMoveRotateButton;
 			this.rotationStepToolStripMenuItem.Enabled = enableMoveRotateButton;
-			this.rotateCCWToolStripMenuItem.Enabled = enableMoveRotateButton;
-			this.rotateCWToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.rotationStep1ToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.rotationStep22ToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.rotationStep45ToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.rotationStep90ToolStripMenuItem.Enabled = enableMoveRotateButton;
 
 			// enable/disable the paint button (toolbar and menu)
 			this.toolBarPaintButton.Enabled = enablePaintButton;
 			this.paintToolToolStripMenuItem.Enabled = enablePaintButton;
+			this.paintToolEraseToolStripMenuItem.Enabled = enablePaintButton;
+			this.paintToolPaintToolStripMenuItem.Enabled = enablePaintButton;
+			this.paintToolChooseColorToolStripMenuItem.Enabled = enablePaintButton;
 		}
 
 		/// <summary>
