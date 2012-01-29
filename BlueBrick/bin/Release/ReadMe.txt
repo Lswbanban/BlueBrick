@@ -69,7 +69,7 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Alban): Add a filter combobox in the bottom of the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the options and context menu)
 - [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
-- MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect)
+- MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
 - MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optionnal.
@@ -100,6 +100,7 @@ Bug fixed in 1.7.1.0:
 - NEW FEATURE (Alban): Add two new cursors for panning and zooming the view (mainly for Mono support reason)
 - BUGFIX (ZueriHB): CRASH! When opening some BBM files (when checking if some links should be broken).
 - BUGFIX #34 (Alban+Steffen): CRASH! When saving a file with rail tracks in LDraw format (bug introduced in 1.7.0)
+- BUGFIX (Alban): CRASH!! If you move and snap a group of track then finally go back to the original snapping in one move, you will have a crash during the next move of a group without grabbing one part
 - BUGFIX (Alban): CRASH!! In the download window, crash when attempting to rename a file to download without changing his name.
 - BUGFIX (Alban): CRASH!! Press enter key on a part without connection makes the application crash
 - BUGFIX (Lesgoss+Daniel): CRASH! When opening the Export Window (negative size computed for the preview bitmap)
