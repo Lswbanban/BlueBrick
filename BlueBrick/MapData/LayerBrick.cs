@@ -2243,6 +2243,15 @@ namespace BlueBrick.MapData
 					}
 					else
 					{
+						// if the user start from a connected group of bricks, move them and snap them
+						// to another connection, then come back and snap them to the original connection
+						// the the delta move is null, but the snapping rotation is not, so we need to
+						// cancel also this rotation, and more important we need to set the rotation to null
+						if (mRotationForSnappingDuringBrickMove != null)
+						{
+							mRotationForSnappingDuringBrickMove.undo();
+							mRotationForSnappingDuringBrickMove = null;
+						}
 						// update the free connexion list if the user move the brick and then go back
 						// to the original place (deltaMove is null), so the link was broken because
 						// of the move, so we need to recreate the link
