@@ -117,14 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Geral</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Aparência</value>
+  </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Biblioteca de peças</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Teclas de Atalho</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Ficheiros Recentes</value>
+  </data>
   <data name="clearRecentFilesButton.Text" xml:space="preserve">
     <value>Limpar a Lista de Ficheiros Recentes</value>
   </data>
   <data name="label23.Text" xml:space="preserve">
     <value>Número de Ficheiros Recentes</value>
   </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Ficheiros Recentes</value>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Desempenhos</value>
   </data>
   <data name="optimComboBox.Items" xml:space="preserve">
     <value>Mais Rápido</value>
@@ -138,8 +153,8 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Balanço da Memória/Velocidade</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Desempenhos</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Anular/Repetir</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Quanto mais acções anteriores são guardadas pela função Anular, maior o espaço em memória que a aplicação irá utilizar.</value>
@@ -150,8 +165,8 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Número de acções anteriores guardadas</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Anular/Repetir</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Nova configuração por defeito</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Evento</value>
@@ -172,8 +187,8 @@
   <data name="addGridLayerCheckBox.Text" xml:space="preserve">
     <value>Adicione uma camada de grelha no novo mapa</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Nova configuração por defeito</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Rato</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Tecla de selecção dupla</value>
@@ -190,8 +205,8 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Velocidade do zoom na roda</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Rato</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Linguagem</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Se mudar a linguagem é necessário reiniciar a aplicação para surtir efeito.</value>
@@ -199,11 +214,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Linguagem</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Linguagem</value>
-  </data>
-  <data name="generalTabPage.Text" xml:space="preserve">
-    <value>Geral</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Aparência por Defeito da Área</value>
   </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 44</value>
@@ -218,8 +230,8 @@ da célula (em studs)</value>
   <data name="label28.Text" xml:space="preserve">
     <value>Opacidade por defeito (em %)</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Aparência por Defeito da Área</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Tamanho da grelha por defeito</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Número de Sub-divisões por Defeito</value>
@@ -234,8 +246,8 @@ da célula (em studs)</value>
     <value>Tamanho da grelha
 por defeito (em studs)</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Tamanho da grelha por defeito</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Formato por Defeito do Texto</value>
   </data>
   <data name="defaultFontNameLabel.Text" xml:space="preserve">
     <value>nome do tipo de letra</value>
@@ -246,8 +258,8 @@ por defeito (em studs)</value>
   <data name="defaultFontButton.Text" xml:space="preserve">
     <value>Mudar Tipo de Letra</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Formato por Defeito do Texto</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Cores</value>
   </data>
   <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
     <value>Mostra a Informação Geral da Marca Registada</value>
@@ -293,17 +305,14 @@ da selecção</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Esquema de Cor</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Cores</value>
-  </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
+  <data name="groupBox13.Text" xml:space="preserve">
     <value>Aparência</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Cor de fundo da biblioteca de peças</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>Aparência</value>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Informação em caixa</value>
   </data>
   <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 17</value>
@@ -329,8 +338,8 @@ da selecção</value>
   <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
     <value>Mostrar informação em caixa com:</value>
   </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Informação em caixa</value>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Ordem dos separadores</value>
   </data>
   <data name="alphabeticOrderButton.Text" xml:space="preserve">
     <value>Ordem alfabética</value>
@@ -340,12 +349,6 @@ da selecção</value>
   </data>
   <data name="MoveUpButton.Text" xml:space="preserve">
     <value>Mover para cima</value>
-  </data>
-  <data name="groupBox11.Text" xml:space="preserve">
-    <value>Ordem dos separadores</value>
-  </data>
-  <data name="partLibTabPage.Text" xml:space="preserve">
-    <value>Biblioteca de peças</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Para remover teclas de atalho, selecione-a na lista e clique este botão:</value>
@@ -425,11 +428,14 @@ da selecção</value>
   <data name="Connection.Text" xml:space="preserve">
     <value>Conexão</value>
   </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Teclas de Atalho</value>
-  </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancelar</value>
+  </data>
+  <data name="restoreAllDefaultButton.Text" xml:space="preserve">
+    <value>Restaurar todos por defeito</value>
+  </data>
+  <data name="restoreTabDefaultButton.Text" xml:space="preserve">
+    <value>Restaurar esta vista por defeito</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
