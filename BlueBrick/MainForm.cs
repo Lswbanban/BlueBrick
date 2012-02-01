@@ -1608,7 +1608,10 @@ namespace BlueBrick
 			DialogResult result = this.colorDialog.ShowDialog();
 			if (result == DialogResult.OK)
 			{
+				// regenerate the icon
 				generatePaintIcon(this.colorDialog.Color);
+				// and reselect the paint tool
+				paintToolPaintToolStripMenuItem_Click(sender, e);
 			}
 		}
 
