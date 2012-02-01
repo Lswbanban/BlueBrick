@@ -378,4 +378,7 @@
   <data name="ActionFlexMove" xml:space="preserve">
     <value>Flytta flexibla bitar</value>
   </data>
+  <data name="LayerTextOptionTitle" xml:space="preserve">
+    <value>Alternativ för textlager</value>
+  </data>
 </root>
