@@ -317,8 +317,8 @@ namespace BlueBrick.Properties {
   <string>75|10||</string>
   <string>23|0|32087.8|0</string>
   <string>18|0|2865.8|0</string>
-  <string>11|0|2867.8|0</string>
-  <string>17|0|2867.8|1</string>
+  <string>11|0|2867.8|1</string>
+  <string>17|0|2867.8|0</string>
   <string>24|0|2861.8|0</string>
   <string>10|0|2859.8|0</string>
   <string>5|0|FLEX.GROUP|0</string>
