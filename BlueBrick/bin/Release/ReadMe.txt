@@ -109,6 +109,7 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUGFIX (Alban): The selection/duplication keys were not reset to the default value when clicking the "restore default" button in the Preferences Window
 - BUGFIX (Alban): The order of the shortcut key list was switching when the "restore default" button was clicked in the Preferences Window
+- BUGFIX (Alban): Cannot open the help file after opening a map file
 - BUGFIX (Steve): Double-clicking on a Text Layer brings up the options box for a Brick Layer (in fact the title was incorrect).
 - BUGFIX (Alban): Fix some enabling/disabling issues for the toolbar buttons and the menu items
 - BUGFIX (Alban): The red rectangle was not drawn on the preview image of the export window at the first display after loading a file

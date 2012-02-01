@@ -1744,12 +1744,12 @@ namespace BlueBrick
 		private void helpContentsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// construct the path of the help file from the current language
-			FileInfo	helpFileInfo = new FileInfo(Properties.Settings.Default.Language + @"/BlueBrick.chm");
+			FileInfo helpFileInfo = new FileInfo(Application.StartupPath + @"/" + Properties.Settings.Default.Language + @"/BlueBrick.chm");
 
 			// If the help file related with the current language of the application does not exist,
 			// load the default one which is in the same folder as the application
 			if (!helpFileInfo.Exists)
-				helpFileInfo = new FileInfo(@"BlueBrick.chm");
+				helpFileInfo = new FileInfo(Application.StartupPath + @"/BlueBrick.chm");
 
 			// now check if we can open the help file, else display a warning message
 			if (helpFileInfo.Exists)
