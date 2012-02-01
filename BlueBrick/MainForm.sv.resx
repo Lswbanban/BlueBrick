@@ -117,6 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="statusBar.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mapPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mainSplitContainer.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="partsTabControl.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolSplitContainer.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="layerStackPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="layerSplitContainer.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -126,6 +147,9 @@
   </data>
   <data name="trashLayerButton.ToolTip" xml:space="preserve">
     <value>Ta bort markerat lager</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="newLayerBrickButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -211,6 +235,9 @@
   <data name="newLayerTextButton.ToolTip" xml:space="preserve">
     <value>Lägg till textlager</value>
   </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhEAAQAPEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAQABAAAAIglI+pBrDbXmpRMmoFxXJX
@@ -228,6 +255,27 @@
   </data>
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Flytta markerat lager ner</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="layerSplitContainer.Panel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="layerSplitContainer.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolSplitContainer.Panel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolSplitContainer.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mainSplitContainer.Panel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mainSplitContainer.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
@@ -409,6 +457,9 @@
   <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 22</value>
   </data>
+  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Omforma</value>
+  </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 22</value>
   </data>
@@ -573,6 +624,9 @@
   </data>
   <data name="menuBar.Text" xml:space="preserve">
     <value>Menyrad</value>
+  </data>
+  <data name="menuBar.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="toolBarNewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -853,6 +907,9 @@
   <data name="toolBar.Text" xml:space="preserve">
     <value>Verktygsfält</value>
   </data>
+  <data name="toolBar.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="openFileDialog.Title" xml:space="preserve">
     <value>Öppna BlueBrick-layout</value>
   </data>
@@ -903,5 +960,8 @@
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>
