@@ -47,31 +47,41 @@ namespace BlueBrick
 			// 
 			// tableLayoutPanel1
 			// 
+			this.tableLayoutPanel1.AccessibleDescription = null;
+			this.tableLayoutPanel1.AccessibleName = null;
 			resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+			this.tableLayoutPanel1.BackgroundImage = null;
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.DownloadListView, 0, 1);
 			this.tableLayoutPanel1.Controls.Add(this.StartButton, 1, 2);
 			this.tableLayoutPanel1.Controls.Add(this.TotalProgressBar, 2, 2);
 			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
+			this.tableLayoutPanel1.Font = null;
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			// 
 			// label1
 			// 
+			this.label1.AccessibleDescription = null;
+			this.label1.AccessibleName = null;
 			resources.ApplyResources(this.label1, "label1");
 			this.tableLayoutPanel1.SetColumnSpan(this.label1, 3);
+			this.label1.Font = null;
 			this.label1.Name = "label1";
 			// 
 			// DownloadListView
 			// 
+			this.DownloadListView.AccessibleDescription = null;
+			this.DownloadListView.AccessibleName = null;
+			resources.ApplyResources(this.DownloadListView, "DownloadListView");
 			this.DownloadListView.AllowColumnReorder = true;
 			this.DownloadListView.AutoArrange = false;
+			this.DownloadListView.BackgroundImage = null;
 			this.DownloadListView.CheckBoxes = true;
 			this.DownloadListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.DestinationColumnHeader,
             this.SourceColumnHeader,
             this.PercentColumnHeader});
 			this.tableLayoutPanel1.SetColumnSpan(this.DownloadListView, 3);
-			resources.ApplyResources(this.DownloadListView, "DownloadListView");
 			this.DownloadListView.FullRowSelect = true;
 			this.DownloadListView.LabelEdit = true;
 			this.DownloadListView.Name = "DownloadListView";
@@ -93,35 +103,55 @@ namespace BlueBrick
 			// 
 			// StartButton
 			// 
+			this.StartButton.AccessibleDescription = null;
+			this.StartButton.AccessibleName = null;
 			resources.ApplyResources(this.StartButton, "StartButton");
+			this.StartButton.BackgroundImage = null;
+			this.StartButton.Font = null;
 			this.StartButton.Name = "StartButton";
 			this.StartButton.UseVisualStyleBackColor = true;
 			this.StartButton.Click += new System.EventHandler(this.StartStopButton_Click);
 			// 
 			// TotalProgressBar
 			// 
+			this.TotalProgressBar.AccessibleDescription = null;
+			this.TotalProgressBar.AccessibleName = null;
 			resources.ApplyResources(this.TotalProgressBar, "TotalProgressBar");
+			this.TotalProgressBar.BackgroundImage = null;
+			this.TotalProgressBar.Font = null;
 			this.TotalProgressBar.Name = "TotalProgressBar";
 			this.TotalProgressBar.Step = 1;
 			// 
 			// panel1
 			// 
+			this.panel1.AccessibleDescription = null;
+			this.panel1.AccessibleName = null;
+			resources.ApplyResources(this.panel1, "panel1");
+			this.panel1.BackgroundImage = null;
 			this.panel1.Controls.Add(this.closeButton);
 			this.panel1.Controls.Add(this.cancelButton);
-			resources.ApplyResources(this.panel1, "panel1");
+			this.panel1.Font = null;
 			this.panel1.Name = "panel1";
 			// 
 			// closeButton
 			// 
+			this.closeButton.AccessibleDescription = null;
+			this.closeButton.AccessibleName = null;
 			resources.ApplyResources(this.closeButton, "closeButton");
+			this.closeButton.BackgroundImage = null;
 			this.closeButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.closeButton.Font = null;
 			this.closeButton.Name = "closeButton";
 			this.closeButton.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
 			// 
+			this.cancelButton.AccessibleDescription = null;
+			this.cancelButton.AccessibleName = null;
 			resources.ApplyResources(this.cancelButton, "cancelButton");
+			this.cancelButton.BackgroundImage = null;
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.Font = null;
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
@@ -136,9 +166,13 @@ namespace BlueBrick
 			// DownloadCenterForm
 			// 
 			this.AcceptButton = this.closeButton;
+			this.AccessibleDescription = null;
+			this.AccessibleName = null;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackgroundImage = null;
 			this.Controls.Add(this.tableLayoutPanel1);
+			this.Font = null;
 			this.Name = "DownloadCenterForm";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DownloadCenterForm_FormClosing);
 			this.tableLayoutPanel1.ResumeLayout(false);

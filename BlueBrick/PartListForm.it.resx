@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="partColumnHeader.Text" xml:space="preserve">
-    <value>Pezzo</value>
+    <value>Parte</value>
   </data>
   <data name="quantiyColumnHeader.Text" xml:space="preserve">
     <value>Quantità</value>
@@ -137,10 +137,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="useGroupCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 17</value>
+    <value>116, 17</value>
   </data>
   <data name="useGroupCheckBox.Text" xml:space="preserve">
-    <value>Suddividi per layer</value>
+    <value>Suddividi per Layer</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -185,6 +185,6 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Lista pezzi</value>
+    <value>Lista Parti</value>
   </data>
 </root>

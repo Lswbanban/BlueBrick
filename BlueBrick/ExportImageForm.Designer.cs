@@ -69,12 +69,20 @@ namespace BlueBrick
 			// 
 			// label8
 			// 
+			this.label8.AccessibleDescription = null;
+			this.label8.AccessibleName = null;
 			resources.ApplyResources(this.label8, "label8");
+			this.label8.Font = null;
 			this.label8.Name = "label8";
 			// 
 			// previewPictureBox
 			// 
+			this.previewPictureBox.AccessibleDescription = null;
+			this.previewPictureBox.AccessibleName = null;
 			resources.ApplyResources(this.previewPictureBox, "previewPictureBox");
+			this.previewPictureBox.BackgroundImage = null;
+			this.previewPictureBox.Font = null;
+			this.previewPictureBox.ImageLocation = null;
 			this.previewPictureBox.Name = "previewPictureBox";
 			this.previewPictureBox.TabStop = false;
 			this.previewPictureBox.DoubleClick += new System.EventHandler(this.previewPictureBox_DoubleClick);
@@ -84,23 +92,34 @@ namespace BlueBrick
 			// 
 			// settingAndButtonTableLayoutPanel
 			// 
+			this.settingAndButtonTableLayoutPanel.AccessibleDescription = null;
+			this.settingAndButtonTableLayoutPanel.AccessibleName = null;
 			resources.ApplyResources(this.settingAndButtonTableLayoutPanel, "settingAndButtonTableLayoutPanel");
+			this.settingAndButtonTableLayoutPanel.BackgroundImage = null;
 			this.settingAndButtonTableLayoutPanel.Controls.Add(this.cancelButton, 0, 1);
 			this.settingAndButtonTableLayoutPanel.Controls.Add(this.groupBox2, 1, 0);
 			this.settingAndButtonTableLayoutPanel.Controls.Add(this.okButton, 1, 1);
 			this.settingAndButtonTableLayoutPanel.Controls.Add(this.groupBox1, 0, 0);
+			this.settingAndButtonTableLayoutPanel.Font = null;
 			this.settingAndButtonTableLayoutPanel.Name = "settingAndButtonTableLayoutPanel";
 			// 
 			// cancelButton
 			// 
+			this.cancelButton.AccessibleDescription = null;
+			this.cancelButton.AccessibleName = null;
 			resources.ApplyResources(this.cancelButton, "cancelButton");
+			this.cancelButton.BackgroundImage = null;
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.Font = null;
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.AccessibleDescription = null;
+			this.groupBox2.AccessibleName = null;
 			resources.ApplyResources(this.groupBox2, "groupBox2");
+			this.groupBox2.BackgroundImage = null;
 			this.groupBox2.Controls.Add(this.label4);
 			this.groupBox2.Controls.Add(this.pictureBox1);
 			this.groupBox2.Controls.Add(this.imageWidthNumericUpDown);
@@ -108,23 +127,35 @@ namespace BlueBrick
 			this.groupBox2.Controls.Add(this.label7);
 			this.groupBox2.Controls.Add(this.scaleNumericUpDown);
 			this.groupBox2.Controls.Add(this.imageHeightNumericUpDown);
+			this.groupBox2.Font = null;
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.TabStop = false;
 			// 
 			// label4
 			// 
+			this.label4.AccessibleDescription = null;
+			this.label4.AccessibleName = null;
 			resources.ApplyResources(this.label4, "label4");
+			this.label4.Font = null;
 			this.label4.Name = "label4";
 			// 
 			// pictureBox1
 			// 
+			this.pictureBox1.AccessibleDescription = null;
+			this.pictureBox1.AccessibleName = null;
 			resources.ApplyResources(this.pictureBox1, "pictureBox1");
+			this.pictureBox1.BackgroundImage = null;
+			this.pictureBox1.Font = null;
+			this.pictureBox1.ImageLocation = null;
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.TabStop = false;
 			// 
 			// imageWidthNumericUpDown
 			// 
+			this.imageWidthNumericUpDown.AccessibleDescription = null;
+			this.imageWidthNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.imageWidthNumericUpDown, "imageWidthNumericUpDown");
+			this.imageWidthNumericUpDown.Font = null;
 			this.imageWidthNumericUpDown.Maximum = new decimal(new int[] {
             4096,
             0,
@@ -145,18 +176,27 @@ namespace BlueBrick
 			// 
 			// label3
 			// 
+			this.label3.AccessibleDescription = null;
+			this.label3.AccessibleName = null;
 			resources.ApplyResources(this.label3, "label3");
+			this.label3.Font = null;
 			this.label3.Name = "label3";
 			// 
 			// label7
 			// 
+			this.label7.AccessibleDescription = null;
+			this.label7.AccessibleName = null;
 			resources.ApplyResources(this.label7, "label7");
+			this.label7.Font = null;
 			this.label7.Name = "label7";
 			// 
 			// scaleNumericUpDown
 			// 
+			this.scaleNumericUpDown.AccessibleDescription = null;
+			this.scaleNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.scaleNumericUpDown, "scaleNumericUpDown");
 			this.scaleNumericUpDown.DecimalPlaces = 2;
+			this.scaleNumericUpDown.Font = null;
 			this.scaleNumericUpDown.Maximum = new decimal(new int[] {
             8,
             0,
@@ -167,7 +207,10 @@ namespace BlueBrick
 			// 
 			// imageHeightNumericUpDown
 			// 
+			this.imageHeightNumericUpDown.AccessibleDescription = null;
+			this.imageHeightNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.imageHeightNumericUpDown, "imageHeightNumericUpDown");
+			this.imageHeightNumericUpDown.Font = null;
 			this.imageHeightNumericUpDown.Maximum = new decimal(new int[] {
             4096,
             0,
@@ -188,15 +231,22 @@ namespace BlueBrick
 			// 
 			// okButton
 			// 
+			this.okButton.AccessibleDescription = null;
+			this.okButton.AccessibleName = null;
 			resources.ApplyResources(this.okButton, "okButton");
+			this.okButton.BackgroundImage = null;
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.Font = null;
 			this.okButton.Name = "okButton";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.okButton_Click);
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.AccessibleDescription = null;
+			this.groupBox1.AccessibleName = null;
 			resources.ApplyResources(this.groupBox1, "groupBox1");
+			this.groupBox1.BackgroundImage = null;
 			this.groupBox1.Controls.Add(this.label5);
 			this.groupBox1.Controls.Add(this.label6);
 			this.groupBox1.Controls.Add(this.areaTopNumericUpDown);
@@ -205,22 +255,32 @@ namespace BlueBrick
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.areaBottomNumericUpDown);
 			this.groupBox1.Controls.Add(this.areaRightNumericUpDown);
+			this.groupBox1.Font = null;
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
 			// 
 			// label5
 			// 
+			this.label5.AccessibleDescription = null;
+			this.label5.AccessibleName = null;
 			resources.ApplyResources(this.label5, "label5");
+			this.label5.Font = null;
 			this.label5.Name = "label5";
 			// 
 			// label6
 			// 
+			this.label6.AccessibleDescription = null;
+			this.label6.AccessibleName = null;
 			resources.ApplyResources(this.label6, "label6");
+			this.label6.Font = null;
 			this.label6.Name = "label6";
 			// 
 			// areaTopNumericUpDown
 			// 
+			this.areaTopNumericUpDown.AccessibleDescription = null;
+			this.areaTopNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.areaTopNumericUpDown, "areaTopNumericUpDown");
+			this.areaTopNumericUpDown.Font = null;
 			this.areaTopNumericUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -236,7 +296,10 @@ namespace BlueBrick
 			// 
 			// areaLeftNumericUpDown
 			// 
+			this.areaLeftNumericUpDown.AccessibleDescription = null;
+			this.areaLeftNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.areaLeftNumericUpDown, "areaLeftNumericUpDown");
+			this.areaLeftNumericUpDown.Font = null;
 			this.areaLeftNumericUpDown.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -252,17 +315,26 @@ namespace BlueBrick
 			// 
 			// label2
 			// 
+			this.label2.AccessibleDescription = null;
+			this.label2.AccessibleName = null;
 			resources.ApplyResources(this.label2, "label2");
+			this.label2.Font = null;
 			this.label2.Name = "label2";
 			// 
 			// label1
 			// 
+			this.label1.AccessibleDescription = null;
+			this.label1.AccessibleName = null;
 			resources.ApplyResources(this.label1, "label1");
+			this.label1.Font = null;
 			this.label1.Name = "label1";
 			// 
 			// areaBottomNumericUpDown
 			// 
+			this.areaBottomNumericUpDown.AccessibleDescription = null;
+			this.areaBottomNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.areaBottomNumericUpDown, "areaBottomNumericUpDown");
+			this.areaBottomNumericUpDown.Font = null;
 			this.areaBottomNumericUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -283,7 +355,10 @@ namespace BlueBrick
 			// 
 			// areaRightNumericUpDown
 			// 
+			this.areaRightNumericUpDown.AccessibleDescription = null;
+			this.areaRightNumericUpDown.AccessibleName = null;
 			resources.ApplyResources(this.areaRightNumericUpDown, "areaRightNumericUpDown");
+			this.areaRightNumericUpDown.Font = null;
 			this.areaRightNumericUpDown.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -304,18 +379,26 @@ namespace BlueBrick
 			// 
 			// topTableLayoutPanel
 			// 
+			this.topTableLayoutPanel.AccessibleDescription = null;
+			this.topTableLayoutPanel.AccessibleName = null;
 			resources.ApplyResources(this.topTableLayoutPanel, "topTableLayoutPanel");
+			this.topTableLayoutPanel.BackgroundImage = null;
 			this.topTableLayoutPanel.Controls.Add(this.settingAndButtonTableLayoutPanel, 0, 2);
 			this.topTableLayoutPanel.Controls.Add(this.previewPictureBox, 0, 1);
 			this.topTableLayoutPanel.Controls.Add(this.label8, 0, 0);
+			this.topTableLayoutPanel.Font = null;
 			this.topTableLayoutPanel.Name = "topTableLayoutPanel";
 			// 
 			// ExportImageForm
 			// 
+			this.AccessibleDescription = null;
+			this.AccessibleName = null;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackgroundImage = null;
 			this.Controls.Add(this.topTableLayoutPanel);
 			this.DoubleBuffered = true;
+			this.Font = null;
 			this.Name = "ExportImageForm";
 			this.SizeChanged += new System.EventHandler(this.ExportImageForm_SizeChanged);
 			((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).EndInit();

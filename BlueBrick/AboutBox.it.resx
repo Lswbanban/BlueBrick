@@ -155,9 +155,15 @@
     <value>Contatto: banban@lswproject.com</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Questo programma è gratuito: è possibile ridistribuirlo secondo le regole GNU, General Public License versione 3, come pubblicate dalla Free Software Foundation. 
+    <value>Questo programma è libero: è possibile ridistribuirlo secondo le regole GNU, General Public License versione 3, come pubblicate dalla Free Software Foundation.
 Vedi  http://www.fsf.org/licensing/licenses/gpl.html
    e    http://www.gnu.org/licenses/</value>
+  </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Tradotto in</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>da</value>
   </data>
   <data name="translatorListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -196,11 +202,12 @@ Vedi  http://www.fsf.org/licensing/licenses/gpl.html
         +v///woAAAAAAAAAABoAAQABBQUAAAAxU3lzdGVtLldpbmRvd3MuRm9ybXMuTGlzdFZpZXdJdGVtK0xp
         c3RWaWV3U3ViSXRlbQQAAAAEdGV4dARuYW1lBXN0eWxlCHVzZXJEYXRhAQEEAj5TeXN0ZW0uV2luZG93
         cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlzdFZpZXdTdWJJdGVtK1N1Ykl0ZW1TdHlsZQIAAAACAAAABgkA
-        AAAOU2VyZ2lvIEFtYXRlaXMKCgoFBwAAABNTeXN0ZW0uRHJhd2luZy5Gb250BAAAAAROYW1lBFNpemUF
-        U3R5bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQMAAAAbU3lzdGVtLkRyYXdpbmcu
-        R3JhcGhpY3NVbml0AwAAAAMAAAAGCgAAABRNaWNyb3NvZnQgU2FucyBTZXJpZgAABEEF9f///xhTeXN0
-        ZW0uRHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMAAAAAAAAABfT///8bU3lzdGVtLkRyYXdp
-        bmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
+        AABEU2VyZ2lvIEFtYXRlaXMsIEl0TFVHIFRyYW5zbGF0aW9uIFRlYW0gKFRoZUJ1bmNoISAtIFBpeCAt
+        IFBpcnVCcmljaykKCgoFBwAAABNTeXN0ZW0uRHJhd2luZy5Gb250BAAAAAROYW1lBFNpemUFU3R5bGUE
+        VW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQMAAAAbU3lzdGVtLkRyYXdpbmcuR3JhcGhp
+        Y3NVbml0AwAAAAMAAAAGCgAAABRNaWNyb3NvZnQgU2FucyBTZXJpZgAABEEF9f///xhTeXN0ZW0uRHJh
+        d2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMAAAAAAAAABfT///8bU3lzdGVtLkRyYXdpbmcuR3Jh
+        cGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
 </value>
   </data>
   <data name="translatorListView.Items2" mimetype="application/x-microsoft.net.object.binary.base64">
@@ -213,7 +220,7 @@ Vedi  http://www.fsf.org/licensing/licenses/gpl.html
         dAlGb3JlQ29sb3IXVXNlSXRlbVN0eWxlRm9yU3ViSXRlbXMBAAAEBAAEBAAICDFTeXN0ZW0uV2luZG93
         cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlzdFZpZXdTdWJJdGVtAgAAABRTeXN0ZW0uRHJhd2luZy5Db2xv
         cgMAAAABE1N5c3RlbS5EcmF3aW5nLkZvbnQDAAAAFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAECAAAA
-        BgQAAAAJTm9yd2VnaWFu/////wIAAAAJBQAAAAX6////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARu
+        BgQAAAAJTm9ydmVnZXNl/////wIAAAAJBQAAAAX6////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARu
         YW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAAAUAAQAACQcAAAAB+P//
         //r///8KAAAAAAAAAAAaAAEAAQUFAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStM
         aXN0Vmlld1N1Ykl0ZW0EAAAABHRleHQEbmFtZQVzdHlsZQh1c2VyRGF0YQEBBAI+U3lzdGVtLldpbmRv
@@ -306,7 +313,7 @@ Vedi  http://www.fsf.org/licensing/licenses/gpl.html
         dAlGb3JlQ29sb3IXVXNlSXRlbVN0eWxlRm9yU3ViSXRlbXMBAAAEBAAEBAAICDFTeXN0ZW0uV2luZG93
         cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlzdFZpZXdTdWJJdGVtAgAAABRTeXN0ZW0uRHJhd2luZy5Db2xv
         cgMAAAABE1N5c3RlbS5EcmF3aW5nLkZvbnQDAAAAFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAECAAAA
-        BgQAAAAHU3dlZGlzaP////8CAAAACQUAAAAF+v///xRTeXN0ZW0uRHJhd2luZy5Db2xvcgQAAAAEbmFt
+        BgQAAAAHU3ZlZGVzZf////8CAAAACQUAAAAF+v///xRTeXN0ZW0uRHJhd2luZy5Db2xvcgQAAAAEbmFt
         ZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwMAAAAKAAAAAAAAAAAFAAEAAAkHAAAAAfj////6
         ////CgAAAAAAAAAAGgABAAEFBQAAADFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlz
         dFZpZXdTdWJJdGVtBAAAAAR0ZXh0BG5hbWUFc3R5bGUIdXNlckRhdGEBAQQCPlN5c3RlbS5XaW5kb3dz
@@ -344,11 +351,8 @@ Vedi  http://www.fsf.org/licensing/licenses/gpl.html
         dAMAAAACAAAAAfL////6////CgAAAAAAAAAABQABAAHx////+v///woAAAAAAAAAAAAAAAAKCw==
 </value>
   </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Tradotto in</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>da</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Molte grazie ad Alexander McKenna!</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

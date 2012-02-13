@@ -227,7 +227,10 @@
 </value>
   </data>
   <data name="layerDownButton.ToolTip" xml:space="preserve">
-    <value>Abbassa il layer selezionato di un livello</value>
+    <value>Abbassa il Layer selezionato di un livello</value>
+  </data>
+  <data name="menuBar.Text" xml:space="preserve">
+    <value>Barra del menu</value>
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 22</value>
@@ -286,32 +289,107 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Esc&amp;i</value>
   </data>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 20</value>
+  </data>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Modifica</value>
+  </data>
+  <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
   <data name="undoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Annulla</value>
+  </data>
+  <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
   </data>
   <data name="redoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ripeti</value>
   </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 6</value>
+  </data>
+  <data name="cutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
   <data name="cutToolStripMenuItem.Text" xml:space="preserve">
     <value>Taglia</value>
+  </data>
+  <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
   </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Copia</value>
   </data>
+  <data name="pasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
   <data name="pasteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Incolla</value>
   </data>
+  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Cance&amp;lla</value>
+    <value>Elimina</value>
+  </data>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 6</value>
+  </data>
+  <data name="findAndReplaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="findAndReplaceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trova e Sostituisci...</value>
+  </data>
+  <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 6</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Selaziona &amp;tutti</value>
   </data>
+  <data name="deselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
   <data name="deselectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Deseleziona tutti</value>
   </data>
+  <data name="selectPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Seleziona &amp;Percorso</value>
+  </data>
+  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Gruppi</value>
+  </data>
+  <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="groupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Raggruppa</value>
+  </data>
+  <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Separa</value>
+  </data>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 6</value>
+  </data>
+  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trasforma</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
@@ -337,6 +415,12 @@
   <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
     <value>Porta in primo piano</value>
   </data>
+  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Muovi passi</value>
+  </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
@@ -346,41 +430,65 @@
   <data name="moveStep32ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
+  <data name="moveStep32ToolStripMenuItem.Text" xml:space="preserve">
+    <value>32 Studs</value>
+  </data>
   <data name="moveStep16ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
+  </data>
+  <data name="moveStep16ToolStripMenuItem.Text" xml:space="preserve">
+    <value>16 Studs</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
+  <data name="moveStep8ToolStripMenuItem.Text" xml:space="preserve">
+    <value>8 Studs</value>
+  </data>
   <data name="moveStep4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
+  </data>
+  <data name="moveStep4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>4 Studs</value>
   </data>
   <data name="moveStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
+  <data name="moveStep1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>1 Stud</value>
+  </data>
   <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
-  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Muovi passi</value>
+  <data name="moveStep05ToolStripMenuItem.Text" xml:space="preserve">
+    <value>1/2 Stud</value>
+  </data>
+  <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Step di rotazione</value>
   </data>
   <data name="rotationStep22ToolStripMenuItem.Text" xml:space="preserve">
     <value>22,5°</value>
   </data>
-  <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Step di rotazione</value>
+  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pennello</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 22</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Text" xml:space="preserve">
-    <value>dipingi</value>
+    <value>Dipingi</value>
   </data>
   <data name="paintToolEraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 22</value>
   </data>
   <data name="paintToolEraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>cancella</value>
+    <value>Cancella</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 6</value>
@@ -391,26 +499,38 @@
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Scegli colore…</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Strumento pennello</value>
+  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 6</value>
+  </data>
+  <data name="generalInformationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
   </data>
   <data name="generalInformationToolStripMenuItem.Text" xml:space="preserve">
     <value>Informazioni Generali...</value>
   </data>
+  <data name="mapBackgroundColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
   <data name="mapBackgroundColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Mappa Colore di &amp;sfondo</value>
+  </data>
+  <data name="currentLayerOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
   </data>
   <data name="currentLayerOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>Opzioni &amp;Layer corrente...</value>
   </data>
+  <data name="preferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>&amp;Opzioni...</value>
   </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 20</value>
   </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Modifica</value>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Vista</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
@@ -427,26 +547,14 @@
   <data name="electricCircuitsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
   </data>
+  <data name="electricCircuitsMenuItem.Text" xml:space="preserve">
+    <value>Circuito &amp;Elettrico</value>
+  </data>
   <data name="partListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
   </data>
   <data name="partListToolStripMenuItem.Text" xml:space="preserve">
-    <value>Elenco pezzi</value>
-  </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 20</value>
-  </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Vista</value>
-  </data>
-  <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 22</value>
-  </data>
-  <data name="aboutBlueBrickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 22</value>
-  </data>
-  <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Informazioni su BlueBrick…</value>
+    <value>Lista Parti</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -454,8 +562,20 @@
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Aiuto</value>
   </data>
-  <data name="menuBar.Text" xml:space="preserve">
-    <value>Barra del menu</value>
+  <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="helpContentsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Contenuto e Indice</value>
+  </data>
+  <data name="aboutBlueBrickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Informazioni su BlueBrick…</value>
+  </data>
+  <data name="toolBar.Text" xml:space="preserve">
+    <value>Barra degli strumenti</value>
   </data>
   <data name="toolBarNewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -469,7 +589,7 @@
 </value>
   </data>
   <data name="toolBarNewButton.ToolTipText" xml:space="preserve">
-    <value>Crea nuova mappa</value>
+    <value>Crea nuova Mappa</value>
   </data>
   <data name="toolBarOpenButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -485,7 +605,7 @@
 </value>
   </data>
   <data name="toolBarOpenButton.ToolTipText" xml:space="preserve">
-    <value>Apri una mappa</value>
+    <value>Apri una Mappa</value>
   </data>
   <data name="toolBarSaveButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -602,8 +722,41 @@
   <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
     <value>Seleziona l'intervallo di snap della griglia</value>
   </data>
-  <data name="toolBarAngle22Button.Text" xml:space="preserve">
-    <value>22,5°</value>
+  <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
+  </data>
+  <data name="toolBarGrid32Button.Text" xml:space="preserve">
+    <value>32 Studs</value>
+  </data>
+  <data name="toolBarGrid16Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
+  </data>
+  <data name="toolBarGrid16Button.Text" xml:space="preserve">
+    <value>16 Studs</value>
+  </data>
+  <data name="toolBarGrid8Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
+  </data>
+  <data name="toolBarGrid8Button.Text" xml:space="preserve">
+    <value>8 Studs</value>
+  </data>
+  <data name="toolBarGrid4Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
+  </data>
+  <data name="toolBarGrid4Button.Text" xml:space="preserve">
+    <value>4 Studs</value>
+  </data>
+  <data name="toolBarGrid1Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
+  </data>
+  <data name="toolBarGrid1Button.Text" xml:space="preserve">
+    <value>1 Stud</value>
+  </data>
+  <data name="toolBarGrid05Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
+  </data>
+  <data name="toolBarGrid05Button.Text" xml:space="preserve">
+    <value>1/2 Stud</value>
   </data>
   <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -616,6 +769,9 @@
   </data>
   <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
     <value>Seleziona lo step dell'angolo di rotazione</value>
+  </data>
+  <data name="toolBarAngle22Button.Text" xml:space="preserve">
+    <value>22,5°</value>
   </data>
   <data name="toolBarRotateCCWButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -661,6 +817,17 @@
   <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
     <value>Porta in primo piano</value>
   </data>
+  <data name="toolBarPaintButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
+        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
+        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolBarPaintButton.ToolTipText" xml:space="preserve">
+    <value>Seleziona il tipo di pennello per l'area Layers</value>
+  </data>
   <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -689,25 +856,11 @@
   <data name="eraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Cancella</value>
   </data>
-  <data name="toolBarPaintButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
-        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
-        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="toolBarPaintButton.ToolTipText" xml:space="preserve">
-    <value>Seleziona il tipo di pennello per l'area layers</value>
-  </data>
-  <data name="toolBar.Text" xml:space="preserve">
-    <value>Barra degli strumenti</value>
-  </data>
   <data name="openFileDialog.Title" xml:space="preserve">
-    <value>Carica una mappa BlueBrick</value>
+    <value>Apri una Mappa BlueBrick</value>
   </data>
   <data name="saveFileDialog.Title" xml:space="preserve">
-    <value>Salva mappa come</value>
+    <value>Salva Mappa con nome…</value>
   </data>
   <data name="saveExportImageDialog.Title" xml:space="preserve">
     <value>Esporta immagine come</value>
