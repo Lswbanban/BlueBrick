@@ -121,7 +121,7 @@
     <value>Autore</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Spettacolo</value>
+    <value>Evento</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Data</value>
@@ -135,21 +135,33 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Altezza:</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Studs</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Studs</value>
+  </data>
   <data name="ButtonCancel.Text" xml:space="preserve">
     <value>Annulla</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 13</value>
+    <value>38, 13</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>moduli</value>
+    <value>Moduli</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 13</value>
+    <value>38, 13</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
-    <value>moduli</value>
+    <value>Moduli</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

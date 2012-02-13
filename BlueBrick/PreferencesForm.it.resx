@@ -123,6 +123,9 @@
   <data name="appearanceTabPage.Text" xml:space="preserve">
     <value>Aspetto</value>
   </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Libreria Parti</value>
+  </data>
   <data name="shortcutKeysTabPage.Text" xml:space="preserve">
     <value>Tasti scorciatoia</value>
   </data>
@@ -154,19 +157,19 @@
     <value>Annulla/Ripeti</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Maggiore è il numero di ANNULLA che vuoi registrare, maggiore sarà la memoria utilizzata dall'applicazione.</value>
+    <value>Maggiore è il numero di Annulla che vuoi registrare, maggiore sarà la memoria utilizzata dall'applicazione.</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Numero di ANNULLA mostrati</value>
+    <value>Numero di Annulla mostrati</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Numero di ANNULLA registrati</value>
+    <value>Numero di Annulla registrati</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Configurazione di default nuova mappa</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Spettacolo</value>
+    <value>Evento</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Autore</value>
@@ -179,10 +182,10 @@
     <value>Aggiungi un Layer elementi sulla nuova mappa</value>
   </data>
   <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 17</value>
+    <value>233, 17</value>
   </data>
   <data name="addGridLayerCheckBox.Text" xml:space="preserve">
-    <value>Aggiungi un Layer Grid sulla nuova mappa</value>
+    <value>Aggiungi un Layer griglia sulla nuova mappa</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Tasto Copia Selezione</value>
@@ -210,7 +213,7 @@ l'applicazione per vedere la modifica</value>
     <value>Lingua</value>
   </data>
   <data name="groupBox9.Text" xml:space="preserve">
-    <value>Aspetto di default dell'area</value>
+    <value>Aspetto di default dell'Area</value>
   </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 44</value>
@@ -242,10 +245,10 @@ dell'area cella (in Stud)</value>
 della Griglia (in Stud)</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
-    <value>Formato di default del testo</value>
+    <value>Formato di default del Testo</value>
   </data>
   <data name="defaultFontNameLabel.Text" xml:space="preserve">
-    <value>Nome del font</value>
+    <value>Nome del Font</value>
   </data>
   <data name="defaultFontColorLabel.Text" xml:space="preserve">
     <value>Colore</value>
@@ -256,11 +259,20 @@ della Griglia (in Stud)</value>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Colori</value>
   </data>
+  <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
+    <value>Visualizza Filigrana Informazioni Generali</value>
+  </data>
   <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 17</value>
   </data>
   <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
     <value>Mostra punti di connessione liberi</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Colore parte attuale</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Colore selezione</value>
   </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 13</value>
@@ -269,10 +281,10 @@ della Griglia (in Stud)</value>
     <value>Anteprima</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>Colore di default griglia secondaria</value>
+    <value>Colore di default Griglia secondaria</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
-    <value>Colore di default griglia</value>
+    <value>Colore di default Griglia</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>Colore sfondo</value>
@@ -285,6 +297,51 @@ della Griglia (in Stud)</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>Schema colore</value>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>Aspetto</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Colore sfondo libreria parti</value>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Info Pop-Up</value>
+  </data>
+  <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 17</value>
+  </data>
+  <data name="displayPartDescriptionCheckBox.Text" xml:space="preserve">
+    <value>Descrizione Parte</value>
+  </data>
+  <data name="displayPartColorCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 17</value>
+  </data>
+  <data name="displayPartColorCheckBox.Text" xml:space="preserve">
+    <value>Colore Parte</value>
+  </data>
+  <data name="displayPartIDCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 17</value>
+  </data>
+  <data name="displayPartIDCheckBox.Text" xml:space="preserve">
+    <value>ID Parte</value>
+  </data>
+  <data name="displayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 17</value>
+  </data>
+  <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
+    <value>Info Pop-Up con:</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Ordine Tabulazioni</value>
+  </data>
+  <data name="alphabeticOrderButton.Text" xml:space="preserve">
+    <value>Ordine Alfabetico</value>
+  </data>
+  <data name="MoveDownButton.Text" xml:space="preserve">
+    <value>Sposta giù</value>
+  </data>
+  <data name="MoveUpButton.Text" xml:space="preserve">
+    <value>Sposta su</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Per rimuovere un tasto scorciatoia, selezionalo nella lista poi clicca su questo pulsante:</value>
@@ -308,10 +365,10 @@ della Griglia (in Stud)</value>
     <value>Aggiungi un tasto scorciatoia</value>
   </data>
   <data name="comboBoxAction.Items" xml:space="preserve">
-    <value>Aggiungi pezzo</value>
+    <value>Aggiungi Parte</value>
   </data>
   <data name="comboBoxAction.Items1" xml:space="preserve">
-    <value>Cancella il pezzo selezionato</value>
+    <value>Cancella Parte selezionata</value>
   </data>
   <data name="comboBoxAction.Items2" xml:space="preserve">
     <value>Ruota la selezione a sinistra</value>
@@ -345,9 +402,6 @@ della Griglia (in Stud)</value>
   </data>
   <data name="comboBoxKey.Items64" xml:space="preserve">
     <value>ESC</value>
-  </data>
-  <data name="comboBoxKey.Items65" xml:space="preserve">
-    <value>backspace</value>
   </data>
   <data name="comboBoxKey.Items66" xml:space="preserve">
     <value>Invio</value>
@@ -392,13 +446,19 @@ della Griglia (in Stud)</value>
     <value>Azione</value>
   </data>
   <data name="PartNumber.Text" xml:space="preserve">
-    <value>Codice pezzo</value>
+    <value>Codice Parte</value>
   </data>
   <data name="Connection.Text" xml:space="preserve">
     <value>Connessione</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annulla</value>
+  </data>
+  <data name="restoreAllDefaultButton.Text" xml:space="preserve">
+    <value>Ripristina i default</value>
+  </data>
+  <data name="restoreTabDefaultButton.Text" xml:space="preserve">
+    <value>Ripristina i default del Tab</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -117,52 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Seleziona l'area che vuoi esportare cliccando e trascinando sulla preview, oppure inserisci e valori e le dimensioni dell'immagine; poi clicca OK per specificare il nome file.</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>589, 91</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>BlueBrick deve scaricare alcuni files da Internet. Nella lista che segue puoi controllare l'URL dei files e dove questi verranno memorizzati nel tuo computer. Puoi evitare di scaricarli tutti togliendo lo spunta nelle caselle di controllo. Premi il pulsante Inizia Download" quando hai terminato, verifica di essere connesso a Internet e che il tuo firewall consenta a BlueBrick di connettersi.
+
+Se preferisci, puoi semplicemente chiudere questa finestra di dialogo, scaricare i files con il tuo browser web e copiarli nella cartella corretta (che è contenuta in quella dove hai installato BlueBrick).</value>
+  </data>
+  <data name="DestinationColumnHeader.Text" xml:space="preserve">
+    <value>Scarica in…</value>
+  </data>
+  <data name="PercentColumnHeader.Text" xml:space="preserve">
+    <value>Avanzamento</value>
+  </data>
+  <data name="StartButton.Text" xml:space="preserve">
+    <value>Inizia Download</value>
+  </data>
+  <data name="closeButton.Text" xml:space="preserve">
+    <value>Chiudi</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annulla</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Dimensioni immagine in Pixel</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Larghezza</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEQAIAPEAAAAAAP///5qamv///yH5BAEAAAMALAAAAAARAAgAAAIj3ICHuXYCAZwyPoFixjWD
-        x0ifKCoYOHKa1nVXRE2nsYxhMhQAOw==
-</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Altezza</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 13</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Pixel/Stud</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Dimensioni Area in Stud</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Alto</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Sinistra</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Basso</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Destra</value>
-  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        AAABAAEAICAAAAAAAACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAgAQAAAAAAAAAAAAAAAEAAAAA
+        AAABAAEAICAAAAAACACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAB
         AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAwMDAAMDcwADwyqYAACBAAAAgYAAAIIAAACCgAAAg
         wAAAIOAAAEAAAABAIAAAQEAAAEBgAABAgAAAQKAAAEDAAABA4AAAYAAAAGAgAABgQAAAYGAAAGCAAABg
         oAAAYMAAAGDgAACAAAAAgCAAAIBAAACAYAAAgIAAAICgAACAwAAAgOAAAKAAAACgIAAAoEAAAKBgAACg
@@ -184,8 +165,8 @@
         AAAAAAAAAAAAAAAAAAAAAAAAQECIiEDQiIibAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECI0NCIQNDQiEBA
         kQAAAAAAAAAAAAAAAAAAAAAAAEBAiNDQ0IhA0IhAiEBAQAAAAAAAAAAAAAAAAAAAAABAiNDQ0NDQiEDQ
         QIhA0NDQQIgAAAAAAAAAAAAAAAAAQIjQ0NDQ0NCIQNBAiEDQ0NBAiIgAAAAAAAAAAAAAAABA0NDQ0NDQ
-        0IhA0ECIQIjQ0ECI0IiSAP8AAAAAAAAAAEDQ0NDQ0NDQiEDQQIjQQIiIQMjQQEBAkgAAAAAAAAD/QMjQ
-        0NDQ0NCIQNDQQIjQQEDQ0EBAiNBAmv8AAAAAAP9AyNDQ0NDQ0IhA0NDQQECI0NDQQIhA0NBA/wAAAAAA
+        0IhA0ECIQIjQ0ECI0IiSAAAAAAAAAAAAAEDQ0NDQ0NDQiEDQQIjQQIiIQMjQQEBAkgAAAAAAAAAAQMjQ
+        0NDQ0NCIQNDQQIjQQEDQ0EBAiNBAmgAAAAAAAABAyNDQ0NDQ0IhA0NDQQECI0NDQQIhA0NBAAAAAAAAA
         AEDQ0NDQ0NDQiEDQ0NDQiNDQ0NBAiECI0EAAAAAAAAAAQNDQ0NDQ0NCIQNDQ0NCIiNDQ0ECIiECIQAAA
         AAAAAABA0NDQ0NDQ0IhA0NCIiEBAiNDQ0ECIkEBAAAAAAAAAAEDQ0NDQ0NDQiEDQiEBA0NBAiNDQ0EBA
         QNAAAAAAAAAAQNDQ0NDQ0NCIQNBAiEDQ0NBA0NDQ0NDQ0AAAAAAAAABA0NDQ0NDQ0IhA0ECIQMjQ0ECI
@@ -197,12 +178,12 @@
         AAAAAABAQIjQ0NDQ0NDQ0NDQ0NDQiEBAiMgAAAAAAAAAAAAAAAAAQECI0NDQ0NDQ0NDQ0NDQ0NBAQAAA
         AAAAAAAAAAAAAAAAAEBAiNDQ0NDQ0NDQ0IiIQEAAAAAAAAAAAAAAAAAAAAAAAABAQIjQ0NDQ0NCIQEAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAQECI0NCIQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAA
-        AAAAAAAAAAAAAP/n////wf///wB///4AH//4AA//8AAD/+AAAf/gAABf4AAAH8AAAAfAAAAH4AAAD+AA
+        AAAAAAAAAAAAAP/n////wf///wB///4AH//4AA//8AAD/+AAAf/gAAB/4AAAH+AAAA/gAAAP4AAAD+AA
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Opzioni Export Immagini</value>
+    <value>Centro Download</value>
   </data>
 </root>

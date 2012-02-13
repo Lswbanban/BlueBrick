@@ -156,6 +156,12 @@
 Weitere Information unter http://www.fsf.org/licensing/licenses/gpl.html
 and http://www.gnu.org/licenses/</value>
   </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Übersetzt nach</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>von</value>
+  </data>
   <data name="translatorListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
@@ -249,11 +255,12 @@ and http://www.gnu.org/licenses/</value>
         ////+v///woAAAAAAAAAABoAAQABBQUAAAAxU3lzdGVtLldpbmRvd3MuRm9ybXMuTGlzdFZpZXdJdGVt
         K0xpc3RWaWV3U3ViSXRlbQQAAAAEdGV4dARuYW1lBXN0eWxlCHVzZXJEYXRhAQEEAj5TeXN0ZW0uV2lu
         ZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0rTGlzdFZpZXdTdWJJdGVtK1N1Ykl0ZW1TdHlsZQIAAAACAAAA
-        BgkAAAAOU2VyZ2lvIEFtYXRlaXMKCgoFBwAAABNTeXN0ZW0uRHJhd2luZy5Gb250BAAAAAROYW1lBFNp
-        emUFU3R5bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQMAAAAbU3lzdGVtLkRyYXdp
-        bmcuR3JhcGhpY3NVbml0AwAAAAMAAAAGCgAAABRNaWNyb3NvZnQgU2FucyBTZXJpZgAABEEF9f///xhT
-        eXN0ZW0uRHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMAAAAAAAAABfT///8bU3lzdGVtLkRy
-        YXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
+        BgkAAABEU2VyZ2lvIEFtYXRlaXMsIEl0TFVHIFRyYW5zbGF0aW9uIFRlYW0gKFRoZUJ1bmNoISAtIFBp
+        eCAtIFBpcnVCcmljaykKCgoFBwAAABNTeXN0ZW0uRHJhd2luZy5Gb250BAAAAAROYW1lBFNpemUFU3R5
+        bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQMAAAAbU3lzdGVtLkRyYXdpbmcuR3Jh
+        cGhpY3NVbml0AwAAAAMAAAAGCgAAABRNaWNyb3NvZnQgU2FucyBTZXJpZgAABEEF9f///xhTeXN0ZW0u
+        RHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMAAAAAAAAABfT///8bU3lzdGVtLkRyYXdpbmcu
+        R3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
 </value>
   </data>
   <data name="translatorListView.Items4" mimetype="application/x-microsoft.net.object.binary.base64">
@@ -347,12 +354,6 @@ and http://www.gnu.org/licenses/</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Vielen Dank an Alex McKenna!</value>
-  </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Übersetzt nach</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>von</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

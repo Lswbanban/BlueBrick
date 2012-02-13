@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gridCheckBox.Text" xml:space="preserve">
-    <value>Dimensioni griglia (in stud)</value>
+    <value>Dimensioni Griglia (in Stud)</value>
   </data>
   <data name="subGridColorlabel.Text" xml:space="preserve">
     <value>Colore</value>
@@ -138,14 +138,11 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Dimensioni Griglia</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Indice cella</value>
-  </data>
   <data name="cellIndexOriginButton.Text" xml:space="preserve">
     <value>Calcola origine</value>
   </data>
   <data name="cellIndexOriginLabel.Text" xml:space="preserve">
-    <value>Origine (in coordinate griglia) è a</value>
+    <value>Origine (in coordinate Griglia) è a</value>
   </data>
   <data name="cellIndexFontNameLabel.Text" xml:space="preserve">
     <value>il nome font</value>
@@ -187,11 +184,11 @@
   <data name="cellIndexCheckBox.Text" xml:space="preserve">
     <value>Mostra indice cella</value>
   </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Indice cella</value>
+  </data>
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Annulla</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Generale</value>
   </data>
   <data name="isVisibleCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 17</value>
@@ -201,6 +198,9 @@
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Nome del Layer</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Generale</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -245,6 +245,6 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Opzioni per il layer griglia</value>
+    <value>Opzioni per il Layer Griglia</value>
   </data>
 </root>

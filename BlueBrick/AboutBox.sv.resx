@@ -156,6 +156,12 @@
 http://www.fsf.org/licensing/licenses/gpl.html
 och http://www.gnu.org/licenses/</value>
   </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Översatt till</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>av</value>
+  </data>
   <data name="translatorListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
@@ -193,11 +199,12 @@ och http://www.gnu.org/licenses/</value>
         ///6////CgAAAAAAAAAAGgABAAEFBQAAADFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0r
         TGlzdFZpZXdTdWJJdGVtBAAAAAR0ZXh0BG5hbWUFc3R5bGUIdXNlckRhdGEBAQQCPlN5c3RlbS5XaW5k
         b3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0rU3ViSXRlbVN0eWxlAgAAAAIAAAAG
-        CQAAAA5TZXJnaW8gQW1hdGVpcwoKCgUHAAAAE1N5c3RlbS5EcmF3aW5nLkZvbnQEAAAABE5hbWUEU2l6
-        ZQVTdHlsZQRVbml0AQAEBAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAABtTeXN0ZW0uRHJhd2lu
-        Zy5HcmFwaGljc1VuaXQDAAAAAwAAAAYKAAAAFE1pY3Jvc29mdCBTYW5zIFNlcmlmAAAEQQX1////GFN5
-        c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAF9P///xtTeXN0ZW0uRHJh
-        d2luZy5HcmFwaGljc1VuaXQBAAAAB3ZhbHVlX18ACAMAAAADAAAACw==
+        CQAAAERTZXJnaW8gQW1hdGVpcywgSXRMVUcgVHJhbnNsYXRpb24gVGVhbSAoVGhlQnVuY2ghIC0gUGl4
+        IC0gUGlydUJyaWNrKQoKCgUHAAAAE1N5c3RlbS5EcmF3aW5nLkZvbnQEAAAABE5hbWUEU2l6ZQVTdHls
+        ZQRVbml0AQAEBAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAABtTeXN0ZW0uRHJhd2luZy5HcmFw
+        aGljc1VuaXQDAAAAAwAAAAYKAAAAFE1pY3Jvc29mdCBTYW5zIFNlcmlmAAAEQQX1////GFN5c3RlbS5E
+        cmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAF9P///xtTeXN0ZW0uRHJhd2luZy5H
+        cmFwaGljc1VuaXQBAAAAB3ZhbHVlX18ACAMAAAADAAAACw==
 </value>
   </data>
   <data name="translatorListView.Items2" mimetype="application/x-microsoft.net.object.binary.base64">
@@ -343,12 +350,6 @@ och http://www.gnu.org/licenses/</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Tack till Alex McKenna!</value>
-  </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Översatt till</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>av</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

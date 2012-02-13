@@ -120,14 +120,14 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annulla</value>
   </data>
+  <data name="fontColorLabel.Text" xml:space="preserve">
+    <value>Colore</value>
+  </data>
   <data name="fontButton.Text" xml:space="preserve">
     <value>Cambia font</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Dimensione:</value>
-  </data>
-  <data name="fontColorLabel.Text" xml:space="preserve">
-    <value>Colore</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -173,6 +173,6 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Edizione testo</value>
+    <value>Modifica testo</value>
   </data>
 </root>
