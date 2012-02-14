@@ -811,7 +811,7 @@
     <value>Flat</value>
   </data>
   <data name="&gt;&gt;partsTabControl.Type" xml:space="preserve">
-    <value>BlueBrick.PartLibraryPanel, BlueBrick, Version=1.7.0.6, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.PartLibraryPanel, BlueBrick, Version=1.7.0.7, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="menuBar.ToolTip" xml:space="preserve">
     <value />
@@ -1223,7 +1223,7 @@
     <value>moveStepToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;layerStackPanel.Type" xml:space="preserve">
-    <value>BlueBrick.LayerStackPanel, BlueBrick, Version=1.7.0.6, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.LayerStackPanel, BlueBrick, Version=1.7.0.7, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator7.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1266,7 +1266,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mainSplitContainer.Type" xml:space="preserve">
-    <value>BlueBrick.MainSplitContainer, BlueBrick, Version=1.7.0.6, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.MainSplitContainer, BlueBrick, Version=1.7.0.7, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="toolBarCopyButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -1880,7 +1880,7 @@
     <value>206, 22</value>
   </data>
   <data name="&gt;&gt;mapPanel.Type" xml:space="preserve">
-    <value>BlueBrick.MapPanel, BlueBrick, Version=1.7.0.6, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.MapPanel, BlueBrick, Version=1.7.0.7, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;statusBarLabel.Name" xml:space="preserve">
     <value>statusBarLabel</value>
@@ -2464,7 +2464,7 @@
     <value>402, 41</value>
   </metadata>
   <metadata name="statusBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>102, 7</value>
+    <value>0, 438</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>118</value>
