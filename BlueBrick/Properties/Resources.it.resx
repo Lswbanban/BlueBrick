@@ -169,10 +169,10 @@
     <value>Cancella Testo "&amp;"</value>
   </data>
   <data name="ActionDuplicateBrick" xml:space="preserve">
-    <value>Duplica il pezzo &amp;</value>
+    <value>Duplica Parte &amp;</value>
   </data>
   <data name="ActionDuplicateSeveralBricks" xml:space="preserve">
-    <value>Duplica alcuni pezzi</value>
+    <value>Duplica Parti</value>
   </data>
   <data name="ActionDuplicateSeveralTexts" xml:space="preserve">
     <value>Duplica Testi</value>
@@ -292,7 +292,7 @@
     <value>Non posso aprire la mappa &amp;.</value>
   </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
-    <value>Non posso incollare pezzi del tipo &amp; sul layer correntemente selezionato, che è di tipo &amp;&amp;.</value>
+    <value>Non posso incollare Parti del tipo &amp; sul Layer correntemente selezionato, che è di tipo &amp;&amp;.</value>
   </data>
   <data name="ErrorMsgCannotSaveMap" xml:space="preserve">
     <value>Non posso salvare la mappa &amp;.</value>
@@ -347,7 +347,7 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
     <value>Non posso caricare questo file. La tua versione di BlueBrick è datata oppure il file non è in formato BlueBrick. Scarica e installa l'ultima versione di BlueBrick.</value>
   </data>
   <data name="ErrorMsgReadyToReloadPartLib" xml:space="preserve">
-    <value>La libreria parti è stata scaricata dalla memoria, adesso puoi modificare i files. Clicca su OK quando sei pronto per ricaricarla.</value>
+    <value>La Libreria Parti è stata scaricata dalla memoria, adesso puoi modificare i files. Clicca su OK quando sei pronto per ricaricarla.</value>
   </data>
   <data name="ErrorMsgTitleError" xml:space="preserve">
     <value>Errore</value>
