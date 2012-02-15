@@ -311,7 +311,7 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
     <value>Area</value>
   </data>
   <data name="ErrorMsgLayerTypeBrick" xml:space="preserve">
-    <value>Pezzo</value>
+    <value>Brick</value>
   </data>
   <data name="ErrorMsgLayerTypeGrid" xml:space="preserve">
     <value>Griglia</value>
