@@ -195,12 +195,27 @@ namespace BlueBrick
 			updateButtonStatusAccordingToQueryValidity();
 		}
 
+
+		private void FindComboBox_DropDownClosed(object sender, EventArgs e)
+		{
+			// BUG in Dot Net: for some reason, when the drop down is closed
+			// this change the selected item but do not call the event, so I call it.
+			FindComboBox_SelectedIndexChanged(sender, e);
+		}
+
 		private void ReplaceComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (this.ReplaceComboBox.SelectedItem != null)
 				this.ReplacePictureBox.Image = BrickLibrary.Instance.getImage(this.ReplaceComboBox.SelectedItem as string);
 			// update the search buttons
 			updateButtonStatusAccordingToQueryValidity();
+		}
+
+		private void ReplaceComboBox_DropDownClosed(object sender, EventArgs e)
+		{
+			// BUG in Dot Net: for some reason, when the drop down is closed
+			// this change the selected item but do not call the event, so I call it.
+			ReplaceComboBox_SelectedIndexChanged(sender, e);
 		}
 
 		private void SelectAllButton_Click(object sender, EventArgs e)

@@ -130,6 +130,7 @@ Bug fixed in 1.7.1.0:
 	- wrong cursor when pressing SHIFT+LMB
 	- The Export picture window is not displayed correctly
 	- General Info window: no cursor for editing the first fields
+	- Recent Files list was not saved
 
 Bug fixed in 1.7.0.0:
 - NEW FEATURE (Alban): support Flex PF track.
