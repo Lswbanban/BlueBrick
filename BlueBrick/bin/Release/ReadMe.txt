@@ -117,6 +117,7 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (Alban): The 'R' and 'L' shortcutkey were inversed
 - BUGFIX (Alban): The red rectangle was not drawn on the preview image of the export window at the first display after loading a file
 - BUGFIX (Alban): When moving a selection, the brick under the mouse was highlighted even if it was not inside the selection
+- BUGFIX (Alban): Fix a bug regarding the color of the grid (the grid colors were transparent in the option window if you modify the transparency of the layer)
 - BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUGFIX (Ghislain): Under Linux (with Mono) the drag and drop of part is not working
 - BUGFIX (Alban): Fix the maximum of bugs under Mono while keeping Dot Net working:
