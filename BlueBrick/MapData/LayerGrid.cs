@@ -83,14 +83,34 @@ namespace BlueBrick.MapData
 
 		public Color GridColor
 		{
-			get { return mGridLinePen.Color; }
-			set	{ mGridLinePen.Color = value; }
+			get
+			{
+				// return the color without the alpha value
+				return Color.FromArgb(255, mGridLinePen.Color);
+			}
+			set
+			{
+				// compute the new alpha value
+				int alphaValue = (255 * mTransparency) / 100;
+				// set the color with the transparency setting
+				mGridLinePen.Color = Color.FromArgb(alphaValue, value);
+			}
 		}
 
 		public Color SubGridColor
 		{
-			get { return mSubGridLinePen.Color; }
-			set	{ mSubGridLinePen.Color = value; }
+			get
+			{
+				// return the color without the alpha value
+				return Color.FromArgb(255, mSubGridLinePen.Color);
+			}
+			set
+			{
+				// compute the new alpha value
+				int alphaValue = (255 * mTransparency) / 100;
+				// set the color with the transparency setting
+				mSubGridLinePen.Color = Color.FromArgb(alphaValue, value);
+			}
 		}
 
 		public float GridThickness
@@ -119,8 +139,18 @@ namespace BlueBrick.MapData
 
 		public Color CellIndexColor
 		{
-			get { return mCellIndexBrush.Color; }
-			set { mCellIndexBrush.Color = value; }
+			get
+			{
+				// return the color without the alpha value
+				return Color.FromArgb(255, mCellIndexBrush.Color);
+			}
+			set
+			{
+				// compute the new alpha value
+				int alphaValue = (255 * mTransparency) / 100;
+				// set the color with the transparency setting
+				mCellIndexBrush.Color = Color.FromArgb(alphaValue, value);
+			}
 		}
 
 		public CellIndexType CellIndexColumnType
