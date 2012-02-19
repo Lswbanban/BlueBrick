@@ -1749,10 +1749,13 @@ namespace BlueBrick.MapData
 						destinationRectangle.Height = (int)((brick.Height * scalePixelPerStud) + 1.0f);
 
 						// draw the current brick eventually highlighted
-						if (brick == mCurrentBrickUnderMouse)
-							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSnapping);
-						else if (mSelectedObjects.Contains(brick))
-							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSelection);
+						if (mSelectedObjects.Contains(brick))
+						{
+							if (brick == mCurrentBrickUnderMouse)
+								g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSnapping);
+							else
+								g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSelection);
+						}
 						else
 							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeDefault);
 

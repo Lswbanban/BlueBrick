@@ -69,6 +69,8 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Alban): Add a filter combobox in the bottom of the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the options and context menu)
 - [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
+- [target 1.8] MISSING FEATURE (Alban): Add a setting to select the first panel of the Part lib when the application start
+- [target 1.8] MISSING FEATURE (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste (option should be: no offset, offset on the same layer only, always offset)
 - MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
@@ -83,7 +85,6 @@ Open bugs:
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
-- [target 1.8] BUG (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste (option should be: no offset, offset on the same layer only, always offset)
 - [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should replace it (and the selection should modify the combo boxes)
 - [target 1.8] BUG (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
 - [target 1.8] BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
@@ -115,6 +116,7 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (Alban): Fix some enabling/disabling issues for the toolbar buttons and the menu items
 - BUGFIX (Alban): The 'R' and 'L' shortcutkey were inversed
 - BUGFIX (Alban): The red rectangle was not drawn on the preview image of the export window at the first display after loading a file
+- BUGFIX (Alban): When moving a selection, the brick under the mouse was highlighted even if it was not inside the selection
 - BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUGFIX (Ghislain): Under Linux (with Mono) the drag and drop of part is not working
 - BUGFIX (Alban): Fix the maximum of bugs under Mono while keeping Dot Net working:
