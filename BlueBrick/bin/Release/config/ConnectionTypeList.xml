@@ -39,6 +39,7 @@
 		<ConnectionType name="magnet">
 			<ColorARGB>FFFFA746</ColorARGB>
 			<Size>1</Size>
+			<HingeAngle>37</HingeAngle>
 		</ConnectionType>
 		<ConnectionType name="threequarterhinge">
 			<ColorARGB>77000000</ColorARGB>
