@@ -29,6 +29,7 @@ GMLTC
 GPLR
 GtwLUG
 HARDLUG
+HispaBrick Magazine
 HispaLUG
 HUNLTC
 ILTCO
