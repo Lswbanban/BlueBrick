@@ -1961,7 +1961,27 @@ namespace BlueBrick
 		#region event handler for part lib
 		private void textBoxPartFilter_TextChanged(object sender, EventArgs e)
 		{
-			this.PartsTabControl.filterDisplayedParts(this.textBoxPartFilter.Text);
+			// split the searching filter in token
+			char[] separatorList = { ' ', '\t' };
+			string[] tokenList = this.textBoxPartFilter.Text.ToLower().Split(separatorList, StringSplitOptions.RemoveEmptyEntries);
+			List<string> includeFilter = new List<string>();
+			List<string> excludeFilter = new List<string>();
+			// recreate two lists for include/exclude
+			foreach (string token in tokenList)
+				if (token[0] == '-')
+				{
+					if (token.Length > 1)
+						excludeFilter.Add(token.Substring(1));
+				}
+				else if (token[0] == '+')
+				{
+					if (token.Length > 1)
+						includeFilter.Add(token.Substring(1));
+				}
+				else
+					includeFilter.Add(token);
+			// call the function to filter the list
+			this.PartsTabControl.filterDisplayedParts(includeFilter, excludeFilter);
 		}
 		#endregion
 
