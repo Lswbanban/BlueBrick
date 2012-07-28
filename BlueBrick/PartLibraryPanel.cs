@@ -84,8 +84,9 @@ namespace BlueBrick
 		// also store the current filtered list
 		private ListView mFilteredListView = null;
 		// save the last filter because we will need it again when we switch tab
-		private string mLastFilter = string.Empty;
-
+		private List<string> mLastIncludeFilter = new List<string>();
+		private List<string> mLastExcludeFilter = new List<string>();
+		
 		// we store the part we drag because the drag and drop is buggy in Mono and I cannot pass the data in
 		// the drag and drop. Null means no parts are droped
 		private string mDraggingPartNumber = null;
@@ -510,7 +511,14 @@ namespace BlueBrick
 			return resultList;
 		}
 
-		public void filterDisplayedParts(string filter)
+		/// <summary>
+		/// Modify the current list of parts listed in the current tab to keep only (or exclude) the part whose ID,
+		/// color or description match any of the keywords given in parameter. The keywords must be provided
+		/// in lower case to make a case insensitive search.
+		/// </summary>
+		/// <param name="includeFilter">All the parts whose ID, color or description contains any of this filter will be displayed</param>
+		/// <param name="excludeFilter">All the parts whose ID, color or description contains any of this filter will be hidden</param>
+		public void filterDisplayedParts(List<string> includeFilter, List<string> excludeFilter)
 		{
 			this.SuspendLayout();
 
@@ -529,10 +537,11 @@ namespace BlueBrick
 			}
 
 			// save the new filter
-			mLastFilter = filter.ToLower();
+			mLastIncludeFilter = includeFilter;
+			mLastExcludeFilter = excludeFilter;
 
 			// and now filter the current selected tab
-			if (mLastFilter != string.Empty)
+			if ((mLastIncludeFilter.Count != 0) || (mLastExcludeFilter.Count != 0))
 			{
 				try
 				{
@@ -542,11 +551,18 @@ namespace BlueBrick
 					foreach (ListViewItem item in mFilteredListView.Items)
 					{
 						string brickInfo = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string, true, true, true).ToLower();
-						if (!brickInfo.Contains(mLastFilter))
-						{
-							item.Remove();
-							mFilteredItems.Items.Add(item);
-						}
+						foreach (string filter in mLastIncludeFilter)
+							if (!brickInfo.Contains(filter))
+							{
+								item.Remove();
+								mFilteredItems.Items.Add(item);
+							}
+						foreach (string filter in mLastExcludeFilter)
+							if (brickInfo.Contains(filter))
+							{
+								item.Remove();
+								mFilteredItems.Items.Add(item);
+							}
 					}
 				}
 				catch
@@ -797,7 +813,7 @@ namespace BlueBrick
 		private void PartLibraryPanel_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			// filter the new selected tab
-			filterDisplayedParts(mLastFilter);
+			filterDisplayedParts(mLastIncludeFilter, mLastExcludeFilter);
 		}
 		#endregion
 	}
