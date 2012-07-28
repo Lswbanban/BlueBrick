@@ -32,6 +32,7 @@ namespace BlueBrick
 		private Size PART_ITEM_SMALL_SIZE_WITH_MARGIN = new Size(69, 69);
 		private Size PART_ITEM_LARGE_SIZE_WITH_MARGIN = new Size(134, 134);
 
+		#region embeded classes for items
 		private enum ContextMenuIndex
 		{
 			LARGE_ICON = 0,
@@ -76,17 +77,28 @@ namespace BlueBrick
 			public bool mRespectProportion = true; // the proportion flag for this category
 			public List<BrickLibrary.Brick> mGroupList = new List<BrickLibrary.Brick>(); // all the group parts in this folder
 		}
+		#endregion
+
+		// create a temporary list view to temporary store the items that have been filtered on the current tab
+		private ListView mFilteredItems = new ListView();
+		// also store the current filtered list
+		private ListView mFilteredListView = null;
+		// save the last filter because we will need it again when we switch tab
+		private string mLastFilter = string.Empty;
 
 		// we store the part we drag because the drag and drop is buggy in Mono and I cannot pass the data in
 		// the drag and drop. Null means no parts are droped
 		private string mDraggingPartNumber = null;
 
+		#region get/set
 		public string DraggingPartNumber
 		{
 			set { mDraggingPartNumber = value; }
 			get { return mDraggingPartNumber; }
 		}
+		#endregion
 
+		#region constructor and override method
 		public PartLibraryPanel()
 		{
 			InitializeComponent();
@@ -114,6 +126,7 @@ namespace BlueBrick
 
 			return base.IsInputKey(keyData);
 		}
+		#endregion
 
 		#region init part library
 
@@ -497,6 +510,53 @@ namespace BlueBrick
 			return resultList;
 		}
 
+		public void filterDisplayedParts(string filter)
+		{
+			this.SuspendLayout();
+
+			//put back all the previous filtered item in the list
+			if (mFilteredListView != null)
+			{
+				//put back all the previous filtered item in the list
+				foreach (ListViewItem item in mFilteredItems.Items)
+				{
+					item.Remove();
+					mFilteredListView.Items.Add(item);
+				}
+				// clear the reference list
+				mFilteredListView.BackColor = Settings.Default.PartLibBackColor;
+				mFilteredListView = null;
+			}
+
+			// save the new filter
+			mLastFilter = filter.ToLower();
+
+			// and now filter the current selected tab
+			if (mLastFilter != string.Empty)
+			{
+				try
+				{
+					// get the current list view displayed
+					mFilteredListView = this.SelectedTab.Controls[0] as ListView;
+					mFilteredListView.BackColor = Color.OrangeRed;
+					foreach (ListViewItem item in mFilteredListView.Items)
+					{
+						string brickInfo = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string, true, true, true).ToLower();
+						if (!brickInfo.Contains(mLastFilter))
+						{
+							item.Remove();
+							mFilteredItems.Items.Add(item);
+						}
+					}
+				}
+				catch
+				{
+				}
+			}
+
+			this.ResumeLayout();
+		}
+
 		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBubbleInfoFormat)
 		{
 			this.SuspendLayout();
@@ -573,6 +633,7 @@ namespace BlueBrick
 			}
 		}
 		#endregion
+
 		#region event handler for parts library
 
 		private void menuItem_LargeIconClick(object sender, EventArgs e)
@@ -731,6 +792,12 @@ namespace BlueBrick
 				Cursor.Current = Cursors.Arrow;
 				Cursor.Current = Cursors.No;
 			}
+		}
+
+		private void PartLibraryPanel_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// filter the new selected tab
+			filterDisplayedParts(mLastFilter);
 		}
 		#endregion
 	}
