@@ -1958,6 +1958,13 @@ namespace BlueBrick
 
 		#endregion
 
+		#region event handler for part lib
+		private void textBoxPartFilter_TextChanged(object sender, EventArgs e)
+		{
+			this.PartsTabControl.filterDisplayedParts(this.textBoxPartFilter.Text);
+		}
+		#endregion
+
 		#region event handler for layers
 
 

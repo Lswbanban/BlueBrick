@@ -32,6 +32,7 @@ namespace BlueBrick
 			// 
 			// PartLibraryPanel
 			// 
+			this.SelectedIndexChanged += new System.EventHandler(this.PartLibraryPanel_SelectedIndexChanged);
 			this.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.PartLibraryPanel_GiveFeedback);
 			this.ResumeLayout(false);
 
