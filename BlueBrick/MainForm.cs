@@ -245,6 +245,8 @@ namespace BlueBrick
 			initShortcutKeyArrayFromSettings();
 			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
 			PreferencesForm.sSaveDefaultKeyInSettings();
+			// add the filter incitation message (which is saved in the ressource)
+			addInputFilterIndication();
 			// load the part info
 			loadPartLibraryFromDisk();
 			// disbale all the buttons of the toolbar and menu items by default
@@ -1959,29 +1961,58 @@ namespace BlueBrick
 		#endregion
 
 		#region event handler for part lib
+		private void addInputFilterIndication()
+		{
+			this.textBoxPartFilter.Text = Properties.Resources.InputFilterIndication;
+			this.textBoxPartFilter.ForeColor = Color.Gray;
+		}
+
+		private void removeInputFilterIndication()
+		{
+			this.textBoxPartFilter.Text = string.Empty;
+			this.textBoxPartFilter.ForeColor = Color.Black;
+		}
+
 		private void textBoxPartFilter_TextChanged(object sender, EventArgs e)
 		{
-			// split the searching filter in token
-			char[] separatorList = { ' ', '\t' };
-			string[] tokenList = this.textBoxPartFilter.Text.ToLower().Split(separatorList, StringSplitOptions.RemoveEmptyEntries);
-			List<string> includeFilter = new List<string>();
-			List<string> excludeFilter = new List<string>();
-			// recreate two lists for include/exclude
-			foreach (string token in tokenList)
-				if (token[0] == '-')
-				{
-					if (token.Length > 1)
-						excludeFilter.Add(token.Substring(1));
-				}
-				else if (token[0] == '+')
-				{
-					if (token.Length > 1)
-						includeFilter.Add(token.Substring(1));
-				}
-				else
-					includeFilter.Add(token);
-			// call the function to filter the list
-			this.PartsTabControl.filterDisplayedParts(includeFilter, excludeFilter);
+			if (!this.textBoxPartFilter.Text.Equals(Properties.Resources.InputFilterIndication))
+			{
+				// split the searching filter in token
+				char[] separatorList = { ' ', '\t' };
+				string[] tokenList = this.textBoxPartFilter.Text.ToLower().Split(separatorList, StringSplitOptions.RemoveEmptyEntries);
+				List<string> includeFilter = new List<string>();
+				List<string> excludeFilter = new List<string>();
+				// recreate two lists for include/exclude
+				foreach (string token in tokenList)
+					if (token[0] == '-')
+					{
+						if (token.Length > 1)
+							excludeFilter.Add(token.Substring(1));
+					}
+					else if (token[0] == '+')
+					{
+						if (token.Length > 1)
+							includeFilter.Add(token.Substring(1));
+					}
+					else
+						includeFilter.Add(token);
+				// call the function to filter the list
+				this.PartsTabControl.filterDisplayedParts(includeFilter, excludeFilter);
+			}
+		}
+
+		private void textBoxPartFilter_Enter(object sender, EventArgs e)
+		{
+			// if the user deleted the whole text, add the incitation text
+			if (this.textBoxPartFilter.Text.Equals(Properties.Resources.InputFilterIndication))
+				removeInputFilterIndication();
+		}
+
+		private void textBoxPartFilter_Leave(object sender, EventArgs e)
+		{
+			// if the user deleted the whole text, add the incitation text
+			if (this.textBoxPartFilter.Text == string.Empty)
+				addInputFilterIndication();
 		}
 		#endregion
 
@@ -2230,6 +2261,10 @@ namespace BlueBrick
 			// by default we don't handle the keys
 			e.Handled = false;
 
+			// if we are inputing text in the filter box do not handle the key
+			if (this.textBoxPartFilter.Focused)
+				return;
+
 			// if any modifier is pressed, we don't handle the key, for example the CTRL+S will be handle
 			// by the shortcut of the "Save" menu item
 			if (e.Alt || e.Control || e.Shift)
@@ -2378,6 +2413,10 @@ namespace BlueBrick
 			// we will try to handle the key, but there are several case for which 
 			// we don't handle them
 			e.Handled = true;
+
+			// if we are inputing text in the filter box do not handle the key
+			if (this.textBoxPartFilter.Focused)
+				return;
 
 			// We will warn the mapPanel if a modifier is released in case it wants to change the cursor
 			bool wasModifierReleased = (mLastModifierKeyDown != e.Modifiers);

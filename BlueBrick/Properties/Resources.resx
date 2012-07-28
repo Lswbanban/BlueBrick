@@ -246,7 +246,7 @@
   <data name="ActionUngroupItems" xml:space="preserve">
     <value>Ungroup Items</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="aligncentered" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\aligncentered.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -441,5 +441,8 @@
   </data>
   <data name="LayerTextOptionTitle" xml:space="preserve">
     <value>Options for Text Layer</value>
+  </data>
+  <data name="InputFilterIndication" xml:space="preserve">
+    <value>Input Keywords here to Filter</value>
   </data>
 </root>
