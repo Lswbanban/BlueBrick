@@ -755,5 +755,17 @@ namespace BlueBrick.Properties {
                 this["UIViewScale"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("255, 224, 192")]
+        public global::System.Drawing.Color PartLibFilteredBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PartLibFilteredBackColor"]));
+            }
+            set {
+                this["PartLibFilteredBackColor"] = value;
+            }
+        }
     }
 }

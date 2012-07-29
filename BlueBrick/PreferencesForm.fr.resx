@@ -282,6 +282,9 @@ de la sélection</value>
   <data name="appearanceTabPage.Text" xml:space="preserve">
     <value>Apparence</value>
   </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Couleur de fond de la bibliothèque de pièces lorsqu'elle est filtrée</value>
+  </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Couleur de fond de la bibliothèque de pièces</value>
   </data>
