@@ -579,6 +579,9 @@ namespace BlueBrick
 
 			if (updateTabOrder)
 			{
+				// save the selected tab to reselect it after reorder
+				TabPage selectedTab = this.SelectedTab;
+
 				// first sort the tabs
 				// get the sorted name list from the settings
 				System.Collections.Specialized.StringCollection sortedNameList = BlueBrick.Properties.Settings.Default.PartLibTabOrder;
@@ -599,6 +602,10 @@ namespace BlueBrick
 							insertIndex++;
 					}
 				}
+
+				// reselect the previous selected tab
+				if (selectedTab != null)
+					this.SelectedTab = selectedTab;
 			}
 
 			if (updateAppearance || updateBubbleInfoFormat)
