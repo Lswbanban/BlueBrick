@@ -1980,6 +1980,7 @@ namespace BlueBrick
 				// split the searching filter in token
 				char[] separatorList = { ' ', '\t' };
 				string[] tokenList = this.textBoxPartFilter.Text.ToLower().Split(separatorList, StringSplitOptions.RemoveEmptyEntries);
+				List<string> includeIdFilter = new List<string>();
 				List<string> includeFilter = new List<string>();
 				List<string> excludeFilter = new List<string>();
 				// recreate two lists for include/exclude
@@ -1989,6 +1990,11 @@ namespace BlueBrick
 						if (token.Length > 1)
 							excludeFilter.Add(token.Substring(1));
 					}
+					else if (token[0] == '#')
+					{
+						if (token.Length > 1)
+							includeIdFilter.Add(token.Substring(1).ToUpper());
+					}
 					else if (token[0] == '+')
 					{
 						if (token.Length > 1)
@@ -1997,7 +2003,7 @@ namespace BlueBrick
 					else
 						includeFilter.Add(token);
 				// call the function to filter the list
-				this.PartsTabControl.filterDisplayedParts(includeFilter, excludeFilter);
+				this.PartsTabControl.filterDisplayedParts(includeIdFilter, includeFilter, excludeFilter);
 			}
 		}
 
