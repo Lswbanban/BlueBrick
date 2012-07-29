@@ -918,7 +918,9 @@ namespace BlueBrick
 			this.toolTipForMainForm.SetToolTip(this.textBoxPartFilter, resources.GetString("textBoxPartFilter.ToolTip"));
 			this.textBoxPartFilter.TextChanged += new System.EventHandler(this.textBoxPartFilter_TextChanged);
 			this.textBoxPartFilter.Enter += new System.EventHandler(this.textBoxPartFilter_Enter);
+			this.textBoxPartFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPartFilter_KeyDown);
 			this.textBoxPartFilter.Leave += new System.EventHandler(this.textBoxPartFilter_Leave);
+			this.textBoxPartFilter.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBoxPartFilter_PreviewKeyDown);
 			// 
 			// trashLayerButton
 			// 

@@ -2014,6 +2014,25 @@ namespace BlueBrick
 			if (this.textBoxPartFilter.Text == string.Empty)
 				addInputFilterIndication();
 		}
+
+		private void textBoxPartFilter_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		{
+			// capture all the keys in the text box, such as CTRL+C or CTRL+A to avoid these
+			// key to be executed at the map level (the MainForm level) and avoid modification
+			// of the map (copy/paste, etc..) while the filter box is focused
+			e.IsInputKey = true;
+		}
+
+		private void textBoxPartFilter_KeyDown(object sender, KeyEventArgs e)
+		{
+			// it seems the CTRL+A is not handled by default by the text box control??
+			if ((e.Control) && (e.KeyCode == Keys.A))
+			{
+				textBoxPartFilter.SelectAll();
+				e.Handled = true;
+				e.SuppressKeyPress = true;
+			}
+		}
 		#endregion
 
 		#region event handler for layers
