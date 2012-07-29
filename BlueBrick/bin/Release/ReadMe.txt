@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.7.1.0 |
+                    | BlueBrick version 1.8.0.0 |
                     +---------------------------+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ To run BlueBrick, in a Terminal Shell type:
 $ mono BlueBrick.exe
 
 You can also create a Shell Script (adjust the path to where you have unzipped BlueBrick):
-#!/bin/sh<BR>
+#!/bin/sh
 /usr/bin/mono /usr/lib/APPLICATION/BlueBrick/BlueBrick.exe "$@"
 
 2.4) Mac OSX
@@ -85,6 +85,7 @@ Open bugs:
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
+- [target 1.8] BUG (Alban): When launching BB the selected tab of the part lib is not always visible (need to scroll). The current selected tab should be saved when exiting the application.
 - [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should ask if we need to replace it or associate a new action on the same key (and the selection should modify the combo boxes)
 - [target 1.8] BUG (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
 - [target 1.8] BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
@@ -96,6 +97,9 @@ Open bugs:
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
+
+Bug fixed in 1.8.0.0:
+- BUGFIX (Alban): When changing the order of the part lib tabs, the previously selected tab was not reselected
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)
