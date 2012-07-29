@@ -84,6 +84,7 @@ namespace BlueBrick
 		// also store the current filtered list
 		private ListView mFilteredListView = null;
 		// save the last filter because we will need it again when we switch tab
+		private List<string> mLastIncludeIdFilter = new List<string>();
 		private List<string> mLastIncludeFilter = new List<string>();
 		private List<string> mLastExcludeFilter = new List<string>();
 		
@@ -516,9 +517,10 @@ namespace BlueBrick
 		/// color or description match any of the keywords given in parameter. The keywords must be provided
 		/// in lower case to make a case insensitive search.
 		/// </summary>
+		/// <param name="includeIdFilter">All the parts whose ID only contains any of this filter will be displayed</param>
 		/// <param name="includeFilter">All the parts whose ID, color or description contains any of this filter will be displayed</param>
 		/// <param name="excludeFilter">All the parts whose ID, color or description contains any of this filter will be hidden</param>
-		public void filterDisplayedParts(List<string> includeFilter, List<string> excludeFilter)
+		public void filterDisplayedParts(List<string> includeIdFilter, List<string> includeFilter, List<string> excludeFilter)
 		{
 			this.SuspendLayout();
 
@@ -537,11 +539,12 @@ namespace BlueBrick
 			}
 
 			// save the new filter
+			mLastIncludeIdFilter = includeIdFilter;
 			mLastIncludeFilter = includeFilter;
 			mLastExcludeFilter = excludeFilter;
 
 			// and now filter the current selected tab
-			if ((mLastIncludeFilter.Count != 0) || (mLastExcludeFilter.Count != 0))
+			if ((mLastIncludeIdFilter.Count != 0) || (mLastIncludeFilter.Count != 0) || (mLastExcludeFilter.Count != 0))
 			{
 				try
 				{
@@ -550,19 +553,40 @@ namespace BlueBrick
 					mFilteredListView.BackColor = Settings.Default.PartLibFilteredBackColor;
 					foreach (ListViewItem item in mFilteredListView.Items)
 					{
-						string brickInfo = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string, true, true, true).ToLower();
-						foreach (string filter in mLastIncludeFilter)
-							if (!brickInfo.Contains(filter))
+						string itemId = item.Tag as string;
+						string brickInfo = BrickLibrary.Instance.getFormatedBrickInfo(itemId, true, true, true).ToLower();
+						// a flag to stop search if it is already removed
+						bool continueSearch = true;
+						// iterate on the 3 filter lists
+						// first filter on the id only
+						foreach (string filter in mLastIncludeIdFilter)
+							if (!itemId.Contains(filter))
 							{
 								item.Remove();
 								mFilteredItems.Items.Add(item);
+								continueSearch = false;
+								break;
 							}
-						foreach (string filter in mLastExcludeFilter)
-							if (brickInfo.Contains(filter))
-							{
-								item.Remove();
-								mFilteredItems.Items.Add(item);
-							}
+						// then the include filter on everything
+						if (continueSearch)
+							foreach (string filter in mLastIncludeFilter)
+								if (!brickInfo.Contains(filter))
+								{
+									item.Remove();
+									mFilteredItems.Items.Add(item);
+									continueSearch = false;
+									break;
+								}
+						// then the exclude filter on everything
+						if (continueSearch)
+							foreach (string filter in mLastExcludeFilter)
+								if (brickInfo.Contains(filter))
+								{
+									item.Remove();
+									mFilteredItems.Items.Add(item);
+									continueSearch = false;
+									break;
+								}
 					}
 				}
 				catch
@@ -824,7 +848,7 @@ namespace BlueBrick
 		private void PartLibraryPanel_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			// filter the new selected tab
-			filterDisplayedParts(mLastIncludeFilter, mLastExcludeFilter);
+			filterDisplayedParts(mLastIncludeIdFilter, mLastIncludeFilter, mLastExcludeFilter);
 		}
 		#endregion
 	}
