@@ -547,7 +547,7 @@ namespace BlueBrick
 				{
 					// get the current list view displayed
 					mFilteredListView = this.SelectedTab.Controls[0] as ListView;
-					mFilteredListView.BackColor = Color.OrangeRed;
+					mFilteredListView.BackColor = Settings.Default.PartLibFilteredBackColor;
 					foreach (ListViewItem item in mFilteredListView.Items)
 					{
 						string brickInfo = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string, true, true, true).ToLower();
@@ -613,7 +613,10 @@ namespace BlueBrick
 					try
 					{
 						ListView listView = tabPage.Controls[0] as ListView;
-						listView.BackColor = Settings.Default.PartLibBackColor;
+						if (listView == mFilteredListView)
+							listView.BackColor = Settings.Default.PartLibFilteredBackColor;
+						else
+							listView.BackColor = Settings.Default.PartLibBackColor;
 						listView.ShowItemToolTips = displayBubbleInfo;
 						(tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.SHOW_BUBBLE_INFO] as ToolStripMenuItem).Checked = displayBubbleInfo;
 						// update the tooltip text of all the items
@@ -629,6 +632,7 @@ namespace BlueBrick
 			}
 
 			this.ResumeLayout();
+			this.SelectedTab.Invalidate();
 		}
 
 		public void savePartListDisplayStatusInSettings()

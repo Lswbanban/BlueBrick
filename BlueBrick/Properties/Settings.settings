@@ -223,5 +223,8 @@
     <Setting Name="UIViewScale" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1.7</Value>
     </Setting>
+    <Setting Name="PartLibFilteredBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 224, 192</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
