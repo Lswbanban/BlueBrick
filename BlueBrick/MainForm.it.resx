@@ -118,116 +118,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhCwAOAPIAAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH5BAEAAAQALAAAAAALAA4AAAMnSErT
-        uy06AkYQGIdRs8dSGDHCUJ6DYq6oirYku7pySb9pjN+yKjoJADs=
-</value>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 20</value>
   </data>
-  <data name="trashLayerButton.ToolTip" xml:space="preserve">
-    <value>Elimina il layer selezionato</value>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Modifica</value>
   </data>
-  <data name="newLayerBrickButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////7/Dx
-        YGttvsLD////////////////////////////AAAAAAAA/////////////v7+dHR0IzE0foSFk5OT+vr6
-        ////////////////////AAAAAAAA////NLAANK4BGVQAFEUAL54DBBoUDR0iK5IAM6sBNLAANLAA////
-        ////AAAAAAAA////NLAAIT4hBREEF0gAGFYIAAAAFk0NJDonDC8KGEkBNLAA////////AAAAAAAA////
-        NLAAIG0AKWUaGUUXAAEAG1wAM6oBAwsAEiMjKGoXGFMD8PHx////AAAAAAAA////NLAAGEsALp0DDyAm
-        CB8XFkYBFk4FAQQAKo4FDiQXEyImmJ6fpqutAAAAAAAA////NLAANLAAM6wAI3UAJW8OIkcmAAAAInUJ
-        MaQCAwsAEkIHaXBzTllcAAAAAAAA////NLAAGEsANLAAGEsANLAABhoLFignGDcQEz8AAgUAM6cEZWVl
-        q6+xAAAAAAAA////NLAANLAANLAANLAANLAAL54EKpAEKGMcBhcdDjsOLJUCSUlJ9fX2AAAAAAAA////
-        NLAAGEsANLAAGEsANLAAGEsANLAAFEADEUIKIT0dEi4ccnp+////AAAAAAAA////NLAANLAANLAANLAA
-        NLAANLAANLAANLAANLAANLAAFEUAuLi4////AAAAAAAA////NLAAGEsANLAAGEsANLAAGEsANLAAGEsA
-        NLAAGEsANLAA////////AAAAAAAA////NLAANLAANLAANLAANLAANLAANLAANLAANLAANLAANLAA////
-        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 20</value>
   </data>
-  <data name="newLayerBrickButton.ToolTip" xml:space="preserve">
-    <value>Aggiungi un layer Brick</value>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Vista</value>
   </data>
-  <data name="newLayerAreaButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvJ/1vJ/19M+N9M+N9M+N
-        9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N
-        9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N
-        9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1
-        vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTw
-        UJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5
-        ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5
-        ccR5AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTI
-        baTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTw
-        UJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTw
-        UJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/
-        nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/nfn/AAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
   </data>
-  <data name="newLayerAreaButton.ToolTip" xml:space="preserve">
-    <value>Aggiungi un layer Area</value>
-  </data>
-  <data name="newLayerGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsmkGsmkGsmkG////////
-        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
-        smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////
-        smkGAAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
-        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
-        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
-        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
-        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
-        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
-        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
-        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
-        ////AAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerGridButton.ToolTip" xml:space="preserve">
-    <value>Aggiungi un layer Griglia</value>
-  </data>
-  <data name="newLayerTextButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////////
-        ////////////////////////////////////AAAAAAAA////////////////////////////////////
-        ////////////////////AAAAAAAA////////////////AAAAAAAAAAAAAAAAAAAAAAAAv7+/////////
-        ////AAAAAAAA////////////////Pz8/Pz8/AAAAAAAAPz8/Pz8/z8/P////////////AAAAAAAA////
-        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
-        ////AAAAAAAA////////////////////////AAAAAAAA////////////////////////AAAAAAAA////
-        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
-        ////AAAAAAAA////////b29vPz8/z8/P////AAAAAAAA////////Pz8/Pz8/////////AAAAAAAA////
-        ////Pz8/AAAAv7+/////AAAAAAAA////////AAAAAAAA////////AAAAAAAA////////Pz8/AAAAX19f
-        f39/AAAAAAAAf39/f39/AAAAAAAA////////AAAAAAAA////////Pz8/AAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAA////////AAAAAAAA////////n5+ff39/f39/f39/f39/f39/f39/f39/f39/f39/////
-        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerTextButton.ToolTip" xml:space="preserve">
-    <value>Aggiungi un layer Testo</value>
-  </data>
-  <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEAAQAPEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAQABAAAAIglI+pBrDbXmpRMmoFxXJX
-        6H1T6Cgkh5ziuIKtiXZxthQAOw==
-</value>
-  </data>
-  <data name="layerUpButton.ToolTip" xml:space="preserve">
-    <value>Alza il layer selezionato di un livello</value>
-  </data>
-  <data name="layerDownButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEAAQAPEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAQABAAAAIglI+pAg2b3INH0uqo3BNx
-        q3xd9GnbxV1MpoLtiMLqUgAAOw==
-</value>
-  </data>
-  <data name="layerDownButton.ToolTip" xml:space="preserve">
-    <value>Abbassa il Layer selezionato di un livello</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Aiuto</value>
   </data>
   <data name="menuBar.Text" xml:space="preserve">
     <value>Barra del menu</value>
@@ -288,12 +195,6 @@
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Esc&amp;i</value>
-  </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
-  </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Modifica</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 22</value>
@@ -419,46 +320,46 @@
     <value>211, 22</value>
   </data>
   <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Muovi passi</value>
+    <value>Passo di spostamento</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Text" xml:space="preserve">
     <value>Disabilitato</value>
   </data>
   <data name="moveStep32ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStep32ToolStripMenuItem.Text" xml:space="preserve">
     <value>32 Studs</value>
   </data>
   <data name="moveStep16ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStep16ToolStripMenuItem.Text" xml:space="preserve">
     <value>16 Studs</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Text" xml:space="preserve">
     <value>8 Studs</value>
   </data>
   <data name="moveStep4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStep4ToolStripMenuItem.Text" xml:space="preserve">
     <value>4 Studs</value>
   </data>
   <data name="moveStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStep1ToolStripMenuItem.Text" xml:space="preserve">
     <value>1 Stud</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Text" xml:space="preserve">
     <value>1/2 Stud</value>
@@ -467,10 +368,22 @@
     <value>211, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Step di rotazione</value>
+    <value>Passo di rotazione</value>
+  </data>
+  <data name="rotationStep90ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="rotationStep45ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="rotationStep22ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
   </data>
   <data name="rotationStep22ToolStripMenuItem.Text" xml:space="preserve">
     <value>22,5°</value>
+  </data>
+  <data name="rotationStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
   </data>
   <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 22</value>
@@ -526,12 +439,6 @@
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>&amp;Opzioni...</value>
   </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 20</value>
-  </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Vista</value>
-  </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
   </data>
@@ -555,12 +462,6 @@
   </data>
   <data name="partListToolStripMenuItem.Text" xml:space="preserve">
     <value>Lista Parti</value>
-  </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Aiuto</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 22</value>
@@ -720,40 +621,40 @@
 </value>
   </data>
   <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
-    <value>Seleziona l'intervallo di snap della griglia</value>
+    <value>Seleziona il passo di spostamento sulla griglia</value>
   </data>
   <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="toolBarGrid32Button.Text" xml:space="preserve">
     <value>32 Studs</value>
   </data>
   <data name="toolBarGrid16Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="toolBarGrid16Button.Text" xml:space="preserve">
     <value>16 Studs</value>
   </data>
   <data name="toolBarGrid8Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="toolBarGrid8Button.Text" xml:space="preserve">
     <value>8 Studs</value>
   </data>
   <data name="toolBarGrid4Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="toolBarGrid4Button.Text" xml:space="preserve">
     <value>4 Studs</value>
   </data>
   <data name="toolBarGrid1Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="toolBarGrid1Button.Text" xml:space="preserve">
     <value>1 Stud</value>
   </data>
   <data name="toolBarGrid05Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="toolBarGrid05Button.Text" xml:space="preserve">
     <value>1/2 Stud</value>
@@ -768,10 +669,22 @@
 </value>
   </data>
   <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
-    <value>Seleziona lo step dell'angolo di rotazione</value>
+    <value>Seleziona il passo di rotazione dell'angolo</value>
+  </data>
+  <data name="toolBarAngle90Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="toolBarAngle45Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="toolBarAngle22Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
   </data>
   <data name="toolBarAngle22Button.Text" xml:space="preserve">
     <value>22,5°</value>
+  </data>
+  <data name="toolBarAngle1Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
   </data>
   <data name="toolBarRotateCCWButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -864,6 +777,117 @@
   </data>
   <data name="saveExportImageDialog.Title" xml:space="preserve">
     <value>Esporta immagine come</value>
+  </data>
+  <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhCwAOAPIAAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH5BAEAAAQALAAAAAALAA4AAAMnSErT
+        uy06AkYQGIdRs8dSGDHCUJ6DYq6oirYku7pySb9pjN+yKjoJADs=
+</value>
+  </data>
+  <data name="trashLayerButton.ToolTip" xml:space="preserve">
+    <value>Elimina il layer selezionato</value>
+  </data>
+  <data name="newLayerBrickButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////7/Dx
+        YGttvsLD////////////////////////////AAAAAAAA/////////////v7+dHR0IzE0foSFk5OT+vr6
+        ////////////////////AAAAAAAA////NLAANK4BGVQAFEUAL54DBBoUDR0iK5IAM6sBNLAANLAA////
+        ////AAAAAAAA////NLAAIT4hBREEF0gAGFYIAAAAFk0NJDonDC8KGEkBNLAA////////AAAAAAAA////
+        NLAAIG0AKWUaGUUXAAEAG1wAM6oBAwsAEiMjKGoXGFMD8PHx////AAAAAAAA////NLAAGEsALp0DDyAm
+        CB8XFkYBFk4FAQQAKo4FDiQXEyImmJ6fpqutAAAAAAAA////NLAANLAAM6wAI3UAJW8OIkcmAAAAInUJ
+        MaQCAwsAEkIHaXBzTllcAAAAAAAA////NLAAGEsANLAAGEsANLAABhoLFignGDcQEz8AAgUAM6cEZWVl
+        q6+xAAAAAAAA////NLAANLAANLAANLAANLAAL54EKpAEKGMcBhcdDjsOLJUCSUlJ9fX2AAAAAAAA////
+        NLAAGEsANLAAGEsANLAAGEsANLAAFEADEUIKIT0dEi4ccnp+////AAAAAAAA////NLAANLAANLAANLAA
+        NLAANLAANLAANLAANLAANLAAFEUAuLi4////AAAAAAAA////NLAAGEsANLAAGEsANLAAGEsANLAAGEsA
+        NLAAGEsANLAA////////AAAAAAAA////NLAANLAANLAANLAANLAANLAANLAANLAANLAANLAANLAA////
+        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerBrickButton.ToolTip" xml:space="preserve">
+    <value>Aggiungi un layer Brick</value>
+  </data>
+  <data name="newLayerAreaButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvJ/1vJ/19M+N9M+N9M+N
+        9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N
+        9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N
+        9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1
+        vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTw
+        UJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5
+        ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5
+        ccR5AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTI
+        baTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTw
+        UJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTw
+        UJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/
+        nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/nfn/AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerAreaButton.ToolTip" xml:space="preserve">
+    <value>Aggiungi un layer Area</value>
+  </data>
+  <data name="newLayerGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsmkGsmkGsmkG////////
+        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
+        smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////
+        smkGAAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
+        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
+        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
+        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
+        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
+        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
+        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
+        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
+        ////AAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerGridButton.ToolTip" xml:space="preserve">
+    <value>Aggiungi un layer Griglia</value>
+  </data>
+  <data name="newLayerTextButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////////
+        ////////////////////////////////////AAAAAAAA////////////////////////////////////
+        ////////////////////AAAAAAAA////////////////AAAAAAAAAAAAAAAAAAAAAAAAv7+/////////
+        ////AAAAAAAA////////////////Pz8/Pz8/AAAAAAAAPz8/Pz8/z8/P////////////AAAAAAAA////
+        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
+        ////AAAAAAAA////////////////////////AAAAAAAA////////////////////////AAAAAAAA////
+        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
+        ////AAAAAAAA////////b29vPz8/z8/P////AAAAAAAA////////Pz8/Pz8/////////AAAAAAAA////
+        ////Pz8/AAAAv7+/////AAAAAAAA////////AAAAAAAA////////AAAAAAAA////////Pz8/AAAAX19f
+        f39/AAAAAAAAf39/f39/AAAAAAAA////////AAAAAAAA////////Pz8/AAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAA////////AAAAAAAA////////n5+ff39/f39/f39/f39/f39/f39/f39/f39/f39/////
+        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerTextButton.ToolTip" xml:space="preserve">
+    <value>Aggiungi un layer Testo</value>
+  </data>
+  <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhEAAQAPEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAQABAAAAIglI+pBrDbXmpRMmoFxXJX
+        6H1T6Cgkh5ziuIKtiXZxthQAOw==
+</value>
+  </data>
+  <data name="layerUpButton.ToolTip" xml:space="preserve">
+    <value>Alza il layer selezionato di un livello</value>
+  </data>
+  <data name="layerDownButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhEAAQAPEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAQABAAAAIglI+pAg2b3INH0uqo3BNx
+        q3xd9GnbxV1MpoLtiMLqUgAAOw==
+</value>
+  </data>
+  <data name="layerDownButton.ToolTip" xml:space="preserve">
+    <value>Abbassa il Layer selezionato di un livello</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
