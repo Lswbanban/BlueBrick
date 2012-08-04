@@ -127,7 +127,7 @@
     <value>Aggiungi un Layer Area</value>
   </data>
   <data name="ActionAddLayerBrick" xml:space="preserve">
-    <value>Aggiungi un Layer Pezzi</value>
+    <value>Aggiungi un Layer Brick</value>
   </data>
   <data name="ActionAddLayerGrid" xml:space="preserve">
     <value>Aggiungi un Layer Griglia</value>
