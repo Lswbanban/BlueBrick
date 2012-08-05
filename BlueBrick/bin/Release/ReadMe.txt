@@ -100,6 +100,7 @@ Open bugs:
 
 Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): When changing the order of the part lib tabs, the previously selected tab was not reselected
+- BUGFIX #40 (Steffen): If you connect a gray track with a blue track, the sleeper between them should be the white 3034 one. 
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)

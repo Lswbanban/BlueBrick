@@ -615,8 +615,31 @@ namespace BlueBrick
 						// get the current connexion
 						LayerBrick.Brick.ConnectionPoint connexion = brick.ConnectionPoints[i];
 						// if the connexion is free we need to add the sleeper
-						// else if it is not free we check if we didn't already add it
-						bool needToAddSleeper = (connexion.IsFree) || (!addedSleepers.Contains(connexion.ConnectionLink));
+						// else if it is not free we check if we didn't already add it or if we should add it's neighboor
+						// by default we will add the sleeper, and find the false cases
+						bool needToAddSleeper = true;
+						// first check if the connexion is not free
+						if (!connexion.IsFree)
+						{
+							// if the track is connected we check if we didn't already added the sleeper (if yes we don't need to add it)
+							if (addedSleepers.Contains(connexion.ConnectionLink))
+							{
+								// no need to add the sleeper, it's already done
+								needToAddSleeper = false;
+							}
+							else
+							{
+								// if we didn't already add the sleeper then we need to check if the current sleeper
+								// is of type gray 12V (those with clip) because if the other sleeper is a normal
+								// 2x8 plate, then we don't add it, we will add the plate instead
+								if (remapData.mSleeperBrickNumber.Equals("767"))
+								{
+									BrickLibrary.Brick.LDrawRemapData connectedBrickRemapData = BrickLibrary.Instance.getLDrawRemapData(connexion.ConnectedBrick.PartNumber);
+									needToAddSleeper = (connectedBrickRemapData.mSleeperBrickNumber.Equals("767"));
+								}
+							}
+						}
+						// now add the sleeper if we need to
 						if (needToAddSleeper)
 						{
 							// set the correct position and orientation of the sleeper
