@@ -191,11 +191,11 @@
     <Compile Include="MainSplitContainer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MapData\AStar.cs" />
+    <Compile Include="MapData\Tools\AStar.cs" />
     <Compile Include="MapData\BrickLibrary.cs" />
-    <Compile Include="MapData\ElectricCircuitChecker.cs" />
+    <Compile Include="MapData\Tools\ElectricCircuitChecker.cs" />
     <Compile Include="MapData\FreeConnectionSet.cs" />
-    <Compile Include="MapData\FlexTrack\IKSolver.cs" />
+    <Compile Include="MapData\Tools\IKSolver.cs" />
     <Compile Include="MapData\LayerArea.cs" />
     <Compile Include="MapData\LayerBrick.cs" />
     <Compile Include="MapData\LayerText.cs" />
