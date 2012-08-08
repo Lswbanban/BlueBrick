@@ -80,6 +80,7 @@ namespace BlueBrick.Actions.Bricks
 		// global data members
 		private bool mIsValid = false; // tell if this action can be a valid flex move action
 		private List<Layer.LayerItem> mBricksInTheFlexChain = null;
+		private List<Layer.LayerItem> mSelectedBricksBeforeFlexMove = null; // this is used to save the selected objets just before a flex move and restore them after the flex move (because we will only select the flex parts during the move for visual feedback)
 
 		// data members for flex edition
 		private List<IKSolver.Bone_2D_CCD> mBoneList = null;
@@ -104,11 +105,6 @@ namespace BlueBrick.Actions.Bricks
 		public bool IsValid
 		{
 			get { return mIsValid; }
-		}
-
-		public List<Layer.LayerItem> BricksInTheFlexChain
-		{
-			get { return mBricksInTheFlexChain; }
 		}
 		#endregion
 
@@ -167,6 +163,12 @@ namespace BlueBrick.Actions.Bricks
 			ceateFlexChain(trackList, grabbedTrack, startConnection);
 			// and save the action data
 			recordState(ref mInitState);
+
+			// also save the current selection, because we will only select the flex brick for visual feedback
+			// Do not save directly the list object because we will modified the selection
+			mSelectedBricksBeforeFlexMove = new List<Layer.LayerItem>(layer.SelectedObjects);
+			// now clear the slection and select only the bricks in the flex chain
+			layer.unsafeSetSelection(mBricksInTheFlexChain);
 		}
 
 		/// <summary>
@@ -177,6 +179,9 @@ namespace BlueBrick.Actions.Bricks
 		/// </summary>
 		public void finishActionConstruction()
 		{
+			// restore the selection
+			mBrickLayer.unsafeSetSelection(mSelectedBricksBeforeFlexMove);
+			// save the final state and go back to init state to prepare the redo
 			recordState(ref mFinalState);
 			moveBricks(mInitState);
 		}

@@ -2013,10 +2013,8 @@ namespace BlueBrick.MapData
 			{
 				mMouseFlexMoveAction = new FlexMove(this, this.SelectedObjects, mCurrentBrickUnderMouse, mouseCoordInStud);
 				mMouseMoveIsAFlexMove = mMouseFlexMoveAction.IsValid;
-				// update the selection with only the brick in the flex chain
-				if (mMouseMoveIsAFlexMove)
-					mSelectedObjects = new List<LayerItem>(mMouseFlexMoveAction.BricksInTheFlexChain);
-				else
+				// destroy the action if it is not valid
+				if (!mMouseMoveIsAFlexMove)
 					mMouseFlexMoveAction = null;
 			}
 

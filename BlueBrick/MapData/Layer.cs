@@ -929,6 +929,23 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// clear the slection and select all the object in parameters.
+		/// This method is unsafe because if one object in parameter is part of a group,
+		/// the whole group will not be selected. Also the necessary updates on the MainForms are 
+		/// not performed. Only the bounding rectangle is also updated.
+		/// This method is used as a temporary selection during the move of a flex move.
+		/// </summary>
+		/// <param name="obj">The list of object to unsafly select</param>
+		public void unsafeSetSelection<T>(List<T> objList) where T : LayerItem
+		{
+			// set the selection with the specified list
+			mSelectedObjects.Clear();
+			mSelectedObjects.AddRange(objList as List<LayerItem>);
+			// update the bouding selection rectangle
+			updateBoundingSelectionRectangle();
+		}
+
+		/// <summary>
 		/// Remove the specified object from the selection list.
 		/// This method also refresh the bouding rectangle.
 		/// </summary>
