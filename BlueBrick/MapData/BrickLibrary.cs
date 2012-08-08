@@ -215,7 +215,6 @@ namespace BlueBrick.MapData
                 public Brick mSubPartBrick = null;
                 public float mOrientation = 0.0f;
 				public Matrix mLocalTransformInStud = null;
-				public Matrix mTempLocalTransformInPixelForImageBuilding = null;
 			}
 
 			public class GroupInfo
@@ -1425,6 +1424,9 @@ namespace BlueBrick.MapData
 			if (parentGroups.Contains(group))
 				throw new Exception("Cyclic group detected. The group contains itself in its list or contains another group that contains it.");
 
+			// use a temp list of transform to compute and store the transform of each sub part only for drawing purpose
+			List<Matrix> subPartDrawingTransforms = new List<Matrix>(group.mGroupInfo.mGroupSubPartList.Count);
+
             // declare 4 variable to get the bounding box of the group part (in stud)
             float minX = float.MaxValue;
             float minY = float.MaxValue;
@@ -1445,18 +1447,21 @@ namespace BlueBrick.MapData
 					createGroupImageRecursive(subPart.mSubPartBrick, newParentGroups);
 				}
 
-				// create the transform
-				subPart.mTempLocalTransformInPixelForImageBuilding = new Matrix();
-				subPart.mTempLocalTransformInPixelForImageBuilding.Rotate(subPart.mOrientation);
+				// create the drawing transform and add it to the list
+				Matrix drawingTransform = new Matrix();
+				subPartDrawingTransforms.Add(drawingTransform);
+
+				// add the rotation to the transform
+				drawingTransform.Rotate(subPart.mOrientation);
 				// transform the bounding box (which is in pixel) after that the image is created otherwise the hull may be null
 				PointF[] hullPoints = subPart.mSubPartBrick.mHull.ToArray();
-				subPart.mTempLocalTransformInPixelForImageBuilding.TransformVectors(hullPoints);
-				// is this subpart is also a group transform also its center
+				drawingTransform.TransformVectors(hullPoints);
+				// is this subpart is also a group rotate also its center
 				PointF[] subPartCenterPosition = { new PointF() };
 				if (subPart.mSubPartBrick.IsAGroup)
 				{
 					subPartCenterPosition[0] = subPart.mSubPartBrick.mGroupInfo.mCenterPositionRelativeToGroupOrigin;
-					subPart.mTempLocalTransformInPixelForImageBuilding.TransformVectors(subPartCenterPosition);
+					drawingTransform.TransformVectors(subPartCenterPosition);
 				}
 
 				// get the local min and max for this sub part
@@ -1472,7 +1477,7 @@ namespace BlueBrick.MapData
 				PointF hullMinInsideGroup = new PointF(translateX - hullHalfSize.X, translateY - hullHalfSize.Y);
 				PointF hullMaxInsideGroup = new PointF(translateX + hullHalfSize.X, translateY + hullHalfSize.Y);
 				// add the part transaltion to the transform
-				subPart.mTempLocalTransformInPixelForImageBuilding.Translate(hullMinInsideGroup.X - hullMin.X + subPartCenterPosition[0].X, hullMinInsideGroup.Y - hullMin.Y + subPartCenterPosition[0].Y, MatrixOrder.Append);
+				drawingTransform.Translate(hullMinInsideGroup.X - hullMin.X + subPartCenterPosition[0].X, hullMinInsideGroup.Y - hullMin.Y + subPartCenterPosition[0].Y, MatrixOrder.Append);
 
 				// check the local min and max with the global ones
 				if (hullMinInsideGroup.X < minX)
@@ -1484,16 +1489,14 @@ namespace BlueBrick.MapData
 				if (hullMaxInsideGroup.Y > maxY)
 					maxY = hullMaxInsideGroup.Y;
             }
-			// add the translation of the real center of the part relative to the origin used in the
-			// declaration of group in the XML: in the xml file, each sub part has a position relative
-			// to one origin arbitrary chosen, so we compute the vector between this origin and the
-			// center of the group, and add this translation to all the parts
+
+			// compute the position of the center of the group inside the coordinate system defined in the XML file
 			group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.X = (maxX + minX) * 0.5f;
 			group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.Y = (maxY + minY) * 0.5f;
-			float centerToOriginX = ((maxX - minX) * 0.5f) - group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.X;
-			float centerToOriginY = ((maxY - minY) * 0.5f) - group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.Y;
-			foreach (Brick.SubPart subPart in group.mGroupInfo.mGroupSubPartList)
-				subPart.mTempLocalTransformInPixelForImageBuilding.Translate(centerToOriginX, centerToOriginY, MatrixOrder.Append);
+			// also compute the vector between the center expressed in the drawing coord system (whose origin is in the
+			// top left corner of the image) and the center expressed in the XML coord system
+			float centerXMLToCenterImageX = ((maxX - minX) * 0.5f) - group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.X;
+			float centerXMLToCenterImageY = ((maxY - minY) * 0.5f) - group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.Y;
 
 			// create a new image with the correct size
 			int width = (int)(maxX - minX);
@@ -1508,11 +1511,16 @@ namespace BlueBrick.MapData
 				graphics.SmoothingMode = SmoothingMode.HighQuality;
 				graphics.CompositingQuality = CompositingQuality.HighSpeed;
 				graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
-				foreach (Brick.SubPart subPart in group.mGroupInfo.mGroupSubPartList)
+				for (int i = 0; i < group.mGroupInfo.mGroupSubPartList.Count; ++i)
 				{
-					graphics.Transform = subPart.mTempLocalTransformInPixelForImageBuilding;
+					// get the sub part and its transform
+					Brick.SubPart subPart = group.mGroupInfo.mGroupSubPartList[i];
+					Matrix drawingTransform = subPartDrawingTransforms[i];
+					// add a final translate to the drawing transform
+					drawingTransform.Translate(centerXMLToCenterImageX, centerXMLToCenterImageY, MatrixOrder.Append);
+					// set the transform to the graphics context and draw
+					graphics.Transform = drawingTransform;
 					graphics.DrawImage(subPart.mSubPartBrick.Image, 0, 0, subPart.mSubPartBrick.Image.Width, subPart.mSubPartBrick.Image.Height);
-					subPart.mTempLocalTransformInPixelForImageBuilding = null;
 				}
 				graphics.Flush();
 			}
