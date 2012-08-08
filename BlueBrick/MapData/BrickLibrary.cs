@@ -218,6 +218,14 @@ namespace BlueBrick.MapData
 				public Matrix mTempLocalTransformInPixelForImageBuilding = null;
 			}
 
+			public class GroupInfo
+			{
+				// if this brick is a group, it will have a group info class that store all the data needed for creating the group
+				public List<SubPart> mGroupSubPartList = null; // list of all the parts belonging to this group
+				public Dictionary<int, int> mGroupNextPreferedConnection = null; // list the prefered connection to select
+				public PointF mCenterPositionRelativeToGroupOrigin = new PointF(); // the coordinates of the center of the group is computed in the coordinate system of the group as defined in the XML file of the group
+			}
+
 			[Flags]
             public enum BrickType
             {
@@ -239,8 +247,7 @@ namespace BlueBrick.MapData
 			public List<PointF>		mConnectionPositionList = null; // for optimization reason, the positions of the connections are also saved into a list
 			public List<PointF>		mBoundingBox = new List<PointF>(4); // list of the 4 corner in pixel
 			public List<PointF>		mHull = new List<PointF>(4); // list of all the points in pixel that describe the hull of the part
-            public List<SubPart>    mGroupSubPartList = null; // if this brick is a group, list of all the parts belonging to this group
-			public Dictionary<int, int> mGroupNextPreferedConnection = null; // if this brick is a group, list the prefered connection to select
+			public GroupInfo		mGroupInfo = null; // if this brick is a group, this class will be instantiated to store the data needed to build the group
 			public TDRemapData		mTDRemapData = null;
 			public LDrawRemapData	mLDrawRemapData = null;
 
@@ -325,8 +332,11 @@ namespace BlueBrick.MapData
                     } while (!rootNodeFound && !xmlReader.EOF);
 
                     // set the brick type if it is a group
-                    if (isGroupPart)
-                        mBrickType = Brick.BrickType.GROUP;
+					if (isGroupPart)
+					{
+						mBrickType = Brick.BrickType.GROUP;
+						mGroupInfo = new GroupInfo();
+					}
 
                     // if we found the root node, start to parse it
 					if (rootNodeFound)
@@ -860,8 +870,12 @@ namespace BlueBrick.MapData
                 {
                     // start to read the subpart
                     bool subpartFound = xmlReader.ReadToDescendant("SubPart");
-                    if (subpartFound)
-                        mGroupSubPartList = new List<SubPart>();
+					if (subpartFound)
+					{
+						if (mGroupInfo == null)
+							mGroupInfo = new GroupInfo();
+						mGroupInfo.mGroupSubPartList = new List<SubPart>();
+					}
 
                     while (subpartFound)
                     {
@@ -896,7 +910,7 @@ namespace BlueBrick.MapData
 
                         // add the current connexion in the list
                         if (subPart.mSubPartNumber.Length > 0)
-                            mGroupSubPartList.Add(subPart);
+							mGroupInfo.mGroupSubPartList.Add(subPart);
 
                         // go to next connexion
                         subpartFound = !xmlReader.EOF && xmlReader.ReadToNextSibling("SubPart");
@@ -918,7 +932,11 @@ namespace BlueBrick.MapData
 					// start to read the subpart
 					bool entryFound = xmlReader.ReadToDescendant("nextIndex");
 					if (entryFound)
-						mGroupNextPreferedConnection = new Dictionary<int,int>();
+					{
+						if (mGroupInfo == null)
+							mGroupInfo = new GroupInfo();
+						mGroupInfo.mGroupNextPreferedConnection = new Dictionary<int, int>();
+					}
 
 					while (entryFound)
 					{
@@ -927,7 +945,7 @@ namespace BlueBrick.MapData
 						int to = xmlReader.ReadElementContentAsInt();
 
 						// store the prefered connection couple
-						mGroupNextPreferedConnection.Add(from, to);
+						mGroupInfo.mGroupNextPreferedConnection.Add(from, to);
 
 						// go to next index
 						entryFound = !xmlReader.EOF && xmlReader.ReadToNextSibling("nextIndex");
@@ -1400,7 +1418,7 @@ namespace BlueBrick.MapData
 
 		private void createGroupImageRecursive(Brick group, List<Brick> parentGroups)
 		{
-			if (group.mGroupSubPartList.Count == 0)
+			if (group.mGroupInfo.mGroupSubPartList.Count == 0)
 				throw new Exception("The group is empty. The tag <SubPartList> cannot be empty.");
 
 			// check if we have a cyclic group
@@ -1413,7 +1431,7 @@ namespace BlueBrick.MapData
             float maxX = float.MinValue;
             float maxY = float.MinValue;
             // iterate on the bricks to compute the size of the image
-            foreach (Brick.SubPart subPart in group.mGroupSubPartList)
+			foreach (Brick.SubPart subPart in group.mGroupInfo.mGroupSubPartList)
             {
                 // try to get the part from the library, otherwise add an unknown image
                 if (!mBrickDictionary.TryGetValue(subPart.mSubPartNumber, out subPart.mSubPartBrick))
@@ -1433,6 +1451,13 @@ namespace BlueBrick.MapData
 				// transform the bounding box (which is in pixel) after that the image is created otherwise the hull may be null
 				PointF[] hullPoints = subPart.mSubPartBrick.mHull.ToArray();
 				subPart.mTempLocalTransformInPixelForImageBuilding.TransformVectors(hullPoints);
+				// is this subpart is also a group transform also its center
+				PointF[] subPartCenterPosition = { new PointF() };
+				if (subPart.mSubPartBrick.IsAGroup)
+				{
+					subPartCenterPosition[0] = subPart.mSubPartBrick.mGroupInfo.mCenterPositionRelativeToGroupOrigin;
+					subPart.mTempLocalTransformInPixelForImageBuilding.TransformVectors(subPartCenterPosition);
+				}
 
 				// get the local min and max for this sub part
 				PointF hullMin = new PointF();
@@ -1447,7 +1472,7 @@ namespace BlueBrick.MapData
 				PointF hullMinInsideGroup = new PointF(translateX - hullHalfSize.X, translateY - hullHalfSize.Y);
 				PointF hullMaxInsideGroup = new PointF(translateX + hullHalfSize.X, translateY + hullHalfSize.Y);
 				// add the part transaltion to the transform
-				subPart.mTempLocalTransformInPixelForImageBuilding.Translate(hullMinInsideGroup.X - hullMin.X, hullMinInsideGroup.Y - hullMin.Y, MatrixOrder.Append);
+				subPart.mTempLocalTransformInPixelForImageBuilding.Translate(hullMinInsideGroup.X - hullMin.X + subPartCenterPosition[0].X, hullMinInsideGroup.Y - hullMin.Y + subPartCenterPosition[0].Y, MatrixOrder.Append);
 
 				// check the local min and max with the global ones
 				if (hullMinInsideGroup.X < minX)
@@ -1463,9 +1488,11 @@ namespace BlueBrick.MapData
 			// declaration of group in the XML: in the xml file, each sub part has a position relative
 			// to one origin arbitrary chosen, so we compute the vector between this origin and the
 			// center of the group, and add this translation to all the parts
-			float centerToOriginX = (Math.Abs(maxX - minX) - (maxX + minX)) * 0.5f;
-			float centerToOriginY = (Math.Abs(maxY - minY) - (maxY + minY)) * 0.5f;
-			foreach (Brick.SubPart subPart in group.mGroupSubPartList)
+			group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.X = (maxX + minX) * 0.5f;
+			group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.Y = (maxY + minY) * 0.5f;
+			float centerToOriginX = ((maxX - minX) * 0.5f) - group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.X;
+			float centerToOriginY = ((maxY - minY) * 0.5f) - group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.Y;
+			foreach (Brick.SubPart subPart in group.mGroupInfo.mGroupSubPartList)
 				subPart.mTempLocalTransformInPixelForImageBuilding.Translate(centerToOriginX, centerToOriginY, MatrixOrder.Append);
 
 			// create a new image with the correct size
@@ -1481,7 +1508,7 @@ namespace BlueBrick.MapData
 				graphics.SmoothingMode = SmoothingMode.HighQuality;
 				graphics.CompositingQuality = CompositingQuality.HighSpeed;
 				graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
-				foreach (Brick.SubPart subPart in group.mGroupSubPartList)
+				foreach (Brick.SubPart subPart in group.mGroupInfo.mGroupSubPartList)
 				{
 					graphics.Transform = subPart.mTempLocalTransformInPixelForImageBuilding;
 					graphics.DrawImage(subPart.mSubPartBrick.Image, 0, 0, subPart.mSubPartBrick.Image.Width, subPart.mSubPartBrick.Image.Height);
@@ -1615,7 +1642,7 @@ namespace BlueBrick.MapData
 				if (brickRef.IsAGroup)
 				{
 					List<Brick.ConnectionPoint> result = null;
-					foreach (Brick.SubPart subPart in brickRef.mGroupSubPartList)
+					foreach (Brick.SubPart subPart in brickRef.mGroupInfo.mGroupSubPartList)
 					{
 						List<Brick.ConnectionPoint> subPartList = null;
 						if (subPart.mSubPartBrick.IsAGroup)
@@ -1727,10 +1754,10 @@ namespace BlueBrick.MapData
 			{
 				if (brickRef.IsAGroup)
 				{
-					if (brickRef.mGroupNextPreferedConnection != null)
+					if (brickRef.mGroupInfo.mGroupNextPreferedConnection != null)
 					{
 						int result = 0;
-						brickRef.mGroupNextPreferedConnection.TryGetValue(pointIndex, out result);
+						brickRef.mGroupInfo.mGroupNextPreferedConnection.TryGetValue(pointIndex, out result);
 						return result;
 					}
 				}
@@ -1756,8 +1783,8 @@ namespace BlueBrick.MapData
 		{
 			Brick brickRef = null;
 			mBrickDictionary.TryGetValue(partNumber, out brickRef);
-			if (brickRef != null)
-				return brickRef.mGroupSubPartList;
+			if ((brickRef != null) && (brickRef.mGroupInfo != null))
+				return brickRef.mGroupInfo.mGroupSubPartList;
 			return null;
 		}
 
