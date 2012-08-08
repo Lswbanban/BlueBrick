@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
-namespace BlueBrick.MapData
+namespace BlueBrick.MapData.Tools
 {
 	/// <summary>
 	/// This a node in the graph of all the possible paths.

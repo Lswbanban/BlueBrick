@@ -33,7 +33,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 
-namespace BlueBrick.MapData.FlexTrack
+namespace BlueBrick.MapData.Tools
 {
 	class IKSolver
 	{

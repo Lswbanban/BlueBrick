@@ -84,7 +84,7 @@ namespace BlueBrick
 		private ExportImageForm mExportImageForm = new ExportImageForm();
 
 		// for the selection Path
-		AStar mAStar = new AStar();
+		MapData.Tools.AStar mAStar = new MapData.Tools.AStar();
 
 		// a mapping key table to store the shortcut for each action
 		enum shortcutableAction
