@@ -261,6 +261,14 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// get the number of items in this group (only this level, not including all the children)
+			/// </summary>
+			public int ItemsCount
+			{
+				get { return mItems.Count; }
+			}
+
+			/// <summary>
 			/// Tell if this group can be splitted and disbanded
 			/// </summary>
 			public bool CanUngroup

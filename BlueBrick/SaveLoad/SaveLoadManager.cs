@@ -133,8 +133,14 @@ namespace BlueBrick
 		#endregion
 		#region LDRAW Format
 
+		// for LDraw format we need to store the current group to add because to define the group a part belongs to
+		// it uses two different lines in the LDraw file.
+		private static Layer.Group mLDrawCurrentGroupInWhichAdd = null;
+
 		private static bool loadLDR(string filename)
 		{
+			// clear the hashmap used to load the groups
+			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
 			// create a new map
 			Map.Instance = new Map();
 			LayerBrick currentLayer = new LayerBrick();
@@ -167,14 +173,6 @@ namespace BlueBrick
 							currentLayer = new LayerBrick();
 						}
 					}
-					else if (token[1].Equals("MLCAD"))
-					{
-						if (token[2].Equals("HIDE"))
-						{
-							parseBrickLineLDRAW(token, 4, currentLayer);
-							currentLayer.Visible = false;
-						}
-					}
 					else
 					{
 						parseMetaCommandLineLDRAW(line, token, currentLayer);
@@ -196,6 +194,9 @@ namespace BlueBrick
 				Map.Instance.addLayer(currentLayer);
 			}
 
+			// again clear the hashmap used to load the groups
+			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
+
 			// finish the progress bar (to hide it)
 			MainForm.Instance.finishProgressBar();
 
@@ -205,6 +206,8 @@ namespace BlueBrick
 
 		private static bool loadMDP(string filename)
 		{
+			// clear the hashmap used to load the groups
+			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
 			// create a new map
 			Map.Instance = new Map();
 			LayerBrick currentLayer = new LayerBrick();
@@ -243,15 +246,14 @@ namespace BlueBrick
 					{
 						// in mdp we skip the step
 					}
-					else if (token[1].Equals("MLCAD"))
+					else if (token[1].Equals("MLCAD") && token[2].Equals("HIDE"))
 					{
-						if (token[2].Equals("HIDE"))
-						{
-							// check if it is a sub model or a simple part hidden
-							string partFullName = token[17];
-							if (Path.GetExtension(partFullName.ToUpperInvariant()).Equals(".LDR"))
-								hiddenLayerNames.Add(Path.GetFileNameWithoutExtension(partFullName));
-						}
+						// check if it is a sub model or a simple part hidden
+						string partFullName = token[17];
+						if (Path.GetExtension(partFullName.ToUpperInvariant()).Equals(".LDR"))
+							hiddenLayerNames.Add(Path.GetFileNameWithoutExtension(partFullName));
+						else
+							parseMetaCommandLineLDRAW(line, token, currentLayer);
 					}
 					else
 					{
@@ -283,11 +285,43 @@ namespace BlueBrick
 						break;
 					}
 
+			// clear again the hashmap used to load the groups
+			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
+
 			// finish the progress bar (to hide it)
 			MainForm.Instance.finishProgressBar();
 
 			// the file can be open
 			return true;
+		}
+
+		private static void checkIfBrickMustBeAddedToGroup(Layer.LayerItem item)
+		{
+			// if the mLDrawCurrentGroupInWhichAdd is not null that means a "MLCAD BTG" was found in the previous line of the file
+			// so we need to add the current brick (or group) to the group specified in the "MLCAD BTG" and then
+			// we clear the reference
+			if (mLDrawCurrentGroupInWhichAdd != null)
+			{
+				// add the item to the group
+				mLDrawCurrentGroupInWhichAdd.addItem(item);
+				// clear the reference, a new "MLCAD BTG" command must be find again
+				mLDrawCurrentGroupInWhichAdd = null;
+			}
+		}
+
+		public static Layer.Group createOrGetGroup(string groupName)
+		{
+			// look in the hastable if this group alread exists, else create it
+			Layer.Group group = Layer.LayerItem.sHashtableForGroupRebuilding[groupName] as Layer.Group;
+			if (group == null)
+			{
+				// instanciate a new group, and add it in the hash table
+				group = new Layer.Group();
+				// then add the group in the hash table
+				Layer.LayerItem.sHashtableForGroupRebuilding.Add(groupName, group);
+			}
+			// return the group
+			return group;
 		}
 
 		private static void parseMetaCommandLineLDRAW(string line, string[] token, LayerBrick currentLayer)
@@ -322,6 +356,26 @@ namespace BlueBrick
 				string comment = Map.Instance.Comment;
 				comment += line.Substring(5) + "\n";
 				Map.Instance.Comment = comment;
+			}
+			else if (token[1].Equals("MLCAD"))
+			{
+				if (token[2].Equals("HIDE"))
+				{
+					parseBrickLineLDRAW(token, 4, currentLayer);
+					currentLayer.Visible = false;
+				}
+				else if (token[2].Equals("BTG"))
+				{
+					// the meta command is: 0 MLCAD BTG <group name>
+					// get the group (or create it) and store it in the current group variable
+					mLDrawCurrentGroupInWhichAdd = createOrGetGroup(token[3]);
+				}
+			}
+			else if (token[1].Equals("GROUP"))
+			{
+				// the meta command is: 0 GROUP <item count> <group name>
+				Layer.Group group = createOrGetGroup(token[3]);
+				checkIfBrickMustBeAddedToGroup(group);
 			}
 
 			// skip all the rest of unknown meta commands
@@ -388,6 +442,9 @@ namespace BlueBrick
 
 				// add the brick to the layer
 				currentLayer.addBrick(brick, -1);
+
+				// check if we need to add this brick to a group
+				checkIfBrickMustBeAddedToGroup(brick);
 			}
 			catch (Exception)
 			{
@@ -410,7 +467,7 @@ namespace BlueBrick
 			// step the progressbar after the init of part remap
 			MainForm.Instance.stepProgressBar();
 
-			StreamWriter textWriter = new StreamWriter(filename, false, Encoding.UTF8);
+			StreamWriter textWriter = new StreamWriter(filename, false, new UTF8Encoding(false));
 			// write the header
 			saveHeaderInLDRAW(textWriter);
 			// add a line break
@@ -451,7 +508,7 @@ namespace BlueBrick
 			// step the progressbar after the init of part remap
 			MainForm.Instance.stepProgressBar();
 
-			StreamWriter textWriter = new StreamWriter(filename, false, Encoding.UTF8);
+			StreamWriter textWriter = new StreamWriter(filename, false, new UTF8Encoding(false));
 			// in mpd, we always start with the 0 FILE command,
 			// and we start with the main model that contains all the layers
 			textWriter.WriteLine("0 FILE " + Path.GetFileNameWithoutExtension(filename) + ".ldr");
@@ -538,6 +595,9 @@ namespace BlueBrick
 		{
 			// an array containing the spliter for part number and color
 			char[] partNumberSpliter = { '.' };
+
+			// clear the group list for saving
+			Layer.Group.sListForGroupSaving.Clear();
 
 			// check if the layer is hidden (and so we should hide all the bricks)
 			bool hideBricks = useMLCADHide && !brickLayer.Visible;
@@ -628,7 +688,8 @@ namespace BlueBrick
 								if (remapData.mSleeperBrickNumber.Equals("767"))
 								{
 									BrickLibrary.Brick.LDrawRemapData connectedBrickRemapData = BrickLibrary.Instance.getLDrawRemapData(connexion.ConnectedBrick.PartNumber);
-									needToAddSleeper = (connectedBrickRemapData.mSleeperBrickNumber.Equals("767"));
+									if ((connectedBrickRemapData != null) && (connectedBrickRemapData.mSleeperBrickNumber != null))
+										needToAddSleeper = (connectedBrickRemapData.mSleeperBrickNumber.Equals("767"));
 								}
 							}
 						}
@@ -646,6 +707,12 @@ namespace BlueBrick
 					}
 				}
 			}
+
+			// now save the groups if we found some
+			foreach (Layer.Group group in Layer.Group.sListForGroupSaving)
+				saveOneGroupInLDRAW(textWriter, group, hideBricks);
+			// and clear the group list for saving
+			Layer.Group.sListForGroupSaving.Clear();
 		}
 
 		private static void saveOneBrickInLDRAW(StreamWriter textWriter, LayerBrick.Brick brick, string[] partNumberAndColor, float x, float z, BrickLibrary.Brick.LDrawRemapData remapData, bool hideBricks)
@@ -658,6 +725,21 @@ namespace BlueBrick
 			// and the Y coord is from the altitude of the brick (0 by default)
 			// The matrix is the identity, except if you rotate the part, but
 			// the second line of the matrix is always the identity
+			// GROUPED BRICK:
+			// If the brick is part of a group, MLCAD introduced two commands.
+			// The line "0 MLCAD BTG <my group name>" should be placed before the brick
+			// to indicate that the brick Belongs To the Group (BTG)
+			// the line "0 GROUP <Num items> <group name>" should be placed where the group
+			// should appear
+
+			// first check if this brick belongs to a group
+			if (brick.Group != null)
+			{
+				textWriter.WriteLine("0 MLCAD BTG " + brick.Group.GetHashCode().ToString());
+				// add this group to the temporary list for saving if not already done
+				if (!Layer.Group.sListForGroupSaving.Contains(brick.Group))
+					Layer.Group.sListForGroupSaving.Add(brick.Group);
+			}
 
 			// the position of the brick
 			x *= 20;
@@ -686,7 +768,7 @@ namespace BlueBrick
 				angle += remapData.mAngle;
 			}
 
-			//construct the line
+			// construct the line
 			string line = "";
 			// first the visible if we should use it
 			if (hideBricks)
@@ -714,6 +796,30 @@ namespace BlueBrick
 			textWriter.WriteLine(line);
 		}
 
+		private static void saveOneGroupInLDRAW(StreamWriter textWriter, LayerBrick.Group group, bool hideGroup)
+		{
+			// the MLCAD format for a group is:
+			// "0 GROUP <Num items> <group name>"
+			// it should be placed where the group should appear
+			// start to construct the line
+			// If the brick is part of a group, MLCAD introduced two commands.
+			// The line "0 MLCAD BTG <my group name>" should be placed before the brick
+			// to indicate that the brick Belongs To the Group (BTG)
+
+			// first check if this group belongs to a group
+			if (group.Group != null)
+				textWriter.WriteLine("0 MLCAD BTG " + group.Group.GetHashCode().ToString());
+
+			string line = "";
+			// first the visible if we should use it
+			if (hideGroup)
+				line += "0 MLCAD HIDE ";
+
+			// group meta command and number of items and group unique name
+			line += "0 GROUP " + group.ItemsCount.ToString() + " " + group.GetHashCode().ToString();
+			//write the line
+			textWriter.WriteLine(line);
+		}
 		#endregion
 		#region TrackDesigner Format
 
