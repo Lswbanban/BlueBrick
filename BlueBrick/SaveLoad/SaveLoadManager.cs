@@ -296,11 +296,11 @@ namespace BlueBrick
 			{
 				Map.Instance.Author = token[2].Clone() as string;
 			}
-			else if (token[1].StartsWith("LUG"))
+			else if (token[1].StartsWith("Lug"))
 			{
 				Map.Instance.LUG = token[2].Clone() as string;
 			}
-			else if (token[1].StartsWith("Show"))
+			else if (token[1].StartsWith("Event"))
 			{
 				Map.Instance.Show = token[2].Clone() as string;
 			}
@@ -309,32 +309,22 @@ namespace BlueBrick
 				try
 				{
 					string endOfLine = line.Substring(line.IndexOf(token[1]) + token[1].Length);
-					DateTime date = DateTime.Parse(endOfLine);
+					DateTime date = DateTime.Parse(endOfLine, System.Globalization.CultureInfo.InvariantCulture);
 					Map.Instance.Date = date;
 				}
 				catch (Exception)
 				{
 				}
 			}
-			else if (token[1].Equals("WRITE") || token[1].Equals("PRINT") || token[1].Equals("CLEAR") ||
-					token[1].Equals("PAUSE") || token[1].Equals("SAVE") || token[1].Contains("LDRAW_ORG") ||
-					token[1].Contains("official") || token[1].Equals("ROTATION") || token[1].Equals("ROTSTEP") ||
-					token[1].Equals("BACKGROUND") || token[1].Equals("BUFEXCHG") || token[1].Equals("GHOST") ||
-					token[1].Equals("GROUP") || token[1].Contains("LPUB") || token[1].Equals("BI") ||
-					token[1].Equals("PLI") || token[1].Contains("BORDER") || token[1].Equals("NUMBER") ||
-					token[1].Equals("MARGINS") || token[1].Equals("PLACEMENT") || token[1].Equals("PART") ||
-					token[1].Equals("CONSTRAIN") || token[1].Equals("INSTANCE_COUNT") || token[1].Contains("SYNTH") ||
-					token[1].Equals("L3P") || token[1].Contains("COLOR") || token[1].Contains("COLOUR"))
+			else if (token[1].StartsWith("//"))
 			{
-				// skip all these meta commands
-			}
-			else
-			{
-				// every thing else is treated as a comment
+				// add the comment in the comment line
 				string comment = Map.Instance.Comment;
-				comment += line.Substring(2) + "\n";
+				comment += line.Substring(5) + "\n";
 				Map.Instance.Comment = comment;
 			}
+
+			// skip all the rest of unknown meta commands
 		}
 
 		private static void parseBrickLineLDRAW(string[] token, int startIndex, LayerBrick currentLayer)
@@ -420,7 +410,7 @@ namespace BlueBrick
 			// step the progressbar after the init of part remap
 			MainForm.Instance.stepProgressBar();
 
-			StreamWriter textWriter = new StreamWriter(filename);
+			StreamWriter textWriter = new StreamWriter(filename, false, Encoding.UTF8);
 			// write the header
 			saveHeaderInLDRAW(textWriter);
 			// add a line break
@@ -461,7 +451,7 @@ namespace BlueBrick
 			// step the progressbar after the init of part remap
 			MainForm.Instance.stepProgressBar();
 
-			StreamWriter textWriter = new StreamWriter(filename);
+			StreamWriter textWriter = new StreamWriter(filename, false, Encoding.UTF8);
 			// in mpd, we always start with the 0 FILE command,
 			// and we start with the main model that contains all the layers
 			textWriter.WriteLine("0 FILE " + Path.GetFileNameWithoutExtension(filename) + ".ldr");
@@ -526,19 +516,22 @@ namespace BlueBrick
 
 		private static void saveHeaderInLDRAW(StreamWriter textWriter)
 		{
+			// the first 0 line should be the file description (so we use the file name without extension)
+			textWriter.WriteLine("0 " + Path.GetFileNameWithoutExtension(Map.Instance.MapFileName));
+			textWriter.WriteLine("0 Name " + Path.GetFileName(Map.Instance.MapFileName));
 			// write that this is an unofficial model
 			textWriter.WriteLine("0 Unofficial Model");
 			// write the global info of this file
 			textWriter.WriteLine("0 Author " + Map.Instance.Author);
-			textWriter.WriteLine("0 LUG/LTC: " + Map.Instance.LUG);
-			textWriter.WriteLine("0 Show: " + Map.Instance.Show);
-			textWriter.WriteLine("0 Date: " + Map.Instance.Date.ToLongDateString());
+			textWriter.WriteLine("0 Lug: " + Map.Instance.LUG);
+			textWriter.WriteLine("0 Event: " + Map.Instance.Show);
+			textWriter.WriteLine("0 Date: " + Map.Instance.Date.ToString(System.Globalization.CultureInfo.InvariantCulture));
 			// write the comments of this map
-			char[] commentSpliter = { '\n' };
+			char[] commentSpliter = { '\r', '\n' };
 			String[] commentLines = Map.Instance.Comment.Split(commentSpliter);
 			foreach (string commentLine in commentLines)
 				if (commentLine != string.Empty)
-					textWriter.WriteLine("0 " + commentLine);
+					textWriter.WriteLine("0 // " + commentLine);
 		}
 
 		private static void saveBrickLayerInLDRAW(StreamWriter textWriter, LayerBrick brickLayer, bool useMLCADHide)
