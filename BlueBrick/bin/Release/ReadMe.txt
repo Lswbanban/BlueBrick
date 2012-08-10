@@ -71,6 +71,7 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
 - [target 1.8] MISSING FEATURE (Alban): Add a setting to select the first panel of the Part lib when the application start
 - [target 1.8] MISSING FEATURE (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste (option should be: no offset, offset on the same layer only, always offset)
+- MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
@@ -87,7 +88,6 @@ Open bugs:
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - [target 1.8] BUG (Alban): When launching BB the selected tab of the part lib is not always visible (need to scroll). The current selected tab should be saved when exiting the application.
 - [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should ask if we need to replace it or associate a new action on the same key (and the selection should modify the combo boxes)
-- [target 1.8] BUG (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
 - [target 1.8] BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
 - [target 1.8] BUG (Alban): The snapping margin defined in the XML file has no effect for a group
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
@@ -101,6 +101,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX #40 (Steffen): If you connect a gray track with a blue track, the sleeper between them should be the white 3034 one. 
 - BUGFIX (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - BUGFIX (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
+- BUGFIX (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)
