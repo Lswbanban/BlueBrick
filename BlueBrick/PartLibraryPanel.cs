@@ -255,7 +255,7 @@ namespace BlueBrick
 				displayErrorMessage(imageFileUnloadable, xmlFileUnloadable);
 
 				// after creating all the tabs, sort them according to the settings
-				updateAppearanceAccordingToSettings(true, false, false);
+				updateAppearanceAccordingToSettings(true, false, false, true);
 			}
 		}
 
@@ -597,7 +597,7 @@ namespace BlueBrick
 			this.ResumeLayout();
 		}
 
-		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBubbleInfoFormat)
+		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBubbleInfoFormat, bool updateSelectedTab)
 		{
 			this.SuspendLayout();
 
@@ -627,9 +627,19 @@ namespace BlueBrick
 					}
 				}
 
-				// reselect the previous selected tab
-				if (selectedTab != null)
-					this.SelectedTab = selectedTab;
+				// select the correct tab according to the parameter flag
+				if (updateSelectedTab)
+				{
+					// the selected tab from the setting data
+					if (BlueBrick.Properties.Settings.Default.UIPartLibSelectedTabIndex < this.TabPages.Count)
+					    this.SelectTab(BlueBrick.Properties.Settings.Default.UIPartLibSelectedTabIndex);
+				}
+				else
+				{
+					// reselect the previous selected tab
+					if (selectedTab != null)
+						this.SelectTab(selectedTab);
+				}
 			}
 
 			if (updateAppearance || updateBubbleInfoFormat)
@@ -663,7 +673,6 @@ namespace BlueBrick
 			}
 
 			this.ResumeLayout();
-			this.SelectedTab.Invalidate();
 		}
 
 		public void savePartListDisplayStatusInSettings()
@@ -682,6 +691,8 @@ namespace BlueBrick
 				// add the new config in the list
 				Settings.Default.UIPartLibDisplayConfig.Add(tabConfig);
 			}
+			// also save the current tab displayed
+			Properties.Settings.Default.UIPartLibSelectedTabIndex = this.SelectedIndex;
 		}
 		#endregion
 

@@ -102,6 +102,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - BUGFIX (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
 - BUGFIX (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
+- BUGFIX (Alban): The selected tab of the part lib was not saved when exiting BB and not reset at starting
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)
