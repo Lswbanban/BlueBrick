@@ -395,6 +395,16 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// construct an empty group but specifying if this group can ungroup.
+			/// This constructor is used by the loading code of a LDraw file
+			/// </summary>
+			/// <param name="canUngroup">tell if this group can ungroup or not</param>
+			public Group(bool canUngroup)
+			{
+				mCanUngroup = canUngroup;
+			}
+
+			/// <summary>
 			/// Copy constructor , only copy the part number for now
 			/// </summary>
 			/// <param name="model"></param>

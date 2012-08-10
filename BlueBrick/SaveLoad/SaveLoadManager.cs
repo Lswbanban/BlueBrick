@@ -309,14 +309,32 @@ namespace BlueBrick
 			}
 		}
 
-		public static Layer.Group createOrGetGroup(string groupName)
+		private static string getGroupNameForSaving(Layer.Group group)
+		{
+			// return the part number followed by the hash code
+			// the part number is needed at loading time to ask the part lib if this group can be split
+			// the hash code is needed to make unique group name
+			return group.PartNumber + "#" + group.GetHashCode().ToString();
+		}
+
+		private static Layer.Group createOrGetGroup(string groupName)
 		{
 			// look in the hastable if this group alread exists, else create it
 			Layer.Group group = Layer.LayerItem.sHashtableForGroupRebuilding[groupName] as Layer.Group;
 			if (group == null)
 			{
+				// remove the unique hash code at the end of the the group name to get only the part number
+				// and ask to the part lib if it is an non ungroupable group
+				bool canUngroup = true;
+				int hashCodeIndex = groupName.LastIndexOf('#');
+				if (hashCodeIndex > 0)
+				{
+					string partNumber = groupName.Substring(0, hashCodeIndex);
+					if (partNumber != string.Empty)
+						canUngroup = BrickLibrary.Instance.canUngroup(partNumber);
+				}
 				// instanciate a new group, and add it in the hash table
-				group = new Layer.Group();
+				group = new Layer.Group(canUngroup);
 				// then add the group in the hash table
 				Layer.LayerItem.sHashtableForGroupRebuilding.Add(groupName, group);
 			}
@@ -368,13 +386,15 @@ namespace BlueBrick
 				{
 					// the meta command is: 0 MLCAD BTG <group name>
 					// get the group (or create it) and store it in the current group variable
-					mLDrawCurrentGroupInWhichAdd = createOrGetGroup(token[3]);
+					string groupName = line.Substring(line.IndexOf(token[3])).Trim();
+					mLDrawCurrentGroupInWhichAdd = createOrGetGroup(groupName);
 				}
 			}
 			else if (token[1].Equals("GROUP"))
 			{
-				// the meta command is: 0 GROUP <item count> <group name>
-				Layer.Group group = createOrGetGroup(token[3]);
+				// the meta command from MLCAD is: 0 GROUP <item count> <group name>
+				string groupName = line.Substring(line.IndexOf(token[3])).Trim();
+				Layer.Group group = createOrGetGroup(groupName);
 				checkIfBrickMustBeAddedToGroup(group);
 			}
 
@@ -735,7 +755,7 @@ namespace BlueBrick
 			// first check if this brick belongs to a group
 			if (brick.Group != null)
 			{
-				textWriter.WriteLine("0 MLCAD BTG " + brick.Group.GetHashCode().ToString());
+				textWriter.WriteLine("0 MLCAD BTG " + getGroupNameForSaving(brick.Group));
 				// add this group to the temporary list for saving if not already done
 				if (!Layer.Group.sListForGroupSaving.Contains(brick.Group))
 					Layer.Group.sListForGroupSaving.Add(brick.Group);
@@ -808,7 +828,7 @@ namespace BlueBrick
 
 			// first check if this group belongs to a group
 			if (group.Group != null)
-				textWriter.WriteLine("0 MLCAD BTG " + group.Group.GetHashCode().ToString());
+				textWriter.WriteLine("0 MLCAD BTG " + getGroupNameForSaving(group.Group));
 
 			string line = "";
 			// first the visible if we should use it
@@ -816,7 +836,7 @@ namespace BlueBrick
 				line += "0 MLCAD HIDE ";
 
 			// group meta command and number of items and group unique name
-			line += "0 GROUP " + group.ItemsCount.ToString() + " " + group.GetHashCode().ToString();
+			line += "0 GROUP " + group.ItemsCount.ToString() + " " + getGroupNameForSaving(group);
 			//write the line
 			textWriter.WriteLine(line);
 		}
