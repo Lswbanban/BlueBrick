@@ -77,6 +77,19 @@ namespace BlueBrick
 			public bool mRespectProportion = true; // the proportion flag for this category
 			public List<BrickLibrary.Brick> mGroupList = new List<BrickLibrary.Brick>(); // all the group parts in this folder
 		}
+
+		/// <summary>
+		/// This class implement a IComparer to sort all the parts in the part library, based on the Name property
+		/// of the ListViewItem. We don't use the ListView.Sorting property because this default sorter sort on the Text property
+		/// and the Text property is displayed as a tooltips even when the ListView.ShowToolTips is false.
+		/// </summary>
+		private class ListViewItemComparerBasedOnName : System.Collections.IComparer
+		{
+			public int Compare(Object x, Object y)
+			{
+				return string.Compare((x as ListViewItem).Name, (y as ListViewItem).Name);
+			}
+		}
 		#endregion
 
 		// create a temporary list view to temporary store the items that have been filtered on the current tab
@@ -88,6 +101,9 @@ namespace BlueBrick
 		private List<string> mLastIncludeFilter = new List<string>();
 		private List<string> mLastExcludeFilter = new List<string>();
 		
+		// the comparer to sort the list view item, base on their name property
+		ListViewItemComparerBasedOnName mListViewItemComparer = new ListViewItemComparerBasedOnName();
+
 		// we store the part we drag because the drag and drop is buggy in Mono and I cannot pass the data in
 		// the drag and drop. Null means no parts are droped
 		private string mDraggingPartNumber = null;
@@ -226,7 +242,7 @@ namespace BlueBrick
 					newListView.BackColor = Settings.Default.PartLibBackColor;
 					newListView.ShowItemToolTips = Settings.Default.PartLibDisplayBubbleInfo;
 					newListView.MultiSelect = false;
-					newListView.Sorting = SortOrder.Ascending; // we want to sort the items based on their text (which contains a sorting key)
+					newListView.ListViewItemSorter = mListViewItemComparer; // we want to sort the items based on their Name (which contains a sorting key)
 					newListView.View = View.Tile; // we always use this view, because of the layout of the item
 					if (displaySetting.mLargeIcons)
 						newListView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
@@ -250,6 +266,8 @@ namespace BlueBrick
 					fillListViewWithGroups(buildingInfo, imageFileUnloadable, xmlFileUnloadable);
 					// then fill the list view (we cannot pass the building info as parameter because this function is called elsewhere)
 					fillListViewFromImageList(buildingInfo.mListView, buildingInfo.mImageList, buildingInfo.mRespectProportion);
+					// sort the list view after we added all the parts
+					buildingInfo.mListView.Sort();
 				}
 
 				// after the loading is finished eventually display the error messages
@@ -317,8 +335,10 @@ namespace BlueBrick
 
 				// set the tag to the item 
 				newItem.Tag = brick.mPartNumber;
-				// also set the text to allow the sorting of the part
-				newItem.Text = BrickLibrary.Instance.getSortingKey(brick.mPartNumber);
+				// also set the name to allow the sorting of the part
+				// we could have use the Text property and the Sorting property of the listview, but the stupid
+				// listview display the Text in the bubble info even when ShowToolTips is false.
+				newItem.Name = BrickLibrary.Instance.getSortingKey(brick.mPartNumber);
 				// and insert the item
 				try
 				{
@@ -536,6 +556,8 @@ namespace BlueBrick
 					item.Remove();
 					mFilteredListView.Items.Add(item);
 				}
+				// resort it
+				mFilteredListView.Sort();
 				// clear the reference list
 				mFilteredListView.BackColor = Settings.Default.PartLibBackColor;
 				mFilteredListView = null;
