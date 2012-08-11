@@ -226,6 +226,7 @@ namespace BlueBrick
 					newListView.BackColor = Settings.Default.PartLibBackColor;
 					newListView.ShowItemToolTips = Settings.Default.PartLibDisplayBubbleInfo;
 					newListView.MultiSelect = false;
+					newListView.Sorting = SortOrder.Ascending; // we want to sort the items based on their text (which contains a sorting key)
 					newListView.View = View.Tile; // we always use this view, because of the layout of the item
 					if (displaySetting.mLargeIcons)
 						newListView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
@@ -237,7 +238,7 @@ namespace BlueBrick
 					// add the list view to the tab page
 					newTabPage.Controls.Add(newListView);
 
-					// fill the list view with the file name
+					// fill the list view with the parts loaded from the files
 					fillListViewWithParts(buildingInfo, category, imageFileUnloadable, xmlFileUnloadable);
 				}
 
@@ -316,6 +317,8 @@ namespace BlueBrick
 
 				// set the tag to the item 
 				newItem.Tag = brick.mPartNumber;
+				// also set the text to allow the sorting of the part
+				newItem.Text = BrickLibrary.Instance.getSortingKey(brick.mPartNumber);
 				// and insert the item
 				try
 				{
@@ -730,12 +733,18 @@ namespace BlueBrick
 			if (listView != null && menuItem != null)
 			{
 				// create a list of image with all the original part image from the part lib
-				List<Image> imageList = new List<Image>(listView.Items.Count);
+				// but do it in the correct order, so we use an array for that to put the original image
+				// directly inside the good index (so at the right place)
+				// also since the user can change the proportion flag while the list is filtered,
+				// also take into account the filtered list view items
+				Image[] imageList = new Image[listView.Items.Count + mFilteredItems.Items.Count];
 				foreach (ListViewItem item in listView.Items)
-					imageList.Add(BrickLibrary.Instance.getImage(item.Tag as string));
+					imageList[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
+				foreach (ListViewItem item in mFilteredItems.Items)
+					imageList[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
 
-				// regenerate the two image list for the current list view
-				fillListViewFromImageList(listView, imageList, menuItem.Checked);
+				// regenerate the two image list for the current list view (converting the array into a list)
+				fillListViewFromImageList(listView, new List<Image>(imageList), menuItem.Checked);
 			}
 		}
 

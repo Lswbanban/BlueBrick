@@ -238,6 +238,7 @@ namespace BlueBrick.MapData
             public BrickType        mBrickType = BrickType.BRICK;
 			public string			mImageURL = null; // the URL on internet of the image for part list export in HTML
 			public string			mDescription = BlueBrick.Properties.Resources.TextUnknown; // the description of the part in the current language of the application
+			public string			mSortingKey = string.Empty; // the sorting key is used to sort all the part of the same folder inside the tab
 			public string			mPartNumber = null; // the part number (same as the key in the dictionnary), usefull in case of part renaming
 			private Image			mImage = null;	// the image of the brick just as it is loaded from the hardrive. If null, the brick is ignored by BlueBrick.
 			public Margin			mSnapMargin = new Margin(); // the the inside margin that should be use for snapping the part on the grid
@@ -349,6 +350,8 @@ namespace BlueBrick.MapData
 								readAuthorTag(ref xmlReader);
 							else if (xmlReader.Name.Equals("Description"))
 								readDescriptionTag(ref xmlReader);
+							else if (xmlReader.Name.Equals("SortingKey"))
+								readSortingKeyTag(ref xmlReader);
 							else if (xmlReader.Name.Equals("ImageURL"))
 								readImageURLTag(ref xmlReader);
 							else if (xmlReader.Name.Equals("SnapMargin"))
@@ -467,6 +470,18 @@ namespace BlueBrick.MapData
 					// finish the Description tag
 					if (!xmlReader.EOF)
 						xmlReader.ReadEndElement();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private void readSortingKeyTag(ref System.Xml.XmlReader xmlReader)
+			{
+				if (!xmlReader.IsEmptyElement)
+				{
+					mSortingKey = xmlReader.ReadElementContentAsString();
 				}
 				else
 				{
@@ -1337,8 +1352,6 @@ namespace BlueBrick.MapData
 			}
 		}
 		
-		#endregion
-
 		/// <summary>
 		/// This method will check the windows registry info to know if there is any key
 		/// set by the TrackDesigner software to know which TDR registry is used by TD.
@@ -1366,6 +1379,9 @@ namespace BlueBrick.MapData
 			}
 		}
 
+		#endregion
+
+		#region brick image creation
 		/// <summary>
 		/// This method create a default bitmap with a red cross and the part number,
 		/// </summary>
@@ -1529,6 +1545,7 @@ namespace BlueBrick.MapData
 				throw new Exception("The group is too small to be visible.");
 			}
         }
+		#endregion
 
 		/// <summary>
 		/// Return the complete list of all the names of the bricks currently in the library
@@ -1888,6 +1905,20 @@ namespace BlueBrick.MapData
 				formatedInfo += partInfo[3];
 			}
 			return formatedInfo;
+		}
+
+		/// <summary>
+		/// Get the sorting string key used to sort the parts in the part library tab
+		/// </summary>
+		/// <param name="partNumber">the bluebrick part number</param>
+		/// <returns>the sorting key or an empty string (never return null)</returns>
+		public string getSortingKey(string partNumber)
+		{
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if (brickRef != null)
+				return brickRef.mSortingKey;
+			return string.Empty;
 		}
 
 		/// <summary>
