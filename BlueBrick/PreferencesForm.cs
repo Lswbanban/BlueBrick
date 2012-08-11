@@ -1032,7 +1032,7 @@ namespace BlueBrick
 					result = -result;
 				return result;
 			}
-		};
+		}
 
 		/// <summary>
 		/// Add a new item (with its subitems) to the list view of shortcut key, from an array of string.

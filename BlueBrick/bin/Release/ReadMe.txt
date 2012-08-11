@@ -66,7 +66,6 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
-- [target 1.8] MISSING FEATURE (Alban): Add a filter combobox in the bottom of the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the options and context menu)
 - [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
 - [target 1.8] MISSING FEATURE (Alban): Add a setting to select the first panel of the Part lib when the application start
@@ -97,12 +96,14 @@ Open bugs:
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
 Bug fixed in 1.8.0.0:
+- NEW FEATURE (Alban): Add a filter combobox in the bottom of the library
+- NEW FEATURE (Alban): Add a sorting order for the parts in the library based on a new <SortingKey> tag in the XML file of the part
 - BUGFIX (Alban): When changing the order of the part lib tabs, the previously selected tab was not reselected
+- BUGFIX (Alban): The selected tab of the part lib was not saved when exiting BB and not reset at starting
 - BUGFIX #40 (Steffen): If you connect a gray track with a blue track, the sleeper between them should be the white 3034 one. 
 - BUGFIX (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - BUGFIX (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
 - BUGFIX (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
-- BUGFIX (Alban): The selected tab of the part lib was not saved when exiting BB and not reset at starting
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)
