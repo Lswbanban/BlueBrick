@@ -73,9 +73,35 @@ namespace BlueBrick
 
 			// select the total area. It depends if we already have exported this file
 			if (Map.Instance.ExportArea.Width != 0.0f && Map.Instance.ExportArea.Height != 0.0f)
+			{
+				// if we already exported this file we take the previous exportation anyway,
+				// because the use rmay have tune it the way he wants
 				mSelectedAreaInStud = Map.Instance.ExportArea;
+				// but we need to check if the total area is smaller than the previous exported area
+				// then we should take the bigger size otherwise the selected area cannot fit into
+				// the total area.
+				if (mSelectedAreaInStud.Left < mTotalAreaInStud.Left)
+				{
+					// increase the width before moving the left because we only want to move the left and not the right
+					mTotalAreaInStud.Width = mTotalAreaInStud.Right - mSelectedAreaInStud.Left;
+					mTotalAreaInStud.X = mSelectedAreaInStud.Left;
+				}
+				if (mSelectedAreaInStud.Right > mTotalAreaInStud.Right)
+					mTotalAreaInStud.Width = mSelectedAreaInStud.Right - mTotalAreaInStud.Left;
+				// vertical
+				if (mSelectedAreaInStud.Top < mTotalAreaInStud.Top)
+				{
+					// increase the height before moving the top because we only want to move the top and not the bottom
+					mTotalAreaInStud.Height = mTotalAreaInStud.Bottom - mSelectedAreaInStud.Top;
+					mTotalAreaInStud.Y = mSelectedAreaInStud.Top;
+				}
+				if (mSelectedAreaInStud.Bottom > mTotalAreaInStud.Bottom)
+					mTotalAreaInStud.Height = mSelectedAreaInStud.Bottom - mTotalAreaInStud.Top;
+			}
 			else
+			{
 				mSelectedAreaInStud = mTotalAreaInStud;
+			}
 
 			// save the selected area in a local variable to set the correct values of the numeric up down
 			// because, setting the min and max for the numeric up down can trigger the value changed event
