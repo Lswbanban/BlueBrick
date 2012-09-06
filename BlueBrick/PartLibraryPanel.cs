@@ -93,7 +93,7 @@ namespace BlueBrick
 		#endregion
 
 		// create a temporary list view to temporary store the items that have been filtered on the current tab
-		private ListView mFilteredItems = new ListView();
+		private List<ListViewItem> mFilteredItems = new List<ListViewItem>();
 		// also store the current filtered list
 		private ListView mFilteredListView = null;
 		// save the last filter because we will need it again when we switch tab
@@ -551,12 +551,11 @@ namespace BlueBrick
 			if (mFilteredListView != null)
 			{
 				//put back all the previous filtered item in the list
-				foreach (ListViewItem item in mFilteredItems.Items)
-				{
-					item.Remove();
+				foreach (ListViewItem item in mFilteredItems)
 					mFilteredListView.Items.Add(item);
-				}
-				// resort it
+				// clear the list
+				mFilteredItems.Clear();
+				// resort the list view
 				mFilteredListView.Sort();
 				// clear the reference list
 				mFilteredListView.BackColor = Settings.Default.PartLibBackColor;
@@ -576,8 +575,11 @@ namespace BlueBrick
 					// get the current list view displayed
 					mFilteredListView = this.SelectedTab.Controls[0] as ListView;
 					mFilteredListView.BackColor = Settings.Default.PartLibFilteredBackColor;
-					foreach (ListViewItem item in mFilteredListView.Items)
+					// do not use a foreach here because Mono doesn't support to remove items while iterating on the list
+					// so use an index instead and decreas the index when we remove the item
+					for (int i = 0; i < mFilteredListView.Items.Count; ++i)
 					{
+						ListViewItem item = mFilteredListView.Items[i];
 						string itemId = item.Tag as string;
 						string brickInfo = BrickLibrary.Instance.getFormatedBrickInfo(itemId, true, true, true).ToLower();
 						// a flag to stop search if it is already removed
@@ -588,7 +590,8 @@ namespace BlueBrick
 							if (!itemId.Contains(filter))
 							{
 								item.Remove();
-								mFilteredItems.Items.Add(item);
+								i--;
+								mFilteredItems.Add(item);
 								continueSearch = false;
 								break;
 							}
@@ -598,7 +601,8 @@ namespace BlueBrick
 								if (!brickInfo.Contains(filter))
 								{
 									item.Remove();
-									mFilteredItems.Items.Add(item);
+									i--;
+									mFilteredItems.Add(item);
 									continueSearch = false;
 									break;
 								}
@@ -608,7 +612,8 @@ namespace BlueBrick
 								if (brickInfo.Contains(filter))
 								{
 									item.Remove();
-									mFilteredItems.Items.Add(item);
+									i--;
+									mFilteredItems.Add(item);
 									continueSearch = false;
 									break;
 								}
@@ -759,10 +764,10 @@ namespace BlueBrick
 				// directly inside the good index (so at the right place)
 				// also since the user can change the proportion flag while the list is filtered,
 				// also take into account the filtered list view items
-				Image[] imageList = new Image[listView.Items.Count + mFilteredItems.Items.Count];
+				Image[] imageList = new Image[listView.Items.Count + mFilteredItems.Count];
 				foreach (ListViewItem item in listView.Items)
 					imageList[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
-				foreach (ListViewItem item in mFilteredItems.Items)
+				foreach (ListViewItem item in mFilteredItems)
 					imageList[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
 
 				// regenerate the two image list for the current list view (converting the array into a list)
