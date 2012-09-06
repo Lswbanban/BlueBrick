@@ -106,6 +106,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a Ruler layer.
+        /// </summary>
+        internal static string ActionAddLayerRuler {
+            get {
+                return ResourceManager.GetString("ActionAddLayerRuler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add a Text Layer.
         /// </summary>
         internal static string ActionAddLayerText {
@@ -926,6 +935,13 @@ namespace BlueBrick.Properties {
         internal static System.Drawing.Bitmap layerTypeGrid {
             get {
                 object obj = ResourceManager.GetObject("layerTypeGrid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap layerTypeRuler {
+            get {
+                object obj = ResourceManager.GetObject("layerTypeRuler", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

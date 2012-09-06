@@ -37,7 +37,7 @@
     <ProductName>BlueBrick</ProductName>
     <PublisherName>Alban Nanty</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -132,6 +132,11 @@
     <Compile Include="FindForm.Designer.cs">
       <DependentUpon>FindForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LayerRulerPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MapData\LayerRuler.cs" />
+    <Compile Include="MapData\LayerRulerItem.cs" />
     <Compile Include="PreferencesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -586,12 +591,12 @@
   <ItemGroup>
     <PublishFile Include="fr\BlueBrick.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>
@@ -637,6 +642,7 @@
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />
     <BaseApplicationManifest Include="Properties\app.manifest" />
+    <Content Include="icons\newlayerRuler.bmp" />
     <Content Include="icons\SendToBack.bmp" />
     <EmbeddedResource Include="Cursor\AreaEraserCursor.cur" />
     <EmbeddedResource Include="Cursor\AreaPaintCursor.cur" />
