@@ -44,6 +44,9 @@ namespace BlueBrick.Actions
 				case "LayerArea":
 					mLayerAdded = new LayerArea();
 					break;
+				case "LayerRuler":
+					mLayerAdded = new LayerRuler();
+					break;
 			}
 		}
 
@@ -57,6 +60,8 @@ namespace BlueBrick.Actions
 					return BlueBrick.Properties.Resources.ActionAddLayerText;
 				case "LayerArea":
 					return BlueBrick.Properties.Resources.ActionAddLayerArea;
+				case "LayerRuler":
+					return BlueBrick.Properties.Resources.ActionAddLayerRuler;
 			}
 			return BlueBrick.Properties.Resources.ActionAddLayerBrick;
 		}

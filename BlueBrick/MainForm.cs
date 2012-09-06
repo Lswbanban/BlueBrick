@@ -2063,23 +2063,30 @@ namespace BlueBrick
 					ActionManager.Instance.doAction(new MoveLayerDown(Map.Instance.SelectedLayer));
 			}
 		}
-		private void newLayerTextButton_Click(object sender, EventArgs e)
-		{
-			ActionManager.Instance.doAction(new AddLayer("LayerText"));
-		}
 
 		private void newLayerGridButton_Click(object sender, EventArgs e)
 		{
 			ActionManager.Instance.doAction(new AddLayer("LayerGrid"));
 		}
+
+		private void newLayerBrickButton_Click(object sender, EventArgs e)
+		{
+			ActionManager.Instance.doAction(new AddLayer("LayerBrick"));
+		}
+
 		private void newLayerAreaButton_Click(object sender, EventArgs e)
 		{
 			ActionManager.Instance.doAction(new AddLayer("LayerArea"));
 		}
 
-		private void newLayerBrickButton_Click(object sender, EventArgs e)
+		private void newLayerTextButton_Click(object sender, EventArgs e)
 		{
-			ActionManager.Instance.doAction(new AddLayer("LayerBrick"));
+			ActionManager.Instance.doAction(new AddLayer("LayerText"));
+		}
+
+		private void newLayerRulerButton_Click(object sender, EventArgs e)
+		{
+			ActionManager.Instance.doAction(new AddLayer("LayerRuler"));
 		}
 
 		private void trashLayerButton_Click(object sender, EventArgs e)

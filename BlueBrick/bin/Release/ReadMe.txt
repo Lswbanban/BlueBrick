@@ -90,7 +90,7 @@ Open bugs:
 - [target 1.8] BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
 - [target 1.8] BUG (Alban): The snapping margin defined in the XML file has no effect for a group
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
-- BUG (Alban): The drag and drop of file is not working in release under Mono (but it works in debug), probably a bug from Mono
+- BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)

@@ -183,6 +183,9 @@ namespace BlueBrick
 						case "LayerBrick":
 							newLayerPanel = new LayerBrickPanel(layer);
 							break;
+						case "LayerRuler":
+							newLayerPanel = new LayerRulerPanel(layer);
+							break;
 					}
 
 					// add the new layer in the control list
