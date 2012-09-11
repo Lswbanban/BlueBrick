@@ -1680,23 +1680,9 @@ namespace BlueBrick.MapData
 		/// get the total area in stud covered by all the bricks in this layer
 		/// </summary>
 		/// <returns></returns>
-		public RectangleF getTotalAreaInStud()
+		public override RectangleF getTotalAreaInStud()
 		{
-			PointF topLeft = new PointF(float.MaxValue, float.MaxValue);
-			PointF bottomRight = new PointF(float.MinValue, float.MinValue);
-			foreach (Brick brick in mBricks)
-			{
-				RectangleF brickArea = brick.DisplayArea;
-				if (brickArea.X < topLeft.X)
-					topLeft.X = brickArea.X;
-				if (brickArea.Y < topLeft.Y)
-					topLeft.Y = brickArea.Y;
-				if (brickArea.Right > bottomRight.X)
-					bottomRight.X = brickArea.Right;
-				if (brickArea.Bottom > bottomRight.Y)
-					bottomRight.Y = brickArea.Bottom;
-			}
-			return new RectangleF(topLeft.X, topLeft.Y, bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
+			return getTotalAreaInStud(mBricks);
 		}
 
 		/// <summary>

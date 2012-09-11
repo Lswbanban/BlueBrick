@@ -381,23 +381,9 @@ namespace BlueBrick.MapData
 		/// get the total area in stud covered by all the text cells in this layer
 		/// </summary>
 		/// <returns></returns>
-		public RectangleF getTotalAreaInStud()
+		public override RectangleF getTotalAreaInStud()
 		{
-			PointF topLeft = new PointF(float.MaxValue, float.MaxValue);
-			PointF bottomRight = new PointF(float.MinValue, float.MinValue);
-			foreach (TextCell text in mTexts)
-			{
-				RectangleF textArea = text.DisplayArea;
-				if (textArea.X < topLeft.X)
-					topLeft.X = textArea.X;
-				if (textArea.Y < topLeft.Y)
-					topLeft.Y = textArea.Y;
-				if (textArea.Right > bottomRight.X)
-					bottomRight.X = textArea.Right;
-				if (textArea.Bottom > bottomRight.Y)
-					bottomRight.Y = textArea.Bottom;
-			}
-			return new RectangleF(topLeft.X, topLeft.Y, bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
+			return getTotalAreaInStud(mTexts);
 		}
 
 		/// <summary>

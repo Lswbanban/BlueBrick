@@ -398,7 +398,7 @@ namespace BlueBrick.MapData
 		/// get the total area in stud covered by all the area cells in this layer
 		/// </summary>
 		/// <returns></returns>
-		public RectangleF getTotalAreaInStud()
+		public override RectangleF getTotalAreaInStud()
 		{
 			PointF topLeft = new PointF(float.MaxValue, float.MaxValue);
 			PointF bottomRight = new PointF(float.MinValue, float.MinValue);
@@ -419,10 +419,6 @@ namespace BlueBrick.MapData
 						bottomRight.Y = y;
 				}
 			// compute the result by transforming the cell coordinates into studs coord
-			//if (topLeft.X < 0)
-			//    topLeft.X = topLeft.X - 1;
-			//if (topLeft.Y < 0)
-			//    topLeft.Y = topLeft.Y - 1;
 			RectangleF result = new RectangleF();
 			result.X = topLeft.X * mAreaCellSizeInStud;
 			result.Y = topLeft.Y * mAreaCellSizeInStud;
