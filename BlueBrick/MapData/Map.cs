@@ -852,59 +852,13 @@ namespace BlueBrick.MapData
 			{
 				if (layer.Visible)
 				{
-					// layer brick
+					// layer try to convert to brick layer to filter in case we only want brick layer
 					LayerBrick brickLayer = layer as LayerBrick;
-					if (brickLayer != null)
+					if ((!onlyBrickLayers) || (brickLayer != null))
 					{
-						RectangleF layerSurface = brickLayer.getTotalAreaInStud();
-						if (layerSurface.X < topLeft.X)
-							topLeft.X = layerSurface.X;
-						if (layerSurface.Y < topLeft.Y)
-							topLeft.Y = layerSurface.Y;
-						if (layerSurface.Right > bottomRight.X)
-							bottomRight.X = layerSurface.Right;
-						if (layerSurface.Bottom > bottomRight.Y)
-							bottomRight.Y = layerSurface.Bottom;
-					}
-					else if (!onlyBrickLayers)
-					{
-						// layer grid if the cell index are displayer
-						LayerGrid gridLayer = layer as LayerGrid;
-						if (gridLayer != null)
+						RectangleF layerSurface = layer.getTotalAreaInStud();
+						if (!layerSurface.IsEmpty)
 						{
-							if (gridLayer.DisplayCellIndex)
-							{
-								float cornerX = gridLayer.CellIndexCornerX * gridLayer.GridSizeInStud;
-								float cornerY = gridLayer.CellIndexCornerY * gridLayer.GridSizeInStud;
-								if (cornerX < topLeft.X)
-									topLeft.X = cornerX;
-								if (cornerY < topLeft.Y)
-									topLeft.Y = cornerY;
-								if (cornerX + gridLayer.GridSizeInStud > bottomRight.X)
-									bottomRight.X = cornerX + gridLayer.GridSizeInStud;
-								if (cornerY + gridLayer.GridSizeInStud > bottomRight.Y)
-									bottomRight.Y = cornerY + gridLayer.GridSizeInStud;
-							}
-						}
-						// layer text
-						LayerText textLayer = layer as LayerText;
-						if (textLayer != null)
-						{
-							RectangleF layerSurface = textLayer.getTotalAreaInStud();
-							if (layerSurface.X < topLeft.X)
-								topLeft.X = layerSurface.X;
-							if (layerSurface.Y < topLeft.Y)
-								topLeft.Y = layerSurface.Y;
-							if (layerSurface.Right > bottomRight.X)
-								bottomRight.X = layerSurface.Right;
-							if (layerSurface.Bottom > bottomRight.Y)
-								bottomRight.Y = layerSurface.Bottom;
-						}
-						// layer area
-						LayerArea areaLayer = layer as LayerArea;
-						if (areaLayer != null)
-						{
-							RectangleF layerSurface = areaLayer.getTotalAreaInStud();
 							if (layerSurface.X < topLeft.X)
 								topLeft.X = layerSurface.X;
 							if (layerSurface.Y < topLeft.Y)

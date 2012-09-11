@@ -1086,6 +1086,34 @@ namespace BlueBrick.MapData
 		#endregion
 
 		#region draw/mouse event
+		/// <summary>
+		/// get the total area in stud covered by all the items in the specified list of items
+		/// </summary>
+		/// <returns></returns>
+		protected RectangleF getTotalAreaInStud<T>(List<T> itemList) where T : LayerItem
+		{
+			PointF topLeft = new PointF(float.MaxValue, float.MaxValue);
+			PointF bottomRight = new PointF(float.MinValue, float.MinValue);
+			foreach (LayerItem item in itemList)
+			{
+				RectangleF textArea = item.DisplayArea;
+				if (textArea.X < topLeft.X)
+					topLeft.X = textArea.X;
+				if (textArea.Y < topLeft.Y)
+					topLeft.Y = textArea.Y;
+				if (textArea.Right > bottomRight.X)
+					bottomRight.X = textArea.Right;
+				if (textArea.Bottom > bottomRight.Y)
+					bottomRight.Y = textArea.Bottom;
+			}
+			return new RectangleF(topLeft.X, topLeft.Y, bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
+		}
+
+		/// <summary>
+		/// get the total area in stud covered by all the layer items in this layer
+		/// </summary>
+		/// <returns></returns>
+		public abstract RectangleF getTotalAreaInStud();
 
 		/// <summary>
 		/// Draw the layer.

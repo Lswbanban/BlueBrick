@@ -286,6 +286,23 @@ namespace BlueBrick.MapData
 
 		#region draw
 		/// <summary>
+		/// get the total area in stud covered by the grid in this layer
+		/// </summary>
+		/// <returns></returns>
+		public override RectangleF getTotalAreaInStud()
+		{
+			// if the cell indice are displayed, at least display the corner
+			if (DisplayCellIndex)
+			{
+				float cornerX = CellIndexCornerX * GridSizeInStud;
+				float cornerY = CellIndexCornerY * GridSizeInStud;
+				return new RectangleF(cornerX, cornerY, GridSizeInStud, GridSizeInStud);
+			}
+			// otherwise return an empty area
+			return new RectangleF();
+		}
+
+		/// <summary>
 		/// Draw the layer.
 		/// </summary>
 		/// <param name="g">the graphic context in which draw the layer</param>

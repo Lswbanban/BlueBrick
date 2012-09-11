@@ -23,7 +23,10 @@ namespace BlueBrick.MapData
 	[Serializable]
 	partial class LayerRuler : Layer
 	{
-		private List<Ruler> mRulers = new List<Ruler>(); // all the rulers in the layer
+		private List<RulerItem> mRulers = new List<RulerItem>(); // all the rulers in the layer
+
+		// variable used during the edition
+		private Ruler mCurrentlyEditedRuler = null;
 
 		#region constructor
 		public LayerRuler()
@@ -38,6 +41,15 @@ namespace BlueBrick.MapData
 
 		#region draw/mouse event
 		/// <summary>
+		/// get the total area in stud covered by all the ruler items in this layer
+		/// </summary>
+		/// <returns></returns>
+		public override RectangleF getTotalAreaInStud()
+		{
+			return getTotalAreaInStud(mRulers);
+		}
+
+		/// <summary>
 		/// Draw the layer.
 		/// </summary>
 		/// <param name="g">the graphic context in which draw the layer</param>
@@ -45,6 +57,14 @@ namespace BlueBrick.MapData
 		{
 			if (!Visible)
 				return;
+
+			// draw all the rulers of the layer
+			foreach (Ruler ruler in mRulers)
+				ruler.draw(g, areaInStud, scalePixelPerStud);
+
+			// draw the ruler we are currently creating if any
+			if (mCurrentlyEditedRuler != null)
+				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud);
 		}
 
 		/// <summary>
@@ -63,7 +83,7 @@ namespace BlueBrick.MapData
 		/// <returns>true if this layer wants to handle it</returns>
 		public override bool handleMouseDown(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
-			return false;
+			return true;
 		}
 
 		/// <summary>
@@ -74,7 +94,8 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseDown(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			return false;
+			mCurrentlyEditedRuler = new Ruler(mouseCoordInStud, mouseCoordInStud);
+			return true;
 		}
 
 		/// <summary>
@@ -84,7 +105,8 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			return false;
+			mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
+			return true;
 		}
 
 		/// <summary>
@@ -94,6 +116,9 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
+			mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
+			mRulers.Add(mCurrentlyEditedRuler);
+			mCurrentlyEditedRuler = null;
 			return false;
 		}
 
