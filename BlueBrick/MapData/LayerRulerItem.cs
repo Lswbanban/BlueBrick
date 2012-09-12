@@ -16,6 +16,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace BlueBrick.MapData
 {
@@ -31,7 +33,7 @@ namespace BlueBrick.MapData
 			/// Draw the ruler item.
 			/// </summary>
 			/// <param name="g">the graphic context in which draw the layer</param>
-			public abstract void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud);
+			public abstract void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency);
 		}
 		
 		/// <summary>
@@ -42,7 +44,14 @@ namespace BlueBrick.MapData
 		{
 			private PointF mPoint1 = new PointF(); // coord of the first point in Stud coord
 			private PointF mPoint2 = new PointF(); // coord of the second point in Stud coord
+			private float mMesuredDistance = 0.0f; // the distance mesured between the two extremities in stud unit
+			private bool mDisplayDistance = true; // if true, the distance is displayed on the ruler. TODO: change it to an enum when we will create the ruler unit
+
 			private Pen mPen = new Pen(Color.Black); // the pen to draw the line
+			private SolidBrush mMesurementBrush = new SolidBrush(Color.Black);
+			private Font mMesurementFont = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Regular);
+			private StringFormat mMesurementStringFormat = new StringFormat();
+			private Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
 
 			#region get/set
 			public PointF Point1
@@ -51,7 +60,7 @@ namespace BlueBrick.MapData
 				set
 				{
 					mPoint1 = value;
-					computeDisplayArea();
+					updateDisplayData();
 				}
 			}
 
@@ -61,7 +70,7 @@ namespace BlueBrick.MapData
 				set
 				{
 					mPoint2 = value;
-					computeDisplayArea();
+					updateDisplayData();
 				}
 			}
 
@@ -74,17 +83,22 @@ namespace BlueBrick.MapData
 			#region constructor
 			public Ruler(PointF point1, PointF point2)
 			{
+				mMesurementStringFormat.Alignment = StringAlignment.Center;
+				mMesurementStringFormat.LineAlignment = StringAlignment.Center;
 				mPoint1 = point1;
 				mPoint2 = point2;
-				computeDisplayArea();
+				updateDisplayData();
 			}
 
 			/// <summary>
 			/// Compute and update the display area from the two points of the ruler.
+			/// This function also compute the orientation of the ruler based on the two points.
+			/// Then it compute the distance between the two points in stud and call the method
+			/// to update the image of the mesurement text.
 			/// This method should be called when the two points of the ruler is updated
 			/// or when the ruler is moved.
 			/// </summary>
-			private void computeDisplayArea()
+			private void updateDisplayData()
 			{
 				// get min and max for X
 				float minX = mPoint1.X;
@@ -103,7 +117,64 @@ namespace BlueBrick.MapData
 					maxY = mPoint1.Y;
 				}
 				// now set the display area from the min and max of X and Y
-				mDisplayArea = new RectangleF(minX, minY, maxX - minX, maxY - minY);
+				float width = maxX - minX;
+				float height = maxY - minY;
+				mDisplayArea = new RectangleF(minX, minY, width, height);
+
+				// compute the orientation from the min max, such as the orientation will
+				// always stay between -pi/2 and pi/2
+				mOrientation = (float)((Math.Atan2(height, width) * 180.0) / Math.PI);
+
+				// also compute the distance between the two points
+				mMesuredDistance = (float)Math.Sqrt((width * width) + (height * height));
+
+				// update the image
+				updateMesurementImage();
+			}
+
+			/// <summary>
+			/// update the image used to draw the mesurement of the ruler correctly oriented
+			/// The image is drawn with the current selected unit.
+			/// This method should be called when the mesurement unit change or when one of the
+			/// points change
+			/// </summary>
+			private void updateMesurementImage()
+			{
+				//TODO: use the correct unit and also the string format
+				string distanceAsString = mMesuredDistance.ToString();
+
+				// draw the size
+				Graphics graphics = Graphics.FromImage(mMesurementImage);
+				SizeF textFontSize = graphics.MeasureString(distanceAsString, mMesurementFont);
+				int width = (int)textFontSize.Width;
+				int height = (int)textFontSize.Height;
+
+				Matrix rotation = new Matrix();
+				rotation.Rotate(mOrientation);
+				Point[] points = { new Point(width, 0), new Point(0, height), new Point(width, height) };
+				rotation.TransformVectors(points);
+
+				Point min = new Point(0, 0);
+				Point max = new Point(0, 0);
+				for (int i = 0; i < 3; ++i)
+				{
+					if (points[i].X < min.X)
+						min.X = points[i].X;
+					if (points[i].Y < min.Y)
+						min.Y = points[i].Y;
+					if (points[i].X > max.X)
+						max.X = points[i].X;
+					if (points[i].Y > max.Y)
+						max.Y = points[i].Y;
+				}
+				mMesurementImage = new Bitmap(mMesurementImage, new Size(Math.Abs(max.X - min.X), Math.Abs(max.Y - min.Y)));
+				graphics = Graphics.FromImage(mMesurementImage);
+				rotation.Translate(mMesurementImage.Width / 2, mMesurementImage.Height / 2, MatrixOrder.Append);
+				graphics.Transform = rotation;
+				graphics.Clear(Color.Transparent);
+				graphics.SmoothingMode = SmoothingMode.HighQuality;
+				graphics.DrawString(distanceAsString, mMesurementFont, mMesurementBrush, 0, 0, mMesurementStringFormat);
+				graphics.Flush();
 			}
 			#endregion
 
@@ -112,7 +183,7 @@ namespace BlueBrick.MapData
 			/// Draw the ruler.
 			/// </summary>
 			/// <param name="g">the graphic context in which draw the layer</param>
-			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud)
+			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency)
 			{
 				// check if the ruler is visible
 				if ((mDisplayArea.Right >= areaInStud.Left) && (mDisplayArea.Left <= areaInStud.Right) &&
@@ -124,8 +195,33 @@ namespace BlueBrick.MapData
 					float x2 = (float)((mPoint2.X - areaInStud.Left) * scalePixelPerStud);
 					float y2 = (float)((mPoint2.Y - areaInStud.Top) * scalePixelPerStud);
 
-					// draw the line
-					g.DrawLine(mPen, x1, y1, x2, y2);
+					// draw one or 2 lines
+					if (!mDisplayDistance)
+					{
+						g.DrawLine(mPen, x1, y1, x2, y2);
+					}
+					else
+					{
+						// compute the middle points
+						float middleX = (x1 + x2) * 0.5f;
+						float middleY = (y1 + y2) * 0.5f;
+
+						// draw the two lines
+						// TODO: compute the gap needed for drawing the mesurement text
+						g.DrawLine(mPen, x1, y1, middleX, middleY);
+						g.DrawLine(mPen, x2, y2, middleX, middleY);
+
+						// draw the mesurement text
+						// compute the position of the text in pixel coord
+						Rectangle destinationRectangle = new Rectangle();
+						destinationRectangle.X = (int)middleX - (mMesurementImage.Width / 2);
+						destinationRectangle.Y = (int)middleY - (mMesurementImage.Height / 2);
+						destinationRectangle.Width = mMesurementImage.Width;
+						destinationRectangle.Height = mMesurementImage.Height;
+
+						// draw the image containing the text
+						g.DrawImage(mMesurementImage, destinationRectangle, 0, 0, mMesurementImage.Width, mMesurementImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
+					}
 				}
 			}
 			#endregion
