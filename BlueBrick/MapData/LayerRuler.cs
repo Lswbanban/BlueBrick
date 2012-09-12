@@ -17,16 +17,36 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace BlueBrick.MapData
 {
 	[Serializable]
 	partial class LayerRuler : Layer
 	{
-		private List<RulerItem> mRulers = new List<RulerItem>(); // all the rulers in the layer
+		// all the rulers in the layer
+		private List<RulerItem> mRulers = new List<RulerItem>();
+
+		// the image attribute to draw the text including the layer transparency
+		private ImageAttributes mImageAttribute = new ImageAttributes();
 
 		// variable used during the edition
 		private Ruler mCurrentlyEditedRuler = null;
+
+		#region set/get
+		public override int Transparency
+		{
+			set
+			{
+				mTransparency = value;
+				ColorMatrix colorMatrix = new ColorMatrix();
+				colorMatrix.Matrix33 = (float)value / 100.0f;
+				mImageAttribute.SetColorMatrix(colorMatrix);
+				// TODO: refactor or enable the selection
+//				mSelectionBrush = new SolidBrush(Color.FromArgb((BASE_SELECTION_TRANSPARENCY * value) / 100, 255, 255, 255));
+			}
+		}
+		#endregion
 
 		#region constructor
 		public LayerRuler()
@@ -60,11 +80,14 @@ namespace BlueBrick.MapData
 
 			// draw all the rulers of the layer
 			foreach (Ruler ruler in mRulers)
-				ruler.draw(g, areaInStud, scalePixelPerStud);
+				ruler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute);
 
 			// draw the ruler we are currently creating if any
 			if (mCurrentlyEditedRuler != null)
-				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud);
+				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute);
+
+			// call the base class to draw the surrounding selection rectangle
+			base.draw(g, areaInStud, scalePixelPerStud);
 		}
 
 		/// <summary>
