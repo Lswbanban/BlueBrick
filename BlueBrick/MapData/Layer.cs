@@ -112,7 +112,7 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
-			/// get the display area of the item
+			/// get the display area of the item in stud
 			/// </summary>
 			public RectangleF DisplayArea
 			{
