@@ -52,6 +52,7 @@ namespace BlueBrick.MapData
 			private Font mMesurementFont = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Regular);
 			private StringFormat mMesurementStringFormat = new StringFormat();
 			private Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
+			private PointF mMesurementTextWidthHalfVector = new Point(); // half the vector along the width of the mesurement text in pixel
 
 			#region get/set
 			public PointF Point1
@@ -121,9 +122,11 @@ namespace BlueBrick.MapData
 				float height = maxY - minY;
 				mDisplayArea = new RectangleF(minX, minY, width, height);
 
-				// compute the orientation from the min max, such as the orientation will
-				// always stay between -pi/2 and pi/2
-				mOrientation = (float)((Math.Atan2(height, width) * 180.0) / Math.PI);
+				// compute the orientation, such as the orientation will stay upside up
+				if (mPoint2.X > mPoint1.X)
+					mOrientation = (float)((Math.Atan2(mPoint2.Y - mPoint1.Y, width) * 180.0) / Math.PI);
+				else
+					mOrientation = (float)((Math.Atan2(mPoint1.Y - mPoint2.Y, width) * 180.0) / Math.PI);
 
 				// also compute the distance between the two points
 				mMesuredDistance = (float)Math.Sqrt((width * width) + (height * height));
@@ -149,11 +152,17 @@ namespace BlueBrick.MapData
 				int width = (int)textFontSize.Width;
 				int height = (int)textFontSize.Height;
 
+				// create an array with the 4 corner of the text (actually 3 if you exclude the origin)
+				// and rotate them according to the orientation
 				Matrix rotation = new Matrix();
 				rotation.Rotate(mOrientation);
 				Point[] points = { new Point(width, 0), new Point(0, height), new Point(width, height) };
 				rotation.TransformVectors(points);
 
+				// compute the vector of half the text
+				mMesurementTextWidthHalfVector = new PointF((float)(points[0].X) * 0.5f, (float)(points[0].Y) * 0.5f);
+
+				// search the min and max of all the rotated corner to compute the necessary size of the bitmap
 				Point min = new Point(0, 0);
 				Point max = new Point(0, 0);
 				for (int i = 0; i < 3; ++i)
@@ -167,6 +176,8 @@ namespace BlueBrick.MapData
 					if (points[i].Y > max.Y)
 						max.Y = points[i].Y;
 				}
+
+				// create the bitmap and draw the text inside
 				mMesurementImage = new Bitmap(mMesurementImage, new Size(Math.Abs(max.X - min.X), Math.Abs(max.Y - min.Y)));
 				graphics = Graphics.FromImage(mMesurementImage);
 				rotation.Translate(mMesurementImage.Width / 2, mMesurementImage.Height / 2, MatrixOrder.Append);
@@ -206,10 +217,23 @@ namespace BlueBrick.MapData
 						float middleX = (x1 + x2) * 0.5f;
 						float middleY = (y1 + y2) * 0.5f;
 
+						// compute the middle extremity of the two lines
+						float mx1 = middleX - mMesurementTextWidthHalfVector.X;
+						float my1 = middleY - mMesurementTextWidthHalfVector.Y;
+						float mx2 = middleX + mMesurementTextWidthHalfVector.X;
+						float my2 = middleY + mMesurementTextWidthHalfVector.Y;
+
 						// draw the two lines
-						// TODO: compute the gap needed for drawing the mesurement text
-						g.DrawLine(mPen, x1, y1, middleX, middleY);
-						g.DrawLine(mPen, x2, y2, middleX, middleY);
+						if (x1 < x2)
+						{
+							g.DrawLine(mPen, x1, y1, mx1, my1);
+							g.DrawLine(mPen, x2, y2, mx2, my2);
+						}
+						else
+						{
+							g.DrawLine(mPen, x1, y1, mx2, my2);
+							g.DrawLine(mPen, x2, y2, mx1, my1);
+						}
 
 						// draw the mesurement text
 						// compute the position of the text in pixel coord
