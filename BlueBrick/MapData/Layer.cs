@@ -1116,6 +1116,20 @@ namespace BlueBrick.MapData
 		public abstract RectangleF getTotalAreaInStud();
 
 		/// <summary>
+		/// Convert the specified point in stud coordinate into a point in pixel coordinate given the 
+		/// current area displayed in stud and the current scale of the view.
+		/// </summary>
+		/// <param name="pointInStud">The point to convert</param>
+		/// <param name="areaInStud">The current displayed area in stud coordinate</param>
+		/// <param name="scalePixelPerStud">The current scale of the view</param>
+		/// <returns>The same point but expressed in pixel coordinate in the current view</returns>
+		public static PointF sConvertPointInStudToPixel(PointF pointInStud, RectangleF areaInStud, double scalePixelPerStud)
+		{
+			return new PointF( (float)((pointInStud.X - areaInStud.Left) * scalePixelPerStud),
+								(float)((pointInStud.Y - areaInStud.Top) * scalePixelPerStud));
+		}
+
+		/// <summary>
 		/// Draw the layer.
 		/// </summary>
 		/// <param name="g">the graphic context in which draw the layer</param>
@@ -1124,11 +1138,10 @@ namespace BlueBrick.MapData
 			// draw the surrounding selection rectangle
 			if (mSelectedObjects.Count > 0)
 			{
-				float x = (float)((mBoundingSelectionRectangle.X - areaInStud.Left) * scalePixelPerStud);
-				float y = (float)((mBoundingSelectionRectangle.Y - areaInStud.Top) * scalePixelPerStud);
+				PointF upperLeftCorner = sConvertPointInStudToPixel(mBoundingSelectionRectangle.Location, areaInStud, scalePixelPerStud);
 				float width = (float)(mBoundingSelectionRectangle.Width * scalePixelPerStud);
 				float height = (float)(mBoundingSelectionRectangle.Height * scalePixelPerStud);
-				g.DrawRectangle(mBoundingSelectionPen, x, y, width, height);
+				g.DrawRectangle(mBoundingSelectionPen, upperLeftCorner.X, upperLeftCorner.Y, width, height);
 			}
 		}
 

@@ -44,6 +44,11 @@ namespace BlueBrick.MapData
 		{
 			private PointF mPoint1 = new PointF(); // coord of the first point in Stud coord
 			private PointF mPoint2 = new PointF(); // coord of the second point in Stud coord
+			private PointF mOffsetPoint1 = new PointF(); // the offset point corresponding to Point1 in stud
+			private PointF mOffsetPoint2 = new PointF(); // the offset point corresponding to Point2 in stud
+			private PointF mOffsetPoint1Extended = new PointF(); // the even more extended point corresponding to Point1 in stud
+			private PointF mOffsetPoint2Extended = new PointF(); // the even more extended point corresponding to Point2 in stud
+			private float mOffsetDistance = 30.0f; // the offset distance in stud coord
 			private float mMesuredDistance = 0.0f; // the distance mesured between the two extremities in stud unit
 			private bool mDisplayDistance = true; // if true, the distance is displayed on the ruler. TODO: change it to an enum when we will create the ruler unit
 
@@ -52,7 +57,7 @@ namespace BlueBrick.MapData
 			private Font mMesurementFont = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Regular);
 			private StringFormat mMesurementStringFormat = new StringFormat();
 			private Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
-			private PointF mMesurementTextWidthHalfVector = new Point(); // half the vector along the width of the mesurement text in pixel
+			private PointF mMesurementTextWidthHalfVector = new PointF(); // half the vector along the width of the mesurement text in pixel
 
 			#region get/set
 			public PointF Point1
@@ -61,7 +66,7 @@ namespace BlueBrick.MapData
 				set
 				{
 					mPoint1 = value;
-					updateDisplayData();
+					updateDisplayDataAndMesurementImage();
 				}
 			}
 
@@ -71,7 +76,18 @@ namespace BlueBrick.MapData
 				set
 				{
 					mPoint2 = value;
+					updateDisplayDataAndMesurementImage();
+				}
+			}
+
+			public float OffsetDistance
+			{
+				get { return mOffsetDistance; }
+				set
+				{
+					mOffsetDistance = value;
 					updateDisplayData();
+					// don't need to update the mesured distance image as the distance didn't changed
 				}
 			}
 
@@ -91,6 +107,14 @@ namespace BlueBrick.MapData
 				updateDisplayData();
 			}
 
+			private void updateDisplayDataAndMesurementImage()
+			{
+				// first update the display area, that also recompute the mesured distance and orientation
+				updateDisplayData();
+				// Then call the update of the distance image after the computing of the new display area
+				updateMesurementImage();
+			}
+
 			/// <summary>
 			/// Compute and update the display area from the two points of the ruler.
 			/// This function also compute the orientation of the ruler based on the two points.
@@ -101,38 +125,59 @@ namespace BlueBrick.MapData
 			/// </summary>
 			private void updateDisplayData()
 			{
-				// get min and max for X
-				float minX = mPoint1.X;
-				float maxX = mPoint2.X;
-				if (minX > maxX)
+				// compute the vector of the orientation such as the orientation will stay upside up
+				float orientationVectorX = Math.Abs(mPoint1.X - mPoint2.X);
+				float orientationVectorY = (mPoint2.X > mPoint1.X) ? (mPoint2.Y - mPoint1.Y) : (mPoint1.Y - mPoint2.Y);
+
+				// compute the orientation angle
+				mOrientation = (float)((Math.Atan2(orientationVectorY, orientationVectorX) * 180.0) / Math.PI);
+
+				// also compute the distance between the two points
+				mMesuredDistance = (float)Math.Sqrt((orientationVectorX * orientationVectorX) + (orientationVectorY * orientationVectorY));
+
+				// compute the vector of the offset. This vector is turned by 90 deg from the Orientation, so
+				// just invert the X and Y of the orientation, and normalized if the vector is not null (otherwise keep it null)
+				PointF offsetNormalizedVector = new PointF();
+				if (mMesuredDistance > 0.0f)
+					offsetNormalizedVector = new PointF(orientationVectorY / mMesuredDistance, -orientationVectorX / mMesuredDistance);
+
+				// compute the offset coordinates in stud
+				float offsetX = offsetNormalizedVector.X * mOffsetDistance;
+				float offsetY = offsetNormalizedVector.Y * mOffsetDistance;
+				mOffsetPoint1 = new PointF(mPoint1.X + offsetX, mPoint1.Y + offsetY);
+				mOffsetPoint2 = new PointF(mPoint2.X + offsetX, mPoint2.Y + offsetY);
+
+				// extend a little more the offset point to draw a margin
+				const float EXTEND_IN_STUD = 2.0f;
+				float extendX = offsetNormalizedVector.X * EXTEND_IN_STUD;
+				float extendY = offsetNormalizedVector.Y * EXTEND_IN_STUD;
+				mOffsetPoint1Extended = new PointF(mOffsetPoint1.X + extendX, mOffsetPoint1.Y + extendY);
+				mOffsetPoint2Extended = new PointF(mOffsetPoint2.X + extendX, mOffsetPoint2.Y + extendY);
+
+				// compute the 4 corner of the ruler
+				PointF[] corners = { mPoint1, mPoint2, mOffsetPoint1Extended, mOffsetPoint2Extended };
+
+				// now find the min and max
+				float minX = corners[0].X;
+				float maxX = minX;
+				float minY = corners[0].Y;
+				float maxY = minY;
+				foreach (PointF point in corners)
 				{
-					minX = mPoint2.X;
-					maxX = mPoint1.X;
+					if (point.X < minX)
+						minX = point.X;
+					if (point.X > maxX)
+						maxX = point.X;
+					if (point.Y < minY)
+						minY = point.Y;
+					if (point.Y > maxY)
+						maxY = point.Y;
 				}
-				// and for Y
-				float minY = mPoint1.Y;
-				float maxY = mPoint2.Y;
-				if (minY > maxY)
-				{
-					minY = mPoint2.Y;
-					maxY = mPoint1.Y;
-				}
+
 				// now set the display area from the min and max of X and Y
 				float width = maxX - minX;
 				float height = maxY - minY;
 				mDisplayArea = new RectangleF(minX, minY, width, height);
-
-				// compute the orientation, such as the orientation will stay upside up
-				if (mPoint2.X > mPoint1.X)
-					mOrientation = (float)((Math.Atan2(mPoint2.Y - mPoint1.Y, width) * 180.0) / Math.PI);
-				else
-					mOrientation = (float)((Math.Atan2(mPoint1.Y - mPoint2.Y, width) * 180.0) / Math.PI);
-
-				// also compute the distance between the two points
-				mMesuredDistance = (float)Math.Sqrt((width * width) + (height * height));
-
-				// update the image
-				updateMesurementImage();
 			}
 
 			/// <summary>
@@ -201,38 +246,34 @@ namespace BlueBrick.MapData
 					(mDisplayArea.Bottom >= areaInStud.Top) && (mDisplayArea.Top <= areaInStud.Bottom))
 				{
 					// transform the coordinates into pixel coordinates
-					float x1 = (float)((mPoint1.X - areaInStud.Left) * scalePixelPerStud);
-					float y1 = (float)((mPoint1.Y - areaInStud.Top) * scalePixelPerStud);
-					float x2 = (float)((mPoint2.X - areaInStud.Left) * scalePixelPerStud);
-					float y2 = (float)((mPoint2.Y - areaInStud.Top) * scalePixelPerStud);
+					PointF offset1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1, areaInStud, scalePixelPerStud);
+					PointF offset2InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint2, areaInStud, scalePixelPerStud);
 
 					// draw one or 2 lines
 					if (!mDisplayDistance)
 					{
-						g.DrawLine(mPen, x1, y1, x2, y2);
+						g.DrawLine(mPen, offset1InPixel, offset2InPixel);
 					}
 					else
 					{
 						// compute the middle points
-						float middleX = (x1 + x2) * 0.5f;
-						float middleY = (y1 + y2) * 0.5f;
+						float middleX = (offset1InPixel.X + offset2InPixel.X) * 0.5f;
+						float middleY = (offset1InPixel.Y + offset2InPixel.Y) * 0.5f;
 
 						// compute the middle extremity of the two lines
-						float mx1 = middleX - mMesurementTextWidthHalfVector.X;
-						float my1 = middleY - mMesurementTextWidthHalfVector.Y;
-						float mx2 = middleX + mMesurementTextWidthHalfVector.X;
-						float my2 = middleY + mMesurementTextWidthHalfVector.Y;
+						PointF middle1 = new PointF(middleX - mMesurementTextWidthHalfVector.X, middleY - mMesurementTextWidthHalfVector.Y);
+						PointF middle2 = new PointF(middleX + mMesurementTextWidthHalfVector.X, middleY + mMesurementTextWidthHalfVector.Y);
 
-						// draw the two lines
-						if (x1 < x2)
+						// draw the two lines of the rule between the mesure
+						if (offset1InPixel.X < offset2InPixel.X)
 						{
-							g.DrawLine(mPen, x1, y1, mx1, my1);
-							g.DrawLine(mPen, x2, y2, mx2, my2);
+							g.DrawLine(mPen, offset1InPixel, middle1);
+							g.DrawLine(mPen, offset2InPixel, middle2);
 						}
 						else
 						{
-							g.DrawLine(mPen, x1, y1, mx2, my2);
-							g.DrawLine(mPen, x2, y2, mx1, my1);
+							g.DrawLine(mPen, offset1InPixel, middle2);
+							g.DrawLine(mPen, offset2InPixel, middle1);
 						}
 
 						// draw the mesurement text
@@ -245,6 +286,19 @@ namespace BlueBrick.MapData
 
 						// draw the image containing the text
 						g.DrawImage(mMesurementImage, destinationRectangle, 0, 0, mMesurementImage.Width, mMesurementImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
+					}
+
+					// draw the offset if needed
+					if (mOffsetDistance != 0.0f)
+					{
+						PointF point1InPixel = Layer.sConvertPointInStudToPixel(mPoint1, areaInStud, scalePixelPerStud);
+						PointF point2InPixel = Layer.sConvertPointInStudToPixel(mPoint2, areaInStud, scalePixelPerStud);
+						PointF offsetExtended1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1Extended, areaInStud, scalePixelPerStud);
+						PointF offsetExtended2InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint2Extended, areaInStud, scalePixelPerStud);
+
+						// draw the two offset
+						g.DrawLine(mPen, point1InPixel, offsetExtended1InPixel);
+						g.DrawLine(mPen, point2InPixel, offsetExtended2InPixel);
 					}
 				}
 			}
