@@ -124,6 +124,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a new ruler.
+        /// </summary>
+        internal static string ActionAddRuler {
+            get {
+                return ResourceManager.GetString("ActionAddRuler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add a new text.
         /// </summary>
         internal static string ActionAddText {
@@ -196,11 +205,29 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete a Ruler.
+        /// </summary>
+        internal static string ActionDeleteRuler {
+            get {
+                return ResourceManager.GetString("ActionDeleteRuler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete several parts.
         /// </summary>
         internal static string ActionDeleteSeveralBricks {
             get {
                 return ResourceManager.GetString("ActionDeleteSeveralBricks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete several rulers.
+        /// </summary>
+        internal static string ActionDeleteSeveralRulers {
+            get {
+                return ResourceManager.GetString("ActionDeleteSeveralRulers", resourceCulture);
             }
         }
         

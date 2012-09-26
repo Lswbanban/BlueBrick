@@ -106,6 +106,8 @@
     <Compile Include="Actions\Maps\ChangeBackgroundColor.cs" />
     <Compile Include="Actions\Maps\ChangeGeneralInfo.cs" />
     <Compile Include="Actions\Maps\ChangeMapAppearance.cs" />
+    <Compile Include="Actions\Rulers\AddRuler.cs" />
+    <Compile Include="Actions\Rulers\DeleteRuler.cs" />
     <Compile Include="Actions\Texts\BringTextToFront.cs" />
     <Compile Include="Actions\Texts\DuplicateText.cs" />
     <Compile Include="Actions\Texts\AddText.cs" />
@@ -591,12 +593,12 @@
   <ItemGroup>
     <PublishFile Include="fr\BlueBrick.resources">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>

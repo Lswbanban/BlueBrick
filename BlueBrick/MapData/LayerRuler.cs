@@ -59,6 +59,40 @@ namespace BlueBrick.MapData
 		}
 		#endregion
 
+		#region action on the layer
+		/// <summary>
+		///	Add the specified ruler at the specified position.
+		///	If the position is negative, add the item at the end
+		/// </summary>
+		public void addRulerItem(RulerItem rulerToAdd, int index)
+		{
+			if (index < 0)
+				mRulers.Add(rulerToAdd);
+			else
+				mRulers.Insert(index, rulerToAdd);
+		}
+
+		/// <summary>
+		/// Remove the specified ruler item
+		/// </summary>
+		/// <param name="rulerToRemove">the ruler item to remove from the layer</param>
+		/// <returns>the previous index of the ruler item deleted</returns>
+		public int removeRulerItem(RulerItem rulerToRemove)
+		{
+			int index = mRulers.IndexOf(rulerToRemove);
+			if (index >= 0)
+			{
+				mRulers.Remove(rulerToRemove);
+				// remove also the item from the selection list if in it
+				if (mSelectedObjects.Contains(rulerToRemove))
+					removeObjectFromSelection(rulerToRemove);
+			}
+			else
+				index = 0;
+			return index;
+		}
+		#endregion
+
 		#region draw/mouse event
 		/// <summary>
 		/// get the total area in stud covered by all the ruler items in this layer
@@ -140,7 +174,7 @@ namespace BlueBrick.MapData
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
 			mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
-			mRulers.Add(mCurrentlyEditedRuler);
+			Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
 			mCurrentlyEditedRuler = null;
 			return false;
 		}
