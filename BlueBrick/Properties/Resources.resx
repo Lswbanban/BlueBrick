@@ -448,8 +448,16 @@
   <data name="ActionAddLayerRuler" xml:space="preserve">
     <value>Add a Ruler layer</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="layerTypeRuler" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\newlayerRuler.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ActionAddRuler" xml:space="preserve">
+    <value>Add a new ruler</value>
+  </data>
+  <data name="ActionDeleteRuler" xml:space="preserve">
+    <value>Delete a Ruler</value>
+  </data>
+  <data name="ActionDeleteSeveralRulers" xml:space="preserve">
+    <value>Delete several rulers</value>
   </data>
 </root>
