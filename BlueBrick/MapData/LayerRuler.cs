@@ -152,7 +152,7 @@ namespace BlueBrick.MapData
 		/// <param name="mouseCoordInStud"></param>
 		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
 		{
-			return MainForm.Instance.BrickArrowCursor;
+			return MainForm.Instance.RulerAddPoint1Cursor;
 		}
 
 		/// <summary>
@@ -162,6 +162,8 @@ namespace BlueBrick.MapData
 		/// <returns>true if this layer wants to handle it</returns>
 		public override bool handleMouseDown(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
+			if (!mIsEditingOffsetOfRuler)
+				preferedCursor = MainForm.Instance.RulerAddPoint2Cursor;
 			return true;
 		}
 
@@ -172,6 +174,28 @@ namespace BlueBrick.MapData
 		/// <returns>true if this layer wants to handle it</returns>
 		public override bool handleMouseMoveWithoutClick(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
+			if (mIsEditingOffsetOfRuler)
+			{
+				float orientation = mCurrentlyEditedRuler.Orientation;
+				if (orientation > 157.5f)
+					preferedCursor = MainForm.Instance.RulerOffsetHorizontalCursor;
+				else if (orientation > 112.5f)
+					preferedCursor = MainForm.Instance.RulerOffsetDiagonalDownCursor;
+				else if (orientation > 67.5f)
+					preferedCursor = MainForm.Instance.RulerOffsetVerticalCursor;
+				else if (orientation > 22.5f)
+					preferedCursor = MainForm.Instance.RulerOffsetDiagonalUpCursor;
+				else if (orientation > -22.5f)
+					preferedCursor = MainForm.Instance.RulerOffsetHorizontalCursor;
+				else if (orientation > -67.5f)
+					preferedCursor = MainForm.Instance.RulerOffsetDiagonalDownCursor;
+				else if (orientation > -112.5f)
+					preferedCursor = MainForm.Instance.RulerOffsetVerticalCursor;
+				else if (orientation > -157.5f)
+					preferedCursor = MainForm.Instance.RulerOffsetDiagonalUpCursor;
+				else
+					preferedCursor = MainForm.Instance.RulerOffsetHorizontalCursor;
+			}
 			return mIsEditingOffsetOfRuler;
 		}
 

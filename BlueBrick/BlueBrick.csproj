@@ -593,12 +593,12 @@
   <ItemGroup>
     <PublishFile Include="fr\BlueBrick.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>
@@ -640,6 +640,12 @@
     <EmbeddedResource Include="Cursor\FlexArrowCursor.cur" />
     <EmbeddedResource Include="Cursor\PanViewCursor.cur" />
     <EmbeddedResource Include="Cursor\ZoomCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerOffsetHorizontalCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerAddPoint1Cursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerAddPoint2Cursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerOffsetDiagonalDownCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerOffsetDiagonalUpCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerOffsetVerticalCursor.cur" />
     <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />
