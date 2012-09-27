@@ -1159,6 +1159,16 @@ namespace BlueBrick.MapData
 		public abstract bool handleMouseDown(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor);
 
 		/// <summary>
+		/// This function is called to know if this layer is interested by the specified mouse click
+		/// </summary>
+		/// <param name="e">the mouse event arg that describe the mouse click</param>
+		/// <returns>true if this layer wants to handle it</returns>
+		public virtual bool handleMouseMoveWithoutClick(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
+		{
+			return false;
+		}
+
+		/// <summary>
 		/// This method is called if the map decided that this layer should handle
 		/// this mouse click
 		/// </summary>

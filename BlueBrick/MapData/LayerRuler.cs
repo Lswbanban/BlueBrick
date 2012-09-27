@@ -32,6 +32,7 @@ namespace BlueBrick.MapData
 
 		// variable used during the edition
 		private Ruler mCurrentlyEditedRuler = null;
+		private bool mIsEditingOffsetOfRuler = false;
 
 		#region set/get
 		public override int Transparency
@@ -93,6 +94,27 @@ namespace BlueBrick.MapData
 		}
 		#endregion
 
+		#region util functions
+		/// <summary>
+		/// compute the distance in stud between the given point and the currently edited ruler.
+		/// </summary>
+		/// <param name="pointInStud">the point in stud coord for which you want to know the distance</param>
+		/// <returns>the distance in stud</returns>
+		private float computePointDistanceFromCurrentRuler(PointF pointInStud)
+		{
+			float distance = 0.0f;
+			if (mCurrentlyEditedRuler != null)
+			{
+				// get the two vector to make a vectorial product
+				PointF unitVector = mCurrentlyEditedRuler.UnitVector;
+				PointF point1ToMouse = new PointF(pointInStud.X - mCurrentlyEditedRuler.Point1.X, pointInStud.Y - mCurrentlyEditedRuler.Point1.Y);
+				// compute the vectorial product (x and y are null cause z is null):
+				distance = (point1ToMouse.X * unitVector.Y) - (point1ToMouse.Y * unitVector.X);
+			}
+			return distance;
+		}
+		#endregion
+
 		#region draw/mouse event
 		/// <summary>
 		/// get the total area in stud covered by all the ruler items in this layer
@@ -144,6 +166,16 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// This function is called to know if this layer is interested by the specified mouse click
+		/// </summary>
+		/// <param name="e">the mouse event arg that describe the mouse click</param>
+		/// <returns>true if this layer wants to handle it</returns>
+		public override bool handleMouseMoveWithoutClick(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
+		{
+			return mIsEditingOffsetOfRuler;
+		}
+
+		/// <summary>
 		/// This method is called if the map decided that this layer should handle
 		/// this mouse click
 		/// </summary>
@@ -151,7 +183,8 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseDown(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			mCurrentlyEditedRuler = new Ruler(mouseCoordInStud, mouseCoordInStud);
+			if (!mIsEditingOffsetOfRuler)
+				mCurrentlyEditedRuler = new Ruler(mouseCoordInStud, mouseCoordInStud);
 			return true;
 		}
 
@@ -162,7 +195,19 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
+			if (mCurrentlyEditedRuler != null)
+			{
+				if (mIsEditingOffsetOfRuler)
+				{
+					// adjust the offset
+					mCurrentlyEditedRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
+				}
+				else
+				{
+					// adjust the second point
+					mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
+				}
+			}
 			return true;
 		}
 
@@ -173,9 +218,18 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
-			Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
-			mCurrentlyEditedRuler = null;
+			if (mIsEditingOffsetOfRuler)
+			{
+				mCurrentlyEditedRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
+				Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
+				mCurrentlyEditedRuler = null;
+				mIsEditingOffsetOfRuler = false;
+			}
+			else
+			{
+				mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
+				mIsEditingOffsetOfRuler = true;
+			}
 			return false;
 		}
 
