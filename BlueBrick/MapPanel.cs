@@ -542,8 +542,13 @@ namespace BlueBrick
 					// nothing to do if we didn't move
 					if ((mLastMousePos.X != e.X) || (mLastMousePos.Y != e.Y))
 					{
+						// if the map also want to handle this free move, call it
+						Cursor preferedCursor = getDefaultCursor(mouseCoordInStud);
+						if (Map.Instance.handleMouseMoveWithoutClick(e, mouseCoordInStud, ref preferedCursor))
+							mustRefreshView = Map.Instance.mouseMove(e, mouseCoordInStud);
+
 						// set the cursor with the preference
-						this.Cursor = getDefaultCursor(mouseCoordInStud);
+						this.Cursor = preferedCursor;
 
 						// if there's a brick under the mouse, and the player don't use a button,
 						// display the description of the brick in the status bar

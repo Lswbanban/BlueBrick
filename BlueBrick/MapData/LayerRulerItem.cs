@@ -48,7 +48,8 @@ namespace BlueBrick.MapData
 			private PointF mOffsetPoint2 = new PointF(); // the offset point corresponding to Point2 in stud
 			private PointF mOffsetPoint1Extended = new PointF(); // the even more extended point corresponding to Point1 in stud
 			private PointF mOffsetPoint2Extended = new PointF(); // the even more extended point corresponding to Point2 in stud
-			private float mOffsetDistance = 30.0f; // the offset distance in stud coord
+			private PointF mUnitVector = new PointF(); // the unit vector of the line between point1 and point2
+			private float mOffsetDistance = 0.0f; // the offset distance in stud coord
 			private float mMesuredDistance = 0.0f; // the distance mesured between the two extremities in stud unit
 			private bool mDisplayDistance = true; // if true, the distance is displayed on the ruler. TODO: change it to an enum when we will create the ruler unit
 
@@ -78,6 +79,11 @@ namespace BlueBrick.MapData
 					mPoint2 = value;
 					updateDisplayDataAndMesurementImage();
 				}
+			}
+
+			public PointF UnitVector
+			{
+				get { return mUnitVector; }
 			}
 
 			public float OffsetDistance
@@ -126,20 +132,24 @@ namespace BlueBrick.MapData
 			private void updateDisplayData()
 			{
 				// compute the vector of the orientation such as the orientation will stay upside up
-				float orientationVectorX = Math.Abs(mPoint1.X - mPoint2.X);
-				float orientationVectorY = (mPoint2.X > mPoint1.X) ? (mPoint2.Y - mPoint1.Y) : (mPoint1.Y - mPoint2.Y);
+				float directorVectorX = Math.Abs(mPoint1.X - mPoint2.X);
+				float directorVectorY = (mPoint2.X > mPoint1.X) ? (mPoint2.Y - mPoint1.Y) : (mPoint1.Y - mPoint2.Y);
 
 				// compute the orientation angle
-				mOrientation = (float)((Math.Atan2(orientationVectorY, orientationVectorX) * 180.0) / Math.PI);
+				mOrientation = (float)((Math.Atan2(directorVectorY, directorVectorX) * 180.0) / Math.PI);
 
 				// also compute the distance between the two points
-				mMesuredDistance = (float)Math.Sqrt((orientationVectorX * orientationVectorX) + (orientationVectorY * orientationVectorY));
+				mMesuredDistance = (float)Math.Sqrt((directorVectorX * directorVectorX) + (directorVectorY * directorVectorY));
+
+				// compute the unit vector (if the distance is not null)
+				if (mMesuredDistance > 0.0f)
+					mUnitVector = new PointF(directorVectorX / mMesuredDistance, directorVectorY / mMesuredDistance);
+				else
+					mUnitVector = new PointF();
 
 				// compute the vector of the offset. This vector is turned by 90 deg from the Orientation, so
-				// just invert the X and Y of the orientation, and normalized if the vector is not null (otherwise keep it null)
-				PointF offsetNormalizedVector = new PointF();
-				if (mMesuredDistance > 0.0f)
-					offsetNormalizedVector = new PointF(orientationVectorY / mMesuredDistance, -orientationVectorX / mMesuredDistance);
+				// just invert the X and Y of the normalized vector (the offset vector can be null)
+				PointF offsetNormalizedVector = new PointF(mUnitVector.Y, -mUnitVector.X);
 
 				// compute the offset coordinates in stud
 				float offsetX = offsetNormalizedVector.X * mOffsetDistance;
@@ -149,8 +159,8 @@ namespace BlueBrick.MapData
 
 				// extend a little more the offset point to draw a margin
 				const float EXTEND_IN_STUD = 2.0f;
-				float extendX = offsetNormalizedVector.X * EXTEND_IN_STUD;
-				float extendY = offsetNormalizedVector.Y * EXTEND_IN_STUD;
+				float extendX = offsetNormalizedVector.X * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
+				float extendY = offsetNormalizedVector.Y * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
 				mOffsetPoint1Extended = new PointF(mOffsetPoint1.X + extendX, mOffsetPoint1.Y + extendY);
 				mOffsetPoint2Extended = new PointF(mOffsetPoint2.X + extendX, mOffsetPoint2.Y + extendY);
 

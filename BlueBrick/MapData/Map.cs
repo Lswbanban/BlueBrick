@@ -927,19 +927,42 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
-		/// This function is called to know if this layer is interested by the specified mouse click
+		/// This function is called to know if the map is interested by the specified mouse click
 		/// </summary>
 		/// <param name="e">the mouse event arg that describe the mouse click</param>
-		/// <returns>true if this layer wants to handle it</returns>
+		/// <returns>true if the map wants to handle it</returns>
 		public bool handleMouseDown(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
 			// we ask if the selected layer want to handle this mouse down event
-			if (Map.sInstance.SelectedLayer != null)
+			if (mSelectedLayer != null)
 			{
-				if (Map.sInstance.SelectedLayer.handleMouseDown(e, mouseCoordInStud, ref preferedCursor))
+				if (mSelectedLayer.handleMouseDown(e, mouseCoordInStud, ref preferedCursor))
 				{
-					mLayerThatHandleMouse = Map.sInstance.SelectedLayer;
+					mLayerThatHandleMouse = mSelectedLayer;
 					return true;
+				}
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// This function is called to know if the map is interested by a mouse move without click
+		/// </summary>
+		/// <param name="e">the mouse event arg that describe the mouse move</param>
+		/// <returns>true if the map wants to handle it</returns>
+		public bool handleMouseMoveWithoutClick(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
+		{
+			// we ask if the selected layer want to handle this mouse down event
+			if (mSelectedLayer != null)
+			{
+				if (mSelectedLayer.handleMouseMoveWithoutClick(e, mouseCoordInStud, ref preferedCursor))
+				{
+					mLayerThatHandleMouse = mSelectedLayer;
+					return true;
+				}
+				else
+				{
+					mLayerThatHandleMouse = null;
 				}
 			}
 			return false;
