@@ -56,7 +56,13 @@ namespace BlueBrick
 		private Cursor mAreaEraserCursor = null;
 		private Cursor mPanViewCursor = null;
 		private Cursor mZoomCursor = null;
-		
+		private Cursor mRulerAddPoint1Cursor = null;
+		private Cursor mRulerAddPoint2Cursor = null;
+		private Cursor mRulerOffsetHorizontalCursor = null;
+		private Cursor mRulerOffsetVerticalCursor = null;
+		private Cursor mRulerOffsetDiagonalUpCursor = null;
+		private Cursor mRulerOffsetDiagonalDownCursor = null;
+
 		// for shortcut key
 		// var for updating the move
 		private PointF mObjectTotalMove = new PointF(0, 0);
@@ -226,6 +232,54 @@ namespace BlueBrick
 		public Cursor ZoomCursor
 		{
 			get { return mZoomCursor; }
+		}
+		
+		/// <summary>
+		/// Get the cursor for adding the first ruler point
+		/// </summary>
+		public Cursor RulerAddPoint1Cursor
+		{
+			get { return mRulerAddPoint1Cursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for adding the second ruler point
+		/// </summary>
+		public Cursor RulerAddPoint2Cursor
+		{
+			get { return mRulerAddPoint2Cursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for moving the ruler offset
+		/// </summary>
+		public Cursor RulerOffsetHorizontalCursor
+		{
+			get { return mRulerOffsetHorizontalCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for moving the ruler offset
+		/// </summary>
+		public Cursor RulerOffsetVerticalCursor
+		{
+			get { return mRulerOffsetVerticalCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for moving the ruler offset
+		/// </summary>
+		public Cursor RulerOffsetDiagonalUpCursor
+		{
+			get { return mRulerOffsetDiagonalUpCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for moving the ruler offset
+		/// </summary>
+		public Cursor RulerOffsetDiagonalDownCursor
+		{
+			get { return mRulerOffsetDiagonalDownCursor; }
 		}
 		#endregion
 
@@ -431,6 +485,30 @@ namespace BlueBrick
 			// zoom view cursor
 			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.ZoomCursor.cur");
 			mZoomCursor = new Cursor(stream);
+			stream.Close();
+			// ruler point 1
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerAddPoint1Cursor.cur");
+			mRulerAddPoint1Cursor = new Cursor(stream);
+			stream.Close();
+			// ruler point 2
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerAddPoint2Cursor.cur");
+			mRulerAddPoint2Cursor = new Cursor(stream);
+			stream.Close();
+			// ruler offset horizontal
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerOffsetHorizontalCursor.cur");
+			mRulerOffsetHorizontalCursor = new Cursor(stream);
+			stream.Close();
+			// ruler offset vertical
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerOffsetVerticalCursor.cur");
+			mRulerOffsetVerticalCursor = new Cursor(stream);
+			stream.Close();
+			// ruler offset diagonal up
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerOffsetDiagonalUpCursor.cur");
+			mRulerOffsetDiagonalUpCursor = new Cursor(stream);
+			stream.Close();
+			// ruler offset diagonal down
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerOffsetDiagonalDownCursor.cur");
+			mRulerOffsetDiagonalDownCursor = new Cursor(stream);
 			stream.Close();
 		}
 
