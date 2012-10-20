@@ -1063,5 +1063,50 @@ namespace BlueBrick.Properties {
                 return ResourceManager.GetString("TextUnknown", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ft.
+        /// </summary>
+        internal static string UnitFeet {
+            get {
+                return ResourceManager.GetString("UnitFeet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LDU.
+        /// </summary>
+        internal static string UnitLDU {
+            get {
+                return ResourceManager.GetString("UnitLDU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.
+        /// </summary>
+        internal static string UnitMeter {
+            get {
+                return ResourceManager.GetString("UnitMeter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod.
+        /// </summary>
+        internal static string UnitModule {
+            get {
+                return ResourceManager.GetString("UnitModule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stud.
+        /// </summary>
+        internal static string UnitStud {
+            get {
+                return ResourceManager.GetString("UnitStud", resourceCulture);
+            }
+        }
     }
 }

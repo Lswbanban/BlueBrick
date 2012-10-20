@@ -401,4 +401,19 @@ Le message d'erreur est :
   <data name="ActionDeleteSeveralRulers" xml:space="preserve">
     <value>Effacer quelques mesures</value>
   </data>
+  <data name="UnitFeet" xml:space="preserve">
+    <value>pied</value>
+  </data>
+  <data name="UnitLDU" xml:space="preserve">
+    <value>LDU</value>
+  </data>
+  <data name="UnitMeter" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="UnitModule" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="UnitStud" xml:space="preserve">
+    <value>tenon</value>
+  </data>
 </root>
