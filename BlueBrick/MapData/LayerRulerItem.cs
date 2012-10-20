@@ -50,8 +50,9 @@ namespace BlueBrick.MapData
 			private PointF mOffsetPoint2Extended = new PointF(); // the even more extended point corresponding to Point2 in stud
 			private PointF mUnitVector = new PointF(); // the unit vector of the line between point1 and point2
 			private float mOffsetDistance = 0.0f; // the offset distance in stud coord
-			private float mMesuredDistance = 0.0f; // the distance mesured between the two extremities in stud unit
-			private bool mDisplayDistance = true; // if true, the distance is displayed on the ruler. TODO: change it to an enum when we will create the ruler unit
+			private Tools.Distance mMesuredDistance = new Tools.Distance(); // the distance mesured between the two extremities in stud unit
+			private bool mDisplayDistance = true; // if true, the distance is displayed on the ruler.
+			private bool mDisplayUnit = true; // if true display the unit just after the distance
 
 			private Pen mPen = new Pen(Color.Black); // the pen to draw the line
 			private SolidBrush mMesurementBrush = new SolidBrush(Color.Black);
@@ -139,13 +140,16 @@ namespace BlueBrick.MapData
 				mOrientation = (float)((Math.Atan2(directorVectorY, directorVectorX) * 180.0) / Math.PI);
 
 				// also compute the distance between the two points
-				mMesuredDistance = (float)Math.Sqrt((directorVectorX * directorVectorX) + (directorVectorY * directorVectorY));
+				float distance = (float)Math.Sqrt((directorVectorX * directorVectorX) + (directorVectorY * directorVectorY));
 
 				// compute the unit vector (if the distance is not null)
-				if (mMesuredDistance > 0.0f)
-					mUnitVector = new PointF(directorVectorX / mMesuredDistance, directorVectorY / mMesuredDistance);
+				if (distance > 0.0f)
+					mUnitVector = new PointF(directorVectorX / distance, directorVectorY / distance);
 				else
 					mUnitVector = new PointF();
+
+				// set the distance in the data member
+				mMesuredDistance.DistanceInStud = distance;
 
 				// compute the vector of the offset. This vector is turned by 90 deg from the Orientation, so
 				// just invert the X and Y of the normalized vector (the offset vector can be null)
@@ -198,8 +202,8 @@ namespace BlueBrick.MapData
 			/// </summary>
 			private void updateMesurementImage()
 			{
-				//TODO: use the correct unit and also the string format
-				string distanceAsString = mMesuredDistance.ToString();
+				// get the mesured distance in the current unit
+				string distanceAsString = mMesuredDistance.ToString("N2", mDisplayUnit);
 
 				// draw the size
 				Graphics graphics = Graphics.FromImage(mMesurementImage);

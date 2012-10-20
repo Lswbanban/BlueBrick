@@ -382,4 +382,19 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
   <data name="TextUnknown" xml:space="preserve">
     <value>Sconosciuto</value>
   </data>
+  <data name="UnitFeet" xml:space="preserve">
+    <value>ft</value>
+  </data>
+  <data name="UnitLDU" xml:space="preserve">
+    <value>LDU</value>
+  </data>
+  <data name="UnitMeter" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="UnitModule" xml:space="preserve">
+    <value>Moduli</value>
+  </data>
+  <data name="UnitStud" xml:space="preserve">
+    <value>Studs</value>
+  </data>
 </root>

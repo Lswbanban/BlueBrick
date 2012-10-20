@@ -246,7 +246,7 @@
   <data name="ActionUngroupItems" xml:space="preserve">
     <value>Løs opp objektgruppe</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="aligncentered" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\aligncentered.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -411,5 +411,20 @@
   </data>
   <data name="LayerTextOptionTitle" xml:space="preserve">
     <value>Alternativer for tekst-lag</value>
+  </data>
+  <data name="UnitFeet" xml:space="preserve">
+    <value>ft</value>
+  </data>
+  <data name="UnitLDU" xml:space="preserve">
+    <value>LDU</value>
+  </data>
+  <data name="UnitMeter" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="UnitModule" xml:space="preserve">
+    <value>moduler</value>
+  </data>
+  <data name="UnitStud" xml:space="preserve">
+    <value>studs</value>
   </data>
 </root>

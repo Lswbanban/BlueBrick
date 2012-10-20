@@ -460,4 +460,19 @@
   <data name="ActionDeleteSeveralRulers" xml:space="preserve">
     <value>Delete several rulers</value>
   </data>
+  <data name="UnitFeet" xml:space="preserve">
+    <value>ft</value>
+  </data>
+  <data name="UnitLDU" xml:space="preserve">
+    <value>LDU</value>
+  </data>
+  <data name="UnitMeter" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="UnitModule" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="UnitStud" xml:space="preserve">
+    <value>Stud</value>
+  </data>
 </root>

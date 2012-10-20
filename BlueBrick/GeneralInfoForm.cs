@@ -45,18 +45,20 @@ namespace BlueBrick
 
 			// compute the size
 			RectangleF totalArea = Map.Instance.getTotalAreaInStud(true);
+			MapData.Tools.Distance width = new MapData.Tools.Distance(totalArea.Width);
+			MapData.Tools.Distance height = new MapData.Tools.Distance(totalArea.Height);
 
-			this.labelWidthModule.Text = Math.Ceiling(totalArea.Width / 96.0f).ToString();
-			this.labelHeightModule.Text = Math.Ceiling(totalArea.Height / 96.0f).ToString();
+			this.labelWidthModule.Text = Math.Ceiling(width.DistanceInModule).ToString();
+			this.labelHeightModule.Text = Math.Ceiling(height.DistanceInModule).ToString();
 
-			this.labelWidthStud.Text = Math.Round(totalArea.Width).ToString();
-			this.labelHeightStud.Text = Math.Round(totalArea.Height).ToString();
+			this.labelWidthStud.Text = Math.Round(width.DistanceInStud).ToString();
+			this.labelHeightStud.Text = Math.Round(height.DistanceInStud).ToString();
 
-			this.labelWidthMeter.Text = (totalArea.Width * 0.008f).ToString("N2");
-			this.labelHeightMeter.Text = (totalArea.Height * 0.008f).ToString("N2");
+			this.labelWidthMeter.Text = width.DistanceInMeter.ToString("N2");
+			this.labelHeightMeter.Text = height.DistanceInMeter.ToString("N2");
 
-			this.labelWidthFeet.Text = (totalArea.Width * 0.026248f).ToString("N2");
-			this.labelHeightFeet.Text = (totalArea.Height * 0.026248f).ToString("N2");
+			this.labelWidthFeet.Text = width.DistanceInFeet.ToString("N2");
+			this.labelHeightFeet.Text = height.DistanceInFeet.ToString("N2");
 		}
 
 		private void GeneralInfoForm_Shown(object sender, EventArgs e)
