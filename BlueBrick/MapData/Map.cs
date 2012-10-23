@@ -399,6 +399,8 @@ namespace BlueBrick.MapData
 					layer = new LayerText();
 				else if (layerType.Equals("area"))
 					layer = new LayerArea();
+				else if (layerType.Equals("ruler"))
+					layer = new LayerRuler();
 
 				// read and add the new layer
 				if (layer != null)

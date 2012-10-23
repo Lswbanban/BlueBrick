@@ -45,8 +45,8 @@ namespace BlueBrick
 
 			// compute the size
 			RectangleF totalArea = Map.Instance.getTotalAreaInStud(true);
-			MapData.Tools.Distance width = new MapData.Tools.Distance(totalArea.Width);
-			MapData.Tools.Distance height = new MapData.Tools.Distance(totalArea.Height);
+			MapData.Tools.Distance width = new MapData.Tools.Distance(totalArea.Width, MapData.Tools.Distance.Unit.STUD);
+			MapData.Tools.Distance height = new MapData.Tools.Distance(totalArea.Height, MapData.Tools.Distance.Unit.STUD);
 
 			this.labelWidthModule.Text = Math.Ceiling(width.DistanceInModule).ToString();
 			this.labelHeightModule.Text = Math.Ceiling(height.DistanceInModule).ToString();

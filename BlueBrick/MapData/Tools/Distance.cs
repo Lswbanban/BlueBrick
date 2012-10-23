@@ -130,12 +130,17 @@ namespace BlueBrick.MapData.Tools
 		}
 
 		/// <summary>
-		/// Construct a distance instance and initialized it with the specified distance in Stud unit.
+		/// Construct a distance instance and initialized it with the specified distance in the specified unit.
+		/// The current unit will be set with the specified unit.
 		/// </summary>
-		/// <param name="distanceInStud">the initial value in stud unit</param>
-		public Distance(float distanceInStud)
+		/// <param name="distance">the initial value in stud unit</param>
+		/// <param name="unit">the unit of the initial value</param>
+		public Distance(float distance, Unit unit)
 		{
-			mDistanceInStud = distanceInStud;
+			// first set the unit
+			this.CurrentUnit = unit;
+			// then set the value
+			this.DistanceInCurrentUnit = distance;
 		}
 		#endregion
 
