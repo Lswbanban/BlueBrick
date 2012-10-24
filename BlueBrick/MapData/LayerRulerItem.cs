@@ -42,6 +42,7 @@ namespace BlueBrick.MapData
 		[Serializable]
 		public class Ruler : RulerItem
 		{
+			// geometrical information
 			private PointF mPoint1 = new PointF(); // coord of the first point in Stud coord
 			private PointF mPoint2 = new PointF(); // coord of the second point in Stud coord
 			private PointF mOffsetPoint1 = new PointF(); // the offset point corresponding to Point1 in stud
@@ -54,7 +55,10 @@ namespace BlueBrick.MapData
 			private bool mDisplayDistance = true; // if true, the distance is displayed on the ruler.
 			private bool mDisplayUnit = true; // if true display the unit just after the distance
 
-			private Pen mPen = new Pen(Color.Black); // the pen to draw the line
+			// variable for the draw
+			private Color mColor = Color.Black; // color of the lines
+			private float mLineThickness = 4.0f; // the thickness of the lines
+			private float mOffsetLineThickness = 1.0f; // the thickness of the guide lines when this ruler has an offset
 			private SolidBrush mMesurementBrush = new SolidBrush(Color.Black);
 			private Font mMesurementFont = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Regular);
 			private StringFormat mMesurementStringFormat = new StringFormat();
@@ -96,11 +100,6 @@ namespace BlueBrick.MapData
 					updateDisplayData();
 					// don't need to update the mesured distance image as the distance didn't changed
 				}
-			}
-
-			public Pen Pen
-			{
-				get { return mPen; }
 			}
 			#endregion
 
@@ -263,10 +262,14 @@ namespace BlueBrick.MapData
 					PointF offset1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1, areaInStud, scalePixelPerStud);
 					PointF offset2InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint2, areaInStud, scalePixelPerStud);
 
+					// create the pen for the lines
+					Color colorWithTransparency = Color.FromArgb((int)(layerTransparency * 2.55f), mColor);
+					Pen penForLine = new Pen(colorWithTransparency, mLineThickness);
+
 					// draw one or 2 lines
 					if (!mDisplayDistance)
 					{
-						g.DrawLine(mPen, offset1InPixel, offset2InPixel);
+						g.DrawLine(penForLine, offset1InPixel, offset2InPixel);
 					}
 					else
 					{
@@ -281,13 +284,13 @@ namespace BlueBrick.MapData
 						// draw the two lines of the rule between the mesure
 						if (offset1InPixel.X < offset2InPixel.X)
 						{
-							g.DrawLine(mPen, offset1InPixel, middle1);
-							g.DrawLine(mPen, offset2InPixel, middle2);
+							g.DrawLine(penForLine, offset1InPixel, middle1);
+							g.DrawLine(penForLine, offset2InPixel, middle2);
 						}
 						else
 						{
-							g.DrawLine(mPen, offset1InPixel, middle2);
-							g.DrawLine(mPen, offset2InPixel, middle1);
+							g.DrawLine(penForLine, offset1InPixel, middle2);
+							g.DrawLine(penForLine, offset2InPixel, middle1);
 						}
 
 						// draw the mesurement text
@@ -310,9 +313,12 @@ namespace BlueBrick.MapData
 						PointF offsetExtended1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1Extended, areaInStud, scalePixelPerStud);
 						PointF offsetExtended2InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint2Extended, areaInStud, scalePixelPerStud);
 
+						// create the pen for the offset lines
+						Pen penForOffsetLine = new Pen(colorWithTransparency, mOffsetLineThickness);
+
 						// draw the two offset
-						g.DrawLine(mPen, point1InPixel, offsetExtended1InPixel);
-						g.DrawLine(mPen, point2InPixel, offsetExtended2InPixel);
+						g.DrawLine(penForOffsetLine, point1InPixel, offsetExtended1InPixel);
+						g.DrawLine(penForOffsetLine, point2InPixel, offsetExtended2InPixel);
 					}
 				}
 			}
