@@ -471,8 +471,10 @@ namespace BlueBrick.MapData
 		/// <param name="mouseCoordInStud"></param>
 		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
 		{
-			// check if the user try to move the origin of the grid
-			if (Visible && mDisplayCellIndex)
+			// if the layer is not visible you can basically do nothing on it
+			if (!Visible)
+				return MainForm.Instance.HiddenLayerCursor;
+			else if (mDisplayCellIndex) // check if the user try to move the origin of the grid
 				return Cursors.Arrow;
 
 			// else we can do nothing on the grid

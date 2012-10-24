@@ -1890,7 +1890,12 @@ namespace BlueBrick.MapData
 		/// <param name="mouseCoordInStud"></param>
 		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
 		{
-			if (mMouseIsBetweenDownAndUpEvent)
+			// if the layer is not visible you can basically do nothing on it
+			if (!Visible)
+			{
+				return MainForm.Instance.HiddenLayerCursor;
+			}
+			else if (mMouseIsBetweenDownAndUpEvent)
 			{
 				// the second test after the or, is because we give a second chance to the user to duplicate
 				// the selection if he press the duplicate key after the mouse down, but before he start to move
