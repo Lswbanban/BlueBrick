@@ -647,6 +647,7 @@
     <EmbeddedResource Include="Cursor\RulerOffsetDiagonalDownCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerOffsetDiagonalUpCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerOffsetVerticalCursor.cur" />
+    <EmbeddedResource Include="Cursor\HiddenLayerCursor.cur" />
     <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />

@@ -152,6 +152,10 @@ namespace BlueBrick.MapData
 		/// <param name="mouseCoordInStud"></param>
 		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
 		{
+			// if the layer is not visible you can basically do nothing on it
+			if (!Visible)
+				return MainForm.Instance.HiddenLayerCursor;
+
 			return MainForm.Instance.RulerAddPoint1Cursor;
 		}
 
@@ -162,6 +166,10 @@ namespace BlueBrick.MapData
 		/// <returns>true if this layer wants to handle it</returns>
 		public override bool handleMouseDown(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
+			// if the layer is not visible it is not sensible to mouve click
+			if (!Visible)
+				return false;
+
 			if (!mIsEditingOffsetOfRuler)
 				preferedCursor = MainForm.Instance.RulerAddPoint2Cursor;
 			return true;
@@ -265,6 +273,5 @@ namespace BlueBrick.MapData
 		{
 		}
 		#endregion
-
 	}
 }

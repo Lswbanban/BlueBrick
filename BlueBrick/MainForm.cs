@@ -45,6 +45,7 @@ namespace BlueBrick
 		private bool mCanUserCancelTheApplicationClose = true;
 
 		// custom cursors for the application
+		private Cursor mHiddenLayerCursor = null;
 		private Cursor mBrickArrowCursor = null;
 		private Cursor mFlexArrowCursor = null;		
 		private Cursor mBrickDuplicateCursor = null;
@@ -144,6 +145,14 @@ namespace BlueBrick
 		public PartLibraryPanel PartsTabControl
 		{
 			get { return partsTabControl; }
+		}
+		
+		/// <summary>
+		/// Get the cursor to display when the current layer is hidden
+		/// </summary>
+		public Cursor HiddenLayerCursor
+		{
+			get { return mHiddenLayerCursor; }
 		}
 
 		/// <summary>
@@ -442,8 +451,12 @@ namespace BlueBrick
 		{
 			// get the assembly
 			System.Reflection.Assembly assembly = this.GetType().Assembly;
+			// hidden layer cursor
+			System.IO.Stream stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.HiddenLayerCursor.cur");
+			mHiddenLayerCursor = new Cursor(stream);
+			stream.Close();			
 			// brick arrow cursor
-			System.IO.Stream stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.BrickArrowCursor.cur");
+			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.BrickArrowCursor.cur");
 			mBrickArrowCursor = new Cursor(stream);
 			stream.Close();
 			// flex arrow cursor

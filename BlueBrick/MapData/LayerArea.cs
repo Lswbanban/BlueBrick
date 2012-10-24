@@ -498,7 +498,10 @@ namespace BlueBrick.MapData
 		/// <param name="mouseCoordInStud"></param>
 		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
 		{
-			if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+			// if the layer is not visible you can basically do nothing on it
+			if (!Visible)
+				return MainForm.Instance.HiddenLayerCursor;
+			else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
 				return Cursors.SizeAll;
 			else if (sCurrentDrawColor == Color.Empty)
 				return MainForm.Instance.AreaEraserCursor;
