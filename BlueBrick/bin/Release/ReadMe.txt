@@ -64,7 +64,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
-	- implement transparency
 	_ Property window for option of each ruler
 	- manage the different unit
 	- Ruler just a line: or differnt option  for the lines/rulers
