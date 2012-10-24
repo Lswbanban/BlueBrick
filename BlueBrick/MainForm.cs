@@ -1755,6 +1755,12 @@ namespace BlueBrick
 							optionForm.ShowDialog();
 							break;
 						}
+					case "LayerRuler":
+						{
+							LayerBrickOptionForm optionForm = new LayerBrickOptionForm(Map.Instance.SelectedLayer as LayerRuler);
+							optionForm.ShowDialog();
+							break;
+						}
 				}
 			}
 		}

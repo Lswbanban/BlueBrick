@@ -239,6 +239,11 @@ namespace BlueBrick
 				LayerAreaOptionForm optionForm = new LayerAreaOptionForm(this.mLayerReference as LayerArea);
 				optionForm.ShowDialog();
 			}
+			else if (this.GetType().Name == "LayerRulerPanel")
+			{
+				LayerBrickOptionForm optionForm = new LayerBrickOptionForm(this.mLayerReference as LayerRuler);
+				optionForm.ShowDialog();
+			}
 		}
 
 		private void LayerPanel_Click(object sender, EventArgs e)

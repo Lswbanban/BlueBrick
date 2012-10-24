@@ -475,4 +475,7 @@
   <data name="UnitStud" xml:space="preserve">
     <value>Stud</value>
   </data>
+  <data name="LayerRulerOptionTitle" xml:space="preserve">
+    <value>Options for Ruler Layer</value>
+  </data>
 </root>
