@@ -416,4 +416,7 @@ Le message d'erreur est :
   <data name="UnitStud" xml:space="preserve">
     <value>tenon</value>
   </data>
+  <data name="LayerRulerOptionTitle" xml:space="preserve">
+    <value>Options pour le calque de mesure</value>
+  </data>
 </root>
