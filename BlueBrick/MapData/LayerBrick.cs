@@ -2282,39 +2282,7 @@ namespace BlueBrick.MapData
 		/// <param name="selectionRectangeInStud">the rectangle in which select the items</param>
 		public override void selectInRectangle(RectangleF selectionRectangeInStud)
 		{
-			// fill it with all the cells in the rectangle
-			List<LayerItem> objListInRectangle = new List<LayerItem>(mBricks.Count);
-			foreach (Brick brick in mBricks)
-			{
-				if ((selectionRectangeInStud.Right > brick.DisplayArea.Left) && (selectionRectangeInStud.Left < brick.DisplayArea.Right) &&
-					(selectionRectangeInStud.Bottom > brick.DisplayArea.Top) && (selectionRectangeInStud.Top < brick.DisplayArea.Bottom))
-				{
-					objListInRectangle.Add(brick);
-				}
-			}
-			// check if it is a brand new selection or a add/remove selection
-			if (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
-			{
-				// the control key is not pressed, it is a brand new selection
-				// clear the selection list and add all the object in the rectangle
-				mSelectedObjects.Clear();
-				addObjectInSelection(objListInRectangle);
-			}
-			else
-			{
-				// check if we found new object to add in the selection, then add them
-				// else remove all the objects in the rectangle
-				bool objectToAddFound = false;
-				foreach (LayerItem item in objListInRectangle)
-					if (!mSelectedObjects.Contains(item))
-					{
-						addObjectInSelection(item);
-						objectToAddFound = true;
-					}
-				// check if it is a remove type
-				if (!objectToAddFound)
-					removeObjectFromSelection(objListInRectangle);
-			}
+			selectInRectangle(selectionRectangeInStud, mBricks);
 		}
 
 		/// <summary>

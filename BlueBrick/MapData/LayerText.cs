@@ -470,7 +470,7 @@ namespace BlueBrick.MapData
 
 		/// <summary>
 		/// Get the text cell under the specified mouse coordinate or null if there's no text cell under.
-		/// The search is done in revers order of the list to get the topmost item.
+		/// The search is done in reverse order of the list to get the topmost item.
 		/// </summary>
 		/// <param name="mouseCoordInStud">the coordinate of the mouse cursor, where to look for</param>
 		/// <returns>the text cell that is under the mouse coordinate or null if there is none.</returns>
@@ -502,7 +502,7 @@ namespace BlueBrick.MapData
 			// We search if there is a cell under the mouse but in priority we choose from the current selected cells
 			mCurrentTextCellUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as TextCell;
 
-			// if the current selected text is not under the mouse we search among the other bricks
+			// if the current selected text is not under the mouse we search among the other texts
 			// but in reverse order to choose first the brick on top
 			if (mCurrentTextCellUnderMouse == null)
 				mCurrentTextCellUnderMouse = getTextCellUnderMouse(mouseCoordInStud);
@@ -513,8 +513,7 @@ namespace BlueBrick.MapData
 			mMouseMoveIsADuplicate = isMouseInsideSelectedObjects &&
 									(Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
 
-			// if we move the brick, use 4 directionnal arrows
-			// if there's a text under the mouse, use the hand
+			// check if the user plan to move the selected items
 			bool willMoveSelectedObject = (isMouseInsideSelectedObjects || (mCurrentTextCellUnderMouse != null))
 											&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
 											&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
@@ -696,39 +695,7 @@ namespace BlueBrick.MapData
 		/// <param name="selectionRectangeInStud">the rectangle in which select the items</param>
 		public override void selectInRectangle(RectangleF selectionRectangeInStud)
 		{
-			// fill it with all the cells in the rectangle
-			List<LayerItem> objListInRectangle = new List<LayerItem>(mTexts.Count);
-			foreach (TextCell cell in mTexts)
-			{
-				if ((selectionRectangeInStud.Right > cell.DisplayArea.Left) && (selectionRectangeInStud.Left < cell.DisplayArea.Right) &&
-					(selectionRectangeInStud.Bottom > cell.DisplayArea.Top) && (selectionRectangeInStud.Top < cell.DisplayArea.Bottom))
-				{
-					objListInRectangle.Add(cell);
-				}
-			}
-			// check if it is a brand new selection or a add/remove selection
-			if (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
-			{
-				// the control key is not pressed, it is a brand new selection
-				// clear the selection list and add all the object in the rectangle
-				mSelectedObjects.Clear();
-				addObjectInSelection(objListInRectangle);
-			}
-			else
-			{
-				// check if we found new object to add in the selection, then add them
-				// else remove all the objects in the rectangle
-				bool objectToAddFound = false;
-				foreach (LayerItem item in objListInRectangle)
-					if (!mSelectedObjects.Contains(item))
-					{
-						addObjectInSelection(item);
-						objectToAddFound = true;
-					}
-				// check if it is a remove type
-				if (!objectToAddFound)
-					removeObjectFromSelection(objListInRectangle);
-			}
+			selectInRectangle(selectionRectangeInStud, mTexts);
 		}
 
 		#endregion
