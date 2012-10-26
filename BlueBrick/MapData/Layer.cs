@@ -1196,6 +1196,48 @@ namespace BlueBrick.MapData
 		/// <param name="selectionRectangeInStud">the rectangle in which select the items</param>
 		public abstract void selectInRectangle(RectangleF selectionRectangeInStud);
 
+		/// <summary>
+		/// Generic implementation to select all the item inside the rectangle from the specified list
+		/// of layer items
+		/// </summary>
+		/// <param name="selectionRectangeInStud">the rectangle in which select the items</param>
+		/// <param name="itemList">the list of layer item in which searching the selection</param>
+		protected void selectInRectangle<T>(RectangleF selectionRectangeInStud, List<T> itemList) where T : LayerItem
+		{
+			// fill it with all the cells in the rectangle
+			List<LayerItem> objListInRectangle = new List<LayerItem>(itemList.Count);
+			foreach (LayerItem item in itemList)
+			{
+				if ((selectionRectangeInStud.Right > item.DisplayArea.Left) && (selectionRectangeInStud.Left < item.DisplayArea.Right) &&
+					(selectionRectangeInStud.Bottom > item.DisplayArea.Top) && (selectionRectangeInStud.Top < item.DisplayArea.Bottom))
+				{
+					objListInRectangle.Add(item);
+				}
+			}
+			// check if it is a brand new selection or a add/remove selection
+			if (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+			{
+				// the control key is not pressed, it is a brand new selection
+				// clear the selection list and add all the object in the rectangle
+				mSelectedObjects.Clear();
+				addObjectInSelection(objListInRectangle);
+			}
+			else
+			{
+				// check if we found new object to add in the selection, then add them
+				// else remove all the objects in the rectangle
+				bool objectToAddFound = false;
+				foreach (LayerItem item in objListInRectangle)
+					if (!mSelectedObjects.Contains(item))
+					{
+						addObjectInSelection(item);
+						objectToAddFound = true;
+					}
+				// check if it is a remove type
+				if (!objectToAddFound)
+					removeObjectFromSelection(objListInRectangle);
+			}
+		}
 		#endregion
 	}
 }

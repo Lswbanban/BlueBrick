@@ -24,6 +24,13 @@ namespace BlueBrick.MapData
 	[Serializable]
 	partial class LayerRuler : Layer
 	{
+		private enum EditTool
+		{
+			SELECT,
+			LINE,
+			CIRCLE
+		}
+
 		// all the rulers in the layer
 		private List<RulerItem> mRulers = new List<RulerItem>();
 
@@ -31,8 +38,18 @@ namespace BlueBrick.MapData
 		private ImageAttributes mImageAttribute = new ImageAttributes();
 
 		// variable used during the edition
+		private EditTool mCurrentEditTool = EditTool.LINE;
+		private RulerItem mCurrentRulerUnderMouse = null;
 		private Ruler mCurrentlyEditedRuler = null;
 		private bool mIsEditingOffsetOfRuler = false;
+		private const int BASE_SELECTION_TRANSPARENCY = 112;
+		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb(BASE_SELECTION_TRANSPARENCY, 255, 255, 255));
+		private PointF mMouseDownInitialPosition;
+		private PointF mMouseDownLastPosition;
+		private bool mMouseIsBetweenDownAndUpEvent = false;
+		private bool mMouseHasMoved = false;
+		private bool mMouseMoveIsADuplicate = false;
+		private bool mMouseMoveWillAddOrEditRuler = false;
 
 		#region set/get
 		public override int Transparency
@@ -170,9 +187,74 @@ namespace BlueBrick.MapData
 			if (!Visible)
 				return false;
 
-			if (!mIsEditingOffsetOfRuler)
-				preferedCursor = MainForm.Instance.RulerAddPoint2Cursor;
-			return true;
+			// flag to check if we will handle the mouse down
+			bool willHandleMouse = false;
+
+			switch (mCurrentEditTool)
+			{
+				case EditTool.SELECT:
+					// check if the mouse is inside the bounding rectangle of the selected objects
+					bool isMouseInsideSelectedObjects = isPointInsideSelectionRectangle(mouseCoordInStud);
+					if (!isMouseInsideSelectedObjects && (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+						&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey))
+						clearSelection();
+
+					// compute the current text cell under the mouse
+					mCurrentRulerUnderMouse = null;
+
+					// We search if there is a cell under the mouse but in priority we choose from the current selected cells
+					mCurrentRulerUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as RulerItem;
+
+					// if the current selected text is not under the mouse we search among the other texts
+					// but in reverse order to choose first the brick on top
+					if (mCurrentRulerUnderMouse == null)
+						mCurrentRulerUnderMouse = getRulerItemUnderMouse(mouseCoordInStud);
+
+					// save a flag that tell if it is a simple move or a duplicate of the selection
+					// Be carreful for a duplication we take only the selected objects, not the cell
+					// under the mouse that may not be selected
+					mMouseMoveIsADuplicate = isMouseInsideSelectedObjects &&
+											(Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+
+					// check if the user plan to move the selected items
+					bool willMoveSelectedObject = (isMouseInsideSelectedObjects || (mCurrentRulerUnderMouse != null))
+													&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+													&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+
+					// we will add or edit a text if we double click
+					mMouseMoveWillAddOrEditRuler = (e.Clicks == 2);
+
+					// select the appropriate cursor:
+					if (mMouseMoveIsADuplicate)
+						preferedCursor = MainForm.Instance.TextDuplicateCursor; // TODO need new cursor here
+					else if (willMoveSelectedObject)
+						preferedCursor = Cursors.SizeAll;
+					else if (mMouseMoveWillAddOrEditRuler)
+						preferedCursor = MainForm.Instance.TextArrowCursor; // TODO need new cursor here
+					else if (mCurrentRulerUnderMouse == null)
+						preferedCursor = Cursors.Arrow; // TODO need new cursor here
+
+					// handle the mouse down if we duplicate or move the selected texts, or edit a text
+					willHandleMouse = (mMouseMoveIsADuplicate || willMoveSelectedObject || mMouseMoveWillAddOrEditRuler);
+					break;
+
+				case EditTool.LINE:
+					// check if we are finishing the edition of the ruler by moving the offset,
+					// in that case it is the click to fix the offset
+					if (!mIsEditingOffsetOfRuler)
+						preferedCursor = MainForm.Instance.RulerAddPoint2Cursor;
+					// we handle all the click when editing a ruler
+					willHandleMouse = true;
+					break;
+
+				case EditTool.CIRCLE:
+					//TODO
+					willHandleMouse = false;
+					break;
+			}
+
+			// return the result flag
+			return willHandleMouse;
 		}
 
 		/// <summary>
@@ -208,6 +290,17 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// Get the ruler item under the specified mouse coordinate or null if there's no ruler item under.
+		/// The search is done in reverse order of the list to get the topmost item.
+		/// </summary>
+		/// <param name="mouseCoordInStud">the coordinate of the mouse cursor, where to look for</param>
+		/// <returns>the ruler item that is under the mouse coordinate or null if there is none.</returns>
+		public RulerItem getRulerItemUnderMouse(PointF mouseCoordInStud)
+		{
+			return getLayerItemUnderMouse(mRulers, mouseCoordInStud) as RulerItem;
+		}
+
+		/// <summary>
 		/// This method is called if the map decided that this layer should handle
 		/// this mouse click
 		/// </summary>
@@ -215,9 +308,40 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseDown(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			if (!mIsEditingOffsetOfRuler)
-				mCurrentlyEditedRuler = new Ruler(mouseCoordInStud, mouseCoordInStud);
-			return true;
+			mMouseIsBetweenDownAndUpEvent = true;
+			bool mustRefresh = false;
+
+			switch (mCurrentEditTool)
+			{
+				case EditTool.SELECT:
+					// we select the ruler under the mouse if the selection list is empty
+					if ((mCurrentRulerUnderMouse != null) && !mMouseMoveIsADuplicate)
+					{
+						// if the selection is empty add the ruler item, else check the control key state
+						if ((mSelectedObjects.Count == 0) && (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey))
+						{
+							addObjectInSelection(mCurrentRulerUnderMouse);
+						}
+						mustRefresh = true;
+					}
+
+					// record the initial position of the mouse
+					mMouseDownInitialPosition = mouseCoordInStud;
+					mMouseDownLastPosition = mouseCoordInStud;
+					mMouseHasMoved = false;
+					break;
+
+				case EditTool.LINE:
+					if (!mIsEditingOffsetOfRuler)
+						mCurrentlyEditedRuler = new Ruler(mouseCoordInStud, mouseCoordInStud);
+					mustRefresh = true;
+					break;
+
+				case EditTool.CIRCLE:
+					break;
+			}
+
+			return mustRefresh;
 		}
 
 		/// <summary>
@@ -227,20 +351,30 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			if (mCurrentlyEditedRuler != null)
+			bool mustRefresh = false;
+
+			switch (mCurrentEditTool)
 			{
-				if (mIsEditingOffsetOfRuler)
-				{
-					// adjust the offset
-					mCurrentlyEditedRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
-				}
-				else
-				{
-					// adjust the second point
-					mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
-				}
+				case EditTool.SELECT:
+					break;
+
+				case EditTool.LINE:
+					if (mCurrentlyEditedRuler != null)
+					{
+						// adjust the offset or the second point
+						if (mIsEditingOffsetOfRuler)
+							mCurrentlyEditedRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
+						else
+							mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
+						mustRefresh = true;
+					}
+					break;
+
+				case EditTool.CIRCLE:
+					break;
 			}
-			return true;
+
+			return mustRefresh;
 		}
 
 		/// <summary>
@@ -250,19 +384,34 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			if (mIsEditingOffsetOfRuler)
+			bool mustRefresh = false;
+
+			switch (mCurrentEditTool)
 			{
-				mCurrentlyEditedRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
-				Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
-				mCurrentlyEditedRuler = null;
-				mIsEditingOffsetOfRuler = false;
+				case EditTool.SELECT:
+					break;
+
+				case EditTool.LINE:
+					if (mIsEditingOffsetOfRuler)
+					{
+						mCurrentlyEditedRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
+						Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
+						mCurrentlyEditedRuler = null;
+						mIsEditingOffsetOfRuler = false;
+					}
+					else
+					{
+						mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
+						mIsEditingOffsetOfRuler = true;
+					}
+					mustRefresh = true;
+					break;
+
+				case EditTool.CIRCLE:
+					break;
 			}
-			else
-			{
-				mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
-				mIsEditingOffsetOfRuler = true;
-			}
-			return false;
+
+			return mustRefresh;
 		}
 
 		/// <summary>
@@ -271,6 +420,7 @@ namespace BlueBrick.MapData
 		/// <param name="selectionRectangeInStud">the rectangle in which select the items</param>
 		public override void selectInRectangle(RectangleF selectionRectangeInStud)
 		{
+			selectInRectangle(selectionRectangeInStud, mRulers);
 		}
 		#endregion
 	}
