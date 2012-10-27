@@ -38,7 +38,7 @@ namespace BlueBrick.MapData
 		private ImageAttributes mImageAttribute = new ImageAttributes();
 
 		// variable used during the edition
-		private EditTool mCurrentEditTool = EditTool.LINE;
+		private EditTool mCurrentEditTool = EditTool.SELECT;
 		private RulerItem mCurrentRulerUnderMouse = null;
 		private Ruler mCurrentlyEditedRuler = null;
 		private bool mIsEditingOffsetOfRuler = false;
@@ -173,7 +173,18 @@ namespace BlueBrick.MapData
 			if (!Visible)
 				return MainForm.Instance.HiddenLayerCursor;
 
-			return MainForm.Instance.RulerAddPoint1Cursor;
+			switch (mCurrentEditTool)
+			{
+				case EditTool.SELECT:
+					return MainForm.Instance.RulerArrowCursor;
+				case EditTool.LINE:
+					return MainForm.Instance.RulerAddPoint1Cursor;
+				case EditTool.CIRCLE:
+					return MainForm.Instance.RulerArrowCursor; // TODO add the default cursor for the circle
+			}
+
+			// return the default cursor
+			return MainForm.Instance.RulerArrowCursor;
 		}
 
 		/// <summary>
@@ -230,9 +241,9 @@ namespace BlueBrick.MapData
 					else if (willMoveSelectedObject)
 						preferedCursor = Cursors.SizeAll;
 					else if (mMouseMoveWillAddOrEditRuler)
-						preferedCursor = MainForm.Instance.TextArrowCursor; // TODO need new cursor here
+						preferedCursor = MainForm.Instance.RulerArrowCursor;
 					else if (mCurrentRulerUnderMouse == null)
-						preferedCursor = Cursors.Arrow; // TODO need new cursor here
+						preferedCursor = MainForm.Instance.RulerArrowCursor;
 
 					// handle the mouse down if we duplicate or move the selected texts, or edit a text
 					willHandleMouse = (mMouseMoveIsADuplicate || willMoveSelectedObject || mMouseMoveWillAddOrEditRuler);
