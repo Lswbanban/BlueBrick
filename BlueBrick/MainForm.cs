@@ -57,6 +57,7 @@ namespace BlueBrick
 		private Cursor mAreaEraserCursor = null;
 		private Cursor mPanViewCursor = null;
 		private Cursor mZoomCursor = null;
+		private Cursor mRulerArrowCursor = null;
 		private Cursor mRulerAddPoint1Cursor = null;
 		private Cursor mRulerAddPoint2Cursor = null;
 		private Cursor mRulerOffsetHorizontalCursor = null;
@@ -243,6 +244,14 @@ namespace BlueBrick
 			get { return mZoomCursor; }
 		}
 		
+		/// <summary>
+		/// Get the cursor for selecting a ruler (the default cursor for a ruler layer)
+		/// </summary>
+		public Cursor RulerArrowCursor
+		{
+			get { return mRulerArrowCursor; }
+		}
+
 		/// <summary>
 		/// Get the cursor for adding the first ruler point
 		/// </summary>
@@ -445,84 +454,48 @@ namespace BlueBrick
 		}
 
 		/// <summary>
+		/// Load the specified cursor from the specified assembly and return it
+		/// </summary>
+		/// <param name="assembly">the assembly from which loading the cursor</param>
+		/// <param name="cursorResourceName">the resource name of the embeded cursor</param>
+		/// <returns>a new created cursor</returns>
+		private Cursor LoadEmbededCustomCursors(System.Reflection.Assembly assembly, string cursorResourceName)
+		{
+			// get the stream from the assembly and create the cursor giving the stream
+			System.IO.Stream stream = assembly.GetManifestResourceStream(cursorResourceName);
+			Cursor cursor = new Cursor(stream);
+			stream.Close();
+			// return the created cursor
+			return cursor;
+		}
+
+		/// <summary>
 		/// Load and create all the embeded cursors creates specially for this application
 		/// </summary>
 		private void LoadEmbededCustomCursors()
 		{
 			// get the assembly
 			System.Reflection.Assembly assembly = this.GetType().Assembly;
-			// hidden layer cursor
-			System.IO.Stream stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.HiddenLayerCursor.cur");
-			mHiddenLayerCursor = new Cursor(stream);
-			stream.Close();			
-			// brick arrow cursor
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.BrickArrowCursor.cur");
-			mBrickArrowCursor = new Cursor(stream);
-			stream.Close();
-			// flex arrow cursor
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.FlexArrowCursor.cur");
-			mFlexArrowCursor = new Cursor(stream);
-			stream.Close();
-			// brick duplicate cursor
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.BrickDuplicateCursor.cur");
-			mBrickDuplicateCursor = new Cursor(stream);
-			stream.Close();
-			// brick duplicate cursor
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.BrickSelectionCursor.cur");
-			mBrickSelectionCursor = new Cursor(stream);
-			stream.Close();
-			// text arrow cursor
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.TextArrowCursor.cur");
-			mTextArrowCursor = new Cursor(stream);
-			stream.Close();
-			// text duplicate cursor
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.TextDuplicateCursor.cur");
-			mTextDuplicateCursor = new Cursor(stream);
-			stream.Close();
-			// text selection cursor
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.TextSelectionCursor.cur");
-			mTextSelectionCursor = new Cursor(stream);
-			stream.Close();
-			// area paint cursor
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.AreaPaintCursor.cur");
-			mAreaPaintCursor = new Cursor(stream);
-			stream.Close();
-			// area erase cursor
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.AreaEraserCursor.cur");
-			mAreaEraserCursor = new Cursor(stream);
-			stream.Close();
-			// pan view cursor
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.PanViewCursor.cur");
-			mPanViewCursor = new Cursor(stream);
-			stream.Close();
-			// zoom view cursor
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.ZoomCursor.cur");
-			mZoomCursor = new Cursor(stream);
-			stream.Close();
-			// ruler point 1
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerAddPoint1Cursor.cur");
-			mRulerAddPoint1Cursor = new Cursor(stream);
-			stream.Close();
-			// ruler point 2
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerAddPoint2Cursor.cur");
-			mRulerAddPoint2Cursor = new Cursor(stream);
-			stream.Close();
-			// ruler offset horizontal
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerOffsetHorizontalCursor.cur");
-			mRulerOffsetHorizontalCursor = new Cursor(stream);
-			stream.Close();
-			// ruler offset vertical
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerOffsetVerticalCursor.cur");
-			mRulerOffsetVerticalCursor = new Cursor(stream);
-			stream.Close();
-			// ruler offset diagonal up
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerOffsetDiagonalUpCursor.cur");
-			mRulerOffsetDiagonalUpCursor = new Cursor(stream);
-			stream.Close();
-			// ruler offset diagonal down
-			stream = assembly.GetManifestResourceStream("BlueBrick.Cursor.RulerOffsetDiagonalDownCursor.cur");
-			mRulerOffsetDiagonalDownCursor = new Cursor(stream);
-			stream.Close();
+			// the load all the cursors
+			mHiddenLayerCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.HiddenLayerCursor.cur");
+			mBrickArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.BrickArrowCursor.cur");
+			mFlexArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.FlexArrowCursor.cur");
+			mBrickDuplicateCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.BrickDuplicateCursor.cur");
+			mBrickSelectionCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.BrickSelectionCursor.cur");
+			mTextArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.TextArrowCursor.cur");
+			mTextDuplicateCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.TextDuplicateCursor.cur");
+			mTextSelectionCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.TextSelectionCursor.cur");
+			mAreaPaintCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.AreaPaintCursor.cur");
+			mAreaEraserCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.AreaEraserCursor.cur");
+			mPanViewCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.PanViewCursor.cur");
+			mZoomCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.ZoomCursor.cur");
+			mRulerArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerArrowCursor.cur");
+			mRulerAddPoint1Cursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerAddPoint1Cursor.cur");
+			mRulerAddPoint2Cursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerAddPoint2Cursor.cur");
+			mRulerOffsetHorizontalCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerOffsetHorizontalCursor.cur");
+			mRulerOffsetVerticalCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerOffsetVerticalCursor.cur");
+			mRulerOffsetDiagonalUpCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerOffsetDiagonalUpCursor.cur");
+			mRulerOffsetDiagonalDownCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerOffsetDiagonalDownCursor.cur");
 		}
 
 		/// <summary>
