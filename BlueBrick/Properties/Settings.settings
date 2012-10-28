@@ -152,7 +152,7 @@
     <Setting Name="UIPaintColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Gold</Value>
     </Setting>
-    <Setting Name="UIIsPaintToolSelected" Type="System.Boolean" Scope="User">
+    <Setting Name="UIIsEraserToolSelected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="UIMainSplitContainerDistance" Type="System.Int32" Scope="User">
@@ -227,6 +227,9 @@
       <Value Profile="(Default)">255, 224, 192</Value>
     </Setting>
     <Setting Name="UIPartLibSelectedTabIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="UIRulerToolSelected" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
