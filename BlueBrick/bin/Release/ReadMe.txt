@@ -64,12 +64,13 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
-	- add menu items in the Edit menu to choose and select the tools
+	- implement the ruler selection
+	- select in rectangle
+	- implement the ruler edition
 	- Property window for option of each ruler
 	- manage the different unit
 	- Ruler just a line: or differnt option  for the lines/rulers
 	- Ruler circle
-	- select in rectangle
 	- add more cursors
 	- save/load rulers in BBM
 	- save/load in LDraw
