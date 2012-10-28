@@ -831,12 +831,12 @@ namespace BlueBrick
 		#region right click context menu
 		private void bringToFrontToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			MainForm.Instance.toolBarBringToFrontButton_Click(sender, e);
+			MainForm.Instance.bringToFrontToolStripMenuItem_Click(sender, e);
 		}
 
 		private void sendToBackToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			MainForm.Instance.toolBarSendToBackButton_Click(sender, e);
+			MainForm.Instance.sendToBackToolStripMenuItem_Click(sender, e);
 		}
 
 		private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)

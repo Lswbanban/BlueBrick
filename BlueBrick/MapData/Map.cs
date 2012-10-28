@@ -227,7 +227,7 @@ namespace BlueBrick.MapData
 							MainForm.Instance.enableToolbarButtonOnLayerSelection(false, true, false);
 							break;
 						case "LayerRuler":
-							MainForm.Instance.enableToolbarButtonOnLayerSelection(false, false, true);
+							MainForm.Instance.enableToolbarButtonOnLayerSelection(true, false, true);
 							break;
 						default:
 							MainForm.Instance.enableToolbarButtonOnLayerSelection(true, false, false);

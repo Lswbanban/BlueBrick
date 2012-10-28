@@ -66,24 +66,15 @@ namespace BlueBrick
 			this.rotateCCWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.sendToBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.bringToFrontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStepDisabledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep16ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep05ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotationStepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotationStep90ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotationStep45ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotationStep22ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotationStep1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.paintToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.paintToolPaintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.paintToolEraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
 			this.paintToolChooseColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rulerToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.selectAndEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.addRulerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.addCircleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
 			this.generalInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mapBackgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -137,6 +128,20 @@ namespace BlueBrick
 			this.saveExportImageDialog = new System.Windows.Forms.SaveFileDialog();
 			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.toolTipForMainForm = new System.Windows.Forms.ToolTip(this.components);
+			this.moveStepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStepDisabledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep16ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep05ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotationStepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotationStep90ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotationStep45ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotationStep22ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotationStep1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
 			this.mainSplitContainer = new BlueBrick.MainSplitContainer();
 			this.mapPanel = new BlueBrick.MapPanel();
 			this.statusBar = new System.Windows.Forms.StatusStrip();
@@ -286,9 +291,8 @@ namespace BlueBrick
             this.groupMenuToolStripMenuItem,
             this.toolStripSeparator8,
             this.transformToolStripMenuItem,
-            this.moveStepToolStripMenuItem,
-            this.rotationStepToolStripMenuItem,
             this.paintToolToolStripMenuItem,
+            this.rulerToolToolStripMenuItem,
             this.toolStripSeparator10,
             this.generalInformationToolStripMenuItem,
             this.mapBackgroundColorToolStripMenuItem,
@@ -400,10 +404,13 @@ namespace BlueBrick
 			// transformToolStripMenuItem
 			// 
 			this.transformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rotateCWToolStripMenuItem,
-            this.rotateCCWToolStripMenuItem,
+            this.moveStepToolStripMenuItem,
             this.sendToBackToolStripMenuItem,
-            this.bringToFrontToolStripMenuItem});
+            this.bringToFrontToolStripMenuItem,
+            this.toolStripSeparator9,
+            this.rotationStepToolStripMenuItem,
+            this.rotateCWToolStripMenuItem,
+            this.rotateCCWToolStripMenuItem});
 			this.transformToolStripMenuItem.Name = "transformToolStripMenuItem";
 			resources.ApplyResources(this.transformToolStripMenuItem, "transformToolStripMenuItem");
 			// 
@@ -430,99 +437,6 @@ namespace BlueBrick
 			this.bringToFrontToolStripMenuItem.Name = "bringToFrontToolStripMenuItem";
 			resources.ApplyResources(this.bringToFrontToolStripMenuItem, "bringToFrontToolStripMenuItem");
 			this.bringToFrontToolStripMenuItem.Click += new System.EventHandler(this.bringToFrontToolStripMenuItem_Click);
-			// 
-			// moveStepToolStripMenuItem
-			// 
-			this.moveStepToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.moveStepDisabledToolStripMenuItem,
-            this.moveStep32ToolStripMenuItem,
-            this.moveStep16ToolStripMenuItem,
-            this.moveStep8ToolStripMenuItem,
-            this.moveStep4ToolStripMenuItem,
-            this.moveStep1ToolStripMenuItem,
-            this.moveStep05ToolStripMenuItem});
-			this.moveStepToolStripMenuItem.Name = "moveStepToolStripMenuItem";
-			resources.ApplyResources(this.moveStepToolStripMenuItem, "moveStepToolStripMenuItem");
-			// 
-			// moveStepDisabledToolStripMenuItem
-			// 
-			this.moveStepDisabledToolStripMenuItem.Name = "moveStepDisabledToolStripMenuItem";
-			resources.ApplyResources(this.moveStepDisabledToolStripMenuItem, "moveStepDisabledToolStripMenuItem");
-			this.moveStepDisabledToolStripMenuItem.Click += new System.EventHandler(this.moveStepDisabledToolStripMenuItem_Click);
-			// 
-			// moveStep32ToolStripMenuItem
-			// 
-			this.moveStep32ToolStripMenuItem.Checked = true;
-			this.moveStep32ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.moveStep32ToolStripMenuItem.Name = "moveStep32ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep32ToolStripMenuItem, "moveStep32ToolStripMenuItem");
-			this.moveStep32ToolStripMenuItem.Click += new System.EventHandler(this.moveStep32ToolStripMenuItem_Click);
-			// 
-			// moveStep16ToolStripMenuItem
-			// 
-			this.moveStep16ToolStripMenuItem.Name = "moveStep16ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep16ToolStripMenuItem, "moveStep16ToolStripMenuItem");
-			this.moveStep16ToolStripMenuItem.Click += new System.EventHandler(this.moveStep16ToolStripMenuItem_Click);
-			// 
-			// moveStep8ToolStripMenuItem
-			// 
-			this.moveStep8ToolStripMenuItem.Name = "moveStep8ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep8ToolStripMenuItem, "moveStep8ToolStripMenuItem");
-			this.moveStep8ToolStripMenuItem.Click += new System.EventHandler(this.moveStep8ToolStripMenuItem_Click);
-			// 
-			// moveStep4ToolStripMenuItem
-			// 
-			this.moveStep4ToolStripMenuItem.Name = "moveStep4ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep4ToolStripMenuItem, "moveStep4ToolStripMenuItem");
-			this.moveStep4ToolStripMenuItem.Click += new System.EventHandler(this.moveStep4ToolStripMenuItem_Click);
-			// 
-			// moveStep1ToolStripMenuItem
-			// 
-			this.moveStep1ToolStripMenuItem.Name = "moveStep1ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep1ToolStripMenuItem, "moveStep1ToolStripMenuItem");
-			this.moveStep1ToolStripMenuItem.Click += new System.EventHandler(this.moveStep1ToolStripMenuItem_Click);
-			// 
-			// moveStep05ToolStripMenuItem
-			// 
-			this.moveStep05ToolStripMenuItem.Name = "moveStep05ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep05ToolStripMenuItem, "moveStep05ToolStripMenuItem");
-			this.moveStep05ToolStripMenuItem.Click += new System.EventHandler(this.moveStep05ToolStripMenuItem_Click);
-			// 
-			// rotationStepToolStripMenuItem
-			// 
-			this.rotationStepToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rotationStep90ToolStripMenuItem,
-            this.rotationStep45ToolStripMenuItem,
-            this.rotationStep22ToolStripMenuItem,
-            this.rotationStep1ToolStripMenuItem});
-			this.rotationStepToolStripMenuItem.Name = "rotationStepToolStripMenuItem";
-			resources.ApplyResources(this.rotationStepToolStripMenuItem, "rotationStepToolStripMenuItem");
-			// 
-			// rotationStep90ToolStripMenuItem
-			// 
-			this.rotationStep90ToolStripMenuItem.Checked = true;
-			this.rotationStep90ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.rotationStep90ToolStripMenuItem.Name = "rotationStep90ToolStripMenuItem";
-			resources.ApplyResources(this.rotationStep90ToolStripMenuItem, "rotationStep90ToolStripMenuItem");
-			this.rotationStep90ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep90ToolStripMenuItem_Click);
-			// 
-			// rotationStep45ToolStripMenuItem
-			// 
-			this.rotationStep45ToolStripMenuItem.Name = "rotationStep45ToolStripMenuItem";
-			resources.ApplyResources(this.rotationStep45ToolStripMenuItem, "rotationStep45ToolStripMenuItem");
-			this.rotationStep45ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep45ToolStripMenuItem_Click);
-			// 
-			// rotationStep22ToolStripMenuItem
-			// 
-			this.rotationStep22ToolStripMenuItem.Name = "rotationStep22ToolStripMenuItem";
-			resources.ApplyResources(this.rotationStep22ToolStripMenuItem, "rotationStep22ToolStripMenuItem");
-			this.rotationStep22ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep22ToolStripMenuItem_Click);
-			// 
-			// rotationStep1ToolStripMenuItem
-			// 
-			this.rotationStep1ToolStripMenuItem.Name = "rotationStep1ToolStripMenuItem";
-			resources.ApplyResources(this.rotationStep1ToolStripMenuItem, "rotationStep1ToolStripMenuItem");
-			this.rotationStep1ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep1ToolStripMenuItem_Click);
 			// 
 			// paintToolToolStripMenuItem
 			// 
@@ -558,6 +472,35 @@ namespace BlueBrick
 			this.paintToolChooseColorToolStripMenuItem.Name = "paintToolChooseColorToolStripMenuItem";
 			resources.ApplyResources(this.paintToolChooseColorToolStripMenuItem, "paintToolChooseColorToolStripMenuItem");
 			this.paintToolChooseColorToolStripMenuItem.Click += new System.EventHandler(this.paintToolChooseColorToolStripMenuItem_Click);
+			// 
+			// rulerToolToolStripMenuItem
+			// 
+			this.rulerToolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectAndEditToolStripMenuItem,
+            this.addRulerToolStripMenuItem,
+            this.addCircleToolStripMenuItem});
+			this.rulerToolToolStripMenuItem.Name = "rulerToolToolStripMenuItem";
+			resources.ApplyResources(this.rulerToolToolStripMenuItem, "rulerToolToolStripMenuItem");
+			// 
+			// selectAndEditToolStripMenuItem
+			// 
+			this.selectAndEditToolStripMenuItem.Checked = true;
+			this.selectAndEditToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.selectAndEditToolStripMenuItem.Name = "selectAndEditToolStripMenuItem";
+			resources.ApplyResources(this.selectAndEditToolStripMenuItem, "selectAndEditToolStripMenuItem");
+			this.selectAndEditToolStripMenuItem.Click += new System.EventHandler(this.rulerSelectAndEditToolStripMenuItem_Click);
+			// 
+			// addRulerToolStripMenuItem
+			// 
+			this.addRulerToolStripMenuItem.Name = "addRulerToolStripMenuItem";
+			resources.ApplyResources(this.addRulerToolStripMenuItem, "addRulerToolStripMenuItem");
+			this.addRulerToolStripMenuItem.Click += new System.EventHandler(this.rulerAddRulerToolStripMenuItem_Click);
+			// 
+			// addCircleToolStripMenuItem
+			// 
+			this.addCircleToolStripMenuItem.Name = "addCircleToolStripMenuItem";
+			resources.ApplyResources(this.addCircleToolStripMenuItem, "addCircleToolStripMenuItem");
+			this.addCircleToolStripMenuItem.Click += new System.EventHandler(this.rulerAddCircleToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator10
 			// 
@@ -679,21 +622,21 @@ namespace BlueBrick
 			this.toolBarNewButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.toolBarNewButton, "toolBarNewButton");
 			this.toolBarNewButton.Name = "toolBarNewButton";
-			this.toolBarNewButton.Click += new System.EventHandler(this.toolBarNewButton_Click);
+			this.toolBarNewButton.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
 			// 
 			// toolBarOpenButton
 			// 
 			this.toolBarOpenButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.toolBarOpenButton, "toolBarOpenButton");
 			this.toolBarOpenButton.Name = "toolBarOpenButton";
-			this.toolBarOpenButton.Click += new System.EventHandler(this.toolBarOpenButton_Click);
+			this.toolBarOpenButton.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
 			// 
 			// toolBarSaveButton
 			// 
 			this.toolBarSaveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.toolBarSaveButton, "toolBarSaveButton");
 			this.toolBarSaveButton.Name = "toolBarSaveButton";
-			this.toolBarSaveButton.Click += new System.EventHandler(this.toolBarSaveButton_Click);
+			this.toolBarSaveButton.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator7
 			// 
@@ -726,28 +669,28 @@ namespace BlueBrick
 			this.toolBarDeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.toolBarDeleteButton, "toolBarDeleteButton");
 			this.toolBarDeleteButton.Name = "toolBarDeleteButton";
-			this.toolBarDeleteButton.Click += new System.EventHandler(this.toolBarDeleteButton_Click);
+			this.toolBarDeleteButton.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
 			// 
 			// toolBarCutButton
 			// 
 			this.toolBarCutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.toolBarCutButton, "toolBarCutButton");
 			this.toolBarCutButton.Name = "toolBarCutButton";
-			this.toolBarCutButton.Click += new System.EventHandler(this.toolBarCutButton_Click);
+			this.toolBarCutButton.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
 			// 
 			// toolBarCopyButton
 			// 
 			this.toolBarCopyButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.toolBarCopyButton, "toolBarCopyButton");
 			this.toolBarCopyButton.Name = "toolBarCopyButton";
-			this.toolBarCopyButton.Click += new System.EventHandler(this.toolBarCopyButton_Click);
+			this.toolBarCopyButton.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
 			// 
 			// toolBarPasteButton
 			// 
 			this.toolBarPasteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.toolBarPasteButton, "toolBarPasteButton");
 			this.toolBarPasteButton.Name = "toolBarPasteButton";
-			this.toolBarPasteButton.Click += new System.EventHandler(this.toolBarPasteButton_Click);
+			this.toolBarPasteButton.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator6
 			// 
@@ -774,37 +717,37 @@ namespace BlueBrick
 			this.toolBarGrid32Button.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.toolBarGrid32Button.Name = "toolBarGrid32Button";
 			resources.ApplyResources(this.toolBarGrid32Button, "toolBarGrid32Button");
-			this.toolBarGrid32Button.Click += new System.EventHandler(this.toolBarGrid32Button_Click);
+			this.toolBarGrid32Button.Click += new System.EventHandler(this.moveStep32ToolStripMenuItem_Click);
 			// 
 			// toolBarGrid16Button
 			// 
 			this.toolBarGrid16Button.Name = "toolBarGrid16Button";
 			resources.ApplyResources(this.toolBarGrid16Button, "toolBarGrid16Button");
-			this.toolBarGrid16Button.Click += new System.EventHandler(this.toolBarGrid16Button_Click);
+			this.toolBarGrid16Button.Click += new System.EventHandler(this.moveStep16ToolStripMenuItem_Click);
 			// 
 			// toolBarGrid8Button
 			// 
 			this.toolBarGrid8Button.Name = "toolBarGrid8Button";
 			resources.ApplyResources(this.toolBarGrid8Button, "toolBarGrid8Button");
-			this.toolBarGrid8Button.Click += new System.EventHandler(this.toolBarGrid8Button_Click);
+			this.toolBarGrid8Button.Click += new System.EventHandler(this.moveStep8ToolStripMenuItem_Click);
 			// 
 			// toolBarGrid4Button
 			// 
 			this.toolBarGrid4Button.Name = "toolBarGrid4Button";
 			resources.ApplyResources(this.toolBarGrid4Button, "toolBarGrid4Button");
-			this.toolBarGrid4Button.Click += new System.EventHandler(this.toolBarGrid4Button_Click);
+			this.toolBarGrid4Button.Click += new System.EventHandler(this.moveStep4ToolStripMenuItem_Click);
 			// 
 			// toolBarGrid1Button
 			// 
 			this.toolBarGrid1Button.Name = "toolBarGrid1Button";
 			resources.ApplyResources(this.toolBarGrid1Button, "toolBarGrid1Button");
-			this.toolBarGrid1Button.Click += new System.EventHandler(this.toolBarGrid1Button_Click);
+			this.toolBarGrid1Button.Click += new System.EventHandler(this.moveStep1ToolStripMenuItem_Click);
 			// 
 			// toolBarGrid05Button
 			// 
 			this.toolBarGrid05Button.Name = "toolBarGrid05Button";
 			resources.ApplyResources(this.toolBarGrid05Button, "toolBarGrid05Button");
-			this.toolBarGrid05Button.Click += new System.EventHandler(this.toolBarGrid05Button_Click);
+			this.toolBarGrid05Button.Click += new System.EventHandler(this.moveStep05ToolStripMenuItem_Click);
 			// 
 			// toolBarRotationAngleButton
 			// 
@@ -823,53 +766,53 @@ namespace BlueBrick
 			this.toolBarAngle90Button.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.toolBarAngle90Button.Name = "toolBarAngle90Button";
 			resources.ApplyResources(this.toolBarAngle90Button, "toolBarAngle90Button");
-			this.toolBarAngle90Button.Click += new System.EventHandler(this.toolBarAngle90Button_Click);
+			this.toolBarAngle90Button.Click += new System.EventHandler(this.rotationStep90ToolStripMenuItem_Click);
 			// 
 			// toolBarAngle45Button
 			// 
 			this.toolBarAngle45Button.Name = "toolBarAngle45Button";
 			resources.ApplyResources(this.toolBarAngle45Button, "toolBarAngle45Button");
-			this.toolBarAngle45Button.Click += new System.EventHandler(this.toolBarAngle45Button_Click);
+			this.toolBarAngle45Button.Click += new System.EventHandler(this.rotationStep45ToolStripMenuItem_Click);
 			// 
 			// toolBarAngle22Button
 			// 
 			this.toolBarAngle22Button.Name = "toolBarAngle22Button";
 			resources.ApplyResources(this.toolBarAngle22Button, "toolBarAngle22Button");
-			this.toolBarAngle22Button.Click += new System.EventHandler(this.toolBarAngle22Button_Click);
+			this.toolBarAngle22Button.Click += new System.EventHandler(this.rotationStep22ToolStripMenuItem_Click);
 			// 
 			// toolBarAngle1Button
 			// 
 			this.toolBarAngle1Button.Name = "toolBarAngle1Button";
 			resources.ApplyResources(this.toolBarAngle1Button, "toolBarAngle1Button");
-			this.toolBarAngle1Button.Click += new System.EventHandler(this.toolBarAngle1Button_Click);
+			this.toolBarAngle1Button.Click += new System.EventHandler(this.rotationStep1ToolStripMenuItem_Click);
 			// 
 			// toolBarRotateCCWButton
 			// 
 			this.toolBarRotateCCWButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.toolBarRotateCCWButton, "toolBarRotateCCWButton");
 			this.toolBarRotateCCWButton.Name = "toolBarRotateCCWButton";
-			this.toolBarRotateCCWButton.Click += new System.EventHandler(this.toolBarRotateCCWButton_Click);
+			this.toolBarRotateCCWButton.Click += new System.EventHandler(this.rotateCCWToolStripMenuItem_Click);
 			// 
 			// toolBarRotateCWButton
 			// 
 			this.toolBarRotateCWButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.toolBarRotateCWButton, "toolBarRotateCWButton");
 			this.toolBarRotateCWButton.Name = "toolBarRotateCWButton";
-			this.toolBarRotateCWButton.Click += new System.EventHandler(this.toolBarRotateCWButton_Click);
+			this.toolBarRotateCWButton.Click += new System.EventHandler(this.rotateCWToolStripMenuItem_Click);
 			// 
 			// toolBarSendToBackButton
 			// 
 			this.toolBarSendToBackButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.toolBarSendToBackButton, "toolBarSendToBackButton");
 			this.toolBarSendToBackButton.Name = "toolBarSendToBackButton";
-			this.toolBarSendToBackButton.Click += new System.EventHandler(this.toolBarSendToBackButton_Click);
+			this.toolBarSendToBackButton.Click += new System.EventHandler(this.sendToBackToolStripMenuItem_Click);
 			// 
 			// toolBarBringToFrontButton
 			// 
 			this.toolBarBringToFrontButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			resources.ApplyResources(this.toolBarBringToFrontButton, "toolBarBringToFrontButton");
 			this.toolBarBringToFrontButton.Name = "toolBarBringToFrontButton";
-			this.toolBarBringToFrontButton.Click += new System.EventHandler(this.toolBarBringToFrontButton_Click);
+			this.toolBarBringToFrontButton.Click += new System.EventHandler(this.bringToFrontToolStripMenuItem_Click);
 			// 
 			// toolBarToolButton
 			// 
@@ -888,13 +831,13 @@ namespace BlueBrick
 			// 
 			resources.ApplyResources(this.paintToolStripMenuItem, "paintToolStripMenuItem");
 			this.paintToolStripMenuItem.Name = "paintToolStripMenuItem";
-			this.paintToolStripMenuItem.Click += new System.EventHandler(this.paintToolStripMenuItem_Click);
+			this.paintToolStripMenuItem.Click += new System.EventHandler(this.paintToolPaintToolStripMenuItem_Click);
 			// 
 			// eraseToolStripMenuItem
 			// 
 			resources.ApplyResources(this.eraseToolStripMenuItem, "eraseToolStripMenuItem");
 			this.eraseToolStripMenuItem.Name = "eraseToolStripMenuItem";
-			this.eraseToolStripMenuItem.Click += new System.EventHandler(this.eraseToolStripMenuItem_Click);
+			this.eraseToolStripMenuItem.Click += new System.EventHandler(this.paintToolEraseToolStripMenuItem_Click);
 			// 
 			// rulerSelectAndEditToolStripMenuItem
 			// 
@@ -935,6 +878,104 @@ namespace BlueBrick
 			// colorDialog
 			// 
 			this.colorDialog.Color = System.Drawing.Color.Gold;
+			// 
+			// moveStepToolStripMenuItem
+			// 
+			this.moveStepToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.moveStepDisabledToolStripMenuItem,
+            this.moveStep32ToolStripMenuItem,
+            this.moveStep16ToolStripMenuItem,
+            this.moveStep8ToolStripMenuItem,
+            this.moveStep4ToolStripMenuItem,
+            this.moveStep1ToolStripMenuItem,
+            this.moveStep05ToolStripMenuItem});
+			this.moveStepToolStripMenuItem.Name = "moveStepToolStripMenuItem";
+			resources.ApplyResources(this.moveStepToolStripMenuItem, "moveStepToolStripMenuItem");
+			// 
+			// moveStepDisabledToolStripMenuItem
+			// 
+			this.moveStepDisabledToolStripMenuItem.Name = "moveStepDisabledToolStripMenuItem";
+			resources.ApplyResources(this.moveStepDisabledToolStripMenuItem, "moveStepDisabledToolStripMenuItem");
+			this.moveStepDisabledToolStripMenuItem.Click += new System.EventHandler(this.moveStepDisabledToolStripMenuItem_Click);
+			// 
+			// moveStep32ToolStripMenuItem
+			// 
+			this.moveStep32ToolStripMenuItem.Checked = true;
+			this.moveStep32ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.moveStep32ToolStripMenuItem.Name = "moveStep32ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep32ToolStripMenuItem, "moveStep32ToolStripMenuItem");
+			this.moveStep32ToolStripMenuItem.Click += new System.EventHandler(this.moveStep32ToolStripMenuItem_Click);
+			// 
+			// moveStep16ToolStripMenuItem
+			// 
+			this.moveStep16ToolStripMenuItem.Name = "moveStep16ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep16ToolStripMenuItem, "moveStep16ToolStripMenuItem");
+			this.moveStep16ToolStripMenuItem.Click += new System.EventHandler(this.moveStep16ToolStripMenuItem_Click);
+			// 
+			// moveStep8ToolStripMenuItem
+			// 
+			this.moveStep8ToolStripMenuItem.Name = "moveStep8ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep8ToolStripMenuItem, "moveStep8ToolStripMenuItem");
+			this.moveStep8ToolStripMenuItem.Click += new System.EventHandler(this.moveStep8ToolStripMenuItem_Click);
+			// 
+			// moveStep4ToolStripMenuItem
+			// 
+			this.moveStep4ToolStripMenuItem.Name = "moveStep4ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep4ToolStripMenuItem, "moveStep4ToolStripMenuItem");
+			this.moveStep4ToolStripMenuItem.Click += new System.EventHandler(this.moveStep4ToolStripMenuItem_Click);
+			// 
+			// moveStep1ToolStripMenuItem
+			// 
+			this.moveStep1ToolStripMenuItem.Name = "moveStep1ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep1ToolStripMenuItem, "moveStep1ToolStripMenuItem");
+			this.moveStep1ToolStripMenuItem.Click += new System.EventHandler(this.moveStep1ToolStripMenuItem_Click);
+			// 
+			// moveStep05ToolStripMenuItem
+			// 
+			this.moveStep05ToolStripMenuItem.Name = "moveStep05ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep05ToolStripMenuItem, "moveStep05ToolStripMenuItem");
+			this.moveStep05ToolStripMenuItem.Click += new System.EventHandler(this.moveStep05ToolStripMenuItem_Click);
+			// 
+			// rotationStepToolStripMenuItem
+			// 
+			this.rotationStepToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rotationStep90ToolStripMenuItem,
+            this.rotationStep45ToolStripMenuItem,
+            this.rotationStep22ToolStripMenuItem,
+            this.rotationStep1ToolStripMenuItem});
+			this.rotationStepToolStripMenuItem.Name = "rotationStepToolStripMenuItem";
+			resources.ApplyResources(this.rotationStepToolStripMenuItem, "rotationStepToolStripMenuItem");
+			// 
+			// rotationStep90ToolStripMenuItem
+			// 
+			this.rotationStep90ToolStripMenuItem.Checked = true;
+			this.rotationStep90ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.rotationStep90ToolStripMenuItem.Name = "rotationStep90ToolStripMenuItem";
+			resources.ApplyResources(this.rotationStep90ToolStripMenuItem, "rotationStep90ToolStripMenuItem");
+			this.rotationStep90ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep90ToolStripMenuItem_Click);
+			// 
+			// rotationStep45ToolStripMenuItem
+			// 
+			this.rotationStep45ToolStripMenuItem.Name = "rotationStep45ToolStripMenuItem";
+			resources.ApplyResources(this.rotationStep45ToolStripMenuItem, "rotationStep45ToolStripMenuItem");
+			this.rotationStep45ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep45ToolStripMenuItem_Click);
+			// 
+			// rotationStep22ToolStripMenuItem
+			// 
+			this.rotationStep22ToolStripMenuItem.Name = "rotationStep22ToolStripMenuItem";
+			resources.ApplyResources(this.rotationStep22ToolStripMenuItem, "rotationStep22ToolStripMenuItem");
+			this.rotationStep22ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep22ToolStripMenuItem_Click);
+			// 
+			// rotationStep1ToolStripMenuItem
+			// 
+			this.rotationStep1ToolStripMenuItem.Name = "rotationStep1ToolStripMenuItem";
+			resources.ApplyResources(this.rotationStep1ToolStripMenuItem, "rotationStep1ToolStripMenuItem");
+			this.rotationStep1ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep1ToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator9
+			// 
+			this.toolStripSeparator9.Name = "toolStripSeparator9";
+			resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
 			// 
 			// mainSplitContainer
 			// 
@@ -1280,20 +1321,7 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripMenuItem paintToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem eraseToolStripMenuItem;
 		private System.Windows.Forms.ColorDialog colorDialog;
-		private System.Windows.Forms.ToolStripMenuItem moveStepToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem moveStep32ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem moveStep16ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem moveStep8ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem moveStep4ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem moveStep1ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem moveStep05ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
-		private System.Windows.Forms.ToolStripMenuItem moveStepDisabledToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem rotationStepToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem rotationStep90ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem rotationStep45ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem rotationStep22ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem rotationStep1ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem paintToolToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem paintToolPaintToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem paintToolEraseToolStripMenuItem;
@@ -1332,6 +1360,24 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripMenuItem rulerSelectAndEditToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem rulerAddRulerToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem rulerAddCircleToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem rulerToolToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem selectAndEditToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem addRulerToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem addCircleToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem moveStepToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem moveStepDisabledToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem moveStep32ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem moveStep16ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem moveStep8ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem moveStep4ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem moveStep1ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem moveStep05ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+		private System.Windows.Forms.ToolStripMenuItem rotationStepToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem rotationStep90ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem rotationStep45ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem rotationStep22ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem rotationStep1ToolStripMenuItem;
 	}
 }
 

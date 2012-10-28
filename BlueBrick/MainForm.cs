@@ -629,9 +629,6 @@ namespace BlueBrick
 			this.toolBarDeleteButton.Enabled = isThereAnyItemSelected;
 			this.deleteToolStripMenuItem.Enabled = isThereAnyItemSelected;
 
-			// enable/disable the sub menu item Transform (only menu)
-			this.transformToolStripMenuItem.Enabled = isThereAnyItemSelected;
-
 			// enable/disable the rotate buttons (toolbar and menu)
 			this.toolBarRotateCCWButton.Enabled = isThereAnyItemSelected;
 			this.toolBarRotateCWButton.Enabled = isThereAnyItemSelected;
@@ -664,6 +661,9 @@ namespace BlueBrick
 		{
 			// enable the paste button if a layer with item has been selected (brick ot text layer)
 			enablePasteButton(enableMoveRotateButton);
+
+			// enable/disable the sub menu item Transform (only menu)
+			this.transformToolStripMenuItem.Enabled = enableMoveRotateButton;
 
 			// enable/disable the snapping grid (toolbar and menu)
 			this.toolBarSnapGridButton.Enabled = enableMoveRotateButton;
@@ -705,7 +705,10 @@ namespace BlueBrick
 			}
 
 			// enable/disable the ruler buttons in the menu
-			// TODO
+			this.rulerToolToolStripMenuItem.Enabled = enableRulerButton;
+			this.selectAndEditToolStripMenuItem.Enabled = enableRulerButton;
+			this.addRulerToolStripMenuItem.Enabled = enableRulerButton;
+			this.addCircleToolStripMenuItem.Enabled = enableRulerButton;
 			// show/hide the ruler button in the toolbar
 			this.rulerSelectAndEditToolStripMenuItem.Visible = enableRulerButton;
 			this.rulerAddRulerToolStripMenuItem.Visible = enableRulerButton;
@@ -1578,7 +1581,7 @@ namespace BlueBrick
 			}
 		}
 
-		private void sendToBackToolStripMenuItem_Click(object sender, EventArgs e)
+		public void sendToBackToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
 			{
@@ -1593,7 +1596,7 @@ namespace BlueBrick
 			}
 		}
 
-		private void bringToFrontToolStripMenuItem_Click(object sender, EventArgs e)
+		public void bringToFrontToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
 			{
@@ -1712,7 +1715,9 @@ namespace BlueBrick
 			// toolbar
 			this.toolBarToolButton.Image = this.rulerSelectAndEditToolStripMenuItem.Image;
 			// menu
-			// TODO
+			this.selectAndEditToolStripMenuItem.Checked = true;
+			this.addRulerToolStripMenuItem.Checked = false;
+			this.addCircleToolStripMenuItem.Checked = false;
 			// set the selected tool in the static vaqr of the ruler layer
 			LayerRuler.CurrentEditTool = LayerRuler.EditTool.SELECT;
 		}
@@ -1722,7 +1727,9 @@ namespace BlueBrick
 			// toolbar
 			this.toolBarToolButton.Image = this.rulerAddRulerToolStripMenuItem.Image;
 			// menu
-			// TODO
+			this.selectAndEditToolStripMenuItem.Checked = false;
+			this.addRulerToolStripMenuItem.Checked = true;
+			this.addCircleToolStripMenuItem.Checked = false;
 			// set the selected tool in the static vaqr of the ruler layer
 			LayerRuler.CurrentEditTool = LayerRuler.EditTool.LINE;
 		}
@@ -1732,7 +1739,9 @@ namespace BlueBrick
 			// toolbar
 			this.toolBarToolButton.Image = this.rulerAddCircleToolStripMenuItem.Image;
 			// menu
-			// TODO
+			this.selectAndEditToolStripMenuItem.Checked = false;
+			this.addRulerToolStripMenuItem.Checked = false;
+			this.addCircleToolStripMenuItem.Checked = true;
 			// set the selected tool in the static vaqr of the ruler layer
 			LayerRuler.CurrentEditTool = LayerRuler.EditTool.CIRCLE;
 		}
@@ -1937,23 +1946,6 @@ namespace BlueBrick
 		#endregion
 
 		#region event handler for toolbar
-		private void toolBarNewButton_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			newToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarOpenButton_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			openToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarSaveButton_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			saveToolStripMenuItem_Click(sender, e);
-		}
 
 		private void toolBarUndoButton_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
 		{
@@ -1967,30 +1959,6 @@ namespace BlueBrick
 			ActionManager.Instance.redo(index + 1);
 		}
 
-		private void toolBarDeleteButton_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			deleteToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarCutButton_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			cutToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarCopyButton_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			copyToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarPasteButton_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			pasteToolStripMenuItem_Click(sender, e);
-		}
-
 		private void toolBarSnapGridButton_Click(object sender, EventArgs e)
 		{
 			if (this.toolBarSnapGridButton.ButtonPressed)
@@ -1999,109 +1967,12 @@ namespace BlueBrick
 			}
 		}
 
-		private void toolBarGrid32Button_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			moveStep32ToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarGrid16Button_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			moveStep16ToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarGrid8Button_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			moveStep8ToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarGrid4Button_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			moveStep4ToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarGrid1Button_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			moveStep1ToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarGrid05Button_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			moveStep05ToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarAngle90Button_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			rotationStep90ToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarAngle45Button_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			rotationStep45ToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarAngle22Button_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			rotationStep22ToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarAngle1Button_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			rotationStep1ToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarRotateCCWButton_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			rotateCCWToolStripMenuItem_Click(sender, e);
-		}
-
-		private void toolBarRotateCWButton_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			rotateCWToolStripMenuItem_Click(sender, e);
-		}
-
-		public void toolBarSendToBackButton_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			sendToBackToolStripMenuItem_Click(sender, e);
-		}
-
-		public void toolBarBringToFrontButton_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			bringToFrontToolStripMenuItem_Click(sender, e);
-		}
-
 		private void toolBarPaintButton_ButtonClick(object sender, EventArgs e)
 		{
 			// nothing happen by default, but if the paint icon is selected this call the color picker
 			if (this.toolBarToolButton.Image == mPaintIcon)
 				paintToolChooseColorToolStripMenuItem_Click(sender, e);
 		}
-
-		private void paintToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			paintToolPaintToolStripMenuItem_Click(sender, e);
-		}
-
-		private void eraseToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			// call the event handler of the menu
-			paintToolEraseToolStripMenuItem_Click(sender, e);
-		}
-
 		#endregion
 
 		#region event handler for part lib
