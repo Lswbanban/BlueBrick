@@ -221,19 +221,22 @@ namespace BlueBrick.MapData
 					switch (mSelectedLayer.GetType().Name)
 					{
 						case "LayerGrid":
-							MainForm.Instance.enableToolbarButtonOnLayerSelection(false, false);
+							MainForm.Instance.enableToolbarButtonOnLayerSelection(false, false, false);
 							break;
 						case "LayerArea":
-							MainForm.Instance.enableToolbarButtonOnLayerSelection(false, true);
+							MainForm.Instance.enableToolbarButtonOnLayerSelection(false, true, false);
+							break;
+						case "LayerRuler":
+							MainForm.Instance.enableToolbarButtonOnLayerSelection(false, false, true);
 							break;
 						default:
-							MainForm.Instance.enableToolbarButtonOnLayerSelection(true, false);
+							MainForm.Instance.enableToolbarButtonOnLayerSelection(true, false, false);
 							break;
 					}
 				}
 				else
 				{
-					MainForm.Instance.enableToolbarButtonOnLayerSelection(false, false);
+					MainForm.Instance.enableToolbarButtonOnLayerSelection(false, false, false);
 				}
 			}
 		}
