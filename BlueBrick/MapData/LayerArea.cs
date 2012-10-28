@@ -46,6 +46,11 @@ namespace BlueBrick.MapData
 			set { sCurrentDrawColor = value; }
 		}
 
+		public static bool IsCurrentToolTheEraser
+		{
+			get { return (sCurrentDrawColor == Color.Empty); }
+		}
+
 		public override int Transparency
 		{
 			set
@@ -503,7 +508,7 @@ namespace BlueBrick.MapData
 				return MainForm.Instance.HiddenLayerCursor;
 			else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
 				return Cursors.SizeAll;
-			else if (sCurrentDrawColor == Color.Empty)
+			else if (LayerArea.IsCurrentToolTheEraser)
 				return MainForm.Instance.AreaEraserCursor;
 			return MainForm.Instance.AreaPaintCursor;
 		}

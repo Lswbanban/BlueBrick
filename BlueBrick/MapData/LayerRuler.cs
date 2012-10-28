@@ -24,12 +24,14 @@ namespace BlueBrick.MapData
 	[Serializable]
 	partial class LayerRuler : Layer
 	{
-		private enum EditTool
+		public enum EditTool
 		{
 			SELECT,
 			LINE,
 			CIRCLE
 		}
+		// the current edition tool
+		private static EditTool sCurrentEditTool = EditTool.SELECT;
 
 		// all the rulers in the layer
 		private List<RulerItem> mRulers = new List<RulerItem>();
@@ -38,7 +40,6 @@ namespace BlueBrick.MapData
 		private ImageAttributes mImageAttribute = new ImageAttributes();
 
 		// variable used during the edition
-		private EditTool mCurrentEditTool = EditTool.SELECT;
 		private RulerItem mCurrentRulerUnderMouse = null;
 		private Ruler mCurrentlyEditedRuler = null;
 		private bool mIsEditingOffsetOfRuler = false;
@@ -52,6 +53,12 @@ namespace BlueBrick.MapData
 		private bool mMouseMoveWillAddOrEditRuler = false;
 
 		#region set/get
+		public static EditTool CurrentEditTool
+		{
+			get { return sCurrentEditTool; }
+			set { sCurrentEditTool = value; }
+		}
+
 		public override int Transparency
 		{
 			set
@@ -173,7 +180,7 @@ namespace BlueBrick.MapData
 			if (!Visible)
 				return MainForm.Instance.HiddenLayerCursor;
 
-			switch (mCurrentEditTool)
+			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
 					return MainForm.Instance.RulerArrowCursor;
@@ -201,7 +208,7 @@ namespace BlueBrick.MapData
 			// flag to check if we will handle the mouse down
 			bool willHandleMouse = false;
 
-			switch (mCurrentEditTool)
+			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
 					// check if the mouse is inside the bounding rectangle of the selected objects
@@ -322,7 +329,7 @@ namespace BlueBrick.MapData
 			mMouseIsBetweenDownAndUpEvent = true;
 			bool mustRefresh = false;
 
-			switch (mCurrentEditTool)
+			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
 					// we select the ruler under the mouse if the selection list is empty
@@ -364,7 +371,7 @@ namespace BlueBrick.MapData
 		{
 			bool mustRefresh = false;
 
-			switch (mCurrentEditTool)
+			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
 					break;
@@ -397,7 +404,7 @@ namespace BlueBrick.MapData
 		{
 			bool mustRefresh = false;
 
-			switch (mCurrentEditTool)
+			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
 					break;

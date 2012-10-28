@@ -326,7 +326,7 @@ namespace BlueBrick
 			enableGroupingButton(false, false);
 			enablePasteButton(false);
 			enableToolbarButtonOnItemSelection(false);
-			enableToolbarButtonOnLayerSelection(false, false);
+			enableToolbarButtonOnLayerSelection(false, false, false);
 			// check if we need to open a file or create a new map
 			if ((fileToOpen != null) && canOpenThisFile(fileToOpen))
 			{
@@ -433,7 +433,7 @@ namespace BlueBrick
 
 			// paint color
 			Properties.Settings.Default.UIPaintColor = mCurrentPaintIconColor;
-			Properties.Settings.Default.UIIsPaintToolSelected = (this.toolBarPaintButton.Image == mPaintIcon);
+			Properties.Settings.Default.UIIsPaintToolSelected = (this.toolBarToolButton.Image == mPaintIcon);
 
 			// toolbar and status bar visibility
 			Properties.Settings.Default.UIToolbarIsVisible = this.toolBar.Visible;
@@ -644,12 +644,13 @@ namespace BlueBrick
 		/// <summary>
 		/// Enable or disable the buttons in the tool bar that allow manipulation of the layer item
 		/// such as snap grid, snap rotation, rotate button and paint/erase WHEN the selected layer is changed.
-		/// This method do not affect the cut/copy/delete and rotate and sned to back/bring to front button
+		/// This method do not affect the cut/copy/delete and rotate and send to back/bring to front button
 		/// because these buttons depends on the items selected on the layer, not on the layer type.
 		/// </summary>
-		/// <param name="enableMoveRotateButton">enable the button related to move and rotate</param>
-		/// <param name="enablePaintButton">enable the button related to paint</param>
-		public void enableToolbarButtonOnLayerSelection(bool enableMoveRotateButton, bool enablePaintButton)
+		/// <param name="enableMoveRotateButton">if true, enable the button related to move and rotate</param>
+		/// <param name="enablePaintButton">if true, show and enable the tools button related to paint</param>
+		/// <param name="enableRulerButton">if true, show and enable the tools buttons related to ruler</param>
+		public void enableToolbarButtonOnLayerSelection(bool enableMoveRotateButton, bool enablePaintButton, bool enableRulerButton)
 		{
 			// enable the paste button if a layer with item has been selected (brick ot text layer)
 			enablePasteButton(enableMoveRotateButton);
@@ -673,12 +674,48 @@ namespace BlueBrick
 			this.rotationStep45ToolStripMenuItem.Enabled = enableMoveRotateButton;
 			this.rotationStep90ToolStripMenuItem.Enabled = enableMoveRotateButton;
 
-			// enable/disable the paint button (toolbar and menu)
-			this.toolBarPaintButton.Enabled = enablePaintButton;
+			// the toolbar is enabled either if there's a paint or ruler to enable
+			this.toolBarToolButton.Enabled = enablePaintButton || enableRulerButton;
+
+			// enable/disable the paint button in the menu
 			this.paintToolToolStripMenuItem.Enabled = enablePaintButton;
 			this.paintToolEraseToolStripMenuItem.Enabled = enablePaintButton;
 			this.paintToolPaintToolStripMenuItem.Enabled = enablePaintButton;
-			this.paintToolChooseColorToolStripMenuItem.Enabled = enablePaintButton;
+			this.paintToolChooseColorToolStripMenuItem.Enabled = enablePaintButton;			
+			// show/hide the paint button in the toolbar
+			this.paintToolStripMenuItem.Visible = enablePaintButton;
+			this.eraseToolStripMenuItem.Visible = enablePaintButton;
+			// adjust the image of the main button
+			if (enablePaintButton)
+			{
+				if (LayerArea.IsCurrentToolTheEraser)
+					this.toolBarToolButton.Image = this.eraseToolStripMenuItem.Image;
+				else
+					this.toolBarToolButton.Image = mPaintIcon;
+			}
+
+			// enable/disable the ruler buttons in the menu
+			// TODO
+			// show/hide the ruler button in the toolbar
+			this.rulerSelectAndEditToolStripMenuItem.Visible = enableRulerButton;
+			this.rulerAddRulerToolStripMenuItem.Visible = enableRulerButton;
+			this.rulerAddCircleToolStripMenuItem.Visible = enableRulerButton;
+			// adjust the image of the main tool button
+			if (enableRulerButton)
+			{
+				switch (LayerRuler.CurrentEditTool)
+				{
+					case LayerRuler.EditTool.SELECT:
+						this.toolBarToolButton.Image = this.rulerSelectAndEditToolStripMenuItem.Image;
+						break;
+					case LayerRuler.EditTool.LINE:
+						this.toolBarToolButton.Image = this.rulerAddRulerToolStripMenuItem.Image;
+						break;
+					case LayerRuler.EditTool.CIRCLE:
+						this.toolBarToolButton.Image = this.rulerAddCircleToolStripMenuItem.Image;
+						break;
+				}
+			}
 		}
 
 		/// <summary>
@@ -1641,7 +1678,7 @@ namespace BlueBrick
 		private void paintToolPaintToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// toolbar
-			this.toolBarPaintButton.Image = mPaintIcon;
+			this.toolBarToolButton.Image = mPaintIcon;
 			// menu
 			this.paintToolPaintToolStripMenuItem.Checked = true;
 			this.paintToolEraseToolStripMenuItem.Checked = false;
@@ -1652,12 +1689,42 @@ namespace BlueBrick
 		private void paintToolEraseToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// toolbar
-			this.toolBarPaintButton.Image = this.eraseToolStripMenuItem.Image;
+			this.toolBarToolButton.Image = this.eraseToolStripMenuItem.Image;
 			// menu
 			this.paintToolPaintToolStripMenuItem.Checked = false;
 			this.paintToolEraseToolStripMenuItem.Checked = true;
 			// set the current static paint color in the area layer
 			LayerArea.CurrentDrawColor = Color.Empty;
+		}
+
+		private void rulerSelectAndEditToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// toolbar
+			this.toolBarToolButton.Image = this.rulerSelectAndEditToolStripMenuItem.Image;
+			// menu
+			// TODO
+			// set the selected tool in the static vaqr of the ruler layer
+			LayerRuler.CurrentEditTool = LayerRuler.EditTool.SELECT;
+		}
+
+		private void rulerAddRulerToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// toolbar
+			this.toolBarToolButton.Image = this.rulerAddRulerToolStripMenuItem.Image;
+			// menu
+			// TODO
+			// set the selected tool in the static vaqr of the ruler layer
+			LayerRuler.CurrentEditTool = LayerRuler.EditTool.LINE;
+		}
+
+		private void rulerAddCircleToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// toolbar
+			this.toolBarToolButton.Image = this.rulerAddCircleToolStripMenuItem.Image;
+			// menu
+			// TODO
+			// set the selected tool in the static vaqr of the ruler layer
+			LayerRuler.CurrentEditTool = LayerRuler.EditTool.CIRCLE;
 		}
 
 		private void generatePaintIcon(Color color)
@@ -1677,7 +1744,7 @@ namespace BlueBrick
 			g.DrawImage(this.paintToolStripMenuItem.Image, 0, 0);
 			g.Flush();
 			// refresh the icon
-			this.toolBarPaintButton.Image = mPaintIcon;
+			this.toolBarToolButton.Image = mPaintIcon;
 			// set the current static paint color in the area layer
 			LayerArea.CurrentDrawColor = color;
 		}
@@ -2008,12 +2075,9 @@ namespace BlueBrick
 
 		private void toolBarPaintButton_ButtonClick(object sender, EventArgs e)
 		{
-			// nothing happen if the eraser is choosen
-			if (this.toolBarPaintButton.Image == mPaintIcon)
-			{
-				// else choose the color
+			// nothing happen by default, but if the paint icon is selected this call the color picker
+			if (this.toolBarToolButton.Image == mPaintIcon)
 				paintToolChooseColorToolStripMenuItem_Click(sender, e);
-			}
 		}
 
 		private void paintToolStripMenuItem_Click(object sender, EventArgs e)
