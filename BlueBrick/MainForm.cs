@@ -369,12 +369,19 @@ namespace BlueBrick
 			updateRotationStepButton(Properties.Settings.Default.UIRotationStep);
 			// the zooming value
 			this.mapPanel.ViewScale = Properties.Settings.Default.UIViewScale;
+			// setting the correct Ruler tool
+			switch (Properties.Settings.Default.UIRulerToolSelected)
+			{
+				case 0: rulerSelectAndEditToolStripMenuItem_Click(this, null); break;
+				case 1: rulerAddRulerToolStripMenuItem_Click(this, null); break;
+				case 2: rulerAddCircleToolStripMenuItem_Click(this, null); break;
+			}
 			// regenerate the paint icon with the right color in the background
 			generatePaintIcon(Properties.Settings.Default.UIPaintColor);
-			if (Properties.Settings.Default.UIIsPaintToolSelected)
-				paintToolPaintToolStripMenuItem_Click(this, null);
-			else
+			if (Properties.Settings.Default.UIIsEraserToolSelected)
 				paintToolEraseToolStripMenuItem_Click(this, null);
+			else
+				paintToolPaintToolStripMenuItem_Click(this, null);
 			// toolbar and status bar visibility
 			this.toolBar.Visible = this.toolbarMenuItem.Checked = Properties.Settings.Default.UIToolbarIsVisible;
 			this.statusBar.Visible = this.statusBarMenuItem.Checked = Properties.Settings.Default.UIStatusbarIsVisible;
@@ -433,7 +440,10 @@ namespace BlueBrick
 
 			// paint color
 			Properties.Settings.Default.UIPaintColor = mCurrentPaintIconColor;
-			Properties.Settings.Default.UIIsPaintToolSelected = (this.toolBarToolButton.Image == mPaintIcon);
+			Properties.Settings.Default.UIIsEraserToolSelected = LayerArea.IsCurrentToolTheEraser;
+
+			// ruler tool selected
+			Properties.Settings.Default.UIRulerToolSelected = (int)(LayerRuler.CurrentEditTool);
 
 			// toolbar and status bar visibility
 			Properties.Settings.Default.UIToolbarIsVisible = this.toolBar.Visible;
