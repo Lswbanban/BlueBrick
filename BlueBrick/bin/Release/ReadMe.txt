@@ -64,6 +64,7 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
+	- french translation of the ruler tools (toolbar and menu)
 	- implement the ruler selection
 	- select in rectangle
 	- implement the ruler edition

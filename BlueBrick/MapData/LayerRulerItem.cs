@@ -33,7 +33,13 @@ namespace BlueBrick.MapData
 			/// Draw the ruler item.
 			/// </summary>
 			/// <param name="g">the graphic context in which draw the layer</param>
-			public abstract void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency);
+			/// <param name="areaInStud">the visible area of the map in stud coordinates</param>
+			/// <param name="scalePixelPerStud">the current scale of the map in order to convert stud into screen pixels</param>
+			/// <param name="layerTransparency">the current transparency of the parent layer</param>
+			/// <param name="layerImageAttributeWithTransparency">image attribute containing current transparency in order to draw image (if needed by this ruler)</param>
+			/// <param name="isSelected">tell if this ruler is currently selected in its parent layer selection</param>
+			/// <param name="selectionBrush">the brush to use if this ruler is selected</param>
+			public abstract void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush);
 		}
 		
 		/// <summary>
@@ -42,13 +48,20 @@ namespace BlueBrick.MapData
 		[Serializable]
 		public class Ruler : RulerItem
 		{
-			// geometrical information
+			// geometrical information, the points look like that:
+			// mOffsetPoint1External |        | mOffsetPoint2External
+			//         mOffsetPoint1 +---42---+ mOffsetPoint2
+			// mOffsetPoint1Internal |        | mOffsetPoint2Internal
+			//                       |        |
+			//               mPoint1 |        | mPoint2 
 			private PointF mPoint1 = new PointF(); // coord of the first point in Stud coord
 			private PointF mPoint2 = new PointF(); // coord of the second point in Stud coord
 			private PointF mOffsetPoint1 = new PointF(); // the offset point corresponding to Point1 in stud
 			private PointF mOffsetPoint2 = new PointF(); // the offset point corresponding to Point2 in stud
-			private PointF mOffsetPoint1Extended = new PointF(); // the even more extended point corresponding to Point1 in stud
-			private PointF mOffsetPoint2Extended = new PointF(); // the even more extended point corresponding to Point2 in stud
+			private PointF mOffsetPoint1External = new PointF(); // the even more extended point corresponding to Point1 in stud
+			private PointF mOffsetPoint2External = new PointF(); // the even more extended point corresponding to Point2 in stud
+			private PointF mOffsetPoint1Internal = new PointF(); // the less extended point corresponding to Point1 in stud
+			private PointF mOffsetPoint2Internal = new PointF(); // the less extended point corresponding to Point2 in stud			
 			private PointF mUnitVector = new PointF(); // the unit vector of the line between point1 and point2
 			private float mOffsetDistance = 0.0f; // the offset distance in stud coord
 			private Tools.Distance mMesuredDistance = new Tools.Distance(); // the distance mesured between the two extremities in stud unit
@@ -59,6 +72,7 @@ namespace BlueBrick.MapData
 			private Color mColor = Color.Black; // color of the lines
 			private float mLineThickness = 4.0f; // the thickness of the lines
 			private float mOffsetLineThickness = 1.0f; // the thickness of the guide lines when this ruler has an offset
+			private float[] mOffsetLineDashPattern = new float[] { 2.0f, 4.0f }; // pattern for the dashed offset line (succesion of dash length and space length, starting with dash)
 			private SolidBrush mMesurementBrush = new SolidBrush(Color.Black);
 			private Font mMesurementFont = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Regular);
 			private StringFormat mMesurementStringFormat = new StringFormat();
@@ -161,14 +175,16 @@ namespace BlueBrick.MapData
 				mOffsetPoint2 = new PointF(mPoint2.X + offsetX, mPoint2.Y + offsetY);
 
 				// extend a little more the offset point to draw a margin
-				const float EXTEND_IN_STUD = 2.0f;
+				const float EXTEND_IN_STUD = 2.0f; //TODO: maybe make it a maximum between the font size/2 and this fixed value
 				float extendX = offsetNormalizedVector.X * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
 				float extendY = offsetNormalizedVector.Y * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
-				mOffsetPoint1Extended = new PointF(mOffsetPoint1.X + extendX, mOffsetPoint1.Y + extendY);
-				mOffsetPoint2Extended = new PointF(mOffsetPoint2.X + extendX, mOffsetPoint2.Y + extendY);
+				mOffsetPoint1External = new PointF(mOffsetPoint1.X + extendX, mOffsetPoint1.Y + extendY);
+				mOffsetPoint2External = new PointF(mOffsetPoint2.X + extendX, mOffsetPoint2.Y + extendY);
+				mOffsetPoint1Internal = new PointF(mOffsetPoint1.X - extendX, mOffsetPoint1.Y - extendY);
+				mOffsetPoint2Internal = new PointF(mOffsetPoint2.X - extendX, mOffsetPoint2.Y - extendY);
 
 				// compute the 4 corner of the ruler
-				PointF[] corners = { mPoint1, mPoint2, mOffsetPoint1Extended, mOffsetPoint2Extended };
+				PointF[] corners = { mPoint1, mPoint2, mOffsetPoint1External, mOffsetPoint2External };
 
 				// now find the min and max
 				float minX = corners[0].X;
@@ -252,15 +268,42 @@ namespace BlueBrick.MapData
 			/// Draw the ruler.
 			/// </summary>
 			/// <param name="g">the graphic context in which draw the layer</param>
-			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency)
+			/// <param name="areaInStud">the visible area of the map in stud coordinates</param>
+			/// <param name="scalePixelPerStud">the current scale of the map in order to convert stud into screen pixels</param>
+			/// <param name="layerTransparency">the current transparency of the parent layer</param>
+			/// <param name="layerImageAttributeWithTransparency">image attribute containing current transparency in order to draw image (if needed by this ruler)</param>
+			/// <param name="isSelected">tell if this ruler is currently selected in its parent layer selection</param>
+			/// <param name="selectionBrush">the brush to use if this ruler is selected</param>
+			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush)
 			{
 				// check if the ruler is visible
 				if ((mDisplayArea.Right >= areaInStud.Left) && (mDisplayArea.Left <= areaInStud.Right) &&
 					(mDisplayArea.Bottom >= areaInStud.Top) && (mDisplayArea.Top <= areaInStud.Bottom))
 				{
+					// check if we will need to draw the dashed offset lines
+					bool needToDrawOffset = (mDisplayDistance && (mOffsetDistance != 0.0f));
+
 					// transform the coordinates into pixel coordinates
 					PointF offset1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1, areaInStud, scalePixelPerStud);
 					PointF offset2InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint2, areaInStud, scalePixelPerStud);
+
+					// internal point may be computed only for certain conditions
+					PointF offsetInternal1InPixel = new PointF();
+					PointF offsetInternal2InPixel = new PointF();
+					if (isSelected)
+					{
+						offsetInternal1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1Internal, areaInStud, scalePixelPerStud);
+						offsetInternal2InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint2Internal, areaInStud, scalePixelPerStud);
+					}
+
+					// external point may be computed only for certain conditions
+					PointF offsetExternal1InPixel = new PointF();
+					PointF offsetExternal2InPixel = new PointF();					
+					if (isSelected || needToDrawOffset)
+					{
+						offsetExternal1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1External, areaInStud, scalePixelPerStud);
+						offsetExternal2InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint2External, areaInStud, scalePixelPerStud);
+					}
 
 					// create the pen for the lines
 					Color colorWithTransparency = Color.FromArgb((int)(layerTransparency * 2.55f), mColor);
@@ -269,6 +312,7 @@ namespace BlueBrick.MapData
 					// draw one or 2 lines
 					if (!mDisplayDistance)
 					{
+						// draw one single line
 						g.DrawLine(penForLine, offset1InPixel, offset2InPixel);
 					}
 					else
@@ -303,22 +347,28 @@ namespace BlueBrick.MapData
 
 						// draw the image containing the text
 						g.DrawImage(mMesurementImage, destinationRectangle, 0, 0, mMesurementImage.Width, mMesurementImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
+
+						// draw the offset if needed
+						if (needToDrawOffset)
+						{
+							PointF point1InPixel = Layer.sConvertPointInStudToPixel(mPoint1, areaInStud, scalePixelPerStud);
+							PointF point2InPixel = Layer.sConvertPointInStudToPixel(mPoint2, areaInStud, scalePixelPerStud);
+
+							// create the pen for the offset lines
+							Pen penForOffsetLine = new Pen(colorWithTransparency, mOffsetLineThickness);
+							penForOffsetLine.DashPattern = mOffsetLineDashPattern;
+
+							// draw the two offset
+							g.DrawLine(penForOffsetLine, point1InPixel, offsetExternal1InPixel);
+							g.DrawLine(penForOffsetLine, point2InPixel, offsetExternal2InPixel);
+						}
 					}
 
-					// draw the offset if needed
-					if (mOffsetDistance != 0.0f)
+					// draw a frame around the ruler if it is selected
+					if (isSelected)
 					{
-						PointF point1InPixel = Layer.sConvertPointInStudToPixel(mPoint1, areaInStud, scalePixelPerStud);
-						PointF point2InPixel = Layer.sConvertPointInStudToPixel(mPoint2, areaInStud, scalePixelPerStud);
-						PointF offsetExtended1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1Extended, areaInStud, scalePixelPerStud);
-						PointF offsetExtended2InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint2Extended, areaInStud, scalePixelPerStud);
-
-						// create the pen for the offset lines
-						Pen penForOffsetLine = new Pen(colorWithTransparency, mOffsetLineThickness);
-
-						// draw the two offset
-						g.DrawLine(penForOffsetLine, point1InPixel, offsetExtended1InPixel);
-						g.DrawLine(penForOffsetLine, point2InPixel, offsetExtended2InPixel);
+						PointF[] polygon = new PointF[] { offsetInternal1InPixel, offsetExternal1InPixel, offsetExternal2InPixel, offsetInternal2InPixel };
+						g.FillPolygon(selectionBrush, polygon);
 					}
 				}
 			}

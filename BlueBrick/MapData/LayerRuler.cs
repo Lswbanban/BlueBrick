@@ -67,8 +67,7 @@ namespace BlueBrick.MapData
 				ColorMatrix colorMatrix = new ColorMatrix();
 				colorMatrix.Matrix33 = (float)value / 100.0f;
 				mImageAttribute.SetColorMatrix(colorMatrix);
-				// TODO: refactor or enable the selection
-//				mSelectionBrush = new SolidBrush(Color.FromArgb((BASE_SELECTION_TRANSPARENCY * value) / 100, 255, 255, 255));
+				mSelectionBrush = new SolidBrush(Color.FromArgb((BASE_SELECTION_TRANSPARENCY * value) / 100, 255, 255, 255));
 			}
 		}
 		#endregion
@@ -160,11 +159,12 @@ namespace BlueBrick.MapData
 
 			// draw all the rulers of the layer
 			foreach (Ruler ruler in mRulers)
-				ruler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute);
+				ruler.draw(g, areaInStud, scalePixelPerStud, mTransparency,
+							mImageAttribute, mSelectedObjects.Contains(ruler), mSelectionBrush);
 
 			// draw the ruler we are currently creating if any
 			if (mCurrentlyEditedRuler != null)
-				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute);
+				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute, false, mSelectionBrush);
 
 			// call the base class to draw the surrounding selection rectangle
 			base.draw(g, areaInStud, scalePixelPerStud);

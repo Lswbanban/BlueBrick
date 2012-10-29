@@ -62,10 +62,24 @@ namespace BlueBrick
 			this.ungroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
 			this.transformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotateCWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotateCCWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStepDisabledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep16ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep05ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.sendToBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.bringToFrontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+			this.rotationStepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotationStep90ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotationStep45ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotationStep22ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotationStep1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotateCWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rotateCCWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.paintToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.paintToolPaintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.paintToolEraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -128,20 +142,15 @@ namespace BlueBrick
 			this.saveExportImageDialog = new System.Windows.Forms.SaveFileDialog();
 			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.toolTipForMainForm = new System.Windows.Forms.ToolTip(this.components);
-			this.moveStepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStepDisabledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep16ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moveStep05ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotationStepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotationStep90ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotationStep45ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotationStep22ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.rotationStep1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+			this.textBoxPartFilter = new System.Windows.Forms.TextBox();
+			this.trashLayerButton = new System.Windows.Forms.Button();
+			this.newLayerRulerButton = new System.Windows.Forms.Button();
+			this.newLayerTextButton = new System.Windows.Forms.Button();
+			this.newLayerAreaButton = new System.Windows.Forms.Button();
+			this.newLayerBrickButton = new System.Windows.Forms.Button();
+			this.newLayerGridButton = new System.Windows.Forms.Button();
+			this.layerUpButton = new System.Windows.Forms.Button();
+			this.layerDownButton = new System.Windows.Forms.Button();
 			this.mainSplitContainer = new BlueBrick.MainSplitContainer();
 			this.mapPanel = new BlueBrick.MapPanel();
 			this.statusBar = new System.Windows.Forms.StatusStrip();
@@ -150,20 +159,11 @@ namespace BlueBrick
 			this.toolSplitContainer = new System.Windows.Forms.SplitContainer();
 			this.splitContainerPartLibrary = new System.Windows.Forms.SplitContainer();
 			this.partsTabControl = new BlueBrick.PartLibraryPanel();
-			this.textBoxPartFilter = new System.Windows.Forms.TextBox();
 			this.layerSplitContainer = new System.Windows.Forms.SplitContainer();
 			this.layerStackPanel = new BlueBrick.LayerStackPanel();
 			this.LayerButtonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.trashLayerButton = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
-			this.newLayerRulerButton = new System.Windows.Forms.Button();
-			this.newLayerTextButton = new System.Windows.Forms.Button();
-			this.newLayerAreaButton = new System.Windows.Forms.Button();
-			this.newLayerBrickButton = new System.Windows.Forms.Button();
-			this.newLayerGridButton = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
-			this.layerUpButton = new System.Windows.Forms.Button();
-			this.layerDownButton = new System.Windows.Forms.Button();
 			this.menuBar.SuspendLayout();
 			this.toolBar.SuspendLayout();
 			this.mainSplitContainer.Panel1.SuspendLayout();
@@ -414,17 +414,62 @@ namespace BlueBrick
 			this.transformToolStripMenuItem.Name = "transformToolStripMenuItem";
 			resources.ApplyResources(this.transformToolStripMenuItem, "transformToolStripMenuItem");
 			// 
-			// rotateCWToolStripMenuItem
+			// moveStepToolStripMenuItem
 			// 
-			this.rotateCWToolStripMenuItem.Name = "rotateCWToolStripMenuItem";
-			resources.ApplyResources(this.rotateCWToolStripMenuItem, "rotateCWToolStripMenuItem");
-			this.rotateCWToolStripMenuItem.Click += new System.EventHandler(this.rotateCWToolStripMenuItem_Click);
+			this.moveStepToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.moveStepDisabledToolStripMenuItem,
+            this.moveStep32ToolStripMenuItem,
+            this.moveStep16ToolStripMenuItem,
+            this.moveStep8ToolStripMenuItem,
+            this.moveStep4ToolStripMenuItem,
+            this.moveStep1ToolStripMenuItem,
+            this.moveStep05ToolStripMenuItem});
+			this.moveStepToolStripMenuItem.Name = "moveStepToolStripMenuItem";
+			resources.ApplyResources(this.moveStepToolStripMenuItem, "moveStepToolStripMenuItem");
 			// 
-			// rotateCCWToolStripMenuItem
+			// moveStepDisabledToolStripMenuItem
 			// 
-			this.rotateCCWToolStripMenuItem.Name = "rotateCCWToolStripMenuItem";
-			resources.ApplyResources(this.rotateCCWToolStripMenuItem, "rotateCCWToolStripMenuItem");
-			this.rotateCCWToolStripMenuItem.Click += new System.EventHandler(this.rotateCCWToolStripMenuItem_Click);
+			this.moveStepDisabledToolStripMenuItem.Name = "moveStepDisabledToolStripMenuItem";
+			resources.ApplyResources(this.moveStepDisabledToolStripMenuItem, "moveStepDisabledToolStripMenuItem");
+			this.moveStepDisabledToolStripMenuItem.Click += new System.EventHandler(this.moveStepDisabledToolStripMenuItem_Click);
+			// 
+			// moveStep32ToolStripMenuItem
+			// 
+			this.moveStep32ToolStripMenuItem.Checked = true;
+			this.moveStep32ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.moveStep32ToolStripMenuItem.Name = "moveStep32ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep32ToolStripMenuItem, "moveStep32ToolStripMenuItem");
+			this.moveStep32ToolStripMenuItem.Click += new System.EventHandler(this.moveStep32ToolStripMenuItem_Click);
+			// 
+			// moveStep16ToolStripMenuItem
+			// 
+			this.moveStep16ToolStripMenuItem.Name = "moveStep16ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep16ToolStripMenuItem, "moveStep16ToolStripMenuItem");
+			this.moveStep16ToolStripMenuItem.Click += new System.EventHandler(this.moveStep16ToolStripMenuItem_Click);
+			// 
+			// moveStep8ToolStripMenuItem
+			// 
+			this.moveStep8ToolStripMenuItem.Name = "moveStep8ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep8ToolStripMenuItem, "moveStep8ToolStripMenuItem");
+			this.moveStep8ToolStripMenuItem.Click += new System.EventHandler(this.moveStep8ToolStripMenuItem_Click);
+			// 
+			// moveStep4ToolStripMenuItem
+			// 
+			this.moveStep4ToolStripMenuItem.Name = "moveStep4ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep4ToolStripMenuItem, "moveStep4ToolStripMenuItem");
+			this.moveStep4ToolStripMenuItem.Click += new System.EventHandler(this.moveStep4ToolStripMenuItem_Click);
+			// 
+			// moveStep1ToolStripMenuItem
+			// 
+			this.moveStep1ToolStripMenuItem.Name = "moveStep1ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep1ToolStripMenuItem, "moveStep1ToolStripMenuItem");
+			this.moveStep1ToolStripMenuItem.Click += new System.EventHandler(this.moveStep1ToolStripMenuItem_Click);
+			// 
+			// moveStep05ToolStripMenuItem
+			// 
+			this.moveStep05ToolStripMenuItem.Name = "moveStep05ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep05ToolStripMenuItem, "moveStep05ToolStripMenuItem");
+			this.moveStep05ToolStripMenuItem.Click += new System.EventHandler(this.moveStep05ToolStripMenuItem_Click);
 			// 
 			// sendToBackToolStripMenuItem
 			// 
@@ -437,6 +482,59 @@ namespace BlueBrick
 			this.bringToFrontToolStripMenuItem.Name = "bringToFrontToolStripMenuItem";
 			resources.ApplyResources(this.bringToFrontToolStripMenuItem, "bringToFrontToolStripMenuItem");
 			this.bringToFrontToolStripMenuItem.Click += new System.EventHandler(this.bringToFrontToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator9
+			// 
+			this.toolStripSeparator9.Name = "toolStripSeparator9";
+			resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
+			// 
+			// rotationStepToolStripMenuItem
+			// 
+			this.rotationStepToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rotationStep90ToolStripMenuItem,
+            this.rotationStep45ToolStripMenuItem,
+            this.rotationStep22ToolStripMenuItem,
+            this.rotationStep1ToolStripMenuItem});
+			this.rotationStepToolStripMenuItem.Name = "rotationStepToolStripMenuItem";
+			resources.ApplyResources(this.rotationStepToolStripMenuItem, "rotationStepToolStripMenuItem");
+			// 
+			// rotationStep90ToolStripMenuItem
+			// 
+			this.rotationStep90ToolStripMenuItem.Checked = true;
+			this.rotationStep90ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.rotationStep90ToolStripMenuItem.Name = "rotationStep90ToolStripMenuItem";
+			resources.ApplyResources(this.rotationStep90ToolStripMenuItem, "rotationStep90ToolStripMenuItem");
+			this.rotationStep90ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep90ToolStripMenuItem_Click);
+			// 
+			// rotationStep45ToolStripMenuItem
+			// 
+			this.rotationStep45ToolStripMenuItem.Name = "rotationStep45ToolStripMenuItem";
+			resources.ApplyResources(this.rotationStep45ToolStripMenuItem, "rotationStep45ToolStripMenuItem");
+			this.rotationStep45ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep45ToolStripMenuItem_Click);
+			// 
+			// rotationStep22ToolStripMenuItem
+			// 
+			this.rotationStep22ToolStripMenuItem.Name = "rotationStep22ToolStripMenuItem";
+			resources.ApplyResources(this.rotationStep22ToolStripMenuItem, "rotationStep22ToolStripMenuItem");
+			this.rotationStep22ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep22ToolStripMenuItem_Click);
+			// 
+			// rotationStep1ToolStripMenuItem
+			// 
+			this.rotationStep1ToolStripMenuItem.Name = "rotationStep1ToolStripMenuItem";
+			resources.ApplyResources(this.rotationStep1ToolStripMenuItem, "rotationStep1ToolStripMenuItem");
+			this.rotationStep1ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep1ToolStripMenuItem_Click);
+			// 
+			// rotateCWToolStripMenuItem
+			// 
+			this.rotateCWToolStripMenuItem.Name = "rotateCWToolStripMenuItem";
+			resources.ApplyResources(this.rotateCWToolStripMenuItem, "rotateCWToolStripMenuItem");
+			this.rotateCWToolStripMenuItem.Click += new System.EventHandler(this.rotateCWToolStripMenuItem_Click);
+			// 
+			// rotateCCWToolStripMenuItem
+			// 
+			this.rotateCCWToolStripMenuItem.Name = "rotateCCWToolStripMenuItem";
+			resources.ApplyResources(this.rotateCCWToolStripMenuItem, "rotateCCWToolStripMenuItem");
+			this.rotateCCWToolStripMenuItem.Click += new System.EventHandler(this.rotateCCWToolStripMenuItem_Click);
 			// 
 			// paintToolToolStripMenuItem
 			// 
@@ -879,103 +977,97 @@ namespace BlueBrick
 			// 
 			this.colorDialog.Color = System.Drawing.Color.Gold;
 			// 
-			// moveStepToolStripMenuItem
+			// textBoxPartFilter
 			// 
-			this.moveStepToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.moveStepDisabledToolStripMenuItem,
-            this.moveStep32ToolStripMenuItem,
-            this.moveStep16ToolStripMenuItem,
-            this.moveStep8ToolStripMenuItem,
-            this.moveStep4ToolStripMenuItem,
-            this.moveStep1ToolStripMenuItem,
-            this.moveStep05ToolStripMenuItem});
-			this.moveStepToolStripMenuItem.Name = "moveStepToolStripMenuItem";
-			resources.ApplyResources(this.moveStepToolStripMenuItem, "moveStepToolStripMenuItem");
+			resources.ApplyResources(this.textBoxPartFilter, "textBoxPartFilter");
+			this.textBoxPartFilter.Name = "textBoxPartFilter";
+			this.toolTipForMainForm.SetToolTip(this.textBoxPartFilter, resources.GetString("textBoxPartFilter.ToolTip"));
+			this.textBoxPartFilter.TextChanged += new System.EventHandler(this.textBoxPartFilter_TextChanged);
+			this.textBoxPartFilter.Enter += new System.EventHandler(this.textBoxPartFilter_Enter);
+			this.textBoxPartFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPartFilter_KeyDown);
+			this.textBoxPartFilter.Leave += new System.EventHandler(this.textBoxPartFilter_Leave);
+			this.textBoxPartFilter.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBoxPartFilter_PreviewKeyDown);
 			// 
-			// moveStepDisabledToolStripMenuItem
+			// trashLayerButton
 			// 
-			this.moveStepDisabledToolStripMenuItem.Name = "moveStepDisabledToolStripMenuItem";
-			resources.ApplyResources(this.moveStepDisabledToolStripMenuItem, "moveStepDisabledToolStripMenuItem");
-			this.moveStepDisabledToolStripMenuItem.Click += new System.EventHandler(this.moveStepDisabledToolStripMenuItem_Click);
+			this.trashLayerButton.BackColor = System.Drawing.SystemColors.Control;
+			this.trashLayerButton.FlatAppearance.BorderSize = 0;
+			this.trashLayerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.trashLayerButton, "trashLayerButton");
+			this.trashLayerButton.Name = "trashLayerButton";
+			this.toolTipForMainForm.SetToolTip(this.trashLayerButton, resources.GetString("trashLayerButton.ToolTip"));
+			this.trashLayerButton.UseVisualStyleBackColor = false;
+			this.trashLayerButton.Click += new System.EventHandler(this.trashLayerButton_Click);
 			// 
-			// moveStep32ToolStripMenuItem
+			// newLayerRulerButton
 			// 
-			this.moveStep32ToolStripMenuItem.Checked = true;
-			this.moveStep32ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.moveStep32ToolStripMenuItem.Name = "moveStep32ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep32ToolStripMenuItem, "moveStep32ToolStripMenuItem");
-			this.moveStep32ToolStripMenuItem.Click += new System.EventHandler(this.moveStep32ToolStripMenuItem_Click);
+			this.newLayerRulerButton.FlatAppearance.BorderSize = 0;
+			this.newLayerRulerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerRulerButton, "newLayerRulerButton");
+			this.newLayerRulerButton.Name = "newLayerRulerButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerRulerButton, resources.GetString("newLayerRulerButton.ToolTip"));
+			this.newLayerRulerButton.UseVisualStyleBackColor = true;
+			this.newLayerRulerButton.Click += new System.EventHandler(this.newLayerRulerButton_Click);
 			// 
-			// moveStep16ToolStripMenuItem
+			// newLayerTextButton
 			// 
-			this.moveStep16ToolStripMenuItem.Name = "moveStep16ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep16ToolStripMenuItem, "moveStep16ToolStripMenuItem");
-			this.moveStep16ToolStripMenuItem.Click += new System.EventHandler(this.moveStep16ToolStripMenuItem_Click);
+			this.newLayerTextButton.FlatAppearance.BorderSize = 0;
+			this.newLayerTextButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerTextButton, "newLayerTextButton");
+			this.newLayerTextButton.Name = "newLayerTextButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerTextButton, resources.GetString("newLayerTextButton.ToolTip"));
+			this.newLayerTextButton.UseVisualStyleBackColor = true;
+			this.newLayerTextButton.Click += new System.EventHandler(this.newLayerTextButton_Click);
 			// 
-			// moveStep8ToolStripMenuItem
+			// newLayerAreaButton
 			// 
-			this.moveStep8ToolStripMenuItem.Name = "moveStep8ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep8ToolStripMenuItem, "moveStep8ToolStripMenuItem");
-			this.moveStep8ToolStripMenuItem.Click += new System.EventHandler(this.moveStep8ToolStripMenuItem_Click);
+			this.newLayerAreaButton.FlatAppearance.BorderSize = 0;
+			this.newLayerAreaButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerAreaButton, "newLayerAreaButton");
+			this.newLayerAreaButton.Name = "newLayerAreaButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerAreaButton, resources.GetString("newLayerAreaButton.ToolTip"));
+			this.newLayerAreaButton.UseVisualStyleBackColor = true;
+			this.newLayerAreaButton.Click += new System.EventHandler(this.newLayerAreaButton_Click);
 			// 
-			// moveStep4ToolStripMenuItem
+			// newLayerBrickButton
 			// 
-			this.moveStep4ToolStripMenuItem.Name = "moveStep4ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep4ToolStripMenuItem, "moveStep4ToolStripMenuItem");
-			this.moveStep4ToolStripMenuItem.Click += new System.EventHandler(this.moveStep4ToolStripMenuItem_Click);
+			this.newLayerBrickButton.FlatAppearance.BorderSize = 0;
+			this.newLayerBrickButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerBrickButton, "newLayerBrickButton");
+			this.newLayerBrickButton.Name = "newLayerBrickButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerBrickButton, resources.GetString("newLayerBrickButton.ToolTip"));
+			this.newLayerBrickButton.UseVisualStyleBackColor = true;
+			this.newLayerBrickButton.Click += new System.EventHandler(this.newLayerBrickButton_Click);
 			// 
-			// moveStep1ToolStripMenuItem
+			// newLayerGridButton
 			// 
-			this.moveStep1ToolStripMenuItem.Name = "moveStep1ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep1ToolStripMenuItem, "moveStep1ToolStripMenuItem");
-			this.moveStep1ToolStripMenuItem.Click += new System.EventHandler(this.moveStep1ToolStripMenuItem_Click);
+			this.newLayerGridButton.FlatAppearance.BorderSize = 0;
+			this.newLayerGridButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerGridButton, "newLayerGridButton");
+			this.newLayerGridButton.Name = "newLayerGridButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerGridButton, resources.GetString("newLayerGridButton.ToolTip"));
+			this.newLayerGridButton.UseVisualStyleBackColor = true;
+			this.newLayerGridButton.Click += new System.EventHandler(this.newLayerGridButton_Click);
 			// 
-			// moveStep05ToolStripMenuItem
+			// layerUpButton
 			// 
-			this.moveStep05ToolStripMenuItem.Name = "moveStep05ToolStripMenuItem";
-			resources.ApplyResources(this.moveStep05ToolStripMenuItem, "moveStep05ToolStripMenuItem");
-			this.moveStep05ToolStripMenuItem.Click += new System.EventHandler(this.moveStep05ToolStripMenuItem_Click);
+			this.layerUpButton.FlatAppearance.BorderSize = 0;
+			this.layerUpButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.layerUpButton, "layerUpButton");
+			this.layerUpButton.Name = "layerUpButton";
+			this.toolTipForMainForm.SetToolTip(this.layerUpButton, resources.GetString("layerUpButton.ToolTip"));
+			this.layerUpButton.UseVisualStyleBackColor = true;
+			this.layerUpButton.Click += new System.EventHandler(this.layerUpButton_Click);
 			// 
-			// rotationStepToolStripMenuItem
+			// layerDownButton
 			// 
-			this.rotationStepToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rotationStep90ToolStripMenuItem,
-            this.rotationStep45ToolStripMenuItem,
-            this.rotationStep22ToolStripMenuItem,
-            this.rotationStep1ToolStripMenuItem});
-			this.rotationStepToolStripMenuItem.Name = "rotationStepToolStripMenuItem";
-			resources.ApplyResources(this.rotationStepToolStripMenuItem, "rotationStepToolStripMenuItem");
-			// 
-			// rotationStep90ToolStripMenuItem
-			// 
-			this.rotationStep90ToolStripMenuItem.Checked = true;
-			this.rotationStep90ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.rotationStep90ToolStripMenuItem.Name = "rotationStep90ToolStripMenuItem";
-			resources.ApplyResources(this.rotationStep90ToolStripMenuItem, "rotationStep90ToolStripMenuItem");
-			this.rotationStep90ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep90ToolStripMenuItem_Click);
-			// 
-			// rotationStep45ToolStripMenuItem
-			// 
-			this.rotationStep45ToolStripMenuItem.Name = "rotationStep45ToolStripMenuItem";
-			resources.ApplyResources(this.rotationStep45ToolStripMenuItem, "rotationStep45ToolStripMenuItem");
-			this.rotationStep45ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep45ToolStripMenuItem_Click);
-			// 
-			// rotationStep22ToolStripMenuItem
-			// 
-			this.rotationStep22ToolStripMenuItem.Name = "rotationStep22ToolStripMenuItem";
-			resources.ApplyResources(this.rotationStep22ToolStripMenuItem, "rotationStep22ToolStripMenuItem");
-			this.rotationStep22ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep22ToolStripMenuItem_Click);
-			// 
-			// rotationStep1ToolStripMenuItem
-			// 
-			this.rotationStep1ToolStripMenuItem.Name = "rotationStep1ToolStripMenuItem";
-			resources.ApplyResources(this.rotationStep1ToolStripMenuItem, "rotationStep1ToolStripMenuItem");
-			this.rotationStep1ToolStripMenuItem.Click += new System.EventHandler(this.rotationStep1ToolStripMenuItem_Click);
-			// 
-			// toolStripSeparator9
-			// 
-			this.toolStripSeparator9.Name = "toolStripSeparator9";
-			resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
+			this.layerDownButton.FlatAppearance.BorderSize = 0;
+			this.layerDownButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.layerDownButton, "layerDownButton");
+			this.layerDownButton.Name = "layerDownButton";
+			this.toolTipForMainForm.SetToolTip(this.layerDownButton, resources.GetString("layerDownButton.ToolTip"));
+			this.layerDownButton.UseVisualStyleBackColor = true;
+			this.layerDownButton.Click += new System.EventHandler(this.layerDownButton_Click);
 			// 
 			// mainSplitContainer
 			// 
@@ -1057,17 +1149,6 @@ namespace BlueBrick
 			this.partsTabControl.Name = "partsTabControl";
 			this.partsTabControl.SelectedIndex = 0;
 			// 
-			// textBoxPartFilter
-			// 
-			resources.ApplyResources(this.textBoxPartFilter, "textBoxPartFilter");
-			this.textBoxPartFilter.Name = "textBoxPartFilter";
-			this.toolTipForMainForm.SetToolTip(this.textBoxPartFilter, resources.GetString("textBoxPartFilter.ToolTip"));
-			this.textBoxPartFilter.TextChanged += new System.EventHandler(this.textBoxPartFilter_TextChanged);
-			this.textBoxPartFilter.Enter += new System.EventHandler(this.textBoxPartFilter_Enter);
-			this.textBoxPartFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPartFilter_KeyDown);
-			this.textBoxPartFilter.Leave += new System.EventHandler(this.textBoxPartFilter_Leave);
-			this.textBoxPartFilter.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBoxPartFilter_PreviewKeyDown);
-			// 
 			// layerSplitContainer
 			// 
 			resources.ApplyResources(this.layerSplitContainer, "layerSplitContainer");
@@ -1103,96 +1184,15 @@ namespace BlueBrick
 			resources.ApplyResources(this.LayerButtonFlowLayoutPanel, "LayerButtonFlowLayoutPanel");
 			this.LayerButtonFlowLayoutPanel.Name = "LayerButtonFlowLayoutPanel";
 			// 
-			// trashLayerButton
-			// 
-			this.trashLayerButton.BackColor = System.Drawing.SystemColors.Control;
-			this.trashLayerButton.FlatAppearance.BorderSize = 0;
-			this.trashLayerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.trashLayerButton, "trashLayerButton");
-			this.trashLayerButton.Name = "trashLayerButton";
-			this.toolTipForMainForm.SetToolTip(this.trashLayerButton, resources.GetString("trashLayerButton.ToolTip"));
-			this.trashLayerButton.UseVisualStyleBackColor = false;
-			this.trashLayerButton.Click += new System.EventHandler(this.trashLayerButton_Click);
-			// 
 			// label2
 			// 
 			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
 			// 
-			// newLayerRulerButton
-			// 
-			this.newLayerRulerButton.FlatAppearance.BorderSize = 0;
-			this.newLayerRulerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerRulerButton, "newLayerRulerButton");
-			this.newLayerRulerButton.Name = "newLayerRulerButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerRulerButton, resources.GetString("newLayerRulerButton.ToolTip"));
-			this.newLayerRulerButton.UseVisualStyleBackColor = true;
-			this.newLayerRulerButton.Click += new System.EventHandler(this.newLayerRulerButton_Click);
-			// 
-			// newLayerTextButton
-			// 
-			this.newLayerTextButton.FlatAppearance.BorderSize = 0;
-			this.newLayerTextButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerTextButton, "newLayerTextButton");
-			this.newLayerTextButton.Name = "newLayerTextButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerTextButton, resources.GetString("newLayerTextButton.ToolTip"));
-			this.newLayerTextButton.UseVisualStyleBackColor = true;
-			this.newLayerTextButton.Click += new System.EventHandler(this.newLayerTextButton_Click);
-			// 
-			// newLayerAreaButton
-			// 
-			this.newLayerAreaButton.FlatAppearance.BorderSize = 0;
-			this.newLayerAreaButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerAreaButton, "newLayerAreaButton");
-			this.newLayerAreaButton.Name = "newLayerAreaButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerAreaButton, resources.GetString("newLayerAreaButton.ToolTip"));
-			this.newLayerAreaButton.UseVisualStyleBackColor = true;
-			this.newLayerAreaButton.Click += new System.EventHandler(this.newLayerAreaButton_Click);
-			// 
-			// newLayerBrickButton
-			// 
-			this.newLayerBrickButton.FlatAppearance.BorderSize = 0;
-			this.newLayerBrickButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerBrickButton, "newLayerBrickButton");
-			this.newLayerBrickButton.Name = "newLayerBrickButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerBrickButton, resources.GetString("newLayerBrickButton.ToolTip"));
-			this.newLayerBrickButton.UseVisualStyleBackColor = true;
-			this.newLayerBrickButton.Click += new System.EventHandler(this.newLayerBrickButton_Click);
-			// 
-			// newLayerGridButton
-			// 
-			this.newLayerGridButton.FlatAppearance.BorderSize = 0;
-			this.newLayerGridButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerGridButton, "newLayerGridButton");
-			this.newLayerGridButton.Name = "newLayerGridButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerGridButton, resources.GetString("newLayerGridButton.ToolTip"));
-			this.newLayerGridButton.UseVisualStyleBackColor = true;
-			this.newLayerGridButton.Click += new System.EventHandler(this.newLayerGridButton_Click);
-			// 
 			// label1
 			// 
 			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			// 
-			// layerUpButton
-			// 
-			this.layerUpButton.FlatAppearance.BorderSize = 0;
-			this.layerUpButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.layerUpButton, "layerUpButton");
-			this.layerUpButton.Name = "layerUpButton";
-			this.toolTipForMainForm.SetToolTip(this.layerUpButton, resources.GetString("layerUpButton.ToolTip"));
-			this.layerUpButton.UseVisualStyleBackColor = true;
-			this.layerUpButton.Click += new System.EventHandler(this.layerUpButton_Click);
-			// 
-			// layerDownButton
-			// 
-			this.layerDownButton.FlatAppearance.BorderSize = 0;
-			this.layerDownButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.layerDownButton, "layerDownButton");
-			this.layerDownButton.Name = "layerDownButton";
-			this.toolTipForMainForm.SetToolTip(this.layerDownButton, resources.GetString("layerDownButton.ToolTip"));
-			this.layerDownButton.UseVisualStyleBackColor = true;
-			this.layerDownButton.Click += new System.EventHandler(this.layerDownButton_Click);
 			// 
 			// MainForm
 			// 
