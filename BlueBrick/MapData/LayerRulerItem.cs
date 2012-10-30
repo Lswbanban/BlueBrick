@@ -48,20 +48,24 @@ namespace BlueBrick.MapData
 		[Serializable]
 		public class Ruler : RulerItem
 		{
+			private enum SelectionAreaIndex
+			{
+				INTERNAL_1 = 0,
+				EXTERNAL_1,
+				EXTERNAL_2,
+				INTERNAL_2
+			}
+
 			// geometrical information, the points look like that:
-			// mOffsetPoint1External |        | mOffsetPoint2External
-			//         mOffsetPoint1 +---42---+ mOffsetPoint2
-			// mOffsetPoint1Internal |        | mOffsetPoint2Internal
-			//                       |        |
-			//               mPoint1 |        | mPoint2 
+			// mSelectionArea[1] |        | mSelectionArea[2]
+			//     mOffsetPoint1 +---42---+ mOffsetPoint2
+			// mSelectionArea[0] |        | mSelectionArea[3]
+			//                   |        |
+			//           mPoint1 |        | mPoint2 
 			private PointF mPoint1 = new PointF(); // coord of the first point in Stud coord
 			private PointF mPoint2 = new PointF(); // coord of the second point in Stud coord
 			private PointF mOffsetPoint1 = new PointF(); // the offset point corresponding to Point1 in stud
 			private PointF mOffsetPoint2 = new PointF(); // the offset point corresponding to Point2 in stud
-			private PointF mOffsetPoint1External = new PointF(); // the even more extended point corresponding to Point1 in stud
-			private PointF mOffsetPoint2External = new PointF(); // the even more extended point corresponding to Point2 in stud
-			private PointF mOffsetPoint1Internal = new PointF(); // the less extended point corresponding to Point1 in stud
-			private PointF mOffsetPoint2Internal = new PointF(); // the less extended point corresponding to Point2 in stud			
 			private PointF mUnitVector = new PointF(); // the unit vector of the line between point1 and point2
 			private float mOffsetDistance = 0.0f; // the offset distance in stud coord
 			private Tools.Distance mMesuredDistance = new Tools.Distance(); // the distance mesured between the two extremities in stud unit
@@ -120,6 +124,7 @@ namespace BlueBrick.MapData
 			#region constructor
 			public Ruler(PointF point1, PointF point2)
 			{
+				mSelectionArea = new PointF[4];
 				mMesurementStringFormat.Alignment = StringAlignment.Center;
 				mMesurementStringFormat.LineAlignment = StringAlignment.Center;
 				mPoint1 = point1;
@@ -178,13 +183,13 @@ namespace BlueBrick.MapData
 				const float EXTEND_IN_STUD = 2.0f; //TODO: maybe make it a maximum between the font size/2 and this fixed value
 				float extendX = offsetNormalizedVector.X * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
 				float extendY = offsetNormalizedVector.Y * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
-				mOffsetPoint1External = new PointF(mOffsetPoint1.X + extendX, mOffsetPoint1.Y + extendY);
-				mOffsetPoint2External = new PointF(mOffsetPoint2.X + extendX, mOffsetPoint2.Y + extendY);
-				mOffsetPoint1Internal = new PointF(mOffsetPoint1.X - extendX, mOffsetPoint1.Y - extendY);
-				mOffsetPoint2Internal = new PointF(mOffsetPoint2.X - extendX, mOffsetPoint2.Y - extendY);
+				mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_1] = new PointF(mOffsetPoint1.X + extendX, mOffsetPoint1.Y + extendY);
+				mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_2] = new PointF(mOffsetPoint2.X + extendX, mOffsetPoint2.Y + extendY);
+				mSelectionArea[(int)SelectionAreaIndex.INTERNAL_1] = new PointF(mOffsetPoint1.X - extendX, mOffsetPoint1.Y - extendY);
+				mSelectionArea[(int)SelectionAreaIndex.INTERNAL_2] = new PointF(mOffsetPoint2.X - extendX, mOffsetPoint2.Y - extendY);
 
 				// compute the 4 corner of the ruler
-				PointF[] corners = { mPoint1, mPoint2, mOffsetPoint1External, mOffsetPoint2External };
+				PointF[] corners = { mPoint1, mPoint2, mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_1], mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_2] };
 
 				// now find the min and max
 				float minX = corners[0].X;
@@ -292,8 +297,8 @@ namespace BlueBrick.MapData
 					PointF offsetInternal2InPixel = new PointF();
 					if (isSelected)
 					{
-						offsetInternal1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1Internal, areaInStud, scalePixelPerStud);
-						offsetInternal2InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint2Internal, areaInStud, scalePixelPerStud);
+						offsetInternal1InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.INTERNAL_1], areaInStud, scalePixelPerStud);
+						offsetInternal2InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.INTERNAL_2], areaInStud, scalePixelPerStud);
 					}
 
 					// external point may be computed only for certain conditions
@@ -301,8 +306,8 @@ namespace BlueBrick.MapData
 					PointF offsetExternal2InPixel = new PointF();					
 					if (isSelected || needToDrawOffset)
 					{
-						offsetExternal1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1External, areaInStud, scalePixelPerStud);
-						offsetExternal2InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint2External, areaInStud, scalePixelPerStud);
+						offsetExternal1InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_1], areaInStud, scalePixelPerStud);
+						offsetExternal2InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_2], areaInStud, scalePixelPerStud);
 					}
 
 					// create the pen for the lines

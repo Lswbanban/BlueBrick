@@ -42,6 +42,7 @@ namespace BlueBrick.MapData
 			public static List<Group> sListForGroupSaving = new List<Group>(); // this list is used during the saving of BBM file to save all the grouping hierarchy
 
 			protected RectangleF mDisplayArea = new RectangleF(); // in stud coordinate
+			protected PointF[] mSelectionArea = null; // in stud coordinate. Most of the time, this is the hull of the item
 			protected float mOrientation = 0;	// in degree
 			protected Group mMyGroup = null; // the group in which this item is
 
@@ -72,6 +73,9 @@ namespace BlueBrick.MapData
 			{
 				set
 				{
+					// translate the selection area before changing the values
+					translateSelectionArea(mDisplayArea.Location, value);
+					// then set the new coordinate of the display area
 					mDisplayArea.X = value.X;
 					mDisplayArea.Y = value.Y;
 				}
@@ -90,8 +94,12 @@ namespace BlueBrick.MapData
 
 				set
 				{
-					mDisplayArea.X = value.X - (mDisplayArea.Width * 0.5f);
-					mDisplayArea.Y = value.Y - (mDisplayArea.Height * 0.5f);
+					// compute the new corner position
+					PointF newLocation = new PointF(value.X - (mDisplayArea.Width * 0.5f), value.Y - (mDisplayArea.Height * 0.5f));
+					// translate the selection area before changing the values
+					translateSelectionArea(mDisplayArea.Location, newLocation);
+					// then set the new coordinate of the display area
+					mDisplayArea.Location = newLocation;
 				}
 			}
 
@@ -112,11 +120,20 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
-			/// get the display area of the item in stud
+			/// Get the display area of the item in stud. Basically it is an Axis Aligned Bounding Box.
 			/// </summary>
 			public RectangleF DisplayArea
 			{
 				get { return mDisplayArea; }
+			}
+
+			/// <summary>
+			/// Get the selection area of the item in stud. The selection area may be smaller and finer
+			/// than the display area, most of the time it's basically the hull of the item.
+			/// </summary>
+			public PointF[] SelectionArea
+			{
+				get { return mSelectionArea; }
 			}
 
 			/// <summary>
@@ -238,6 +255,18 @@ namespace BlueBrick.MapData
 				else
 				{
 					selectionList.Remove(this);
+				}
+			}
+			#endregion
+
+			#region update
+			private void translateSelectionArea(PointF oldPosition, PointF newPosition)
+			{
+				if (mSelectionArea != null)
+				{
+					Matrix translation = new Matrix();
+					translation.Translate(newPosition.X - oldPosition.X, newPosition.Y - oldPosition.Y);
+					translation.TransformPoints(mSelectionArea);
 				}
 			}
 			#endregion
@@ -1127,6 +1156,25 @@ namespace BlueBrick.MapData
 		{
 			return new PointF( (float)((pointInStud.X - areaInStud.Left) * scalePixelPerStud),
 								(float)((pointInStud.Y - areaInStud.Top) * scalePixelPerStud));
+		}
+
+		/// <summary>
+		/// Convert the specified polygon in stud coordinate into a polygon in pixel coordinate given the 
+		/// current area displayed in stud and the current scale of the view.
+		/// </summary>
+		/// <param name="polygonInStud">The polygon to convert</param>
+		/// <param name="areaInStud">The current displayed area in stud coordinate</param>
+		/// <param name="scalePixelPerStud">The current scale of the view</param>
+		/// <returns>The same polygon but expressed in pixel coordinate in the current view</returns>
+		public static PointF[] sConvertPolygonInStudToPixel(PointF[] polygonInStud, RectangleF areaInStud, double scalePixelPerStud)
+		{
+			// create an array of the same size
+			PointF[] polygonInPixel = new PointF[polygonInStud.Length];
+			// call the point conversion method on every point
+			for (int i = 0; i < polygonInStud.Length; ++i)
+				polygonInPixel[i] = sConvertPointInStudToPixel(polygonInStud[i], areaInStud, scalePixelPerStud);
+			// return the result
+			return polygonInPixel;
 		}
 
 		/// <summary>

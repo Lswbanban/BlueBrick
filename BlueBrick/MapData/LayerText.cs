@@ -153,50 +153,59 @@ namespace BlueBrick.MapData
 				// create a bitmap if the text is not empty
 				if (mText != "")
 				{
-					// create a scaled font from the current one, to avoid aliasing
-					const float FONT_SCALE = 4.0f;
-					Font scaledTextFont = new Font(mTextFont.FontFamily, mTextFont.Size * FONT_SCALE, mTextFont.Style);
+					// create a font to mesure the text
+					Font textFont = new Font(mTextFont.FontFamily, mTextFont.Size, mTextFont.Style);
 
 					Graphics graphics = Graphics.FromImage(mImage);
-					SizeF scaledTextFontSize = graphics.MeasureString(mText, scaledTextFont);
-					int width = (int)scaledTextFontSize.Width;
-					int height = (int)scaledTextFontSize.Height;
+					SizeF textFontSize = graphics.MeasureString(mText, textFont);
+					float halfWidth = textFontSize.Width * 0.5f;
+					float halfHeight = textFontSize.Height * 0.5f;
 
 					Matrix rotation = new Matrix();
 					rotation.Rotate(mOrientation);
-					Point[] points = { new Point(width, 0), new Point(0, height), new Point(width, height) };
-					rotation.TransformVectors(points);
+					mSelectionArea = new PointF[] { new PointF(-halfWidth, -halfHeight), new PointF(-halfWidth, halfHeight), new PointF(halfWidth, halfHeight), new PointF(halfWidth, -halfHeight) };
+					rotation.TransformVectors(mSelectionArea);
 
-					Point min = new Point(0, 0);
-					Point max = new Point(0, 0);
-					for (int i = 0; i < 3; ++i)
+					PointF min = mSelectionArea[0];
+					PointF max = mSelectionArea[0];
+					for (int i = 1; i < 4; ++i)
 					{
-						if (points[i].X < min.X)
-							min.X = points[i].X;
-						if (points[i].Y < min.Y)
-							min.Y = points[i].Y;
-						if (points[i].X > max.X)
-							max.X = points[i].X;
-						if (points[i].Y > max.Y)
-							max.Y = points[i].Y;
+						if (mSelectionArea[i].X < min.X)
+							min.X = mSelectionArea[i].X;
+						if (mSelectionArea[i].Y < min.Y)
+							min.Y = mSelectionArea[i].Y;
+						if (mSelectionArea[i].X > max.X)
+							max.X = mSelectionArea[i].X;
+						if (mSelectionArea[i].Y > max.Y)
+							max.Y = mSelectionArea[i].Y;
 					}
-					mImage = new Bitmap(mImage, new Size(Math.Abs(max.X - min.X), Math.Abs(max.Y - min.Y)));
-					mDisplayArea.Width = mImage.Size.Width / FONT_SCALE;
-					mDisplayArea.Height = mImage.Size.Height / FONT_SCALE;
+					// adjust the display area and selection area
+					mDisplayArea.Width = Math.Abs(max.X - min.X);
+					mDisplayArea.Height = Math.Abs(max.Y - min.Y);
+
+					// adjust the selection area (after adjusting the display area sucha as the center properties is correct)
+					Matrix translation = new Matrix();
+					translation.Translate(Center.X, Center.Y);
+					translation.TransformPoints(mSelectionArea);
+
+					// now create a scaled font from the current one, to avoid aliasing
+					const float FONT_SCALE = 4.0f;
+					Font scaledTextFont = new Font(mTextFont.FontFamily, mTextFont.Size * FONT_SCALE, mTextFont.Style);
+					mImage = new Bitmap(mImage, new Size((int)(mDisplayArea.Width * FONT_SCALE), (int)(mDisplayArea.Height * FONT_SCALE)));
 
 					// compute the position where to draw according to the alignment (if centered == 0)
 					float posx = 0;
 					if (this.TextAlignment == StringAlignment.Far)
-						posx = width / 2;
+						posx = halfWidth;
 					else if (this.TextAlignment == StringAlignment.Near)
-						posx = -width / 2;
+						posx = -halfWidth;
 
 					graphics = Graphics.FromImage(mImage);
 					rotation.Translate(mImage.Width / 2, mImage.Height / 2, MatrixOrder.Append);
 					graphics.Transform = rotation;
 					graphics.Clear(Color.Transparent);
 					graphics.SmoothingMode = SmoothingMode.HighQuality;
-					graphics.DrawString(mText, scaledTextFont, mTextBrush, posx, 0, mTextStringFormat);
+					graphics.DrawString(mText, scaledTextFont, mTextBrush, posx * FONT_SCALE, 0, mTextStringFormat);
 					graphics.Flush();
 				}
 			}
@@ -416,7 +425,7 @@ namespace BlueBrick.MapData
 
 					// draw a frame around the selected cell while the text size is still in pixel
 					if (mSelectedObjects.Contains(cell))
-						g.FillRectangle(mSelectionBrush, destinationRectangle);
+						g.FillPolygon(mSelectionBrush, Layer.sConvertPolygonInStudToPixel(cell.SelectionArea, areaInStud, scalePixelPerStud));
 				}
 			}
 

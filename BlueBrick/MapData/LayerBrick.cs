@@ -682,16 +682,18 @@ namespace BlueBrick.MapData
 				PointF boundingMax = new PointF();
 				PointF boundingSize = sGetMinMaxAndSize(boundingPoints, ref boundingMin, ref boundingMax);
 
+				// transform the hull to get the selection area
+				mSelectionArea = hull.ToArray();
+				rotation.TransformVectors(mSelectionArea);
+				//TODO probably need to add the translation here
+
 				// check if this picture has a specific hull
 				if (hull != boundingBox)
 				{
-					// there's a more precise hull, so transform it and get its size
-					PointF[] hullPoints = hull.ToArray();
-					rotation.TransformVectors(hullPoints);
-
+					// get the bounding size from the hull
 					PointF hullMin = new PointF();
 					PointF hullMax = new PointF();
-					PointF hullSize = sGetMinMaxAndSize(hullPoints, ref hullMin, ref hullMax);
+					PointF hullSize = sGetMinMaxAndSize(mSelectionArea, ref hullMin, ref hullMax);
 
 					// compute the offset between the hull and the normal bounding box
 					PointF deltaMin = new PointF(boundingMin.X - hullMin.X, boundingMin.Y - hullMin.Y);
