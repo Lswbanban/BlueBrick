@@ -1053,6 +1053,122 @@ namespace BlueBrick.MapData
 
 		#region tool on point in stud
 		/// <summary>
+		/// Convert the specified point in stud coordinate into a point in pixel coordinate given the 
+		/// current area displayed in stud and the current scale of the view.
+		/// </summary>
+		/// <param name="pointInStud">The point to convert</param>
+		/// <param name="areaInStud">The current displayed area in stud coordinate</param>
+		/// <param name="scalePixelPerStud">The current scale of the view</param>
+		/// <returns>The same point but expressed in pixel coordinate in the current view</returns>
+		public static PointF sConvertPointInStudToPixel(PointF pointInStud, RectangleF areaInStud, double scalePixelPerStud)
+		{
+			return new PointF((float)((pointInStud.X - areaInStud.Left) * scalePixelPerStud),
+								(float)((pointInStud.Y - areaInStud.Top) * scalePixelPerStud));
+		}
+
+		/// <summary>
+		/// Convert the specified polygon in stud coordinate into a polygon in pixel coordinate given the 
+		/// current area displayed in stud and the current scale of the view.
+		/// </summary>
+		/// <param name="polygonInStud">The polygon to convert</param>
+		/// <param name="areaInStud">The current displayed area in stud coordinate</param>
+		/// <param name="scalePixelPerStud">The current scale of the view</param>
+		/// <returns>The same polygon but expressed in pixel coordinate in the current view</returns>
+		public static PointF[] sConvertPolygonInStudToPixel(PointF[] polygonInStud, RectangleF areaInStud, double scalePixelPerStud)
+		{
+			// create an array of the same size
+			PointF[] polygonInPixel = new PointF[polygonInStud.Length];
+			// call the point conversion method on every point
+			for (int i = 0; i < polygonInStud.Length; ++i)
+				polygonInPixel[i] = sConvertPointInStudToPixel(polygonInStud[i], areaInStud, scalePixelPerStud);
+			// return the result
+			return polygonInPixel;
+		}
+
+		/// <summary>
+		/// A tool function to check if the specified point is inside the specified polygon.
+		/// Both the point to test and the polygon points definition must be in the same coorinate
+		/// system for the function to give sensible result.
+		/// This function is mainly used for picking an item by checking if the mouse click in inside the
+		/// selection area (hull) of the item. This function use the Ray casting algorythm, by casting the ray
+		/// horizontally from the the point to test.
+		/// </summary>
+		/// <param name="point">the point to test</param>
+		/// <param name="polygon">the polygon in which checking the point in the same coordinate system of the point</param>
+		/// <returns>true if the specified point is inside the specified polygon</returns>
+		protected bool isPointInsidePolygon(PointF point, PointF[] polygon)
+		{
+			try
+			{
+				int segmentCrossCount = 0;
+				// we assume that the polygon is not degenerated, otherwise the catch will return false
+				// start with the last point of the polygon, such as we can close the polygon
+				// i.e the first iteration of the loop will test the segment between the last vertex and the first one
+				PointF vertex1 = polygon[polygon.Length - 1];
+				for (int i = 0 ; i < polygon.Length; ++i)
+				{
+					PointF vertex2 = polygon[i];
+
+					// check if vertex 1 and 2 are above and under the point to have a crossing
+					if (((vertex1.Y < point.Y) && (point.Y < vertex2.Y)) ||
+						((vertex2.Y < point.Y) && (point.Y < vertex1.Y)))
+					{
+						// check if vertex 1 is on the right or left of the point
+						if (point.X < vertex1.X)
+						{
+							// check if vertex 2 is on the right or left of the point
+							if (point.X < vertex2.X)
+							{
+								// if the two vertice are both on the right, we have a crossing
+								segmentCrossCount++;
+							}
+							else
+							{
+								// vertex 1 on the right and 2 on the left, we need to compute the crossing
+								// compute the slope of the segment (from left to right)
+								float slope = (vertex1.X - vertex2.X) / (vertex1.Y - vertex2.Y);
+								// then compute the X of the intersection point for Y=point.Y
+								// with the line equation f(Y)= slope * X + cst
+								float intersectionX = (slope * (point.Y - vertex2.Y)) + vertex2.X;
+								// then we have a crossing if the intersection is on the right of the point
+								if (point.X < intersectionX)
+									segmentCrossCount++;
+							}
+						}
+						else
+						{
+							// check if vertex 2 is on the right or left of the point
+							if (point.X < vertex2.X)
+							{
+								// vertex 1 on the left and 2 on the right, we need to compute the crossing
+								// compute the slope of the segment (from left to right)
+								float slope = (vertex2.X - vertex1.X) / (vertex2.Y - vertex1.Y);
+								// then compute the X of the intersection point for Y=point.Y
+								// with the line equation f(Y)= slope * X + cst
+								float intersectionX = (slope * (point.Y - vertex1.Y)) + vertex1.X;
+								// then we have a crossing if the intersection is on the right of the point
+								if (point.X < intersectionX)
+									segmentCrossCount++;
+							}
+							// else: if both vertice on the left, we don't count the crossing
+						}
+					}
+					// else: if both vertice above or both under, there is no crossing
+					
+					// move the second vertex into the first one for the next iteration
+					vertex1 = vertex2;
+				}
+
+				// the point is inside the polygon if we have an odd number of crossing
+				return ((segmentCrossCount % 2) == 1);
+			}	
+			catch
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
 		/// Tell is the specified point (in stud coord) is inside the current
 		/// selection rectangle.
 		/// </summary>
@@ -1103,11 +1219,8 @@ namespace BlueBrick.MapData
 			for (int i = itemList.Count - 1; i >= 0; --i)
 			{
 				LayerItem item = itemList[i];
-				if ((mouseCoordInStud.X > item.DisplayArea.Left) && (mouseCoordInStud.X < item.DisplayArea.Right) &&
-					(mouseCoordInStud.Y > item.DisplayArea.Top) && (mouseCoordInStud.Y < item.DisplayArea.Bottom))
-				{
+				if (isPointInsidePolygon(mouseCoordInStud, item.SelectionArea))
 					return item;
-				}
 			}
 			return null;
 		}
@@ -1143,39 +1256,6 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <returns></returns>
 		public abstract RectangleF getTotalAreaInStud();
-
-		/// <summary>
-		/// Convert the specified point in stud coordinate into a point in pixel coordinate given the 
-		/// current area displayed in stud and the current scale of the view.
-		/// </summary>
-		/// <param name="pointInStud">The point to convert</param>
-		/// <param name="areaInStud">The current displayed area in stud coordinate</param>
-		/// <param name="scalePixelPerStud">The current scale of the view</param>
-		/// <returns>The same point but expressed in pixel coordinate in the current view</returns>
-		public static PointF sConvertPointInStudToPixel(PointF pointInStud, RectangleF areaInStud, double scalePixelPerStud)
-		{
-			return new PointF( (float)((pointInStud.X - areaInStud.Left) * scalePixelPerStud),
-								(float)((pointInStud.Y - areaInStud.Top) * scalePixelPerStud));
-		}
-
-		/// <summary>
-		/// Convert the specified polygon in stud coordinate into a polygon in pixel coordinate given the 
-		/// current area displayed in stud and the current scale of the view.
-		/// </summary>
-		/// <param name="polygonInStud">The polygon to convert</param>
-		/// <param name="areaInStud">The current displayed area in stud coordinate</param>
-		/// <param name="scalePixelPerStud">The current scale of the view</param>
-		/// <returns>The same polygon but expressed in pixel coordinate in the current view</returns>
-		public static PointF[] sConvertPolygonInStudToPixel(PointF[] polygonInStud, RectangleF areaInStud, double scalePixelPerStud)
-		{
-			// create an array of the same size
-			PointF[] polygonInPixel = new PointF[polygonInStud.Length];
-			// call the point conversion method on every point
-			for (int i = 0; i < polygonInStud.Length; ++i)
-				polygonInPixel[i] = sConvertPointInStudToPixel(polygonInStud[i], areaInStud, scalePixelPerStud);
-			// return the result
-			return polygonInPixel;
-		}
 
 		/// <summary>
 		/// Draw the layer.
