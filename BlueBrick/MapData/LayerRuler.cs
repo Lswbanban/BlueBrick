@@ -42,6 +42,7 @@ namespace BlueBrick.MapData
 		// variable used during the edition
 		private RulerItem mCurrentRulerUnderMouse = null;
 		private Ruler mCurrentlyEditedRuler = null;
+		private Circle mCurrentlyEditedCircle = null;
 		private bool mIsEditingOffsetOfRuler = false;
 		private const int BASE_SELECTION_TRANSPARENCY = 112;
 		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb(BASE_SELECTION_TRANSPARENCY, 255, 255, 255));
@@ -158,13 +159,15 @@ namespace BlueBrick.MapData
 				return;
 
 			// draw all the rulers of the layer
-			foreach (Ruler ruler in mRulers)
+			foreach (RulerItem ruler in mRulers)
 				ruler.draw(g, areaInStud, scalePixelPerStud, mTransparency,
 							mImageAttribute, mSelectedObjects.Contains(ruler), mSelectionBrush);
 
 			// draw the ruler we are currently creating if any
 			if (mCurrentlyEditedRuler != null)
 				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute, false, mSelectionBrush);
+			if (mCurrentlyEditedCircle != null)
+				mCurrentlyEditedCircle.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute, false, mSelectionBrush);
 
 			// call the base class to draw the surrounding selection rectangle
 			base.draw(g, areaInStud, scalePixelPerStud);
@@ -267,7 +270,7 @@ namespace BlueBrick.MapData
 
 				case EditTool.CIRCLE:
 					//TODO
-					willHandleMouse = false;
+					willHandleMouse = true;
 					break;
 			}
 
@@ -356,6 +359,7 @@ namespace BlueBrick.MapData
 					break;
 
 				case EditTool.CIRCLE:
+					mCurrentlyEditedCircle = new Circle(mouseCoordInStud, 0.0f);
 					break;
 			}
 
@@ -389,6 +393,11 @@ namespace BlueBrick.MapData
 					break;
 
 				case EditTool.CIRCLE:
+					if (mCurrentlyEditedCircle != null)
+					{
+						mCurrentlyEditedCircle.OnePointOnCircle = mouseCoordInStud;
+						mustRefresh = true;
+					}
 					break;
 			}
 
@@ -426,6 +435,13 @@ namespace BlueBrick.MapData
 					break;
 
 				case EditTool.CIRCLE:
+					if (mCurrentlyEditedCircle != null)
+					{
+						mCurrentlyEditedCircle.OnePointOnCircle = mouseCoordInStud;
+						Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedCircle));
+						mCurrentlyEditedCircle = null;
+						mustRefresh = true;
+					}
 					break;
 			}
 

@@ -29,6 +29,10 @@ namespace BlueBrick.MapData
 		[Serializable]
 		public abstract class RulerItem : LayerItem
 		{
+			// variable for drawing
+			protected Color mColor = Color.Black; // color of the lines
+			protected float mLineThickness = 4.0f; // the thickness of the lines
+
 			/// <summary>
 			/// Draw the ruler item.
 			/// </summary>
@@ -73,8 +77,6 @@ namespace BlueBrick.MapData
 			private bool mDisplayUnit = true; // if true display the unit just after the distance
 
 			// variable for the draw
-			private Color mColor = Color.Black; // color of the lines
-			private float mLineThickness = 4.0f; // the thickness of the lines
 			private float mOffsetLineThickness = 1.0f; // the thickness of the guide lines when this ruler has an offset
 			private float[] mOffsetLineDashPattern = new float[] { 2.0f, 4.0f }; // pattern for the dashed offset line (succesion of dash length and space length, starting with dash)
 			private SolidBrush mMesurementBrush = new SolidBrush(Color.Black);
@@ -375,6 +377,111 @@ namespace BlueBrick.MapData
 						PointF[] polygon = new PointF[] { offsetInternal1InPixel, offsetExternal1InPixel, offsetExternal2InPixel, offsetInternal2InPixel };
 						g.FillPolygon(selectionBrush, polygon);
 					}
+				}
+			}
+			#endregion
+		}
+
+		/// <summary>
+		/// A Circle is a specific RulerItem which is represented by a circle on which the diameter is displayed
+		/// </summary>
+		[Serializable]
+		public class Circle : RulerItem
+		{
+			// for performance reason we store the center, but it could be computed from the display area
+			private PointF mCenter = new PointF();
+			private float mRadius = 0.0f;
+
+			#region get/set
+			/// <summary>
+			/// Set or Get the center of this circle
+			/// </summary>
+			public override PointF Center
+			{
+				get { return mCenter; }
+				set
+				{
+					mCenter = value;
+					base.Center = value;
+				}
+			}
+
+			/// <summary>
+			/// Set or Get the radius of this circle
+			/// </summary>
+			public float Radius
+			{
+				get { return mRadius; }
+				set
+				{
+					mRadius = value;
+					updateDisplayData();
+				}
+			}
+
+			/// <summary>
+			/// Define a point that belongs to this circle. The radius is computed with the current 
+			/// center then the circle geometry is updated
+			/// </summary>
+			public PointF OnePointOnCircle
+			{
+				set
+				{
+					// compute the new radius
+					PointF radiusVector = new PointF(value.X - mCenter.X, value.Y - mCenter.Y);
+					// set the radius by calling the accessor to trigger the necessary update
+					Radius = (float)Math.Sqrt((radiusVector.X * radiusVector.X) + (radiusVector.Y * radiusVector.Y));
+				}
+			}
+			#endregion
+
+			#region constructor
+			public Circle(PointF center, float radius)
+			{
+				// set the center
+				mCenter = center;
+				mRadius = radius;
+				// update the display area
+				updateDisplayData();
+			}
+
+			/// <summary>
+			/// Update the display area of this layer item from the center point and the radius
+			/// </summary>
+			private void updateDisplayData()
+			{
+				mDisplayArea.X = mCenter.X - mRadius;
+				mDisplayArea.Y = mCenter.Y - mRadius;
+				float diameter = mRadius * 2.0f;
+				mDisplayArea.Width = diameter;
+				mDisplayArea.Height = diameter;
+			}
+			#endregion
+
+			#region draw
+			/// <summary>
+			/// Draw the ruler.
+			/// </summary>
+			/// <param name="g">the graphic context in which draw the layer</param>
+			/// <param name="areaInStud">the visible area of the map in stud coordinates</param>
+			/// <param name="scalePixelPerStud">the current scale of the map in order to convert stud into screen pixels</param>
+			/// <param name="layerTransparency">the current transparency of the parent layer</param>
+			/// <param name="layerImageAttributeWithTransparency">image attribute containing current transparency in order to draw image (if needed by this ruler)</param>
+			/// <param name="isSelected">tell if this ruler is currently selected in its parent layer selection</param>
+			/// <param name="selectionBrush">the brush to use if this ruler is selected</param>
+			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush)
+			{
+				// check if the ruler is visible
+				if ((mDisplayArea.Right >= areaInStud.Left) && (mDisplayArea.Left <= areaInStud.Right) &&
+					(mDisplayArea.Bottom >= areaInStud.Top) && (mDisplayArea.Top <= areaInStud.Bottom))
+				{
+					// create the pen to draw the circle
+					Color colorWithTransparency = Color.FromArgb((int)(layerTransparency * 2.55f), mColor);
+					Pen penForCircle = new Pen(colorWithTransparency, mLineThickness);
+					// convert the display area in pixel
+					RectangleF displayAreaInPixel = Layer.sConvertRectangleInStudToPixel(mDisplayArea, areaInStud, scalePixelPerStud);
+					// draw the circle
+					g.DrawEllipse(penForCircle, displayAreaInPixel);
 				}
 			}
 			#endregion
