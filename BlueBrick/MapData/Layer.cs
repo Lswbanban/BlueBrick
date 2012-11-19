@@ -1086,6 +1086,20 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// Convert the specified rectangle in stud coordinates into a rectangle in pixel coordinate given the
+		/// current area displayed in stud and the current scale of the view.
+		/// </summary>
+		/// <param name="polygonInStud">The polygon to convert</param>
+		/// <param name="areaInStud">The current displayed area in stud coordinate</param>
+		/// <param name="scalePixelPerStud">The current scale of the view</param>
+		/// <returns>The same rectangle but expressed in pixel coordinate in the current view</returns>
+		public static RectangleF sConvertRectangleInStudToPixel(RectangleF rectangleInStud, RectangleF areaInStud, double scalePixelPerStud)
+		{
+			return new RectangleF(sConvertPointInStudToPixel(rectangleInStud.Location, areaInStud, scalePixelPerStud),
+								new SizeF((float)(rectangleInStud.Width * scalePixelPerStud), (float)(rectangleInStud.Height * scalePixelPerStud)));
+		}
+
+		/// <summary>
 		/// A tool function to check if the specified point is inside the specified polygon.
 		/// Both the point to test and the polygon points definition must be in the same coorinate
 		/// system for the function to give sensible result.
