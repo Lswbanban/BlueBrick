@@ -685,9 +685,6 @@ namespace BlueBrick.MapData
 				// transform the hull to get the selection area
 				PointF[] hullArray = hull.ToArray();
 				rotation.TransformVectors(hullArray);
-				//TODO probably need to add the translation here; or maybe later because the hullArray is used later
-				// create the new selection area from the rotated hull
-				mSelectionArea = new Tools.Polygon(hullArray);
 
 				// check if this picture has a specific hull
 				if (hull != boundingBox)
@@ -750,10 +747,23 @@ namespace BlueBrick.MapData
 					mSnapToGridOffset = new PointF(0, 0);
 				}
 
+				// save the old center before modifying the display area size
+				PointF previousCenter = Center;
+
 				// set the size of the display area with the new computed bounding size, and recompute the snap to grid offset
 				mDisplayArea.Width = boundingSize.X / NUM_PIXEL_PER_STUD_FOR_BRICKS;
 				mDisplayArea.Height = boundingSize.Y / NUM_PIXEL_PER_STUD_FOR_BRICKS;
 				mTopLeftCornerInPixel = new PointF(-boundingMin.X, -boundingMin.Y);
+
+				// adjust the selection area
+				Matrix translation = new Matrix();
+				translation.Translate(mTopLeftCornerInPixel.X, mTopLeftCornerInPixel.Y);
+				translation.Scale(1.0f / NUM_PIXEL_PER_STUD_FOR_BRICKS, 1.0f / NUM_PIXEL_PER_STUD_FOR_BRICKS, MatrixOrder.Append);
+				translation.Translate(previousCenter.X - (mDisplayArea.Width * 0.5f) - mOffsetFromOriginalImage.X, previousCenter.Y - (mDisplayArea.Height * 0.5f) - mOffsetFromOriginalImage.Y, MatrixOrder.Append);
+				translation.TransformPoints(hullArray);
+
+				// create the new selection area from the rotated hull
+				mSelectionArea = new Tools.Polygon(hullArray);
 
 				// clear the new images array for all the levels
 				clearMipmapImages(0, mMipmapImages.Length - 1);
@@ -1748,6 +1758,8 @@ namespace BlueBrick.MapData
 						}
 						else
 							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeDefault);
+
+						g.DrawPolygon(new Pen(Color.Red), Layer.sConvertPolygonInStudToPixel(brick.SelectionArea.Vertice, areaInStud, scalePixelPerStud));
 
 						// if the brick is electric, add it to the list
 						if (brick.ElectricCircuitIndexList != null)

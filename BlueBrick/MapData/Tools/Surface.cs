@@ -364,12 +364,18 @@ namespace BlueBrick.MapData.Tools
 		private bool areLinesCrossing(PointF line1Point1, PointF line1Point2, PointF line2Point1, PointF line2Point2)
 		{
 			// compute the two vectors between the two first points and the two second points
-			PointF vector1 = new PointF(line2Point1.X - line1Point1.X, line2Point1.Y - line1Point1.Y);
-			PointF vector2 = new PointF(line2Point2.X - line1Point2.X, line2Point2.Y - line1Point2.Y);
-			// dot product the two vectors and check the sign, if the sign is negative, we have a crossing
-			// TODO: this is buggued, but I need internet access to check
-			float dotProduct = (vector1.X * vector2.Y) - (vector1.Y * vector2.X);
-			return (dotProduct < 0.0f);
+			PointF vector1 = new PointF(line1Point2.X - line1Point1.X, line1Point2.Y - line1Point1.Y);
+			PointF vector2 = new PointF(line2Point2.X - line2Point1.X, line2Point2.Y - line2Point1.Y);
+			// compute a common divider and check if it's not null
+			float divider = (-vector2.X * vector1.Y) + (vector1.X * vector2.Y);
+			if (divider != 0.0f)
+			{
+				PointF vector3 = new PointF(line1Point1.X - line2Point1.X, line1Point1.Y - line2Point1.Y);
+				float s = ((-vector1.Y * vector3.X) + (vector1.X * vector3.Y)) / divider;
+				float t = ((vector2.X * vector3.Y) - (vector2.Y * vector3.X)) / divider;
+				return (s >= 0.0f && s <= 1.0f && t >= 0.0f && t <= 1.0f);
+			}
+			return false;
 		}
 
 		/// <summary>
