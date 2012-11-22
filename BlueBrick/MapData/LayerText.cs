@@ -184,7 +184,7 @@ namespace BlueBrick.MapData
 					mDisplayArea.Width = Math.Abs(max.X - min.X);
 					mDisplayArea.Height = Math.Abs(max.Y - min.Y);
 
-					// adjust the selection area (after adjusting the display area sucha as the center properties is correct)
+					// adjust the selection area (after adjusting the display area such as the center properties is correct)
 					Matrix translation = new Matrix();
 					translation.Translate(Center.X, Center.Y);
 					translation.TransformPoints(corners);
