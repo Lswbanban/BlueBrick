@@ -32,6 +32,95 @@ namespace BlueBrick.MapData
 			// variable for drawing
 			protected Color mColor = Color.Black; // color of the lines
 			protected float mLineThickness = 4.0f; // the thickness of the lines
+			protected Tools.Distance mMesuredDistance = new Tools.Distance(); // the distance mesured between the two extremities in stud unit
+			protected bool mDisplayDistance = true; // if true, the distance is displayed on the ruler.
+			protected bool mDisplayUnit = true; // if true display the unit just after the distance
+
+			// variable for drawing the mesurement value
+			private SolidBrush mMesurementBrush = new SolidBrush(Color.Black);
+			private Font mMesurementFont = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Regular);
+			private StringFormat mMesurementStringFormat = new StringFormat();
+			protected Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
+			protected PointF mMesurementTextWidthHalfVector = new PointF(); // half the vector along the width of the mesurement text in pixel
+
+			/// <summary>
+			/// Default constructor
+			/// </summary>
+			public RulerItem()
+			{
+				mMesurementStringFormat.Alignment = StringAlignment.Center;
+				mMesurementStringFormat.LineAlignment = StringAlignment.Center;
+			}
+
+			/// <summary>
+			/// Update both the display data and the image containing the mesurement
+			/// string and the unit. display date is updated first, then the image
+			/// </summary>
+			protected void updateDisplayDataAndMesurementImage()
+			{
+				// first update the display area, that also recompute the mesured distance and orientation
+				updateDisplayData();
+				// Then call the update of the distance image after the computing of the new display area
+				updateMesurementImage();
+			}
+
+			/// <summary>
+			/// This function update the display area according to the geometry of the ruler
+			/// </summary>
+			protected abstract void updateDisplayData();
+
+			/// <summary>
+			/// update the image used to draw the mesurement of the ruler correctly oriented
+			/// The image is drawn with the current selected unit.
+			/// This method should be called when the mesurement unit change or when one of the
+			/// points change
+			/// </summary>
+			protected void updateMesurementImage()
+			{
+				// get the mesured distance in the current unit
+				string distanceAsString = mMesuredDistance.ToString("N2", mDisplayUnit);
+
+				// draw the size
+				Graphics graphics = Graphics.FromImage(mMesurementImage);
+				SizeF textFontSize = graphics.MeasureString(distanceAsString, mMesurementFont);
+				int width = (int)textFontSize.Width;
+				int height = (int)textFontSize.Height;
+
+				// create an array with the 4 corner of the text (actually 3 if you exclude the origin)
+				// and rotate them according to the orientation
+				Matrix rotation = new Matrix();
+				rotation.Rotate(mOrientation);
+				Point[] points = { new Point(width, 0), new Point(0, height), new Point(width, height) };
+				rotation.TransformVectors(points);
+
+				// compute the vector of half the text
+				mMesurementTextWidthHalfVector = new PointF((float)(points[0].X) * 0.5f, (float)(points[0].Y) * 0.5f);
+
+				// search the min and max of all the rotated corner to compute the necessary size of the bitmap
+				Point min = new Point(0, 0);
+				Point max = new Point(0, 0);
+				for (int i = 0; i < 3; ++i)
+				{
+					if (points[i].X < min.X)
+						min.X = points[i].X;
+					if (points[i].Y < min.Y)
+						min.Y = points[i].Y;
+					if (points[i].X > max.X)
+						max.X = points[i].X;
+					if (points[i].Y > max.Y)
+						max.Y = points[i].Y;
+				}
+
+				// create the bitmap and draw the text inside
+				mMesurementImage = new Bitmap(mMesurementImage, new Size(Math.Abs(max.X - min.X), Math.Abs(max.Y - min.Y)));
+				graphics = Graphics.FromImage(mMesurementImage);
+				rotation.Translate(mMesurementImage.Width / 2, mMesurementImage.Height / 2, MatrixOrder.Append);
+				graphics.Transform = rotation;
+				graphics.Clear(Color.Transparent);
+				graphics.SmoothingMode = SmoothingMode.HighQuality;
+				graphics.DrawString(distanceAsString, mMesurementFont, mMesurementBrush, 0, 0, mMesurementStringFormat);
+				graphics.Flush();
+			}
 
 			/// <summary>
 			/// Draw the ruler item.
@@ -72,18 +161,10 @@ namespace BlueBrick.MapData
 			private PointF mOffsetPoint2 = new PointF(); // the offset point corresponding to Point2 in stud
 			private PointF mUnitVector = new PointF(); // the unit vector of the line between point1 and point2
 			private float mOffsetDistance = 0.0f; // the offset distance in stud coord
-			private Tools.Distance mMesuredDistance = new Tools.Distance(); // the distance mesured between the two extremities in stud unit
-			private bool mDisplayDistance = true; // if true, the distance is displayed on the ruler.
-			private bool mDisplayUnit = true; // if true display the unit just after the distance
 
 			// variable for the draw
 			private float mOffsetLineThickness = 1.0f; // the thickness of the guide lines when this ruler has an offset
 			private float[] mOffsetLineDashPattern = new float[] { 2.0f, 4.0f }; // pattern for the dashed offset line (succesion of dash length and space length, starting with dash)
-			private SolidBrush mMesurementBrush = new SolidBrush(Color.Black);
-			private Font mMesurementFont = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Regular);
-			private StringFormat mMesurementStringFormat = new StringFormat();
-			private Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
-			private PointF mMesurementTextWidthHalfVector = new PointF(); // half the vector along the width of the mesurement text in pixel
 
 			#region get/set
 			public PointF Point1
@@ -124,21 +205,11 @@ namespace BlueBrick.MapData
 			#endregion
 
 			#region constructor
-			public LinearRuler(PointF point1, PointF point2)
+			public LinearRuler(PointF point1, PointF point2) : base()
 			{
-				mMesurementStringFormat.Alignment = StringAlignment.Center;
-				mMesurementStringFormat.LineAlignment = StringAlignment.Center;
 				mPoint1 = point1;
 				mPoint2 = point2;
 				updateDisplayData();
-			}
-
-			private void updateDisplayDataAndMesurementImage()
-			{
-				// first update the display area, that also recompute the mesured distance and orientation
-				updateDisplayData();
-				// Then call the update of the distance image after the computing of the new display area
-				updateMesurementImage();
 			}
 
 			/// <summary>
@@ -149,7 +220,7 @@ namespace BlueBrick.MapData
 			/// This method should be called when the two points of the ruler is updated
 			/// or when the ruler is moved.
 			/// </summary>
-			private void updateDisplayData()
+			protected override void updateDisplayData()
 			{
 				// compute the vector of the orientation such as the orientation will stay upside up
 				float directorVectorX = Math.Abs(mPoint1.X - mPoint2.X);
@@ -215,59 +286,6 @@ namespace BlueBrick.MapData
 				float width = maxX - minX;
 				float height = maxY - minY;
 				mDisplayArea = new RectangleF(minX, minY, width, height);
-			}
-
-			/// <summary>
-			/// update the image used to draw the mesurement of the ruler correctly oriented
-			/// The image is drawn with the current selected unit.
-			/// This method should be called when the mesurement unit change or when one of the
-			/// points change
-			/// </summary>
-			private void updateMesurementImage()
-			{
-				// get the mesured distance in the current unit
-				string distanceAsString = mMesuredDistance.ToString("N2", mDisplayUnit);
-
-				// draw the size
-				Graphics graphics = Graphics.FromImage(mMesurementImage);
-				SizeF textFontSize = graphics.MeasureString(distanceAsString, mMesurementFont);
-				int width = (int)textFontSize.Width;
-				int height = (int)textFontSize.Height;
-
-				// create an array with the 4 corner of the text (actually 3 if you exclude the origin)
-				// and rotate them according to the orientation
-				Matrix rotation = new Matrix();
-				rotation.Rotate(mOrientation);
-				Point[] points = { new Point(width, 0), new Point(0, height), new Point(width, height) };
-				rotation.TransformVectors(points);
-
-				// compute the vector of half the text
-				mMesurementTextWidthHalfVector = new PointF((float)(points[0].X) * 0.5f, (float)(points[0].Y) * 0.5f);
-
-				// search the min and max of all the rotated corner to compute the necessary size of the bitmap
-				Point min = new Point(0, 0);
-				Point max = new Point(0, 0);
-				for (int i = 0; i < 3; ++i)
-				{
-					if (points[i].X < min.X)
-						min.X = points[i].X;
-					if (points[i].Y < min.Y)
-						min.Y = points[i].Y;
-					if (points[i].X > max.X)
-						max.X = points[i].X;
-					if (points[i].Y > max.Y)
-						max.Y = points[i].Y;
-				}
-
-				// create the bitmap and draw the text inside
-				mMesurementImage = new Bitmap(mMesurementImage, new Size(Math.Abs(max.X - min.X), Math.Abs(max.Y - min.Y)));
-				graphics = Graphics.FromImage(mMesurementImage);
-				rotation.Translate(mMesurementImage.Width / 2, mMesurementImage.Height / 2, MatrixOrder.Append);
-				graphics.Transform = rotation;
-				graphics.Clear(Color.Transparent);
-				graphics.SmoothingMode = SmoothingMode.HighQuality;
-				graphics.DrawString(distanceAsString, mMesurementFont, mMesurementBrush, 0, 0, mMesurementStringFormat);
-				graphics.Flush();
 			}
 			#endregion
 
@@ -412,7 +430,7 @@ namespace BlueBrick.MapData
 				set
 				{
 					(mSelectionArea as Tools.Circle).Radius = value;
-					updateDisplayData();
+					updateDisplayDataAndMesurementImage();
 				}
 			}
 
@@ -434,18 +452,18 @@ namespace BlueBrick.MapData
 			#endregion
 
 			#region constructor
-			public CircularRuler(PointF center, float radius)
+			public CircularRuler(PointF center, float radius) : base()
 			{
 				// define the selection area
 				mSelectionArea = new Tools.Circle(center, radius);
 				// update the display area
-				updateDisplayData();
+				updateDisplayDataAndMesurementImage();
 			}
 
 			/// <summary>
 			/// Update the display area of this layer item from the center point and the radius
 			/// </summary>
-			private void updateDisplayData()
+			protected override void updateDisplayData()
 			{
 				// get the center and radius
 				PointF center = this.Center;
@@ -456,6 +474,8 @@ namespace BlueBrick.MapData
 				float diameter = radius * 2.0f;
 				mDisplayArea.Width = diameter;
 				mDisplayArea.Height = diameter;
+				// set the distance in the data member
+				mMesuredDistance.DistanceInStud = diameter;
 			}
 			#endregion
 
@@ -483,6 +503,25 @@ namespace BlueBrick.MapData
 					RectangleF displayAreaInPixel = Layer.sConvertRectangleInStudToPixel(mDisplayArea, areaInStud, scalePixelPerStud);
 					// draw the circle
 					g.DrawEllipse(penForCircle, displayAreaInPixel);
+
+					// draw the image containing the text
+					if (mDisplayDistance)
+					{
+						// draw the mesurement text
+						// compute the position of the text in pixel coord
+						PointF centerInPixel = Layer.sConvertPointInStudToPixel(Center, areaInStud, scalePixelPerStud);
+						Rectangle destinationRectangle = new Rectangle();
+						destinationRectangle.X = (int)centerInPixel.X - (mMesurementImage.Width / 2);
+						destinationRectangle.Y = (int)centerInPixel.Y - (mMesurementImage.Height / 2);
+						destinationRectangle.Width = mMesurementImage.Width;
+						destinationRectangle.Height = mMesurementImage.Height;
+						// draw the image
+						g.DrawImage(mMesurementImage, destinationRectangle, 0, 0, mMesurementImage.Width, mMesurementImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
+					}
+					
+					// draw the selection overlay
+					if (isSelected)
+						g.FillEllipse(selectionBrush, displayAreaInPixel);
 				}
 			}
 			#endregion
