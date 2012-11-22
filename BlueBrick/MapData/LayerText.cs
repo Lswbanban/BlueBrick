@@ -163,21 +163,22 @@ namespace BlueBrick.MapData
 
 					Matrix rotation = new Matrix();
 					rotation.Rotate(mOrientation);
-					mSelectionArea = new PointF[] { new PointF(-halfWidth, -halfHeight), new PointF(-halfWidth, halfHeight), new PointF(halfWidth, halfHeight), new PointF(halfWidth, -halfHeight) };
-					rotation.TransformVectors(mSelectionArea);
+					// compute the rotated corners
+					PointF[] corners = new PointF[] { new PointF(-halfWidth, -halfHeight), new PointF(-halfWidth, halfHeight), new PointF(halfWidth, halfHeight), new PointF(halfWidth, -halfHeight) };
+					rotation.TransformVectors(corners);
 
-					PointF min = mSelectionArea[0];
-					PointF max = mSelectionArea[0];
+					PointF min = corners[0];
+					PointF max = corners[0];
 					for (int i = 1; i < 4; ++i)
 					{
-						if (mSelectionArea[i].X < min.X)
-							min.X = mSelectionArea[i].X;
-						if (mSelectionArea[i].Y < min.Y)
-							min.Y = mSelectionArea[i].Y;
-						if (mSelectionArea[i].X > max.X)
-							max.X = mSelectionArea[i].X;
-						if (mSelectionArea[i].Y > max.Y)
-							max.Y = mSelectionArea[i].Y;
+						if (corners[i].X < min.X)
+							min.X = corners[i].X;
+						if (corners[i].Y < min.Y)
+							min.Y = corners[i].Y;
+						if (corners[i].X > max.X)
+							max.X = corners[i].X;
+						if (corners[i].Y > max.Y)
+							max.Y = corners[i].Y;
 					}
 					// adjust the display area and selection area
 					mDisplayArea.Width = Math.Abs(max.X - min.X);
@@ -186,7 +187,10 @@ namespace BlueBrick.MapData
 					// adjust the selection area (after adjusting the display area sucha as the center properties is correct)
 					Matrix translation = new Matrix();
 					translation.Translate(Center.X, Center.Y);
-					translation.TransformPoints(mSelectionArea);
+					translation.TransformPoints(corners);
+
+					// then create the new selection area
+					mSelectionArea = new Tools.Polygon(corners);
 
 					// now create a scaled font from the current one, to avoid aliasing
 					const float FONT_SCALE = 4.0f;
@@ -425,7 +429,7 @@ namespace BlueBrick.MapData
 
 					// draw a frame around the selected cell while the text size is still in pixel
 					if (mSelectedObjects.Contains(cell))
-						g.FillPolygon(mSelectionBrush, Layer.sConvertPolygonInStudToPixel(cell.SelectionArea, areaInStud, scalePixelPerStud));
+						g.FillPolygon(mSelectionBrush, Layer.sConvertPolygonInStudToPixel(cell.SelectionArea.Vertice, areaInStud, scalePixelPerStud));
 				}
 			}
 

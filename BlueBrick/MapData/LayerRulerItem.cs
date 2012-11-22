@@ -50,7 +50,7 @@ namespace BlueBrick.MapData
 		/// A Ruler is a specific RulerItem which is actually represented by a line on which the length of the line is displayed
 		/// </summary>
 		[Serializable]
-		public class Ruler : RulerItem
+		public class LinearRuler : RulerItem
 		{
 			private enum SelectionAreaIndex
 			{
@@ -124,9 +124,8 @@ namespace BlueBrick.MapData
 			#endregion
 
 			#region constructor
-			public Ruler(PointF point1, PointF point2)
+			public LinearRuler(PointF point1, PointF point2)
 			{
-				mSelectionArea = new PointF[4];
 				mMesurementStringFormat.Alignment = StringAlignment.Center;
 				mMesurementStringFormat.LineAlignment = StringAlignment.Center;
 				mPoint1 = point1;
@@ -185,13 +184,15 @@ namespace BlueBrick.MapData
 				const float EXTEND_IN_STUD = 2.0f; //TODO: maybe make it a maximum between the font size/2 and this fixed value
 				float extendX = offsetNormalizedVector.X * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
 				float extendY = offsetNormalizedVector.Y * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
-				mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_1] = new PointF(mOffsetPoint1.X + extendX, mOffsetPoint1.Y + extendY);
-				mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_2] = new PointF(mOffsetPoint2.X + extendX, mOffsetPoint2.Y + extendY);
-				mSelectionArea[(int)SelectionAreaIndex.INTERNAL_1] = new PointF(mOffsetPoint1.X - extendX, mOffsetPoint1.Y - extendY);
-				mSelectionArea[(int)SelectionAreaIndex.INTERNAL_2] = new PointF(mOffsetPoint2.X - extendX, mOffsetPoint2.Y - extendY);
+				PointF[] selectionArea = new PointF[4];
+				selectionArea[(int)SelectionAreaIndex.EXTERNAL_1] = new PointF(mOffsetPoint1.X + extendX, mOffsetPoint1.Y + extendY);
+				selectionArea[(int)SelectionAreaIndex.EXTERNAL_2] = new PointF(mOffsetPoint2.X + extendX, mOffsetPoint2.Y + extendY);
+				selectionArea[(int)SelectionAreaIndex.INTERNAL_1] = new PointF(mOffsetPoint1.X - extendX, mOffsetPoint1.Y - extendY);
+				selectionArea[(int)SelectionAreaIndex.INTERNAL_2] = new PointF(mOffsetPoint2.X - extendX, mOffsetPoint2.Y - extendY);
+				mSelectionArea = new Tools.Polygon(selectionArea);
 
 				// compute the 4 corner of the ruler
-				PointF[] corners = { mPoint1, mPoint2, mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_1], mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_2] };
+				PointF[] corners = { mPoint1, mPoint2, selectionArea[(int)SelectionAreaIndex.EXTERNAL_1], selectionArea[(int)SelectionAreaIndex.EXTERNAL_2] };
 
 				// now find the min and max
 				float minX = corners[0].X;
@@ -386,22 +387,18 @@ namespace BlueBrick.MapData
 		/// A Circle is a specific RulerItem which is represented by a circle on which the diameter is displayed
 		/// </summary>
 		[Serializable]
-		public class Circle : RulerItem
+		public class CircularRuler : RulerItem
 		{
-			// for performance reason we store the center, but it could be computed from the display area
-			private PointF mCenter = new PointF();
-			private float mRadius = 0.0f;
-
 			#region get/set
 			/// <summary>
 			/// Set or Get the center of this circle
 			/// </summary>
 			public override PointF Center
 			{
-				get { return mCenter; }
+				get { return mSelectionArea[0]; }
 				set
 				{
-					mCenter = value;
+					mSelectionArea[0] = value;
 					base.Center = value;
 				}
 			}
@@ -411,10 +408,10 @@ namespace BlueBrick.MapData
 			/// </summary>
 			public float Radius
 			{
-				get { return mRadius; }
+				get { return (mSelectionArea as Tools.Circle).Radius; }
 				set
 				{
-					mRadius = value;
+					(mSelectionArea as Tools.Circle).Radius = value;
 					updateDisplayData();
 				}
 			}
@@ -428,7 +425,8 @@ namespace BlueBrick.MapData
 				set
 				{
 					// compute the new radius
-					PointF radiusVector = new PointF(value.X - mCenter.X, value.Y - mCenter.Y);
+					PointF center = mSelectionArea[0];
+					PointF radiusVector = new PointF(value.X - center.X, value.Y - center.Y);
 					// set the radius by calling the accessor to trigger the necessary update
 					Radius = (float)Math.Sqrt((radiusVector.X * radiusVector.X) + (radiusVector.Y * radiusVector.Y));
 				}
@@ -436,11 +434,10 @@ namespace BlueBrick.MapData
 			#endregion
 
 			#region constructor
-			public Circle(PointF center, float radius)
+			public CircularRuler(PointF center, float radius)
 			{
-				// set the center
-				mCenter = center;
-				mRadius = radius;
+				// define the selection area
+				mSelectionArea = new Tools.Circle(center, radius);
 				// update the display area
 				updateDisplayData();
 			}
@@ -450,9 +447,13 @@ namespace BlueBrick.MapData
 			/// </summary>
 			private void updateDisplayData()
 			{
-				mDisplayArea.X = mCenter.X - mRadius;
-				mDisplayArea.Y = mCenter.Y - mRadius;
-				float diameter = mRadius * 2.0f;
+				// get the center and radius
+				PointF center = this.Center;
+				float radius = this.Radius;
+				// compute the display area
+				mDisplayArea.X = center.X - radius;
+				mDisplayArea.Y = center.Y - radius;
+				float diameter = radius * 2.0f;
 				mDisplayArea.Width = diameter;
 				mDisplayArea.Height = diameter;
 			}
