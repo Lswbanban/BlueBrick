@@ -36,12 +36,20 @@ namespace BlueBrick.MapData.Tools
 
 		#region functions
 		/// <summary>
-		/// Tells if the given point is inside this area, assuming the point and the area are
-		/// in the same coordinate system
+		/// Tells if the given point is inside this surface, assuming the point and the surface are
+		/// in the same coordinate system.
 		/// </summary>
 		/// <param name="point">the point coordinate to test</param>
-		/// <returns>true if the point is inside this area</returns>
+		/// <returns>true if the point is inside this surface</returns>
 		public abstract bool isPointInside(PointF point);
+
+		/// <summary>
+		/// Tells if the specified axis aligned rectangle is intersecting or overlapping this surface,
+		/// assuming the rectangle and the surface are in the same coordinate system.
+		/// </summary>
+		/// <param name="rectangle">the rectangle to test</param>
+		/// <returns>true if the rectangle intersects or overlaps this surface</returns>
+		public abstract bool isRectangleIntersect(RectangleF rectangle);
 
 		/// <summary>
 		/// Translate this surface from the given vector
@@ -125,6 +133,47 @@ namespace BlueBrick.MapData.Tools
 			// true if the distance is lower than the radius
 			float distance = (float)Math.Sqrt((dx * dx) + (dy * dy));
 			return (distance < mRadius);
+		}
+
+		/// <summary>
+		/// Tells if the specified axis aligned rectangle is intersecting or overlapping this surface,
+		/// assuming the rectangle and the surface are in the same coordinate system.
+		/// </summary>
+		/// <param name="rectangle">the rectangle to test</param>
+		/// <returns>true if the rectangle intersects or overlaps this surface</returns>
+		public override bool isRectangleIntersect(RectangleF rectangle)
+		{
+			// check the angles first
+			bool isOnLeft = (mCenter.X < rectangle.Left);
+			bool isOnRight = (mCenter.X > rectangle.Right);
+			bool isOnTop = (mCenter.Y < rectangle.Top);
+			bool isOnBottom = (mCenter.Y > rectangle.Bottom);
+			if (isOnLeft && isOnTop)
+			{
+				return (isPointInside(new PointF(rectangle.Left, rectangle.Top)));
+			}
+			else if (isOnRight && isOnTop)
+			{
+				return (isPointInside(new PointF(rectangle.Right, rectangle.Top)));
+			}
+			else if (isOnRight && isOnBottom)
+			{
+				return (isPointInside(new PointF(rectangle.Right, rectangle.Bottom)));
+			}
+			else if (isOnLeft && isOnBottom)
+			{
+				return (isPointInside(new PointF(rectangle.Left, rectangle.Bottom))) ;
+			}
+			else
+			{
+				// compute an bigger rectangle increased on all border by the radius of the circle
+				float diameter = mRadius * 2.0f;
+				RectangleF bigRectangle = new RectangleF(rectangle.X - mRadius, rectangle.Y - mRadius,
+											rectangle.Width + diameter, rectangle.Height + diameter);
+				// then check if the center is inside the big rectangle
+				return ((mCenter.X > bigRectangle.Left) && (mCenter.X < bigRectangle.Right) &&
+						(mCenter.Y > bigRectangle.Top) && (mCenter.Y < bigRectangle.Bottom));
+			}
 		}
 
 		/// <summary>
@@ -266,6 +315,61 @@ namespace BlueBrick.MapData.Tools
 			{
 				return false;
 			}
+		}
+
+		/// <summary>
+		/// Tells if the specified axis aligned rectangle is intersecting or overlapping this surface,
+		/// assuming the rectangle and the surface are in the same coordinate system.
+		/// </summary>
+		/// <param name="rectangle">the rectangle to test</param>
+		/// <returns>true if the rectangle intersects or overlaps this surface</returns>
+		public override bool isRectangleIntersect(RectangleF rectangle)
+		{
+			// first: check if any of the vertex is inside the rectangle
+			foreach (PointF vertex in mVertice)
+				if ((vertex.X > rectangle.Left) && (vertex.X < rectangle.Right) &&
+					(vertex.Y > rectangle.Top) && (vertex.Y < rectangle.Bottom))
+					return true;
+			// get the 4 corners of the rectangle
+			PointF corner1 = new PointF(rectangle.Left, rectangle.Top);
+			PointF corner2 = new PointF(rectangle.Right, rectangle.Top);
+			PointF corner3 = new PointF(rectangle.Right, rectangle.Bottom);
+			PointF corner4 = new PointF(rectangle.Left, rectangle.Bottom);
+			// second check if any of the rectangle corner is inside the polygon
+			if (isPointInside(corner1) || isPointInside(corner2) || isPointInside(corner3) || isPointInside(corner4))
+				return true;
+			// third: finally check if one line of the polygon is crossing one line of the rectangle
+			for (int i = 1; i < mVertice.Length; i++)
+			{
+				if (areLinesCrossing(corner1, corner2, mVertice[i - 1], mVertice[i]))
+					return true;
+				if (areLinesCrossing(corner2, corner3, mVertice[i - 1], mVertice[i]))
+					return true;
+				if (areLinesCrossing(corner3, corner4, mVertice[i - 1], mVertice[i]))
+					return true;
+				if (areLinesCrossing(corner4, corner1, mVertice[i - 1], mVertice[i]))
+					return true;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Check if the two segments defined by their two extremities are crossing
+		/// </summary>
+		/// <param name="line1Point1">first extremity of the first segment</param>
+		/// <param name="line1Point2">second extremity of the first segment</param>
+		/// <param name="line2Point1">first extremity of the second segment</param>
+		/// <param name="line2Point2">second extremity of the second segment</param>
+		/// <returns>true if the two segments are crossing</returns>
+		private bool areLinesCrossing(PointF line1Point1, PointF line1Point2, PointF line2Point1, PointF line2Point2)
+		{
+			// compute the two vectors between the two first points and the two second points
+			PointF vector1 = new PointF(line2Point1.X - line1Point1.X, line2Point1.Y - line1Point1.Y);
+			PointF vector2 = new PointF(line2Point2.X - line1Point2.X, line2Point2.Y - line1Point2.Y);
+			// dot product the two vectors and check the sign, if the sign is negative, we have a crossing
+			// TODO: this is buggued, but I need internet access to check
+			float dotProduct = (vector1.X * vector2.Y) - (vector1.Y * vector2.X);
+			return (dotProduct < 0.0f);
 		}
 
 		/// <summary>
