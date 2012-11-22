@@ -139,6 +139,7 @@
     </Compile>
     <Compile Include="MapData\LayerRuler.cs" />
     <Compile Include="MapData\LayerRulerItem.cs" />
+    <Compile Include="MapData\Tools\Surface.cs" />
     <Compile Include="MapData\Tools\Distance.cs" />
     <Compile Include="PreferencesForm.cs">
       <SubType>Form</SubType>
@@ -594,12 +595,12 @@
   <ItemGroup>
     <PublishFile Include="fr\BlueBrick.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>

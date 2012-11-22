@@ -41,8 +41,8 @@ namespace BlueBrick.MapData
 
 		// variable used during the edition
 		private RulerItem mCurrentRulerUnderMouse = null;
-		private Ruler mCurrentlyEditedRuler = null;
-		private Circle mCurrentlyEditedCircle = null;
+		private LinearRuler mCurrentlyEditedRuler = null;
+		private CircularRuler mCurrentlyEditedCircle = null;
 		private bool mIsEditingOffsetOfRuler = false;
 		private const int BASE_SELECTION_TRANSPARENCY = 112;
 		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb(BASE_SELECTION_TRANSPARENCY, 255, 255, 255));
@@ -354,12 +354,12 @@ namespace BlueBrick.MapData
 
 				case EditTool.LINE:
 					if (!mIsEditingOffsetOfRuler)
-						mCurrentlyEditedRuler = new Ruler(mouseCoordInStud, mouseCoordInStud);
+						mCurrentlyEditedRuler = new LinearRuler(mouseCoordInStud, mouseCoordInStud);
 					mustRefresh = true;
 					break;
 
 				case EditTool.CIRCLE:
-					mCurrentlyEditedCircle = new Circle(mouseCoordInStud, 0.0f);
+					mCurrentlyEditedCircle = new CircularRuler(mouseCoordInStud, 0.0f);
 					break;
 			}
 

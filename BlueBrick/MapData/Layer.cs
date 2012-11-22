@@ -42,7 +42,7 @@ namespace BlueBrick.MapData
 			public static List<Group> sListForGroupSaving = new List<Group>(); // this list is used during the saving of BBM file to save all the grouping hierarchy
 
 			protected RectangleF mDisplayArea = new RectangleF(); // in stud coordinate
-			protected PointF[] mSelectionArea = null; // in stud coordinate. Most of the time, this is the hull of the item
+			protected Tools.Surface mSelectionArea = null; // in stud coordinate. Most of the time, this is the hull of the item
 			protected float mOrientation = 0;	// in degree
 			protected Group mMyGroup = null; // the group in which this item is
 
@@ -131,7 +131,7 @@ namespace BlueBrick.MapData
 			/// Get the selection area of the item in stud. The selection area may be smaller and finer
 			/// than the display area, most of the time it's basically the hull of the item.
 			/// </summary>
-			public PointF[] SelectionArea
+			public Tools.Surface SelectionArea
 			{
 				get { return mSelectionArea; }
 			}
@@ -263,11 +263,7 @@ namespace BlueBrick.MapData
 			private void translateSelectionArea(PointF oldPosition, PointF newPosition)
 			{
 				if (mSelectionArea != null)
-				{
-					Matrix translation = new Matrix();
-					translation.Translate(newPosition.X - oldPosition.X, newPosition.Y - oldPosition.Y);
-					translation.TransformPoints(mSelectionArea);
-				}
+					mSelectionArea.translate(new PointF(newPosition.X - oldPosition.X, newPosition.Y - oldPosition.Y));
 			}
 			#endregion
 		};
@@ -1100,89 +1096,6 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
-		/// A tool function to check if the specified point is inside the specified polygon.
-		/// Both the point to test and the polygon points definition must be in the same coorinate
-		/// system for the function to give sensible result.
-		/// This function is mainly used for picking an item by checking if the mouse click in inside the
-		/// selection area (hull) of the item. This function use the Ray casting algorythm, by casting the ray
-		/// horizontally from the the point to test.
-		/// </summary>
-		/// <param name="point">the point to test</param>
-		/// <param name="polygon">the polygon in which checking the point in the same coordinate system of the point</param>
-		/// <returns>true if the specified point is inside the specified polygon</returns>
-		protected bool isPointInsidePolygon(PointF point, PointF[] polygon)
-		{
-			try
-			{
-				int segmentCrossCount = 0;
-				// we assume that the polygon is not degenerated, otherwise the catch will return false
-				// start with the last point of the polygon, such as we can close the polygon
-				// i.e the first iteration of the loop will test the segment between the last vertex and the first one
-				PointF vertex1 = polygon[polygon.Length - 1];
-				for (int i = 0 ; i < polygon.Length; ++i)
-				{
-					PointF vertex2 = polygon[i];
-
-					// check if vertex 1 and 2 are above and under the point to have a crossing
-					if (((vertex1.Y < point.Y) && (point.Y < vertex2.Y)) ||
-						((vertex2.Y < point.Y) && (point.Y < vertex1.Y)))
-					{
-						// check if vertex 1 is on the right or left of the point
-						if (point.X < vertex1.X)
-						{
-							// check if vertex 2 is on the right or left of the point
-							if (point.X < vertex2.X)
-							{
-								// if the two vertice are both on the right, we have a crossing
-								segmentCrossCount++;
-							}
-							else
-							{
-								// vertex 1 on the right and 2 on the left, we need to compute the crossing
-								// compute the slope of the segment (from left to right)
-								float slope = (vertex1.X - vertex2.X) / (vertex1.Y - vertex2.Y);
-								// then compute the X of the intersection point for Y=point.Y
-								// with the line equation f(Y)= slope * X + cst
-								float intersectionX = (slope * (point.Y - vertex2.Y)) + vertex2.X;
-								// then we have a crossing if the intersection is on the right of the point
-								if (point.X < intersectionX)
-									segmentCrossCount++;
-							}
-						}
-						else
-						{
-							// check if vertex 2 is on the right or left of the point
-							if (point.X < vertex2.X)
-							{
-								// vertex 1 on the left and 2 on the right, we need to compute the crossing
-								// compute the slope of the segment (from left to right)
-								float slope = (vertex2.X - vertex1.X) / (vertex2.Y - vertex1.Y);
-								// then compute the X of the intersection point for Y=point.Y
-								// with the line equation f(Y)= slope * X + cst
-								float intersectionX = (slope * (point.Y - vertex1.Y)) + vertex1.X;
-								// then we have a crossing if the intersection is on the right of the point
-								if (point.X < intersectionX)
-									segmentCrossCount++;
-							}
-							// else: if both vertice on the left, we don't count the crossing
-						}
-					}
-					// else: if both vertice above or both under, there is no crossing
-					
-					// move the second vertex into the first one for the next iteration
-					vertex1 = vertex2;
-				}
-
-				// the point is inside the polygon if we have an odd number of crossing
-				return ((segmentCrossCount % 2) == 1);
-			}	
-			catch
-			{
-				return false;
-			}
-		}
-
-		/// <summary>
 		/// Tell is the specified point (in stud coord) is inside the current
 		/// selection rectangle.
 		/// </summary>
@@ -1233,7 +1146,7 @@ namespace BlueBrick.MapData
 			for (int i = itemList.Count - 1; i >= 0; --i)
 			{
 				LayerItem item = itemList[i];
-				if (isPointInsidePolygon(mouseCoordInStud, item.SelectionArea))
+				if (item.SelectionArea.isPointInside(mouseCoordInStud))
 					return item;
 			}
 			return null;
