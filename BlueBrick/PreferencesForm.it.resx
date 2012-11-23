@@ -199,6 +199,9 @@
   <data name="mouseZoomCenteredCheckBox.Text" xml:space="preserve">
     <value>Zoom centrato sul puntatore</value>
   </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 41</value>
+  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Velocità di zoom rotellina mouse</value>
   </data>
@@ -258,15 +261,6 @@ della Griglia (in Stud)</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Colori</value>
-  </data>
-  <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
-    <value>Visualizza Filigrana Informazioni Generali</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 17</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
-    <value>Mostra punti di connessione liberi</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Colore parte attuale</value>

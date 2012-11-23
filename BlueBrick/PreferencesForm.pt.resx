@@ -156,11 +156,24 @@
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Anular/Repetir</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 76</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 44</value>
+  </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Quanto mais acções anteriores são guardadas pela função Anular, maior o espaço em memória que a aplicação irá utilizar.</value>
   </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 56</value>
+  </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Número de acções anteriores mostradas</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 23</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Número de acções anteriores guardadas</value>
@@ -174,7 +187,6 @@
   <data name="label5.Text" xml:space="preserve">
     <value>Autor</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>249, 17</value>
   </data>
@@ -260,15 +272,6 @@ por defeito (em studs)</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Cores</value>
-  </data>
-  <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
-    <value>Mostra a Informação Geral da Marca Registada</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 17</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
-    <value>Mostra os Pontos de Conexão Livres</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Cor de destaque da

@@ -803,5 +803,29 @@ namespace BlueBrick.Properties {
                 this["DisplayHull"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int OffsetAfterCopyStyle {
+            get {
+                return ((int)(this["OffsetAfterCopyStyle"]));
+            }
+            set {
+                this["OffsetAfterCopyStyle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public float OffsetAfterCopyValue {
+            get {
+                return ((float)(this["OffsetAfterCopyValue"]));
+            }
+            set {
+                this["OffsetAfterCopyValue"] = value;
+            }
+        }
     }
 }

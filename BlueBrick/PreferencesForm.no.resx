@@ -150,6 +150,10 @@
   <data name="optimComboBox.Items2" xml:space="preserve">
     <value>Mindre minne</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="optimComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 18</value>
+  </data>
   <data name="label11.Text" xml:space="preserve">
     <value>Balanse mellom minne og hastighet</value>
   </data>
@@ -159,9 +163,8 @@
   <data name="label10.Text" xml:space="preserve">
     <value>Jo flere ganger du ønsker at angremuligheten skal kunne brukes, jo mer minne vil programmet behøve.</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 62</value>
+    <value>9, 51</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 27</value>
@@ -171,7 +174,7 @@
 kan vises</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 29</value>
+    <value>9, 18</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 27</value>
@@ -275,15 +278,6 @@ kan brukes</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Farger</value>
-  </data>
-  <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
-    <value>Vis vannmerke med generell informasjon</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 17</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
-    <value>Vis ledige forbindelsespunkter</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Farge på valgt del</value>

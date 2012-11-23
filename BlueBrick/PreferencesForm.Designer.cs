@@ -31,6 +31,11 @@ namespace BlueBrick
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreferencesForm));
 			this.optionsTabControl = new System.Windows.Forms.TabControl();
 			this.generalTabPage = new System.Windows.Forms.TabPage();
+			this.copyPasteGroupBox = new System.Windows.Forms.GroupBox();
+			this.OffsetValueLabel = new System.Windows.Forms.Label();
+			this.pasteOffsetValueNumericUpDown = new System.Windows.Forms.NumericUpDown();
+			this.label30 = new System.Windows.Forms.Label();
+			this.copyOffsetComboBox = new System.Windows.Forms.ComboBox();
 			this.groupBox10 = new System.Windows.Forms.GroupBox();
 			this.clearRecentFilesButton = new System.Windows.Forms.Button();
 			this.RecentFilesNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -139,6 +144,8 @@ namespace BlueBrick
 			this.restoreTabDefaultButton = new System.Windows.Forms.Button();
 			this.optionsTabControl.SuspendLayout();
 			this.generalTabPage.SuspendLayout();
+			this.copyPasteGroupBox.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pasteOffsetValueNumericUpDown)).BeginInit();
 			this.groupBox10.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.RecentFilesNumericUpDown)).BeginInit();
 			this.groupBox8.SuspendLayout();
@@ -187,6 +194,7 @@ namespace BlueBrick
 			// 
 			// generalTabPage
 			// 
+			this.generalTabPage.Controls.Add(this.copyPasteGroupBox);
 			this.generalTabPage.Controls.Add(this.groupBox10);
 			this.generalTabPage.Controls.Add(this.groupBox8);
 			this.generalTabPage.Controls.Add(this.groupBox4);
@@ -196,6 +204,47 @@ namespace BlueBrick
 			resources.ApplyResources(this.generalTabPage, "generalTabPage");
 			this.generalTabPage.Name = "generalTabPage";
 			this.generalTabPage.UseVisualStyleBackColor = true;
+			// 
+			// copyPasteGroupBox
+			// 
+			this.copyPasteGroupBox.Controls.Add(this.OffsetValueLabel);
+			this.copyPasteGroupBox.Controls.Add(this.pasteOffsetValueNumericUpDown);
+			this.copyPasteGroupBox.Controls.Add(this.label30);
+			this.copyPasteGroupBox.Controls.Add(this.copyOffsetComboBox);
+			resources.ApplyResources(this.copyPasteGroupBox, "copyPasteGroupBox");
+			this.copyPasteGroupBox.Name = "copyPasteGroupBox";
+			this.copyPasteGroupBox.TabStop = false;
+			// 
+			// OffsetValueLabel
+			// 
+			resources.ApplyResources(this.OffsetValueLabel, "OffsetValueLabel");
+			this.OffsetValueLabel.Name = "OffsetValueLabel";
+			// 
+			// pasteOffsetValueNumericUpDown
+			// 
+			resources.ApplyResources(this.pasteOffsetValueNumericUpDown, "pasteOffsetValueNumericUpDown");
+			this.pasteOffsetValueNumericUpDown.Name = "pasteOffsetValueNumericUpDown";
+			this.pasteOffsetValueNumericUpDown.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+			// 
+			// label30
+			// 
+			resources.ApplyResources(this.label30, "label30");
+			this.label30.Name = "label30";
+			// 
+			// copyOffsetComboBox
+			// 
+			this.copyOffsetComboBox.FormattingEnabled = true;
+			this.copyOffsetComboBox.Items.AddRange(new object[] {
+            resources.GetString("copyOffsetComboBox.Items"),
+            resources.GetString("copyOffsetComboBox.Items1"),
+            resources.GetString("copyOffsetComboBox.Items2")});
+			resources.ApplyResources(this.copyOffsetComboBox, "copyOffsetComboBox");
+			this.copyOffsetComboBox.Name = "copyOffsetComboBox";
+			this.copyOffsetComboBox.SelectedIndexChanged += new System.EventHandler(this.copyOffsetComboBox_SelectedIndexChanged);
 			// 
 			// groupBox10
 			// 
@@ -1167,6 +1216,8 @@ namespace BlueBrick
 			this.Name = "PreferencesForm";
 			this.optionsTabControl.ResumeLayout(false);
 			this.generalTabPage.ResumeLayout(false);
+			this.copyPasteGroupBox.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pasteOffsetValueNumericUpDown)).EndInit();
 			this.groupBox10.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.RecentFilesNumericUpDown)).EndInit();
 			this.groupBox8.ResumeLayout(false);
@@ -1321,5 +1372,10 @@ namespace BlueBrick
 		private System.Windows.Forms.Button restoreTabDefaultButton;
 		private System.Windows.Forms.Label label29;
 		private System.Windows.Forms.PictureBox PartLibFilteredBackColorPictureBox;
+		private System.Windows.Forms.GroupBox copyPasteGroupBox;
+		private System.Windows.Forms.NumericUpDown pasteOffsetValueNumericUpDown;
+		private System.Windows.Forms.Label label30;
+		private System.Windows.Forms.ComboBox copyOffsetComboBox;
+		private System.Windows.Forms.Label OffsetValueLabel;
 	}
 }

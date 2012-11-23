@@ -67,11 +67,11 @@ Open bugs:
 	- the mesurement unit should not have a fixed size
 	- mouse handle still need some work
 	- implement the ruler edition
+	- add more cursors
 	- Property window for option of each ruler
 	- manage the different unit
 	- Ruler just a line: or differnt option  for the lines/rulers
 	- Ruler circle
-	- add more cursors
 	- save/load rulers in BBM
 	- save/load in LDraw
 	- snapping for rulers on grid and brick

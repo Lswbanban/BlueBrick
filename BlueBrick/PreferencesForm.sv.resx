@@ -232,18 +232,6 @@
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Standardtextformat</value>
   </data>
-  <data name="displayGeneralInfoWatermarkCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 41</value>
-  </data>
-  <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
-    <value>Visa Allmän information på layout</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 17</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
-    <value>Visa lediga förbindelsepunkter</value>
-  </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Färg på vald bit</value>
   </data>
