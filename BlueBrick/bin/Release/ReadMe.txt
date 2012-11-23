@@ -75,7 +75,6 @@ Open bugs:
 	- save/load rulers in BBM
 	- save/load in LDraw
 	- snapping for rulers on grid and brick
-- [target 1.8] REFACTORING (Alban): Move the display of connection point and watermark in the View menu + add the display of the hull
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the options and context menu)
@@ -112,6 +111,7 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (Alban): Add a sorting order for the parts in the library based on a new <SortingKey> tag in the XML file of the part
 - NEW FEATURE (Alban): Add more contextual cursors inside the layout area (Hidden layer, 
 - NEW FEATURE (Alban): More precise Selection: Now the picking and rectangle selection use the hull of the part, and the text rectangle for rotated text, instead of the axis aligned bounding box of the part or text.
+- REFACTORING (Alban): Move the display of free connection point and watermark in the View menu and add the display of the hull.
 - BUGFIX #42 (Larry): CRASH!! if you export a small area after exporting a big area
 - BUGFIX (Alban): When changing the order of the part lib tabs, the previously selected tab was not reselected
 - BUGFIX (Alban): The selected tab of the part lib was not saved when exiting BB and not reset at starting

@@ -427,9 +427,20 @@ namespace BlueBrick.MapData
 					// draw the image containing the text
 					g.DrawImage(cell.Image, destinationRectangle, 0, 0, cell.Image.Width, cell.Image.Height, GraphicsUnit.Pixel, mImageAttribute);
 
+					// compute the selection area in pixel if the text is selected or we need to draw the hull
+					bool isSelected = mSelectedObjects.Contains(cell);
+					bool displayHull = Properties.Settings.Default.DisplayHull;
+					PointF[] hull = null;
+					if (isSelected || displayHull)
+						hull = Layer.sConvertPolygonInStudToPixel(cell.SelectionArea.Vertice, areaInStud, scalePixelPerStud);
+
+					// draw the hull if needed
+					if (displayHull)
+						g.DrawPolygon(sPentoDrawHull, hull);
+
 					// draw a frame around the selected cell while the text size is still in pixel
-					if (mSelectedObjects.Contains(cell))
-						g.FillPolygon(mSelectionBrush, Layer.sConvertPolygonInStudToPixel(cell.SelectionArea.Vertice, areaInStud, scalePixelPerStud));
+					if (isSelected)
+						g.FillPolygon(mSelectionBrush, hull);
 				}
 			}
 

@@ -791,5 +791,17 @@ namespace BlueBrick.Properties {
                 this["UIRulerToolSelected"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DisplayHull {
+            get {
+                return ((bool)(this["DisplayHull"]));
+            }
+            set {
+                this["DisplayHull"] = value;
+            }
+        }
     }
 }

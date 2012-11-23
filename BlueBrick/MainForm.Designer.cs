@@ -119,8 +119,12 @@ namespace BlueBrick
 			this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolbarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusBarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.electricCircuitsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.watermarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.partListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+			this.electricCircuitsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.connectionPointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.hullsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutBlueBrickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -851,8 +855,12 @@ namespace BlueBrick
 			this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolbarMenuItem,
             this.statusBarMenuItem,
+            this.watermarkToolStripMenuItem,
+            this.partListToolStripMenuItem,
+            this.toolStripSeparator13,
             this.electricCircuitsMenuItem,
-            this.partListToolStripMenuItem});
+            this.connectionPointsToolStripMenuItem,
+            this.hullsToolStripMenuItem});
 			this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
 			resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
 			// 
@@ -874,6 +882,26 @@ namespace BlueBrick
 			resources.ApplyResources(this.statusBarMenuItem, "statusBarMenuItem");
 			this.statusBarMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
 			// 
+			// watermarkToolStripMenuItem
+			// 
+			this.watermarkToolStripMenuItem.Checked = true;
+			this.watermarkToolStripMenuItem.CheckOnClick = true;
+			this.watermarkToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.watermarkToolStripMenuItem.Name = "watermarkToolStripMenuItem";
+			resources.ApplyResources(this.watermarkToolStripMenuItem, "watermarkToolStripMenuItem");
+			this.watermarkToolStripMenuItem.Click += new System.EventHandler(this.watermarkToolStripMenuItem_Click);
+			// 
+			// partListToolStripMenuItem
+			// 
+			this.partListToolStripMenuItem.Name = "partListToolStripMenuItem";
+			resources.ApplyResources(this.partListToolStripMenuItem, "partListToolStripMenuItem");
+			this.partListToolStripMenuItem.Click += new System.EventHandler(this.partListToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator13
+			// 
+			this.toolStripSeparator13.Name = "toolStripSeparator13";
+			resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
+			// 
 			// electricCircuitsMenuItem
 			// 
 			this.electricCircuitsMenuItem.CheckOnClick = true;
@@ -881,11 +909,21 @@ namespace BlueBrick
 			resources.ApplyResources(this.electricCircuitsMenuItem, "electricCircuitsMenuItem");
 			this.electricCircuitsMenuItem.Click += new System.EventHandler(this.electricCircuitsMenuItem_Click);
 			// 
-			// partListToolStripMenuItem
+			// connectionPointsToolStripMenuItem
 			// 
-			this.partListToolStripMenuItem.Name = "partListToolStripMenuItem";
-			resources.ApplyResources(this.partListToolStripMenuItem, "partListToolStripMenuItem");
-			this.partListToolStripMenuItem.Click += new System.EventHandler(this.partListToolStripMenuItem_Click);
+			this.connectionPointsToolStripMenuItem.Checked = true;
+			this.connectionPointsToolStripMenuItem.CheckOnClick = true;
+			this.connectionPointsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.connectionPointsToolStripMenuItem.Name = "connectionPointsToolStripMenuItem";
+			resources.ApplyResources(this.connectionPointsToolStripMenuItem, "connectionPointsToolStripMenuItem");
+			this.connectionPointsToolStripMenuItem.Click += new System.EventHandler(this.connectionPointsToolStripMenuItem_Click);
+			// 
+			// hullsToolStripMenuItem
+			// 
+			this.hullsToolStripMenuItem.CheckOnClick = true;
+			this.hullsToolStripMenuItem.Name = "hullsToolStripMenuItem";
+			resources.ApplyResources(this.hullsToolStripMenuItem, "hullsToolStripMenuItem");
+			this.hullsToolStripMenuItem.Click += new System.EventHandler(this.hullsToolStripMenuItem_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
@@ -1378,6 +1416,10 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripMenuItem rotationStep45ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem rotationStep22ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem rotationStep1ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem watermarkToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+		private System.Windows.Forms.ToolStripMenuItem connectionPointsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem hullsToolStripMenuItem;
 	}
 }
 

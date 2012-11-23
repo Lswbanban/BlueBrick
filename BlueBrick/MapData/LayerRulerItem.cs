@@ -308,6 +308,7 @@ namespace BlueBrick.MapData
 				{
 					// check if we will need to draw the dashed offset lines
 					bool needToDrawOffset = (mDisplayDistance && (mOffsetDistance != 0.0f));
+					bool needToDisplayHull = Properties.Settings.Default.DisplayHull;
 
 					// transform the coordinates into pixel coordinates
 					PointF offset1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1, areaInStud, scalePixelPerStud);
@@ -316,7 +317,7 @@ namespace BlueBrick.MapData
 					// internal point may be computed only for certain conditions
 					PointF offsetInternal1InPixel = new PointF();
 					PointF offsetInternal2InPixel = new PointF();
-					if (isSelected)
+					if (isSelected || needToDisplayHull)
 					{
 						offsetInternal1InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.INTERNAL_1], areaInStud, scalePixelPerStud);
 						offsetInternal2InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.INTERNAL_2], areaInStud, scalePixelPerStud);
@@ -325,7 +326,7 @@ namespace BlueBrick.MapData
 					// external point may be computed only for certain conditions
 					PointF offsetExternal1InPixel = new PointF();
 					PointF offsetExternal2InPixel = new PointF();					
-					if (isSelected || needToDrawOffset)
+					if (isSelected || needToDisplayHull || needToDrawOffset)
 					{
 						offsetExternal1InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_1], areaInStud, scalePixelPerStud);
 						offsetExternal2InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_2], areaInStud, scalePixelPerStud);
@@ -390,12 +391,18 @@ namespace BlueBrick.MapData
 						}
 					}
 
+					// compute the selection area if it is selected or if we need to draw the hull
+					PointF[] selectionArea = null;
+					if (isSelected || needToDisplayHull)
+						selectionArea = new PointF[] { offsetInternal1InPixel, offsetExternal1InPixel, offsetExternal2InPixel, offsetInternal2InPixel };
+
+					// draw the hull if needed
+					if (needToDisplayHull)
+						g.DrawPolygon(sPentoDrawHull, selectionArea);
+
 					// draw a frame around the ruler if it is selected
-					if (isSelected)
-					{
-						PointF[] polygon = new PointF[] { offsetInternal1InPixel, offsetExternal1InPixel, offsetExternal2InPixel, offsetInternal2InPixel };
-						g.FillPolygon(selectionBrush, polygon);
-					}
+					if (isSelected)						
+						g.FillPolygon(selectionBrush, selectionArea);
 				}
 			}
 			#endregion
@@ -518,7 +525,11 @@ namespace BlueBrick.MapData
 						// draw the image
 						g.DrawImage(mMesurementImage, destinationRectangle, 0, 0, mMesurementImage.Width, mMesurementImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
 					}
-					
+
+					// draw the hull if needed
+					if (Properties.Settings.Default.DisplayHull)
+						g.DrawEllipse(sPentoDrawHull, displayAreaInPixel);
+
 					// draw the selection overlay
 					if (isSelected)
 						g.FillEllipse(selectionBrush, displayAreaInPixel);

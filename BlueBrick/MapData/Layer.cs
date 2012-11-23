@@ -687,6 +687,7 @@ namespace BlueBrick.MapData
 		protected List<LayerItem> mSelectedObjects = new List<LayerItem>();
 		protected RectangleF mBoundingSelectionRectangle = new RectangleF(); // the rectangle in stud that surrond all the object selected
 		protected Pen mBoundingSelectionPen = new Pen(Color.Black, 2);
+		protected static Pen sPentoDrawHull = new Pen(Color.Red);
 
 		public const int NUM_PIXEL_PER_STUD_FOR_BRICKS = 8;	// the images save on the disk use 8 pixel per studs
 

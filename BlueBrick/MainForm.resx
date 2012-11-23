@@ -1377,28 +1377,49 @@ Use # character in front of a keyword to specify a part number.</value>
     <value>&amp;Edit</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>172, 22</value>
   </data>
   <data name="toolbarMenuItem.Text" xml:space="preserve">
     <value>&amp;Toolbar</value>
   </data>
   <data name="statusBarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>172, 22</value>
   </data>
   <data name="statusBarMenuItem.Text" xml:space="preserve">
     <value>&amp;Status Bar</value>
   </data>
+  <data name="watermarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="watermarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Watermark</value>
+  </data>
+  <data name="partListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="partListToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Part List</value>
+  </data>
+  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 6</value>
+  </data>
   <data name="electricCircuitsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>172, 22</value>
   </data>
   <data name="electricCircuitsMenuItem.Text" xml:space="preserve">
     <value>&amp;Electric Circuits</value>
   </data>
-  <data name="partListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+  <data name="connectionPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
   </data>
-  <data name="partListToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Part List</value>
+  <data name="connectionPointsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Connection Points</value>
+  </data>
+  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hulls</value>
   </data>
   <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -2438,16 +2459,40 @@ Use # character in front of a keyword to specify a part number.</value>
   <data name="&gt;&gt;statusBarMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;electricCircuitsMenuItem.Name" xml:space="preserve">
-    <value>electricCircuitsMenuItem</value>
+  <data name="&gt;&gt;watermarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>watermarkToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;electricCircuitsMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;watermarkToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;partListToolStripMenuItem.Name" xml:space="preserve">
     <value>partListToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;partListToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator13.Name" xml:space="preserve">
+    <value>toolStripSeparator13</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;electricCircuitsMenuItem.Name" xml:space="preserve">
+    <value>electricCircuitsMenuItem</value>
+  </data>
+  <data name="&gt;&gt;electricCircuitsMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;connectionPointsToolStripMenuItem.Name" xml:space="preserve">
+    <value>connectionPointsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;connectionPointsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hullsToolStripMenuItem.Name" xml:space="preserve">
+    <value>hullsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;hullsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;helpToolStripMenuItem.Name" xml:space="preserve">
