@@ -262,9 +262,9 @@ namespace BlueBrick.MapData
                     // mImage is not null at this point, but the ref param image can still be null
                     mBoundingBox.Add(new PointF(0, 0));
                     mBoundingBox.Add(new PointF((float)(value.Width), 0));
-                    mBoundingBox.Add(new PointF(0, (float)(value.Height)));
                     mBoundingBox.Add(new PointF((float)(value.Width), (float)(value.Height)));
-                }
+					mBoundingBox.Add(new PointF(0, (float)(value.Height)));
+				}
             }
 
 			/// <summary>
