@@ -272,8 +272,8 @@ namespace BlueBrick.MapData
 			{
 				set
 				{
-					mDisplayArea.X = value.X;
-					mDisplayArea.Y = value.Y;
+					// call the base class, such as the selection area is also updated
+					base.Position = value;
 					updateConnectionPosition();
 				}
 				get { return new PointF(mDisplayArea.X, mDisplayArea.Y); }
@@ -286,8 +286,8 @@ namespace BlueBrick.MapData
 			{
 				set
 				{
-					mDisplayArea.X = value.X - (mDisplayArea.Width * 0.5f);
-					mDisplayArea.Y = value.Y - (mDisplayArea.Height * 0.5f);
+					// call the base class, such as the selection area is also updated
+					base.Center = value;
 					updateConnectionPosition();				
 				}
 			}
@@ -682,6 +682,9 @@ namespace BlueBrick.MapData
 				PointF boundingMax = new PointF();
 				PointF boundingSize = sGetMinMaxAndSize(boundingPoints, ref boundingMin, ref boundingMax);
 
+				// store computationnal variable for optimization
+				const float PIXEL_TO_STUD_RATIO = 1.0f / NUM_PIXEL_PER_STUD_FOR_BRICKS;
+
 				// transform the hull to get the selection area
 				PointF[] hullArray = hull.ToArray();
 				rotation.TransformVectors(hullArray);
@@ -697,8 +700,8 @@ namespace BlueBrick.MapData
 					// compute the offset between the hull and the normal bounding box
 					PointF deltaMin = new PointF(boundingMin.X - hullMin.X, boundingMin.Y - hullMin.Y);
 					PointF deltaMax = new PointF(boundingMax.X - hullMax.X, boundingMax.Y - hullMax.Y);
-					mOffsetFromOriginalImage = new PointF((deltaMax.X + deltaMin.X) / (NUM_PIXEL_PER_STUD_FOR_BRICKS * 2),
-														  (deltaMax.Y + deltaMin.Y) / (NUM_PIXEL_PER_STUD_FOR_BRICKS * 2));
+					mOffsetFromOriginalImage = new PointF((deltaMax.X + deltaMin.X) * PIXEL_TO_STUD_RATIO * 0.5f,
+														  (deltaMax.Y + deltaMin.Y) * PIXEL_TO_STUD_RATIO * 0.5f);
 
 					// overwrite the bounding size and min with the hull ones which are more precise
 					boundingSize = hullSize;
@@ -747,19 +750,18 @@ namespace BlueBrick.MapData
 					mSnapToGridOffset = new PointF(0, 0);
 				}
 
-				// save the old center before modifying the display area size
-				PointF previousCenter = Center;
-
 				// set the size of the display area with the new computed bounding size, and recompute the snap to grid offset
-				mDisplayArea.Width = boundingSize.X / NUM_PIXEL_PER_STUD_FOR_BRICKS;
-				mDisplayArea.Height = boundingSize.Y / NUM_PIXEL_PER_STUD_FOR_BRICKS;
+				mDisplayArea.Width = boundingSize.X * PIXEL_TO_STUD_RATIO;
+				mDisplayArea.Height = boundingSize.Y * PIXEL_TO_STUD_RATIO;
 				mTopLeftCornerInPixel = new PointF(-boundingMin.X, -boundingMin.Y);
 
-				// adjust the selection area
+				// adjust the selection area after computing the new display area size to have a correct center
+				// first we add the translation of the top left corner in pixel to the hull point already in pixel
+				// then convert the pixel to studs, and finally add the top left corner in stud
 				Matrix translation = new Matrix();
 				translation.Translate(mTopLeftCornerInPixel.X, mTopLeftCornerInPixel.Y);
-				translation.Scale(1.0f / NUM_PIXEL_PER_STUD_FOR_BRICKS, 1.0f / NUM_PIXEL_PER_STUD_FOR_BRICKS, MatrixOrder.Append);
-				translation.Translate(previousCenter.X - (mDisplayArea.Width * 0.5f) - mOffsetFromOriginalImage.X, previousCenter.Y - (mDisplayArea.Height * 0.5f) - mOffsetFromOriginalImage.Y, MatrixOrder.Append);
+				translation.Scale(PIXEL_TO_STUD_RATIO, PIXEL_TO_STUD_RATIO, MatrixOrder.Append);
+				translation.Translate(Center.X - (mDisplayArea.Width * 0.5f), Center.Y - (mDisplayArea.Height * 0.5f), MatrixOrder.Append);
 				translation.TransformPoints(hullArray);
 
 				// create the new selection area from the rotated hull
