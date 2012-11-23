@@ -153,13 +153,13 @@ benutzten Dateien</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="optimComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 23</value>
+    <value>160, 18</value>
   </data>
   <data name="optimComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 21</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 18</value>
+    <value>9, 12</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 34</value>
@@ -170,11 +170,15 @@ benutzten Dateien</value>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Rückgängig / Wiederherstellen</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Je mehr "Rückgängige" Schritte gespeichert werden, umso mehr Speicher wird verbraucht.</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 63</value>
+    <value>9, 50</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 27</value>
@@ -183,7 +187,7 @@ benutzten Dateien</value>
     <value>Anzahl der angezeigten, Rückgängigen Schritte.</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 30</value>
+    <value>9, 18</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 27</value>
@@ -258,10 +262,10 @@ benutzten Dateien</value>
     <value>Zoom auf Zeiger zentriert</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 47</value>
+    <value>6, 37</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 27</value>
+    <value>176, 21</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Mausrad Vergrößerungstempo</value>
@@ -314,15 +318,6 @@ um die Änderung auszuführen.</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Farben</value>
-  </data>
-  <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
-    <value>Gleisplaninformationen unten rechts anzeigen</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 17</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
-    <value>Zeige freie Verbindungspunkte an</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Farbkennzeichnung

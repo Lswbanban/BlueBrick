@@ -175,6 +175,12 @@ namespace BlueBrick
 					this.showComboBox.Text = Resources.DefaultShow;
 				else
 					this.showComboBox.Text = Settings.Default.DefaultShow;
+				// copy/paste
+				this.copyOffsetComboBox.SelectedIndex = Settings.Default.OffsetAfterCopyStyle;
+				this.pasteOffsetValueNumericUpDown.Value = (Decimal)Settings.Default.OffsetAfterCopyValue;
+				bool enableOffsetValue = (Settings.Default.OffsetAfterCopyStyle != 0);
+				this.pasteOffsetValueNumericUpDown.Enabled = enableOffsetValue;
+				this.OffsetValueLabel.Enabled = enableOffsetValue;
 				// recent files
 				this.RecentFilesNumericUpDown.Value = Settings.Default.MaxRecentFilesNum;
 				this.clearRecentFilesButton.Enabled = (Settings.Default.RecentFiles.Count > 0);
@@ -266,6 +272,8 @@ namespace BlueBrick
 				destination.DefaultShow = source.DefaultShow.Clone() as string;
 				destination.Language = source.Language.Clone() as string;
 				destination.MouseMultipleSelectionKey = source.MouseMultipleSelectionKey;
+				destination.OffsetAfterCopyStyle = source.OffsetAfterCopyStyle;
+				destination.OffsetAfterCopyValue = source.OffsetAfterCopyValue;
 				destination.UndoStackDepth = source.UndoStackDepth;
 				destination.UndoStackDisplayedDepth = source.UndoStackDisplayedDepth;
 				destination.WheelMouseIsZoomOnCursor = source.WheelMouseIsZoomOnCursor;
@@ -331,6 +339,9 @@ namespace BlueBrick
 			Settings.Default.DefaultShow = this.showComboBox.Text;
 			// recent files
 			Settings.Default.MaxRecentFilesNum = (int)this.RecentFilesNumericUpDown.Value;
+			// copy/paste
+			Settings.Default.OffsetAfterCopyStyle = (int)this.copyOffsetComboBox.SelectedIndex;
+			Settings.Default.OffsetAfterCopyValue = (float)this.pasteOffsetValueNumericUpDown.Value;
 			// undo
 			Settings.Default.UndoStackDepth = (int)this.undoRecordedNumericUpDown.Value;
 			Settings.Default.UndoStackDisplayedDepth = (int)this.undoDisplayedNumericUpDown.Value;
@@ -631,6 +642,13 @@ namespace BlueBrick
 				case Keys.Alt: mZoomPanKeySelectedIndex = 1; break;
 				case Keys.Shift: mZoomPanKeySelectedIndex = 2; break;
 			}
+		}
+
+		private void copyOffsetComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			bool enableOffsetValue = (this.copyOffsetComboBox.SelectedIndex != 0);
+			this.pasteOffsetValueNumericUpDown.Enabled = enableOffsetValue;
+			this.OffsetValueLabel.Enabled = enableOffsetValue;
 		}
 
 		private bool setOptimSettingAccordingToComboBox()
