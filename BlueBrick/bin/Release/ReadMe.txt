@@ -65,8 +65,8 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- french translation of the ruler tools (toolbar and menu)
-	- implement the ruler selection
-	- select in rectangle
+	- the mesurement unit should not have a fixed size
+	- mouse handle still need some work
 	- implement the ruler edition
 	- Property window for option of each ruler
 	- manage the different unit
@@ -76,6 +76,7 @@ Open bugs:
 	- save/load rulers in BBM
 	- save/load in LDraw
 	- snapping for rulers on grid and brick
+- [target 1.8] REFACTORING (Alban): Move the display of connection point and watermark in the View menu + add the display of the hull
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the options and context menu)

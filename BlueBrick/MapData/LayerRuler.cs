@@ -116,6 +116,16 @@ namespace BlueBrick.MapData
 				index = 0;
 			return index;
 		}
+
+		/// <summary>
+		/// Select all the items in this layer.
+		/// </summary>
+		public override void selectAll()
+		{
+			// clear the selection and add all the item of this layer
+			clearSelection();
+			addObjectInSelection(mRulers);
+		}
 		#endregion
 
 		#region util functions
