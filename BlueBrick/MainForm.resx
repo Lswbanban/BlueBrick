@@ -117,14 +117,866 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mainSplitContainer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mainSplitContainer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 49</value>
+  </data>
+  <metadata name="statusBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 438</value>
+  </metadata>
+  <metadata name="statusBar.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="statusBarProgressBar.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="statusBarProgressBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 16</value>
+  </data>
+  <data name="statusBarProgressBar.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="statusBarLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 17</value>
+  </data>
+  <data name="statusBarLabel.Text" xml:space="preserve">
+    <value>  </value>
+  </data>
+  <data name="statusBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 438</value>
+  </data>
+  <data name="statusBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>471, 22</value>
+  </data>
+  <data name="statusBar.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;statusBar.Name" xml:space="preserve">
+    <value>statusBar</value>
+  </data>
+  <data name="&gt;&gt;statusBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusBar.Parent" xml:space="preserve">
+    <value>mapPanel</value>
+  </data>
+  <data name="&gt;&gt;statusBar.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mapPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="mapPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mapPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>471, 460</value>
+  </data>
+  <data name="mapPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mapPanel.Name" xml:space="preserve">
+    <value>mapPanel</value>
+  </data>
+  <data name="&gt;&gt;mapPanel.Type" xml:space="preserve">
+    <value>BlueBrick.MapPanel, BlueBrick, Version=1.7.1.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mapPanel.Parent" xml:space="preserve">
+    <value>mainSplitContainer.Panel1</value>
+  </data>
+  <data name="&gt;&gt;mapPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel1.Name" xml:space="preserve">
+    <value>mainSplitContainer.Panel1</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel1.Parent" xml:space="preserve">
+    <value>mainSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="toolSplitContainer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="toolSplitContainer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="toolSplitContainer.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="splitContainerPartLibrary.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="splitContainerPartLibrary.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="splitContainerPartLibrary.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splitContainerPartLibrary.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="splitContainerPartLibrary.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="partsTabControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="partsTabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="partsTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 186</value>
+  </data>
+  <data name="partsTabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;partsTabControl.Name" xml:space="preserve">
+    <value>partsTabControl</value>
+  </data>
+  <data name="&gt;&gt;partsTabControl.Type" xml:space="preserve">
+    <value>BlueBrick.PartLibraryPanel, BlueBrick, Version=1.7.1.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;partsTabControl.Parent" xml:space="preserve">
+    <value>splitContainerPartLibrary.Panel1</value>
+  </data>
+  <data name="&gt;&gt;partsTabControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.Panel1.Name" xml:space="preserve">
+    <value>splitContainerPartLibrary.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.Panel1.Parent" xml:space="preserve">
+    <value>splitContainerPartLibrary</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="textBoxPartFilter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="textBoxPartFilter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="textBoxPartFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 20</value>
+  </data>
+  <data name="textBoxPartFilter.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <metadata name="toolTipForMainForm.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>11, 83</value>
+  </metadata>
+  <data name="textBoxPartFilter.ToolTip" xml:space="preserve">
+    <value>Input keywords to filter the list of parts.
+Use - character in front of a keyword to exclude parts.
+Use # character in front of a keyword to specify a part number.</value>
+  </data>
+  <data name="&gt;&gt;textBoxPartFilter.Name" xml:space="preserve">
+    <value>textBoxPartFilter</value>
+  </data>
+  <data name="&gt;&gt;textBoxPartFilter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxPartFilter.Parent" xml:space="preserve">
+    <value>splitContainerPartLibrary.Panel2</value>
+  </data>
+  <data name="&gt;&gt;textBoxPartFilter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.Panel2.Name" xml:space="preserve">
+    <value>splitContainerPartLibrary.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.Panel2.Parent" xml:space="preserve">
+    <value>splitContainerPartLibrary</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splitContainerPartLibrary.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="splitContainerPartLibrary.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 210</value>
+  </data>
+  <data name="splitContainerPartLibrary.SplitterDistance" type="System.Int32, mscorlib">
+    <value>186</value>
+  </data>
+  <data name="splitContainerPartLibrary.SplitterWidth" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="splitContainerPartLibrary.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.Name" xml:space="preserve">
+    <value>splitContainerPartLibrary</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.Parent" xml:space="preserve">
+    <value>toolSplitContainer.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splitContainerPartLibrary.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel1.Name" xml:space="preserve">
+    <value>toolSplitContainer.Panel1</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel1.Parent" xml:space="preserve">
+    <value>toolSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="layerSplitContainer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="layerSplitContainer.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="layerSplitContainer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="layerSplitContainer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="layerSplitContainer.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="layerStackPanel.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="layerStackPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="layerStackPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="layerStackPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="layerStackPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 218</value>
+  </data>
+  <data name="layerStackPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;layerStackPanel.Name" xml:space="preserve">
+    <value>layerStackPanel</value>
+  </data>
+  <data name="&gt;&gt;layerStackPanel.Type" xml:space="preserve">
+    <value>BlueBrick.LayerStackPanel, BlueBrick, Version=1.7.1.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;layerStackPanel.Parent" xml:space="preserve">
+    <value>layerSplitContainer.Panel1</value>
+  </data>
+  <data name="&gt;&gt;layerStackPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel1.Name" xml:space="preserve">
+    <value>layerSplitContainer.Panel1</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel1.Parent" xml:space="preserve">
+    <value>layerSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="LayerButtonFlowLayoutPanel.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="trashLayerButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhCwAOAIIAAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
+        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
+        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
+</value>
+  </data>
+  <data name="trashLayerButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="trashLayerButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>198, 0</value>
+  </data>
+  <data name="trashLayerButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="trashLayerButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="trashLayerButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="trashLayerButton.ToolTip" xml:space="preserve">
+    <value>Delete the selected Layer</value>
+  </data>
+  <data name="&gt;&gt;trashLayerButton.Name" xml:space="preserve">
+    <value>trashLayerButton</value>
+  </data>
+  <data name="&gt;&gt;trashLayerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;trashLayerButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;trashLayerButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>182, 0</value>
+  </data>
+  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 13</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="newLayerRulerButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="newLayerRulerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAADEDgAAxA4AAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsmkGsmkGsmkGsmkGsmkG
+        smkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGAAAAAAAAsmkGDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM
+        DAwMDAwMDAwMDAwMsmkGAAAAAAAAsmkGDAwMM8z/DAwMM8z/DAwMM8z/DAwMM8z/DAwMM8z/DAwMDAwM
+        smkGAAAAAAAAsmkGDAwMM8z/M8z/M8z/M8z/M8z/M8z/M8z/M8z/M8z/DAwMsmkGsmkGAAAAAAAAsmkG
+        DAwMM8z/DAwMDAwMDAwMDAwMDAwMM8z/M8z/DAwMsmkGsmkGmQAAAAAAAAAAsmkGDAwMM8z/DAwMsmkG
+        smkGDAwMM8z/M8z/DAwMmQAAsmkGmQAAAP//AAAAAAAAsmkGDAwMM8z/DAwMsmkGDAwMM8z/M8z/DAwM
+        smkGAP//smkGAP//smkGAAAAAAAAsmkGDAwMM8z/DAwMDAwMM8z/M8z/DAwMsmkGAP//mQAAmQAAmQAA
+        smkGAAAAAAAAsmkGDAwMM8z/DAwMM8z/M8z/DAwMmQAAsmkGAP//AP//AP//AP//smkGAAAAAAAAsmkG
+        DAwMM8z/M8z/M8z/DAwMsmkGAP//mQAAsmkGmQAAmQAAAP//smkGAAAAAAAAsmkGDAwMM8z/M8z/DAwM
+        smkGmQAAsmkGAP//mQAAAP//AP//smkGsmkGAAAAAAAAsmkGDAwMM8z/DAwMsmkGmQAAAP//smkGAP//
+        AP//smkGsmkGsmkGsmkGAAAAAAAAsmkGDAwMDAwMsmkGmQAAAP//smkGsmkGsmkGsmkGsmkGsmkGsmkG
+        smkGAAAAAAAAsmkGsmkGsmkGsmkGAP//smkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerRulerButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="newLayerRulerButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 0</value>
+  </data>
+  <data name="newLayerRulerButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="newLayerRulerButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="newLayerRulerButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="newLayerRulerButton.ToolTip" xml:space="preserve">
+    <value>Add a Ruler Layer</value>
+  </data>
+  <data name="&gt;&gt;newLayerRulerButton.Name" xml:space="preserve">
+    <value>newLayerRulerButton</value>
+  </data>
+  <data name="&gt;&gt;newLayerRulerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newLayerRulerButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;newLayerRulerButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="newLayerTextButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="newLayerTextButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////////
+        ////////////////////////////////////AAAAAAAA////////////////////////////////////
+        ////////////////////AAAAAAAA////////////////AAAAAAAAAAAAAAAAAAAAAAAAv7+/////////
+        ////AAAAAAAA////////////////Pz8/Pz8/AAAAAAAAPz8/Pz8/z8/P////////////AAAAAAAA////
+        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
+        ////AAAAAAAA////////////////////////AAAAAAAA////////////////////////AAAAAAAA////
+        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
+        ////AAAAAAAA////////b29vPz8/z8/P////AAAAAAAA////////Pz8/Pz8/////////AAAAAAAA////
+        ////Pz8/AAAAv7+/////AAAAAAAA////////AAAAAAAA////////AAAAAAAA////////Pz8/AAAAX19f
+        f39/AAAAAAAAf39/f39/AAAAAAAA////////AAAAAAAA////////Pz8/AAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAA////////AAAAAAAA////////n5+ff39/f39/f39/f39/f39/f39/f39/f39/f39/////
+        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerTextButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="newLayerTextButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 0</value>
+  </data>
+  <data name="newLayerTextButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="newLayerTextButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="newLayerTextButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="newLayerTextButton.ToolTip" xml:space="preserve">
+    <value>Add a Text Layer</value>
+  </data>
+  <data name="&gt;&gt;newLayerTextButton.Name" xml:space="preserve">
+    <value>newLayerTextButton</value>
+  </data>
+  <data name="&gt;&gt;newLayerTextButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newLayerTextButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;newLayerTextButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="newLayerAreaButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="newLayerAreaButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvJ/1vJ/19M+N9M+N9M+N
+        9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N
+        9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N
+        9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1
+        vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTw
+        UJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5
+        ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5
+        ccR5AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTI
+        baTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTw
+        UJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTw
+        UJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/
+        nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/nfn/AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerAreaButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="newLayerAreaButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>122, 0</value>
+  </data>
+  <data name="newLayerAreaButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="newLayerAreaButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="newLayerAreaButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="newLayerAreaButton.ToolTip" xml:space="preserve">
+    <value>Add an Area Layer</value>
+  </data>
+  <data name="&gt;&gt;newLayerAreaButton.Name" xml:space="preserve">
+    <value>newLayerAreaButton</value>
+  </data>
+  <data name="&gt;&gt;newLayerAreaButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newLayerAreaButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;newLayerAreaButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="newLayerBrickButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="newLayerBrickButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////7/Dx
+        YGttvsLD////////////////////////////AAAAAAAA/////////////v7+dHR0IzE0foSFk5OT+vr6
+        ////////////////////AAAAAAAA////NLAANK4BGVQAFEUAL54DBBoUDR0iK5IAM6sBNLAANLAA////
+        ////AAAAAAAA////NLAAIT4hBREEF0gAGFYIAAAAFk0NJDonDC8KGEkBNLAA////////AAAAAAAA////
+        NLAAIG0AKWUaGUUXAAEAG1wAM6oBAwsAEiMjKGoXGFMD8PHx////AAAAAAAA////NLAAGEsALp0DDyAm
+        CB8XFkYBFk4FAQQAKo4FDiQXEyImmJ6fpqutAAAAAAAA////NLAANLAAM6wAI3UAJW8OIkcmAAAAInUJ
+        MaQCAwsAEkIHaXBzTllcAAAAAAAA////NLAAGEsANLAAGEsANLAABhoLFignGDcQEz8AAgUAM6cEZWVl
+        q6+xAAAAAAAA////NLAANLAANLAANLAANLAAL54EKpAEKGMcBhcdDjsOLJUCSUlJ9fX2AAAAAAAA////
+        NLAAGEsANLAAGEsANLAAGEsANLAAFEADEUIKIT0dEi4ccnp+////AAAAAAAA////NLAANLAANLAANLAA
+        NLAANLAANLAANLAANLAANLAAFEUAuLi4////AAAAAAAA////NLAAGEsANLAAGEsANLAAGEsANLAAGEsA
+        NLAAGEsANLAA////////AAAAAAAA////NLAANLAANLAANLAANLAANLAANLAANLAANLAANLAANLAA////
+        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerBrickButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="newLayerBrickButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>102, 0</value>
+  </data>
+  <data name="newLayerBrickButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="newLayerBrickButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="newLayerBrickButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="newLayerBrickButton.ToolTip" xml:space="preserve">
+    <value>Add a Brick Layer</value>
+  </data>
+  <data name="&gt;&gt;newLayerBrickButton.Name" xml:space="preserve">
+    <value>newLayerBrickButton</value>
+  </data>
+  <data name="&gt;&gt;newLayerBrickButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newLayerBrickButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;newLayerBrickButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="newLayerGridButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="newLayerGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsmkGsmkGsmkG////////
+        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
+        smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////
+        smkGAAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
+        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
+        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
+        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
+        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
+        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
+        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
+        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
+        ////AAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerGridButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="newLayerGridButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 0</value>
+  </data>
+  <data name="newLayerGridButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="newLayerGridButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="newLayerGridButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="newLayerGridButton.ToolTip" xml:space="preserve">
+    <value>Add a Grid layer</value>
+  </data>
+  <data name="&gt;&gt;newLayerGridButton.Name" xml:space="preserve">
+    <value>newLayerGridButton</value>
+  </data>
+  <data name="&gt;&gt;newLayerGridButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newLayerGridButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;newLayerGridButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 0</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="layerUpButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhEAAQAIEAAAAAAP///////wAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAEAAQ
+        AAAIOQAFCBxIsKBBgQAAHDyYcGHBhA0dIoQoUQBEig4vRmSocePDjgoNgsRIcKTHjyc5phRJMmPLigcD
+        AgA7
+</value>
+  </data>
+  <data name="layerUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="layerUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 0</value>
+  </data>
+  <data name="layerUpButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="layerUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="layerUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="layerUpButton.ToolTip" xml:space="preserve">
+    <value>Move the selected Layer up</value>
+  </data>
+  <data name="&gt;&gt;layerUpButton.Name" xml:space="preserve">
+    <value>layerUpButton</value>
+  </data>
+  <data name="&gt;&gt;layerUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;layerUpButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;layerUpButton.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="layerDownButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="layerDownButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhEAAQAIEAAAAAAP///////wAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAEAAQ
+        AAAIOAAFCBxIsKBBAQASAjhYUOFChgMdQoyoEKLDiw8JYpRocGPGhhstXpyIcSLCiiY5pvxIkqXJgwEB
+        ADs=
+</value>
+  </data>
+  <data name="layerDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="layerDownButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 0</value>
+  </data>
+  <data name="layerDownButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="layerDownButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="layerDownButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="layerDownButton.ToolTip" xml:space="preserve">
+    <value>Move the selected Layer down</value>
+  </data>
+  <data name="&gt;&gt;layerDownButton.Name" xml:space="preserve">
+    <value>layerDownButton</value>
+  </data>
+  <data name="&gt;&gt;layerDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;layerDownButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;layerDownButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>RightToLeft</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 20</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Name" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Parent" xml:space="preserve">
+    <value>layerSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel2.Name" xml:space="preserve">
+    <value>layerSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel2.Parent" xml:space="preserve">
+    <value>layerSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="layerSplitContainer.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="layerSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 242</value>
+  </data>
+  <data name="layerSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>218</value>
+  </data>
+  <data name="layerSplitContainer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Name" xml:space="preserve">
+    <value>layerSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Parent" xml:space="preserve">
+    <value>toolSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel2.Name" xml:space="preserve">
+    <value>toolSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel2.Parent" xml:space="preserve">
+    <value>toolSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="toolSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 464</value>
+  </data>
+  <data name="toolSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>214</value>
+  </data>
+  <data name="toolSplitContainer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Name" xml:space="preserve">
+    <value>toolSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Parent" xml:space="preserve">
+    <value>mainSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel2.Name" xml:space="preserve">
+    <value>mainSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel2.Parent" xml:space="preserve">
+    <value>mainSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mainSplitContainer.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>206</value>
+  </data>
+  <data name="mainSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>701, 464</value>
+  </data>
+  <data name="mainSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>475</value>
+  </data>
+  <data name="mainSplitContainer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Name" xml:space="preserve">
+    <value>mainSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Type" xml:space="preserve">
+    <value>BlueBrick.MainSplitContainer, BlueBrick, Version=1.7.1.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="menuBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
   </metadata>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="newToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+N</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 22</value>
   </data>
@@ -140,7 +992,6 @@
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Open...</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="openRecentToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -1122,857 +1973,6 @@
   <metadata name="colorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>402, 41</value>
   </metadata>
-  <metadata name="toolTipForMainForm.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>11, 83</value>
-  </metadata>
-  <data name="textBoxPartFilter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="textBoxPartFilter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="textBoxPartFilter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 20</value>
-  </data>
-  <data name="textBoxPartFilter.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="textBoxPartFilter.ToolTip" xml:space="preserve">
-    <value>Input keywords to filter the list of parts.
-Use - character in front of a keyword to exclude parts.
-Use # character in front of a keyword to specify a part number.</value>
-  </data>
-  <data name="&gt;&gt;textBoxPartFilter.Name" xml:space="preserve">
-    <value>textBoxPartFilter</value>
-  </data>
-  <data name="&gt;&gt;textBoxPartFilter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxPartFilter.Parent" xml:space="preserve">
-    <value>splitContainerPartLibrary.Panel2</value>
-  </data>
-  <data name="&gt;&gt;textBoxPartFilter.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="trashLayerButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhCwAOAIIAAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
-        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
-        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
-</value>
-  </data>
-  <data name="trashLayerButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="trashLayerButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>198, 0</value>
-  </data>
-  <data name="trashLayerButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="trashLayerButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="trashLayerButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="trashLayerButton.ToolTip" xml:space="preserve">
-    <value>Delete the selected Layer</value>
-  </data>
-  <data name="&gt;&gt;trashLayerButton.Name" xml:space="preserve">
-    <value>trashLayerButton</value>
-  </data>
-  <data name="&gt;&gt;trashLayerButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;trashLayerButton.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;trashLayerButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="newLayerRulerButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="newLayerRulerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAADEDgAAxA4AAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsmkGsmkGsmkGsmkGsmkG
-        smkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGAAAAAAAAsmkGDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM
-        DAwMDAwMDAwMDAwMsmkGAAAAAAAAsmkGDAwMM8z/DAwMM8z/DAwMM8z/DAwMM8z/DAwMM8z/DAwMDAwM
-        smkGAAAAAAAAsmkGDAwMM8z/M8z/M8z/M8z/M8z/M8z/M8z/M8z/M8z/DAwMsmkGsmkGAAAAAAAAsmkG
-        DAwMM8z/DAwMDAwMDAwMDAwMDAwMM8z/M8z/DAwMsmkGsmkGmQAAAAAAAAAAsmkGDAwMM8z/DAwMsmkG
-        smkGDAwMM8z/M8z/DAwMmQAAsmkGmQAAAP//AAAAAAAAsmkGDAwMM8z/DAwMsmkGDAwMM8z/M8z/DAwM
-        smkGAP//smkGAP//smkGAAAAAAAAsmkGDAwMM8z/DAwMDAwMM8z/M8z/DAwMsmkGAP//mQAAmQAAmQAA
-        smkGAAAAAAAAsmkGDAwMM8z/DAwMM8z/M8z/DAwMmQAAsmkGAP//AP//AP//AP//smkGAAAAAAAAsmkG
-        DAwMM8z/M8z/M8z/DAwMsmkGAP//mQAAsmkGmQAAmQAAAP//smkGAAAAAAAAsmkGDAwMM8z/M8z/DAwM
-        smkGmQAAsmkGAP//mQAAAP//AP//smkGsmkGAAAAAAAAsmkGDAwMM8z/DAwMsmkGmQAAAP//smkGAP//
-        AP//smkGsmkGsmkGsmkGAAAAAAAAsmkGDAwMDAwMsmkGmQAAAP//smkGsmkGsmkGsmkGsmkGsmkGsmkG
-        smkGAAAAAAAAsmkGsmkGsmkGsmkGAP//smkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerRulerButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="newLayerRulerButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 0</value>
-  </data>
-  <data name="newLayerRulerButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="newLayerRulerButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="newLayerRulerButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="newLayerRulerButton.ToolTip" xml:space="preserve">
-    <value>Add a Ruler Layer</value>
-  </data>
-  <data name="&gt;&gt;newLayerRulerButton.Name" xml:space="preserve">
-    <value>newLayerRulerButton</value>
-  </data>
-  <data name="&gt;&gt;newLayerRulerButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;newLayerRulerButton.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;newLayerRulerButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="newLayerTextButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="newLayerTextButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////////
-        ////////////////////////////////////AAAAAAAA////////////////////////////////////
-        ////////////////////AAAAAAAA////////////////AAAAAAAAAAAAAAAAAAAAAAAAv7+/////////
-        ////AAAAAAAA////////////////Pz8/Pz8/AAAAAAAAPz8/Pz8/z8/P////////////AAAAAAAA////
-        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
-        ////AAAAAAAA////////////////////////AAAAAAAA////////////////////////AAAAAAAA////
-        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
-        ////AAAAAAAA////////b29vPz8/z8/P////AAAAAAAA////////Pz8/Pz8/////////AAAAAAAA////
-        ////Pz8/AAAAv7+/////AAAAAAAA////////AAAAAAAA////////AAAAAAAA////////Pz8/AAAAX19f
-        f39/AAAAAAAAf39/f39/AAAAAAAA////////AAAAAAAA////////Pz8/AAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAA////////AAAAAAAA////////n5+ff39/f39/f39/f39/f39/f39/f39/f39/f39/////
-        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerTextButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="newLayerTextButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 0</value>
-  </data>
-  <data name="newLayerTextButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="newLayerTextButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="newLayerTextButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="newLayerTextButton.ToolTip" xml:space="preserve">
-    <value>Add a Text Layer</value>
-  </data>
-  <data name="&gt;&gt;newLayerTextButton.Name" xml:space="preserve">
-    <value>newLayerTextButton</value>
-  </data>
-  <data name="&gt;&gt;newLayerTextButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;newLayerTextButton.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;newLayerTextButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="newLayerAreaButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="newLayerAreaButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvJ/1vJ/19M+N9M+N9M+N
-        9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N
-        9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N
-        9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1
-        vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTw
-        UJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5
-        ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5
-        ccR5AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTI
-        baTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTw
-        UJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTw
-        UJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/
-        nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/nfn/AAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerAreaButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="newLayerAreaButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 0</value>
-  </data>
-  <data name="newLayerAreaButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="newLayerAreaButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="newLayerAreaButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="newLayerAreaButton.ToolTip" xml:space="preserve">
-    <value>Add an Area Layer</value>
-  </data>
-  <data name="&gt;&gt;newLayerAreaButton.Name" xml:space="preserve">
-    <value>newLayerAreaButton</value>
-  </data>
-  <data name="&gt;&gt;newLayerAreaButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;newLayerAreaButton.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;newLayerAreaButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="newLayerBrickButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="newLayerBrickButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////7/Dx
-        YGttvsLD////////////////////////////AAAAAAAA/////////////v7+dHR0IzE0foSFk5OT+vr6
-        ////////////////////AAAAAAAA////NLAANK4BGVQAFEUAL54DBBoUDR0iK5IAM6sBNLAANLAA////
-        ////AAAAAAAA////NLAAIT4hBREEF0gAGFYIAAAAFk0NJDonDC8KGEkBNLAA////////AAAAAAAA////
-        NLAAIG0AKWUaGUUXAAEAG1wAM6oBAwsAEiMjKGoXGFMD8PHx////AAAAAAAA////NLAAGEsALp0DDyAm
-        CB8XFkYBFk4FAQQAKo4FDiQXEyImmJ6fpqutAAAAAAAA////NLAANLAAM6wAI3UAJW8OIkcmAAAAInUJ
-        MaQCAwsAEkIHaXBzTllcAAAAAAAA////NLAAGEsANLAAGEsANLAABhoLFignGDcQEz8AAgUAM6cEZWVl
-        q6+xAAAAAAAA////NLAANLAANLAANLAANLAAL54EKpAEKGMcBhcdDjsOLJUCSUlJ9fX2AAAAAAAA////
-        NLAAGEsANLAAGEsANLAAGEsANLAAFEADEUIKIT0dEi4ccnp+////AAAAAAAA////NLAANLAANLAANLAA
-        NLAANLAANLAANLAANLAANLAAFEUAuLi4////AAAAAAAA////NLAAGEsANLAAGEsANLAAGEsANLAAGEsA
-        NLAAGEsANLAA////////AAAAAAAA////NLAANLAANLAANLAANLAANLAANLAANLAANLAANLAANLAA////
-        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerBrickButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="newLayerBrickButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>102, 0</value>
-  </data>
-  <data name="newLayerBrickButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="newLayerBrickButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="newLayerBrickButton.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="newLayerBrickButton.ToolTip" xml:space="preserve">
-    <value>Add a Brick Layer</value>
-  </data>
-  <data name="&gt;&gt;newLayerBrickButton.Name" xml:space="preserve">
-    <value>newLayerBrickButton</value>
-  </data>
-  <data name="&gt;&gt;newLayerBrickButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;newLayerBrickButton.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;newLayerBrickButton.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="newLayerGridButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="newLayerGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsmkGsmkGsmkG////////
-        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
-        smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////
-        smkGAAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
-        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
-        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
-        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
-        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
-        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
-        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
-        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
-        ////AAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerGridButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="newLayerGridButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 0</value>
-  </data>
-  <data name="newLayerGridButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="newLayerGridButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="newLayerGridButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="newLayerGridButton.ToolTip" xml:space="preserve">
-    <value>Add a Grid layer</value>
-  </data>
-  <data name="&gt;&gt;newLayerGridButton.Name" xml:space="preserve">
-    <value>newLayerGridButton</value>
-  </data>
-  <data name="&gt;&gt;newLayerGridButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;newLayerGridButton.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;newLayerGridButton.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="layerUpButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEAAQAIEAAAAAAP///////wAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAEAAQ
-        AAAIOQAFCBxIsKBBgQAAHDyYcGHBhA0dIoQoUQBEig4vRmSocePDjgoNgsRIcKTHjyc5phRJMmPLigcD
-        AgA7
-</value>
-  </data>
-  <data name="layerUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="layerUpButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 0</value>
-  </data>
-  <data name="layerUpButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="layerUpButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="layerUpButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="layerUpButton.ToolTip" xml:space="preserve">
-    <value>Move the selected Layer up</value>
-  </data>
-  <data name="&gt;&gt;layerUpButton.Name" xml:space="preserve">
-    <value>layerUpButton</value>
-  </data>
-  <data name="&gt;&gt;layerUpButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;layerUpButton.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;layerUpButton.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="layerDownButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="layerDownButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEAAQAIEAAAAAAP///////wAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAEAAQ
-        AAAIOAAFCBxIsKBBAQASAjhYUOFChgMdQoyoEKLDiw8JYpRocGPGhhstXpyIcSLCiiY5pvxIkqXJgwEB
-        ADs=
-</value>
-  </data>
-  <data name="layerDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="layerDownButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 0</value>
-  </data>
-  <data name="layerDownButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="layerDownButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="layerDownButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="layerDownButton.ToolTip" xml:space="preserve">
-    <value>Move the selected Layer down</value>
-  </data>
-  <data name="&gt;&gt;layerDownButton.Name" xml:space="preserve">
-    <value>layerDownButton</value>
-  </data>
-  <data name="&gt;&gt;layerDownButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;layerDownButton.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;layerDownButton.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="mainSplitContainer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="mainSplitContainer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 49</value>
-  </data>
-  <metadata name="statusBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 438</value>
-  </metadata>
-  <metadata name="statusBar.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="statusBarProgressBar.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="statusBarProgressBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
-  <data name="statusBarProgressBar.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="statusBarLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 17</value>
-  </data>
-  <data name="statusBarLabel.Text" xml:space="preserve">
-    <value>  </value>
-  </data>
-  <data name="statusBar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 438</value>
-  </data>
-  <data name="statusBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>471, 22</value>
-  </data>
-  <data name="statusBar.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;statusBar.Name" xml:space="preserve">
-    <value>statusBar</value>
-  </data>
-  <data name="&gt;&gt;statusBar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;statusBar.Parent" xml:space="preserve">
-    <value>mapPanel</value>
-  </data>
-  <data name="&gt;&gt;statusBar.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="mapPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="mapPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="mapPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>471, 460</value>
-  </data>
-  <data name="mapPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;mapPanel.Name" xml:space="preserve">
-    <value>mapPanel</value>
-  </data>
-  <data name="&gt;&gt;mapPanel.Type" xml:space="preserve">
-    <value>BlueBrick.MapPanel, BlueBrick, Version=1.7.1.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;mapPanel.Parent" xml:space="preserve">
-    <value>mainSplitContainer.Panel1</value>
-  </data>
-  <data name="&gt;&gt;mapPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel1.Name" xml:space="preserve">
-    <value>mainSplitContainer.Panel1</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel1.Parent" xml:space="preserve">
-    <value>mainSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="toolSplitContainer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="toolSplitContainer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="toolSplitContainer.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
-    <value>Horizontal</value>
-  </data>
-  <data name="splitContainerPartLibrary.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="splitContainerPartLibrary.IsSplitterFixed" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="splitContainerPartLibrary.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="splitContainerPartLibrary.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="splitContainerPartLibrary.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
-    <value>Horizontal</value>
-  </data>
-  <data name="partsTabControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="partsTabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="partsTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 186</value>
-  </data>
-  <data name="partsTabControl.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;partsTabControl.Name" xml:space="preserve">
-    <value>partsTabControl</value>
-  </data>
-  <data name="&gt;&gt;partsTabControl.Type" xml:space="preserve">
-    <value>BlueBrick.PartLibraryPanel, BlueBrick, Version=1.7.1.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;partsTabControl.Parent" xml:space="preserve">
-    <value>splitContainerPartLibrary.Panel1</value>
-  </data>
-  <data name="&gt;&gt;partsTabControl.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.Panel1.Name" xml:space="preserve">
-    <value>splitContainerPartLibrary.Panel1</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.Panel1.Parent" xml:space="preserve">
-    <value>splitContainerPartLibrary</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.Panel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.Panel2.Name" xml:space="preserve">
-    <value>splitContainerPartLibrary.Panel2</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.Panel2.Parent" xml:space="preserve">
-    <value>splitContainerPartLibrary</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="splitContainerPartLibrary.Panel2MinSize" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="splitContainerPartLibrary.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 210</value>
-  </data>
-  <data name="splitContainerPartLibrary.SplitterDistance" type="System.Int32, mscorlib">
-    <value>186</value>
-  </data>
-  <data name="splitContainerPartLibrary.SplitterWidth" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="splitContainerPartLibrary.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.Name" xml:space="preserve">
-    <value>splitContainerPartLibrary</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.Parent" xml:space="preserve">
-    <value>toolSplitContainer.Panel1</value>
-  </data>
-  <data name="&gt;&gt;splitContainerPartLibrary.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel1.Name" xml:space="preserve">
-    <value>toolSplitContainer.Panel1</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel1.Parent" xml:space="preserve">
-    <value>toolSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="layerSplitContainer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="layerSplitContainer.IsSplitterFixed" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="layerSplitContainer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="layerSplitContainer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="layerSplitContainer.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
-    <value>Horizontal</value>
-  </data>
-  <data name="layerStackPanel.AutoScroll" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="layerStackPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="layerStackPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="layerStackPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="layerStackPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 218</value>
-  </data>
-  <data name="layerStackPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;layerStackPanel.Name" xml:space="preserve">
-    <value>layerStackPanel</value>
-  </data>
-  <data name="&gt;&gt;layerStackPanel.Type" xml:space="preserve">
-    <value>BlueBrick.LayerStackPanel, BlueBrick, Version=1.7.1.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;layerStackPanel.Parent" xml:space="preserve">
-    <value>layerSplitContainer.Panel1</value>
-  </data>
-  <data name="&gt;&gt;layerStackPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel1.Name" xml:space="preserve">
-    <value>layerSplitContainer.Panel1</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel1.Parent" xml:space="preserve">
-    <value>layerSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="LayerButtonFlowLayoutPanel.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 0</value>
-  </data>
-  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 13</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 0</value>
-  </data>
-  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 13</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="LayerButtonFlowLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="LayerButtonFlowLayoutPanel.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
-    <value>RightToLeft</value>
-  </data>
-  <data name="LayerButtonFlowLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="LayerButtonFlowLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="LayerButtonFlowLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 20</value>
-  </data>
-  <data name="LayerButtonFlowLayoutPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Name" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Parent" xml:space="preserve">
-    <value>layerSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel2.Name" xml:space="preserve">
-    <value>layerSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel2.Parent" xml:space="preserve">
-    <value>layerSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="layerSplitContainer.Panel2MinSize" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="layerSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 242</value>
-  </data>
-  <data name="layerSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>218</value>
-  </data>
-  <data name="layerSplitContainer.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Name" xml:space="preserve">
-    <value>layerSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Parent" xml:space="preserve">
-    <value>toolSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel2.Name" xml:space="preserve">
-    <value>toolSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel2.Parent" xml:space="preserve">
-    <value>toolSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="toolSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 464</value>
-  </data>
-  <data name="toolSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>214</value>
-  </data>
-  <data name="toolSplitContainer.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Name" xml:space="preserve">
-    <value>toolSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Parent" xml:space="preserve">
-    <value>mainSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel2.Name" xml:space="preserve">
-    <value>mainSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel2.Parent" xml:space="preserve">
-    <value>mainSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="mainSplitContainer.Panel2MinSize" type="System.Int32, mscorlib">
-    <value>206</value>
-  </data>
-  <data name="mainSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>701, 464</value>
-  </data>
-  <data name="mainSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>475</value>
-  </data>
-  <data name="mainSplitContainer.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Name" xml:space="preserve">
-    <value>mainSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Type" xml:space="preserve">
-    <value>BlueBrick.MainSplitContainer, BlueBrick, Version=1.7.1.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2029,6 +2029,18 @@ Use # character in front of a keyword to specify a part number.</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>BlueBrick</value>
+  </data>
+  <data name="&gt;&gt;statusBarProgressBar.Name" xml:space="preserve">
+    <value>statusBarProgressBar</value>
+  </data>
+  <data name="&gt;&gt;statusBarProgressBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusBarLabel.Name" xml:space="preserve">
+    <value>statusBarLabel</value>
+  </data>
+  <data name="&gt;&gt;statusBarLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
     <value>fileToolStripMenuItem</value>
@@ -2689,18 +2701,6 @@ Use # character in front of a keyword to specify a part number.</value>
   </data>
   <data name="&gt;&gt;toolTipForMainForm.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;statusBarProgressBar.Name" xml:space="preserve">
-    <value>statusBarProgressBar</value>
-  </data>
-  <data name="&gt;&gt;statusBarProgressBar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;statusBarLabel.Name" xml:space="preserve">
-    <value>statusBarLabel</value>
-  </data>
-  <data name="&gt;&gt;statusBarLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
