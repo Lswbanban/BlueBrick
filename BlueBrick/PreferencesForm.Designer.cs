@@ -84,8 +84,6 @@ namespace BlueBrick
 			this.defaultFontColorPictureBox = new System.Windows.Forms.PictureBox();
 			this.defaultFontButton = new System.Windows.Forms.Button();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.displayGeneralInfoWatermarkCheckBox = new System.Windows.Forms.CheckBox();
-			this.displayFreeConnexionPointCheckBox = new System.Windows.Forms.CheckBox();
 			this.label25 = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
 			this.GammaForSnappingNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -673,8 +671,6 @@ namespace BlueBrick
 			// 
 			// groupBox5
 			// 
-			this.groupBox5.Controls.Add(this.displayGeneralInfoWatermarkCheckBox);
-			this.groupBox5.Controls.Add(this.displayFreeConnexionPointCheckBox);
 			this.groupBox5.Controls.Add(this.label25);
 			this.groupBox5.Controls.Add(this.label24);
 			this.groupBox5.Controls.Add(this.GammaForSnappingNumericUpDown);
@@ -693,22 +689,6 @@ namespace BlueBrick
 			resources.ApplyResources(this.groupBox5, "groupBox5");
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.TabStop = false;
-			// 
-			// displayGeneralInfoWatermarkCheckBox
-			// 
-			this.displayGeneralInfoWatermarkCheckBox.Checked = true;
-			this.displayGeneralInfoWatermarkCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			resources.ApplyResources(this.displayGeneralInfoWatermarkCheckBox, "displayGeneralInfoWatermarkCheckBox");
-			this.displayGeneralInfoWatermarkCheckBox.Name = "displayGeneralInfoWatermarkCheckBox";
-			this.displayGeneralInfoWatermarkCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// displayFreeConnexionPointCheckBox
-			// 
-			resources.ApplyResources(this.displayFreeConnexionPointCheckBox, "displayFreeConnexionPointCheckBox");
-			this.displayFreeConnexionPointCheckBox.Checked = true;
-			this.displayFreeConnexionPointCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.displayFreeConnexionPointCheckBox.Name = "displayFreeConnexionPointCheckBox";
-			this.displayFreeConnexionPointCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// label25
 			// 
@@ -1293,7 +1273,6 @@ namespace BlueBrick
 		private System.Windows.Forms.NumericUpDown areaCellSizeNumericUpDown;
 		private System.Windows.Forms.Label label28;
 		private System.Windows.Forms.NumericUpDown areaTransparencyNumericUpDown;
-		private System.Windows.Forms.CheckBox displayFreeConnexionPointCheckBox;
 		private System.Windows.Forms.GroupBox groupBox8;
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.ComboBox optimComboBox;
@@ -1337,7 +1316,6 @@ namespace BlueBrick
 		private System.Windows.Forms.GroupBox groupBox13;
 		private System.Windows.Forms.Label label26;
 		private System.Windows.Forms.PictureBox PartLibBackColorPictureBox;
-		private System.Windows.Forms.CheckBox displayGeneralInfoWatermarkCheckBox;
 		private System.Windows.Forms.CheckBox subGridEnabledCheckBox;
 		private System.Windows.Forms.CheckBox gridEnabledCheckBox;
 		private System.Windows.Forms.Button restoreTabDefaultButton;

@@ -386,7 +386,10 @@ namespace BlueBrick
 			this.toolBar.Visible = this.toolbarMenuItem.Checked = Properties.Settings.Default.UIToolbarIsVisible;
 			this.statusBar.Visible = this.statusBarMenuItem.Checked = Properties.Settings.Default.UIStatusbarIsVisible;
 			this.mapPanel.CurrentStatusBarHeight = Properties.Settings.Default.UIStatusbarIsVisible ? this.statusBar.Height : 0;
+			this.watermarkToolStripMenuItem.Checked = Properties.Settings.Default.DisplayGeneralInfoWatermark;
 			this.electricCircuitsMenuItem.Checked = Properties.Settings.Default.DisplayElectricCircuit;
+			this.connectionPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayFreeConnexionPoints;
+			this.hullsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayHull;
 		}
 
 		private void saveUISettingInDefaultSettings()
@@ -1896,9 +1899,9 @@ namespace BlueBrick
 			this.mapPanel.Invalidate();
 		}
 
-		private void electricCircuitsMenuItem_Click(object sender, EventArgs e)
+		private void watermarkToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			BlueBrick.Properties.Settings.Default.DisplayElectricCircuit = this.electricCircuitsMenuItem.Checked;
+			Properties.Settings.Default.DisplayGeneralInfoWatermark = this.watermarkToolStripMenuItem.Checked;
 			this.mapPanel.Invalidate();
 		}
 
@@ -1910,6 +1913,23 @@ namespace BlueBrick
 			this.partListToolStripMenuItem.Checked = mPartListForm.Visible;
 		}
 
+		private void electricCircuitsMenuItem_Click(object sender, EventArgs e)
+		{
+			Properties.Settings.Default.DisplayElectricCircuit = this.electricCircuitsMenuItem.Checked;
+			this.mapPanel.Invalidate();
+		}
+
+		private void connectionPointsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Properties.Settings.Default.DisplayFreeConnexionPoints = this.connectionPointsToolStripMenuItem.Checked;
+			this.mapPanel.Invalidate();
+		}
+
+		private void hullsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Properties.Settings.Default.DisplayHull = this.hullsToolStripMenuItem.Checked;
+			this.mapPanel.Invalidate();
+		}
 		#endregion
 
 		#region Help Menu

@@ -1443,60 +1443,6 @@
   <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="displayGeneralInfoWatermarkCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="displayGeneralInfoWatermarkCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 155</value>
-  </data>
-  <data name="displayGeneralInfoWatermarkCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 41</value>
-  </data>
-  <data name="displayGeneralInfoWatermarkCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="displayGeneralInfoWatermarkCheckBox.Text" xml:space="preserve">
-    <value>Display General Info Watermark</value>
-  </data>
-  <data name="&gt;&gt;displayGeneralInfoWatermarkCheckBox.Name" xml:space="preserve">
-    <value>displayGeneralInfoWatermarkCheckBox</value>
-  </data>
-  <data name="&gt;&gt;displayGeneralInfoWatermarkCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;displayGeneralInfoWatermarkCheckBox.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;displayGeneralInfoWatermarkCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 128</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 17</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="displayFreeConnexionPointCheckBox.Text" xml:space="preserve">
-    <value>Display Free Connection Points</value>
-  </data>
-  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.Name" xml:space="preserve">
-    <value>displayFreeConnexionPointCheckBox</value>
-  </data>
-  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;displayFreeConnexionPointCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="label25.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
@@ -1529,7 +1475,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;label25.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>0</value>
   </data>
   <data name="label24.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -1562,7 +1508,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;label24.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="GammaForSnappingNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>356, 165</value>
@@ -1583,7 +1529,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;GammaForSnappingNumericUpDown.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="GammaForSelectionNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>356, 128</value>
@@ -1604,7 +1550,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;GammaForSelectionNumericUpDown.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="label20.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1631,7 +1577,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="samplePictureBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1655,7 +1601,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;samplePictureBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="label19.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -1685,7 +1631,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
   <data name="subGridColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>388, 95</value>
@@ -1706,7 +1652,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;subGridColorPictureBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>7</value>
   </data>
   <data name="label18.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -1736,7 +1682,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>8</value>
   </data>
   <data name="gridColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>388, 71</value>
@@ -1757,7 +1703,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;gridColorPictureBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>9</value>
   </data>
   <data name="label17.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -1787,7 +1733,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>10</value>
   </data>
   <data name="backgroundColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>388, 48</value>
@@ -1808,7 +1754,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;backgroundColorPictureBox.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>11</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 20</value>
@@ -1835,7 +1781,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>12</value>
   </data>
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1862,7 +1808,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>13</value>
   </data>
   <data name="colorSchemeComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>22, 86</value>
@@ -1883,7 +1829,7 @@ grabbed part</value>
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;colorSchemeComboBox.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>14</value>
   </data>
   <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 7</value>
