@@ -359,6 +359,7 @@ namespace BlueBrick.MapData
 				// add a duplicated item in the list (because the model may change between this copy and the paste)
 				sCopyItems.Add((item as TextCell).Clone());
 			}
+			sLayerOfTheCopiedItems = this;
 			// enable the paste buttons
 			MainForm.Instance.enablePasteButton(true);
 		}
@@ -372,7 +373,9 @@ namespace BlueBrick.MapData
 			// To paste, we need to have copied something
 			if (sCopyItems.Count > 0)
 			{
-				mLastDuplicateTextAction = new DuplicateText(this, sCopyItems);
+				int copyStyle = Properties.Settings.Default.OffsetAfterCopyStyle;
+				bool addOffset = (copyStyle == 2) || ((copyStyle == 1) && (sLayerOfTheCopiedItems == this));
+				mLastDuplicateTextAction = new DuplicateText(this, sCopyItems, addOffset);
 				ActionManager.Instance.doAction(mLastDuplicateTextAction);
 			}
 		}

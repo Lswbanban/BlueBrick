@@ -1366,6 +1366,7 @@ namespace BlueBrick.MapData
 			SelectedObjects.Sort(comparer);
 			// and copy the list
 			sCopyItems = sCloneBrickList(SelectedObjects);
+			sLayerOfTheCopiedItems = this;
 			// enable the paste buttons
 			MainForm.Instance.enablePasteButton(true);
 		}
@@ -1379,7 +1380,9 @@ namespace BlueBrick.MapData
 			// To paste, we need to have copied something
 			if (sCopyItems.Count > 0)
 			{
-				mLastDuplicateBrickAction = new DuplicateBrick(this, sCopyItems);
+				int copyStyle = Properties.Settings.Default.OffsetAfterCopyStyle;
+				bool addOffset = (copyStyle == 2) || ((copyStyle  == 1) && (sLayerOfTheCopiedItems == this));
+				mLastDuplicateBrickAction = new DuplicateBrick(this, sCopyItems, addOffset);
 				ActionManager.Instance.doAction(mLastDuplicateBrickAction);
 			}
 		}

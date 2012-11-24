@@ -698,6 +698,7 @@ namespace BlueBrick.MapData
 
 		// the list for the copy/paste
 		protected static List<LayerItem> sCopyItems = new List<LayerItem>(); // a list of items created when user press CTRL+C to copy the current selection
+		protected static Layer sLayerOfTheCopiedItems = null; // the layer that contains the items that has been copied. This should be deleted when I will implement selection accross layers
 
 		#region get/set
 

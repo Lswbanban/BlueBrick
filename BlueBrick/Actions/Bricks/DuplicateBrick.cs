@@ -27,7 +27,7 @@ namespace BlueBrick.Actions.Bricks
 		private List<int> mBrickIndex = null; // this list of index is for the redo, to add each text at the same place
 		private string mPartNumber = string.Empty; //if the list contains only one brick or one group, this is the name of this specific brick or group
 
-		public DuplicateBrick(LayerBrick layer, List<Layer.LayerItem> bricksToDuplicate)
+		public DuplicateBrick(LayerBrick layer, List<Layer.LayerItem> bricksToDuplicate, bool needToAddOffset)
 		{
 			// init the layer
 			mBrickLayer = layer;
@@ -39,6 +39,16 @@ namespace BlueBrick.Actions.Bricks
 			// clone the list, because the pointer may change (specially if it is the selection)
 			// and we also need to duplicate the bricks themselves
 			mBricks = LayerBrick.sCloneBrickList(bricksToDuplicate);
+
+			// add an offset if needed
+			if (needToAddOffset)
+				foreach (Layer.LayerItem duplicatedItem in mBricks)
+				{
+					PointF newPosition = duplicatedItem.Position;
+					newPosition.X += Properties.Settings.Default.OffsetAfterCopyValue;
+					newPosition.Y += Properties.Settings.Default.OffsetAfterCopyValue;
+					duplicatedItem.Position = newPosition;
+				}
 
 			// try to get a part number (which can be the name of a group)
 			Layer.LayerItem topItem = LayerBrick.sGetTopItemFromList(mBricks);

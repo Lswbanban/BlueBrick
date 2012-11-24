@@ -72,6 +72,7 @@ Open bugs:
 	- manage the different unit
 	- Ruler just a line: or differnt option  for the lines/rulers
 	- Ruler circle
+	- copy/paste/duplicate rulers
 	- save/load rulers in BBM
 	- save/load in LDraw
 	- snapping for rulers on grid and brick
@@ -80,7 +81,6 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the options and context menu)
 - [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
 - [target 1.8] MISSING FEATURE (Alban): Add a setting to select the first panel of the Part lib when the application start
-- [target 1.8] MISSING FEATURE (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste (option should be: no offset, offset on the same layer only, always offset)
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
@@ -111,6 +111,7 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (Alban): Add a sorting order for the parts in the library based on a new <SortingKey> tag in the XML file of the part
 - NEW FEATURE (Alban): Add more contextual cursors inside the layout area (Hidden layer, 
 - NEW FEATURE (Alban): More precise Selection: Now the picking and rectangle selection use the hull of the part, and the text rectangle for rotated text, instead of the axis aligned bounding box of the part or text.
+- NEW FEATURE (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste
 - REFACTORING (Alban): Move the display of free connection point and watermark in the View menu and add the display of the hull.
 - BUGFIX #42 (Larry): CRASH!! if you export a small area after exporting a big area
 - BUGFIX (Alban): When changing the order of the part lib tabs, the previously selected tab was not reselected
