@@ -41,7 +41,7 @@ namespace BlueBrick.MapData
 				public static Hashtable sHashtableForLinkRebuilding = new Hashtable(); // this hashtable is used to recreate the link when loading
 
 				public Brick mMyBrick = null; // reference to the brick this connection refer to
-				public PointF mPositionInStudWorldCoord = new PointF(0, 0); // the position of the connection point is world coord stud coord.
+				private PointF mPositionInStudWorldCoord = new PointF(0, 0); // the position of the connection point is world coord stud coord.
 				private ConnectionPoint mConnectionLink = null; // link toward this conection point is connected
 				private int mType = BrickLibrary.ConnectionType.DEFAULT; // 0 if the default brick type (which is a kind of Brick connection)
 				private short mPolarity = 0; // 0=neutral, negative value=negative, and positive value=positive
@@ -82,6 +82,20 @@ namespace BlueBrick.MapData
 				{
 					get { return mType; }
 					set { mType = value; }
+				}
+
+				/// <summary>
+				/// Return the index of this connecion inside the array of connection its brick 
+				/// </summary>
+				public int Index
+				{
+					get
+					{
+						for (int i = 0; i < mMyBrick.ConnectionPoints.Count; ++i)
+							if (mMyBrick.ConnectionPoints[i] == this)
+								return i;
+						return 0;
+					}
 				}
 
 				public Brick ConnectedBrick
@@ -134,6 +148,13 @@ namespace BlueBrick.MapData
 				public PointF PositionInStudWorldCoord
 				{
 					get { return mPositionInStudWorldCoord; }
+					set
+					{
+						PointF newBrickCenter = this.mMyBrick.Center;
+						newBrickCenter.X += value.X - mPositionInStudWorldCoord.X;
+						newBrickCenter.Y += value.Y - mPositionInStudWorldCoord.Y;
+						this.mMyBrick.Center = newBrickCenter;
+					}
 				}
 
 				public float Angle
@@ -207,6 +228,17 @@ namespace BlueBrick.MapData
 				}
 
 				#endregion
+
+				/// <summary>
+				/// This accessor is reserved to the Brick class, to set the position of each of its connection
+				/// one by one. Use the normal accessor for setting the brick position via this connection position
+				/// </summary>
+				/// <param name="positionInStudWorldCoord">the position of this connection in stud world coordinate</param>
+				public void setPositionReservedForBrick(float xInStudWorldCoord, float yInStudWorldCoord)
+				{
+					mPositionInStudWorldCoord.X = xInStudWorldCoord;
+					mPositionInStudWorldCoord.Y = yInStudWorldCoord;
+				}
 			}
 
 			private string mPartNumber = null;	// id of the part
@@ -346,18 +378,13 @@ namespace BlueBrick.MapData
 				get
 				{
 					if (mConnectionPoints != null)
-						return mConnectionPoints[mActiveConnectionPointIndex].mPositionInStudWorldCoord;
+						return mConnectionPoints[mActiveConnectionPointIndex].PositionInStudWorldCoord;
 					return new PointF();
 				}
 				set
 				{
 					if (mConnectionPoints != null)
-					{
-						PointF newCenter = this.Center;
-						newCenter.X += value.X - mConnectionPoints[mActiveConnectionPointIndex].mPositionInStudWorldCoord.X;
-						newCenter.Y += value.Y - mConnectionPoints[mActiveConnectionPointIndex].mPositionInStudWorldCoord.Y;
-						this.Center = newCenter;
-					}
+						mConnectionPoints[mActiveConnectionPointIndex].PositionInStudWorldCoord = value;
 				}
 			}
 
@@ -844,8 +871,8 @@ namespace BlueBrick.MapData
 						// same size as the part library.
 						for (int i = 0; i < pointList.Count; ++i)
 						{
-							mConnectionPoints[i].mPositionInStudWorldCoord.X = center.X + pointArray[i].X;
-							mConnectionPoints[i].mPositionInStudWorldCoord.Y = center.Y + pointArray[i].Y;
+							mConnectionPoints[i].setPositionReservedForBrick(center.X + pointArray[i].X,
+																			center.Y + pointArray[i].Y);
 						}
 					}
 				}
@@ -902,7 +929,7 @@ namespace BlueBrick.MapData
 				for (int i = 0; i < connectionList.Count; ++i)
 					if (connectionList[i].IsFree)
 					{
-						PointF point = connectionList[i].mPositionInStudWorldCoord;
+						PointF point = connectionList[i].PositionInStudWorldCoord;
 						float dx = positionInStudCoord.X - point.X;
 						float dy = positionInStudCoord.Y - point.Y;
 						float squareDistance = (dx * dx) + (dy * dy);
@@ -1136,7 +1163,7 @@ namespace BlueBrick.MapData
 						if ((connexion.Type == BrickLibrary.ConnectionType.DEFAULT) || // case 1)
 								((connexion.ConnectionLink != null) &&
 									((connexion.ConnectionLink.Type != connexion.Type) || // case 2)
-									 !arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.ConnectionLink.mPositionInStudWorldCoord)))) // case 3)
+									 !arePositionsEqual(connexion.PositionInStudWorldCoord, connexion.ConnectionLink.PositionInStudWorldCoord)))) // case 3)
 						{
 							// we don't use the disconnect method here, because the disconnect method
 							// add the two connexion in the free connexion list, but we want to do it after.
@@ -1529,7 +1556,7 @@ namespace BlueBrick.MapData
 						if ((connexion.ConnectionLink != null) && !mSelectedObjects.Contains(connexion.ConnectionLink.mMyBrick))
 						{
 							// check if we need to brake the link
-							if (!arePositionsEqual(connexion.mPositionInStudWorldCoord, connexion.ConnectionLink.mPositionInStudWorldCoord))
+							if (!arePositionsEqual(connexion.PositionInStudWorldCoord, connexion.ConnectionLink.PositionInStudWorldCoord))
 								disconnectTwoConnectionPoints(connexion, connexion.ConnectionLink);
 						}
 
@@ -1556,7 +1583,7 @@ namespace BlueBrick.MapData
 					{
 						// try to find a new connection
 						foreach (Brick.ConnectionPoint freeConnexion in freeConnexionPoints.getListForType(i))
-							if (arePositionsEqual(selConnexion.mPositionInStudWorldCoord, freeConnexion.mPositionInStudWorldCoord))
+							if (arePositionsEqual(selConnexion.PositionInStudWorldCoord, freeConnexion.PositionInStudWorldCoord))
 								connectTwoConnectionPoints(selConnexion, freeConnexion, true);
 					}
 			}
@@ -1598,7 +1625,7 @@ namespace BlueBrick.MapData
 							// of the free connection for the specific type of the current connection.
 							// and of course the most important is to check that the two connection are at the same place
 							if ((freeConnexion.mMyBrick != brick) &&
-								arePositionsEqual(brickConnexion.mPositionInStudWorldCoord, freeConnexion.mPositionInStudWorldCoord))
+								arePositionsEqual(brickConnexion.PositionInStudWorldCoord, freeConnexion.PositionInStudWorldCoord))
 							{
 								if (connectTwoConnectionPoints(brickConnexion, freeConnexion, checkElectricShortcut))
 									--i;
@@ -1885,8 +1912,8 @@ namespace BlueBrick.MapData
 					foreach (Brick.ConnectionPoint connexion in mFreeConnectionPoints.getListForType(i))
 					{
 						float sizeInStud = connectionType.Size;
-						float x = (float)((connexion.mPositionInStudWorldCoord.X - sizeInStud - areaInStud.Left) * scalePixelPerStud);
-						float y = (float)((connexion.mPositionInStudWorldCoord.Y - sizeInStud - areaInStud.Top) * scalePixelPerStud);
+						float x = (float)((connexion.PositionInStudWorldCoord.X - sizeInStud - areaInStud.Left) * scalePixelPerStud);
+						float y = (float)((connexion.PositionInStudWorldCoord.Y - sizeInStud - areaInStud.Top) * scalePixelPerStud);
 						float sizeInPixel = (float)(sizeInStud * 2 * scalePixelPerStud);
 						g.FillEllipse(brush, x, y, sizeInPixel, sizeInPixel);
 					}
@@ -1970,7 +1997,7 @@ namespace BlueBrick.MapData
 				// grab distance to the active connection point
 				Brick.ConnectionPoint activeConnectionPoint = brick.ActiveConnectionPoint;
 				if (activeConnectionPoint != null)
-					mMouseGrabDeltaToActiveConnectionPoint = new PointF(mouseCoordInStud.X - activeConnectionPoint.mPositionInStudWorldCoord.X, mouseCoordInStud.Y - activeConnectionPoint.mPositionInStudWorldCoord.Y);
+					mMouseGrabDeltaToActiveConnectionPoint = new PointF(mouseCoordInStud.X - activeConnectionPoint.PositionInStudWorldCoord.X, mouseCoordInStud.Y - activeConnectionPoint.PositionInStudWorldCoord.Y);
 				else
 					mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
 			}
@@ -2410,8 +2437,8 @@ namespace BlueBrick.MapData
 							foreach (Brick.ConnectionPoint freeConnexion in mFreeConnectionPoints.getListForType(activeBrickConnexion.Type))
 								if (!mSelectedObjects.Contains(freeConnexion.mMyBrick))
 								{
-									float dx = freeConnexion.mPositionInStudWorldCoord.X - virtualActiveConnectionPosition.X;
-									float dy = freeConnexion.mPositionInStudWorldCoord.Y - virtualActiveConnectionPosition.Y;
+									float dx = freeConnexion.PositionInStudWorldCoord.X - virtualActiveConnectionPosition.X;
+									float dy = freeConnexion.PositionInStudWorldCoord.Y - virtualActiveConnectionPosition.Y;
 									float squareDistance = (dx * dx) + (dy * dy);
 									if (squareDistance < nearestSquareDistance)
 									{
@@ -2439,7 +2466,7 @@ namespace BlueBrick.MapData
 								snappedConnection = bestFreeConnection;
 
 								// we found a snapping connection, start to compute the snap position for the best connection
-								PointF snapPosition = snappedConnection.mPositionInStudWorldCoord;
+								PointF snapPosition = snappedConnection.PositionInStudWorldCoord;
 
 								// if it is not a flex move, rotate the selection
 								if (!mMouseMoveIsAFlexMove)
@@ -2459,8 +2486,8 @@ namespace BlueBrick.MapData
 									mRotationForSnappingDuringBrickMove.redo();
 
 									// compute the position from the connection points
-									snapPosition.X += itemWhichCenterIsSnapped.Center.X - activeBrickConnexion.mPositionInStudWorldCoord.X;
-									snapPosition.Y += itemWhichCenterIsSnapped.Center.Y - activeBrickConnexion.mPositionInStudWorldCoord.Y;
+									snapPosition.X += itemWhichCenterIsSnapped.Center.X - activeBrickConnexion.PositionInStudWorldCoord.X;
+									snapPosition.Y += itemWhichCenterIsSnapped.Center.Y - activeBrickConnexion.PositionInStudWorldCoord.Y;
 								}
 								// otherwise, for a flex move, just keep the best connection as the snapping value
 
@@ -2541,8 +2568,8 @@ namespace BlueBrick.MapData
 				{
 					Brick.ConnectionPoint activeConnectionPoint = mCurrentBrickUnderMouse.ActiveConnectionPoint;
 					if (activeConnectionPoint != null)
-						mMouseGrabDeltaToActiveConnectionPoint = new PointF(groupDrop.Center.X - activeConnectionPoint.mPositionInStudWorldCoord.X,
-																			groupDrop.Center.Y - activeConnectionPoint.mPositionInStudWorldCoord.Y);
+						mMouseGrabDeltaToActiveConnectionPoint = new PointF(groupDrop.Center.X - activeConnectionPoint.PositionInStudWorldCoord.X,
+																			groupDrop.Center.Y - activeConnectionPoint.PositionInStudWorldCoord.Y);
 				}
 
 				// update the brick connectivity for the group after having selected them
@@ -2558,8 +2585,8 @@ namespace BlueBrick.MapData
 				// check if the brick as connection point to set the garb distance to connection point
 				Brick.ConnectionPoint activeConnectionPoint = brickDrop.ActiveConnectionPoint;
 				if (activeConnectionPoint != null)
-					mMouseGrabDeltaToActiveConnectionPoint = new PointF(brickDrop.Center.X - activeConnectionPoint.mPositionInStudWorldCoord.X,
-																		brickDrop.Center.Y - activeConnectionPoint.mPositionInStudWorldCoord.Y);
+					mMouseGrabDeltaToActiveConnectionPoint = new PointF(brickDrop.Center.X - activeConnectionPoint.PositionInStudWorldCoord.X,
+																		brickDrop.Center.Y - activeConnectionPoint.PositionInStudWorldCoord.Y);
 				else
 					mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
 			}

@@ -34,15 +34,29 @@ namespace BlueBrick.Actions.Bricks
 		/// </summary>
 		/// <param name="fixedBrick">The brick on the map that doesn't move</param>
 		/// <param name="brickToAttach">The brick to add for which we should compute the angle</param>
-		/// <returns></returns>
+		/// <returns>The absolute orientation that should have the brick to attach to be correctly connected to the fixed brick (in degree)</returns>
 		public static float sGetOrientationOfConnectedBrick(LayerBrick.Brick fixedBrick, LayerBrick.Brick brickToAttach)
+		{
+			return sGetOrientationOfConnectedBrick(fixedBrick, fixedBrick.ActiveConnectionPointIndex, brickToAttach, brickToAttach.ActiveConnectionPointIndex);
+		}
+
+		/// <summary>
+		/// Compute and return the angle that should take the brickToAttach if it is connected to the
+		/// fixedBrick with both the specified connection point.
+		/// </summary>
+		/// <param name="fixedBrick">The brick on the map that doesn't move</param>
+		/// <param name="connectionIndexForFixedBrick">the fixed brick's connection index that you want to use to compute the orientaion</param>
+		/// <param name="brickToAttach">The brick to add for which we should compute the angle</param>
+		/// <param name="connectionIndexForBrickToAttach">the attached brick's connection index that you want to use to compute the orientaion</param>
+		/// <returns>The absolute orientation that should have the brick to attach to be correctly connected to the fixed brick (in degree)</returns>
+		public static float sGetOrientationOfConnectedBrick(LayerBrick.Brick fixedBrick, int connectionIndexForFixedBrick, LayerBrick.Brick brickToAttach, int connectionIndexForBrickToAttach)
 		{
 			// compute the rotation
 			float newOrientation = fixedBrick.Orientation +
 									BrickLibrary.Instance.getConnectionAngleDifference(fixedBrick.PartNumber,
-												fixedBrick.ActiveConnectionPointIndex,
+												connectionIndexForFixedBrick,
 												brickToAttach.PartNumber,
-												brickToAttach.ActiveConnectionPointIndex);
+												connectionIndexForBrickToAttach);
 			// clamp the orientation between 0 and 360
 			if (newOrientation >= 360.0f)
 				newOrientation -= 360.0f;

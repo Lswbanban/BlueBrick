@@ -1315,7 +1315,7 @@ namespace BlueBrick
 					// set the angle of the brick first
 					orientation = (double)(brick.Orientation - diffAngleBtwTDandBB);
 					// then set the position by getting it from the corresponding connection point
-					position = brick.ConnectionPoints[connectionPointIndex].mPositionInStudWorldCoord;
+					position = brick.ConnectionPoints[connectionPointIndex].PositionInStudWorldCoord;
 				}
 				else
 				{

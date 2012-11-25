@@ -63,20 +63,22 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
-			// special case for easy editing: if the delete brick is alone, and if this brick has connection points
-			// we select the connected brick, such as the user can press several times on the del button
-			// to delete a full line of track
+			// special case for easy editing: if the group of brick has connection points and is connected
+			// to bricks not deleted we select the connected brick, 
+			// such as the user can press several times on the del button to delete a full line of track.
 			LayerBrick.Brick nextBrickToSelect = null;
-			if (mBricks.Count == 1)
+			foreach (Layer.LayerItem item in mBricks)
 			{
-				LayerBrick.Brick deletedBrick = (mBricks[0] as LayerBrick.Brick);
-				if (deletedBrick.HasConnectionPoint)
-					foreach (LayerBrick.Brick.ConnectionPoint connexion in deletedBrick.ConnectionPoints)
-						if (!connexion.IsFree)
+				LayerBrick.Brick brick = item as LayerBrick.Brick;
+				if (brick.HasConnectionPoint)
+					foreach (LayerBrick.Brick.ConnectionPoint connexion in brick.ConnectionPoints)
+						if (!connexion.IsFree && !mBricks.Contains(connexion.ConnectionLink.mMyBrick))
 						{
 							nextBrickToSelect = connexion.ConnectionLink.mMyBrick;
 							break;
 						}
+				if (nextBrickToSelect != null)
+					break;
 			}
 
 			// remove the specified brick from the list of the layer,
