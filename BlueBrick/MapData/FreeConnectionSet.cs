@@ -77,6 +77,28 @@ namespace BlueBrick.MapData
 		{
 			return mFreeConnections[connectionType];
 		}
+
+		/// <summary>
+		/// Get the list that contains the most connection among all the different list for all
+		/// the different type of connection. This function also return in the out parameter what is
+		/// the winner type. If several lists have the same numbers of the connection, the one
+		/// with the lowest type number is returned
+		/// </summary>
+		/// <param name="connectionType">the type of the wining list</param>
+		/// <returns>the list of connection which has the most items</returns>
+		public List<LayerBrick.Brick.ConnectionPoint> getBiggestList(out int connectionType)
+		{
+			connectionType = 0;
+			int bestCount = mFreeConnections[0].Count;
+			for (int i = 1; i < mFreeConnections.Count; ++i)
+				if (mFreeConnections[i].Count > bestCount)
+				{
+					connectionType = i;
+					bestCount = mFreeConnections[i].Count;
+				}
+			// return the winning list
+			return mFreeConnections[connectionType];
+		}
 		#endregion
 	}
 }

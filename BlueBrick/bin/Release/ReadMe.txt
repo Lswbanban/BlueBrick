@@ -78,7 +78,7 @@ Open bugs:
 	- snapping for rulers on grid and brick
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
-- [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the options and context menu)
+- [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
 - [target 1.8] MISSING FEATURE (Alban): Add a setting to select the first panel of the Part lib when the application start
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
@@ -98,7 +98,6 @@ Open bugs:
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - [target 1.8] BUG (Alban): When launching BB the selected tab of the part lib is not always visible (need to scroll). The current selected tab should be saved when exiting the application.
 - [target 1.8] BUG (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should ask if we need to replace it or associate a new action on the same key (and the selection should modify the combo boxes)
-- [target 1.8] BUG (Alban): Rotate a group part and Delete a group part is not fully working (should remove Count == 1 in the code)
 - [target 1.8] BUG (Alban): The snapping margin defined in the XML file has no effect for a group
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
@@ -120,6 +119,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - BUGFIX (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
 - BUGFIX (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
+- BUGFIX (Alban): Rotate and Delete a group part is not working as for a single brick. Rotate a group now rotate according to the connections, delete a group now select the next connected brick
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)
