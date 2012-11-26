@@ -1153,7 +1153,18 @@ namespace BlueBrick
 
 		private void listViewShortcutKeys_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			// enable the delete button
 			this.buttonDelete.Enabled = (this.listViewShortcutKeys.SelectedItems.Count > 0);
+			
+			// also update the combox below with the values of the selected shortcut if only one is selected
+			if (this.listViewShortcutKeys.SelectedItems.Count == 1)
+			{
+				ListViewItem.ListViewSubItemCollection selectedItem = this.listViewShortcutKeys.SelectedItems[0].SubItems;
+				this.comboBoxKey.SelectedIndex = int.Parse(selectedItem[0].Tag as string);
+				this.comboBoxAction.SelectedIndex = int.Parse(selectedItem[1].Tag as string);
+				this.comboBoxPartNum.SelectedItem = selectedItem[2].Text;
+				this.comboBoxConnexion.SelectedItem = selectedItem[3].Text;
+			}
 		}
 
 		private void listViewShortcutKeys_ColumnClick(object sender, ColumnClickEventArgs e)

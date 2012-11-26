@@ -99,7 +99,6 @@ Open bugs:
 - [target 1.8] BUG (Alban): When launching BB the selected tab of the part lib is not always visible (need to scroll). The current selected tab should be saved when exiting the application.
 - [target 1.8] BUG (Alban): The snapping margin defined in the XML file has no effect for a group
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
-- [target 1.8] BUG (Alban): In the Preferences Shortcut tab, selecting a shortcut in the list updates the combo boxes below (for easy modification of an existing shortcut)
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
@@ -121,6 +120,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
 - BUGFIX (Alban): Rotate and Delete a group part is not working as for a single brick. Rotate a group now rotate according to the connections, delete a group now select the next connected brick
 - BUGFIX (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should ask if we need to replace it or associate a new action on the same key.
+- BUGFIX (Alban): In the Preferences Shortcut tab, selecting a shortcut in the list updates the combo boxes below (for easy modification of an existing shortcut)
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)
