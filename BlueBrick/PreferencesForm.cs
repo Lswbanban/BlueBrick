@@ -1110,6 +1110,35 @@ namespace BlueBrick
 				itemNames[2] = String.Empty;
 				itemNames[3] = String.Empty;
 			}
+			
+			// search for existing shortcut with the same key
+			List<ListViewItem> existingItemForThisKey = new List<ListViewItem>();
+			foreach (ListViewItem item in this.listViewShortcutKeys.Items)
+				if (item.SubItems[0].Tag.Equals(itemNames[0]))
+					existingItemForThisKey.Add(item);
+
+			// check if we found any and ask for replacement or adding
+			if (existingItemForThisKey.Count > 0)
+			{
+				DialogResult result = MessageBox.Show(this,
+					BlueBrick.Properties.Resources.ErrorMsgReplaceExistingShortcut,
+					BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNoCancel,
+					MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
+				// check the result of the question
+				if (result == System.Windows.Forms.DialogResult.Yes)
+				{
+					// delete all the existing shortcut
+					foreach (ListViewItem item in existingItemForThisKey)
+						this.listViewShortcutKeys.Items.Remove(item);
+				}
+				else if (result == System.Windows.Forms.DialogResult.Cancel)
+				{
+					// do not delete neither add shortcut, just exit
+					return;
+				}
+			}
+
+			// now add the shortcuts
 			addShortcutKey(itemNames);
 		}
 
