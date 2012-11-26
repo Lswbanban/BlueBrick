@@ -55,8 +55,6 @@ namespace BlueBrick.Actions.Bricks
 
 		public RotateBrick(LayerBrick layer, List<Layer.LayerItem> bricks, int rotateSteps, bool forceKeepLastCenter)
 		{
-			bool rotateCW = (rotateSteps < 0);
-			int nbSteps = Math.Abs(rotateSteps);
 			// compute the default rotation angle, used if no bricks in the list is connected to something else
 			float angle = MapData.Layer.CurrentRotationStep * rotateSteps;
 
@@ -65,9 +63,9 @@ namespace BlueBrick.Actions.Bricks
 			// we rotate the group of brick such as it can connect with its next connexion point.
 			// we do this first because maybe it will invalidate the flag sLastCenterIsValid
 
-			// gather the free connection or those linked with bricks outside of the list of brick to rotate
-			FreeConnectionSet externalConnectionSet = new FreeConnectionSet();
-			FreeConnectionSet availableConnectionSet = new FreeConnectionSet();
+			// first we gather all the free connections or those linked with bricks outside of the list of brick
+			FreeConnectionSet externalConnectionSet = new FreeConnectionSet(); // all the connection connected to external bricks
+			FreeConnectionSet availableConnectionSet = new FreeConnectionSet(); // all the possible connections that can be used to link to one external brick
 			foreach (Layer.LayerItem item in bricks)
 			{
 				LayerBrick.Brick brick = item as LayerBrick.Brick;
@@ -84,34 +82,56 @@ namespace BlueBrick.Actions.Bricks
 						}
 			}
 
-			// get the biggest group of external connection among all the available types
-			int connexionType = BrickLibrary.ConnectionType.DEFAULT;
-			List<LayerBrick.Brick.ConnectionPoint> externalConnectionList = externalConnectionSet.getBiggestList(out connexionType);
+			// get the biggest group of external connection among all the available types, and also get its type
+			int chosenConnexionType = BrickLibrary.ConnectionType.DEFAULT;
+			List<LayerBrick.Brick.ConnectionPoint> externalConnectionList = externalConnectionSet.getBiggestList(out chosenConnexionType);
 
 			// check if there is any external connection on which we should rotate
 			if (externalConnectionList.Count > 0)
 			{
-				// for now, without a lot of imagination, take the first connection of the list
-				LayerBrick.Brick.ConnectionPoint connection = externalConnectionList[0];
 				// in that case we don't use the static center
 				sLastCenterIsValid = false;
+
+				// for now, without a lot of imagination, take the first connection of the list
+				mOldConnectionPoint = externalConnectionList[0];
+
 				// store the connection position
-				mConnexionPosition = connection.PositionInStudWorldCoord;
-				mOldConnectionPoint = connection;
-				LayerBrick.Brick fixedBrick = connection.ConnectedBrick;
-				int fixedBrickConnectionIndex = connection.ConnectionLink.Index;
+				mConnexionPosition = mOldConnectionPoint.PositionInStudWorldCoord;
+
+				// get the fixed brick, the external brick on the other side of the chosen connection
+				LayerBrick.Brick fixedBrick = mOldConnectionPoint.ConnectedBrick;
+				int fixedBrickConnectionIndex = mOldConnectionPoint.ConnectionLink.Index;
 
 				// get the same list but for available connections
-				List<LayerBrick.Brick.ConnectionPoint> availableConnectionList = availableConnectionSet.getListForType(connexionType);
+				List<LayerBrick.Brick.ConnectionPoint> availableConnectionList = availableConnectionSet.getListForType(chosenConnexionType);
 
-				// get the index connection depending on the number of steps and the rotation direction
-				int index = availableConnectionList.IndexOf(connection);
-				index += (nbSteps % availableConnectionList.Count);
-				mNewConnectionPoint = availableConnectionList[index % availableConnectionList.Count];
+				// check in which direction and how many connection we should jump
+				bool rotateCW = (rotateSteps < 0);
+				int nbSteps = Math.Abs(rotateSteps);
+
+				// get the index of the chosen connection in the available connection list				
+				int index = availableConnectionList.IndexOf(mOldConnectionPoint);
+				// start from it then count forward or backward a certain number of connections
+				// depending on the number of steps and the rotation direction
+				if (rotateCW)
+				{
+					index -= (nbSteps % availableConnectionList.Count);
+					if (index < 0)
+						index += availableConnectionList.Count;
+				}
+				else
+				{
+					index += (nbSteps % availableConnectionList.Count);
+					if (index >= availableConnectionList.Count)
+						index -= availableConnectionList.Count;
+				}
+				// finally get the new connection from the chosen index
+				mNewConnectionPoint = availableConnectionList[index];
 
 				// compute the angle to rotate
 				LayerBrick.Brick newConnectedBrick = mNewConnectionPoint.mMyBrick;
-				angle = AddConnectBrick.sGetOrientationOfConnectedBrick(fixedBrick, fixedBrickConnectionIndex, newConnectedBrick, mNewConnectionPoint.Index) - newConnectedBrick.Orientation;
+				angle = AddConnectBrick.sGetOrientationOfConnectedBrick(fixedBrick, fixedBrickConnectionIndex,
+					newConnectedBrick, mNewConnectionPoint.Index) - newConnectedBrick.Orientation;
 			}
 
 			// then call the normal constructor
