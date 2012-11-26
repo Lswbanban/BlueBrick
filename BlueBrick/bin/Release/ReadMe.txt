@@ -80,7 +80,6 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
-- [target 1.8] MISSING FEATURE (Alban): Add a setting to select the first panel of the Part lib when the application start
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
@@ -96,13 +95,13 @@ Open bugs:
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
-- [target 1.8] BUG (Alban): When launching BB the selected tab of the part lib is not always visible (need to scroll). The current selected tab should be saved when exiting the application.
+- [target 1.8] BUG (Alban): The current selected tab of the Part Lib should be saved when exiting the application. When launching it is not always visible (need to scroll). 
 - [target 1.8] BUG (Alban): The snapping margin defined in the XML file has no effect for a group
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
+- [target 1.8] REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
-- REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 
 Bug fixed in 1.8.0.0:
 - NEW FEATURE (Alban): Add a filter combobox in the bottom of the library
