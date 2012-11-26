@@ -811,6 +811,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A shortcut already exists for this key. Do you want to replace it?.
+        /// </summary>
+        internal static string ErrorMsgReplaceExistingShortcut {
+            get {
+                return ResourceManager.GetString("ErrorMsgReplaceExistingShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string ErrorMsgTitleError {

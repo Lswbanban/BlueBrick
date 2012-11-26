@@ -478,4 +478,7 @@
   <data name="LayerRulerOptionTitle" xml:space="preserve">
     <value>Options for Ruler Layer</value>
   </data>
+  <data name="ErrorMsgReplaceExistingShortcut" xml:space="preserve">
+    <value>A shortcut already exists for this key. Do you want to replace it?</value>
+  </data>
 </root>
