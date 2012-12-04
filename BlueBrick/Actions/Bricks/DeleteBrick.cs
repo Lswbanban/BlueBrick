@@ -36,7 +36,7 @@ namespace BlueBrick.Actions.Bricks
 				mBricks.Add(obj);
 
 			// try to get a part number (which can be the name of a group)
-			Layer.LayerItem topItem = LayerBrick.sGetTopItemFromList(mBricks);
+			Layer.LayerItem topItem = Layer.sGetTopItemFromList(mBricks);
 			if (topItem != null)
 			{
 				if (topItem.IsAGroup)

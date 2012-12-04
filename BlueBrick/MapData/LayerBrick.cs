@@ -1048,7 +1048,8 @@ namespace BlueBrick.MapData
 		private FreeConnectionSet mFreeConnectionPoints = new FreeConnectionSet();
 
 		//related to selection
-		private Brick mCurrentBrickUnderMouse = null;
+		private Brick mCurrentBrickUnderMouse = null; // this is the single brick under the mouse even if this brick belongs to a group
+		private LayerItem mCurrentTopItemUnderMouse = null; // this can be the Top Group if the brick under the mouse belongs to a group, or the brick itself
 		private PointF mMouseDownInitialPosition;
 		private PointF mMouseDownLastPosition;
 		private PointF mMouseGrabDeltaToCenter; // The delta between the grab point of the mouse inside the grabed brick, to the center of that brick
@@ -1427,7 +1428,7 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
-		/// This method return the unique brick in the layer to which you can connect another brick
+		/// This method return the unique brick in the current selection to which you can connect another brick
 		/// or null if there's no suitable brick candidate for connection.
 		/// If there's only one brick selected, this brick is return, otherwise check
 		/// if all the bricks selected belongs to the same hierarchical tree of group,
@@ -1437,7 +1438,7 @@ namespace BlueBrick.MapData
 		/// <returns>The brick that is connectable and should display its active connection point, or null</returns>
 		public Brick getConnectableBrick()
 		{
-			LayerItem topItem = sGetTopItemFromList(mSelectedObjects);
+			LayerItem topItem = Layer.sGetTopItemFromList(mSelectedObjects);
 			if (topItem != null)
 			{
 				if (topItem.IsAGroup)
@@ -1447,47 +1448,8 @@ namespace BlueBrick.MapData
 			}
 			return null;
 		}
-
-		/// <summary>
-		/// This static tool method return the top item of a hierachical group of bricks, or null if all the
-		/// bricks of the list doesn't belong to the same unique hierarchical group.
-		/// </summary>
-		/// <param name="brickList">a list of bricks among which we should search a top item</param>
-		/// <returns>a Brick or a Group which is at the top of the hierarchical group</returns>
-		public static LayerItem sGetTopItemFromList(List<LayerItem> brickList) 
-		{
-			if (brickList.Count == 1)
-			{
-				return brickList[0];
-			}
-			else if (brickList.Count > 1)
-			{
-				Layer.Group topGroup = null;
-				foreach (Layer.LayerItem item in brickList)
-				{
-					// get the group of the item
-					Layer.Group fatherGroup = item.Group;
-					// if any item doesn't have any group, since there's several items selected,
-					// we know that they cannot be in the same group
-					if (fatherGroup == null)
-						return null;
-					// find the top father
-					while (fatherGroup.Group != null)
-						fatherGroup = fatherGroup.Group;
-					// if the top group is not initialized yet, do it now
-					if (topGroup == null)
-						topGroup = fatherGroup;
-					// if we found two different top father, stop the search
-					if (fatherGroup != topGroup)
-						return null;
-				}
-				// iteration finished without finding different top group, so it's ok
-				return topGroup;
-			}
-			// no object selected (selection is empty)
-			return null;
-		}
 		#endregion
+
 		#region connectivity
 		/// <summary>
 		/// Connect the two connexion if possible (i.e. if both connexion are free)
@@ -1988,10 +1950,16 @@ namespace BlueBrick.MapData
 		{
 			// set the new value
 			mCurrentBrickUnderMouse = brick;
+			mCurrentTopItemUnderMouse = brick;
 
 			// update the 2 grab distance if you change the brick under the mouse
 			if (brick != null)
 			{
+				// also set the top group if this brick belongs to a group
+				LayerItem topGroup = brick.TopGroup;
+				if (topGroup != null)
+					mCurrentTopItemUnderMouse = topGroup;
+
 				// grab distance to center
 				mMouseGrabDeltaToCenter = new PointF(mouseCoordInStud.X - brick.Center.X, mouseCoordInStud.Y - brick.Center.Y);
 				// grab distance to the active connection point
@@ -2025,16 +1993,16 @@ namespace BlueBrick.MapData
 				&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey))
 				clearSelection();
 
-			// clear the current brick under the mouse and compute it again
-			mCurrentBrickUnderMouse = null;
+			// find the current brick under the mouse
+			Brick currentBrickUnderMouse = null;
 
 			// We search if there is a cell under the mouse but in priority we choose from the current selected bricks
-			mCurrentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
+			currentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
 
 			// if the current selected brick is not under the mouse we search among the other bricks
 			// but in reverse order to choose first the brick on top
-			if (mCurrentBrickUnderMouse == null)
-				mCurrentBrickUnderMouse = getBrickUnderMouse(mouseCoordInStud);
+			if (currentBrickUnderMouse == null)
+				currentBrickUnderMouse = getBrickUnderMouse(mouseCoordInStud);
 
 			// save a flag that tell if it is a simple move or a duplicate of the selection
 			// Be carreful for a duplication we take only the selected objects, not the cell
@@ -2044,19 +2012,25 @@ namespace BlueBrick.MapData
 
 			// if we move the brick, use 4 directionnal arrows cursor
 			// if there's a brick under the mouse, use the hand
-			bool willMoveSelectedObject = (isMouseInsideSelectedObjects || (mCurrentBrickUnderMouse != null))
+			bool willMoveSelectedObject = (isMouseInsideSelectedObjects || (currentBrickUnderMouse != null))
 										&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
 										&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
 
 			// check if it is a double click, to see if we need to do a flex move
-			if (!mMouseMoveIsADuplicate && (mCurrentBrickUnderMouse != null) && (e.Clicks == 2))
+			if (!mMouseMoveIsADuplicate && (currentBrickUnderMouse != null) && (e.Clicks == 2))
 			{
-				mMouseFlexMoveAction = new FlexMove(this, this.SelectedObjects, mCurrentBrickUnderMouse, mouseCoordInStud);
+				mMouseFlexMoveAction = new FlexMove(this, this.SelectedObjects, currentBrickUnderMouse, mouseCoordInStud);
 				mMouseMoveIsAFlexMove = mMouseFlexMoveAction.IsValid;
 				// destroy the action if it is not valid
 				if (!mMouseMoveIsAFlexMove)
 					mMouseFlexMoveAction = null;
 			}
+
+			// handle the mouse down if we duplicate or move the selected bricks
+			bool willHandleTheMouse = (mMouseMoveIsADuplicate || mMouseMoveIsAFlexMove || willMoveSelectedObject);
+			// reset the brick pointer under the mouse if finally we don't care.
+			if (!willHandleTheMouse)
+				currentBrickUnderMouse = null;
 
 			// select the appropriate cursor:
 			if (mMouseMoveIsADuplicate)
@@ -2065,17 +2039,11 @@ namespace BlueBrick.MapData
 				preferedCursor = MainForm.Instance.FlexArrowCursor;
 			else if (willMoveSelectedObject)
 				preferedCursor = Cursors.SizeAll;
-			else if (mCurrentBrickUnderMouse == null)
+			else if (currentBrickUnderMouse == null)
 				preferedCursor = Cursors.Cross;
 
-			// handle the mouse down if we duplicate or move the selected bricks
-			bool willHandleTheMouse = (mMouseMoveIsADuplicate || mMouseMoveIsAFlexMove || willMoveSelectedObject);
-			// reset the brick pointer under the mouse if finally we don't care.
-			if (!willHandleTheMouse)
-				mCurrentBrickUnderMouse = null;
-
 			// compute the grab point if we grab a brick
-			setBrickUnderMouse(mCurrentBrickUnderMouse, mouseCoordInStud);
+			setBrickUnderMouse(currentBrickUnderMouse, mouseCoordInStud);
 
 			// return the result
 			return willHandleTheMouse;
@@ -2187,8 +2155,8 @@ namespace BlueBrick.MapData
 						// after we moved the selection check if we need to refresh the current highlighted brick
 						if (wereBrickJustDuplicated)
 						{
-							mCurrentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
-							setBrickUnderMouse(mCurrentBrickUnderMouse, mouseCoordInStud);
+							Brick currentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
+							setBrickUnderMouse(currentBrickUnderMouse, mouseCoordInStud);
 						}
 						// memorize the last position of the mouse
 						mMouseDownLastPosition = mouseCoordInStudSnapped;
@@ -2321,7 +2289,7 @@ namespace BlueBrick.MapData
 			}
 
 			mMouseIsBetweenDownAndUpEvent = false;
-			mCurrentBrickUnderMouse = null;
+			setBrickUnderMouse(null, PointF.Empty);
 			return true;
 		}
 
@@ -2356,9 +2324,9 @@ namespace BlueBrick.MapData
 			if (SnapGridEnabled)
 			{
 				// check if there is a master brick
-				if (mCurrentBrickUnderMouse != null)
+				if (mCurrentTopItemUnderMouse != null)
 				{
-					result = mCurrentBrickUnderMouse.Center;
+					result = mCurrentTopItemUnderMouse.Center;
 				}
 				else
 				{
@@ -2411,7 +2379,7 @@ namespace BlueBrick.MapData
 			if (SnapGridEnabled)
 			{
 				// check if there is a master brick
-				if (mCurrentBrickUnderMouse != null)
+				if (mCurrentTopItemUnderMouse != null)
 				{
 					// now check if the master brick has some connections
 					if (mCurrentBrickUnderMouse.HasConnectionPoint)
@@ -2508,8 +2476,8 @@ namespace BlueBrick.MapData
 					pointInStud = Layer.snapToGrid(pointInStud);
 					
 					// compute the center shift (including the snap grid margin
-					PointF halfBrickShift = new PointF((mCurrentBrickUnderMouse.DisplayArea.Width / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.X,
-													(mCurrentBrickUnderMouse.DisplayArea.Height / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.Y);
+					PointF halfBrickShift = new PointF((mCurrentTopItemUnderMouse.DisplayArea.Width / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.X,
+													(mCurrentTopItemUnderMouse.DisplayArea.Height / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.Y);
 
 					// compute a snapped grab delta
 					PointF snappedGrabDelta = mMouseGrabDeltaToCenter;
@@ -2562,15 +2530,7 @@ namespace BlueBrick.MapData
 				
 				// by default the active connection index of a group is 0
 				// and get the corresponding brick that hold the active connection index
-				mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
-				mCurrentBrickUnderMouse = groupDrop.BrickThatHoldsActiveConnection;
-				if (mCurrentBrickUnderMouse != null)
-				{
-					Brick.ConnectionPoint activeConnectionPoint = mCurrentBrickUnderMouse.ActiveConnectionPoint;
-					if (activeConnectionPoint != null)
-						mMouseGrabDeltaToActiveConnectionPoint = new PointF(groupDrop.Center.X - activeConnectionPoint.PositionInStudWorldCoord.X,
-																			groupDrop.Center.Y - activeConnectionPoint.PositionInStudWorldCoord.Y);
-				}
+				setBrickUnderMouse(groupDrop.BrickThatHoldsActiveConnection, groupDrop.Center);
 
 				// update the brick connectivity for the group after having selected them
 				updateFullBrickConnectivityForSelectedBricksOnly();
@@ -2581,14 +2541,7 @@ namespace BlueBrick.MapData
 				Brick brickDrop = itemDrop as Brick;
 				mBricks.Add(brickDrop);
 				mSelectedObjects.Add(brickDrop);
-				mCurrentBrickUnderMouse = brickDrop;
-				// check if the brick as connection point to set the garb distance to connection point
-				Brick.ConnectionPoint activeConnectionPoint = brickDrop.ActiveConnectionPoint;
-				if (activeConnectionPoint != null)
-					mMouseGrabDeltaToActiveConnectionPoint = new PointF(brickDrop.Center.X - activeConnectionPoint.PositionInStudWorldCoord.X,
-																		brickDrop.Center.Y - activeConnectionPoint.PositionInStudWorldCoord.Y);
-				else
-					mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+				setBrickUnderMouse(brickDrop, brickDrop.Center);
 			}
 		}
 
