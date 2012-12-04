@@ -907,6 +907,45 @@ namespace BlueBrick.MapData
 		#endregion
 
 		#region selection
+		/// <summary>
+		/// This static tool method return the top item of a hierachical group of layer items, or null if all the
+		/// items of the list doesn't belong to the same unique hierarchical group.
+		/// </summary>
+		/// <param name="itemList">a list of layer items among which we should search a top item</param>
+		/// <returns>The Group which is at the top of the hierarchical group, or an item, or null</returns>
+		public static LayerItem sGetTopItemFromList(List<LayerItem> itemList)
+		{
+			if (itemList.Count == 1)
+			{
+				return itemList[0];
+			}
+			else if (itemList.Count > 1)
+			{
+				Layer.Group topGroup = null;
+				foreach (Layer.LayerItem item in itemList)
+				{
+					// get the group of the item
+					Layer.Group fatherGroup = item.Group;
+					// if any item doesn't have any group, since there's several items selected,
+					// we know that they cannot be in the same group
+					if (fatherGroup == null)
+						return null;
+					// find the top father
+					while (fatherGroup.Group != null)
+						fatherGroup = fatherGroup.Group;
+					// if the top group is not initialized yet, do it now
+					if (topGroup == null)
+						topGroup = fatherGroup;
+					// if we found two different top father, stop the search
+					if (fatherGroup != topGroup)
+						return null;
+				}
+				// iteration finished without finding different top group, so it's ok
+				return topGroup;
+			}
+			// no object selected (selection is empty)
+			return null;
+		}
 
 		/// <summary>
 		/// Compute the bounding rectangle that surround all the object in the
