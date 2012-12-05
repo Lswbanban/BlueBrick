@@ -42,9 +42,13 @@ namespace BlueBrick.MapData
 			public static List<Group> sListForGroupSaving = new List<Group>(); // this list is used during the saving of BBM file to save all the grouping hierarchy
 
 			protected RectangleF mDisplayArea = new RectangleF(); // in stud coordinate
-			protected Tools.Surface mSelectionArea = null; // in stud coordinate. Most of the time, this is the hull of the item
 			protected float mOrientation = 0;	// in degree
 			protected Group mMyGroup = null; // the group in which this item is
+
+			[NonSerialized]
+			protected Tools.Surface mSelectionArea = null; // in stud coordinate. Most of the time, this is the hull of the item
+			[NonSerialized]
+			protected PointF mSnapToGridOffset = new PointF(0, 0); // an offset from the center of the part to the point that should snap to the grid border (in stud)
 
 			#region get/set
 			/// <summary>
@@ -117,6 +121,14 @@ namespace BlueBrick.MapData
 			public float Height
 			{
 				get { return mDisplayArea.Height; }
+			}
+
+			/// <summary>
+			/// an offset from the center of the part to the point that should snap a corner of the grid
+			/// </summary>
+			public PointF SnapToGridOffset
+			{
+				get { return mSnapToGridOffset; }
 			}
 
 			/// <summary>
@@ -265,6 +277,51 @@ namespace BlueBrick.MapData
 				if (mSelectionArea != null)
 					mSelectionArea.translate(new PointF(newPosition.X - oldPosition.X, newPosition.Y - oldPosition.Y));
 			}
+
+			/// <summary>
+			/// Update the snap margin (if any) of this item according to its current orientation and the margin
+			/// defined in the part library (for now, if other type of items need to define their snap margin,
+			/// some refactoring will be required). This update function should be called in the orientation setter.
+			/// </summary>
+			protected void updateSnapMargin()
+			{
+				BrickLibrary.Brick.Margin snapMargin = BrickLibrary.Instance.getSnapMargin(this.PartNumber);
+				if ((snapMargin.mLeft != 0.0f) || (snapMargin.mRight != 0.0f) || (snapMargin.mTop != 0.0f) || (snapMargin.mBottom != 0.0f))
+				{
+					double angleInRadian = mOrientation * Math.PI / 180.0;
+					double cosAngle = Math.Cos(angleInRadian);
+					double sinAngle = Math.Sin(angleInRadian);
+					double xSnapOffset = 0;
+					double ySnapOffset = 0;
+					if (cosAngle > 0)
+					{
+						xSnapOffset = snapMargin.mLeft * cosAngle;
+						ySnapOffset = snapMargin.mTop * cosAngle;
+					}
+					else
+					{
+						cosAngle = -cosAngle;
+						xSnapOffset = snapMargin.mRight * cosAngle;
+						ySnapOffset = snapMargin.mBottom * cosAngle;
+					}
+					if (sinAngle > 0)
+					{
+						xSnapOffset += snapMargin.mBottom * sinAngle;
+						ySnapOffset += snapMargin.mLeft * sinAngle;
+					}
+					else
+					{
+						sinAngle = -sinAngle;
+						xSnapOffset += snapMargin.mTop * sinAngle;
+						ySnapOffset += snapMargin.mRight * sinAngle;
+					}
+					mSnapToGridOffset = new PointF((float)xSnapOffset, (float)ySnapOffset);
+				}
+				else
+				{
+					mSnapToGridOffset = new PointF(0, 0);
+				}
+			}
 			#endregion
 		};
 
@@ -333,6 +390,19 @@ namespace BlueBrick.MapData
 					// translate the whole group
 					translate(new PointF(value.X - (mDisplayArea.Width * 0.5f) - mDisplayArea.X,
 										value.Y - (mDisplayArea.Height * 0.5f) - mDisplayArea.Y));
+				}
+			}
+
+			/// <summary>
+			/// The current orientation of the group. This only has meaning if the group comes from the brick library
+			/// and the setter accessor is mainly useful to recompute the snap margin of the group.
+			/// </summary>
+			public override float Orientation
+			{
+				set
+				{
+					mOrientation = value;
+					updateSnapMargin();
 				}
 			}
 
@@ -430,12 +500,13 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
-			/// Copy constructor , only copy the part number for now
+			/// Copy constructor, only copy the part number and the orientation (to copy the snap margin)
 			/// </summary>
 			/// <param name="model"></param>
 			public Group(Group model)
 			{
-				mPartNumber = model.mPartNumber;
+				this.mPartNumber = model.mPartNumber;
+				this.Orientation = model.mOrientation;
 			}
 
 			/// <summary>
@@ -460,6 +531,8 @@ namespace BlueBrick.MapData
 			{
 				// set the group name
 				mPartNumber = groupName;
+				// set the orientation of this group after the part number (useful top compute the snap marging)
+				this.Orientation = (float)(Math.Atan2(parentTransform.Elements[1], parentTransform.Elements[0]) * 180.0 / Math.PI);
 				// set the can ungroup flag
 				mCanUngroup = BrickLibrary.Instance.canUngroup(groupName);
 				// create all the parts inside the group

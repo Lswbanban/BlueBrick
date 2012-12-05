@@ -255,8 +255,6 @@ namespace BlueBrick.MapData
 			[NonSerialized]
 			private PointF mTopLeftCornerInPixel = PointF.Empty;
 			[NonSerialized]
-			private PointF mSnapToGridOffset = new PointF(0, 0); // an offset from the center of the part to the point that should snap to the grid border (in stud)
-			[NonSerialized]
 			private PointF mOffsetFromOriginalImage = new PointF(0, 0); // when the image is rotated, the size is not the same as the orginal one, so this offset handle the difference
 			[NonSerialized]
 			private List<BrickLibrary.Brick.ElectricCircuit> mElectricCircuitIndexList = null; // reference on the array describing the electric circuit for this part
@@ -293,6 +291,7 @@ namespace BlueBrick.MapData
 				{
 					mOrientation = value;
 					updateImage();
+					updateSnapMargin();
 					updateConnectionPosition();
 				}
 			}
@@ -322,14 +321,6 @@ namespace BlueBrick.MapData
 					base.Center = value;
 					updateConnectionPosition();				
 				}
-			}
-
-			/// <summary>
-			/// an offset from the center of the part to the point that should snap a corner of the grid
-			/// </summary>
-			public PointF SnapToGridOffset
-			{
-				get { return mSnapToGridOffset; }
 			}
 
 			/// <summary>
@@ -737,44 +728,6 @@ namespace BlueBrick.MapData
 				else
 				{
 					mOffsetFromOriginalImage = new PointF(0, 0);
-				}
-
-				// compute the snapToGridOffset
-				BrickLibrary.Brick.Margin snapMargin = BrickLibrary.Instance.getSnapMargin(mPartNumber);
-				if ((snapMargin.mLeft != 0.0f) || (snapMargin.mRight != 0.0f) || (snapMargin.mTop != 0.0f) || (snapMargin.mBottom != 0.0f))
-				{
-					double angleInRadian = mOrientation * Math.PI / 180.0;
-					double cosAngle = Math.Cos(angleInRadian);
-					double sinAngle = Math.Sin(angleInRadian);
-					double xSnapOffset = 0;
-					double ySnapOffset = 0;
-					if (cosAngle > 0)
-					{
-						xSnapOffset = snapMargin.mLeft * cosAngle;
-						ySnapOffset = snapMargin.mTop * cosAngle;
-					}
-					else
-					{
-						cosAngle = -cosAngle;
-						xSnapOffset = snapMargin.mRight * cosAngle;
-						ySnapOffset = snapMargin.mBottom * cosAngle;
-					}
-					if (sinAngle > 0)
-					{
-						xSnapOffset += snapMargin.mBottom * sinAngle;
-						ySnapOffset += snapMargin.mLeft * sinAngle;
-					}
-					else
-					{
-						sinAngle = -sinAngle;
-						xSnapOffset += snapMargin.mTop * sinAngle;
-						ySnapOffset += snapMargin.mRight * sinAngle;
-					}
-					mSnapToGridOffset = new PointF((float)xSnapOffset, (float)ySnapOffset);
-				}
-				else
-				{
-					mSnapToGridOffset = new PointF(0, 0);
 				}
 
 				// set the size of the display area with the new computed bounding size, and recompute the snap to grid offset
@@ -2114,7 +2067,7 @@ namespace BlueBrick.MapData
 			{
 				// snap the mouse coord to the grid
 				Brick.ConnectionPoint snappedConnection = null;
-				PointF mouseCoordInStudSnapped = getMovedSnapPoint(mouseCoordInStud, mCurrentBrickUnderMouse, out snappedConnection);
+				PointF mouseCoordInStudSnapped = getMovedSnapPoint(mouseCoordInStud, out snappedConnection);
 
 				// check if it is a flex move or normal move
 				if (mMouseMoveIsAFlexMove)
@@ -2209,7 +2162,7 @@ namespace BlueBrick.MapData
 					mMouseHasMoved = false;
 
 					// compute the delta mouve of the mouse
-					mouseCoordInStud = getMovedSnapPoint(mouseCoordInStud, mCurrentBrickUnderMouse);
+					mouseCoordInStud = getMovedSnapPoint(mouseCoordInStud);
 					PointF deltaMove = new PointF(mouseCoordInStud.X - mMouseDownInitialPosition.X, mouseCoordInStud.Y - mMouseDownInitialPosition.Y);
 
 					// create a new action for this move
@@ -2346,12 +2299,11 @@ namespace BlueBrick.MapData
 		/// See the doc of the other signature method
 		/// </summary>
 		/// <param name="pointInStud">the rough point to snap</param>
-		/// <param name="itemWhichCenterIsSnapped">if one brick is grabbed, compute a snapping position for the center of this specified item. Can be null if no brick is grabbed.</param>
 		/// <returns>a near snap point</returns>
-		public PointF getMovedSnapPoint(PointF pointInStud, Layer.LayerItem itemWhichCenterIsSnapped)
+		public PointF getMovedSnapPoint(PointF pointInStud)
 		{
 			Brick.ConnectionPoint ignoredSnappedConnection = null;
-			return getMovedSnapPoint(pointInStud, itemWhichCenterIsSnapped, out ignoredSnappedConnection);
+			return getMovedSnapPoint(pointInStud, out ignoredSnappedConnection);
 		}
 
 		/// <summary>
@@ -2368,10 +2320,9 @@ namespace BlueBrick.MapData
 		/// Here again we look at the brick under the mouse which is the master brick to move and snap.
 		/// </summary>
 		/// <param name="pointInStud">the rough point to snap</param>
-		/// <param name="itemWhichCenterIsSnapped">if one brick is grabbed, compute a snapping position for the center of this specified item. Can be null if no brick is grabbed.</param>
 		/// <param name="snappedConnection">If the brick should snap to a connection, this is the one, otherwise null</param>
 		/// <returns>a near snap point</returns>
-		public PointF getMovedSnapPoint(PointF pointInStud, Layer.LayerItem itemWhichCenterIsSnapped, out Brick.ConnectionPoint snappedConnection)
+		public PointF getMovedSnapPoint(PointF pointInStud, out Brick.ConnectionPoint snappedConnection)
 		{
 			// init the output value
 			snappedConnection = null;
@@ -2381,15 +2332,28 @@ namespace BlueBrick.MapData
 				// check if there is a master brick
 				if (mCurrentTopItemUnderMouse != null)
 				{
+					// get the active brick connection either from the master brick (a group or a single brick)
+					// but it can stay null if the brick or group doesn't have any connection
+					Brick.ConnectionPoint activeBrickConnexion = null;
+					if (mCurrentTopItemUnderMouse.IsAGroup)
+					{
+						Brick brickThatHoldsActiveConnection = (mCurrentTopItemUnderMouse as Group).BrickThatHoldsActiveConnection;
+						if (brickThatHoldsActiveConnection != null)
+							activeBrickConnexion = brickThatHoldsActiveConnection.ActiveConnectionPoint;
+					}
+					else
+					{
+						activeBrickConnexion = mCurrentBrickUnderMouse.ActiveConnectionPoint;
+					}
+
 					// now check if the master brick has some connections
-					if (mCurrentBrickUnderMouse.HasConnectionPoint)
+					if (activeBrickConnexion != null)
 					{
 						// but we also need to check if the brick has a FREE connexion
 						// but more than that we need to check if the Active Connection is a free connexion.
 						// Because for connection snapping, we always snap the active connection with
 						// the other bricks. That give the feedback to the user of which free connection
 						// of is moving brick will try to connect
-						Brick.ConnectionPoint activeBrickConnexion = mCurrentBrickUnderMouse.ActiveConnectionPoint;
 						if (activeBrickConnexion.IsFree)
 						{
 							// compute the virtual position of the active connection point, from the
@@ -2454,8 +2418,8 @@ namespace BlueBrick.MapData
 									mRotationForSnappingDuringBrickMove.redo();
 
 									// compute the position from the connection points
-									snapPosition.X += itemWhichCenterIsSnapped.Center.X - activeBrickConnexion.PositionInStudWorldCoord.X;
-									snapPosition.Y += itemWhichCenterIsSnapped.Center.Y - activeBrickConnexion.PositionInStudWorldCoord.Y;
+									snapPosition.X += mCurrentTopItemUnderMouse.Center.X - activeBrickConnexion.PositionInStudWorldCoord.X;
+									snapPosition.Y += mCurrentTopItemUnderMouse.Center.Y - activeBrickConnexion.PositionInStudWorldCoord.Y;
 								}
 								// otherwise, for a flex move, just keep the best connection as the snapping value
 
@@ -2476,8 +2440,8 @@ namespace BlueBrick.MapData
 					pointInStud = Layer.snapToGrid(pointInStud);
 					
 					// compute the center shift (including the snap grid margin
-					PointF halfBrickShift = new PointF((mCurrentTopItemUnderMouse.DisplayArea.Width / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.X,
-													(mCurrentTopItemUnderMouse.DisplayArea.Height / 2) - mCurrentBrickUnderMouse.SnapToGridOffset.Y);
+					PointF halfBrickShift = new PointF((mCurrentTopItemUnderMouse.DisplayArea.Width / 2) - mCurrentTopItemUnderMouse.SnapToGridOffset.X,
+													(mCurrentTopItemUnderMouse.DisplayArea.Height / 2) - mCurrentTopItemUnderMouse.SnapToGridOffset.Y);
 
 					// compute a snapped grab delta
 					PointF snappedGrabDelta = mMouseGrabDeltaToCenter;
