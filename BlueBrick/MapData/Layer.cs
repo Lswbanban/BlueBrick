@@ -611,7 +611,12 @@ namespace BlueBrick.MapData
 				}
 			}
 
-			private void computeDisplayArea()
+			/// <summary>
+			/// compute the display area from all the children in the group
+			/// <param name="doItRecursive">If this flag is true, it will also update the display area of the sub group.
+			/// Otherwise only use the display area of immediate children</param>
+			/// </summary>
+			public void computeDisplayArea(bool doItRecursive)
 			{
 				if (mItems.Count > 0)
 				{
@@ -619,7 +624,13 @@ namespace BlueBrick.MapData
 					mDisplayArea = mItems[0].DisplayArea;
 					// then iterate on all the items
 					foreach (Layer.LayerItem item in mItems)
+					{
+						// check if we also need to update the sub group
+						if (doItRecursive && item.IsAGroup)
+							(item as Group).computeDisplayArea(doItRecursive);
+						// and after increase the area with the area of this item
 						increaseDisplayAreaWithThisItem(item);
+					}
 				}
 				else
 				{
@@ -670,7 +681,7 @@ namespace BlueBrick.MapData
 				mItems.Remove(item);
 				item.Group = null;
 				// recompute the whole display area of the group
-				computeDisplayArea();
+				computeDisplayArea(false);
 			}
 
 			public void removeItem(List<Layer.LayerItem> itemList)
@@ -682,7 +693,7 @@ namespace BlueBrick.MapData
 					item.Group = null;
 				}
 				// recompute the whole display area of the group
-				computeDisplayArea();
+				computeDisplayArea(false);
 			}
 
 			public void ungroup()

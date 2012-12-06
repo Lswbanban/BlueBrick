@@ -279,6 +279,7 @@ namespace BlueBrick.MapData
 					mElectricCircuitIndexList = BrickLibrary.Instance.getElectricCircuitList(value);
 					// update the image
 					updateImage();
+					updateSnapMargin();
 				}
 			}
 
@@ -529,6 +530,7 @@ namespace BlueBrick.MapData
 					mAltitude = reader.ReadElementContentAsFloat();
 				// update the bitmap
 				updateImage();
+				updateSnapMargin();
 				// read the connexion points if any
 				reader.ReadAttributeValue();
 				int count = int.Parse(reader.GetAttribute(0));
@@ -1002,7 +1004,6 @@ namespace BlueBrick.MapData
 
 		//related to selection
 		private Brick mCurrentBrickUnderMouse = null; // this is the single brick under the mouse even if this brick belongs to a group
-		private LayerItem mCurrentTopItemUnderMouse = null; // this can be the Top Group if the brick under the mouse belongs to a group, or the brick itself
 		private PointF mMouseDownInitialPosition;
 		private PointF mMouseDownLastPosition;
 		private PointF mMouseGrabDeltaToCenter; // The delta between the grab point of the mouse inside the grabed brick, to the center of that brick
@@ -1903,19 +1904,42 @@ namespace BlueBrick.MapData
 		{
 			// set the new value
 			mCurrentBrickUnderMouse = brick;
-			mCurrentTopItemUnderMouse = brick;
 
 			// update the 2 grab distance if you change the brick under the mouse
 			if (brick != null)
 			{
-				// also set the top group if this brick belongs to a group
+				// Try to find if this brick belongs to a group in order to use the snap margin of the group
 				LayerItem topGroup = brick.TopGroup;
-				if (topGroup != null)
-					mCurrentTopItemUnderMouse = topGroup;
+				if ((topGroup == null) || (topGroup.PartNumber == string.Empty))
+					topGroup = brick;
+				else if (topGroup.IsAGroup)
+					(topGroup as Group).computeDisplayArea(true);
 
-				// grab distance to center
-				mMouseGrabDeltaToCenter = new PointF(mouseCoordInStud.X - brick.Center.X, mouseCoordInStud.Y - brick.Center.Y);
-				// grab distance to the active connection point
+				// ------
+				// compute the position of the top left corner of the brick or group of brick including the snap margin
+				PointF topGroupPosition = topGroup.Position;
+				PointF brickCenter = brick.Center;
+				PointF currentAnchorCornerPosition = new PointF(topGroupPosition.X + topGroup.SnapToGridOffset.X,
+																topGroupPosition.Y + topGroup.SnapToGridOffset.Y);
+
+				// Compute the grab distance to center for snapping on grid (without connection)
+				// first compute the center shift (including the snap grid margin)
+				PointF anchorCornerToBrickCenter = new PointF(brickCenter.X - currentAnchorCornerPosition.X,
+															brickCenter.Y - currentAnchorCornerPosition.Y);
+
+				// we need to compute the vector from the corner to the mouse and not the vector from
+				// the mouse to the corner bacause, the snapToGrid is a Floor type of snapping so the
+				// resulting snapped vector won't be the same
+				PointF anchorCornerToMouseSnapped = Layer.snapToGrid(new PointF(mouseCoordInStud.X - currentAnchorCornerPosition.X,
+																				mouseCoordInStud.Y - currentAnchorCornerPosition.Y));
+
+				// compute the grab delta between the mouse and the center of the brick 
+				// by summing the vector from mouse to the anchor (snapped) with the vector from the anchor to the center
+				mMouseGrabDeltaToCenter.X = anchorCornerToBrickCenter.X - anchorCornerToMouseSnapped.X;
+				mMouseGrabDeltaToCenter.Y = anchorCornerToBrickCenter.Y - anchorCornerToMouseSnapped.Y;
+
+				// ------
+				// Compute the grab distance to the active connection point, usefull for snapping with connection
 				Brick.ConnectionPoint activeConnectionPoint = brick.ActiveConnectionPoint;
 				if (activeConnectionPoint != null)
 					mMouseGrabDeltaToActiveConnectionPoint = new PointF(mouseCoordInStud.X - activeConnectionPoint.PositionInStudWorldCoord.X, mouseCoordInStud.Y - activeConnectionPoint.PositionInStudWorldCoord.Y);
@@ -2277,9 +2301,9 @@ namespace BlueBrick.MapData
 			if (SnapGridEnabled)
 			{
 				// check if there is a master brick
-				if (mCurrentTopItemUnderMouse != null)
+				if (mCurrentBrickUnderMouse != null)
 				{
-					result = mCurrentTopItemUnderMouse.Center;
+					result = mCurrentBrickUnderMouse.Center;
 				}
 				else
 				{
@@ -2330,22 +2354,13 @@ namespace BlueBrick.MapData
 			if (SnapGridEnabled)
 			{
 				// check if there is a master brick
-				if (mCurrentTopItemUnderMouse != null)
+				if (mCurrentBrickUnderMouse != null)
 				{
 					// get the active brick connection either from the master brick (a group or a single brick)
 					// but it can stay null if the brick or group doesn't have any connection
-					Brick.ConnectionPoint activeBrickConnexion = null;
-					if (mCurrentTopItemUnderMouse.IsAGroup)
-					{
-						Brick brickThatHoldsActiveConnection = (mCurrentTopItemUnderMouse as Group).BrickThatHoldsActiveConnection;
-						if (brickThatHoldsActiveConnection != null)
-							activeBrickConnexion = brickThatHoldsActiveConnection.ActiveConnectionPoint;
-					}
-					else
-					{
-						activeBrickConnexion = mCurrentBrickUnderMouse.ActiveConnectionPoint;
-					}
-
+					// In case of a group drop from the part lib, the brick under the mouse has been 
+					// set with the brick that hold the active connection in the group
+					Brick.ConnectionPoint activeBrickConnexion = mCurrentBrickUnderMouse.ActiveConnectionPoint;
 					// now check if the master brick has some connections
 					if (activeBrickConnexion != null)
 					{
@@ -2418,8 +2433,8 @@ namespace BlueBrick.MapData
 									mRotationForSnappingDuringBrickMove.redo();
 
 									// compute the position from the connection points
-									snapPosition.X += mCurrentTopItemUnderMouse.Center.X - activeBrickConnexion.PositionInStudWorldCoord.X;
-									snapPosition.Y += mCurrentTopItemUnderMouse.Center.Y - activeBrickConnexion.PositionInStudWorldCoord.Y;
+									snapPosition.X += mCurrentBrickUnderMouse.Center.X - activeBrickConnexion.PositionInStudWorldCoord.X;
+									snapPosition.Y += mCurrentBrickUnderMouse.Center.Y - activeBrickConnexion.PositionInStudWorldCoord.Y;
 								}
 								// otherwise, for a flex move, just keep the best connection as the snapping value
 
@@ -2439,19 +2454,9 @@ namespace BlueBrick.MapData
 					// then add the center shift of the part and the snapping offset
 					pointInStud = Layer.snapToGrid(pointInStud);
 					
-					// compute the center shift (including the snap grid margin
-					PointF halfBrickShift = new PointF((mCurrentTopItemUnderMouse.DisplayArea.Width / 2) - mCurrentTopItemUnderMouse.SnapToGridOffset.X,
-													(mCurrentTopItemUnderMouse.DisplayArea.Height / 2) - mCurrentTopItemUnderMouse.SnapToGridOffset.Y);
-
-					// compute a snapped grab delta
-					PointF snappedGrabDelta = mMouseGrabDeltaToCenter;
-					snappedGrabDelta.X += halfBrickShift.X;
-					snappedGrabDelta.Y += halfBrickShift.Y;
-					snappedGrabDelta = Layer.snapToGrid(snappedGrabDelta);
-
 					// shift the point according to the center and the snap grabbed delta
-					pointInStud.X += halfBrickShift.X - snappedGrabDelta.X;
-					pointInStud.Y += halfBrickShift.Y - snappedGrabDelta.Y;
+					pointInStud.X += mMouseGrabDeltaToCenter.X;
+					pointInStud.Y += mMouseGrabDeltaToCenter.Y;
 					return pointInStud;
 				}
 
@@ -2474,9 +2479,6 @@ namespace BlueBrick.MapData
 		{
 			// clear the selection to only select the part(s) drop
 			mSelectedObjects.Clear();
-
-			// grab the brick or group in its center
-			mMouseGrabDeltaToCenter = new PointF(0.0f, 0.0f);
 
 			// check if it is a single Brick or a group
 			if (itemDrop.IsAGroup)
@@ -2518,9 +2520,7 @@ namespace BlueBrick.MapData
 		{
 			// clear the data
 			mSelectedObjects.Clear();
-			mCurrentBrickUnderMouse = null;
-			mMouseGrabDeltaToCenter = new PointF(0.0f, 0.0f);
-			mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
+			setBrickUnderMouse(null, PointF.Empty);
 			// clear also the rotation action (but do not undo the action since we want to keep the orientation of the part added)
 			mRotationForSnappingDuringBrickMove = null;
 			mSnappingOrientation = 0.0f;
