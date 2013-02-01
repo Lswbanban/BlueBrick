@@ -675,7 +675,10 @@ namespace BlueBrick.MapData
 					if (points[i].Y > max.Y)
 						max.Y = points[i].Y;
 				}
-				return new PointF(Math.Abs(max.X - min.X), Math.Abs(max.Y - min.Y));
+				// The +1 is added because this function is currently used for computing a size from
+				// the hull or bounding box which is expressed in pixel, and both min and max pixel
+				// coord should be included in the size
+				return new PointF(Math.Abs(max.X - min.X) + 1.0f, Math.Abs(max.Y - min.Y) + 1.0f);
 			}
 
 			private void updateImage()
