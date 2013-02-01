@@ -258,12 +258,17 @@ namespace BlueBrick.MapData
                 set
                 {
                     mImage = value;
-                    // create the bounding box list (usefull for the creation of the rotated parts)
+                    // Create the bounding box list (usefull for the creation of the rotated parts)
                     // mImage is not null at this point, but the ref param image can still be null
-                    mBoundingBox.Add(new PointF(0, 0));
-                    mBoundingBox.Add(new PointF((float)(value.Width), 0));
-                    mBoundingBox.Add(new PointF((float)(value.Width), (float)(value.Height)));
-					mBoundingBox.Add(new PointF(0, (float)(value.Height)));
+					// Moreover, to compute the coord of the bounding box, we use the center of the
+					// pixel in order to have a good precision from int (pixel coord) to float (pixel coord but in float)
+					// so we start at (0 + half_pixel) up to the (size - half_pixel)
+					float lastXCoord = (float)(value.Width - 0.5f);
+					float lastYCoord = (float)(value.Height - 0.5f);
+					mBoundingBox.Add(new PointF(0.5f, 0.5f));
+					mBoundingBox.Add(new PointF(lastXCoord, 0.5f));
+					mBoundingBox.Add(new PointF(lastXCoord, lastYCoord));
+					mBoundingBox.Add(new PointF(0.5f, lastYCoord));
 				}
             }
 
@@ -664,7 +669,13 @@ namespace BlueBrick.MapData
 					while (pointFound)
 					{
 						if (xmlReader.Name.Equals("point"))
-							mHull.Add(readPointTag(ref xmlReader, "point"));
+						{
+							PointF point = readPointTag(ref xmlReader, "point");
+							// shift the pixel coord of a half pixel (to center the coordinate)
+							point.X += 0.5f;
+							point.Y += 0.5f;
+							mHull.Add(point);
+						}
 						else
 							xmlReader.Read();
 						pointFound = !xmlReader.Name.Equals("hull") && !xmlReader.EOF;
