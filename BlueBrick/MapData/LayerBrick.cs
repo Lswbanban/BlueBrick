@@ -1902,23 +1902,28 @@ namespace BlueBrick.MapData
 
 		private void setBrickUnderMouse(Brick brick, PointF mouseCoordInStud)
 		{
+			setBrickUnderMouse(brick, brick, mouseCoordInStud);
+		}
+
+		private void setBrickUnderMouse(Brick brickUnderMouse, LayerItem referenceItemForMove, PointF mouseCoordInStud)
+		{
 			// set the new value
-			mCurrentBrickUnderMouse = brick;
+			mCurrentBrickUnderMouse = brickUnderMouse;
 
 			// update the 2 grab distance if you change the brick under the mouse
-			if (brick != null)
+			if (brickUnderMouse != null)
 			{
 				// Try to find if this brick belongs to a group in order to use the snap margin of the group
-				LayerItem topGroup = brick.TopGroup;
+				LayerItem topGroup = brickUnderMouse.TopGroup;
 				if ((topGroup == null) || (topGroup.PartNumber == string.Empty))
-					topGroup = brick;
+					topGroup = brickUnderMouse;
 				else if (topGroup.IsAGroup)
 					(topGroup as Group).computeDisplayArea(true);
 
 				// ------
 				// compute the position of the top left corner of the brick or group of brick including the snap margin
 				PointF topGroupPosition = topGroup.Position;
-				PointF brickCenter = brick.Center;
+				PointF brickCenter = referenceItemForMove.Center;
 				PointF currentAnchorCornerPosition = new PointF(topGroupPosition.X + topGroup.SnapToGridOffset.X,
 																topGroupPosition.Y + topGroup.SnapToGridOffset.Y);
 
@@ -1940,9 +1945,10 @@ namespace BlueBrick.MapData
 
 				// ------
 				// Compute the grab distance to the active connection point, usefull for snapping with connection
-				Brick.ConnectionPoint activeConnectionPoint = brick.ActiveConnectionPoint;
+				Brick.ConnectionPoint activeConnectionPoint = brickUnderMouse.ActiveConnectionPoint;
 				if (activeConnectionPoint != null)
-					mMouseGrabDeltaToActiveConnectionPoint = new PointF(mouseCoordInStud.X - activeConnectionPoint.PositionInStudWorldCoord.X, mouseCoordInStud.Y - activeConnectionPoint.PositionInStudWorldCoord.Y);
+					mMouseGrabDeltaToActiveConnectionPoint = new PointF(mouseCoordInStud.X - activeConnectionPoint.PositionInStudWorldCoord.X,
+																		mouseCoordInStud.Y - activeConnectionPoint.PositionInStudWorldCoord.Y);
 				else
 					mMouseGrabDeltaToActiveConnectionPoint = new PointF(0.0f, 0.0f);
 			}
@@ -2091,7 +2097,7 @@ namespace BlueBrick.MapData
 			{
 				// snap the mouse coord to the grid
 				Brick.ConnectionPoint snappedConnection = null;
-				PointF mouseCoordInStudSnapped = getMovedSnapPoint(mouseCoordInStud, out snappedConnection);
+				PointF mouseCoordInStudSnapped = getMovedSnapPoint(mouseCoordInStud, mCurrentBrickUnderMouse, out snappedConnection);
 
 				// check if it is a flex move or normal move
 				if (mMouseMoveIsAFlexMove)
@@ -2186,7 +2192,7 @@ namespace BlueBrick.MapData
 					mMouseHasMoved = false;
 
 					// compute the delta mouve of the mouse
-					mouseCoordInStud = getMovedSnapPoint(mouseCoordInStud);
+					mouseCoordInStud = getMovedSnapPoint(mouseCoordInStud, mCurrentBrickUnderMouse);
 					PointF deltaMove = new PointF(mouseCoordInStud.X - mMouseDownInitialPosition.X, mouseCoordInStud.Y - mMouseDownInitialPosition.Y);
 
 					// create a new action for this move
@@ -2323,11 +2329,12 @@ namespace BlueBrick.MapData
 		/// See the doc of the other signature method
 		/// </summary>
 		/// <param name="pointInStud">the rough point to snap</param>
+		/// <param name="referenceItem">the reference item from which we compute the snap point in case of connection</param>
 		/// <returns>a near snap point</returns>
-		public PointF getMovedSnapPoint(PointF pointInStud)
+		public PointF getMovedSnapPoint(PointF pointInStud, LayerItem referenceItem)
 		{
 			Brick.ConnectionPoint ignoredSnappedConnection = null;
-			return getMovedSnapPoint(pointInStud, out ignoredSnappedConnection);
+			return getMovedSnapPoint(pointInStud, referenceItem, out ignoredSnappedConnection);
 		}
 
 		/// <summary>
@@ -2344,9 +2351,10 @@ namespace BlueBrick.MapData
 		/// Here again we look at the brick under the mouse which is the master brick to move and snap.
 		/// </summary>
 		/// <param name="pointInStud">the rough point to snap</param>
+		/// <param name="referenceItem">the reference item from which we compute the snap point in case of connection</param>
 		/// <param name="snappedConnection">If the brick should snap to a connection, this is the one, otherwise null</param>
 		/// <returns>a near snap point</returns>
-		public PointF getMovedSnapPoint(PointF pointInStud, out Brick.ConnectionPoint snappedConnection)
+		public PointF getMovedSnapPoint(PointF pointInStud, LayerItem referenceItem, out Brick.ConnectionPoint snappedConnection)
 		{
 			// init the output value
 			snappedConnection = null;
@@ -2433,8 +2441,8 @@ namespace BlueBrick.MapData
 									mRotationForSnappingDuringBrickMove.redo();
 
 									// compute the position from the connection points
-									snapPosition.X += mCurrentBrickUnderMouse.Center.X - activeBrickConnexion.PositionInStudWorldCoord.X;
-									snapPosition.Y += mCurrentBrickUnderMouse.Center.Y - activeBrickConnexion.PositionInStudWorldCoord.Y;
+									snapPosition.X += referenceItem.Center.X - activeBrickConnexion.PositionInStudWorldCoord.X;
+									snapPosition.Y += referenceItem.Center.Y - activeBrickConnexion.PositionInStudWorldCoord.Y;
 								}
 								// otherwise, for a flex move, just keep the best connection as the snapping value
 
@@ -2496,7 +2504,7 @@ namespace BlueBrick.MapData
 				
 				// by default the active connection index of a group is 0
 				// and get the corresponding brick that hold the active connection index
-				setBrickUnderMouse(groupDrop.BrickThatHoldsActiveConnection, groupDrop.Center);
+				setBrickUnderMouse(groupDrop.BrickThatHoldsActiveConnection, groupDrop, groupDrop.Center);
 
 				// update the brick connectivity for the group after having selected them
 				updateFullBrickConnectivityForSelectedBricksOnly();

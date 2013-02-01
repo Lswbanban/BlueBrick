@@ -468,6 +468,20 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Accessor on the currently active connexion point of the group if any.
+			/// This is actually the current active connection point of the brick that hold the current connection.
+			/// </summary>
+			public LayerBrick.Brick.ConnectionPoint ActiveConnectionPoint
+			{
+				get
+				{
+					if (mBrickThatHoldsActiveConnection != null)
+						return mBrickThatHoldsActiveConnection.ActiveConnectionPoint;
+					return null;
+				}
+			}
+
+			/// <summary>
 			/// This property is only valid for a group of brick. It returns the brick inside the group
 			/// that should hold the active connection point of the whole group.
 			/// </summary>
