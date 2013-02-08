@@ -567,8 +567,9 @@ namespace BlueBrick
 			mLastIncludeFilter = includeFilter;
 			mLastExcludeFilter = excludeFilter;
 
-			// and now filter the current selected tab
-			if ((mLastIncludeIdFilter.Count != 0) || (mLastIncludeFilter.Count != 0) || (mLastExcludeFilter.Count != 0))
+			// and now filter the current selected tab if any
+			if ((this.SelectedTab != null) &&
+				((mLastIncludeIdFilter.Count != 0) || (mLastIncludeFilter.Count != 0) || (mLastExcludeFilter.Count != 0)))
 			{
 				try
 				{
