@@ -2507,7 +2507,16 @@ namespace BlueBrick.MapData
 				
 				// by default the active connection index of a group is 0
 				// and get the corresponding brick that hold the active connection index
-				setBrickUnderMouse(groupDrop.BrickThatHoldsActiveConnection, groupDrop, groupDrop.Center);
+				// but if the group doesn't have any connection at all, get the first brick
+				// of the group as the brick under the mouse
+				Brick brickUnderMouse = groupDrop.BrickThatHoldsActiveConnection;
+				if (brickUnderMouse == null)
+				{
+					List<LayerItem> children = groupDrop.getAllChildrenItems();
+					if (children.Count > 0)
+						brickUnderMouse = (children[0]) as Brick;
+				}
+				setBrickUnderMouse(brickUnderMouse, groupDrop, groupDrop.Center);
 
 				// update the brick connectivity for the group after having selected them
 				updateFullBrickConnectivityForSelectedBricksOnly();

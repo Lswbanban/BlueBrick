@@ -95,6 +95,7 @@ Open bugs:
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
+- [target 1.8] BUG #47 (doc_brown): the LDraw header is not following the standard definition
 - [target 1.8] BUG (Alban): The current selected tab of the Part Lib should be saved when exiting the application. When launching it is not always visible (need to scroll).
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
