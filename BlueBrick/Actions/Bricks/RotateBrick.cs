@@ -30,6 +30,7 @@ namespace BlueBrick.Actions.Bricks
 		// data for the action
 		protected LayerBrick mBrickLayer = null;
 		protected List<Layer.LayerItem> mBricks = null;
+		private List<Layer.Group> mNamedGroup = null;
 		private bool mRotateCW;
 		private float mRotationStep = 0.0f; // in degree, we need to save it because the current rotation step may change between the do and undo
 		private PointF mCenter = new PointF(0,0);	// in Stud coord
@@ -166,6 +167,7 @@ namespace BlueBrick.Actions.Bricks
 				PointF minCenter = new PointF(bricks[0].DisplayArea.Left, bricks[0].DisplayArea.Top);
 				PointF maxCenter = new PointF(bricks[0].DisplayArea.Right, bricks[0].DisplayArea.Bottom);
 				mBricks = new List<Layer.LayerItem>(bricks.Count);
+				mNamedGroup = new List<Layer.Group>(bricks.Count);
 				foreach (Layer.LayerItem obj in bricks)
 				{
 					mBricks.Add(obj);
@@ -181,6 +183,12 @@ namespace BlueBrick.Actions.Bricks
 						if (obj.DisplayArea.Bottom > maxCenter.Y)
 							maxCenter.Y = obj.DisplayArea.Bottom;
 					}
+
+					// if the current brick is part of a group which has a name (so a group from the library)
+					// also add this group to the list of NamedGroup (if not already in)
+					Layer.Group parentGroup = obj.Group;
+					if ((parentGroup != null) && (parentGroup.PartNumber != string.Empty) && !mNamedGroup.Contains(parentGroup))
+						mNamedGroup.Add(parentGroup);
 				}
 				// set the center for this rotation action (keep the previous one or compute a new one
 				if (sLastCenterIsValid)
@@ -226,20 +234,18 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
-			if (mRotateCW)
-			{
-				Matrix rotation = new Matrix();
-				rotation.Rotate(-mRotationStep);
-				foreach (Layer.LayerItem obj in mBricks)
-					rotate(obj as LayerBrick.Brick, rotation, -mRotationStep);
-			}
-			else
-			{
-				Matrix rotation = new Matrix();
-				rotation.Rotate(mRotationStep);
-				foreach (Layer.LayerItem obj in mBricks)
-					rotate(obj as LayerBrick.Brick, rotation, mRotationStep);
-			}
+			// get the rotation angle according to the rotation direction
+			float rotationAngle = mRotateCW ? -mRotationStep : mRotationStep;
+
+			// rotate all the objects
+			Matrix rotation = new Matrix();
+			rotation.Rotate(rotationAngle);
+			foreach (Layer.LayerItem obj in mBricks)
+				rotate(obj as LayerBrick.Brick, rotation, rotationAngle);
+
+			// rotate also the named group in order to rotate their snap margin
+			foreach (Layer.Group group in mNamedGroup)
+				group.Orientation = group.Orientation + rotationAngle;
 
 			// special case, if the bricks we have to rotate are connected, we need also to move them after the rotation
 			// to keep the connexion (since the rotation only rotate in the center of the part)
@@ -254,20 +260,18 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void undo()
 		{
-			if (mRotateCW)
-			{
-				Matrix rotation = new Matrix();
-				rotation.Rotate(mRotationStep);
-				foreach (Layer.LayerItem obj in mBricks)
-					rotate(obj as LayerBrick.Brick, rotation, mRotationStep);
-			}
-			else
-			{
-				Matrix rotation = new Matrix();
-				rotation.Rotate(-mRotationStep);
-				foreach (Layer.LayerItem obj in mBricks)
-					rotate(obj as LayerBrick.Brick, rotation, -mRotationStep);
-			}
+			// get the rotation angle according to the rotation direction
+			float rotationAngle = mRotateCW ? mRotationStep : -mRotationStep;
+
+			// rotate all the objects
+			Matrix rotation = new Matrix();
+			rotation.Rotate(rotationAngle);
+			foreach (Layer.LayerItem obj in mBricks)
+				rotate(obj as LayerBrick.Brick, rotation, rotationAngle);
+
+			// rotate also the named group in order to rotate their snap margin
+			foreach (Layer.Group group in mNamedGroup)
+				group.Orientation = group.Orientation + rotationAngle;
 
 			// special case, if the bricks we have to rotate are connected, we need to 
 			// reattach them to the old brick after canceling the rotation

@@ -80,6 +80,7 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
+- [target 1.8] MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
@@ -118,9 +119,9 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
 - BUGFIX (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
 - BUGFIX (Alban): Rotate and Delete a group part is not working as for a single brick. Rotate a group now rotate according to the connections, delete a group now select the next connected brick
+- BUGFIX (Alban): The snapping margin defined in the XML file has no effect for a group
 - BUGFIX (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should ask if we need to replace it or associate a new action on the same key.
 - BUGFIX (Alban): In the Preferences Shortcut tab, selecting a shortcut in the list updates the combo boxes below (for easy modification of an existing shortcut)
-- BUGFIX (Alban): The snapping margin defined in the XML file has no effect for a group
 - BUGFIX (Alban): Precision error during the computation of the size for parts with a Hull defined in the xml.
 
 Bug fixed in 1.7.1.0:
