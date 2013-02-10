@@ -136,6 +136,7 @@ namespace BlueBrick
 		// for LDraw format we need to store the current group to add because to define the group a part belongs to
 		// it uses two different lines in the LDraw file.
 		private static Layer.Group mLDrawCurrentGroupInWhichAdd = null;
+		private static readonly string LDRAW_DATE_FORMAT_STRING = "dd/MM/yyyy";
 
 		private static bool loadLDR(string filename)
 		{
@@ -342,38 +343,56 @@ namespace BlueBrick
 			return group;
 		}
 
+		private static string getRemainingOfLineAfterTokenInLDRAW(string line, string token)
+		{
+			return line.Substring(line.IndexOf(token) + token.Length).Trim();
+		}
+
+		private static void parseDateInLDRAW(string dateToParse)
+		{
+			try
+			{
+				DateTime date = DateTime.ParseExact(dateToParse, LDRAW_DATE_FORMAT_STRING, System.Globalization.CultureInfo.InvariantCulture);
+				Map.Instance.Date = date;
+			}
+			catch (Exception)
+			{
+			}
+		}
+
 		private static void parseMetaCommandLineLDRAW(string line, string[] token, LayerBrick currentLayer)
 		{
 			if (token[1].StartsWith("Author"))
 			{
-				Map.Instance.Author = token[2].Clone() as string;
+				Map.Instance.Author = getRemainingOfLineAfterTokenInLDRAW(line, token[1]);
 			}
 			else if (token[1].StartsWith("Lug"))
 			{
-				Map.Instance.LUG = token[2].Clone() as string;
+				Map.Instance.LUG = getRemainingOfLineAfterTokenInLDRAW(line, token[1]);
 			}
 			else if (token[1].StartsWith("Event"))
 			{
-				Map.Instance.Show = token[2].Clone() as string;
+				Map.Instance.Show = getRemainingOfLineAfterTokenInLDRAW(line, token[1]);
 			}
 			else if (token[1].StartsWith("Date"))
 			{
-				try
-				{
-					string endOfLine = line.Substring(line.IndexOf(token[1]) + token[1].Length);
-					DateTime date = DateTime.Parse(endOfLine, System.Globalization.CultureInfo.InvariantCulture);
-					Map.Instance.Date = date;
-				}
-				catch (Exception)
-				{
-				}
+				parseDateInLDRAW(getRemainingOfLineAfterTokenInLDRAW(line, token[1]));
 			}
 			else if (token[1].StartsWith("//"))
 			{
-				// add the comment in the comment line
-				string comment = Map.Instance.Comment;
-				comment += line.Substring(5) + "\n";
-				Map.Instance.Comment = comment;
+				if (token[2].StartsWith("LUG"))
+					Map.Instance.LUG = getRemainingOfLineAfterTokenInLDRAW(line, token[2]);
+				else if (token[2].StartsWith("Event"))
+					Map.Instance.Show = getRemainingOfLineAfterTokenInLDRAW(line, token[2]);
+				else if (token[2].StartsWith("Date"))
+					parseDateInLDRAW(getRemainingOfLineAfterTokenInLDRAW(line, token[2]));
+				else
+				{
+					// add the comment in the comment line
+					string comment = Map.Instance.Comment;
+					comment += line.Substring(5) + "\n";
+					Map.Instance.Comment = comment;
+				}
 			}
 			else if (token[1].Equals("MLCAD"))
 			{
@@ -578,8 +597,9 @@ namespace BlueBrick
 					// write the file meta command with the same name computed before for the layer
 					textWriter.WriteLine("0 FILE " + layerStandardizedNames[layerIndex++]);
 					// write a small header, but not the full info, just the type and author
+					textWriter.WriteLine("0 Author: " + Map.Instance.Author);
 					textWriter.WriteLine("0 Unofficial Model");
-					textWriter.WriteLine("0 Author " + Map.Instance.Author);
+					textWriter.WriteLine("0");
 					// write the content of the layer
 					saveBrickLayerInLDRAW(textWriter, brickLayer, false);
 					// add a line break
@@ -595,20 +615,22 @@ namespace BlueBrick
 		{
 			// the first 0 line should be the file description (so we use the file name without extension)
 			textWriter.WriteLine("0 " + Path.GetFileNameWithoutExtension(Map.Instance.MapFileName));
-			textWriter.WriteLine("0 Name " + Path.GetFileName(Map.Instance.MapFileName));
-			// write that this is an unofficial model
+			textWriter.WriteLine("0 Name: " + Path.GetFileName(Map.Instance.MapFileName));
+			textWriter.WriteLine("0 Author: " + Map.Instance.Author);
 			textWriter.WriteLine("0 Unofficial Model");
-			// write the global info of this file
-			textWriter.WriteLine("0 Author " + Map.Instance.Author);
-			textWriter.WriteLine("0 Lug: " + Map.Instance.LUG);
-			textWriter.WriteLine("0 Event: " + Map.Instance.Show);
-			textWriter.WriteLine("0 Date: " + Map.Instance.Date.ToString(System.Globalization.CultureInfo.InvariantCulture));
+			// write other global infos of this file
+			textWriter.WriteLine("0");
+			textWriter.WriteLine("0 // LUG: " + Map.Instance.LUG);
+			textWriter.WriteLine("0 // Event: " + Map.Instance.Show);
+			textWriter.WriteLine("0 // Date: " + Map.Instance.Date.ToString(LDRAW_DATE_FORMAT_STRING, System.Globalization.CultureInfo.InvariantCulture));
 			// write the comments of this map
 			char[] commentSpliter = { '\r', '\n' };
 			String[] commentLines = Map.Instance.Comment.Split(commentSpliter);
 			foreach (string commentLine in commentLines)
 				if (commentLine != string.Empty)
 					textWriter.WriteLine("0 // " + commentLine);
+			// add one spaced line
+			textWriter.WriteLine("0");
 		}
 
 		private static void saveBrickLayerInLDRAW(StreamWriter textWriter, LayerBrick brickLayer, bool useMLCADHide)

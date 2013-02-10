@@ -79,8 +79,9 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
-- [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
+- [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
 - [target 1.8] MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
+- [target 1.8] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
@@ -96,7 +97,6 @@ Open bugs:
 - MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
-- [target 1.8] BUG #47 (doc_brown): the LDraw header is not following the standard definition
 - [target 1.8] BUG (Alban): The current selected tab of the Part Lib should be saved when exiting the application. When launching it is not always visible (need to scroll).
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
@@ -111,10 +111,11 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (Alban): More precise Selection: Now the picking and rectangle selection use the hull of the part, and the text rectangle for rotated text, instead of the axis aligned bounding box of the part or text.
 - NEW FEATURE (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste
 - REFACTORING (Alban): Move the display of free connection point and watermark in the View menu and add the display of the hull.
+- BUGFIX #40 (Steffen): If you connect a gray track with a blue track, the sleeper between them should be the white 3034 one. 
 - BUGFIX #42 (Larry): CRASH!! if you export a small area after exporting a big area
+- BUGFIX #47 (doc_brown): the LDraw header is not following the standard definition
 - BUGFIX (Alban): When changing the order of the part lib tabs, the previously selected tab was not reselected
 - BUGFIX (Alban): The selected tab of the part lib was not saved when exiting BB and not reset at starting
-- BUGFIX #40 (Steffen): If you connect a gray track with a blue track, the sleeper between them should be the white 3034 one. 
 - BUGFIX (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - BUGFIX (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
 - BUGFIX (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)

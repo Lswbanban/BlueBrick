@@ -343,6 +343,14 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Tell if this group is a known set from the part library which has a valid name
+			/// </summary>
+			public bool IsANamedGroup
+			{
+				get { return (mPartNumber != string.Empty); }
+			}
+
+			/// <summary>
 			/// get the number of items in this group (only this level, not including all the children)
 			/// </summary>
 			public int ItemsCount

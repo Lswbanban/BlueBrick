@@ -187,7 +187,7 @@ namespace BlueBrick.Actions.Bricks
 					// if the current brick is part of a group which has a name (so a group from the library)
 					// also add this group to the list of NamedGroup (if not already in)
 					Layer.Group parentGroup = obj.Group;
-					if ((parentGroup != null) && (parentGroup.PartNumber != string.Empty) && !mNamedGroup.Contains(parentGroup))
+					if ((parentGroup != null) && (parentGroup.IsANamedGroup) && !mNamedGroup.Contains(parentGroup))
 						mNamedGroup.Add(parentGroup);
 				}
 				// set the center for this rotation action (keep the previous one or compute a new one
