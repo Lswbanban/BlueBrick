@@ -79,20 +79,6 @@ namespace BlueBrick
 				return false;
 			}
 		}
-
-		private static List<string> slitLine(string line)
-		{
-			// use the normal split function
-			char[] lineSpliter = { '=', ' ', '\t' };
-			string[] splitedToken = line.Split(lineSpliter);
-			// remove the empty token
-			List<string> result = new List<string>(splitedToken.Length);
-			foreach (string token in splitedToken)
-				if (token != string.Empty)
-					result.Add(token);
-			return result;
-		}
-
 		#endregion
 		#region BlueBrick Format
 

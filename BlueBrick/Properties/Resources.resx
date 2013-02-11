@@ -481,4 +481,28 @@
   <data name="ErrorMsgReplaceExistingShortcut" xml:space="preserve">
     <value>A shortcut already exists for this key. Do you want to replace it?</value>
   </data>
+  <data name="ErrorMsgAbortButton" xml:space="preserve">
+    <value>Abort</value>
+  </data>
+  <data name="ErrorMsgCancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ErrorMsgIgnoreButton" xml:space="preserve">
+    <value>Ignore</value>
+  </data>
+  <data name="ErrorMsgNoButton" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="ErrorMsgOkButton" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="ErrorMsgRetryButton" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="ErrorMsgYesButton" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="ErrorMsgLayerTypeRuler" xml:space="preserve">
+    <value>Ruler</value>
+  </data>
 </root>
