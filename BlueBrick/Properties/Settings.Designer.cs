@@ -839,5 +839,41 @@ namespace BlueBrick.Properties {
                 this["DisplayWarningMessageForNotSavingInBBM"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AddTextLayerOnNewMap {
+            get {
+                return ((bool)(this["AddTextLayerOnNewMap"]));
+            }
+            set {
+                this["AddTextLayerOnNewMap"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AddAreaLayerOnNewMap {
+            get {
+                return ((bool)(this["AddAreaLayerOnNewMap"]));
+            }
+            set {
+                this["AddAreaLayerOnNewMap"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AddRulerLayerOnNewMap {
+            get {
+                return ((bool)(this["AddRulerLayerOnNewMap"]));
+            }
+            set {
+                this["AddRulerLayerOnNewMap"] = value;
+            }
+        }
     }
 }

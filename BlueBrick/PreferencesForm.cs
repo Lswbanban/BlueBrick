@@ -41,10 +41,11 @@ namespace BlueBrick
 		private enum TabPageFilter
 		{
 			GENERAL = 1,
-			APPEARANCE = 2,
-			PART_LIBRARY = 4,
-			SHORTCUT_KEYS = 8,
-			ALL = GENERAL | APPEARANCE | PART_LIBRARY | SHORTCUT_KEYS,
+			EDITION = 2,
+			APPEARANCE = 4,
+			PART_LIBRARY = 8,
+			SHORTCUT_KEYS = 16,
+			ALL = GENERAL | EDITION | APPEARANCE | PART_LIBRARY | SHORTCUT_KEYS,
 		};
 
 		private class LanguageCodeAndName
@@ -153,16 +154,16 @@ namespace BlueBrick
 			// -- tab general
 			if ((tabPageFilter & TabPageFilter.GENERAL) != 0)
 			{
+				// language
 				fillAndSelectLanguageComboBox();
-				this.mouseZoomCenteredCheckBox.Checked = Settings.Default.WheelMouseIsZoomOnCursor;
-				this.mouseZoomSpeedNumericUpDown.Value = (Decimal)Settings.Default.WheelMouseZoomSpeed;
-				fillAndSelectMultipleAndDuplicateSelectionKeyComboBox();
-				this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
 				// new map
 				GeneralInfoForm.sFillLUGComboBox(this.lugComboBox, @"/config/LugList.txt");
 				GeneralInfoForm.sFillLUGComboBox(this.showComboBox, @"/config/EventList.txt");
 				this.addGridLayerCheckBox.Checked = Settings.Default.AddGridLayerOnNewMap;
 				this.addBrickLayerCheckBox.Checked = Settings.Default.AddBrickLayerOnNewMap;
+				this.addAreaLayerCheckBox.Checked = Settings.Default.AddAreaLayerOnNewMap;
+				this.addTextLayerCheckBox.Checked = Settings.Default.AddTextLayerOnNewMap;
+				this.addRulerLayerCheckBox.Checked = Settings.Default.AddRulerLayerOnNewMap;
 				if (Settings.Default.DefaultAuthor.Equals("***NotInitialized***"))
 					this.authorTextBox.Text = Resources.DefaultAuthor;
 				else
@@ -175,18 +176,31 @@ namespace BlueBrick
 					this.showComboBox.Text = Resources.DefaultShow;
 				else
 					this.showComboBox.Text = Settings.Default.DefaultShow;
-				// copy/paste
-				this.copyOffsetComboBox.SelectedIndex = Settings.Default.OffsetAfterCopyStyle;
-				this.pasteOffsetValueNumericUpDown.Value = (Decimal)Settings.Default.OffsetAfterCopyValue;
-				bool enableOffsetValue = (Settings.Default.OffsetAfterCopyStyle != 0);
-				this.pasteOffsetValueNumericUpDown.Enabled = enableOffsetValue;
-				this.OffsetValueLabel.Enabled = enableOffsetValue;
 				// recent files
 				this.RecentFilesNumericUpDown.Value = Settings.Default.MaxRecentFilesNum;
 				this.clearRecentFilesButton.Enabled = (Settings.Default.RecentFiles.Count > 0);
 				// undo
 				this.undoRecordedNumericUpDown.Value = Settings.Default.UndoStackDepth;
 				this.undoDisplayedNumericUpDown.Value = Settings.Default.UndoStackDisplayedDepth;
+				// notification
+				this.displayWarningForNotSavingInBBMCheckBox.Checked = Settings.Default.DisplayWarningMessageForNotSavingInBBM;
+				// performance
+				this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
+			}
+
+			// -- tab general
+			if ((tabPageFilter & TabPageFilter.EDITION) != 0)
+			{
+				// mouse
+				this.mouseZoomCenteredCheckBox.Checked = Settings.Default.WheelMouseIsZoomOnCursor;
+				this.mouseZoomSpeedNumericUpDown.Value = (Decimal)Settings.Default.WheelMouseZoomSpeed;
+				fillAndSelectMultipleAndDuplicateSelectionKeyComboBox();
+				// copy/paste
+				this.copyOffsetComboBox.SelectedIndex = Settings.Default.OffsetAfterCopyStyle;
+				this.pasteOffsetValueNumericUpDown.Value = (Decimal)Settings.Default.OffsetAfterCopyValue;
+				bool enableOffsetValue = (Settings.Default.OffsetAfterCopyStyle != 0);
+				this.pasteOffsetValueNumericUpDown.Enabled = enableOffsetValue;
+				this.OffsetValueLabel.Enabled = enableOffsetValue;
 			}
 
 			// -- tab appearance
@@ -264,26 +278,42 @@ namespace BlueBrick
 			// general
 			if ((tabPageFilter & TabPageFilter.GENERAL) != 0)
 			{
+				// language
+				destination.Language = source.Language.Clone() as string;
+				// map
 				destination.AddBrickLayerOnNewMap = source.AddBrickLayerOnNewMap;
 				destination.AddGridLayerOnNewMap = source.AddGridLayerOnNewMap;
-				destination.DefaultBackgroundColor = source.DefaultBackgroundColor;
+				destination.AddAreaLayerOnNewMap = source.AddAreaLayerOnNewMap;
+				destination.AddTextLayerOnNewMap = source.AddTextLayerOnNewMap;
+				destination.AddRulerLayerOnNewMap = source.AddRulerLayerOnNewMap;
 				destination.DefaultAuthor = source.DefaultAuthor.Clone() as string;
 				destination.DefaultLUG = source.DefaultLUG.Clone() as string;
 				destination.DefaultShow = source.DefaultShow.Clone() as string;
-				destination.Language = source.Language.Clone() as string;
-				destination.MouseMultipleSelectionKey = source.MouseMultipleSelectionKey;
-				destination.OffsetAfterCopyStyle = source.OffsetAfterCopyStyle;
-				destination.OffsetAfterCopyValue = source.OffsetAfterCopyValue;
+				// recent files
+				destination.MaxRecentFilesNum = source.MaxRecentFilesNum;
+				// undo/redo
 				destination.UndoStackDepth = source.UndoStackDepth;
 				destination.UndoStackDisplayedDepth = source.UndoStackDisplayedDepth;
+				// Notification
+				destination.DisplayWarningMessageForNotSavingInBBM = source.DisplayWarningMessageForNotSavingInBBM;
+				// performance
+				destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
+			}
+			// edition
+			if ((tabPageFilter & TabPageFilter.EDITION) != 0)
+			{
+				// mouse
+				destination.MouseMultipleSelectionKey = source.MouseMultipleSelectionKey;
 				destination.WheelMouseIsZoomOnCursor = source.WheelMouseIsZoomOnCursor;
 				destination.WheelMouseZoomSpeed = source.WheelMouseZoomSpeed;
-				destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
-				destination.MaxRecentFilesNum = source.MaxRecentFilesNum;
+				// copy/paste
+				destination.OffsetAfterCopyStyle = source.OffsetAfterCopyStyle;
+				destination.OffsetAfterCopyValue = source.OffsetAfterCopyValue;
 			}
 			// appearance
 			if ((tabPageFilter & TabPageFilter.APPEARANCE) != 0)
 			{
+				destination.DefaultBackgroundColor = source.DefaultBackgroundColor;
 				destination.DefaultAreaTransparency = source.DefaultAreaTransparency;
 				destination.DefaultAreaSize = source.DefaultAreaSize;
 				destination.GammaForSelection = source.GammaForSelection;
@@ -327,24 +357,22 @@ namespace BlueBrick
 			bool hasLanguageChanged = setLanguageSettingAccordingToComboBox();
 			// if the language change, we need to restart the application
 			mDoesNeedToRestart = hasLanguageChanged;
-			// mouse
-			Settings.Default.WheelMouseIsZoomOnCursor = this.mouseZoomCenteredCheckBox.Checked;
-			Settings.Default.WheelMouseZoomSpeed = (double)this.mouseZoomSpeedNumericUpDown.Value;
-			setMultipleAndDuplicateSelectionKeySettingAccordingToComboBox();
 			// new map
 			Settings.Default.AddGridLayerOnNewMap = this.addGridLayerCheckBox.Checked;
 			Settings.Default.AddBrickLayerOnNewMap = this.addBrickLayerCheckBox.Checked;
+			Settings.Default.AddAreaLayerOnNewMap = this.addAreaLayerCheckBox.Checked;
+			Settings.Default.AddTextLayerOnNewMap = this.addTextLayerCheckBox.Checked;
+			Settings.Default.AddRulerLayerOnNewMap = this.addRulerLayerCheckBox.Checked;
 			Settings.Default.DefaultAuthor = this.authorTextBox.Text;
 			Settings.Default.DefaultLUG = this.lugComboBox.Text;
 			Settings.Default.DefaultShow = this.showComboBox.Text;
 			// recent files
 			Settings.Default.MaxRecentFilesNum = (int)this.RecentFilesNumericUpDown.Value;
-			// copy/paste
-			Settings.Default.OffsetAfterCopyStyle = (int)this.copyOffsetComboBox.SelectedIndex;
-			Settings.Default.OffsetAfterCopyValue = (float)this.pasteOffsetValueNumericUpDown.Value;
 			// undo
 			Settings.Default.UndoStackDepth = (int)this.undoRecordedNumericUpDown.Value;
 			Settings.Default.UndoStackDisplayedDepth = (int)this.undoDisplayedNumericUpDown.Value;
+			// notification
+			Settings.Default.DisplayWarningMessageForNotSavingInBBM = this.displayWarningForNotSavingInBBMCheckBox.Checked;
 			// performances
 			if (setOptimSettingAccordingToComboBox())
 			{
@@ -353,6 +381,15 @@ namespace BlueBrick
 				Map.Instance.recomputeBrickMipmapImages();
 				this.Cursor = Cursors.Default;
 			}
+
+			// -- tab edition
+			// mouse
+			Settings.Default.WheelMouseIsZoomOnCursor = this.mouseZoomCenteredCheckBox.Checked;
+			Settings.Default.WheelMouseZoomSpeed = (double)this.mouseZoomSpeedNumericUpDown.Value;
+			setMultipleAndDuplicateSelectionKeySettingAccordingToComboBox();
+			// copy/paste
+			Settings.Default.OffsetAfterCopyStyle = (int)this.copyOffsetComboBox.SelectedIndex;
+			Settings.Default.OffsetAfterCopyValue = (float)this.pasteOffsetValueNumericUpDown.Value;
 
 			// -- tab appearance
 			// check if the user changed the grid color
