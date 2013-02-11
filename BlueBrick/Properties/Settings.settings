@@ -241,5 +241,8 @@
     <Setting Name="OffsetAfterCopyValue" Type="System.Single" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
+    <Setting Name="DisplayWarningMessageForNotSavingInBBM" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

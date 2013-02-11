@@ -134,6 +134,12 @@
     <Compile Include="FindForm.Designer.cs">
       <DependentUpon>FindForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ForgetableMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForgetableMessageBox.Designer.cs">
+      <DependentUpon>ForgetableMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="LayerRulerPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -300,6 +306,12 @@
     <EmbeddedResource Include="ExportImageForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ExportImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForgetableMessageBox.fr.resx">
+      <DependentUpon>ForgetableMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForgetableMessageBox.resx">
+      <DependentUpon>ForgetableMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralInfoForm.de.resx">
       <SubType>Designer</SubType>
@@ -595,12 +607,12 @@
   <ItemGroup>
     <PublishFile Include="fr\BlueBrick.resources">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>

@@ -1134,12 +1134,18 @@ namespace BlueBrick
 				// for a "Save As..." only (not for a save), we check if the user choose a LDRAW or TDL format
 				// to display a warning message, that he will lost data
 				string filenameLower = this.saveFileDialog.FileName.ToLower();
-				if (!filenameLower.EndsWith("bbm"))
+				if (Properties.Settings.Default.DisplayWarningMessageForNotSavingInBBM && !filenameLower.EndsWith("bbm"))
 				{
+					// use a local variable to get the value of the checkbox, by default we don't suggest the user to hide it
+					bool dontDisplayMessageAgain = false;
+
 					// display the warning message
-					result = MessageBox.Show(this, Properties.Resources.ErrorMsgNotSavingInBBM,
+					result = ForgetableMessageBox.Show(this, Properties.Resources.ErrorMsgNotSavingInBBM,
 									Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNo,
-									MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+									MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, ref dontDisplayMessageAgain);
+
+					// set back the checkbox value in the settings (don't save the settings now, it will be done when exiting the application)
+					Properties.Settings.Default.DisplayWarningMessageForNotSavingInBBM = !dontDisplayMessageAgain;
 
 					// if the user doesn't want to continue, do not save and
 					// do not add the name in the recent list file
@@ -1446,6 +1452,15 @@ namespace BlueBrick
 							(selectedLayer as LayerBrick).pasteCopiedList();
 							typeMismatch = false;
 						}
+						break;
+					case "LayerRuler":
+						layerTypeLocalizedName = Properties.Resources.ErrorMsgLayerTypeRuler;
+						// TODO
+						//if (itemTypeName.Equals("RulerItem"))
+						//{
+						//    (selectedLayer as LayerRuler).pasteCopiedList();
+						//    typeMismatch = false;
+						//}
 						break;
 				}
 				if (typeMismatch)
