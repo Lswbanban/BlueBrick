@@ -110,6 +110,8 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (Alban): Add more contextual cursors inside the layout area (Hidden layer, 
 - NEW FEATURE (Alban): More precise Selection: Now the picking and rectangle selection use the hull of the part, and the text rectangle for rotated text, instead of the axis aligned bounding box of the part or text.
 - NEW FEATURE (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste
+- NEW FEATURE #37 (doc_brown): Add a checkbox in the warning message box when not saving in BBM format.
+- NEW FEATURE (Alban): Add more options in the preference to create any of the 5 types of layer for a new map
 - REFACTORING (Alban): Move the display of free connection point and watermark in the View menu and add the display of the hull.
 - BUGFIX #40 (Steffen): If you connect a gray track with a blue track, the sleeper between them should be the white 3034 one. 
 - BUGFIX #42 (Larry): CRASH!! if you export a small area after exporting a big area

@@ -945,6 +945,12 @@ namespace BlueBrick
 				ActionManager.Instance.doAction(new AddLayer("LayerGrid"));
 			if (Properties.Settings.Default.AddBrickLayerOnNewMap)
 				ActionManager.Instance.doAction(new AddLayer("LayerBrick"));
+			if (Properties.Settings.Default.AddAreaLayerOnNewMap)
+				ActionManager.Instance.doAction(new AddLayer("LayerArea"));
+			if (Properties.Settings.Default.AddTextLayerOnNewMap)
+				ActionManager.Instance.doAction(new AddLayer("LayerText"));
+			if (Properties.Settings.Default.AddRulerLayerOnNewMap)
+				ActionManager.Instance.doAction(new AddLayer("LayerRuler"));
 			// after adding the two default layer, we reset the WasModified flag of the map
 			// (and before the update of the title bar)
 			Map.Instance.WasModified = false;
