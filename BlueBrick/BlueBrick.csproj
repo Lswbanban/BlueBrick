@@ -607,12 +607,12 @@
   <ItemGroup>
     <PublishFile Include="fr\BlueBrick.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>
@@ -662,6 +662,7 @@
     <EmbeddedResource Include="Cursor\RulerOffsetVerticalCursor.cur" />
     <EmbeddedResource Include="Cursor\HiddenLayerCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerArrowCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerAddCircleCursor.cur" />
     <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />
