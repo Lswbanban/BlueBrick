@@ -70,7 +70,7 @@ Open bugs:
 	- add more cursors
 	- Property window for option of each ruler
 	- manage the different unit
-	- Ruler just a line: or differnt option  for the lines/rulers
+	- Ruler just a line: or diffrent options for the lines/rulers
 	- Ruler circle
 	- copy/paste/duplicate rulers
 	- save/load rulers in BBM
@@ -79,7 +79,7 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
-- [target 1.8] MISSING FEATURE (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
+- [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
 - [target 1.8] MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
 - [target 1.8] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
@@ -89,20 +89,21 @@ Open bugs:
 - MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optionnal.
 - MISSING FEATURE (Alban): Enhance the part list export in HTML to export the group set only one time.
 - MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels.
-- MISSING FEATURE (Alban): Autosave.
-- MISSING FEATURE (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
-- MISSING FEATURE (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
-- MISSING FEATURE (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
-- MISSING FEATURE (Alban): Compatibility with TrackDraw?
-- MISSING FEATURE (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
+- MISSING FEATURE #6 (Alban): Autosave.
+- MISSING FEATURE #7 (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
+- MISSING FEATURE #8 (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
+- MISSING FEATURE #9 and #45 (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
+- MISSING FEATURE #10 (Alban): Compatibility with TrackDraw?
+- MISSING FEATURE #11 (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
-- [target 1.8] BUG (Alban): The current selected tab of the Part Lib should be saved when exiting the application. When launching it is not always visible (need to scroll).
+- [target 1.8] BUG (Alban): The current selected tab of the Part Lib should be saved when exiting the application. When launching it is not always visible (need to scroll) under win7.
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
-- [target 1.8] REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
+- [target 1.8] #18 REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
+- [target 1.8] REFACTORING (Alban): Replace all the type test using a string with the is keyword
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
-- BUG (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
+- BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 
 Bug fixed in 1.8.0.0:
 - NEW FEATURE (Alban): Add a filter combobox in the bottom of the library

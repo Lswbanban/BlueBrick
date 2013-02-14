@@ -630,13 +630,14 @@ namespace BlueBrick
 
 		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBubbleInfoFormat, bool updateSelectedTab)
 		{
+			// save the selected tab to reselect it after reorder
+			TabPage selectedTab = this.SelectedTab;
+
+			// suspend the layout since we will rearrange everything
 			this.SuspendLayout();
 
 			if (updateTabOrder)
 			{
-				// save the selected tab to reselect it after reorder
-				TabPage selectedTab = this.SelectedTab;
-
 				// first sort the tabs
 				// get the sorted name list from the settings
 				System.Collections.Specialized.StringCollection sortedNameList = BlueBrick.Properties.Settings.Default.PartLibTabOrder;
@@ -656,20 +657,6 @@ namespace BlueBrick
 						if (insertIndex < this.TabPages.Count)
 							insertIndex++;
 					}
-				}
-
-				// select the correct tab according to the parameter flag
-				if (updateSelectedTab)
-				{
-					// the selected tab from the setting data
-					if (BlueBrick.Properties.Settings.Default.UIPartLibSelectedTabIndex < this.TabPages.Count)
-					    this.SelectTab(BlueBrick.Properties.Settings.Default.UIPartLibSelectedTabIndex);
-				}
-				else
-				{
-					// reselect the previous selected tab
-					if (selectedTab != null)
-						this.SelectTab(selectedTab);
 				}
 			}
 
@@ -703,7 +690,23 @@ namespace BlueBrick
 				}
 			}
 
+			// now resume the layout
 			this.ResumeLayout();
+
+			// select the correct tab according to the parameter flag
+			// we do it after the resume of the layout otherwise if done during the suspends, the tab may not be correctly visible
+			if (updateSelectedTab)
+			{
+				// the selected tab from the setting data
+				if (BlueBrick.Properties.Settings.Default.UIPartLibSelectedTabIndex < this.TabPages.Count)
+					this.SelectTab(BlueBrick.Properties.Settings.Default.UIPartLibSelectedTabIndex);
+			}
+			else
+			{
+				// reselect the previous selected tab
+				if (selectedTab != null)
+					this.SelectTab(selectedTab);
+			}
 		}
 
 		public void savePartListDisplayStatusInSettings()
