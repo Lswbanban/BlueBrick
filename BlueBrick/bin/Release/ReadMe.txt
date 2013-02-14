@@ -83,7 +83,7 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
 - [target 1.8] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
-- MISSING FEATURE (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
+- MISSING FEATURE #12 (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
 - MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optionnal.
@@ -126,6 +126,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should ask if we need to replace it or associate a new action on the same key.
 - BUGFIX (Alban): In the Preferences Shortcut tab, selecting a shortcut in the list updates the combo boxes below (for easy modification of an existing shortcut)
 - BUGFIX (Alban): Precision error during the computation of the size for parts with a Hull defined in the xml.
+- BUGFIX (Alban): When adding a group from the library, the brick were added in reverse order.
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)

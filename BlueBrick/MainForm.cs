@@ -940,17 +940,31 @@ namespace BlueBrick
 		{
 			// trash the previous map
 			reinitializeCurrentMap();
+			// declare a variable to eventually choose the best layer to select after adding all of them
+			Layer layerToSelect = null;
 			// check if we need to add layer
 			if (Properties.Settings.Default.AddGridLayerOnNewMap)
 				ActionManager.Instance.doAction(new AddLayer("LayerGrid"));
 			if (Properties.Settings.Default.AddBrickLayerOnNewMap)
+			{
 				ActionManager.Instance.doAction(new AddLayer("LayerBrick"));
+				// by preference we want to select the brick layer
+				layerToSelect = Map.Instance.SelectedLayer;
+			}
 			if (Properties.Settings.Default.AddAreaLayerOnNewMap)
 				ActionManager.Instance.doAction(new AddLayer("LayerArea"));
 			if (Properties.Settings.Default.AddTextLayerOnNewMap)
+			{
 				ActionManager.Instance.doAction(new AddLayer("LayerText"));
+				// if there's no brick layer, the second choice is to select the text layer
+				if (layerToSelect == null)
+					layerToSelect = Map.Instance.SelectedLayer;
+			}
 			if (Properties.Settings.Default.AddRulerLayerOnNewMap)
 				ActionManager.Instance.doAction(new AddLayer("LayerRuler"));
+			// now select the prefered layer if any
+			if (layerToSelect != null)
+				Map.Instance.SelectedLayer = layerToSelect;
 			// after adding the two default layer, we reset the WasModified flag of the map
 			// (and before the update of the title bar)
 			Map.Instance.WasModified = false;

@@ -52,6 +52,10 @@ namespace BlueBrick.Actions.Bricks
 			if (mBrickOrGroup.IsAGroup)
 			{
 				mBricks = (mBrickOrGroup as Layer.Group).getAllChildrenItems();
+				// since the bricks are added from the end in the redo method,
+				// we reverse the order of the group, such as a group from the library can
+				// be inserted in the correct order.
+				mBricks.Reverse();
 			}
 			else
 			{
@@ -74,7 +78,7 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
-			// and add all the texts in the reverse order
+			// and add all the bricks in the reverse order
 			for (int i = mBricks.Count - 1; i >= 0; --i)
 			{
 				mBrickLayer.addBrick(mBricks[i] as LayerBrick.Brick, mBrickIndex[i]);
