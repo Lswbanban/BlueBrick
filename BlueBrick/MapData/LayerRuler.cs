@@ -200,7 +200,7 @@ namespace BlueBrick.MapData
 				case EditTool.LINE:
 					return MainForm.Instance.RulerAddPoint1Cursor;
 				case EditTool.CIRCLE:
-					return MainForm.Instance.RulerArrowCursor; // TODO add the default cursor for the circle
+					return MainForm.Instance.RulerAddCircleCursor;
 			}
 
 			// return the default cursor
