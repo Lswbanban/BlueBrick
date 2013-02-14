@@ -437,21 +437,24 @@ namespace BlueBrick
 						mustRefreshView = Map.Instance.mouseDown(e, mouseCoordInStud);
 						mIsMouseHandledByMap = true;
 					}
-					else if (e.Clicks == 1)
+					else if (Map.Instance.SelectedLayer.Visible)
 					{
-						//simple click not handle by the layer, so we start a selection rectangle
-						mSelectionRectangleInitialPosition = new Point(e.Location.X, e.Location.Y);
-						mSelectionRectangle = new Rectangle(e.Location.X, e.Location.Y, 0, 0);
-						mIsSelectionRectangleOn = true;
-						mustRefreshView = true;
+						// if the selected layer is not visible don't even start a selection or double click
+						if (e.Clicks == 1)
+						{
+							//simple click not handle by the layer, so we start a selection rectangle
+							mSelectionRectangleInitialPosition = new Point(e.Location.X, e.Location.Y);
+							mSelectionRectangle = new Rectangle(e.Location.X, e.Location.Y, 0, 0);
+							mIsSelectionRectangleOn = true;
+							mustRefreshView = true;
+						}
+						else
+						{
+							// this is a double click
+							mIsSelectionRectangleOn = false;
+							preferedCursor = Cursors.Arrow;
+						}
 					}
-					else
-					{
-						// this is a double click
-						mIsSelectionRectangleOn = false;
-						preferedCursor = Cursors.Arrow;
-					}
-
 					break;
 
 				case MouseButtons.Middle:
@@ -809,21 +812,33 @@ namespace BlueBrick
 			}
 			else
 			{
-				bool enableItemRelatedToSelection = ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0));
+				Layer selectedLayer = Map.Instance.SelectedLayer;
+				bool isThereAVisibleSelectedLayer = ((selectedLayer != null) && (selectedLayer.Visible));
+				bool enableItemRelatedToSelection = (isThereAVisibleSelectedLayer && (selectedLayer.SelectedObjects.Count > 0));
 				this.bringToFrontToolStripMenuItem.Enabled = enableItemRelatedToSelection;
 				this.sendToBackToolStripMenuItem.Enabled = enableItemRelatedToSelection;
+				this.selectAllToolStripMenuItem.Enabled = (isThereAVisibleSelectedLayer && (selectedLayer.getNbItems() > 0));
 				this.deselectAllToolStripMenuItem.Enabled = enableItemRelatedToSelection;
-				this.selectPathToolStripMenuItem.Enabled = ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count == 2));
-				if (Map.Instance.SelectedLayer != null)
+				this.selectPathToolStripMenuItem.Enabled = (isThereAVisibleSelectedLayer && (selectedLayer.SelectedObjects.Count == 2));
+				if (isThereAVisibleSelectedLayer)
 				{
-					this.groupToolStripMenuItem.Enabled = Actions.Items.GroupItems.findItemsToGroup(Map.Instance.SelectedLayer.SelectedObjects).Count > 1;
-					this.ungroupToolStripMenuItem.Enabled = Actions.Items.UngroupItems.findItemsToUngroup(Map.Instance.SelectedLayer.SelectedObjects).Count > 0;
+					this.groupToolStripMenuItem.Enabled = Actions.Items.GroupItems.findItemsToGroup(selectedLayer.SelectedObjects).Count > 1;
+					this.ungroupToolStripMenuItem.Enabled = Actions.Items.UngroupItems.findItemsToUngroup(selectedLayer.SelectedObjects).Count > 0;
 				}
 				else
 				{
 					this.groupToolStripMenuItem.Enabled = false;
 					this.ungroupToolStripMenuItem.Enabled = false;
 				}
+
+				// finally after enabling the context menu items
+				// check if at leat one toolstrip menu item is enabled otherwise, cancel the opening
+				bool isEnabled = false;
+				foreach (ToolStripItem stripItem in this.ContextMenuStrip.Items)
+					if (stripItem is ToolStripMenuItem)
+						isEnabled = isEnabled || stripItem.Enabled;
+				// do we cancel it? yes if none is enabled
+				e.Cancel = !isEnabled;
 			}
 		}
 		#endregion
