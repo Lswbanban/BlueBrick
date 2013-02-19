@@ -21,9 +21,9 @@ namespace BlueBrick.Actions.Items
 {
 	class GroupItems : Action
 	{
-		List<Layer.LayerItem> mItemsToGroup = null;
-		Layer.Group mGroup = new Layer.Group();
-        Layer mLayer = null;
+		private List<Layer.LayerItem> mItemsToGroup = null;
+		private Layer.Group mGroup = new Layer.Group();
+		private Layer mLayer = null;
 
         /// <summary>
         /// From a list of items to group, find and construct the top items of the forest, such as

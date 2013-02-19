@@ -51,6 +51,14 @@ namespace BlueBrick.MapData
 			get { return (sCurrentDrawColor == Color.Empty); }
 		}
 
+		/// <summary>
+		/// get the localized name of this type of layer
+		/// </summary>
+		public override string TypeLocalizedName
+		{
+			get { return Properties.Resources.ErrorMsgLayerTypeArea; }
+		}
+
 		public override int Transparency
 		{
 			set
@@ -166,7 +174,12 @@ namespace BlueBrick.MapData
 
 		public override void WriteXml(System.Xml.XmlWriter writer)
 		{
+			// layer of type area
+			writer.WriteStartElement("Layer");
 			writer.WriteAttributeString("type", "area");
+			writer.WriteAttributeString("id", this.GetHashCode().ToString());
+
+			// call base class for common attribute
 			base.WriteXml(writer);
 			// write area cell size
 			writer.WriteElementString("AreaCellSize", mAreaCellSizeInStud.ToString());
@@ -188,7 +201,8 @@ namespace BlueBrick.MapData
 				// step the progress bar for each line
 				MainForm.Instance.stepProgressBar();
 			}
-			writer.WriteEndElement();
+			writer.WriteEndElement(); // end of Areas
+			writer.WriteEndElement(); // end of Layer
 		}
 
 		#endregion

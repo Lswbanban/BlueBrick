@@ -177,6 +177,14 @@ namespace BlueBrick.MapData
 			set { mCellIndexCorner.Y = value; }
 		}
 
+		/// <summary>
+		/// get the localized name of this type of layer
+		/// </summary>
+		public override string TypeLocalizedName
+		{
+			get { return Properties.Resources.ErrorMsgLayerTypeGrid; }
+		}
+
 		public override int Transparency
 		{
 			set
@@ -262,7 +270,12 @@ namespace BlueBrick.MapData
 
 		public override void WriteXml(System.Xml.XmlWriter writer)
 		{
+			// layer of type grid
+			writer.WriteStartElement("Layer");
 			writer.WriteAttributeString("type", "grid");
+			writer.WriteAttributeString("id", this.GetHashCode().ToString());
+
+			// call base class for common attribute
 			base.WriteXml(writer);
 			XmlReadWrite.writeColor(writer, "GridColor", GridColor);
 			writer.WriteElementString("GridThickness", GridThickness.ToString(System.Globalization.CultureInfo.InvariantCulture));
@@ -278,6 +291,8 @@ namespace BlueBrick.MapData
 			writer.WriteElementString("CellIndexColumnType", ((int)mCellIndexColumnType).ToString());
 			writer.WriteElementString("CellIndexRowType", ((int)mCellIndexRowType).ToString());
 			XmlReadWrite.writePoint(writer, "CellIndexCorner", mCellIndexCorner);
+			writer.WriteEndElement(); // end of Layer
+
 			// step the progress bar for the grid
 			MainForm.Instance.stepProgressBar();
 		}
