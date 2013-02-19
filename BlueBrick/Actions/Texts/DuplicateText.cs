@@ -20,7 +20,7 @@ using System.Drawing;
 
 namespace BlueBrick.Actions.Texts
 {
-	class DuplicateText : Action
+	class DuplicateText : Items.DuplicateItems
 	{
 		private LayerText mTextLayer = null;
 		private List<Layer.LayerItem> mTexts = null;
@@ -101,7 +101,7 @@ namespace BlueBrick.Actions.Texts
 		/// </summary>
 		/// <param name="positionShiftX">the new shift for x coordinate from the position when this action was created</param>
 		/// <param name="positionShiftY">the new shift for y coordinate from the position when this action was created</param>
-		public void updatePositionShift(float positionShiftX, float positionShiftY)
+		public override void updatePositionShift(float positionShiftX, float positionShiftY)
 		{
 			foreach (Layer.LayerItem obj in mTexts)
 			{

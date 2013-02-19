@@ -633,6 +633,7 @@ namespace BlueBrick.MapData
 
 			public override void WriteXml(System.Xml.XmlWriter writer)
 			{
+				writer.WriteStartElement("Brick");
 				base.WriteXml(writer);
 				writer.WriteElementString("PartNumber", mPartNumber);
 				writer.WriteElementString("Orientation", mOrientation.ToString(System.Globalization.CultureInfo.InvariantCulture));
@@ -654,7 +655,8 @@ namespace BlueBrick.MapData
 				{
 					writer.WriteAttributeString("count", "0");
 				}
-				writer.WriteEndElement();
+				writer.WriteEndElement(); // end of Connexions
+				writer.WriteEndElement(); // end of Brick
 			}
 
 			#endregion
@@ -1016,7 +1018,6 @@ namespace BlueBrick.MapData
 		private bool mMouseMoveIsAFlexMove = false;
 		private FlexMove mMouseFlexMoveAction = null;
 		private bool mMouseMoveIsADuplicate = false;
-		private DuplicateBrick mLastDuplicateBrickAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
 		private RotateBrickOnPivotBrick mRotationForSnappingDuringBrickMove = null; // this action is used temporally during the edition, while you are moving the selection next to a connectable brick. The Action is not recorded in the ActionManager because it is a temporary one.
 		private float mSnappingOrientation = 0.0f; // this orientation is just used during the the edition of a group of part if they snap to a free connexion point
 
@@ -1027,6 +1028,14 @@ namespace BlueBrick.MapData
 		public List<Brick> BrickList
 		{
 			get { return mBricks; }
+		}
+
+		/// <summary>
+		/// get the localized name of this type of layer
+		/// </summary>
+		public override string TypeLocalizedName
+		{
+			get { return Properties.Resources.ErrorMsgLayerTypeBrick; }
 		}
 
 		public override int Transparency
@@ -1065,32 +1074,11 @@ namespace BlueBrick.MapData
 
 		public override void ReadXml(System.Xml.XmlReader reader)
 		{
+			// call the common reader class
 			base.ReadXml(reader);
-			// clear all the content of the hash table
-			Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
-			// the brick
-			bool brickFound = reader.ReadToDescendant("Brick");
-			while (brickFound)
-			{
-				// instanciate a new brick, read and add the new brick
-				Brick brick = new Brick();
-				brick.ReadXml(reader);
-				mBricks.Add(brick);
 
-				// read the next brick
-				brickFound = reader.ReadToNextSibling("Brick");
-
-				// step the progress bar for each brick
-				MainForm.Instance.stepProgressBar();
-			}
-			// read the Bricks tag, to finish the list of brick
-			reader.Read();
-
-			// call the post read function to read the groups
-			postReadXml(reader);
-			
-			// clear again the hash table to free the memory after loading
-			Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
+			// read all the bricks
+			ReadXml<Brick>(reader, ref mBricks, true);
 
 			// reconstruct the freeConnexion points list by iterating on all the connexion of all the bricks
 			mFreeConnectionPoints.removeAll();
@@ -1138,24 +1126,67 @@ namespace BlueBrick.MapData
 			ElectricCircuitChecker.check(this);
 		}
 
+		public override void ReadXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, bool useProgressBar)
+		{
+			// clear all the content of the hash table
+			LayerItem.sHashtableForGroupRebuilding.Clear();
+			Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
+
+			// the brick
+			bool brickFound = reader.ReadToDescendant("Brick");
+			while (brickFound)
+			{
+				// instanciate a new brick, read and add the new brick
+				Brick brick = new Brick();
+				brick.ReadXml(reader);
+				resultingList.Add(brick as T);
+
+				// read the next brick
+				brickFound = reader.ReadToNextSibling("Brick");
+
+				// step the progress bar for each brick
+				if (useProgressBar)
+					MainForm.Instance.stepProgressBar();
+			}
+			// read the Bricks tag, to finish the list of brick
+			reader.Read();
+
+			// call the post read function to read the groups
+			readGroupFromXml(reader);
+			
+			// clear again the hash table to free the memory after loading
+			Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
+		}
+
 		public override void WriteXml(System.Xml.XmlWriter writer)
 		{
+			// call the function on all the bricks
+			WriteXml(writer, mBricks, true);
+		}
+
+		protected override void WriteXml<T>(System.Xml.XmlWriter writer, List<T> itemsToWrite, bool useProgressBar)
+		{
+			// layer of type brick
+			writer.WriteStartElement("Layer");
 			writer.WriteAttributeString("type", "brick");
+			writer.WriteAttributeString("id", this.GetHashCode().ToString());
+
+			// call base class for common attribute
 			base.WriteXml(writer);
 			// and serialize the brick list
 			writer.WriteStartElement("Bricks");
-			foreach (Brick brick in mBricks)
+			foreach (T item in itemsToWrite)
 			{
-				writer.WriteStartElement("Brick");
-				brick.WriteXml(writer);
-				writer.WriteEndElement();
+				item.WriteXml(writer);
 				// step the progress bar for each brick
-				MainForm.Instance.stepProgressBar();
+				if (useProgressBar)
+					MainForm.Instance.stepProgressBar();
 			}
-			writer.WriteEndElement();
+			writer.WriteEndElement(); // end of Bricks
 
 			// call the post write to write the group list
-			postWriteXml(writer);
+			writeGroupToXml(writer);
+			writer.WriteEndElement(); // end of Layer
 		}
 
 		#endregion
@@ -1341,35 +1372,9 @@ namespace BlueBrick.MapData
 		/// Copy the list of the selected bricks in a separate list for later use.
 		/// This method should be called on a CTRL+C
 		/// </summary>
-		public void copyCurrentSelection()
+		public override void copyCurrentSelectionToClipboard()
 		{
-			// reset the copy list
-			sCopyItems.Clear();
-			// Sort the seltected list as it is sorted on the layer such as the clone list
-			// will be also sorted as on the layer
-			LayerItemComparer<LayerBrick.Brick> comparer = new LayerItemComparer<LayerBrick.Brick>(mBricks);
-			SelectedObjects.Sort(comparer);
-			// and copy the list
-			sCopyItems = sCloneBrickList(SelectedObjects);
-			sLayerOfTheCopiedItems = this;
-			// enable the paste buttons
-			MainForm.Instance.enablePasteButton(true);
-		}
-
-		/// <summary>
-		/// Paste (duplicate) the list of bricks that was previously copied with a call to copyCurrentSelection()
-		/// This method should be called on a CTRL+V
-		/// </summary>
-		public void pasteCopiedList()
-		{
-			// To paste, we need to have copied something
-			if (sCopyItems.Count > 0)
-			{
-				int copyStyle = Properties.Settings.Default.OffsetAfterCopyStyle;
-				bool addOffset = (copyStyle == 2) || ((copyStyle  == 1) && (sLayerOfTheCopiedItems == this));
-				mLastDuplicateBrickAction = new DuplicateBrick(this, sCopyItems, addOffset);
-				ActionManager.Instance.doAction(mLastDuplicateBrickAction);
-			}
+			base.copyCurrentSelectionToClipboard(mBricks);
 		}
 		#endregion
 
@@ -2124,8 +2129,8 @@ namespace BlueBrick.MapData
 							// and this will change the current selection, that will be move normally after
 							if (!mMouseHasMoved)
 							{
-								this.copyCurrentSelection();
-								this.pasteCopiedList();
+								this.copyCurrentSelectionToClipboard();
+								this.pasteClipboardInLayer();
 								// set the flag
 								wereBrickJustDuplicated = true;
 							}
@@ -2204,8 +2209,8 @@ namespace BlueBrick.MapData
 						// update the duplicate action or add a move action
 						if (mMouseMoveIsADuplicate)
 						{
-							mLastDuplicateBrickAction.updatePositionShift(deltaMove.X, deltaMove.Y);
-							mLastDuplicateBrickAction = null;
+							mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
+							mLastDuplicateAction = null;
 							// clear also the rotation snapping, in case of a series of duplication, but do not
 							// undo it, since we want to keep the rotation applied on the duplicated bricks.
 							mRotationForSnappingDuringBrickMove = null;
@@ -2252,7 +2257,7 @@ namespace BlueBrick.MapData
 						// of the move, so we need to recreate the link
 						updateBrickConnectivityOfSelection(false);
 						// reset anyway the temp reference for the duplication
-						mLastDuplicateBrickAction = null;
+						mLastDuplicateAction = null;
 					}
 				}
 				else

@@ -137,12 +137,14 @@ namespace BlueBrick.MapData
 
 			public override void WriteXml(System.Xml.XmlWriter writer)
 			{
+				writer.WriteStartElement("TextCell");
 				base.WriteXml(writer);
 				writer.WriteElementString("Text", mText);
 				writer.WriteElementString("Orientation", mOrientation.ToString(System.Globalization.CultureInfo.InvariantCulture));
 				XmlReadWrite.writeColor(writer, "FontColor", FontColor);
 				XmlReadWrite.writeFont(writer, "Font", mTextFont);
 				writer.WriteElementString("TextAlignment", TextAlignment.ToString());
+				writer.WriteEndElement(); // end of TextCell
 			}
 
 			#endregion
@@ -231,9 +233,16 @@ namespace BlueBrick.MapData
 		private bool mMouseHasMoved = false;
 		private bool mMouseMoveIsADuplicate = false;
 		private bool mMouseMoveWillAddOrEditText = false;
-		private DuplicateText mLastDuplicateTextAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
 
 		#region set/get
+		/// <summary>
+		/// get the localized name of this type of layer
+		/// </summary>
+		public override string TypeLocalizedName
+		{
+			get { return Properties.Resources.ErrorMsgLayerTypeText; }
+		}
+
 		public override int Transparency
 		{
 			set
@@ -263,7 +272,18 @@ namespace BlueBrick.MapData
 
 		public override void ReadXml(System.Xml.XmlReader reader)
 		{
+			// call the common reader class
 			base.ReadXml(reader);
+
+			// read all the texts
+			ReadXml<TextCell>(reader, ref mTexts, true);
+		}
+
+		public override void ReadXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, bool useProgressBar)
+		{
+			// clear all the content of the hash table
+			LayerItem.sHashtableForGroupRebuilding.Clear();
+
 			// the text cells
 			bool cellFound = reader.ReadToDescendant("TextCell");
 			while (cellFound)
@@ -271,39 +291,51 @@ namespace BlueBrick.MapData
 				// instanciate a new text cell, read and add the new text cell
 				TextCell cell = new TextCell();
 				cell.ReadXml(reader);
-				mTexts.Add(cell);
+				resultingList.Add(cell as T);
 
 				// read the next text cell
 				cellFound = reader.ReadToNextSibling("TextCell");
 
 				// step the progress bar for each text cell
-				MainForm.Instance.stepProgressBar();
+				if (useProgressBar)
+					MainForm.Instance.stepProgressBar();
 			}
 			// read the TextCells tag, to finish the list of text cells
 			reader.Read();
 
 			// call the post read function to read the groups
-			postReadXml(reader);
+			readGroupFromXml(reader);
 		}
 
 		public override void WriteXml(System.Xml.XmlWriter writer)
 		{
+			// call the function on all the bricks
+			WriteXml(writer, mTexts, true);
+		}
+
+		protected override void WriteXml<T>(System.Xml.XmlWriter writer, List<T> itemsToWrite, bool useProgressBar)
+		{
+			// layer of type text
+			writer.WriteStartElement("Layer");
 			writer.WriteAttributeString("type", "text");
+			writer.WriteAttributeString("id", this.GetHashCode().ToString());
+
+			// call base class for common attribute
 			base.WriteXml(writer);
 			// and the text cell list
 			writer.WriteStartElement("TextCells");
-			foreach (TextCell cell in mTexts)
+			foreach (T item in itemsToWrite)
 			{
-				writer.WriteStartElement("TextCell");
-				cell.WriteXml(writer);
-				writer.WriteEndElement();
+				item.WriteXml(writer);
 				// step the progress bar for each text cell
-				MainForm.Instance.stepProgressBar();
+				if (useProgressBar)
+					MainForm.Instance.stepProgressBar();
 			}
-			writer.WriteEndElement();
+			writer.WriteEndElement(); // end of TextCells
 
 			// call the post write to write the group list
-			postWriteXml(writer);
+			writeGroupToXml(writer);
+			writer.WriteEndElement(); // end of Layer
 		}
 
 		#endregion
@@ -345,39 +377,9 @@ namespace BlueBrick.MapData
 		/// Copy the list of the selected texts in a separate list for later use.
 		/// This method should be called on a CTRL+C
 		/// </summary>
-		public void copyCurrentSelection()
+		public override void copyCurrentSelectionToClipboard()
 		{
-			// reset the copy list
-			sCopyItems.Clear();
-			// Sort the seltected list as it is sorted on the layer such as the clone list
-			// will be also sorted as on the layer
-			LayerItemComparer<TextCell> comparer = new LayerItemComparer<TextCell>(mTexts);
-			SelectedObjects.Sort(comparer);
-			// recreate the copy list if the selection is not empty
-			foreach (LayerItem item in SelectedObjects)
-			{
-				// add a duplicated item in the list (because the model may change between this copy and the paste)
-				sCopyItems.Add((item as TextCell).Clone());
-			}
-			sLayerOfTheCopiedItems = this;
-			// enable the paste buttons
-			MainForm.Instance.enablePasteButton(true);
-		}
-
-		/// <summary>
-		/// Paste (duplicate) the list of bricks that was previously copied with a call to copyCurrentSelection()
-		/// This method should be called on a CTRL+V
-		/// </summary>
-		public void pasteCopiedList()
-		{
-			// To paste, we need to have copied something
-			if (sCopyItems.Count > 0)
-			{
-				int copyStyle = Properties.Settings.Default.OffsetAfterCopyStyle;
-				bool addOffset = (copyStyle == 2) || ((copyStyle == 1) && (sLayerOfTheCopiedItems == this));
-				mLastDuplicateTextAction = new DuplicateText(this, sCopyItems, addOffset);
-				ActionManager.Instance.doAction(mLastDuplicateTextAction);
-			}
+			base.copyCurrentSelectionToClipboard(mTexts);
 		}
 
 		/// <summary>
@@ -617,8 +619,8 @@ namespace BlueBrick.MapData
 					// and this will change the current selection, that will be move normally after
 					if (!mMouseHasMoved)
 					{
-						this.copyCurrentSelection();
-						this.pasteCopiedList();
+						this.copyCurrentSelectionToClipboard();
+						this.pasteClipboardInLayer();
 					}
 				}
 				// compute the delta move of the mouse
@@ -679,8 +681,8 @@ namespace BlueBrick.MapData
 					// update the duplicate action or add a move action
 					if (mMouseMoveIsADuplicate)
 					{
-						mLastDuplicateTextAction.updatePositionShift(deltaMove.X, deltaMove.Y);
-						mLastDuplicateTextAction = null;
+						mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
+						mLastDuplicateAction = null;
 					}
 					else
 					{
@@ -692,7 +694,7 @@ namespace BlueBrick.MapData
 					}
 				}
 				// reset anyway the temp reference for the duplication
-				mLastDuplicateTextAction = null;
+				mLastDuplicateAction = null;
 			}
 			else
 			{

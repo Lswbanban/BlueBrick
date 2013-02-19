@@ -97,7 +97,6 @@ Open bugs:
 - MISSING FEATURE #11 (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
-- [target 1.8] BUG (Alban): The current selected tab of the Part Lib should be saved when exiting the application. When launching it is not always visible (need to scroll) under win7.
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] #18 REFACTORING (Alban): Check where I could have used the directive "where" (remove code duplication)
 - [target 1.8] REFACTORING (Alban): Replace all the type test using a string with the is keyword
@@ -128,6 +127,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): In the Preferences Shortcut tab, selecting a shortcut in the list updates the combo boxes below (for easy modification of an existing shortcut)
 - BUGFIX (Alban): Precision error during the computation of the size for parts with a Hull defined in the xml.
 - BUGFIX (Alban): When adding a group from the library, the brick were added in reverse order.
+- BUGFIX (Alban): The current selected tab of the Part Lib was not saved when exiting the application, and not reset when restarting.
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)

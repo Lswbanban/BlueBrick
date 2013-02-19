@@ -497,18 +497,14 @@ namespace BlueBrick.MapData
 			// and the layer list
 			writer.WriteStartElement("Layers");
 			foreach (Layer layer in mLayers)
-			{
-				writer.WriteStartElement("Layer");
 				layer.WriteXml(writer);
-				writer.WriteEndElement();
-			}
-			writer.WriteEndElement();
+			writer.WriteEndElement(); // end of Layers
 
 			// DO NOT WRITE YET THE BRICK URL LIST, BECAUSE THE BRICK DOWNLOAD FEATURE IS NOT READY
 			if (false)
 			{
 				// write the brick url for all the bricks in the map
-				writer.WriteStartElement("BrickUrlList");
+				writer.WriteStartElement("BrickURLList");
 				// we use a hastable for fast hash search
 				System.Collections.Hashtable partList = new System.Collections.Hashtable();
 				foreach (Layer layer in mLayers)
@@ -523,7 +519,7 @@ namespace BlueBrick.MapData
 								// serialize its url
 								if (url != null)
 								{
-									writer.WriteStartElement("BrickUrl");
+									writer.WriteStartElement("BrickURL");
 									writer.WriteAttributeString("id", brick.PartNumber);
 									writer.WriteAttributeString("official", "yes");
 									writer.WriteString(url);

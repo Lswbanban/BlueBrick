@@ -611,7 +611,7 @@ namespace BlueBrick
 		{
 			if (canPaste)
 			{
-				bool isThereAnyItemCopied = (Layer.CopyItems.Count > 0);
+				bool isThereAnyItemCopied = Clipboard.ContainsText();
 				this.pasteToolStripMenuItem.Enabled = isThereAnyItemCopied;
 				this.toolBarPasteButton.Enabled = isThereAnyItemCopied;
 			}
@@ -1418,16 +1418,16 @@ namespace BlueBrick
 			Layer selectedLayer = Map.Instance.SelectedLayer;
 			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
 			{
+				selectedLayer.copyCurrentSelectionToClipboard();
 				switch (selectedLayer.GetType().Name)
 				{
 					case "LayerText":
-						(selectedLayer as LayerText).copyCurrentSelection();
 						ActionManager.Instance.doAction(new DeleteText(selectedLayer as LayerText, selectedLayer.SelectedObjects));
 						break;
 					case "LayerBrick":
-						(selectedLayer as LayerBrick).copyCurrentSelection();
 						ActionManager.Instance.doAction(new DeleteBrick(selectedLayer as LayerBrick, selectedLayer.SelectedObjects));
 						break;
+					// TODO refactor this code, or add the delete of ruler
 				}
 			}
 		}
@@ -1436,74 +1436,28 @@ namespace BlueBrick
 		{
 			// first get the current selected layer
 			Layer selectedLayer = Map.Instance.SelectedLayer;
-			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
-			{
-				switch (selectedLayer.GetType().Name)
-				{
-					case "LayerText":
-						(selectedLayer as LayerText).copyCurrentSelection();
-						break;
-					case "LayerBrick":
-						(selectedLayer as LayerBrick).copyCurrentSelection();
-						break;
-				}
-			}
+			// then call the funcion to copy the selection on the selected layer
+			if (selectedLayer != null)
+				selectedLayer.copyCurrentSelectionToClipboard();
 		}
 
 		private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// first get the current selected layer
 			Layer selectedLayer = Map.Instance.SelectedLayer;
-			if ((selectedLayer != null) && (Layer.CopyItems.Count > 0))
+			// call the paste method on the selected layer, and display an error if the paste was not possible
+			string itemTypeName = "";
+			if (!selectedLayer.pasteClipboardInLayer(out itemTypeName))
 			{
-				bool typeMismatch = true;
-				string layerTypeLocalizedName = "";
-				string itemTypeName = Layer.CopyItems[0].GetType().Name;
-				switch (selectedLayer.GetType().Name)
-				{
-					case "LayerArea":
-						layerTypeLocalizedName = Properties.Resources.ErrorMsgLayerTypeArea;
-						break;
-					case "LayerGrid":
-						layerTypeLocalizedName = Properties.Resources.ErrorMsgLayerTypeGrid;
-						break;
-					case "LayerText":
-						layerTypeLocalizedName = Properties.Resources.ErrorMsgLayerTypeText;
-						if (itemTypeName.Equals("TextCell"))
-						{
-							(selectedLayer as LayerText).pasteCopiedList();
-							typeMismatch = false;
-						}
-						break;
-					case "LayerBrick":
-						layerTypeLocalizedName = Properties.Resources.ErrorMsgLayerTypeBrick;
-						if (itemTypeName.Equals("Brick"))
-						{
-							(selectedLayer as LayerBrick).pasteCopiedList();
-							typeMismatch = false;
-						}
-						break;
-					case "LayerRuler":
-						layerTypeLocalizedName = Properties.Resources.ErrorMsgLayerTypeRuler;
-						// TODO
-						//if (itemTypeName.Equals("RulerItem"))
-						//{
-						//    (selectedLayer as LayerRuler).pasteCopiedList();
-						//    typeMismatch = false;
-						//}
-						break;
-				}
-				if (typeMismatch)
-				{
-					string message = Properties.Resources.ErrorMsgCanNotPaste.Replace("&&", layerTypeLocalizedName);
-					if (itemTypeName.Equals("Brick"))
-						message = message.Replace("&", Properties.Resources.ErrorMsgLayerTypeBrick);
-					else
-						message = message.Replace("&", Properties.Resources.ErrorMsgLayerTypeText);
-					MessageBox.Show(this, message,
-									Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
-									MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-				}
+				// we have a type mismatch
+				// first replace the layer type name
+				string message = Properties.Resources.ErrorMsgCanNotPaste.Replace("&&", selectedLayer.TypeLocalizedName);
+				// then replace the item type name
+				message = message.Replace("&", itemTypeName);
+				// and display the message box
+				MessageBox.Show(this, message,
+								Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
+								MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 			}
 		}
 
@@ -1521,6 +1475,7 @@ namespace BlueBrick
 					case "LayerBrick":
 						ActionManager.Instance.doAction(new DeleteBrick(selectedLayer as LayerBrick, selectedLayer.SelectedObjects));
 						break;
+					// TODO refactor this code, or add the delete of ruler
 				}
 			}
 		}
@@ -1574,7 +1529,7 @@ namespace BlueBrick
             if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
             {
                 string layerType = Map.Instance.SelectedLayer.GetType().Name;
-                if ((layerType == "LayerBrick") || (layerType == "LayerText"))
+                if ((layerType == "LayerBrick") || (layerType == "LayerText")) // TODO add ruler
                 {
                     Actions.Items.GroupItems groupAction = new BlueBrick.Actions.Items.GroupItems(Map.Instance.SelectedLayer.SelectedObjects, Map.Instance.SelectedLayer);
                     Actions.ActionManager.Instance.doAction(groupAction);
@@ -1587,7 +1542,7 @@ namespace BlueBrick
             if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
             {
                 string layerType = Map.Instance.SelectedLayer.GetType().Name;
-                if ((layerType == "LayerBrick") || (layerType == "LayerText"))
+                if ((layerType == "LayerBrick") || (layerType == "LayerText")) // TODO add ruler
                 {
 					Actions.Items.UngroupItems ungroupAction = new BlueBrick.Actions.Items.UngroupItems(Map.Instance.SelectedLayer.SelectedObjects, Map.Instance.SelectedLayer);
                     Actions.ActionManager.Instance.doAction(ungroupAction);
@@ -1608,6 +1563,7 @@ namespace BlueBrick
 					case "LayerText":
 						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, 1));
 						break;
+					// TODO add ruler
 				}
 			}
 		}
@@ -1625,6 +1581,7 @@ namespace BlueBrick
 					case "LayerText":
 						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, -1));
 						break;
+					// TODO add ruler
 				}
 			}
 		}
@@ -1641,6 +1598,7 @@ namespace BlueBrick
 				{
 					ActionManager.Instance.doAction(new SendTextToBack(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects));
 				}
+				// TODO add ruler
 			}
 		}
 
@@ -1656,6 +1614,7 @@ namespace BlueBrick
 				{
 					ActionManager.Instance.doAction(new BringTextToFront(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects));
 				}
+				// TODO add ruler
 			}
 		}
 

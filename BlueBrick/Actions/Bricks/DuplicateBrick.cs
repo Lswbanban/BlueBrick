@@ -20,7 +20,7 @@ using System.Drawing;
 
 namespace BlueBrick.Actions.Bricks
 {
-	class DuplicateBrick : Action
+	class DuplicateBrick : Items.DuplicateItems
 	{
 		private LayerBrick mBrickLayer = null;
 		private List<Layer.LayerItem> mBricks = null;
@@ -116,7 +116,7 @@ namespace BlueBrick.Actions.Bricks
 		/// </summary>
 		/// <param name="positionShiftX">the new shift for x coordinate from the position when this action was created</param>
 		/// <param name="positionShiftY">the new shift for y coordinate from the position when this action was created</param>
-		public void updatePositionShift(float positionShiftX, float positionShiftY)
+		public override void updatePositionShift(float positionShiftX, float positionShiftY)
 		{
 			foreach (Layer.LayerItem obj in mBricks)
 			{

@@ -763,26 +763,6 @@ namespace BlueBrick.MapData
 			#endregion
 		}
 
-		/// <summary>
-		/// This class is used to sort a list of layer item in the same order as in the list provided in the constructor
-		/// </summary>
-		public class LayerItemComparer<T> : System.Collections.Generic.IComparer<LayerItem> where T : LayerItem
-		{
-			private List<T> mListOrderToCopy = null;
-
-			public LayerItemComparer(List<T> list)
-			{
-				mListOrderToCopy = list;
-			}
-
-			public int Compare(Layer.LayerItem item1, Layer.LayerItem item2)
-			{
-				int order1 = mListOrderToCopy.IndexOf(item1 as T);
-				int order2 = mListOrderToCopy.IndexOf(item2 as T);
-				return (order2 - order1);
-			}
-		};
-
 		// common data to all layers
 		protected string mName = BlueBrick.Properties.Resources.DefaultLayerName;
 		protected bool mVisible = true;
@@ -802,9 +782,8 @@ namespace BlueBrick.MapData
 		private static bool mSnapGridEnabled = true;
 		private static float mCurrentRotationStep = 90; // angle in degree of the rotation
 
-		// the list for the copy/paste
-		protected static List<LayerItem> sCopyItems = new List<LayerItem>(); // a list of items created when user press CTRL+C to copy the current selection
-		protected static Layer sLayerOfTheCopiedItems = null; // the layer that contains the items that has been copied. This should be deleted when I will implement selection accross layers
+		// the action used during a copy/paste
+		protected Actions.Items.DuplicateItems mLastDuplicateAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
 
 		#region get/set
 
@@ -845,6 +824,14 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// get the localized name of this type of layer
+		/// </summary>
+		public abstract string TypeLocalizedName
+		{
+			get;
+		}
+
+		/// <summary>
 		/// Tell if this layer is visible or not
 		/// </summary>
 		public bool Visible
@@ -872,17 +859,6 @@ namespace BlueBrick.MapData
 		{
 			get { return mSelectedObjects; }
 		}
-
-		/// <summary>
-		/// get the list of current items copied (waiting for a paste).
-		/// the type of the object is different according to the type of the layer.
-		/// The list can be empty.
-		/// </summary>
-		/// <returns>the list of current items copied (the list can be empty if none was copied)</returns>
-		public static List<LayerItem> CopyItems
-		{
-			get { return sCopyItems; }
-		}		
 		#endregion
 
 		#region constructor/copy
@@ -938,17 +914,20 @@ namespace BlueBrick.MapData
 		{
             // clear all the content of the hash table
             LayerItem.sHashtableForGroupRebuilding.Clear();
-            // read the common properties of the layer
+			// read the common properties of the layer
 			reader.ReadToDescendant("Name");
 			mName = reader.ReadElementContentAsString();
 			mVisible = reader.ReadElementContentAsBoolean();
 			// read the transparency for all the layers
 			if (Map.DataVersionOfTheFileLoaded > 4)
 				Transparency = reader.ReadElementContentAsInt();
-
 		}
 
-        public virtual void postReadXml(System.Xml.XmlReader reader)
+		public virtual void ReadXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, bool useProgressBar) where T : LayerItem
+		{			
+		}
+
+        protected void readGroupFromXml(System.Xml.XmlReader reader)
         {
 			if (Map.DataVersionOfTheFileLoaded > 4)
 			{
@@ -991,7 +970,11 @@ namespace BlueBrick.MapData
 			writer.WriteElementString("Transparency", mTransparency.ToString());
 		}
 
-        public void postWriteXml(System.Xml.XmlWriter writer)
+		protected virtual void WriteXml<T>(System.Xml.XmlWriter writer, List<T> itemsToWrite, bool useProgressBar) where T : LayerItem
+		{
+		}
+
+        protected void writeGroupToXml(System.Xml.XmlWriter writer)
         {
 			writer.WriteStartElement("Groups");
 			// write the groups: we don't use a foreach because we will grow the list during iteration
@@ -1192,6 +1175,181 @@ namespace BlueBrick.MapData
 		{
 		}
 
+		#endregion
+
+		#region copy/paste to clipboard
+		/// <summary>
+		/// This class is used to sort a list of layer item in the same order as in the list provided in the constructor
+		/// </summary>
+		public class LayerItemComparer<T> : System.Collections.Generic.IComparer<LayerItem> where T : LayerItem
+		{
+			private List<T> mListOrderToCopy = null;
+
+			public LayerItemComparer(List<T> list)
+			{
+				mListOrderToCopy = list;
+			}
+
+			public int Compare(Layer.LayerItem item1, Layer.LayerItem item2)
+			{
+				int order1 = mListOrderToCopy.IndexOf(item1 as T);
+				int order2 = mListOrderToCopy.IndexOf(item2 as T);
+				return (order2 - order1);
+			}
+		};
+
+		/// <summary>
+		/// Serialize the list of the selected items in XML and copy the text to the clipboard,
+		/// so that later it can be paste in another layer
+		/// This method should be called on a CTRL+C
+		/// </summary>
+		public virtual void copyCurrentSelectionToClipboard()
+		{
+		}
+
+		/// <summary>
+		/// Serialize the list of the selected items in XML and copy the text to the clipboard,
+		/// so that later it can be paste in another layer
+		/// This method should be called on a CTRL+C
+		/// <param name="allObjList">the list of all the items in the layer, in order to copy the selected items in the same order</param>
+		/// </summary>
+		protected void copyCurrentSelectionToClipboard<T>(List<T> allObjList) where T : LayerItem
+		{
+			// do nothing if the selection is empty
+			if (SelectedObjects.Count > 0)
+			{
+				// Sort the seltected list as it is sorted on the layer such as the clone list
+				// will be also sorted as on the layer
+				LayerItemComparer<T> comparer = new LayerItemComparer<T>(allObjList);
+				SelectedObjects.Sort(comparer);
+
+				// we need to serialize the list of items in XML, for that create a xml writer
+				System.IO.StringWriter stringWriter = new System.IO.StringWriter(System.Globalization.CultureInfo.InvariantCulture);
+				System.Xml.XmlWriterSettings xmlSettings = new System.Xml.XmlWriterSettings();
+				xmlSettings.CheckCharacters = false;
+				xmlSettings.CloseOutput = true;
+				xmlSettings.ConformanceLevel = System.Xml.ConformanceLevel.Fragment;
+				xmlSettings.Encoding = Encoding.UTF8;
+				xmlSettings.Indent = true;
+				xmlSettings.IndentChars = "\t";
+				xmlSettings.OmitXmlDeclaration = true;
+				xmlSettings.NewLineOnAttributes = false;
+				System.Xml.XmlWriter xmlWriter = System.Xml.XmlWriter.Create(stringWriter, xmlSettings);
+
+				// then call the serialization method on the list of object
+				this.WriteXml<LayerItem>(xmlWriter, SelectedObjects, false);
+				xmlWriter.Flush();
+
+				// finally copy the serialized string into the clipboard
+				string text = stringWriter.ToString();
+				if (text != string.Empty)
+					Clipboard.SetText(text);
+
+				// and close the writer
+				xmlWriter.Close();
+
+				// enable the paste buttons
+				MainForm.Instance.enablePasteButton(true);
+			}
+		}
+
+		/// <summary>
+		/// Paste (duplicate) the list of bricks that was previously copied with a call to copyCurrentSelectionToClipboard()
+		/// This method should be called on a CTRL+V
+		/// <returns>true if the paste was successful</returns>
+		/// </summary>
+		public bool pasteClipboardInLayer()
+		{
+			string itemTypeName = null;
+			return pasteClipboardInLayer(out itemTypeName);
+		}
+
+		/// <summary>
+		/// Paste (duplicate) the list of bricks that was previously copied with a call to copyCurrentSelectionToClipboard()
+		/// and also give in the output parameter the type of items currently copied in the Clipboard.
+		/// This method should be called on a CTRL+V
+		/// <param name="itemTypeName">the localized type name of items that is in the Clipboard</param>
+		/// <returns>true if the paste was successful</returns>
+		/// </summary>
+		public bool pasteClipboardInLayer(out string itemTypeName)
+		{
+			// that create a xml reader to read the xml copied in the clipboard
+			System.IO.StringReader stringReader = new System.IO.StringReader(Clipboard.GetText());
+			System.Xml.XmlReaderSettings xmlSettings = new System.Xml.XmlReaderSettings();
+			xmlSettings.CheckCharacters = false;
+			xmlSettings.CloseInput = true;
+			xmlSettings.ConformanceLevel = System.Xml.ConformanceLevel.Fragment;
+			xmlSettings.IgnoreComments = true;
+			xmlSettings.IgnoreWhitespace = true;
+			System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(stringReader, xmlSettings);
+
+			// get the type of the copied items
+			itemTypeName = string.Empty;
+			string layerId = string.Empty;
+			if (xmlReader.ReadToDescendant("Layer"))
+			{
+				// get the 'type' attribute of the layer
+				xmlReader.ReadAttributeValue();
+				itemTypeName = xmlReader.GetAttribute(0);
+				layerId = xmlReader.GetAttribute(1);
+			}
+
+			// check if we need to add an offset
+			int copyStyle = Properties.Settings.Default.OffsetAfterCopyStyle;
+			bool addOffset = (copyStyle == 2) || ((copyStyle == 1) && (layerId.Equals(this.GetHashCode().ToString())));
+
+			// read the items
+			List<Layer.LayerItem> itemsToDuplicates = new List<Layer.LayerItem>();
+			this.ReadXml<Layer.LayerItem>(xmlReader, ref itemsToDuplicates, false);
+
+			// check if the type of layer match the type of copied items
+			bool typeMatch = false;
+			mLastDuplicateAction = null;
+			switch (this.GetType().Name)
+			{
+				case "LayerText":
+					if (itemTypeName.Equals("text"))
+					{
+						mLastDuplicateAction = new Actions.Texts.DuplicateText((this as LayerText), itemsToDuplicates, addOffset);
+						typeMatch = true;
+					}
+					break;
+				case "LayerBrick":
+					if (itemTypeName.Equals("brick"))
+					{
+						mLastDuplicateAction = new Actions.Bricks.DuplicateBrick((this as LayerBrick), itemsToDuplicates, addOffset);
+						typeMatch = true;
+					}
+					break;
+				case "LayerRuler":
+					// TODO
+					//if (itemTypeName.Equals("ruler"))
+					//{
+					//	mLastDuplicateAction = new Actions.Rulers.DuplicateRuler((this as LayerRuler), itemsToDuplicates, addOffset);
+					//	typeMatch = true;
+					//}
+					break;
+			}
+
+			// do the paste action
+			if (mLastDuplicateAction != null)
+				ActionManager.Instance.doAction(mLastDuplicateAction);
+
+			// localize the item type name
+			if (itemTypeName.Equals("brick"))
+				itemTypeName = Properties.Resources.ErrorMsgLayerTypeBrick;
+			else if (itemTypeName.Equals("text"))
+				itemTypeName = Properties.Resources.ErrorMsgLayerTypeText;
+			else if (itemTypeName.Equals("ruler"))
+				itemTypeName = Properties.Resources.ErrorMsgLayerTypeRuler;
+			else if (itemTypeName.Equals("area"))
+				itemTypeName = Properties.Resources.ErrorMsgLayerTypeArea;
+			else if (itemTypeName.Equals("grid"))
+				itemTypeName = Properties.Resources.ErrorMsgLayerTypeGrid;
+
+			// return if it is a success
+			return typeMatch;
+		}
 		#endregion
 
 		#region tool on point in stud

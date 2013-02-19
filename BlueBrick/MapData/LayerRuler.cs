@@ -60,6 +60,14 @@ namespace BlueBrick.MapData
 			set { sCurrentEditTool = value; }
 		}
 
+		/// <summary>
+		/// get the localized name of this type of layer
+		/// </summary>
+		public override string TypeLocalizedName
+		{
+			get { return Properties.Resources.ErrorMsgLayerTypeRuler; }
+		}
+
 		public override int Transparency
 		{
 			set
@@ -115,6 +123,15 @@ namespace BlueBrick.MapData
 			else
 				index = 0;
 			return index;
+		}
+
+		/// <summary>
+		/// Copy the list of the selected texts in a separate list for later use.
+		/// This method should be called on a CTRL+C
+		/// </summary>
+		public override void copyCurrentSelectionToClipboard()
+		{
+			base.copyCurrentSelectionToClipboard(mRulers);
 		}
 
 		/// <summary>
