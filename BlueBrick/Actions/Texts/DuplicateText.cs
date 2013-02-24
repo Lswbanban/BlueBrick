@@ -23,37 +23,19 @@ namespace BlueBrick.Actions.Texts
 	class DuplicateText : Items.DuplicateItems
 	{
 		private LayerText mTextLayer = null;
-		private List<Layer.LayerItem> mTexts = null;
-		private List<int> mTextIndex = null; // this list of index is for the redo, to add each text at the same place
 
-		public DuplicateText(LayerText layer, List<Layer.LayerItem> textsToAdd, bool needToAddOffset)
+		public DuplicateText(LayerText layer, List<Layer.LayerItem> itemsToDuplicate, bool needToAddOffset)
+			: base(itemsToDuplicate, needToAddOffset)
 		{
 			// init the layer
 			mTextLayer = layer;
-			// init the index array with -1
-			mTextIndex = new List<int>(textsToAdd.Count);
-			for (int i = 0; i < textsToAdd.Count; ++i)
-				mTextIndex.Add(-1);
-
-			// copy the list, because the pointer may change (specially if it is the selection)
-			mTexts = base.cloneItemList(textsToAdd);
-
-			// add an offset if needed
-			if (needToAddOffset)
-				foreach (Layer.LayerItem duplicatedItem in mTexts)
-				{
-					PointF newPosition = duplicatedItem.Position;
-					newPosition.X += Properties.Settings.Default.OffsetAfterCopyValue;
-					newPosition.Y += Properties.Settings.Default.OffsetAfterCopyValue;
-					duplicatedItem.Position = newPosition;
-				}
 		}
 
 		public override string getName()
 		{
-			if (mTexts.Count == 1)
+			if (mItems.Count == 1)
 			{
-				string text = (mTexts[0] as LayerText.TextCell).Text.Replace("\r\n", " ");
+				string text = (mItems[0] as LayerText.TextCell).Text.Replace("\r\n", " ");
 				if (text.Length > 10)
 					text = text.Substring(0, 10) + "...";
 				return BlueBrick.Properties.Resources.ActionDuplicateText.Replace("&", text);
@@ -72,10 +54,10 @@ namespace BlueBrick.Actions.Texts
 			// so the first time they are added, we just add them at the end,
 			// after the index is record in the array during the undo)
 			// We must add all the bricks in the reverse order to avoid crash (insert with an index greater than the size of the list)
-			for (int i = mTexts.Count - 1; i >= 0; --i)
+			for (int i = mItems.Count - 1; i >= 0; --i)
 			{
-				mTextLayer.addTextCell(mTexts[i] as LayerText.TextCell, mTextIndex[i]);
-				mTextLayer.addObjectInSelection(mTexts[i]);
+				mTextLayer.addTextCell(mItems[i] as LayerText.TextCell, mItemIndex[i]);
+				mTextLayer.addObjectInSelection(mItems[i]);
 			}
 		}
 
@@ -83,29 +65,9 @@ namespace BlueBrick.Actions.Texts
 		{
 			// remove the specified brick from the list of the layer,
 			// but do not delete it, also memorise its last position
-			mTextIndex.Clear();
-			foreach (Layer.LayerItem obj in mTexts)
-				mTextIndex.Add(mTextLayer.removeTextCell(obj as LayerText.TextCell));
-		}
-
-		/// <summary>
-		/// The duplacate brick action is a bit specific because the position shift of the duplicated
-		/// bricks can be updated after the execution of the action. This is due to a combo from the UI.
-		/// In the UI of the application by pressing a modifier key + moving the mouse you can duplicate
-		/// the selection but also move it at the same moment, but since it is the same action for the user
-		/// we don't want to record 2 actions in the undo stack (one for duplicate, another for move)
-		/// </summary>
-		/// <param name="positionShiftX">the new shift for x coordinate from the position when this action was created</param>
-		/// <param name="positionShiftY">the new shift for y coordinate from the position when this action was created</param>
-		public override void updatePositionShift(float positionShiftX, float positionShiftY)
-		{
-			foreach (Layer.LayerItem obj in mTexts)
-			{
-				LayerText.TextCell text = (obj as LayerText.TextCell);
-				PointF newPosition = text.Position;
-				newPosition.X += positionShiftX;
-				newPosition.Y += positionShiftY;
-			}
+			mItemIndex.Clear();
+			foreach (Layer.LayerItem obj in mItems)
+				mItemIndex.Add(mTextLayer.removeTextCell(obj as LayerText.TextCell));
 		}
 	}
 }
