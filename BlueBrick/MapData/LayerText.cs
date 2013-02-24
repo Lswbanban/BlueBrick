@@ -72,7 +72,7 @@ namespace BlueBrick.MapData
 			}
 			#endregion
 
-			#region constructor
+			#region constructor/copy
 			/// <summary>
 			/// The paramererless constructor is used for serialization, it should not be used by the program
 			/// </summary>
@@ -90,7 +90,7 @@ namespace BlueBrick.MapData
 			/// Clone this TextCell
 			/// </summary>
 			/// <returns>a new TextCell which is a conform copy of this</returns>
-			public TextCell Clone()
+			public override LayerItem Clone()
 			{
 				TextCell result = new TextCell();
 				result.mDisplayArea = this.mDisplayArea;
@@ -256,6 +256,7 @@ namespace BlueBrick.MapData
 		}
 		#endregion
 
+		#region constructor
 		/// <summary>
 		///	Constructor
 		/// </summary>
@@ -267,6 +268,7 @@ namespace BlueBrick.MapData
 		{
 			return mTexts.Count;
 		}
+		#endregion
 
 		#region IXmlSerializable Members
 

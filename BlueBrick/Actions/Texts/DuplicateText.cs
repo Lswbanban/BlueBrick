@@ -34,23 +34,19 @@ namespace BlueBrick.Actions.Texts
 			mTextIndex = new List<int>(textsToAdd.Count);
 			for (int i = 0; i < textsToAdd.Count; ++i)
 				mTextIndex.Add(-1);
+
 			// copy the list, because the pointer may change (specially if it is the selection)
-			mTexts = new List<Layer.LayerItem>(textsToAdd.Count);
-			foreach (Layer.LayerItem item in textsToAdd)
-			{
-				// clone the item (because the same list of text to add can be paste several times)
-				LayerText.TextCell duplicatedText = (item as LayerText.TextCell).Clone();
-				// add an offset if needed
-				if (needToAddOffset)
+			mTexts = base.cloneItemList(textsToAdd);
+
+			// add an offset if needed
+			if (needToAddOffset)
+				foreach (Layer.LayerItem duplicatedItem in mTexts)
 				{
-					PointF newPosition = duplicatedText.Position;
+					PointF newPosition = duplicatedItem.Position;
 					newPosition.X += Properties.Settings.Default.OffsetAfterCopyValue;
 					newPosition.Y += Properties.Settings.Default.OffsetAfterCopyValue;
-					duplicatedText.Position = newPosition;
+					duplicatedItem.Position = newPosition;
 				}
-				// add the duplicated item in the list
-				mTexts.Add(duplicatedText);
-			}
 		}
 
 		public override string getName()
