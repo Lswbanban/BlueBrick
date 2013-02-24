@@ -36,7 +36,7 @@ namespace BlueBrick.MapData
 		/// for the specific layers
 		/// </summary>
 		[Serializable]
-		public class LayerItem : IXmlSerializable
+		public abstract class LayerItem : IXmlSerializable
 		{
             public static Hashtable sHashtableForGroupRebuilding = new Hashtable(); // this hashtable is used to recreate the group hierarchy when loading
 			public static List<Group> sListForGroupSaving = new List<Group>(); // this list is used during the saving of BBM file to save all the grouping hierarchy
@@ -183,6 +183,14 @@ namespace BlueBrick.MapData
 			{
 				get { return false; }
 			}
+			#endregion
+
+			#region initialization/copy
+			/// <summary>
+			/// Clone this Item
+			/// </summary>
+			/// <returns>a new Item which is a conform copy of this</returns>
+			public abstract LayerItem Clone();
 			#endregion
 
 			#region IXmlSerializable Members
@@ -506,7 +514,7 @@ namespace BlueBrick.MapData
 			}
 			#endregion
 
-			#region constructor
+			#region constructor/copy
 			public Group()
 			{
 			}
@@ -585,6 +593,16 @@ namespace BlueBrick.MapData
 						// add the item in this group
 						addItem(newItem);
 					}
+			}
+
+			/// <summary>
+			/// Clone this Group
+			/// </summary>
+			/// <returns>a new Group which is a conform copy of this</returns>
+			public override LayerItem Clone()
+			{
+				// call the copy constructor
+				return new Group(this);
 			}
 			#endregion
 

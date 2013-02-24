@@ -437,7 +437,7 @@ namespace BlueBrick
 						mustRefreshView = Map.Instance.mouseDown(e, mouseCoordInStud);
 						mIsMouseHandledByMap = true;
 					}
-					else if (Map.Instance.SelectedLayer.Visible)
+					else if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.Visible))
 					{
 						// if the selected layer is not visible don't even start a selection or double click
 						if (e.Clicks == 1)

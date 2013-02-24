@@ -204,7 +204,7 @@ namespace BlueBrick.MapData
 			}
 			#endregion
 
-			#region constructor
+			#region constructor/copy
 			public LinearRuler(PointF point1, PointF point2) : base()
 			{
 				mPoint1 = point1;
@@ -286,6 +286,16 @@ namespace BlueBrick.MapData
 				float width = maxX - minX;
 				float height = maxY - minY;
 				mDisplayArea = new RectangleF(minX, minY, width, height);
+			}
+
+			/// <summary>
+			/// Clone this LinearRuler
+			/// </summary>
+			/// <returns>a new LinearRuler which is a conform copy of this</returns>
+			public override LayerItem Clone()
+			{
+				//TODO: is it enough?
+				return new LinearRuler(this.Point1, this.Point2);
 			}
 			#endregion
 
@@ -458,7 +468,7 @@ namespace BlueBrick.MapData
 			}
 			#endregion
 
-			#region constructor
+			#region constructor/copy
 			public CircularRuler(PointF center, float radius) : base()
 			{
 				// define the selection area
@@ -483,6 +493,16 @@ namespace BlueBrick.MapData
 				mDisplayArea.Height = diameter;
 				// set the distance in the data member
 				mMesuredDistance.DistanceInStud = diameter;
+			}
+
+			/// <summary>
+			/// Clone this LinearRuler
+			/// </summary>
+			/// <returns>a new LinearRuler which is a conform copy of this</returns>
+			public override LayerItem Clone()
+			{
+				//TODO: is it enough?
+				return new CircularRuler(this.Center, this.Radius);
 			}
 			#endregion
 

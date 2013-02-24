@@ -484,7 +484,7 @@ namespace BlueBrick.MapData
 			/// Clone this Brick
 			/// </summary>
 			/// <returns>a new Brick which is a conform copy of this</returns>
-			public Brick Clone()
+			public override LayerItem Clone()
 			{
 				Brick result = new Brick();
 				result.mDisplayArea = this.mDisplayArea;
@@ -1297,75 +1297,6 @@ namespace BlueBrick.MapData
 			}
 
 			return index;
-		}
-
-		/// <summary>
-		/// This static tool method, clone all the item of the specified list into a new list.
-		/// This method also clone the groups that may belong to this list of bricks.
-		/// The cloned bricks are in the same order as the original list
-		/// </summary>
-		/// <param name="listToCopy">The original list of brick to copy</param>
-		/// <returns>A clone list of cloned brick with there cloned groups</returns>
-		public static List<LayerItem> sCloneBrickList(List<LayerItem> listToClone)
-		{
-			// the resulting list
-			List<LayerItem> result = new List<LayerItem>(listToClone.Count);
-
-			// use a dictionnary to recreate the groups that may be inside the list of brick to duplicate
-			// this dictionnary makes an association between the group to duplicate and the new duplicated one
-			Dictionary<Group, Group> groupsToCreate = new Dictionary<Group, Group>();
-			// also use a list of item that we will make grow to create all the groups
-			List<LayerItem> fullOriginalItemList = new List<LayerItem>(listToClone);
-
-			// use a for instead of a foreach because the list will grow
-			for (int i = 0; i < fullOriginalItemList.Count; ++i)
-			{
-				// get the current item
-				LayerItem originalItem = fullOriginalItemList[i];
-				LayerItem duplicatedItem = null;
-
-				// check if the item is a group or a brick
-				if (originalItem.IsAGroup)
-				{
-					// if the item is a group that means the list already grown, and that means we also have it in the dictionnary
-					Group associatedGroup = null;
-					groupsToCreate.TryGetValue(originalItem as Group, out associatedGroup);
-					duplicatedItem = associatedGroup;
-				}
-				else
-				{
-					// if the item is a brick, just clone it and add it to the result
-					// clone the item (because the same list of text to add can be paste several times)
-					duplicatedItem = (originalItem as Brick).Clone();
-					// add the duplicated item in the list
-					result.Add(duplicatedItem);
-				}
-
-				// check if the item to clone belongs to a group then also duplicate the group
-				if (originalItem.Group != null)
-				{
-					// get the duplicated group if already created otherwise create it and add it in the dictionary
-					Group duplicatedGroup = null;
-					groupsToCreate.TryGetValue(originalItem.Group, out duplicatedGroup);
-					if (duplicatedGroup == null)
-					{
-						duplicatedGroup = new Group(originalItem.Group);
-						groupsToCreate.Add(originalItem.Group, duplicatedGroup);
-						fullOriginalItemList.Add(originalItem.Group);
-					}
-					// assign the group to the brick
-					duplicatedGroup.addItem(duplicatedItem);
-					// check if we need to also assign the brick that hold the connection point
-					if (originalItem.Group.BrickThatHoldsActiveConnection == originalItem)
-						duplicatedGroup.BrickThatHoldsActiveConnection = (duplicatedItem as Brick);
-				}
-			}
-
-			// delete the dictionary
-			groupsToCreate.Clear();
-			fullOriginalItemList.Clear();
-			// return the cloned list
-			return result;
 		}
 
 		/// <summary>

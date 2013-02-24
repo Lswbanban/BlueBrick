@@ -38,7 +38,7 @@ namespace BlueBrick.Actions.Bricks
 
 			// clone the list, because the pointer may change (specially if it is the selection)
 			// and we also need to duplicate the bricks themselves
-			mBricks = LayerBrick.sCloneBrickList(bricksToDuplicate);
+			mBricks = base.cloneItemList(bricksToDuplicate);
 
 			// add an offset if needed
 			if (needToAddOffset)
