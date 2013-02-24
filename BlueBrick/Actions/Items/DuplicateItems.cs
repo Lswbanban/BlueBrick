@@ -16,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
-using BlueBrick.MapData;
 using System.Drawing;
 using BlueBrick.MapData;
 
@@ -24,6 +23,30 @@ namespace BlueBrick.Actions.Items
 {
 	public abstract class DuplicateItems : Action
 	{
+		protected List<Layer.LayerItem> mItems = null;
+		protected List<int> mItemIndex = null; // this list of index is for the redo, to add each text at the same place
+
+		public DuplicateItems(List<Layer.LayerItem> itemsToDuplicate, bool needToAddOffset)
+		{
+			// init the index array with -1
+			mItemIndex = new List<int>(itemsToDuplicate.Count);
+			for (int i = 0; i < itemsToDuplicate.Count; ++i)
+				mItemIndex.Add(-1);
+
+			// copy the list, because the pointer may change (specially if it is the selection)
+			mItems = cloneItemList(itemsToDuplicate);
+
+			// add an offset if needed
+			if (needToAddOffset)
+				foreach (Layer.LayerItem duplicatedItem in mItems)
+				{
+					PointF newPosition = duplicatedItem.Position;
+					newPosition.X += Properties.Settings.Default.OffsetAfterCopyValue;
+					newPosition.Y += Properties.Settings.Default.OffsetAfterCopyValue;
+					duplicatedItem.Position = newPosition;
+				}
+		}
+
 		/// <summary>
 		/// This static tool method, clone all the item of the specified list into a new list.
 		/// This method also clone the groups that may belong to this list of bricks.
@@ -104,13 +127,12 @@ namespace BlueBrick.Actions.Items
 		/// <param name="positionShiftY">the new shift for y coordinate from the position when this action was created</param>
 		public virtual void updatePositionShift(float positionShiftX, float positionShiftY)
 		{
-			// TODO add the mItems list in the base class and remove duplicated code
-			//foreach (Layer.LayerItem item in mItems)
-			//{
-			//    PointF newPosition = item.Position;
-			//    newPosition.X += positionShiftX;
-			//    newPosition.Y += positionShiftY;
-			//}
+			foreach (Layer.LayerItem item in mItems)
+			{
+				PointF newPosition = item.Position;
+				newPosition.X += positionShiftX;
+				newPosition.Y += positionShiftY;
+			}
 		}
 	}
 }
