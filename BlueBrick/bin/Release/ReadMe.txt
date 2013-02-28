@@ -82,6 +82,7 @@ Open bugs:
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
 - [target 1.8] MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
 - [target 1.8] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
+- MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - MISSING FEATURE #12 (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
@@ -92,7 +93,6 @@ Open bugs:
 - MISSING FEATURE #6 (Alban): Autosave.
 - MISSING FEATURE #7 (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE #8 (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
-- MISSING FEATURE #9 and #45 (Loys): Support Multi-Document or allow copy paste between instance (or after a load) -> use clipboard for that
 - MISSING FEATURE #10 (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE #11 (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
@@ -110,6 +110,7 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (Alban): Add a sorting order for the parts in the library based on a new <SortingKey> tag in the XML file of the part
 - NEW FEATURE (Alban): Add more contextual cursors inside the layout area (Hidden layer, 
 - NEW FEATURE (Alban): More precise Selection: Now the picking and rectangle selection use the hull of the part, and the text rectangle for rotated text, instead of the axis aligned bounding box of the part or text.
+- NEW FEATURE #9 and #45 (Loys): Use the clipboard to allow copy paste between several BleuBrick instances (support also copy + load + paste)
 - NEW FEATURE (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste
 - NEW FEATURE #37 (doc_brown): Add a checkbox in the warning message box when not saving in BBM format.
 - NEW FEATURE (Alban): Add more options in the preference to create any of the 5 types of layer for a new map

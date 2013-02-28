@@ -1323,30 +1323,38 @@ namespace BlueBrick.MapData
 			// check if the type of layer match the type of copied items
 			bool typeMatch = false;
 			mLastDuplicateAction = null;
-			switch (this.GetType().Name)
+			if (this is LayerText)
 			{
-				case "LayerText":
-					if (itemTypeName.Equals("text"))
-					{
-						mLastDuplicateAction = new Actions.Texts.DuplicateText((this as LayerText), itemsToDuplicates, addOffset);
-						typeMatch = true;
-					}
-					break;
-				case "LayerBrick":
-					if (itemTypeName.Equals("brick"))
-					{
-						mLastDuplicateAction = new Actions.Bricks.DuplicateBrick((this as LayerBrick), itemsToDuplicates, addOffset);
-						typeMatch = true;
-					}
-					break;
-				case "LayerRuler":
-					// TODO
-					//if (itemTypeName.Equals("ruler"))
-					//{
-					//	mLastDuplicateAction = new Actions.Rulers.DuplicateRuler((this as LayerRuler), itemsToDuplicates, addOffset);
-					//	typeMatch = true;
-					//}
-					break;
+				if (itemTypeName.Equals("text"))
+				{
+					mLastDuplicateAction = new Actions.Texts.DuplicateText((this as LayerText), itemsToDuplicates, addOffset);
+					typeMatch = true;
+				}
+				else if (itemTypeName == string.Empty)
+				{
+					// this seems to be a bold text (not saved in xml) that may be copied in the clipboard from another program
+					itemsToDuplicates.Clear();
+					itemsToDuplicates.Add(new LayerText.TextCell(Clipboard.GetText(), Properties.Settings.Default.DefaultTextFont, Properties.Settings.Default.DefaultTextColor, StringAlignment.Near));
+					mLastDuplicateAction = new Actions.Texts.DuplicateText((this as LayerText), itemsToDuplicates, addOffset);
+					typeMatch = true;
+				}
+			}
+			else if (this is LayerBrick)
+			{
+				if (itemTypeName.Equals("brick"))
+				{
+					mLastDuplicateAction = new Actions.Bricks.DuplicateBrick((this as LayerBrick), itemsToDuplicates, addOffset);
+					typeMatch = true;
+				}
+			}
+			else if (this is LayerRuler)
+			{
+				// TODO
+				//if (itemTypeName.Equals("ruler"))
+				//{
+				//	mLastDuplicateAction = new Actions.Rulers.DuplicateRuler((this as LayerRuler), itemsToDuplicates, addOffset);
+				//	typeMatch = true;
+				//}
 			}
 
 			// do the paste action
@@ -1364,6 +1372,8 @@ namespace BlueBrick.MapData
 				itemTypeName = Properties.Resources.ErrorMsgLayerTypeArea;
 			else if (itemTypeName.Equals("grid"))
 				itemTypeName = Properties.Resources.ErrorMsgLayerTypeGrid;
+			else
+				itemTypeName = Properties.Resources.ErrorMsgLayerTypeUnknown;
 
 			// return if it is a success
 			return typeMatch;

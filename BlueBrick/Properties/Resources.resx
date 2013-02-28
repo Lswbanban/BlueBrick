@@ -505,4 +505,7 @@
   <data name="ErrorMsgLayerTypeRuler" xml:space="preserve">
     <value>Ruler</value>
   </data>
+  <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
 </root>

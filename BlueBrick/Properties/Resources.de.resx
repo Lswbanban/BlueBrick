@@ -427,4 +427,7 @@ Die Fehlermeldung lautet:</value>
   <data name="UnitStud" xml:space="preserve">
     <value>Noppen</value>
   </data>
+  <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
+    <value>Unbekannt</value>
+  </data>
 </root>

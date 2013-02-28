@@ -446,4 +446,7 @@ Le message d'erreur est :
   <data name="ErrorMsgYesButton" xml:space="preserve">
     <value>Oui</value>
   </data>
+  <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
+    <value>Inconnu</value>
+  </data>
 </root>

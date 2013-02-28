@@ -1154,14 +1154,20 @@ Use # character in front of a keyword to specify a part number.</value>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Select &amp;Path</value>
   </data>
+  <data name="groupToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+G</value>
+  </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="groupToolStripMenuItem.Text" xml:space="preserve">
     <value>Group</value>
   </data>
+  <data name="ungroupToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+U</value>
+  </data>
   <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Ungroup</value>
