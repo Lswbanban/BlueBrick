@@ -63,7 +63,7 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// get the localized name of this type of layer
 		/// </summary>
-		public override string TypeLocalizedName
+		public override string LocalizedTypeName
 		{
 			get { return Properties.Resources.ErrorMsgLayerTypeRuler; }
 		}
@@ -96,6 +96,7 @@ namespace BlueBrick.MapData
 		#endregion
 
 		#region action on the layer
+		#region add/remove rulers
 		/// <summary>
 		///	Add the specified ruler at the specified position.
 		///	If the position is negative, add the item at the end
@@ -127,7 +128,9 @@ namespace BlueBrick.MapData
 				index = 0;
 			return index;
 		}
+		#endregion
 
+		#region selection
 		/// <summary>
 		/// Copy the list of the selected texts in a separate list for later use.
 		/// This method should be called on a CTRL+C
@@ -147,10 +150,11 @@ namespace BlueBrick.MapData
 			addObjectInSelection(mRulers);
 		}
 		#endregion
+		#endregion
 
 		#region util functions
 		/// <summary>
-		/// compute the distance in stud between the given point and the currently edited ruler.
+		/// Compute the distance in stud between the given point and the currently edited ruler.
 		/// </summary>
 		/// <param name="pointInStud">the point in stud coord for which you want to know the distance</param>
 		/// <returns>the distance in stud</returns>
@@ -169,7 +173,7 @@ namespace BlueBrick.MapData
 		}
 		#endregion
 
-		#region draw/mouse event
+		#region draw
 		/// <summary>
 		/// get the total area in stud covered by all the ruler items in this layer
 		/// </summary>
@@ -202,7 +206,9 @@ namespace BlueBrick.MapData
 			// call the base class to draw the surrounding selection rectangle
 			base.draw(g, areaInStud, scalePixelPerStud);
 		}
+		#endregion
 
+		#region mouse event
 		/// <summary>
 		/// Return the cursor that should be display when the mouse is above the map without mouse click
 		/// </summary>
@@ -225,6 +231,17 @@ namespace BlueBrick.MapData
 
 			// return the default cursor
 			return MainForm.Instance.RulerArrowCursor;
+		}
+
+		/// <summary>
+		/// Get the ruler item under the specified mouse coordinate or null if there's no ruler item under.
+		/// The search is done in reverse order of the list to get the topmost item.
+		/// </summary>
+		/// <param name="mouseCoordInStud">the coordinate of the mouse cursor, where to look for</param>
+		/// <returns>the ruler item that is under the mouse coordinate or null if there is none.</returns>
+		public RulerItem getRulerItemUnderMouse(PointF mouseCoordInStud)
+		{
+			return getLayerItemUnderMouse(mRulers, mouseCoordInStud) as RulerItem;
 		}
 
 		/// <summary>
@@ -338,17 +355,6 @@ namespace BlueBrick.MapData
 					preferedCursor = MainForm.Instance.RulerOffsetHorizontalCursor;
 			}
 			return mIsEditingOffsetOfRuler;
-		}
-
-		/// <summary>
-		/// Get the ruler item under the specified mouse coordinate or null if there's no ruler item under.
-		/// The search is done in reverse order of the list to get the topmost item.
-		/// </summary>
-		/// <param name="mouseCoordInStud">the coordinate of the mouse cursor, where to look for</param>
-		/// <returns>the ruler item that is under the mouse coordinate or null if there is none.</returns>
-		public RulerItem getRulerItemUnderMouse(PointF mouseCoordInStud)
-		{
-			return getLayerItemUnderMouse(mRulers, mouseCoordInStud) as RulerItem;
 		}
 
 		/// <summary>

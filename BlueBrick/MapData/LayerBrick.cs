@@ -65,7 +65,7 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// get the localized name of this type of layer
 		/// </summary>
-		public override string TypeLocalizedName
+		public override string LocalizedTypeName
 		{
 			get { return Properties.Resources.ErrorMsgLayerTypeBrick; }
 		}
@@ -105,6 +105,7 @@ namespace BlueBrick.MapData
 			mImageAttributeForSnapping.SetGamma(Properties.Settings.Default.GammaForSnappingPart);
 		}
 		#endregion
+
 		#region XmlSerializable Members
 
 		public override void ReadXml(System.Xml.XmlReader reader)
@@ -333,7 +334,9 @@ namespace BlueBrick.MapData
 
 			return index;
 		}
+		#endregion
 
+		#region selection
 		/// <summary>
 		/// Copy the list of the selected bricks in a separate list for later use.
 		/// This method should be called on a CTRL+C
@@ -342,9 +345,7 @@ namespace BlueBrick.MapData
 		{
 			base.copyCurrentSelectionToClipboard(mBricks);
 		}
-		#endregion
 
-		#region selection
 		/// <summary>
 		/// Select all the items in this layer.
 		/// </summary>
@@ -558,8 +559,8 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// A delegate to compare two bricks by altitude
 		/// </summary>
-		/// <param name="brick1"></param>
-		/// <param name="brick2"></param>
+		/// <param name="brick1">the first brick to compare</param>
+		/// <param name="brick2">the second brick to compare</param>
 		/// <returns></returns>
 		private static int CompareBricksByAltitudeDelegate(Brick brick1, Brick brick2)
 		{
@@ -580,6 +581,7 @@ namespace BlueBrick.MapData
 			mBricks.Sort(CompareBricksByAltitudeDelegate);
 		}
 		#endregion
+
 		#region recompute image
 		/// <summary>
 		/// recompute all the pictures of all the brick of all the brick layers 
@@ -1450,7 +1452,9 @@ namespace BlueBrick.MapData
 			// by default do not change anything
 			return pointInStud;
 		}
+		#endregion
 
+		#region drag'n'drop
 		/// <summary>
 		/// This method is called by the Map Panel when the user want to drag and drop a part from
 		/// the part library on this layer. The selection and the current part under the mouse

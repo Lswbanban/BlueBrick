@@ -47,7 +47,7 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// get the localized name of this type of layer
 		/// </summary>
-		public override string TypeLocalizedName
+		public override string LocalizedTypeName
 		{
 			get { return Properties.Resources.ErrorMsgLayerTypeText; }
 		}
@@ -155,7 +155,7 @@ namespace BlueBrick.MapData
 		#endregion
 
 		#region action on the layer
-
+		#region add/remove texts
 		/// <summary>
 		///	Add the specified text cell at the specified position
 		/// </summary>
@@ -186,7 +186,9 @@ namespace BlueBrick.MapData
 				index = 0;
 			return index;
 		}
+		#endregion
 
+		#region selection
 		/// <summary>
 		/// Copy the list of the selected texts in a separate list for later use.
 		/// This method should be called on a CTRL+C
@@ -205,6 +207,7 @@ namespace BlueBrick.MapData
 			clearSelection();
 			addObjectInSelection(mTexts);
 		}
+		#endregion
 		#endregion
 
 		#region draw
@@ -270,7 +273,6 @@ namespace BlueBrick.MapData
 		#endregion
 
 		#region mouse event
-
 		/// <summary>
 		/// Return the cursor that should be display when the mouse is above the map without mouse click
 		/// </summary>
@@ -540,7 +542,6 @@ namespace BlueBrick.MapData
 		{
 			selectInRectangle(selectionRectangeInStud, mTexts);
 		}
-
 		#endregion
 	}
 }
