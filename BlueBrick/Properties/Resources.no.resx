@@ -427,4 +427,7 @@
   <data name="UnitStud" xml:space="preserve">
     <value>studs</value>
   </data>
+  <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
+    <value>Ukjent</value>
+  </data>
 </root>

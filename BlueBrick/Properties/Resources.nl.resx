@@ -401,4 +401,7 @@ The error message is:
   <data name="UnitStud" xml:space="preserve">
     <value>studs</value>
   </data>
+  <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
+    <value>Onbekend</value>
+  </data>
 </root>

@@ -396,4 +396,7 @@
   <data name="UnitStud" xml:space="preserve">
     <value>knoppar</value>
   </data>
+  <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
+    <value>Okänt</value>
+  </data>
 </root>
