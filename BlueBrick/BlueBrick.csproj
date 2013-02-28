@@ -666,6 +666,10 @@
     <EmbeddedResource Include="Cursor\HiddenLayerCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerArrowCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerAddCircleCursor.cur" />
+    <EmbeddedResource Include="Cursor\TextCreateCursor.cur" />
+    <EmbeddedResource Include="Cursor\GridArrowCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerDuplicateCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerSelectionCursor.cur" />
     <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />

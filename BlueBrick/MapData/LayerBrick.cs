@@ -844,7 +844,7 @@ namespace BlueBrick.MapData
 					(!mMouseHasMoved && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)))
 					return MainForm.Instance.BrickDuplicateCursor;
 				else
-					return Cursors.SizeAll;
+					return MainForm.Instance.BrickMoveCursor;
 			}
 			else
 			{
@@ -997,9 +997,9 @@ namespace BlueBrick.MapData
 			else if (mMouseMoveIsAFlexMove)
 				preferedCursor = MainForm.Instance.FlexArrowCursor;
 			else if (willMoveSelectedObject)
-				preferedCursor = Cursors.SizeAll;
-			else if (currentBrickUnderMouse == null)
-				preferedCursor = Cursors.Cross;
+				preferedCursor = MainForm.Instance.BrickMoveCursor;
+			else
+				preferedCursor = MainForm.Instance.BrickArrowCursor;
 
 			// compute the grab point if we grab a brick
 			setBrickUnderMouse(currentBrickUnderMouse, mouseCoordInStud);

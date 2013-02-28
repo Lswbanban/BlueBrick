@@ -452,7 +452,6 @@ namespace BlueBrick
 						{
 							// this is a double click
 							mIsSelectionRectangleOn = false;
-							preferedCursor = Cursors.Arrow;
 						}
 					}
 					break;

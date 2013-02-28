@@ -501,10 +501,10 @@ namespace BlueBrick.MapData
 			if (!Visible)
 				return MainForm.Instance.HiddenLayerCursor;
 			else if (mDisplayCellIndex) // check if the user try to move the origin of the grid
-				return Cursors.Arrow;
+				return MainForm.Instance.GridArrowCursor;
 
 			// else we can do nothing on the grid
-			return Cursors.No;
+			return MainForm.Instance.NoCursor;
 		}
 
 		/// <summary>
@@ -515,9 +515,9 @@ namespace BlueBrick.MapData
 		public override bool handleMouseDown(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
 			if (Visible && mDisplayCellIndex)
-				preferedCursor = Cursors.SizeAll;
+				preferedCursor = MainForm.Instance.GridMoveCursor;
 			else
-				preferedCursor = Cursors.No;
+				preferedCursor = MainForm.Instance.NoCursor;
 
 			// since we dont want to have the selection in rectangle to be displayed
 			// we reply that we are always interested in the left click mouse event
