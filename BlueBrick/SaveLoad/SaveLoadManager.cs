@@ -485,7 +485,7 @@ namespace BlueBrick
 				// check the type because we only save brick layers
 				LayerBrick brickLayer = layer as LayerBrick;
 				if (brickLayer != null)
-					nbItems += layer.getNbItems();
+					nbItems += layer.NbItems;
 			}
 			MainForm.Instance.resetProgressBar(nbItems + 2);
 
@@ -526,7 +526,7 @@ namespace BlueBrick
 				// check the type because we only save brick layers
 				LayerBrick brickLayer = layer as LayerBrick;
 				if (brickLayer != null)
-					nbItems += layer.getNbItems();
+					nbItems += layer.NbItems;
 			}
 			MainForm.Instance.resetProgressBar(nbItems + 3);
 
@@ -1178,7 +1178,7 @@ namespace BlueBrick
 				// check the type because we only save brick layers
 				LayerBrick brickLayer = layer as LayerBrick;
 				if (brickLayer != null)
-					nbItems += layer.getNbItems();
+					nbItems += layer.NbItems;
 			}
 			// init the progress bar with the number of parts to write
 			MainForm.Instance.resetProgressBar(nbItems + 2);

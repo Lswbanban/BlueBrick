@@ -868,6 +868,23 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// Get the number of items in this layer
+		/// </summary>
+		public abstract int NbItems
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Tell if there is something that can be selected on this layer.
+		/// By default returns true if the NbItem is not null.
+		/// </summary>
+		public virtual bool HasSomethingToSelect
+		{
+			get { return (this.NbItems > 0); }
+		}
+
+		/// <summary>
 		/// get the list of current selected objects in this layer.
 		/// the type of the object is different according to the type of the layer.
 		/// The list can be empty.
@@ -913,12 +930,6 @@ namespace BlueBrick.MapData
 		{
 			nameInstanceCounter = 0;
 		}
-
-		/// <summary>
-		/// Return the number of items in this layer
-		/// </summary>
-		/// <returns>the number of items in this layer</returns>
-		public abstract int getNbItems();
 		#endregion
 
 		#region XmlSerializable Members

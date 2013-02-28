@@ -63,6 +63,14 @@ namespace BlueBrick.MapData
 				mSelectionBrush = new SolidBrush(Color.FromArgb((BASE_SELECTION_TRANSPARENCY * value) / 100, 255, 255, 255));
 			}
 		}
+
+		/// <summary>
+		/// Get the number of texts in this layer.
+		/// </summary>
+		public override int NbItems
+		{
+			get { return mTexts.Count; }
+		}
 		#endregion
 
 		#region constructor
@@ -71,11 +79,6 @@ namespace BlueBrick.MapData
 		/// </summary>
 		public LayerText()
 		{
-		}
-
-		public override int getNbItems()
-		{
-			return mTexts.Count;
 		}
 		#endregion
 
