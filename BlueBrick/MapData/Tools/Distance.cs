@@ -22,7 +22,7 @@ namespace BlueBrick.MapData.Tools
 	/// This class encaplusate a float value representing a distance.
 	/// You can then ask the distance value in different unit: stud, ldu, module, meter or feet
 	/// </summary>
-	class Distance
+	public class Distance
 	{
 		public enum Unit
 		{

@@ -22,7 +22,7 @@ using System.Drawing.Imaging;
 namespace BlueBrick.MapData
 {
 	[Serializable]
-	partial class LayerRuler : Layer
+	public partial class LayerRuler : Layer
 	{
 		public enum EditTool
 		{
