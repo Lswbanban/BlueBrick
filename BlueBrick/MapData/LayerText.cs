@@ -292,7 +292,7 @@ namespace BlueBrick.MapData
 					(!mMouseHasMoved && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)))
 					return MainForm.Instance.TextDuplicateCursor;
 				else if (!mMouseMoveWillAddOrEditText)
-					return Cursors.SizeAll;
+					return MainForm.Instance.TextMoveCursor;
 			}
 			else
 			{
@@ -370,11 +370,11 @@ namespace BlueBrick.MapData
 			if (mMouseMoveIsADuplicate)
 				preferedCursor = MainForm.Instance.TextDuplicateCursor;
 			else if (willMoveSelectedObject)
-				preferedCursor = Cursors.SizeAll;
+				preferedCursor = MainForm.Instance.TextMoveCursor;
 			else if (mMouseMoveWillAddOrEditText)
+				preferedCursor = MainForm.Instance.TextCreateCursor;
+			else
 				preferedCursor = MainForm.Instance.TextArrowCursor;
-			else if (mCurrentTextCellUnderMouse == null)
-				preferedCursor = Cursors.Cross;
 
 			// handle the mouse down if we duplicate or move the selected texts, or edit a text
 			return (mMouseMoveIsADuplicate || willMoveSelectedObject || mMouseMoveWillAddOrEditText);

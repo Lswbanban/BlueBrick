@@ -222,6 +222,31 @@ namespace BlueBrick.MapData
 			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
+					if (mMouseIsBetweenDownAndUpEvent)
+					{
+						// the second test after the or, is because we give a second chance to the user to duplicate
+						// the selection if he press the duplicate key after the mouse down, but before he start to move
+						if (mMouseMoveIsADuplicate ||
+							(!mMouseHasMoved && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)))
+							return MainForm.Instance.RulerDuplicateCursor;
+						else if (!mMouseMoveWillAddOrEditRuler)
+						    return MainForm.Instance.RulerMoveCursor;
+					}
+					else
+					{
+						if (mouseCoordInStud != PointF.Empty)
+						{
+							if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)
+							{
+								if (isPointInsideSelectionRectangle(mouseCoordInStud))
+									return MainForm.Instance.RulerDuplicateCursor;
+							}
+							else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+							{
+								return MainForm.Instance.RulerSelectionCursor;
+							}
+						}
+					}
 					return MainForm.Instance.RulerArrowCursor;
 				case EditTool.LINE:
 					return MainForm.Instance.RulerAddPoint1Cursor;
@@ -294,12 +319,12 @@ namespace BlueBrick.MapData
 
 					// select the appropriate cursor:
 					if (mMouseMoveIsADuplicate)
-						preferedCursor = MainForm.Instance.TextDuplicateCursor; // TODO need new cursor here
+						preferedCursor = MainForm.Instance.RulerDuplicateCursor;
 					else if (willMoveSelectedObject)
-						preferedCursor = Cursors.SizeAll;
+						preferedCursor = MainForm.Instance.RulerMoveCursor;
 					else if (mMouseMoveWillAddOrEditRuler)
-						preferedCursor = MainForm.Instance.RulerArrowCursor;
-					else if (mCurrentRulerUnderMouse == null)
+						preferedCursor = MainForm.Instance.RulerArrowCursor; //TODO I think we should use another cursor here
+					else
 						preferedCursor = MainForm.Instance.RulerArrowCursor;
 
 					// handle the mouse down if we duplicate or move the selected texts, or edit a text
@@ -452,6 +477,8 @@ namespace BlueBrick.MapData
 			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
+					mMouseMoveWillAddOrEditRuler = false;
+					mCurrentRulerUnderMouse = null;
 					break;
 
 				case EditTool.LINE:
@@ -480,6 +507,8 @@ namespace BlueBrick.MapData
 					}
 					break;
 			}
+
+			mMouseIsBetweenDownAndUpEvent = false;
 
 			return mustRefresh;
 		}

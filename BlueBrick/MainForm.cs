@@ -46,18 +46,22 @@ namespace BlueBrick
 
 		// custom cursors for the application
 		private Cursor mHiddenLayerCursor = null;
+		private Cursor mPanViewCursor = null;
+		private Cursor mZoomCursor = null;
+		private Cursor mGridArrowCursor = null;
 		private Cursor mBrickArrowCursor = null;
 		private Cursor mFlexArrowCursor = null;		
 		private Cursor mBrickDuplicateCursor = null;
 		private Cursor mBrickSelectionCursor = null;
 		private Cursor mTextArrowCursor = null;
 		private Cursor mTextDuplicateCursor = null;
+		private Cursor mTextCreateCursor = null;
 		private Cursor mTextSelectionCursor = null;
 		private Cursor mAreaPaintCursor = null;
 		private Cursor mAreaEraserCursor = null;
-		private Cursor mPanViewCursor = null;
-		private Cursor mZoomCursor = null;
 		private Cursor mRulerArrowCursor = null;
+		private Cursor mRulerDuplicateCursor = null;
+		private Cursor mRulerSelectionCursor = null;
 		private Cursor mRulerAddPoint1Cursor = null;
 		private Cursor mRulerAddPoint2Cursor = null;
 		private Cursor mRulerAddCircleCursor = null;
@@ -124,7 +128,9 @@ namespace BlueBrick
 			public int mConnexion = 0;
 		}
 		private List<KeyAndPart>[] mShortcutKeys = null;
+		#endregion
 
+		#region get/set
 		/// <summary>
 		/// this static flag is used by the splash screen thread to know when to stop
 		/// </summary>
@@ -148,7 +154,9 @@ namespace BlueBrick
 		{
 			get { return partsTabControl; }
 		}
-		
+
+		#region cursors
+		#region cursors for all layers
 		/// <summary>
 		/// Get the cursor to display when the current layer is hidden
 		/// </summary>
@@ -157,6 +165,50 @@ namespace BlueBrick
 			get { return mHiddenLayerCursor; }
 		}
 
+		/// <summary>
+		/// Get the cursor to display when no action is possible on the layer
+		/// </summary>
+		public Cursor NoCursor
+		{
+			get { return Cursors.No; }
+		}
+		
+		/// <summary>
+		/// Get the cursor for panning the view
+		/// </summary>
+		public Cursor PanViewCursor
+		{
+			get { return mPanViewCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for zooming the view
+		/// </summary>
+		public Cursor ZoomCursor
+		{
+			get { return mZoomCursor; }
+		}
+		#endregion
+
+		#region grid cursors
+		/// <summary>
+		/// Get the default cursor for the grid layer
+		/// </summary>
+		public Cursor GridArrowCursor
+		{
+			get { return mGridArrowCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor when moving the grid
+		/// </summary>
+		public Cursor GridMoveCursor
+		{
+			get { return Cursors.SizeAll; }
+		}
+		#endregion
+
+		#region brick cursor
 		/// <summary>
 		/// Get the cursor for duplication of layer bricks
 		/// </summary>
@@ -190,7 +242,17 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Get the cursor for duplication of layer texts
+		/// Get the cursor when moving bricks
+		/// </summary>
+		public Cursor BrickMoveCursor
+		{
+			get { return Cursors.SizeAll; }
+		}
+		#endregion
+
+		#region text cursor
+		/// <summary>
+		/// Get the default cursor for the text layer
 		/// </summary>
 		public Cursor TextArrowCursor
 		{
@@ -204,6 +266,14 @@ namespace BlueBrick
 		{
 			get { return mTextDuplicateCursor; }
 		}
+		
+		/// <summary>
+		/// Get the cursor for creation of a new text cell
+		/// </summary>
+		public Cursor TextCreateCursor
+		{
+			get { return mTextCreateCursor; }
+		}
 
 		/// <summary>
 		/// Get the cursor for selection of layer texts
@@ -213,6 +283,16 @@ namespace BlueBrick
 			get { return mTextSelectionCursor; }
 		}
 
+		/// <summary>
+		/// Get the cursor when moving texts
+		/// </summary>
+		public Cursor TextMoveCursor
+		{
+			get { return Cursors.SizeAll; }
+		}
+		#endregion
+
+		#region area cursors
 		/// <summary>
 		/// Get the cursor for painting the area layer
 		/// </summary>
@@ -230,27 +310,37 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Get the cursor for panning the view
+		/// Get the cursor when moving areas
 		/// </summary>
-		public Cursor PanViewCursor
+		public Cursor AreaMoveCursor
 		{
-			get { return mPanViewCursor; }
+			get { return Cursors.SizeAll; }
 		}
+		#endregion
 
-		/// <summary>
-		/// Get the cursor for zooming the view
-		/// </summary>
-		public Cursor ZoomCursor
-		{
-			get { return mZoomCursor; }
-		}
-		
+		#region ruler cursors
 		/// <summary>
 		/// Get the cursor for selecting a ruler (the default cursor for a ruler layer)
 		/// </summary>
 		public Cursor RulerArrowCursor
 		{
 			get { return mRulerArrowCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for duplication of rulers
+		/// </summary>
+		public Cursor RulerDuplicateCursor
+		{
+			get { return mRulerDuplicateCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for multiple selection of rulers
+		/// </summary>
+		public Cursor RulerSelectionCursor
+		{
+			get { return mRulerSelectionCursor; }
 		}
 
 		/// <summary>
@@ -308,9 +398,19 @@ namespace BlueBrick
 		{
 			get { return mRulerOffsetDiagonalDownCursor; }
 		}
+
+		/// <summary>
+		/// Get the cursor when moving rulers
+		/// </summary>
+		public Cursor RulerMoveCursor
+		{
+			get { return Cursors.SizeAll; }
+		}
+		#endregion
+		#endregion
 		#endregion
 
-        #region Initialisation of the application
+		#region Initialisation of the application
 
 		public MainForm(string fileToOpen)
 		{
@@ -500,18 +600,22 @@ namespace BlueBrick
 			System.Reflection.Assembly assembly = this.GetType().Assembly;
 			// the load all the cursors
 			mHiddenLayerCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.HiddenLayerCursor.cur");
+			mPanViewCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.PanViewCursor.cur");
+			mZoomCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.ZoomCursor.cur");
+			mGridArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.GridArrowCursor.cur");
 			mBrickArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.BrickArrowCursor.cur");
 			mFlexArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.FlexArrowCursor.cur");
 			mBrickDuplicateCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.BrickDuplicateCursor.cur");
 			mBrickSelectionCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.BrickSelectionCursor.cur");
 			mTextArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.TextArrowCursor.cur");
 			mTextDuplicateCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.TextDuplicateCursor.cur");
+			mTextCreateCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.TextCreateCursor.cur");
 			mTextSelectionCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.TextSelectionCursor.cur");
 			mAreaPaintCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.AreaPaintCursor.cur");
 			mAreaEraserCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.AreaEraserCursor.cur");
-			mPanViewCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.PanViewCursor.cur");
-			mZoomCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.ZoomCursor.cur");
 			mRulerArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerArrowCursor.cur");
+			mRulerDuplicateCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerDuplicateCursor.cur");
+			mRulerSelectionCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerSelectionCursor.cur");
 			mRulerAddPoint1Cursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerAddPoint1Cursor.cur");
 			mRulerAddPoint2Cursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerAddPoint2Cursor.cur");
 			mRulerAddCircleCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerAddCircleCursor.cur");
