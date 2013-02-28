@@ -79,16 +79,19 @@ namespace BlueBrick.MapData
 				mSelectionBrush = new SolidBrush(Color.FromArgb((BASE_SELECTION_TRANSPARENCY * value) / 100, 255, 255, 255));
 			}
 		}
+
+		/// <summary>
+		/// Get the number of Rulers in this layer.
+		/// </summary>
+		public override int NbItems
+		{
+			get { return mRulers.Count; }
+		}
 		#endregion
 
 		#region constructor
 		public LayerRuler()
 		{
-		}
-
-		public override int getNbItems()
-		{
-			return mRulers.Count;
 		}
 		#endregion
 

@@ -457,7 +457,7 @@ namespace BlueBrick.MapData
 			// write the number of items
 			int nbItems = 0;
 			foreach (Layer layer in mLayers)
-				nbItems += layer.getNbItems();
+				nbItems += layer.NbItems;
 			writer.WriteElementString("nbItems", nbItems.ToString());
 			// init the progress bar
 			MainForm.Instance.resetProgressBar(nbItems + 1);

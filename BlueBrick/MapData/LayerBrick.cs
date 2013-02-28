@@ -82,6 +82,14 @@ namespace BlueBrick.MapData
 				mImageAttributeForSnapping.SetColorMatrix(colorMatrix);
 			}
 		}
+
+		/// <summary>
+		/// Get the number of Bricks in this layer.
+		/// </summary>
+		public override int NbItems
+		{
+			get { return mBricks.Count; }
+		}
 		#endregion
 
 		#region constructor
@@ -89,11 +97,6 @@ namespace BlueBrick.MapData
 		{
 			// update the gamma setting when the layer is created
 			updateGammaFromSettings();
-		}
-
-		public override int getNbItems()
-		{
-			return mBricks.Count;
 		}
 
 		public void updateGammaFromSettings()

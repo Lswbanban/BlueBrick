@@ -74,6 +74,23 @@ namespace BlueBrick.MapData
 			}
 		}
 
+		/// <summary>
+		/// Get the number of items in this layer.
+		/// For the area we return the number of lines.
+		/// </summary>
+		public override int NbItems
+		{
+			get { return mColorMap.Count; }
+		}
+
+		/// <summary>
+		/// Return false for now because the areas cannot be selected. May change later.
+		/// </summary>
+		public override bool HasSomethingToSelect
+		{
+			get { return false; }
+		}
+
 		public int AlphaValue
 		{
 			get { return (255 * mTransparency) / 100; }
@@ -92,8 +109,11 @@ namespace BlueBrick.MapData
 		}
 
 		#endregion
-		#region constructor
 
+		#region constructor
+		/// <summary>
+		/// Default constructor
+		/// </summary>
 		public LayerArea()
 		{
 			// init the erase brush if not already done
@@ -126,14 +146,8 @@ namespace BlueBrick.MapData
 			if (areaLayer != null)
 				AreaCellSizeInStud = areaLayer.AreaCellSizeInStud;
 		}
-
-		public override int getNbItems()
-		{
-			// for the area we return the number of lines
-			return mColorMap.Count;
-		}
-
 		#endregion
+
 		#region IXmlSerializable Members
 
 		public override void ReadXml(System.Xml.XmlReader reader)

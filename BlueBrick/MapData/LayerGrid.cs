@@ -199,6 +199,22 @@ namespace BlueBrick.MapData
 				mCellIndexBrush.Color = Color.FromArgb(alphaValue, mCellIndexBrush.Color);
 			}
 		}
+
+		/// <summary>
+		/// For the grid, there's no item, just the grid so return 1
+		/// </summary>
+		public override int NbItems
+		{
+			get { return 1; }
+		}
+
+		/// <summary>
+		/// Return always false, the grid cannot be selected
+		/// </summary>
+		public override bool HasSomethingToSelect
+		{
+			get { return false; }
+		}
 		#endregion
 
 		#region constructor/copy
@@ -236,11 +252,6 @@ namespace BlueBrick.MapData
 			}
 			// call the base method after such as the pen and brush transparency can be correctly set
 			base.CopyOptionsFrom(layerToCopy);
-		}
-
-		public override int getNbItems()
-		{
-			return 1;
 		}
 		#endregion
 

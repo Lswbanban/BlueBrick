@@ -817,7 +817,7 @@ namespace BlueBrick
 				bool enableItemRelatedToSelection = (isThereAVisibleSelectedLayer && (selectedLayer.SelectedObjects.Count > 0));
 				this.bringToFrontToolStripMenuItem.Enabled = enableItemRelatedToSelection;
 				this.sendToBackToolStripMenuItem.Enabled = enableItemRelatedToSelection;
-				this.selectAllToolStripMenuItem.Enabled = (isThereAVisibleSelectedLayer && (selectedLayer.getNbItems() > 0));
+				this.selectAllToolStripMenuItem.Enabled = (isThereAVisibleSelectedLayer && (selectedLayer.HasSomethingToSelect));
 				this.deselectAllToolStripMenuItem.Enabled = enableItemRelatedToSelection;
 				this.selectPathToolStripMenuItem.Enabled = (isThereAVisibleSelectedLayer && (selectedLayer.SelectedObjects.Count == 2));
 				if (isThereAVisibleSelectedLayer)
