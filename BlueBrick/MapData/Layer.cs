@@ -844,7 +844,7 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// get the localized name of this type of layer
 		/// </summary>
-		public abstract string TypeLocalizedName
+		public abstract string LocalizedTypeName
 		{
 			get;
 		}

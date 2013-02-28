@@ -54,7 +54,7 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// get the localized name of this type of layer
 		/// </summary>
-		public override string TypeLocalizedName
+		public override string LocalizedTypeName
 		{
 			get { return Properties.Resources.ErrorMsgLayerTypeArea; }
 		}

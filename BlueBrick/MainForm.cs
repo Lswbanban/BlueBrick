@@ -1451,7 +1451,7 @@ namespace BlueBrick
 			{
 				// we have a type mismatch
 				// first replace the layer type name
-				string message = Properties.Resources.ErrorMsgCanNotPaste.Replace("&&", selectedLayer.TypeLocalizedName);
+				string message = Properties.Resources.ErrorMsgCanNotPaste.Replace("&&", selectedLayer.LocalizedTypeName);
 				// then replace the item type name
 				message = message.Replace("&", itemTypeName);
 				// and display the message box
