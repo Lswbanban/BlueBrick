@@ -144,8 +144,10 @@
     <Compile Include="LayerRulerPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MapData\LayerBrickBrick.cs" />
     <Compile Include="MapData\LayerRuler.cs" />
     <Compile Include="MapData\LayerRulerItem.cs" />
+    <Compile Include="MapData\LayerTextCell.cs" />
     <Compile Include="MapData\Tools\Surface.cs" />
     <Compile Include="MapData\Tools\Distance.cs" />
     <Compile Include="PreferencesForm.cs">

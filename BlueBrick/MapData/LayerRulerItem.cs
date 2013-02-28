@@ -21,7 +21,7 @@ using System.Drawing.Imaging;
 
 namespace BlueBrick.MapData
 {
-	partial class LayerRuler : Layer
+	public partial class LayerRuler : Layer
 	{
 		/// <summary>
 		/// A ruler item is a geometric item (line, a circle, etc) that can be placed on a Ruler type of Layer
