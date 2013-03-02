@@ -107,7 +107,7 @@ Open bugs:
 Bug fixed in 1.8.0.0:
 - NEW FEATURE (Alban): Add a filter combobox in the bottom of the library
 - NEW FEATURE (Alban): Add a sorting order for the parts in the library based on a new <SortingKey> tag in the XML file of the part
-- NEW FEATURE (Alban): Add more contextual cursors inside the layout panel (hidden layer, default grid cursor, new text, ruler cursors, etc...) //MISSING: zoom cursor on mouse wheel, edition of text should use new text
+- NEW FEATURE (Alban): Add more contextual cursors inside the layout panel (hidden layer, default grid cursor, new text, ruler cursors, etc...)
 - NEW FEATURE (Alban): More precise Selection: Now the picking and rectangle selection use the hull of the part, and the text rectangle for rotated text, instead of the axis aligned bounding box of the part or text.
 - NEW FEATURE #9 and #45 (Loys): Use the clipboard to allow copy paste between several BleuBrick instances (support also copy + load + paste)
 - NEW FEATURE (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste

@@ -358,14 +358,15 @@ namespace BlueBrick.MapData
 			mMouseMoveIsADuplicate = isMouseInsideSelectedObjects &&
 									(Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
 
-			// check if the user plan to move the selected items
-			bool willMoveSelectedObject = (isMouseInsideSelectedObjects || (mCurrentTextCellUnderMouse != null))
-											&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
-											&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
-			
 			// we will add or edit a text if we double click
 			mMouseMoveWillAddOrEditText = (e.Clicks == 2);
 
+			// check if the user plan to move the selected items
+			bool willMoveSelectedObject = !mMouseMoveWillAddOrEditText
+											&& (isMouseInsideSelectedObjects || (mCurrentTextCellUnderMouse != null))
+											&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+											&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+			
 			// select the appropriate cursor:
 			if (mMouseMoveIsADuplicate)
 				preferedCursor = MainForm.Instance.TextDuplicateCursor;
