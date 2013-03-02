@@ -458,7 +458,7 @@
     <value>Delete a Ruler</value>
   </data>
   <data name="ActionDeleteSeveralRulers" xml:space="preserve">
-    <value>Delete several rulers</value>
+    <value>Delete several Rulers</value>
   </data>
   <data name="UnitFeet" xml:space="preserve">
     <value>ft</value>
@@ -507,5 +507,11 @@
   </data>
   <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
     <value>Unknown</value>
+  </data>
+  <data name="ActionDuplicateRuler" xml:space="preserve">
+    <value>Duplicate a Ruler</value>
+  </data>
+  <data name="ActionDuplicateSeveralRulers" xml:space="preserve">
+    <value>Duplicate several Rulers</value>
   </data>
 </root>

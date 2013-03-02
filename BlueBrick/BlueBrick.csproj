@@ -109,6 +109,7 @@
     <Compile Include="Actions\Maps\ChangeMapAppearance.cs" />
     <Compile Include="Actions\Rulers\AddRuler.cs" />
     <Compile Include="Actions\Rulers\DeleteRuler.cs" />
+    <Compile Include="Actions\Rulers\DuplicateRuler.cs" />
     <Compile Include="Actions\Texts\BringTextToFront.cs" />
     <Compile Include="Actions\Texts\DuplicateText.cs" />
     <Compile Include="Actions\Texts\AddText.cs" />
