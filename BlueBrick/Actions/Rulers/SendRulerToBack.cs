@@ -1,4 +1,4 @@
-// BlueBrick, a LEGO(c) layout editor.
+﻿// BlueBrick, a LEGO(c) layout editor.
 // Copyright (C) 2008 Alban NANTY
 //
 // This program is free software: you can redistribute it and/or modify
@@ -15,31 +15,31 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using BlueBrick.MapData;
 using BlueBrick.Actions.Items;
+using BlueBrick.MapData;
 
-namespace BlueBrick.Actions.Bricks
+namespace BlueBrick.Actions.Rulers
 {
-	class BringBrickToFront : ChangeItemOrder
+	class SendRulerToBack : ChangeItemOrder
 	{
-		public BringBrickToFront(Layer layer, List<Layer.LayerItem> bricksToMove)
-			: base(layer, bricksToMove, FrontOrBack.FRONT)
+		public SendRulerToBack(Layer layer, List<Layer.LayerItem> rulersToMove)
+			: base(layer, rulersToMove, FrontOrBack.BACK)
 		{
 		}
 
 		public override string getName()
 		{
-			return BlueBrick.Properties.Resources.ActionBringBrickToFront;
+			return BlueBrick.Properties.Resources.ActionSendRulerToBack;
 		}
 
 		protected override int removeItem(Layer.LayerItem item)
 		{
-			return (mLayer as LayerBrick).removeBrickWithoutChangingConnectivity(item as LayerBrick.Brick);
+			return (mLayer as LayerRuler).removeRulerItem(item as LayerRuler.RulerItem);
 		}
 
 		protected override void addItem(Layer.LayerItem item, int position)
 		{
-			(mLayer as LayerBrick).addBrickWithoutChangingConnectivity(item as LayerBrick.Brick, position);
+			(mLayer as LayerRuler).addRulerItem(item as LayerRuler.RulerItem, position);
 		}
 	}
 }

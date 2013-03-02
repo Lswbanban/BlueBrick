@@ -455,4 +455,10 @@ Le message d'erreur est :
   <data name="ActionDuplicateSeveralRulers" xml:space="preserve">
     <value>Dupliquer plusieurs mesures</value>
   </data>
+  <data name="ActionBringRulerToFront" xml:space="preserve">
+    <value>Mettre les mesures séléctionnées en avant</value>
+  </data>
+  <data name="ActionSendRulerToBack" xml:space="preserve">
+    <value>Mettre les mesures sélectionnées au fond</value>
+  </data>
 </root>

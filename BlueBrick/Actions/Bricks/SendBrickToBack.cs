@@ -16,26 +16,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using BlueBrick.MapData;
+using BlueBrick.Actions.Items;
 
 namespace BlueBrick.Actions.Bricks
 {
-	class SendBrickToBack : Action
+	class SendBrickToBack : ChangeItemOrder
 	{
-		private LayerBrick mBrickLayer = null;
-		private List<Layer.LayerItem> mBricks = null;
-		private List<int> mBrickIndex = null; // this list of index is for the redo, to add each text at the same place
-
-		public SendBrickToBack(LayerBrick layer, List<Layer.LayerItem> bricksToMove)
+		public SendBrickToBack(Layer layer, List<Layer.LayerItem> bricksToMove)
+			: base(layer, bricksToMove, FrontOrBack.BACK)
 		{
-			// init the layer
-			mBrickLayer = layer;
-			// init the index array
-			mBrickIndex = new List<int>(bricksToMove.Count);
-			// copy the list, because the pointer may change (specially if it is the selection)
-			// but we don't duplicate the bricks themselves
-			mBricks = new List<Layer.LayerItem>(bricksToMove.Count);
-			foreach (Layer.LayerItem item in bricksToMove)
-				mBricks.Add(item);
 		}
 
 		public override string getName()
@@ -43,38 +32,14 @@ namespace BlueBrick.Actions.Bricks
 			return BlueBrick.Properties.Resources.ActionSendBrickToBack;
 		}
 
-		public override void redo()
+		protected override int removeItem(Layer.LayerItem item)
 		{
-			// remove the specified brick from the list of the layer,
-			// but do not delete it, also memorise its last position
-			mBrickIndex.Clear();
-			foreach (Layer.LayerItem obj in mBricks)
-				mBrickIndex.Add(mBrickLayer.removeBrickWithoutChangingConnectivity(obj as LayerBrick.Brick));
-
-			// add all the bricks at the beginining
-			foreach (Layer.LayerItem obj in mBricks)
-				mBrickLayer.addBrickWithoutChangingConnectivity(obj as LayerBrick.Brick, 0);
-
-			// reselect all the moved brick
-			mBrickLayer.clearSelection();
-			mBrickLayer.addObjectInSelection(mBricks);
+			return (mLayer as LayerBrick).removeBrickWithoutChangingConnectivity(item as LayerBrick.Brick);
 		}
 
-		public override void undo()
+		protected override void addItem(Layer.LayerItem item, int position)
 		{
-			// remove the specified brick from the list of the layer (they must be at the end
-			// of the list but we don't care
-			foreach (Layer.LayerItem obj in mBricks)
-				mBrickLayer.removeBrickWithoutChangingConnectivity(obj as LayerBrick.Brick);
-
-			// add all the bricks at the end
-			// We must add all the bricks in the reverse order to avoid crash (insert with an index greater than the size of the list)
-			for (int i = mBricks.Count - 1; i >= 0; --i)
-				mBrickLayer.addBrickWithoutChangingConnectivity(mBricks[i] as LayerBrick.Brick, mBrickIndex[i]);
-
-			// reselect all the moved brick
-			mBrickLayer.clearSelection();
-			mBrickLayer.addObjectInSelection(mBricks);
+			(mLayer as LayerBrick).addBrickWithoutChangingConnectivity(item as LayerBrick.Brick, position);
 		}
 	}
 }

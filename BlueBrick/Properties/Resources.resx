@@ -514,4 +514,10 @@
   <data name="ActionDuplicateSeveralRulers" xml:space="preserve">
     <value>Duplicate several Rulers</value>
   </data>
+  <data name="ActionBringRulerToFront" xml:space="preserve">
+    <value>Bring selected Rulers to Front</value>
+  </data>
+  <data name="ActionSendRulerToBack" xml:space="preserve">
+    <value>Send selected Rulers to Back</value>
+  </data>
 </root>
