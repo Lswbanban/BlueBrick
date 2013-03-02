@@ -765,6 +765,9 @@ namespace BlueBrick
 
 		public void MapPanel_MouseWheel(object sender, MouseEventArgs e)
 		{
+			// use the zoom cursor
+			this.Cursor = MainForm.Instance.ZoomCursor;
+			// and call the zoom function
 			zoom((float)(1.0f + (e.Delta * Settings.Default.WheelMouseZoomSpeed)),
 				Settings.Default.WheelMouseIsZoomOnCursor, e.Location);
 		}
