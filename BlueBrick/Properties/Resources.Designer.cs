@@ -223,7 +223,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete several rulers.
+        ///   Looks up a localized string similar to Delete several Rulers.
         /// </summary>
         internal static string ActionDeleteSeveralRulers {
             get {
@@ -259,11 +259,29 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duplicate a Ruler.
+        /// </summary>
+        internal static string ActionDuplicateRuler {
+            get {
+                return ResourceManager.GetString("ActionDuplicateRuler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate several parts.
         /// </summary>
         internal static string ActionDuplicateSeveralBricks {
             get {
                 return ResourceManager.GetString("ActionDuplicateSeveralBricks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate several Rulers.
+        /// </summary>
+        internal static string ActionDuplicateSeveralRulers {
+            get {
+                return ResourceManager.GetString("ActionDuplicateSeveralRulers", resourceCulture);
             }
         }
         

@@ -449,4 +449,10 @@ Le message d'erreur est :
   <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
     <value>Inconnu</value>
   </data>
+  <data name="ActionDuplicateRuler" xml:space="preserve">
+    <value>Dupliquer une mesure</value>
+  </data>
+  <data name="ActionDuplicateSeveralRulers" xml:space="preserve">
+    <value>Dupliquer plusieurs mesures</value>
+  </data>
 </root>

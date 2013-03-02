@@ -28,6 +28,7 @@ using BlueBrick.MapData;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using BlueBrick.Actions.Maps;
+using BlueBrick.Actions.Rulers;
 
 namespace BlueBrick
 {
@@ -1517,22 +1518,13 @@ namespace BlueBrick
 
 		private void cutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// a cut is a copy followed by a delete
 			// first get the current selected layer
 			Layer selectedLayer = Map.Instance.SelectedLayer;
 			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
 			{
+				// a cut is a copy followed by a delete
 				selectedLayer.copyCurrentSelectionToClipboard();
-				switch (selectedLayer.GetType().Name)
-				{
-					case "LayerText":
-						ActionManager.Instance.doAction(new DeleteText(selectedLayer as LayerText, selectedLayer.SelectedObjects));
-						break;
-					case "LayerBrick":
-						ActionManager.Instance.doAction(new DeleteBrick(selectedLayer as LayerBrick, selectedLayer.SelectedObjects));
-						break;
-					// TODO refactor this code, or add the delete of ruler
-				}
+				deleteToolStripMenuItem_Click(sender, e);
 			}
 		}
 
@@ -1571,16 +1563,12 @@ namespace BlueBrick
 			Layer selectedLayer = Map.Instance.SelectedLayer;
 			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
 			{
-				switch (selectedLayer.GetType().Name)
-				{
-					case "LayerText":
-						ActionManager.Instance.doAction(new DeleteText(selectedLayer as LayerText, selectedLayer.SelectedObjects));
-						break;
-					case "LayerBrick":
-						ActionManager.Instance.doAction(new DeleteBrick(selectedLayer as LayerBrick, selectedLayer.SelectedObjects));
-						break;
-					// TODO refactor this code, or add the delete of ruler
-				}
+				if (selectedLayer is LayerText)
+					ActionManager.Instance.doAction(new DeleteText(selectedLayer as LayerText, selectedLayer.SelectedObjects));
+				else if (selectedLayer is LayerBrick)
+					ActionManager.Instance.doAction(new DeleteBrick(selectedLayer as LayerBrick, selectedLayer.SelectedObjects));
+				else if (selectedLayer is LayerRuler)
+					ActionManager.Instance.doAction(new DeleteRuler(selectedLayer as LayerRuler, selectedLayer.SelectedObjects));
 			}
 		}
 
