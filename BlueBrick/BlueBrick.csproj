@@ -91,6 +91,7 @@
     <Compile Include="Actions\Bricks\RotateBrickOnPivotBrick.cs" />
     <Compile Include="Actions\Bricks\SendBrickToBack.cs" />
     <Compile Include="Actions\Grid\MoveGridOrigin.cs" />
+    <Compile Include="Actions\Items\ChangeItemOrder.cs" />
     <Compile Include="Actions\Items\GroupItems.cs" />
     <Compile Include="Actions\Items\DuplicateItems.cs" />
     <Compile Include="Actions\Items\UngroupItems.cs" />
@@ -108,8 +109,10 @@
     <Compile Include="Actions\Maps\ChangeGeneralInfo.cs" />
     <Compile Include="Actions\Maps\ChangeMapAppearance.cs" />
     <Compile Include="Actions\Rulers\AddRuler.cs" />
+    <Compile Include="Actions\Rulers\BringRulerToFront.cs" />
     <Compile Include="Actions\Rulers\DeleteRuler.cs" />
     <Compile Include="Actions\Rulers\DuplicateRuler.cs" />
+    <Compile Include="Actions\Rulers\SendRulerToBack.cs" />
     <Compile Include="Actions\Texts\BringTextToFront.cs" />
     <Compile Include="Actions\Texts\DuplicateText.cs" />
     <Compile Include="Actions\Texts\AddText.cs" />

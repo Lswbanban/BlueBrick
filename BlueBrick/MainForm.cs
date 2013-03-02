@@ -1618,95 +1618,77 @@ namespace BlueBrick
 
         public void groupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			Layer selectedLayer = Map.Instance.SelectedLayer;
+			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0)
+				&& ((selectedLayer is LayerBrick) || (selectedLayer is LayerText) || (selectedLayer is LayerRuler)))
             {
-                string layerType = Map.Instance.SelectedLayer.GetType().Name;
-                if ((layerType == "LayerBrick") || (layerType == "LayerText")) // TODO add ruler
-                {
-                    Actions.Items.GroupItems groupAction = new BlueBrick.Actions.Items.GroupItems(Map.Instance.SelectedLayer.SelectedObjects, Map.Instance.SelectedLayer);
-                    Actions.ActionManager.Instance.doAction(groupAction);
-                }
+				Actions.Items.GroupItems groupAction = new BlueBrick.Actions.Items.GroupItems(selectedLayer.SelectedObjects, selectedLayer);
+                Actions.ActionManager.Instance.doAction(groupAction);
             }
-        }
+		}
 
         public void ungroupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
-            {
-                string layerType = Map.Instance.SelectedLayer.GetType().Name;
-                if ((layerType == "LayerBrick") || (layerType == "LayerText")) // TODO add ruler
-                {
-					Actions.Items.UngroupItems ungroupAction = new BlueBrick.Actions.Items.UngroupItems(Map.Instance.SelectedLayer.SelectedObjects, Map.Instance.SelectedLayer);
-                    Actions.ActionManager.Instance.doAction(ungroupAction);
-                }
+			Layer selectedLayer = Map.Instance.SelectedLayer;
+			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0)
+				&& ((selectedLayer is LayerBrick) || (selectedLayer is LayerText) || (selectedLayer is LayerRuler)))
+			{
+				Actions.Items.UngroupItems ungroupAction = new BlueBrick.Actions.Items.UngroupItems(selectedLayer.SelectedObjects, selectedLayer);
+                Actions.ActionManager.Instance.doAction(ungroupAction);
             }
         }
 
 		private void rotateCWToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// first get the current selected layer
-			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			Layer selectedLayer = Map.Instance.SelectedLayer;
+			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
 			{
-				switch (Map.Instance.SelectedLayer.GetType().Name)
-				{
-					case "LayerBrick":
-						ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects, 1));
-						break;
-					case "LayerText":
-						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, 1));
-						break;
+				if (selectedLayer is LayerBrick)
+					ActionManager.Instance.doAction(new RotateBrick(selectedLayer as LayerBrick, selectedLayer.SelectedObjects, 1));
+				else if (selectedLayer is LayerText)
+					ActionManager.Instance.doAction(new RotateText(selectedLayer as LayerText, selectedLayer.SelectedObjects, 1));
 					// TODO add ruler
-				}
 			}
 		}
 
 		private void rotateCCWToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// first get the current selected layer
-			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			Layer selectedLayer = Map.Instance.SelectedLayer;
+			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
 			{
-				switch (Map.Instance.SelectedLayer.GetType().Name)
-				{
-					case "LayerBrick":
-						ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects, -1));
-						break;
-					case "LayerText":
-						ActionManager.Instance.doAction(new RotateText(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects, -1));
-						break;
+				if (selectedLayer is LayerBrick)
+					ActionManager.Instance.doAction(new RotateBrick(selectedLayer as LayerBrick, selectedLayer.SelectedObjects, -1));
+				else if (selectedLayer is LayerText)
+					ActionManager.Instance.doAction(new RotateText(selectedLayer as LayerText, selectedLayer.SelectedObjects, -1));
 					// TODO add ruler
-				}
 			}
 		}
 
 		public void sendToBackToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			Layer selectedLayer = Map.Instance.SelectedLayer;
+			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
 			{
-				if (Map.Instance.SelectedLayer.GetType().Name == "LayerBrick")
-				{
-					ActionManager.Instance.doAction(new SendBrickToBack(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects));
-				}
-				else if (Map.Instance.SelectedLayer.GetType().Name == "LayerText")
-				{
-					ActionManager.Instance.doAction(new SendTextToBack(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects));
-				}
-				// TODO add ruler
+				if (selectedLayer is LayerBrick)
+					ActionManager.Instance.doAction(new SendBrickToBack(selectedLayer, selectedLayer.SelectedObjects));
+				else if (selectedLayer is LayerText)
+					ActionManager.Instance.doAction(new SendTextToBack(selectedLayer, selectedLayer.SelectedObjects));
+				else if (selectedLayer is LayerRuler)
+					ActionManager.Instance.doAction(new SendRulerToBack(selectedLayer, selectedLayer.SelectedObjects));
 			}
 		}
 
 		public void bringToFrontToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			Layer selectedLayer = Map.Instance.SelectedLayer;
+			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
 			{
-				if (Map.Instance.SelectedLayer.GetType().Name == "LayerBrick")
-				{
-					ActionManager.Instance.doAction(new BringBrickToFront(Map.Instance.SelectedLayer as LayerBrick, Map.Instance.SelectedLayer.SelectedObjects));
-				}
-				else if (Map.Instance.SelectedLayer.GetType().Name == "LayerText")
-				{
-					ActionManager.Instance.doAction(new BringTextToFront(Map.Instance.SelectedLayer as LayerText, Map.Instance.SelectedLayer.SelectedObjects));
-				}
-				// TODO add ruler
+				if (selectedLayer is LayerBrick)
+					ActionManager.Instance.doAction(new BringBrickToFront(selectedLayer, selectedLayer.SelectedObjects));
+				else if (selectedLayer is LayerText)
+					ActionManager.Instance.doAction(new BringTextToFront(selectedLayer, selectedLayer.SelectedObjects));
+				else if (selectedLayer is LayerRuler)
+					ActionManager.Instance.doAction(new BringRulerToFront(selectedLayer, selectedLayer.SelectedObjects));
 			}
 		}
 

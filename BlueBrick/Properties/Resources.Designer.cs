@@ -151,6 +151,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bring selected Rulers to Front.
+        /// </summary>
+        internal static string ActionBringRulerToFront {
+            get {
+                return ResourceManager.GetString("ActionBringRulerToFront", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bring selected Texts to Front.
         /// </summary>
         internal static string ActionBringTextToFront {
@@ -480,6 +489,15 @@ namespace BlueBrick.Properties {
         internal static string ActionSendBrickToBack {
             get {
                 return ResourceManager.GetString("ActionSendBrickToBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send selected Rulers to Back.
+        /// </summary>
+        internal static string ActionSendRulerToBack {
+            get {
+                return ResourceManager.GetString("ActionSendRulerToBack", resourceCulture);
             }
         }
         
