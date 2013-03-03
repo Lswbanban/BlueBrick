@@ -61,6 +61,14 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// get the type name id of this type of layer used in the xml file (not localized)
+		/// </summary>
+		public override string XmlTypeName
+		{
+			get { return "ruler"; }
+		}
+
+		/// <summary>
 		/// get the localized name of this type of layer
 		/// </summary>
 		public override string LocalizedTypeName
@@ -92,6 +100,34 @@ namespace BlueBrick.MapData
 		#region constructor
 		public LayerRuler()
 		{
+		}
+		#endregion
+
+		#region IXmlSerializable Members
+
+		public override void ReadXml(System.Xml.XmlReader reader)
+		{
+			// call the common reader class
+			base.ReadXml(reader);
+			// read all the rulers
+			readItemsListFromXml<RulerItem>(reader, ref mRulers, "RulerItems", true);
+		}
+
+		protected override T readItem<T>(System.Xml.XmlReader reader)
+		{
+			LinearRuler ruler = new LinearRuler(); // TODO instanciate the correct ruler liner or circle
+//			ruler.ReadXml(reader); //TODO
+			return (ruler as T);
+		}
+
+		public override void WriteXml(System.Xml.XmlWriter writer)
+		{
+			// write the header
+			writeHeaderAndCommonProperties(writer);
+			// write all the bricks
+			writeItemsListToXml(writer, mRulers, "RulerItems", true);
+			// write the footer
+			writeFooter(writer);
 		}
 		#endregion
 

@@ -622,6 +622,8 @@ namespace BlueBrick.MapData
 				{
 					reader.Read();
 				}
+				// read the end element of the brick
+				reader.ReadEndElement();
 			}
 
 			public override void WriteXml(System.Xml.XmlWriter writer)
