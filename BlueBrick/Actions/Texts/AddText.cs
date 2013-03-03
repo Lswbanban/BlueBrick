@@ -24,7 +24,7 @@ namespace BlueBrick.Actions.Texts
 	{
 		private LayerText mTextLayer = null;
 		private LayerText.TextCell mTextCell = null;
-		private int mTextCellIndex = 0; // this index is for the redo, to add the text at the same place
+		private int mTextCellIndex = -1; // this index is for the redo, to add the text at the same place, start with -1 to add it at the end of the list (so on top of the other texts)
 
 		public AddText(LayerText layer, string textToAdd, Font font, Color color, StringAlignment alignment, PointF position)
 		{
