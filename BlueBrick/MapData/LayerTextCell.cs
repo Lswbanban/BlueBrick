@@ -61,6 +61,12 @@ namespace BlueBrick.MapData
 				set { mTextFont = value; updateBitmap(); }
 			}
 
+			public FontStyle FontStyle
+			{
+				get { return mTextFont.Style; }
+				set { mTextFont = new Font(mTextFont, value); updateBitmap(); }
+			}
+
 			public Bitmap Image
 			{
 				get { return mImage; }
