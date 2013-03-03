@@ -61,6 +61,14 @@ namespace BlueBrick.MapData
 		{
 			get { return mBricks; }
 		}
+		
+		/// <summary>
+		/// get the type name id of this type of layer used in the xml file (not localized)
+		/// </summary>
+		public override string XmlTypeName
+		{
+			get { return "brick"; }
+		}
 
 		/// <summary>
 		/// get the localized name of this type of layer
@@ -114,7 +122,7 @@ namespace BlueBrick.MapData
 			base.ReadXml(reader);
 
 			// read all the bricks
-			ReadXml<Brick>(reader, ref mBricks, true);
+			readItemsListFromXml<Brick>(reader, ref mBricks, "Bricks", true);
 
 			// reconstruct the freeConnexion points list by iterating on all the connexion of all the bricks
 			mFreeConnectionPoints.removeAll();
@@ -162,69 +170,22 @@ namespace BlueBrick.MapData
 			ElectricCircuitChecker.check(this);
 		}
 
-		public override void ReadXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, bool useProgressBar)
+		protected override T readItem<T>(System.Xml.XmlReader reader)
 		{
-			// clear all the content of the hash table
-			LayerItem.sHashtableForGroupRebuilding.Clear();
-			Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
-
-			// the brick
-			bool brickFound = reader.ReadToDescendant("Brick");
-			while (brickFound)
-			{
-				// instanciate a new brick, read and add the new brick
-				Brick brick = new Brick();
-				brick.ReadXml(reader);
-				resultingList.Add(brick as T);
-
-				// read the next brick
-				brickFound = reader.ReadToNextSibling("Brick");
-
-				// step the progress bar for each brick
-				if (useProgressBar)
-					MainForm.Instance.stepProgressBar();
-			}
-			// read the Bricks tag, to finish the list of brick
-			reader.Read();
-
-			// call the post read function to read the groups
-			readGroupFromXml(reader);
-			
-			// clear again the hash table to free the memory after loading
-			Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
+			Brick brick = new Brick();
+			brick.ReadXml(reader);
+			return (brick as T);
 		}
 
 		public override void WriteXml(System.Xml.XmlWriter writer)
 		{
-			// call the function on all the bricks
-			WriteXml(writer, mBricks, true);
+			// write the header
+			writeHeaderAndCommonProperties(writer);
+			// write all the bricks
+			writeItemsListToXml(writer, mBricks, "Bricks", true);
+			// write the footer
+			writeFooter(writer);
 		}
-
-		protected override void WriteXml<T>(System.Xml.XmlWriter writer, List<T> itemsToWrite, bool useProgressBar)
-		{
-			// layer of type brick
-			writer.WriteStartElement("Layer");
-			writer.WriteAttributeString("type", "brick");
-			writer.WriteAttributeString("id", this.GetHashCode().ToString());
-
-			// call base class for common attribute
-			base.WriteXml(writer);
-			// and serialize the brick list
-			writer.WriteStartElement("Bricks");
-			foreach (T item in itemsToWrite)
-			{
-				item.WriteXml(writer);
-				// step the progress bar for each brick
-				if (useProgressBar)
-					MainForm.Instance.stepProgressBar();
-			}
-			writer.WriteEndElement(); // end of Bricks
-
-			// call the post write to write the group list
-			writeGroupToXml(writer);
-			writer.WriteEndElement(); // end of Layer
-		}
-
 		#endregion
 
 		#region action on the layer

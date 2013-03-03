@@ -202,6 +202,7 @@ namespace BlueBrick.MapData
 
 			public virtual void ReadXml(System.Xml.XmlReader reader)
 			{
+				reader.Read(); // read the starting tag of the item
 				mDisplayArea = XmlReadWrite.readRectangleF(reader);
 				readMyGroup(reader);
 			}
@@ -842,6 +843,14 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// get the type name id of this type of layer used in the xml file (not localized)
+		/// </summary>
+		public abstract string XmlTypeName
+		{
+			get;
+		}
+
+		/// <summary>
 		/// get the localized name of this type of layer
 		/// </summary>
 		public abstract string LocalizedTypeName
@@ -952,8 +961,48 @@ namespace BlueBrick.MapData
 				Transparency = reader.ReadElementContentAsInt();
 		}
 
-		public virtual void ReadXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, bool useProgressBar) where T : LayerItem
-		{			
+		protected virtual T readItem<T>(System.Xml.XmlReader reader) where T : LayerItem
+		{
+			// by default return null for layers that don't have items
+			return null;
+		}
+
+		private void readItemListFromClipboard(System.Xml.XmlReader reader, ref List<Layer.LayerItem> itemsList)
+		{
+			this.readItemsListFromXml<Layer.LayerItem>(reader, ref itemsList, "Items", false);
+		}
+
+		protected void readItemsListFromXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, string itemsListName, bool useProgressBar) where T : LayerItem
+		{
+			// clear all the content of the hash table
+			LayerItem.sHashtableForGroupRebuilding.Clear();
+			LayerBrick.Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
+
+			// read the starting tag of the list
+			reader.ReadStartElement(itemsListName);
+			// check if the list is not empty and read the first child
+			bool cellFound = !reader.IsEmptyElement;
+			while (cellFound)
+			{
+				// instanciate a new text cell, read and add the new text cell
+				LayerItem item = readItem<T>(reader);
+				resultingList.Add(item as T);
+
+				// check if the next element is a sibling and not the close element of the list
+				cellFound = reader.IsStartElement();
+
+				// step the progress bar for each text cell
+				if (useProgressBar)
+					MainForm.Instance.stepProgressBar();
+			}
+			// read the end of the list tag, to finish the list of items
+			reader.ReadEndElement();
+
+			// call the post read function to read the groups
+			readGroupFromXml(reader);
+
+			// clear again the hash table to free the memory after loading
+			LayerBrick.Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
 		}
 
         protected void readGroupFromXml(System.Xml.XmlReader reader)
@@ -991,16 +1040,52 @@ namespace BlueBrick.MapData
 
 		public virtual void WriteXml(System.Xml.XmlWriter writer)
 		{
-            // clear all the content of the hash table
+		}
+
+		protected void writeHeaderAndCommonProperties(System.Xml.XmlWriter writer)
+		{
+			// clear all the content of the hash table
 			LayerItem.sListForGroupSaving.Clear();
+			// layer with its type and id
+			writer.WriteStartElement("Layer");
+			writer.WriteAttributeString("type", this.XmlTypeName);
+			writer.WriteAttributeString("id", this.GetHashCode().ToString());
 			// write the common properties
 			writer.WriteElementString("Name", mName);
 			writer.WriteElementString("Visible", mVisible.ToString().ToLower());
 			writer.WriteElementString("Transparency", mTransparency.ToString());
 		}
 
-		protected virtual void WriteXml<T>(System.Xml.XmlWriter writer, List<T> itemsToWrite, bool useProgressBar) where T : LayerItem
+		protected void writeFooter(System.Xml.XmlWriter writer)
 		{
+			writer.WriteEndElement(); // end of Layer
+		}
+		
+		private void writeSelectionToClipboard(System.Xml.XmlWriter writer)
+		{
+			// write the header
+			writeHeaderAndCommonProperties(writer);
+			// write all the bricks
+			writeItemsListToXml(writer, mSelectedObjects, "Items", false);
+			// write the footer
+			writeFooter(writer);
+		}
+
+		protected void writeItemsListToXml<T>(System.Xml.XmlWriter writer, List<T> itemsToWrite, string itemsListName, bool useProgressBar) where T : LayerItem
+		{
+			// and serialize the items list
+			writer.WriteStartElement(itemsListName);
+			foreach (T item in itemsToWrite)
+			{
+				item.WriteXml(writer);
+				// step the progress bar for each brick
+				if (useProgressBar)
+					MainForm.Instance.stepProgressBar();
+			}
+			writer.WriteEndElement(); // end of itemsListName
+
+			// call the post write to write the group list
+			writeGroupToXml(writer);
 		}
 
         protected void writeGroupToXml(System.Xml.XmlWriter writer)
@@ -1266,7 +1351,7 @@ namespace BlueBrick.MapData
 				System.Xml.XmlWriter xmlWriter = System.Xml.XmlWriter.Create(stringWriter, xmlSettings);
 
 				// then call the serialization method on the list of object
-				this.WriteXml<LayerItem>(xmlWriter, SelectedObjects, false);
+				this.writeSelectionToClipboard(xmlWriter);
 				xmlWriter.Flush();
 
 				// finally copy the serialized string into the clipboard
@@ -1329,14 +1414,14 @@ namespace BlueBrick.MapData
 
 			// read the items
 			List<Layer.LayerItem> itemsToDuplicates = new List<Layer.LayerItem>();
-			this.ReadXml<Layer.LayerItem>(xmlReader, ref itemsToDuplicates, false);
+			this.readItemListFromClipboard(xmlReader, ref itemsToDuplicates);
 
 			// check if the type of layer match the type of copied items
 			bool typeMatch = false;
 			mLastDuplicateAction = null;
 			if (this is LayerText)
 			{
-				if (itemTypeName.Equals("text"))
+				if (itemTypeName.Equals(this.XmlTypeName))
 				{
 					mLastDuplicateAction = new Actions.Texts.DuplicateText((this as LayerText), itemsToDuplicates, addOffset);
 					typeMatch = true;
@@ -1352,7 +1437,7 @@ namespace BlueBrick.MapData
 			}
 			else if (this is LayerBrick)
 			{
-				if (itemTypeName.Equals("brick"))
+				if (itemTypeName.Equals(this.XmlTypeName))
 				{
 					mLastDuplicateAction = new Actions.Bricks.DuplicateBrick((this as LayerBrick), itemsToDuplicates, addOffset);
 					typeMatch = true;
@@ -1360,12 +1445,11 @@ namespace BlueBrick.MapData
 			}
 			else if (this is LayerRuler)
 			{
-				// TODO
-				//if (itemTypeName.Equals("ruler"))
-				//{
-				//	mLastDuplicateAction = new Actions.Rulers.DuplicateRuler((this as LayerRuler), itemsToDuplicates, addOffset);
-				//	typeMatch = true;
-				//}
+				if (itemTypeName.Equals(this.XmlTypeName))
+				{
+					mLastDuplicateAction = new Actions.Rulers.DuplicateRuler((this as LayerRuler), itemsToDuplicates, addOffset);
+					typeMatch = true;
+				}
 			}
 
 			// do the paste action

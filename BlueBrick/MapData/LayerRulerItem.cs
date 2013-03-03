@@ -205,6 +205,14 @@ namespace BlueBrick.MapData
 			#endregion
 
 			#region constructor/copy
+			/// <summary>
+			/// this parameter less constructor is requested for the serialization, but should not
+			/// be used by the program
+			/// </summary>
+			public LinearRuler()
+			{
+			}
+
 			public LinearRuler(PointF point1, PointF point2) : base()
 			{
 				mPoint1 = point1;

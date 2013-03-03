@@ -45,6 +45,14 @@ namespace BlueBrick.MapData
 
 		#region set/get
 		/// <summary>
+		/// get the type name id of this type of layer used in the xml file (not localized)
+		/// </summary>
+		public override string XmlTypeName
+		{
+			get { return "text"; }
+		}
+
+		/// <summary>
 		/// get the localized name of this type of layer
 		/// </summary>
 		public override string LocalizedTypeName
@@ -88,70 +96,26 @@ namespace BlueBrick.MapData
 		{
 			// call the common reader class
 			base.ReadXml(reader);
-
 			// read all the texts
-			ReadXml<TextCell>(reader, ref mTexts, true);
+			readItemsListFromXml<TextCell>(reader, ref mTexts, "TextCells", true);
 		}
 
-		public override void ReadXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, bool useProgressBar)
+		protected override T readItem<T>(System.Xml.XmlReader reader)
 		{
-			// clear all the content of the hash table
-			LayerItem.sHashtableForGroupRebuilding.Clear();
-
-			// the text cells
-			bool cellFound = reader.ReadToDescendant("TextCell");
-			while (cellFound)
-			{
-				// instanciate a new text cell, read and add the new text cell
-				TextCell cell = new TextCell();
-				cell.ReadXml(reader);
-				resultingList.Add(cell as T);
-
-				// read the next text cell
-				cellFound = reader.ReadToNextSibling("TextCell");
-
-				// step the progress bar for each text cell
-				if (useProgressBar)
-					MainForm.Instance.stepProgressBar();
-			}
-			// read the TextCells tag, to finish the list of text cells
-			reader.Read();
-
-			// call the post read function to read the groups
-			readGroupFromXml(reader);
+			TextCell cell = new TextCell();
+			cell.ReadXml(reader);
+			return (cell as T);
 		}
 
 		public override void WriteXml(System.Xml.XmlWriter writer)
 		{
-			// call the function on all the bricks
-			WriteXml(writer, mTexts, true);
+			// write the header
+			writeHeaderAndCommonProperties(writer);
+			// write all the bricks
+			writeItemsListToXml(writer, mTexts, "TextCells", true);
+			// write the footer
+			writeFooter(writer);
 		}
-
-		protected override void WriteXml<T>(System.Xml.XmlWriter writer, List<T> itemsToWrite, bool useProgressBar)
-		{
-			// layer of type text
-			writer.WriteStartElement("Layer");
-			writer.WriteAttributeString("type", "text");
-			writer.WriteAttributeString("id", this.GetHashCode().ToString());
-
-			// call base class for common attribute
-			base.WriteXml(writer);
-			// and the text cell list
-			writer.WriteStartElement("TextCells");
-			foreach (T item in itemsToWrite)
-			{
-				item.WriteXml(writer);
-				// step the progress bar for each text cell
-				if (useProgressBar)
-					MainForm.Instance.stepProgressBar();
-			}
-			writer.WriteEndElement(); // end of TextCells
-
-			// call the post write to write the group list
-			writeGroupToXml(writer);
-			writer.WriteEndElement(); // end of Layer
-		}
-
 		#endregion
 
 		#region action on the layer

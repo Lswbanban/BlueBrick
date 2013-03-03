@@ -178,6 +178,14 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// get the type name id of this type of layer used in the xml file (not localized)
+		/// </summary>
+		public override string XmlTypeName
+		{
+			get { return "grid"; }
+		}
+
+		/// <summary>
 		/// get the localized name of this type of layer
 		/// </summary>
 		public override string LocalizedTypeName
@@ -281,13 +289,9 @@ namespace BlueBrick.MapData
 
 		public override void WriteXml(System.Xml.XmlWriter writer)
 		{
-			// layer of type grid
-			writer.WriteStartElement("Layer");
-			writer.WriteAttributeString("type", "grid");
-			writer.WriteAttributeString("id", this.GetHashCode().ToString());
-
-			// call base class for common attribute
-			base.WriteXml(writer);
+			// write the header
+			writeHeaderAndCommonProperties(writer);
+			// write the grid properties
 			XmlReadWrite.writeColor(writer, "GridColor", GridColor);
 			writer.WriteElementString("GridThickness", GridThickness.ToString(System.Globalization.CultureInfo.InvariantCulture));
 			XmlReadWrite.writeColor(writer, "SubGridColor", SubGridColor);
@@ -302,7 +306,8 @@ namespace BlueBrick.MapData
 			writer.WriteElementString("CellIndexColumnType", ((int)mCellIndexColumnType).ToString());
 			writer.WriteElementString("CellIndexRowType", ((int)mCellIndexRowType).ToString());
 			XmlReadWrite.writePoint(writer, "CellIndexCorner", mCellIndexCorner);
-			writer.WriteEndElement(); // end of Layer
+			// write the footer
+			writeFooter(writer); // end of layer
 
 			// step the progress bar for the grid
 			MainForm.Instance.stepProgressBar();

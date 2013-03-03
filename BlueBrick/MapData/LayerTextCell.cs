@@ -134,6 +134,8 @@ namespace BlueBrick.MapData
 					TextAlignment = StringAlignment.Far;
 				else
 					TextAlignment = StringAlignment.Center;
+				// read the end element of the brick
+				reader.ReadEndElement();
 			}
 
 			public override void WriteXml(System.Xml.XmlWriter writer)
