@@ -23,7 +23,7 @@ namespace BlueBrick.Actions.Rulers
 	{
 		private LayerRuler mRulerLayer = null;
 		private LayerRuler.RulerItem mRulerItem = null;
-		private int mRulerItemIndex = 0; // this index is for the redo, to add the ruler at the same place
+		private int mRulerItemIndex = -1; // this index is for the redo, to add the ruler at the same place, start with -1 to add it at the end of the list (so on top of the other rulers)
 
 		public AddRuler(LayerRuler layer, LayerRuler.RulerItem rulerItem)
 		{

@@ -98,7 +98,6 @@ Open bugs:
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - [target 1.8] BUG (Alban): The italic/bold status for texts are not saved.
-- [target 1.8] BUG (Alban): When adding a new text, it was added in the back instead of the front like for parts (même chose pour les rulers)
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] REFACTORING (Alban): Replace all the type test using a string with the is keyword
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
@@ -132,6 +131,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): When adding a group from the library, the brick were added in reverse order.
 - BUGFIX (Alban): The current selected tab of the Part Lib was not saved when exiting the application, and not reset when restarting.
 - BUGFIX (Alban): The group of Texts were not correctly duplicated (specially group of group)
+- BUGFIX (Alban): When adding a new text, it was added in the back instead of the front like for parts
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)
