@@ -32,17 +32,25 @@ namespace BlueBrick.MapData
 			// variable for drawing
 			protected Color mColor = Color.Black; // color of the lines
 			protected float mLineThickness = 4.0f; // the thickness of the lines
-			protected Tools.Distance mMesuredDistance = new Tools.Distance(); // the distance mesured between the two extremities in stud unit
 			protected bool mDisplayDistance = true; // if true, the distance is displayed on the ruler.
 			protected bool mDisplayUnit = true; // if true display the unit just after the distance
 
+			[NonSerialized]
+			protected Tools.Distance mMesuredDistance = new Tools.Distance(); // the distance mesured between the two extremities in stud unit
+
 			// variable for drawing the mesurement value
+			[NonSerialized]
 			private SolidBrush mMesurementBrush = new SolidBrush(Color.Black);
+			[NonSerialized]
 			private Font mMesurementFont = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Regular);
+			[NonSerialized]
 			private StringFormat mMesurementStringFormat = new StringFormat();
+			[NonSerialized]
 			protected Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
+			[NonSerialized]
 			protected PointF mMesurementTextWidthHalfVector = new PointF(); // half the vector along the width of the mesurement text in pixel
 
+			#region constructor
 			/// <summary>
 			/// Default constructor
 			/// </summary>
@@ -121,7 +129,34 @@ namespace BlueBrick.MapData
 				graphics.DrawString(distanceAsString, mMesurementFont, mMesurementBrush, 0, 0, mMesurementStringFormat);
 				graphics.Flush();
 			}
+			#endregion
 
+			#region IXmlSerializable Members
+			public override void ReadXml(System.Xml.XmlReader reader)
+			{
+				// read the LayerItem properties
+				base.ReadXml(reader);
+				// read the common data of the ruler
+				mColor = XmlReadWrite.readColor(reader);
+				mLineThickness = reader.ReadElementContentAsFloat();
+				mDisplayDistance = reader.ReadElementContentAsBoolean();
+				mDisplayUnit = reader.ReadElementContentAsBoolean();
+				// TODO: need to recompute the brushes, we need the call to an update method
+			}
+
+			public override void WriteXml(System.Xml.XmlWriter writer)
+			{
+				// write the LayerItems properties
+				base.WriteXml(writer);
+				// write the date of the linear ruler
+				XmlReadWrite.writeColor(writer, "Color", mColor);
+				writer.WriteElementString("LineThickness", mLineThickness.ToString(System.Globalization.CultureInfo.InvariantCulture));
+				writer.WriteElementString("DisplayDistance", mDisplayDistance.ToString().ToLower());
+				writer.WriteElementString("DisplayUnit", mDisplayUnit.ToString().ToLower());
+			}
+			#endregion
+
+			#region draw
 			/// <summary>
 			/// Draw the ruler item.
 			/// </summary>
@@ -133,6 +168,7 @@ namespace BlueBrick.MapData
 			/// <param name="isSelected">tell if this ruler is currently selected in its parent layer selection</param>
 			/// <param name="selectionBrush">the brush to use if this ruler is selected</param>
 			public abstract void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush);
+			#endregion
 		}
 		
 		/// <summary>
@@ -157,10 +193,14 @@ namespace BlueBrick.MapData
 			//           mPoint1 |        | mPoint2 
 			private PointF mPoint1 = new PointF(); // coord of the first point in Stud coord
 			private PointF mPoint2 = new PointF(); // coord of the second point in Stud coord
-			private PointF mOffsetPoint1 = new PointF(); // the offset point corresponding to Point1 in stud
-			private PointF mOffsetPoint2 = new PointF(); // the offset point corresponding to Point2 in stud
-			private PointF mUnitVector = new PointF(); // the unit vector of the line between point1 and point2
 			private float mOffsetDistance = 0.0f; // the offset distance in stud coord
+
+			[NonSerialized]
+			private PointF mOffsetPoint1 = new PointF(); // the offset point corresponding to Point1 in stud
+			[NonSerialized]
+			private PointF mOffsetPoint2 = new PointF(); // the offset point corresponding to Point2 in stud
+			[NonSerialized]
+			private PointF mUnitVector = new PointF(); // the unit vector of the line between point1 and point2
 
 			// variable for the draw
 			private float mOffsetLineThickness = 1.0f; // the thickness of the guide lines when this ruler has an offset
@@ -213,11 +253,32 @@ namespace BlueBrick.MapData
 			{
 			}
 
-			public LinearRuler(PointF point1, PointF point2) : base()
+			/// <summary>
+			/// Constructor used for the construction of a linear ruler with the mouse
+			/// </summary>
+			/// <param name="point1">First point of the line</param>
+			/// <param name="point2">Second point of the line</param>
+			public LinearRuler(PointF point1, PointF point2)
+				: base()
 			{
 				mPoint1 = point1;
 				mPoint2 = point2;
 				updateDisplayData();
+			}
+
+			/// <summary>
+			/// Constructor used by the clone function
+			/// </summary>
+			/// <param name="point1">First point of the line</param>
+			/// <param name="point2">Second point of the line</param>
+			/// <param name="offsetDistance">The offset distance if this ruler is offseted</param>
+			public LinearRuler(PointF point1, PointF point2, float offsetDistance)
+				: base()
+			{
+				mPoint1 = point1;
+				mPoint2 = point2;
+				mOffsetDistance = offsetDistance;
+				updateDisplayDataAndMesurementImage();
 			}
 
 			/// <summary>
@@ -302,8 +363,38 @@ namespace BlueBrick.MapData
 			/// <returns>a new LinearRuler which is a conform copy of this</returns>
 			public override LayerItem Clone()
 			{
-				//TODO: is it enough?
-				return new LinearRuler(this.Point1, this.Point2);
+				//TODO: is it enough?: I guess not because of all the properties of the base class
+				return new LinearRuler(this.Point1, this.Point2, this.OffsetDistance);
+			}
+			#endregion
+
+			#region IXmlSerializable Members
+			public override void ReadXml(System.Xml.XmlReader reader)
+			{
+				base.ReadXml(reader);
+				// read the data of the ruler (don't use accessor to avoid multiple call to the update functions
+				mPoint1 = XmlReadWrite.readPointF(reader);
+				mPoint2 = XmlReadWrite.readPointF(reader);
+				mOffsetDistance = reader.ReadElementContentAsFloat();
+				mOffsetLineThickness = reader.ReadElementContentAsFloat();
+				// read the end element of the ruler
+				reader.ReadEndElement();
+
+				// update the computing data after reading the 2 points and offset
+				updateDisplayDataAndMesurementImage();
+			}
+
+			public override void WriteXml(System.Xml.XmlWriter writer)
+			{
+				writer.WriteStartElement("LinearRuler");
+				base.WriteXml(writer);
+				// write the date of the linear ruler
+				XmlReadWrite.writePointF(writer, "Point1", this.Point1);
+				XmlReadWrite.writePointF(writer, "Point2", this.Point2);
+				writer.WriteElementString("OffsetDistance", this.OffsetDistance.ToString(System.Globalization.CultureInfo.InvariantCulture));
+				writer.WriteElementString("OffsetLineThickness", mOffsetLineThickness.ToString(System.Globalization.CultureInfo.InvariantCulture));
+				//TODO write the mOffsetLineDashPattern
+				writer.WriteEndElement(); // end of LinearRuler
 			}
 			#endregion
 
@@ -477,6 +568,16 @@ namespace BlueBrick.MapData
 			#endregion
 
 			#region constructor/copy
+			/// <summary>
+			/// this parameter less constructor is requested for the serialization, but should not
+			/// be used by the program
+			/// </summary>
+			public CircularRuler()
+			{
+				// instanciate an empty area
+				mSelectionArea = new Tools.Circle(new PointF(0.0f, 0.0f), 0.0f);
+			}
+
 			public CircularRuler(PointF center, float radius) : base()
 			{
 				// define the selection area
@@ -511,6 +612,29 @@ namespace BlueBrick.MapData
 			{
 				//TODO: is it enough?
 				return new CircularRuler(this.Center, this.Radius);
+			}
+			#endregion
+
+			#region IXmlSerializable Members
+			public override void ReadXml(System.Xml.XmlReader reader)
+			{
+				base.ReadXml(reader);
+				// read data of the ruler
+				this.Center = XmlReadWrite.readPointF(reader);
+				this.Radius = reader.ReadElementContentAsFloat();
+				// read the end element of the ruler
+				reader.ReadEndElement();
+				// don't need to update the display area after reading the data values, because the accessor of Radius did it
+			}
+
+			public override void WriteXml(System.Xml.XmlWriter writer)
+			{
+				writer.WriteStartElement("CircularRuler");
+				base.WriteXml(writer);
+				// write ruler data
+				XmlReadWrite.writePointF(writer, "Center", this.Center);
+				writer.WriteElementString("Radius", this.Radius.ToString(System.Globalization.CultureInfo.InvariantCulture));
+				writer.WriteEndElement(); // end of CircularRuler
 			}
 			#endregion
 

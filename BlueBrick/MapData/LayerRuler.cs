@@ -115,8 +115,14 @@ namespace BlueBrick.MapData
 
 		protected override T readItem<T>(System.Xml.XmlReader reader)
 		{
-			LinearRuler ruler = new LinearRuler(); // TODO instanciate the correct ruler liner or circle
-//			ruler.ReadXml(reader); //TODO
+			// instanciate the correct ruler
+			RulerItem ruler = null;
+			if (reader.Name.Equals("LinearRuler"))
+				ruler = new LinearRuler();
+			else
+				ruler = new CircularRuler();
+			// then call the read function
+			ruler.ReadXml(reader);
 			return (ruler as T);
 		}
 

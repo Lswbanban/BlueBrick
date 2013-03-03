@@ -969,7 +969,9 @@ namespace BlueBrick.MapData
 
 		private void readItemListFromClipboard(System.Xml.XmlReader reader, ref List<Layer.LayerItem> itemsList)
 		{
-			this.readItemsListFromXml<Layer.LayerItem>(reader, ref itemsList, "Items", false);
+			// skip the common properties of the layer
+			if (reader.ReadToDescendant("Items"))
+				this.readItemsListFromXml<Layer.LayerItem>(reader, ref itemsList, "Items", false);
 		}
 
 		protected void readItemsListFromXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, string itemsListName, bool useProgressBar) where T : LayerItem

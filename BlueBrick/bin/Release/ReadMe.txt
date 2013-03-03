@@ -72,10 +72,10 @@ Open bugs:
 	- manage the different unit
 	- Ruler just a line: or diffrent options for the lines/rulers
 	- Ruler circle
-	- copy/paste/duplicate rulers
-	- save/load rulers in BBM
+	- duplicate rulers with the mouse
 	- save/load in LDraw
 	- snapping for rulers on grid and brick
+	- refactor create a write float/bool function in XmlReadWrite
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
