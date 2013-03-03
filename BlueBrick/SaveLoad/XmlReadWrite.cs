@@ -50,8 +50,13 @@ namespace BlueBrick.MapData
 			reader.ReadToDescendant("FontFamily");
 			string fontFamily = reader.ReadElementContentAsString();
 			float size = reader.ReadElementContentAsFloat();
+			FontStyle style = FontStyle.Regular;
+			// the style (italic, bold, etc...)
+			if (Map.DataVersionOfTheFileLoaded >= 6)
+				style = (FontStyle)Enum.Parse(typeof(FontStyle), reader.ReadElementContentAsString());
+			// end of Font
 			reader.ReadEndElement();
-			return new Font(fontFamily, size);
+			return new Font(fontFamily, size, style);
 		}
 
 		public static void writeFont(System.Xml.XmlWriter writer, string name, Font font)
@@ -59,6 +64,7 @@ namespace BlueBrick.MapData
 			writer.WriteStartElement(name);
 			writer.WriteElementString("FontFamily", font.FontFamily.Name);
 			writer.WriteElementString("Size", font.Size.ToString(System.Globalization.CultureInfo.InvariantCulture));
+			writer.WriteElementString("Style", font.Style.ToString());
 			writer.WriteEndElement();
 		}
 		#endregion

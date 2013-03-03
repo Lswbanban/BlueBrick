@@ -39,7 +39,7 @@ namespace BlueBrick.MapData
 	public class Map : IXmlSerializable
 	{
 		// the current version of the data this version of BlueBrick can read/write
-		private const int CURRENT_DATA_VERSION = 5;
+		private const int CURRENT_DATA_VERSION = 6;
 
 		// the current version of the data
 		private static int mDataVersionOfTheFileLoaded = CURRENT_DATA_VERSION;
