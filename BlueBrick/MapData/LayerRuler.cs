@@ -52,6 +52,8 @@ namespace BlueBrick.MapData
 		private bool mMouseHasMoved = false;
 		private bool mMouseMoveIsADuplicate = false;
 		private bool mMouseMoveWillAddOrEditRuler = false;
+		private bool mMouseIsMovingControlPoint = false;
+		private bool mMouseIsScalingRuler = false;
 
 		#region set/get
 		public static EditTool CurrentEditTool
@@ -213,6 +215,61 @@ namespace BlueBrick.MapData
 			}
 			return distance;
 		}
+
+		/// <summary>
+		/// This function tells if the specified point is just above at least one control point of any
+		/// ruler in this layer. A control point for a linear ruler is one of its two extremity and for 
+		/// a circular ruler it is its center. A certain distance is used to check if the point is above.
+		/// If more than one control point is a possible candidate, the closer one is chosen.
+		/// If no candidate are found, the specified concernedRulerItem is not changed.
+		/// </summary>
+		/// <param name="pointInStud">the position to check in stud coord</param>
+		/// <param name="concernedRulerItem">the ruler items that owns the found control point</param>
+		/// <returns>true if the specified position is near a control point</returns>
+		private bool isPointAboveAnyRulerControlPoint(PointF pointInStud, ref RulerItem concernedRulerItem)
+		{
+			bool candidateFound = false; // use a flag to avoid touching the ref concernedRulerItem in case of not found
+			float bestSquareDistance = 5.0f; // TODO for now use a fixed 5 studs, but the distance should be computed in pixels so this should be multiply by some scale 
+			foreach (RulerItem item in mRulers)
+			{
+				float currentSquareDistance = item.findClosestControlPointAndComputeSquareDistance(pointInStud);
+				if (currentSquareDistance < bestSquareDistance)
+				{
+					concernedRulerItem = item;
+					bestSquareDistance = currentSquareDistance;
+					candidateFound = true;
+				}
+			}
+			// return true if we found a candidate
+			return candidateFound;
+		}
+
+		/// <summary>
+		/// This function tells if the specified position is above at least one scaling handle of any
+		/// ruler in this layer. The scaling handle for a linear ruler is the line (possibly offseted) 
+		/// and for a circular ruler it the circle (both within a certain thickness).
+		/// </summary>
+		/// <param name="pointInStud">the position to check in stud coord</param>
+		/// <returns>true if the specified position is above any scaling handle</returns>
+		private bool isPointAboveAnyRulerScalingHandle(PointF pointInStud)
+		{
+			return false; // TODO
+		}		
+		#endregion
+
+		#region ruler attachement
+		/// <summary>
+		/// This function iterate through the selection and check if any ruler is attached to a part.
+		/// </summary>
+		/// <returns>true if at least one selected ruler is attached</returns>
+		private bool areSelectedItemsAttached()
+		{
+			// if any one is attached, stop searchingn the whole group is attached
+			foreach (LayerItem item in this.SelectedObjects)
+				if ((item as RulerItem).IsAttached)
+					return true;
+			return false;
+		}
 		#endregion
 
 		#region draw
@@ -252,6 +309,36 @@ namespace BlueBrick.MapData
 
 		#region mouse event
 		/// <summary>
+		/// This method use some criteria to determines if the mouse should be considered like above
+		/// a ruler control point or a ruler scaling handle. The criteria are:
+		/// First there should be no ruler selected or only one selected,
+		/// Then the multiple selection modifier key and duplicate modifier key should not be pressed,
+		/// And finally the mouse coord specified in parameter should be near a control point or
+		/// scale handle. this method update the two private flags mMouseIsMovingControlPoint
+		/// and mMouseIsScalingRuler. This method was create to factorised code (need to be checked
+		/// in different mouse event)
+		/// </summary>
+		/// <param name="mouseCoordInStud">the mouse coordinate in stud</param>
+		private void evaluateIfPointIsAboveControlPointOrScaleHandle(PointF mouseCoordInStud)
+		{
+			bool multipleSelectionPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
+			bool duplicationPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+
+			// check if we will move a control point or grab a scaling handle of a ruler
+			// this is only possible when only one ruler is selected (so empty selection, or just one)
+			// but not when a group of ruler is selected, and of course not when modifier keys are pressed
+			if (!multipleSelectionPressed && !duplicationPressed && (this.SelectedObjects.Count <= 1))
+			{
+				// for moving a point, we need to have the mouse above a control point
+				// if not this function doesn't change the ruler in reference
+				mMouseIsMovingControlPoint = isPointAboveAnyRulerControlPoint(mouseCoordInStud, ref mCurrentRulerUnderMouse);
+				// if we are not above a control point, maybe we are above a scale handle
+				if (!mMouseIsMovingControlPoint)
+					mMouseIsScalingRuler = isPointAboveAnyRulerScalingHandle(mouseCoordInStud);
+			}
+		}
+
+		/// <summary>
 		/// Return the cursor that should be display when the mouse is above the map without mouse click
 		/// </summary>
 		/// <param name="mouseCoordInStud"></param>
@@ -270,9 +357,16 @@ namespace BlueBrick.MapData
 						// the selection if he press the duplicate key after the mouse down, but before he start to move
 						if (mMouseMoveIsADuplicate ||
 							(!mMouseHasMoved && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)))
+						{
 							return MainForm.Instance.RulerDuplicateCursor;
+						}
 						else if (!mMouseMoveWillAddOrEditRuler)
-						    return MainForm.Instance.RulerMoveCursor;
+						{
+							if (mMouseIsMovingControlPoint)
+								return MainForm.Instance.RulerMovePointCursor;
+							else if (mMouseIsScalingRuler)
+								return MainForm.Instance.RulerMoveCursor; // TODO: call a function
+						}
 					}
 					else
 					{
@@ -286,6 +380,14 @@ namespace BlueBrick.MapData
 							else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
 							{
 								return MainForm.Instance.RulerSelectionCursor;
+							}
+							else
+							{
+								evaluateIfPointIsAboveControlPointOrScaleHandle(mouseCoordInStud);
+								if (mMouseIsMovingControlPoint)
+									return MainForm.Instance.RulerMovePointCursor;
+								else if (mMouseIsScalingRuler)
+									return MainForm.Instance.RulerMoveCursor; // TODO: call a function							}
 							}
 						}
 					}
@@ -328,19 +430,24 @@ namespace BlueBrick.MapData
 			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
+					// boolean flags for the keyboard control keys
+					bool multipleSelectionPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
+					bool duplicationPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+
 					// check if the mouse is inside the bounding rectangle of the selected objects
 					bool isMouseInsideSelectedObjects = isPointInsideSelectionRectangle(mouseCoordInStud);
-					if (!isMouseInsideSelectedObjects && (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
-						&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey))
+
+					// clear the selection if we click outside the selection without any key pressed
+					if (!isMouseInsideSelectedObjects && !multipleSelectionPressed && !duplicationPressed)
 						clearSelection();
 
-					// compute the current text cell under the mouse
+					// compute the current ruler under the mouse
 					mCurrentRulerUnderMouse = null;
 
 					// We search if there is a cell under the mouse but in priority we choose from the current selected cells
 					mCurrentRulerUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as RulerItem;
 
-					// if the current selected text is not under the mouse we search among the other texts
+					// if the current selected ruler is not under the mouse we search among the other rulers
 					// but in reverse order to choose first the brick on top
 					if (mCurrentRulerUnderMouse == null)
 						mCurrentRulerUnderMouse = getRulerItemUnderMouse(mouseCoordInStud);
@@ -348,13 +455,20 @@ namespace BlueBrick.MapData
 					// save a flag that tell if it is a simple move or a duplicate of the selection
 					// Be carreful for a duplication we take only the selected objects, not the cell
 					// under the mouse that may not be selected
-					mMouseMoveIsADuplicate = isMouseInsideSelectedObjects &&
-											(Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+					mMouseMoveIsADuplicate = isMouseInsideSelectedObjects && duplicationPressed;
+
+					// now check if we will move a control point or scale handle.
+					// this method update mMouseIsMovingControlPoint and mMouseIsScalingRuler
+					evaluateIfPointIsAboveControlPointOrScaleHandle(mouseCoordInStud);
 
 					// check if the user plan to move the selected items
-					bool willMoveSelectedObject = (isMouseInsideSelectedObjects || (mCurrentRulerUnderMouse != null))
-													&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
-													&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+					// for that of course we must not have a modifier key pressed
+					// we should also not do a control point move neither handle scaling
+					// and none of the selected objects must be attached
+					bool willMoveSelectedObject = !multipleSelectionPressed && !duplicationPressed
+												&& !mMouseIsMovingControlPoint && !mMouseIsScalingRuler
+												&& ((isMouseInsideSelectedObjects && !areSelectedItemsAttached()) ||
+													((mCurrentRulerUnderMouse != null) && (!mCurrentRulerUnderMouse.IsAttached)));
 
 					// we will add or edit a text if we double click
 					mMouseMoveWillAddOrEditRuler = (e.Clicks == 2);
@@ -366,11 +480,15 @@ namespace BlueBrick.MapData
 						preferedCursor = MainForm.Instance.RulerMoveCursor;
 					else if (mMouseMoveWillAddOrEditRuler)
 						preferedCursor = MainForm.Instance.RulerArrowCursor; //TODO I think we should use another cursor here
+					else if (mMouseIsMovingControlPoint)
+						preferedCursor = MainForm.Instance.RulerMovePointCursor;
+					else if (mMouseIsScalingRuler)
+						preferedCursor = MainForm.Instance.RulerMoveCursor; // TODO: call a function
 					else
 						preferedCursor = MainForm.Instance.RulerArrowCursor;
 
 					// handle the mouse down if we duplicate or move the selected texts, or edit a text
-					willHandleMouse = (mMouseMoveIsADuplicate || willMoveSelectedObject || mMouseMoveWillAddOrEditRuler);
+					willHandleMouse = (mMouseMoveIsADuplicate || willMoveSelectedObject || mMouseMoveWillAddOrEditRuler || mMouseIsMovingControlPoint || mMouseIsScalingRuler);
 					break;
 
 				case EditTool.LINE:
@@ -481,6 +599,12 @@ namespace BlueBrick.MapData
 			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
+					// update the control point if it's what we are doing
+					if (mMouseIsMovingControlPoint && (mCurrentRulerUnderMouse != null))
+					{
+						mCurrentRulerUnderMouse.CurrentControlPoint = mouseCoordInStud;
+						mustRefresh = true;
+					}
 					break;
 
 				case EditTool.LINE:
@@ -519,6 +643,13 @@ namespace BlueBrick.MapData
 			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
+					if (mMouseIsMovingControlPoint)
+					{
+						// TODO need to create an action to modify the ruler
+						mustRefresh = true;
+					}
+					mMouseIsMovingControlPoint = false;
+					mMouseIsScalingRuler = false;
 					mMouseMoveWillAddOrEditRuler = false;
 					mCurrentRulerUnderMouse = null;
 					break;
