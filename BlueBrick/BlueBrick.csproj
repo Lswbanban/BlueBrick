@@ -674,6 +674,7 @@
     <EmbeddedResource Include="Cursor\GridArrowCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerDuplicateCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerSelectionCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerMovePointCursor.cur" />
     <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />

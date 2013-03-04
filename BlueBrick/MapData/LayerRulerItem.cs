@@ -50,6 +50,19 @@ namespace BlueBrick.MapData
 			[NonSerialized]
 			protected PointF mMesurementTextWidthHalfVector = new PointF(); // half the vector along the width of the mesurement text in pixel
 
+			#region get/set
+			public virtual bool IsAttached
+			{
+				get { return false; }
+			}
+
+			public abstract PointF CurrentControlPoint
+			{
+				get;
+				set;
+			}
+			#endregion
+
 			#region constructor
 			/// <summary>
 			/// Default constructor
@@ -156,6 +169,16 @@ namespace BlueBrick.MapData
 			}
 			#endregion
 
+			#region edition
+			/// <summary>
+			/// Find the closest control point of the ruler away from the specified point. Memorize it 
+			/// and then compute the square distance to it and return it
+			/// </summary>
+			/// <param name="pointInStud">the position in stud from which searching the nearest the control points</param>
+			/// <returns>the square distance from the specified point to the nearest control point in squared studs</returns>
+			public abstract float findClosestControlPointAndComputeSquareDistance(PointF pointInStud);
+			#endregion
+
 			#region draw
 			/// <summary>
 			/// Draw the ruler item.
@@ -201,6 +224,8 @@ namespace BlueBrick.MapData
 			private PointF mOffsetPoint2 = new PointF(); // the offset point corresponding to Point2 in stud
 			[NonSerialized]
 			private PointF mUnitVector = new PointF(); // the unit vector of the line between point1 and point2
+			[NonSerialized]
+			private bool mIsCurrentControlPointPoint1 = false; // tells if the current control point is point1 or point2
 
 			// variable for the draw
 			private float mOffsetLineThickness = 1.0f; // the thickness of the guide lines when this ruler has an offset
@@ -224,6 +249,24 @@ namespace BlueBrick.MapData
 				{
 					mPoint2 = value;
 					updateDisplayDataAndMesurementImage();
+				}
+			}
+
+			public override PointF CurrentControlPoint
+			{
+				get
+				{
+					if (mIsCurrentControlPointPoint1)
+						return this.Point1;
+					else
+						return this.Point2;
+				}
+				set
+				{
+					if (mIsCurrentControlPointPoint1)
+						this.Point1 = value;
+					else
+						this.Point2 = value;
 				}
 			}
 
@@ -398,6 +441,32 @@ namespace BlueBrick.MapData
 			}
 			#endregion
 
+			#region edition
+			/// <summary>
+			/// Find the closest control point of the ruler away from the specified point. Memorize it 
+			/// and then compute the square distance to it and return it.
+			/// The control point for a linear ruler are the two extremities.
+			/// </summary>
+			/// <param name="pointInStud">the position in stud from which searching the nearest the control points</param>
+			/// <returns>the square distance from the specified point to the nearest control point in squared studs</returns>
+			public override float findClosestControlPointAndComputeSquareDistance(PointF pointInStud)
+			{
+				float dx1 = pointInStud.X - mPoint1.X;
+				float dy1 = pointInStud.Y - mPoint1.Y;
+				float squaredDist1 = (dx1 * dx1) + (dy1 * dy1);
+				float dx2 = pointInStud.X - mPoint2.X;
+				float dy2 = pointInStud.Y - mPoint2.Y;
+				float squaredDist2 = (dx2 * dx2) + (dy2 * dy2);
+				// witch one is closer?
+				mIsCurrentControlPointPoint1 = (squaredDist1 < squaredDist2);
+				// and return the correct distance
+				if (mIsCurrentControlPointPoint1)
+					return squaredDist1;
+				else
+					return squaredDist2;
+			}
+			#endregion
+
 			#region draw
 			/// <summary>
 			/// Draw the ruler.
@@ -534,7 +603,17 @@ namespace BlueBrick.MapData
 				{
 					mSelectionArea[0] = value;
 					base.Center = value;
+					updateDisplayData();
 				}
+			}
+
+			/// <summary>
+			/// The control point of a circle is always its center
+			/// </summary>
+			public override PointF CurrentControlPoint
+			{
+				get { return this.Center; }
+				set { this.Center = value; }
 			}
 
 			/// <summary>
@@ -635,6 +714,21 @@ namespace BlueBrick.MapData
 				XmlReadWrite.writePointF(writer, "Center", this.Center);
 				writer.WriteElementString("Radius", this.Radius.ToString(System.Globalization.CultureInfo.InvariantCulture));
 				writer.WriteEndElement(); // end of CircularRuler
+			}
+			#endregion
+
+			#region edition
+			/// <summary>
+			/// For a circular ruler, there's only one control point which is the center, so this function
+			/// just compute the square distance to the center and return it
+			/// </summary>
+			/// <param name="pointInStud">the position in stud from which searching the nearest the control points</param>
+			/// <returns>the square distance from the specified point to the nearest control point in squared studs</returns>
+			public override float findClosestControlPointAndComputeSquareDistance(PointF pointInStud)
+			{
+				float dx1 = pointInStud.X - Center.X;
+				float dy1 = pointInStud.Y - Center.Y;
+				return ((dx1 * dx1) + (dy1 * dy1));
 			}
 			#endregion
 

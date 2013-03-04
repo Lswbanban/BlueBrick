@@ -66,6 +66,7 @@ namespace BlueBrick
 		private Cursor mRulerAddPoint1Cursor = null;
 		private Cursor mRulerAddPoint2Cursor = null;
 		private Cursor mRulerAddCircleCursor = null;
+		private Cursor mRulerMovePointCursor = null;
 		private Cursor mRulerOffsetHorizontalCursor = null;
 		private Cursor mRulerOffsetVerticalCursor = null;
 		private Cursor mRulerOffsetDiagonalUpCursor = null;
@@ -369,6 +370,14 @@ namespace BlueBrick
 		}
 
 		/// <summary>
+		/// Get the cursor for moving a linear ruler point
+		/// </summary>
+		public Cursor RulerMovePointCursor
+		{
+			get { return mRulerMovePointCursor; }
+		}
+
+		/// <summary>
 		/// Get the cursor for moving the ruler offset
 		/// </summary>
 		public Cursor RulerOffsetHorizontalCursor
@@ -620,6 +629,7 @@ namespace BlueBrick
 			mRulerAddPoint1Cursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerAddPoint1Cursor.cur");
 			mRulerAddPoint2Cursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerAddPoint2Cursor.cur");
 			mRulerAddCircleCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerAddCircleCursor.cur");
+			mRulerMovePointCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerMovePointCursor.cur");
 			mRulerOffsetHorizontalCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerOffsetHorizontalCursor.cur");
 			mRulerOffsetVerticalCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerOffsetVerticalCursor.cur");
 			mRulerOffsetDiagonalUpCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerOffsetDiagonalUpCursor.cur");
