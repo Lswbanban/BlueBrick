@@ -1666,7 +1666,7 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <param name="e">the mouse event arg that describe the mouse move</param>
 		/// <returns>true if the view should be refreshed</returns>
-		public abstract bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud);
+		public abstract bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor);
 
 		/// <summary>
 		/// This method is called when the mouse button is released.

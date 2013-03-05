@@ -497,6 +497,7 @@ namespace BlueBrick
 			bool mustRefreshView = false;
 			PointF mouseCoordInStud = getMouseCoordInStud(e);
 			string statusBarMessage = "(" + mouseCoordInStud.X.ToString("F1") + " / " + mouseCoordInStud.Y.ToString("F1") + ") ";
+			Cursor preferedCursor = this.Cursor;
 
 			switch (e.Button)
 			{
@@ -518,7 +519,8 @@ namespace BlueBrick
 					else if (mIsMouseHandledByMap)
 					{
 						// left button is handle by layers (so give it to the map)
-						mustRefreshView = Map.Instance.mouseMove(e, mouseCoordInStud);
+						mustRefreshView = Map.Instance.mouseMove(e, mouseCoordInStud, ref preferedCursor);
+						this.Cursor = preferedCursor;
 					}
 					else if (mIsZooming)
 					{
@@ -542,9 +544,9 @@ namespace BlueBrick
 
 				case MouseButtons.None:
 					// if the map also want to handle this free move, call it
-					Cursor preferedCursor = getDefaultCursor(mouseCoordInStud);
+					preferedCursor = getDefaultCursor(mouseCoordInStud);
 					if (Map.Instance.handleMouseMoveWithoutClick(e, mouseCoordInStud, ref preferedCursor))
-						mustRefreshView = Map.Instance.mouseMove(e, mouseCoordInStud);
+						mustRefreshView = Map.Instance.mouseMove(e, mouseCoordInStud, ref preferedCursor);
 
 					// set the cursor with the preference
 					this.Cursor = preferedCursor;

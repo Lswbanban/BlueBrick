@@ -988,10 +988,10 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <param name="e">the mouse event arg that describe the mouse move</param>
 		/// <returns>true if the view should be refreshed</returns>
-		public bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud)
+		public bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
 			if (mLayerThatHandleMouse != null)
-				return mLayerThatHandleMouse.mouseMove(e, mouseCoordInStud);
+				return mLayerThatHandleMouse.mouseMove(e, mouseCoordInStud, ref preferedCursor);
 			return false;
 		}
 

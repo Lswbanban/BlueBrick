@@ -661,12 +661,12 @@
     <EmbeddedResource Include="Cursor\FlexArrowCursor.cur" />
     <EmbeddedResource Include="Cursor\PanViewCursor.cur" />
     <EmbeddedResource Include="Cursor\ZoomCursor.cur" />
-    <EmbeddedResource Include="Cursor\RulerOffsetHorizontalCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerScaleVerticalCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerAddPoint1Cursor.cur" />
     <EmbeddedResource Include="Cursor\RulerAddPoint2Cursor.cur" />
-    <EmbeddedResource Include="Cursor\RulerOffsetDiagonalDownCursor.cur" />
-    <EmbeddedResource Include="Cursor\RulerOffsetDiagonalUpCursor.cur" />
-    <EmbeddedResource Include="Cursor\RulerOffsetVerticalCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerScaleDiagonalDownCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerScaleDiagonalUpCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerScaleHorizontalCursor.cur" />
     <EmbeddedResource Include="Cursor\HiddenLayerCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerArrowCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerAddCircleCursor.cur" />

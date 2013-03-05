@@ -177,6 +177,13 @@ namespace BlueBrick.MapData
 			/// <param name="pointInStud">the position in stud from which searching the nearest the control points</param>
 			/// <returns>the square distance from the specified point to the nearest control point in squared studs</returns>
 			public abstract float findClosestControlPointAndComputeSquareDistance(PointF pointInStud);
+
+			/// <summary>
+			/// Get the scaling orientation of the ruler depending on the position of the mouse
+			/// </summary>
+			/// <param name="mouseCoordInStud">the coordinate of the mouse in stud</param>
+			/// <returns>return the angle direction of the scale in degrees</returns>
+			public abstract float getScalingOrientation(PointF mouseCoordInStud);
 			#endregion
 
 			#region draw
@@ -465,6 +472,22 @@ namespace BlueBrick.MapData
 				else
 					return squaredDist2;
 			}
+
+			/// <summary>
+			/// Get the scaling orientation of the ruler depending on the position of the mouse.
+			/// For a Linear Ruler, the scale direction is always the perpendicular of the
+			/// orientation of the ruler, no matter the position of the mouse.
+			/// </summary>
+			/// <param name="mouseCoordInStud">the coordinate of the mouse in stud</param>
+			/// <returns>return the angle direction of the scale in degrees</returns>
+			public override float getScalingOrientation(PointF mouseCoordInStud)
+			{
+				float orientation = this.Orientation;
+				if (orientation < 90.0f)
+					return (this.Orientation + 90.0f);
+				else
+					return (this.Orientation - 90.0f);
+			}
 			#endregion
 
 			#region draw
@@ -729,6 +752,20 @@ namespace BlueBrick.MapData
 				float dx1 = pointInStud.X - Center.X;
 				float dy1 = pointInStud.Y - Center.Y;
 				return ((dx1 * dx1) + (dy1 * dy1));
+			}
+
+			/// <summary>
+			/// Get the scaling orientation of the ruler depending on the position of the mouse.
+			/// For a Circular Ruler, this is the direction between the mouse coord and the center
+			/// of the circle
+			/// </summary>
+			/// <param name="mouseCoordInStud">the coordinate of the mouse in stud</param>
+			/// <returns>return the angle direction of the scale in degrees</returns>
+			public override float getScalingOrientation(PointF mouseCoordInStud)
+			{
+				float dx = mouseCoordInStud.X - Center.X;
+				float dy = mouseCoordInStud.Y - Center.Y;
+				return (float)(Math.Atan2(dy, dx) * (180.0 / Math.PI));
 			}
 			#endregion
 
