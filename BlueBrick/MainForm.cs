@@ -67,10 +67,10 @@ namespace BlueBrick
 		private Cursor mRulerAddPoint2Cursor = null;
 		private Cursor mRulerAddCircleCursor = null;
 		private Cursor mRulerMovePointCursor = null;
-		private Cursor mRulerOffsetHorizontalCursor = null;
-		private Cursor mRulerOffsetVerticalCursor = null;
-		private Cursor mRulerOffsetDiagonalUpCursor = null;
-		private Cursor mRulerOffsetDiagonalDownCursor = null;
+		private Cursor mRulerScaleVerticalCursor = null;
+		private Cursor mRulerScaleHorizontalCursor = null;
+		private Cursor mRulerScaleDiagonalUpCursor = null;
+		private Cursor mRulerScaleDiagonalDownCursor = null;
 
 		// for shortcut key
 		// var for updating the move
@@ -378,35 +378,35 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Get the cursor for moving the ruler offset
+		/// Get the cursor for scaling a ruler verticaly
 		/// </summary>
-		public Cursor RulerOffsetHorizontalCursor
+		public Cursor RulerScaleVerticalCursor
 		{
-			get { return mRulerOffsetHorizontalCursor; }
+			get { return mRulerScaleVerticalCursor; }
 		}
 
 		/// <summary>
-		/// Get the cursor for moving the ruler offset
+		/// Get the cursor for scaling a ruler horizontaly
 		/// </summary>
-		public Cursor RulerOffsetVerticalCursor
+		public Cursor RulerScaleHorizontalCursor
 		{
-			get { return mRulerOffsetVerticalCursor; }
+			get { return mRulerScaleHorizontalCursor; }
 		}
 
 		/// <summary>
-		/// Get the cursor for moving the ruler offset
+		/// Get the cursor for scaling toward north-east or south-west
 		/// </summary>
-		public Cursor RulerOffsetDiagonalUpCursor
+		public Cursor RulerScaleDiagonalUpCursor
 		{
-			get { return mRulerOffsetDiagonalUpCursor; }
+			get { return mRulerScaleDiagonalUpCursor; }
 		}
 
 		/// <summary>
-		/// Get the cursor for moving the ruler offset
+		/// Get the cursor for scaling north-west or south-east
 		/// </summary>
-		public Cursor RulerOffsetDiagonalDownCursor
+		public Cursor RulerScaleDiagonalDownCursor
 		{
-			get { return mRulerOffsetDiagonalDownCursor; }
+			get { return mRulerScaleDiagonalDownCursor; }
 		}
 
 		/// <summary>
@@ -630,10 +630,10 @@ namespace BlueBrick
 			mRulerAddPoint2Cursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerAddPoint2Cursor.cur");
 			mRulerAddCircleCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerAddCircleCursor.cur");
 			mRulerMovePointCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerMovePointCursor.cur");
-			mRulerOffsetHorizontalCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerOffsetHorizontalCursor.cur");
-			mRulerOffsetVerticalCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerOffsetVerticalCursor.cur");
-			mRulerOffsetDiagonalUpCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerOffsetDiagonalUpCursor.cur");
-			mRulerOffsetDiagonalDownCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerOffsetDiagonalDownCursor.cur");
+			mRulerScaleVerticalCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerScaleVerticalCursor.cur");
+			mRulerScaleHorizontalCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerScaleHorizontalCursor.cur");
+			mRulerScaleDiagonalUpCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerScaleDiagonalUpCursor.cur");
+			mRulerScaleDiagonalDownCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerScaleDiagonalDownCursor.cur");
 		}
 
 		/// <summary>

@@ -39,21 +39,21 @@ namespace BlueBrick.MapData
 		// the image attribute to draw the text including the layer transparency
 		private ImageAttributes mImageAttribute = new ImageAttributes();
 
-		// variable used during the edition
-		private RulerItem mCurrentRulerUnderMouse = null;
-		private LinearRuler mCurrentlyEditedRuler = null;
-		private CircularRuler mCurrentlyEditedCircle = null;
-		private bool mIsEditingOffsetOfRuler = false;
+		// variable for selection drawing
 		private const int BASE_SELECTION_TRANSPARENCY = 112;
 		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb(BASE_SELECTION_TRANSPARENCY, 255, 255, 255));
+		// variable used during the edition
+		private RulerItem mCurrentRulerUnderMouse = null;
+		private RulerItem mCurrentlyEditedRuler = null;
+		// variable for mouse state
 		private PointF mMouseDownInitialPosition;
 		private PointF mMouseDownLastPosition;
 		private bool mMouseIsBetweenDownAndUpEvent = false;
 		private bool mMouseHasMoved = false;
 		private bool mMouseMoveIsADuplicate = false;
-		private bool mMouseMoveWillAddOrEditRuler = false;
-		private bool mMouseIsMovingControlPoint = false;
-		private bool mMouseIsScalingRuler = false;
+		private bool mMouseMoveWillCustomizeRuler = false; // true for a double click when we will call the option window to change properties of a ruler (color, mesurement unit, etc...)
+		private bool mMouseIsMovingControlPoint = false; // true when moving one of the two points of a linear ruler or the center of a circular ruler
+		private bool mMouseIsScalingRuler = false; // true when moving the offset of a linear ruler, or changing the radius of a circular ruler
 
 		#region set/get
 		public static EditTool CurrentEditTool
@@ -205,11 +205,12 @@ namespace BlueBrick.MapData
 		private float computePointDistanceFromCurrentRuler(PointF pointInStud)
 		{
 			float distance = 0.0f;
-			if (mCurrentlyEditedRuler != null)
+			LinearRuler linearRuler = mCurrentlyEditedRuler as LinearRuler;
+			if (linearRuler != null)
 			{
 				// get the two vector to make a vectorial product
-				PointF unitVector = mCurrentlyEditedRuler.UnitVector;
-				PointF point1ToMouse = new PointF(pointInStud.X - mCurrentlyEditedRuler.Point1.X, pointInStud.Y - mCurrentlyEditedRuler.Point1.Y);
+				PointF unitVector = linearRuler.UnitVector;
+				PointF point1ToMouse = new PointF(pointInStud.X - linearRuler.Point1.X, pointInStud.Y - linearRuler.Point1.Y);
 				// compute the vectorial product (x and y are null cause z is null):
 				distance = (point1ToMouse.X * unitVector.Y) - (point1ToMouse.Y * unitVector.X);
 			}
@@ -251,10 +252,40 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <param name="pointInStud">the position to check in stud coord</param>
 		/// <returns>true if the specified position is above any scaling handle</returns>
-		private bool isPointAboveAnyRulerScalingHandle(PointF pointInStud)
+		private bool isPointAboveAnyRulerScalingHandle(PointF pointInStud, ref RulerItem concernedRulerItem)
 		{
 			return false; // TODO
-		}		
+		}
+
+		/// <summary>
+		/// This method use some criteria to determines if the mouse should be considered like above
+		/// a ruler control point or a ruler scaling handle. The criteria are:
+		/// First there should be no ruler selected or only one selected,
+		/// Then the multiple selection modifier key and duplicate modifier key should not be pressed,
+		/// And finally the mouse coord specified in parameter should be near a control point or
+		/// scale handle. this method update the two private flags mMouseIsMovingControlPoint
+		/// and mMouseIsScalingRuler. This method was create to factorised code (need to be checked
+		/// in different mouse event)
+		/// </summary>
+		/// <param name="mouseCoordInStud">the mouse coordinate in stud</param>
+		private void evaluateIfPointIsAboveControlPointOrScaleHandle(PointF mouseCoordInStud)
+		{
+			bool multipleSelectionPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
+			bool duplicationPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+
+			// check if we will move a control point or grab a scaling handle of a ruler
+			// this is only possible when only one ruler is selected (so empty selection, or just one)
+			// but not when a group of ruler is selected, and of course not when modifier keys are pressed
+			if (!multipleSelectionPressed && !duplicationPressed && (this.SelectedObjects.Count <= 1))
+			{
+				// for moving a point, we need to have the mouse above a control point
+				// if not this function doesn't change the ruler in reference
+				mMouseIsMovingControlPoint = isPointAboveAnyRulerControlPoint(mouseCoordInStud, ref mCurrentRulerUnderMouse);
+				// if we are not above a control point, maybe we are above a scale handle
+				if (!mMouseIsMovingControlPoint)
+					mMouseIsScalingRuler = isPointAboveAnyRulerScalingHandle(mouseCoordInStud, ref mCurrentRulerUnderMouse);
+			}
+		}
 		#endregion
 
 		#region ruler attachement
@@ -296,11 +327,11 @@ namespace BlueBrick.MapData
 				ruler.draw(g, areaInStud, scalePixelPerStud, mTransparency,
 							mImageAttribute, mSelectedObjects.Contains(ruler), mSelectionBrush);
 
-			// draw the ruler we are currently creating if any
-			if (mCurrentlyEditedRuler != null)
+			// draw the ruler that we are currently creating if any
+			// (if it's the same as the ruler under the mouse
+			// that means we are not creating a new one but editing an existing one)
+			if ((mCurrentlyEditedRuler != null) && (mCurrentlyEditedRuler != mCurrentRulerUnderMouse))
 				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute, false, mSelectionBrush);
-			if (mCurrentlyEditedCircle != null)
-				mCurrentlyEditedCircle.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute, false, mSelectionBrush);
 
 			// call the base class to draw the surrounding selection rectangle
 			base.draw(g, areaInStud, scalePixelPerStud);
@@ -309,35 +340,32 @@ namespace BlueBrick.MapData
 
 		#region mouse event
 		/// <summary>
-		/// This method use some criteria to determines if the mouse should be considered like above
-		/// a ruler control point or a ruler scaling handle. The criteria are:
-		/// First there should be no ruler selected or only one selected,
-		/// Then the multiple selection modifier key and duplicate modifier key should not be pressed,
-		/// And finally the mouse coord specified in parameter should be near a control point or
-		/// scale handle. this method update the two private flags mMouseIsMovingControlPoint
-		/// and mMouseIsScalingRuler. This method was create to factorised code (need to be checked
-		/// in different mouse event)
+		/// Return the correct Cursor for scaling ruler given the specified orientation of the scaling handle
 		/// </summary>
-		/// <param name="mouseCoordInStud">the mouse coordinate in stud</param>
-		private void evaluateIfPointIsAboveControlPointOrScaleHandle(PointF mouseCoordInStud)
+		/// <param name="orientation">orientation of the handle in degrees</param>
+		/// <returns>the best looking cursor</returns>
+		private Cursor getScalingCursorFromOrientation(float orientation)
 		{
-			bool multipleSelectionPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
-			bool duplicationPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
-
-			// check if we will move a control point or grab a scaling handle of a ruler
-			// this is only possible when only one ruler is selected (so empty selection, or just one)
-			// but not when a group of ruler is selected, and of course not when modifier keys are pressed
-			if (!multipleSelectionPressed && !duplicationPressed && (this.SelectedObjects.Count <= 1))
-			{
-				// for moving a point, we need to have the mouse above a control point
-				// if not this function doesn't change the ruler in reference
-				mMouseIsMovingControlPoint = isPointAboveAnyRulerControlPoint(mouseCoordInStud, ref mCurrentRulerUnderMouse);
-				// if we are not above a control point, maybe we are above a scale handle
-				if (!mMouseIsMovingControlPoint)
-					mMouseIsScalingRuler = isPointAboveAnyRulerScalingHandle(mouseCoordInStud);
-			}
+			// careful the orientation is not in trigo direction but inversed
+			if (orientation > 157.5f)
+				return MainForm.Instance.RulerScaleHorizontalCursor;
+			else if (orientation > 112.5f)
+				return MainForm.Instance.RulerScaleDiagonalUpCursor;
+			else if (orientation > 67.5f)
+				return MainForm.Instance.RulerScaleVerticalCursor;
+			else if (orientation > 22.5f)
+				return MainForm.Instance.RulerScaleDiagonalDownCursor;
+			else if (orientation > -22.5f)
+				return MainForm.Instance.RulerScaleHorizontalCursor;
+			else if (orientation > -67.5f)
+				return MainForm.Instance.RulerScaleDiagonalUpCursor;
+			else if (orientation > -112.5f)
+				return MainForm.Instance.RulerScaleVerticalCursor;
+			else if (orientation > -157.5f)
+				return MainForm.Instance.RulerScaleDiagonalDownCursor;
+			else
+				return MainForm.Instance.RulerScaleHorizontalCursor;
 		}
-
 		/// <summary>
 		/// Return the cursor that should be display when the mouse is above the map without mouse click
 		/// </summary>
@@ -360,12 +388,12 @@ namespace BlueBrick.MapData
 						{
 							return MainForm.Instance.RulerDuplicateCursor;
 						}
-						else if (!mMouseMoveWillAddOrEditRuler)
+						else if (!mMouseMoveWillCustomizeRuler)
 						{
 							if (mMouseIsMovingControlPoint)
 								return MainForm.Instance.RulerMovePointCursor;
 							else if (mMouseIsScalingRuler)
-								return MainForm.Instance.RulerMoveCursor; // TODO: call a function
+								return getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
 						}
 					}
 					else
@@ -387,7 +415,7 @@ namespace BlueBrick.MapData
 								if (mMouseIsMovingControlPoint)
 									return MainForm.Instance.RulerMovePointCursor;
 								else if (mMouseIsScalingRuler)
-									return MainForm.Instance.RulerMoveCursor; // TODO: call a function							}
+									return getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
 							}
 						}
 					}
@@ -460,6 +488,9 @@ namespace BlueBrick.MapData
 					// now check if we will move a control point or scale handle.
 					// this method update mMouseIsMovingControlPoint and mMouseIsScalingRuler
 					evaluateIfPointIsAboveControlPointOrScaleHandle(mouseCoordInStud);
+					// assign the edited ruler if we are editing its point or scale it (after evaluation)
+					if (mMouseIsMovingControlPoint || mMouseIsScalingRuler)
+						mCurrentlyEditedRuler = mCurrentRulerUnderMouse;
 
 					// check if the user plan to move the selected items
 					// for that of course we must not have a modifier key pressed
@@ -471,30 +502,30 @@ namespace BlueBrick.MapData
 													((mCurrentRulerUnderMouse != null) && (!mCurrentRulerUnderMouse.IsAttached)));
 
 					// we will add or edit a text if we double click
-					mMouseMoveWillAddOrEditRuler = (e.Clicks == 2);
+					mMouseMoveWillCustomizeRuler = (e.Clicks == 2);
 
 					// select the appropriate cursor:
 					if (mMouseMoveIsADuplicate)
 						preferedCursor = MainForm.Instance.RulerDuplicateCursor;
 					else if (willMoveSelectedObject)
 						preferedCursor = MainForm.Instance.RulerMoveCursor;
-					else if (mMouseMoveWillAddOrEditRuler)
+					else if (mMouseMoveWillCustomizeRuler)
 						preferedCursor = MainForm.Instance.RulerArrowCursor; //TODO I think we should use another cursor here
 					else if (mMouseIsMovingControlPoint)
 						preferedCursor = MainForm.Instance.RulerMovePointCursor;
 					else if (mMouseIsScalingRuler)
-						preferedCursor = MainForm.Instance.RulerMoveCursor; // TODO: call a function
+						preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
 					else
 						preferedCursor = MainForm.Instance.RulerArrowCursor;
 
 					// handle the mouse down if we duplicate or move the selected texts, or edit a text
-					willHandleMouse = (mMouseMoveIsADuplicate || willMoveSelectedObject || mMouseMoveWillAddOrEditRuler || mMouseIsMovingControlPoint || mMouseIsScalingRuler);
+					willHandleMouse = (mMouseMoveIsADuplicate || willMoveSelectedObject || mMouseMoveWillCustomizeRuler || mMouseIsMovingControlPoint || mMouseIsScalingRuler);
 					break;
 
 				case EditTool.LINE:
 					// check if we are finishing the edition of the ruler by moving the offset,
 					// in that case it is the click to fix the offset
-					if (!mIsEditingOffsetOfRuler)
+					if (!mMouseIsScalingRuler)
 						preferedCursor = MainForm.Instance.RulerAddPoint2Cursor;
 					// we handle all the click when editing a ruler
 					willHandleMouse = true;
@@ -517,29 +548,10 @@ namespace BlueBrick.MapData
 		/// <returns>true if this layer wants to handle it</returns>
 		public override bool handleMouseMoveWithoutClick(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
-			if (mIsEditingOffsetOfRuler)
-			{
-				float orientation = mCurrentlyEditedRuler.Orientation;
-				if (orientation > 157.5f)
-					preferedCursor = MainForm.Instance.RulerOffsetHorizontalCursor;
-				else if (orientation > 112.5f)
-					preferedCursor = MainForm.Instance.RulerOffsetDiagonalDownCursor;
-				else if (orientation > 67.5f)
-					preferedCursor = MainForm.Instance.RulerOffsetVerticalCursor;
-				else if (orientation > 22.5f)
-					preferedCursor = MainForm.Instance.RulerOffsetDiagonalUpCursor;
-				else if (orientation > -22.5f)
-					preferedCursor = MainForm.Instance.RulerOffsetHorizontalCursor;
-				else if (orientation > -67.5f)
-					preferedCursor = MainForm.Instance.RulerOffsetDiagonalDownCursor;
-				else if (orientation > -112.5f)
-					preferedCursor = MainForm.Instance.RulerOffsetVerticalCursor;
-				else if (orientation > -157.5f)
-					preferedCursor = MainForm.Instance.RulerOffsetDiagonalUpCursor;
-				else
-					preferedCursor = MainForm.Instance.RulerOffsetHorizontalCursor;
-			}
-			return mIsEditingOffsetOfRuler;
+			if (mMouseIsScalingRuler && (mCurrentlyEditedRuler != null))
+				preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
+			// for now only handle it if we are editing a linear ruler
+			return mMouseIsScalingRuler;
 		}
 
 		/// <summary>
@@ -574,13 +586,15 @@ namespace BlueBrick.MapData
 					break;
 
 				case EditTool.LINE:
-					if (!mIsEditingOffsetOfRuler)
+					if (!mMouseIsScalingRuler)
 						mCurrentlyEditedRuler = new LinearRuler(mouseCoordInStud, mouseCoordInStud);
-					mustRefresh = true;
 					break;
 
 				case EditTool.CIRCLE:
-					mCurrentlyEditedCircle = new CircularRuler(mouseCoordInStud, 0.0f);
+					// for the creation of a circle the center start on mouse click and we
+					// immediatly go to the scaling of the circle
+					mCurrentlyEditedRuler = new CircularRuler(mouseCoordInStud, 0.0f);					
+					mMouseIsScalingRuler = true;
 					break;
 			}
 
@@ -592,7 +606,7 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <param name="e">the mouse event arg that describe the mouse move</param>
 		/// <returns>true if the view should be refreshed</returns>
-		public override bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud)
+		public override bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
 			bool mustRefresh = false;
 
@@ -608,21 +622,25 @@ namespace BlueBrick.MapData
 					break;
 
 				case EditTool.LINE:
-					if (mCurrentlyEditedRuler != null)
+					LinearRuler linearRuler = mCurrentlyEditedRuler as LinearRuler;
+					if (linearRuler != null)
 					{
 						// adjust the offset or the second point
-						if (mIsEditingOffsetOfRuler)
-							mCurrentlyEditedRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
+						if (mMouseIsScalingRuler)
+							linearRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
 						else
-							mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
+							linearRuler.Point2 = mouseCoordInStud;
 						mustRefresh = true;
 					}
 					break;
 
 				case EditTool.CIRCLE:
-					if (mCurrentlyEditedCircle != null)
+					CircularRuler circularRuler = mCurrentlyEditedRuler as CircularRuler;
+					if (circularRuler != null)
 					{
-						mCurrentlyEditedCircle.OnePointOnCircle = mouseCoordInStud;
+						circularRuler.OnePointOnCircle = mouseCoordInStud;
+						// update also the prefered cursor because we may move the mouse while scaling
+						preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
 						mustRefresh = true;
 					}
 					break;
@@ -650,34 +668,40 @@ namespace BlueBrick.MapData
 					}
 					mMouseIsMovingControlPoint = false;
 					mMouseIsScalingRuler = false;
-					mMouseMoveWillAddOrEditRuler = false;
+					mMouseMoveWillCustomizeRuler = false;
 					mCurrentRulerUnderMouse = null;
 					break;
 
 				case EditTool.LINE:
-					if (mIsEditingOffsetOfRuler)
+					LinearRuler linearRuler = mCurrentlyEditedRuler as LinearRuler;
+					if (linearRuler != null)
 					{
-						mCurrentlyEditedRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
-						Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
-						mCurrentlyEditedRuler = null;
-						mIsEditingOffsetOfRuler = false;
+						if (mMouseIsScalingRuler)
+						{
+							linearRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
+							Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, linearRuler));
+							mCurrentlyEditedRuler = null;
+							mMouseIsScalingRuler = false;
+						}
+						else
+						{
+							linearRuler.Point2 = mouseCoordInStud;
+							mMouseIsScalingRuler = true;
+						}
+						mustRefresh = true;
 					}
-					else
-					{
-						mCurrentlyEditedRuler.Point2 = mouseCoordInStud;
-						mIsEditingOffsetOfRuler = true;
-					}
-					mustRefresh = true;
 					break;
 
 				case EditTool.CIRCLE:
-					if (mCurrentlyEditedCircle != null)
+					CircularRuler circularRuler = mCurrentlyEditedRuler as CircularRuler;
+					if (circularRuler != null)
 					{
-						mCurrentlyEditedCircle.OnePointOnCircle = mouseCoordInStud;
-						Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedCircle));
-						mCurrentlyEditedCircle = null;
+						circularRuler.OnePointOnCircle = mouseCoordInStud;
+						Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, circularRuler));
+						mCurrentlyEditedRuler = null;
 						mustRefresh = true;
 					}
+					mMouseIsScalingRuler = false;
 					break;
 			}
 
