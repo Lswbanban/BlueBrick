@@ -179,6 +179,15 @@ namespace BlueBrick.MapData
 			public abstract float findClosestControlPointAndComputeSquareDistance(PointF pointInStud);
 
 			/// <summary>
+			/// Tell if the specified point is inside an area of the ruler that can be grabed (handle)
+			/// for scaling purpose.
+			/// </summary>
+			/// <param name="pointInStud">the position in stud for which testing the scaling handle</param>
+			/// <param name="thicknessInStud">For handles that are just lines, give the thickness in stud from which the function consider the point is above</param>
+			/// <returns>true if the specified point is above a scaling handle</returns>
+			public abstract bool isInsideAScalingHandle(PointF pointInStud, float thicknessInStud);
+
+			/// <summary>
 			/// Get the scaling orientation of the ruler depending on the position of the mouse
 			/// </summary>
 			/// <param name="mouseCoordInStud">the coordinate of the mouse in stud</param>
@@ -474,6 +483,19 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Tell if the specified point is inside an area of the ruler that can be grabed (handle)
+			/// for scaling purpose. For a Linear ruler it is the line itself (for now use the selection area,
+			/// but we should use the thickness parameter TODO)
+			/// </summary>
+			/// <param name="pointInStud">the position in stud for which testing the scaling handle</param>
+			/// <param name="thicknessInStud">For handles that are just lines, give the thickness in stud from which the function consider the point is above</param>
+			/// <returns>true if the specified point is above a scaling handle</returns>
+			public override bool isInsideAScalingHandle(PointF pointInStud, float thicknessInStud)
+			{
+				return (this.SelectionArea.isPointInside(pointInStud));
+			}
+
+			/// <summary>
 			/// Get the scaling orientation of the ruler depending on the position of the mouse.
 			/// For a Linear Ruler, the scale direction is always the perpendicular of the
 			/// orientation of the ruler, no matter the position of the mouse.
@@ -749,9 +771,27 @@ namespace BlueBrick.MapData
 			/// <returns>the square distance from the specified point to the nearest control point in squared studs</returns>
 			public override float findClosestControlPointAndComputeSquareDistance(PointF pointInStud)
 			{
-				float dx1 = pointInStud.X - Center.X;
-				float dy1 = pointInStud.Y - Center.Y;
-				return ((dx1 * dx1) + (dy1 * dy1));
+				float dx = pointInStud.X - Center.X;
+				float dy = pointInStud.Y - Center.Y;
+				return ((dx * dx) + (dy * dy));
+			}
+
+			/// <summary>
+			/// Tell if the specified point is inside an area of the ruler that can be grabed (handle)
+			/// for scaling purpose. For a Circular ruler it is the circle with a certain thickness
+			/// (but not inside the disk).
+			/// </summary>
+			/// <param name="pointInStud">the position in stud for which testing the scaling handle</param>
+			/// <param name="thicknessInStud">For handles that are just lines, give the thickness in stud from which the function consider the point is above</param>
+			/// <returns>true if the specified point is above a scaling handle</returns>
+			public override bool isInsideAScalingHandle(PointF pointInStud, float thicknessInStud)
+			{
+				// compute distance of the mouse to the center
+				float dx = pointInStud.X - Center.X;
+				float dy = pointInStud.Y - Center.Y;
+				float distance = (float)Math.Sqrt((dx * dx) + (dy * dy));
+				// true if the difference between the radius and the distance is less than the thikness
+				return ((float)Math.Abs(this.Radius - distance) <= thicknessInStud);
 			}
 
 			/// <summary>

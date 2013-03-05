@@ -39,6 +39,9 @@ namespace BlueBrick.MapData
 		// the image attribute to draw the text including the layer transparency
 		private ImageAttributes mImageAttribute = new ImageAttributes();
 
+		// TODO: place this in the Settings!
+		private const double RULER_EDITION_SNAPPING_DISTANCE_IN_PIXEL = 5.0;
+
 		// variable for selection drawing
 		private const int BASE_SELECTION_TRANSPARENCY = 112;
 		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb(BASE_SELECTION_TRANSPARENCY, 255, 255, 255));
@@ -229,8 +232,12 @@ namespace BlueBrick.MapData
 		/// <returns>true if the specified position is near a control point</returns>
 		private bool isPointAboveAnyRulerControlPoint(PointF pointInStud, ref RulerItem concernedRulerItem)
 		{
-			bool candidateFound = false; // use a flag to avoid touching the ref concernedRulerItem in case of not found
-			float bestSquareDistance = 5.0f; // TODO for now use a fixed 5 studs, but the distance should be computed in pixels so this should be multiply by some scale 
+			// use a flag to avoid touching the ref concernedRulerItem in case of not found
+			bool candidateFound = false;
+			// We want the distance fixed in pixel (so the snapping is always the same no matter the scale)
+			// so divide the pixel snapping distance by the scale to get a variable distance in stud
+			float bestSquareDistance = (float)(RULER_EDITION_SNAPPING_DISTANCE_IN_PIXEL / MainForm.Instance.MapViewScale);
+			// iterate on all the rulers to find the nearest control point
 			foreach (RulerItem item in mRulers)
 			{
 				float currentSquareDistance = item.findClosestControlPointAndComputeSquareDistance(pointInStud);
@@ -254,7 +261,22 @@ namespace BlueBrick.MapData
 		/// <returns>true if the specified position is above any scaling handle</returns>
 		private bool isPointAboveAnyRulerScalingHandle(PointF pointInStud, ref RulerItem concernedRulerItem)
 		{
-			return false; // TODO
+			// We want the distance fixed in pixel (so the snapping is always the same no matter the scale)
+			// so divide the pixel snapping distance by the scale to get a variable distance in stud
+			float thicknessInStud = (float)(RULER_EDITION_SNAPPING_DISTANCE_IN_PIXEL / MainForm.Instance.MapViewScale);
+
+			// iterate on the ruler in reverse order to get the one on top first
+			for (int i = mRulers.Count - 1; i >= 0; i--)
+			{
+				RulerItem item = mRulers[i];
+				if (item.isInsideAScalingHandle(pointInStud, thicknessInStud))
+				{
+					concernedRulerItem = item;
+					return true;
+				}
+			}
+			// we didn't find any handle
+			return false;
 		}
 
 		/// <summary>
@@ -366,10 +388,11 @@ namespace BlueBrick.MapData
 			else
 				return MainForm.Instance.RulerScaleHorizontalCursor;
 		}
+
 		/// <summary>
 		/// Return the cursor that should be display when the mouse is above the map without mouse click
 		/// </summary>
-		/// <param name="mouseCoordInStud"></param>
+		/// <param name="mouseCoordInStud">the mouse coordinate in stud</param>
 		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
 		{
 			// if the layer is not visible you can basically do nothing on it
@@ -392,7 +415,7 @@ namespace BlueBrick.MapData
 						{
 							if (mMouseIsMovingControlPoint)
 								return MainForm.Instance.RulerMovePointCursor;
-							else if (mMouseIsScalingRuler)
+							else if (mMouseIsScalingRuler && (mCurrentlyEditedRuler != null))
 								return getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
 						}
 					}
@@ -414,8 +437,8 @@ namespace BlueBrick.MapData
 								evaluateIfPointIsAboveControlPointOrScaleHandle(mouseCoordInStud);
 								if (mMouseIsMovingControlPoint)
 									return MainForm.Instance.RulerMovePointCursor;
-								else if (mMouseIsScalingRuler)
-									return getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
+								else if (mMouseIsScalingRuler && (mCurrentRulerUnderMouse != null))
+									return getScalingCursorFromOrientation(mCurrentRulerUnderMouse.getScalingOrientation(mouseCoordInStud));
 							}
 						}
 					}
@@ -514,7 +537,7 @@ namespace BlueBrick.MapData
 					else if (mMouseIsMovingControlPoint)
 						preferedCursor = MainForm.Instance.RulerMovePointCursor;
 					else if (mMouseIsScalingRuler)
-						preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
+						preferedCursor = getScalingCursorFromOrientation(mCurrentRulerUnderMouse.getScalingOrientation(mouseCoordInStud));
 					else
 						preferedCursor = MainForm.Instance.RulerArrowCursor;
 
@@ -548,8 +571,8 @@ namespace BlueBrick.MapData
 		/// <returns>true if this layer wants to handle it</returns>
 		public override bool handleMouseMoveWithoutClick(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
-			if (mMouseIsScalingRuler && (mCurrentlyEditedRuler != null))
-				preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
+			if (mMouseIsScalingRuler && (mCurrentRulerUnderMouse != null))
+				preferedCursor = getScalingCursorFromOrientation(mCurrentRulerUnderMouse.getScalingOrientation(mouseCoordInStud));
 			// for now only handle it if we are editing a linear ruler
 			return mMouseIsScalingRuler;
 		}
@@ -613,11 +636,29 @@ namespace BlueBrick.MapData
 			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
-					// update the control point if it's what we are doing
-					if (mMouseIsMovingControlPoint && (mCurrentRulerUnderMouse != null))
+					// check if we are actually editing a ruler
+					if (mCurrentlyEditedRuler != null)
 					{
-						mCurrentRulerUnderMouse.CurrentControlPoint = mouseCoordInStud;
-						mustRefresh = true;
+						// update the control point if it's what we are doing
+						if (mMouseIsMovingControlPoint)
+						{
+							mCurrentlyEditedRuler.CurrentControlPoint = mouseCoordInStud;
+							mustRefresh = true;
+						}
+						else if (mMouseIsScalingRuler) // or scale it
+						{
+							// check if it is a linear or circular ruler
+							if (mCurrentlyEditedRuler is LinearRuler)
+							{
+								(mCurrentlyEditedRuler as LinearRuler).OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
+							}
+							else if (mCurrentlyEditedRuler is CircularRuler)
+							{
+								(mCurrentlyEditedRuler as CircularRuler).OnePointOnCircle = mouseCoordInStud;
+								preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
+							}
+							mustRefresh = true;
+						}
 					}
 					break;
 
@@ -666,10 +707,16 @@ namespace BlueBrick.MapData
 						// TODO need to create an action to modify the ruler
 						mustRefresh = true;
 					}
+					else if (mMouseIsScalingRuler)
+					{
+						// TODO need to create an action to modify the ruler
+						mustRefresh = true;
+					}
 					mMouseIsMovingControlPoint = false;
 					mMouseIsScalingRuler = false;
 					mMouseMoveWillCustomizeRuler = false;
 					mCurrentRulerUnderMouse = null;
+					mCurrentlyEditedRuler = null;
 					break;
 
 				case EditTool.LINE:
