@@ -157,6 +157,14 @@ namespace BlueBrick
 			get { return partsTabControl; }
 		}
 
+		/// <summary>
+		/// Get the current scale of the map view.
+		/// </summary>
+		public double MapViewScale
+		{
+			get { return this.mapPanel.ViewScale; }
+		}
+
 		#region cursors
 		#region cursors for all layers
 		/// <summary>
