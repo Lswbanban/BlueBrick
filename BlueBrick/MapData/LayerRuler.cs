@@ -39,9 +39,6 @@ namespace BlueBrick.MapData
 		// the image attribute to draw the text including the layer transparency
 		private ImageAttributes mImageAttribute = new ImageAttributes();
 
-		// TODO: place this in the Settings!
-		private const double RULER_EDITION_SNAPPING_DISTANCE_IN_PIXEL = 5.0;
-
 		// variable for selection drawing
 		private const int BASE_SELECTION_TRANSPARENCY = 112;
 		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb(BASE_SELECTION_TRANSPARENCY, 255, 255, 255));
@@ -236,7 +233,8 @@ namespace BlueBrick.MapData
 			bool candidateFound = false;
 			// We want the distance fixed in pixel (so the snapping is always the same no matter the scale)
 			// so divide the pixel snapping distance by the scale to get a variable distance in stud
-			float bestSquareDistance = (float)(RULER_EDITION_SNAPPING_DISTANCE_IN_PIXEL / MainForm.Instance.MapViewScale);
+			float bestSquareDistance = (float)BlueBrick.Properties.Settings.Default.RulerControlPointRadiusInPixel / (float)MainForm.Instance.MapViewScale;
+			bestSquareDistance *= bestSquareDistance; //square it
 			// iterate on all the rulers to find the nearest control point
 			foreach (RulerItem item in mRulers)
 			{
@@ -263,7 +261,7 @@ namespace BlueBrick.MapData
 		{
 			// We want the distance fixed in pixel (so the snapping is always the same no matter the scale)
 			// so divide the pixel snapping distance by the scale to get a variable distance in stud
-			float thicknessInStud = (float)(RULER_EDITION_SNAPPING_DISTANCE_IN_PIXEL / MainForm.Instance.MapViewScale);
+			float thicknessInStud = (float)BlueBrick.Properties.Settings.Default.RulerControlPointRadiusInPixel / (float)MainForm.Instance.MapViewScale;
 
 			// iterate on the ruler in reverse order to get the one on top first
 			for (int i = mRulers.Count - 1; i >= 0; i--)
@@ -354,6 +352,10 @@ namespace BlueBrick.MapData
 			// that means we are not creating a new one but editing an existing one)
 			if ((mCurrentlyEditedRuler != null) && (mCurrentlyEditedRuler != mCurrentRulerUnderMouse))
 				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute, false, mSelectionBrush);
+
+			// draw the control points of the selected rulers
+			foreach (LayerItem item in this.SelectedObjects)
+				(item as RulerItem).drawControlPoints(g, areaInStud, scalePixelPerStud, mTransparency);
 
 			// call the base class to draw the surrounding selection rectangle
 			base.draw(g, areaInStud, scalePixelPerStud);

@@ -188,7 +188,7 @@ namespace BlueBrick
 				this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
 			}
 
-			// -- tab general
+			// -- tab edition
 			if ((tabPageFilter & TabPageFilter.EDITION) != 0)
 			{
 				// mouse
@@ -201,6 +201,8 @@ namespace BlueBrick
 				bool enableOffsetValue = (Settings.Default.OffsetAfterCopyStyle != 0);
 				this.pasteOffsetValueNumericUpDown.Enabled = enableOffsetValue;
 				this.OffsetValueLabel.Enabled = enableOffsetValue;
+				// ruler
+				this.rulerControlPointRadiusNumericUpDown.Value = (Decimal)Settings.Default.RulerControlPointRadiusInPixel;
 			}
 
 			// -- tab appearance
@@ -309,6 +311,8 @@ namespace BlueBrick
 				// copy/paste
 				destination.OffsetAfterCopyStyle = source.OffsetAfterCopyStyle;
 				destination.OffsetAfterCopyValue = source.OffsetAfterCopyValue;
+				// ruler
+				destination.RulerControlPointRadiusInPixel = source.RulerControlPointRadiusInPixel;
 			}
 			// appearance
 			if ((tabPageFilter & TabPageFilter.APPEARANCE) != 0)
@@ -390,6 +394,8 @@ namespace BlueBrick
 			// copy/paste
 			Settings.Default.OffsetAfterCopyStyle = (int)this.copyOffsetComboBox.SelectedIndex;
 			Settings.Default.OffsetAfterCopyValue = (float)this.pasteOffsetValueNumericUpDown.Value;
+			// ruler
+			Settings.Default.RulerControlPointRadiusInPixel = (int)this.rulerControlPointRadiusNumericUpDown.Value;
 
 			// -- tab appearance
 			// check if the user changed the grid color
