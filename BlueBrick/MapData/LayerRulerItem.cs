@@ -207,6 +207,52 @@ namespace BlueBrick.MapData
 			/// <param name="isSelected">tell if this ruler is currently selected in its parent layer selection</param>
 			/// <param name="selectionBrush">the brush to use if this ruler is selected</param>
 			public abstract void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush);
+
+			/// <summary>
+			/// Draw only the control points of this ruler item.
+			/// </summary>
+			/// <param name="g">the graphic context in which draw the layer</param>
+			/// <param name="areaInStud">the visible area of the map in stud coordinates</param>
+			/// <param name="scalePixelPerStud">the current scale of the map in order to convert stud into screen pixels</param>
+			/// <param name="layerTransparency">the current transparency of the parent layer</param>
+			public abstract void drawControlPoints(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency);
+
+			/// <summary>
+			/// Draw the specified control points of this ruler item.
+			/// </summary>
+			/// <param name="g">the graphic context in which draw the layer</param>
+			/// <param name="areaInStud">the visible area of the map in stud coordinates</param>
+			/// <param name="scalePixelPerStud">the current scale of the map in order to convert stud into screen pixels</param>
+			/// <param name="layerTransparency">the current transparency of the parent layer</param>
+			/// <param name="point">the point to draw</param>
+			/// <param name="isPointAttached">if the specified point is attached, draw also a circle around it</param>
+			protected void drawOneControlPoint(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, PointF point, bool isPointAttached)
+			{
+				// create the brush for drawing the dot in red
+				Color color = Color.FromArgb((int)(layerTransparency * 2.55f), Color.Red);
+				SolidBrush brush = new SolidBrush(color);
+				float radius = BlueBrick.Properties.Settings.Default.RulerControlPointRadiusInPixel;
+				float diameter = radius * 2.0f;
+
+				// convert the control points
+				PointF pointInPixel = Layer.sConvertPointInStudToPixel(point, areaInStud, scalePixelPerStud);
+				pointInPixel.X -= radius;
+				pointInPixel.Y -= radius;
+
+				// draw the two points
+				g.FillEllipse(brush, pointInPixel.X, pointInPixel.Y, diameter, diameter);
+
+				// if the point is attached, draw a circle around it
+				if (isPointAttached)
+				{
+					// create a pen for the circle
+					Pen pen = new Pen(color, radius * 0.34f); // 34% because the min radius is 3 pixel, so I want to have a line of at least 1 pixel
+					// make the diameter bigger
+					float circleOffsetInPixel = radius * 0.5f;
+					diameter += circleOffsetInPixel * 2.0f;
+					g.DrawEllipse(pen, pointInPixel.X - circleOffsetInPixel, pointInPixel.Y - circleOffsetInPixel, diameter, diameter);
+				}
+			}
 			#endregion
 		}
 		
@@ -628,6 +674,25 @@ namespace BlueBrick.MapData
 						g.FillPolygon(selectionBrush, selectionArea);
 				}
 			}
+
+			/// <summary>
+			/// Draw only the control points of this ruler item.
+			/// </summary>
+			/// <param name="g">the graphic context in which draw the layer</param>
+			/// <param name="areaInStud">the visible area of the map in stud coordinates</param>
+			/// <param name="scalePixelPerStud">the current scale of the map in order to convert stud into screen pixels</param>
+			/// <param name="layerTransparency">the current transparency of the parent layer</param>
+			public override void drawControlPoints(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency)
+			{
+				// check if the ruler is visible
+				if ((mDisplayArea.Right >= areaInStud.Left) && (mDisplayArea.Left <= areaInStud.Right) &&
+					(mDisplayArea.Bottom >= areaInStud.Top) && (mDisplayArea.Top <= areaInStud.Bottom))
+				{
+					// draw the two points
+					drawOneControlPoint(g, areaInStud, scalePixelPerStud, layerTransparency, mPoint1, true); //TODO is attached
+					drawOneControlPoint(g, areaInStud, scalePixelPerStud, layerTransparency, mPoint2, true); //TODO is attached
+				}
+			}
 			#endregion
 		}
 
@@ -856,6 +921,23 @@ namespace BlueBrick.MapData
 					// draw the selection overlay
 					if (isSelected)
 						g.FillEllipse(selectionBrush, displayAreaInPixel);
+				}
+			}
+
+			/// <summary>
+			/// Draw only the control points of this ruler item.
+			/// </summary>
+			/// <param name="g">the graphic context in which draw the layer</param>
+			/// <param name="areaInStud">the visible area of the map in stud coordinates</param>
+			/// <param name="scalePixelPerStud">the current scale of the map in order to convert stud into screen pixels</param>
+			/// <param name="layerTransparency">the current transparency of the parent layer</param>
+			public override void drawControlPoints(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency)
+			{
+				// check if the ruler is visible
+				if ((mDisplayArea.Right >= areaInStud.Left) && (mDisplayArea.Left <= areaInStud.Right) &&
+					(mDisplayArea.Bottom >= areaInStud.Top) && (mDisplayArea.Top <= areaInStud.Bottom))
+				{
+					drawOneControlPoint(g, areaInStud, scalePixelPerStud, layerTransparency, this.Center, true);  //TODO is attached
 				}
 			}
 			#endregion
