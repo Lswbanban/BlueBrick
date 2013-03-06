@@ -44,6 +44,7 @@ namespace BlueBrick.MapData
 		private SolidBrush mSelectionBrush = new SolidBrush(Color.FromArgb(BASE_SELECTION_TRANSPARENCY, 255, 255, 255));
 		// variable used during the edition
 		private RulerItem mCurrentRulerUnderMouse = null;
+		private RulerItem mCurrentRulerWithHighlightedControlPoint = null;
 		private RulerItem mCurrentlyEditedRuler = null;
 		// variable for mouse state
 		private PointF mMouseDownInitialPosition;
@@ -59,7 +60,12 @@ namespace BlueBrick.MapData
 		public static EditTool CurrentEditTool
 		{
 			get { return sCurrentEditTool; }
-			set { sCurrentEditTool = value; }
+			set
+			{
+				sCurrentEditTool = value;
+				// update the view because we shoudl show/hide the control point of the selection depending on the type of tool
+				MainForm.Instance.updateView(Actions.Action.UpdateViewType.LIGHT, Actions.Action.UpdateViewType.NONE);
+			}
 		}
 
 		/// <summary>
@@ -229,12 +235,15 @@ namespace BlueBrick.MapData
 		/// <returns>true if the specified position is near a control point</returns>
 		private bool isPointAboveAnyRulerControlPoint(PointF pointInStud, ref RulerItem concernedRulerItem)
 		{
-			// use a flag to avoid touching the ref concernedRulerItem in case of not found
-			bool candidateFound = false;
 			// We want the distance fixed in pixel (so the snapping is always the same no matter the scale)
 			// so divide the pixel snapping distance by the scale to get a variable distance in stud
 			float bestSquareDistance = (float)BlueBrick.Properties.Settings.Default.RulerControlPointRadiusInPixel / (float)MainForm.Instance.MapViewScale;
 			bestSquareDistance *= bestSquareDistance; //square it
+
+			// check if the highlighted ruler will change
+			RulerItem previousHighlightedRuler = mCurrentRulerWithHighlightedControlPoint;
+			mCurrentRulerWithHighlightedControlPoint = null;
+
 			// iterate on all the rulers to find the nearest control point
 			foreach (RulerItem item in mRulers)
 			{
@@ -242,12 +251,17 @@ namespace BlueBrick.MapData
 				if (currentSquareDistance < bestSquareDistance)
 				{
 					concernedRulerItem = item;
+					mCurrentRulerWithHighlightedControlPoint = item;
 					bestSquareDistance = currentSquareDistance;
-					candidateFound = true;
 				}
 			}
-			// return true if we found a candidate
-			return candidateFound;
+
+			// check if we need to update the view panel
+			if (mCurrentRulerWithHighlightedControlPoint != previousHighlightedRuler)
+				MainForm.Instance.updateView(Actions.Action.UpdateViewType.LIGHT, Actions.Action.UpdateViewType.NONE);
+
+			// return true if we found a good candidate
+			return (mCurrentRulerWithHighlightedControlPoint != null);
 		}
 
 		/// <summary>
@@ -353,9 +367,19 @@ namespace BlueBrick.MapData
 			if ((mCurrentlyEditedRuler != null) && (mCurrentlyEditedRuler != mCurrentRulerUnderMouse))
 				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute, false, mSelectionBrush);
 
-			// draw the control points of the selected rulers
-			foreach (LayerItem item in this.SelectedObjects)
-				(item as RulerItem).drawControlPoints(g, areaInStud, scalePixelPerStud, mTransparency);
+			if (sCurrentEditTool == EditTool.SELECT)
+			{
+				// draw the control points of the selected rulers
+				Color redColor = Color.FromArgb((int)(mTransparency * 2.55f), Color.Red);
+				foreach (LayerItem item in this.SelectedObjects)
+					if (item != mCurrentRulerWithHighlightedControlPoint)
+						(item as RulerItem).drawControlPoints(g, areaInStud, scalePixelPerStud, redColor);
+
+				// draw the control point near the mouse
+				Color orangeColor = Color.FromArgb((int)(mTransparency * 2.55f), Color.Orange);
+				if (mCurrentRulerWithHighlightedControlPoint != null)
+					mCurrentRulerWithHighlightedControlPoint.drawControlPoints(g, areaInStud, scalePixelPerStud, orangeColor);
+			}
 
 			// call the base class to draw the surrounding selection rectangle
 			base.draw(g, areaInStud, scalePixelPerStud);
