@@ -628,6 +628,11 @@ namespace BlueBrick.MapData
 						mustRefresh = true;
 					}
 
+					// for the edition of a circular ruler, don't count the grabing distance from the center
+					// so consider that the starting position is the center of the circle
+					if (mMouseIsMovingControlPoint && (mCurrentlyEditedRuler != null) && (mCurrentlyEditedRuler is CircularRuler))
+						mouseCoordInStud = mCurrentlyEditedRuler.CurrentControlPoint;
+
 					// record the initial position of the mouse
 					mMouseDownInitialPosition = mouseCoordInStud;
 					mMouseDownLastPosition = mouseCoordInStud;
@@ -668,7 +673,20 @@ namespace BlueBrick.MapData
 						// update the control point if it's what we are doing
 						if (mMouseIsMovingControlPoint)
 						{
+							// move the control point
 							mCurrentlyEditedRuler.CurrentControlPoint = mouseCoordInStud;
+							// move or update the bounding rectangle
+							if (mCurrentlyEditedRuler is CircularRuler)
+							{
+								// when moving a control point of a Circular ruler, we just shift the circle
+								PointF deltaMove = new PointF(mouseCoordInStud.X - mMouseDownLastPosition.X, mouseCoordInStud.Y - mMouseDownLastPosition.Y);
+								this.moveBoundingSelectionRectangle(deltaMove);
+							}
+							else
+							{
+								// when moving a control point of a linear ruler, the ruler is deformed, so we need to recompute it
+								this.updateBoundingSelectionRectangle();
+							}
 							mustRefresh = true;
 						}
 						else if (mMouseIsScalingRuler) // or scale it
@@ -683,9 +701,15 @@ namespace BlueBrick.MapData
 								(mCurrentlyEditedRuler as CircularRuler).OnePointOnCircle = mouseCoordInStud;
 								preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
 							}
+							// update the bounding selection rectangle
+							this.updateBoundingSelectionRectangle();
 							mustRefresh = true;
 						}
 					}
+
+					// memorize the last position of the mouse
+					mMouseDownLastPosition = mouseCoordInStud;
+
 					break;
 
 				case EditTool.LINE:

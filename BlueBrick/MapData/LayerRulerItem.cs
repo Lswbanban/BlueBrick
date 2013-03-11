@@ -710,7 +710,6 @@ namespace BlueBrick.MapData
 				get { return mSelectionArea[0]; }
 				set
 				{
-					mSelectionArea[0] = value;
 					base.Center = value;
 					updateDisplayData();
 				}
