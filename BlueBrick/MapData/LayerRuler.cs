@@ -370,10 +370,13 @@ namespace BlueBrick.MapData
 			if (sCurrentEditTool == EditTool.SELECT)
 			{
 				// draw the control points of the selected rulers
-				Color redColor = Color.FromArgb((int)(mTransparency * 2.55f), Color.Red);
-				foreach (LayerItem item in this.SelectedObjects)
-					if (item != mCurrentRulerWithHighlightedControlPoint)
-						(item as RulerItem).drawControlPoints(g, areaInStud, scalePixelPerStud, redColor);
+				if (BlueBrick.Properties.Settings.Default.DisplayRulerAttachPoints)
+				{
+					Color redColor = Color.FromArgb((int)(mTransparency * 2.55f), Color.Red);
+					foreach (LayerItem item in this.SelectedObjects)
+						if (item != mCurrentRulerWithHighlightedControlPoint)
+							(item as RulerItem).drawControlPoints(g, areaInStud, scalePixelPerStud, redColor);
+				}
 
 				// draw the control point near the mouse
 				Color orangeColor = Color.FromArgb((int)(mTransparency * 2.55f), Color.Orange);
