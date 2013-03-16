@@ -65,7 +65,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- the mesurement unit should not have a fixed size
-	- draw the control points of the rulers
 	- mouse handle still need some work
 	- implement the ruler edition (miss the move of unattached ruler, miss the actions for modifying the rules i.e. move control point and scale, ...?)
 	- add one settings for the snapping distance in pixel of the control points and scale handle
@@ -77,8 +76,6 @@ Open bugs:
 	- save/load in LDraw
 	- snapping for rulers on grid and brick (aka attachment)
 	- refactor create a write float/bool function in XmlReadWrite
-Bug introduit en refactoring: quand on fait un duplicate de brick à la souris (avec ALT) les briques ne cassent plus leurs liens.	
-
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
@@ -101,6 +98,7 @@ Bug introduit en refactoring: quand on fait un duplicate de brick à la souris (a
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
+- [target 1.8] BUG (Alban): You cannot duplicate bricks and connect them in the same mouse move
 - [target 1.8] REFACTORING (Alban): Replace all the type test using a string with the is keyword
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
