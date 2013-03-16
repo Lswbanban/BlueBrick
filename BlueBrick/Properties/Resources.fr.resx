@@ -461,4 +461,10 @@ Le message d'erreur est :
   <data name="ActionSendRulerToBack" xml:space="preserve">
     <value>Mettre les mesures sélectionnées au fond</value>
   </data>
+  <data name="ActionAttachRulerToBrick" xml:space="preserve">
+    <value>Attache une mesure à la pièce &amp;</value>
+  </data>
+  <data name="ActionDetachRuler" xml:space="preserve">
+    <value>Détache une mesure</value>
+  </data>
 </root>
