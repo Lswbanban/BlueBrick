@@ -520,4 +520,10 @@
   <data name="ActionSendRulerToBack" xml:space="preserve">
     <value>Send selected Rulers to Back</value>
   </data>
+  <data name="ActionAttachRulerToBrick" xml:space="preserve">
+    <value>Attach a Ruler to the part &amp;</value>
+  </data>
+  <data name="ActionDetachRuler" xml:space="preserve">
+    <value>Detach a Ruler</value>
+  </data>
 </root>

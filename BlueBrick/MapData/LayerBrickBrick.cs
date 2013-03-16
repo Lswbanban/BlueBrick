@@ -239,6 +239,10 @@ namespace BlueBrick.MapData
 			private List<ConnectionPoint> mConnectionPoints = null; // list of all the connection point (if this brick can connect)
 			private float mAltitude = 0.0f; //for improving compatibility with LDRAW we save a up coordinate for each brick
 
+			// the list of attached rulers are not serialized but reconstructed at loading
+			[NonSerialized]
+			private AttachedRulers mAttachedRulers = null;
+
 			// the image and the connection point are not serialized, they are built in the constructor
 			// or when the part number property is set by the serializer
 			[NonSerialized]
@@ -287,6 +291,8 @@ namespace BlueBrick.MapData
 					updateImage();
 					updateSnapMargin();
 					updateConnectionPosition();
+					if (mAttachedRulers != null)
+						mAttachedRulers.updatePosition();
 				}
 			}
 
@@ -300,6 +306,8 @@ namespace BlueBrick.MapData
 					// call the base class, such as the selection area is also updated
 					base.Position = value;
 					updateConnectionPosition();
+					if (mAttachedRulers != null)
+						mAttachedRulers.updatePosition();
 				}
 				get { return new PointF(mDisplayArea.X, mDisplayArea.Y); }
 			}
@@ -314,6 +322,8 @@ namespace BlueBrick.MapData
 					// call the base class, such as the selection area is also updated
 					base.Center = value;
 					updateConnectionPosition();
+					if (mAttachedRulers != null)
+						mAttachedRulers.updatePosition();
 				}
 			}
 
@@ -954,6 +964,27 @@ namespace BlueBrick.MapData
 				}
 			}
 
+			/// <summary>
+			/// Attach the specified ruler at the specified position
+			/// </summary>
+			/// <param name="ruler">the ruler to attache to this brick</param>
+			/// <param name="attachPositionInStud">the attach position in world stud coordinate</param>
+			public void attachRuler(LayerRuler.RulerItem ruler, PointF attachPositionInStud)
+			{
+				if (mAttachedRulers == null)
+					mAttachedRulers = new AttachedRulers(this);
+				mAttachedRulers.attachRuler(ruler, attachPositionInStud);
+			}
+
+			/// <summary>
+			/// Detach the specified ruler from this brick
+			/// </summary>
+			/// <param name="ruler">the ruler to detache to this brick</param>
+			public void detachRuler(LayerRuler.RulerItem ruler)
+			{
+				if (mAttachedRulers != null)
+					mAttachedRulers.detachRuler(ruler);
+			}
 			#endregion
 
 			#region get image

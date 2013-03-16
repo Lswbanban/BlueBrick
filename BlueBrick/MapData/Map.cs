@@ -839,6 +839,29 @@ namespace BlueBrick.MapData
 			return result;
 		}
 
+
+		/// <summary>
+		/// Get the most top brick under the mouse position
+		/// </summary>
+		/// <param name="mouseCoordInStud">the coordinate of the mouse cursor, where to look for</param>
+		/// <returns>the brick that is under the mouse coordinate or null if there is none.</returns>
+		public LayerBrick.Brick getTopMostBrickUnderMouse(PointF mouseCoordInStud)
+		{
+			// iterate on all the bricks of all the brick layers.
+			foreach (Layer layer in mLayers)
+			{
+				LayerBrick brickLayer = layer as LayerBrick;
+				if (brickLayer != null)
+				{
+					LayerBrick.Brick topBrick = brickLayer.getBrickUnderMouse(mouseCoordInStud);
+					if (topBrick != null)
+						return topBrick;
+				}
+			}
+			// nothing found under the mouse
+			return null;
+		}
+
 		/// <summary>
 		/// Get the total area of the map in stud that include all the bricks, and depending
 		/// of the specified parameter all the text cells and all the area cells.

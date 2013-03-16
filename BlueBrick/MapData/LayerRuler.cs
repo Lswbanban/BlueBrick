@@ -46,6 +46,7 @@ namespace BlueBrick.MapData
 		private RulerItem mCurrentRulerUnderMouse = null;
 		private RulerItem mCurrentRulerWithHighlightedControlPoint = null;
 		private RulerItem mCurrentlyEditedRuler = null;
+		private LayerBrick.Brick mCurrentBrickUsedForRulerAttachement = null;
 		// variable for mouse state
 		private PointF mMouseDownInitialPosition;
 		private PointF mMouseDownLastPosition;
@@ -102,6 +103,22 @@ namespace BlueBrick.MapData
 		public override int NbItems
 		{
 			get { return mRulers.Count; }
+		}
+
+		/// <summary>
+		/// Return the current ruler item on this layer which has one of his control point highlighted
+		/// </summary>
+		public RulerItem CurrentRulerWithHighlightedControlPoint
+		{
+			get { return mCurrentRulerWithHighlightedControlPoint; }
+		}
+
+		/// <summary>
+		/// Return the current ruler item on this layer which has one of his control point highlighted
+		/// </summary>
+		public LayerBrick.Brick CurrentBrickUsedForRulerAttachement
+		{
+			get { return mCurrentBrickUsedForRulerAttachement; }
 		}
 		#endregion
 
@@ -327,12 +344,38 @@ namespace BlueBrick.MapData
 		/// This function iterate through the selection and check if any ruler is attached to a part.
 		/// </summary>
 		/// <returns>true if at least one selected ruler is attached</returns>
-		private bool areSelectedItemsAttached()
+		private bool areSelectedItemsFullyAttached()
 		{
-			// if any one is attached, stop searchingn the whole group is attached
+			// if any one is not fully attached, stop searching cause we will be able to move something
 			foreach (LayerItem item in this.SelectedObjects)
-				if ((item as RulerItem).IsAttached)
-					return true;
+				if (!(item as RulerItem).IsFullyAttached)
+					return false;
+			return true;
+		}
+
+		/// <summary>
+		/// Tell if the mouse is currently in position to attach a ruler
+		/// </summary>
+		public bool canAttachRuler(PointF mouseCoordInStud)
+		{
+			if ((mCurrentRulerWithHighlightedControlPoint != null) && !mCurrentRulerWithHighlightedControlPoint.IsCurrentControlPointAttached)
+			{
+				mCurrentBrickUsedForRulerAttachement = Map.Instance.getTopMostBrickUnderMouse(mouseCoordInStud);
+				return (mCurrentBrickUsedForRulerAttachement != null);
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Tell if the mouse is currently in position to detach a ruler
+		/// </summary>
+		public bool canDetachRuler(PointF mouseCoordInStud)
+		{
+			if ((mCurrentRulerWithHighlightedControlPoint != null) && mCurrentRulerWithHighlightedControlPoint.IsCurrentControlPointAttached)
+			{
+				mCurrentBrickUsedForRulerAttachement = mCurrentRulerWithHighlightedControlPoint.BrickAttachedToCurrentControlPoint;		
+				return (mCurrentBrickUsedForRulerAttachement != null);
+			}
 			return false;
 		}
 		#endregion
@@ -550,8 +593,8 @@ namespace BlueBrick.MapData
 					// and none of the selected objects must be attached
 					bool willMoveSelectedObject = !multipleSelectionPressed && !duplicationPressed
 												&& !mMouseIsMovingControlPoint && !mMouseIsScalingRuler
-												&& ((isMouseInsideSelectedObjects && !areSelectedItemsAttached()) ||
-													((mCurrentRulerUnderMouse != null) && (!mCurrentRulerUnderMouse.IsAttached)));
+												&& ((isMouseInsideSelectedObjects && !areSelectedItemsFullyAttached()) ||
+													((mCurrentRulerUnderMouse != null) && (!mCurrentRulerUnderMouse.IsFullyAttached)));
 
 					// we will add or edit a text if we double click
 					mMouseMoveWillCustomizeRuler = (e.Clicks == 2);
@@ -584,7 +627,6 @@ namespace BlueBrick.MapData
 					break;
 
 				case EditTool.CIRCLE:
-					//TODO
 					willHandleMouse = true;
 					break;
 			}

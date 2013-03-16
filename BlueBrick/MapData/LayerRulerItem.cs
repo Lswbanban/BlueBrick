@@ -51,10 +51,25 @@ namespace BlueBrick.MapData
 			protected PointF mMesurementTextWidthHalfVector = new PointF(); // half the vector along the width of the mesurement text in pixel
 
 			#region get/set
-			public virtual bool IsAttached
+			public virtual bool IsPartiallyAttached
 			{
 				get { return false; }
 			}
+
+			public virtual bool IsFullyAttached
+			{
+				get { return false; }
+			}
+
+			public virtual bool IsCurrentControlPointAttached
+			{
+				get { return false; }
+			}
+
+			public virtual LayerBrick.Brick BrickAttachedToCurrentControlPoint
+			{
+				get { return null; }
+			}			
 
 			public abstract PointF CurrentControlPoint
 			{
@@ -193,6 +208,26 @@ namespace BlueBrick.MapData
 			/// <param name="mouseCoordInStud">the coordinate of the mouse in stud</param>
 			/// <returns>return the angle direction of the scale in degrees</returns>
 			public abstract float getScalingOrientation(PointF mouseCoordInStud);
+
+			/// <summary>
+			/// Move the control point which is attached to the specified brick to the specified position
+			/// </summary>
+			/// <param name="referenceBrick">The brick to which the control point is attached</param>
+			/// <param name="newPosition">The new posiion of the control point</param>
+			public abstract void setControlPointPositionForBrick(LayerBrick.Brick referenceBrick, PointF newPosition);
+
+			/// <summary>
+			/// Call this function when you want to attach the current control point to the specified brick.
+			/// Be sure to choose the correct current point before calling this function
+			/// </summary>
+			/// <param name="brick">the brick to which the current control point will be attached</param>
+			public abstract void attachCurrentControlPointToBrick(LayerBrick.Brick brick);
+
+			/// <summary>
+			/// Call this function when you want to detach the current control point.
+			/// Be sure to choose the correct current point before calling this function.
+			/// </summary>
+			public abstract void detachCurrentControlPoint();
 			#endregion
 
 			#region draw
@@ -279,6 +314,9 @@ namespace BlueBrick.MapData
 			private PointF mPoint2 = new PointF(); // coord of the second point in Stud coord
 			private float mOffsetDistance = 0.0f; // the offset distance in stud coord
 
+			private LayerBrick.Brick mAttachedBrickForPoint1 = null;
+			private LayerBrick.Brick mAttachedBrickForPoint2 = null;
+
 			[NonSerialized]
 			private PointF mOffsetPoint1 = new PointF(); // the offset point corresponding to Point1 in stud
 			[NonSerialized]
@@ -300,24 +338,63 @@ namespace BlueBrick.MapData
 			{
 				set
 				{
-					// compute the shifting offset
-					PointF shiftOffset = this.Center;
-					shiftOffset.X = value.X - shiftOffset.X;
-					shiftOffset.Y = value.Y - shiftOffset.Y;
-					// add the offset to the 4 points
-					mPoint1.X += shiftOffset.X;
-					mPoint1.Y += shiftOffset.Y;
-					mPoint2.X += shiftOffset.X;
-					mPoint2.Y += shiftOffset.Y;
-					mOffsetPoint1.X += shiftOffset.X;
-					mOffsetPoint1.Y += shiftOffset.Y;
-					mOffsetPoint2.X += shiftOffset.X;
-					mOffsetPoint2.Y += shiftOffset.Y;
-					// unit vector and offset distance don't changes
-					// and call the base class
-					base.Center = value;
+					// to change the center at least on control point must be free
+					if ((mAttachedBrickForPoint1 == null) || (mAttachedBrickForPoint2 == null))
+					{
+						// compute the shifting offset
+						PointF shiftOffset = this.Center;
+						shiftOffset.X = value.X - shiftOffset.X;
+						shiftOffset.Y = value.Y - shiftOffset.Y;
+						// add the offset to the 2 points if there are not attached
+						if (mAttachedBrickForPoint1 == null)
+						{
+							mPoint1.X += shiftOffset.X;
+							mPoint1.Y += shiftOffset.Y;
+						}
+						if (mAttachedBrickForPoint2 == null)
+						{
+							mPoint2.X += shiftOffset.X;
+							mPoint2.Y += shiftOffset.Y;
+						}
+						// if both point are free, shift the two offset point
+						if ((mAttachedBrickForPoint1 == null) && (mAttachedBrickForPoint2 == null))
+						{
+							mOffsetPoint1.X += shiftOffset.X;
+							mOffsetPoint1.Y += shiftOffset.Y;
+							mOffsetPoint2.X += shiftOffset.X;
+							mOffsetPoint2.Y += shiftOffset.Y;
+						}
+						else
+						{
+							// else we need to recompute the shape
+							updateDisplayDataAndMesurementImage();
+						}
+						// unit vector and offset distance don't changes
+						// and call the base class
+						base.Center = value;
+					}
 				}
 			}
+
+			public override bool IsPartiallyAttached
+			{
+				get { return ((mAttachedBrickForPoint1 != null) || (mAttachedBrickForPoint2 != null)); }
+			}
+
+			public override bool IsFullyAttached
+			{
+				get { return ((mAttachedBrickForPoint1 != null) && (mAttachedBrickForPoint2 != null)); }
+			}
+
+			public override bool IsCurrentControlPointAttached
+			{
+				get { return (mIsCurrentControlPointPoint1 ? (mAttachedBrickForPoint1 != null) : (mAttachedBrickForPoint2 != null)); }
+			}
+
+			public override LayerBrick.Brick BrickAttachedToCurrentControlPoint
+			{
+				get { return (mIsCurrentControlPointPoint1 ? mAttachedBrickForPoint1 : mAttachedBrickForPoint2); }
+			}			
 
 			public PointF Point1
 			{
@@ -581,6 +658,44 @@ namespace BlueBrick.MapData
 				else
 					return (this.Orientation - 90.0f);
 			}
+
+			/// <summary>
+			/// Move the control point which is attached to the specified brick to the specified position
+			/// </summary>
+			/// <param name="referenceBrick">The brick to which the control point is attached</param>
+			/// <param name="newPosition">The new posiion of the control point</param>
+			public override void setControlPointPositionForBrick(LayerBrick.Brick referenceBrick, PointF newPosition)
+			{
+				if (referenceBrick == mAttachedBrickForPoint1)
+					this.Point1 = newPosition;
+				else if (referenceBrick == mAttachedBrickForPoint2)
+					this.Point2 = newPosition;
+			}
+
+			/// <summary>
+			/// Call this function when you want to attach the current control point to the specified brick.
+			/// Be sure to choose the correct current point before calling this function.
+			/// </summary>
+			/// <param name="brick">the brick to which the current control point will be attached</param>
+			public override void attachCurrentControlPointToBrick(LayerBrick.Brick brick)
+			{
+				if (mIsCurrentControlPointPoint1)
+					mAttachedBrickForPoint1 = brick;
+				else
+					mAttachedBrickForPoint2 = brick;
+			}
+
+			/// <summary>
+			/// Call this function when you want to detach the current control point.
+			/// Be sure to choose the correct current point before calling this function.
+			/// </summary>
+			public override void detachCurrentControlPoint()
+			{
+				if (mIsCurrentControlPointPoint1)
+					mAttachedBrickForPoint1 = null;
+				else
+					mAttachedBrickForPoint2 = null;
+			}
 			#endregion
 
 			#region draw
@@ -714,8 +829,8 @@ namespace BlueBrick.MapData
 					(mDisplayArea.Bottom >= areaInStud.Top) && (mDisplayArea.Top <= areaInStud.Bottom))
 				{
 					// draw the two points
-					drawOneControlPoint(g, areaInStud, scalePixelPerStud, color, mPoint1, true); //TODO is attached
-					drawOneControlPoint(g, areaInStud, scalePixelPerStud, color, mPoint2, true); //TODO is attached
+					drawOneControlPoint(g, areaInStud, scalePixelPerStud, color, mPoint1, mAttachedBrickForPoint1 != null);
+					drawOneControlPoint(g, areaInStud, scalePixelPerStud, color, mPoint2, mAttachedBrickForPoint2 != null);
 				}
 			}
 			#endregion
@@ -727,14 +842,42 @@ namespace BlueBrick.MapData
 		[Serializable]
 		public class CircularRuler : RulerItem
 		{
+			private LayerBrick.Brick mAttachedBrick = null;
+
 			#region get/set
 			/// <summary>
-			/// Set or Get the center of this circle
+			/// Set or Get the center of this circle. The set will have no effect if the control point is attached.
 			/// </summary>
 			public override PointF Center
 			{
 				get { return mSelectionArea[0]; }
+				set
+				{
+					// only move if it is not attached
+					if (!this.IsFullyAttached)
+						base.Center = value;
+				}
 			}
+
+			public override bool IsPartiallyAttached
+			{
+				get { return (mAttachedBrick != null); }
+			}
+
+			public override bool IsFullyAttached
+			{
+				get { return (mAttachedBrick != null); }
+			}
+
+			public override bool IsCurrentControlPointAttached
+			{
+				get { return (mAttachedBrick != null); }
+			}
+
+			public override LayerBrick.Brick BrickAttachedToCurrentControlPoint
+			{
+				get { return mAttachedBrick; }
+			}			
 
 			/// <summary>
 			/// The control point of a circle is always its center
@@ -742,7 +885,11 @@ namespace BlueBrick.MapData
 			public override PointF CurrentControlPoint
 			{
 				get { return this.Center; }
-				set { this.Center = value; }
+				set
+				{
+					// call the base class cause this check if the center is not attached
+					base.Center = value;
+				}
 			}
 
 			/// <summary>
@@ -891,6 +1038,37 @@ namespace BlueBrick.MapData
 				float dy = mouseCoordInStud.Y - Center.Y;
 				return (float)(Math.Atan2(dy, dx) * (180.0 / Math.PI));
 			}
+
+			/// <summary>
+			/// Move the control point which is attached to the specified brick to the specified position
+			/// </summary>
+			/// <param name="referenceBrick">The brick to which the control point is attached</param>
+			/// <param name="newPosition">The new posiion of the control point</param>
+			public override void setControlPointPositionForBrick(LayerBrick.Brick referenceBrick, PointF newPosition)
+			{
+				if (referenceBrick == mAttachedBrick)
+					this.CurrentControlPoint = newPosition;
+			}
+
+			/// <summary>
+			/// Call this function when you want to attach the current control point to the specified brick.
+			/// Be sure to choose the correct current point before calling this function
+			/// </summary>
+			/// <param name="brick">the brick to which the current control point will be attached</param>
+			public override void attachCurrentControlPointToBrick(LayerBrick.Brick brick)
+			{
+				// the circular ruler only have one attach
+				mAttachedBrick = brick;
+			}
+
+			/// <summary>
+			/// Call this function when you want to detach the current control point.
+			/// Be sure to choose the correct current point before calling this function.
+			/// </summary>
+			public override void detachCurrentControlPoint()
+			{
+				mAttachedBrick = null;
+			}
 			#endregion
 
 			#region draw
@@ -956,7 +1134,7 @@ namespace BlueBrick.MapData
 				if ((mDisplayArea.Right >= areaInStud.Left) && (mDisplayArea.Left <= areaInStud.Right) &&
 					(mDisplayArea.Bottom >= areaInStud.Top) && (mDisplayArea.Top <= areaInStud.Bottom))
 				{
-					drawOneControlPoint(g, areaInStud, scalePixelPerStud, color, this.Center, true);  //TODO is attached
+					drawOneControlPoint(g, areaInStud, scalePixelPerStud, color, this.Center, this.IsFullyAttached);
 				}
 			}
 			#endregion
