@@ -1315,6 +1315,16 @@ namespace BlueBrick.MapData
 		};
 
 		/// <summary>
+		/// This enum is used to control if and how an offset should be added after a paste of items
+		/// </summary>
+		public enum AddOffsetAfterPaste
+		{
+			NO,
+			YES,
+			USE_SETTINGS_RULE,
+		}
+
+		/// <summary>
 		/// Serialize the list of the selected items in XML and copy the text to the clipboard,
 		/// so that later it can be paste in another layer
 		/// This method should be called on a CTRL+C
@@ -1374,10 +1384,10 @@ namespace BlueBrick.MapData
 		/// This method should be called on a CTRL+V
 		/// <returns>true if the paste was successful</returns>
 		/// </summary>
-		public bool pasteClipboardInLayer()
+		public bool pasteClipboardInLayer(AddOffsetAfterPaste offsetRule)
 		{
 			string itemTypeName = null;
-			return pasteClipboardInLayer(out itemTypeName);
+			return pasteClipboardInLayer(offsetRule, out itemTypeName);
 		}
 
 		/// <summary>
@@ -1387,7 +1397,7 @@ namespace BlueBrick.MapData
 		/// <param name="itemTypeName">the localized type name of items that is in the Clipboard</param>
 		/// <returns>true if the paste was successful</returns>
 		/// </summary>
-		public bool pasteClipboardInLayer(out string itemTypeName)
+		public bool pasteClipboardInLayer(AddOffsetAfterPaste offsetRule, out string itemTypeName)
 		{
 			// that create a xml reader to read the xml copied in the clipboard
 			System.IO.StringReader stringReader = new System.IO.StringReader(Clipboard.GetText());
@@ -1412,7 +1422,9 @@ namespace BlueBrick.MapData
 
 			// check if we need to add an offset
 			int copyStyle = Properties.Settings.Default.OffsetAfterCopyStyle;
-			bool addOffset = (copyStyle == 2) || ((copyStyle == 1) && (layerId.Equals(this.GetHashCode().ToString())));
+			bool addOffset = (offsetRule == AddOffsetAfterPaste.YES);
+			if (offsetRule == AddOffsetAfterPaste.USE_SETTINGS_RULE)
+				addOffset = (copyStyle == 2) || ((copyStyle == 1) && (layerId.Equals(this.GetHashCode().ToString())));
 
 			// read the items
 			List<Layer.LayerItem> itemsToDuplicates = new List<Layer.LayerItem>();
