@@ -293,6 +293,32 @@ namespace BlueBrick.MapData
 			private float[] mOffsetLineDashPattern = new float[] { 2.0f, 4.0f }; // pattern for the dashed offset line (succesion of dash length and space length, starting with dash)
 
 			#region get/set
+			/// <summary>
+			/// Set or Get the center of this circle
+			/// </summary>
+			public override PointF Center
+			{
+				set
+				{
+					// compute the shifting offset
+					PointF shiftOffset = this.Center;
+					shiftOffset.X = value.X - shiftOffset.X;
+					shiftOffset.Y = value.Y - shiftOffset.Y;
+					// add the offset to the 4 points
+					mPoint1.X += shiftOffset.X;
+					mPoint1.Y += shiftOffset.Y;
+					mPoint2.X += shiftOffset.X;
+					mPoint2.Y += shiftOffset.Y;
+					mOffsetPoint1.X += shiftOffset.X;
+					mOffsetPoint1.Y += shiftOffset.Y;
+					mOffsetPoint2.X += shiftOffset.X;
+					mOffsetPoint2.Y += shiftOffset.Y;
+					// unit vector and offset distance don't changes
+					// and call the base class
+					base.Center = value;
+				}
+			}
+
 			public PointF Point1
 			{
 				get { return mPoint1; }
@@ -708,11 +734,6 @@ namespace BlueBrick.MapData
 			public override PointF Center
 			{
 				get { return mSelectionArea[0]; }
-				set
-				{
-					base.Center = value;
-					updateDisplayData();
-				}
 			}
 
 			/// <summary>

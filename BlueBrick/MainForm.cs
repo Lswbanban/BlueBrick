@@ -1557,7 +1557,7 @@ namespace BlueBrick
 			Layer selectedLayer = Map.Instance.SelectedLayer;
 			// call the paste method on the selected layer, and display an error if the paste was not possible
 			string itemTypeName = "";
-			if (!selectedLayer.pasteClipboardInLayer(out itemTypeName))
+			if (!selectedLayer.pasteClipboardInLayer(Layer.AddOffsetAfterPaste.USE_SETTINGS_RULE, out itemTypeName))
 			{
 				// we have a type mismatch
 				// first replace the layer type name

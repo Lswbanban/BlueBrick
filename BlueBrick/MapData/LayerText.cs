@@ -401,7 +401,7 @@ namespace BlueBrick.MapData
 					if (!mMouseHasMoved)
 					{
 						this.copyCurrentSelectionToClipboard();
-						this.pasteClipboardInLayer();
+						this.pasteClipboardInLayer(AddOffsetAfterPaste.NO);
 					}
 				}
 				// compute the delta move of the mouse
