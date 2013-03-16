@@ -125,6 +125,7 @@ namespace BlueBrick
 			this.electricCircuitsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.connectionPointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.hullsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rulerAttachPointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutBlueBrickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -860,7 +861,8 @@ namespace BlueBrick
             this.toolStripSeparator13,
             this.electricCircuitsMenuItem,
             this.connectionPointsToolStripMenuItem,
-            this.hullsToolStripMenuItem});
+            this.hullsToolStripMenuItem,
+            this.rulerAttachPointsToolStripMenuItem});
 			this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
 			resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
 			// 
@@ -924,6 +926,15 @@ namespace BlueBrick
 			this.hullsToolStripMenuItem.Name = "hullsToolStripMenuItem";
 			resources.ApplyResources(this.hullsToolStripMenuItem, "hullsToolStripMenuItem");
 			this.hullsToolStripMenuItem.Click += new System.EventHandler(this.hullsToolStripMenuItem_Click);
+			// 
+			// rulerAttachPointsToolStripMenuItem
+			// 
+			this.rulerAttachPointsToolStripMenuItem.Checked = true;
+			this.rulerAttachPointsToolStripMenuItem.CheckOnClick = true;
+			this.rulerAttachPointsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.rulerAttachPointsToolStripMenuItem.Name = "rulerAttachPointsToolStripMenuItem";
+			resources.ApplyResources(this.rulerAttachPointsToolStripMenuItem, "rulerAttachPointsToolStripMenuItem");
+			this.rulerAttachPointsToolStripMenuItem.Click += new System.EventHandler(this.rulerAttachPointsToolStripMenuItem_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
@@ -1420,6 +1431,7 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
 		private System.Windows.Forms.ToolStripMenuItem connectionPointsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem hullsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem rulerAttachPointsToolStripMenuItem;
 	}
 }
 

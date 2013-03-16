@@ -256,5 +256,8 @@
     <Setting Name="RulerControlPointRadiusInPixel" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
+    <Setting Name="DisplayRulerAttachPoints" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

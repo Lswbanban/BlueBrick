@@ -517,6 +517,7 @@ namespace BlueBrick
 			this.electricCircuitsMenuItem.Checked = Properties.Settings.Default.DisplayElectricCircuit;
 			this.connectionPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayFreeConnexionPoints;
 			this.hullsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayHull;
+			this.rulerAttachPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayRulerAttachPoints;
 		}
 
 		private void saveUISettingInDefaultSettings()
@@ -1317,9 +1318,6 @@ namespace BlueBrick
 
 		private void exportAsPictureToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// change the flag that display the connexion points
-			bool saveDrawFreeConnexionPointFlag = BlueBrick.Properties.Settings.Default.DisplayFreeConnexionPoints;
-			BlueBrick.Properties.Settings.Default.DisplayFreeConnexionPoints = false;
 			// open the export form
 			mExportImageForm.init();
 			DialogResult result = mExportImageForm.ShowDialog();
@@ -1406,8 +1404,6 @@ namespace BlueBrick
 				// have been saved in the map, therefore the map was modified.
 				updateView(Action.UpdateViewType.NONE, Action.UpdateViewType.NONE);
 			}
-			// reset the flag with the previous value
-			BlueBrick.Properties.Settings.Default.DisplayFreeConnexionPoints = saveDrawFreeConnexionPointFlag;
 		}
 
 		private void reloadPartLibraryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2024,6 +2020,12 @@ namespace BlueBrick
 		private void hullsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Properties.Settings.Default.DisplayHull = this.hullsToolStripMenuItem.Checked;
+			this.mapPanel.Invalidate();
+		}
+
+		private void rulerAttachPointsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Properties.Settings.Default.DisplayRulerAttachPoints = this.rulerAttachPointsToolStripMenuItem.Checked;
 			this.mapPanel.Invalidate();
 		}
 		#endregion
