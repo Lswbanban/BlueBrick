@@ -797,7 +797,6 @@ namespace BlueBrick.MapData
 			/// <returns>a new LinearRuler which is a conform copy of this</returns>
 			public override LayerItem Clone()
 			{
-				//TODO: is it enough?
 				return new CircularRuler(this.Center, this.Radius);
 			}
 			#endregion
@@ -806,8 +805,9 @@ namespace BlueBrick.MapData
 			public override void ReadXml(System.Xml.XmlReader reader)
 			{
 				base.ReadXml(reader);
-				// read data of the ruler
-				this.Center = XmlReadWrite.readPointF(reader);
+				// read data of the ruler (don't use this.Center because at that time the object is out of synch
+				// the display area may have been read but not center yet
+				mSelectionArea[0] = XmlReadWrite.readPointF(reader);
 				this.Radius = reader.ReadElementContentAsFloat();
 				// read the end element of the ruler
 				reader.ReadEndElement();

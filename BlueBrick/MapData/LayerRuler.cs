@@ -603,7 +603,7 @@ namespace BlueBrick.MapData
 			if (mMouseIsScalingRuler && (mCurrentRulerUnderMouse != null))
 				preferedCursor = getScalingCursorFromOrientation(mCurrentRulerUnderMouse.getScalingOrientation(mouseCoordInStud));
 			// for now only handle it if we are editing a linear ruler
-			return mMouseIsScalingRuler;
+			return (mMouseIsScalingRuler && (mCurrentlyEditedRuler != null));
 		}
 
 		/// <summary>
@@ -616,6 +616,8 @@ namespace BlueBrick.MapData
 		{
 			mMouseIsBetweenDownAndUpEvent = true;
 			bool mustRefresh = false;
+			// snap the mouse coord to the grid
+			PointF mouseCoordInStudSnapped = getSnapPoint(mouseCoordInStud);
 
 			switch (sCurrentEditTool)
 			{
@@ -634,23 +636,23 @@ namespace BlueBrick.MapData
 					// for the edition of a circular ruler, don't count the grabing distance from the center
 					// so consider that the starting position is the center of the circle
 					if (mMouseIsMovingControlPoint && (mCurrentlyEditedRuler != null) && (mCurrentlyEditedRuler is CircularRuler))
-						mouseCoordInStud = mCurrentlyEditedRuler.CurrentControlPoint;
+						mouseCoordInStudSnapped = getSnapPoint(mCurrentlyEditedRuler.CurrentControlPoint);
 
 					// record the initial position of the mouse
-					mMouseDownInitialPosition = mouseCoordInStud;
-					mMouseDownLastPosition = mouseCoordInStud;
+					mMouseDownInitialPosition = mouseCoordInStudSnapped;
+					mMouseDownLastPosition = mouseCoordInStudSnapped;
 					mMouseHasMoved = false;
 					break;
 
 				case EditTool.LINE:
 					if (!mMouseIsScalingRuler)
-						mCurrentlyEditedRuler = new LinearRuler(mouseCoordInStud, mouseCoordInStud);
+						mCurrentlyEditedRuler = new LinearRuler(mouseCoordInStudSnapped, mouseCoordInStudSnapped);
 					break;
 
 				case EditTool.CIRCLE:
 					// for the creation of a circle the center start on mouse click and we
 					// immediatly go to the scaling of the circle
-					mCurrentlyEditedRuler = new CircularRuler(mouseCoordInStud, 0.0f);					
+					mCurrentlyEditedRuler = new CircularRuler(mouseCoordInStudSnapped, 0.0f);					
 					mMouseIsScalingRuler = true;
 					break;
 			}
@@ -666,52 +668,96 @@ namespace BlueBrick.MapData
 		public override bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
 			bool mustRefresh = false;
+			// snap the mouse coord to the grid
+			PointF mouseCoordInStudSnapped = getSnapPoint(mouseCoordInStud);
 
 			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
-					// check if we are actually editing a ruler
-					if (mCurrentlyEditedRuler != null)
+					// compute the delta move of the mouse
+					PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownLastPosition.X, mouseCoordInStudSnapped.Y - mMouseDownLastPosition.Y);
+					// check if the delta move is not null
+					if (deltaMove.X != 0.0f || deltaMove.Y != 0.0)
 					{
-						// update the control point if it's what we are doing
-						if (mMouseIsMovingControlPoint)
+						// check if we are actually editing a ruler
+						if (mCurrentlyEditedRuler != null)
 						{
-							// move the control point
-							mCurrentlyEditedRuler.CurrentControlPoint = mouseCoordInStud;
-							// move or update the bounding rectangle
-							if (mCurrentlyEditedRuler is CircularRuler)
+							// update the control point if it's what we are doing
+							if (mMouseIsMovingControlPoint)
 							{
-								// when moving a control point of a Circular ruler, we just shift the circle
-								PointF deltaMove = new PointF(mouseCoordInStud.X - mMouseDownLastPosition.X, mouseCoordInStud.Y - mMouseDownLastPosition.Y);
-								this.moveBoundingSelectionRectangle(deltaMove);
+								// move the control point
+								mCurrentlyEditedRuler.CurrentControlPoint = mouseCoordInStudSnapped;
+								// move or update the bounding rectangle
+								if (mCurrentlyEditedRuler is CircularRuler)
+								{
+									// when moving a control point of a Circular ruler, we just shift the circle
+									this.moveBoundingSelectionRectangle(deltaMove);
+								}
+								else
+								{
+									// when moving a control point of a linear ruler, the ruler is deformed, so we need to recompute it
+									this.updateBoundingSelectionRectangle();
+								}
+								mustRefresh = true;
 							}
-							else
+							else if (mMouseIsScalingRuler) // or scale it
 							{
-								// when moving a control point of a linear ruler, the ruler is deformed, so we need to recompute it
+								// check if it is a linear or circular ruler
+								if (mCurrentlyEditedRuler is LinearRuler)
+								{
+									(mCurrentlyEditedRuler as LinearRuler).OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStudSnapped);
+								}
+								else if (mCurrentlyEditedRuler is CircularRuler)
+								{
+									(mCurrentlyEditedRuler as CircularRuler).OnePointOnCircle = mouseCoordInStudSnapped;
+									preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStudSnapped));
+								}
+								// update the bounding selection rectangle
 								this.updateBoundingSelectionRectangle();
+								mustRefresh = true;
 							}
-							mustRefresh = true;
 						}
-						else if (mMouseIsScalingRuler) // or scale it
+						else if (mSelectedObjects.Count > 0)
 						{
-							// check if it is a linear or circular ruler
-							if (mCurrentlyEditedRuler is LinearRuler)
+							bool wereRulersJustDuplicated = false;
+							// check if it is a move or a duplicate
+							if (mMouseMoveIsADuplicate)
 							{
-								(mCurrentlyEditedRuler as LinearRuler).OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
+								// this is a duplicate, if we didn't move yet, this is the moment to copy  and paste the selection
+								// and this will change the current selection, that will be move normally after
+								if (!mMouseHasMoved)
+								{
+									this.copyCurrentSelectionToClipboard();
+									this.pasteClipboardInLayer();
+									// set the flag
+									wereRulersJustDuplicated = true;
+								}
 							}
-							else if (mCurrentlyEditedRuler is CircularRuler)
-							{
-								(mCurrentlyEditedRuler as CircularRuler).OnePointOnCircle = mouseCoordInStud;
-								preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
-							}
-							// update the bounding selection rectangle
-							this.updateBoundingSelectionRectangle();
+							// the duplication above will change the current selection
+							// The code below is to move the selection, either the original one or the duplicated one
+							foreach (LayerItem item in mSelectedObjects)
+								item.Center = new PointF(item.Center.X + deltaMove.X, item.Center.Y + deltaMove.Y);
+							// move also the bounding rectangle
+							moveBoundingSelectionRectangle(deltaMove);
+							// after we moved the selection check if we need to refresh the current highlighted brick
+							if (wereRulersJustDuplicated)
+								mCurrentRulerUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as RulerItem;
+							// refresh the view
 							mustRefresh = true;
 						}
+
+						// set the flag that indicate that we moved the mouse
+						mMouseHasMoved = true;
+					}
+					else if ((mSelectedObjects.Count > 0) && !mMouseHasMoved && !mMouseMoveIsADuplicate)
+					{
+						// give a second chance to duplicate if the user press the duplicate key
+						// after pressing down the mouse key, but not if the user already moved
+						mMouseMoveIsADuplicate = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
 					}
 
 					// memorize the last position of the mouse
-					mMouseDownLastPosition = mouseCoordInStud;
+					mMouseDownLastPosition = mouseCoordInStudSnapped;
 
 					break;
 
@@ -721,9 +767,9 @@ namespace BlueBrick.MapData
 					{
 						// adjust the offset or the second point
 						if (mMouseIsScalingRuler)
-							linearRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
+							linearRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStudSnapped);
 						else
-							linearRuler.Point2 = mouseCoordInStud;
+							linearRuler.Point2 = mouseCoordInStudSnapped;
 						mustRefresh = true;
 					}
 					break;
@@ -732,9 +778,9 @@ namespace BlueBrick.MapData
 					CircularRuler circularRuler = mCurrentlyEditedRuler as CircularRuler;
 					if (circularRuler != null)
 					{
-						circularRuler.OnePointOnCircle = mouseCoordInStud;
+						circularRuler.OnePointOnCircle = mouseCoordInStudSnapped;
 						// update also the prefered cursor because we may move the mouse while scaling
-						preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
+						preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStudSnapped));
 						mustRefresh = true;
 					}
 					break;
@@ -751,20 +797,65 @@ namespace BlueBrick.MapData
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
 			bool mustRefresh = false;
+			// snap the mouse coord to the grid
+			PointF mouseCoordInStudSnapped = getSnapPoint(mouseCoordInStud);
 
 			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
-					if (mMouseIsMovingControlPoint)
+
+					// check if we moved the selected bricks
+					if (mMouseHasMoved && (mSelectedObjects.Count > 0))
 					{
-						// TODO need to create an action to modify the ruler
-						mustRefresh = true;
+						// reset the flag
+						mMouseHasMoved = false;
+
+						// compute the delta move of the mouse
+						PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownInitialPosition.X, mouseCoordInStudSnapped.Y - mMouseDownInitialPosition.Y);
+
+						// create a new action for this move
+						if ((deltaMove.X != 0) || (deltaMove.Y != 0))
+						{
+
+							if (mMouseIsMovingControlPoint)
+							{
+								// TODO need to create an action to modify the ruler
+							}
+							else if (mMouseIsScalingRuler)
+							{
+								// TODO need to create an action to modify the ruler
+							}
+							else if (mMouseMoveIsADuplicate)
+							{
+								// update the duplicate action or add a move action
+								mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
+								mLastDuplicateAction = null;
+							}
+							else
+							{
+								// this is a simple move of rulers
+								// TODO need an action to move ruler
+								// ActionManager.Instance.doAction(new MoveBrick(this, mSelectedObjects, deltaMove));
+							}
+
+							// if we moved we did something
+							mustRefresh = true;
+						}
 					}
-					else if (mMouseIsScalingRuler)
+					else
 					{
-						// TODO need to create an action to modify the ruler
-						mustRefresh = true;
+						// if we didn't move the item and use the control key, we need to add or remove object from the selection
+						// we must do it in the up event because if we do it in the down, we may remove an object before moving
+						// we do this only if the mMouseHasMoved flag is not set to avoid this change if we move
+						if ((mCurrentRulerUnderMouse != null) && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey))
+						{
+							if (mSelectedObjects.Contains(mCurrentRulerUnderMouse))
+								removeObjectFromSelection(mCurrentRulerUnderMouse);
+							else
+								addObjectInSelection(mCurrentRulerUnderMouse);
+						}
 					}
+
 					mMouseIsMovingControlPoint = false;
 					mMouseIsScalingRuler = false;
 					mMouseMoveWillCustomizeRuler = false;
@@ -778,14 +869,14 @@ namespace BlueBrick.MapData
 					{
 						if (mMouseIsScalingRuler)
 						{
-							linearRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStud);
+							linearRuler.OffsetDistance = computePointDistanceFromCurrentRuler(mouseCoordInStudSnapped);
 							Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, linearRuler));
 							mCurrentlyEditedRuler = null;
 							mMouseIsScalingRuler = false;
 						}
 						else
 						{
-							linearRuler.Point2 = mouseCoordInStud;
+							linearRuler.Point2 = mouseCoordInStudSnapped;
 							mMouseIsScalingRuler = true;
 						}
 						mustRefresh = true;
@@ -796,7 +887,7 @@ namespace BlueBrick.MapData
 					CircularRuler circularRuler = mCurrentlyEditedRuler as CircularRuler;
 					if (circularRuler != null)
 					{
-						circularRuler.OnePointOnCircle = mouseCoordInStud;
+						circularRuler.OnePointOnCircle = mouseCoordInStudSnapped;
 						Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, circularRuler));
 						mCurrentlyEditedRuler = null;
 						mustRefresh = true;
@@ -817,6 +908,23 @@ namespace BlueBrick.MapData
 		public override void selectInRectangle(RectangleF selectionRectangeInStud)
 		{
 			selectInRectangle(selectionRectangeInStud, mRulers);
+		}
+
+		/// <summary>
+		/// This method return a snap point near the specified point according to different
+		/// snapping rules that are specific of this brick layer:
+		/// For now, if the snapping is enable return the closest point of the grid
+		/// </summary>
+		/// <param name="pointInStud">the rough point to snap</param>
+		/// <returns>a near snap point</returns>
+		public PointF getSnapPoint(PointF pointInStud)
+		{
+			// don't do anything is the snapping is not enabled
+			if (SnapGridEnabled)
+				return Layer.snapToGrid(pointInStud);
+
+			// by default do not change anything
+			return pointInStud;
 		}
 		#endregion
 	}
