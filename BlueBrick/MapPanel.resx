@@ -133,7 +133,7 @@
   <data name="sendToBackToolStripMenuItem.Text" xml:space="preserve">
     <value>Send to Back</value>
   </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="selectToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 6</value>
   </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -154,7 +154,7 @@
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Select Path</value>
   </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="groupToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 6</value>
   </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -169,7 +169,7 @@
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Ungroup</value>
   </data>
-  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="attachRulerToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 6</value>
   </data>
   <data name="attachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -211,10 +211,10 @@
   <data name="&gt;&gt;sendToBackToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
-    <value>toolStripSeparator1</value>
+  <data name="&gt;&gt;selectToolStripSeparator.Name" xml:space="preserve">
+    <value>selectToolStripSeparator</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
+  <data name="&gt;&gt;selectToolStripSeparator.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;selectAllToolStripMenuItem.Name" xml:space="preserve">
@@ -235,10 +235,10 @@
   <data name="&gt;&gt;selectPathToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
-    <value>toolStripSeparator2</value>
+  <data name="&gt;&gt;groupToolStripSeparator.Name" xml:space="preserve">
+    <value>groupToolStripSeparator</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
+  <data name="&gt;&gt;groupToolStripSeparator.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupToolStripMenuItem.Name" xml:space="preserve">
@@ -253,10 +253,10 @@
   <data name="&gt;&gt;ungroupToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
-    <value>toolStripSeparator3</value>
+  <data name="&gt;&gt;attachRulerToolStripSeparator.Name" xml:space="preserve">
+    <value>attachRulerToolStripSeparator</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
+  <data name="&gt;&gt;attachRulerToolStripSeparator.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;attachToolStripMenuItem.Name" xml:space="preserve">

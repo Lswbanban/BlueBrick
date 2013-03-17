@@ -20,12 +20,12 @@ using System.Drawing;
 
 namespace BlueBrick.MapData
 {
-	public class AttachedRulers
+	public class RulerAttachementSet
 	{
 		private LayerBrick.Brick mOwnerBrick = null;
 		private List<LayerRuler.RulerItem> mRulersAttached = new List<LayerRuler.RulerItem>();
 
-		public AttachedRulers(LayerBrick.Brick owner)
+		public RulerAttachementSet(LayerBrick.Brick owner)
 		{
 			mOwnerBrick = owner;
 		}

@@ -79,14 +79,14 @@ namespace BlueBrick
 		private System.ComponentModel.IContainer components;
 		private ToolStripMenuItem bringToFrontToolStripMenuItem;
 		private ToolStripMenuItem sendToBackToolStripMenuItem;
-		private ToolStripSeparator toolStripSeparator1;
+		private ToolStripSeparator selectToolStripSeparator;
 		private ToolStripMenuItem deselectAllToolStripMenuItem;
 		private ToolStripMenuItem selectPathToolStripMenuItem;
 		private ToolStripMenuItem selectAllToolStripMenuItem;
-		private ToolStripSeparator toolStripSeparator2;
+		private ToolStripSeparator groupToolStripSeparator;
 		private ToolStripMenuItem groupToolStripMenuItem;
 		private ToolStripMenuItem ungroupToolStripMenuItem;
-		private ToolStripSeparator toolStripSeparator3;
+		private ToolStripSeparator attachRulerToolStripSeparator;
 		private ToolStripMenuItem attachToolStripMenuItem;
 		private ToolStripMenuItem detachToolStripMenuItem;
 
@@ -144,14 +144,14 @@ namespace BlueBrick
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.bringToFrontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.sendToBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.selectToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
 			this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deselectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.selectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.groupToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
 			this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ungroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+			this.attachRulerToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
 			this.attachToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.detachToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuStrip.SuspendLayout();
@@ -162,14 +162,14 @@ namespace BlueBrick
 			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bringToFrontToolStripMenuItem,
             this.sendToBackToolStripMenuItem,
-            this.toolStripSeparator1,
+            this.selectToolStripSeparator,
             this.selectAllToolStripMenuItem,
             this.deselectAllToolStripMenuItem,
             this.selectPathToolStripMenuItem,
-            this.toolStripSeparator2,
+            this.groupToolStripSeparator,
             this.groupToolStripMenuItem,
             this.ungroupToolStripMenuItem,
-            this.toolStripSeparator3,
+            this.attachRulerToolStripSeparator,
             this.attachToolStripMenuItem,
             this.detachToolStripMenuItem});
 			this.contextMenuStrip.Name = "contextMenuStrip";
@@ -188,10 +188,10 @@ namespace BlueBrick
 			resources.ApplyResources(this.sendToBackToolStripMenuItem, "sendToBackToolStripMenuItem");
 			this.sendToBackToolStripMenuItem.Click += new System.EventHandler(this.sendToBackToolStripMenuItem_Click);
 			// 
-			// toolStripSeparator1
+			// selectToolStripSeparator
 			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+			this.selectToolStripSeparator.Name = "selectToolStripSeparator";
+			resources.ApplyResources(this.selectToolStripSeparator, "selectToolStripSeparator");
 			// 
 			// selectAllToolStripMenuItem
 			// 
@@ -211,10 +211,10 @@ namespace BlueBrick
 			resources.ApplyResources(this.selectPathToolStripMenuItem, "selectPathToolStripMenuItem");
 			this.selectPathToolStripMenuItem.Click += new System.EventHandler(this.selectPathToolStripMenuItem_Click);
 			// 
-			// toolStripSeparator2
+			// groupToolStripSeparator
 			// 
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+			this.groupToolStripSeparator.Name = "groupToolStripSeparator";
+			resources.ApplyResources(this.groupToolStripSeparator, "groupToolStripSeparator");
 			// 
 			// groupToolStripMenuItem
 			// 
@@ -228,10 +228,10 @@ namespace BlueBrick
 			resources.ApplyResources(this.ungroupToolStripMenuItem, "ungroupToolStripMenuItem");
 			this.ungroupToolStripMenuItem.Click += new System.EventHandler(this.ungroupToolStripMenuItem_Click);
 			// 
-			// toolStripSeparator3
+			// attachRulerToolStripSeparator
 			// 
-			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
+			this.attachRulerToolStripSeparator.Name = "attachRulerToolStripSeparator";
+			resources.ApplyResources(this.attachRulerToolStripSeparator, "attachRulerToolStripSeparator");
 			// 
 			// attachToolStripMenuItem
 			// 
@@ -808,6 +808,7 @@ namespace BlueBrick
 				this.sendToBackToolStripMenuItem.Enabled = enableItemRelatedToSelection;
 				this.selectAllToolStripMenuItem.Enabled = (isThereAVisibleSelectedLayer && (selectedLayer.HasSomethingToSelect));
 				this.deselectAllToolStripMenuItem.Enabled = enableItemRelatedToSelection;
+				this.selectPathToolStripMenuItem.Visible = (selectedLayer is LayerBrick);
 				this.selectPathToolStripMenuItem.Enabled = (isThereAVisibleSelectedLayer && (selectedLayer.SelectedObjects.Count == 2));
 				if (isThereAVisibleSelectedLayer)
 				{
@@ -820,12 +821,20 @@ namespace BlueBrick
 					this.ungroupToolStripMenuItem.Enabled = false;
 				}
 				// check if the current layer is of type ruler
-				LayerRuler rulerLayer = selectedLayer as LayerRuler;
-				if (isThereAVisibleSelectedLayer && (rulerLayer != null))
+				bool isSelectedLayerRuler = isThereAVisibleSelectedLayer && (selectedLayer is LayerRuler);
+				this.attachRulerToolStripSeparator.Visible = isSelectedLayerRuler;
+				this.attachToolStripMenuItem.Visible = isSelectedLayerRuler;
+				this.detachToolStripMenuItem.Visible = isSelectedLayerRuler;
+				if (isSelectedLayerRuler)
 				{
-					PointF mouseCoordInStud = getPointCoordInStud(this.PointToClient(Cursor.Position));
-					this.attachToolStripMenuItem.Enabled = rulerLayer.canAttachRuler(mouseCoordInStud);
-					this.detachToolStripMenuItem.Enabled = rulerLayer.canDetachRuler(mouseCoordInStud);
+					LayerRuler rulerLayer = selectedLayer as LayerRuler;
+					this.attachToolStripMenuItem.Enabled = rulerLayer.canAttachRuler();
+					this.detachToolStripMenuItem.Enabled = rulerLayer.canDetachRuler();
+				}
+				else
+				{
+					this.attachToolStripMenuItem.Enabled = false;
+					this.detachToolStripMenuItem.Enabled = false;
 				}
 				// finally after enabling the context menu items
 				// check if at leat one toolstrip menu item is enabled otherwise, cancel the opening

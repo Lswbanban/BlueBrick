@@ -319,10 +319,12 @@ namespace BlueBrick.MapData
 		/// in different mouse event)
 		/// </summary>
 		/// <param name="mouseCoordInStud">the mouse coordinate in stud</param>
-		private void evaluateIfPointIsAboveControlPointOrScaleHandle(PointF mouseCoordInStud)
+		/// <returns>the ruler which is under the specified point or null if there's not</returns>
+		private RulerItem evaluateIfPointIsAboveControlPointOrScaleHandle(PointF mouseCoordInStud)
 		{
 			bool multipleSelectionPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
 			bool duplicationPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
+			RulerItem result = null;
 
 			// check if we will move a control point or grab a scaling handle of a ruler
 			// this is only possible when only one ruler is selected (so empty selection, or just one)
@@ -331,11 +333,13 @@ namespace BlueBrick.MapData
 			{
 				// for moving a point, we need to have the mouse above a control point
 				// if not this function doesn't change the ruler in reference
-				mMouseIsMovingControlPoint = isPointAboveAnyRulerControlPoint(mouseCoordInStud, ref mCurrentRulerUnderMouse);
+				mMouseIsMovingControlPoint = isPointAboveAnyRulerControlPoint(mouseCoordInStud, ref result);
 				// if we are not above a control point, maybe we are above a scale handle
 				if (!mMouseIsMovingControlPoint)
-					mMouseIsScalingRuler = isPointAboveAnyRulerScalingHandle(mouseCoordInStud, ref mCurrentRulerUnderMouse);
+					mMouseIsScalingRuler = isPointAboveAnyRulerScalingHandle(mouseCoordInStud, ref result);
 			}
+			// return the found ruler if any
+			return result;
 		}
 		#endregion
 
@@ -356,11 +360,12 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// Tell if the mouse is currently in position to attach a ruler
 		/// </summary>
-		public bool canAttachRuler(PointF mouseCoordInStud)
+		public bool canAttachRuler()
 		{
 			if ((mCurrentRulerWithHighlightedControlPoint != null) && !mCurrentRulerWithHighlightedControlPoint.IsCurrentControlPointAttached)
 			{
-				mCurrentBrickUsedForRulerAttachement = Map.Instance.getTopMostBrickUnderMouse(mouseCoordInStud);
+				PointF currentControlPointPosition = mCurrentRulerWithHighlightedControlPoint.CurrentControlPoint;
+				mCurrentBrickUsedForRulerAttachement = Map.Instance.getTopMostBrickUnderMouse(currentControlPointPosition);
 				return (mCurrentBrickUsedForRulerAttachement != null);
 			}
 			return false;
@@ -369,7 +374,7 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// Tell if the mouse is currently in position to detach a ruler
 		/// </summary>
-		public bool canDetachRuler(PointF mouseCoordInStud)
+		public bool canDetachRuler()
 		{
 			if ((mCurrentRulerWithHighlightedControlPoint != null) && mCurrentRulerWithHighlightedControlPoint.IsCurrentControlPointAttached)
 			{
@@ -506,7 +511,29 @@ namespace BlueBrick.MapData
 							}
 							else
 							{
-								evaluateIfPointIsAboveControlPointOrScaleHandle(mouseCoordInStud);
+								// first check if we are inside the selection rectangle
+								bool isInside = isPointInsideSelectionRectangle(mouseCoordInStud);
+
+								// if we are inside with a group of ruler, it will move them
+								if (isInside && (mSelectedObjects.Count > 1))
+									return MainForm.Instance.RulerMoveCursor;
+
+								// if we have 0 or one ruler selected, we need to check if we will modify one ruler
+								RulerItem editableRuler = evaluateIfPointIsAboveControlPointOrScaleHandle(mouseCoordInStud);
+
+								// if we are above one ruler inside the selection but which is not the selection, we won't edit it
+								if (isInside && (mSelectedObjects.Count == 1) && (mSelectedObjects[0] != editableRuler))
+								{
+									// cancel the highlighted ruler
+									mCurrentRulerWithHighlightedControlPoint = null;
+									return MainForm.Instance.RulerMoveCursor;
+								}
+								
+								// this is all the other cases:
+								// 1) either we are outside the selection
+								// 2) or the selection is empty
+								// 3) or there's just one item selected, the mouse is inside, but the mouse is above the selected ruler
+								mCurrentRulerUnderMouse = editableRuler;
 								if (mMouseIsMovingControlPoint)
 									return MainForm.Instance.RulerMovePointCursor;
 								else if (mMouseIsScalingRuler && (mCurrentRulerUnderMouse != null))
@@ -559,9 +586,10 @@ namespace BlueBrick.MapData
 
 					// check if the mouse is inside the bounding rectangle of the selected objects
 					bool isMouseInsideSelectedObjects = isPointInsideSelectionRectangle(mouseCoordInStud);
+					bool isMouseOutsideSelectedObjectsWithoutModifier = !isMouseInsideSelectedObjects && !multipleSelectionPressed && !duplicationPressed;
 
 					// clear the selection if we click outside the selection without any key pressed
-					if (!isMouseInsideSelectedObjects && !multipleSelectionPressed && !duplicationPressed)
+					if (isMouseOutsideSelectedObjectsWithoutModifier)
 						clearSelection();
 
 					// compute the current ruler under the mouse
@@ -580,12 +608,26 @@ namespace BlueBrick.MapData
 					// under the mouse that may not be selected
 					mMouseMoveIsADuplicate = isMouseInsideSelectedObjects && duplicationPressed;
 
-					// now check if we will move a control point or scale handle.
-					// this method update mMouseIsMovingControlPoint and mMouseIsScalingRuler
-					evaluateIfPointIsAboveControlPointOrScaleHandle(mouseCoordInStud);
-					// assign the edited ruler if we are editing its point or scale it (after evaluation)
-					if (mMouseIsMovingControlPoint || mMouseIsScalingRuler)
-						mCurrentlyEditedRuler = mCurrentRulerUnderMouse;
+					// now check if we will move a control point or scale handle if not inside the selection rectangle
+					if (isMouseOutsideSelectedObjectsWithoutModifier || (mSelectedObjects.Count == 1))
+					{
+						// this method update mMouseIsMovingControlPoint and mMouseIsScalingRuler
+						RulerItem editableRuler = evaluateIfPointIsAboveControlPointOrScaleHandle(mouseCoordInStud);
+						// assign the edited ruler if we are editing its point or scale it (after evaluation)
+						if ((mMouseIsMovingControlPoint || mMouseIsScalingRuler) &&
+							(isMouseOutsideSelectedObjectsWithoutModifier || (mSelectedObjects[0] == editableRuler)))
+						{
+							mCurrentRulerUnderMouse = editableRuler;
+							mCurrentlyEditedRuler = editableRuler;
+						}
+						else
+						{
+							// cancel the highlighted ruler in that case
+							mCurrentRulerWithHighlightedControlPoint = null;
+							mMouseIsMovingControlPoint = false;
+							mMouseIsScalingRuler = false;
+						}
+					}
 
 					// check if the user plan to move the selected items
 					// for that of course we must not have a modifier key pressed
@@ -642,10 +684,13 @@ namespace BlueBrick.MapData
 		/// <returns>true if this layer wants to handle it</returns>
 		public override bool handleMouseMoveWithoutClick(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
-			if (mMouseIsScalingRuler && (mCurrentRulerUnderMouse != null))
-				preferedCursor = getScalingCursorFromOrientation(mCurrentRulerUnderMouse.getScalingOrientation(mouseCoordInStud));
-			// for now only handle it if we are editing a linear ruler
-			return (mMouseIsScalingRuler && (mCurrentlyEditedRuler != null));
+			if (mMouseIsScalingRuler && (mCurrentlyEditedRuler != null))
+			{
+				preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStud));
+				// for now only handle it if we are editing a linear ruler
+				return true;
+			}
+			return false;
 		}
 
 		/// <summary>

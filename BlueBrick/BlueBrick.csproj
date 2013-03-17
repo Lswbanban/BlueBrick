@@ -150,7 +150,7 @@
     <Compile Include="LayerRulerPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MapData\AttachedRulers.cs" />
+    <Compile Include="MapData\RulerAttachementSet.cs" />
     <Compile Include="MapData\LayerBrickBrick.cs" />
     <Compile Include="MapData\LayerRuler.cs" />
     <Compile Include="MapData\LayerRulerItem.cs" />
