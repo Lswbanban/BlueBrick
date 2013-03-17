@@ -271,6 +271,10 @@ namespace BlueBrick.MapData
 					{
 						return MainForm.Instance.TextSelectionCursor;
 					}
+					else if (isPointInsideSelectionRectangle(mouseCoordInStud))
+					{
+						return MainForm.Instance.TextMoveCursor;
+					}
 				}
 			}
 			// return the default arrow cursor

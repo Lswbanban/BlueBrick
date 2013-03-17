@@ -820,6 +820,10 @@ namespace BlueBrick.MapData
 					{
 						return MainForm.Instance.BrickSelectionCursor;
 					}
+					else if (isPointInsideSelectionRectangle(mouseCoordInStud))
+					{
+						return MainForm.Instance.BrickMoveCursor;
+					}
 				}
 			}
 			// return the default arrow cursor
