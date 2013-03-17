@@ -241,7 +241,7 @@ namespace BlueBrick.MapData
 
 			// the list of attached rulers are not serialized but reconstructed at loading
 			[NonSerialized]
-			private AttachedRulers mAttachedRulers = null;
+			private RulerAttachementSet mAttachedRulers = null;
 
 			// the image and the connection point are not serialized, they are built in the constructor
 			// or when the part number property is set by the serializer
@@ -972,7 +972,7 @@ namespace BlueBrick.MapData
 			public void attachRuler(LayerRuler.RulerItem ruler, PointF attachPositionInStud)
 			{
 				if (mAttachedRulers == null)
-					mAttachedRulers = new AttachedRulers(this);
+					mAttachedRulers = new RulerAttachementSet(this);
 				mAttachedRulers.attachRuler(ruler, attachPositionInStud);
 			}
 

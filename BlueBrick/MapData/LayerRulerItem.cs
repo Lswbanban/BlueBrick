@@ -363,15 +363,15 @@ namespace BlueBrick.MapData
 							mOffsetPoint1.Y += shiftOffset.Y;
 							mOffsetPoint2.X += shiftOffset.X;
 							mOffsetPoint2.Y += shiftOffset.Y;
+							// unit vector and offset distance don't changes
+							// and call the base class
+							base.Center = value;
 						}
 						else
 						{
 							// else we need to recompute the shape
 							updateDisplayDataAndMesurementImage();
 						}
-						// unit vector and offset distance don't changes
-						// and call the base class
-						base.Center = value;
 					}
 				}
 			}
