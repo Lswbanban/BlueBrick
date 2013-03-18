@@ -526,4 +526,10 @@
   <data name="ActionDetachRuler" xml:space="preserve">
     <value>Detach a Ruler</value>
   </data>
+  <data name="ActionMoveRuler" xml:space="preserve">
+    <value>Move a Ruler</value>
+  </data>
+  <data name="ActionMoveSeveralRulers" xml:space="preserve">
+    <value>Move several Rulers</value>
+  </data>
 </root>

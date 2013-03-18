@@ -17,27 +17,19 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using BlueBrick.MapData;
+using BlueBrick.Actions.Items;
 
 namespace BlueBrick.Actions.Bricks
 {
-	class MoveBrick : Action
+	public class MoveBrick : MoveItems
 	{
-		private LayerBrick mBrickLayer = null;
-		private List<Layer.LayerItem> mBricks = null;
-		private PointF mMove;	// in Stud coord
 		private string mPartNumber = string.Empty; //if the list contains only one brick or one group, this is the name of this specific brick or group
 
 		public MoveBrick(LayerBrick layer, List<Layer.LayerItem> bricks, PointF move)
+			: base(layer, bricks, move)
 		{
-			mBrickLayer = layer;
-			mMove = move;
-			// copy the list, because the pointer may change (specially if it is the selection)
-			mBricks = new List<Layer.LayerItem>(bricks.Count);
-			foreach (Layer.LayerItem obj in bricks)
-				mBricks.Add(obj);
-
 			// try to get a part number (which can be the name of a group)
-			Layer.LayerItem topItem = Layer.sGetTopItemFromList(mBricks);
+			Layer.LayerItem topItem = Layer.sGetTopItemFromList(mItems);
 			if (topItem != null)
 			{
 				if (topItem.IsAGroup)
@@ -64,26 +56,18 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
-			foreach (Layer.LayerItem obj in mBricks)
-			{
-				LayerBrick.Brick brick = obj as LayerBrick.Brick;
-				brick.Position = new PointF(brick.Position.X + mMove.X, brick.Position.Y + mMove.Y);
-			}
-			// update the bounding rectangle
-			mBrickLayer.updateBoundingSelectionRectangle();
-			mBrickLayer.updateBrickConnectivityOfSelection(false);
+			// call the base class
+			base.redo();
+			// update the brick connectivity
+			(mLayer as LayerBrick).updateBrickConnectivityOfSelection(false);
 		}
 
 		public override void undo()
 		{
-			foreach (Layer.LayerItem obj in mBricks)
-			{
-				LayerBrick.Brick brick = obj as LayerBrick.Brick;
-				brick.Position = new PointF(brick.Position.X - mMove.X, brick.Position.Y - mMove.Y);
-			}
-			// update the bounding rectangle
-			mBrickLayer.updateBoundingSelectionRectangle();
-			mBrickLayer.updateBrickConnectivityOfSelection(false);
+			// call the base class
+			base.undo();
+			// update the brick connectivity
+			(mLayer as LayerBrick).updateBrickConnectivityOfSelection(false);
 		}
 	}
 }

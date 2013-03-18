@@ -920,9 +920,11 @@ namespace BlueBrick.MapData
 							}
 							else
 							{
+								// reset the initial position to each ruler
+								foreach (LayerItem item in mSelectedObjects)
+									item.Position = new PointF(item.Position.X - deltaMove.X, item.Position.Y - deltaMove.Y);
 								// this is a simple move of rulers
-								// TODO need an action to move ruler
-								// ActionManager.Instance.doAction(new MoveBrick(this, mSelectedObjects, deltaMove));
+								Actions.ActionManager.Instance.doAction(new Actions.Rulers.MoveRulers(this, mSelectedObjects, deltaMove));
 							}
 
 							// if we moved we did something

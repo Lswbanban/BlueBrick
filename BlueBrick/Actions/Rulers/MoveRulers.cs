@@ -1,4 +1,4 @@
-// BlueBrick, a LEGO(c) layout editor.
+﻿// BlueBrick, a LEGO(c) layout editor.
 // Copyright (C) 2008 Alban NANTY
 //
 // This program is free software: you can redistribute it and/or modify
@@ -19,30 +19,21 @@ using System.Drawing;
 using BlueBrick.MapData;
 using BlueBrick.Actions.Items;
 
-namespace BlueBrick.Actions.Texts
+namespace BlueBrick.Actions.Rulers
 {
-	public class MoveText : MoveItems
+	class MoveRulers : MoveItems
 	{
-		public MoveText(LayerText layer, List<Layer.LayerItem> cells, PointF move)
-			: base(layer, cells, move)
+		public MoveRulers(LayerRuler layer, List<Layer.LayerItem> rulers, PointF move)
+			: base(layer, rulers, move)
 		{
 		}
 
 		public override string getName()
 		{
 			if (mItems.Count == 1)
-			{
-				string actionName = BlueBrick.Properties.Resources.ActionMoveText;
-				string text = (mItems[0] as LayerText.TextCell).Text.Replace("\r\n", " ");
-				if (text.Length > 10)
-					text = text.Substring(0, 10) + "...";
-				actionName = actionName.Replace("&", text);
-				return actionName;
-			}
+				return BlueBrick.Properties.Resources.ActionMoveRuler;
 			else
-			{
-				return BlueBrick.Properties.Resources.ActionMoveSeveralTexts;
-			}
+				return BlueBrick.Properties.Resources.ActionMoveSeveralRulers;
 		}
 	}
 }
