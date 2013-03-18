@@ -467,4 +467,10 @@ Le message d'erreur est :
   <data name="ActionDetachRuler" xml:space="preserve">
     <value>Détache une mesure</value>
   </data>
+  <data name="ActionMoveRuler" xml:space="preserve">
+    <value>Déplacer une mesure</value>
+  </data>
+  <data name="ActionMoveSeveralRulers" xml:space="preserve">
+    <value>Déplacer quelques mesures</value>
+  </data>
 </root>

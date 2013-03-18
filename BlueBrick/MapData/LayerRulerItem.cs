@@ -338,41 +338,34 @@ namespace BlueBrick.MapData
 			{
 				set
 				{
-					// to change the center at least on control point must be free
-					if ((mAttachedBrickForPoint1 == null) || (mAttachedBrickForPoint2 == null))
-					{
-						// compute the shifting offset
-						PointF shiftOffset = this.Center;
-						shiftOffset.X = value.X - shiftOffset.X;
-						shiftOffset.Y = value.Y - shiftOffset.Y;
-						// add the offset to the 2 points if there are not attached
-						if (mAttachedBrickForPoint1 == null)
-						{
-							mPoint1.X += shiftOffset.X;
-							mPoint1.Y += shiftOffset.Y;
-						}
-						if (mAttachedBrickForPoint2 == null)
-						{
-							mPoint2.X += shiftOffset.X;
-							mPoint2.Y += shiftOffset.Y;
-						}
-						// if both point are free, shift the two offset point
-						if ((mAttachedBrickForPoint1 == null) && (mAttachedBrickForPoint2 == null))
-						{
-							mOffsetPoint1.X += shiftOffset.X;
-							mOffsetPoint1.Y += shiftOffset.Y;
-							mOffsetPoint2.X += shiftOffset.X;
-							mOffsetPoint2.Y += shiftOffset.Y;
-							// unit vector and offset distance don't changes
-							// and call the base class
-							base.Center = value;
-						}
-						else
-						{
-							// else we need to recompute the shape
-							updateDisplayDataAndMesurementImage();
-						}
-					}
+					// compute the shifting offset
+					PointF shiftOffset = this.Center;
+					shiftOffset.X = value.X - shiftOffset.X;
+					shiftOffset.Y = value.Y - shiftOffset.Y;
+					// and translate accordingly
+					translate(shiftOffset);
+					// call also the base class if both point are free, shift the two offset point
+					if ((mAttachedBrickForPoint1 == null) && (mAttachedBrickForPoint2 == null))
+						base.Center = value;
+				}
+			}
+
+			/// <summary>
+			/// Set or Get the position of this circle
+			/// </summary>
+			public override PointF Position
+			{
+				set
+				{
+					// compute the shifting offset
+					PointF shiftOffset = this.Position;
+					shiftOffset.X = value.X - shiftOffset.X;
+					shiftOffset.Y = value.Y - shiftOffset.Y;
+					// and translate accordingly
+					translate(shiftOffset);
+					// call also the base class if both point are free, shift the two offset point
+					if ((mAttachedBrickForPoint1 == null) && (mAttachedBrickForPoint2 == null))
+						base.Position = value;
 				}
 			}
 
@@ -606,6 +599,44 @@ namespace BlueBrick.MapData
 			#endregion
 
 			#region edition
+			/// <summary>
+			/// This method translate all the point and offset point of the specified value
+			/// except if one point is attached
+			/// </summary>
+			/// <param name="translation">the value to translate in stud coord</param>
+			private void translate(PointF translation)
+			{
+				// to change the center at least on control point must be free
+				if ((mAttachedBrickForPoint1 == null) || (mAttachedBrickForPoint2 == null))
+				{
+					// add the offset to the 2 points if there are not attached
+					if (mAttachedBrickForPoint1 == null)
+					{
+						mPoint1.X += translation.X;
+						mPoint1.Y += translation.Y;
+					}
+					if (mAttachedBrickForPoint2 == null)
+					{
+						mPoint2.X += translation.X;
+						mPoint2.Y += translation.Y;
+					}
+					// if both point are free, shift the two offset point
+					if ((mAttachedBrickForPoint1 == null) && (mAttachedBrickForPoint2 == null))
+					{
+						mOffsetPoint1.X += translation.X;
+						mOffsetPoint1.Y += translation.Y;
+						mOffsetPoint2.X += translation.X;
+						mOffsetPoint2.Y += translation.Y;
+						// unit vector and offset distance don't changes
+					}
+					else
+					{
+						// else we need to recompute the shape
+						updateDisplayDataAndMesurementImage();
+					}
+				}
+			}
+
 			/// <summary>
 			/// Find the closest control point of the ruler away from the specified point. Memorize it 
 			/// and then compute the square distance to it and return it.

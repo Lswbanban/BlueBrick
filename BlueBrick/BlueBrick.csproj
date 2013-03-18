@@ -94,6 +94,7 @@
     <Compile Include="Actions\Items\ChangeItemOrder.cs" />
     <Compile Include="Actions\Items\GroupItems.cs" />
     <Compile Include="Actions\Items\DuplicateItems.cs" />
+    <Compile Include="Actions\Items\MoveItems.cs" />
     <Compile Include="Actions\Items\UngroupItems.cs" />
     <Compile Include="Actions\Layers\AddLayer.cs" />
     <Compile Include="Actions\Bricks\AddBrick.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Actions\Rulers\DeleteRuler.cs" />
     <Compile Include="Actions\Rulers\DetachRuler.cs" />
     <Compile Include="Actions\Rulers\DuplicateRuler.cs" />
+    <Compile Include="Actions\Rulers\MoveRulers.cs" />
     <Compile Include="Actions\Rulers\SendRulerToBack.cs" />
     <Compile Include="Actions\Texts\BringTextToFront.cs" />
     <Compile Include="Actions\Texts\DuplicateText.cs" />
