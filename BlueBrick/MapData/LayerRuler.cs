@@ -720,14 +720,24 @@ namespace BlueBrick.MapData
 						mustRefresh = true;
 					}
 
-					// for the edition of a circular ruler, don't count the grabing distance from the center
-					// so consider that the starting position is the center of the circle
-					if (mMouseIsMovingControlPoint && (mCurrentlyEditedRuler != null) && (mCurrentlyEditedRuler is CircularRuler))
-						mouseCoordInStudSnapped = getSnapPoint(mCurrentlyEditedRuler.CurrentControlPoint);
-
 					// record the initial position of the mouse
-					mMouseDownInitialPosition = mouseCoordInStudSnapped;
-					mMouseDownLastPosition = mouseCoordInStudSnapped;
+					if (mMouseIsMovingControlPoint && (mCurrentlyEditedRuler != null))
+					{
+						// if we are moving a control point, use the position of the control point instead of the mouse position
+						mMouseDownInitialPosition = mCurrentlyEditedRuler.CurrentControlPoint;
+						// for the edition of a circular ruler, don't count the grabing distance from the center
+						// so consider that the starting position is the center of the circle
+						if (mCurrentlyEditedRuler is CircularRuler)
+							mMouseDownLastPosition = getSnapPoint(mCurrentlyEditedRuler.CurrentControlPoint);
+						else
+							mMouseDownLastPosition = mouseCoordInStudSnapped;
+					}
+					else
+					{
+						// for scaling a ruler or moving several rulers
+						mMouseDownInitialPosition = mouseCoordInStudSnapped;
+						mMouseDownLastPosition = mouseCoordInStudSnapped;
+					}
 					mMouseHasMoved = false;
 					break;
 
@@ -903,10 +913,12 @@ namespace BlueBrick.MapData
 						// create a new action for this move
 						if ((deltaMove.X != 0) || (deltaMove.Y != 0))
 						{
-
 							if (mMouseIsMovingControlPoint)
 							{
-								// TODO need to create an action to modify the ruler
+								// move back the control point
+								mCurrentlyEditedRuler.CurrentControlPoint = mMouseDownInitialPosition;
+								// and create an action
+								Actions.ActionManager.Instance.doAction(new Actions.Rulers.MoveRulerControlPoint(this, mCurrentlyEditedRuler, mouseCoordInStudSnapped));
 							}
 							else if (mMouseIsScalingRuler)
 							{

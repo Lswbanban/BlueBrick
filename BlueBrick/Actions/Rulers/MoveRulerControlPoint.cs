@@ -1,0 +1,63 @@
+﻿// BlueBrick, a LEGO(c) layout editor.
+// Copyright (C) 2008 Alban NANTY
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+// see http://www.fsf.org/licensing/licenses/gpl.html
+// and http://www.gnu.org/licenses/
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using BlueBrick.MapData;
+using System.Drawing;
+
+namespace BlueBrick.Actions.Rulers
+{
+	class MoveRulerControlPoint : Action
+	{
+		private LayerRuler mRulerLayer = null;
+		private LayerRuler.RulerItem mRulerItem = null;
+		private PointF mOriginalPosition = new PointF();
+		private PointF mNewPosition = new PointF();
+
+		public MoveRulerControlPoint(LayerRuler layer, LayerRuler.RulerItem rulerItem, PointF position)
+		{
+			mRulerLayer = layer;
+			mRulerItem = rulerItem;
+			mOriginalPosition = rulerItem.CurrentControlPoint;
+			mNewPosition = position;
+		}
+
+		public override string getName()
+		{
+			return BlueBrick.Properties.Resources.ActionMoveRulerControlPoint;
+		}
+
+		public override void redo()
+		{
+			// set the correct control point
+			mRulerItem.findClosestControlPointAndComputeSquareDistance(mOriginalPosition);
+			// set the new position
+			mRulerItem.CurrentControlPoint = mNewPosition;
+			// update the selection rectangle
+			mRulerLayer.updateBoundingSelectionRectangle();
+		}
+
+		public override void undo()
+		{
+			// set the correct control point
+			mRulerItem.findClosestControlPointAndComputeSquareDistance(mNewPosition);
+			// set back the original position
+			mRulerItem.CurrentControlPoint = mOriginalPosition;
+			// update the selection rectangle
+			mRulerLayer.updateBoundingSelectionRectangle();
+		}
+	}
+}
