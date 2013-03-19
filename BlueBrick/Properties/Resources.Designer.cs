@@ -421,6 +421,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move Ruler Control Point.
+        /// </summary>
+        internal static string ActionMoveRulerControlPoint {
+            get {
+                return ResourceManager.GetString("ActionMoveRulerControlPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move several parts.
         /// </summary>
         internal static string ActionMoveSeveralBricks {

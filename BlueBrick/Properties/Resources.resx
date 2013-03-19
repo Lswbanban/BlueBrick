@@ -532,4 +532,7 @@
   <data name="ActionMoveSeveralRulers" xml:space="preserve">
     <value>Move several Rulers</value>
   </data>
+  <data name="ActionMoveRulerControlPoint" xml:space="preserve">
+    <value>Move Ruler Control Point</value>
+  </data>
 </root>

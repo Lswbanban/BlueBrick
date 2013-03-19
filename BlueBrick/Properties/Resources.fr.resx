@@ -473,4 +473,7 @@ Le message d'erreur est :
   <data name="ActionMoveSeveralRulers" xml:space="preserve">
     <value>Déplacer quelques mesures</value>
   </data>
+  <data name="ActionMoveRulerControlPoint" xml:space="preserve">
+    <value>Déplace un point de contrôle d'une mesure</value>
+  </data>
 </root>

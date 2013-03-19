@@ -115,6 +115,7 @@
     <Compile Include="Actions\Rulers\DeleteRuler.cs" />
     <Compile Include="Actions\Rulers\DetachRuler.cs" />
     <Compile Include="Actions\Rulers\DuplicateRuler.cs" />
+    <Compile Include="Actions\Rulers\MoveRulerControlPoint.cs" />
     <Compile Include="Actions\Rulers\MoveRulers.cs" />
     <Compile Include="Actions\Rulers\SendRulerToBack.cs" />
     <Compile Include="Actions\Texts\BringTextToFront.cs" />
