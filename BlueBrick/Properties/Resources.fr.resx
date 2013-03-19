@@ -476,4 +476,10 @@ Le message d'erreur est :
   <data name="ActionMoveRulerControlPoint" xml:space="preserve">
     <value>Déplace un point de contrôle d'une mesure</value>
   </data>
+  <data name="ActionScaleCircularRuler" xml:space="preserve">
+    <value>Modifier le rayon d'une mesure</value>
+  </data>
+  <data name="ActionScaleLinearRuler" xml:space="preserve">
+    <value>Modifier le décalage d'une mesure</value>
+  </data>
 </root>

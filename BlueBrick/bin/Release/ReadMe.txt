@@ -65,7 +65,9 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- mouse handle still need some work?
-	- implement the ruler edition (miss the move of unattached ruler, miss the actions for modifying the rulers i.e. move control point and scale, ...?)
+	- the ruler edition still need some work?
+	- snapping for rulers on the brick (aka attachment)
+bug: move control point of a circle with snapping 32: the selection rectangle is not correct
 	- the mesurement unit should not have a fixed size
 	- add one settings for the snapping distance in pixel of the scale handle (now use hard coded value)
 	- add more cursors (miss one for editing the parameters of a ruler i.e double click)
@@ -74,9 +76,7 @@ Open bugs:
 	- Ruler just a line: or diffrent options for the lines/rulers
 	- save/load of attachement not done
 	- save/load in LDraw
-	- snapping for rulers on the brick (aka attachment)
 	- refactor create a write float/bool function in XmlReadWrite
-	- bug when moving a ruler partially attached
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)

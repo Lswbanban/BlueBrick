@@ -20,14 +20,14 @@ using System.Drawing;
 
 namespace BlueBrick.Actions.Rulers
 {
-	public class MoveRulerControlPoint : Action
+	public class ScaleRuler : Action
 	{
 		private LayerRuler mRulerLayer = null;
 		private LayerRuler.RulerItem mRulerItem = null;
 		private PointF mOriginalPosition = new PointF();
 		private PointF mNewPosition = new PointF();
 
-		public MoveRulerControlPoint(LayerRuler layer, LayerRuler.RulerItem rulerItem, PointF originalPosition, PointF newPosition)
+		public ScaleRuler(LayerRuler layer, LayerRuler.RulerItem rulerItem, PointF originalPosition, PointF newPosition)
 		{
 			mRulerLayer = layer;
 			mRulerItem = rulerItem;
@@ -37,25 +37,23 @@ namespace BlueBrick.Actions.Rulers
 
 		public override string getName()
 		{
-			return BlueBrick.Properties.Resources.ActionMoveRulerControlPoint;
+			if (mRulerItem is LayerRuler.CircularRuler)
+				return BlueBrick.Properties.Resources.ActionScaleCircularRuler;
+			return BlueBrick.Properties.Resources.ActionScaleLinearRuler;
 		}
 
 		public override void redo()
 		{
-			// set the correct control point
-			mRulerItem.findClosestControlPointAndComputeSquareDistance(mOriginalPosition);
-			// set the new position
-			mRulerItem.CurrentControlPoint = mNewPosition;
+			// scale to the new position
+			mRulerItem.scaleToPoint(mNewPosition);
 			// update the selection rectangle
 			mRulerLayer.updateBoundingSelectionRectangle();
 		}
 
 		public override void undo()
 		{
-			// set the correct control point
-			mRulerItem.findClosestControlPointAndComputeSquareDistance(mNewPosition);
-			// set back the original position
-			mRulerItem.CurrentControlPoint = mOriginalPosition;
+			// scale to the original position
+			mRulerItem.scaleToPoint(mOriginalPosition);
 			// update the selection rectangle
 			mRulerLayer.updateBoundingSelectionRectangle();
 		}
