@@ -535,4 +535,10 @@
   <data name="ActionMoveRulerControlPoint" xml:space="preserve">
     <value>Move Ruler Control Point</value>
   </data>
+  <data name="ActionScaleCircularRuler" xml:space="preserve">
+    <value>Modify Ruler Radius</value>
+  </data>
+  <data name="ActionScaleLinearRuler" xml:space="preserve">
+    <value>Modify Ruler Offset</value>
+  </data>
 </root>

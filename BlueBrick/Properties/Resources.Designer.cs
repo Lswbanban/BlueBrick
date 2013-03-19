@@ -520,6 +520,24 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify Ruler Radius.
+        /// </summary>
+        internal static string ActionScaleCircularRuler {
+            get {
+                return ResourceManager.GetString("ActionScaleCircularRuler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify Ruler Offset.
+        /// </summary>
+        internal static string ActionScaleLinearRuler {
+            get {
+                return ResourceManager.GetString("ActionScaleLinearRuler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select layer &quot;&amp;&quot;.
         /// </summary>
         internal static string ActionSelectLayer {

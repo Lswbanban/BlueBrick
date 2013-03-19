@@ -203,6 +203,18 @@ namespace BlueBrick.MapData
 			public abstract bool isInsideAScalingHandle(PointF pointInStud, float thicknessInStud);
 
 			/// <summary>
+			/// Scale this ruler such as the ruler is above the specified point.
+			/// </summary>
+			/// <param name="pointInStud">a coordinate to use to find the correct scale</param>
+			public abstract void scaleToPoint(PointF pointInStud);
+
+			/// <summary>
+			/// Get a random reference point above the ruler according to the current scale of the ruler
+			/// </summary>
+			/// <return>a point in stud coordinate which match the current scale of the ruler</return>
+			public abstract PointF getReferencePointForScale();
+
+			/// <summary>
 			/// Get the scaling orientation of the ruler depending on the position of the mouse
 			/// </summary>
 			/// <param name="mouseCoordInStud">the coordinate of the mouse in stud</param>
@@ -425,11 +437,6 @@ namespace BlueBrick.MapData
 					else
 						this.Point2 = value;
 				}
-			}
-
-			public PointF UnitVector
-			{
-				get { return mUnitVector; }
 			}
 
 			public float OffsetDistance
@@ -672,6 +679,29 @@ namespace BlueBrick.MapData
 			public override bool isInsideAScalingHandle(PointF pointInStud, float thicknessInStud)
 			{
 				return (this.SelectionArea.isPointInside(pointInStud));
+			}
+
+			/// <summary>
+			/// Scale this ruler such as the ruler is above the specified point.
+			/// Compute the distance in stud between the given point and this ruler, then set the offset
+			/// of this ruler with this distance
+			/// </summary>
+			/// <param name="pointInStud">the point in stud coord on which the ruler should be</param>
+			public override void scaleToPoint(PointF pointInStud)
+			{
+				// get the vector to make a vectorial product with the unit vector
+				PointF point1ToSpecifiedPoint = new PointF(pointInStud.X - mPoint1.X, pointInStud.Y - mPoint1.Y);
+				// compute the vectorial product (x and y are null cause z is null):
+				this.OffsetDistance = (point1ToSpecifiedPoint.X * mUnitVector.Y) - (point1ToSpecifiedPoint.Y * mUnitVector.X);
+			}
+
+			/// <summary>
+			/// Get a random reference point above the ruler according to the current scale of the ruler
+			/// </summary>
+			/// <return>a point in stud coordinate which match the current scale of the ruler</return>
+			public override PointF getReferencePointForScale()
+			{
+				return mOffsetPoint2;
 			}
 
 			/// <summary>
@@ -935,22 +965,6 @@ namespace BlueBrick.MapData
 					updateDisplayDataAndMesurementImage();
 				}
 			}
-
-			/// <summary>
-			/// Define a point that belongs to this circle. The radius is computed with the current 
-			/// center then the circle geometry is updated
-			/// </summary>
-			public PointF OnePointOnCircle
-			{
-				set
-				{
-					// compute the new radius
-					PointF center = mSelectionArea[0];
-					PointF radiusVector = new PointF(value.X - center.X, value.Y - center.Y);
-					// set the radius by calling the accessor to trigger the necessary update
-					Radius = (float)Math.Sqrt((radiusVector.X * radiusVector.X) + (radiusVector.Y * radiusVector.Y));
-				}
-			}
 			#endregion
 
 			#region constructor/copy
@@ -1054,6 +1068,30 @@ namespace BlueBrick.MapData
 				float distance = (float)Math.Sqrt((dx * dx) + (dy * dy));
 				// true if the difference between the radius and the distance is less than the thikness
 				return ((float)Math.Abs(this.Radius - distance) <= thicknessInStud);
+			}
+
+			/// <summary>
+			/// Scale this ruler such as the ruler is above the specified point.
+			/// The specified point belongs to this circle. The radius is computed with the current 
+			/// center, then the circle geometry is updated.
+			/// </summary>
+			/// <param name="pointInStud">the point in stud coord on which the ruler should be</param>
+			public override void scaleToPoint(PointF pointInStud)
+			{
+				// compute the new radius
+				PointF center = mSelectionArea[0];
+				PointF radiusVector = new PointF(pointInStud.X - center.X, pointInStud.Y - center.Y);
+				// set the radius by calling the accessor to trigger the necessary update
+				Radius = (float)Math.Sqrt((radiusVector.X * radiusVector.X) + (radiusVector.Y * radiusVector.Y));
+			}
+
+			/// <summary>
+			/// Get a random reference point above the ruler according to the current scale of the ruler
+			/// </summary>
+			/// <return>a point in stud coordinate which match the current scale of the ruler</return>
+			public override PointF getReferencePointForScale()
+			{
+				return new PointF(mSelectionArea[0].X + Radius, mSelectionArea[0].Y);
 			}
 
 			/// <summary>
