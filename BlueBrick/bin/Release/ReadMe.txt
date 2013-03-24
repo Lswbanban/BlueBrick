@@ -66,8 +66,7 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- mouse handle still need some work?
 	- the ruler edition still need some work?
-	- snapping for rulers on the brick (aka attachment)
-bug: move control point of a circle with snapping 32: the selection rectangle is not correct
+	- snapping for rulers on the brick (aka attachment): for now it's only on the center of the brick, need a relative attach
 	- the mesurement unit should not have a fixed size
 	- add one settings for the snapping distance in pixel of the scale handle (now use hard coded value)
 	- add more cursors (miss one for editing the parameters of a ruler i.e double click)
@@ -77,6 +76,7 @@ bug: move control point of a circle with snapping 32: the selection rectangle is
 	- save/load of attachement not done
 	- save/load in LDraw
 	- refactor create a write float/bool function in XmlReadWrite
+REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)

@@ -707,12 +707,7 @@ namespace BlueBrick.MapData
 						{
 							// if we are moving a control point, use the position of the control point instead of the mouse position
 							mMouseDownInitialPosition = mCurrentlyEditedRuler.CurrentControlPoint;
-							// for the edition of a circular ruler, don't count the grabing distance from the center
-							// so consider that the starting position is the center of the circle
-							if (mCurrentlyEditedRuler is CircularRuler)
-								mMouseDownLastPosition = getSnapPoint(mCurrentlyEditedRuler.CurrentControlPoint);
-							else
-								mMouseDownLastPosition = mouseCoordInStudSnapped;
+							mMouseDownLastPosition = mMouseDownInitialPosition;
 						}
 						else if (mMouseIsScalingRuler)
 						{
@@ -997,7 +992,7 @@ namespace BlueBrick.MapData
 		{
 			// don't do anything is the snapping is not enabled
 			if (SnapGridEnabled)
-				return Layer.snapToGrid(pointInStud);
+				return Layer.snapToGrid(pointInStud, true);
 
 			// by default do not change anything
 			return pointInStud;
