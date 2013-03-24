@@ -877,7 +877,7 @@ namespace BlueBrick.MapData
 				// the mouse to the corner bacause, the snapToGrid is a Floor type of snapping so the
 				// resulting snapped vector won't be the same
 				PointF anchorCornerToMouseSnapped = Layer.snapToGrid(new PointF(mouseCoordInStud.X - currentAnchorCornerPosition.X,
-																				mouseCoordInStud.Y - currentAnchorCornerPosition.Y));
+																				mouseCoordInStud.Y - currentAnchorCornerPosition.Y), false);
 
 				// compute the grab delta between the mouse and the center of the brick 
 				// by summing the vector from mouse to the anchor (snapped) with the vector from the anchor to the center
@@ -1255,7 +1255,7 @@ namespace BlueBrick.MapData
 				else
 				{
 					// there's no master brick, just do a relative snapping
-					result = Layer.snapToGrid(pointInStud);
+					result = Layer.snapToGrid(pointInStud, false);
 				}
 			}
 			else
@@ -1401,7 +1401,7 @@ namespace BlueBrick.MapData
 					// This is the normal case for snapping the brick under the mouse.
 					// Snap the position of the mouse on the grid (the snapping is a Floor style one)
 					// then add the center shift of the part and the snapping offset
-					pointInStud = Layer.snapToGrid(pointInStud);
+					pointInStud = Layer.snapToGrid(pointInStud, false);
 					
 					// shift the point according to the center and the snap grabbed delta
 					pointInStud.X += mMouseGrabDeltaToCenter.X;
@@ -1411,7 +1411,7 @@ namespace BlueBrick.MapData
 
 				// the snapping is enable but the group of brick was grab from an empty place
 				// i.e. there's no bricks under the mouse so just do a normal snapping on the grid
-				return Layer.snapToGrid(pointInStud);
+				return Layer.snapToGrid(pointInStud, false);
 			}
 
 			// by default do not change anything

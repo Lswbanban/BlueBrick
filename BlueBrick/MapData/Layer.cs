@@ -1560,14 +1560,23 @@ namespace BlueBrick.MapData
 		/// Snap the specified point onto the current grid
 		/// </summary>
 		/// <param name="pointInStud">The point in stud coord</param>
+		/// <param name="isSnappingCentered">if true the snapping is </param>
 		/// <returns>the nearest point on the grid</returns>
-		public static PointF snapToGrid(PointF pointInStud)
+		public static PointF snapToGrid(PointF pointInStud, bool isSnappingCentered)
 		{
 			if (mSnapGridEnabled)
 			{
 				PointF snappedPoint = new PointF();
-				snappedPoint.X = (float)(Math.Floor(pointInStud.X / CurrentSnapGridSize) * CurrentSnapGridSize);
-				snappedPoint.Y = (float)(Math.Floor(pointInStud.Y / CurrentSnapGridSize) * CurrentSnapGridSize);
+				if (isSnappingCentered)
+				{
+					snappedPoint.X = (float)(Math.Round(pointInStud.X / CurrentSnapGridSize) * CurrentSnapGridSize);
+					snappedPoint.Y = (float)(Math.Round(pointInStud.Y / CurrentSnapGridSize) * CurrentSnapGridSize);
+				}
+				else
+				{
+					snappedPoint.X = (float)(Math.Floor(pointInStud.X / CurrentSnapGridSize) * CurrentSnapGridSize);
+					snappedPoint.Y = (float)(Math.Floor(pointInStud.Y / CurrentSnapGridSize) * CurrentSnapGridSize);
+				}
 				return snappedPoint;
 			}
 			else
