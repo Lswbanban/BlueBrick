@@ -26,10 +26,10 @@ namespace BlueBrick.Actions.Bricks
 			pivotShift.X -= mPivotBrick.Center.X;
 			pivotShift.Y -= mPivotBrick.Center.Y;
 			// shift all the bricks
-			foreach (LayerBrick.Brick brick in mBricks)
+			foreach (LayerBrick.Brick brick in mItems)
 				brick.Center = new PointF(brick.Center.X + pivotShift.X, brick.Center.Y + pivotShift.Y);
 			// update the selection rectangle after moving all the parts
-			mBrickLayer.updateBoundingSelectionRectangle();
+			mLayer.updateBoundingSelectionRectangle();
 		}
 
 		public override void undo()
@@ -42,10 +42,10 @@ namespace BlueBrick.Actions.Bricks
 			pivotShift.X -= mPivotBrick.Center.X;
 			pivotShift.Y -= mPivotBrick.Center.Y;
 			// shift all the bricks
-			foreach (LayerBrick.Brick brick in mBricks)
+			foreach (LayerBrick.Brick brick in mItems)
 				brick.Center = new PointF(brick.Center.X + pivotShift.X, brick.Center.Y + pivotShift.Y);
 			// update the selection rectangle after moving all the parts
-			mBrickLayer.updateBoundingSelectionRectangle();
+			mLayer.updateBoundingSelectionRectangle();
 		}
 	}
 }

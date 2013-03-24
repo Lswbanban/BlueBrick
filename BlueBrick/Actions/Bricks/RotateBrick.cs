@@ -18,22 +18,14 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using BlueBrick.MapData;
+using BlueBrick.Actions.Items;
 
 namespace BlueBrick.Actions.Bricks
 {
-	class RotateBrick : Action
+	class RotateBrick : RotateItems
 	{
-		// the static center is used to handle multiple following rotation (so we keep the first computed center in that case)
-		static private PointF sLastCenter = new PointF(0, 0);	// in Stud coord
-		static public bool sLastCenterIsValid = false;
-
 		// data for the action
-		protected LayerBrick mBrickLayer = null;
-		protected List<Layer.LayerItem> mBricks = null;
 		private List<Layer.Group> mNamedGroup = null;
-		private bool mRotateCW;
-		private float mRotationStep = 0.0f; // in degree, we need to save it because the current rotation step may change between the do and undo
-		private PointF mCenter = new PointF(0,0);	// in Stud coord
 		private string mPartNumber = string.Empty; //if the list contains only one brick or one group, this is the name of this specific brick or group
 
 		// special case for only one brick connected that we must rotate
@@ -149,65 +141,27 @@ namespace BlueBrick.Actions.Bricks
 			commonConstructor(layer, bricks, angle, forceKeepLastCenter);
 		}
 
-		private void commonConstructor(LayerBrick layer, List<Layer.LayerItem> bricks, float angle, bool forceKeepLastCenter)
+		protected override void commonConstructor(Layer layer, List<Layer.LayerItem> bricks, float angle, bool forceKeepLastCenter)
 		{
-			mBrickLayer = layer;
-            mRotateCW = (angle < 0.0f);
-            mRotationStep = Math.Abs(angle);
-
-			// we must invalidate the last center if the last action in the undo stack is not a rotation
-			if (!forceKeepLastCenter && !ActionManager.Instance.getUndoableActionType().IsInstanceOfType(this))
-				sLastCenterIsValid = false;
+			// call the base method
+			base.commonConstructor(layer, bricks, angle, forceKeepLastCenter);
 
 			// fill the brick list with the one provided and set the center of rotation for this action
 			if (bricks.Count > 0)
 			{
-				// copy the list, because the pointer may change (specially if it is the selection)
-				// also compute the center of all the bricks
-				PointF minCenter = new PointF(bricks[0].DisplayArea.Left, bricks[0].DisplayArea.Top);
-				PointF maxCenter = new PointF(bricks[0].DisplayArea.Right, bricks[0].DisplayArea.Bottom);
-				mBricks = new List<Layer.LayerItem>(bricks.Count);
 				mNamedGroup = new List<Layer.Group>(bricks.Count);
 				foreach (Layer.LayerItem obj in bricks)
 				{
-					mBricks.Add(obj);
-					//compute the new center if the static one is not valid
-					if (!sLastCenterIsValid)
-					{
-						if (obj.DisplayArea.Left < minCenter.X)
-							minCenter.X = obj.DisplayArea.Left;
-						if (obj.DisplayArea.Top < minCenter.Y)
-							minCenter.Y = obj.DisplayArea.Top;
-						if (obj.DisplayArea.Right > maxCenter.X)
-							maxCenter.X = obj.DisplayArea.Right;
-						if (obj.DisplayArea.Bottom > maxCenter.Y)
-							maxCenter.Y = obj.DisplayArea.Bottom;
-					}
-
 					// if the current brick is part of a group which has a name (so a group from the library)
 					// also add this group to the list of NamedGroup (if not already in)
 					Layer.Group parentGroup = obj.Group;
 					if ((parentGroup != null) && (parentGroup.IsANamedGroup) && !mNamedGroup.Contains(parentGroup))
 						mNamedGroup.Add(parentGroup);
 				}
-				// set the center for this rotation action (keep the previous one or compute a new one
-				if (sLastCenterIsValid)
-				{
-					mCenter = sLastCenter;
-				}
-				else
-				{
-					// recompute a new center
-					mCenter.X = (maxCenter.X + minCenter.X) / 2;
-					mCenter.Y = (maxCenter.Y + minCenter.Y) / 2;
-					// and assign it to the static one
-					sLastCenter = mCenter;
-					sLastCenterIsValid = true;
-				}
 			}
 
 			// try to get a part number (which can be the name of a group)
-			Layer.LayerItem topItem = Layer.sGetTopItemFromList(mBricks);
+			Layer.LayerItem topItem = Layer.sGetTopItemFromList(mItems);
 			if (topItem != null)
 			{
 				if (topItem.IsAGroup)
@@ -240,8 +194,8 @@ namespace BlueBrick.Actions.Bricks
 			// rotate all the objects
 			Matrix rotation = new Matrix();
 			rotation.Rotate(rotationAngle);
-			foreach (Layer.LayerItem obj in mBricks)
-				rotate(obj as LayerBrick.Brick, rotation, rotationAngle);
+			foreach (Layer.LayerItem item in mItems)
+				rotate(item, rotation, rotationAngle);
 
 			// rotate also the named group in order to rotate their snap margin
 			foreach (Layer.Group group in mNamedGroup)
@@ -253,9 +207,9 @@ namespace BlueBrick.Actions.Bricks
 				moveToConnect(mNewConnectionPoint);
 
 			// update the bounding rectangle in any case because the brick is not necessary squared
-			mBrickLayer.updateBoundingSelectionRectangle();
+			mLayer.updateBoundingSelectionRectangle();
 			if (mMustUpdateBrickConnectivity)
-				mBrickLayer.updateBrickConnectivityOfSelection(false);
+				(mLayer as LayerBrick).updateBrickConnectivityOfSelection(false);
 		}
 
 		public override void undo()
@@ -266,8 +220,8 @@ namespace BlueBrick.Actions.Bricks
 			// rotate all the objects
 			Matrix rotation = new Matrix();
 			rotation.Rotate(rotationAngle);
-			foreach (Layer.LayerItem obj in mBricks)
-				rotate(obj as LayerBrick.Brick, rotation, rotationAngle);
+			foreach (Layer.LayerItem item in mItems)
+				rotate(item, rotation, rotationAngle);
 
 			// rotate also the named group in order to rotate their snap margin
 			foreach (Layer.Group group in mNamedGroup)
@@ -279,9 +233,9 @@ namespace BlueBrick.Actions.Bricks
 				moveToConnect(mOldConnectionPoint);
 
 			// update the bounding rectangle in any case because the brick is not necessary squared
-			mBrickLayer.updateBoundingSelectionRectangle();
+			mLayer.updateBoundingSelectionRectangle();
 			if (mMustUpdateBrickConnectivity)
-				mBrickLayer.updateBrickConnectivityOfSelection(false);
+				(mLayer as LayerBrick).updateBrickConnectivityOfSelection(false);
 		}
 
 		private void moveToConnect(LayerBrick.Brick.ConnectionPoint connectionToUse)
@@ -297,37 +251,9 @@ namespace BlueBrick.Actions.Bricks
 			deltaMove.X -= oldPosition.X;
 			deltaMove.Y -= oldPosition.Y;
 			// move all the other bricks
-			foreach (Layer.LayerItem item in mBricks)
+			foreach (Layer.LayerItem item in mItems)
 				if (item != brickToConnect)
 					item.Position = new PointF(item.Position.X + deltaMove.X, item.Position.Y + deltaMove.Y);
-		}
-
-		private void rotate(LayerBrick.Brick brick, Matrix rotation, float rotationAngle)
-		{
-			// compute the pivot point of the part before the rotation
-			PointF brickCenter = brick.Center; // use this variable for optimization reason (the center is computed)
-			PointF centerOffset = brick.OffsetFromOriginalImage;
-			PointF brickPivot = new PointF(brickCenter.X + centerOffset.X, brickCenter.Y + centerOffset.Y);
-
-			// change the orientation of the picture
-			brick.Orientation = (brick.Orientation + rotationAngle);
-
-			// change the position for a group of parts
-			if (mBricks.Count > 1)
-			{
-				PointF[] points = { new PointF(brickPivot.X - mCenter.X, brickPivot.Y - mCenter.Y) };
-				rotation.TransformVectors(points);
-				// recompute the pivot
-				brickPivot.X = mCenter.X + points[0].X;
-				brickPivot.Y = mCenter.Y + points[0].Y;
-			}
-
-			// compute the new center of the part based on the pivot of the part and the new offset
-			centerOffset = brick.OffsetFromOriginalImage;
-			brickCenter.X = brickPivot.X - centerOffset.X;
-			brickCenter.Y = brickPivot.Y - centerOffset.Y;
-			// assign the new center position
-			brick.Center = brickCenter;
 		}
 	}
 }
