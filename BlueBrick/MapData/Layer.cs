@@ -108,6 +108,16 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Get the Pivot of the object in stud coord. Or set the position of the object through its Pivot.
+			/// The pivot of an item is its rotation center. By default, the Pivot of an Item is its center.
+			/// </summary>
+			public virtual PointF Pivot
+			{
+				get { return this.Center; }
+				set { this.Center = value; }
+			}
+
+			/// <summary>
 			/// get the width of this item in stud
 			/// </summary>
 			public float Width

@@ -18,22 +18,12 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using BlueBrick.MapData;
+using BlueBrick.Actions.Items;
 
 namespace BlueBrick.Actions.Texts
 {
-	class RotateText : Action
+	class RotateText : RotateItems
 	{
-		// the static center is used to handle multiple following rotation (so we keep the first computed center in that case)
-		static private PointF sLastCenter = new PointF(0, 0);	// in Stud coord
-		static public bool sLastCenterIsValid = false;
-
-		// data for the action
-		private LayerText mTextLayer = null;
-		private List<Layer.LayerItem> mTexts = null;
-		private bool mRotateCW;
-		private float mRotationStep = 0.0f; // in degree, we need to save it because the current rotation step may change between the do and undo
-		private PointF mCenter = new PointF(0, 0);	// in Stud coord
-
 		public RotateText(LayerText layer, List<Layer.LayerItem> texts, int rotateSteps)
 			: this(layer, texts, rotateSteps, false)
 		{
@@ -41,61 +31,17 @@ namespace BlueBrick.Actions.Texts
 
 		public RotateText(LayerText layer, List<Layer.LayerItem> texts, int rotateSteps, bool forceKeepLastCenter)
 		{
-			mTextLayer = layer;
-			mRotateCW = (rotateSteps < 0);
-			mRotationStep = MapData.Layer.CurrentRotationStep * Math.Abs(rotateSteps);
-
-			// we must invalidate the last center is the last action in the undo stack is not a rotation
-			if (!forceKeepLastCenter && !ActionManager.Instance.getUndoableActionType().IsInstanceOfType(this))
-				sLastCenterIsValid = false;
-
-			// fill the text list with the one provided and set the center of rotation for this action
-			if (texts.Count > 0)
-			{
-				// copy the list, because the pointer may change (specially if it is the selection)
-				// also compute the center of all the texts
-				PointF minCenter = new PointF(texts[0].DisplayArea.Left, texts[0].DisplayArea.Top);
-				PointF maxCenter = new PointF(texts[0].DisplayArea.Right, texts[0].DisplayArea.Bottom);
-				mTexts = new List<Layer.LayerItem>(texts.Count);
-				foreach (Layer.LayerItem obj in texts)
-				{
-					mTexts.Add(obj);
-					//compute the new center if the static one is not valid
-					if (!sLastCenterIsValid)
-					{
-						if (obj.DisplayArea.Left < minCenter.X)
-							minCenter.X = obj.DisplayArea.Left;
-						if (obj.DisplayArea.Top < minCenter.Y)
-							minCenter.Y = obj.DisplayArea.Top;
-						if (obj.DisplayArea.Right > maxCenter.X)
-							maxCenter.X = obj.DisplayArea.Right;
-						if (obj.DisplayArea.Bottom > maxCenter.Y)
-							maxCenter.Y = obj.DisplayArea.Bottom;
-					}
-				}
-				// set the center for this rotation action (keep the previous one or compute a new one
-				if (sLastCenterIsValid)
-				{
-					mCenter = sLastCenter;
-				}
-				else
-				{
-					// recompute a new center
-					mCenter.X = (maxCenter.X + minCenter.X) / 2;
-					mCenter.Y = (maxCenter.Y + minCenter.Y) / 2;
-					// and assign it to the static one
-					sLastCenter = mCenter;
-					sLastCenterIsValid = true;
-				}
-			}
+			// call the common constructor
+			float angle = MapData.Layer.CurrentRotationStep * rotateSteps;
+			base.commonConstructor(layer, texts, angle, forceKeepLastCenter);
 		}
 
 		public override string getName()
 		{
-			if (mTexts.Count == 1)
+			if (mItems.Count == 1)
 			{
 				string actionName = BlueBrick.Properties.Resources.ActionRotateText;
-				string text = (mTexts[0] as LayerText.TextCell).Text.Replace("\r\n", " ");
+				string text = (mItems[0] as LayerText.TextCell).Text.Replace("\r\n", " ");
 				if (text.Length > 10)
 					text = text.Substring(0, 10) + "...";
 				actionName = actionName.Replace("&", text);
@@ -109,64 +55,32 @@ namespace BlueBrick.Actions.Texts
 
 		public override void redo()
 		{
-			if (mRotateCW)
-			{
-				Matrix rotation = new Matrix();
-				rotation.Rotate(-mRotationStep);
-				foreach (Layer.LayerItem obj in mTexts)
-					rotate(obj as LayerText.TextCell, rotation, -mRotationStep);
-			}
-			else
-			{
-				Matrix rotation = new Matrix();
-				rotation.Rotate(mRotationStep);
-				foreach (Layer.LayerItem obj in mTexts)
-					rotate(obj as LayerText.TextCell, rotation, mRotationStep);
-			}
+			// get the rotation angle according to the rotation direction
+			float rotationAngle = mRotateCW ? -mRotationStep : mRotationStep;
+
+			// rotate all the objects
+			Matrix rotation = new Matrix();
+			rotation.Rotate(rotationAngle);
+			foreach (Layer.LayerItem item in mItems)
+				rotate(item, rotation, rotationAngle);
+
 			// update the bounding rectangle (because the text is not square)
-			mTextLayer.updateBoundingSelectionRectangle();
+			mLayer.updateBoundingSelectionRectangle();
 		}
 
 		public override void undo()
 		{
-			if (mRotateCW)
-			{
-				Matrix rotation = new Matrix();
-				rotation.Rotate(mRotationStep);
-				foreach (Layer.LayerItem obj in mTexts)
-					rotate(obj as LayerText.TextCell, rotation, mRotationStep);
-			}
-			else
-			{
-				Matrix rotation = new Matrix();
-				rotation.Rotate(-mRotationStep);
-				foreach (Layer.LayerItem obj in mTexts)
-					rotate(obj as LayerText.TextCell, rotation, -mRotationStep);
-			}
+			// get the rotation angle according to the rotation direction
+			float rotationAngle = mRotateCW ? mRotationStep : -mRotationStep;
+
+			// rotate all the objects
+			Matrix rotation = new Matrix();
+			rotation.Rotate(rotationAngle);
+			foreach (Layer.LayerItem item in mItems)
+				rotate(item, rotation, rotationAngle);
+
 			// update the bounding rectangle (because the text is not square)
-			mTextLayer.updateBoundingSelectionRectangle();
-		}
-
-		private void rotate(LayerText.TextCell text, Matrix rotation, float rotationAngle)
-		{
-			// compute the pivot point of the part before the rotation
-			PointF textCenter = text.Center; // use this variable for optimization reason (the center is computed)
-
-			// change the orientation of the picture
-			text.Orientation = (text.Orientation + rotationAngle);
-
-			// change the position for a group of texts
-			if (mTexts.Count > 1)
-			{
-				PointF[] points = { new PointF(textCenter.X - mCenter.X, textCenter.Y - mCenter.Y) };
-				rotation.TransformVectors(points);
-				// assign the new position
-				textCenter.X = mCenter.X + points[0].X;
-				textCenter.Y = mCenter.Y + points[0].Y;
-			}
-
-			// assign the new center position
-			text.Center = textCenter;
+			mLayer.updateBoundingSelectionRectangle();
 		}
 	}
 }

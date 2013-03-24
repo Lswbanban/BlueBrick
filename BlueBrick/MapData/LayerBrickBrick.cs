@@ -328,6 +328,28 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Get the Pivot of the object in stud coord. Or set the position of the object through its Pivot.
+			/// The pivot of an item is its rotation center.
+			/// </summary>
+			public override PointF Pivot
+			{
+				get
+				{
+					// compute the pivot point of the brick
+					PointF brickCenter = this.Center; // use this variable for optimization reason (the center is computed)
+					PointF centerOffset = this.OffsetFromOriginalImage;
+					return new PointF(brickCenter.X + centerOffset.X, brickCenter.Y + centerOffset.Y);
+				}
+				set
+				{
+					// compute the new center of the part based on the pivot of the part and the new offset
+					PointF centerOffset = this.OffsetFromOriginalImage;
+					// assign the new center position
+					this.Center = new PointF(value.X - centerOffset.X, value.Y - centerOffset.Y);
+				}
+			}
+
+			/// <summary>
 			/// an offset to adjust the centers from between original image and reframed rotated image.
 			/// </summary>
 			public PointF OffsetFromOriginalImage

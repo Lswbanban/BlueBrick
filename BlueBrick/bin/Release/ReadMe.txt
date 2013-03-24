@@ -65,7 +65,7 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- mouse handle still need some work?
-	- the ruler edition still need some work?
+	- the ruler edition still need some work? yes, rotate ruler
 	- snapping for rulers on the brick (aka attachment): for now it's only on the center of the brick, need a relative attach
 	- the mesurement unit should not have a fixed size
 	- add one settings for the snapping distance in pixel of the scale handle (now use hard coded value)

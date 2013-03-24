@@ -95,6 +95,7 @@
     <Compile Include="Actions\Items\GroupItems.cs" />
     <Compile Include="Actions\Items\DuplicateItems.cs" />
     <Compile Include="Actions\Items\MoveItems.cs" />
+    <Compile Include="Actions\Items\RotateItems.cs" />
     <Compile Include="Actions\Items\UngroupItems.cs" />
     <Compile Include="Actions\Layers\AddLayer.cs" />
     <Compile Include="Actions\Bricks\AddBrick.cs" />
@@ -621,12 +622,12 @@
   <ItemGroup>
     <PublishFile Include="fr\BlueBrick.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>
