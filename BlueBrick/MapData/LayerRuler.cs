@@ -888,7 +888,9 @@ namespace BlueBrick.MapData
 						{
 							if (mMouseIsMovingControlPoint)
 							{
-								// no need to move back the control point
+								// move back the control point because for a linear ruler, because a swap of
+								// current control point can happen if you move the two control point at the same place
+								mCurrentlyEditedRuler.CurrentControlPoint = mMouseDownInitialPosition;
 								// and create an action
 								Actions.ActionManager.Instance.doAction(new Actions.Rulers.MoveRulerControlPoint(this, mCurrentlyEditedRuler, mMouseDownInitialPosition, mouseCoordInStudSnapped));
 							}
