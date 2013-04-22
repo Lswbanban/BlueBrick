@@ -987,25 +987,37 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
-			/// Attach the specified ruler at the specified position
+			/// Attach the ruler specified in the anchor parameter with the other anchor properties to this brick
 			/// </summary>
-			/// <param name="ruler">the ruler to attache to this brick</param>
-			/// <param name="attachPositionInStud">the attach position in world stud coordinate</param>
-			public void attachRuler(LayerRuler.RulerItem ruler, PointF attachPositionInStud)
+			/// <param name="anchor">attachement properties</param>
+			public void attachRuler(RulerAttachementSet.Anchor anchor)
 			{
+				// create the set if it doesn't exist yet
 				if (mAttachedRulers == null)
 					mAttachedRulers = new RulerAttachementSet(this);
-				mAttachedRulers.attachRuler(ruler, attachPositionInStud);
+				mAttachedRulers.attachRuler(anchor);
 			}
 
 			/// <summary>
-			/// Detach the specified ruler from this brick
+			/// Detach the ruler specified in the anchor parameter from this brick
 			/// </summary>
-			/// <param name="ruler">the ruler to detache to this brick</param>
-			public void detachRuler(LayerRuler.RulerItem ruler)
+			/// <param name="anchor">the anchor to detach</param>
+			public void detachRuler(RulerAttachementSet.Anchor anchor)
 			{
 				if (mAttachedRulers != null)
-					mAttachedRulers.detachRuler(ruler);
+					mAttachedRulers.detachRuler(anchor);
+			}
+
+			/// <summary>
+			/// get the anchor for the specified ruler for its current control point
+			/// </summary>
+			/// <param name="rulerItem">the anchor or null if the specified control point is not attached</param>
+			/// <returns></returns>
+			public RulerAttachementSet.Anchor getRulerAttachmentAnchor(LayerRuler.RulerItem rulerItem)
+			{
+				if (mAttachedRulers != null)
+					return mAttachedRulers.getRulerAttachmentAnchor(rulerItem);
+				return null;
 			}
 			#endregion
 

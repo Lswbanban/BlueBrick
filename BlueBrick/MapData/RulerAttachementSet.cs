@@ -22,8 +22,37 @@ namespace BlueBrick.MapData
 {
 	public class RulerAttachementSet
 	{
+		public class Anchor
+		{
+			private LayerRuler.RulerItem mAttachedRuler = null;
+			private int mAttachedPointIndex = 0;
+			private PointF mAttachOffsetFromCenter = new PointF();
+
+			public LayerRuler.RulerItem AttachedRuler
+			{
+				get { return mAttachedRuler; }
+			}
+
+			public int AttachedPointIndex
+			{
+				get { return mAttachedPointIndex; }
+			}
+
+			public PointF AttachOffsetFromCenter
+			{
+				get { return mAttachOffsetFromCenter; }
+			}
+
+			public Anchor(LayerRuler.RulerItem ruler, int index, PointF attachOffset)
+			{
+				mAttachedRuler = ruler;
+				mAttachedPointIndex = index;
+				mAttachOffsetFromCenter = attachOffset;
+			}
+		}
+
 		private LayerBrick.Brick mOwnerBrick = null;
-		private List<LayerRuler.RulerItem> mRulersAttached = new List<LayerRuler.RulerItem>();
+		private List<Anchor> mAnchors = new List<Anchor>();
 
 		public RulerAttachementSet(LayerBrick.Brick owner)
 		{
@@ -32,20 +61,38 @@ namespace BlueBrick.MapData
 
 		public void updatePosition()
 		{
-			foreach (LayerRuler.RulerItem ruler in mRulersAttached)
-				ruler.setControlPointPositionForBrick(mOwnerBrick, mOwnerBrick.Center); //TODO instead of center, we need to compute a position depending of the attached offset
+			PointF brickCenter = mOwnerBrick.Center;
+			foreach (Anchor anchor in mAnchors)
+			{
+				PointF attachPosition = new PointF(brickCenter.X + anchor.AttachOffsetFromCenter.X,
+													brickCenter.Y + anchor.AttachOffsetFromCenter.Y);
+				anchor.AttachedRuler.setControlPointPosition(anchor.AttachedPointIndex, attachPosition);
+			}
 		}
 
-		public void attachRuler(LayerRuler.RulerItem ruler, PointF attachPositionInStud)
+		public void attachRuler(Anchor anchor)
 		{
-			ruler.attachCurrentControlPointToBrick(mOwnerBrick);
-			mRulersAttached.Add(ruler);
+			anchor.AttachedRuler.attachControlPointToBrick(anchor.AttachedPointIndex, mOwnerBrick);
+			mAnchors.Add(anchor);
 		}
 
-		public void detachRuler(LayerRuler.RulerItem ruler)
+		public void detachRuler(Anchor anchor)
 		{
-			ruler.detachCurrentControlPoint();
-			mRulersAttached.Remove(ruler);
+			anchor.AttachedRuler.detachControlPoint(anchor.AttachedPointIndex);
+			mAnchors.Remove(anchor);
+		}
+
+		/// <summary>
+		/// get the anchor for the specified ruler for its current control point
+		/// </summary>
+		/// <param name="rulerItem">the anchor or null if the specified control point is not attached</param>
+		/// <returns>the anchor that match both the ruler item and the connection point index</returns>
+		public RulerAttachementSet.Anchor getRulerAttachmentAnchor(LayerRuler.RulerItem rulerItem)
+		{
+			foreach (Anchor anchor in mAnchors)
+				if ((anchor.AttachedRuler == rulerItem) && (anchor.AttachedPointIndex == rulerItem.CurrentControlPointIndex))
+					return anchor;
+			return null;
 		}
 	}
 }
