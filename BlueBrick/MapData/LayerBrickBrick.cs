@@ -292,7 +292,7 @@ namespace BlueBrick.MapData
 					updateSnapMargin();
 					updateConnectionPosition();
 					if (mAttachedRulers != null)
-						mAttachedRulers.updatePosition();
+						mAttachedRulers.brickRotateNotification();
 				}
 			}
 
@@ -307,7 +307,7 @@ namespace BlueBrick.MapData
 					base.Position = value;
 					updateConnectionPosition();
 					if (mAttachedRulers != null)
-						mAttachedRulers.updatePosition();
+						mAttachedRulers.brickMoveNotification();
 				}
 				get { return new PointF(mDisplayArea.X, mDisplayArea.Y); }
 			}
@@ -323,7 +323,7 @@ namespace BlueBrick.MapData
 					base.Center = value;
 					updateConnectionPosition();
 					if (mAttachedRulers != null)
-						mAttachedRulers.updatePosition();
+						mAttachedRulers.brickMoveNotification();
 				}
 			}
 

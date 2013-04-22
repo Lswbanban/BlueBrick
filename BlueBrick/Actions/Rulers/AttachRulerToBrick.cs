@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Text;
 using BlueBrick.MapData;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace BlueBrick.Actions.Rulers
 {
@@ -27,7 +28,18 @@ namespace BlueBrick.Actions.Rulers
 
 		public AttachRulerToBrick(LayerRuler.RulerItem rulerItem, LayerBrick.Brick brick)
 		{
-			PointF attachOffset = new PointF();// TODO use the real position
+			PointF brickCenter = brick.Center;
+			PointF attachOffset = rulerItem.CurrentControlPoint;
+			// compute the offset from the brick center in world coordinate
+			attachOffset.X -= brickCenter.X;
+			attachOffset.Y -= brickCenter.Y;
+			// compute the rotation matrix of the brick in order to find the local offset
+			Matrix matrix = new Matrix();
+			matrix.Rotate(-brick.Orientation);
+			PointF[] vector = { attachOffset };
+			matrix.TransformVectors(vector);
+			attachOffset = vector[0];
+			// create a new Anchor
 			mAnchor = new RulerAttachementSet.Anchor(rulerItem, rulerItem.CurrentControlPointIndex, attachOffset);
 			mBrick = brick;
 		}
