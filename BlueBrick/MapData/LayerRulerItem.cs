@@ -51,9 +51,9 @@ namespace BlueBrick.MapData
 			protected PointF mMesurementTextWidthHalfVector = new PointF(); // half the vector along the width of the mesurement text in pixel
 
 			#region get/set
-			public virtual bool IsPartiallyAttached
+			public virtual bool IsNotAttached
 			{
-				get { return false; }
+				get { return true; }
 			}
 
 			public virtual bool IsFullyAttached
@@ -75,6 +75,12 @@ namespace BlueBrick.MapData
 			{
 				get;
 				set;
+			}
+
+			public virtual int CurrentControlPointIndex
+			{
+				get { return 0; }
+				set { }
 			}
 			#endregion
 
@@ -222,24 +228,33 @@ namespace BlueBrick.MapData
 			public abstract float getScalingOrientation(PointF mouseCoordInStud);
 
 			/// <summary>
-			/// Move the control point which is attached to the specified brick to the specified position
+			/// Get the control point corresponding to the index number (if this ruler has several control point).
 			/// </summary>
-			/// <param name="referenceBrick">The brick to which the control point is attached</param>
-			/// <param name="newPosition">The new posiion of the control point</param>
-			public abstract void setControlPointPositionForBrick(LayerBrick.Brick referenceBrick, PointF newPosition);
+			/// <param name="index">the zero based index of the wanted control point</param>
+			/// <returns>the position of the control point</returns>
+			public abstract PointF getControlPointPosition(int index);
+
+			/// <summary>
+			/// Set the position of the control point corresponding to the index number
+			/// (if this ruler has several control point)
+			/// </summary>
+			/// <param name="index">the zero based index of the concerned control point</param>
+			/// <param name="value">the new position in stud coordinate</param>
+			public abstract void setControlPointPosition(int index, PointF positionInStud);
 
 			/// <summary>
 			/// Call this function when you want to attach the current control point to the specified brick.
 			/// Be sure to choose the correct current point before calling this function
 			/// </summary>
+			/// <param name="index">the index of the control point to attach</param>
 			/// <param name="brick">the brick to which the current control point will be attached</param>
-			public abstract void attachCurrentControlPointToBrick(LayerBrick.Brick brick);
+			public abstract void attachControlPointToBrick(int index, LayerBrick.Brick brick);
 
 			/// <summary>
 			/// Call this function when you want to detach the current control point.
 			/// Be sure to choose the correct current point before calling this function.
 			/// </summary>
-			public abstract void detachCurrentControlPoint();
+			public abstract void detachControlPoint(int index);
 			#endregion
 
 			#region draw
@@ -316,27 +331,29 @@ namespace BlueBrick.MapData
 				INTERNAL_2
 			}
 
+			[Serializable]
+			private class ControlPoint
+			{
+				public PointF mPoint = new PointF(); // coord of the first point in Stud coord
+				public LayerBrick.Brick mAttachedBrick = null;
+
+				[NonSerialized]
+				public PointF mOffsetPoint = new PointF(); // the offset point corresponding to mPoint in stud
+			}
+
 			// geometrical information, the points look like that:
-			// mSelectionArea[1] |        | mSelectionArea[2]
-			//     mOffsetPoint1 +---42---+ mOffsetPoint2
-			// mSelectionArea[0] |        | mSelectionArea[3]
-			//                   |        |
-			//           mPoint1 |        | mPoint2 
-			private PointF mPoint1 = new PointF(); // coord of the first point in Stud coord
-			private PointF mPoint2 = new PointF(); // coord of the second point in Stud coord
+			//             mSelectionArea[1] |        | mSelectionArea[2]
+			// mControlPoint[0].mOffsetPoint +---42---+ mControlPoint[1].mOffsetPoint
+			//             mSelectionArea[0] |        | mSelectionArea[3]
+			//                               |        |
+			//       mControlPoint[0].mPoint |        | mControlPoint[1].mPoint 
+			private ControlPoint[] mControlPoint = { new ControlPoint(), new ControlPoint() };
 			private float mOffsetDistance = 0.0f; // the offset distance in stud coord
 
-			private LayerBrick.Brick mAttachedBrickForPoint1 = null;
-			private LayerBrick.Brick mAttachedBrickForPoint2 = null;
-
-			[NonSerialized]
-			private PointF mOffsetPoint1 = new PointF(); // the offset point corresponding to Point1 in stud
-			[NonSerialized]
-			private PointF mOffsetPoint2 = new PointF(); // the offset point corresponding to Point2 in stud
 			[NonSerialized]
 			private PointF mUnitVector = new PointF(); // the unit vector of the line between point1 and point2
 			[NonSerialized]
-			private bool mIsCurrentControlPointPoint1 = false; // tells if the current control point is point1 or point2
+			private int mCurrentControlPointIndex = 0;
 
 			// variable for the draw
 			private float mOffsetLineThickness = 1.0f; // the thickness of the guide lines when this ruler has an offset
@@ -357,7 +374,7 @@ namespace BlueBrick.MapData
 					// and translate accordingly
 					translate(shiftOffset);
 					// call also the base class if both point are free, shift the two offset point
-					if ((mAttachedBrickForPoint1 == null) && (mAttachedBrickForPoint2 == null))
+					if (this.IsNotAttached)
 						base.Center = value;
 				}
 			}
@@ -376,67 +393,65 @@ namespace BlueBrick.MapData
 					// and translate accordingly
 					translate(shiftOffset);
 					// call also the base class if both point are free, shift the two offset point
-					if ((mAttachedBrickForPoint1 == null) && (mAttachedBrickForPoint2 == null))
+					if (this.IsNotAttached)
 						base.Position = value;
 				}
 			}
 
-			public override bool IsPartiallyAttached
+			public override bool IsNotAttached
 			{
-				get { return ((mAttachedBrickForPoint1 != null) || (mAttachedBrickForPoint2 != null)); }
+				get { return ((mControlPoint[0].mAttachedBrick == null) && (mControlPoint[1].mAttachedBrick == null)); }
 			}
 
 			public override bool IsFullyAttached
 			{
-				get { return ((mAttachedBrickForPoint1 != null) && (mAttachedBrickForPoint2 != null)); }
+				get { return ((mControlPoint[0].mAttachedBrick != null) && (mControlPoint[1].mAttachedBrick != null)); }
 			}
 
 			public override bool IsCurrentControlPointAttached
 			{
-				get { return (mIsCurrentControlPointPoint1 ? (mAttachedBrickForPoint1 != null) : (mAttachedBrickForPoint2 != null)); }
+				get { return (mControlPoint[mCurrentControlPointIndex].mAttachedBrick != null); }
 			}
 
 			public override LayerBrick.Brick BrickAttachedToCurrentControlPoint
 			{
-				get { return (mIsCurrentControlPointPoint1 ? mAttachedBrickForPoint1 : mAttachedBrickForPoint2); }
+				get { return mControlPoint[mCurrentControlPointIndex].mAttachedBrick; }
 			}			
 
 			public PointF Point1
 			{
-				get { return mPoint1; }
+				get { return mControlPoint[0].mPoint; }
 				set
 				{
-					mPoint1 = value;
+					mControlPoint[0].mPoint = value;
 					updateDisplayDataAndMesurementImage();
 				}
 			}
 
 			public PointF Point2
 			{
-				get { return mPoint2; }
+				get { return mControlPoint[1].mPoint; }
 				set
 				{
-					mPoint2 = value;
+					mControlPoint[1].mPoint = value;
 					updateDisplayDataAndMesurementImage();
 				}
 			}
 
 			public override PointF CurrentControlPoint
 			{
-				get
-				{
-					if (mIsCurrentControlPointPoint1)
-						return this.Point1;
-					else
-						return this.Point2;
-				}
+				get { return mControlPoint[mCurrentControlPointIndex].mPoint; }
 				set
 				{
-					if (mIsCurrentControlPointPoint1)
-						this.Point1 = value;
-					else
-						this.Point2 = value;
+					mControlPoint[mCurrentControlPointIndex].mPoint = value;
+					updateDisplayDataAndMesurementImage();
 				}
+			}
+
+			public override int CurrentControlPointIndex
+			{
+				get { return mCurrentControlPointIndex; }
+				set { mCurrentControlPointIndex = value; }
 			}
 
 			public float OffsetDistance
@@ -468,8 +483,8 @@ namespace BlueBrick.MapData
 			public LinearRuler(PointF point1, PointF point2)
 				: base()
 			{
-				mPoint1 = point1;
-				mPoint2 = point2;
+				mControlPoint[0].mPoint = point1;
+				mControlPoint[1].mPoint = point2;
 				updateDisplayData();
 			}
 
@@ -482,8 +497,8 @@ namespace BlueBrick.MapData
 			public LinearRuler(PointF point1, PointF point2, float offsetDistance)
 				: base()
 			{
-				mPoint1 = point1;
-				mPoint2 = point2;
+				mControlPoint[0].mPoint = point1;
+				mControlPoint[1].mPoint = point2;
 				mOffsetDistance = offsetDistance;
 				updateDisplayDataAndMesurementImage();
 			}
@@ -499,8 +514,10 @@ namespace BlueBrick.MapData
 			protected override void updateDisplayData()
 			{
 				// compute the vector of the orientation such as the orientation will stay upside up
-				float directorVectorX = Math.Abs(mPoint1.X - mPoint2.X);
-				float directorVectorY = (mPoint2.X > mPoint1.X) ? (mPoint2.Y - mPoint1.Y) : (mPoint1.Y - mPoint2.Y);
+				PointF point1 = mControlPoint[0].mPoint;
+				PointF point2 = mControlPoint[1].mPoint;
+				float directorVectorX = Math.Abs(point1.X - point2.X);
+				float directorVectorY = (point2.X > point1.X) ? (point2.Y - point1.Y) : (point1.Y - point2.Y);
 
 				// compute the orientation angle
 				mOrientation = (float)((Math.Atan2(directorVectorY, directorVectorX) * 180.0) / Math.PI);
@@ -524,22 +541,24 @@ namespace BlueBrick.MapData
 				// compute the offset coordinates in stud
 				float offsetX = offsetNormalizedVector.X * mOffsetDistance;
 				float offsetY = offsetNormalizedVector.Y * mOffsetDistance;
-				mOffsetPoint1 = new PointF(mPoint1.X + offsetX, mPoint1.Y + offsetY);
-				mOffsetPoint2 = new PointF(mPoint2.X + offsetX, mPoint2.Y + offsetY);
+				mControlPoint[0].mOffsetPoint = new PointF(point1.X + offsetX, point1.Y + offsetY);
+				mControlPoint[1].mOffsetPoint = new PointF(point2.X + offsetX, point2.Y + offsetY);
 
 				// extend a little more the offset point to draw a margin
 				const float EXTEND_IN_STUD = 2.0f; //TODO: maybe make it a maximum between the font size/2 and this fixed value
 				float extendX = offsetNormalizedVector.X * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
 				float extendY = offsetNormalizedVector.Y * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
+				PointF offsetPoint1 = mControlPoint[0].mOffsetPoint;
+				PointF offsetPoint2 = mControlPoint[1].mOffsetPoint;
 				PointF[] selectionArea = new PointF[4];
-				selectionArea[(int)SelectionAreaIndex.EXTERNAL_1] = new PointF(mOffsetPoint1.X + extendX, mOffsetPoint1.Y + extendY);
-				selectionArea[(int)SelectionAreaIndex.EXTERNAL_2] = new PointF(mOffsetPoint2.X + extendX, mOffsetPoint2.Y + extendY);
-				selectionArea[(int)SelectionAreaIndex.INTERNAL_1] = new PointF(mOffsetPoint1.X - extendX, mOffsetPoint1.Y - extendY);
-				selectionArea[(int)SelectionAreaIndex.INTERNAL_2] = new PointF(mOffsetPoint2.X - extendX, mOffsetPoint2.Y - extendY);
+				selectionArea[(int)SelectionAreaIndex.EXTERNAL_1] = new PointF(offsetPoint1.X + extendX, offsetPoint1.Y + extendY);
+				selectionArea[(int)SelectionAreaIndex.EXTERNAL_2] = new PointF(offsetPoint2.X + extendX, offsetPoint2.Y + extendY);
+				selectionArea[(int)SelectionAreaIndex.INTERNAL_1] = new PointF(offsetPoint1.X - extendX, offsetPoint1.Y - extendY);
+				selectionArea[(int)SelectionAreaIndex.INTERNAL_2] = new PointF(offsetPoint2.X - extendX, offsetPoint2.Y - extendY);
 				mSelectionArea = new Tools.Polygon(selectionArea);
 
 				// compute the 4 corner of the ruler
-				PointF[] corners = { mPoint1, mPoint2, selectionArea[(int)SelectionAreaIndex.EXTERNAL_1], selectionArea[(int)SelectionAreaIndex.EXTERNAL_2] };
+				PointF[] corners = { point1, point2, selectionArea[(int)SelectionAreaIndex.EXTERNAL_1], selectionArea[(int)SelectionAreaIndex.EXTERNAL_2] };
 
 				// now find the min and max
 				float minX = corners[0].X;
@@ -580,8 +599,8 @@ namespace BlueBrick.MapData
 			{
 				base.ReadXml(reader);
 				// read the data of the ruler (don't use accessor to avoid multiple call to the update functions
-				mPoint1 = XmlReadWrite.readPointF(reader);
-				mPoint2 = XmlReadWrite.readPointF(reader);
+				mControlPoint[0].mPoint = XmlReadWrite.readPointF(reader);
+				mControlPoint[1].mPoint = XmlReadWrite.readPointF(reader);
 				mOffsetDistance = reader.ReadElementContentAsFloat();
 				mOffsetLineThickness = reader.ReadElementContentAsFloat();
 				// read the end element of the ruler
@@ -613,27 +632,27 @@ namespace BlueBrick.MapData
 			/// <param name="translation">the value to translate in stud coord</param>
 			private void translate(PointF translation)
 			{
-				// to change the center at least on control point must be free
-				if ((mAttachedBrickForPoint1 == null) || (mAttachedBrickForPoint2 == null))
+				// to change the center at least one control point must be free
+				if (!this.IsFullyAttached)
 				{
 					// add the offset to the 2 points if there are not attached
-					if (mAttachedBrickForPoint1 == null)
+					if (mControlPoint[0].mAttachedBrick == null)
 					{
-						mPoint1.X += translation.X;
-						mPoint1.Y += translation.Y;
+						mControlPoint[0].mPoint.X += translation.X;
+						mControlPoint[0].mPoint.Y += translation.Y;
 					}
-					if (mAttachedBrickForPoint2 == null)
+					if (mControlPoint[1].mAttachedBrick == null)
 					{
-						mPoint2.X += translation.X;
-						mPoint2.Y += translation.Y;
+						mControlPoint[1].mPoint.X += translation.X;
+						mControlPoint[1].mPoint.Y += translation.Y;
 					}
 					// if both point are free, shift the two offset point
-					if ((mAttachedBrickForPoint1 == null) && (mAttachedBrickForPoint2 == null))
+					if (this.IsNotAttached)
 					{
-						mOffsetPoint1.X += translation.X;
-						mOffsetPoint1.Y += translation.Y;
-						mOffsetPoint2.X += translation.X;
-						mOffsetPoint2.Y += translation.Y;
+						mControlPoint[0].mOffsetPoint.X += translation.X;
+						mControlPoint[0].mOffsetPoint.Y += translation.Y;
+						mControlPoint[1].mOffsetPoint.X += translation.X;
+						mControlPoint[1].mOffsetPoint.Y += translation.Y;
 						// unit vector and offset distance don't changes
 					}
 					else
@@ -653,19 +672,19 @@ namespace BlueBrick.MapData
 			/// <returns>the square distance from the specified point to the nearest control point in squared studs</returns>
 			public override float findClosestControlPointAndComputeSquareDistance(PointF pointInStud)
 			{
-				float dx1 = pointInStud.X - mPoint1.X;
-				float dy1 = pointInStud.Y - mPoint1.Y;
-				float squaredDist1 = (dx1 * dx1) + (dy1 * dy1);
-				float dx2 = pointInStud.X - mPoint2.X;
-				float dy2 = pointInStud.Y - mPoint2.Y;
-				float squaredDist2 = (dx2 * dx2) + (dy2 * dy2);
-				// witch one is closer?
-				mIsCurrentControlPointPoint1 = (squaredDist1 < squaredDist2);
-				// and return the correct distance
-				if (mIsCurrentControlPointPoint1)
-					return squaredDist1;
-				else
-					return squaredDist2;
+				float bestSquareDist = float.MaxValue;
+				for (int i = 0; i < mControlPoint.Length; ++i)
+				{
+					float dx = pointInStud.X - mControlPoint[i].mPoint.X;
+					float dy = pointInStud.Y - mControlPoint[i].mPoint.Y;
+					float squaredDist = (dx * dx) + (dy * dy);
+					if (squaredDist < bestSquareDist)
+					{
+						bestSquareDist = squaredDist;
+						this.mCurrentControlPointIndex = i;
+					}
+				}
+				return bestSquareDist;
 			}
 
 			/// <summary>
@@ -690,7 +709,8 @@ namespace BlueBrick.MapData
 			public override void scaleToPoint(PointF pointInStud)
 			{
 				// get the vector to make a vectorial product with the unit vector
-				PointF point1ToSpecifiedPoint = new PointF(pointInStud.X - mPoint1.X, pointInStud.Y - mPoint1.Y);
+				PointF point1 = this.Point1;
+				PointF point1ToSpecifiedPoint = new PointF(pointInStud.X - point1.X, pointInStud.Y - point1.Y);
 				// compute the vectorial product (x and y are null cause z is null):
 				this.OffsetDistance = (point1ToSpecifiedPoint.X * mUnitVector.Y) - (point1ToSpecifiedPoint.Y * mUnitVector.X);
 			}
@@ -701,7 +721,7 @@ namespace BlueBrick.MapData
 			/// <return>a point in stud coordinate which match the current scale of the ruler</return>
 			public override PointF getReferencePointForScale()
 			{
-				return mOffsetPoint2;
+				return mControlPoint[1].mOffsetPoint;
 			}
 
 			/// <summary>
@@ -721,41 +741,47 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
-			/// Move the control point which is attached to the specified brick to the specified position
+			/// Get the control point corresponding to the index number.
+			/// If index is zero, this method return this.Point1, if index is 1 it returns this.Point2
 			/// </summary>
-			/// <param name="referenceBrick">The brick to which the control point is attached</param>
-			/// <param name="newPosition">The new posiion of the control point</param>
-			public override void setControlPointPositionForBrick(LayerBrick.Brick referenceBrick, PointF newPosition)
+			/// <param name="index">0 if you want Point1, 1 if you want Point2</param>
+			/// <returns>the position of Point1 or Point2</returns>
+			public override PointF getControlPointPosition(int index)
 			{
-				if (referenceBrick == mAttachedBrickForPoint1)
-					this.Point1 = newPosition;
-				else if (referenceBrick == mAttachedBrickForPoint2)
-					this.Point2 = newPosition;
+				return mControlPoint[index].mPoint;
+			}
+
+			/// <summary>
+			/// Set the position of the control point corresponding to the index number
+			/// If index is zero, this method will move this.Point1, if index is 1 it will set this.Point2
+			/// </summary>
+			/// <param name="index">0 if you want Point1, 1 if you want Point2</param>
+			/// <param name="value">the new position in stud coordinate</param>
+			public override void setControlPointPosition(int index, PointF positionInStud)
+			{
+				mControlPoint[index].mPoint = positionInStud;
+				updateDisplayDataAndMesurementImage();
 			}
 
 			/// <summary>
 			/// Call this function when you want to attach the current control point to the specified brick.
 			/// Be sure to choose the correct current point before calling this function.
 			/// </summary>
+			/// <param name="index">the index of the control point to attach</param>
 			/// <param name="brick">the brick to which the current control point will be attached</param>
-			public override void attachCurrentControlPointToBrick(LayerBrick.Brick brick)
+			public override void attachControlPointToBrick(int index, LayerBrick.Brick brick)
 			{
-				if (mIsCurrentControlPointPoint1)
-					mAttachedBrickForPoint1 = brick;
-				else
-					mAttachedBrickForPoint2 = brick;
+				mControlPoint[index].mAttachedBrick = brick;
 			}
 
 			/// <summary>
 			/// Call this function when you want to detach the current control point.
 			/// Be sure to choose the correct current point before calling this function.
+			/// <param name="index">the index of the control point to detach</param>
 			/// </summary>
-			public override void detachCurrentControlPoint()
+			public override void detachControlPoint(int index)
 			{
-				if (mIsCurrentControlPointPoint1)
-					mAttachedBrickForPoint1 = null;
-				else
-					mAttachedBrickForPoint2 = null;
+				mControlPoint[index].mAttachedBrick = null;
 			}
 			#endregion
 
@@ -781,8 +807,8 @@ namespace BlueBrick.MapData
 					bool needToDisplayHull = Properties.Settings.Default.DisplayHull;
 
 					// transform the coordinates into pixel coordinates
-					PointF offset1InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint1, areaInStud, scalePixelPerStud);
-					PointF offset2InPixel = Layer.sConvertPointInStudToPixel(mOffsetPoint2, areaInStud, scalePixelPerStud);
+					PointF offset1InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[0].mOffsetPoint, areaInStud, scalePixelPerStud);
+					PointF offset2InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[1].mOffsetPoint, areaInStud, scalePixelPerStud);
 
 					// internal point may be computed only for certain conditions
 					PointF offsetInternal1InPixel = new PointF();
@@ -848,8 +874,8 @@ namespace BlueBrick.MapData
 						// draw the offset if needed
 						if (needToDrawOffset)
 						{
-							PointF point1InPixel = Layer.sConvertPointInStudToPixel(mPoint1, areaInStud, scalePixelPerStud);
-							PointF point2InPixel = Layer.sConvertPointInStudToPixel(mPoint2, areaInStud, scalePixelPerStud);
+							PointF point1InPixel = Layer.sConvertPointInStudToPixel(this.Point1, areaInStud, scalePixelPerStud);
+							PointF point2InPixel = Layer.sConvertPointInStudToPixel(this.Point2, areaInStud, scalePixelPerStud);
 
 							// create the pen for the offset lines
 							Pen penForOffsetLine = new Pen(colorWithTransparency, mOffsetLineThickness);
@@ -890,8 +916,8 @@ namespace BlueBrick.MapData
 					(mDisplayArea.Bottom >= areaInStud.Top) && (mDisplayArea.Top <= areaInStud.Bottom))
 				{
 					// draw the two points
-					drawOneControlPoint(g, areaInStud, scalePixelPerStud, color, mPoint1, mAttachedBrickForPoint1 != null);
-					drawOneControlPoint(g, areaInStud, scalePixelPerStud, color, mPoint2, mAttachedBrickForPoint2 != null);
+					drawOneControlPoint(g, areaInStud, scalePixelPerStud, color, this.Point1, mControlPoint[0].mAttachedBrick != null);
+					drawOneControlPoint(g, areaInStud, scalePixelPerStud, color, this.Point2, mControlPoint[1].mAttachedBrick != null);
 				}
 			}
 			#endregion
@@ -920,9 +946,9 @@ namespace BlueBrick.MapData
 				}
 			}
 
-			public override bool IsPartiallyAttached
+			public override bool IsNotAttached
 			{
-				get { return (mAttachedBrick != null); }
+				get { return (mAttachedBrick == null); }
 			}
 
 			public override bool IsFullyAttached
@@ -1109,22 +1135,32 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
-			/// Move the control point which is attached to the specified brick to the specified position
+			/// There's only one control point for a circular ruler, so the index is always ignored
 			/// </summary>
-			/// <param name="referenceBrick">The brick to which the control point is attached</param>
-			/// <param name="newPosition">The new posiion of the control point</param>
-			public override void setControlPointPositionForBrick(LayerBrick.Brick referenceBrick, PointF newPosition)
+			/// <param name="index">useless parameter</param>
+			/// <returns>the center of the circular ruler</returns>
+			public override PointF getControlPointPosition(int index)
 			{
-				if (referenceBrick == mAttachedBrick)
-					this.CurrentControlPoint = newPosition;
+				return this.CurrentControlPoint;
+			}
+
+			/// <summary>
+			/// There's only one control point for a circular ruler, so the index is always ignored
+			/// </summary>
+			/// <param name="index">useless parameter</param>
+			/// <param name="positionInStud">the new value for the center of the circular ruler</param>
+			public override void setControlPointPosition(int index, PointF positionInStud)
+			{
+				this.CurrentControlPoint = positionInStud;
 			}
 
 			/// <summary>
 			/// Call this function when you want to attach the current control point to the specified brick.
 			/// Be sure to choose the correct current point before calling this function
 			/// </summary>
+			/// <param name="index">useless for circular ruler</param>
 			/// <param name="brick">the brick to which the current control point will be attached</param>
-			public override void attachCurrentControlPointToBrick(LayerBrick.Brick brick)
+			public override void attachControlPointToBrick(int index, LayerBrick.Brick brick)
 			{
 				// the circular ruler only have one attach
 				mAttachedBrick = brick;
@@ -1133,8 +1169,9 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// Call this function when you want to detach the current control point.
 			/// Be sure to choose the correct current point before calling this function.
+			/// <param name="index">useless parameter for a circular ruler</param>
 			/// </summary>
-			public override void detachCurrentControlPoint()
+			public override void detachControlPoint(int index)
 			{
 				mAttachedBrick = null;
 			}

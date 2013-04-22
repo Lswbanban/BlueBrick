@@ -21,12 +21,12 @@ namespace BlueBrick.Actions.Rulers
 {
 	class DetachRuler : Action
 	{
-		private LayerRuler.RulerItem mRulerItem = null;
+		private RulerAttachementSet.Anchor mAnchor = null;
 		private LayerBrick.Brick mBrick = null;
 
 		public DetachRuler(LayerRuler.RulerItem rulerItem, LayerBrick.Brick brick)
 		{
-			mRulerItem = rulerItem;
+			mAnchor = brick.getRulerAttachmentAnchor(rulerItem);
 			mBrick = brick;
 		}
 
@@ -37,12 +37,12 @@ namespace BlueBrick.Actions.Rulers
 
 		public override void redo()
 		{
-			mBrick.detachRuler(mRulerItem);
+			mBrick.detachRuler(mAnchor);
 		}
 
 		public override void undo()
 		{
-			mBrick.attachRuler(mRulerItem, mBrick.Center); // TODO use the real position
+			mBrick.attachRuler(mAnchor);
 		}
 	}
 }

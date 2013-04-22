@@ -22,12 +22,13 @@ namespace BlueBrick.Actions.Rulers
 {
 	class AttachRulerToBrick : Action
 	{
-		private LayerRuler.RulerItem mRulerItem = null;
+		private RulerAttachementSet.Anchor mAnchor = null;
 		private LayerBrick.Brick mBrick = null;
 
 		public AttachRulerToBrick(LayerRuler.RulerItem rulerItem, LayerBrick.Brick brick)
 		{
-			mRulerItem = rulerItem;
+			PointF attachOffset = new PointF();// TODO use the real position
+			mAnchor = new RulerAttachementSet.Anchor(rulerItem, rulerItem.CurrentControlPointIndex, attachOffset);
 			mBrick = brick;
 		}
 
@@ -38,12 +39,12 @@ namespace BlueBrick.Actions.Rulers
 
 		public override void redo()
 		{
-			mBrick.attachRuler(mRulerItem, mBrick.Center); // TODO use the real position
+			mBrick.attachRuler(mAnchor);
 		}
 
 		public override void undo()
 		{
-			mBrick.detachRuler(mRulerItem);
+			mBrick.detachRuler(mAnchor);
 		}
 	}
 }
