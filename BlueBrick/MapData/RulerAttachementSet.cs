@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Text;
 using BlueBrick.MapData;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace BlueBrick.MapData
 {
@@ -26,7 +27,8 @@ namespace BlueBrick.MapData
 		{
 			private LayerRuler.RulerItem mAttachedRuler = null;
 			private int mAttachedPointIndex = 0;
-			private PointF mAttachOffsetFromCenter = new PointF();
+			private PointF mLocalAttachOffsetFromCenter = new PointF();
+			private PointF mWorldAttachOffsetFromCenter = new PointF();
 
 			public LayerRuler.RulerItem AttachedRuler
 			{
@@ -38,16 +40,29 @@ namespace BlueBrick.MapData
 				get { return mAttachedPointIndex; }
 			}
 
-			public PointF AttachOffsetFromCenter
+			public PointF LocalAttachOffsetFromCenter
 			{
-				get { return mAttachOffsetFromCenter; }
+				get { return mLocalAttachOffsetFromCenter; }
 			}
 
-			public Anchor(LayerRuler.RulerItem ruler, int index, PointF attachOffset)
+			public PointF WorldAttachOffsetFromCenter
+			{
+				get { return mWorldAttachOffsetFromCenter; }
+			}
+
+			public Anchor(LayerRuler.RulerItem ruler, int index, PointF localAttachOffset)
 			{
 				mAttachedRuler = ruler;
 				mAttachedPointIndex = index;
-				mAttachOffsetFromCenter = attachOffset;
+				mLocalAttachOffsetFromCenter = localAttachOffset;
+				mWorldAttachOffsetFromCenter = localAttachOffset; // initialize with a zero angle
+			}
+
+			public void rotate(Matrix matrix)
+			{
+				PointF[] vector = { mLocalAttachOffsetFromCenter };
+				matrix.TransformVectors(vector);
+				mWorldAttachOffsetFromCenter = vector[0];
 			}
 		}
 
@@ -59,20 +74,46 @@ namespace BlueBrick.MapData
 			mOwnerBrick = owner;
 		}
 
-		public void updatePosition()
+		/// <summary>
+		/// This method is called by the owner brick when the brick has moved to allow
+		/// the attached rulers to follow the brick.
+		/// </summary>
+		public void brickMoveNotification()
 		{
 			PointF brickCenter = mOwnerBrick.Center;
 			foreach (Anchor anchor in mAnchors)
 			{
-				PointF attachPosition = new PointF(brickCenter.X + anchor.AttachOffsetFromCenter.X,
-													brickCenter.Y + anchor.AttachOffsetFromCenter.Y);
+				PointF attachPosition = new PointF(brickCenter.X + anchor.WorldAttachOffsetFromCenter.X,
+													brickCenter.Y + anchor.WorldAttachOffsetFromCenter.Y);
 				anchor.AttachedRuler.setControlPointPosition(anchor.AttachedPointIndex, attachPosition);
 			}
 		}
 
+		/// <summary>
+		/// This method is called by the owner brick when the brick has rotated to allow
+		/// the attached rulers to follow the brick.
+		/// </summary>
+		public void brickRotateNotification()
+		{
+			// compute the rotation matrix
+			Matrix matrix = new Matrix();
+			matrix.Rotate(mOwnerBrick.Orientation);
+			// rotate all the anchor offset
+			foreach (Anchor anchor in mAnchors)
+				anchor.rotate(matrix);
+			// then call the move notification
+			brickMoveNotification();
+		}
+
 		public void attachRuler(Anchor anchor)
 		{
+			// when we attach the specified anchor, rotate it according to the orientation of the owner brick
+			Matrix matrix = new Matrix();
+			matrix.Rotate(mOwnerBrick.Orientation);
+			anchor.rotate(matrix);
+			// then notify the ruler of the attachment
 			anchor.AttachedRuler.attachControlPointToBrick(anchor.AttachedPointIndex, mOwnerBrick);
+			// and add the anchor in the attachment list
 			mAnchors.Add(anchor);
 		}
 
