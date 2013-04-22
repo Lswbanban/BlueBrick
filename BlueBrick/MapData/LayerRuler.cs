@@ -224,7 +224,9 @@ namespace BlueBrick.MapData
 		/// This function tells if the specified point is just above at least one control point of any
 		/// ruler in this layer. A control point for a linear ruler is one of its two extremity and for 
 		/// a circular ruler it is its center. A certain distance is used to check if the point is above.
-		/// If more than one control point is a possible candidate, the closer one is chosen.
+		/// If more than one control point is a possible candidate, the closer one is chosen but priority
+		/// is given to the selected item is if two candidate are at the exact same position (which
+		/// can happen when two rulers are attached to the same brick center for example).
 		/// If no candidate are found, the specified concernedRulerItem is not changed.
 		/// </summary>
 		/// <param name="pointInStud">the position to check in stud coord</param>
@@ -240,6 +242,19 @@ namespace BlueBrick.MapData
 			// check if the highlighted ruler will change
 			RulerItem previousHighlightedRuler = mCurrentRulerWithHighlightedControlPoint;
 			mCurrentRulerWithHighlightedControlPoint = null;
+
+			// is there a selected ruler? if yes check first with it to take it in priority.
+			if (mSelectedObjects.Count == 1)
+			{
+				RulerItem item = (mSelectedObjects[0] as RulerItem);
+				float currentSquareDistance = item.findClosestControlPointAndComputeSquareDistance(pointInStud);
+				if (currentSquareDistance < bestSquareDistance)
+				{
+					concernedRulerItem = item;
+					mCurrentRulerWithHighlightedControlPoint = item;
+					bestSquareDistance = currentSquareDistance;
+				}
+			}
 
 			// iterate on all the rulers to find the nearest control point
 			foreach (RulerItem item in mRulers)
