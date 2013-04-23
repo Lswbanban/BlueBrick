@@ -30,6 +30,7 @@ namespace BlueBrick.MapData
 			private PointF mLocalAttachOffsetFromCenter = new PointF();
 			private PointF mWorldAttachOffsetFromCenter = new PointF();
 
+			#region get/set
 			public LayerRuler.RulerItem AttachedRuler
 			{
 				get { return mAttachedRuler; }
@@ -49,6 +50,21 @@ namespace BlueBrick.MapData
 			{
 				get { return mWorldAttachOffsetFromCenter; }
 			}
+			#endregion
+
+			public static PointF sComputeLocalOffsetFromLayerItem(Layer.LayerItem item, PointF worldPositionInStud)
+			{
+				// compute the offset from the brick center in world coordinate
+				PointF itemCenter = item.Center;
+				PointF offset = new PointF(worldPositionInStud.X - itemCenter.X, worldPositionInStud.Y - itemCenter.Y);
+				// compute the rotation matrix of the brick in order to find the local offset
+				Matrix matrix = new Matrix();
+				matrix.Rotate(-item.Orientation);
+				PointF[] vector = { offset };
+				matrix.TransformVectors(vector);
+				// return the local offset
+				return vector[0];
+			}
 
 			public Anchor(LayerRuler.RulerItem ruler, int index, PointF localAttachOffset)
 			{
@@ -63,6 +79,19 @@ namespace BlueBrick.MapData
 				PointF[] vector = { mLocalAttachOffsetFromCenter };
 				matrix.TransformVectors(vector);
 				mWorldAttachOffsetFromCenter = vector[0];
+			}
+
+			public void rotate(float angleInDegree)
+			{
+				Matrix matrix = new Matrix();
+				matrix.Rotate(angleInDegree);
+				rotate(matrix);
+			}
+
+			public void updateAttachOffsetFromCenter(PointF newLocalOffset, float attachedBrickOrientation)
+			{
+				mLocalAttachOffsetFromCenter = newLocalOffset;
+				rotate(attachedBrickOrientation);
 			}
 		}
 
@@ -108,9 +137,7 @@ namespace BlueBrick.MapData
 		public void attachRuler(Anchor anchor)
 		{
 			// when we attach the specified anchor, rotate it according to the orientation of the owner brick
-			Matrix matrix = new Matrix();
-			matrix.Rotate(mOwnerBrick.Orientation);
-			anchor.rotate(matrix);
+			anchor.rotate(mOwnerBrick.Orientation);
 			// then notify the ruler of the attachment
 			anchor.AttachedRuler.attachControlPointToBrick(anchor.AttachedPointIndex, mOwnerBrick);
 			// and add the anchor in the attachment list

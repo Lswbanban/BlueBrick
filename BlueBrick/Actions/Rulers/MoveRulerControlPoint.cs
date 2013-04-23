@@ -24,15 +24,30 @@ namespace BlueBrick.Actions.Rulers
 	{
 		private LayerRuler mRulerLayer = null;
 		private LayerRuler.RulerItem mRulerItem = null;
+		private int mControlPointIndex = 0;
 		private PointF mOriginalPosition = new PointF();
 		private PointF mNewPosition = new PointF();
+		private RulerAttachementSet.Anchor mAnchor = null;
+		private PointF mOriginalLocalAttachOffset = new PointF();
+		private PointF mNewLocalAttachOffset = new PointF();
+		private float mAttachedBrickOrientation = 0.0f;
 
 		public MoveRulerControlPoint(LayerRuler layer, LayerRuler.RulerItem rulerItem, PointF originalPosition, PointF newPosition)
 		{
 			mRulerLayer = layer;
 			mRulerItem = rulerItem;
+			mControlPointIndex = rulerItem.CurrentControlPointIndex;
 			mOriginalPosition = originalPosition;
 			mNewPosition = newPosition;
+			// compute the new attach offset if the control point is attached
+			if (rulerItem.IsCurrentControlPointAttached)
+			{
+				LayerBrick.Brick attachedBrick = rulerItem.BrickAttachedToCurrentControlPoint;
+				mAnchor = attachedBrick.getRulerAttachmentAnchor(rulerItem);
+				mOriginalLocalAttachOffset = mAnchor.LocalAttachOffsetFromCenter;
+				mNewLocalAttachOffset = RulerAttachementSet.Anchor.sComputeLocalOffsetFromLayerItem(attachedBrick, newPosition);
+				mAttachedBrickOrientation = attachedBrick.Orientation;
+			}
 		}
 
 		public override string getName()
@@ -42,20 +57,22 @@ namespace BlueBrick.Actions.Rulers
 
 		public override void redo()
 		{
-			// set the correct control point
-			mRulerItem.findClosestControlPointAndComputeSquareDistance(mOriginalPosition);
+			// if the anchor is not null, update it with the new offset
+			if (mAnchor != null)
+				mAnchor.updateAttachOffsetFromCenter(mNewLocalAttachOffset, mAttachedBrickOrientation);
 			// set the new position
-			mRulerItem.CurrentControlPoint = mNewPosition;
+			mRulerItem.setControlPointPosition(mControlPointIndex, mNewPosition);
 			// update the selection rectangle
 			mRulerLayer.updateBoundingSelectionRectangle();
 		}
 
 		public override void undo()
 		{
-			// set the correct control point
-			mRulerItem.findClosestControlPointAndComputeSquareDistance(mNewPosition);
+			// if the anchor is not null, update it with the old offset
+			if (mAnchor != null)
+				mAnchor.updateAttachOffsetFromCenter(mOriginalLocalAttachOffset, mAttachedBrickOrientation);
 			// set back the original position
-			mRulerItem.CurrentControlPoint = mOriginalPosition;
+			mRulerItem.setControlPointPosition(mControlPointIndex, mOriginalPosition);
 			// update the selection rectangle
 			mRulerLayer.updateBoundingSelectionRectangle();
 		}

@@ -28,17 +28,8 @@ namespace BlueBrick.Actions.Rulers
 
 		public AttachRulerToBrick(LayerRuler.RulerItem rulerItem, LayerBrick.Brick brick)
 		{
-			PointF brickCenter = brick.Center;
-			PointF attachOffset = rulerItem.CurrentControlPoint;
-			// compute the offset from the brick center in world coordinate
-			attachOffset.X -= brickCenter.X;
-			attachOffset.Y -= brickCenter.Y;
-			// compute the rotation matrix of the brick in order to find the local offset
-			Matrix matrix = new Matrix();
-			matrix.Rotate(-brick.Orientation);
-			PointF[] vector = { attachOffset };
-			matrix.TransformVectors(vector);
-			attachOffset = vector[0];
+			// compute the attach offset in local coordinate
+			PointF attachOffset = RulerAttachementSet.Anchor.sComputeLocalOffsetFromLayerItem(brick, rulerItem.CurrentControlPoint);
 			// create a new Anchor
 			mAnchor = new RulerAttachementSet.Anchor(rulerItem, rulerItem.CurrentControlPointIndex, attachOffset);
 			mBrick = brick;
