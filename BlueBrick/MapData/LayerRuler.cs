@@ -781,7 +781,9 @@ namespace BlueBrick.MapData
 							if (mMouseIsMovingControlPoint)
 							{
 								// move the control point
-								mCurrentlyEditedRuler.CurrentControlPoint = mouseCoordInStudSnapped;
+								if (!mCurrentlyEditedRuler.IsCurrentControlPointAttached ||
+									mCurrentlyEditedRuler.BrickAttachedToCurrentControlPoint.SelectionArea.isPointInside(mouseCoordInStudSnapped))
+									mCurrentlyEditedRuler.CurrentControlPoint = mouseCoordInStudSnapped;
 								// move or update the bounding rectangle
 								if (mCurrentlyEditedRuler is CircularRuler)
 								{
@@ -903,11 +905,16 @@ namespace BlueBrick.MapData
 						{
 							if (mMouseIsMovingControlPoint)
 							{
+								// compute the final position before reseting the current position to the initial one
+								PointF finalPosition = mCurrentlyEditedRuler.CurrentControlPoint;
+								if (!mCurrentlyEditedRuler.IsCurrentControlPointAttached ||
+									mCurrentlyEditedRuler.BrickAttachedToCurrentControlPoint.SelectionArea.isPointInside(mouseCoordInStudSnapped))
+									finalPosition = mouseCoordInStudSnapped;
 								// move back the control point because for a linear ruler, because a swap of
 								// current control point can happen if you move the two control point at the same place
 								mCurrentlyEditedRuler.CurrentControlPoint = mMouseDownInitialPosition;
 								// and create an action
-								Actions.ActionManager.Instance.doAction(new Actions.Rulers.MoveRulerControlPoint(this, mCurrentlyEditedRuler, mMouseDownInitialPosition, mouseCoordInStudSnapped));
+								Actions.ActionManager.Instance.doAction(new Actions.Rulers.MoveRulerControlPoint(this, mCurrentlyEditedRuler, mMouseDownInitialPosition, finalPosition));
 							}
 							else if (mMouseIsScalingRuler)
 							{
