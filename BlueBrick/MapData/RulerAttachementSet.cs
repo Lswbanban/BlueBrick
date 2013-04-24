@@ -52,14 +52,17 @@ namespace BlueBrick.MapData
 			}
 			#endregion
 
-			public static PointF sComputeLocalOffsetFromLayerItem(Layer.LayerItem item, PointF worldPositionInStud)
+			public static PointF sComputeLocalOffsetFromLayerItem(LayerBrick.Brick brick, PointF worldPositionInStud)
 			{
+				// compute the brick center in world coordinate
+				PointF brickCenter = brick.Center;
+				brickCenter.X += brick.OffsetFromOriginalImage.X;
+				brickCenter.Y += brick.OffsetFromOriginalImage.Y;
 				// compute the offset from the brick center in world coordinate
-				PointF itemCenter = item.Center;
-				PointF offset = new PointF(worldPositionInStud.X - itemCenter.X, worldPositionInStud.Y - itemCenter.Y);
+				PointF offset = new PointF(worldPositionInStud.X - brickCenter.X, worldPositionInStud.Y - brickCenter.Y);
 				// compute the rotation matrix of the brick in order to find the local offset
 				Matrix matrix = new Matrix();
-				matrix.Rotate(-item.Orientation);
+				matrix.Rotate(-brick.Orientation);
 				PointF[] vector = { offset };
 				matrix.TransformVectors(vector);
 				// return the local offset
@@ -110,6 +113,8 @@ namespace BlueBrick.MapData
 		public void brickMoveNotification()
 		{
 			PointF brickCenter = mOwnerBrick.Center;
+			brickCenter.X += mOwnerBrick.OffsetFromOriginalImage.X;
+			brickCenter.Y += mOwnerBrick.OffsetFromOriginalImage.Y;
 			foreach (Anchor anchor in mAnchors)
 			{
 				PointF attachPosition = new PointF(brickCenter.X + anchor.WorldAttachOffsetFromCenter.X,

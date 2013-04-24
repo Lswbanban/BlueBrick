@@ -66,17 +66,15 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- mouse handle still need some work?
 	- the ruler edition still need some work? yes, rotate ruler
-	- snapping for rulers on the brick (aka attachment): for now it's only on the center of the brick, need a relative attach: still buggy
 	- the mesurement unit should not have a fixed size
 	- add one settings for the snapping distance in pixel of the scale handle (now use hard coded value)
 	- add more cursors (miss one for editing the parameters of a ruler i.e double click)
 	- Property window for option of each ruler
 	- manage the different unit
 	- Ruler just a line: or diffrent options for the lines/rulers
+	- refactor create a write float/bool function in XmlReadWrite
 	- save/load of attachement not done
 	- save/load in LDraw
-	- refactor create a write float/bool function in XmlReadWrite
-bug quand on rotate une brick qui a des ruler attaché: le centre de la brique bouge ou quoi? en tout cas le control point bouge
 bug en release: la function Surface.isPointInside est buggué (marche en debug)
 REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
