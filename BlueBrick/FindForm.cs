@@ -48,7 +48,7 @@ namespace BlueBrick
 			for (int i = Map.Instance.LayerList.Count-1; i >= 0; --i)
 			{
 				Layer layer = Map.Instance.LayerList[i];
-				if (layer.GetType().Name.Equals("LayerBrick"))
+				if (layer is LayerBrick)
 				{
 					// add a check box item and the corresponding layer reference in a private list
 					this.LayerCheckedListBox.Items.Add(layer.Name, layer == selectedLayer);

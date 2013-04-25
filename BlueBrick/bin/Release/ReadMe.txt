@@ -103,7 +103,6 @@ REMOVE ALL THE TODO
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] BUG (Alban): You cannot duplicate bricks and connect them in the same mouse move
-- [target 1.8] REFACTORING (Alban): Replace all the type test using a string with the is keyword
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
@@ -119,6 +118,7 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (Alban): Add more options in the preference to create any of the 5 types of layer for a new map
 - REFACTORING (Alban): Move the display of free connection point and watermark in the View menu and add the display of the hull.
 - REFACTORING #18 (Alban): Check where I could have used the directive "where" (remove code duplication)
+- REFACTORING (Alban): Replace all the type test using a string with the "is" keyword
 - BUGFIX #40 (Steffen): If you connect a gray track with a blue track, the sleeper between them should be the white 3034 one. 
 - BUGFIX #42 (Larry): CRASH!! if you export a small area after exporting a big area
 - BUGFIX #47 (doc_brown): the LDraw header is not following the standard definition

@@ -36,9 +36,9 @@ namespace BlueBrick
 			// save the reference on the layer that we are editing
 			mEditedLayer = layer;
 			// change the title if it is a text or ruler layer, otherwise, leave the default brick layer title
-			if (layer.GetType().Name.Equals("LayerText"))
+			if (layer is LayerText)
 				this.Text = BlueBrick.Properties.Resources.LayerTextOptionTitle;
-			else if (layer.GetType().Name.Equals("LayerRuler"))
+			else if (layer is LayerRuler)
 				this.Text = BlueBrick.Properties.Resources.LayerRulerOptionTitle;
 			// update the controls with the data of the gridLayer
 			// name and visibility
