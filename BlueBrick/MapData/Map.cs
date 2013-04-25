@@ -218,21 +218,14 @@ namespace BlueBrick.MapData
 				// according to the type of the layer selected, enable or disable some tool on the main form
 				if (mSelectedLayer != null)
 				{
-					switch (mSelectedLayer.GetType().Name)
-					{
-						case "LayerGrid":
-							MainForm.Instance.enableToolbarButtonOnLayerSelection(false, false, false);
-							break;
-						case "LayerArea":
-							MainForm.Instance.enableToolbarButtonOnLayerSelection(false, true, false);
-							break;
-						case "LayerRuler":
-							MainForm.Instance.enableToolbarButtonOnLayerSelection(true, false, true);
-							break;
-						default:
-							MainForm.Instance.enableToolbarButtonOnLayerSelection(true, false, false);
-							break;
-					}
+					if (mSelectedLayer is LayerGrid)
+						MainForm.Instance.enableToolbarButtonOnLayerSelection(false, false, false);
+					else if (mSelectedLayer is LayerArea)
+						MainForm.Instance.enableToolbarButtonOnLayerSelection(false, true, false);
+					else if (mSelectedLayer is LayerRuler)
+						MainForm.Instance.enableToolbarButtonOnLayerSelection(true, false, true);
+					else
+						MainForm.Instance.enableToolbarButtonOnLayerSelection(true, false, false);
 				}
 				else
 				{
@@ -508,7 +501,7 @@ namespace BlueBrick.MapData
 				// we use a hastable for fast hash search
 				System.Collections.Hashtable partList = new System.Collections.Hashtable();
 				foreach (Layer layer in mLayers)
-					if (layer.GetType().Name.Equals("LayerBrick"))
+					if (layer is LayerBrick)
 						foreach (LayerBrick.Brick brick in (layer as LayerBrick).BrickList)
 							if (!partList.ContainsKey(brick.PartNumber))
 							{

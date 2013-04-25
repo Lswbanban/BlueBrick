@@ -169,24 +169,16 @@ namespace BlueBrick
 				{
 					// instanciate a new layer panel according to the layer type
 					LayerPanel newLayerPanel = null;
-					switch (layer.GetType().Name)
-					{
-						case "LayerGrid":
-							newLayerPanel = new LayerGridPanel(layer);
-							break;
-						case "LayerText":
-							newLayerPanel = new LayerTextPanel(layer);
-							break;
-						case "LayerArea":
-							newLayerPanel = new LayerAreaPanel(layer);
-							break;
-						case "LayerBrick":
-							newLayerPanel = new LayerBrickPanel(layer);
-							break;
-						case "LayerRuler":
-							newLayerPanel = new LayerRulerPanel(layer);
-							break;
-					}
+					if (layer is LayerGrid)
+						newLayerPanel = new LayerGridPanel(layer);
+					else if (layer is LayerText)
+						newLayerPanel = new LayerTextPanel(layer);
+					else if (layer is LayerArea)
+						newLayerPanel = new LayerAreaPanel(layer);
+					else if (layer is LayerBrick)
+						newLayerPanel = new LayerBrickPanel(layer);
+					else if (layer is LayerRuler)
+						newLayerPanel = new LayerRulerPanel(layer);
 
 					// add the new layer in the control list
 					this.Controls.Add(newLayerPanel);

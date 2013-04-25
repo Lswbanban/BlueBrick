@@ -782,7 +782,9 @@ namespace BlueBrick
 			this.deselectAllToolStripMenuItem.Enabled = isThereAnyItemSelected;
 
 			// enable/disable the select path button (menu only)
-			this.selectPathToolStripMenuItem.Enabled = ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.GetType().Name.Equals("LayerBrick")) && (Map.Instance.SelectedLayer.SelectedObjects.Count == 2));
+			this.selectPathToolStripMenuItem.Enabled = ((Map.Instance.SelectedLayer != null) &&
+														(Map.Instance.SelectedLayer is LayerBrick) &&
+														(Map.Instance.SelectedLayer.SelectedObjects.Count == 2));
 		}
 
 		/// <summary>
@@ -1448,7 +1450,7 @@ namespace BlueBrick
 					// maybe so 2 free connexions will become aligned, and can be connected, that's why
 					// we perform a slow update connectivity in that case.
 					foreach (Layer layer in Map.Instance.LayerList)
-						if (layer.GetType().Name == "LayerBrick")
+						if (layer is LayerBrick)
 							(layer as LayerBrick).updateFullBrickConnectivity();
 				}
 				else
@@ -1617,7 +1619,7 @@ namespace BlueBrick
 		public void selectPathToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Layer selectedLayer = Map.Instance.SelectedLayer;
-			if ((selectedLayer != null) && (selectedLayer.GetType().Name.Equals("LayerBrick")) && (selectedLayer.SelectedObjects.Count == 2))
+			if ((selectedLayer != null) && (selectedLayer is LayerBrick) && (selectedLayer.SelectedObjects.Count == 2))
 			{
 				List<Layer.LayerItem> brickToSelect = mAStar.findPath(selectedLayer.SelectedObjects[0] as LayerBrick.Brick, selectedLayer.SelectedObjects[1] as LayerBrick.Brick);
 				// if AStar found a path, select the path
@@ -1896,40 +1898,33 @@ namespace BlueBrick
 		private void currentLayerOptionsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// first get the current selected layer
-			if (Map.Instance.SelectedLayer != null)
+			Layer selectedLayer = Map.Instance.SelectedLayer;
+			if (selectedLayer != null)
 			{
-				switch (Map.Instance.SelectedLayer.GetType().Name)
+				if (selectedLayer is LayerGrid)
 				{
-					case "LayerGrid":
-						{
-							LayerGridOptionForm optionForm = new LayerGridOptionForm(Map.Instance.SelectedLayer as LayerGrid);
-							optionForm.ShowDialog();
-							break;
-						}
-					case "LayerBrick":
-						{
-							LayerBrickOptionForm optionForm = new LayerBrickOptionForm(Map.Instance.SelectedLayer as LayerBrick);
-							optionForm.ShowDialog();
-							break;
-						}
-					case "LayerText":
-						{
-							LayerBrickOptionForm optionForm = new LayerBrickOptionForm(Map.Instance.SelectedLayer as LayerText);
-							optionForm.ShowDialog();
-							break;
-						}
-					case "LayerArea":
-						{
-							LayerAreaOptionForm optionForm = new LayerAreaOptionForm(Map.Instance.SelectedLayer as LayerArea);
-							optionForm.ShowDialog();
-							break;
-						}
-					case "LayerRuler":
-						{
-							LayerBrickOptionForm optionForm = new LayerBrickOptionForm(Map.Instance.SelectedLayer as LayerRuler);
-							optionForm.ShowDialog();
-							break;
-						}
+					LayerGridOptionForm optionForm = new LayerGridOptionForm(selectedLayer as LayerGrid);
+					optionForm.ShowDialog();
+				}
+				else if (selectedLayer is LayerBrick)
+				{
+					LayerBrickOptionForm optionForm = new LayerBrickOptionForm(selectedLayer);
+					optionForm.ShowDialog();
+				}
+				else if (selectedLayer is LayerText)
+				{
+					LayerBrickOptionForm optionForm = new LayerBrickOptionForm(selectedLayer);
+					optionForm.ShowDialog();
+				}
+				else if (selectedLayer is LayerArea)
+				{
+					LayerAreaOptionForm optionForm = new LayerAreaOptionForm(selectedLayer);
+					optionForm.ShowDialog();
+				}
+				else if (selectedLayer is LayerRuler)
+				{
+					LayerBrickOptionForm optionForm = new LayerBrickOptionForm(selectedLayer);
+					optionForm.ShowDialog();
 				}
 			}
 		}
