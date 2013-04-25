@@ -65,7 +65,7 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- mouse handle still need some work?
-	- the ruler edition still need some work? yes, rotate ruler
+	- the ruler edition still need some work?
 	- the mesurement unit should not have a fixed size
 	- add one settings for the snapping distance in pixel of the scale handle (now use hard coded value)
 	- add more cursors (miss one for editing the parameters of a ruler i.e double click)
@@ -77,7 +77,8 @@ Open bugs:
 	- save/load in LDraw
 bug en release: la function Surface.isPointInside est buggué (marche en debug)
 CRASH bug when dragging a part over the task bar
-rotate of circular ruler
+le shortcut key pour la rotation ne marche pas pour les rulers
+Rotation of Circular ruler: could be improve to avoid upside down text like linear ruler
 REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library

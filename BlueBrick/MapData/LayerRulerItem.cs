@@ -379,6 +379,9 @@ namespace BlueBrick.MapData
 						matrix.TransformVectors(vector);
 						// get the current distance
 						float distance = mMesuredDistance.DistanceInStud;
+						// revert it if needed (because we will use it to multiply the unit vector)
+						if (mControlPoint[1].mPoint.X < mControlPoint[0].mPoint.X)
+							distance = -distance;
 						// check which control point should be moved
 						if (mControlPoint[0].mAttachedBrick != null)
 						{
@@ -1003,6 +1006,15 @@ namespace BlueBrick.MapData
 			private LayerBrick.Brick mAttachedBrick = null;
 
 			#region get/set
+			public override float Orientation
+			{
+				set
+				{
+					mOrientation = value;
+					this.updateMesurementImage();
+				}
+			}
+
 			/// <summary>
 			/// Set or Get the center of this circle. The set will have no effect if the control point is attached.
 			/// </summary>
