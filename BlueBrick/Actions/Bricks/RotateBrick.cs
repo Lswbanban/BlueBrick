@@ -195,7 +195,7 @@ namespace BlueBrick.Actions.Bricks
 			Matrix rotation = new Matrix();
 			rotation.Rotate(rotationAngle);
 			foreach (Layer.LayerItem item in mItems)
-				rotate(item, rotation, rotationAngle);
+				rotate(item, rotation, rotationAngle, true);
 
 			// rotate also the named group in order to rotate their snap margin
 			foreach (Layer.Group group in mNamedGroup)
@@ -221,7 +221,7 @@ namespace BlueBrick.Actions.Bricks
 			Matrix rotation = new Matrix();
 			rotation.Rotate(rotationAngle);
 			foreach (Layer.LayerItem item in mItems)
-				rotate(item, rotation, rotationAngle);
+				rotate(item, rotation, rotationAngle, true);
 
 			// rotate also the named group in order to rotate their snap margin
 			foreach (Layer.Group group in mNamedGroup)

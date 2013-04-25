@@ -1661,7 +1661,8 @@ namespace BlueBrick
 					ActionManager.Instance.doAction(new RotateBrick(selectedLayer as LayerBrick, selectedLayer.SelectedObjects, 1));
 				else if (selectedLayer is LayerText)
 					ActionManager.Instance.doAction(new RotateText(selectedLayer as LayerText, selectedLayer.SelectedObjects, 1));
-					// TODO add ruler
+				else if (selectedLayer is LayerRuler)
+					ActionManager.Instance.doAction(new RotateRulers(selectedLayer as LayerRuler, selectedLayer.SelectedObjects, 1));
 			}
 		}
 
@@ -1674,7 +1675,8 @@ namespace BlueBrick
 					ActionManager.Instance.doAction(new RotateBrick(selectedLayer as LayerBrick, selectedLayer.SelectedObjects, -1));
 				else if (selectedLayer is LayerText)
 					ActionManager.Instance.doAction(new RotateText(selectedLayer as LayerText, selectedLayer.SelectedObjects, -1));
-					// TODO add ruler
+				else if (selectedLayer is LayerRuler)
+					ActionManager.Instance.doAction(new RotateRulers(selectedLayer as LayerRuler, selectedLayer.SelectedObjects, -1));
 			}
 		}
 
