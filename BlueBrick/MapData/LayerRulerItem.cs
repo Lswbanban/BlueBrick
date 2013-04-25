@@ -361,6 +361,59 @@ namespace BlueBrick.MapData
 
 			#region get/set
 			/// <summary>
+			/// If you try to set the orientation of a linear ruler, it will rotate the two connection points
+			/// from the center of these two points, except if one control point is attached, it will use this
+			/// attached point as the pivot. If both point are attached, this will have no effect.
+			/// Getting the Orientation will return the angle of the line between the two control points
+			/// </summary>
+			public override float Orientation
+			{
+				set
+				{
+					if (!IsFullyAttached)
+					{
+						// rotate the unit vector
+						PointF[] vector = { mUnitVector };
+						Matrix matrix = new Matrix();
+						matrix.Rotate(value - mOrientation);
+						matrix.TransformVectors(vector);
+						// get the current distance
+						float distance = mMesuredDistance.DistanceInStud;
+						// check which control point should be moved
+						if (mControlPoint[0].mAttachedBrick != null)
+						{
+							// point 1 is fixed, move point 2
+							mControlPoint[1].mPoint.X = mControlPoint[0].mPoint.X + (vector[0].X * distance);
+							mControlPoint[1].mPoint.Y = mControlPoint[0].mPoint.Y + (vector[0].Y * distance);
+						}
+						else if (mControlPoint[1].mAttachedBrick != null)
+						{
+							// point 2 is fixed, move point 1
+							distance = -distance;
+							mControlPoint[0].mPoint.X = mControlPoint[1].mPoint.X + (vector[0].X * distance);
+							mControlPoint[0].mPoint.Y = mControlPoint[1].mPoint.Y + (vector[0].Y * distance);
+						}
+						else
+						{
+							// both point are free, move them from their centers
+							float halfDistance = distance * 0.5f;
+							PointF pivot = new PointF((mControlPoint[0].mPoint.X + mControlPoint[1].mPoint.X) * 0.5f,
+														(mControlPoint[0].mPoint.Y + mControlPoint[1].mPoint.Y) * 0.5f); // TODO replace by a call to this.Pivot
+							mControlPoint[1].mPoint.X = pivot.X + (vector[0].X * halfDistance);
+							mControlPoint[1].mPoint.Y = pivot.Y + (vector[0].Y * halfDistance);
+							halfDistance = -halfDistance;
+							mControlPoint[0].mPoint.X = pivot.X + (vector[0].X * halfDistance);
+							mControlPoint[0].mPoint.Y = pivot.Y + (vector[0].Y * halfDistance);
+						}
+						// set the orientation (but anyway it will be recomputed in the update function)
+						mOrientation = value;
+						// after moving one or two control point, update the data
+						updateDisplayDataAndMesurementImage();
+					}
+				}
+			}
+
+			/// <summary>
 			/// Set or Get the center of this circle
 			/// </summary>
 			public override PointF Center
@@ -373,9 +426,6 @@ namespace BlueBrick.MapData
 					shiftOffset.Y = value.Y - shiftOffset.Y;
 					// and translate accordingly
 					translate(shiftOffset);
-					// call also the base class if both point are free, shift the two offset point
-					if (this.IsNotAttached)
-						base.Center = value;
 				}
 			}
 
@@ -392,12 +442,29 @@ namespace BlueBrick.MapData
 					shiftOffset.Y = value.Y - shiftOffset.Y;
 					// and translate accordingly
 					translate(shiftOffset);
-					// call also the base class if both point are free, shift the two offset point
-					if (this.IsNotAttached)
-						base.Position = value;
 				}
 			}
 
+			/// <summary>
+			/// The pivot of the ruler is the middle point between Point1 and Point2
+			/// </summary>
+			public override PointF Pivot
+			{
+				get
+				{
+					return new PointF((mControlPoint[0].mPoint.X + mControlPoint[1].mPoint.X) * 0.5f,
+									(mControlPoint[0].mPoint.Y + mControlPoint[1].mPoint.Y) * 0.5f);
+				}
+				set
+				{
+					// compute the shifting offset
+					PointF shiftOffset = this.Pivot;
+					shiftOffset.X = value.X - shiftOffset.X;
+					shiftOffset.Y = value.Y - shiftOffset.Y;
+					// and translate accordingly
+					translate(shiftOffset);
+				}
+			}
 			public override bool IsNotAttached
 			{
 				get { return ((mControlPoint[0].mAttachedBrick == null) && (mControlPoint[1].mAttachedBrick == null)); }
@@ -654,6 +721,10 @@ namespace BlueBrick.MapData
 						mControlPoint[1].mOffsetPoint.X += translation.X;
 						mControlPoint[1].mOffsetPoint.Y += translation.Y;
 						// unit vector and offset distance don't changes
+						// but we need to translate the selection area and the display area
+						translateSelectionArea(translation);
+						// then set the new coordinate of the display area
+						mDisplayArea.Offset(translation);
 					}
 					else
 					{

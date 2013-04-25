@@ -1,4 +1,4 @@
-// BlueBrick, a LEGO(c) layout editor.
+﻿// BlueBrick, a LEGO(c) layout editor.
 // Copyright (C) 2008 Alban NANTY
 //
 // This program is free software: you can redistribute it and/or modify
@@ -20,16 +20,16 @@ using System.Drawing.Drawing2D;
 using BlueBrick.MapData;
 using BlueBrick.Actions.Items;
 
-namespace BlueBrick.Actions.Texts
+namespace BlueBrick.Actions.Rulers
 {
-	class RotateText : RotateItems
+	class RotateRulers : RotateItems
 	{
-		public RotateText(LayerText layer, List<Layer.LayerItem> texts, int rotateSteps)
+		public RotateRulers(LayerRuler layer, List<Layer.LayerItem> texts, int rotateSteps)
 			: this(layer, texts, rotateSteps, false)
 		{
 		}
 
-		public RotateText(LayerText layer, List<Layer.LayerItem> texts, int rotateSteps, bool forceKeepLastCenter)
+		public RotateRulers(LayerRuler layer, List<Layer.LayerItem> texts, int rotateSteps, bool forceKeepLastCenter)
 		{
 			// call the common constructor
 			float angle = MapData.Layer.CurrentRotationStep * rotateSteps;
@@ -39,18 +39,9 @@ namespace BlueBrick.Actions.Texts
 		public override string getName()
 		{
 			if (mItems.Count == 1)
-			{
-				string actionName = BlueBrick.Properties.Resources.ActionRotateText;
-				string text = (mItems[0] as LayerText.TextCell).Text.Replace("\r\n", " ");
-				if (text.Length > 10)
-					text = text.Substring(0, 10) + "...";
-				actionName = actionName.Replace("&", text);
-				return actionName;
-			}
+				return BlueBrick.Properties.Resources.ActionRotateRuler;
 			else
-			{
-				return BlueBrick.Properties.Resources.ActionRotateSeveralTexts;
-			}
+				return BlueBrick.Properties.Resources.ActionRotateSeveralRulers;
 		}
 
 		public override void redo()
@@ -62,9 +53,9 @@ namespace BlueBrick.Actions.Texts
 			Matrix rotation = new Matrix();
 			rotation.Rotate(rotationAngle);
 			foreach (Layer.LayerItem item in mItems)
-				rotate(item, rotation, rotationAngle, true);
+				rotate(item, rotation, rotationAngle, (item as LayerRuler.RulerItem).IsNotAttached);
 
-			// update the bounding rectangle (because the text is not square)
+			// update the bounding rectangle (because the ruler is not square)
 			mLayer.updateBoundingSelectionRectangle();
 		}
 
@@ -77,9 +68,9 @@ namespace BlueBrick.Actions.Texts
 			Matrix rotation = new Matrix();
 			rotation.Rotate(rotationAngle);
 			foreach (Layer.LayerItem item in mItems)
-				rotate(item, rotation, rotationAngle, true);
+				rotate(item, rotation, rotationAngle, (item as LayerRuler.RulerItem).IsNotAttached);
 
-			// update the bounding rectangle (because the text is not square)
+			// update the bounding rectangle (because the ruler is not square)
 			mLayer.updateBoundingSelectionRectangle();
 		}
 	}

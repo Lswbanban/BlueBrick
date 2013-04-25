@@ -92,7 +92,7 @@ namespace BlueBrick.Actions.Items
 			}
 		}
 
-		protected void rotate(Layer.LayerItem item, Matrix rotation, float rotationAngle)
+		protected void rotate(Layer.LayerItem item, Matrix rotation, float rotationAngle, bool adjustPivot)
 		{
 			// get the pivot point of the part before the rotation
 			PointF pivot = item.Pivot;
@@ -100,18 +100,22 @@ namespace BlueBrick.Actions.Items
 			// change the orientation of the picture
 			item.Orientation = (item.Orientation + rotationAngle);
 
-			// change the position for a group of texts
-			if (mItems.Count > 1)
+			// for some items partially attached, we may don't want to adjust the pivot
+			if (adjustPivot)
 			{
-				PointF[] points = { new PointF(pivot.X - mCenter.X, pivot.Y - mCenter.Y) };
-				rotation.TransformVectors(points);
-				// assign the new position
-				pivot.X = mCenter.X + points[0].X;
-				pivot.Y = mCenter.Y + points[0].Y;
-			}
+				// adjust the position of the pivot for a group of items
+				if (mItems.Count > 1)
+				{
+					PointF[] points = { new PointF(pivot.X - mCenter.X, pivot.Y - mCenter.Y) };
+					rotation.TransformVectors(points);
+					// assign the new position
+					pivot.X = mCenter.X + points[0].X;
+					pivot.Y = mCenter.Y + points[0].Y;
+				}
 
-			// assign the new pivot position after rotation
-			item.Pivot = pivot;
+				// assign the new pivot position after rotation
+				item.Pivot = pivot;
+			}
 		}
 	}
 }

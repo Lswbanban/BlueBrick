@@ -297,6 +297,12 @@ namespace BlueBrick.MapData
 					mSelectionArea.translate(new PointF(newPosition.X - oldPosition.X, newPosition.Y - oldPosition.Y));
 			}
 
+			protected void translateSelectionArea(PointF translation)
+			{
+				if (mSelectionArea != null)
+					mSelectionArea.translate(translation);
+			}
+
 			/// <summary>
 			/// Update the snap margin (if any) of this item according to its current orientation and the margin
 			/// defined in the part library (for now, if other type of items need to define their snap margin,

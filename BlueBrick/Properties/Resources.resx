@@ -541,4 +541,10 @@
   <data name="ActionScaleLinearRuler" xml:space="preserve">
     <value>Modify Ruler Offset</value>
   </data>
+  <data name="ActionRotateRuler" xml:space="preserve">
+    <value>Rotate a Ruler</value>
+  </data>
+  <data name="ActionRotateSeveralRulers" xml:space="preserve">
+    <value>Rotate several Rulers</value>
+  </data>
 </root>

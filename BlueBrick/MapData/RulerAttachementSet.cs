@@ -54,12 +54,10 @@ namespace BlueBrick.MapData
 
 			public static PointF sComputeLocalOffsetFromLayerItem(LayerBrick.Brick brick, PointF worldPositionInStud)
 			{
-				// compute the brick center in world coordinate
-				PointF brickCenter = brick.Center;
-				brickCenter.X += brick.OffsetFromOriginalImage.X;
-				brickCenter.Y += brick.OffsetFromOriginalImage.Y;
+				// get the brick pivot in world coordinate
+				PointF brickPivot = brick.Pivot;
 				// compute the offset from the brick center in world coordinate
-				PointF offset = new PointF(worldPositionInStud.X - brickCenter.X, worldPositionInStud.Y - brickCenter.Y);
+				PointF offset = new PointF(worldPositionInStud.X - brickPivot.X, worldPositionInStud.Y - brickPivot.Y);
 				// compute the rotation matrix of the brick in order to find the local offset
 				Matrix matrix = new Matrix();
 				matrix.Rotate(-brick.Orientation);
@@ -112,13 +110,11 @@ namespace BlueBrick.MapData
 		/// </summary>
 		public void brickMoveNotification()
 		{
-			PointF brickCenter = mOwnerBrick.Center;
-			brickCenter.X += mOwnerBrick.OffsetFromOriginalImage.X;
-			brickCenter.Y += mOwnerBrick.OffsetFromOriginalImage.Y;
+			PointF brickPivot = mOwnerBrick.Pivot;
 			foreach (Anchor anchor in mAnchors)
 			{
-				PointF attachPosition = new PointF(brickCenter.X + anchor.WorldAttachOffsetFromCenter.X,
-													brickCenter.Y + anchor.WorldAttachOffsetFromCenter.Y);
+				PointF attachPosition = new PointF(brickPivot.X + anchor.WorldAttachOffsetFromCenter.X,
+													brickPivot.Y + anchor.WorldAttachOffsetFromCenter.Y);
 				anchor.AttachedRuler.setControlPointPosition(anchor.AttachedPointIndex, attachPosition);
 			}
 		}
