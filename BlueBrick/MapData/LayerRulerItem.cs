@@ -400,8 +400,7 @@ namespace BlueBrick.MapData
 						{
 							// both point are free, move them from their centers
 							float halfDistance = distance * 0.5f;
-							PointF pivot = new PointF((mControlPoint[0].mPoint.X + mControlPoint[1].mPoint.X) * 0.5f,
-														(mControlPoint[0].mPoint.Y + mControlPoint[1].mPoint.Y) * 0.5f); // TODO replace by a call to this.Pivot
+							PointF pivot = this.Pivot;
 							mControlPoint[1].mPoint.X = pivot.X + (vector[0].X * halfDistance);
 							mControlPoint[1].mPoint.Y = pivot.Y + (vector[0].Y * halfDistance);
 							halfDistance = -halfDistance;
