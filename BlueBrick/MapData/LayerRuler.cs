@@ -826,10 +826,17 @@ namespace BlueBrick.MapData
 							}
 							// the duplication above will change the current selection
 							// The code below is to move the selection, either the original one or the duplicated one
+							bool isAnyRulerAttached = false;
 							foreach (LayerItem item in mSelectedObjects)
+							{
 								item.Center = new PointF(item.Center.X + deltaMove.X, item.Center.Y + deltaMove.Y);
+								isAnyRulerAttached = isAnyRulerAttached || !((item as RulerItem).IsNotAttached);
+							}
 							// move also the bounding rectangle
-							moveBoundingSelectionRectangle(deltaMove);
+							if (isAnyRulerAttached)
+								this.updateBoundingSelectionRectangle();
+							else
+								moveBoundingSelectionRectangle(deltaMove);
 							// after we moved the selection check if we need to refresh the current highlighted brick
 							if (wereRulersJustDuplicated)
 								mCurrentRulerUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as RulerItem;
