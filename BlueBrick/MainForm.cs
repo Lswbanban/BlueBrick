@@ -2178,7 +2178,6 @@ namespace BlueBrick
 
 		#region event handler for layers
 
-
 		private void layerUpButton_Click(object sender, EventArgs e)
 		{
 			if (Map.Instance.SelectedLayer != null)
@@ -2259,44 +2258,35 @@ namespace BlueBrick
 				return;
 
 			// first get the current selected layer
-			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			Layer selectedLayer = Map.Instance.SelectedLayer;
+			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
 			{
-				List<Layer.LayerItem> itemList = Map.Instance.SelectedLayer.SelectedObjects;
+				List<Layer.LayerItem> itemList = selectedLayer.SelectedObjects;
 
-				switch (Map.Instance.SelectedLayer.GetType().Name)
+				// create the action according to the layer type
+				Action moveAction = null;
+				if (selectedLayer is LayerBrick)
+					moveAction = new MoveBrick(selectedLayer as LayerBrick, itemList, move);
+				else if (selectedLayer is LayerText)
+					moveAction = new MoveText(selectedLayer as LayerText, itemList, move);
+				else if (selectedLayer is LayerRuler)
+					moveAction = new MoveRulers(selectedLayer as LayerRuler, itemList, move);
+
+				// if we found a compatible layer
+				if (moveAction != null)
 				{
-					case "LayerBrick":
-						if (isRealMove)
-						{
-							// create the action and first undo it, to cancel all the incremental moves
-							MoveBrick moveAction = new MoveBrick(Map.Instance.SelectedLayer as LayerBrick, itemList, move);
-							moveAction.undo();
-							// then add it to the undo stack (that will perform the redo)
-							ActionManager.Instance.doAction(moveAction);
-						}
-						else
-						{
-							// do a move action without puting it in the undo stack
-							MoveBrick moveAction = new MoveBrick(Map.Instance.SelectedLayer as LayerBrick, itemList, move);
-							moveAction.redo();
-						}
-						break;
-					case "LayerText":
-						if (isRealMove)
-						{
-							// create the action and first undo it, to cancel all the incremental moves
-							MoveText moveAction = new MoveText(Map.Instance.SelectedLayer as LayerText, itemList, move);
-							moveAction.undo();
-							// then add it to the undo stack (that will perform the redo)
-							ActionManager.Instance.doAction(moveAction);
-						}
-						else
-						{
-							// do a move action without puting it in the undo stack
-							MoveText moveAction = new MoveText(Map.Instance.SelectedLayer as LayerText, itemList, move);
-							moveAction.redo();
-						}
-						break;
+					if (isRealMove)
+					{
+						// undo the action
+						moveAction.undo();
+						// then add it to the undo stack (that will perform the redo)
+						ActionManager.Instance.doAction(moveAction);
+					}
+					else
+					{
+						// do a move action without puting it in the undo stack
+						moveAction.redo();
+					}
 				}
 			}
 		}
@@ -2313,46 +2303,65 @@ namespace BlueBrick
 				return;
 
 			// first get the current selected layer
-			if ((Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer.SelectedObjects.Count > 0))
+			Layer selectedLayer = Map.Instance.SelectedLayer;
+			if ((selectedLayer != null) && (selectedLayer.SelectedObjects.Count > 0))
 			{
 				List<Layer.LayerItem> itemList = Map.Instance.SelectedLayer.SelectedObjects;
 
-				switch (Map.Instance.SelectedLayer.GetType().Name)
+				if (selectedLayer is LayerBrick)
 				{
-					case "LayerBrick":
-						if (isRealMove)
-						{
-							// create the opposite action and do it, to cancel all the incremental moves
-							// we can not create the normal action and undo it because the rotation of connected
-							// brick is not symetrical (because the rotation step is not constant)
-							RotateBrick unrotateAction = new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, itemList, -angleStep, true);
-							unrotateAction.redo();
-							// So create a new move action to add in the undo stack
-							ActionManager.Instance.doAction(new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, itemList, angleStep, true));
-						}
-						else
-						{
-							// do a move action without puting it in the undo stack
-							RotateBrick rotateAction = new RotateBrick(Map.Instance.SelectedLayer as LayerBrick, itemList, angleStep, ((angleStep != -1) && (angleStep != 1)));
-							rotateAction.redo();
-						}
-						break;
-					case "LayerText":
-						if (isRealMove)
-						{
-							//// undo the total move of all the objects
-							RotateText rotateAction = new RotateText(Map.Instance.SelectedLayer as LayerText, itemList, angleStep, true);
-							rotateAction.undo();
-							// then add it to the undo stack (that will perform the redo)
-							ActionManager.Instance.doAction(rotateAction);
-						}
-						else
-						{
-							// do a move action without puting it in the undo stack
-							RotateText rotateAction = new RotateText(Map.Instance.SelectedLayer as LayerText, itemList, angleStep, ((angleStep != -1) && (angleStep != 1)));
-							rotateAction.redo();
-						}
-						break;
+					if (isRealMove)
+					{
+						// create the opposite action and do it, to cancel all the incremental moves
+						// we can not create the normal action and undo it because the rotation of connected
+						// brick is not symetrical (because the rotation step is not constant)
+						RotateBrick unrotateAction = new RotateBrick(selectedLayer as LayerBrick, itemList, -angleStep, true);
+						unrotateAction.redo();
+						// So create a new move action to add in the undo stack
+						ActionManager.Instance.doAction(new RotateBrick(selectedLayer as LayerBrick, itemList, angleStep, true));
+					}
+					else
+					{
+						// do a move action without puting it in the undo stack
+						RotateBrick rotateAction = new RotateBrick(selectedLayer as LayerBrick, itemList, angleStep, ((angleStep != -1) && (angleStep != 1)));
+						rotateAction.redo();
+					}
+				}
+				else if (selectedLayer is LayerText)
+				{
+					if (isRealMove)
+					{
+						// create the rotation action
+						RotateText rotateAction = new RotateText(selectedLayer as LayerText, itemList, angleStep, true);
+						// undo the total rotate of all the objects
+						rotateAction.undo();
+						// then add it to the undo stack (that will perform the redo)
+						ActionManager.Instance.doAction(rotateAction);
+					}
+					else
+					{
+						// do a move action without puting it in the undo stack
+						RotateText rotateAction = new RotateText(selectedLayer as LayerText, itemList, angleStep, ((angleStep != -1) && (angleStep != 1)));
+						rotateAction.redo();
+					}
+				}
+				else if (selectedLayer is LayerRuler)
+				{
+					if (isRealMove)
+					{
+						// create the rotation action
+						RotateRulers rotateAction = new RotateRulers(selectedLayer as LayerRuler, itemList, angleStep, true);
+						// undo the total rotate of all the objects
+						rotateAction.undo();
+						// then add it to the undo stack (that will perform the redo)
+						ActionManager.Instance.doAction(rotateAction);
+					}
+					else
+					{
+						// do a move action without puting it in the undo stack
+						RotateRulers rotateAction = new RotateRulers(selectedLayer as LayerRuler, itemList, angleStep, ((angleStep != -1) && (angleStep != 1)));
+						rotateAction.redo();
+					}
 				}
 			}
 		}

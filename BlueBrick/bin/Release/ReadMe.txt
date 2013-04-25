@@ -77,7 +77,6 @@ Open bugs:
 	- save/load in LDraw
 bug en release: la function Surface.isPointInside est buggué (marche en debug)
 CRASH bug when dragging a part over the task bar
-le shortcut key pour la rotation ne marche pas pour les rulers
 Rotation of Circular ruler: could be improve to avoid upside down text like linear ruler
 REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
