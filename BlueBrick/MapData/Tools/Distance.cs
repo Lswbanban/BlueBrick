@@ -173,7 +173,7 @@ namespace BlueBrick.MapData.Tools
 		public string ToString(string format, bool withUnit)
 		{
 			// convert the value into string using the format
-			string formatedDistance = this.DistanceInCurrentUnit.ToString(format);
+			string formatedDistance = this.DistanceInCurrentUnit.ToString(format, System.Globalization.CultureInfo.InvariantCulture);
 			// add the unit name if needed
 			if (withUnit)
 				formatedDistance += " " + getCurrentUnitName();

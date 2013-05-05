@@ -48,7 +48,7 @@ namespace BlueBrick.MapData
 			[NonSerialized]
 			protected Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
 			[NonSerialized]
-			protected PointF mMesurementTextWidthHalfVector = new PointF(); // half the vector along the width of the mesurement text in pixel
+			protected int mMesurementTextLengthInPixel = 0; // the length in pixel of the mesurement text as drawn in the image (which is not the width of the image because the image is rotated)
 
 			#region get/set
 			public virtual bool IsNotAttached
@@ -127,6 +127,7 @@ namespace BlueBrick.MapData
 				SizeF textFontSize = graphics.MeasureString(distanceAsString, mMesurementFont);
 				int width = (int)textFontSize.Width;
 				int height = (int)textFontSize.Height;
+				mMesurementTextLengthInPixel = width;
 
 				// create an array with the 4 corner of the text (actually 3 if you exclude the origin)
 				// and rotate them according to the orientation
@@ -134,9 +135,6 @@ namespace BlueBrick.MapData
 				rotation.Rotate(mOrientation);
 				Point[] points = { new Point(width, 0), new Point(0, height), new Point(width, height) };
 				rotation.TransformVectors(points);
-
-				// compute the vector of half the text
-				mMesurementTextWidthHalfVector = new PointF((float)(points[0].X) * 0.5f, (float)(points[0].Y) * 0.5f);
 
 				// search the min and max of all the rotated corner to compute the necessary size of the bitmap
 				Point min = new Point(0, 0);
@@ -313,6 +311,47 @@ namespace BlueBrick.MapData
 					diameter += circleOffsetInPixel * 2.0f;
 					g.DrawEllipse(pen, pointInPixel.X - circleOffsetInPixel, pointInPixel.Y - circleOffsetInPixel, diameter, diameter);
 				}
+			}
+
+			/// <summary>
+			/// draw the mesurement image at the specified position. The image may be drawn at a smaller scale
+			/// if there is not enough space to draw it.
+			/// </summary>
+			/// <param name="g">the graphic context in which draw the layer</param>
+			/// <param name="centerInPixel">Position in pixel of the center of the image to draw</param>
+			/// <param name="scalePixelPerStud">the current scale of the map in order to convert stud into screen pixels</param>
+			/// <param name="layerImageAttributeWithTransparency">image attribute containing current transparency in order to draw image (if needed by this ruler)</param>
+			/// <returns>the length in pixel of the text with which it was drawn</returns>
+			protected float drawMesurementImage(Graphics g, PointF centerInPixel, double scalePixelPerStud, ImageAttributes layerImageAttributeWithTransparency)
+			{
+				// draw the mesurement text
+				Rectangle destinationRectangle = new Rectangle();
+				float textLengthInPixel = mMesurementTextLengthInPixel;
+
+				// first check if the size is not too big depending on the scale
+				int availableWidthForTextInPixel = (int)(mMesuredDistance.DistanceInStud * scalePixelPerStud) - 20;
+				if (mMesurementTextLengthInPixel > availableWidthForTextInPixel)
+				{
+					float scaleFactor = (float)availableWidthForTextInPixel / (float)mMesurementTextLengthInPixel;
+					textLengthInPixel *= scaleFactor;
+					destinationRectangle.Width = (int)((float)mMesurementImage.Width * scaleFactor);
+					destinationRectangle.Height = (int)((float)mMesurementImage.Height * scaleFactor);
+				}
+				else
+				{
+					destinationRectangle.Width = mMesurementImage.Width;
+					destinationRectangle.Height = mMesurementImage.Height;
+				}
+
+				// compute the position of the text in pixel coord
+				destinationRectangle.X = (int)centerInPixel.X - (destinationRectangle.Width / 2);
+				destinationRectangle.Y = (int)centerInPixel.Y - (destinationRectangle.Height / 2);
+
+				// draw the image containing the text
+				g.DrawImage(mMesurementImage, destinationRectangle, 0, 0, mMesurementImage.Width, mMesurementImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
+
+				// return finally at which length the text was drawn
+				return textLengthInPixel;
 			}
 			#endregion
 		}
@@ -917,9 +956,15 @@ namespace BlueBrick.MapData
 						float middleX = (offset1InPixel.X + offset2InPixel.X) * 0.5f;
 						float middleY = (offset1InPixel.Y + offset2InPixel.Y) * 0.5f;
 
+						// draw the mesurement image
+						float textLengthInPixel = drawMesurementImage(g, new PointF(middleX, middleY), scalePixelPerStud, layerImageAttributeWithTransparency);
+
 						// compute the middle extremity of the two lines
-						PointF middle1 = new PointF(middleX - mMesurementTextWidthHalfVector.X, middleY - mMesurementTextWidthHalfVector.Y);
-						PointF middle2 = new PointF(middleX + mMesurementTextWidthHalfVector.X, middleY + mMesurementTextWidthHalfVector.Y);
+						float halfTextLength = (textLengthInPixel * 0.5f);
+						float halfTextLengthX = mUnitVector.X * halfTextLength;
+						float halfTextLengthY = mUnitVector.Y * halfTextLength;
+						PointF middle1 = new PointF(middleX - halfTextLengthX, middleY - halfTextLengthY);
+						PointF middle2 = new PointF(middleX + halfTextLengthX, middleY + halfTextLengthY);
 
 						// draw the two lines of the rule between the mesure
 						if (offset1InPixel.X < offset2InPixel.X)
@@ -932,17 +977,6 @@ namespace BlueBrick.MapData
 							g.DrawLine(penForLine, offset1InPixel, middle2);
 							g.DrawLine(penForLine, offset2InPixel, middle1);
 						}
-
-						// draw the mesurement text
-						// compute the position of the text in pixel coord
-						Rectangle destinationRectangle = new Rectangle();
-						destinationRectangle.X = (int)middleX - (mMesurementImage.Width / 2);
-						destinationRectangle.Y = (int)middleY - (mMesurementImage.Height / 2);
-						destinationRectangle.Width = mMesurementImage.Width;
-						destinationRectangle.Height = mMesurementImage.Height;
-
-						// draw the image containing the text
-						g.DrawImage(mMesurementImage, destinationRectangle, 0, 0, mMesurementImage.Width, mMesurementImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
 
 						// draw the offset if needed
 						if (needToDrawOffset)
@@ -1287,16 +1321,9 @@ namespace BlueBrick.MapData
 					// draw the image containing the text
 					if (mDisplayDistance)
 					{
-						// draw the mesurement text
 						// compute the position of the text in pixel coord
 						PointF centerInPixel = Layer.sConvertPointInStudToPixel(Center, areaInStud, scalePixelPerStud);
-						Rectangle destinationRectangle = new Rectangle();
-						destinationRectangle.X = (int)centerInPixel.X - (mMesurementImage.Width / 2);
-						destinationRectangle.Y = (int)centerInPixel.Y - (mMesurementImage.Height / 2);
-						destinationRectangle.Width = mMesurementImage.Width;
-						destinationRectangle.Height = mMesurementImage.Height;
-						// draw the image
-						g.DrawImage(mMesurementImage, destinationRectangle, 0, 0, mMesurementImage.Width, mMesurementImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
+						drawMesurementImage(g, centerInPixel, scalePixelPerStud, layerImageAttributeWithTransparency);
 					}
 
 					// draw the hull if needed
