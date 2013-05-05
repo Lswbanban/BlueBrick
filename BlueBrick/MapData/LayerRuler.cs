@@ -1018,6 +1018,10 @@ namespace BlueBrick.MapData
 			mMouseIsBetweenDownAndUpEvent = false;
 			mMouseHasMoved = false;
 
+			// if we have finished to edit the current ruler, change the tool back to edition
+			if ((mCurrentlyEditedRuler == null) && (Properties.Settings.Default.SwitchToEditionAfterRulerCreation))
+				MainForm.Instance.rulerSelectAndEditToolStripMenuItem_Click(null, null);
+
 			return mustRefresh;
 		}
 
