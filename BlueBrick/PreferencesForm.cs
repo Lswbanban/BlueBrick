@@ -203,6 +203,7 @@ namespace BlueBrick
 				this.OffsetValueLabel.Enabled = enableOffsetValue;
 				// ruler
 				this.rulerControlPointRadiusNumericUpDown.Value = (Decimal)Settings.Default.RulerControlPointRadiusInPixel;
+				this.RulerSwitchToEditionAfterCreationCheckBox.Checked = Settings.Default.SwitchToEditionAfterRulerCreation;
 			}
 
 			// -- tab appearance
@@ -313,6 +314,7 @@ namespace BlueBrick
 				destination.OffsetAfterCopyValue = source.OffsetAfterCopyValue;
 				// ruler
 				destination.RulerControlPointRadiusInPixel = source.RulerControlPointRadiusInPixel;
+				destination.SwitchToEditionAfterRulerCreation = source.SwitchToEditionAfterRulerCreation;
 			}
 			// appearance
 			if ((tabPageFilter & TabPageFilter.APPEARANCE) != 0)
@@ -396,6 +398,7 @@ namespace BlueBrick
 			Settings.Default.OffsetAfterCopyValue = (float)this.pasteOffsetValueNumericUpDown.Value;
 			// ruler
 			Settings.Default.RulerControlPointRadiusInPixel = (int)this.rulerControlPointRadiusNumericUpDown.Value;
+			Settings.Default.SwitchToEditionAfterRulerCreation = this.RulerSwitchToEditionAfterCreationCheckBox.Checked;
 
 			// -- tab appearance
 			// check if the user changed the grid color

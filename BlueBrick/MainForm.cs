@@ -1809,7 +1809,7 @@ namespace BlueBrick
 			LayerArea.CurrentDrawColor = Color.Empty;
 		}
 
-		private void rulerSelectAndEditToolStripMenuItem_Click(object sender, EventArgs e)
+		public void rulerSelectAndEditToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// toolbar
 			this.toolBarToolButton.Image = this.rulerSelectAndEditToolStripMenuItem.Image;
