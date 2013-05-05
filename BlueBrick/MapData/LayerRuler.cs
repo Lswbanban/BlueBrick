@@ -697,6 +697,7 @@ namespace BlueBrick.MapData
 		public override bool mouseDown(MouseEventArgs e, PointF mouseCoordInStud)
 		{
 			mMouseIsBetweenDownAndUpEvent = true;
+			mMouseHasMoved = false;
 			bool mustRefresh = false;
 			// snap the mouse coord to the grid
 			PointF mouseCoordInStudSnapped = getSnapPoint(mouseCoordInStud);
@@ -736,15 +737,18 @@ namespace BlueBrick.MapData
 						mMouseDownInitialPosition = mouseCoordInStudSnapped;
 						mMouseDownLastPosition = mouseCoordInStudSnapped;
 					}
-					mMouseHasMoved = false;
 					break;
 
 				case EditTool.LINE:
+					mMouseDownInitialPosition = mouseCoordInStudSnapped;
+					mMouseDownLastPosition = mouseCoordInStudSnapped;
 					if (!mMouseIsScalingRuler)
 						mCurrentlyEditedRuler = new LinearRuler(mouseCoordInStudSnapped, mouseCoordInStudSnapped);
 					break;
 
 				case EditTool.CIRCLE:
+					mMouseDownInitialPosition = mouseCoordInStudSnapped;
+					mMouseDownLastPosition = mouseCoordInStudSnapped;
 					// for the creation of a circle the center start on mouse click and we
 					// immediatly go to the scaling of the circle
 					mCurrentlyEditedRuler = new CircularRuler(mouseCoordInStudSnapped, 0.0f);					
@@ -765,14 +769,19 @@ namespace BlueBrick.MapData
 			bool mustRefresh = false;
 			// snap the mouse coord to the grid
 			PointF mouseCoordInStudSnapped = getSnapPoint(mouseCoordInStud);
+			// compute the delta move of the mouse
+			PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownLastPosition.X, mouseCoordInStudSnapped.Y - mMouseDownLastPosition.Y);
+			// set the flag that indicate that we moved the mouse
+			if (deltaMove.X != 0.0f || deltaMove.Y != 0.0)
+				mMouseHasMoved = true;			
+			// memorize the last position of the mouse
+			mMouseDownLastPosition = mouseCoordInStudSnapped;
 
 			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
-					// compute the delta move of the mouse
-					PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownLastPosition.X, mouseCoordInStudSnapped.Y - mMouseDownLastPosition.Y);
 					// check if the delta move is not null
-					if (deltaMove.X != 0.0f || deltaMove.Y != 0.0)
+					if (mMouseHasMoved)
 					{
 						// check if we are actually editing a ruler
 						if (mCurrentlyEditedRuler != null)
@@ -843,9 +852,6 @@ namespace BlueBrick.MapData
 							// refresh the view
 							mustRefresh = true;
 						}
-
-						// set the flag that indicate that we moved the mouse
-						mMouseHasMoved = true;
 					}
 					else if ((mSelectedObjects.Count > 0) && !mMouseHasMoved && !mMouseMoveIsADuplicate)
 					{
@@ -854,14 +860,11 @@ namespace BlueBrick.MapData
 						mMouseMoveIsADuplicate = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
 					}
 
-					// memorize the last position of the mouse
-					mMouseDownLastPosition = mouseCoordInStudSnapped;
-
 					break;
 
 				case EditTool.LINE:
 					LinearRuler linearRuler = mCurrentlyEditedRuler as LinearRuler;
-					if (linearRuler != null)
+					if ((linearRuler != null) && mMouseHasMoved)
 					{
 						// adjust the offset or the second point
 						if (mMouseIsScalingRuler)
@@ -873,10 +876,14 @@ namespace BlueBrick.MapData
 					break;
 
 				case EditTool.CIRCLE:
-					mCurrentlyEditedRuler.scaleToPoint(mouseCoordInStudSnapped);
-					// update also the prefered cursor because we may move the mouse while scaling
-					preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStudSnapped));
-					mustRefresh = true;
+					if (mMouseHasMoved)
+					{
+						// scale the ruler
+						mCurrentlyEditedRuler.scaleToPoint(mouseCoordInStudSnapped);
+						// update also the prefered cursor because we may move the mouse while scaling
+						preferedCursor = getScalingCursorFromOrientation(mCurrentlyEditedRuler.getScalingOrientation(mouseCoordInStudSnapped));
+						mustRefresh = true;
+					}
 					break;
 			}
 
@@ -893,6 +900,8 @@ namespace BlueBrick.MapData
 			bool mustRefresh = false;
 			// snap the mouse coord to the grid
 			PointF mouseCoordInStudSnapped = getSnapPoint(mouseCoordInStud);
+			// compute the delta move of the mouse
+			PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownInitialPosition.X, mouseCoordInStudSnapped.Y - mMouseDownInitialPosition.Y);
 
 			switch (sCurrentEditTool)
 			{
@@ -903,9 +912,6 @@ namespace BlueBrick.MapData
 					{
 						// reset the flag
 						mMouseHasMoved = false;
-
-						// compute the delta move of the mouse
-						PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownInitialPosition.X, mouseCoordInStudSnapped.Y - mMouseDownInitialPosition.Y);
 
 						// create a new action for this move
 						if ((deltaMove.X != 0) || (deltaMove.Y != 0))
@@ -982,16 +988,27 @@ namespace BlueBrick.MapData
 						}
 						else
 						{
-							linearRuler.Point2 = mouseCoordInStudSnapped;
-							mMouseIsScalingRuler = true;
+							if ((deltaMove.X != 0) || (deltaMove.Y != 0))
+							{
+								linearRuler.Point2 = mouseCoordInStudSnapped;
+								mMouseIsScalingRuler = true;
+							}
+							else
+							{
+								mCurrentlyEditedRuler = null;
+							}
 						}
 						mustRefresh = true;
 					}
 					break;
 
 				case EditTool.CIRCLE:
-					mCurrentlyEditedRuler.scaleToPoint(mouseCoordInStudSnapped);
-					Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
+					// add the action to create the ruler but only if we moved
+					if ((deltaMove.X != 0) || (deltaMove.Y != 0))
+					{
+						mCurrentlyEditedRuler.scaleToPoint(mouseCoordInStudSnapped);
+						Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
+					}
 					mCurrentlyEditedRuler = null;
 					mustRefresh = true;
 					mMouseIsScalingRuler = false;
@@ -999,6 +1016,7 @@ namespace BlueBrick.MapData
 			}
 
 			mMouseIsBetweenDownAndUpEvent = false;
+			mMouseHasMoved = false;
 
 			return mustRefresh;
 		}
