@@ -30,6 +30,7 @@ namespace BlueBrick.MapData
 		public abstract class RulerItem : LayerItem
 		{
 			// variable for drawing
+			protected const float GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD = 8.0f; // the minimum distance in stud that the ruler will reserved for drawing the distance
 			protected Color mColor = Color.Black; // color of the lines
 			protected float mLineThickness = 4.0f; // the thickness of the lines
 			protected bool mDisplayDistance = true; // if true, the distance is displayed on the ruler.
@@ -329,7 +330,8 @@ namespace BlueBrick.MapData
 				float textLengthInPixel = mMesurementTextLengthInPixel;
 
 				// first check if the size is not too big depending on the scale
-				int availableWidthForTextInPixel = (int)(mMesuredDistance.DistanceInStud * scalePixelPerStud) - 20;
+				int fullAvailableWidth = (int)(Math.Max(mMesuredDistance.DistanceInStud, GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD) * scalePixelPerStud);
+				int availableWidthForTextInPixel = fullAvailableWidth - Math.Min(20, Math.Max(fullAvailableWidth / 20, 4));
 				if (mMesurementTextLengthInPixel > availableWidthForTextInPixel)
 				{
 					float scaleFactor = (float)availableWidthForTextInPixel / (float)mMesurementTextLengthInPixel;
@@ -649,21 +651,34 @@ namespace BlueBrick.MapData
 				// compute the offset coordinates in stud
 				float offsetX = offsetNormalizedVector.X * mOffsetDistance;
 				float offsetY = offsetNormalizedVector.Y * mOffsetDistance;
-				mControlPoint[0].mOffsetPoint = new PointF(point1.X + offsetX, point1.Y + offsetY);
-				mControlPoint[1].mOffsetPoint = new PointF(point2.X + offsetX, point2.Y + offsetY);
+				PointF offsetPoint1 = new PointF(point1.X + offsetX, point1.Y + offsetY);
+				PointF offsetPoint2 = new PointF(point2.X + offsetX, point2.Y + offsetY);
+
+				// special case: if the distance is too small to draw the unit, we widden the offest point
+				bool needToEnlarge = mDisplayDistance && (distance < GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD);
+				if (needToEnlarge)
+				{
+					float enlargeSize = (GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD - distance) * 0.5f;
+					enlargeSize *= (point2.X > point1.X) ? 1.0f : -1.0f;
+					PointF enlargeVector = new PointF(mUnitVector.X * enlargeSize, mUnitVector.Y * enlargeSize);
+					offsetPoint1 = new PointF(offsetPoint1.X - enlargeVector.X, offsetPoint1.Y - enlargeVector.Y);
+					offsetPoint2 = new PointF(offsetPoint2.X + enlargeVector.X, offsetPoint2.Y + enlargeVector.Y);
+				}
 
 				// extend a little more the offset point to draw a margin
 				const float EXTEND_IN_STUD = 2.0f; //TODO: maybe make it a maximum between the font size/2 and this fixed value
 				float extendX = offsetNormalizedVector.X * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
 				float extendY = offsetNormalizedVector.Y * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
-				PointF offsetPoint1 = mControlPoint[0].mOffsetPoint;
-				PointF offsetPoint2 = mControlPoint[1].mOffsetPoint;
 				PointF[] selectionArea = new PointF[4];
 				selectionArea[(int)SelectionAreaIndex.EXTERNAL_1] = new PointF(offsetPoint1.X + extendX, offsetPoint1.Y + extendY);
 				selectionArea[(int)SelectionAreaIndex.EXTERNAL_2] = new PointF(offsetPoint2.X + extendX, offsetPoint2.Y + extendY);
 				selectionArea[(int)SelectionAreaIndex.INTERNAL_1] = new PointF(offsetPoint1.X - extendX, offsetPoint1.Y - extendY);
 				selectionArea[(int)SelectionAreaIndex.INTERNAL_2] = new PointF(offsetPoint2.X - extendX, offsetPoint2.Y - extendY);
 				mSelectionArea = new Tools.Polygon(selectionArea);
+
+				// when the offset points are finished to be computed, assign them in the data members
+				mControlPoint[0].mOffsetPoint = offsetPoint1;
+				mControlPoint[1].mOffsetPoint = offsetPoint2;
 
 				// compute the 4 corner of the ruler
 				PointF[] corners = { point1, point2, selectionArea[(int)SelectionAreaIndex.EXTERNAL_1], selectionArea[(int)SelectionAreaIndex.EXTERNAL_2] };
@@ -922,20 +937,15 @@ namespace BlueBrick.MapData
 					PointF offset1InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[0].mOffsetPoint, areaInStud, scalePixelPerStud);
 					PointF offset2InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[1].mOffsetPoint, areaInStud, scalePixelPerStud);
 
-					// internal point may be computed only for certain conditions
+					// internal and external point may be computed only for certain conditions
 					PointF offsetInternal1InPixel = new PointF();
 					PointF offsetInternal2InPixel = new PointF();
-					if (isSelected || needToDisplayHull)
+					PointF offsetExternal1InPixel = new PointF();
+					PointF offsetExternal2InPixel = new PointF();
+					if (isSelected || needToDisplayHull || needToDrawOffset)
 					{
 						offsetInternal1InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.INTERNAL_1], areaInStud, scalePixelPerStud);
 						offsetInternal2InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.INTERNAL_2], areaInStud, scalePixelPerStud);
-					}
-
-					// external point may be computed only for certain conditions
-					PointF offsetExternal1InPixel = new PointF();
-					PointF offsetExternal2InPixel = new PointF();					
-					if (isSelected || needToDisplayHull || needToDrawOffset)
-					{
 						offsetExternal1InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_1], areaInStud, scalePixelPerStud);
 						offsetExternal2InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.EXTERNAL_2], areaInStud, scalePixelPerStud);
 					}
@@ -981,6 +991,7 @@ namespace BlueBrick.MapData
 						// draw the offset if needed
 						if (needToDrawOffset)
 						{
+							// get the two control points
 							PointF point1InPixel = Layer.sConvertPointInStudToPixel(this.Point1, areaInStud, scalePixelPerStud);
 							PointF point2InPixel = Layer.sConvertPointInStudToPixel(this.Point2, areaInStud, scalePixelPerStud);
 
@@ -988,9 +999,20 @@ namespace BlueBrick.MapData
 							Pen penForOffsetLine = new Pen(colorWithTransparency, mOffsetLineThickness);
 							penForOffsetLine.DashPattern = mOffsetLineDashPattern;
 
-							// draw the two offset
-							g.DrawLine(penForOffsetLine, point1InPixel, offsetExternal1InPixel);
-							g.DrawLine(penForOffsetLine, point2InPixel, offsetExternal2InPixel);
+							if (mMesuredDistance.DistanceInStud < GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD)
+							{
+								// draw the two offsets in 2 parts
+								g.DrawLine(penForOffsetLine, point1InPixel, offsetInternal1InPixel);
+								g.DrawLine(penForOffsetLine, offsetInternal1InPixel, offsetExternal1InPixel);
+								g.DrawLine(penForOffsetLine, point2InPixel, offsetInternal2InPixel);
+								g.DrawLine(penForOffsetLine, offsetInternal2InPixel, offsetExternal2InPixel);
+							}
+							else
+							{
+								// draw the two offset straight
+								g.DrawLine(penForOffsetLine, point1InPixel, offsetExternal1InPixel);
+								g.DrawLine(penForOffsetLine, point2InPixel, offsetExternal2InPixel);
+							}
 						}
 					}
 
