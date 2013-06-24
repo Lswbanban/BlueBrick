@@ -988,27 +988,16 @@ namespace BlueBrick.MapData
 						}
 						else
 						{
-							if ((deltaMove.X != 0) || (deltaMove.Y != 0))
-							{
-								linearRuler.Point2 = mouseCoordInStudSnapped;
-								mMouseIsScalingRuler = true;
-							}
-							else
-							{
-								mCurrentlyEditedRuler = null;
-							}
+							linearRuler.Point2 = mouseCoordInStudSnapped;
+							mMouseIsScalingRuler = true;
 						}
 						mustRefresh = true;
 					}
 					break;
 
 				case EditTool.CIRCLE:
-					// add the action to create the ruler but only if we moved
-					if ((deltaMove.X != 0) || (deltaMove.Y != 0))
-					{
-						mCurrentlyEditedRuler.scaleToPoint(mouseCoordInStudSnapped);
-						Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
-					}
+					mCurrentlyEditedRuler.scaleToPoint(mouseCoordInStudSnapped);
+					Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
 					mCurrentlyEditedRuler = null;
 					mustRefresh = true;
 					mMouseIsScalingRuler = false;

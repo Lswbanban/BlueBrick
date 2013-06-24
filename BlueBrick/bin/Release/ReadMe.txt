@@ -64,8 +64,8 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
+	- Display bug in special case: the thickness of the linear ruler should depends on the scale (or text height)
 	- Property window for option of each ruler
-	- the mesurement unit should not have a fixed size
 	- add more cursors (miss one for editing the parameters of a ruler i.e double click)
 	- manage the different unit
 	- Ruler just a line: or diffrent options for the lines/rulers
