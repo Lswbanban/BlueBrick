@@ -659,6 +659,7 @@
     <None Include="icons\alignleft.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Release\ReadMe.txt" />
     <EmbeddedResource Include="AboutBox.no.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox.cs</DependentUpon>

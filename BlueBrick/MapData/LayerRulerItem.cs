@@ -31,6 +31,9 @@ namespace BlueBrick.MapData
 		{
 			// variable for drawing
 			protected const float GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD = 8.0f; // the minimum distance in stud that the ruler will reserved for drawing the distance
+			protected const float MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD = 4.0f; // the minimum distance in stud from wich we start to draw something fake to avoid drawing nothing
+			protected const float HALF_MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD = MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD * 0.5f; // half of the previous value
+
 			protected Color mColor = Color.Black; // color of the lines
 			protected float mLineThickness = 4.0f; // the thickness of the lines
 			protected bool mDisplayDistance = true; // if true, the distance is displayed on the ruler.
@@ -382,8 +385,6 @@ namespace BlueBrick.MapData
 				public PointF mOffsetPoint = new PointF(); // the offset point corresponding to mPoint in stud
 			}
 
-			protected const float MINIMUM_LENGTH_FOR_DRAWING_ARROW_IN_STUD = 4.0f; // the minimum distance in stud from wich we start to draw arrows to avoid drawing nothing
-
 			// geometrical information, the points look like that:
 			//             mSelectionArea[1] |        | mSelectionArea[2]
 			// mControlPoint[0].mOffsetPoint +---42---+ mControlPoint[1].mOffsetPoint
@@ -660,14 +661,14 @@ namespace BlueBrick.MapData
 
 				// special case: if the distance is too small to draw the unit, we widden the offest point
 				bool needToEnlargeWithText = mDisplayDistance && (distance < GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD);
-				bool needToEnlargeWithoutText = !mDisplayDistance && (distance < MINIMUM_LENGTH_FOR_DRAWING_ARROW_IN_STUD);
+				bool needToEnlargeWithoutText = !mDisplayDistance && (distance < MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD);
 				if (needToEnlargeWithText || needToEnlargeWithoutText)
 				{
 					float enlargeSize = 0.0f;
 					if (needToEnlargeWithText)
 						enlargeSize = (GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD - distance) * 0.5f;
 					else if (needToEnlargeWithoutText)
-						enlargeSize = MINIMUM_LENGTH_FOR_DRAWING_ARROW_IN_STUD * 0.5f;
+						enlargeSize = HALF_MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD;
 					enlargeSize *= (point2.X > point1.X) ? 1.0f : -1.0f;
 					PointF enlargeVector = new PointF(mUnitVector.X * enlargeSize, mUnitVector.Y * enlargeSize);
 					offsetPoint1 = new PointF(offsetPoint1.X - enlargeVector.X, offsetPoint1.Y - enlargeVector.Y);
@@ -948,7 +949,7 @@ namespace BlueBrick.MapData
 					// check if we will need to draw the dashed offset lines
 					bool needToDrawOffset = (mOffsetDistance != 0.0f);
 					bool needToDisplayHull = Properties.Settings.Default.DisplayHull;
-					bool needToDrawArrowForSmallDistance = !mDisplayDistance && (mMesuredDistance.DistanceInStud < MINIMUM_LENGTH_FOR_DRAWING_ARROW_IN_STUD);
+					bool needToDrawArrowForSmallDistance = !mDisplayDistance && (mMesuredDistance.DistanceInStud < MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD);
 
 					// transform the coordinates into pixel coordinates
 					PointF offset1InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[0].mOffsetPoint, areaInStud, scalePixelPerStud);
@@ -1199,7 +1200,7 @@ namespace BlueBrick.MapData
 			{
 				// get the center and radius
 				PointF center = this.Center;
-				float radius = this.Radius;
+				float radius = Math.Max(this.Radius, HALF_MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD);
 				// compute the display area
 				mDisplayArea.X = center.X - radius;
 				mDisplayArea.Y = center.Y - radius;
@@ -1207,7 +1208,7 @@ namespace BlueBrick.MapData
 				mDisplayArea.Width = diameter;
 				mDisplayArea.Height = diameter;
 				// set the distance in the data member
-				mMesuredDistance.DistanceInStud = diameter;
+				mMesuredDistance.DistanceInStud = (this.Radius * 2.0f);
 			}
 
 			/// <summary>
@@ -1273,7 +1274,9 @@ namespace BlueBrick.MapData
 				float dy = pointInStud.Y - Center.Y;
 				float distance = (float)Math.Sqrt((dx * dx) + (dy * dy));
 				// true if the difference between the radius and the distance is less than the thikness
-				return ((float)Math.Abs(this.Radius - distance) <= thicknessInStud);
+				// but use the minimum radius, in case the radius is too small
+				float radius = Math.Max(this.Radius, HALF_MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD);
+				return ((float)Math.Abs(radius - distance) <= thicknessInStud);
 			}
 
 			/// <summary>
@@ -1377,26 +1380,37 @@ namespace BlueBrick.MapData
 					// create the pen to draw the circle
 					Color colorWithTransparency = Color.FromArgb((int)(layerTransparency * 2.55f), mColor);
 					Pen penForCircle = new Pen(colorWithTransparency, mLineThickness);
-					// convert the display area in pixel
-					RectangleF displayAreaInPixel = Layer.sConvertRectangleInStudToPixel(mDisplayArea, areaInStud, scalePixelPerStud);
+
+					// convert the center and radius in pixel
+					float radiusInPixel = Math.Max((float)(this.Radius * scalePixelPerStud), 0.5f);
+					float diameterInPixel = radiusInPixel * 2.0f;
+					PointF centerInPixel = Layer.sConvertPointInStudToPixel(this.Center, areaInStud, scalePixelPerStud);
+					PointF upperLeftInPixel = new PointF(centerInPixel.X - radiusInPixel, centerInPixel.Y - radiusInPixel);
+
 					// draw the circle
-					g.DrawEllipse(penForCircle, displayAreaInPixel);
+					g.DrawEllipse(penForCircle, upperLeftInPixel.X, upperLeftInPixel.Y, diameterInPixel, diameterInPixel);
+					// also draw a fake circle if the circle is too small
+					float fakeDiameterInPixel = (float)(MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD * scalePixelPerStud);
+					if (diameterInPixel < fakeDiameterInPixel)
+					{
+						Pen penForFakeCircle = new Pen(colorWithTransparency, 1.0f);
+						penForFakeCircle.DashPattern = new float[] { 2.0f, 4.0f };
+						float fakeRadius = fakeDiameterInPixel * 0.5f;
+						PointF fakeUpperLeftInPixel = new PointF(centerInPixel.X - fakeRadius, centerInPixel.Y - fakeRadius);
+						g.DrawEllipse(penForFakeCircle, fakeUpperLeftInPixel.X, fakeUpperLeftInPixel.Y, fakeDiameterInPixel, fakeDiameterInPixel);					
+					}
 
 					// draw the image containing the text
 					if (mDisplayDistance)
-					{
-						// compute the position of the text in pixel coord
-						PointF centerInPixel = Layer.sConvertPointInStudToPixel(Center, areaInStud, scalePixelPerStud);
 						drawMesurementImage(g, centerInPixel, scalePixelPerStud, layerImageAttributeWithTransparency);
-					}
 
 					// draw the hull if needed
 					if (Properties.Settings.Default.DisplayHull)
-						g.DrawEllipse(sPentoDrawHull, displayAreaInPixel);
+						g.DrawEllipse(sPentoDrawHull, upperLeftInPixel.X, upperLeftInPixel.Y, diameterInPixel, diameterInPixel);
 
 					// draw the selection overlay
 					if (isSelected)
-						g.FillEllipse(selectionBrush, displayAreaInPixel);
+						g.FillEllipse(selectionBrush, upperLeftInPixel.X, upperLeftInPixel.Y, diameterInPixel, diameterInPixel);
 				}
 			}
 
