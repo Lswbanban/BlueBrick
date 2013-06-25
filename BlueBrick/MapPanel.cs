@@ -105,6 +105,7 @@ namespace BlueBrick
 			get { return mViewScale; }
 			set
 			{
+				double oldValue = mViewScale;
 				// avoid setting a null scale or negative scale, set only a scale in the range
 				if (value < 0.2)
 					mViewScale = 0.2;
@@ -112,6 +113,9 @@ namespace BlueBrick
 					mViewScale = 16.0;
 				else
 					mViewScale = value;
+				// compute the difference of scale and call the notification on the map
+				if (mViewScale != oldValue)
+					Map.Instance.zoomScaleChangeNotification(oldValue, mViewScale);
 				// invalidate the panel, since we must redraw it to handle the new scale
 				Invalidate();
 			}
