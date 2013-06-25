@@ -1028,6 +1028,17 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// This method is called when the zoom scale changed
+		/// </summary>
+		/// <param name="oldScaleInPixelPerStud">The previous scale</param>
+		/// <param name="newScaleInPixelPerStud">The new scale</param>
+		public void zoomScaleChangeNotification(double oldScaleInPixelPerStud, double newScaleInPixelPerStud)
+		{
+			foreach (Layer layer in mLayers)
+				layer.zoomScaleChangeNotification(oldScaleInPixelPerStud, newScaleInPixelPerStud);
+		}
+
+		/// <summary>
 		/// Select all the item inside the rectangle in the current selected layer
 		/// </summary>
 		/// <param name="selectionRectangeInStud">the rectangle in which select the items</param>

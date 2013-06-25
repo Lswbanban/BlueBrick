@@ -52,7 +52,7 @@ namespace BlueBrick.MapData
 			[NonSerialized]
 			protected Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
 			[NonSerialized]
-			protected int mMesurementTextLengthInPixel = 0; // the length in pixel of the mesurement text as drawn in the image (which is not the width of the image because the image is rotated)
+			protected Point mMesurementTextSizeInPixel = new Point(); // the length and width in pixel of the mesurement text as drawn in the image (which is not the length and width of the image because the image is rotated)
 
 			#region get/set
 			public virtual bool IsNotAttached
@@ -116,6 +116,17 @@ namespace BlueBrick.MapData
 			protected abstract void updateDisplayData();
 
 			/// <summary>
+			/// This method should be call by the ruler layer that own this ruler when the zooming scale
+			/// changed, because some ruler may have their selection area linked to the zooming scale
+			/// when the ruler wants to display a selection area independant from the scale
+			/// </summary>
+			/// <param name="oldScaleInPixelPerStud">The previous scale</param>
+			/// <param name="newScaleInPixelPerStud">The new scale</param>
+			public virtual void zoomScaleChangeNotification(double oldScaleInPixelPerStud, double newScaleInPixelPerStud)
+			{
+			}
+
+			/// <summary>
 			/// update the image used to draw the mesurement of the ruler correctly oriented
 			/// The image is drawn with the current selected unit.
 			/// This method should be called when the mesurement unit change or when one of the
@@ -131,7 +142,8 @@ namespace BlueBrick.MapData
 				SizeF textFontSize = graphics.MeasureString(distanceAsString, mMesurementFont);
 				int width = (int)textFontSize.Width;
 				int height = (int)textFontSize.Height;
-				mMesurementTextLengthInPixel = width;
+				mMesurementTextSizeInPixel.X = width;
+				mMesurementTextSizeInPixel.Y = height;
 
 				// create an array with the 4 corner of the text (actually 3 if you exclude the origin)
 				// and rotate them according to the orientation
@@ -330,15 +342,15 @@ namespace BlueBrick.MapData
 			{
 				// draw the mesurement text
 				Rectangle destinationRectangle = new Rectangle();
-				float textLengthInPixel = mMesurementTextLengthInPixel;
+				float textLengthInPixel = mMesurementTextSizeInPixel.X;
 
 				// first check if the size is not too big depending on the scale
 				int fullAvailableWidth = (int)(Math.Max(mMesuredDistance.DistanceInStud, GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD) * scalePixelPerStud);
 				int availableWidthForTextInPixel = fullAvailableWidth - Math.Min(20, Math.Max(fullAvailableWidth / 20, 4));
-				if (mMesurementTextLengthInPixel > availableWidthForTextInPixel)
+				if (textLengthInPixel > availableWidthForTextInPixel)
 				{
-					float scaleFactor = (float)availableWidthForTextInPixel / (float)mMesurementTextLengthInPixel;
-					textLengthInPixel *= scaleFactor;
+					float scaleFactor = (float)availableWidthForTextInPixel / (float)textLengthInPixel;
+					textLengthInPixel = availableWidthForTextInPixel;
 					destinationRectangle.Width = (int)((float)mMesurementImage.Width * scaleFactor);
 					destinationRectangle.Height = (int)((float)mMesurementImage.Height * scaleFactor);
 				}
@@ -687,9 +699,11 @@ namespace BlueBrick.MapData
 				mControlPoint[1].mOffsetPoint = originalOffsetPoint2;
 
 				// extend a little more the offset point to draw a margin
-				const float EXTEND_IN_STUD = 3.0f; //TODO: maybe make it a maximum between the font size/2 and this fixed value
-				float extendX = offsetNormalizedVector.X * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
-				float extendY = offsetNormalizedVector.Y * ((mOffsetDistance > 0.0f) ? EXTEND_IN_STUD : -EXTEND_IN_STUD);
+				float extendInStud = MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD;
+				if (mDisplayDistance)
+					extendInStud = (float)(((double)mMesurementTextSizeInPixel.Y * 0.5) / MainForm.Instance.MapViewScale);
+				float extendX = offsetNormalizedVector.X * ((mOffsetDistance > 0.0f) ? extendInStud : -extendInStud);
+				float extendY = offsetNormalizedVector.Y * ((mOffsetDistance > 0.0f) ? extendInStud : -extendInStud);
 				PointF[] selectionArea = new PointF[4];
 				selectionArea[(int)SelectionAreaIndex.EXTERNAL_1] = new PointF(offsetPoint1.X + extendX, offsetPoint1.Y + extendY);
 				selectionArea[(int)SelectionAreaIndex.EXTERNAL_2] = new PointF(offsetPoint2.X + extendX, offsetPoint2.Y + extendY);
@@ -697,8 +711,17 @@ namespace BlueBrick.MapData
 				selectionArea[(int)SelectionAreaIndex.INTERNAL_2] = new PointF(offsetPoint2.X - extendX, offsetPoint2.Y - extendY);
 				mSelectionArea = new Tools.Polygon(selectionArea);
 
+				// finally update the display area
+				updateDisplayArea();
+			}
+
+			/// <summary>
+			/// call this function when you need to update the display area
+			/// </summary>
+			private void updateDisplayArea()
+			{
 				// compute the 4 corner of the ruler
-				PointF[] corners = { point1, point2, selectionArea[0], selectionArea[1], selectionArea[2], selectionArea[3] };
+				PointF[] corners = { mControlPoint[0].mPoint, mControlPoint[1].mPoint, mSelectionArea[0], mSelectionArea[1], mSelectionArea[2], mSelectionArea[3] };
 
 				// now find the min and max
 				float minX = corners[0].X;
@@ -721,6 +744,44 @@ namespace BlueBrick.MapData
 				float width = maxX - minX;
 				float height = maxY - minY;
 				mDisplayArea = new RectangleF(minX, minY, width, height);
+			}
+
+			/// <summary>
+			/// Strangely, the selection area for a linear ruler is not fixed, but depends on the
+			/// scale of the view when the distance is displayed, because the distance is written with
+			/// a fixe pixel size. So it need to be adjusted each time the zooming scale is changing.
+			/// Since the zooming scale is given in the draw method, this update methode can be called
+			/// from the draw, but also the zooming scale can be asked to the map.
+			/// </summary>
+			public override void zoomScaleChangeNotification(double oldScaleInPixelPerStud, double newScaleInPixelPerStud)
+			{
+				if (mDisplayDistance)
+				{
+					// compute the difference
+					double halfHeightInPixel = (double)mMesurementTextSizeInPixel.Y * 0.5;
+					float oldHeightInStud = (float)(halfHeightInPixel / oldScaleInPixelPerStud);
+					float newHeightInStud = (float)(halfHeightInPixel / newScaleInPixelPerStud);
+					float extendInStud = newHeightInStud - oldHeightInStud;
+
+					// compute the vector of the offset. This vector is turned by 90 deg from the Orientation, so
+					// just invert the X and Y of the normalized vector (the offset vector can be null)
+					PointF positiveMoveVector = new PointF(mUnitVector.Y * extendInStud, -mUnitVector.X * extendInStud);
+					PointF negativeMoveVector = new PointF(-positiveMoveVector.X, -positiveMoveVector.Y);
+					PointF[] moveVector = { negativeMoveVector, positiveMoveVector, positiveMoveVector, negativeMoveVector };
+
+					// resize the selection area
+					for (int i = 0; i < 4; ++i)
+					{
+						PointF point = mSelectionArea[i];
+						if (mOffsetDistance > 0.0f)
+							mSelectionArea[i] = new PointF(point.X + moveVector[i].X, point.Y + moveVector[i].Y);
+						else
+							mSelectionArea[i] = new PointF(point.X - moveVector[i].X, point.Y - moveVector[i].Y);
+					}
+
+					// update also the display area
+					updateDisplayArea();
+				}
 			}
 
 			/// <summary>
