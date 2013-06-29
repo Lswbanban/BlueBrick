@@ -53,6 +53,8 @@ namespace BlueBrick.MapData
 			protected Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
 			[NonSerialized]
 			protected Point mMesurementTextSizeInPixel = new Point(); // the length and width in pixel of the mesurement text as drawn in the image (which is not the length and width of the image because the image is rotated)
+			[NonSerialized]
+			protected float mMesurementImageScale = 1.0f; // the scaling factor of the image, because sometimes it need to be squizzed
 
 			#region get/set
 			public virtual bool IsNotAttached
@@ -104,11 +106,18 @@ namespace BlueBrick.MapData
 			/// </summary>
 			protected void updateDisplayDataAndMesurementImage()
 			{
-				// first update the display area, that also recompute the mesured distance and orientation
-				updateDisplayData();
+				// first recompute the mesured distance and orientation
+				updateGeometryData();
 				// Then call the update of the distance image after the computing of the new display area
 				updateMesurementImage();
+				// then update the display data (display area, selection area, etc...)
+				updateDisplayData();
 			}
+
+			/// <summary>
+			/// This function update geometry date of the ruler (distance and orientation)
+			/// </summary>
+			protected abstract void updateGeometryData();
 
 			/// <summary>
 			/// This function update the display area according to the geometry of the ruler
@@ -124,6 +133,26 @@ namespace BlueBrick.MapData
 			/// <param name="newScaleInPixelPerStud">The new scale</param>
 			public virtual void zoomScaleChangeNotification(double oldScaleInPixelPerStud, double newScaleInPixelPerStud)
 			{
+				updateMesurementImageScale(newScaleInPixelPerStud);
+			}
+
+			/// <summary>
+			/// When there's not enough space to draw the mesurement text because the size of the ruler is too small,
+			/// we actually rescale the image in order to try to fit in the available space
+			/// <param name="scalePixelPerStud">the scale of the map that should be used in order to convert stud into screen pixels</param>
+			/// </summary>
+			protected void updateMesurementImageScale(double scalePixelPerStud)
+			{
+				// get the current length of the text to draw
+				float textLengthInPixel = mMesurementTextSizeInPixel.X;
+
+				// first check if the size is not too big depending on the scale
+				int fullAvailableWidth = (int)(Math.Max(mMesuredDistance.DistanceInStud, GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD) * scalePixelPerStud);
+				int availableWidthForTextInPixel = fullAvailableWidth - Math.Min(20, Math.Max(fullAvailableWidth / 20, 4));
+				if (textLengthInPixel > availableWidthForTextInPixel)
+					mMesurementImageScale = (float)availableWidthForTextInPixel / (float)textLengthInPixel;
+				else
+					mMesurementImageScale = 1.0f;
 			}
 
 			/// <summary>
@@ -142,8 +171,11 @@ namespace BlueBrick.MapData
 				SizeF textFontSize = graphics.MeasureString(distanceAsString, mMesurementFont);
 				int width = (int)textFontSize.Width;
 				int height = (int)textFontSize.Height;
+
+				// after setting the text size, call the function to compute the scale
 				mMesurementTextSizeInPixel.X = width;
 				mMesurementTextSizeInPixel.Y = height;
+				updateMesurementImageScale(MainForm.Instance.MapViewScale);
 
 				// create an array with the 4 corner of the text (actually 3 if you exclude the origin)
 				// and rotate them according to the orientation
@@ -342,25 +374,10 @@ namespace BlueBrick.MapData
 			{
 				// draw the mesurement text
 				Rectangle destinationRectangle = new Rectangle();
-				float textLengthInPixel = mMesurementTextSizeInPixel.X;
 
-				// first check if the size is not too big depending on the scale
-				int fullAvailableWidth = (int)(Math.Max(mMesuredDistance.DistanceInStud, GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD) * scalePixelPerStud);
-				int availableWidthForTextInPixel = fullAvailableWidth - Math.Min(20, Math.Max(fullAvailableWidth / 20, 4));
-				if (textLengthInPixel > availableWidthForTextInPixel)
-				{
-					float scaleFactor = (float)availableWidthForTextInPixel / (float)textLengthInPixel;
-					textLengthInPixel = availableWidthForTextInPixel;
-					destinationRectangle.Width = (int)((float)mMesurementImage.Width * scaleFactor);
-					destinationRectangle.Height = (int)((float)mMesurementImage.Height * scaleFactor);
-				}
-				else
-				{
-					destinationRectangle.Width = mMesurementImage.Width;
-					destinationRectangle.Height = mMesurementImage.Height;
-				}
-
-				// compute the position of the text in pixel coord
+				// compute the position of the text in pixel coord and it size according to the rescaling factor
+				destinationRectangle.Width = (int)((float)mMesurementImage.Width * mMesurementImageScale);
+				destinationRectangle.Height = (int)((float)mMesurementImage.Height * mMesurementImageScale);
 				destinationRectangle.X = (int)centerInPixel.X - (destinationRectangle.Width / 2);
 				destinationRectangle.Y = (int)centerInPixel.Y - (destinationRectangle.Height / 2);
 
@@ -368,7 +385,7 @@ namespace BlueBrick.MapData
 				g.DrawImage(mMesurementImage, destinationRectangle, 0, 0, mMesurementImage.Width, mMesurementImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
 
 				// return finally at which length the text was drawn
-				return textLengthInPixel;
+				return (mMesurementTextSizeInPixel.X * mMesurementImageScale);
 			}
 			#endregion
 		}
@@ -610,6 +627,7 @@ namespace BlueBrick.MapData
 			{
 				mControlPoint[0].mPoint = point1;
 				mControlPoint[1].mPoint = point2;
+				updateGeometryData();
 				updateDisplayData();
 			}
 
@@ -629,14 +647,9 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
-			/// Compute and update the display area from the two points of the ruler.
-			/// This function also compute the orientation of the ruler based on the two points.
-			/// Then it compute the distance between the two points in stud and call the method
-			/// to update the image of the mesurement text.
-			/// This method should be called when the two points of the ruler is updated
-			/// or when the ruler is moved.
+			/// This function update geometry date of the ruler (distance and orientation)
 			/// </summary>
-			protected override void updateDisplayData()
+			protected override void updateGeometryData()
 			{
 				// compute the vector of the orientation such as the orientation will stay upside up
 				PointF point1 = mControlPoint[0].mPoint;
@@ -658,6 +671,22 @@ namespace BlueBrick.MapData
 
 				// set the distance in the data member
 				mMesuredDistance.DistanceInStud = distance;
+			}
+
+			/// <summary>
+			/// Compute and update the display area from the two points of the ruler.
+			/// This function also compute the orientation of the ruler based on the two points.
+			/// Then it compute the distance between the two points in stud and call the method
+			/// to update the image of the mesurement text.
+			/// This method should be called when the two points of the ruler is updated
+			/// or when the ruler is moved.
+			/// </summary>
+			protected override void updateDisplayData()
+			{
+				// get the geometry data in local variable
+				PointF point1 = mControlPoint[0].mPoint;
+				PointF point2 = mControlPoint[1].mPoint;
+				float distance = mMesuredDistance.DistanceInStud;
 
 				// compute the vector of the offset. This vector is turned by 90 deg from the Orientation, so
 				// just invert the X and Y of the normalized vector (the offset vector can be null)
@@ -701,7 +730,7 @@ namespace BlueBrick.MapData
 				// extend a little more the offset point to draw a margin
 				float extendInStud = MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD;
 				if (mDisplayDistance)
-					extendInStud = (float)(((double)mMesurementTextSizeInPixel.Y * 0.5) / MainForm.Instance.MapViewScale);
+					extendInStud = (float)(((double)mMesurementTextSizeInPixel.Y * 0.5 * mMesurementImageScale) / MainForm.Instance.MapViewScale);
 				float extendX = offsetNormalizedVector.X * ((mOffsetDistance > 0.0f) ? extendInStud : -extendInStud);
 				float extendY = offsetNormalizedVector.Y * ((mOffsetDistance > 0.0f) ? extendInStud : -extendInStud);
 				PointF[] selectionArea = new PointF[4];
@@ -755,12 +784,17 @@ namespace BlueBrick.MapData
 			/// </summary>
 			public override void zoomScaleChangeNotification(double oldScaleInPixelPerStud, double newScaleInPixelPerStud)
 			{
+				// memorize the current image scale and call the base function to update the scale
+				float previousMesurementImageScale = mMesurementImageScale;
+				base.zoomScaleChangeNotification(oldScaleInPixelPerStud, newScaleInPixelPerStud);
+
+				// then adjust the selection area if needed
 				if (mDisplayDistance)
 				{
 					// compute the difference
 					double halfHeightInPixel = (double)mMesurementTextSizeInPixel.Y * 0.5;
-					float oldHeightInStud = (float)(halfHeightInPixel / oldScaleInPixelPerStud);
-					float newHeightInStud = (float)(halfHeightInPixel / newScaleInPixelPerStud);
+					float oldHeightInStud = (float)(halfHeightInPixel * previousMesurementImageScale / oldScaleInPixelPerStud);
+					float newHeightInStud = (float)(halfHeightInPixel * mMesurementImageScale / newScaleInPixelPerStud);
 					float extendInStud = newHeightInStud - oldHeightInStud;
 
 					// compute the vector of the offset. This vector is turned by 90 deg from the Orientation, so
@@ -1255,6 +1289,15 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// This function update geometry date of the ruler (distance and orientation)
+			/// </summary>
+			protected override void updateGeometryData()
+			{
+				// set the distance in the data member
+				mMesuredDistance.DistanceInStud = (this.Radius * 2.0f);
+			}
+
+			/// <summary>
 			/// Update the display area of this layer item from the center point and the radius
 			/// </summary>
 			protected override void updateDisplayData()
@@ -1268,8 +1311,6 @@ namespace BlueBrick.MapData
 				float diameter = radius * 2.0f;
 				mDisplayArea.Width = diameter;
 				mDisplayArea.Height = diameter;
-				// set the distance in the data member
-				mMesuredDistance.DistanceInStud = (this.Radius * 2.0f);
 			}
 
 			/// <summary>
