@@ -50,11 +50,11 @@ namespace BlueBrick.MapData
 			[NonSerialized]
 			private StringFormat mMesurementStringFormat = new StringFormat();
 			[NonSerialized]
-			protected Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
+			private Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
 			[NonSerialized]
-			protected Point mMesurementTextSizeInPixel = new Point(); // the length and width in pixel of the mesurement text as drawn in the image (which is not the length and width of the image because the image is rotated)
+			private Point mMesurementTextSizeInPixel = new Point(); // the length and width in pixel of the mesurement text as drawn in the image (which is not the length and width of the image because the image is rotated)
 			[NonSerialized]
-			protected float mMesurementImageScale = 1.0f; // the scaling factor of the image, because sometimes it need to be squizzed
+			private float mMesurementImageScale = 1.0f; // the scaling factor of the image, because sometimes it need to be squizzed
 
 			#region get/set
 			public virtual bool IsNotAttached
@@ -87,6 +87,16 @@ namespace BlueBrick.MapData
 			{
 				get { return 0; }
 				set { }
+			}
+
+			protected float MesurementTextWidthInPixel
+			{
+				get { return (mMesurementTextSizeInPixel.X * mMesurementImageScale); }
+			}
+
+			protected float MesurementTextHeightInPixel
+			{
+				get { return (mMesurementTextSizeInPixel.Y * mMesurementImageScale); }
 			}
 			#endregion
 
@@ -369,8 +379,7 @@ namespace BlueBrick.MapData
 			/// <param name="centerInPixel">Position in pixel of the center of the image to draw</param>
 			/// <param name="scalePixelPerStud">the current scale of the map in order to convert stud into screen pixels</param>
 			/// <param name="layerImageAttributeWithTransparency">image attribute containing current transparency in order to draw image (if needed by this ruler)</param>
-			/// <returns>the length in pixel of the text with which it was drawn</returns>
-			protected float drawMesurementImage(Graphics g, PointF centerInPixel, double scalePixelPerStud, ImageAttributes layerImageAttributeWithTransparency)
+			protected void drawMesurementImage(Graphics g, PointF centerInPixel, double scalePixelPerStud, ImageAttributes layerImageAttributeWithTransparency)
 			{
 				// draw the mesurement text
 				Rectangle destinationRectangle = new Rectangle();
@@ -383,9 +392,6 @@ namespace BlueBrick.MapData
 
 				// draw the image containing the text
 				g.DrawImage(mMesurementImage, destinationRectangle, 0, 0, mMesurementImage.Width, mMesurementImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
-
-				// return finally at which length the text was drawn
-				return (mMesurementTextSizeInPixel.X * mMesurementImageScale);
 			}
 			#endregion
 		}
@@ -730,7 +736,7 @@ namespace BlueBrick.MapData
 				// extend a little more the offset point to draw a margin
 				float extendInStud = MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD;
 				if (mDisplayDistance)
-					extendInStud = (float)(((double)mMesurementTextSizeInPixel.Y * 0.5 * mMesurementImageScale) / MainForm.Instance.MapViewScale);
+					extendInStud = (float)(((double)MesurementTextHeightInPixel * 0.5) / MainForm.Instance.MapViewScale);
 				float extendX = offsetNormalizedVector.X * ((mOffsetDistance > 0.0f) ? extendInStud : -extendInStud);
 				float extendY = offsetNormalizedVector.Y * ((mOffsetDistance > 0.0f) ? extendInStud : -extendInStud);
 				PointF[] selectionArea = new PointF[4];
@@ -784,17 +790,16 @@ namespace BlueBrick.MapData
 			/// </summary>
 			public override void zoomScaleChangeNotification(double oldScaleInPixelPerStud, double newScaleInPixelPerStud)
 			{
-				// memorize the current image scale and call the base function to update the scale
-				float previousMesurementImageScale = mMesurementImageScale;
+				// memorize the current text height and call the base function to update the scale
+				float previousMesurementTextHeight = MesurementTextHeightInPixel;
 				base.zoomScaleChangeNotification(oldScaleInPixelPerStud, newScaleInPixelPerStud);
 
 				// then adjust the selection area if needed
 				if (mDisplayDistance)
 				{
 					// compute the difference
-					double halfHeightInPixel = (double)mMesurementTextSizeInPixel.Y * 0.5;
-					float oldHeightInStud = (float)(halfHeightInPixel * previousMesurementImageScale / oldScaleInPixelPerStud);
-					float newHeightInStud = (float)(halfHeightInPixel * mMesurementImageScale / newScaleInPixelPerStud);
+					float oldHeightInStud = (float)(previousMesurementTextHeight * 0.5 / oldScaleInPixelPerStud);
+					float newHeightInStud = (float)(MesurementTextHeightInPixel * 0.5 / newScaleInPixelPerStud);
 					float extendInStud = newHeightInStud - oldHeightInStud;
 
 					// compute the vector of the offset. This vector is turned by 90 deg from the Orientation, so
@@ -1113,10 +1118,10 @@ namespace BlueBrick.MapData
 						float middleY = (offset1InPixel.Y + offset2InPixel.Y) * 0.5f;
 
 						// draw the mesurement image
-						float textLengthInPixel = drawMesurementImage(g, new PointF(middleX, middleY), scalePixelPerStud, layerImageAttributeWithTransparency);
+						drawMesurementImage(g, new PointF(middleX, middleY), scalePixelPerStud, layerImageAttributeWithTransparency);
 
 						// compute the middle extremity of the two lines
-						float halfTextLength = (textLengthInPixel * 0.5f);
+						float halfTextLength = (this.MesurementTextWidthInPixel * 0.5f);
 						float halfTextLengthX = mUnitVector.X * halfTextLength;
 						float halfTextLengthY = mUnitVector.Y * halfTextLength;
 						PointF middle1 = new PointF(middleX - halfTextLengthX, middleY - halfTextLengthY);

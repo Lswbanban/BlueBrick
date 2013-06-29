@@ -64,7 +64,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
-	- Display bug for circular: do we need to draw the dash circle all the time when the circle is too small?
 	- Property window for option of each ruler
 	- add more cursors (miss one for editing the parameters of a ruler i.e double click)
 	- manage the different unit
