@@ -34,27 +34,32 @@ namespace BlueBrick.MapData
 			protected const float MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD = 4.0f; // the minimum distance in stud from wich we start to draw something fake to avoid drawing nothing
 			protected const float HALF_MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD = MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD * 0.5f; // half of the previous value
 
+			// the main line for the ruler
 			protected Color mColor = Color.Black; // color of the lines
 			protected float mLineThickness = 4.0f; // the thickness of the lines
 			protected bool mDisplayDistance = true; // if true, the distance is displayed on the ruler.
 			protected bool mDisplayUnit = true; // if true display the unit just after the distance
 
+			// the secondary lines (or guidelines) for the ruler
+			protected Color mGuidelineColor = Color.Black; // color of the secondary lines
+			protected float mGuidelineThickness = 1.0f; // the thickness of the guide lines when this ruler has an offset
+			protected float[] mGuidelineDashPattern = new float[] { 2.0f, 4.0f }; // pattern for the dashed offset line (succesion of dash length and space length, starting with dash)
+
 			[NonSerialized]
-			protected Tools.Distance mMesuredDistance = new Tools.Distance(); // the distance mesured between the two extremities in stud unit
+			protected Tools.Distance mMeasuredDistance = new Tools.Distance(); // the distance mesured between the two extremities in stud unit
 
 			// variable for drawing the mesurement value
+			private Font mMeasureFont = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Regular);
 			[NonSerialized]
-			private SolidBrush mMesurementBrush = new SolidBrush(Color.Black);
+			private SolidBrush mMeasureBrush = new SolidBrush(Color.Black);
 			[NonSerialized]
-			private Font mMesurementFont = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Regular);
+			private StringFormat mMeasureStringFormat = new StringFormat();
 			[NonSerialized]
-			private StringFormat mMesurementStringFormat = new StringFormat();
+			private Bitmap mMeasureImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
 			[NonSerialized]
-			private Bitmap mMesurementImage = new Bitmap(1, 1);	// image representing the text to draw in the correct orientation
+			private Point mMeasureTextSizeInPixel = new Point(); // the length and width in pixel of the mesurement text as drawn in the image (which is not the length and width of the image because the image is rotated)
 			[NonSerialized]
-			private Point mMesurementTextSizeInPixel = new Point(); // the length and width in pixel of the mesurement text as drawn in the image (which is not the length and width of the image because the image is rotated)
-			[NonSerialized]
-			private float mMesurementImageScale = 1.0f; // the scaling factor of the image, because sometimes it need to be squizzed
+			private float mMeasureImageScale = 1.0f; // the scaling factor of the image, because sometimes it need to be squizzed
 
 			#region get/set
 			public virtual bool IsNotAttached
@@ -91,12 +96,72 @@ namespace BlueBrick.MapData
 
 			protected float MesurementTextWidthInPixel
 			{
-				get { return (mMesurementTextSizeInPixel.X * mMesurementImageScale); }
+				get { return (mMeasureTextSizeInPixel.X * mMeasureImageScale); }
 			}
 
 			protected float MesurementTextHeightInPixel
 			{
-				get { return (mMesurementTextSizeInPixel.Y * mMesurementImageScale); }
+				get { return (mMeasureTextSizeInPixel.Y * mMeasureImageScale); }
+			}
+
+			public Color Color
+			{
+				get { return mColor; }
+				set { mColor = value; }
+			}
+
+			public float LineThickness
+			{
+				get { return mLineThickness; }
+				set { mLineThickness = value; }
+			}
+
+			public bool DisplayDistance
+			{
+				get { return mDisplayDistance; }
+				set { mDisplayDistance = value; }
+			}
+
+			public bool DisplayUnit
+			{
+				get { return mDisplayUnit; }
+				set { mDisplayUnit = value; }
+			}
+
+			public Color GuidelineColor
+			{
+				get { return mGuidelineColor; }
+				set { mGuidelineColor = value; }
+			}
+
+			public float GuidelineThickness
+			{
+				get { return mGuidelineThickness; }
+				set { mGuidelineThickness = value; }
+			}
+
+			public float[] GuidelineDashPattern
+			{
+				get { return mGuidelineDashPattern; }
+				set { mGuidelineDashPattern = value; }
+			}
+
+			public Font MeasureFont
+			{
+				get { return mMeasureFont; }
+				set { mMeasureFont = value; }
+			}
+
+			public Color MeasureColor
+			{
+				get { return mMeasureBrush.Color; }
+				set { mMeasureBrush.Color = value; }
+			}
+
+			public Tools.Distance.Unit CurrentUnit
+			{
+				get { return mMeasuredDistance.CurrentUnit; }
+				set { mMeasuredDistance.CurrentUnit = value; }
 			}
 			#endregion
 
@@ -106,8 +171,8 @@ namespace BlueBrick.MapData
 			/// </summary>
 			public RulerItem()
 			{
-				mMesurementStringFormat.Alignment = StringAlignment.Center;
-				mMesurementStringFormat.LineAlignment = StringAlignment.Center;
+				mMeasureStringFormat.Alignment = StringAlignment.Center;
+				mMeasureStringFormat.LineAlignment = StringAlignment.Center;
 			}
 
 			/// <summary>
@@ -154,15 +219,15 @@ namespace BlueBrick.MapData
 			protected void updateMesurementImageScale(double scalePixelPerStud)
 			{
 				// get the current length of the text to draw
-				float textLengthInPixel = mMesurementTextSizeInPixel.X;
+				float textLengthInPixel = mMeasureTextSizeInPixel.X;
 
 				// first check if the size is not too big depending on the scale
-				int fullAvailableWidth = (int)(Math.Max(mMesuredDistance.DistanceInStud, GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD) * scalePixelPerStud);
+				int fullAvailableWidth = (int)(Math.Max(mMeasuredDistance.DistanceInStud, GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD) * scalePixelPerStud);
 				int availableWidthForTextInPixel = fullAvailableWidth - Math.Min(20, Math.Max(fullAvailableWidth / 20, 4));
 				if (textLengthInPixel > availableWidthForTextInPixel)
-					mMesurementImageScale = (float)availableWidthForTextInPixel / (float)textLengthInPixel;
+					mMeasureImageScale = (float)availableWidthForTextInPixel / (float)textLengthInPixel;
 				else
-					mMesurementImageScale = 1.0f;
+					mMeasureImageScale = 1.0f;
 			}
 
 			/// <summary>
@@ -174,17 +239,17 @@ namespace BlueBrick.MapData
 			protected void updateMesurementImage()
 			{
 				// get the mesured distance in the current unit
-				string distanceAsString = mMesuredDistance.ToString("N2", mDisplayUnit);
+				string distanceAsString = mMeasuredDistance.ToString("N2", mDisplayUnit);
 
 				// draw the size
-				Graphics graphics = Graphics.FromImage(mMesurementImage);
-				SizeF textFontSize = graphics.MeasureString(distanceAsString, mMesurementFont);
+				Graphics graphics = Graphics.FromImage(mMeasureImage);
+				SizeF textFontSize = graphics.MeasureString(distanceAsString, mMeasureFont);
 				int width = (int)textFontSize.Width;
 				int height = (int)textFontSize.Height;
 
 				// after setting the text size, call the function to compute the scale
-				mMesurementTextSizeInPixel.X = width;
-				mMesurementTextSizeInPixel.Y = height;
+				mMeasureTextSizeInPixel.X = width;
+				mMeasureTextSizeInPixel.Y = height;
 				updateMesurementImageScale(MainForm.Instance.MapViewScale);
 
 				// create an array with the 4 corner of the text (actually 3 if you exclude the origin)
@@ -210,13 +275,13 @@ namespace BlueBrick.MapData
 				}
 
 				// create the bitmap and draw the text inside
-				mMesurementImage = new Bitmap(mMesurementImage, new Size(Math.Abs(max.X - min.X), Math.Abs(max.Y - min.Y)));
-				graphics = Graphics.FromImage(mMesurementImage);
-				rotation.Translate(mMesurementImage.Width / 2, mMesurementImage.Height / 2, MatrixOrder.Append);
+				mMeasureImage = new Bitmap(mMeasureImage, new Size(Math.Abs(max.X - min.X), Math.Abs(max.Y - min.Y)));
+				graphics = Graphics.FromImage(mMeasureImage);
+				rotation.Translate(mMeasureImage.Width / 2, mMeasureImage.Height / 2, MatrixOrder.Append);
 				graphics.Transform = rotation;
 				graphics.Clear(Color.Transparent);
 				graphics.SmoothingMode = SmoothingMode.HighQuality;
-				graphics.DrawString(distanceAsString, mMesurementFont, mMesurementBrush, 0, 0, mMesurementStringFormat);
+				graphics.DrawString(distanceAsString, mMeasureFont, mMeasureBrush, 0, 0, mMeasureStringFormat);
 				graphics.Flush();
 			}
 			#endregion
@@ -385,13 +450,13 @@ namespace BlueBrick.MapData
 				Rectangle destinationRectangle = new Rectangle();
 
 				// compute the position of the text in pixel coord and it size according to the rescaling factor
-				destinationRectangle.Width = (int)((float)mMesurementImage.Width * mMesurementImageScale);
-				destinationRectangle.Height = (int)((float)mMesurementImage.Height * mMesurementImageScale);
+				destinationRectangle.Width = (int)((float)mMeasureImage.Width * mMeasureImageScale);
+				destinationRectangle.Height = (int)((float)mMeasureImage.Height * mMeasureImageScale);
 				destinationRectangle.X = (int)centerInPixel.X - (destinationRectangle.Width / 2);
 				destinationRectangle.Y = (int)centerInPixel.Y - (destinationRectangle.Height / 2);
 
 				// draw the image containing the text
-				g.DrawImage(mMesurementImage, destinationRectangle, 0, 0, mMesurementImage.Width, mMesurementImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
+				g.DrawImage(mMeasureImage, destinationRectangle, 0, 0, mMeasureImage.Width, mMeasureImage.Height, GraphicsUnit.Pixel, layerImageAttributeWithTransparency);
 			}
 			#endregion
 		}
@@ -428,15 +493,12 @@ namespace BlueBrick.MapData
 			//       mControlPoint[0].mPoint |        | mControlPoint[1].mPoint 
 			private ControlPoint[] mControlPoint = { new ControlPoint(), new ControlPoint() };
 			private float mOffsetDistance = 0.0f; // the offset distance in stud coord
+			private bool mAllowOffset = true; // if true the line can be offseted
 
 			[NonSerialized]
 			private PointF mUnitVector = new PointF(); // the unit vector of the line between point1 and point2
 			[NonSerialized]
 			private int mCurrentControlPointIndex = 0;
-
-			// variable for the draw
-			private float mOffsetLineThickness = 1.0f; // the thickness of the guide lines when this ruler has an offset
-			private float[] mOffsetLineDashPattern = new float[] { 2.0f, 4.0f }; // pattern for the dashed offset line (succesion of dash length and space length, starting with dash)
 
 			#region get/set
 			/// <summary>
@@ -457,7 +519,7 @@ namespace BlueBrick.MapData
 						matrix.Rotate(value - mOrientation);
 						matrix.TransformVectors(vector);
 						// get the current distance
-						float distance = mMesuredDistance.DistanceInStud;
+						float distance = mMeasuredDistance.DistanceInStud;
 						// revert it if needed (because we will use it to multiply the unit vector)
 						if (mControlPoint[1].mPoint.X < mControlPoint[0].mPoint.X)
 							distance = -distance;
@@ -612,6 +674,12 @@ namespace BlueBrick.MapData
 					// don't need to update the mesured distance image as the distance didn't changed
 				}
 			}
+
+			public bool AllowOffset
+			{
+				get { return mAllowOffset; }
+				set { mAllowOffset = value; }
+			}
 			#endregion
 
 			#region constructor/copy
@@ -676,7 +744,7 @@ namespace BlueBrick.MapData
 					mUnitVector = new PointF(1.0f, 0.0f);
 
 				// set the distance in the data member
-				mMesuredDistance.DistanceInStud = distance;
+				mMeasuredDistance.DistanceInStud = distance;
 			}
 
 			/// <summary>
@@ -692,7 +760,7 @@ namespace BlueBrick.MapData
 				// get the geometry data in local variable
 				PointF point1 = mControlPoint[0].mPoint;
 				PointF point2 = mControlPoint[1].mPoint;
-				float distance = mMesuredDistance.DistanceInStud;
+				float distance = mMeasuredDistance.DistanceInStud;
 
 				// compute the vector of the offset. This vector is turned by 90 deg from the Orientation, so
 				// just invert the X and Y of the normalized vector (the offset vector can be null)
@@ -842,7 +910,7 @@ namespace BlueBrick.MapData
 				mControlPoint[0].mPoint = XmlReadWrite.readPointF(reader);
 				mControlPoint[1].mPoint = XmlReadWrite.readPointF(reader);
 				mOffsetDistance = reader.ReadElementContentAsFloat();
-				mOffsetLineThickness = reader.ReadElementContentAsFloat();
+				mGuidelineThickness = reader.ReadElementContentAsFloat();
 				// read the end element of the ruler
 				reader.ReadEndElement();
 
@@ -858,7 +926,7 @@ namespace BlueBrick.MapData
 				XmlReadWrite.writePointF(writer, "Point1", this.Point1);
 				XmlReadWrite.writePointF(writer, "Point2", this.Point2);
 				writer.WriteElementString("OffsetDistance", this.OffsetDistance.ToString(System.Globalization.CultureInfo.InvariantCulture));
-				writer.WriteElementString("OffsetLineThickness", mOffsetLineThickness.ToString(System.Globalization.CultureInfo.InvariantCulture));
+				writer.WriteElementString("OffsetLineThickness", mGuidelineThickness.ToString(System.Globalization.CultureInfo.InvariantCulture));
 				//TODO write the mOffsetLineDashPattern
 				writer.WriteEndElement(); // end of LinearRuler
 			}
@@ -1049,7 +1117,7 @@ namespace BlueBrick.MapData
 					// check if we will need to draw the dashed offset lines
 					bool needToDrawOffset = (mOffsetDistance != 0.0f);
 					bool needToDisplayHull = Properties.Settings.Default.DisplayHull;
-					bool needToDrawArrowForSmallDistance = !mDisplayDistance && (mMesuredDistance.DistanceInStud < MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD);
+					bool needToDrawArrowForSmallDistance = !mDisplayDistance && (mMeasuredDistance.DistanceInStud < MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD);
 
 					// transform the coordinates into pixel coordinates
 					PointF offset1InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[0].mOffsetPoint, areaInStud, scalePixelPerStud);
@@ -1082,11 +1150,12 @@ namespace BlueBrick.MapData
 					Pen penForLine = new Pen(colorWithTransparency, mLineThickness);
 
 					// create the pen for the offset lines (only if need)
-					Pen penForOffsetLine = null;
+					Pen penForGuideline = null;
 					if (needToDrawOffset || needToDrawArrowForSmallDistance)
 					{
-						penForOffsetLine = new Pen(colorWithTransparency, mOffsetLineThickness);
-						penForOffsetLine.DashPattern = mOffsetLineDashPattern;
+						Color guidelineColorWithTransparency = Color.FromArgb((int)(layerTransparency * 2.55f), mGuidelineColor);
+						penForGuideline = new Pen(guidelineColorWithTransparency, mGuidelineThickness);
+						penForGuideline.DashPattern = mGuidelineDashPattern;
 					}
 
 					// draw one or 2 lines
@@ -1098,17 +1167,17 @@ namespace BlueBrick.MapData
 						if (needToDrawArrowForSmallDistance)
 						{
 							// draw the arrow
-							g.DrawLine(penForOffsetLine, offset1InPixel, offsetInternal1InPixel);
-							g.DrawLine(penForOffsetLine, offset1InPixel, offsetExternal1InPixel);
-							g.DrawLine(penForOffsetLine, offset2InPixel, offsetInternal2InPixel);
-							g.DrawLine(penForOffsetLine, offset2InPixel, offsetExternal2InPixel);
+							g.DrawLine(penForGuideline, offset1InPixel, offsetInternal1InPixel);
+							g.DrawLine(penForGuideline, offset1InPixel, offsetExternal1InPixel);
+							g.DrawLine(penForGuideline, offset2InPixel, offsetInternal2InPixel);
+							g.DrawLine(penForGuideline, offset2InPixel, offsetExternal2InPixel);
 						}
 						// draw the offset if needed
 						if (needToDrawOffset)
 						{
 							// draw the two offset straight
-							g.DrawLine(penForOffsetLine, point1InPixel, offset1InPixel);
-							g.DrawLine(penForOffsetLine, point2InPixel, offset2InPixel);
+							g.DrawLine(penForGuideline, point1InPixel, offset1InPixel);
+							g.DrawLine(penForGuideline, point2InPixel, offset2InPixel);
 						}
 					}
 					else
@@ -1142,19 +1211,19 @@ namespace BlueBrick.MapData
 						// draw the offset if needed
 						if (needToDrawOffset)
 						{
-							if (mMesuredDistance.DistanceInStud < GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD)
+							if (mMeasuredDistance.DistanceInStud < GUARANTIED_SPACE_FOR_DISTANCE_DRAWING_IN_STUD)
 							{
 								// draw the two offsets in 2 parts
-								g.DrawLine(penForOffsetLine, point1InPixel, offsetInternal1InPixel);
-								g.DrawLine(penForOffsetLine, offsetInternal1InPixel, offsetExternal1InPixel);
-								g.DrawLine(penForOffsetLine, point2InPixel, offsetInternal2InPixel);
-								g.DrawLine(penForOffsetLine, offsetInternal2InPixel, offsetExternal2InPixel);
+								g.DrawLine(penForGuideline, point1InPixel, offsetInternal1InPixel);
+								g.DrawLine(penForGuideline, offsetInternal1InPixel, offsetExternal1InPixel);
+								g.DrawLine(penForGuideline, point2InPixel, offsetInternal2InPixel);
+								g.DrawLine(penForGuideline, offsetInternal2InPixel, offsetExternal2InPixel);
 							}
 							else
 							{
 								// draw the two offset straight
-								g.DrawLine(penForOffsetLine, point1InPixel, offsetExternal1InPixel);
-								g.DrawLine(penForOffsetLine, point2InPixel, offsetExternal2InPixel);
+								g.DrawLine(penForGuideline, point1InPixel, offsetExternal1InPixel);
+								g.DrawLine(penForGuideline, point2InPixel, offsetExternal2InPixel);
 							}
 						}
 					}
@@ -1299,7 +1368,7 @@ namespace BlueBrick.MapData
 			protected override void updateGeometryData()
 			{
 				// set the distance in the data member
-				mMesuredDistance.DistanceInStud = (this.Radius * 2.0f);
+				mMeasuredDistance.DistanceInStud = (this.Radius * 2.0f);
 			}
 
 			/// <summary>
@@ -1500,8 +1569,9 @@ namespace BlueBrick.MapData
 					float fakeDiameterInPixel = (float)(MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD * scalePixelPerStud);
 					if (diameterInPixel < fakeDiameterInPixel)
 					{
-						Pen penForFakeCircle = new Pen(colorWithTransparency, 1.0f);
-						penForFakeCircle.DashPattern = new float[] { 2.0f, 4.0f };
+						Color guidelineColorWithTransparency = Color.FromArgb((int)(layerTransparency * 2.55f), mGuidelineColor);
+						Pen penForFakeCircle = new Pen(guidelineColorWithTransparency, mGuidelineThickness);
+						penForFakeCircle.DashPattern = mGuidelineDashPattern;
 						float fakeRadius = fakeDiameterInPixel * 0.5f;
 						PointF fakeUpperLeftInPixel = new PointF(centerInPixel.X - fakeRadius, centerInPixel.Y - fakeRadius);
 						g.DrawEllipse(penForFakeCircle, fakeUpperLeftInPixel.X, fakeUpperLeftInPixel.Y, fakeDiameterInPixel, fakeDiameterInPixel);					

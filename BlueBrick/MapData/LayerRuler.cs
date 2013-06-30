@@ -907,8 +907,21 @@ namespace BlueBrick.MapData
 			{
 				case EditTool.SELECT:
 
-					// check if we moved the selected bricks
-					if (mMouseHasMoved && (mSelectedObjects.Count > 0))
+					// if it's a double click, we should prompt a box for text editing
+					// WARNING: prompt the box in the mouse up event,
+					// otherwise, if you do it in the mouse down, the mouse up is not triggered (both under dot net and mono)
+					// and this can mess up the click count in mono
+					if (mMouseMoveWillCustomizeRuler)
+					{
+						// open the edit text dialog in modal
+						EditRulerForm editRulerForm = new EditRulerForm(mCurrentlyEditedRuler);
+						editRulerForm.ShowDialog();
+						if (editRulerForm.DialogResult == DialogResult.OK)
+						{
+//							ActionManager.Instance.doAction(new EditText(this, mCurrentTextCellUnderMouse, editRulerForm.EditedText, editRulerForm.EditedFont, editRulerForm.EditedColor, editRulerForm.EditedAlignment));
+						}
+					}
+					else if (mMouseHasMoved && (mSelectedObjects.Count > 0)) // check if we moved the selected bricks
 					{
 						// reset the flag
 						mMouseHasMoved = false;

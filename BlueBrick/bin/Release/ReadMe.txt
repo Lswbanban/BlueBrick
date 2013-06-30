@@ -64,13 +64,14 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
-	- Property window for option of each ruler
-	- add more cursors (miss one for editing the parameters of a ruler i.e double click)
+	- Property window for option of each ruler + implement "AllowOffset" for linear rulers
 	- manage the different unit
+	- add more cursors (miss one for editing the parameters of a ruler i.e double click)
 	- Ruler just a line: or diffrent options for the lines/rulers
 	- refactor create a write float/bool function in XmlReadWrite
 	- save/load of attachement not done
 	- save/load in LDraw
+	- settings: put a default color and font for rulers in the settings?
 bug en release: la function Surface.isPointInside est buggué (marche en debug)
 CRASH bug when dragging a part over the task bar
 Rotation of Circular ruler: could be improve to avoid upside down text like linear ruler
