@@ -482,4 +482,7 @@ Le message d'erreur est :
   <data name="ActionScaleLinearRuler" xml:space="preserve">
     <value>Modifier le décalage d'une mesure</value>
   </data>
+  <data name="ActionEditRuler" xml:space="preserve">
+    <value>Modifier les propriétés d'une mesure</value>
+  </data>
 </root>

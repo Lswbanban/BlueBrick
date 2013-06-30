@@ -64,7 +64,10 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
-	- Property window for option of each ruler + implement "AllowOffset" for linear rulers
+	- Property window for option of each ruler
+	  + update the loca kit
+	  + implement "AllowOffset" for linear rulers
+	  + refactor the clone of layer item by using copy constructors
 	- manage the different unit
 	- add more cursors (miss one for editing the parameters of a ruler i.e double click)
 	- Ruler just a line: or diffrent options for the lines/rulers
