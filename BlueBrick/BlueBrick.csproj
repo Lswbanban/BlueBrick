@@ -135,6 +135,12 @@
     <Compile Include="DownloadCenterForm.Designer.cs">
       <DependentUpon>DownloadCenterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditRulerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditRulerForm.Designer.cs">
+      <DependentUpon>EditRulerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExportImageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -278,6 +284,9 @@
     <EmbeddedResource Include="AboutBox.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditRulerForm.resx">
+      <DependentUpon>EditRulerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditTextForm.de.resx">
       <SubType>Designer</SubType>
@@ -623,12 +632,12 @@
   <ItemGroup>
     <PublishFile Include="fr\BlueBrick.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>
