@@ -547,4 +547,7 @@
   <data name="ActionRotateSeveralRulers" xml:space="preserve">
     <value>Rotate several Rulers</value>
   </data>
+  <data name="ActionEditRuler" xml:space="preserve">
+    <value>Edit a Ruler's Properties</value>
+  </data>
 </root>

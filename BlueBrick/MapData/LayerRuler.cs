@@ -914,12 +914,10 @@ namespace BlueBrick.MapData
 					if (mMouseMoveWillCustomizeRuler)
 					{
 						// open the edit text dialog in modal
-						EditRulerForm editRulerForm = new EditRulerForm(mCurrentlyEditedRuler);
+						EditRulerForm editRulerForm = new EditRulerForm(mCurrentRulerUnderMouse);
 						editRulerForm.ShowDialog();
 						if (editRulerForm.DialogResult == DialogResult.OK)
-						{
-//							ActionManager.Instance.doAction(new EditText(this, mCurrentTextCellUnderMouse, editRulerForm.EditedText, editRulerForm.EditedFont, editRulerForm.EditedColor, editRulerForm.EditedAlignment));
-						}
+							Actions.ActionManager.Instance.doAction(new Actions.Rulers.EditRuler(mCurrentRulerUnderMouse, editRulerForm.EditedRulerClone));
 					}
 					else if (mMouseHasMoved && (mSelectedObjects.Count > 0)) // check if we moved the selected bricks
 					{

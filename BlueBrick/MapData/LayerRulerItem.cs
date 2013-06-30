@@ -176,6 +176,25 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Copy constructor
+			/// </summary>
+			public RulerItem(RulerItem model)
+			{
+				mColor = model.Color;
+				mLineThickness = model.mLineThickness;
+				mDisplayDistance = model.mDisplayDistance;
+				mDisplayUnit = model.mDisplayUnit;
+				mGuidelineColor = model.mGuidelineColor;
+				mGuidelineThickness = model.mGuidelineThickness;
+				mGuidelineDashPattern = model.mGuidelineDashPattern;
+				mMeasuredDistance = new Tools.Distance(model.mMeasuredDistance.DistanceInCurrentUnit, model.mMeasuredDistance.CurrentUnit);
+				mMeasureFont = model.mMeasureFont.Clone() as Font;
+				mMeasureBrush = new SolidBrush(model.mMeasureBrush.Color);
+				mMeasureStringFormat = model.mMeasureStringFormat.Clone() as StringFormat;
+				// the rest of the variable should be initialized when the geometry will be created
+			}
+
+			/// <summary>
 			/// Update both the display data and the image containing the mesurement
 			/// string and the unit. display date is updated first, then the image
 			/// </summary>
@@ -692,6 +711,21 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Copy constructor
+			/// </summary>
+			public LinearRuler(LinearRuler model)
+				: base(model)
+			{
+				mControlPoint[0] = model.mControlPoint[0];
+				mControlPoint[1] = model.mControlPoint[1];
+				mOffsetDistance = model.OffsetDistance;
+				mAllowOffset = model.mAllowOffset;
+				mCurrentControlPointIndex = model.mCurrentControlPointIndex;
+				// the unit vector will be computed in the update method
+				updateDisplayDataAndMesurementImage();
+			}
+
+			/// <summary>
 			/// Constructor used for the construction of a linear ruler with the mouse
 			/// </summary>
 			/// <param name="point1">First point of the line</param>
@@ -718,6 +752,16 @@ namespace BlueBrick.MapData
 				mControlPoint[1].mPoint = point2;
 				mOffsetDistance = offsetDistance;
 				updateDisplayDataAndMesurementImage();
+			}
+
+			/// <summary>
+			/// Clone this LinearRuler
+			/// </summary>
+			/// <returns>a new LinearRuler which is a conform copy of this</returns>
+			public override LayerItem Clone()
+			{
+				// Just call the copy constructor
+				return new LinearRuler(this);
 			}
 
 			/// <summary>
@@ -889,16 +933,6 @@ namespace BlueBrick.MapData
 					// update also the display area
 					updateDisplayArea();
 				}
-			}
-
-			/// <summary>
-			/// Clone this LinearRuler
-			/// </summary>
-			/// <returns>a new LinearRuler which is a conform copy of this</returns>
-			public override LayerItem Clone()
-			{
-				//TODO: is it enough?: I guess not because of all the properties of the base class
-				return new LinearRuler(this.Point1, this.Point2, this.OffsetDistance);
 			}
 			#endregion
 
@@ -1354,12 +1388,35 @@ namespace BlueBrick.MapData
 				mSelectionArea = new Tools.Circle(new PointF(0.0f, 0.0f), 0.0f);
 			}
 
+			/// <summary>
+			/// Copy constructor
+			/// </summary>
+			public CircularRuler(CircularRuler model)
+				: base(model)
+			{
+				// copy the data members
+				mAttachedBrick = model.mAttachedBrick;
+				mSelectionArea = new Tools.Circle(model.Center, model.Radius);
+				// the rest of the geometry will be computed in the update
+				updateDisplayDataAndMesurementImage();
+			}
+
+
 			public CircularRuler(PointF center, float radius) : base()
 			{
 				// define the selection area
 				mSelectionArea = new Tools.Circle(center, radius);
 				// update the display area
 				updateDisplayDataAndMesurementImage();
+			}
+
+			/// <summary>
+			/// Clone this CircularRuler
+			/// </summary>
+			/// <returns>a new CircularRuler which is a conform copy of this</returns>
+			public override LayerItem Clone()
+			{
+				return new CircularRuler(this);
 			}
 
 			/// <summary>
@@ -1385,15 +1442,6 @@ namespace BlueBrick.MapData
 				float diameter = radius * 2.0f;
 				mDisplayArea.Width = diameter;
 				mDisplayArea.Height = diameter;
-			}
-
-			/// <summary>
-			/// Clone this LinearRuler
-			/// </summary>
-			/// <returns>a new LinearRuler which is a conform copy of this</returns>
-			public override LayerItem Clone()
-			{
-				return new CircularRuler(this.Center, this.Radius);
 			}
 			#endregion
 
