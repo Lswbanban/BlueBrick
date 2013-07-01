@@ -36,6 +36,12 @@ namespace BlueBrick.MapData.Tools
 
 		#region functions
 		/// <summary>
+		/// A abstract clone method because the Surface class is abstract and cannot be instanciated
+		/// </summary>
+		/// <returns>a conform copy of this instance of Surface</returns>
+		public abstract Surface Clone();
+
+		/// <summary>
 		/// Tells if the given point is inside this surface, assuming the point and the surface are
 		/// in the same coordinate system.
 		/// </summary>
@@ -115,6 +121,26 @@ namespace BlueBrick.MapData.Tools
 		{
 			mCenter = center;
 			mRadius = radius;
+		}
+
+		/// <summary>
+		/// Copy constructor
+		/// </summary>
+		/// <param name="model">the model from which copy</param>
+		public Circle(Circle model)
+		{
+			this.mCenter = model.Center;
+			this.mRadius = model.Radius;
+		}
+
+		/// <summary>
+		/// Create a copy instance of this instance
+		/// </summary>
+		/// <returns>a conform copy of this instance of Surface</returns>
+		public override Surface Clone()
+		{
+			// call the copy constructor
+			return new Circle(this);
 		}
 		#endregion
 
@@ -231,6 +257,25 @@ namespace BlueBrick.MapData.Tools
 		public Polygon(PointF[] vertice)
 		{
 			mVertice = vertice;
+		}
+
+		/// <summary>
+		/// Copy constructor
+		/// </summary>
+		/// <param name="model">the model from which copy</param>
+		public Polygon(Polygon model)
+		{
+			this.mVertice = model.Vertice;
+		}
+
+		/// <summary>
+		/// Create a copy instance of this instance
+		/// </summary>
+		/// <returns>a conform copy of this instance of Surface</returns>
+		public override Surface Clone()
+		{
+			// call the copy constructor
+			return new Polygon(this);
 		}
 		#endregion
 

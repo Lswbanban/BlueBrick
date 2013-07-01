@@ -179,6 +179,7 @@ namespace BlueBrick.MapData
 			/// Copy constructor
 			/// </summary>
 			public RulerItem(RulerItem model)
+				: base (model)
 			{
 				mColor = model.Color;
 				mLineThickness = model.mLineThickness;
@@ -716,12 +717,15 @@ namespace BlueBrick.MapData
 			public LinearRuler(LinearRuler model)
 				: base(model)
 			{
+				// clone the control point but detach the brick because we don't want to clone the link
 				mControlPoint[0] = model.mControlPoint[0];
+				mControlPoint[0].mAttachedBrick = null;
 				mControlPoint[1] = model.mControlPoint[1];
+				mControlPoint[1].mAttachedBrick = null;				
 				mOffsetDistance = model.OffsetDistance;
 				mAllowOffset = model.mAllowOffset;
-				mCurrentControlPointIndex = model.mCurrentControlPointIndex;
 				// the unit vector will be computed in the update method
+				mCurrentControlPointIndex = model.mCurrentControlPointIndex;
 				updateDisplayDataAndMesurementImage();
 			}
 
@@ -1394,9 +1398,8 @@ namespace BlueBrick.MapData
 			public CircularRuler(CircularRuler model)
 				: base(model)
 			{
-				// copy the data members
-				mAttachedBrick = model.mAttachedBrick;
-				mSelectionArea = new Tools.Circle(model.Center, model.Radius);
+				// do not copy the link of the attached brick to the clone
+				// the radius and center is computed in the base class (LayerItem copy constructor)
 				// the rest of the geometry will be computed in the update
 				updateDisplayDataAndMesurementImage();
 			}

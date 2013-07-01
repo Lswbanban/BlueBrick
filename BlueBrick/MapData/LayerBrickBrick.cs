@@ -479,6 +479,22 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Copy constructor
+			/// </summary>
+			/// <param name="model">the model to use for the copy</param>
+			public Brick(Brick model)
+				: base(model)
+			{
+				this.mActiveConnectionPointIndex = model.mActiveConnectionPointIndex;
+				this.mAltitude = model.mAltitude;
+				// we don't clone the attached rulers
+				// call the init after setting the orientation (in the base copy copy constructor)
+				// to compute the image in the right orientation
+				// the init method will initialize mMipmapImages, mOriginalImageReference, mOriginalImageReference and mConnectionPoints
+				init(model.mPartNumber);
+			}
+
+			/// <summary>
 			/// This is the normal constructor that you should use in your program
 			/// </summary>
 			/// <param name="partNumber">the part number used to create this brick</param>
@@ -511,15 +527,8 @@ namespace BlueBrick.MapData
 			/// <returns>a new Brick which is a conform copy of this</returns>
 			public override LayerItem Clone()
 			{
-				Brick result = new Brick();
-				result.mDisplayArea = this.mDisplayArea;
-				result.mOrientation = this.mOrientation;
-				result.mActiveConnectionPointIndex = this.mActiveConnectionPointIndex;
-				// call the init after setting the orientation to compute the image in the right orientation
-				// the init method will initialize mImage, mConnectionPoints and mSnapToGridOffsetFromTopLeftCorner
-				result.init(this.mPartNumber);
-				// return the cloned value
-				return result;
+				// call the copy constructor
+				return new Brick(this);
 			}
 
 			private void init(string partNumber)
