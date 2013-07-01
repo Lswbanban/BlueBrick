@@ -82,6 +82,26 @@ namespace BlueBrick.MapData
 				mTextStringFormat.LineAlignment = StringAlignment.Center;
 			}
 
+			/// <summary>
+			/// Copy constructor
+			/// </summary>
+			/// <param name="model">the model of the copy</param>
+			public TextCell(TextCell model)
+				: base(model)
+			{
+				// call the init after setting the orientation (in the base copy constructor)
+				// to compute the image in the right orientation
+				// the init method will initialize mImage because setting the Font will call an update of the image
+				init(model.Text, model.Font, model.FontColor, model.TextAlignment);
+			}
+
+			/// <summary>
+			/// Construct a text cell with the specified parameters
+			/// </summary>
+			/// <param name="text">the text to display</param>
+			/// <param name="font">the font to used for displaying the text</param>
+			/// <param name="color">the color of the text</param>
+			/// <param name="alignment">the alignment of the text</param>
 			public TextCell(string text, Font font, Color color, StringAlignment alignment)
 			{
 				init(text, font, color, alignment);
@@ -93,16 +113,17 @@ namespace BlueBrick.MapData
 			/// <returns>a new TextCell which is a conform copy of this</returns>
 			public override LayerItem Clone()
 			{
-				TextCell result = new TextCell();
-				result.mDisplayArea = this.mDisplayArea;
-				result.mOrientation = this.mOrientation;
-				// call the init after setting the orientation to compute the image in the right orientation
-				// the init method will initialize mImage, mConnectionPoints and mSnapToGridOffsetFromTopLeftCorner
-				result.init(this.Text, this.Font, this.FontColor, this.TextAlignment);
-				// return the cloned value
-				return result;
+				// call the copy constructor
+				return new TextCell(this);
 			}
 
+			/// <summary>
+			/// Fonction used to factorise code in 2 different constructor
+			/// </summary>
+			/// <param name="text">the text to display</param>
+			/// <param name="font">the font to used for displaying the text</param>
+			/// <param name="color">the color of the text</param>
+			/// <param name="alignment">the alignment of the text</param>
 			private void init(string text, Font font, Color color, StringAlignment alignment)
 			{
 				mTextStringFormat.Alignment = alignment;
@@ -113,7 +134,6 @@ namespace BlueBrick.MapData
 				// then finally use an accessor in order to create the picture
 				this.Font = font;
 			}
-
 			#endregion
 
 			#region IXmlSerializable Members

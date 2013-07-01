@@ -67,7 +67,6 @@ Open bugs:
 	- Property window for option of each ruler
 	  + update the loca kit
 	  + implement "AllowOffset" for linear rulers
-	  + refactor the clone of layer item by using copy constructors
 	- manage the different unit
 	- add more cursors (miss one for editing the parameters of a ruler i.e double click)
 	- Ruler just a line: or diffrent options for the lines/rulers

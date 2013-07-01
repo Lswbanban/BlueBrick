@@ -195,9 +195,31 @@ namespace BlueBrick.MapData
 			}
 			#endregion
 
-			#region initialization/copy
+			#region constructor/copy
 			/// <summary>
-			/// Clone this Item
+			/// default constructor
+			/// </summary>
+			public LayerItem()
+			{
+			}
+
+			/// <summary>
+			/// copy constructor for the base layer class.
+			/// This constructor don't copy neither clone the group of this item
+			/// </summary>
+			/// <param name="model"></param>
+			public LayerItem(LayerItem model)
+			{
+				this.mDisplayArea = model.mDisplayArea;
+				this.mOrientation = model.mOrientation;
+				// don't copy the group, just leave it null
+				this.mSelectionArea = model.mSelectionArea.Clone();
+				this.mSnapToGridOffset = model.mSnapToGridOffset;
+			}
+
+			/// <summary>
+			/// Clone this Item. This is an abstract method because the LayerItem is an abstract class and cannot
+			/// be instanciated.
 			/// </summary>
 			/// <returns>a new Item which is a conform copy of this</returns>
 			public abstract LayerItem Clone();
@@ -551,9 +573,12 @@ namespace BlueBrick.MapData
 			/// </summary>
 			/// <param name="model"></param>
 			public Group(Group model)
+				: base(model)
 			{
+				// we don't clone the list of items in that group
+				this.mCanUngroup = model.mCanUngroup;
 				this.mPartNumber = model.mPartNumber;
-				this.Orientation = model.mOrientation;
+				// we also don't copy the brick to that have the active connection
 			}
 
 			/// <summary>
