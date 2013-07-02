@@ -634,7 +634,7 @@ namespace BlueBrick.MapData
 													((mCurrentRulerUnderMouse != null) && (!mCurrentRulerUnderMouse.IsFullyAttached)));
 
 					// we will add or edit a text if we double click
-					mMouseMoveWillCustomizeRuler = (e.Clicks == 2);
+					mMouseMoveWillCustomizeRuler = (e.Clicks == 2) && (mCurrentRulerUnderMouse != null);
 
 					// select the appropriate cursor:
 					if (mMouseMoveIsADuplicate)
@@ -990,17 +990,26 @@ namespace BlueBrick.MapData
 					LinearRuler linearRuler = mCurrentlyEditedRuler as LinearRuler;
 					if (linearRuler != null)
 					{
-						if (mMouseIsScalingRuler)
+						if (BlueBrick.Properties.Settings.Default.UseOffsetDuringLinearRulerCreation)
 						{
-							linearRuler.scaleToPoint(mouseCoordInStudSnapped);
-							Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, linearRuler));
-							mCurrentlyEditedRuler = null;
-							mMouseIsScalingRuler = false;
+							if (mMouseIsScalingRuler)
+							{
+								linearRuler.scaleToPoint(mouseCoordInStudSnapped);
+								Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, linearRuler));
+								mCurrentlyEditedRuler = null;
+								mMouseIsScalingRuler = false;
+							}
+							else
+							{
+								linearRuler.Point2 = mouseCoordInStudSnapped;
+								mMouseIsScalingRuler = true;
+							}
 						}
 						else
 						{
-							linearRuler.Point2 = mouseCoordInStudSnapped;
-							mMouseIsScalingRuler = true;
+							linearRuler.AllowOffset = false;
+							Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, linearRuler));
+							mCurrentlyEditedRuler = null;
 						}
 						mustRefresh = true;
 					}

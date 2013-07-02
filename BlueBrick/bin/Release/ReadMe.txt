@@ -66,7 +66,8 @@ Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- Property window for option of each ruler
 	  + update the loca kit
-	  + implement "AllowOffset" for linear rulers
+	  + bug of linear ruler: the selection area need to be updated after properties edition
+	  + need to add an UI to change the offset setting when creating a Linear ruler
 	- manage the different unit
 	- add more cursors (miss one for editing the parameters of a ruler i.e double click)
 	- Ruler just a line: or diffrent options for the lines/rulers

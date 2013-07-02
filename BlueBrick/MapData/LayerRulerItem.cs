@@ -1039,15 +1039,16 @@ namespace BlueBrick.MapData
 
 			/// <summary>
 			/// Tell if the specified point is inside an area of the ruler that can be grabed (handle)
-			/// for scaling purpose. For a Linear ruler it is the line itself (for now use the selection area,
-			/// but we should use the thickness parameter TODO)
+			/// for scaling purpose. For a Linear ruler it is the line itself
 			/// </summary>
 			/// <param name="pointInStud">the position in stud for which testing the scaling handle</param>
 			/// <param name="thicknessInStud">For handles that are just lines, give the thickness in stud from which the function consider the point is above</param>
 			/// <returns>true if the specified point is above a scaling handle</returns>
 			public override bool isInsideAScalingHandle(PointF pointInStud, float thicknessInStud)
 			{
-				return (this.SelectionArea.isPointInside(pointInStud));
+				if (mAllowOffset)
+					return (this.SelectionArea.isPointInside(pointInStud));
+				return false;
 			}
 
 			/// <summary>
@@ -1153,21 +1154,26 @@ namespace BlueBrick.MapData
 					(mDisplayArea.Bottom >= areaInStud.Top) && (mDisplayArea.Top <= areaInStud.Bottom))
 				{
 					// check if we will need to draw the dashed offset lines
-					bool needToDrawOffset = (mOffsetDistance != 0.0f);
+					bool needToDrawOffset = mAllowOffset && (mOffsetDistance != 0.0f);
 					bool needToDisplayHull = Properties.Settings.Default.DisplayHull;
 					bool needToDrawArrowForSmallDistance = !mDisplayDistance && (mMeasuredDistance.DistanceInStud < MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD);
 
-					// transform the coordinates into pixel coordinates
-					PointF offset1InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[0].mOffsetPoint, areaInStud, scalePixelPerStud);
-					PointF offset2InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[1].mOffsetPoint, areaInStud, scalePixelPerStud);
-
 					// point1 and 2 only need to be computed if we draw the offset
-					PointF point1InPixel = new PointF();
-					PointF point2InPixel = new PointF();
-					if (needToDrawOffset)
+					PointF point1InPixel = Layer.sConvertPointInStudToPixel(this.Point1, areaInStud, scalePixelPerStud);
+					PointF point2InPixel = Layer.sConvertPointInStudToPixel(this.Point2, areaInStud, scalePixelPerStud);
+
+					// transform the coordinates into pixel coordinates
+					PointF offset1InPixel;
+					PointF offset2InPixel;
+					if (mAllowOffset)
 					{
-						point1InPixel = Layer.sConvertPointInStudToPixel(this.Point1, areaInStud, scalePixelPerStud);
-						point2InPixel = Layer.sConvertPointInStudToPixel(this.Point2, areaInStud, scalePixelPerStud);
+						offset1InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[0].mOffsetPoint, areaInStud, scalePixelPerStud);
+						offset2InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[1].mOffsetPoint, areaInStud, scalePixelPerStud);
+					}
+					else
+					{
+						offset1InPixel = point1InPixel;
+						offset2InPixel = point2InPixel;
 					}
 
 					// internal and external point may be computed only for certain conditions
