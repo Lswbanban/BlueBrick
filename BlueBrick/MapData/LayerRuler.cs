@@ -917,7 +917,7 @@ namespace BlueBrick.MapData
 						EditRulerForm editRulerForm = new EditRulerForm(mCurrentRulerUnderMouse);
 						editRulerForm.ShowDialog();
 						if (editRulerForm.DialogResult == DialogResult.OK)
-							Actions.ActionManager.Instance.doAction(new Actions.Rulers.EditRuler(mCurrentRulerUnderMouse, editRulerForm.EditedRulerClone));
+							Actions.ActionManager.Instance.doAction(new Actions.Rulers.EditRuler(this, mCurrentRulerUnderMouse, editRulerForm.EditedRulerClone));
 					}
 					else if (mMouseHasMoved && (mSelectedObjects.Count > 0)) // check if we moved the selected bricks
 					{

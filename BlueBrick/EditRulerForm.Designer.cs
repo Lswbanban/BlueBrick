@@ -111,7 +111,7 @@
 			// unitLabel
 			// 
 			this.unitLabel.AutoSize = true;
-			this.unitLabel.Location = new System.Drawing.Point(220, 49);
+			this.unitLabel.Location = new System.Drawing.Point(50, 48);
 			this.unitLabel.Name = "unitLabel";
 			this.unitLabel.Size = new System.Drawing.Size(26, 13);
 			this.unitLabel.TabIndex = 28;
@@ -126,7 +126,7 @@
             "Module",
             "Meter",
             "Feet"});
-			this.unitComboBox.Location = new System.Drawing.Point(252, 45);
+			this.unitComboBox.Location = new System.Drawing.Point(82, 45);
 			this.unitComboBox.Name = "unitComboBox";
 			this.unitComboBox.Size = new System.Drawing.Size(121, 21);
 			this.unitComboBox.TabIndex = 27;
@@ -178,13 +178,12 @@
 			// displayUnitCheckBox
 			// 
 			this.displayUnitCheckBox.AutoSize = true;
-			this.displayUnitCheckBox.Location = new System.Drawing.Point(36, 45);
+			this.displayUnitCheckBox.Location = new System.Drawing.Point(214, 47);
 			this.displayUnitCheckBox.Name = "displayUnitCheckBox";
 			this.displayUnitCheckBox.Size = new System.Drawing.Size(82, 17);
 			this.displayUnitCheckBox.TabIndex = 1;
 			this.displayUnitCheckBox.Text = "Display Unit";
 			this.displayUnitCheckBox.UseVisualStyleBackColor = true;
-			this.displayUnitCheckBox.CheckedChanged += new System.EventHandler(this.displayUnitCheckBox_CheckedChanged);
 			// 
 			// displayMeasureTextCheckBox
 			// 
@@ -215,9 +214,24 @@
 			// 
 			this.lineThicknessNumericUpDown.DecimalPlaces = 1;
 			this.lineThicknessNumericUpDown.Location = new System.Drawing.Point(121, 24);
+			this.lineThicknessNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+			this.lineThicknessNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.lineThicknessNumericUpDown.Name = "lineThicknessNumericUpDown";
 			this.lineThicknessNumericUpDown.Size = new System.Drawing.Size(48, 20);
 			this.lineThicknessNumericUpDown.TabIndex = 25;
+			this.lineThicknessNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// allowOffsetCheckBox
 			// 
@@ -279,34 +293,81 @@
 			// 
 			// dashPatternSpaceNumericUpDown
 			// 
-			this.dashPatternSpaceNumericUpDown.Location = new System.Drawing.Point(164, 21);
+			this.dashPatternSpaceNumericUpDown.DecimalPlaces = 1;
+			this.dashPatternSpaceNumericUpDown.Location = new System.Drawing.Point(164, 52);
+			this.dashPatternSpaceNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+			this.dashPatternSpaceNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.dashPatternSpaceNumericUpDown.Name = "dashPatternSpaceNumericUpDown";
 			this.dashPatternSpaceNumericUpDown.Size = new System.Drawing.Size(35, 20);
 			this.dashPatternSpaceNumericUpDown.TabIndex = 30;
+			this.dashPatternSpaceNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// dashPatternLineNumericUpDown
 			// 
-			this.dashPatternLineNumericUpDown.Location = new System.Drawing.Point(121, 21);
+			this.dashPatternLineNumericUpDown.DecimalPlaces = 1;
+			this.dashPatternLineNumericUpDown.Location = new System.Drawing.Point(121, 52);
+			this.dashPatternLineNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+			this.dashPatternLineNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.dashPatternLineNumericUpDown.Name = "dashPatternLineNumericUpDown";
 			this.dashPatternLineNumericUpDown.Size = new System.Drawing.Size(37, 20);
 			this.dashPatternLineNumericUpDown.TabIndex = 29;
+			this.dashPatternLineNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// guidelineThicknessNumericUpDown
 			// 
 			this.guidelineThicknessNumericUpDown.DecimalPlaces = 1;
-			this.guidelineThicknessNumericUpDown.Location = new System.Drawing.Point(121, 50);
+			this.guidelineThicknessNumericUpDown.Location = new System.Drawing.Point(121, 23);
+			this.guidelineThicknessNumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.guidelineThicknessNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.guidelineThicknessNumericUpDown.Name = "guidelineThicknessNumericUpDown";
 			this.guidelineThicknessNumericUpDown.Size = new System.Drawing.Size(48, 20);
 			this.guidelineThicknessNumericUpDown.TabIndex = 28;
+			this.guidelineThicknessNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(46, 16);
+			this.label7.Location = new System.Drawing.Point(12, 47);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(69, 26);
+			this.label7.Size = new System.Drawing.Size(103, 26);
 			this.label7.TabIndex = 24;
-			this.label7.Text = "Dash Pattern\r\n(in pixel)";
+			this.label7.Text = "Dash-Space Pattern\r\n(in thickness times)";
 			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label3
@@ -334,7 +395,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(18, 52);
+			this.label5.Location = new System.Drawing.Point(18, 25);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(97, 13);
 			this.label5.TabIndex = 0;
