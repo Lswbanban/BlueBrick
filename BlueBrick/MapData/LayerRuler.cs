@@ -642,7 +642,7 @@ namespace BlueBrick.MapData
 					else if (willMoveSelectedObject)
 						preferedCursor = MainForm.Instance.RulerMoveCursor;
 					else if (mMouseMoveWillCustomizeRuler)
-						preferedCursor = MainForm.Instance.RulerArrowCursor; //TODO I think we should use another cursor here
+						preferedCursor = MainForm.Instance.RulerEditCursor;
 					else if (mMouseIsMovingControlPoint)
 						preferedCursor = MainForm.Instance.RulerMovePointCursor;
 					else if (mMouseIsScalingRuler)

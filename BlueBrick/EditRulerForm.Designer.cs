@@ -43,7 +43,7 @@
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.lineThicknessNumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.allowOffsetCheckBox = new System.Windows.Forms.CheckBox();
-			this.defaultFontColorLabel = new System.Windows.Forms.Label();
+			this.lineColorLabel = new System.Windows.Forms.Label();
 			this.lineColorPictureBox = new System.Windows.Forms.PictureBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -54,6 +54,8 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.guidelineColorPictureBox = new System.Windows.Forms.PictureBox();
 			this.label5 = new System.Windows.Forms.Label();
+			this.colorDialog = new System.Windows.Forms.ColorDialog();
+			this.fontDialog = new System.Windows.Forms.FontDialog();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.fontColorPictureBox)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -68,31 +70,22 @@
 			// 
 			// cancelButton
 			// 
-			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			resources.ApplyResources(this.cancelButton, "cancelButton");
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.cancelButton.Location = new System.Drawing.Point(12, 310);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.Size = new System.Drawing.Size(116, 24);
-			this.cancelButton.TabIndex = 8;
-			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// okButton
 			// 
-			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			resources.ApplyResources(this.okButton, "okButton");
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.okButton.Location = new System.Drawing.Point(307, 310);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(116, 24);
-			this.okButton.TabIndex = 9;
-			this.okButton.Text = "Ok";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.okButton_Click);
 			// 
 			// groupBox1
 			// 
+			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Controls.Add(this.unitLabel);
 			this.groupBox1.Controls.Add(this.unitComboBox);
 			this.groupBox1.Controls.Add(this.fontNameLabel);
@@ -101,119 +94,82 @@
 			this.groupBox1.Controls.Add(this.fontButton);
 			this.groupBox1.Controls.Add(this.displayUnitCheckBox);
 			this.groupBox1.Controls.Add(this.displayMeasureTextCheckBox);
-			this.groupBox1.Location = new System.Drawing.Point(13, 123);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(408, 178);
-			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Measure Value";
 			// 
 			// unitLabel
 			// 
-			this.unitLabel.AutoSize = true;
-			this.unitLabel.Location = new System.Drawing.Point(50, 48);
+			resources.ApplyResources(this.unitLabel, "unitLabel");
 			this.unitLabel.Name = "unitLabel";
-			this.unitLabel.Size = new System.Drawing.Size(26, 13);
-			this.unitLabel.TabIndex = 28;
-			this.unitLabel.Text = "Unit";
 			// 
 			// unitComboBox
 			// 
+			resources.ApplyResources(this.unitComboBox, "unitComboBox");
 			this.unitComboBox.FormattingEnabled = true;
 			this.unitComboBox.Items.AddRange(new object[] {
-            "Stud",
-            "LDU",
-            "Module",
-            "Meter",
-            "Feet"});
-			this.unitComboBox.Location = new System.Drawing.Point(82, 45);
+            resources.GetString("unitComboBox.Items"),
+            resources.GetString("unitComboBox.Items1"),
+            resources.GetString("unitComboBox.Items2"),
+            resources.GetString("unitComboBox.Items3"),
+            resources.GetString("unitComboBox.Items4")});
 			this.unitComboBox.Name = "unitComboBox";
-			this.unitComboBox.Size = new System.Drawing.Size(121, 21);
-			this.unitComboBox.TabIndex = 27;
 			// 
 			// fontNameLabel
 			// 
+			resources.ApplyResources(this.fontNameLabel, "fontNameLabel");
 			this.fontNameLabel.BackColor = System.Drawing.SystemColors.InactiveBorder;
 			this.fontNameLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.fontNameLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.fontNameLabel.Location = new System.Drawing.Point(36, 113);
 			this.fontNameLabel.Name = "fontNameLabel";
-			this.fontNameLabel.Size = new System.Drawing.Size(337, 53);
-			this.fontNameLabel.TabIndex = 26;
-			this.fontNameLabel.Text = "Font name";
-			this.fontNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// fontColorLabel
 			// 
-			this.fontColorLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.fontColorLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.fontColorLabel.Location = new System.Drawing.Point(231, 84);
+			resources.ApplyResources(this.fontColorLabel, "fontColorLabel");
 			this.fontColorLabel.Name = "fontColorLabel";
-			this.fontColorLabel.Size = new System.Drawing.Size(65, 13);
-			this.fontColorLabel.TabIndex = 25;
-			this.fontColorLabel.Text = "Color";
-			this.fontColorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// fontColorPictureBox
 			// 
+			resources.ApplyResources(this.fontColorPictureBox, "fontColorPictureBox");
 			this.fontColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.fontColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.fontColorPictureBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.fontColorPictureBox.Location = new System.Drawing.Point(302, 83);
 			this.fontColorPictureBox.Name = "fontColorPictureBox";
-			this.fontColorPictureBox.Size = new System.Drawing.Size(16, 16);
-			this.fontColorPictureBox.TabIndex = 24;
 			this.fontColorPictureBox.TabStop = false;
+			this.fontColorPictureBox.Click += new System.EventHandler(this.fontColorPictureBox_Click);
 			// 
 			// fontButton
 			// 
-			this.fontButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.fontButton.Location = new System.Drawing.Point(36, 78);
+			resources.ApplyResources(this.fontButton, "fontButton");
 			this.fontButton.Name = "fontButton";
-			this.fontButton.Size = new System.Drawing.Size(142, 23);
-			this.fontButton.TabIndex = 23;
-			this.fontButton.Text = "Change Font";
 			this.fontButton.UseVisualStyleBackColor = true;
+			this.fontButton.Click += new System.EventHandler(this.fontButton_Click);
 			// 
 			// displayUnitCheckBox
 			// 
-			this.displayUnitCheckBox.AutoSize = true;
-			this.displayUnitCheckBox.Location = new System.Drawing.Point(214, 47);
+			resources.ApplyResources(this.displayUnitCheckBox, "displayUnitCheckBox");
 			this.displayUnitCheckBox.Name = "displayUnitCheckBox";
-			this.displayUnitCheckBox.Size = new System.Drawing.Size(82, 17);
-			this.displayUnitCheckBox.TabIndex = 1;
-			this.displayUnitCheckBox.Text = "Display Unit";
 			this.displayUnitCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// displayMeasureTextCheckBox
 			// 
-			this.displayMeasureTextCheckBox.AutoSize = true;
-			this.displayMeasureTextCheckBox.Location = new System.Drawing.Point(6, 19);
+			resources.ApplyResources(this.displayMeasureTextCheckBox, "displayMeasureTextCheckBox");
 			this.displayMeasureTextCheckBox.Name = "displayMeasureTextCheckBox";
-			this.displayMeasureTextCheckBox.Size = new System.Drawing.Size(134, 17);
-			this.displayMeasureTextCheckBox.TabIndex = 0;
-			this.displayMeasureTextCheckBox.Text = "Display Measure Value";
 			this.displayMeasureTextCheckBox.UseVisualStyleBackColor = true;
 			this.displayMeasureTextCheckBox.CheckedChanged += new System.EventHandler(this.displayMeasureTextCheckBox_CheckedChanged);
 			// 
 			// groupBox2
 			// 
+			resources.ApplyResources(this.groupBox2, "groupBox2");
 			this.groupBox2.Controls.Add(this.lineThicknessNumericUpDown);
 			this.groupBox2.Controls.Add(this.allowOffsetCheckBox);
-			this.groupBox2.Controls.Add(this.defaultFontColorLabel);
+			this.groupBox2.Controls.Add(this.lineColorLabel);
 			this.groupBox2.Controls.Add(this.lineColorPictureBox);
 			this.groupBox2.Controls.Add(this.label1);
-			this.groupBox2.Location = new System.Drawing.Point(13, 9);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(197, 108);
-			this.groupBox2.TabIndex = 11;
 			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Line Appearance";
 			// 
 			// lineThicknessNumericUpDown
 			// 
+			resources.ApplyResources(this.lineThicknessNumericUpDown, "lineThicknessNumericUpDown");
 			this.lineThicknessNumericUpDown.DecimalPlaces = 1;
-			this.lineThicknessNumericUpDown.Location = new System.Drawing.Point(121, 24);
 			this.lineThicknessNumericUpDown.Maximum = new decimal(new int[] {
             50,
             0,
@@ -225,8 +181,6 @@
             0,
             0});
 			this.lineThicknessNumericUpDown.Name = "lineThicknessNumericUpDown";
-			this.lineThicknessNumericUpDown.Size = new System.Drawing.Size(48, 20);
-			this.lineThicknessNumericUpDown.TabIndex = 25;
 			this.lineThicknessNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -235,48 +189,32 @@
 			// 
 			// allowOffsetCheckBox
 			// 
-			this.allowOffsetCheckBox.AutoSize = true;
-			this.allowOffsetCheckBox.Location = new System.Drawing.Point(21, 79);
+			resources.ApplyResources(this.allowOffsetCheckBox, "allowOffsetCheckBox");
 			this.allowOffsetCheckBox.Name = "allowOffsetCheckBox";
-			this.allowOffsetCheckBox.Size = new System.Drawing.Size(82, 17);
-			this.allowOffsetCheckBox.TabIndex = 24;
-			this.allowOffsetCheckBox.Text = "Allow Offset";
 			this.allowOffsetCheckBox.UseVisualStyleBackColor = true;
 			// 
-			// defaultFontColorLabel
+			// lineColorLabel
 			// 
-			this.defaultFontColorLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.defaultFontColorLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.defaultFontColorLabel.Location = new System.Drawing.Point(50, 55);
-			this.defaultFontColorLabel.Name = "defaultFontColorLabel";
-			this.defaultFontColorLabel.Size = new System.Drawing.Size(65, 13);
-			this.defaultFontColorLabel.TabIndex = 23;
-			this.defaultFontColorLabel.Text = "Color";
-			this.defaultFontColorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			resources.ApplyResources(this.lineColorLabel, "lineColorLabel");
+			this.lineColorLabel.Name = "lineColorLabel";
 			// 
 			// lineColorPictureBox
 			// 
+			resources.ApplyResources(this.lineColorPictureBox, "lineColorPictureBox");
 			this.lineColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.lineColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.lineColorPictureBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.lineColorPictureBox.Location = new System.Drawing.Point(121, 55);
 			this.lineColorPictureBox.Name = "lineColorPictureBox";
-			this.lineColorPictureBox.Size = new System.Drawing.Size(16, 16);
-			this.lineColorPictureBox.TabIndex = 22;
 			this.lineColorPictureBox.TabStop = false;
+			this.lineColorPictureBox.Click += new System.EventHandler(this.lineColorPictureBox_Click);
 			// 
 			// label1
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(18, 26);
+			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(97, 13);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Thickness (in pixel)";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// groupBox3
 			// 
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Controls.Add(this.dashPatternSpaceNumericUpDown);
 			this.groupBox3.Controls.Add(this.dashPatternLineNumericUpDown);
 			this.groupBox3.Controls.Add(this.guidelineThicknessNumericUpDown);
@@ -284,17 +222,13 @@
 			this.groupBox3.Controls.Add(this.label3);
 			this.groupBox3.Controls.Add(this.guidelineColorPictureBox);
 			this.groupBox3.Controls.Add(this.label5);
-			this.groupBox3.Location = new System.Drawing.Point(216, 12);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(205, 105);
-			this.groupBox3.TabIndex = 12;
 			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Guideline Appearance";
 			// 
 			// dashPatternSpaceNumericUpDown
 			// 
+			resources.ApplyResources(this.dashPatternSpaceNumericUpDown, "dashPatternSpaceNumericUpDown");
 			this.dashPatternSpaceNumericUpDown.DecimalPlaces = 1;
-			this.dashPatternSpaceNumericUpDown.Location = new System.Drawing.Point(164, 52);
 			this.dashPatternSpaceNumericUpDown.Maximum = new decimal(new int[] {
             50,
             0,
@@ -306,8 +240,6 @@
             0,
             0});
 			this.dashPatternSpaceNumericUpDown.Name = "dashPatternSpaceNumericUpDown";
-			this.dashPatternSpaceNumericUpDown.Size = new System.Drawing.Size(35, 20);
-			this.dashPatternSpaceNumericUpDown.TabIndex = 30;
 			this.dashPatternSpaceNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -316,8 +248,8 @@
 			// 
 			// dashPatternLineNumericUpDown
 			// 
+			resources.ApplyResources(this.dashPatternLineNumericUpDown, "dashPatternLineNumericUpDown");
 			this.dashPatternLineNumericUpDown.DecimalPlaces = 1;
-			this.dashPatternLineNumericUpDown.Location = new System.Drawing.Point(121, 52);
 			this.dashPatternLineNumericUpDown.Maximum = new decimal(new int[] {
             50,
             0,
@@ -329,8 +261,6 @@
             0,
             0});
 			this.dashPatternLineNumericUpDown.Name = "dashPatternLineNumericUpDown";
-			this.dashPatternLineNumericUpDown.Size = new System.Drawing.Size(37, 20);
-			this.dashPatternLineNumericUpDown.TabIndex = 29;
 			this.dashPatternLineNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -339,8 +269,8 @@
 			// 
 			// guidelineThicknessNumericUpDown
 			// 
+			resources.ApplyResources(this.guidelineThicknessNumericUpDown, "guidelineThicknessNumericUpDown");
 			this.guidelineThicknessNumericUpDown.DecimalPlaces = 1;
-			this.guidelineThicknessNumericUpDown.Location = new System.Drawing.Point(121, 23);
 			this.guidelineThicknessNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -352,8 +282,6 @@
             0,
             0});
 			this.guidelineThicknessNumericUpDown.Name = "guidelineThicknessNumericUpDown";
-			this.guidelineThicknessNumericUpDown.Size = new System.Drawing.Size(48, 20);
-			this.guidelineThicknessNumericUpDown.TabIndex = 28;
 			this.guidelineThicknessNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -362,63 +290,42 @@
 			// 
 			// label7
 			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(12, 47);
+			resources.ApplyResources(this.label7, "label7");
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(103, 26);
-			this.label7.TabIndex = 24;
-			this.label7.Text = "Dash-Space Pattern\r\n(in thickness times)";
-			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label3
 			// 
-			this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label3.Location = new System.Drawing.Point(50, 80);
+			resources.ApplyResources(this.label3, "label3");
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(65, 13);
-			this.label3.TabIndex = 23;
-			this.label3.Text = "Color";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// guidelineColorPictureBox
 			// 
+			resources.ApplyResources(this.guidelineColorPictureBox, "guidelineColorPictureBox");
 			this.guidelineColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.guidelineColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.guidelineColorPictureBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.guidelineColorPictureBox.Location = new System.Drawing.Point(121, 80);
 			this.guidelineColorPictureBox.Name = "guidelineColorPictureBox";
-			this.guidelineColorPictureBox.Size = new System.Drawing.Size(16, 16);
-			this.guidelineColorPictureBox.TabIndex = 22;
 			this.guidelineColorPictureBox.TabStop = false;
+			this.guidelineColorPictureBox.Click += new System.EventHandler(this.guidelineColorPictureBox_Click);
 			// 
 			// label5
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(18, 25);
+			resources.ApplyResources(this.label5, "label5");
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(97, 13);
-			this.label5.TabIndex = 0;
-			this.label5.Text = "Thickness (in pixel)";
-			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// EditRulerForm
 			// 
 			this.AcceptButton = this.okButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(435, 346);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "EditRulerForm";
-			this.Text = "Ruler Edition";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.fontColorPictureBox)).EndInit();
@@ -443,7 +350,7 @@
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label defaultFontColorLabel;
+		private System.Windows.Forms.Label lineColorLabel;
 		private System.Windows.Forms.PictureBox lineColorPictureBox;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Label label3;
@@ -463,5 +370,7 @@
 		private System.Windows.Forms.NumericUpDown dashPatternSpaceNumericUpDown;
 		private System.Windows.Forms.NumericUpDown dashPatternLineNumericUpDown;
 		private System.Windows.Forms.NumericUpDown guidelineThicknessNumericUpDown;
+		private System.Windows.Forms.ColorDialog colorDialog;
+		private System.Windows.Forms.FontDialog fontDialog;
 	}
 }
