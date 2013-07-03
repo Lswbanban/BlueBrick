@@ -21,12 +21,14 @@ namespace BlueBrick.Actions.Rulers
 {
 	class EditRuler : Action
 	{
+		private LayerRuler mRulerLayer = null;
 		private LayerRuler.RulerItem mRulerItem = null;
 		private LayerRuler.RulerItem mOldRulerItemTemplate = null;
 		private LayerRuler.RulerItem mNewRulerItemTemplate = null;
 
-		public EditRuler(LayerRuler.RulerItem rulerItem, LayerRuler.RulerItem rulerItemTemplateForNewProperties)
+		public EditRuler(LayerRuler layer, LayerRuler.RulerItem rulerItem, LayerRuler.RulerItem rulerItemTemplateForNewProperties)
 		{
+			mRulerLayer = layer;
 			// memorise the item
 			mRulerItem = rulerItem;
 			// and clone the two templates, for doing undo/redo and keeping the properties when the ruler change
@@ -66,6 +68,9 @@ namespace BlueBrick.Actions.Rulers
 			mRulerItem.CurrentUnit = rulerTemplate.CurrentUnit;
 			mRulerItem.MeasureColor = rulerTemplate.MeasureColor;
 			mRulerItem.MeasureFont = rulerTemplate.MeasureFont;
+			// update the display data
+			mRulerItem.updateDisplayDataAndMesurementImage();
+			mRulerLayer.updateBoundingSelectionRectangle();
 		}
 	}
 }

@@ -197,9 +197,9 @@ namespace BlueBrick.MapData
 
 			/// <summary>
 			/// Update both the display data and the image containing the mesurement
-			/// string and the unit. display date is updated first, then the image
+			/// string and the unit.
 			/// </summary>
-			protected void updateDisplayDataAndMesurementImage()
+			public void updateDisplayDataAndMesurementImage()
 			{
 				// first recompute the mesured distance and orientation
 				updateGeometryData();
@@ -814,9 +814,12 @@ namespace BlueBrick.MapData
 				// just invert the X and Y of the normalized vector (the offset vector can be null)
 				PointF offsetNormalizedVector = new PointF(mUnitVector.Y, -mUnitVector.X);
 
+				// compute the offset distance depending on the flag
+				float offsetDistance = mAllowOffset ? mOffsetDistance : 0.0f;
+
 				// compute the offset coordinates in stud
-				float offsetX = offsetNormalizedVector.X * mOffsetDistance;
-				float offsetY = offsetNormalizedVector.Y * mOffsetDistance;
+				float offsetX = offsetNormalizedVector.X * offsetDistance;
+				float offsetY = offsetNormalizedVector.Y * offsetDistance;
 				PointF originalOffsetPoint1 = new PointF(point1.X + offsetX, point1.Y + offsetY);
 				PointF originalOffsetPoint2 = new PointF(point2.X + offsetX, point2.Y + offsetY);
 				PointF offsetPoint1 = originalOffsetPoint1;
@@ -1158,22 +1161,17 @@ namespace BlueBrick.MapData
 					bool needToDisplayHull = Properties.Settings.Default.DisplayHull;
 					bool needToDrawArrowForSmallDistance = !mDisplayDistance && (mMeasuredDistance.DistanceInStud < MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD);
 
-					// point1 and 2 only need to be computed if we draw the offset
-					PointF point1InPixel = Layer.sConvertPointInStudToPixel(this.Point1, areaInStud, scalePixelPerStud);
-					PointF point2InPixel = Layer.sConvertPointInStudToPixel(this.Point2, areaInStud, scalePixelPerStud);
-
 					// transform the coordinates into pixel coordinates
-					PointF offset1InPixel;
-					PointF offset2InPixel;
-					if (mAllowOffset)
+					PointF offset1InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[0].mOffsetPoint, areaInStud, scalePixelPerStud);
+					PointF offset2InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[1].mOffsetPoint, areaInStud, scalePixelPerStud);
+
+					// point1 and 2 only need to be computed if we draw the offset
+					PointF point1InPixel = new PointF();
+					PointF point2InPixel = new PointF();
+					if (needToDrawOffset)
 					{
-						offset1InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[0].mOffsetPoint, areaInStud, scalePixelPerStud);
-						offset2InPixel = Layer.sConvertPointInStudToPixel(mControlPoint[1].mOffsetPoint, areaInStud, scalePixelPerStud);
-					}
-					else
-					{
-						offset1InPixel = point1InPixel;
-						offset2InPixel = point2InPixel;
+						point1InPixel = Layer.sConvertPointInStudToPixel(this.Point1, areaInStud, scalePixelPerStud);
+						point2InPixel = Layer.sConvertPointInStudToPixel(this.Point2, areaInStud, scalePixelPerStud);
 					}
 
 					// internal and external point may be computed only for certain conditions

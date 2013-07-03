@@ -92,24 +92,15 @@ namespace BlueBrick
 		private void displayMeasureTextCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			bool enabled = displayMeasureTextCheckBox.Checked;
+			// change the unit properties
+			this.displayUnitCheckBox.Enabled = enabled;
+			this.unitLabel.Enabled = enabled;
+			this.unitComboBox.Enabled = enabled;
 			// change the font properties
 			this.fontButton.Enabled = enabled;
 			this.fontColorLabel.Enabled = enabled;
 			this.fontColorPictureBox.Enabled = enabled;
 			this.fontNameLabel.Enabled = enabled;
-			// change the unit properties
-			this.displayUnitCheckBox.Enabled = enabled;
-			if (enabled)
-				enabled = this.displayUnitCheckBox.Checked;
-			this.unitLabel.Enabled = enabled;
-			this.unitComboBox.Enabled = enabled;
-		}
-
-		private void displayUnitCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
-			bool enabled = displayUnitCheckBox.Checked;
-			this.unitLabel.Enabled = enabled;
-			this.unitComboBox.Enabled = enabled;
 		}
 	}
 }
