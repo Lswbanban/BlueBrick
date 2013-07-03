@@ -61,6 +61,7 @@ namespace BlueBrick
 		private Cursor mAreaPaintCursor = null;
 		private Cursor mAreaEraserCursor = null;
 		private Cursor mRulerArrowCursor = null;
+		private Cursor mRulerEditCursor = null;
 		private Cursor mRulerDuplicateCursor = null;
 		private Cursor mRulerSelectionCursor = null;
 		private Cursor mRulerAddPoint1Cursor = null;
@@ -335,6 +336,14 @@ namespace BlueBrick
 		public Cursor RulerArrowCursor
 		{
 			get { return mRulerArrowCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for editing the properties of a ruler
+		/// </summary>
+		public Cursor RulerEditCursor
+		{
+			get { return mRulerEditCursor; }
 		}
 
 		/// <summary>
@@ -633,6 +642,7 @@ namespace BlueBrick
 			mAreaPaintCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.AreaPaintCursor.cur");
 			mAreaEraserCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.AreaEraserCursor.cur");
 			mRulerArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerArrowCursor.cur");
+			mRulerEditCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerEditCursor.cur");
 			mRulerDuplicateCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerDuplicateCursor.cur");
 			mRulerSelectionCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerSelectionCursor.cur");
 			mRulerAddPoint1Cursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerAddPoint1Cursor.cur");

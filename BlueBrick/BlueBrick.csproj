@@ -286,6 +286,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditRulerForm.fr.resx">
+      <DependentUpon>EditRulerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditRulerForm.resx">
       <DependentUpon>EditRulerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -695,6 +698,7 @@
     <EmbeddedResource Include="Cursor\RulerDuplicateCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerSelectionCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerMovePointCursor.cur" />
+    <EmbeddedResource Include="Cursor\RulerEditCursor.cur" />
     <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />

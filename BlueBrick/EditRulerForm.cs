@@ -102,5 +102,48 @@ namespace BlueBrick
 			this.fontColorPictureBox.Enabled = enabled;
 			this.fontNameLabel.Enabled = enabled;
 		}
+
+		private void openColorDialogAndUpdatePictureBox(PictureBox pictureBox)
+		{
+			// set the color with the current back color of the picture box
+			this.colorDialog.Color = pictureBox.BackColor;
+			// open the color box in modal
+			DialogResult result = this.colorDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				pictureBox.BackColor = this.colorDialog.Color;
+			}
+		}
+
+		private void fontColorPictureBox_Click(object sender, EventArgs e)
+		{
+			openColorDialogAndUpdatePictureBox(this.fontColorPictureBox);
+			// update alls the font color
+			this.fontNameLabel.ForeColor = this.fontColorPictureBox.BackColor;
+		}
+
+		private void lineColorPictureBox_Click(object sender, EventArgs e)
+		{
+			openColorDialogAndUpdatePictureBox(this.lineColorPictureBox);
+		}
+
+		private void guidelineColorPictureBox_Click(object sender, EventArgs e)
+		{
+			openColorDialogAndUpdatePictureBox(this.guidelineColorPictureBox);
+		}
+
+		private void fontButton_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.fontDialog.Font = this.fontNameLabel.Font;
+			// open the color box in modal
+			DialogResult result = this.fontDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				updateChosenFont(this.fontDialog.Font);
+			}
+		}
 	}
 }
