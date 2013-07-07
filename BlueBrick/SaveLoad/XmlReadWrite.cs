@@ -71,14 +71,12 @@ namespace BlueBrick.MapData
 			writer.WriteEndElement();
 		}
 
-		public static T readPointer<T>(System.Xml.XmlReader reader)
+		public static int readItemId(System.Xml.XmlReader reader)
 		{
-			// TODO: need to implement
-			int hashcode = reader.ReadElementContentAsInt();
-			return default(T);
+			return reader.ReadElementContentAsInt();
 		}
 
-		public static void writePointer(System.Xml.XmlWriter writer, string name, object obj)
+		public static void writeItemId(System.Xml.XmlWriter writer, string name, object obj)
 		{
 			if (obj != null)
 				writer.WriteElementString(name, obj.GetHashCode().ToString(System.Globalization.CultureInfo.InvariantCulture));

@@ -151,6 +151,17 @@ namespace BlueBrick.MapData
 			return (ruler as T);
 		}
 
+		/// <summary>
+		/// This function is called during the loading of the map, after all layers and all items
+		/// have been loaded, in order to recreate links between items of different layers (such as
+		/// for example the attachement of a ruler to a brick)
+		/// </summary>
+		public override void recreateLinksAfterLoading()
+		{
+			foreach (RulerItem rulerItem in mRulers)
+				rulerItem.recreateLinksAfterLoading();
+		}
+
 		public override void WriteXml(System.Xml.XmlWriter writer)
 		{
 			// write the header

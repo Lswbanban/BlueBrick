@@ -267,6 +267,15 @@ namespace BlueBrick.MapData
                 }
 			}
 
+			/// <summary>
+			/// This function is called during the loading of the map, after all layers and all items
+			/// have been loaded, in order to recreate links between items of different layers (such as
+			/// for example the attachement of a ruler to a brick)
+			/// </summary>
+			public virtual void recreateLinksAfterLoading()
+			{
+			}
+
 			public virtual void WriteXml(System.Xml.XmlWriter writer)
 			{
 				XmlReadWrite.writeRectangleF(writer, "DisplayArea", mDisplayArea);
@@ -1010,9 +1019,16 @@ namespace BlueBrick.MapData
 
 		private void readItemListFromClipboard(System.Xml.XmlReader reader, ref List<Layer.LayerItem> itemsList)
 		{
+			// first clear the hashtable that contains all the bricks
+			Map.sHashtableForRulerAttachementRebuilding.Clear();
 			// skip the common properties of the layer
 			if (reader.ReadToDescendant("Items"))
 				this.readItemsListFromXml<Layer.LayerItem>(reader, ref itemsList, "Items", false);
+			// update the links
+			foreach (Layer.LayerItem item in itemsList)
+				item.recreateLinksAfterLoading();
+			// then clear again the hashmap to free the memory
+			Map.sHashtableForRulerAttachementRebuilding.Clear();
 		}
 
 		protected void readItemsListFromXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, string itemsListName, bool useProgressBar) where T : LayerItem
@@ -1024,15 +1040,15 @@ namespace BlueBrick.MapData
 			// read the starting tag of the list
 			reader.ReadStartElement(itemsListName);
 			// check if the list is not empty and read the first child
-			bool cellFound = !reader.IsEmptyElement;
-			while (cellFound)
+			bool itemFound = !reader.IsEmptyElement;
+			while (itemFound)
 			{
 				// instanciate a new text cell, read and add the new text cell
 				LayerItem item = readItem<T>(reader);
 				resultingList.Add(item as T);
 
 				// check if the next element is a sibling and not the close element of the list
-				cellFound = reader.IsStartElement();
+				itemFound = reader.IsStartElement();
 
 				// step the progress bar for each text cell
 				if (useProgressBar)
@@ -1080,6 +1096,15 @@ namespace BlueBrick.MapData
             // clear the hash table for group to free the memory after loading
             LayerItem.sHashtableForGroupRebuilding.Clear();
         }
+
+		/// <summary>
+		/// This function is called during the loading of the map, after all layers and all items
+		/// have been loaded, in order to recreate links between items of different layers (such as
+		/// for example the attachement of a ruler to a brick)
+		/// </summary>
+		public virtual void recreateLinksAfterLoading()
+		{
+		}
 
 		public virtual void WriteXml(System.Xml.XmlWriter writer)
 		{
