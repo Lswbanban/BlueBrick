@@ -512,6 +512,7 @@ namespace BlueBrick.MapData
 			{
 				public PointF mPoint = new PointF(); // coord of the first point in Stud coord
 				public LayerBrick.Brick mAttachedBrick = null;
+				public int mAttachedBrickHashCodeUsedDuringLoading = 0;
 
 				[NonSerialized]
 				public PointF mOffsetPoint = new PointF(); // the offset point corresponding to mPoint in stud
@@ -962,15 +963,32 @@ namespace BlueBrick.MapData
 				// read the data of the ruler (don't use accessor to avoid multiple call to the update functions
 				mControlPoint[0].mPoint = XmlReadWrite.readPointF(reader);
 				mControlPoint[1].mPoint = XmlReadWrite.readPointF(reader);
-				// TODO recreate attachement with bricks
-				mControlPoint[0].mAttachedBrick = XmlReadWrite.readPointer<LayerBrick.Brick>(reader);
-				mControlPoint[1].mAttachedBrick = XmlReadWrite.readPointer<LayerBrick.Brick>(reader);
+				// read the id of the attached brick (if any)
+				mControlPoint[0].mAttachedBrickHashCodeUsedDuringLoading = reader.ReadElementContentAsInt();
+				mControlPoint[1].mAttachedBrickHashCodeUsedDuringLoading = reader.ReadElementContentAsInt();
 				mOffsetDistance = reader.ReadElementContentAsFloat();
 				mAllowOffset = reader.ReadElementContentAsBoolean();
 				// read the end element of the ruler
 				reader.ReadEndElement();
 				// update the computing data after reading the 2 points and offset
 				updateDisplayDataAndMesurementImage();
+			}
+
+			public override void recreateLinksAfterLoading()
+			{
+				for (int i = 0; i < 2; ++i)
+				{
+					// try to find the brick with the id we read
+					LayerBrick.Brick brick = Map.sHashtableForRulerAttachementRebuilding[mControlPoint[i].mAttachedBrickHashCodeUsedDuringLoading] as LayerBrick.Brick;
+					if (brick != null)
+					{
+						// compute the attach offset in local coordinate
+						PointF attachOffset = RulerAttachementSet.Anchor.sComputeLocalOffsetFromLayerItem(brick, mControlPoint[i].mPoint);
+						// create a new Anchor
+						RulerAttachementSet.Anchor anchor = new RulerAttachementSet.Anchor(this, i, attachOffset);
+						brick.attachRuler(anchor);
+					}
+				}
 			}
 
 			public override void WriteXml(System.Xml.XmlWriter writer)
@@ -980,8 +998,8 @@ namespace BlueBrick.MapData
 				// write the data of the linear ruler
 				XmlReadWrite.writePointF(writer, "Point1", this.Point1);
 				XmlReadWrite.writePointF(writer, "Point2", this.Point2);
-				XmlReadWrite.writePointer(writer, "AttachedBrick1", mControlPoint[0].mAttachedBrick);
-				XmlReadWrite.writePointer(writer, "AttachedBrick2", mControlPoint[1].mAttachedBrick);
+				XmlReadWrite.writeItemId(writer, "AttachedBrick1", mControlPoint[0].mAttachedBrick);
+				XmlReadWrite.writeItemId(writer, "AttachedBrick2", mControlPoint[1].mAttachedBrick);
 				XmlReadWrite.writeFloat(writer, "OffsetDistance", this.OffsetDistance);
 				XmlReadWrite.writeBoolean(writer, "AllowOffset", mAllowOffset);
 				writer.WriteEndElement(); // end of LinearRuler
@@ -1328,6 +1346,7 @@ namespace BlueBrick.MapData
 		public class CircularRuler : RulerItem
 		{
 			private LayerBrick.Brick mAttachedBrick = null;
+			private int mAttachedBrickHashCodeUsedDuringLoading = 0;
 
 			#region get/set
 			public override float Orientation
@@ -1475,11 +1494,25 @@ namespace BlueBrick.MapData
 				// the display area may have been read but not center yet
 				mSelectionArea[0] = XmlReadWrite.readPointF(reader);
 				this.Radius = reader.ReadElementContentAsFloat();
-				// TODO recreate attachement with bricks
-				mAttachedBrick = XmlReadWrite.readPointer<LayerBrick.Brick>(reader);
+				// read the id of the attached brick (if any)
+				mAttachedBrickHashCodeUsedDuringLoading = XmlReadWrite.readItemId(reader);
 				// read the end element of the ruler
 				reader.ReadEndElement();
 				// don't need to update the display area after reading the data values, because the accessor of Radius did it
+			}
+
+			public override void recreateLinksAfterLoading()
+			{
+				// try to find the brick with the id we read
+				LayerBrick.Brick brick = Map.sHashtableForRulerAttachementRebuilding[mAttachedBrickHashCodeUsedDuringLoading] as LayerBrick.Brick;
+				if (brick != null)
+				{
+					// compute the attach offset in local coordinate
+					PointF attachOffset = RulerAttachementSet.Anchor.sComputeLocalOffsetFromLayerItem(brick, this.Center);
+					// create a new Anchor
+					RulerAttachementSet.Anchor anchor = new RulerAttachementSet.Anchor(this, 0, attachOffset);
+					brick.attachRuler(anchor);
+				}
 			}
 
 			public override void WriteXml(System.Xml.XmlWriter writer)
@@ -1489,7 +1522,7 @@ namespace BlueBrick.MapData
 				// write ruler data
 				XmlReadWrite.writePointF(writer, "Center", this.Center);
 				XmlReadWrite.writeFloat(writer, "Radius", this.Radius);
-				XmlReadWrite.writePointer(writer, "AttachedBrick", mAttachedBrick);
+				XmlReadWrite.writeItemId(writer, "AttachedBrick", mAttachedBrick);
 				writer.WriteEndElement(); // end of CircularRuler
 			}
 			#endregion

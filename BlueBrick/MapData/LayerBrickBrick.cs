@@ -40,32 +40,7 @@ namespace BlueBrick.MapData
 				private short mPolarity = 0; // 0=neutral, negative value=negative, and positive value=positive
 				private short mHasElectricShortcut = 0; // 0=no shortcut, 1 = has shortcut
 
-				/// <summary>
-				/// This default constructor is for the serialization and should not be used in the program
-				/// </summary>
-				public ConnectionPoint()
-				{
-				}
-
-				/// <summary>
-				/// This constructor is used to create a dummy connection point somewhere in the world at
-				/// the specified position. Be carefull, the brick is null, meaning this connection point
-				/// doesn't belong to a brick and all the other parameters are also default one.
-				/// This dummy connection point is used by the Flex track for attaching a orphean flex part
-				/// on the world and let this part rotate.
-				/// </summary>
-				public ConnectionPoint(PointF positionInStudWorldCoord)
-				{
-					mPositionInStudWorldCoord = positionInStudWorldCoord;
-				}
-
-				public ConnectionPoint(Brick myBrick, int connexionIndex)
-				{
-					mMyBrick = myBrick;
-					// save the brick type (for optimisation reasons)
-					mType = BrickLibrary.Instance.getConnexionType(myBrick.PartNumber, connexionIndex);
-				}
-
+				#region get/set
 				public bool IsFree
 				{
 					get { return (mConnectionLink == null); }
@@ -176,6 +151,35 @@ namespace BlueBrick.MapData
 					get { return (mHasElectricShortcut != 0); }
 					set { mHasElectricShortcut = (short)(value ? 1 : 0); }
 				}
+				#endregion
+
+				#region constructor
+				/// <summary>
+				/// This default constructor is for the serialization and should not be used in the program
+				/// </summary>
+				public ConnectionPoint()
+				{
+				}
+
+				/// <summary>
+				/// This constructor is used to create a dummy connection point somewhere in the world at
+				/// the specified position. Be carefull, the brick is null, meaning this connection point
+				/// doesn't belong to a brick and all the other parameters are also default one.
+				/// This dummy connection point is used by the Flex track for attaching a orphean flex part
+				/// on the world and let this part rotate.
+				/// </summary>
+				public ConnectionPoint(PointF positionInStudWorldCoord)
+				{
+					mPositionInStudWorldCoord = positionInStudWorldCoord;
+				}
+
+				public ConnectionPoint(Brick myBrick, int connexionIndex)
+				{
+					mMyBrick = myBrick;
+					// save the brick type (for optimisation reasons)
+					mType = BrickLibrary.Instance.getConnexionType(myBrick.PartNumber, connexionIndex);
+				}
+				#endregion
 
 				#region IXmlSerializable Members
 
@@ -552,6 +556,10 @@ namespace BlueBrick.MapData
 
 			public override void ReadXml(System.Xml.XmlReader reader)
 			{
+				// read the id of the brick, then add this brick in the hashtable
+				int brickId = int.Parse(reader.GetAttribute(0));
+				Map.sHashtableForRulerAttachementRebuilding.Add(brickId, this);
+				// read the base class
 				base.ReadXml(reader);
 				// avoid using the accessor to reduce the number of call of updateBitmap
 				mPartNumber = BrickLibrary.Instance.getActualPartNumber(reader.ReadElementContentAsString().ToUpperInvariant());
@@ -670,6 +678,7 @@ namespace BlueBrick.MapData
 			public override void WriteXml(System.Xml.XmlWriter writer)
 			{
 				writer.WriteStartElement("Brick");
+				writer.WriteAttributeString("id", this.GetHashCode().ToString());
 				base.WriteXml(writer);
 				writer.WriteElementString("PartNumber", mPartNumber);
 				writer.WriteElementString("Orientation", mOrientation.ToString(System.Globalization.CultureInfo.InvariantCulture));

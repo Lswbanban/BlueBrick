@@ -18,11 +18,12 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.IO;
+using System.Collections;
 using BlueBrick.Actions;
 using BlueBrick.Actions.Bricks;
 using BlueBrick.Actions.Layers;
 using BlueBrick.Actions.Maps;
-using System.IO;
 
 namespace BlueBrick.MapData
 {
@@ -38,6 +39,8 @@ namespace BlueBrick.MapData
 	[Serializable]
 	public class Map : IXmlSerializable
 	{
+		public static Hashtable sHashtableForRulerAttachementRebuilding = new Hashtable(); // this hashtable contains all the bricks is used to recreate the attachement of rulers to bricks when loading
+
 		// the current version of the data this version of BlueBrick can read/write
 		private const int CURRENT_DATA_VERSION = 6;
 
@@ -323,8 +326,8 @@ namespace BlueBrick.MapData
 			if (mDataVersionOfTheFileLoaded >= 3)
 			{
 				int nbItems = reader.ReadElementContentAsInt();
-				// init the progress bar with the real number of layer items (+1 for the header)
-				MainForm.Instance.resetProgressBar(nbItems + 1);
+				// init the progress bar with the real number of layer items (+1 for the header +1 for the link rebuilding)
+				MainForm.Instance.resetProgressBar(nbItems + 2);
 			}
 			// check is there is a background color
 			if (reader.Name.Equals("BackgroundColor"))
@@ -378,6 +381,9 @@ namespace BlueBrick.MapData
 			MainForm.Instance.stepProgressBar();
 
 			// layers
+			// first clear the hashtable that contains all the bricks
+			Map.sHashtableForRulerAttachementRebuilding.Clear();
+			// then load all the layers
 			bool layerFound = reader.ReadToDescendant("Layer");
 			while (layerFound)
 			{
@@ -409,6 +415,16 @@ namespace BlueBrick.MapData
 				layerFound = reader.ReadToNextSibling("Layer");
 			}
 			reader.ReadEndElement(); // end of Layers
+
+			// once we have finished to read all the layers thus all the items, we need to recreate all the links they have between them
+			foreach (Layer layer in mLayers)
+				layer.recreateLinksAfterLoading();
+			// then clear again the hash table to free the memory
+			Map.sHashtableForRulerAttachementRebuilding.Clear();
+
+			// step the progress bar after the rebuilding of links
+			MainForm.Instance.stepProgressBar();
+
 			// if the selected index is valid, reset the selected layer
 			// use the setter in order to enable the toolbar buttons
 			if ((selectedLayerIndex >= 0) && (selectedLayerIndex < mLayers.Count))

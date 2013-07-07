@@ -32,7 +32,9 @@ namespace BlueBrick.MapData
 	{
 		[NonSerialized]
 		private ImageAttributes mImageAttributeForSelection = new ImageAttributes();
+		[NonSerialized]
 		private ImageAttributes mImageAttributeForSnapping = new ImageAttributes();
+		[NonSerialized]
 		private ImageAttributes mImageAttributeDefault = new ImageAttributes();
 
 		// list of bricks and connection points
