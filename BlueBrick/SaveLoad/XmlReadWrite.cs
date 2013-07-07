@@ -22,6 +22,71 @@ namespace BlueBrick.MapData
 {
 	class XmlReadWrite
 	{
+		#region simple type
+		public static float readFloat(System.Xml.XmlReader reader)
+		{
+			return reader.ReadElementContentAsFloat();
+		}
+
+		public static void writeFloat(System.Xml.XmlWriter writer, string name, float number)
+		{
+			writer.WriteElementString(name, number.ToString(System.Globalization.CultureInfo.InvariantCulture));
+		}
+
+		public static int readInteger(System.Xml.XmlReader reader)
+		{
+			return reader.ReadElementContentAsInt();
+		}
+
+		public static void writeInteger(System.Xml.XmlWriter writer, string name, int number)
+		{
+			writer.WriteElementString(name, number.ToString(System.Globalization.CultureInfo.InvariantCulture));
+		}
+
+		public static bool readBoolean(System.Xml.XmlReader reader)
+		{
+			return reader.ReadElementContentAsBoolean();
+		}
+
+		public static void writeBoolean(System.Xml.XmlWriter writer, string name, bool flag)
+		{
+			writer.WriteElementString(name, flag.ToString().ToLower());
+		}
+
+		public static float[] readFloatArray(System.Xml.XmlReader reader)
+		{
+			List<float> result = new List<float>();
+			reader.ReadToDescendant("value");
+			while (reader.Name.Equals("value"))
+				result.Add(reader.ReadElementContentAsFloat());
+			reader.ReadEndElement();
+			return result.ToArray();
+		}
+
+		public static void writeFloatArray(System.Xml.XmlWriter writer, string name, float[] array)
+		{
+			writer.WriteStartElement(name);
+			foreach (float number in array)
+				writer.WriteElementString("value", number.ToString(System.Globalization.CultureInfo.InvariantCulture));
+			writer.WriteEndElement();
+		}
+
+		public static T readPointer<T>(System.Xml.XmlReader reader)
+		{
+			// TODO: need to implement
+			int hashcode = reader.ReadElementContentAsInt();
+			return default(T);
+		}
+
+		public static void writePointer(System.Xml.XmlWriter writer, string name, object obj)
+		{
+			if (obj != null)
+				writer.WriteElementString(name, obj.GetHashCode().ToString(System.Globalization.CultureInfo.InvariantCulture));
+			else
+				writer.WriteElementString(name, "0");
+		}
+		#endregion
+
 		#region color
 		public static Color readColor(System.Xml.XmlReader reader)
 		{
@@ -88,7 +153,7 @@ namespace BlueBrick.MapData
 		}
 		#endregion
 
-		#region point f
+		#region point F
 		public static PointF readPointF(System.Xml.XmlReader reader)
 		{
 			reader.ReadToDescendant("X");
