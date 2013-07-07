@@ -316,7 +316,13 @@ namespace BlueBrick.MapData
 				mLineThickness = reader.ReadElementContentAsFloat();
 				mDisplayDistance = reader.ReadElementContentAsBoolean();
 				mDisplayUnit = reader.ReadElementContentAsBoolean();
-				// TODO: need to recompute the brushes, we need the call to an update method
+				mGuidelineColor = XmlReadWrite.readColor(reader);
+				mGuidelineThickness = XmlReadWrite.readFloat(reader);
+				mGuidelineDashPattern = XmlReadWrite.readFloatArray(reader);
+				this.CurrentUnit = (Tools.Distance.Unit)(XmlReadWrite.readInteger(reader));
+				mMeasureFont = XmlReadWrite.readFont(reader);
+				this.MeasureColor = XmlReadWrite.readColor(reader);
+				// the update method will be called by the non abstract derivated class
 			}
 
 			public override void WriteXml(System.Xml.XmlWriter writer)
@@ -325,9 +331,15 @@ namespace BlueBrick.MapData
 				base.WriteXml(writer);
 				// write the date of the linear ruler
 				XmlReadWrite.writeColor(writer, "Color", mColor);
-				writer.WriteElementString("LineThickness", mLineThickness.ToString(System.Globalization.CultureInfo.InvariantCulture));
-				writer.WriteElementString("DisplayDistance", mDisplayDistance.ToString().ToLower());
-				writer.WriteElementString("DisplayUnit", mDisplayUnit.ToString().ToLower());
+				XmlReadWrite.writeFloat(writer, "LineThickness", mLineThickness);
+				XmlReadWrite.writeBoolean(writer, "DisplayDistance", mDisplayDistance);
+				XmlReadWrite.writeBoolean(writer, "DisplayUnit", mDisplayUnit);
+				XmlReadWrite.writeColor(writer, "GuidelineColor", mGuidelineColor);
+				XmlReadWrite.writeFloat(writer, "GuidelineThickness", mGuidelineThickness);
+				XmlReadWrite.writeFloatArray(writer, "GuidelineDashPattern", mGuidelineDashPattern);
+				XmlReadWrite.writeInteger(writer, "Unit", (int)(this.CurrentUnit));				
+				XmlReadWrite.writeFont(writer, "MeasureFont", mMeasureFont);
+				XmlReadWrite.writeColor(writer, "MeasureFontColor", this.MeasureColor);
 			}
 			#endregion
 
@@ -950,11 +962,13 @@ namespace BlueBrick.MapData
 				// read the data of the ruler (don't use accessor to avoid multiple call to the update functions
 				mControlPoint[0].mPoint = XmlReadWrite.readPointF(reader);
 				mControlPoint[1].mPoint = XmlReadWrite.readPointF(reader);
+				// TODO recreate attachement with bricks
+				mControlPoint[0].mAttachedBrick = XmlReadWrite.readPointer<LayerBrick.Brick>(reader);
+				mControlPoint[1].mAttachedBrick = XmlReadWrite.readPointer<LayerBrick.Brick>(reader);
 				mOffsetDistance = reader.ReadElementContentAsFloat();
-				mGuidelineThickness = reader.ReadElementContentAsFloat();
+				mAllowOffset = reader.ReadElementContentAsBoolean();
 				// read the end element of the ruler
 				reader.ReadEndElement();
-
 				// update the computing data after reading the 2 points and offset
 				updateDisplayDataAndMesurementImage();
 			}
@@ -963,12 +977,13 @@ namespace BlueBrick.MapData
 			{
 				writer.WriteStartElement("LinearRuler");
 				base.WriteXml(writer);
-				// write the date of the linear ruler
+				// write the data of the linear ruler
 				XmlReadWrite.writePointF(writer, "Point1", this.Point1);
 				XmlReadWrite.writePointF(writer, "Point2", this.Point2);
-				writer.WriteElementString("OffsetDistance", this.OffsetDistance.ToString(System.Globalization.CultureInfo.InvariantCulture));
-				writer.WriteElementString("OffsetLineThickness", mGuidelineThickness.ToString(System.Globalization.CultureInfo.InvariantCulture));
-				//TODO write the mOffsetLineDashPattern
+				XmlReadWrite.writePointer(writer, "AttachedBrick1", mControlPoint[0].mAttachedBrick);
+				XmlReadWrite.writePointer(writer, "AttachedBrick2", mControlPoint[1].mAttachedBrick);
+				XmlReadWrite.writeFloat(writer, "OffsetDistance", this.OffsetDistance);
+				XmlReadWrite.writeBoolean(writer, "AllowOffset", mAllowOffset);
 				writer.WriteEndElement(); // end of LinearRuler
 			}
 			#endregion
@@ -1460,6 +1475,8 @@ namespace BlueBrick.MapData
 				// the display area may have been read but not center yet
 				mSelectionArea[0] = XmlReadWrite.readPointF(reader);
 				this.Radius = reader.ReadElementContentAsFloat();
+				// TODO recreate attachement with bricks
+				mAttachedBrick = XmlReadWrite.readPointer<LayerBrick.Brick>(reader);
 				// read the end element of the ruler
 				reader.ReadEndElement();
 				// don't need to update the display area after reading the data values, because the accessor of Radius did it
@@ -1471,7 +1488,8 @@ namespace BlueBrick.MapData
 				base.WriteXml(writer);
 				// write ruler data
 				XmlReadWrite.writePointF(writer, "Center", this.Center);
-				writer.WriteElementString("Radius", this.Radius.ToString(System.Globalization.CultureInfo.InvariantCulture));
+				XmlReadWrite.writeFloat(writer, "Radius", this.Radius);
+				XmlReadWrite.writePointer(writer, "AttachedBrick", mAttachedBrick);
 				writer.WriteEndElement(); // end of CircularRuler
 			}
 			#endregion
