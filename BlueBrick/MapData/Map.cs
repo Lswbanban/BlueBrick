@@ -42,7 +42,7 @@ namespace BlueBrick.MapData
 		public static Hashtable sHashtableForRulerAttachementRebuilding = new Hashtable(); // this hashtable contains all the bricks is used to recreate the attachement of rulers to bricks when loading
 
 		// the current version of the data this version of BlueBrick can read/write
-		private const int CURRENT_DATA_VERSION = 6;
+		private const int CURRENT_DATA_VERSION = 7;
 
 		// the current version of the data
 		private static int mDataVersionOfTheFileLoaded = CURRENT_DATA_VERSION;
