@@ -69,7 +69,6 @@ Open bugs:
 	- save/load in LDraw
 bug en release: la function Surface.isPointInside est buggué (marche en debug)
 CRASH bug when dragging a part over the task bar
-Rotation of Circular ruler: could be improve to avoid upside down text like linear ruler
 REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
