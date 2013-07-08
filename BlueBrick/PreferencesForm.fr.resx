@@ -234,6 +234,83 @@ plus l'application aura besoin de mémoire.</value>
   <data name="groupBox15.Text" xml:space="preserve">
     <value>Mesures</value>
   </data>
+  <data name="rulerFontNameLabel.Text" xml:space="preserve">
+    <value>Nom de police</value>
+  </data>
+  <data name="fontColorLabel.Text" xml:space="preserve">
+    <value>Couleur</value>
+  </data>
+  <data name="rulerFontButton.Text" xml:space="preserve">
+    <value>Changer la police</value>
+  </data>
+  <data name="unitComboBox.Items" xml:space="preserve">
+    <value>Tenon</value>
+  </data>
+  <data name="unitComboBox.Items3" xml:space="preserve">
+    <value>Mètre</value>
+  </data>
+  <data name="unitComboBox.Items4" xml:space="preserve">
+    <value>Pied</value>
+  </data>
+  <data name="displayUnitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 17</value>
+  </data>
+  <data name="displayUnitCheckBox.Text" xml:space="preserve">
+    <value>Affiche l'unité</value>
+  </data>
+  <data name="displayMeasureTextCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 17</value>
+  </data>
+  <data name="displayMeasureTextCheckBox.Text" xml:space="preserve">
+    <value>Affiche la valeur de la mesure</value>
+  </data>
+  <data name="allowOffsetCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 17</value>
+  </data>
+  <data name="allowOffsetCheckBox.Text" xml:space="preserve">
+    <value>Utiliser un décallage pour les lignes</value>
+  </data>
+  <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 179</value>
+  </data>
+  <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 26</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Motif de Trait-Espace par défaut
+(en fois d'épaisseur)</value>
+  </data>
+  <data name="lineColorLabel.Text" xml:space="preserve">
+    <value>Couleur par défaut</value>
+  </data>
+  <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
+    <value>213, 103</value>
+  </data>
+  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Guide</value>
+  </data>
+  <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 103</value>
+  </data>
+  <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 13</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>Ligne</value>
+  </data>
+  <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 147</value>
+  </data>
+  <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 26</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>Epaisseur par défaut
+(en pixel)</value>
+  </data>
   <data name="RulerSwitchToEditionAfterCreationCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>227, 30</value>
   </data>
@@ -302,9 +379,6 @@ après la copie</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Format des textes par défaut</value>
-  </data>
-  <data name="defaultFontNameLabel.Text" xml:space="preserve">
-    <value>le nom de la police</value>
   </data>
   <data name="defaultFontColorLabel.Text" xml:space="preserve">
     <value>Couleur</value>

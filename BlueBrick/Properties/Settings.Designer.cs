@@ -923,5 +923,149 @@ namespace BlueBrick.Properties {
                 this["UseOffsetDuringLinearRulerCreation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public float RulerDefaultLineThickness {
+            get {
+                return ((float)(this["RulerDefaultLineThickness"]));
+            }
+            set {
+                this["RulerDefaultLineThickness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color RulerDefaultLineColor {
+            get {
+                return ((global::System.Drawing.Color)(this["RulerDefaultLineColor"]));
+            }
+            set {
+                this["RulerDefaultLineColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool RulerDefaultAllowOffset {
+            get {
+                return ((bool)(this["RulerDefaultAllowOffset"]));
+            }
+            set {
+                this["RulerDefaultAllowOffset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public float RulerDefaultDashPatternLine {
+            get {
+                return ((float)(this["RulerDefaultDashPatternLine"]));
+            }
+            set {
+                this["RulerDefaultDashPatternLine"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public float RulerDefaultDashPatternSpace {
+            get {
+                return ((float)(this["RulerDefaultDashPatternSpace"]));
+            }
+            set {
+                this["RulerDefaultDashPatternSpace"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float RulerDefaultGuidelineThickness {
+            get {
+                return ((float)(this["RulerDefaultGuidelineThickness"]));
+            }
+            set {
+                this["RulerDefaultGuidelineThickness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color RulerDefaultGuidelineColor {
+            get {
+                return ((global::System.Drawing.Color)(this["RulerDefaultGuidelineColor"]));
+            }
+            set {
+                this["RulerDefaultGuidelineColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool RulerDefaultDisplayUnit {
+            get {
+                return ((bool)(this["RulerDefaultDisplayUnit"]));
+            }
+            set {
+                this["RulerDefaultDisplayUnit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool RulerDefaultDisplayMeasureText {
+            get {
+                return ((bool)(this["RulerDefaultDisplayMeasureText"]));
+            }
+            set {
+                this["RulerDefaultDisplayMeasureText"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int RulerDefaultUnit {
+            get {
+                return ((int)(this["RulerDefaultUnit"]));
+            }
+            set {
+                this["RulerDefaultUnit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color RulerDefaultFontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["RulerDefaultFontColor"]));
+            }
+            set {
+                this["RulerDefaultFontColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Arial, 15.75pt")]
+        public global::System.Drawing.Font RulerDefaultFont {
+            get {
+                return ((global::System.Drawing.Font)(this["RulerDefaultFont"]));
+            }
+            set {
+                this["RulerDefaultFont"] = value;
+            }
+        }
     }
 }
