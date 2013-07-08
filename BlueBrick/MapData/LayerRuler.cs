@@ -1001,7 +1001,7 @@ namespace BlueBrick.MapData
 					LinearRuler linearRuler = mCurrentlyEditedRuler as LinearRuler;
 					if (linearRuler != null)
 					{
-						if (BlueBrick.Properties.Settings.Default.UseOffsetDuringLinearRulerCreation)
+						if (linearRuler.AllowOffset)
 						{
 							if (mMouseIsScalingRuler)
 							{
@@ -1018,7 +1018,6 @@ namespace BlueBrick.MapData
 						}
 						else
 						{
-							linearRuler.AllowOffset = false;
 							Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, linearRuler));
 							mCurrentlyEditedRuler = null;
 						}

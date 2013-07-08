@@ -262,9 +262,6 @@
     <Setting Name="SwitchToEditionAfterRulerCreation" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="UseOffsetDuringLinearRulerCreation" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="RulerDefaultLineThickness" Type="System.Single" Scope="User">
       <Value Profile="(Default)">4</Value>
     </Setting>

@@ -574,6 +574,26 @@ namespace BlueBrick
 			label.Font = newFont;
 			label.ForeColor = color;
 		}
+
+		static public void sChangeRulerSettingsFromRuler(LayerRuler.RulerItem rulerItem)
+		{
+			// line appearance
+			Settings.Default.RulerDefaultLineThickness = rulerItem.LineThickness;
+			Settings.Default.RulerDefaultLineColor = rulerItem.Color;
+			if (rulerItem is LayerRuler.LinearRuler)
+				Settings.Default.RulerDefaultAllowOffset = (rulerItem as LayerRuler.LinearRuler).AllowOffset;
+			// guideline appearance
+			Settings.Default.RulerDefaultDashPatternLine = rulerItem.GuidelineDashPattern[0];
+			Settings.Default.RulerDefaultDashPatternSpace = rulerItem.GuidelineDashPattern[1];
+			Settings.Default.RulerDefaultGuidelineThickness = rulerItem.GuidelineThickness;
+			Settings.Default.RulerDefaultGuidelineColor = rulerItem.GuidelineColor;
+			// measure and unit
+			Settings.Default.RulerDefaultDisplayUnit = rulerItem.DisplayUnit;
+			Settings.Default.RulerDefaultDisplayMeasureText = rulerItem.DisplayDistance;
+			Settings.Default.RulerDefaultUnit = (int)rulerItem.CurrentUnit;
+			Settings.Default.RulerDefaultFontColor = rulerItem.MeasureColor;
+			Settings.Default.RulerDefaultFont = rulerItem.MeasureFont;
+		}
 		#endregion
 
 		#region tab general
