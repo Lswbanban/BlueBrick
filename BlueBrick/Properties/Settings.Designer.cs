@@ -914,18 +914,6 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool UseOffsetDuringLinearRulerCreation {
-            get {
-                return ((bool)(this["UseOffsetDuringLinearRulerCreation"]));
-            }
-            set {
-                this["UseOffsetDuringLinearRulerCreation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("4")]
         public float RulerDefaultLineThickness {
             get {

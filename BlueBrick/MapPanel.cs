@@ -89,6 +89,7 @@ namespace BlueBrick
 		private ToolStripSeparator attachRulerToolStripSeparator;
 		private ToolStripMenuItem attachToolStripMenuItem;
 		private ToolStripMenuItem detachToolStripMenuItem;
+		private ToolStripMenuItem useAsModelToolStripMenuItem;
 
 		// scale
 		private double mViewScale = 4.0;
@@ -158,11 +159,13 @@ namespace BlueBrick
 			this.attachRulerToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
 			this.attachToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.detachToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.useAsModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// contextMenuStrip
 			// 
+			resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
 			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bringToFrontToolStripMenuItem,
             this.sendToBackToolStripMenuItem,
@@ -175,82 +178,89 @@ namespace BlueBrick
             this.ungroupToolStripMenuItem,
             this.attachRulerToolStripSeparator,
             this.attachToolStripMenuItem,
-            this.detachToolStripMenuItem});
+            this.detachToolStripMenuItem,
+            this.useAsModelToolStripMenuItem});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
 			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
 			// 
 			// bringToFrontToolStripMenuItem
 			// 
-			this.bringToFrontToolStripMenuItem.Name = "bringToFrontToolStripMenuItem";
 			resources.ApplyResources(this.bringToFrontToolStripMenuItem, "bringToFrontToolStripMenuItem");
+			this.bringToFrontToolStripMenuItem.Name = "bringToFrontToolStripMenuItem";
 			this.bringToFrontToolStripMenuItem.Click += new System.EventHandler(this.bringToFrontToolStripMenuItem_Click);
 			// 
 			// sendToBackToolStripMenuItem
 			// 
-			this.sendToBackToolStripMenuItem.Name = "sendToBackToolStripMenuItem";
 			resources.ApplyResources(this.sendToBackToolStripMenuItem, "sendToBackToolStripMenuItem");
+			this.sendToBackToolStripMenuItem.Name = "sendToBackToolStripMenuItem";
 			this.sendToBackToolStripMenuItem.Click += new System.EventHandler(this.sendToBackToolStripMenuItem_Click);
 			// 
 			// selectToolStripSeparator
 			// 
-			this.selectToolStripSeparator.Name = "selectToolStripSeparator";
 			resources.ApplyResources(this.selectToolStripSeparator, "selectToolStripSeparator");
+			this.selectToolStripSeparator.Name = "selectToolStripSeparator";
 			// 
 			// selectAllToolStripMenuItem
 			// 
-			this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
 			resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
+			this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
 			this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
 			// 
 			// deselectAllToolStripMenuItem
 			// 
-			this.deselectAllToolStripMenuItem.Name = "deselectAllToolStripMenuItem";
 			resources.ApplyResources(this.deselectAllToolStripMenuItem, "deselectAllToolStripMenuItem");
+			this.deselectAllToolStripMenuItem.Name = "deselectAllToolStripMenuItem";
 			this.deselectAllToolStripMenuItem.Click += new System.EventHandler(this.deselectAllToolStripMenuItem_Click);
 			// 
 			// selectPathToolStripMenuItem
 			// 
-			this.selectPathToolStripMenuItem.Name = "selectPathToolStripMenuItem";
 			resources.ApplyResources(this.selectPathToolStripMenuItem, "selectPathToolStripMenuItem");
+			this.selectPathToolStripMenuItem.Name = "selectPathToolStripMenuItem";
 			this.selectPathToolStripMenuItem.Click += new System.EventHandler(this.selectPathToolStripMenuItem_Click);
 			// 
 			// groupToolStripSeparator
 			// 
-			this.groupToolStripSeparator.Name = "groupToolStripSeparator";
 			resources.ApplyResources(this.groupToolStripSeparator, "groupToolStripSeparator");
+			this.groupToolStripSeparator.Name = "groupToolStripSeparator";
 			// 
 			// groupToolStripMenuItem
 			// 
-			this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
 			resources.ApplyResources(this.groupToolStripMenuItem, "groupToolStripMenuItem");
+			this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
 			this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
 			// 
 			// ungroupToolStripMenuItem
 			// 
-			this.ungroupToolStripMenuItem.Name = "ungroupToolStripMenuItem";
 			resources.ApplyResources(this.ungroupToolStripMenuItem, "ungroupToolStripMenuItem");
+			this.ungroupToolStripMenuItem.Name = "ungroupToolStripMenuItem";
 			this.ungroupToolStripMenuItem.Click += new System.EventHandler(this.ungroupToolStripMenuItem_Click);
 			// 
 			// attachRulerToolStripSeparator
 			// 
-			this.attachRulerToolStripSeparator.Name = "attachRulerToolStripSeparator";
 			resources.ApplyResources(this.attachRulerToolStripSeparator, "attachRulerToolStripSeparator");
+			this.attachRulerToolStripSeparator.Name = "attachRulerToolStripSeparator";
 			// 
 			// attachToolStripMenuItem
 			// 
-			this.attachToolStripMenuItem.Name = "attachToolStripMenuItem";
 			resources.ApplyResources(this.attachToolStripMenuItem, "attachToolStripMenuItem");
+			this.attachToolStripMenuItem.Name = "attachToolStripMenuItem";
 			this.attachToolStripMenuItem.Click += new System.EventHandler(this.attachToolStripMenuItem_Click);
 			// 
 			// detachToolStripMenuItem
 			// 
-			this.detachToolStripMenuItem.Name = "detachToolStripMenuItem";
 			resources.ApplyResources(this.detachToolStripMenuItem, "detachToolStripMenuItem");
+			this.detachToolStripMenuItem.Name = "detachToolStripMenuItem";
 			this.detachToolStripMenuItem.Click += new System.EventHandler(this.detachToolStripMenuItem_Click);
+			// 
+			// useAsModelToolStripMenuItem
+			// 
+			resources.ApplyResources(this.useAsModelToolStripMenuItem, "useAsModelToolStripMenuItem");
+			this.useAsModelToolStripMenuItem.Name = "useAsModelToolStripMenuItem";
+			this.useAsModelToolStripMenuItem.Click += new System.EventHandler(this.useAsModelToolStripMenuItem_Click);
 			// 
 			// MapPanel
 			// 
+			resources.ApplyResources(this, "$this");
 			this.AllowDrop = true;
 			this.ContextMenuStrip = this.contextMenuStrip;
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MapPanel_DragDrop);
@@ -829,16 +839,19 @@ namespace BlueBrick
 				this.attachRulerToolStripSeparator.Visible = isSelectedLayerRuler;
 				this.attachToolStripMenuItem.Visible = isSelectedLayerRuler;
 				this.detachToolStripMenuItem.Visible = isSelectedLayerRuler;
+				this.useAsModelToolStripMenuItem.Visible = isSelectedLayerRuler;
 				if (isSelectedLayerRuler)
 				{
 					LayerRuler rulerLayer = selectedLayer as LayerRuler;
 					this.attachToolStripMenuItem.Enabled = rulerLayer.canAttachRuler();
 					this.detachToolStripMenuItem.Enabled = rulerLayer.canDetachRuler();
+					this.useAsModelToolStripMenuItem.Enabled = (rulerLayer.SelectedObjects.Count == 1);
 				}
 				else
 				{
 					this.attachToolStripMenuItem.Enabled = false;
 					this.detachToolStripMenuItem.Enabled = false;
+					this.useAsModelToolStripMenuItem.Enabled = false;
 				}
 				// finally after enabling the context menu items
 				// check if at leat one toolstrip menu item is enabled otherwise, cancel the opening
@@ -900,6 +913,18 @@ namespace BlueBrick
 			LayerRuler rulerLayer = Map.Instance.SelectedLayer as LayerRuler;
 			if (rulerLayer!= null)
 				ActionManager.Instance.doAction(new Actions.Rulers.DetachRuler(rulerLayer.CurrentRulerWithHighlightedControlPoint, rulerLayer.CurrentBrickUsedForRulerAttachement));
+		}
+
+		private void useAsModelToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// this action (i.e. changing the settings) is not undoable
+			LayerRuler rulerLayer = Map.Instance.SelectedLayer as LayerRuler;
+			if ((rulerLayer != null) && (rulerLayer.SelectedObjects.Count == 1))
+			{
+				LayerRuler.RulerItem item = rulerLayer.SelectedObjects[0] as LayerRuler.RulerItem;
+				if (item != null)
+					PreferencesForm.sChangeRulerSettingsFromRuler(item);
+			}
 		}
 		#endregion
 	}
