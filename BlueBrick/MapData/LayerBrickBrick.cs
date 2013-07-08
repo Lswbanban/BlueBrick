@@ -557,8 +557,11 @@ namespace BlueBrick.MapData
 			public override void ReadXml(System.Xml.XmlReader reader)
 			{
 				// read the id of the brick, then add this brick in the hashtable
-				int brickId = int.Parse(reader.GetAttribute(0));
-				Map.sHashtableForRulerAttachementRebuilding.Add(brickId, this);
+				if (Map.DataVersionOfTheFileLoaded >= 7)
+				{
+					int brickId = int.Parse(reader.GetAttribute(0));
+					Map.sHashtableForRulerAttachementRebuilding.Add(brickId, this);
+				}
 				// read the base class
 				base.ReadXml(reader);
 				// avoid using the accessor to reduce the number of call of updateBitmap
