@@ -35,23 +35,23 @@ namespace BlueBrick.MapData
 			protected const float HALF_MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD = MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD * 0.5f; // half of the previous value
 
 			// the main line for the ruler
-			protected Color mColor = Color.Black; // color of the lines
-			protected float mLineThickness = 4.0f; // the thickness of the lines
-			protected bool mDisplayDistance = true; // if true, the distance is displayed on the ruler.
-			protected bool mDisplayUnit = true; // if true display the unit just after the distance
+			protected Color mColor = Properties.Settings.Default.RulerDefaultLineColor; // color of the lines
+			protected float mLineThickness = Properties.Settings.Default.RulerDefaultLineThickness; // the thickness of the lines
+			protected bool mDisplayDistance = Properties.Settings.Default.RulerDefaultDisplayMeasureText; // if true, the distance is displayed on the ruler.
+			protected bool mDisplayUnit = Properties.Settings.Default.RulerDefaultDisplayUnit; // if true display the unit just after the distance
 
 			// the secondary lines (or guidelines) for the ruler
-			protected Color mGuidelineColor = Color.Black; // color of the secondary lines
-			protected float mGuidelineThickness = 1.0f; // the thickness of the guide lines when this ruler has an offset
-			protected float[] mGuidelineDashPattern = new float[] { 2.0f, 4.0f }; // pattern for the dashed offset line (succesion of dash length and space length, starting with dash)
+			protected Color mGuidelineColor = Properties.Settings.Default.RulerDefaultGuidelineColor; // color of the secondary lines
+			protected float mGuidelineThickness = Properties.Settings.Default.RulerDefaultGuidelineThickness; // the thickness of the guide lines when this ruler has an offset
+			protected float[] mGuidelineDashPattern = new float[] { Properties.Settings.Default.RulerDefaultDashPatternLine, Properties.Settings.Default.RulerDefaultDashPatternSpace }; // pattern for the dashed offset line (succesion of dash length and space length, starting with dash)
 
 			[NonSerialized]
-			protected Tools.Distance mMeasuredDistance = new Tools.Distance(); // the distance mesured between the two extremities in stud unit
+			protected Tools.Distance mMeasuredDistance = new Tools.Distance(0.0f, (Tools.Distance.Unit)Properties.Settings.Default.RulerDefaultUnit); // the distance mesured between the two extremities in stud unit
 
 			// variable for drawing the mesurement value
-			private Font mMeasureFont = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Regular);
+			private Font mMeasureFont = Properties.Settings.Default.RulerDefaultFont;
 			[NonSerialized]
-			private SolidBrush mMeasureBrush = new SolidBrush(Color.Black);
+			private SolidBrush mMeasureBrush = new SolidBrush(Properties.Settings.Default.RulerDefaultFontColor);
 			[NonSerialized]
 			private StringFormat mMeasureStringFormat = new StringFormat();
 			[NonSerialized]
@@ -526,7 +526,7 @@ namespace BlueBrick.MapData
 			//       mControlPoint[0].mPoint |        | mControlPoint[1].mPoint 
 			private ControlPoint[] mControlPoint = { new ControlPoint(), new ControlPoint() };
 			private float mOffsetDistance = 0.0f; // the offset distance in stud coord
-			private bool mAllowOffset = true; // if true the line can be offseted
+			private bool mAllowOffset = Properties.Settings.Default.RulerDefaultAllowOffset; // if true the line can be offseted
 
 			[NonSerialized]
 			private PointF mUnitVector = new PointF(); // the unit vector of the line between point1 and point2

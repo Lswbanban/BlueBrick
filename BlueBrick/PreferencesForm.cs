@@ -204,6 +204,21 @@ namespace BlueBrick
 				// ruler
 				this.rulerControlPointRadiusNumericUpDown.Value = (Decimal)Settings.Default.RulerControlPointRadiusInPixel;
 				this.RulerSwitchToEditionAfterCreationCheckBox.Checked = Settings.Default.SwitchToEditionAfterRulerCreation;
+				// line appearance
+				this.lineThicknessNumericUpDown.Value = (Decimal)(Settings.Default.RulerDefaultLineThickness);
+				this.lineColorPictureBox.BackColor = Settings.Default.RulerDefaultLineColor;
+				this.allowOffsetCheckBox.Checked = Settings.Default.RulerDefaultAllowOffset;
+				// guideline appearance
+				this.dashPatternLineNumericUpDown.Value = (Decimal)(Settings.Default.RulerDefaultDashPatternLine);
+				this.dashPatternSpaceNumericUpDown.Value = (Decimal)(Settings.Default.RulerDefaultDashPatternSpace);
+				this.guidelineThicknessNumericUpDown.Value = (Decimal)(Settings.Default.RulerDefaultGuidelineThickness);
+				this.guidelineColorPictureBox.BackColor = Settings.Default.RulerDefaultGuidelineColor;
+				// measure and unit
+				this.displayUnitCheckBox.Checked = Settings.Default.RulerDefaultDisplayUnit;
+				this.displayMeasureTextCheckBox.Checked = Settings.Default.RulerDefaultDisplayMeasureText;
+				this.unitComboBox.SelectedIndex = Settings.Default.RulerDefaultUnit;
+				this.rulerFontColorPictureBox.BackColor = Settings.Default.RulerDefaultFontColor;
+				updateChosenFont(rulerFontNameLabel, Settings.Default.RulerDefaultFontColor, Settings.Default.RulerDefaultFont);
 			}
 
 			// -- tab appearance
@@ -228,8 +243,7 @@ namespace BlueBrick
 				findCorectColorSchemeAccordingToColors();
 				// font
 				this.defaultFontColorPictureBox.BackColor = Settings.Default.DefaultTextColor;
-				this.defaultFontNameLabel.ForeColor = Settings.Default.DefaultTextColor;
-				updateChosenFont(Settings.Default.DefaultTextFont);
+				updateChosenFont(this.defaultTextFontNameLabel, Settings.Default.DefaultTextColor, Settings.Default.DefaultTextFont);
 				// area
 				this.areaTransparencyNumericUpDown.Value = (Decimal)Settings.Default.DefaultAreaTransparency;
 				this.areaCellSizeNumericUpDown.Value = (Decimal)Settings.Default.DefaultAreaSize;
@@ -315,6 +329,21 @@ namespace BlueBrick
 				// ruler
 				destination.RulerControlPointRadiusInPixel = source.RulerControlPointRadiusInPixel;
 				destination.SwitchToEditionAfterRulerCreation = source.SwitchToEditionAfterRulerCreation;
+				// line appearance
+				destination.RulerDefaultLineThickness = source.RulerDefaultLineThickness;
+				destination.RulerDefaultLineColor = source.RulerDefaultLineColor;
+				destination.RulerDefaultAllowOffset = source.RulerDefaultAllowOffset;
+				// guideline appearance
+				destination.RulerDefaultDashPatternLine = source.RulerDefaultDashPatternLine;
+				destination.RulerDefaultDashPatternSpace = source.RulerDefaultDashPatternSpace;
+				destination.RulerDefaultGuidelineThickness = source.RulerDefaultGuidelineThickness;
+				destination.RulerDefaultGuidelineColor = source.RulerDefaultGuidelineColor;
+				// measure and unit
+				destination.RulerDefaultDisplayUnit = source.RulerDefaultDisplayUnit;
+				destination.RulerDefaultDisplayMeasureText = source.RulerDefaultDisplayMeasureText;
+				destination.RulerDefaultUnit = source.RulerDefaultUnit;
+				destination.RulerDefaultFontColor = source.RulerDefaultFontColor;
+				destination.RulerDefaultFont = source.RulerDefaultFont.Clone() as Font;
 			}
 			// appearance
 			if ((tabPageFilter & TabPageFilter.APPEARANCE) != 0)
@@ -399,6 +428,21 @@ namespace BlueBrick
 			// ruler
 			Settings.Default.RulerControlPointRadiusInPixel = (int)this.rulerControlPointRadiusNumericUpDown.Value;
 			Settings.Default.SwitchToEditionAfterRulerCreation = this.RulerSwitchToEditionAfterCreationCheckBox.Checked;
+			// line appearance
+			Settings.Default.RulerDefaultLineThickness = (float)this.lineThicknessNumericUpDown.Value;
+			Settings.Default.RulerDefaultLineColor = this.lineColorPictureBox.BackColor;
+			Settings.Default.RulerDefaultAllowOffset = this.allowOffsetCheckBox.Checked;
+			// guideline appearance
+			Settings.Default.RulerDefaultDashPatternLine = (float)this.dashPatternLineNumericUpDown.Value;
+			Settings.Default.RulerDefaultDashPatternSpace = (float)this.dashPatternSpaceNumericUpDown.Value;
+			Settings.Default.RulerDefaultGuidelineThickness = (float)this.guidelineThicknessNumericUpDown.Value;
+			Settings.Default.RulerDefaultGuidelineColor = this.guidelineColorPictureBox.BackColor;
+			// measure and unit
+			Settings.Default.RulerDefaultDisplayUnit = this.displayUnitCheckBox.Checked;
+			Settings.Default.RulerDefaultDisplayMeasureText = this.displayMeasureTextCheckBox.Checked;
+			Settings.Default.RulerDefaultUnit = this.unitComboBox.SelectedIndex;
+			Settings.Default.RulerDefaultFontColor = this.rulerFontColorPictureBox.BackColor;
+			Settings.Default.RulerDefaultFont = this.rulerFontNameLabel.Font;
 
 			// -- tab appearance
 			// check if the user changed the grid color
@@ -411,9 +455,9 @@ namespace BlueBrick
 			Settings.Default.GammaForSelection = getGammaFromNumericUpDown(this.GammaForSelectionNumericUpDown);
 			Settings.Default.GammaForSnappingPart = getGammaFromNumericUpDown(this.GammaForSnappingNumericUpDown);
 			// font
-			bool doesFontChanged = (!mOldSettings.DefaultTextFont.Equals(defaultFontNameLabel.Font)) ||
+			bool doesFontChanged = (!mOldSettings.DefaultTextFont.Equals(defaultTextFontNameLabel.Font)) ||
 									(mOldSettings.DefaultTextColor != defaultFontColorPictureBox.BackColor);
-			Settings.Default.DefaultTextFont = this.defaultFontNameLabel.Font;
+			Settings.Default.DefaultTextFont = this.defaultTextFontNameLabel.Font;
 			Settings.Default.DefaultTextColor = this.defaultFontColorPictureBox.BackColor;
 			// grid size
 			bool isSizeModified = (mOldSettings.DefaultGridSize != (int)this.gridSizeNumericUpDown.Value) ||
@@ -522,6 +566,13 @@ namespace BlueBrick
 		{
 			// copy back the original setting that may have changed if the user clicked on the restore button
 			copySettings(Settings.Default, mOldSettings, TabPageFilter.ALL);
+		}
+
+		private void updateChosenFont(Label label, Color color, Font newFont)
+		{
+			label.Text = newFont.Name + " " + newFont.SizeInPoints.ToString();
+			label.Font = newFont;
+			label.ForeColor = color;
 		}
 		#endregion
 
@@ -707,6 +758,61 @@ namespace BlueBrick
 		{
 			Settings.Default.RecentFiles.Clear();
 			this.clearRecentFilesButton.Enabled = false;
+		}
+		#endregion
+
+		#region edition
+		private void lineColorPictureBox_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.colorDialog.Color = lineColorPictureBox.BackColor;
+			// open the color box in modal
+			DialogResult result = this.colorDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				this.lineColorPictureBox.BackColor = this.colorDialog.Color;
+			}
+		}
+
+		private void guidelineColorPictureBox_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.colorDialog.Color = guidelineColorPictureBox.BackColor;
+			// open the color box in modal
+			DialogResult result = this.colorDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				this.guidelineColorPictureBox.BackColor = this.colorDialog.Color;
+			}
+		}
+
+		private void rulerFontColorPictureBox_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.colorDialog.Color = rulerFontColorPictureBox.BackColor;
+			// open the color box in modal
+			DialogResult result = this.colorDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				this.rulerFontColorPictureBox.BackColor = this.colorDialog.Color;
+				this.rulerFontNameLabel.ForeColor = this.colorDialog.Color;
+			}
+		}
+
+		private void rulerFontButton_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.fontDialog.Font = this.rulerFontNameLabel.Font;
+			// open the color box in modal
+			DialogResult result = this.fontDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				updateChosenFont(this.rulerFontNameLabel, this.rulerFontColorPictureBox.BackColor, this.fontDialog.Font);
+			}
 		}
 		#endregion
 
@@ -896,22 +1002,16 @@ namespace BlueBrick
 			colorSchemeComboBox.Items.Add(Resources.ColorSchemeClassic);
 		}
 
-		private void updateChosenFont(Font newFont)
-		{
-			this.defaultFontNameLabel.Text = newFont.Name + " " + newFont.SizeInPoints.ToString();
-			this.defaultFontNameLabel.Font = newFont;
-		}
-
 		private void defaultFontButton_Click(object sender, EventArgs e)
 		{
 			// set the color with the current back color of the picture box
-			this.fontDialog.Font = this.defaultFontNameLabel.Font;
+			this.fontDialog.Font = this.defaultTextFontNameLabel.Font;
 			// open the color box in modal
 			DialogResult result = this.fontDialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 			{
 				// if the user choose a color, set it back in the back color of the picture box
-				updateChosenFont(this.fontDialog.Font);
+				updateChosenFont(this.defaultTextFontNameLabel, this.defaultFontColorPictureBox.BackColor, this.fontDialog.Font);
 			}
 		}
 
@@ -925,7 +1025,7 @@ namespace BlueBrick
 			{
 				// if the user choose a color, set it back in the back color of the picture box
 				this.defaultFontColorPictureBox.BackColor = this.colorDialog.Color;
-				this.defaultFontNameLabel.ForeColor = this.colorDialog.Color;
+				this.defaultTextFontNameLabel.ForeColor = this.colorDialog.Color;
 			}
 		}
 

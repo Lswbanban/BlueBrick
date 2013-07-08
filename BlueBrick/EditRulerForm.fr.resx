@@ -126,6 +126,15 @@
   <data name="unitLabel.Text" xml:space="preserve">
     <value>Unité</value>
   </data>
+  <data name="unitComboBox.Items" xml:space="preserve">
+    <value>Tenon</value>
+  </data>
+  <data name="unitComboBox.Items3" xml:space="preserve">
+    <value>Mètre</value>
+  </data>
+  <data name="unitComboBox.Items4" xml:space="preserve">
+    <value>Pied</value>
+  </data>
   <data name="fontNameLabel.Text" xml:space="preserve">
     <value>Nom de police</value>
   </data>

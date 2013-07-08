@@ -64,8 +64,7 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
-	+ need to add an UI to change the offset setting when creating a Linear ruler (for easy creation of ruler which are just a line)
-	- settings: put all the default settings for rulers in the settings (color, size, font, etc)?
+	+ need to add an item in the context menu of ruler to make the settings as the ruler (for easy creation of ruler which are just a line)
 	- save/load in LDraw
 bug en release: la function Surface.isPointInside est buggué (marche en debug)
 CRASH bug when dragging a part over the task bar
