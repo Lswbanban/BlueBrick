@@ -1354,6 +1354,10 @@ namespace BlueBrick.MapData
 				set
 				{
 					mOrientation = value;
+					if (mOrientation < -90.0f)
+						mOrientation += 180.0f;
+					if (mOrientation > 90.0f)
+						mOrientation -= 180.0f;
 					this.updateMesurementImage();
 				}
 			}
