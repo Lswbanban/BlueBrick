@@ -206,6 +206,9 @@ namespace BlueBrick.MapData
 			else
 				mBricks.Insert(index, brickToAdd);
 
+			// reattach its rulers (if it had some previously)
+			brickToAdd.reattachAllRulersTemporarilyDetached();
+
 			// notify the part list view
 			MainForm.Instance.NotifyPartListForBrickAdded(this, brickToAdd);
 		}
@@ -254,6 +257,8 @@ namespace BlueBrick.MapData
 						if (connectedBrick != null)
 							ElectricCircuitChecker.check(connectedBrick);
 					}
+				// detach its rulers
+				brickToRemove.detachAllRulersTemporarily();
 
 				// remove the brick
 				mBricks.Remove(brickToRemove);
