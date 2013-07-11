@@ -152,6 +152,27 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// detach all the rulers currently attached to this brick, but keep a reference on them
+		/// such as it is possible to reattach them. This method can be used for undo/redo purpose
+		/// </summary>
+		public void detachAllRulersTemporarily()
+		{
+			// we just detach each ruler, but we don't remove the anchors from the anchor list
+			foreach (Anchor anchor in mAnchors)
+				anchor.AttachedRuler.detachControlPoint(anchor.AttachedPointIndex);
+		}
+
+		/// <summary>
+		/// reattach all the rulers that were temporarily detached previously
+		/// </summary>
+		public void reattachAllRulersTemporarilyDetached()
+		{
+			// reattach each ruler in the anchor list
+			foreach (Anchor anchor in mAnchors)
+				anchor.AttachedRuler.attachControlPointToBrick(anchor.AttachedPointIndex, mOwnerBrick);
+		}
+
+		/// <summary>
 		/// get the anchor for the specified ruler for its current control point
 		/// </summary>
 		/// <param name="rulerItem">the anchor or null if the specified control point is not attached</param>

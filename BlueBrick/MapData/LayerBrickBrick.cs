@@ -710,6 +710,7 @@ namespace BlueBrick.MapData
 			#endregion
 
 			#region update method
+			#region update image
 			static public PointF sGetMinMaxAndSize(PointF[] points, ref PointF min, ref PointF max)
 			{
 				min = points[0];
@@ -856,7 +857,9 @@ namespace BlueBrick.MapData
 					return sInvalidDummyImageToSkip;
 				}
 			}
+			#endregion
 
+			#region update connection points
 			private void updateConnectionPosition()
 			{
 				if (mConnectionPoints != null)
@@ -1006,7 +1009,9 @@ namespace BlueBrick.MapData
 						mActiveConnectionPointIndex = nextActiveConnectionIndex;
 				}
 			}
+			#endregion
 
+			#region ruler attachment
 			/// <summary>
 			/// Attach the ruler specified in the anchor parameter with the other anchor properties to this brick
 			/// </summary>
@@ -1030,6 +1035,25 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// detach all the rulers currently attached to this brick, but keep a reference on them
+			/// such as it is possible to reattach them. This method can be used for undo/redo purpose
+			/// </summary>
+			public void detachAllRulersTemporarily()
+			{
+				if (mAttachedRulers != null)
+					mAttachedRulers.detachAllRulersTemporarily();
+			}
+
+			/// <summary>
+			/// reattach all the rulers that were temporarily detached previously
+			/// </summary>
+			public void reattachAllRulersTemporarilyDetached()
+			{
+				if (mAttachedRulers != null)
+					mAttachedRulers.reattachAllRulersTemporarilyDetached();
+			}
+
+			/// <summary>
 			/// get the anchor for the specified ruler for its current control point
 			/// </summary>
 			/// <param name="rulerItem">the anchor or null if the specified control point is not attached</param>
@@ -1040,6 +1064,7 @@ namespace BlueBrick.MapData
 					return mAttachedRulers.getRulerAttachmentAnchor(rulerItem);
 				return null;
 			}
+			#endregion
 			#endregion
 
 			#region get image
