@@ -371,7 +371,7 @@ namespace BlueBrick.MapData
 			if ((mCurrentRulerWithHighlightedControlPoint != null) && !mCurrentRulerWithHighlightedControlPoint.IsCurrentControlPointAttached)
 			{
 				PointF currentControlPointPosition = mCurrentRulerWithHighlightedControlPoint.CurrentControlPoint;
-				mCurrentBrickUsedForRulerAttachement = Map.Instance.getTopMostBrickUnderMouse(currentControlPointPosition);
+				mCurrentBrickUsedForRulerAttachement = Map.Instance.getTopMostVisibleBrickUnderMouse(currentControlPointPosition);
 				return (mCurrentBrickUsedForRulerAttachement != null);
 			}
 			return false;
@@ -800,22 +800,25 @@ namespace BlueBrick.MapData
 							// update the control point if it's what we are doing
 							if (mMouseIsMovingControlPoint)
 							{
-								// move the control point
-								if (!mCurrentlyEditedRuler.IsCurrentControlPointAttached ||
-									mCurrentlyEditedRuler.BrickAttachedToCurrentControlPoint.SelectionArea.isPointInside(mouseCoordInStudSnapped))
-									mCurrentlyEditedRuler.CurrentControlPoint = mouseCoordInStudSnapped;
-								// move or update the bounding rectangle
-								if (mCurrentlyEditedRuler is CircularRuler)
-								{
-									// when moving a control point of a Circular ruler, we just shift the circle
-									this.moveBoundingSelectionRectangle(deltaMove);
-								}
-								else
-								{
-									// when moving a control point of a linear ruler, the ruler is deformed, so we need to recompute it
-									this.updateBoundingSelectionRectangle();
-								}
-								mustRefresh = true;
+								// check if we can move the control point
+                                bool isCurrentControlPointFree = !mCurrentlyEditedRuler.IsCurrentControlPointAttached;
+                                if (isCurrentControlPointFree || mCurrentlyEditedRuler.BrickAttachedToCurrentControlPoint.SelectionArea.isPointInside(mouseCoordInStudSnapped))
+                                {
+                                    // move the control point
+                                    mCurrentlyEditedRuler.CurrentControlPoint = mouseCoordInStudSnapped;
+                                    // move or update the bounding rectangle
+                                    if (isCurrentControlPointFree && (mCurrentlyEditedRuler is CircularRuler))
+                                    {
+                                        // when moving a free control point of a Circular ruler, we just shift the circle
+                                        this.moveBoundingSelectionRectangle(deltaMove);
+                                    }
+                                    else
+                                    {
+                                        // when moving a control point of a linear ruler, the ruler is deformed, so we need to recompute it
+                                        this.updateBoundingSelectionRectangle();
+                                    }
+                                    mustRefresh = true;
+                                }
 							}
 							else if (mMouseIsScalingRuler) // or scale it
 							{
