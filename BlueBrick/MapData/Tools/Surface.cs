@@ -304,8 +304,11 @@ namespace BlueBrick.MapData.Tools
 					PointF vertex2 = mVertice[i];
 
 					// check if vertex 1 and 2 are above and under the point to have a crossing
-					if (((vertex1.Y < point.Y) && (point.Y < vertex2.Y)) ||
-						((vertex2.Y < point.Y) && (point.Y < vertex1.Y)))
+                    // use <= on point2 in order to enter in the condition when the mouse point is exactly
+                    // on the same Y as one vertex, but do not use it on point1, otherwise we will also enter
+                    // in the condition during the next iteration, which will make the segment cross count wrong
+					if (((vertex1.Y < point.Y) && (point.Y <= vertex2.Y)) ||
+						((vertex2.Y <= point.Y) && (point.Y < vertex1.Y)))
 					{
 						// check if vertex 1 is on the right or left of the point
 						if (point.X < vertex1.X)
@@ -347,6 +350,12 @@ namespace BlueBrick.MapData.Tools
 							// else: if both vertice on the left, we don't count the crossing
 						}
 					}
+                    else if (((point.Y == vertex1.Y) && (point.Y == vertex2.Y)) &&
+                            ((point.X < vertex1.X) || (point.X < vertex2.X)))
+                    {
+                        // in this case the point is on the left and on the same line as an perfectly horizontal edge of the polygon
+                        segmentCrossCount++;
+                    }
 					// else: if both vertice above or both under, there is no crossing
 
 					// move the second vertex into the first one for the next iteration

@@ -63,11 +63,9 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
+REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- save/load in LDraw
-bug en release: la function Surface.isPointInside est buggué (marche en debug)
-CRASH bug when dragging a part over the task bar
-REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
@@ -90,6 +88,7 @@ REMOVE ALL THE TODO
 - MISSING FEATURE #11 (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
+- [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] BUG (Alban): You cannot duplicate bricks and connect them in the same mouse move
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10

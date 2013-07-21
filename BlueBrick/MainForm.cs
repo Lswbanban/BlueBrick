@@ -792,9 +792,11 @@ namespace BlueBrick
 			this.deselectAllToolStripMenuItem.Enabled = isThereAnyItemSelected;
 
 			// enable/disable the select path button (menu only)
-			this.selectPathToolStripMenuItem.Enabled = ((Map.Instance.SelectedLayer != null) &&
-														(Map.Instance.SelectedLayer is LayerBrick) &&
-														(Map.Instance.SelectedLayer.SelectedObjects.Count == 2));
+            bool selectedLayerIsBrick = (Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer is LayerBrick);
+			this.selectPathToolStripMenuItem.Enabled = selectedLayerIsBrick && (Map.Instance.SelectedLayer.SelectedObjects.Count == 2);
+
+            // enable/disable the save of the selection to the library
+            this.saveSelectionInLibraryToolStripMenuItem.Enabled = selectedLayerIsBrick && (Map.Instance.SelectedLayer.SelectedObjects.Count > 1);
 		}
 
 		/// <summary>
@@ -1469,6 +1471,11 @@ namespace BlueBrick
 				}
 			}
 		}
+
+        private void saveSelectionInLibraryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{

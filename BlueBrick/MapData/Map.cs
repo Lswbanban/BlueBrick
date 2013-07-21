@@ -850,17 +850,19 @@ namespace BlueBrick.MapData
 
 
 		/// <summary>
-		/// Get the most top brick under the mouse position
+		/// Get the top most VISIBLE brick under the mouse position.
+        /// All invisible brick layers are ignored during the search, and the search is done from the top layer to the bottom.
 		/// </summary>
 		/// <param name="mouseCoordInStud">the coordinate of the mouse cursor, where to look for</param>
 		/// <returns>the brick that is under the mouse coordinate or null if there is none.</returns>
-		public LayerBrick.Brick getTopMostBrickUnderMouse(PointF mouseCoordInStud)
+		public LayerBrick.Brick getTopMostVisibleBrickUnderMouse(PointF mouseCoordInStud)
 		{
 			// iterate on all the bricks of all the brick layers.
-			foreach (Layer layer in mLayers)
+            // but iterate on reverse order to get the top most brick layer
+			for (int i = mLayers.Count - 1; i >= 0; --i)
 			{
-				LayerBrick brickLayer = layer as LayerBrick;
-				if (brickLayer != null)
+				LayerBrick brickLayer = mLayers[i] as LayerBrick;
+				if ((brickLayer != null) && brickLayer.Visible)
 				{
 					LayerBrick.Brick topBrick = brickLayer.getBrickUnderMouse(mouseCoordInStud);
 					if (topBrick != null)
