@@ -48,27 +48,6 @@ namespace BlueBrick
 			ALL = GENERAL | EDITION | APPEARANCE | PART_LIBRARY | SHORTCUT_KEYS,
 		};
 
-		private class LanguageCodeAndName
-		{
-			public string mCode = null; // language string code on two characters 
-			public string mName = null; // language name is its own language
-			public LanguageCodeAndName(string code, string name) { mCode = code; mName = name; }
-		};
-
-		// An array that contains all the language supported in the application
-		private LanguageCodeAndName[] mLanguageCodeAndName = {
-			new LanguageCodeAndName("en", Resources.LanguageEnglish), // DEFAULT LANGUAGE SHOULD BE FIRST
-			new LanguageCodeAndName("fr", Resources.LanguageFrench),
-			new LanguageCodeAndName("de", Resources.LanguageGerman),
-			new LanguageCodeAndName("nl", Resources.LanguageDutch),
-			new LanguageCodeAndName("pt", Resources.LanguagePortuguese),
-			new LanguageCodeAndName("es", Resources.LanguageSpanish),
-			new LanguageCodeAndName("it", Resources.LanguageItalian),
-			new LanguageCodeAndName("no", Resources.LanguageNorwegian),
-			new LanguageCodeAndName("sv", Resources.LanguageSwedish)
-			//new LanguageCodeAndName("cn", Resources.LanguageChinese) //not integrated yet
-		};
-
 		// save the old value of the setting to restore the old value after a click on "Reset Default Settings" + "Cancel"
 		private Settings mOldSettings = new Settings();
 
@@ -601,10 +580,10 @@ namespace BlueBrick
 		private string getLanguageStringAccordingToComboBox()
 		{
 			// return the language string according to the selected index
-			if (languageComboBox.SelectedIndex < mLanguageCodeAndName.Length)
-				return mLanguageCodeAndName[languageComboBox.SelectedIndex].mCode;
+			if (languageComboBox.SelectedIndex < MainForm.sLanguageCodeAndName.Length)
+				return MainForm.sLanguageCodeAndName[languageComboBox.SelectedIndex].mCode;
 			// return the default language
-			return mLanguageCodeAndName[0].mCode;
+			return MainForm.sLanguageCodeAndName[0].mCode;
 		}
 
 		private bool setLanguageSettingAccordingToComboBox()
@@ -624,12 +603,12 @@ namespace BlueBrick
 
 			// add all the language names in the combobox
 			languageComboBox.Items.Clear();
-			for (int i = 0; i < mLanguageCodeAndName.Length; ++i)
+			for (int i = 0; i < MainForm.sLanguageCodeAndName.Length; ++i)
 			{
 				// add the language name in the combobox
-				languageComboBox.Items.Add(mLanguageCodeAndName[i].mName);
+				languageComboBox.Items.Add(MainForm.sLanguageCodeAndName[i].mName);
 				// check if this is the current selected one
-				if (Settings.Default.Language.Equals(mLanguageCodeAndName[i].mCode))
+				if (Settings.Default.Language.Equals(MainForm.sLanguageCodeAndName[i].mCode))
 					selectedIndex = i;
 			}
 

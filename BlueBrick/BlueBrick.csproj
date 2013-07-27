@@ -177,6 +177,12 @@
       <DependentUpon>PreferencesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Actions\Bricks\FlexMove.cs" />
+    <Compile Include="SaveGroupNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveGroupNameForm.Designer.cs">
+      <DependentUpon>SaveGroupNameForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaveLoad\LanguageManager.cs" />
     <Compile Include="LayerAreaOptionForm.cs">
       <SubType>Form</SubType>
@@ -574,6 +580,12 @@
     <EmbeddedResource Include="Properties\Resources.es.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="SaveGroupNameForm.fr.resx">
+      <DependentUpon>SaveGroupNameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveGroupNameForm.resx">
+      <DependentUpon>SaveGroupNameForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SplashScreen.cs</DependentUpon>
@@ -636,12 +648,12 @@
   <ItemGroup>
     <PublishFile Include="fr\BlueBrick.resources">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>
