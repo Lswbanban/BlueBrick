@@ -40,7 +40,28 @@ namespace BlueBrick
 
 		// reference on the main form (set in the constructor)
 		private static MainForm sInstance = null;
-		
+
+		public class LanguageCodeAndName
+		{
+			public string mCode = null; // language string code on two characters 
+			public string mName = null; // language name is its own language
+			public LanguageCodeAndName(string code, string name) { mCode = code; mName = name; }
+		};
+
+		// An array that contains all the language supported in the application
+		public static readonly LanguageCodeAndName[] sLanguageCodeAndName = {
+			new LanguageCodeAndName("en", Properties.Resources.LanguageEnglish), // DEFAULT LANGUAGE SHOULD BE FIRST
+			new LanguageCodeAndName("fr", Properties.Resources.LanguageFrench),
+			new LanguageCodeAndName("de", Properties.Resources.LanguageGerman),
+			new LanguageCodeAndName("nl", Properties.Resources.LanguageDutch),
+			new LanguageCodeAndName("pt", Properties.Resources.LanguagePortuguese),
+			new LanguageCodeAndName("es", Properties.Resources.LanguageSpanish),
+			new LanguageCodeAndName("it", Properties.Resources.LanguageItalian),
+			new LanguageCodeAndName("no", Properties.Resources.LanguageNorwegian),
+			new LanguageCodeAndName("sv", Properties.Resources.LanguageSwedish)
+			//new LanguageCodeAndName("cn", Properties.Resources.LanguageChinese) //not integrated yet
+		};
+
 		// a flag mostly never used, only when the application wants to restart, to prevent the user to
 		// be able to cancel the close of the application and then finally end up with two instance of the application
 		private bool mCanUserCancelTheApplicationClose = true;
@@ -1474,7 +1495,14 @@ namespace BlueBrick
 
         private void saveSelectionInLibraryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+			// create a window for editing the option of the group and show it
+			SaveGroupNameForm form = new SaveGroupNameForm();
+			DialogResult result = form.ShowDialog();
+			// check if we need to update the part lib
+			if (result == DialogResult.OK)
+			{
+				//TODO update the part lib
+			}
         }
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)

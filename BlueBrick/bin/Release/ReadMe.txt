@@ -66,8 +66,9 @@ Open bugs:
 REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- save/load in LDraw
-- [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
+- for the filter box, apply the filter on all tabs: make an option check bo to leave the choice.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
+- [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
 - [target 1.8] MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
@@ -91,6 +92,7 @@ REMOVE ALL THE TODO
 - [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar
 - [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] BUG (Alban): You cannot duplicate bricks and connect them in the same mouse move
+- [target 1.8] BUG (Alban): Check why the drawing of Text layer is slow.
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
