@@ -236,6 +236,7 @@ namespace BlueBrick.MapData
 			}
 
             public BrickType        mBrickType = BrickType.BRICK;
+			public string			mAuthor = string.Empty; // the name of the author of the brick
 			public string			mImageURL = null; // the URL on internet of the image for part list export in HTML
 			public string			mDescription = BlueBrick.Properties.Resources.TextUnknown; // the description of the part in the current language of the application
 			public string			mSortingKey = string.Empty; // the sorting key is used to sort all the part of the same folder inside the tab
@@ -421,11 +422,10 @@ namespace BlueBrick.MapData
 
 			private void readAuthorTag(ref System.Xml.XmlReader xmlReader)
 			{
-				// nothing for now, we just ignore the author tag
-				// maybe later we will display the author somewhere
+				// we store the author name because it can be used when the used create groups to expand the lib
 				if (!xmlReader.IsEmptyElement)
 				{
-					/*string author = */ xmlReader.ReadElementContentAsString();
+					mAuthor = xmlReader.ReadElementContentAsString();
 				}
 				else
 				{
@@ -1916,6 +1916,20 @@ namespace BlueBrick.MapData
 				formatedInfo += partInfo[3];
 			}
 			return formatedInfo;
+		}
+
+		/// <summary>
+		/// Get the author that created this part
+		/// </summary>
+		/// <param name="partNumber">the bluebrick part number</param>
+		/// <returns>the author named as written in the XML file or an empty string (never return null)</returns>
+		public string getAuthor(string partNumber)
+		{
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if (brickRef != null)
+				return brickRef.mAuthor;
+			return string.Empty;
 		}
 
 		/// <summary>
