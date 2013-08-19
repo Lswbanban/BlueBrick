@@ -1219,6 +1219,34 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// This static tool method return all the items at the top a hierachical level of a group of layer items.
+		/// The specified item list can be a forest of tree, this method will then return all the top node of
+		/// each tree.
+		/// </summary>
+		/// <param name="itemList">a list of layer items among which we should search the top items</param>
+		/// <returns>A list of items which are the top items of each tree, or null if the specified list is empty</returns>
+		public static List<LayerItem> sGetTopItemListFromList(List<LayerItem> itemList)
+		{
+			if ((itemList == null) || (itemList.Count == 0))
+				return null;
+
+			// clone the list and add the group in the list to explore
+			List<LayerItem> itemAndGroupList = new List<LayerItem>(itemList);
+			foreach (LayerItem item in itemList)
+			{
+				Layer.Group group = item.Group;
+				if ((group != null) && !itemAndGroupList.Contains(group))
+					itemAndGroupList.Add(group);
+			}
+			// then explore the list, and keep only the item that doesn't have a parent
+			List<LayerItem> result = new List<LayerItem>();
+			foreach (LayerItem item in itemAndGroupList)
+				if (item.Group == null)
+					result.Add(item);
+
+			return result;
+		}
+		/// <summary>
 		/// Compute the bounding rectangle that surround all the object in the
 		/// mSelectedObjects list.
 		/// </summary>

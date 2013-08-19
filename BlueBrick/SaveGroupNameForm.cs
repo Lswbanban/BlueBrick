@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using BlueBrick.MapData;
 
 namespace BlueBrick
 {
@@ -12,33 +13,92 @@ namespace BlueBrick
 	{
 		// use a dictionary to store all the descriptions in every languages
 		private Dictionary<string, string> mDescription = new Dictionary<string, string>();
+		private Layer.Group mGroupToSave = null;
+		private bool mWasGroupToSaveCreated = false;
 
 		#region init
 		public SaveGroupNameForm()
 		{
 			InitializeComponent();
+
+			// set the author with the default one
+			string author = string.Empty;
+			if (Properties.Settings.Default.DefaultAuthor.Equals("***NotInitialized***"))
+				author = Properties.Resources.DefaultAuthor;
+			else
+				author = Properties.Settings.Default.DefaultAuthor;
+
+			// get the list of the top items
+			List<Layer.LayerItem> topItems = Layer.sGetTopItemListFromList(Map.Instance.SelectedLayer.SelectedObjects);
+			// fill the name if there's only one group selected
+			if (topItems.Count == 1)
+			{
+				// if this window is called with one object, it should be normally a group
+				// otherwise the save group cannot be called
+				mGroupToSave = (topItems[0]) as Layer.Group;
+				mWasGroupToSaveCreated = false;
+				if (mGroupToSave.IsANamedGroup)
+				{
+					// get the part number
+					string partNumber = mGroupToSave.PartNumber;
+					// set the name and sorting key
+					nameTextBox.Text = partNumber;
+					canUngroupCheckBox.Checked = mGroupToSave.CanUngroup;
+					sortingKeyTextBox.Text = BrickLibrary.Instance.getSortingKey(partNumber);
+					// for the Author, check if it is the same
+					string partAuthor = BrickLibrary.Instance.getAuthor(partNumber);
+					if (author != partAuthor)
+						author += " & " + partAuthor;
+					// get the description
+					string description = BrickLibrary.Instance.getBrickInfo(partNumber)[3];
+					if (description != string.Empty)
+						mDescription.Add(BlueBrick.Properties.Settings.Default.Language, description);
+				}
+			}
+			else
+			{
+				// create a group temporally for the export purpose
+				mGroupToSave = new Layer.Group();
+				mGroupToSave.addItem(topItems);
+				mWasGroupToSaveCreated = true;
+			}
+
+			// set the author
+			this.authorTextBox.Text = author;
+
 			// fill the language combo
 			fillAndSelectLanguageComboBox();
-			// set the author with the default one
-			if (Properties.Settings.Default.DefaultAuthor.Equals("***NotInitialized***"))
-				this.authorTextBox.Text = Properties.Resources.DefaultAuthor;
-			else
-				this.authorTextBox.Text = Properties.Settings.Default.DefaultAuthor;
 		}
 
 		private void fillAndSelectLanguageComboBox()
 		{
+			int selectedIndex = 0;
+
 			// add all the language names in the combobox
 			languageCodeComboBox.Items.Clear();
 			for (int i = 0; i < MainForm.sLanguageCodeAndName.Length; ++i)
+			{
 				languageCodeComboBox.Items.Add(MainForm.sLanguageCodeAndName[i].mCode);
+				if (MainForm.sLanguageCodeAndName[i].mCode.Equals(BlueBrick.Properties.Settings.Default.Language))
+					selectedIndex = i;
+			}
 
 			// select english by default (which will also set the language name label)
-			languageCodeComboBox.SelectedIndex = 0;
+			languageCodeComboBox.SelectedIndex = selectedIndex;
+
+			// force the event to set the description because we are constructing the window and the focus event is skip
+			descriptionTextBox_Enter(this, null);
 		}
 		#endregion
 
 		#region event handler
+		private void SaveGroupNameForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			// when the form is closing, destroyed the temp group created
+			if (mWasGroupToSaveCreated)
+				mGroupToSave.ungroup();
+		}
+
 		private void nameTextBox_TextChanged(object sender, EventArgs e)
 		{
 			// check if the name is not empty
