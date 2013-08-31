@@ -1559,6 +1559,16 @@ namespace BlueBrick.MapData
 		#endregion
 
 		/// <summary>
+		/// Tell if the specified brick id is inside the library
+		/// </summary>
+		/// <param name="partNumber">the bluebrick part number</param>
+		/// <returns>true if the brick is loaded in the library, false otherwise</returns>
+		public bool isInLibrary(string partNumber)
+		{
+			return mBrickDictionary.ContainsKey(partNumber);
+		}
+
+		/// <summary>
 		/// Return the complete list of all the names of the bricks currently in the library
 		/// </summary>
 		/// <returns>the complete list of all the names of the bricks currently in the library</returns>

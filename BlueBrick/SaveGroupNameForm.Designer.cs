@@ -34,6 +34,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.nameTextBox = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.nameErrorLabel = new System.Windows.Forms.Label();
+			this.nameErrorCollection = new System.Windows.Forms.ComboBox();
 			this.sortingKeyTextBox = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.authorTextBox = new System.Windows.Forms.TextBox();
@@ -77,6 +79,8 @@
 			// groupBox1
 			// 
 			resources.ApplyResources(this.groupBox1, "groupBox1");
+			this.groupBox1.Controls.Add(this.nameErrorLabel);
+			this.groupBox1.Controls.Add(this.nameErrorCollection);
 			this.groupBox1.Controls.Add(this.sortingKeyTextBox);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.authorTextBox);
@@ -86,6 +90,25 @@
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
+			// 
+			// nameErrorLabel
+			// 
+			resources.ApplyResources(this.nameErrorLabel, "nameErrorLabel");
+			this.nameErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
+			this.nameErrorLabel.Name = "nameErrorLabel";
+			// 
+			// nameErrorCollection
+			// 
+			resources.ApplyResources(this.nameErrorCollection, "nameErrorCollection");
+			this.nameErrorCollection.BackColor = System.Drawing.SystemColors.Control;
+			this.nameErrorCollection.ForeColor = System.Drawing.SystemColors.WindowText;
+			this.nameErrorCollection.FormattingEnabled = true;
+			this.nameErrorCollection.Items.AddRange(new object[] {
+            resources.GetString("nameErrorCollection.Items"),
+            resources.GetString("nameErrorCollection.Items1"),
+            resources.GetString("nameErrorCollection.Items2"),
+            resources.GetString("nameErrorCollection.Items3")});
+			this.nameErrorCollection.Name = "nameErrorCollection";
 			// 
 			// sortingKeyTextBox
 			// 
@@ -192,5 +215,7 @@
 		private System.Windows.Forms.ComboBox languageCodeComboBox;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label languageNameLabel;
+		private System.Windows.Forms.ComboBox nameErrorCollection;
+		private System.Windows.Forms.Label nameErrorLabel;
 	}
 }
