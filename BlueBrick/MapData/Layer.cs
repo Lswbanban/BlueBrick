@@ -415,6 +415,14 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Return the direct item list (only this level, not including all the children)
+			/// </summary>
+			public List<LayerItem> Items
+			{
+				get { return mItems; }
+			}
+
+			/// <summary>
 			/// Tell if this group can be splitted and disbanded
 			/// </summary>
 			public bool CanUngroup

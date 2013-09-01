@@ -19,6 +19,7 @@ namespace BlueBrick
 		// group to save
 		private Layer.Group mGroupToSave = null;
 		private bool mWasGroupToSaveCreated = false;
+		System.Xml.XmlWriterSettings mXmlSettings = new System.Xml.XmlWriterSettings();
 
 		#region init
 		public SaveGroupNameForm()
@@ -78,6 +79,17 @@ namespace BlueBrick
 
 			// fill the language combo
 			fillAndSelectLanguageComboBox();
+
+			// configure the xmlSetting for writing
+			mXmlSettings.CheckCharacters = false;
+			mXmlSettings.CloseOutput = true;
+			mXmlSettings.ConformanceLevel = System.Xml.ConformanceLevel.Document;
+			mXmlSettings.Encoding = new UTF8Encoding(false);
+			mXmlSettings.Indent = true;
+			mXmlSettings.IndentChars = "\t";
+			mXmlSettings.NewLineChars = "\r\n";
+			mXmlSettings.NewLineOnAttributes = false;
+			mXmlSettings.OmitXmlDeclaration = false;
 		}
 
 		private void fillAndSelectLanguageComboBox()
@@ -116,10 +128,20 @@ namespace BlueBrick
 			return filename;
 		}
 
-		private void saveGroup()
+		private string getGroupName(string userInput)
 		{
-			// call the recursive function by starting to save the top group
-			saveGroup(mGroupToSave, nameTextBox.Text);
+			string groupName = userInput.Trim().ToUpper();
+			if (groupName.LastIndexOf('.') < 0)
+				return groupName + ".SET";
+			return groupName;
+		}
+
+		private string getSubGroupName(string groupName, int id)
+		{
+			int index = groupName.LastIndexOf('.');
+			if (index >= 0)
+				groupName = groupName.Substring(0, index);
+			return (groupName + ".SUB" + id.ToString()); 
 		}
 
 		/// <summary>
@@ -127,11 +149,72 @@ namespace BlueBrick
 		/// </summary>
 		/// <param name="group">The group to save</param>
 		/// <param name="groupName">the name of the group that should be used to save the file</param>
-		private void saveGroup(Layer.Group group, string groupName)
+		/// <param name="groupNumber">The sequential number of the group, starting with 0 for the top group</param>
+		private void saveGroup(Layer.Group group, string groupName, int groupNumber)
 		{
-			string filename = getFullFileNameFromGroupName(groupName);
-			XmlTextWriter xmlWriter = new XmlTextWriter(filename, new UTF8Encoding(false));
+			// use a counter for the sub-groups of this group, starting from this group number + 1
+			int subGroupNumber = groupNumber + 1;
 
+			// get the position of the first item to make it the origin
+			PointF origin = new PointF();
+			if (group.ItemsCount > 0)
+				origin = group.Items[0].Center;
+
+			// get the full filename and open the stream
+			string filename = getFullFileNameFromGroupName(groupName);
+			XmlWriter xmlWriter = System.Xml.XmlWriter.Create(filename, mXmlSettings);
+			// start to write the header and the top node
+			xmlWriter.WriteStartDocument();
+			xmlWriter.WriteStartElement("group");
+			// author
+			xmlWriter.WriteElementString("Author", this.authorTextBox.Text.Replace("&", "&amp;"));
+			// description
+			xmlWriter.WriteStartElement("Description");
+			foreach (KeyValuePair<string, string> keyValue in mDescription)
+				xmlWriter.WriteElementString(keyValue.Key, keyValue.Value);
+			xmlWriter.WriteEndElement(); // Description
+			// sorting key
+			xmlWriter.WriteElementString("SortingKey", this.sortingKeyTextBox.Text.Trim());
+			// in library? Only the top group is in library, the other one are hidden (normal behavior)
+			if (groupNumber != 0)
+				xmlWriter.WriteElementString("NotListedInLibrary", "true");
+			// can ungroup?
+			if (this.canUngroupCheckBox.Checked)
+				xmlWriter.WriteElementString("CanUngroup", "true");
+			else
+				xmlWriter.WriteElementString("CanUngroup", "false");
+			// sub part list
+			xmlWriter.WriteStartElement("SubPartList");
+			foreach (Layer.LayerItem item in group.Items)
+			{
+				xmlWriter.WriteStartElement("SubPart");
+				if (item.PartNumber != string.Empty)
+					xmlWriter.WriteAttributeString("id", item.PartNumber);
+				else
+					xmlWriter.WriteAttributeString("id", getSubGroupName(groupName, subGroupNumber++));
+				// position and angle
+				PointF center = item.Center;
+				center.X -= origin.X;
+				center.Y -= origin.Y;
+				XmlReadWrite.writePointFLowerCase(xmlWriter, "position", center);
+				XmlReadWrite.writeFloat(xmlWriter, "angle", item.Orientation);
+				// end of subpart
+				xmlWriter.WriteEndElement(); // SubPart
+			}
+			xmlWriter.WriteEndElement(); // SubPartList
+			// write the end element and close the stream
+			xmlWriter.WriteEndElement(); // group
+			xmlWriter.Close();
+
+			// now iterate on all the unnamed group recursively
+			// we do two iteration on the group list because we don't like to open several files at the same time
+			subGroupNumber = groupNumber + 1; // reinit the counter
+			foreach (Layer.LayerItem item in group.Items)
+				if (item.PartNumber == string.Empty)
+				{
+					saveGroup(item as Layer.Group, getSubGroupName(groupName, subGroupNumber), subGroupNumber);
+					subGroupNumber++;
+				}
 		}
 		#endregion
 		#region event handler
@@ -142,17 +225,24 @@ namespace BlueBrick
 				mGroupToSave.ungroup();
 		}
 
+		private void okButton_Click(object sender, EventArgs e)
+		{
+			// call the recursive function by starting to save the top group
+			saveGroup(mGroupToSave, getGroupName(nameTextBox.Text), 0);
+		}
+
 		private void nameTextBox_TextChanged(object sender, EventArgs e)
 		{
 			// construct the part number from the text in the textbox
-			string partNumber = nameTextBox.Text.Trim().ToUpper();
+			string partNumber = this.getGroupName(nameTextBox.Text);
 
 			// check if the name is empty or contains any forbidden char for a file name
-			bool disableOkButton = ((partNumber.Length == 0) || (partNumber.IndexOfAny(System.IO.Path.GetInvalidFileNameChars()) >= 0)
+			bool isEmptyName = (nameTextBox.Text.Trim().Length == 0);
+			bool disableOkButton = (isEmptyName || (partNumber.IndexOfAny(System.IO.Path.GetInvalidFileNameChars()) >= 0)
 									|| (partNumber.IndexOfAny(System.IO.Path.GetInvalidPathChars()) >= 0));
 
 			// set the corresponding error text
-			if (partNumber.Length == 0)
+			if (isEmptyName)
 				this.nameErrorLabel.Text = mErrorHint[0] as string;
 			else if (disableOkButton)
 				this.nameErrorLabel.Text = mErrorHint[1] as string;

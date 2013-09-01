@@ -168,6 +168,14 @@ namespace BlueBrick.MapData
 			writer.WriteElementString("Y", point.Y.ToString(System.Globalization.CultureInfo.InvariantCulture));
 			writer.WriteEndElement();
 		}
+
+		public static void writePointFLowerCase(System.Xml.XmlWriter writer, string name, PointF point)
+		{
+			writer.WriteStartElement(name);
+			writer.WriteElementString("x", point.X.ToString(System.Globalization.CultureInfo.InvariantCulture));
+			writer.WriteElementString("y", point.Y.ToString(System.Globalization.CultureInfo.InvariantCulture));
+			writer.WriteEndElement();
+		}
 		#endregion
 
 		#region rectangle F
