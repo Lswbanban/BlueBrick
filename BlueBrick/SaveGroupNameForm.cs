@@ -14,6 +14,9 @@ namespace BlueBrick
 	{
 		// use a dictionary to store all the descriptions in every languages
 		private Dictionary<string, string> mDescription = new Dictionary<string, string>();
+		// store the error message in an array of string
+		private string[] mErrorHint = null;
+		// group to save
 		private Layer.Group mGroupToSave = null;
 		private bool mWasGroupToSaveCreated = false;
 
@@ -28,8 +31,11 @@ namespace BlueBrick
 				author = Properties.Resources.DefaultAuthor;
 			else
 				author = Properties.Settings.Default.DefaultAuthor;
-
-			// call the event for the name of the group in order to set the correct color and error message
+			
+			// save the error list then clear the field
+			char[] separator = { '|' };
+			mErrorHint = this.nameErrorLabel.Text.Split(separator);
+			// call explicitly the event to set the correct color and error message
 			this.nameTextBox_TextChanged(this, null);
 
 			// get the list of the top items
@@ -147,9 +153,9 @@ namespace BlueBrick
 
 			// set the corresponding error text
 			if (partNumber.Length == 0)
-				this.nameErrorLabel.Text = this.nameErrorCollection.Items[0] as string;
+				this.nameErrorLabel.Text = mErrorHint[0] as string;
 			else if (disableOkButton)
-				this.nameErrorLabel.Text = this.nameErrorCollection.Items[1] as string;
+				this.nameErrorLabel.Text = mErrorHint[1] as string;
 			else
 				this.nameErrorLabel.Text = string.Empty;
 
@@ -167,12 +173,12 @@ namespace BlueBrick
 					if (fileInfo.Exists)
 					{
 						nameTextBox.BackColor = Color.Gold;
-						this.nameErrorLabel.Text = this.nameErrorCollection.Items[3] as string;
+						this.nameErrorLabel.Text = mErrorHint[3] as string;
 					}
 					else
 					{
 						disableOkButton = true;
-						this.nameErrorLabel.Text = this.nameErrorCollection.Items[2] as string;
+						this.nameErrorLabel.Text = mErrorHint[2] as string;
 					}
 				}
 			}
