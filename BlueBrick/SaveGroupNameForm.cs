@@ -19,7 +19,10 @@ namespace BlueBrick
 		// group to save
 		private Layer.Group mGroupToSave = null;
 		private bool mWasGroupToSaveCreated = false;
-		System.Xml.XmlWriterSettings mXmlSettings = new System.Xml.XmlWriterSettings();
+		// xml setting for saving
+		private System.Xml.XmlWriterSettings mXmlSettings = new System.Xml.XmlWriterSettings();
+		// An array of forbidden chars
+		private char[] mForbiddenChar = null;
 
 		#region init
 		public SaveGroupNameForm()
@@ -90,6 +93,14 @@ namespace BlueBrick
 			mXmlSettings.NewLineChars = "\r\n";
 			mXmlSettings.NewLineOnAttributes = false;
 			mXmlSettings.OmitXmlDeclaration = false;
+
+			// create an array of forbidden char for the group name
+			List<char> charList = new List<char>(System.IO.Path.GetInvalidFileNameChars());
+			foreach (char character in System.IO.Path.GetInvalidPathChars())
+				if (!charList.Contains(character))
+					charList.Add(character);
+			charList.Add('&'); // the ampersome is authorized in file name, but brings trouble in xml, since it is the escape char.				
+			mForbiddenChar = charList.ToArray();
 		}
 
 		private void fillAndSelectLanguageComboBox()
@@ -238,8 +249,7 @@ namespace BlueBrick
 
 			// check if the name is empty or contains any forbidden char for a file name
 			bool isEmptyName = (nameTextBox.Text.Trim().Length == 0);
-			bool disableOkButton = (isEmptyName || (partNumber.IndexOfAny(System.IO.Path.GetInvalidFileNameChars()) >= 0)
-									|| (partNumber.IndexOfAny(System.IO.Path.GetInvalidPathChars()) >= 0));
+			bool disableOkButton = (isEmptyName || (partNumber.IndexOfAny(mForbiddenChar) >= 0));
 
 			// set the corresponding error text
 			if (isEmptyName)
