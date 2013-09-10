@@ -71,7 +71,8 @@ REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 	- saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
-	- add the custom part in the lib after saving (do not reload all the lib)
+	- group cannot be updated in the part lib (because the relaunding skip it: need to add a param to the load method to skip or not)
+	- also need to test the creation of the Custom tab if not existing
 - NEW FEATURE (Alban): Add a sorting order for the parts in the library based on a new <SortingKey> tag in the XML file of the part
 	- concatenate the part number with the sorting key, such as we have always a fix order even if no sorting key is defined
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.

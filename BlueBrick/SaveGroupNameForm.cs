@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using BlueBrick.MapData;
 using System.Xml;
+using System.IO;
 
 namespace BlueBrick
 {
@@ -23,6 +24,15 @@ namespace BlueBrick
 		private System.Xml.XmlWriterSettings mXmlSettings = new System.Xml.XmlWriterSettings();
 		// An array of forbidden chars
 		private char[] mForbiddenChar = null;
+		// the resulting files to load
+		private List<FileInfo> mNewXmlFilesToLoad = new List<FileInfo>();
+
+		#region get/set
+		public List<FileInfo> NewXmlFilesToLoad
+		{
+			get { return mNewXmlFilesToLoad; }
+		}
+		#endregion
 
 		#region init
 		public SaveGroupNameForm()
@@ -133,7 +143,7 @@ namespace BlueBrick
 		/// <returns>The full path of the file that will be saved, including extension</returns>
 		private string getFullFileNameFromGroupName(string groupName)
 		{
-			string filename = Application.StartupPath + @"/parts/Custom/" + groupName.Trim().ToUpper();
+			string filename = PartLibraryPanel.sFullPathForCustomParts + groupName.Trim().ToUpper();
 			if (!filename.EndsWith(".XML"))
 				filename += ".XML";
 			return filename;
@@ -171,8 +181,10 @@ namespace BlueBrick
 			if (group.ItemsCount > 0)
 				origin = group.Items[0].Center;
 
-			// get the full filename and open the stream
+			// get the full filename and save it in the array
 			string filename = getFullFileNameFromGroupName(groupName);
+			mNewXmlFilesToLoad.Add(new FileInfo(filename));
+			// open the stream
 			XmlWriter xmlWriter = System.Xml.XmlWriter.Create(filename, mXmlSettings);
 			// start to write the header and the top node
 			xmlWriter.WriteStartDocument();

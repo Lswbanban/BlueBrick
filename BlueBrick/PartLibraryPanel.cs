@@ -76,6 +76,11 @@ namespace BlueBrick
 			public List<Image> mImageList = new List<Image>(); // all the image not resized in this folder
 			public bool mRespectProportion = true; // the proportion flag for this category
 			public List<BrickLibrary.Brick> mGroupList = new List<BrickLibrary.Brick>(); // all the group parts in this folder
+
+			public CategoryBuildingInfo(bool respectProportion)
+			{
+				mRespectProportion = respectProportion;
+			}
 		}
 
 		/// <summary>
@@ -113,6 +118,21 @@ namespace BlueBrick
 		{
 			set { mDraggingPartNumber = value; }
 			get { return mDraggingPartNumber; }
+		}
+
+		public static string sFolderNameForCustomParts
+		{
+			get { return "Custom"; }
+		}
+
+		public static string sFullPathForCustomParts
+		{
+			get { return (PartLibraryPanel.sFullPathForLibrary + @"/" + PartLibraryPanel.sFolderNameForCustomParts + @"/"); }
+		}
+
+		public static string sFullPathForLibrary
+		{
+			get { return (Application.StartupPath + @"/parts"); }
 		}
 		#endregion
 
@@ -193,7 +213,7 @@ namespace BlueBrick
 			this.TabPages.Clear();
 			// then search the "parts" folder, if not here maybe we should display
 			// an error message (something wrong with the installation of the application?)
-			DirectoryInfo partsFolder = new DirectoryInfo(Application.StartupPath + @"/parts");
+			DirectoryInfo partsFolder = new DirectoryInfo(PartLibraryPanel.sFullPathForLibrary);
 			if (partsFolder.Exists)
 			{
 				// create two list to record the exception thrown by some files
@@ -220,39 +240,11 @@ namespace BlueBrick
 						displaySetting = new PartLibDisplaySetting(true, false);
 
 					// create a building info and add it to the list
-					CategoryBuildingInfo buildingInfo = new CategoryBuildingInfo();
+					CategoryBuildingInfo buildingInfo = new CategoryBuildingInfo(displaySetting.mRespectProportion);
 					categoryList.Add(buildingInfo);
 
-					// save the proportion flag in the building info
-					buildingInfo.mRespectProportion = displaySetting.mRespectProportion;
-
-					// add the tab in the tab control, based on the name of the folder
-					TabPage newTabPage = new TabPage(category.Name);
-					newTabPage.Name = category.Name;
-					newTabPage.ContextMenuStrip = createContextMenuItemForATabPage(displaySetting.mLargeIcons, displaySetting.mRespectProportion);
-					this.TabPages.Add(newTabPage);
-
-					// then for the new tab added, we add a list control to 
-					// fill it with the pictures found in that folder
-					ListView newListView = buildingInfo.mListView; // get a shortcut on the list view
-					// set the property of the list view
-					newListView.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-					newListView.Dock = DockStyle.Fill;
-					newListView.Alignment = ListViewAlignment.SnapToGrid;
-					newListView.BackColor = Settings.Default.PartLibBackColor;
-					newListView.ShowItemToolTips = Settings.Default.PartLibDisplayBubbleInfo;
-					newListView.MultiSelect = false;
-					newListView.ListViewItemSorter = mListViewItemComparer; // we want to sort the items based on their Name (which contains a sorting key)
-					newListView.View = View.Tile; // we always use this view, because of the layout of the item
-					if (displaySetting.mLargeIcons)
-						newListView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
-					else
-						newListView.TileSize = PART_ITEM_SMALL_SIZE_WITH_MARGIN;
-					newListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
-					newListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
-					newListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listView_MouseMove);
-					// add the list view to the tab page
-					newTabPage.Controls.Add(newListView);
+					// create the tab page corresponding to the folder
+					addOneTabPageWithItsListView(buildingInfo, category.Name, displaySetting);
 
 					// fill the list view with the parts loaded from the files
 					fillListViewWithParts(buildingInfo, category, imageFileUnloadable, xmlFileUnloadable);
@@ -261,13 +253,7 @@ namespace BlueBrick
 				// reiterate on a second pass on all the list view, because we need to add the group parts
 				foreach (CategoryBuildingInfo buildingInfo in categoryList)
 				{
-					// add the group parts in the list view. We need to do it after parsing the whole library
-					// because a group part can reference any part in any folder
-					fillListViewWithGroups(buildingInfo, imageFileUnloadable, xmlFileUnloadable);
-					// then fill the list view (we cannot pass the building info as parameter because this function is called elsewhere)
-					fillListViewFromImageList(buildingInfo.mListView, buildingInfo.mImageList, buildingInfo.mRespectProportion);
-					// sort the list view after we added all the parts
-					buildingInfo.mListView.Sort();
+					fillListViewWithGroupAndImageToFinalize(buildingInfo, imageFileUnloadable, xmlFileUnloadable);
 				}
 
 				// after the loading is finished eventually display the error messages
@@ -276,6 +262,53 @@ namespace BlueBrick
 				// after creating all the tabs, sort them according to the settings
 				updateAppearanceAccordingToSettings(true, false, false, true);
 			}
+		}
+
+		/// <summary>
+		/// This function should be called when you want to load more files after the loading of the library is finished.
+		/// This function is mainly called when the user save a new group in the library. This function will not delete any
+		/// part, but will update the existing part if you reload the same part.
+		/// </summary>
+		/// <param name="xmlFiles">The list of group xml to load</param>
+		public void loadAdditionnalGroups(List<FileInfo> xmlFiles)
+		{
+			// use a default display setting that won't be used to change the setting of the Custom tab page
+			// unless this tab page doesn't exist, in which case the default setting is suitable
+			PartLibDisplaySetting displaySetting = new PartLibDisplaySetting(true, false);
+			CategoryBuildingInfo buildingInfo = new CategoryBuildingInfo(displaySetting.mRespectProportion);
+
+			// first check if the Custom tab exits. If not we need to create it.
+			if (this.TabPages.ContainsKey(PartLibraryPanel.sFolderNameForCustomParts))
+			{
+				// the tabe page exist, so get it
+				TabPage tabPage = this.TabPages[this.TabPages.IndexOfKey(PartLibraryPanel.sFolderNameForCustomParts)];
+				// patch the building info with the correct listview
+				buildingInfo.mListView = tabPage.Controls[0] as ListView;
+				// patch also the image list
+				buildingInfo.mImageList = reconstructImageListFromPartLib(buildingInfo.mListView);
+				// patch the respect proportion
+				buildingInfo.mRespectProportion = (tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.RESPECT_PROPORTION] as ToolStripMenuItem).Checked;
+			}
+			else
+			{
+				// The custom page doesn't exist we need to create a new one
+				addOneTabPageWithItsListView(buildingInfo, PartLibraryPanel.sFolderNameForCustomParts, displaySetting);
+			}
+
+			// now load the xml files
+			List<FileNameWithException> imageFileUnloadable = new List<FileNameWithException>();
+			List<FileNameWithException> xmlFileUnloadable = new List<FileNameWithException>();
+			fillListViewWithPartsWithoutImage(buildingInfo, xmlFiles, xmlFileUnloadable);
+
+			// the fill the list view with the new groups
+			fillListViewWithGroupAndImageToFinalize(buildingInfo, imageFileUnloadable, xmlFileUnloadable);
+
+			// after the loading is finished eventually display the error messages
+			displayErrorMessage(imageFileUnloadable, xmlFileUnloadable);
+
+			// Select the Custom Tab page
+			this.SelectedIndex = this.TabPages.IndexOfKey(PartLibraryPanel.sFolderNameForCustomParts);
+			updateAppearanceAccordingToSettings(false, false, false, true);
 		}
 
 		private void displayErrorMessage(List<FileNameWithException> imageFileUnloadable, List<FileNameWithException> xmlFileUnloadable)
@@ -314,6 +347,46 @@ namespace BlueBrick
 				LoadErrorForm messageBox = new LoadErrorForm(Properties.Resources.ErrorMsgTitleWarning, message, details);
 				messageBox.Show();
 			}
+		}
+
+		/// <summary>
+		/// This method create a new TabPage into the tab control of the library panel, and also create the ListView
+		/// that holds the brick items, which is the only child of the TabPage
+		/// </summary>
+		/// <param name="buildingInfo">The building info that can be used to create the tab</param>
+		/// <param name="tabPageName">The name of the tab page (which should be the name of the folder)</param>
+		/// <param name="displaySetting">a display setting to correctly init the tab properties</param>
+		private void addOneTabPageWithItsListView(CategoryBuildingInfo buildingInfo, string tabPageName, PartLibDisplaySetting displaySetting)
+		{
+			// add the tab in the tab control, based on the name of the folder
+			TabPage newTabPage = new TabPage(tabPageName);
+			newTabPage.Name = tabPageName;
+			newTabPage.ContextMenuStrip = createContextMenuItemForATabPage(displaySetting.mLargeIcons, displaySetting.mRespectProportion);
+			this.TabPages.Add(newTabPage);
+
+			// then for the new tab added, we add a list control to 
+			// fill it with the pictures found in that folder
+			// but we don't need to create it, we use the one created in the building info
+			ListView newListView = buildingInfo.mListView; // get a shortcut on the list view
+			// set the property of the list view
+			newListView.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+			newListView.Dock = DockStyle.Fill;
+			newListView.Alignment = ListViewAlignment.SnapToGrid;
+			newListView.BackColor = Settings.Default.PartLibBackColor;
+			newListView.ShowItemToolTips = Settings.Default.PartLibDisplayBubbleInfo;
+			newListView.MultiSelect = false;
+			newListView.ListViewItemSorter = mListViewItemComparer; // we want to sort the items based on their Name (which contains a sorting key)
+			newListView.View = View.Tile; // we always use this view, because of the layout of the item
+			if (displaySetting.mLargeIcons)
+				newListView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
+			else
+				newListView.TileSize = PART_ITEM_SMALL_SIZE_WITH_MARGIN;
+			newListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
+			newListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
+			newListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listView_MouseMove);
+
+			// add the list view to the tab page
+			newTabPage.Controls.Add(newListView);
 		}
 
 		private void addOnePartInListView(CategoryBuildingInfo buildingInfo, BrickLibrary.Brick brick)
@@ -356,11 +429,10 @@ namespace BlueBrick
 
 		private void fillListViewWithParts(CategoryBuildingInfo buildingInfo, DirectoryInfo folder, List<FileNameWithException> imageFileUnloadable, List<FileNameWithException> xmlFileUnloadable)
 		{
-			// create a list of image to remember which images were loaded
-			List<string> xmlFileLoaded = new List<string>();
-
-			// get the list of image in the folder
+			// get the list of xml and image in the folder
+			List<FileInfo> xmlFiles = new List<FileInfo>(folder.GetFiles("*.xml"));
 			FileInfo[] imageFiles = folder.GetFiles("*.gif");
+			// then iterate on all the images
 			foreach (FileInfo file in imageFiles)
 			{
 				try
@@ -376,9 +448,14 @@ namespace BlueBrick
 						// get the name without extension and use upper case
 						string name = file.Name.Substring(0, file.Name.Length - 4).ToUpperInvariant();
 
-						// push the xml file name in the list first because we don't want to try to load
+						// remove the xml file name from the list first because we don't want to try to load
 						// it a second time if an exception is raised.
-						xmlFileLoaded.Add(xmlFileName);
+						foreach (FileInfo xmlFileInfo in xmlFiles)
+							if (xmlFileInfo.FullName.Equals(xmlFileName))
+							{
+								xmlFiles.Remove(xmlFileInfo);
+								break;
+							}
 
 						// put the image in the database
 						BrickLibrary.Brick brick = BrickLibrary.Instance.AddBrick(name, image, xmlFileName);
@@ -401,23 +478,32 @@ namespace BlueBrick
 
 			// now check if there's xml files without GIF. In that case we still load them but these
 			// parts will be ignored by BlueBrick
-			FileInfo[] xmlFiles = folder.GetFiles("*.xml");
+			fillListViewWithPartsWithoutImage(buildingInfo, xmlFiles, xmlFileUnloadable);
+		}
+
+		/// <summary>
+		/// This method should be call when you want to load the xml files which don't have a corresponding gif file
+		/// of the same name. This method is actually called by the method wich load all the gif of a folder, as a second pass.
+		/// </summary>
+		/// <param name="buildingInfo">The building info, mainly used to store the group encountered</param>
+		/// <param name="xmlFiles">The list of xml file to load</param>
+		/// <param name="xmlFileUnloadable">a list to store the errors when some file cannot be loaded</param>
+		private void fillListViewWithPartsWithoutImage(CategoryBuildingInfo buildingInfo, List<FileInfo> xmlFiles, List<FileNameWithException> xmlFileUnloadable)
+		{
+			// iterate on the array of xmlFiles
 			foreach (FileInfo file in xmlFiles)
 			{
 				try
 				{
-					if (!xmlFileLoaded.Contains(file.FullName))
-					{
-						// get the name without extension and use upper case
-						string name = file.Name.Substring(0, file.Name.Length - 4).ToUpperInvariant();
+					// get the name without extension and use upper case
+					string name = file.Name.Substring(0, file.Name.Length - 4).ToUpperInvariant();
 
-                        // add the brick in the library
-                        BrickLibrary.Brick brickAdded = BrickLibrary.Instance.AddBrick(name, null, file.FullName);
+                    // add the brick in the library
+                    BrickLibrary.Brick brickAdded = BrickLibrary.Instance.AddBrick(name, null, file.FullName);
 
-                        // if the image is a group, add it to the group list
-                        if (brickAdded.IsAGroup)
-							buildingInfo.mGroupList.Add(brickAdded);
-					}
+                    // if the image is a group, add it to the group list
+                    if (brickAdded.IsAGroup)
+						buildingInfo.mGroupList.Add(brickAdded);
 				}
 				catch (Exception e)
 				{
@@ -448,7 +534,19 @@ namespace BlueBrick
 			}
         }
 
-		private void fillListViewFromImageList(ListView listViewToFill, List<Image> imageList, bool respectProportion)
+		private void fillListViewWithGroupAndImageToFinalize(CategoryBuildingInfo buildingInfo, List<FileNameWithException> imageFileUnloadable, List<FileNameWithException> xmlFileUnloadable)
+		{
+			// then add the group parts in the list view. We need to do it after parsing the whole library
+			// because a group part can reference any part in any folder
+			fillListViewWithGroups(buildingInfo, imageFileUnloadable, xmlFileUnloadable);
+			// then fill the list view (we cannot pass the building info as parameter because this function is called elsewhere)
+			fillListViewWithImageList(buildingInfo.mListView, buildingInfo.mImageList, buildingInfo.mRespectProportion);
+			// sort the list view after we added all the parts
+			buildingInfo.mListView.Sort();
+		}
+
+
+		private void fillListViewWithImageList(ListView listViewToFill, List<Image> imageList, bool respectProportion)
 		{
 			// compute the global rescale factor if we need to respect the proportions
 			float globalImageRescaleFactor = 1.0f;
@@ -757,25 +855,32 @@ namespace BlueBrick
 			}
 		}
 
+		private List<Image> reconstructImageListFromPartLib(ListView listView)
+		{
+			// create a list of image with all the original part image from the part lib
+			// but do it in the correct order, so we use an array for that to put the original image
+			// directly inside the good index (so at the right place)
+			// also since the user can change the proportion flag while the list is filtered,
+			// also take into account the filtered list view items
+			Image[] imageArray = new Image[listView.Items.Count + mFilteredItems.Count];
+			foreach (ListViewItem item in listView.Items)
+				imageArray[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
+			foreach (ListViewItem item in mFilteredItems)
+				imageArray[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
+			// return the result as a list of image
+			return (new List<Image>(imageArray));
+		}
+
 		private void menuItem_RespectProportionClick(object sender, EventArgs e)
 		{
 			ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
 			ListView listView = this.SelectedTab.Controls[0] as ListView;
 			if (listView != null && menuItem != null)
 			{
-				// create a list of image with all the original part image from the part lib
-				// but do it in the correct order, so we use an array for that to put the original image
-				// directly inside the good index (so at the right place)
-				// also since the user can change the proportion flag while the list is filtered,
-				// also take into account the filtered list view items
-				Image[] imageList = new Image[listView.Items.Count + mFilteredItems.Count];
-				foreach (ListViewItem item in listView.Items)
-					imageList[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
-				foreach (ListViewItem item in mFilteredItems)
-					imageList[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
-
+				// we need to reconstruct the image list
+				List<Image> imageList = reconstructImageListFromPartLib(listView);
 				// regenerate the two image list for the current list view (converting the array into a list)
-				fillListViewFromImageList(listView, new List<Image>(imageList), menuItem.Checked);
+				fillListViewWithImageList(listView, imageList, menuItem.Checked);
 			}
 		}
 
