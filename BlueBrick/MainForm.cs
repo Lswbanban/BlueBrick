@@ -1499,9 +1499,9 @@ namespace BlueBrick
 			SaveGroupNameForm form = new SaveGroupNameForm();
 			DialogResult result = form.ShowDialog();
 			// check if we need to update the part lib
-			if (result == DialogResult.OK)
+			if ((result == DialogResult.OK) && (form.NewXmlFilesToLoad.Count > 0))
 			{
-				//TODO update the part lib
+				this.partsTabControl.loadAdditionnalGroups(form.NewXmlFilesToLoad);
 			}
         }
 
