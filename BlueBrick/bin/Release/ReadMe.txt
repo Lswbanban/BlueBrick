@@ -73,8 +73,6 @@ REMOVE ALL THE TODO
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
 	- group cannot be updated in the part lib (because the relaunding skip it: need to add a param to the load method to skip or not)
 	- also need to test the creation of the Custom tab if not existing
-- NEW FEATURE (Alban): Add a sorting order for the parts in the library based on a new <SortingKey> tag in the XML file of the part
-	- concatenate the part number with the sorting key, such as we have always a fix order even if no sorting key is defined
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
@@ -106,6 +104,7 @@ REMOVE ALL THE TODO
 - BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 
 Bug fixed in 1.8.0.0:
+- NEW FEATURE (Alban): Add a sorting order for the parts in the library based on a new <SortingKey> tag in the XML file of the part
 - NEW FEATURE (Alban): Add more contextual cursors inside the layout panel (hidden layer, default grid cursor, new text, ruler cursors, etc...)
 - NEW FEATURE (Alban): More precise Selection: Now the picking and rectangle selection use the hull of the part, and the text rectangle for rotated text, instead of the axis aligned bounding box of the part or text.
 - NEW FEATURE #9 and #45 (Loys): Use the clipboard to allow copy paste between several BleuBrick instances (support also copy + load + paste)

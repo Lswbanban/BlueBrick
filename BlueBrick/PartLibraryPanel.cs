@@ -411,7 +411,10 @@ namespace BlueBrick
 				// also set the name to allow the sorting of the part
 				// we could have use the Text property and the Sorting property of the listview, but the stupid
 				// listview display the Text in the bubble info even when ShowToolTips is false.
-				newItem.Name = BrickLibrary.Instance.getSortingKey(brick.mPartNumber);
+				// also concatenate the sorting key with the part number such as we always have a fix order,
+				// even after several filtering and even if the sorting key is not set. But if it is set,
+				// the sorting key has the priority since it is place in front
+				newItem.Name = BrickLibrary.Instance.getSortingKey(brick.mPartNumber) + brick.mPartNumber;
 				// and insert the item
 				try
 				{
