@@ -71,7 +71,7 @@ REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 	- saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
-	- group cannot be updated in the part lib (because the relaunding skip it: need to add a param to the load method to skip or not)
+	- avoid the creation of cyclic group (instead of detecting it at reloading)
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
