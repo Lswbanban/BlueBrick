@@ -793,6 +793,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BlueBrick has encountered a problem while saving your group in the &quot;parts/Custom&quot; folder. Please read the following message for more details:.
+        /// </summary>
+        internal static string ErrorMsgCannotSaveCustomPart {
+            get {
+                return ResourceManager.GetString("ErrorMsgCannotSaveCustomPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot save the map &amp;..
         /// </summary>
         internal static string ErrorMsgCannotSaveMap {

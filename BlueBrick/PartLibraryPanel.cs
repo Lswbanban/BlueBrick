@@ -270,7 +270,7 @@ namespace BlueBrick
 		/// part, but will update the existing part if you reload the same part.
 		/// </summary>
 		/// <param name="xmlFiles">The list of group xml to load</param>
-		public void loadAdditionnalGroups(List<FileInfo> xmlFiles)
+		public void loadAdditionnalGroups(List<FileInfo> xmlFiles, List<string> groupNames)
 		{
 			// use a default display setting that won't be used to change the setting of the Custom tab page
 			// unless this tab page doesn't exist, in which case the default setting is suitable
@@ -288,6 +288,16 @@ namespace BlueBrick
 				buildingInfo.mImageList = reconstructImageListFromPartLib(buildingInfo.mListView);
 				// patch the respect proportion
 				buildingInfo.mRespectProportion = (tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.RESPECT_PROPORTION] as ToolStripMenuItem).Checked;
+
+				// now check if the part is already in, and remove it in order to replace it
+				foreach (string name in groupNames)
+					foreach (ListViewItem item in buildingInfo.mListView.Items)
+						if (item.Tag.Equals(name))
+						{
+							buildingInfo.mImageList.RemoveAt(item.ImageIndex);
+							buildingInfo.mListView.Items.Remove(item);
+							break;
+						}
 			}
 			else
 			{
@@ -307,8 +317,19 @@ namespace BlueBrick
 			displayErrorMessage(imageFileUnloadable, xmlFileUnloadable);
 
 			// Select the Custom Tab page
-			this.SelectedIndex = this.TabPages.IndexOfKey(PartLibraryPanel.sFolderNameForCustomParts);
-			updateAppearanceAccordingToSettings(false, false, false, true);
+			int cutsomTabIndex = this.TabPages.IndexOfKey(PartLibraryPanel.sFolderNameForCustomParts);
+			if (cutsomTabIndex >= 0)
+			{
+				// select the Custom tab
+				this.SelectTab(cutsomTabIndex);
+				// find the first item created and scroll it in view
+				foreach (ListViewItem item in buildingInfo.mListView.Items)
+					if (item.Tag.Equals(groupNames[0]))
+					{
+						buildingInfo.mListView.EnsureVisible(item.Index);
+						break;
+					}
+			}
 		}
 
 		private void displayErrorMessage(List<FileNameWithException> imageFileUnloadable, List<FileNameWithException> xmlFileUnloadable)
@@ -396,7 +417,8 @@ namespace BlueBrick
 			{
 				int imageIndex = buildingInfo.mImageList.Count;
 
-				// add the image in the image list (after using the imageList.Count, but before creating the item, otherwise mono is not happy cause it tries to access the image while creating the item)
+				// add the image in the image list (after using the imageList.Count, but before creating the item,
+				// otherwise mono is not happy cause it tries to access the image while creating the item)
 				buildingInfo.mImageList.Add(brick.Image);
 
 				// create a new item for the list view item
