@@ -13,6 +13,15 @@ namespace BlueBrick
 {
 	public partial class SaveGroupNameForm : Form
 	{
+		private enum HintIndex
+		{
+			EMPTY_NAME = 0,
+			HAS_FORBIDDEN_CHAR,
+			CYCLIC_REFERENCE,
+			EXISTING_NAME,
+			OVERRIDE
+		}
+
 		// use a dictionary to store all the descriptions in every languages
 		private Dictionary<string, string> mDescription = new Dictionary<string, string>();
 		// store the error message in an array of string
@@ -45,6 +54,18 @@ namespace BlueBrick
 		{
 			InitializeComponent();
 
+			// create an array of forbidden char for the group name (before setting the name of the group)
+			List<char> charList = new List<char>(System.IO.Path.GetInvalidFileNameChars());
+			foreach (char character in System.IO.Path.GetInvalidPathChars())
+				if (!charList.Contains(character))
+					charList.Add(character);
+			charList.Add('&'); // the ampersome is authorized in file name, but brings trouble in xml, since it is the escape char.				
+			mForbiddenChar = charList.ToArray();
+
+			// save the error list from the text field
+			char[] separator = { '|' };
+			mErrorHint = this.nameErrorLabel.Text.Split(separator);
+
 			// set the author with the default one
 			string author = string.Empty;
 			if (Properties.Settings.Default.DefaultAuthor.Equals("***NotInitialized***"))
@@ -52,12 +73,6 @@ namespace BlueBrick
 			else
 				author = Properties.Settings.Default.DefaultAuthor;
 			
-			// save the error list then clear the field
-			char[] separator = { '|' };
-			mErrorHint = this.nameErrorLabel.Text.Split(separator);
-			// call explicitly the event to set the correct color and error message
-			this.nameTextBox_TextChanged(this, null);
-
 			// get the list of the top items
 			List<Layer.LayerItem> topItems = Layer.sGetTopItemListFromList(Map.Instance.SelectedLayer.SelectedObjects);
 			// fill the name if there's only one group selected
@@ -93,6 +108,10 @@ namespace BlueBrick
 				mWasGroupToSaveCreated = true;
 			}
 
+			// call explicitly the event to set the correct color and error message
+			// after setting all the data members used to check the validity of the name
+			this.nameTextBox_TextChanged(this, null);
+
 			// set the author
 			this.authorTextBox.Text = author;
 
@@ -109,14 +128,6 @@ namespace BlueBrick
 			mXmlSettings.NewLineChars = "\r\n";
 			mXmlSettings.NewLineOnAttributes = false;
 			mXmlSettings.OmitXmlDeclaration = false;
-
-			// create an array of forbidden char for the group name
-			List<char> charList = new List<char>(System.IO.Path.GetInvalidFileNameChars());
-			foreach (char character in System.IO.Path.GetInvalidPathChars())
-				if (!charList.Contains(character))
-					charList.Add(character);
-			charList.Add('&'); // the ampersome is authorized in file name, but brings trouble in xml, since it is the escape char.				
-			mForbiddenChar = charList.ToArray();
 		}
 
 		private void fillAndSelectLanguageComboBox()
@@ -250,6 +261,33 @@ namespace BlueBrick
 					subGroupNumber++;
 				}
 		}
+
+		/// <summary>
+		/// This method check that the specified partNumber is not used inside the hierrachy of the group
+		/// in order to avoid saving a group with cyclic reference (that will generate an error at loading).
+		/// This is a recursive function on the specified group
+		/// </summary>
+		/// <param name="partNumber">the name of the group the user wants to use to save his group</param>
+		/// <returns>true if some cyclic reference is detected</returns>
+		private bool isCyclicReferenceDetected(Layer.Group group, string partNumber)
+		{
+			foreach (Layer.LayerItem item in group.Items)
+			{
+				// if we find a match, return true immediatly
+				if (item.PartNumber.Equals(partNumber))
+					return true;
+				// if it's a group, call recursively
+				if (item.IsAGroup)
+				{
+					bool isCyclic = isCyclicReferenceDetected(item as Layer.Group, partNumber);
+					// only return true if we found a match, if false continue to iterate on next item
+					if (isCyclic)
+						return true;
+				}
+			}
+			// nothing detected, return false
+			return false;
+		}
 		#endregion
 		#region event handler
 		private void SaveGroupNameForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -284,13 +322,17 @@ namespace BlueBrick
 
 			// check if the name is empty or contains any forbidden char for a file name
 			bool isEmptyName = (nameTextBox.Text.Trim().Length == 0);
-			bool disableOkButton = (isEmptyName || (partNumber.IndexOfAny(mForbiddenChar) >= 0));
+			bool hasForbiddenChar = (partNumber.IndexOfAny(mForbiddenChar) >= 0);
+			bool hasCyclicReference = isCyclicReferenceDetected(mGroupToSave, partNumber);
+			bool disableOkButton = (isEmptyName || hasForbiddenChar || hasCyclicReference);
 
 			// set the corresponding error text
 			if (isEmptyName)
-				this.nameErrorLabel.Text = mErrorHint[0] as string;
-			else if (disableOkButton)
-				this.nameErrorLabel.Text = mErrorHint[1] as string;
+				this.nameErrorLabel.Text = mErrorHint[(int)HintIndex.EMPTY_NAME] as string;
+			else if (hasForbiddenChar)
+				this.nameErrorLabel.Text = mErrorHint[(int)HintIndex.HAS_FORBIDDEN_CHAR] as string;
+			else if (hasCyclicReference)
+				this.nameErrorLabel.Text = mErrorHint[(int)HintIndex.CYCLIC_REFERENCE] as string;
 			else
 				this.nameErrorLabel.Text = string.Empty;
 
@@ -308,12 +350,12 @@ namespace BlueBrick
 					if (fileInfo.Exists)
 					{
 						nameTextBox.BackColor = Color.Gold;
-						this.nameErrorLabel.Text = mErrorHint[3] as string;
+						this.nameErrorLabel.Text = mErrorHint[(int)HintIndex.OVERRIDE] as string;
 					}
 					else
 					{
 						disableOkButton = true;
-						this.nameErrorLabel.Text = mErrorHint[2] as string;
+						this.nameErrorLabel.Text = mErrorHint[(int)HintIndex.EXISTING_NAME] as string;
 					}
 				}
 			}
