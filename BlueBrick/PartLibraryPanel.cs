@@ -294,8 +294,14 @@ namespace BlueBrick
 					foreach (ListViewItem item in buildingInfo.mListView.Items)
 						if (item.Tag.Equals(name))
 						{
-							buildingInfo.mImageList.RemoveAt(item.ImageIndex);
+							int removedImageIndex = item.ImageIndex;
+							buildingInfo.mImageList.RemoveAt(removedImageIndex);
 							buildingInfo.mListView.Items.Remove(item);
+							// then iterate again on all the item to shift all the image index that are after the item removed of -1
+							foreach (ListViewItem itemToShift in buildingInfo.mListView.Items)
+								if (itemToShift.ImageIndex > removedImageIndex)
+									itemToShift.ImageIndex = itemToShift.ImageIndex - 1;
+							// break the list view search since we found the item to remove
 							break;
 						}
 			}
@@ -308,7 +314,7 @@ namespace BlueBrick
 			// now load the xml files
 			List<FileNameWithException> imageFileUnloadable = new List<FileNameWithException>();
 			List<FileNameWithException> xmlFileUnloadable = new List<FileNameWithException>();
-			fillListViewWithPartsWithoutImage(buildingInfo, xmlFiles, xmlFileUnloadable);
+			fillListViewWithPartsWithoutImage(buildingInfo, xmlFiles, xmlFileUnloadable, true);
 
 			// the fill the list view with the new groups
 			fillListViewWithGroupAndImageToFinalize(buildingInfo, imageFileUnloadable, xmlFileUnloadable);
@@ -483,7 +489,7 @@ namespace BlueBrick
 							}
 
 						// put the image in the database
-						BrickLibrary.Brick brick = BrickLibrary.Instance.AddBrick(name, image, xmlFileName);
+						BrickLibrary.Brick brick = BrickLibrary.Instance.AddBrick(name, image, xmlFileName, false);
 
                         // add this part into the listview
 						addOnePartInListView(buildingInfo, brick);
@@ -503,7 +509,7 @@ namespace BlueBrick
 
 			// now check if there's xml files without GIF. In that case we still load them but these
 			// parts will be ignored by BlueBrick
-			fillListViewWithPartsWithoutImage(buildingInfo, xmlFiles, xmlFileUnloadable);
+			fillListViewWithPartsWithoutImage(buildingInfo, xmlFiles, xmlFileUnloadable, false);
 		}
 
 		/// <summary>
@@ -513,7 +519,7 @@ namespace BlueBrick
 		/// <param name="buildingInfo">The building info, mainly used to store the group encountered</param>
 		/// <param name="xmlFiles">The list of xml file to load</param>
 		/// <param name="xmlFileUnloadable">a list to store the errors when some file cannot be loaded</param>
-		private void fillListViewWithPartsWithoutImage(CategoryBuildingInfo buildingInfo, List<FileInfo> xmlFiles, List<FileNameWithException> xmlFileUnloadable)
+		private void fillListViewWithPartsWithoutImage(CategoryBuildingInfo buildingInfo, List<FileInfo> xmlFiles, List<FileNameWithException> xmlFileUnloadable, bool allowReplacement)
 		{
 			// iterate on the array of xmlFiles
 			foreach (FileInfo file in xmlFiles)
@@ -524,7 +530,7 @@ namespace BlueBrick
 					string name = file.Name.Substring(0, file.Name.Length - 4).ToUpperInvariant();
 
                     // add the brick in the library
-                    BrickLibrary.Brick brickAdded = BrickLibrary.Instance.AddBrick(name, null, file.FullName);
+					BrickLibrary.Brick brickAdded = BrickLibrary.Instance.AddBrick(name, null, file.FullName, allowReplacement);
 
                     // if the image is a group, add it to the group list
                     if (brickAdded.IsAGroup)

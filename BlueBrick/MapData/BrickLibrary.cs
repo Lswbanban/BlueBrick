@@ -1606,11 +1606,20 @@ namespace BlueBrick.MapData
 			return brick;
 		}
 
-        public Brick AddBrick(string partNumber, Image image, string xmlFileName)
+        public Brick AddBrick(string partNumber, Image image, string xmlFileName, bool allowReplacement)
 		{
             // check if the brick was not already added
             Brick brick = null;
-            if (!mBrickDictionary.TryGetValue(partNumber, out brick))
+            if (mBrickDictionary.TryGetValue(partNumber, out brick))
+				if (allowReplacement)
+				{
+					// if the replacement is allowed, remove the old brick from the lib
+					mBrickDictionary.Remove(partNumber);
+					// and clear the brick pointer
+					brick = null;
+				}
+			// check if we didn't find the brick already
+			if (brick == null)
             {
                 // instanciate the brick and add it into the dictionnary
                 brick = new Brick(partNumber, image, xmlFileName, mConnectionTypeRemapingDictionnary);
