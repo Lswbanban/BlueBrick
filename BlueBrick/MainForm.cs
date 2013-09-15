@@ -1500,9 +1500,7 @@ namespace BlueBrick
 			DialogResult result = form.ShowDialog();
 			// check if we need to update the part lib
 			if ((result == DialogResult.OK) && (form.NewXmlFilesToLoad.Count > 0))
-			{
-				this.partsTabControl.loadAdditionnalGroups(form.NewXmlFilesToLoad);
-			}
+				this.partsTabControl.loadAdditionnalGroups(form.NewXmlFilesToLoad, form.NewGroupName);
         }
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)

@@ -26,11 +26,17 @@ namespace BlueBrick
 		private char[] mForbiddenChar = null;
 		// the resulting files to load
 		private List<FileInfo> mNewXmlFilesToLoad = new List<FileInfo>();
+		private List<string> mNewGroupName = new List<string>();
 
 		#region get/set
 		public List<FileInfo> NewXmlFilesToLoad
 		{
 			get { return mNewXmlFilesToLoad; }
+		}
+
+		public List<string> NewGroupName
+		{
+			get { return mNewGroupName; }
 		}
 		#endregion
 
@@ -181,9 +187,14 @@ namespace BlueBrick
 			if (group.ItemsCount > 0)
 				origin = group.Items[0].Center;
 
+			// trim and uppercase the group name and save it in the array
+			groupName = groupName.Trim().ToUpper();
+			mNewGroupName.Add(groupName);
+			
 			// get the full filename and save it in the array
 			string filename = getFullFileNameFromGroupName(groupName);
 			mNewXmlFilesToLoad.Add(new FileInfo(filename));
+
 			// open the stream
 			XmlWriter xmlWriter = System.Xml.XmlWriter.Create(filename, mXmlSettings);
 			// start to write the header and the top node
@@ -250,8 +261,20 @@ namespace BlueBrick
 
 		private void okButton_Click(object sender, EventArgs e)
 		{
-			// call the recursive function by starting to save the top group
-			saveGroup(mGroupToSave, getGroupName(nameTextBox.Text), 0);
+			try
+			{
+				// first check if the custom folder exists and if not try to create it
+				DirectoryInfo customFolder = new DirectoryInfo(PartLibraryPanel.sFullPathForCustomParts);
+				if (!customFolder.Exists)
+				    customFolder.Create();
+				// then call the recursive function by starting to save the top group
+				saveGroup(mGroupToSave, getGroupName(nameTextBox.Text), 0);
+			}
+			catch (Exception exception)
+			{
+				MessageBox.Show(Properties.Resources.ErrorMsgCannotSaveCustomPart + "\n" + exception.Message, 
+								Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void nameTextBox_TextChanged(object sender, EventArgs e)

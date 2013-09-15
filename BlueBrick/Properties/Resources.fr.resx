@@ -485,4 +485,7 @@ Le message d'erreur est :
   <data name="ActionEditRuler" xml:space="preserve">
     <value>Modifier les propriétés d'une mesure</value>
   </data>
+  <data name="ErrorMsgCannotSaveCustomPart" xml:space="preserve">
+    <value>BlueBrick a rencontré un problème en sauvegardant votre groupe dans le répertoire "parts/Custom". Merci de lire le message suivant pour plus de détails :</value>
+  </data>
 </root>

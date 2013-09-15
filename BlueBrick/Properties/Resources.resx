@@ -550,4 +550,7 @@
   <data name="ActionEditRuler" xml:space="preserve">
     <value>Edit a Ruler's Properties</value>
   </data>
+  <data name="ErrorMsgCannotSaveCustomPart" xml:space="preserve">
+    <value>BlueBrick has encountered a problem while saving your group in the "parts/Custom" folder. Please read the following message for more details:</value>
+  </data>
 </root>
