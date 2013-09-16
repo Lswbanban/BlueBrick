@@ -47,6 +47,18 @@ namespace BlueBrick
 		{
 			get { return mNewGroupName; }
 		}
+
+		private string Author
+		{
+			get
+			{
+				// get the default author
+				if (Properties.Settings.Default.DefaultAuthor.Equals("***NotInitialized***"))
+					return Properties.Resources.DefaultAuthor;
+				else
+					return Properties.Settings.Default.DefaultAuthor;
+			}
+		}
 		#endregion
 
 		#region init
@@ -66,12 +78,11 @@ namespace BlueBrick
 			char[] separator = { '|' };
 			mErrorHint = this.nameErrorLabel.Text.Split(separator);
 
-			// set the author with the default one
-			string author = string.Empty;
-			if (Properties.Settings.Default.DefaultAuthor.Equals("***NotInitialized***"))
-				author = Properties.Resources.DefaultAuthor;
-			else
-				author = Properties.Settings.Default.DefaultAuthor;
+			// fill the language combo
+			fillAndSelectLanguageComboBox();
+
+			// set the author (could be overriden later)
+			this.authorTextBox.Text = this.Author;
 			
 			// get the list of the top items
 			List<Layer.LayerItem> topItems = Layer.sGetTopItemListFromList(Map.Instance.SelectedLayer.SelectedObjects);
@@ -84,20 +95,10 @@ namespace BlueBrick
 				mWasGroupToSaveCreated = false;
 				if (mGroupToSave.IsANamedGroup)
 				{
-					// get the part number
 					string partNumber = mGroupToSave.PartNumber;
-					// set the name and sorting key
+					// set the name here and init the rest in the function
 					nameTextBox.Text = partNumber;
-					canUngroupCheckBox.Checked = mGroupToSave.CanUngroup;
-					sortingKeyTextBox.Text = BrickLibrary.Instance.getSortingKey(partNumber);
-					// for the Author, check if it is the same
-					string partAuthor = BrickLibrary.Instance.getAuthor(partNumber);
-					if (author != partAuthor)
-						author += " & " + partAuthor;
-					// get the description
-					string description = BrickLibrary.Instance.getBrickInfo(partNumber)[3];
-					if (description != string.Empty)
-						mDescription.Add(BlueBrick.Properties.Settings.Default.Language, description);
+					initControlWithPartInfo(partNumber);
 				}
 			}
 			else
@@ -111,12 +112,6 @@ namespace BlueBrick
 			// call explicitly the event to set the correct color and error message
 			// after setting all the data members used to check the validity of the name
 			this.nameTextBox_TextChanged(this, null);
-
-			// set the author
-			this.authorTextBox.Text = author;
-
-			// fill the language combo
-			fillAndSelectLanguageComboBox();
 
 			// configure the xmlSetting for writing
 			mXmlSettings.CheckCharacters = false;
@@ -145,7 +140,26 @@ namespace BlueBrick
 
 			// select english by default (which will also set the language name label)
 			languageCodeComboBox.SelectedIndex = selectedIndex;
+		}
 
+		private void initControlWithPartInfo(string partNumber)
+		{
+			// set the ungroup and sorting key
+			canUngroupCheckBox.Checked = BrickLibrary.Instance.canUngroup(partNumber);
+			sortingKeyTextBox.Text = BrickLibrary.Instance.getSortingKey(partNumber);
+			// for the Author, check if it is the same
+			string author = this.Author;
+			string partAuthor = BrickLibrary.Instance.getAuthor(partNumber);
+			if (!partAuthor.Contains(author))
+				partAuthor = author + " & " + partAuthor;
+			this.authorTextBox.Text = partAuthor;
+			// get the description
+			string description = BrickLibrary.Instance.getBrickInfo(partNumber)[3];
+			if (description != string.Empty)
+			{
+				mDescription.Clear();
+				mDescription.Add(BlueBrick.Properties.Settings.Default.Language, description);
+			}
 			// force the event to set the description because we are constructing the window and the focus event is skip
 			descriptionTextBox_Enter(this, null);
 		}
@@ -212,7 +226,7 @@ namespace BlueBrick
 			xmlWriter.WriteStartDocument();
 			xmlWriter.WriteStartElement("group");
 			// author
-			xmlWriter.WriteElementString("Author", this.authorTextBox.Text.Replace("&", "&amp;"));
+			xmlWriter.WriteElementString("Author", this.authorTextBox.Text);
 			// description
 			xmlWriter.WriteStartElement("Description");
 			foreach (KeyValuePair<string, string> keyValue in mDescription)
@@ -351,6 +365,7 @@ namespace BlueBrick
 					{
 						nameTextBox.BackColor = Color.Gold;
 						this.nameErrorLabel.Text = mErrorHint[(int)HintIndex.OVERRIDE] as string;
+						initControlWithPartInfo(partNumber);
 					}
 					else
 					{
