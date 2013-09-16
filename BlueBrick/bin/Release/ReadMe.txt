@@ -68,15 +68,16 @@ REMOVE ALL THE TODO
 	- save/load in LDraw
 - NEW FEATURE (Alban): Add a filter combobox in the bottom of the library
 	- for the filter box, apply the filter on all tabs: make an option check bo to leave the choice.
+	- save the option in the UI settings
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 	- saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
-- [target 1.8] MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
-- [target 1.8] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - [target 1.8] MISSING FEATURE (Alban): Add some checkbox in the export window to choose what to export (instead of canceling and change them in the View menu)
+- MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
+- MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - MISSING FEATURE #12 (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one

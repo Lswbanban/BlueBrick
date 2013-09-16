@@ -715,6 +715,8 @@
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />
     <BaseApplicationManifest Include="Properties\app.manifest" />
+    <EmbeddedResource Include="icons\filterAllTabs.bmp" />
+    <EmbeddedResource Include="icons\filterOneTab.bmp" />
     <Content Include="icons\newlayerRuler.bmp" />
     <Content Include="icons\SendToBack.bmp" />
     <EmbeddedResource Include="Cursor\AreaEraserCursor.cur" />

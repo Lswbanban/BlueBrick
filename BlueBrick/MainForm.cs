@@ -468,8 +468,9 @@ namespace BlueBrick
 			mPartListForm = new PartListForm(this);
 			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED for mapping UI properties in settings
 			loadUISettingFromDefaultSettings();
-			// load the custom cursors
+			// load the custom cursors and icons
 			LoadEmbededCustomCursors();
+			loadIconsForFilterAllButton();
 			// reset the shortcut keys
 			initShortcutKeyArrayFromSettings();
 			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
@@ -674,6 +675,22 @@ namespace BlueBrick
 			mRulerScaleHorizontalCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerScaleHorizontalCursor.cur");
 			mRulerScaleDiagonalUpCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerScaleDiagonalUpCursor.cur");
 			mRulerScaleDiagonalDownCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerScaleDiagonalDownCursor.cur");
+		}
+
+		private void loadIconsForFilterAllButton()
+		{
+			// get the assembly
+			System.Reflection.Assembly assembly = this.GetType().Assembly;
+			// load the 2 icons for the filter checkbox button
+			this.filterAllTabCheckBox.ImageList = new ImageList();
+			System.IO.Stream stream = assembly.GetManifestResourceStream("BlueBrick.icons.filterAllTabs.bmp");
+			this.filterAllTabCheckBox.ImageList.Images.Add(new Bitmap(stream));
+			stream.Close();
+			stream = assembly.GetManifestResourceStream("BlueBrick.icons.filterOneTab.bmp");
+			this.filterAllTabCheckBox.ImageList.Images.Add(new Bitmap(stream));
+			stream.Close();
+			// call the check function to set the correct icon
+			filterAllTabCheckBox_CheckedChanged(this, null);
 		}
 
 		/// <summary>
@@ -2211,6 +2228,15 @@ namespace BlueBrick
 				e.Handled = true;
 				e.SuppressKeyPress = true;
 			}
+		}
+
+		private void filterAllTabCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			// change the icon of the button according to the button state
+			if (filterAllTabCheckBox.Checked)
+				filterAllTabCheckBox.ImageIndex = 0;
+			else
+				filterAllTabCheckBox.ImageIndex = 1;
 		}
 		#endregion
 
