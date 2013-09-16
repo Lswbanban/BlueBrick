@@ -38,7 +38,9 @@ namespace BlueBrick
 			this.toolSplitContainer = new System.Windows.Forms.SplitContainer();
 			this.splitContainerPartLibrary = new System.Windows.Forms.SplitContainer();
 			this.partsTabControl = new BlueBrick.PartLibraryPanel();
+			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.textBoxPartFilter = new System.Windows.Forms.TextBox();
+			this.filterAllTabCheckBox = new System.Windows.Forms.CheckBox();
 			this.layerSplitContainer = new System.Windows.Forms.SplitContainer();
 			this.layerStackPanel = new BlueBrick.LayerStackPanel();
 			this.LayerButtonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -181,6 +183,7 @@ namespace BlueBrick
 			this.splitContainerPartLibrary.Panel1.SuspendLayout();
 			this.splitContainerPartLibrary.Panel2.SuspendLayout();
 			this.splitContainerPartLibrary.SuspendLayout();
+			this.tableLayoutPanel1.SuspendLayout();
 			this.layerSplitContainer.Panel1.SuspendLayout();
 			this.layerSplitContainer.Panel2.SuspendLayout();
 			this.layerSplitContainer.SuspendLayout();
@@ -260,7 +263,7 @@ namespace BlueBrick
 			// 
 			// splitContainerPartLibrary.Panel2
 			// 
-			this.splitContainerPartLibrary.Panel2.Controls.Add(this.textBoxPartFilter);
+			this.splitContainerPartLibrary.Panel2.Controls.Add(this.tableLayoutPanel1);
 			// 
 			// partsTabControl
 			// 
@@ -268,6 +271,13 @@ namespace BlueBrick
 			this.partsTabControl.DraggingPartNumber = null;
 			this.partsTabControl.Name = "partsTabControl";
 			this.partsTabControl.SelectedIndex = 0;
+			// 
+			// tableLayoutPanel1
+			// 
+			resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+			this.tableLayoutPanel1.Controls.Add(this.textBoxPartFilter, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.filterAllTabCheckBox, 1, 0);
+			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			// 
 			// textBoxPartFilter
 			// 
@@ -279,6 +289,14 @@ namespace BlueBrick
 			this.textBoxPartFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPartFilter_KeyDown);
 			this.textBoxPartFilter.Leave += new System.EventHandler(this.textBoxPartFilter_Leave);
 			this.textBoxPartFilter.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBoxPartFilter_PreviewKeyDown);
+			// 
+			// filterAllTabCheckBox
+			// 
+			resources.ApplyResources(this.filterAllTabCheckBox, "filterAllTabCheckBox");
+			this.filterAllTabCheckBox.Name = "filterAllTabCheckBox";
+			this.toolTipForMainForm.SetToolTip(this.filterAllTabCheckBox, resources.GetString("filterAllTabCheckBox.ToolTip"));
+			this.filterAllTabCheckBox.UseVisualStyleBackColor = true;
+			this.filterAllTabCheckBox.CheckedChanged += new System.EventHandler(this.filterAllTabCheckBox_CheckedChanged);
 			// 
 			// layerSplitContainer
 			// 
@@ -1284,8 +1302,9 @@ namespace BlueBrick
 			this.toolSplitContainer.ResumeLayout(false);
 			this.splitContainerPartLibrary.Panel1.ResumeLayout(false);
 			this.splitContainerPartLibrary.Panel2.ResumeLayout(false);
-			this.splitContainerPartLibrary.Panel2.PerformLayout();
 			this.splitContainerPartLibrary.ResumeLayout(false);
+			this.tableLayoutPanel1.ResumeLayout(false);
+			this.tableLayoutPanel1.PerformLayout();
 			this.layerSplitContainer.Panel1.ResumeLayout(false);
 			this.layerSplitContainer.Panel2.ResumeLayout(false);
 			this.layerSplitContainer.ResumeLayout(false);
@@ -1441,6 +1460,8 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripMenuItem hullsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem rulerAttachPointsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveSelectionInLibraryToolStripMenuItem;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.CheckBox filterAllTabCheckBox;
 	}
 }
 

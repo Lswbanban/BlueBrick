@@ -184,7 +184,7 @@
     <value>mapPanel</value>
   </data>
   <data name="&gt;&gt;mapPanel.Type" xml:space="preserve">
-    <value>BlueBrick.MapPanel, BlueBrick, Version=1.7.3.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.MapPanel, BlueBrick, Version=1.7.4.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mapPanel.Parent" xml:space="preserve">
     <value>mainSplitContainer.Panel1</value>
@@ -244,7 +244,7 @@
     <value>partsTabControl</value>
   </data>
   <data name="&gt;&gt;partsTabControl.Type" xml:space="preserve">
-    <value>BlueBrick.PartLibraryPanel, BlueBrick, Version=1.7.3.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.PartLibraryPanel, BlueBrick, Version=1.7.4.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;partsTabControl.Parent" xml:space="preserve">
     <value>splitContainerPartLibrary.Panel1</value>
@@ -264,14 +264,20 @@
   <data name="&gt;&gt;splitContainerPartLibrary.Panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
   <data name="textBoxPartFilter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="textBoxPartFilter.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="textBoxPartFilter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 2, 0</value>
+  </data>
   <data name="textBoxPartFilter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 20</value>
+    <value>194, 20</value>
   </data>
   <data name="textBoxPartFilter.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -291,10 +297,82 @@ Use # character in front of a keyword to specify a part number.</value>
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;textBoxPartFilter.Parent" xml:space="preserve">
-    <value>splitContainerPartLibrary.Panel2</value>
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;textBoxPartFilter.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="filterAllTabCheckBox.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="filterAllTabCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="filterAllTabCheckBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="filterAllTabCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="filterAllTabCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>197, 1</value>
+  </data>
+  <data name="filterAllTabCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 1, 1</value>
+  </data>
+  <data name="filterAllTabCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="filterAllTabCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
+    <value>Apply the filter on all tabs or only the current tab.</value>
+  </data>
+  <data name="&gt;&gt;filterAllTabCheckBox.Name" xml:space="preserve">
+    <value>filterAllTabCheckBox</value>
+  </data>
+  <data name="&gt;&gt;filterAllTabCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;filterAllTabCheckBox.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;filterAllTabCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tableLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 22</value>
+  </data>
+  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
+    <value>splitContainerPartLibrary.Panel2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="textBoxPartFilter" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="filterAllTabCheckBox" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,22" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="&gt;&gt;splitContainerPartLibrary.Panel2.Name" xml:space="preserve">
     <value>splitContainerPartLibrary.Panel2</value>
@@ -384,7 +462,7 @@ Use # character in front of a keyword to specify a part number.</value>
     <value>layerStackPanel</value>
   </data>
   <data name="&gt;&gt;layerStackPanel.Type" xml:space="preserve">
-    <value>BlueBrick.LayerStackPanel, BlueBrick, Version=1.7.3.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.LayerStackPanel, BlueBrick, Version=1.7.4.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;layerStackPanel.Parent" xml:space="preserve">
     <value>layerSplitContainer.Panel1</value>
@@ -960,7 +1038,7 @@ Use # character in front of a keyword to specify a part number.</value>
     <value>mainSplitContainer</value>
   </data>
   <data name="&gt;&gt;mainSplitContainer.Type" xml:space="preserve">
-    <value>BlueBrick.MainSplitContainer, BlueBrick, Version=1.7.3.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.MainSplitContainer, BlueBrick, Version=1.7.4.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mainSplitContainer.Parent" xml:space="preserve">
     <value>$this</value>
