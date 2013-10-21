@@ -298,5 +298,8 @@
     <Setting Name="RulerDefaultFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Arial, 15.75pt</Value>
     </Setting>
+    <Setting Name="UIFilterAllLibraryTab" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

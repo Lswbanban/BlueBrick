@@ -1055,5 +1055,17 @@ namespace BlueBrick.Properties {
                 this["RulerDefaultFont"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UIFilterAllLibraryTab {
+            get {
+                return ((bool)(this["UIFilterAllLibraryTab"]));
+            }
+            set {
+                this["UIFilterAllLibraryTab"] = value;
+            }
+        }
     }
 }

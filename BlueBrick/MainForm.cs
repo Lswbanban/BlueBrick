@@ -470,7 +470,6 @@ namespace BlueBrick
 			loadUISettingFromDefaultSettings();
 			// load the custom cursors and icons
 			LoadEmbededCustomCursors();
-			loadIconsForFilterAllButton();
 			// reset the shortcut keys
 			initShortcutKeyArrayFromSettings();
 			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
@@ -516,6 +515,8 @@ namespace BlueBrick
 			this.Location = Properties.Settings.Default.UIMainFormLocation;
 			this.Size = Properties.Settings.Default.UIMainFormSize;
 			this.WindowState = Properties.Settings.Default.UIMainFormWindowState;
+			// part lib
+			this.filterAllTabCheckBox.Checked = Properties.Settings.Default.UIFilterAllLibraryTab;
 			// part list window
 			mPartListForm.Location = Properties.Settings.Default.UIPartListFormLocation;
 			mPartListForm.Size = Properties.Settings.Default.UIPartListFormSize;
@@ -613,6 +614,7 @@ namespace BlueBrick
 
 			// the part lib display config
 			this.partsTabControl.savePartListDisplayStatusInSettings();
+			Properties.Settings.Default.UIFilterAllLibraryTab = this.filterAllTabCheckBox.Checked;
 
 			// try to save (never mind if we can not (for example BlueBrick is launched
 			// from a write protected drive)
@@ -675,22 +677,6 @@ namespace BlueBrick
 			mRulerScaleHorizontalCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerScaleHorizontalCursor.cur");
 			mRulerScaleDiagonalUpCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerScaleDiagonalUpCursor.cur");
 			mRulerScaleDiagonalDownCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.RulerScaleDiagonalDownCursor.cur");
-		}
-
-		private void loadIconsForFilterAllButton()
-		{
-			// get the assembly
-			System.Reflection.Assembly assembly = this.GetType().Assembly;
-			// load the 2 icons for the filter checkbox button
-			this.filterAllTabCheckBox.ImageList = new ImageList();
-			System.IO.Stream stream = assembly.GetManifestResourceStream("BlueBrick.icons.filterAllTabs.bmp");
-			this.filterAllTabCheckBox.ImageList.Images.Add(new Bitmap(stream));
-			stream.Close();
-			stream = assembly.GetManifestResourceStream("BlueBrick.icons.filterOneTab.bmp");
-			this.filterAllTabCheckBox.ImageList.Images.Add(new Bitmap(stream));
-			stream.Close();
-			// call the check function to set the correct icon
-			filterAllTabCheckBox_CheckedChanged(this, null);
 		}
 
 		/// <summary>
