@@ -68,7 +68,7 @@ REMOVE ALL THE TODO
 	- save/load in LDraw
 - NEW FEATURE (Alban): Add a filter combobox in the bottom of the library
 	- for the filter box, apply the filter on all tabs: make an option check bo to leave the choice.
-	- save the option in the UI settings
+	- save the option in the UI settings: the checkbox is saved, now save each keyword
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 	- saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
