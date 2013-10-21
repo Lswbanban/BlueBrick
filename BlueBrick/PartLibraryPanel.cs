@@ -665,6 +665,43 @@ namespace BlueBrick
 		}
 
 		/// <summary>
+		/// Filter the current tab with the specified string. The string should be a list of keywords that can be
+		/// prefixed by a '-' to exclude, a '+' to include or a '#' to filter on part id. Each keyword should be separated
+		/// by blank character such as space or tab.
+		/// </summary>
+		/// <param name="filterSentence">several keywords separated by blank characters with or without prefixes</param>
+		public void filterCurrentTab(string filterSentence)
+		{
+			// split the searching filter in token
+			char[] separatorList = { ' ', '\t' };
+			string[] tokenList = filterSentence.ToLower().Split(separatorList, StringSplitOptions.RemoveEmptyEntries);
+			List<string> includeIdFilter = new List<string>();
+			List<string> includeFilter = new List<string>();
+			List<string> excludeFilter = new List<string>();
+			// recreate two lists for include/exclude
+			foreach (string token in tokenList)
+				if (token[0] == '-')
+				{
+					if (token.Length > 1)
+						excludeFilter.Add(token.Substring(1));
+				}
+				else if (token[0] == '#')
+				{
+					if (token.Length > 1)
+						includeIdFilter.Add(token.Substring(1).ToUpper());
+				}
+				else if (token[0] == '+')
+				{
+					if (token.Length > 1)
+						includeFilter.Add(token.Substring(1));
+				}
+				else
+					includeFilter.Add(token);
+			// call the function to filter the list
+			filterDisplayedParts(includeIdFilter, includeFilter, excludeFilter);
+		}
+
+		/// <summary>
 		/// Modify the current list of parts listed in the current tab to keep only (or exclude) the part whose ID,
 		/// color or description match any of the keywords given in parameter. The keywords must be provided
 		/// in lower case to make a case insensitive search.
@@ -672,7 +709,7 @@ namespace BlueBrick
 		/// <param name="includeIdFilter">All the parts whose ID only contains any of this filter will be displayed</param>
 		/// <param name="includeFilter">All the parts whose ID, color or description contains any of this filter will be displayed</param>
 		/// <param name="excludeFilter">All the parts whose ID, color or description contains any of this filter will be hidden</param>
-		public void filterDisplayedParts(List<string> includeIdFilter, List<string> includeFilter, List<string> excludeFilter)
+		private void filterDisplayedParts(List<string> includeIdFilter, List<string> includeFilter, List<string> excludeFilter)
 		{
 			this.SuspendLayout();
 
