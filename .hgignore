@@ -9,6 +9,7 @@ syntax: glob
 ; specific directories
 ResxEditor\*
 trash\*
+map de test\*
 BlueBrick\obj\*
 BlueBrick\bin\Debug\*
 BlueBrick\bin\Release\old version

@@ -67,6 +67,7 @@ REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- save/load in LDraw
 - NEW FEATURE (Alban): Add a filter combobox in the bottom of the library
+	- bug: when you click on the check all button, without any text in the filter combo, the hint is taken as filter
 	- save the option in the UI settings: the checkbox is saved, now save each filter sentence and the global one
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 	- saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
