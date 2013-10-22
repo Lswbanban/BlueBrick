@@ -72,7 +72,7 @@ namespace BlueBrick
 		/// </summary>
 		private class CategoryBuildingInfo
 		{
-			public ListView mListView = new ListView(); // the list view for this category folder
+			public PartListView mListView = new PartListView(); // the list view for this category folder
 			public List<Image> mImageList = new List<Image>(); // all the image not resized in this folder
 			public bool mRespectProportion = true; // the proportion flag for this category
 			public List<BrickLibrary.Brick> mGroupList = new List<BrickLibrary.Brick>(); // all the group parts in this folder
@@ -82,36 +82,14 @@ namespace BlueBrick
 				mRespectProportion = respectProportion;
 			}
 		}
-
-		/// <summary>
-		/// This class implement a IComparer to sort all the parts in the part library, based on the Name property
-		/// of the ListViewItem. We don't use the ListView.Sorting property because this default sorter sort on the Text property
-		/// and the Text property is displayed as a tooltips even when the ListView.ShowToolTips is false.
-		/// </summary>
-		private class ListViewItemComparerBasedOnName : System.Collections.IComparer
-		{
-			public int Compare(Object x, Object y)
-			{
-				return string.Compare((x as ListViewItem).Name, (y as ListViewItem).Name);
-			}
-		}
 		#endregion
-
-		// create a temporary list view to temporary store the items that have been filtered on the current tab
-		private List<ListViewItem> mFilteredItems = new List<ListViewItem>();
-		// also store the current filtered list
-		private ListView mFilteredListView = null;
-		// save the last filter because we will need it again when we switch tab
-		private List<string> mLastIncludeIdFilter = new List<string>();
-		private List<string> mLastIncludeFilter = new List<string>();
-		private List<string> mLastExcludeFilter = new List<string>();
 		
-		// the comparer to sort the list view item, base on their name property
-		ListViewItemComparerBasedOnName mListViewItemComparer = new ListViewItemComparerBasedOnName();
-
 		// we store the part we drag because the drag and drop is buggy in Mono and I cannot pass the data in
 		// the drag and drop. Null means no parts are droped
 		private string mDraggingPartNumber = null;
+
+		// the filter sentence common to all tabs, if we were asked to filter all tabs (or null, if no common filter asked)
+		private string mCommonFilterSentence = null;
 
 		#region get/set
 		public string DraggingPartNumber
@@ -283,9 +261,9 @@ namespace BlueBrick
 				// the tabe page exist, so get it
 				TabPage tabPage = this.TabPages[this.TabPages.IndexOfKey(PartLibraryPanel.sFolderNameForCustomParts)];
 				// patch the building info with the correct listview
-				buildingInfo.mListView = tabPage.Controls[0] as ListView;
+				buildingInfo.mListView = tabPage.Controls[0] as PartListView;
 				// patch also the image list
-				buildingInfo.mImageList = reconstructImageListFromPartLib(buildingInfo.mListView);
+				buildingInfo.mImageList = buildingInfo.mListView.reconstructImageListFromBrickLibrary();
 				// patch the respect proportion
 				buildingInfo.mRespectProportion = (tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.RESPECT_PROPORTION] as ToolStripMenuItem).Checked;
 
@@ -394,16 +372,7 @@ namespace BlueBrick
 			// then for the new tab added, we add a list control to 
 			// fill it with the pictures found in that folder
 			// but we don't need to create it, we use the one created in the building info
-			ListView newListView = buildingInfo.mListView; // get a shortcut on the list view
-			// set the property of the list view
-			newListView.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-			newListView.Dock = DockStyle.Fill;
-			newListView.Alignment = ListViewAlignment.SnapToGrid;
-			newListView.BackColor = Settings.Default.PartLibBackColor;
-			newListView.ShowItemToolTips = Settings.Default.PartLibDisplayBubbleInfo;
-			newListView.MultiSelect = false;
-			newListView.ListViewItemSorter = mListViewItemComparer; // we want to sort the items based on their Name (which contains a sorting key)
-			newListView.View = View.Tile; // we always use this view, because of the layout of the item
+			PartListView newListView = buildingInfo.mListView; // get a shortcut on the list view
 			if (displaySetting.mLargeIcons)
 				newListView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
 			else
@@ -577,7 +546,7 @@ namespace BlueBrick
 		}
 
 
-		private void fillListViewWithImageList(ListView listViewToFill, List<Image> imageList, bool respectProportion)
+		private void fillListViewWithImageList(PartListView listViewToFill, List<Image> imageList, bool respectProportion)
 		{
 			// compute the global rescale factor if we need to respect the proportions
 			float globalImageRescaleFactor = 1.0f;
@@ -672,126 +641,47 @@ namespace BlueBrick
 		/// <param name="filterSentence">several keywords separated by blank characters with or without prefixes</param>
 		public void filterCurrentTab(string filterSentence)
 		{
-			// split the searching filter in token
-			char[] separatorList = { ' ', '\t' };
-			string[] tokenList = filterSentence.ToLower().Split(separatorList, StringSplitOptions.RemoveEmptyEntries);
-			List<string> includeIdFilter = new List<string>();
-			List<string> includeFilter = new List<string>();
-			List<string> excludeFilter = new List<string>();
-			// recreate two lists for include/exclude
-			foreach (string token in tokenList)
-				if (token[0] == '-')
-				{
-					if (token.Length > 1)
-						excludeFilter.Add(token.Substring(1));
-				}
-				else if (token[0] == '#')
-				{
-					if (token.Length > 1)
-						includeIdFilter.Add(token.Substring(1).ToUpper());
-				}
-				else if (token[0] == '+')
-				{
-					if (token.Length > 1)
-						includeFilter.Add(token.Substring(1));
-				}
-				else
-					includeFilter.Add(token);
-			// call the function to filter the list
-			filterDisplayedParts(includeIdFilter, includeFilter, excludeFilter);
+			if (this.SelectedTab != null)
+			{
+				PartListView listView = this.SelectedTab.Controls[0] as PartListView;
+				if (listView != null)
+					listView.filter(filterSentence, true);
+			}
 		}
 
 		/// <summary>
-		/// Modify the current list of parts listed in the current tab to keep only (or exclude) the part whose ID,
-		/// color or description match any of the keywords given in parameter. The keywords must be provided
-		/// in lower case to make a case insensitive search.
+		/// Filter the all the tabs with the specified string. The string should be a list of keywords that can be
+		/// prefixed by a '-' to exclude, a '+' to include or a '#' to filter on part id. Each keyword should be separated
+		/// by blank character such as space or tab.
 		/// </summary>
-		/// <param name="includeIdFilter">All the parts whose ID only contains any of this filter will be displayed</param>
-		/// <param name="includeFilter">All the parts whose ID, color or description contains any of this filter will be displayed</param>
-		/// <param name="excludeFilter">All the parts whose ID, color or description contains any of this filter will be hidden</param>
-		private void filterDisplayedParts(List<string> includeIdFilter, List<string> includeFilter, List<string> excludeFilter)
+		/// <param name="filterSentence">several keywords separated by blank characters with or without prefixes</param>
+		public void filterAllTabs(string filterSentence)
 		{
-			this.SuspendLayout();
-
-			//put back all the previous filtered item in the list
-			if (mFilteredListView != null)
+			// save the global filter sentence
+			mCommonFilterSentence = filterSentence;
+			// and iterate on all the tabs
+			foreach (TabPage tabPage in this.TabPages)
 			{
-				//put back all the previous filtered item in the list
-				foreach (ListViewItem item in mFilteredItems)
-					mFilteredListView.Items.Add(item);
-				// clear the list
-				mFilteredItems.Clear();
-				// resort the list view
-				mFilteredListView.Sort();
-				// clear the reference list
-				mFilteredListView.BackColor = Settings.Default.PartLibBackColor;
-				mFilteredListView = null;
+				PartListView listView = tabPage.Controls[0] as PartListView;
+				if (listView != null)
+					listView.filter(filterSentence, false);
 			}
+		}
 
-			// save the new filter
-			mLastIncludeIdFilter = includeIdFilter;
-			mLastIncludeFilter = includeFilter;
-			mLastExcludeFilter = excludeFilter;
-
-			// and now filter the current selected tab if any
-			if ((this.SelectedTab != null) &&
-				((mLastIncludeIdFilter.Count != 0) || (mLastIncludeFilter.Count != 0) || (mLastExcludeFilter.Count != 0)))
+		/// <summary>
+		/// remove the global filtering currently set for all tabs
+		/// </summary>
+		public void unfilterAllTabs()
+		{
+			// clear the global filter sentence
+			mCommonFilterSentence = null;
+			// and iterate on all the tabs
+			foreach (TabPage tabPage in this.TabPages)
 			{
-				try
-				{
-					// get the current list view displayed
-					mFilteredListView = this.SelectedTab.Controls[0] as ListView;
-					mFilteredListView.BackColor = Settings.Default.PartLibFilteredBackColor;
-					// do not use a foreach here because Mono doesn't support to remove items while iterating on the list
-					// so use an index instead and decreas the index when we remove the item
-					for (int i = 0; i < mFilteredListView.Items.Count; ++i)
-					{
-						ListViewItem item = mFilteredListView.Items[i];
-						string itemId = item.Tag as string;
-						string brickInfo = BrickLibrary.Instance.getFormatedBrickInfo(itemId, true, true, true).ToLower();
-						// a flag to stop search if it is already removed
-						bool continueSearch = true;
-						// iterate on the 3 filter lists
-						// first filter on the id only
-						foreach (string filter in mLastIncludeIdFilter)
-							if (!itemId.Contains(filter))
-							{
-								item.Remove();
-								i--;
-								mFilteredItems.Add(item);
-								continueSearch = false;
-								break;
-							}
-						// then the include filter on everything
-						if (continueSearch)
-							foreach (string filter in mLastIncludeFilter)
-								if (!brickInfo.Contains(filter))
-								{
-									item.Remove();
-									i--;
-									mFilteredItems.Add(item);
-									continueSearch = false;
-									break;
-								}
-						// then the exclude filter on everything
-						if (continueSearch)
-							foreach (string filter in mLastExcludeFilter)
-								if (brickInfo.Contains(filter))
-								{
-									item.Remove();
-									i--;
-									mFilteredItems.Add(item);
-									continueSearch = false;
-									break;
-								}
-					}
-				}
-				catch
-				{
-				}
+				PartListView listView = tabPage.Controls[0] as PartListView;
+				if (listView != null)
+					listView.refilter();
 			}
-
-			this.ResumeLayout();
 		}
 
 		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBubbleInfoFormat, bool updateSelectedTab)
@@ -837,8 +727,8 @@ namespace BlueBrick
 				{
 					try
 					{
-						ListView listView = tabPage.Controls[0] as ListView;
-						if (listView == mFilteredListView)
+						PartListView listView = tabPage.Controls[0] as PartListView;
+						if (listView.IsFiltered)
 							listView.BackColor = Settings.Default.PartLibFilteredBackColor;
 						else
 							listView.BackColor = Settings.Default.PartLibBackColor;
@@ -900,7 +790,7 @@ namespace BlueBrick
 
 		private void menuItem_LargeIconClick(object sender, EventArgs e)
 		{
-			ListView listView = this.SelectedTab.Controls[0] as ListView;
+			PartListView listView = this.SelectedTab.Controls[0] as PartListView;
 			if (listView != null)
 			{
 				// also adjust the size of the tile according to the
@@ -923,30 +813,14 @@ namespace BlueBrick
 			}
 		}
 
-		private List<Image> reconstructImageListFromPartLib(ListView listView)
-		{
-			// create a list of image with all the original part image from the part lib
-			// but do it in the correct order, so we use an array for that to put the original image
-			// directly inside the good index (so at the right place)
-			// also since the user can change the proportion flag while the list is filtered,
-			// also take into account the filtered list view items
-			Image[] imageArray = new Image[listView.Items.Count + mFilteredItems.Count];
-			foreach (ListViewItem item in listView.Items)
-				imageArray[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
-			foreach (ListViewItem item in mFilteredItems)
-				imageArray[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
-			// return the result as a list of image
-			return (new List<Image>(imageArray));
-		}
-
 		private void menuItem_RespectProportionClick(object sender, EventArgs e)
 		{
 			ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
-			ListView listView = this.SelectedTab.Controls[0] as ListView;
+			PartListView listView = this.SelectedTab.Controls[0] as PartListView;
 			if (listView != null && menuItem != null)
 			{
 				// we need to reconstruct the image list
-				List<Image> imageList = reconstructImageListFromPartLib(listView);
+				List<Image> imageList = listView.reconstructImageListFromBrickLibrary();
 				// regenerate the two image list for the current list view (converting the array into a list)
 				fillListViewWithImageList(listView, imageList, menuItem.Checked);
 			}
@@ -963,7 +837,7 @@ namespace BlueBrick
 			{
 				try
 				{
-					(tabPage.Controls[0] as ListView).ShowItemToolTips = displayBubbleInfo;
+					(tabPage.Controls[0] as PartListView).ShowItemToolTips = displayBubbleInfo;
 					(tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.SHOW_BUBBLE_INFO] as ToolStripMenuItem).Checked = displayBubbleInfo;
 				}
 				catch
@@ -1071,8 +945,14 @@ namespace BlueBrick
 
 		private void PartLibraryPanel_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			// filter the new selected tab
-			filterDisplayedParts(mLastIncludeIdFilter, mLastIncludeFilter, mLastExcludeFilter);
+			// if we don't have a global filtering, update the filter combo box, with the 
+			// filter of the new current tab
+			if ((mCommonFilterSentence == null) && (this.SelectedTab != null))
+			{
+				PartListView listView = this.SelectedTab.Controls[0] as PartListView;
+				if (listView != null)
+					MainForm.Instance.updateFilterComboBox(listView.FilterSentence);
+			}
 		}
 		#endregion
 	}
