@@ -170,6 +170,9 @@
     <Compile Include="MapData\LayerTextCell.cs" />
     <Compile Include="MapData\Tools\Surface.cs" />
     <Compile Include="MapData\Tools\Distance.cs" />
+    <Compile Include="PartListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PreferencesForm.cs">
       <SubType>Form</SubType>
     </Compile>

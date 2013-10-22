@@ -748,6 +748,24 @@ namespace BlueBrick
 			updateUndoRedoMenuItems();
 		}
 
+		/// <summary>
+		/// This function can be called when the current tab is changed, and we want to update the filter box
+		/// with the current one saved in the tab
+		/// </summary>
+		/// <param name="filterSentence">the new filter sentence to set in the filter box</param>
+		public void updateFilterComboBox(string filterSentence)
+		{
+			if (filterSentence == string.Empty)
+			{
+				addInputFilterIndication();
+			}
+			else
+			{
+				removeInputFilterIndication();
+				this.textBoxPartFilter.Text = filterSentence;
+			}
+		}
+
         /// <summary>
         /// Enable or disable the group/ungroup menu item in the edit menu and context menu
         /// </summary>
@@ -2139,21 +2157,30 @@ namespace BlueBrick
 		#region event handler for part lib
 		private void addInputFilterIndication()
 		{
-			this.textBoxPartFilter.Text = Properties.Resources.InputFilterIndication;
+			// set the color first cause we will check it in the TextChange event
 			this.textBoxPartFilter.ForeColor = Color.Gray;
+			this.textBoxPartFilter.Text = Properties.Resources.InputFilterIndication;
 		}
 
 		private void removeInputFilterIndication()
 		{
-			this.textBoxPartFilter.Text = string.Empty;
+			// set the color first cause we will check it in the TextChange event
 			this.textBoxPartFilter.ForeColor = Color.Black;
+			this.textBoxPartFilter.Text = string.Empty;
 		}
 
 		private void textBoxPartFilter_TextChanged(object sender, EventArgs e)
 		{
-			// do not call the filtering if it is the hint sentence
-			if (!this.textBoxPartFilter.Text.Equals(Properties.Resources.InputFilterIndication))
-				this.PartsTabControl.filterCurrentTab(this.textBoxPartFilter.Text);
+			// do not call the filtering if it is the hint sentence (to be more precise: if the box is disabled
+			// because the user may type the filtering sentence as a valid filter)
+			if (this.textBoxPartFilter.ForeColor == Color.Black)
+			{
+				// checked which filter method to call
+				if (this.filterAllTabCheckBox.Checked)
+					this.PartsTabControl.filterAllTabs(this.textBoxPartFilter.Text);
+				else
+					this.PartsTabControl.filterCurrentTab(this.textBoxPartFilter.Text);
+			}
 		}
 
 		private void textBoxPartFilter_Enter(object sender, EventArgs e)
@@ -2193,9 +2220,27 @@ namespace BlueBrick
 		{
 			// change the icon of the button according to the button state
 			if (filterAllTabCheckBox.Checked)
+			{
 				filterAllTabCheckBox.ImageIndex = 0;
+				this.PartsTabControl.filterAllTabs(this.textBoxPartFilter.Text);
+			}
 			else
+			{
 				filterAllTabCheckBox.ImageIndex = 1;
+				this.PartsTabControl.unfilterAllTabs();
+				// after refiltering all tabs with their own filter, filter the current tab
+				// with the current filter text of the combo box. because we want this behavior:
+				// 1) select tab A, filter with "A"
+				// 2) select tab B, filter with "B"
+				// 3) select tab C, filter with "C"
+				// 3) hit the filter all checkbox: now all tabs are filtered with "C"
+				// 4) select tab A (which is filetered with "C" as expected, with the filter text set to "C")
+				// 5) uncheck the filter all
+				// 6) we want to keep the filtering of A with "C" (and tab B is with "B" and tab C with "C")
+				// another possible behavior would be to update the filter text with the filter sentence of the
+				// current tab: in that case, the user would see the text change when he uncheck the filter all checkbox
+				this.PartsTabControl.filterCurrentTab(this.textBoxPartFilter.Text);
+			}
 		}
 		#endregion
 
