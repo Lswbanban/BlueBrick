@@ -2222,7 +2222,8 @@ namespace BlueBrick
 			if (filterAllTabCheckBox.Checked)
 			{
 				filterAllTabCheckBox.ImageIndex = 0;
-				this.PartsTabControl.filterAllTabs(this.textBoxPartFilter.Text);
+                if (this.textBoxPartFilter.ForeColor == Color.Black)
+                    this.PartsTabControl.filterAllTabs(this.textBoxPartFilter.Text);
 			}
 			else
 			{
@@ -2239,7 +2240,8 @@ namespace BlueBrick
 				// 6) we want to keep the filtering of A with "C" (and tab B is with "B" and tab C with "C")
 				// another possible behavior would be to update the filter text with the filter sentence of the
 				// current tab: in that case, the user would see the text change when he uncheck the filter all checkbox
-				this.PartsTabControl.filterCurrentTab(this.textBoxPartFilter.Text);
+                if (this.textBoxPartFilter.ForeColor == Color.Black)
+                    this.PartsTabControl.filterCurrentTab(this.textBoxPartFilter.Text);
 			}
 		}
 		#endregion

@@ -44,10 +44,18 @@ namespace BlueBrick
 		{
 			public bool mLargeIcons = true;
 			public bool mRespectProportion = false;
-			public PartLibDisplaySetting(bool largeIcon, bool respectProportion)
+            public string mFilterSentence = string.Empty;
+            
+            // constructors
+            public PartLibDisplaySetting()
+            {
+            }
+
+			public PartLibDisplaySetting(bool largeIcon, bool respectProportion, string filterSentence)
 			{
 				mLargeIcons = largeIcon;
 				mRespectProportion = respectProportion;
+                mFilterSentence = filterSentence;
 			}
 		};
 
@@ -200,8 +208,26 @@ namespace BlueBrick
 
 				// create from the Settings a dictionary to store the display status of each tab
 				Dictionary<string, PartLibDisplaySetting> tabDisplayStatus = new Dictionary<string,PartLibDisplaySetting>();
-				foreach (string tabConfig in Settings.Default.UIPartLibDisplayConfig)
-					tabDisplayStatus.Add(tabConfig.Remove(tabConfig.Length - 2), new PartLibDisplaySetting(tabConfig[tabConfig.Length - 2] == '1', tabConfig[tabConfig.Length - 1] == '1'));
+                foreach (string tabConfig in Settings.Default.UIPartLibDisplayConfig)
+                {
+                    // the format of the tabConfig string is: tabName00?filterSentence
+                    // we will split it in the middle at the '?' char
+                    string filterSentence = string.Empty;
+                    // get the index of the ? character which is the separator between the tab name and the filter keywords 
+                    // because the ? char cannot be used in filename (and tab name comes from filename)
+                    int separatorIndex = tabConfig.IndexOf('?');
+                    if (separatorIndex < 0)
+                        separatorIndex = tabConfig.Length; // check the case of old config file without "?" char separator
+                    // get the first part before the keyword
+                    string tabNameAndDisplayConfig = tabConfig.Substring(0, separatorIndex);
+                    // maybe we have some keywords, so try to get them
+                    if (tabConfig.Length > separatorIndex + 1)
+                        filterSentence = tabConfig.Substring(separatorIndex + 1);
+                    tabDisplayStatus.Add(tabNameAndDisplayConfig.Remove(separatorIndex - 2),
+                                         new PartLibDisplaySetting(tabNameAndDisplayConfig[separatorIndex - 2] == '1', 
+                                                                    tabNameAndDisplayConfig[separatorIndex - 1] == '1',
+                                                                    filterSentence));
+                }
 
 				// get all the folders in the parts folder to create a tab for each folder found
 				DirectoryInfo[] categoryFolder = partsFolder.GetDirectories();
@@ -215,7 +241,7 @@ namespace BlueBrick
 					// try to get the display setting or construct a default one
 					PartLibDisplaySetting displaySetting = null;
 					if (!tabDisplayStatus.TryGetValue(category.Name, out displaySetting))
-						displaySetting = new PartLibDisplaySetting(true, false);
+						displaySetting = new PartLibDisplaySetting();
 
 					// create a building info and add it to the list
 					CategoryBuildingInfo buildingInfo = new CategoryBuildingInfo(displaySetting.mRespectProportion);
@@ -252,7 +278,7 @@ namespace BlueBrick
 		{
 			// use a default display setting that won't be used to change the setting of the Custom tab page
 			// unless this tab page doesn't exist, in which case the default setting is suitable
-			PartLibDisplaySetting displaySetting = new PartLibDisplaySetting(true, false);
+			PartLibDisplaySetting displaySetting = new PartLibDisplaySetting();
 			CategoryBuildingInfo buildingInfo = new CategoryBuildingInfo(displaySetting.mRespectProportion);
 
 			// first check if the Custom tab exits. If not we need to create it.
@@ -373,10 +399,14 @@ namespace BlueBrick
 			// fill it with the pictures found in that folder
 			// but we don't need to create it, we use the one created in the building info
 			PartListView newListView = buildingInfo.mListView; // get a shortcut on the list view
+            // filter the view (at this point it will be useless since there's no item in the view, but the goal is to save the filter sentence, it will be refilter later)
+            newListView.filter(displaySetting.mFilterSentence, true);
+            // set the tile size
 			if (displaySetting.mLargeIcons)
 				newListView.TileSize = PART_ITEM_LARGE_SIZE_WITH_MARGIN;
 			else
 				newListView.TileSize = PART_ITEM_SMALL_SIZE_WITH_MARGIN;
+            // set the event handler
 			newListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
 			newListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
 			newListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listView_MouseMove);
@@ -541,8 +571,8 @@ namespace BlueBrick
 			fillListViewWithGroups(buildingInfo, imageFileUnloadable, xmlFileUnloadable);
 			// then fill the list view (we cannot pass the building info as parameter because this function is called elsewhere)
 			fillListViewWithImageList(buildingInfo.mListView, buildingInfo.mImageList, buildingInfo.mRespectProportion);
-			// sort the list view after we added all the parts
-			buildingInfo.mListView.Sort();
+			// refilter the list view after we added all the parts (that will also sort the list)
+            buildingInfo.mListView.refilter(true);
 		}
 
 
@@ -777,7 +807,8 @@ namespace BlueBrick
 				bool doesCurrentTabRespectProportion = (tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.RESPECT_PROPORTION] as ToolStripMenuItem).Checked;
 				// construct the string
 				string tabConfig = tabPage.Name + (hasCurrentTabLargeIcon ? "1" : "0")
-								+ (doesCurrentTabRespectProportion ? "1" : "0");
+								+ (doesCurrentTabRespectProportion ? "1" : "0")
+                                + "?" + (tabPage.Controls[0] as PartListView).FilterSentence;
 				// add the new config in the list
 				Settings.Default.UIPartLibDisplayConfig.Add(tabConfig);
 			}
