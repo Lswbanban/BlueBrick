@@ -117,6 +117,18 @@ namespace BlueBrick
 			filter(mFilterSentence, false);
 		}
 
+        /// <summary>
+        /// Call the filter function with the currently saved filter sentence
+        /// <param name="forceEvenIfNotNeeded">if true the filtering will be performed, even if it is not needed</param>
+        /// </summary>
+        public void refilter(bool forceEvenIfNotNeeded)
+        {
+            if (forceEvenIfNotNeeded)
+                mIsFilterSentenceSynchroWithCurrentFiltering = false;
+            // use true as param to save the filter in order to resynch the flag
+            filter(mFilterSentence, true);
+        }
+
 		/// <summary>
 		/// Modify the current list of parts listed in the current tab to keep only (or exclude) the part whose ID,
 		/// color or description match any of the keywords given in parameter. The keywords must be provided
