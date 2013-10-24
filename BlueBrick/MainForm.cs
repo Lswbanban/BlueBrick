@@ -474,8 +474,6 @@ namespace BlueBrick
 			initShortcutKeyArrayFromSettings();
 			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED
 			PreferencesForm.sSaveDefaultKeyInSettings();
-			// add the filter incitation message (which is saved in the ressource)
-			addInputFilterIndication();
 			// load the part info
 			loadPartLibraryFromDisk();
 			// disbale all the buttons of the toolbar and menu items by default
@@ -517,6 +515,16 @@ namespace BlueBrick
 			this.WindowState = Properties.Settings.Default.UIMainFormWindowState;
 			// part lib
 			this.filterAllTabCheckBox.Checked = Properties.Settings.Default.UIFilterAllLibraryTab;
+			if (Properties.Settings.Default.UIFilterAllSentence != string.Empty)
+			{
+				this.removeInputFilterIndication();
+				this.textBoxPartFilter.Text = Properties.Settings.Default.UIFilterAllSentence;
+			}
+			else
+			{
+				// add the filter incitation message (which is saved in the ressource)
+				addInputFilterIndication();
+			}
 			// part list window
 			mPartListForm.Location = Properties.Settings.Default.UIPartListFormLocation;
 			mPartListForm.Size = Properties.Settings.Default.UIPartListFormSize;

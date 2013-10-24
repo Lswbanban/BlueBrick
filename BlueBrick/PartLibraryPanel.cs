@@ -264,7 +264,7 @@ namespace BlueBrick
 				displayErrorMessage(imageFileUnloadable, xmlFileUnloadable);
 
 				// after creating all the tabs, sort them according to the settings
-				updateAppearanceAccordingToSettings(true, false, false, true);
+				updateAppearanceAccordingToSettings(true, false, false, true, true);
 			}
 		}
 
@@ -714,7 +714,7 @@ namespace BlueBrick
 			}
 		}
 
-		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBubbleInfoFormat, bool updateSelectedTab)
+		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBubbleInfoFormat, bool updateSelectedTab, bool updateCommonFilter)
 		{
 			// save the selected tab to reselect it after reorder
 			TabPage selectedTab = this.SelectedTab;
@@ -776,6 +776,10 @@ namespace BlueBrick
 				}
 			}
 
+			// global filter if we need to do it
+			if (updateCommonFilter && Settings.Default.UIFilterAllLibraryTab && (Settings.Default.UIFilterAllSentence != string.Empty))
+				this.filterAllTabs(Settings.Default.UIFilterAllSentence);
+
 			// now resume the layout
 			this.ResumeLayout();
 
@@ -812,6 +816,11 @@ namespace BlueBrick
 				// add the new config in the list
 				Settings.Default.UIPartLibDisplayConfig.Add(tabConfig);
 			}
+			// save the global filter if any
+			if (this.mCommonFilterSentence != null)
+				Properties.Settings.Default.UIFilterAllSentence = this.mCommonFilterSentence;
+			else
+				Properties.Settings.Default.UIFilterAllSentence = string.Empty;
 			// also save the current tab displayed
 			Properties.Settings.Default.UIPartLibSelectedTabIndex = this.SelectedIndex;
 		}
