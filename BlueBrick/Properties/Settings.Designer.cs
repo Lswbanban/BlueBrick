@@ -1067,5 +1067,17 @@ namespace BlueBrick.Properties {
                 this["UIFilterAllLibraryTab"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UIFilterAllSentence {
+            get {
+                return ((string)(this["UIFilterAllSentence"]));
+            }
+            set {
+                this["UIFilterAllSentence"] = value;
+            }
+        }
     }
 }

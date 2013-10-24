@@ -482,7 +482,7 @@ namespace BlueBrick
 			Settings.Default.PartLibBubbleInfoPartDescription = this.displayPartDescriptionCheckBox.Checked;
 			Settings.Default.PartLibDisplayBubbleInfo = this.displayBubbleInfoCheckBox.Checked;
 			// call the function on the part lib to reflect the change
-			BlueBrick.MainForm.Instance.PartsTabControl.updateAppearanceAccordingToSettings(mHasPartLibOrderChanged, doesAppearanceChanged, doesBubbleInfoChanged, false);
+			BlueBrick.MainForm.Instance.PartsTabControl.updateAppearanceAccordingToSettings(mHasPartLibOrderChanged, doesAppearanceChanged, doesBubbleInfoChanged, false, false);
 
 			// -- tab shortcut key
 			// save the list view
