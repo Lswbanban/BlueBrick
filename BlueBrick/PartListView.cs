@@ -81,8 +81,48 @@ namespace BlueBrick
 				mFilterSentence = filterSentence;
 
 			// split the searching filter in token
+			// first we split the sentence by sub-sentence inside double quote for example: a "b c" d
+			// will be split in 3: { 'a', 'b c', 'd' }
+			// it's important to keep the empty entries in the split list because we want to catch cases like
+			// the first character of the sentence is a double quote, or no space between two sub sentence:
+			// "a b" c cc "d e""f g" => { '', 'a b', 'c cc', 'd e', '', 'f g' }
+			//                            0     1       2      3    4     5
+			// then we will split again even index, but not odd index, so split 0, 2, 4 ; keep 1, 3, 5
+			char[] doubleQuoteSeparator = { '"' };
+			string[] subSentenceList = filterSentence.ToLower().Split(doubleQuoteSeparator, StringSplitOptions.None);
+			// now re-split only the even index with the empty char
 			char[] separatorList = { ' ', '\t' };
-			string[] tokenList = filterSentence.ToLower().Split(separatorList, StringSplitOptions.RemoveEmptyEntries);
+			List<string> tokenList = new List<string>();
+			for (int i = 0; i < subSentenceList.Length; ++i)
+			{
+				string subSentence = subSentenceList[i];
+				bool isEvenIndex = ((i % 2) == 0);
+				// special case for a special character (-+#) in front of a double quoted sentence
+				// if we can find a special character at the end of the current sub sentence, we need to transfert it
+				// at the begining of the next subsentence, but only for even index
+				if (isEvenIndex && subSentence.Length > 0)
+				{
+					char lastChar = subSentence[subSentence.Length - 1];
+					if ("-+#".LastIndexOf(lastChar) >= 0)
+					{
+						// remove the last char
+						subSentence = subSentence.Remove(subSentence.Length - 1);
+						// and add it to the next subsence if any
+						if (i + 1 < subSentenceList.Length)
+							subSentenceList[i + 1] = lastChar.ToString() + subSentenceList[i + 1];
+					}
+				}
+				// now if the current sub sentence is not empty
+				if (subSentence != string.Empty)
+				{
+					// split even index and directly add odd index
+					if (isEvenIndex)
+						tokenList.AddRange(subSentence.Split(separatorList, StringSplitOptions.RemoveEmptyEntries));
+					else
+						tokenList.Add(subSentence);
+				}
+			}
+			// now create 3 lists for including and exclusion
 			List<string> includeIdFilter = new List<string>();
 			List<string> includeFilter = new List<string>();
 			List<string> excludeFilter = new List<string>();
