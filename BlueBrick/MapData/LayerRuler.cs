@@ -586,6 +586,10 @@ namespace BlueBrick.MapData
 			switch (sCurrentEditTool)
 			{
 				case EditTool.SELECT:
+					// early exit, if it's not the left button
+					if (e.Button != MouseButtons.Left)
+						return false;
+
 					// boolean flags for the keyboard control keys
 					bool multipleSelectionPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
 					bool duplicationPressed = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey);
@@ -668,14 +672,15 @@ namespace BlueBrick.MapData
 				case EditTool.LINE:
 					// check if we are finishing the edition of the ruler by moving the offset,
 					// in that case it is the click to fix the offset
-					if (!mMouseIsScalingRuler)
+					if ((e.Button == MouseButtons.Left) && (!mMouseIsScalingRuler))
 						preferedCursor = MainForm.Instance.RulerAddPoint2Cursor;
-					// we handle all the click when editing a ruler
-					willHandleMouse = true;
+					// we handle all the click if it's a left or right click
+					willHandleMouse = (e.Button != MouseButtons.Middle);
 					break;
 
 				case EditTool.CIRCLE:
-					willHandleMouse = true;
+					// we handle all the click if it's a left or right click
+					willHandleMouse = (e.Button != MouseButtons.Middle);
 					break;
 			}
 
@@ -751,19 +756,47 @@ namespace BlueBrick.MapData
 					break;
 
 				case EditTool.LINE:
-					mMouseDownInitialPosition = mouseCoordInStudSnapped;
-					mMouseDownLastPosition = mouseCoordInStudSnapped;
-					if (!mMouseIsScalingRuler)
-						mCurrentlyEditedRuler = new LinearRuler(mouseCoordInStudSnapped, mouseCoordInStudSnapped);
+					if (e.Button == MouseButtons.Left)
+					{
+						mMouseDownInitialPosition = mouseCoordInStudSnapped;
+						mMouseDownLastPosition = mouseCoordInStudSnapped;
+						if (!mMouseIsScalingRuler)
+							mCurrentlyEditedRuler = new LinearRuler(mouseCoordInStudSnapped, mouseCoordInStudSnapped);
+					}
+					else if (e.Button == MouseButtons.Right)
+					{
+						// if it's the right button, cancel the edition
+						mCurrentlyEditedRuler = null;
+						mMouseIsScalingRuler = false;
+						mustRefresh = true;
+					}
+					else
+					{
+						mustRefresh = true;
+					}
 					break;
 
 				case EditTool.CIRCLE:
-					mMouseDownInitialPosition = mouseCoordInStudSnapped;
-					mMouseDownLastPosition = mouseCoordInStudSnapped;
-					// for the creation of a circle the center start on mouse click and we
-					// immediatly go to the scaling of the circle
-					mCurrentlyEditedRuler = new CircularRuler(mouseCoordInStudSnapped, 0.0f);					
-					mMouseIsScalingRuler = true;
+					if (e.Button == MouseButtons.Left)
+					{
+						mMouseDownInitialPosition = mouseCoordInStudSnapped;
+						mMouseDownLastPosition = mouseCoordInStudSnapped;
+						// for the creation of a circle the center start on mouse click and we
+						// immediatly go to the scaling of the circle
+						mCurrentlyEditedRuler = new CircularRuler(mouseCoordInStudSnapped, 0.0f);
+						mMouseIsScalingRuler = true;
+					}
+					else if (e.Button == MouseButtons.Right)
+					{
+						// if it's the right button, cancel the edition
+						mCurrentlyEditedRuler = null;
+						mMouseIsScalingRuler = false;
+						mustRefresh = true;
+					}
+					else
+					{
+						mustRefresh = true;
+					}
 					break;
 			}
 
@@ -890,7 +923,7 @@ namespace BlueBrick.MapData
 					break;
 
 				case EditTool.CIRCLE:
-					if (mMouseHasMoved)
+					if ((mCurrentlyEditedRuler != null) && mMouseHasMoved)
 					{
 						// scale the ruler
 						mCurrentlyEditedRuler.scaleToPoint(mouseCoordInStudSnapped);
@@ -912,6 +945,7 @@ namespace BlueBrick.MapData
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
 			bool mustRefresh = false;
+			bool wasARulerItemCreated = false;
 			// snap the mouse coord to the grid
 			PointF mouseCoordInStudSnapped = getSnapPoint(mouseCoordInStud);
 			// compute the delta move of the mouse
@@ -1012,6 +1046,7 @@ namespace BlueBrick.MapData
 								Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, linearRuler));
 								mCurrentlyEditedRuler = null;
 								mMouseIsScalingRuler = false;
+								wasARulerItemCreated = true;
 							}
 							else
 							{
@@ -1023,17 +1058,22 @@ namespace BlueBrick.MapData
 						{
 							Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, linearRuler));
 							mCurrentlyEditedRuler = null;
+							wasARulerItemCreated = true;
 						}
 						mustRefresh = true;
 					}
 					break;
 
 				case EditTool.CIRCLE:
-					mCurrentlyEditedRuler.scaleToPoint(mouseCoordInStudSnapped);
-					Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
-					mCurrentlyEditedRuler = null;
-					mustRefresh = true;
-					mMouseIsScalingRuler = false;
+					if (mCurrentlyEditedRuler != null)
+					{
+						mCurrentlyEditedRuler.scaleToPoint(mouseCoordInStudSnapped);
+						Actions.ActionManager.Instance.doAction(new Actions.Rulers.AddRuler(this, mCurrentlyEditedRuler));
+						mCurrentlyEditedRuler = null;
+						mMouseIsScalingRuler = false;
+						wasARulerItemCreated = true;
+						mustRefresh = true;
+					}
 					break;
 			}
 
@@ -1041,7 +1081,7 @@ namespace BlueBrick.MapData
 			mMouseHasMoved = false;
 
 			// if we have finished to edit the current ruler, change the tool back to edition
-			if ((mCurrentlyEditedRuler == null) && (Properties.Settings.Default.SwitchToEditionAfterRulerCreation))
+			if (wasARulerItemCreated && (Properties.Settings.Default.SwitchToEditionAfterRulerCreation))
 				MainForm.Instance.rulerSelectAndEditToolStripMenuItem_Click(null, null);
 
 			return mustRefresh;

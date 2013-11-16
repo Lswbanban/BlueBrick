@@ -519,7 +519,10 @@ namespace BlueBrick.MapData
 		/// <returns>true if this layer wants to handle it</returns>
 		public override bool handleMouseDown(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
-			if (Visible && mDisplayCellIndex)
+			bool isLeftButtonDown = (e.Button == MouseButtons.Left);
+
+			// only give the move grid cursor for a left click and if the cells are displayed
+			if (Visible && mDisplayCellIndex && isLeftButtonDown)
 				preferedCursor = MainForm.Instance.GridMoveCursor;
 			else
 				preferedCursor = MainForm.Instance.NoCursor;
@@ -527,7 +530,8 @@ namespace BlueBrick.MapData
 			// since we dont want to have the selection in rectangle to be displayed
 			// we reply that we are always interested in the left click mouse event
 			// even if we do nothing with it after
-			return (e.Button == MouseButtons.Left);
+			// or if we want to cancel a move
+			return (isLeftButtonDown || (mIsMovingGridOrigin && (e.Button == MouseButtons.Right)));
 		}
 
 		/// <summary>
@@ -538,12 +542,24 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseDown(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			// record the initial position
-			mMouseDownInitialPosition = computeGridCoordFromStudCoord(mouseCoordInStud);
-			mMouseDownLastPosition = mMouseDownInitialPosition;
-			mIsMovingGridOrigin = true;
-			// the grid handle none click
-			return false;
+			bool mustRefresh = false;
+
+			if (e.Button == MouseButtons.Left)
+			{
+				// record the initial position
+				mMouseDownInitialPosition = computeGridCoordFromStudCoord(mouseCoordInStud);
+				mMouseDownLastPosition = mMouseDownInitialPosition;
+				mIsMovingGridOrigin = true;
+			}
+			else if (e.Button == MouseButtons.Right)
+			{
+				// cancel the move
+				mIsMovingGridOrigin = false;
+				mustRefresh = true;
+			}
+
+			// tell if we must refresh the view
+			return mustRefresh;
 		}
 
 		/// <summary>
@@ -569,14 +585,18 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			// compute the moving direction
-			int x = mMouseDownLastPosition.X - mMouseDownInitialPosition.X;
-			int y = mMouseDownLastPosition.Y - mMouseDownInitialPosition.Y;
-			ActionManager.Instance.doAction(new MoveGridOrigin(this, x, y));
-			// reset the flag
-			mIsMovingGridOrigin = false;
-			// finally update the layer
-			return true;
+			if (mIsMovingGridOrigin)
+			{
+				// compute the moving direction
+				int x = mMouseDownLastPosition.X - mMouseDownInitialPosition.X;
+				int y = mMouseDownLastPosition.Y - mMouseDownInitialPosition.Y;
+				ActionManager.Instance.doAction(new MoveGridOrigin(this, x, y));
+				// reset the flag
+				mIsMovingGridOrigin = false;
+				// finally update the layer
+				return true;
+			}
+			return false;
 		}
 
 		/// <summary>

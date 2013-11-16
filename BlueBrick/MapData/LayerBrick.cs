@@ -918,6 +918,10 @@ namespace BlueBrick.MapData
 			if (!Visible)
 				return false;
 
+			// early exit, if it's not the left button
+			if (e.Button != MouseButtons.Left)
+				return false;
+
 			// check if the mouse is inside the bounding rectangle of the selected objects
 			bool isMouseInsideSelectedObjects = isPointInsideSelectionRectangle(mouseCoordInStud);
 			if (!isMouseInsideSelectedObjects && (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
