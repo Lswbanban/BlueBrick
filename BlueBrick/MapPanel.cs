@@ -462,7 +462,16 @@ namespace BlueBrick
 
 				case MouseButtons.Right:
 					if (Control.ModifierKeys == Settings.Default.MouseZoomPanKey)
+					{
 						actionToDo = ActionToDoInMouseEvent.ZOOM_VIEW;
+					}
+					else if (Map.Instance.handleMouseDown(e, mouseCoordInStud, ref preferedCursor))
+					{
+						// right button is handle by layers (so give it to the map)
+						mustRefreshView = Map.Instance.mouseDown(e, mouseCoordInStud);
+						mIsMouseHandledByMap = true;
+					}
+
 					break;
 			}
 
@@ -537,16 +546,24 @@ namespace BlueBrick
 					break;
 
 				case MouseButtons.Right:
-					if (mIsZooming)
+					if (mIsMouseHandledByMap)
+					{
+						// left button is handle by layers (so give it to the map)
+						mustRefreshView = Map.Instance.mouseMove(e, mouseCoordInStud, ref preferedCursor);
+						this.Cursor = preferedCursor;
+					}
+					else if (mIsZooming)
+					{
 						actionToDo = ActionToDoInMouseEvent.ZOOM_VIEW;
+					}
 					break;
 
 				case MouseButtons.None:
 					// if the map also want to handle this free move, call it
 					preferedCursor = getDefaultCursor(mouseCoordInStud);
-					if (Map.Instance.handleMouseMoveWithoutClick(e, mouseCoordInStud, ref preferedCursor))
+					mIsMouseHandledByMap = Map.Instance.handleMouseMoveWithoutClick(e, mouseCoordInStud, ref preferedCursor);
+					if (mIsMouseHandledByMap)
 						mustRefreshView = Map.Instance.mouseMove(e, mouseCoordInStud, ref preferedCursor);
-
 					// set the cursor with the preference
 					this.Cursor = preferedCursor;
 
@@ -809,7 +826,7 @@ namespace BlueBrick
 		private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			// if the zoom modifier key is pressed, cancel the opening of the context menu
-			if (mIsZooming || (Control.ModifierKeys == Settings.Default.MouseZoomPanKey))
+			if (mIsMouseHandledByMap || mIsZooming || (Control.ModifierKeys == Settings.Default.MouseZoomPanKey))
 			{
 				e.Cancel = true;
 			}

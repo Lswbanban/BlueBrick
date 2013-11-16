@@ -64,9 +64,9 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 REMOVE ALL THE TODO
+- [target 1.8] MISSING FEATURE (Alban): The right click button can now cancel the current edition if you are in the middle of an edition (ok for grid/ruler creation, need implement for brick/text/area and ruler modification)
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- save/load in LDraw
-	- Add the cancel of the edition by right clicking when editing a linear ruler.
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 	- saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
@@ -92,10 +92,10 @@ REMOVE ALL THE TODO
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar
-- [target 1.8] BUG (Alban): For some mice, the middle button doesn't work all the time.
 - [target 1.8] BUG (Alban): You cannot duplicate bricks and connect them in the same mouse move
 - [target 1.8] BUG (Alban): Check why the drawing of Text layer is slow.
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1) (still buggy)
+- BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
