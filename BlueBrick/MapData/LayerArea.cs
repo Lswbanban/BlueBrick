@@ -572,7 +572,7 @@ namespace BlueBrick.MapData
 
 			// we can paint every part, so we are always interested in the left click mouse event
 			// and the right click for canceling
-			return ((e.Button == MouseButtons.Left) || (e.Button == MouseButtons.Right));
+			return ((e.Button == MouseButtons.Left) || ((mIsMovingArea || mIsPaintingNewArea) && (e.Button == MouseButtons.Right)));
 		}
 
 		/// <summary>
