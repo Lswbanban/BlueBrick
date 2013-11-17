@@ -1059,11 +1059,6 @@ namespace BlueBrick.MapData
 							{
 								// update the duplicate action
 								mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
-								// undo it and do it in the action manager to add it in the history
-								mLastDuplicateAction.undo();
-								Actions.ActionManager.Instance.doAction(mLastDuplicateAction);
-								// then clear it
-								mLastDuplicateAction = null;
 							}
 							else if (mEditAction == EditAction.MOVE_SELECTION)
 							{
@@ -1076,6 +1071,16 @@ namespace BlueBrick.MapData
 
 							// if we moved we did something
 							mustRefresh = true;
+						}
+
+						// after the last move of the duplicate, add the action in the manager
+						if (mEditAction == EditAction.DUPLICATE_SELECTION)
+						{
+							// undo it and do it in the action manager to add it in the history
+							mLastDuplicateAction.undo();
+							Actions.ActionManager.Instance.doAction(mLastDuplicateAction);
+							// then clear it
+							mLastDuplicateAction = null;
 						}
 					}
 					else

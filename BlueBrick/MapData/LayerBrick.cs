@@ -1155,9 +1155,6 @@ namespace BlueBrick.MapData
 						{
 							// update the position, undo the action and add it in the manager
 							mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
-							mLastDuplicateAction.undo();
-							ActionManager.Instance.doAction(mLastDuplicateAction);
-							mLastDuplicateAction = null;
 							// clear also the rotation snapping, in case of a series of duplication, but do not
 							// undo it, since we want to keep the rotation applied on the duplicated bricks.
 							mRotationForSnappingDuringBrickMove = null;
@@ -1203,9 +1200,17 @@ namespace BlueBrick.MapData
 						// to the original place (deltaMove is null), so the link was broken because
 						// of the move, so we need to recreate the link
 						updateBrickConnectivityOfSelection(false);
-						// reset anyway the temp reference for the duplication
-						mLastDuplicateAction = null;
 					}
+
+					// after the last move of the duplicated bricks, add the action in the manager
+					if (mMouseMoveIsADuplicate)
+					{
+						// undo the action and add it in the manager
+						mLastDuplicateAction.undo();
+						ActionManager.Instance.doAction(mLastDuplicateAction);
+					}
+					// reset anyway the temp reference for the duplication
+					mLastDuplicateAction = null;
 				}
 				else
 				{
