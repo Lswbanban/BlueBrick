@@ -792,8 +792,7 @@ namespace BlueBrick.MapData
 						}
 						else if (mEditAction == EditAction.DUPLICATE_SELECTION)
 						{
-							// TODO: need to remove the action from history
-							// update the duplicate action or add a move action
+							// undo the duplicate action and clear it
 							mLastDuplicateAction.undo();
 							mLastDuplicateAction = null;
 						}
@@ -931,12 +930,12 @@ namespace BlueBrick.MapData
 							// check if it is a move or a duplicate
 							if (mEditAction == EditAction.DUPLICATE_SELECTION)
 							{
-								// this is a duplicate, if we didn't move yet, this is the moment to copy  and paste the selection
+								// this is a duplicate, if we didn't duplicated yet, this is the moment to copy  and paste the selection
 								// and this will change the current selection, that will be move normally after
-								if (!mMouseHasMoved)
+								if (mLastDuplicateAction == null)
 								{
 									this.copyCurrentSelectionToClipboard();
-									this.pasteClipboardInLayer(AddOffsetAfterPaste.NO);
+									this.pasteClipboardInLayer(AddOffsetAfterPaste.NO, false);
 									// set the flag
 									wereRulersJustDuplicated = true;
 								}
@@ -1058,8 +1057,12 @@ namespace BlueBrick.MapData
 							}
 							else if (mEditAction == EditAction.DUPLICATE_SELECTION)
 							{
-								// update the duplicate action or add a move action
+								// update the duplicate action
 								mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
+								// undo it and do it in the action manager to add it in the history
+								mLastDuplicateAction.undo();
+								Actions.ActionManager.Instance.doAction(mLastDuplicateAction);
+								// then clear it
 								mLastDuplicateAction = null;
 							}
 							else if (mEditAction == EditAction.MOVE_SELECTION)

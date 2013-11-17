@@ -1074,7 +1074,7 @@ namespace BlueBrick.MapData
 							if (!mMouseHasMoved)
 							{
 								this.copyCurrentSelectionToClipboard();
-								this.pasteClipboardInLayer(AddOffsetAfterPaste.NO);
+								this.pasteClipboardInLayer(AddOffsetAfterPaste.NO, false);
 								// set the flag
 								wereBrickJustDuplicated = true;
 							}

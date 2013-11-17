@@ -860,7 +860,7 @@ namespace BlueBrick.MapData
 		private static float mCurrentRotationStep = 90; // angle in degree of the rotation
 
 		// the action used during a copy/paste
-		protected Actions.Items.DuplicateItems mLastDuplicateAction = null; // temp reference use during a ALT+mouse move action (that duplicate and move the bricks at the same time)
+		protected Actions.Items.DuplicateItems mLastDuplicateAction = null; // temp reference used during a ALT+mouse move action (that duplicate and move the bricks at the same time)
 
 		#region get/set
 
@@ -1484,22 +1484,26 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// Paste (duplicate) the list of bricks that was previously copied with a call to copyCurrentSelectionToClipboard()
 		/// This method should be called on a CTRL+V
+		/// <param name="offsetRule">control if the pasted items must be shifted or not</param>
+		/// <param name="addPasteActionInHistory">if true the paste action will be added in the Action Manager History</param>
 		/// <returns>true if the paste was successful</returns>
 		/// </summary>
-		public bool pasteClipboardInLayer(AddOffsetAfterPaste offsetRule)
+		public bool pasteClipboardInLayer(AddOffsetAfterPaste offsetRule, bool addPasteActionInHistory)
 		{
 			string itemTypeName = null;
-			return pasteClipboardInLayer(offsetRule, out itemTypeName);
+			return pasteClipboardInLayer(offsetRule, out itemTypeName, addPasteActionInHistory);
 		}
 
 		/// <summary>
 		/// Paste (duplicate) the list of bricks that was previously copied with a call to copyCurrentSelectionToClipboard()
 		/// and also give in the output parameter the type of items currently copied in the Clipboard.
 		/// This method should be called on a CTRL+V
+		/// <param name="offsetRule">control if the pasted items must be shifted or not</param>
 		/// <param name="itemTypeName">the localized type name of items that is in the Clipboard</param>
+		/// <param name="addPasteActionInHistory">if true the paste action will be added in the Action Manager History</param>
 		/// <returns>true if the paste was successful</returns>
 		/// </summary>
-		public bool pasteClipboardInLayer(AddOffsetAfterPaste offsetRule, out string itemTypeName)
+		public bool pasteClipboardInLayer(AddOffsetAfterPaste offsetRule, out string itemTypeName, bool addPasteActionInHistory)
 		{
 			// that create a xml reader to read the xml copied in the clipboard
 			System.IO.StringReader stringReader = new System.IO.StringReader(Clipboard.GetText());
@@ -1570,7 +1574,13 @@ namespace BlueBrick.MapData
 
 			// do the paste action
 			if (mLastDuplicateAction != null)
-				ActionManager.Instance.doAction(mLastDuplicateAction);
+			{
+				// if we need to add it in the history, just add it to the action manager, otherwise, just do the action
+				if (addPasteActionInHistory)
+					ActionManager.Instance.doAction(mLastDuplicateAction);
+				else
+					mLastDuplicateAction.redo();
+			}
 
 			// localize the item type name
 			if (itemTypeName.Equals("brick"))

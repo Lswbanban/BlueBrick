@@ -64,7 +64,7 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 REMOVE ALL THE TODO
-- [target 1.8] MISSING FEATURE (Alban): The right click button can now cancel the current edition if you are in the middle of an edition (ok for area/grid/ruler creation, need implement for brick/text and ruler modification)
+- [target 1.8] MISSING FEATURE (Alban): The right click button can now cancel the current edition if you are in the middle of an edition (ok for area/grid/ruler, need implement for brick/text)
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- save/load in LDraw
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
