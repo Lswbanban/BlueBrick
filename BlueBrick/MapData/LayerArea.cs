@@ -571,7 +571,8 @@ namespace BlueBrick.MapData
 				return false;
 
 			// we can paint every part, so we are always interested in the left click mouse event
-			return (e.Button == MouseButtons.Left);
+			// and the right click for canceling
+			return ((e.Button == MouseButtons.Left) || (e.Button == MouseButtons.Right));
 		}
 
 		/// <summary>
@@ -582,12 +583,21 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseDown(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			// check if we paint or move the area
-			mIsMovingArea = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
-			mIsPaintingNewArea = !mIsMovingArea;
-			// record the initial position
-			mMouseDownInitialPosition = computeCellCoordFromStudCoord(mouseCoordInStud);
-			mMouseDownLastPosition = mMouseDownInitialPosition;
+			if (e.Button == MouseButtons.Left)
+			{
+				// check if we paint or move the area
+				mIsMovingArea = (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey);
+				mIsPaintingNewArea = !mIsMovingArea;
+				// record the initial position
+				mMouseDownInitialPosition = computeCellCoordFromStudCoord(mouseCoordInStud);
+				mMouseDownLastPosition = mMouseDownInitialPosition;
+			}
+			else if (e.Button == MouseButtons.Right)
+			{
+				// right click = cancel the edition so reset all the flag
+				mIsMovingArea = false;
+				mIsPaintingNewArea = false;
+			}
 			// update on the down event because we want to draw the fist square
 			return true;
 		}
@@ -599,13 +609,17 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
-			// compute the position snapped on the grid
-			Point newPosition = computeCellCoordFromStudCoord(mouseCoordInStud);
-			// update is the snapped position changed
-			bool mustUpdate = (mMouseDownLastPosition.X != newPosition.X) || (mMouseDownLastPosition.Y != newPosition.Y);
-			mMouseDownLastPosition = newPosition;
-			// update if the user move the mouse
-			return mustUpdate;
+			if (mIsMovingArea || mIsPaintingNewArea)
+			{
+				// compute the position snapped on the grid
+				Point newPosition = computeCellCoordFromStudCoord(mouseCoordInStud);
+				// update is the snapped position changed
+				bool mustUpdate = (mMouseDownLastPosition.X != newPosition.X) || (mMouseDownLastPosition.Y != newPosition.Y);
+				mMouseDownLastPosition = newPosition;
+				// update if the user move the mouse
+				return mustUpdate;
+			}
+			return false;
 		}
 
 		/// <summary>
@@ -622,7 +636,7 @@ namespace BlueBrick.MapData
 				int y = mMouseDownLastPosition.Y - mMouseDownInitialPosition.Y;
 				ActionManager.Instance.doAction(new MoveArea(this, x, y));
 			}
-			else
+			else if (mIsPaintingNewArea)
 			{
 				// compute the rectangle of the modified area
 				int x = Math.Min(mMouseDownInitialPosition.X, mMouseDownLastPosition.X);
