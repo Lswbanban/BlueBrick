@@ -64,7 +64,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 REMOVE ALL THE TODO
-- [target 1.8] MISSING FEATURE (Alban): The right click button can now cancel the current edition if you are in the middle of an edition (ok for area/grid/ruler, need implement for brick/text)
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- save/load in LDraw
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
@@ -109,6 +108,7 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste
 - NEW FEATURE #37 (doc_brown): Add a checkbox in the warning message box when not saving in BBM format.
 - NEW FEATURE (Alban): Add more options in the preference to create any of the 5 types of layer for a new map
+- NEW FEATURE (Pierre): The right click button can now cancel the current edition if you are in the middle of an edition (for any type of layer)
 - REFACTORING (Alban): Move the display of free connection point and watermark in the View menu and add the display of the hull.
 - REFACTORING #18 (Alban): Check where I could have used the directive "where" (remove code duplication)
 - REFACTORING (Alban): Replace all the type test using a string with the "is" keyword

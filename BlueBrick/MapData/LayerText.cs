@@ -28,7 +28,7 @@ namespace BlueBrick.MapData
 	public partial class LayerText : Layer
 	{
 		/// <summary>
-		/// describe all the action that can be done with a mouse when editing a ruler
+		/// describe all the action that can be done with a mouse when editing a text
 		/// </summary>
 		private enum EditAction
 		{
@@ -313,7 +313,7 @@ namespace BlueBrick.MapData
 			if (!Visible)
 				return false;
 
-			// early exit, if it's not the left button
+			// do stuff only for the left button
 			if (e.Button == MouseButtons.Left)
 			{
 				// check if the mouse is inside the bounding rectangle of the selected objects
