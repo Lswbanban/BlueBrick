@@ -780,15 +780,19 @@ namespace BlueBrick.MapData
 						// if it's the right button, cancel the edition
 						if (mEditAction == EditAction.MOVE_CONTROL_POINT)
 						{
+							// put back the control point to the original position and update the rectangle
 							mCurrentlyEditedRuler.CurrentControlPoint = mMouseDownInitialPosition;
+							this.updateBoundingSelectionRectangle();
 						}
 						else if (mEditAction == EditAction.SCALE_RULER)
 						{
-							//TODO
+							// rescale at the original position and update the rectangle
+							mCurrentlyEditedRuler.scaleToPoint(mMouseDownInitialPosition);
+							this.updateBoundingSelectionRectangle();
 						}
 						else if (mEditAction == EditAction.DUPLICATE_SELECTION)
 						{
-							// TODO
+							// TODO: need to remove the action from history
 							// update the duplicate action or add a move action
 							mLastDuplicateAction.undo();
 							mLastDuplicateAction = null;
@@ -798,12 +802,17 @@ namespace BlueBrick.MapData
 							// reset the initial position to each ruler
 							PointF deltaMove = new PointF(mouseCoordInStudSnapped.X - mMouseDownInitialPosition.X, mouseCoordInStudSnapped.Y - mMouseDownInitialPosition.Y);
 							if ((deltaMove.X != 0) || (deltaMove.Y != 0))
+							{
 								foreach (LayerItem item in mSelectedObjects)
 									item.Position = new PointF(item.Position.X - deltaMove.X, item.Position.Y - deltaMove.Y);
+								// reset the bounding rectangle
+								this.updateBoundingSelectionRectangle();
+							}
 						}
 						mEditAction = EditAction.NONE;
 						mCurrentRulerUnderMouse = null;
 						mCurrentlyEditedRuler = null;
+						mustRefresh = true;
 					}
 					break;
 
