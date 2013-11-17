@@ -404,9 +404,9 @@ namespace BlueBrick.MapData
 				// check if it is a move or a duplicate
 				if (mMouseMoveIsADuplicate)
 				{
-					// this is a duplicate, if we didn't move yet, this is the moment to copy  and paste the selection
+					// this is a duplicate, if we didn't duplicate the text, this is the moment to copy and paste the selection
 					// and this will change the current selection, that will be move normally after
-					if (!mMouseHasMoved)
+					if (mLastDuplicateAction == null)
 					{
 						this.copyCurrentSelectionToClipboard();
 						this.pasteClipboardInLayer(AddOffsetAfterPaste.NO, false);
@@ -471,6 +471,8 @@ namespace BlueBrick.MapData
 					if (mMouseMoveIsADuplicate)
 					{
 						mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
+						mLastDuplicateAction.undo();
+						ActionManager.Instance.doAction(mLastDuplicateAction);
 						mLastDuplicateAction = null;
 					}
 					else

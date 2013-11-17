@@ -213,7 +213,8 @@ namespace BlueBrick.MapData
 				this.mDisplayArea = model.mDisplayArea;
 				this.mOrientation = model.mOrientation;
 				// don't copy the group, just leave it null
-				this.mSelectionArea = model.mSelectionArea.Clone();
+				if (model.mSelectionArea != null)
+					this.mSelectionArea = model.mSelectionArea.Clone();
 				this.mSnapToGridOffset = model.mSnapToGridOffset;
 			}
 

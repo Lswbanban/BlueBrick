@@ -1069,9 +1069,9 @@ namespace BlueBrick.MapData
 						// check if it is a move or a duplicate
 						if (mMouseMoveIsADuplicate)
 						{
-							// this is a duplicate, if we didn't move yet, this is the moment to copy  and paste the selection
+							// this is a duplicate, if we didn't created the duplicate action yet, this is the moment to copy and paste the selection
 							// and this will change the current selection, that will be move normally after
-							if (!mMouseHasMoved)
+							if (mLastDuplicateAction == null)
 							{
 								this.copyCurrentSelectionToClipboard();
 								this.pasteClipboardInLayer(AddOffsetAfterPaste.NO, false);
@@ -1153,7 +1153,10 @@ namespace BlueBrick.MapData
 						// update the duplicate action or add a move action
 						if (mMouseMoveIsADuplicate)
 						{
+							// update the position, undo the action and add it in the manager
 							mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
+							mLastDuplicateAction.undo();
+							ActionManager.Instance.doAction(mLastDuplicateAction);
 							mLastDuplicateAction = null;
 							// clear also the rotation snapping, in case of a series of duplication, but do not
 							// undo it, since we want to keep the rotation applied on the duplicated bricks.
