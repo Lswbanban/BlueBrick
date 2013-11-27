@@ -67,7 +67,7 @@ namespace BlueBrick.MapData
 
 		#region get/set
 		/// <summary>
-		/// An accessor on the brick list for saving in different fomat
+		/// A readonly accessor on the brick list for saving in different fomat other than the standard BB XML serialization
 		/// </summary>
 		public List<Brick> BrickList
 		{

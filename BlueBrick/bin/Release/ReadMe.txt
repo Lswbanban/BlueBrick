@@ -67,7 +67,7 @@ REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Erik): A new layer type for mesurement tools.
 	- save/load in LDraw
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
-	- saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
+	- probably cannot fix: saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
@@ -91,7 +91,6 @@ REMOVE ALL THE TODO
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar
-- [target 1.8] BUG (Alban): You cannot duplicate bricks and connect them in the same mouse move
 - [target 1.8] BUG (Alban): Check why the drawing of Text layer is slow.
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1) (still buggy)
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
@@ -120,6 +119,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
 - BUGFIX (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
 - BUGFIX (Alban): Rotate and Delete a group part is not working as for a single brick. Rotate a group now rotate according to the connections, delete a group now select the next connected brick
+- BUGFIX (Alban): Now you can duplicate bricks and connect them in the same mouse move
 - BUGFIX (Alban): The snapping margin defined in the XML file has no effect for a group
 - BUGFIX (Alban): In the Preferences Shortcut tab, adding a shortcut for a key already existing should ask if we need to replace it or associate a new action on the same key.
 - BUGFIX (Alban): In the Preferences Shortcut tab, selecting a shortcut in the list updates the combo boxes below (for easy modification of an existing shortcut)

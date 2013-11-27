@@ -117,6 +117,14 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// The ruler list is given as readonly for saving purpose in other format than the BB XML one
+		/// </summary>
+		public List<RulerItem> RulerList
+		{
+			get { return mRulers; }
+		}
+
+		/// <summary>
 		/// Return the current ruler item on this layer which has one of his control point highlighted
 		/// </summary>
 		public RulerItem CurrentRulerWithHighlightedControlPoint
