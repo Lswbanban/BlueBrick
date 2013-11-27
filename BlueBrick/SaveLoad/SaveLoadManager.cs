@@ -123,6 +123,8 @@ namespace BlueBrick
 		// it uses two different lines in the LDraw file.
 		private static Layer.Group mLDrawCurrentGroupInWhichAdd = null;
 		private static readonly string LDRAW_DATE_FORMAT_STRING = "dd/MM/yyyy";
+		private static readonly string LDRAW_BB_META_COMMAND = "0 !BLUEBRICK ";
+		private static readonly string LDRAW_BB_CMD_RULER = "RULER 1 ";
 
 		private static bool loadLDR(string filename)
 		{
@@ -504,13 +506,19 @@ namespace BlueBrick
 			foreach (Layer layer in Map.Instance.LayerList)
 			{
 				// check the type because we only save brick layers
-				LayerBrick brickLayer = layer as LayerBrick;
-				if (brickLayer != null)
-				{
-					saveBrickLayerInLDRAW(textWriter, brickLayer, true);
-					// add a step to separate the layers
-					textWriter.WriteLine("0 STEP");
-				}
+				if (layer is LayerBrick)
+					saveBrickLayerInLDRAW(textWriter, layer as LayerBrick, true);
+				else if (layer is LayerRuler)
+					saveRulerLayerInLDRAW(textWriter, layer as LayerRuler, true);
+				else if (layer is LayerArea)
+					saveAreaLayerInLDRAW(textWriter, layer as LayerArea, true);
+				else if (layer is LayerGrid)
+					saveGridLayerInLDRAW(textWriter, layer as LayerGrid, true);
+				else if (layer is LayerText)
+					saveTextLayerInLDRAW(textWriter, layer as LayerText, true);
+
+				// add a step to separate the layers
+				textWriter.WriteLine("0 STEP");
 			}
 			// close the file
 			textWriter.Close();
@@ -847,6 +855,109 @@ namespace BlueBrick
 			line += "0 GROUP " + group.ItemsCount.ToString() + " " + getGroupNameForSaving(group);
 			//write the line
 			textWriter.WriteLine(line);
+		}
+
+		private static void saveRulerLayerInLDRAW(StreamWriter textWriter, LayerRuler rulerLayer, bool useMLCADHide)
+		{
+			// clear the group list for saving
+			Layer.Group.sListForGroupSaving.Clear();
+
+			// check if the layer is hidden (and so we should hide all the bricks)
+			bool hideRulers = useMLCADHide && !rulerLayer.Visible;
+
+			// iterate on all the bricks
+			foreach (LayerRuler.RulerItem ruler in rulerLayer.RulerList)
+			{
+				// step the progressbar for each brick (we do it at the begining because there is a continue in this loop)
+				MainForm.Instance.stepProgressBar(); //TODO increment the bar counts
+				// save the ruler
+				saveOneRulerItemInLDRAW(textWriter, ruler, hideRulers);
+			}
+
+			// now save the groups if we found some
+			foreach (Layer.Group group in Layer.Group.sListForGroupSaving)
+				saveOneGroupInLDRAW(textWriter, group, hideRulers);
+			// and clear the group list for saving
+			Layer.Group.sListForGroupSaving.Clear();
+		}
+
+		private static void saveOneRulerItemInLDRAW(StreamWriter textWriter, LayerRuler.RulerItem ruler, bool hideRulers)
+		{
+			// the LDRAW format for a ruler is:
+			// 0 !BLUEBRICK RULER <version> <type> <DisplayDistance> <DisplayUnit> <color> <GuidelineColor> <MeasureFontColor> <LineThickness> <GuidelineThickness> <GuidelineDashPattern> <Unit> <geometry> <MeasureFont>
+			// where <version> is an int describing the current version of the command
+			// <type> is LINEAR or CIRCULAR
+			// <DisplayDistance> <DisplayUnit> are bool in form of an int 0 or 1
+			// <color> <GuidelineColor> <MeasureFontColor> are colors in hex format AARRGGBB
+			// <LineThickness> <GuidelineThickness> are float in pixel
+			// <GuidelineDashPattern> is four float representing "space-dash" in percentage of GuidelineThickness
+			// <Unit> is an int for that order
+			// <geometry> depends on the type
+			//		for linear:
+			//		for circular:
+			// <MeasureFont> is the rest of the line as as string representing the font name
+			// GROUPED BRICK:
+			// If the ruler is part of a group, MLCAD introduced two commands.
+			// The line "0 MLCAD BTG <my group name>" should be placed before the ruler
+			// to indicate that the brick Belongs To the Group (BTG)
+			// the line "0 GROUP <Num items> <group name>" should be placed where the group
+			// should appear
+
+			// first check if this ruler belongs to a group
+			if (ruler.Group != null)
+			{
+				textWriter.WriteLine("0 MLCAD BTG " + getGroupNameForSaving(ruler.Group));
+				// add this group to the temporary list for saving if not already done
+				if (!Layer.Group.sListForGroupSaving.Contains(ruler.Group))
+					Layer.Group.sListForGroupSaving.Add(ruler.Group);
+			}
+
+			string line = "";
+			// first the visible if we should use it
+			if (hideRulers)
+				line += "0 MLCAD HIDE ";
+
+			// get the type
+			bool isLinear = (ruler is LayerRuler.LinearRuler);
+
+			// meta command for BB Ruler
+			line += LDRAW_BB_META_COMMAND + LDRAW_BB_CMD_RULER + (isLinear ? "LINEAR " : "CIRCULAR ");
+			// display options
+			line += (ruler.DisplayDistance ? "1 " : "0 ");
+			line += (ruler.DisplayUnit ? "1 " : "0 ");
+			// color
+			line += ruler.Color.ToArgb().ToString() + " ";
+			line += ruler.GuidelineColor.ToArgb().ToString() + " ";
+			line += ruler.MeasureColor.ToArgb().ToString() + " ";
+			// line thinckness
+			line += ruler.LineThickness.ToString(System.Globalization.CultureInfo.InvariantCulture) + " ";
+			line += ruler.GuidelineThickness.ToString(System.Globalization.CultureInfo.InvariantCulture) + " ";
+			line += ruler.GuidelineDashPattern[0].ToString(System.Globalization.CultureInfo.InvariantCulture) + " " +
+					ruler.GuidelineDashPattern[1].ToString(System.Globalization.CultureInfo.InvariantCulture) + " ";
+			// unit
+			line += ((int)(ruler.CurrentUnit)).ToString() + " ";
+
+
+			// finish by the measure font
+			line += ruler.MeasureFont.Name;
+
+			//write the line
+			textWriter.WriteLine(line);
+		}
+
+		private static void saveAreaLayerInLDRAW(StreamWriter textWriter, LayerArea areaLayer, bool useMLCADHide)
+		{
+			textWriter.WriteLine("0 // Not implemented yet, see you maybe in BB 1.9");
+		}
+
+		private static void saveGridLayerInLDRAW(StreamWriter textWriter, LayerGrid gridLayer, bool useMLCADHide)
+		{
+			textWriter.WriteLine("0 // Not implemented yet, see you maybe in BB 1.9");
+		}
+
+		private static void saveTextLayerInLDRAW(StreamWriter textWriter, LayerText textLayer, bool useMLCADHide)
+		{
+			textWriter.WriteLine("0 // Not implemented yet, see you maybe in BB 1.9");
 		}
 		#endregion
 		#region TrackDesigner Format
