@@ -294,6 +294,14 @@ namespace BlueBrick.MapData
 				}
 				writer.WriteEndElement();
 			}
+
+            public virtual void ReadLDraw(string[] line, ref int index, int version)
+            {
+            }
+
+            public virtual void WriteLDraw(ref string line)
+            {
+            }
 			#endregion
 
 			#region selection

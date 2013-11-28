@@ -246,6 +246,7 @@
     <Compile Include="MapData\LayerArea.cs" />
     <Compile Include="MapData\LayerBrick.cs" />
     <Compile Include="MapData\LayerText.cs" />
+    <Compile Include="SaveLoad\LDrawReadWrite.cs" />
     <Compile Include="SaveLoad\XmlReadWrite.cs" />
     <Compile Include="MapPanel.cs">
       <SubType>Component</SubType>
@@ -663,7 +664,7 @@
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

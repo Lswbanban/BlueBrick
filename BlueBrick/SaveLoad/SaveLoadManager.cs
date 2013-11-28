@@ -21,6 +21,7 @@ using BlueBrick.MapData;
 using System.Drawing.Drawing2D;
 using System.Drawing;
 using System.Windows.Forms;
+using BlueBrick.SaveLoad;
 
 namespace BlueBrick
 {
@@ -123,8 +124,6 @@ namespace BlueBrick
 		// it uses two different lines in the LDraw file.
 		private static Layer.Group mLDrawCurrentGroupInWhichAdd = null;
 		private static readonly string LDRAW_DATE_FORMAT_STRING = "dd/MM/yyyy";
-		private static readonly string LDRAW_BB_META_COMMAND = "0 !BLUEBRICK ";
-		private static readonly string LDRAW_BB_CMD_RULER = "RULER 1 ";
 
 		private static bool loadLDR(string filename)
 		{
@@ -568,7 +567,7 @@ namespace BlueBrick
 					// write the line of the part
 					string line = "";
 					if (!brickLayer.Visible)
-						line += "0 MLCAD HIDE ";
+                        line += LDrawReadWrite.MLCAD_COMMAND_HIDE;
 					line += "1 1 0 0 0 1 0 0 0 1 0 0 0 1 " + layerName;
 					textWriter.WriteLine(line);
 					// add the name in the list for later use
@@ -771,7 +770,7 @@ namespace BlueBrick
 			// first check if this brick belongs to a group
 			if (brick.Group != null)
 			{
-				textWriter.WriteLine("0 MLCAD BTG " + getGroupNameForSaving(brick.Group));
+				textWriter.WriteLine(LDrawReadWrite.MLCAD_COMMAND_BTG + getGroupNameForSaving(brick.Group));
 				// add this group to the temporary list for saving if not already done
 				if (!Layer.Group.sListForGroupSaving.Contains(brick.Group))
 					Layer.Group.sListForGroupSaving.Add(brick.Group);
@@ -808,7 +807,7 @@ namespace BlueBrick
 			string line = "";
 			// first the visible if we should use it
 			if (hideBricks)
-				line += "0 MLCAD HIDE ";
+                line += LDrawReadWrite.MLCAD_COMMAND_HIDE;
 			// then the type and color
 			line += "1 " + partNumberAndColor[1];
 			// position
@@ -844,15 +843,15 @@ namespace BlueBrick
 
 			// first check if this group belongs to a group
 			if (group.Group != null)
-				textWriter.WriteLine("0 MLCAD BTG " + getGroupNameForSaving(group.Group));
+                textWriter.WriteLine(LDrawReadWrite.MLCAD_COMMAND_BTG + getGroupNameForSaving(group.Group));
 
 			string line = "";
 			// first the visible if we should use it
 			if (hideGroup)
-				line += "0 MLCAD HIDE ";
+                line += LDrawReadWrite.MLCAD_COMMAND_HIDE;
 
 			// group meta command and number of items and group unique name
-			line += "0 GROUP " + group.ItemsCount.ToString() + " " + getGroupNameForSaving(group);
+            line += LDrawReadWrite.COMMON_COMMAND_GROUP + group.ItemsCount.ToString() + " " + getGroupNameForSaving(group);
 			//write the line
 			textWriter.WriteLine(line);
 		}
@@ -884,13 +883,13 @@ namespace BlueBrick
 		private static void saveOneRulerItemInLDRAW(StreamWriter textWriter, LayerRuler.RulerItem ruler, bool hideRulers)
 		{
 			// the LDRAW format for a ruler is:
-			// 0 !BLUEBRICK RULER <version> <type> <DisplayDistance> <DisplayUnit> <color> <GuidelineColor> <MeasureFontColor> <LineThickness> <GuidelineThickness> <GuidelineDashPattern> <Unit> <geometry> <MeasureFont>
+            // 0 !BLUEBRICK RULER <version> <type> <DisplayDistance> <DisplayUnit> <color> <GuidelineColor> <MeasureFontColor> <LineThickness> <GuidelineThickness> <GuidelineDashPattern> <Unit> <FontFamily|Size|Style> <geometry>
 			// where <version> is an int describing the current version of the command
 			// <type> is LINEAR or CIRCULAR
 			// <DisplayDistance> <DisplayUnit> are bool in form of an int 0 or 1
 			// <color> <GuidelineColor> <MeasureFontColor> are colors in hex format AARRGGBB
 			// <LineThickness> <GuidelineThickness> are float in pixel
-			// <GuidelineDashPattern> is four float representing "space-dash" in percentage of GuidelineThickness
+			// <GuidelineDashPattern> is float separted by semicolon representing "space-dash" in percentage of GuidelineThickness
 			// <Unit> is an int for that order
 			// <geometry> depends on the type
 			//		for linear:
@@ -906,7 +905,7 @@ namespace BlueBrick
 			// first check if this ruler belongs to a group
 			if (ruler.Group != null)
 			{
-				textWriter.WriteLine("0 MLCAD BTG " + getGroupNameForSaving(ruler.Group));
+                textWriter.WriteLine(LDrawReadWrite.MLCAD_COMMAND_BTG + getGroupNameForSaving(ruler.Group));
 				// add this group to the temporary list for saving if not already done
 				if (!Layer.Group.sListForGroupSaving.Contains(ruler.Group))
 					Layer.Group.sListForGroupSaving.Add(ruler.Group);
@@ -915,31 +914,12 @@ namespace BlueBrick
 			string line = "";
 			// first the visible if we should use it
 			if (hideRulers)
-				line += "0 MLCAD HIDE ";
-
-			// get the type
-			bool isLinear = (ruler is LayerRuler.LinearRuler);
+				line += LDrawReadWrite.MLCAD_COMMAND_HIDE;
 
 			// meta command for BB Ruler
-			line += LDRAW_BB_META_COMMAND + LDRAW_BB_CMD_RULER + (isLinear ? "LINEAR " : "CIRCULAR ");
-			// display options
-			line += (ruler.DisplayDistance ? "1 " : "0 ");
-			line += (ruler.DisplayUnit ? "1 " : "0 ");
-			// color
-			line += ruler.Color.ToArgb().ToString() + " ";
-			line += ruler.GuidelineColor.ToArgb().ToString() + " ";
-			line += ruler.MeasureColor.ToArgb().ToString() + " ";
-			// line thinckness
-			line += ruler.LineThickness.ToString(System.Globalization.CultureInfo.InvariantCulture) + " ";
-			line += ruler.GuidelineThickness.ToString(System.Globalization.CultureInfo.InvariantCulture) + " ";
-			line += ruler.GuidelineDashPattern[0].ToString(System.Globalization.CultureInfo.InvariantCulture) + " " +
-					ruler.GuidelineDashPattern[1].ToString(System.Globalization.CultureInfo.InvariantCulture) + " ";
-			// unit
-			line += ((int)(ruler.CurrentUnit)).ToString() + " ";
-
-
-			// finish by the measure font
-			line += ruler.MeasureFont.Name;
+            line += LDrawReadWrite.BB_COMMAND_RULER;
+            // the call the serialization
+            ruler.WriteLDraw(ref line);
 
 			//write the line
 			textWriter.WriteLine(line);
