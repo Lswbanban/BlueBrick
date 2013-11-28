@@ -18,6 +18,7 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using BlueBrick.SaveLoad;
 
 namespace BlueBrick.MapData
 {
@@ -341,6 +342,41 @@ namespace BlueBrick.MapData
 				XmlReadWrite.writeFont(writer, "MeasureFont", mMeasureFont);
 				XmlReadWrite.writeColor(writer, "MeasureFontColor", this.MeasureColor);
 			}
+
+            public override void ReadLDraw(string[] line, ref int index, int version)
+            {
+                // read the LayerItem properties
+                base.ReadLDraw(line, ref index, version);
+                // read the common data of the ruler
+                mDisplayDistance = LDrawReadWrite.readBoolean(line[index++]);
+                mDisplayUnit = LDrawReadWrite.readBoolean(line[index++]);
+                mColor = LDrawReadWrite.readColor(line[index++]);
+                mGuidelineColor = LDrawReadWrite.readColor(line[index++]);
+                this.MeasureColor = LDrawReadWrite.readColor(line[index++]);
+                mLineThickness = LDrawReadWrite.readFloat(line[index++]);
+                mGuidelineThickness = LDrawReadWrite.readFloat(line[index++]);
+                mGuidelineDashPattern = LDrawReadWrite.readFloatArray(line[index++]);
+                this.CurrentUnit = (Tools.Distance.Unit)(LDrawReadWrite.readInteger(line[index++]));
+                mMeasureFont = LDrawReadWrite.readFont(line[index++]);
+                // the update method will be called by the non abstract derivated class
+            }
+
+            public override void WriteLDraw(ref string line)
+            {
+                // write the LayerItems properties
+                base.WriteLDraw(ref line);
+                // write the date of the linear ruler
+                LDrawReadWrite.writeBoolean(ref line, mDisplayDistance);
+                LDrawReadWrite.writeBoolean(ref line, mDisplayUnit);
+                LDrawReadWrite.writeColor(ref line, mColor);
+                LDrawReadWrite.writeColor(ref line, mGuidelineColor);
+                LDrawReadWrite.writeColor(ref line, this.MeasureColor);
+                LDrawReadWrite.writeFloat(ref line, mLineThickness);
+                LDrawReadWrite.writeFloat(ref line, mGuidelineThickness);
+                LDrawReadWrite.writeFloatArray(ref line, mGuidelineDashPattern);
+                LDrawReadWrite.writeInteger(ref line, (int)(this.CurrentUnit));
+                LDrawReadWrite.writeFont(ref line, mMeasureFont);
+            }
 			#endregion
 
 			#region edition
@@ -1004,7 +1040,37 @@ namespace BlueBrick.MapData
 				XmlReadWrite.writeBoolean(writer, "AllowOffset", mAllowOffset);
 				writer.WriteEndElement(); // end of LinearRuler
 			}
-			#endregion
+
+            public override void ReadLDraw(string[] line, ref int index, int version)
+            {
+                base.ReadLDraw(line, ref index, version);
+                // read the data of the ruler (don't use accessor to avoid multiple call to the update functions
+                mControlPoint[0].mPoint = LDrawReadWrite.readPointF(line[index++]);
+                mControlPoint[1].mPoint = LDrawReadWrite.readPointF(line[index++]);
+                // read the id of the attached brick (if any)
+                mControlPoint[0].mAttachedBrickHashCodeUsedDuringLoading = LDrawReadWrite.readItemId(line[index++]);
+                mControlPoint[1].mAttachedBrickHashCodeUsedDuringLoading = LDrawReadWrite.readItemId(line[index++]);
+                mAllowOffset = LDrawReadWrite.readBoolean(line[index++]);
+                mOffsetDistance = LDrawReadWrite.readFloat(line[index++]);
+                // update the computing data after reading the 2 points and offset
+                updateDisplayDataAndMesurementImage();
+            }
+
+            public override void WriteLDraw(ref string line)
+            {
+                // write the type first
+                line += "LINEAR ";
+                // call the base class
+                base.WriteLDraw(ref line);
+                // write the data of the linear ruler
+                LDrawReadWrite.writePointF(ref line, this.Point1);
+                LDrawReadWrite.writePointF(ref line, this.Point2);
+                LDrawReadWrite.writeItemId(ref line, mControlPoint[0].mAttachedBrick);
+                LDrawReadWrite.writeItemId(ref line, mControlPoint[1].mAttachedBrick);
+                LDrawReadWrite.writeBoolean(ref line, mAllowOffset);
+                LDrawReadWrite.writeFloat(ref line, this.OffsetDistance);
+            }            
+            #endregion
 
 			#region edition
 			/// <summary>
@@ -1529,7 +1595,31 @@ namespace BlueBrick.MapData
 				XmlReadWrite.writeItemId(writer, "AttachedBrick", mAttachedBrick);
 				writer.WriteEndElement(); // end of CircularRuler
 			}
-			#endregion
+
+            public override void ReadLDraw(string[] line, ref int index, int version)
+            {
+                base.ReadLDraw(line, ref index, version);
+                // read data of the ruler (don't use this.Center because at that time the object is out of synch
+                // the display area may have been read but not center yet
+                mSelectionArea[0] = LDrawReadWrite.readPointF(line[index++]);
+                this.Radius = LDrawReadWrite.readFloat(line[index++]);
+                // read the id of the attached brick (if any)
+                mAttachedBrickHashCodeUsedDuringLoading = LDrawReadWrite.readItemId(line[index++]);
+                // don't need to update the display area after reading the data values, because the accessor of Radius did it
+            }
+
+            public override void WriteLDraw(ref string line)
+            {
+                // write the type first
+                line += "CIRCULAR ";
+                // call the base class
+                base.WriteLDraw(ref line);
+                // write the data of the linear ruler
+                LDrawReadWrite.writePointF(ref line, this.Center);
+                LDrawReadWrite.writeFloat(ref line, this.Radius);
+                LDrawReadWrite.writeItemId(ref line, mAttachedBrick);
+            }            
+            #endregion
 
 			#region edition
 			/// <summary>
