@@ -1151,5 +1151,53 @@ namespace BlueBrick.Properties {
                 this["WatermarkColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UIExportWatermark {
+            get {
+                return ((bool)(this["UIExportWatermark"]));
+            }
+            set {
+                this["UIExportWatermark"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UIExportHulls {
+            get {
+                return ((bool)(this["UIExportHulls"]));
+            }
+            set {
+                this["UIExportHulls"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UIExportElectricCircuit {
+            get {
+                return ((bool)(this["UIExportElectricCircuit"]));
+            }
+            set {
+                this["UIExportElectricCircuit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UIExportConnection {
+            get {
+                return ((bool)(this["UIExportConnection"]));
+            }
+            set {
+                this["UIExportConnection"] = value;
+            }
+        }
     }
 }

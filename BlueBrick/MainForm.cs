@@ -559,6 +559,8 @@ namespace BlueBrick
 			this.hullsBricksToolStripMenuItem.Checked = Properties.Settings.Default.DisplayBrickHull;
             this.hullsTextsAndRulersToolStripMenuItem.Checked = Properties.Settings.Default.DisplayOtherHull;
             this.rulerAttachPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayRulerAttachPoints;
+            // the export window
+            this.mExportImageForm.loadUISettingFromDefaultSettings();
 		}
 
 		private void saveUISettingInDefaultSettings()
@@ -624,6 +626,9 @@ namespace BlueBrick
 			// the part lib display config
 			this.partsTabControl.savePartListDisplayStatusInSettings();
 			Properties.Settings.Default.UIFilterAllLibraryTab = this.filterAllTabCheckBox.Checked;
+
+            // the export window
+            this.mExportImageForm.saveUISettingInDefaultSettings();
 
 			// try to save (never mind if we can not (for example BlueBrick is launched
 			// from a write protected drive)
