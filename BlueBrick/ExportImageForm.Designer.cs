@@ -332,28 +332,28 @@ namespace BlueBrick
             resources.ApplyResources(this.exportConnectionPointCheckBox, "exportConnectionPointCheckBox");
             this.exportConnectionPointCheckBox.Name = "exportConnectionPointCheckBox";
             this.exportConnectionPointCheckBox.UseVisualStyleBackColor = true;
-            this.exportConnectionPointCheckBox.CheckedChanged += new System.EventHandler(this.exportConnectionPointCheckBox_CheckedChanged);
+            this.exportConnectionPointCheckBox.Click += new System.EventHandler(this.exportConnectionPointCheckBox_Click);
             // 
             // exportElectricCircuitCheckBox
             // 
             resources.ApplyResources(this.exportElectricCircuitCheckBox, "exportElectricCircuitCheckBox");
             this.exportElectricCircuitCheckBox.Name = "exportElectricCircuitCheckBox";
             this.exportElectricCircuitCheckBox.UseVisualStyleBackColor = true;
-            this.exportElectricCircuitCheckBox.CheckedChanged += new System.EventHandler(this.exportElectricCircuitCheckBox_CheckedChanged);
+            this.exportElectricCircuitCheckBox.Click += new System.EventHandler(this.exportElectricCircuitCheckBox_Click);
             // 
             // exportWatermarkCheckBox
             // 
             resources.ApplyResources(this.exportWatermarkCheckBox, "exportWatermarkCheckBox");
             this.exportWatermarkCheckBox.Name = "exportWatermarkCheckBox";
             this.exportWatermarkCheckBox.UseVisualStyleBackColor = true;
-            this.exportWatermarkCheckBox.CheckedChanged += new System.EventHandler(this.exportWatermarkCheckBox_CheckedChanged);
+            this.exportWatermarkCheckBox.Click += new System.EventHandler(this.exportWatermarkCheckBox_Click);
             // 
             // exportHullCheckBox
             // 
             resources.ApplyResources(this.exportHullCheckBox, "exportHullCheckBox");
             this.exportHullCheckBox.Name = "exportHullCheckBox";
             this.exportHullCheckBox.UseVisualStyleBackColor = true;
-            this.exportHullCheckBox.CheckedChanged += new System.EventHandler(this.exportHullCheckBox_CheckedChanged);
+            this.exportHullCheckBox.Click += new System.EventHandler(this.exportHullCheckBox_Click);
             // 
             // ExportImageForm
             // 

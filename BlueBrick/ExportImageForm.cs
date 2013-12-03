@@ -206,26 +206,18 @@ namespace BlueBrick
             mOriginalDisplayBrickHullInSetting = Settings.Default.DisplayBrickHull;
             mOriginalDisplayElectricCircuitInSetting = Settings.Default.DisplayElectricCircuit;
             mOriginalDisplayConnectionPointInSetting = Settings.Default.DisplayFreeConnexionPoints;
-            // now change them: for each we check if it is different, otherwithes the callback won't be called
-            if (this.exportWatermarkCheckBox.Checked != Map.Instance.ExportWatermark)
-                this.exportWatermarkCheckBox.Checked = Map.Instance.ExportWatermark;
-            else
-                this.exportWatermarkCheckBox_CheckedChanged(this, null);
+            // now change them: for each we change the check state and simulate a click
+            this.exportWatermarkCheckBox.Checked = Map.Instance.ExportWatermark;
+            this.exportWatermarkCheckBox_Click(this, null);
 
-            if (this.exportHullCheckBox.Checked != Map.Instance.ExportBrickHull)
-                this.exportHullCheckBox.Checked = Map.Instance.ExportBrickHull;
-            else
-                this.exportHullCheckBox_CheckedChanged(this, null);
+            this.exportHullCheckBox.Checked = Map.Instance.ExportBrickHull;
+            this.exportHullCheckBox_Click(this, null);
 
-            if (this.exportElectricCircuitCheckBox.Checked != Map.Instance.ExportElectricCircuit)
-                this.exportElectricCircuitCheckBox.Checked = Map.Instance.ExportElectricCircuit;
-            else
-                this.exportElectricCircuitCheckBox_CheckedChanged(this, null);
+            this.exportElectricCircuitCheckBox.Checked = Map.Instance.ExportElectricCircuit;
+            this.exportElectricCircuitCheckBox_Click(this, null);
 
-            if (this.exportConnectionPointCheckBox.Checked != Map.Instance.ExportConnectionPoints)
-                this.exportConnectionPointCheckBox.Checked = Map.Instance.ExportConnectionPoints;
-            else
-                this.exportConnectionPointCheckBox_CheckedChanged(this, null);
+            this.exportConnectionPointCheckBox.Checked = Map.Instance.ExportConnectionPoints;
+            this.exportConnectionPointCheckBox_Click(this, null);
         }
 
         /// <summary>
@@ -589,26 +581,30 @@ namespace BlueBrick
             saveUISettingInDefaultSettings();
 		}
 
-        private void exportWatermarkCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void exportWatermarkCheckBox_Click(object sender, EventArgs e)
         {
+            // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
             Settings.Default.DisplayGeneralInfoWatermark = this.exportWatermarkCheckBox.Checked;
             drawAll();
         }
 
-        private void exportHullCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void exportHullCheckBox_Click(object sender, EventArgs e)
         {
+            // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
             Settings.Default.DisplayBrickHull = this.exportHullCheckBox.Checked;
             drawAll();
         }
 
-        private void exportElectricCircuitCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void exportElectricCircuitCheckBox_Click(object sender, EventArgs e)
         {
+            // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
             Settings.Default.DisplayElectricCircuit = this.exportElectricCircuitCheckBox.Checked;
             drawAll();
         }
 
-        private void exportConnectionPointCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void exportConnectionPointCheckBox_Click(object sender, EventArgs e)
         {
+            // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
             Settings.Default.DisplayFreeConnexionPoints = this.exportConnectionPointCheckBox.Checked;
             drawAll();
         }
