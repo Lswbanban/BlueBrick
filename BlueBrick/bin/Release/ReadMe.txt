@@ -65,7 +65,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 REMOVE ALL THE TODO
 - cannot attach more than one point for a group of ruler 
-- Edit ruler doesn't work
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 	- probably cannot fix: saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead

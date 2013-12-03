@@ -646,7 +646,7 @@ namespace BlueBrick.MapData
 							// else if not inside we keep doing nothing because the duplicate key is pressed
 						}
 						// now check if we will move a control point or scale handle if not inside the selection rectangle
-						else if (isMouseOutsideSelectedObjectsWithoutModifier || (mSelectedObjects.Count == 1))
+						else if (isMouseOutsideSelectedObjectsWithoutModifier || ((mSelectedObjects.Count == 1) && (e.Clicks == 1)))
 						{
 							// this method will also give the edit action for the editable ruler in out param
 							RulerItem editableRuler = evaluateIfPointIsAboveControlPointOrScaleHandle(mouseCoordInStud, out mEditAction);
@@ -673,21 +673,21 @@ namespace BlueBrick.MapData
 						// if still not find an action, continue to search by order of priority
 						if (mEditAction == EditAction.NONE)
 						{
+							// we will add or edit a text if we double click
+							if ((e.Clicks == 2) && (mCurrentRulerUnderMouse != null))
+							{
+								mEditAction = EditAction.CUSTOMIZE_RULER;
+								preferedCursor = MainForm.Instance.RulerEditCursor;
+							}
 							// Now check if the user plan to move the selected items
 							// for that of course we must not have a modifier key pressed
 							// and none of the selected objects must be attached
-							if (!multipleSelectionPressed && !duplicationPressed &&
+							else if (!multipleSelectionPressed && !duplicationPressed &&
 								((isMouseInsideSelectedObjects && !areSelectedItemsFullyAttached()) ||
 								((mCurrentRulerUnderMouse != null) && (!mCurrentRulerUnderMouse.IsFullyAttached))))
 							{
 								mEditAction = EditAction.MOVE_SELECTION;
 								preferedCursor = MainForm.Instance.RulerMoveCursor;
-							}
-							// we will add or edit a text if we double click
-							else if ((e.Clicks == 2) && (mCurrentRulerUnderMouse != null))
-							{
-								mEditAction = EditAction.CUSTOMIZE_RULER;
-								preferedCursor = MainForm.Instance.RulerEditCursor;
 							}
 						}
 					}
