@@ -273,30 +273,34 @@ namespace BlueBrick.MapData
 			RulerItem previousHighlightedRuler = mCurrentRulerWithHighlightedControlPoint;
 			mCurrentRulerWithHighlightedControlPoint = null;
 
-			// is there a selected ruler? if yes check first with it to take it in priority.
-			if (mSelectedObjects.Count == 1)
+			// is there selected rulers? if yes check first with it to take it in priority.
+			foreach (LayerItem item in mSelectedObjects)
 			{
-				RulerItem item = (mSelectedObjects[0] as RulerItem);
-				float currentSquareDistance = item.findClosestControlPointAndComputeSquareDistance(pointInStud);
+				RulerItem rulerItem = item as RulerItem;
+                float currentSquareDistance = rulerItem.findClosestControlPointAndComputeSquareDistance(pointInStud);
 				if (currentSquareDistance < bestSquareDistance)
 				{
-					concernedRulerItem = item;
-					mCurrentRulerWithHighlightedControlPoint = item;
+                    concernedRulerItem = rulerItem;
+                    mCurrentRulerWithHighlightedControlPoint = rulerItem;
 					bestSquareDistance = currentSquareDistance;
 				}
 			}
 
-			// iterate on all the rulers to find the nearest control point
-			foreach (RulerItem item in mRulers)
-			{
-				float currentSquareDistance = item.findClosestControlPointAndComputeSquareDistance(pointInStud);
-				if (currentSquareDistance < bestSquareDistance)
-				{
-					concernedRulerItem = item;
-					mCurrentRulerWithHighlightedControlPoint = item;
-					bestSquareDistance = currentSquareDistance;
-				}
-			}
+            //if we found something in the selection we stop here, otherwise extend the search to all rulers
+            if (mCurrentRulerWithHighlightedControlPoint == null)
+            {
+                // iterate on all the rulers to find the nearest control point
+                foreach (RulerItem item in mRulers)
+                {
+                    float currentSquareDistance = item.findClosestControlPointAndComputeSquareDistance(pointInStud);
+                    if (currentSquareDistance < bestSquareDistance)
+                    {
+                        concernedRulerItem = item;
+                        mCurrentRulerWithHighlightedControlPoint = item;
+                        bestSquareDistance = currentSquareDistance;
+                    }
+                }
+            }
 
 			// check if we need to update the view panel
 			if (mCurrentRulerWithHighlightedControlPoint != previousHighlightedRuler)
@@ -318,6 +322,17 @@ namespace BlueBrick.MapData
 			// We want the distance fixed in pixel (so the snapping is always the same no matter the scale)
 			// so divide the pixel snapping distance by the scale to get a variable distance in stud
 			float thicknessInStud = (float)BlueBrick.Properties.Settings.Default.RulerControlPointRadiusInPixel / (float)MainForm.Instance.MapViewScale;
+
+			// is there selected rulers? if yes check first with it to take it in priority.
+            foreach (LayerItem item in mSelectedObjects)
+            {
+                RulerItem rulerItem = item as RulerItem;
+                if (rulerItem.isInsideAScalingHandle(pointInStud, thicknessInStud))
+                {
+                    concernedRulerItem = rulerItem;
+                    return true;
+                }
+            }
 
 			// iterate on the ruler in reverse order to get the one on top first
 			for (int i = mRulers.Count - 1; i >= 0; i--)
@@ -355,7 +370,7 @@ namespace BlueBrick.MapData
 			// check if we will move a control point or grab a scaling handle of a ruler
 			// this is only possible when only one ruler is selected (so empty selection, or just one)
 			// but not when a group of ruler is selected, and of course not when modifier keys are pressed
-			if (!multipleSelectionPressed && !duplicationPressed && (this.SelectedObjects.Count <= 1))
+			if (!multipleSelectionPressed && !duplicationPressed)
 			{
 				// for moving a point, we need to have the mouse above a control point
 				// if not this function doesn't change the ruler in reference
@@ -533,35 +548,21 @@ namespace BlueBrick.MapData
 							}
 							else
 							{
-								// first check if we are inside the selection rectangle
-								bool isInside = isPointInsideSelectionRectangle(mouseCoordInStud);
-
-								// if we are inside with a group of ruler, it will move them
-								if (isInside && (mSelectedObjects.Count > 1))
-									return MainForm.Instance.RulerMoveCursor;
-
-								// if we have 0 or one ruler selected, we need to check if we will modify one ruler
+								// we need to check if we will modify one ruler by moving its control point or scalling (no matter if there is a selection)
 								EditAction action = EditAction.NONE;
 								RulerItem editableRuler = evaluateIfPointIsAboveControlPointOrScaleHandle(mouseCoordInStud, out action);
 
-								// if we are above one ruler inside the selection but which is not the selection, we won't edit it
-								if (isInside && (mSelectedObjects.Count == 1) && (mSelectedObjects[0] != editableRuler))
-								{
-									// cancel the highlighted ruler
-									mCurrentRulerWithHighlightedControlPoint = null;
-									return MainForm.Instance.RulerMoveCursor;
-								}
-								
-								// this is all the other cases:
-								// 1) either we are outside the selection
-								// 2) or the selection is empty
-								// 3) or there's just one item selected, the mouse is inside, but the mouse is above the selected ruler
+								// check the resulting action
 								mCurrentRulerUnderMouse = editableRuler;
 								if (action == EditAction.MOVE_CONTROL_POINT)
 									return MainForm.Instance.RulerMovePointCursor;
 								else if ((action == EditAction.SCALE_RULER) && (mCurrentRulerUnderMouse != null))
 									return getScalingCursorFromOrientation(mCurrentRulerUnderMouse.getScalingOrientation(mouseCoordInStud));
-							}
+
+                                // Now if we are inside with the selection, and not above control point, we will move the selection
+                                if (isPointInsideSelectionRectangle(mouseCoordInStud))
+                                    return MainForm.Instance.RulerMoveCursor;
+                            }
 						}
 					}
 					return MainForm.Instance.RulerArrowCursor;
@@ -645,14 +646,13 @@ namespace BlueBrick.MapData
 							}
 							// else if not inside we keep doing nothing because the duplicate key is pressed
 						}
-						// now check if we will move a control point or scale handle if not inside the selection rectangle
-						else if (isMouseOutsideSelectedObjectsWithoutModifier || ((mSelectedObjects.Count == 1) && (e.Clicks == 1)))
+						// now check if we will move a control point or scale handle (which is not the case for a double click)
+						else if (e.Clicks == 1)
 						{
 							// this method will also give the edit action for the editable ruler in out param
 							RulerItem editableRuler = evaluateIfPointIsAboveControlPointOrScaleHandle(mouseCoordInStud, out mEditAction);
 							// assign the edited ruler if we are editing its point or scale it (after evaluation)
-							if ((mEditAction != EditAction.NONE) &&
-								(isMouseOutsideSelectedObjectsWithoutModifier || (mSelectedObjects[0] == editableRuler)))
+							if (mEditAction != EditAction.NONE)
 							{
 								mCurrentRulerUnderMouse = editableRuler;
 								mCurrentlyEditedRuler = editableRuler;
@@ -907,17 +907,8 @@ namespace BlueBrick.MapData
                                 {
                                     // move the control point
                                     mCurrentlyEditedRuler.CurrentControlPoint = mouseCoordInStudSnapped;
-                                    // move or update the bounding rectangle
-                                    if (isCurrentControlPointFree && (mCurrentlyEditedRuler is CircularRuler))
-                                    {
-                                        // when moving a free control point of a Circular ruler, we just shift the circle
-                                        this.moveBoundingSelectionRectangle(deltaMove);
-                                    }
-                                    else
-                                    {
-                                        // when moving a control point of a linear ruler, the ruler is deformed, so we need to recompute it
-                                        this.updateBoundingSelectionRectangle();
-                                    }
+                                    // update the bounding rectangle in any case (even when moving a circle, cause the circle can be part of a selection)
+                                    this.updateBoundingSelectionRectangle();
                                     mustRefresh = true;
                                 }
 							}
