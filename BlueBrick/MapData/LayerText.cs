@@ -232,7 +232,7 @@ namespace BlueBrick.MapData
 
 					// draw the hull if needed
 					if (displayHull)
-						g.DrawPolygon(sPentoDrawHull, hull);
+						g.DrawPolygon(sPenToDrawOtherHull, hull);
 
 					// draw a frame around the selected cell while the text size is still in pixel
 					if (isSelected)

@@ -556,8 +556,9 @@ namespace BlueBrick
 			this.watermarkToolStripMenuItem.Checked = Properties.Settings.Default.DisplayGeneralInfoWatermark;
 			this.electricCircuitsMenuItem.Checked = Properties.Settings.Default.DisplayElectricCircuit;
 			this.connectionPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayFreeConnexionPoints;
-			this.hullsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayBrickHull;
-			this.rulerAttachPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayRulerAttachPoints;
+			this.hullsBricksToolStripMenuItem.Checked = Properties.Settings.Default.DisplayBrickHull;
+            this.hullsTextsAndRulersToolStripMenuItem.Checked = Properties.Settings.Default.DisplayOtherHull;
+            this.rulerAttachPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayRulerAttachPoints;
 		}
 
 		private void saveUISettingInDefaultSettings()
@@ -2089,11 +2090,17 @@ namespace BlueBrick
 			this.mapPanel.Invalidate();
 		}
 
-		private void hullsToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Properties.Settings.Default.DisplayBrickHull = this.hullsToolStripMenuItem.Checked;
-			this.mapPanel.Invalidate();
-		}
+        private void hullsBricksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.DisplayBrickHull = this.hullsBricksToolStripMenuItem.Checked;
+            this.mapPanel.Invalidate();
+        }
+
+        private void hullsTextsAndRulersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.DisplayOtherHull = this.hullsTextsAndRulersToolStripMenuItem.Checked;
+            this.mapPanel.Invalidate();
+        }
 
 		private void rulerAttachPointsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
