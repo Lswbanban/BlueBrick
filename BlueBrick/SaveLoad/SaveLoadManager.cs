@@ -124,6 +124,40 @@ namespace BlueBrick
 		// it uses two different lines in the LDraw file.
 		private static Layer.Group mLDrawCurrentGroupInWhichAdd = null;
 		private static readonly string LDRAW_DATE_FORMAT_STRING = "dd/MM/yyyy";
+        private static Layer sCurrentLayerLoaded = null;
+        private static string sCurrentLayerName = string.Empty;
+
+        private static string[] splitLDrawLine(string line)
+        {
+            // split the searching filter in token
+            // first we split the sentence by sub-sentence inside double quote for example: a "b c" d
+            // will be split in 3: { 'a', 'b c', 'd' }
+            // it's important to keep the empty entries in the split list because we want to catch cases like
+            // the first character of the sentence is a double quote, or no space between two sub sentence:
+            // "a b" c cc "d e""f g" => { '', 'a b', 'c cc', 'd e', '', 'f g' }
+            //                            0     1       2      3    4     5
+            // then we will split again even index, but not odd index, so split 0, 2, 4 ; keep 1, 3, 5
+            char[] doubleQuoteSpliter = { '"' };
+            string[] firstLevelTokenList = line.Split(doubleQuoteSpliter, StringSplitOptions.None);
+            // now re-split only the even index with the empty char
+            char[] spaceSpliter = { ' ', '\t' };
+            List<string> tokenList = new List<string>();
+            for (int i = 0; i < firstLevelTokenList.Length; ++i)
+            {
+                string firstLevelToken = firstLevelTokenList[i];
+                // now if the current first level token is not empty
+                if (firstLevelToken != string.Empty)
+                {
+                    // split Even index and directly add odd index
+                    if ((i % 2) == 0)
+                        tokenList.AddRange(firstLevelToken.Split(spaceSpliter, StringSplitOptions.RemoveEmptyEntries));
+                    else
+                        tokenList.Add(firstLevelToken);
+                }
+            }
+            // return the array of token
+            return tokenList.ToArray();
+        }
 
 		private static bool loadLDR(string filename)
 		{
@@ -131,13 +165,11 @@ namespace BlueBrick
 			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
 			// create a new map
 			Map.Instance = new Map();
-			LayerBrick currentLayer = new LayerBrick();
 			// open the file
 			StreamReader textReader = new StreamReader(filename);
 			// init the progress bar with the number of bytes of the file
 			MainForm.Instance.resetProgressBar((int)(textReader.BaseStream.Length));
 			// create a line spliter array
-			char[] lineSpliter = { ' ', '\t' };
 			while (!textReader.EndOfStream)
 			{
 				// read the current line
@@ -145,42 +177,39 @@ namespace BlueBrick
 				// move the progressbar according to the number of byte read
 				MainForm.Instance.stepProgressBar(line.Length);
 				// split the current line
-				string[] token = line.Split(lineSpliter);
+                string[] token = splitLDrawLine(line);
 				// check if the first token is 0 or 1, the other are just ignored
 				if ((token[0] == "0") && (token.Length > 1))
 				{
 					// comment or meta command
 					if (token[1].Equals("STEP"))
 					{
-						// new step, so add a layer (if the current layer is not empty)
-						if (currentLayer.BrickList.Count > 0)
-						{
-							currentLayer.updateFullBrickConnectivity();
-							currentLayer.sortBricksByAltitude();
-							Map.Instance.addLayer(currentLayer);
-							currentLayer = new LayerBrick();
-						}
+						// new step, so finalize and add a layer then reset the pointer to make room for a new layer
+                        finalizeCurrentLayerAndAddToMap();
+						sCurrentLayerLoaded = null;
 					}
 					else
 					{
-						parseMetaCommandLineLDRAW(line, token, currentLayer);
+						parseMetaCommandLineLDRAW(line, token, 1, ref sCurrentLayerLoaded);
 					}
 				}
 				else if (token[0] == "1")
 				{
-					parseBrickLineLDRAW(token, 1, currentLayer);
+                    // cast the current layer
+                    LayerBrick brickLayer = castOrGetANewCurrentLayerOfType<LayerBrick>();
+                    // we are sure to have brick layer here
+                    parseBrickLineLDRAW(token, 1, brickLayer);
 				}
 			}
 			// close the stream
 			textReader.Close();
 
-			// add the last layer if not empty
-			if (currentLayer.BrickList.Count > 0)
-			{
-				currentLayer.updateFullBrickConnectivity();
-				currentLayer.sortBricksByAltitude();
-				Map.Instance.addLayer(currentLayer);
-			}
+			// finalize the last layer
+            finalizeCurrentLayerAndAddToMap();
+
+			// iterate on all the layers to recreate all the links between different items (after loading all the layers)
+            foreach (Layer layer in Map.Instance.LayerList)
+                layer.recreateLinksAfterLoading();
 
 			// again clear the hashmap used to load the groups
 			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
@@ -198,21 +227,19 @@ namespace BlueBrick
 			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
 			// create a new map
 			Map.Instance = new Map();
-			LayerBrick currentLayer = new LayerBrick();
 			List<string> hiddenLayerNames = new List<string>();
 			// open the file
 			StreamReader textReader = new StreamReader(filename);
 			// init the progress bar with the number of bytes of the file
 			MainForm.Instance.resetProgressBar((int)(textReader.BaseStream.Length));
 			// create a line spliter array
-			char[] lineSpliter = { ' ', '\t' };
 			while (!textReader.EndOfStream)
 			{
 				string line = textReader.ReadLine();
 				// move the progressbar according to the number of byte read
 				MainForm.Instance.stepProgressBar(line.Length);
 				// split the current line
-				string[] token = line.Split(lineSpliter);
+				string[] token = splitLDrawLine(line);
 				// check if the first token is 0 or 1, the other are just ignored
 				if ((token[0] == "0") && (token.Length > 1))
 				{
@@ -220,15 +247,10 @@ namespace BlueBrick
 					if (token[1].Equals("FILE"))
 					{
 						// new file, so add a layer (if the current layer is not empty)
-						if (currentLayer.BrickList.Count > 0)
-						{
-							currentLayer.updateFullBrickConnectivity();
-							currentLayer.sortBricksByAltitude();
-							Map.Instance.addLayer(currentLayer);
-							currentLayer = new LayerBrick();
-						}
-						// and we name the layer with the name of the sub model
-						currentLayer.Name = Path.GetFileNameWithoutExtension(line.Substring(7));
+                        finalizeCurrentLayerAndAddToMap();
+                        sCurrentLayerLoaded = null;
+                        // save the name the layer with the name of the sub model
+                        sCurrentLayerName = Path.GetFileNameWithoutExtension(line.Substring(7));
 					}
 					else if (token[1].Equals("STEP"))
 					{
@@ -241,37 +263,38 @@ namespace BlueBrick
 						if (Path.GetExtension(partFullName.ToUpperInvariant()).Equals(".LDR"))
 							hiddenLayerNames.Add(Path.GetFileNameWithoutExtension(partFullName));
 						else
-							parseMetaCommandLineLDRAW(line, token, currentLayer);
+							parseMetaCommandLineLDRAW(line, token, 1, ref sCurrentLayerLoaded);
 					}
 					else
 					{
-						parseMetaCommandLineLDRAW(line, token, currentLayer);
+						parseMetaCommandLineLDRAW(line, token, 1, ref sCurrentLayerLoaded);
 					}
 				}
 				else if (token[0] == "1")
 				{
-					parseBrickLineLDRAW(token, 1, currentLayer);
+                    // cast the current layer
+                    LayerBrick brickLayer = castOrGetANewCurrentLayerOfType<LayerBrick>();
+                    parseBrickLineLDRAW(token, 1, brickLayer);
 				}
 			}
 			// close the stream
 			textReader.Close();
 
-			// add the last layer if not empty
-			if (currentLayer.BrickList.Count > 0)
-			{
-				currentLayer.updateFullBrickConnectivity();
-				currentLayer.sortBricksByAltitude();
-				Map.Instance.addLayer(currentLayer);
-			}
+            // finalize the last layer
+            finalizeCurrentLayerAndAddToMap();
 
 			// iterate on all the layers to hide the hidden ones we found
-			foreach (Layer layer in Map.Instance.LayerList)
-				foreach (string hiddenLayerName in hiddenLayerNames)
-					if (layer.Name.Equals(hiddenLayerName))
-					{
-						layer.Visible = false;
-						break;
-					}
+            foreach (Layer layer in Map.Instance.LayerList)
+            {
+                // also we need to recreate all the links between different items (after loading all the layers)
+                layer.recreateLinksAfterLoading();
+                foreach (string hiddenLayerName in hiddenLayerNames)
+                    if (layer.Name.Equals(hiddenLayerName))
+                    {
+                        layer.Visible = false;
+                        break;
+                    }
+            }
 
 			// clear again the hashmap used to load the groups
 			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
@@ -283,7 +306,55 @@ namespace BlueBrick
 			return true;
 		}
 
-		private static void checkIfBrickMustBeAddedToGroup(Layer.LayerItem item)
+        private static T castOrGetANewCurrentLayerOfType<T>() where T : Layer
+        {
+            // first check if we are the corresponding type, cast and return
+            if ((sCurrentLayerLoaded != null) && !(sCurrentLayerLoaded is T))
+            {
+                // not the correct type, so finalize and reinit
+                finalizeCurrentLayerAndAddToMap();
+                sCurrentLayerLoaded = null;
+            }
+
+            // create a new layer if needed
+            if (sCurrentLayerLoaded == null)
+            {
+                LayerBrick brickLayer = new LayerBrick();
+                LayerRuler rulerLayer = new LayerRuler();
+                if (brickLayer is T)
+                    sCurrentLayerLoaded = brickLayer;
+                else if (rulerLayer is T)
+                    sCurrentLayerLoaded = rulerLayer;
+                // TODO continue with other layer
+                // TODO search how to check two types
+                // set the name if not empty
+                if (sCurrentLayerName != string.Empty)
+                    sCurrentLayerLoaded.Name = sCurrentLayerName;
+            }
+            return (sCurrentLayerLoaded as T);
+        }
+
+        private static void finalizeCurrentLayerAndAddToMap()
+        {
+            if (sCurrentLayerLoaded != null)
+            {
+                // different finalization depending on the type
+                if (sCurrentLayerLoaded is LayerBrick)
+                {
+                    if (sCurrentLayerLoaded.NbItems > 0)
+                    {
+                        LayerBrick brickLayer = sCurrentLayerLoaded as LayerBrick;
+                        brickLayer.updateFullBrickConnectivity();
+                        brickLayer.sortBricksByAltitude();
+                    }
+                }
+
+                // then add the layer to the map
+                Map.Instance.addLayer(sCurrentLayerLoaded);
+            }
+        }
+
+		private static void checkIfItemMustBeAddedToGroup(Layer.LayerItem item)
 		{
 			// if the mLDrawCurrentGroupInWhichAdd is not null that means a "MLCAD BTG" was found in the previous line of the file
 			// so we need to add the current brick (or group) to the group specified in the "MLCAD BTG" and then
@@ -347,31 +418,31 @@ namespace BlueBrick
 			}
 		}
 
-		private static void parseMetaCommandLineLDRAW(string line, string[] token, LayerBrick currentLayer)
+		private static void parseMetaCommandLineLDRAW(string line, string[] token, int startIndex, ref Layer currentLayer)
 		{
-			if (token[1].StartsWith("Author"))
+			if (token[startIndex].StartsWith("Author"))
 			{
 				Map.Instance.Author = getRemainingOfLineAfterTokenInLDRAW(line, token[1]);
 			}
-			else if (token[1].StartsWith("Lug"))
+			else if (token[startIndex].StartsWith("Lug"))
 			{
 				Map.Instance.LUG = getRemainingOfLineAfterTokenInLDRAW(line, token[1]);
 			}
-			else if (token[1].StartsWith("Event"))
+			else if (token[startIndex].StartsWith("Event"))
 			{
 				Map.Instance.Show = getRemainingOfLineAfterTokenInLDRAW(line, token[1]);
 			}
-			else if (token[1].StartsWith("Date"))
+			else if (token[startIndex].StartsWith("Date"))
 			{
 				parseDateInLDRAW(getRemainingOfLineAfterTokenInLDRAW(line, token[1]));
 			}
-			else if (token[1].StartsWith("//"))
+			else if (token[startIndex].StartsWith("//"))
 			{
-				if (token[2].StartsWith("LUG"))
+				if (token[startIndex + 1].StartsWith("LUG"))
 					Map.Instance.LUG = getRemainingOfLineAfterTokenInLDRAW(line, token[2]);
-				else if (token[2].StartsWith("Event"))
+				else if (token[startIndex + 1].StartsWith("Event"))
 					Map.Instance.Show = getRemainingOfLineAfterTokenInLDRAW(line, token[2]);
-				else if (token[2].StartsWith("Date"))
+				else if (token[startIndex + 1].StartsWith("Date"))
 					parseDateInLDRAW(getRemainingOfLineAfterTokenInLDRAW(line, token[2]));
 				else
 				{
@@ -381,14 +452,22 @@ namespace BlueBrick
 					Map.Instance.Comment = comment;
 				}
 			}
-			else if (token[1].Equals("MLCAD"))
+			else if (token[startIndex].Equals("MLCAD"))
 			{
-				if (token[2].Equals("HIDE"))
+				if (token[startIndex + 1].Equals("HIDE"))
 				{
-					parseBrickLineLDRAW(token, 4, currentLayer);
+                    if (token[startIndex + 2].Equals("0"))
+                    {
+                        parseMetaCommandLineLDRAW(line, token, startIndex + 3, ref currentLayer);
+                    }
+                    else if (token[startIndex + 2].Equals("1"))
+                    {
+                        LayerBrick brickLayer = castOrGetANewCurrentLayerOfType<LayerBrick>();
+					    parseBrickLineLDRAW(token, startIndex + 3, brickLayer);
+                    }
 					currentLayer.Visible = false;
 				}
-				else if (token[2].Equals("BTG"))
+				else if (token[startIndex + 1].Equals("BTG"))
 				{
 					// the meta command is: 0 MLCAD BTG <group name>
 					// get the group (or create it) and store it in the current group variable
@@ -396,13 +475,24 @@ namespace BlueBrick
 					mLDrawCurrentGroupInWhichAdd = createOrGetGroup(groupName);
 				}
 			}
-			else if (token[1].Equals("GROUP"))
+			else if (token[startIndex].Equals("GROUP"))
 			{
 				// the meta command from MLCAD is: 0 GROUP <item count> <group name>
 				string groupName = line.Substring(line.IndexOf(token[3])).Trim();
 				Layer.Group group = createOrGetGroup(groupName);
-				checkIfBrickMustBeAddedToGroup(group);
+				checkIfItemMustBeAddedToGroup(group);
 			}
+            else if (token[startIndex].Equals("!BLUEBRICK"))
+            {
+                // get the version of the comman
+                int commandVersion = int.Parse(token[startIndex + 2]);
+                // parse the command
+                if (token[startIndex + 1].Equals("RULER"))
+                {
+                    LayerRuler rulerLayer = castOrGetANewCurrentLayerOfType<LayerRuler>();
+                    parseRulerLineLDRAW(token, startIndex + 3, rulerLayer, commandVersion);
+                }
+            }
 
 			// skip all the rest of unknown meta commands
 		}
@@ -470,25 +560,36 @@ namespace BlueBrick
 				currentLayer.addBrick(brick, -1);
 
 				// check if we need to add this brick to a group
-				checkIfBrickMustBeAddedToGroup(brick);
+				checkIfItemMustBeAddedToGroup(brick);
 			}
 			catch (Exception)
 			{
 			}
 		}
 
+        private static void parseRulerLineLDRAW(string[] token, int startIndex, LayerRuler currentLayer, int commandVersion)
+        {
+            // create a new ruler depending on the type
+            LayerRuler.RulerItem ruler = null;
+            if (token[startIndex++].Equals("LINEAR"))
+                ruler = new LayerRuler.LinearRuler();
+            else
+                ruler = new LayerRuler.CircularRuler();
+            // the call the serialization
+            ruler.ReadLDraw(token, ref startIndex, commandVersion);
+            // add the ruler to the layer
+            currentLayer.addRulerItem(ruler, -1);
+            // check if we need to add this brick to a group
+            checkIfItemMustBeAddedToGroup(ruler);
+        }
+
 		private static bool saveLDR(string filename)
 		{
-			// init the progress bar with the number of items (+1 for init remap +1 for header)
-			int nbItems = 0;
+			// init the progress bar with the number of items (+1 for init remap +1 for header so start with 2)
+			int nbItems = 2;
 			foreach (Layer layer in Map.Instance.LayerList)
-			{
-				// check the type because we only save brick layers
-				LayerBrick brickLayer = layer as LayerBrick;
-				if (brickLayer != null)
-					nbItems += layer.NbItems;
-			}
-			MainForm.Instance.resetProgressBar(nbItems + 2);
+				nbItems += layer.NbItems;
+			MainForm.Instance.resetProgressBar(nbItems);
 
 			// step the progressbar after the init of part remap
 			MainForm.Instance.stepProgressBar();
@@ -504,18 +605,8 @@ namespace BlueBrick
 			// iterate on all the layers of the Map
 			foreach (Layer layer in Map.Instance.LayerList)
 			{
-				// check the type because we only save brick layers
-				if (layer is LayerBrick)
-					saveBrickLayerInLDRAW(textWriter, layer as LayerBrick, true);
-				else if (layer is LayerRuler)
-					saveRulerLayerInLDRAW(textWriter, layer as LayerRuler, true);
-				else if (layer is LayerArea)
-					saveAreaLayerInLDRAW(textWriter, layer as LayerArea, true);
-				else if (layer is LayerGrid)
-					saveGridLayerInLDRAW(textWriter, layer as LayerGrid, true);
-				else if (layer is LayerText)
-					saveTextLayerInLDRAW(textWriter, layer as LayerText, true);
-
+                // save the layer according its type
+                saveLayerInLDRAW(textWriter, layer, true);
 				// add a step to separate the layers
 				textWriter.WriteLine("0 STEP");
 			}
@@ -526,16 +617,11 @@ namespace BlueBrick
 
 		private static bool saveMDP(string filename)
 		{
-			// init the progress bar with the number of items (+1 for init remap +2 for header)
-			int nbItems = 0;
+			// init the progress bar with the number of items (+1 for init remap +2 for header, start with 3)
+			int nbItems = 3;
 			foreach (Layer layer in Map.Instance.LayerList)
-			{
-				// check the type because we only save brick layers
-				LayerBrick brickLayer = layer as LayerBrick;
-				if (brickLayer != null)
-					nbItems += layer.NbItems;
-			}
-			MainForm.Instance.resetProgressBar(nbItems + 3);
+    			nbItems += layer.NbItems;
+			MainForm.Instance.resetProgressBar(nbItems);
 
 			// step the progressbar after the init of part remap
 			MainForm.Instance.stepProgressBar();
@@ -556,23 +642,18 @@ namespace BlueBrick
 			List<string> layerStandardizedNames = new List<string>(Map.Instance.LayerList.Count);
 			foreach (Layer layer in Map.Instance.LayerList)
 			{
-				// check the type because we only save brick layers
-				LayerBrick brickLayer = layer as LayerBrick;
-				if (brickLayer != null)
-				{
-					// compute the clean layer name, removing white character
-					string layerName = layer.Name.Trim().Replace(' ', '_');
-					layerName = layerName.Replace('\t', '_');
-					layerName += ".ldr";
-					// write the line of the part
-					string line = "";
-					if (!brickLayer.Visible)
-                        line += LDrawReadWrite.MLCAD_COMMAND_HIDE;
-					line += "1 1 0 0 0 1 0 0 0 1 0 0 0 1 " + layerName;
-					textWriter.WriteLine(line);
-					// add the name in the list for later use
-					layerStandardizedNames.Add(layerName);
-				}
+				// compute the clean layer name, removing white character
+				string layerName = layer.Name.Trim().Replace(' ', '_');
+				layerName = layerName.Replace('\t', '_');
+				layerName += ".ldr";
+				// write the line of the part
+				string line = "";
+				if (!layer.Visible)
+                    line += LDrawReadWrite.MLCAD_COMMAND_HIDE;
+				line += "1 1 0 0 0 1 0 0 0 1 0 0 0 1 " + layerName;
+				textWriter.WriteLine(line);
+				// add the name in the list for later use
+				layerStandardizedNames.Add(layerName);
 			}
 			// step the progressbar after the write of the layer list
 			MainForm.Instance.stepProgressBar();
@@ -583,21 +664,16 @@ namespace BlueBrick
 			int layerIndex = 0;
 			foreach (Layer layer in Map.Instance.LayerList)
 			{
-				// check the type because we only save brick layers
-				LayerBrick brickLayer = layer as LayerBrick;
-				if (brickLayer != null)
-				{
-					// write the file meta command with the same name computed before for the layer
-					textWriter.WriteLine("0 FILE " + layerStandardizedNames[layerIndex++]);
-					// write a small header, but not the full info, just the type and author
-					textWriter.WriteLine("0 Author: " + Map.Instance.Author);
-					textWriter.WriteLine("0 Unofficial Model");
-					textWriter.WriteLine("0");
-					// write the content of the layer
-					saveBrickLayerInLDRAW(textWriter, brickLayer, false);
-					// add a line break
-					textWriter.WriteLine("0");
-				}
+				// write the file meta command with the same name computed before for the layer
+				textWriter.WriteLine("0 FILE " + layerStandardizedNames[layerIndex++]);
+				// write a small header, but not the full info, just the type and author
+				textWriter.WriteLine("0 Author: " + Map.Instance.Author);
+				textWriter.WriteLine("0 Unofficial Model");
+				textWriter.WriteLine("0");
+				// write the content of the layer
+                saveLayerInLDRAW(textWriter, layer, false);
+				// add a line break
+				textWriter.WriteLine("0");
 			}
 			// close the file
 			textWriter.Close();
@@ -625,6 +701,21 @@ namespace BlueBrick
 			// add one spaced line
 			textWriter.WriteLine("0");
 		}
+
+        private static void saveLayerInLDRAW(StreamWriter textWriter, Layer layer, bool useMLCADHide)
+        {
+            // check the type because we only save brick layers
+            if (layer is LayerBrick)
+                saveBrickLayerInLDRAW(textWriter, layer as LayerBrick, useMLCADHide);
+            else if (layer is LayerRuler)
+                saveRulerLayerInLDRAW(textWriter, layer as LayerRuler, useMLCADHide);
+            else if (layer is LayerArea)
+                saveAreaLayerInLDRAW(textWriter, layer as LayerArea, useMLCADHide);
+            else if (layer is LayerGrid)
+                saveGridLayerInLDRAW(textWriter, layer as LayerGrid, useMLCADHide);
+            else if (layer is LayerText)
+                saveTextLayerInLDRAW(textWriter, layer as LayerText, useMLCADHide);
+        }
 
 		private static void saveBrickLayerInLDRAW(StreamWriter textWriter, LayerBrick brickLayer, bool useMLCADHide)
 		{
@@ -868,7 +959,7 @@ namespace BlueBrick
 			foreach (LayerRuler.RulerItem ruler in rulerLayer.RulerList)
 			{
 				// step the progressbar for each brick (we do it at the begining because there is a continue in this loop)
-				MainForm.Instance.stepProgressBar(); //TODO increment the bar counts
+				MainForm.Instance.stepProgressBar();
 				// save the ruler
 				saveOneRulerItemInLDRAW(textWriter, ruler, hideRulers);
 			}
@@ -883,9 +974,10 @@ namespace BlueBrick
 		private static void saveOneRulerItemInLDRAW(StreamWriter textWriter, LayerRuler.RulerItem ruler, bool hideRulers)
 		{
 			// the LDRAW format for a ruler is:
-            // 0 !BLUEBRICK RULER <version> <type> <DisplayDistance> <DisplayUnit> <color> <GuidelineColor> <MeasureFontColor> <LineThickness> <GuidelineThickness> <GuidelineDashPattern> <Unit> <FontFamily|Size|Style> <geometry>
+            // 0 !BLUEBRICK RULER <version> <type> <id> <DisplayDistance> <DisplayUnit> <color> <GuidelineColor> <MeasureFontColor> <LineThickness> <GuidelineThickness> <GuidelineDashPattern> <Unit> <FontFamily|Size|Style> <geometry>
 			// where <version> is an int describing the current version of the command
 			// <type> is LINEAR or CIRCULAR
+            // <id> is a hash code with a '#' prefix
 			// <DisplayDistance> <DisplayUnit> are bool in form of an int 0 or 1
 			// <color> <GuidelineColor> <MeasureFontColor> are colors in hex format AARRGGBB
 			// <LineThickness> <GuidelineThickness> are float in pixel
@@ -927,18 +1019,21 @@ namespace BlueBrick
 
 		private static void saveAreaLayerInLDRAW(StreamWriter textWriter, LayerArea areaLayer, bool useMLCADHide)
 		{
-			textWriter.WriteLine("0 // Not implemented yet, see you maybe in BB 1.9");
-		}
+			textWriter.WriteLine("0 // Area layer not implemented yet, see you maybe in BB 1.9");
+            MainForm.Instance.stepProgressBar(areaLayer.NbItems);
+        }
 
 		private static void saveGridLayerInLDRAW(StreamWriter textWriter, LayerGrid gridLayer, bool useMLCADHide)
 		{
-			textWriter.WriteLine("0 // Not implemented yet, see you maybe in BB 1.9");
-		}
+            textWriter.WriteLine("0 // Grid layer not implemented yet, see you maybe in BB 1.9");
+            MainForm.Instance.stepProgressBar(gridLayer.NbItems);
+        }
 
 		private static void saveTextLayerInLDRAW(StreamWriter textWriter, LayerText textLayer, bool useMLCADHide)
 		{
-			textWriter.WriteLine("0 // Not implemented yet, see you maybe in BB 1.9");
-		}
+            textWriter.WriteLine("0 // Text layer not implemented yet, see you maybe in BB 1.9");
+            MainForm.Instance.stepProgressBar(textLayer.NbItems);
+        }
 		#endregion
 		#region TrackDesigner Format
 
