@@ -21,6 +21,7 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using BlueBrick.Actions;
 using System.Collections;
+using BlueBrick.SaveLoad;
 
 namespace BlueBrick.MapData
 {
@@ -297,10 +298,14 @@ namespace BlueBrick.MapData
 
             public virtual void ReadLDraw(string[] line, ref int index, int version)
             {
+                // read my id, well skip it for now
+                index++; // int myId = LDrawReadWrite.readItemId(line[index++]);
             }
 
             public virtual void WriteLDraw(ref string line)
             {
+                // write my id
+                LDrawReadWrite.writeItemId(ref line, this);
             }
 			#endregion
 

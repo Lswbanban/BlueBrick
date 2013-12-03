@@ -83,15 +83,17 @@ namespace BlueBrick.SaveLoad
 
         public static int readItemId(string line)
         {
-            return int.Parse(line);
+            // remove the '#' character before parsing
+            return int.Parse(line.Substring(1));
         }
 
         public static void writeItemId(ref string line, object obj)
         {
+            // we add a # in front of the hash code, just for compatibility with group id (who need them)
             if (obj != null)
-                line += obj.GetHashCode().ToString(System.Globalization.CultureInfo.InvariantCulture) + " ";
+                line += "#" + obj.GetHashCode().ToString(System.Globalization.CultureInfo.InvariantCulture) + " ";
             else
-                line += "0 ";
+                line += "#0 ";
         }
         #endregion
         #region color
