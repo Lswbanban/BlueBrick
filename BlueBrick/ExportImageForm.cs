@@ -73,6 +73,22 @@ namespace BlueBrick
 			InitializeComponent();
 		}
 
+        public void loadUISettingFromDefaultSettings()
+        {
+            this.exportWatermarkCheckBox.Checked = Settings.Default.UIExportWatermark;
+            this.exportHullCheckBox.Checked = Settings.Default.UIExportHulls;
+            this.exportElectricCircuitCheckBox.Checked = Settings.Default.UIExportElectricCircuit;
+            this.exportConnectionPointCheckBox.Checked = Settings.Default.UIExportConnection;
+        }
+
+        public void saveUISettingInDefaultSettings()
+        {
+            Settings.Default.UIExportWatermark = this.exportWatermarkCheckBox.Checked;
+            Settings.Default.UIExportHulls = this.exportHullCheckBox.Checked;
+            Settings.Default.UIExportElectricCircuit = this.exportElectricCircuitCheckBox.Checked;
+            Settings.Default.UIExportConnection = this.exportConnectionPointCheckBox.Checked;
+        }
+
 		public void init()
 		{
             // change the setting temporarly for exporting the images

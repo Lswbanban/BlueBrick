@@ -66,10 +66,10 @@ namespace BlueBrick.MapData
         private int mExportFileTypeIndex = 1; // index in the combobox for the different type of export
 		private RectangleF mExportArea = new RectangleF();
 		private double mExportScale = 0.0;
-        private bool mExportWatermark = false; //TODO init with the settings values
-        private bool mExportBrickHull = false; //TODO init with the settings values
-        private bool mExportElectricCircuit = false; //TODO init with the settings values
-        private bool mExportConnectionPoints = false; //TODO init with the settings values
+        private bool mExportWatermark = BlueBrick.Properties.Settings.Default.UIExportWatermark;
+        private bool mExportBrickHull = BlueBrick.Properties.Settings.Default.UIExportHulls;
+        private bool mExportElectricCircuit = BlueBrick.Properties.Settings.Default.UIExportElectricCircuit;
+        private bool mExportConnectionPoints = BlueBrick.Properties.Settings.Default.UIExportConnection;
 		private bool mHasExportSettingsChanged = false; // a boolean flag indicating that the settings has changed and that the file need to be saved
 
 		// some data for compatibility with Track designer
