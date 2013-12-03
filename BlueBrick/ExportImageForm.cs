@@ -21,6 +21,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using BlueBrick.MapData;
+using BlueBrick.Properties;
 
 namespace BlueBrick
 {
@@ -36,7 +37,14 @@ namespace BlueBrick
 		private PointF mStartDragPoint = new PointF();
 		private bool mUpdateImage = true;
 
+        // save settings that can be changed with export option
+		private bool mOriginalDisplayWatermarkInSetting = Settings.Default.DisplayGeneralInfoWatermark;
+		private bool mOriginalDisplayBrickHullInSetting = Settings.Default.DisplayBrickHull;
+		private bool mOriginalDisplayElectricCircuitInSetting = Settings.Default.DisplayElectricCircuit;
+        private bool mOriginalDisplayConnectionPointInSetting = Settings.Default.DisplayFreeConnexionPoints;
+
 		private const int MAX_IMAGE_SIZE_IN_PIXEL = 4096;
+        private const int TOTAL_HEIGHT_OF_FIXED_PANEL = 204;
 
 		#region get/set
 		public RectangleF AreaInStud
@@ -67,7 +75,10 @@ namespace BlueBrick
 
 		public void init()
 		{
-			// compute the total area of the map, and the total scale in order to display the full map
+            // change the setting temporarly for exporting the images
+            saveAndChangeDisplaySettings();
+
+            // compute the total area of the map, and the total scale in order to display the full map
 			// in the preview window and assign the selected area with the same value
 			mTotalAreaInStud = Map.Instance.getTotalAreaInStud(false);
 
@@ -118,8 +129,7 @@ namespace BlueBrick
 
 			// draw the map and preview images
 			computePreviewPictureSizeAndPos();
-			drawMapImage();
-			drawPreviewImage();
+            drawAll();
 
 			//init the numericupdown controls for image size
 			this.imageHeightNumericUpDown.Minimum = (Decimal)1;
@@ -173,12 +183,36 @@ namespace BlueBrick
 			this.scaleNumericUpDown.Increment = (Decimal)incScale;
 		}
 
+        private void saveAndChangeDisplaySettings()
+        {
+            // save the settings
+            mOriginalDisplayWatermarkInSetting = Settings.Default.DisplayGeneralInfoWatermark;
+            mOriginalDisplayBrickHullInSetting = Settings.Default.DisplayBrickHull;
+            mOriginalDisplayElectricCircuitInSetting = Settings.Default.DisplayElectricCircuit;
+            mOriginalDisplayConnectionPointInSetting = Settings.Default.DisplayFreeConnexionPoints;
+            // now change them
+            this.exportWatermarkCheckBox.Checked = Map.Instance.ExportWatermark;
+            this.exportHullCheckBox.Checked = Map.Instance.ExportBrickHull;
+            this.exportElectricCircuitCheckBox.Checked = Map.Instance.ExportElectricCircuit;
+            this.exportConnectionPointCheckBox.Checked = Map.Instance.ExportConnectionPoints;
+        }
+
+        /// <summary>
+        /// This method is called from main form. //TODO: need refactoring?
+        /// </summary>
+        public void restoreDisplaySettings()
+        {
+            Settings.Default.DisplayGeneralInfoWatermark = mOriginalDisplayWatermarkInSetting;
+            Settings.Default.DisplayBrickHull = mOriginalDisplayBrickHullInSetting;
+            Settings.Default.DisplayElectricCircuit = mOriginalDisplayElectricCircuitInSetting;
+            Settings.Default.DisplayFreeConnexionPoints = mOriginalDisplayConnectionPointInSetting;
+        }
 		#region update of the preview image
 		private void computePreviewPictureSizeAndPos()
 		{
 			// get the new available width and height
 			int parentWidth = this.topTableLayoutPanel.ClientSize.Width - 4;
-			int parentHeight = this.topTableLayoutPanel.ClientSize.Height - 154;
+			int parentHeight = this.topTableLayoutPanel.ClientSize.Height - TOTAL_HEIGHT_OF_FIXED_PANEL;
 			// check that the width and height are not negative, this can happen
 			// when the sizeChanged event is called before the tableLayout has its correct size
 			if (parentWidth < 4)
@@ -257,8 +291,19 @@ namespace BlueBrick
 					(float)((mSelectedAreaInStud.Y - mTotalAreaInStud.Y) * mTotalScalePixelPerStud),
 					(float)(mSelectedAreaInStud.Width * mTotalScalePixelPerStud),
 					(float)(mSelectedAreaInStud.Height * mTotalScalePixelPerStud));
-			}
+                // draw the watermark
+                RectangleF watermarkRectangleInStud = new RectangleF(mTotalAreaInStud.X, mTotalAreaInStud.Y,
+                                                                    mSelectedAreaInStud.X - mTotalAreaInStud.X + mSelectedAreaInStud.Width,
+                                                                    mSelectedAreaInStud.Y - mTotalAreaInStud.Y + mSelectedAreaInStud.Height);
+                Map.Instance.drawWatermark(graphics, watermarkRectangleInStud, mTotalScalePixelPerStud);
+            }
 		}
+
+        private void drawAll()
+        {
+            drawMapImage();
+            drawPreviewImage();
+        }
 
 		private void updateImage(NumericUpDown firstSender)
 		{
@@ -328,7 +373,6 @@ namespace BlueBrick
 		}
 
 		#region event handler
-
 		private void areaLeftNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
 			float newValue = (float)(this.areaLeftNumericUpDown.Value);
@@ -499,15 +543,40 @@ namespace BlueBrick
 		private void ExportImageForm_SizeChanged(object sender, EventArgs e)
 		{
 			computePreviewPictureSizeAndPos();
-			drawMapImage();
-			drawPreviewImage();
+			drawAll();
 		}
 
 		private void okButton_Click(object sender, EventArgs e)
 		{
 			// save the setting chosen in the map
-			Map.Instance.saveExportAreaSettings(mSelectedAreaInStud, (double)(this.scaleNumericUpDown.Value));
+			Map.Instance.saveExportAreaAndDisplaySettings(mSelectedAreaInStud, (double)(this.scaleNumericUpDown.Value),
+                this.exportWatermarkCheckBox.Checked, this.exportHullCheckBox.Checked,
+                this.exportElectricCircuitCheckBox.Checked, this.exportConnectionPointCheckBox.Checked);
 		}
-		#endregion
+
+        private void exportWatermarkCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.DisplayGeneralInfoWatermark = this.exportWatermarkCheckBox.Checked;
+            drawAll();
+        }
+
+        private void exportHullCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.DisplayBrickHull = this.exportHullCheckBox.Checked;
+            drawAll();
+        }
+
+        private void exportElectricCircuitCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.DisplayElectricCircuit = this.exportElectricCircuitCheckBox.Checked;
+            drawAll();
+        }
+
+        private void exportConnectionPointCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.DisplayFreeConnexionPoints = this.exportConnectionPointCheckBox.Checked;
+            drawAll();
+        }
+        #endregion
 	}
 }
