@@ -99,15 +99,18 @@ namespace BlueBrick.SaveLoad
         #region color
         public static Color readColor(string line)
         {
-            if (line.StartsWith("0x"))
-                return Color.FromArgb(int.Parse(line, System.Globalization.NumberStyles.HexNumber));
+            if (line.StartsWith("0x") || line.StartsWith("0X"))
+                return Color.FromArgb(int.Parse(line.Substring(2), System.Globalization.NumberStyles.HexNumber));
             else
                 return Color.FromName(line);
         }
 
         public static void writeColor(ref string line, Color color)
         {
-            line += "\"" + color.Name + "\" ";
+            if (color.IsKnownColor)
+                line += "\"" + color.Name + "\" ";
+            else
+                line += "\"0x" + color.Name + "\" ";
         }
         #endregion
         #region font
