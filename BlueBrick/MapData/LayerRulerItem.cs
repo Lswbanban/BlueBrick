@@ -1257,7 +1257,7 @@ namespace BlueBrick.MapData
 				{
 					// check if we will need to draw the dashed offset lines
 					bool needToDrawOffset = mAllowOffset && (mOffsetDistance != 0.0f);
-					bool needToDisplayHull = Properties.Settings.Default.DisplayHull;
+					bool needToDisplayHull = Properties.Settings.Default.DisplayOtherHull;
 					bool needToDrawArrowForSmallDistance = !mDisplayDistance && (mMeasuredDistance.DistanceInStud < MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD);
 
 					// transform the coordinates into pixel coordinates
@@ -1782,7 +1782,7 @@ namespace BlueBrick.MapData
 						drawMesurementImage(g, centerInPixel, scalePixelPerStud, layerImageAttributeWithTransparency);
 
 					// draw the hull if needed
-					if (Properties.Settings.Default.DisplayHull)
+                    if (Properties.Settings.Default.DisplayOtherHull)
 						g.DrawEllipse(sPentoDrawHull, upperLeftInPixel.X, upperLeftInPixel.Y, diameterInPixel, diameterInPixel);
 
 					// draw the selection overlay

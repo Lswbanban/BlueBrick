@@ -232,7 +232,7 @@
     <Setting Name="UIRulerToolSelected" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="DisplayHull" Type="System.Boolean" Scope="User">
+    <Setting Name="DisplayBrickHull" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="OffsetAfterCopyStyle" Type="System.Int32" Scope="User">
@@ -303,6 +303,24 @@
     </Setting>
     <Setting Name="UIFilterAllSentence" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DisplayOtherHull" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="BrickHullColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="OtherHullColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="WatermarkFont" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Arial Narrow, 9.75pt</Value>
+    </Setting>
+    <Setting Name="WatermarkBackgroundColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">119, 255, 255, 255</Value>
+    </Setting>
+    <Setting Name="WatermarkColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
     </Setting>
   </Settings>
 </SettingsFile>

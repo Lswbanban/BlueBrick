@@ -661,7 +661,7 @@ namespace BlueBrick.MapData
 						else
 							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeDefault);
 
-						if (Properties.Settings.Default.DisplayHull)
+						if (Properties.Settings.Default.DisplayBrickHull)
 							g.DrawPolygon(sPentoDrawHull, Layer.sConvertPolygonInStudToPixel(brick.SelectionArea.Vertice, areaInStud, scalePixelPerStud));
 
 						// if the brick is electric, add it to the list

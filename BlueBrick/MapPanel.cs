@@ -67,9 +67,7 @@ namespace BlueBrick
 		private Rectangle mSelectionRectangle = new Rectangle();
 		private Pen mSelectionRectanglePen = new Pen(Color.Black, 2);
 
-		// drawing data to draw the general info watermark
-		private Font mGeneralInfoFont = new Font(FontFamily.GenericSansSerif, 10);
-		private SolidBrush mGeneralInfoBackgroundBrush = new SolidBrush(Color.FromArgb(0x77FFFFFF));
+        // adjust the map area size if the status bar or scrollbar are displayed
 		private int mCurrentStatusBarHeight = 0;
 
 		//dragndrop of a part on the map
@@ -329,21 +327,12 @@ namespace BlueBrick
 
 			// call the draw of the map
 			float widthInStud = (float)(this.Size.Width / mViewScale);
-			float heightInStud = (float)(this.Size.Height / mViewScale);
+            float heightInStud = (float)((this.Size.Height - mCurrentStatusBarHeight) / mViewScale);
 			float startXInStud = (float)mViewCornerX;
 			float startYInStud = (float)mViewCornerY;
 			RectangleF rectangle = new RectangleF(startXInStud, startYInStud, widthInStud, heightInStud);
 			Map.Instance.draw(g, rectangle, mViewScale);
-
-			// draw the global info if it is enabled
-			if (Properties.Settings.Default.DisplayGeneralInfoWatermark)
-			{
-				SizeF generalInfoSize = g.MeasureString(Map.Instance.GeneralInfoWatermark, mGeneralInfoFont);
-				float x = (float)(this.Size.Width) - generalInfoSize.Width;
-				float y = (float)(this.Size.Height - mCurrentStatusBarHeight) - generalInfoSize.Height;
-				g.FillRectangle(mGeneralInfoBackgroundBrush, x, y, generalInfoSize.Width, generalInfoSize.Height);
-				g.DrawString(Map.Instance.GeneralInfoWatermark, mGeneralInfoFont, Brushes.Black, x, y);
-			}
+            Map.Instance.drawWatermark(g, rectangle, mViewScale);
 
 			// on top of all the layer draw the selection rectangle
 			if (mIsSelectionRectangleOn)

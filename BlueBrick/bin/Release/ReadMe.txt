@@ -65,12 +65,16 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
-	- probably cannot fix: saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
+	- probably cannot fix, to add in bugtracker: saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
 - [target 1.8] MISSING FEATURE (Alban): Add some checkbox in the export window to choose what to export (instead of canceling and change them in the View menu)
+- [target 1.8] NEW FEATURE #8 (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image: now you can draw the Hull of the part in the exported image.
+	- need to add an option for the Hull color
+	- display hull split in two. Need to add interface in Preference. Need to Update the View Menu.
+	- save the export option: where in the BBM and in the settings
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
 - MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
@@ -84,7 +88,6 @@ REMOVE ALL THE TODO
 - MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels.
 - MISSING FEATURE #6 (Alban): Autosave.
 - MISSING FEATURE #7 (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
-- MISSING FEATURE #8 (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image
 - MISSING FEATURE #10 (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE #11 (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action

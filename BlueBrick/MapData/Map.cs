@@ -24,6 +24,7 @@ using BlueBrick.Actions;
 using BlueBrick.Actions.Bricks;
 using BlueBrick.Actions.Layers;
 using BlueBrick.Actions.Maps;
+using BlueBrick.Properties;
 
 namespace BlueBrick.MapData
 {
@@ -65,6 +66,10 @@ namespace BlueBrick.MapData
         private int mExportFileTypeIndex = 1; // index in the combobox for the different type of export
 		private RectangleF mExportArea = new RectangleF();
 		private double mExportScale = 0.0;
+        private bool mExportWatermark = false; //TODO init with the settings values
+        private bool mExportBrickHull = false; //TODO init with the settings values
+        private bool mExportElectricCircuit = false; //TODO init with the settings values
+        private bool mExportConnectionPoints = false; //TODO init with the settings values
 		private bool mHasExportSettingsChanged = false; // a boolean flag indicating that the settings has changed and that the file need to be saved
 
 		// some data for compatibility with Track designer
@@ -84,6 +89,10 @@ namespace BlueBrick.MapData
 
 		// singleton on the map (we assume it is always valid)
 		private static Map sInstance = new Map();
+
+        // drawing data to draw the general info watermark
+        private static SolidBrush mWatermarkBrush = new SolidBrush(Settings.Default.WatermarkColor);
+        private static SolidBrush mWatermarkBackgroundBrush = new SolidBrush(Settings.Default.WatermarkBackgroundColor);
 
 		#region get/set
 
@@ -256,6 +265,26 @@ namespace BlueBrick.MapData
 		{
 			get { return mExportScale; }
 		}
+
+        public bool ExportWatermark
+        {
+            get { return mExportWatermark; }
+        }
+
+        public bool ExportBrickHull
+        {
+            get { return mExportBrickHull; }
+        }
+
+        public bool ExportElectricCircuit
+        {
+            get { return mExportElectricCircuit; }
+        }
+
+        public bool ExportConnectionPoints
+        {
+            get { return mExportConnectionPoints; }
+        }
 		#endregion
 
 		#region constructor
@@ -655,17 +684,25 @@ namespace BlueBrick.MapData
 			mExportFileTypeIndex = exportFileTypeIndex;
 		}
 
-		public void saveExportAreaSettings(RectangleF exportArea, double exportScale)
+		public void saveExportAreaAndDisplaySettings(RectangleF exportArea, double exportScale, bool exportWatermark, bool exportBrickHull, bool exportElectricCircuit, bool exportConnectionPoints)
 		{
 			// epsilon value to compare double values.
 			const double epsilon = 0.000000001;
             // set the flag to true if there's any change. If the flag was changed previously, keep the info.
             mHasExportSettingsChanged = mHasExportSettingsChanged || 
                                         (mExportArea != exportArea) ||
-										Math.Abs(mExportScale - exportScale) > epsilon;
+										(Math.Abs(mExportScale - exportScale) > epsilon) ||
+                                        (mExportWatermark != exportWatermark) ||
+                                        (mExportBrickHull != exportBrickHull) ||
+                                        (mExportElectricCircuit != exportElectricCircuit) ||
+                                        (mExportConnectionPoints != exportConnectionPoints);
             // then remember the settings
             mExportArea = exportArea;
-			mExportScale = exportScale;			
+			mExportScale = exportScale;
+		    mExportWatermark = exportWatermark;
+            mExportBrickHull = exportBrickHull;
+            mExportElectricCircuit = exportElectricCircuit;
+            mExportConnectionPoints = exportConnectionPoints;
 		}
 
 		#endregion
@@ -954,11 +991,31 @@ namespace BlueBrick.MapData
 		/// </summary>
 		/// <remarks>The map is drawn by respecting the order of the layer.</remarks>
 		/// <param name="g">the graphic context in which draw the layer</param>
-		/// <param name="scale">The scale to use to draw</param>
+        /// <param name="areaInStud">The region in which we should draw</param>
+        /// <param name="scale">The scale to use to draw</param>
 		public void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud)
 		{
 			foreach (Layer layer in mLayers)
 				layer.draw(g, areaInStud, scalePixelPerStud);
+        }
+
+        /// <summary>
+        /// Draw the watermark info in one corner (depending on settings)
+        /// </summary>
+        /// <param name="g">the graphic context in which drawing the watermark</param>
+        /// <param name="areaInStud">The region in which we should draw</param>
+        /// <param name="scale">The scale to use to draw</param>
+        public void drawWatermark(Graphics g, RectangleF areaInStud, double scalePixelPerStud)
+        {
+            // draw the global info if it is enabled
+            if (Properties.Settings.Default.DisplayGeneralInfoWatermark)
+            {
+                SizeF generalInfoSize = g.MeasureString(this.GeneralInfoWatermark, Settings.Default.WatermarkFont);
+                float x = (float)(areaInStud.Width * scalePixelPerStud) - generalInfoSize.Width;
+                float y = (float)(areaInStud.Height * scalePixelPerStud) - generalInfoSize.Height;
+                g.FillRectangle(mWatermarkBackgroundBrush, x, y, generalInfoSize.Width, generalInfoSize.Height);
+                g.DrawString(this.GeneralInfoWatermark, Settings.Default.WatermarkFont, mWatermarkBrush, x, y);
+            }
 		}
 
 		/// <summary>

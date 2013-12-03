@@ -556,7 +556,7 @@ namespace BlueBrick
 			this.watermarkToolStripMenuItem.Checked = Properties.Settings.Default.DisplayGeneralInfoWatermark;
 			this.electricCircuitsMenuItem.Checked = Properties.Settings.Default.DisplayElectricCircuit;
 			this.connectionPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayFreeConnexionPoints;
-			this.hullsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayHull;
+			this.hullsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayBrickHull;
 			this.rulerAttachPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayRulerAttachPoints;
 		}
 
@@ -1412,6 +1412,7 @@ namespace BlueBrick
 					graphics.InterpolationMode = InterpolationMode.High; // this one need to be high else there's some rendering bug appearing with a lower mode, the scale of the stud looks not correct when zooming out.
 					// draw the bitmap
 					Map.Instance.draw(graphics, mExportImageForm.AreaInStud, mExportImageForm.ScalePixelPerStud);
+                    Map.Instance.drawWatermark(graphics, mExportImageForm.AreaInStud, mExportImageForm.ScalePixelPerStud);
 					// find the correct format according to the last extension.
 					// Normally the FileName MUST have a valid extension because the SaveFileDialog
 					// automatically add an extension if the user forgot to precise one, or if
@@ -1468,6 +1469,8 @@ namespace BlueBrick
 				// have been saved in the map, therefore the map was modified.
 				updateView(Action.UpdateViewType.NONE, Action.UpdateViewType.NONE);
 			}
+            // restore the display settings
+            mExportImageForm.restoreDisplaySettings();
 		}
 
 		private void reloadPartLibraryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2088,7 +2091,7 @@ namespace BlueBrick
 
 		private void hullsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			Properties.Settings.Default.DisplayHull = this.hullsToolStripMenuItem.Checked;
+			Properties.Settings.Default.DisplayBrickHull = this.hullsToolStripMenuItem.Checked;
 			this.mapPanel.Invalidate();
 		}
 
