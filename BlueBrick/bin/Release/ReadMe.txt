@@ -70,12 +70,6 @@ REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
-- [target 1.8] MISSING FEATURE (Alban): Add some checkbox in the export window to choose what to export (instead of canceling and change them in the View menu)
-- [target 1.8] NEW FEATURE #8 (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image: now you can draw the Hull of the part in the exported image.
-	- need to add an option for the Hull color in the preference
-	- Need to add interface in Preference.
-	- the display settings are not loaded correctly
-	- need some preference for the watermark?
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
 - MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
@@ -84,6 +78,7 @@ REMOVE ALL THE TODO
 - MISSING FEATURE #12 (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
+- MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon)
 - MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optionnal.
 - MISSING FEATURE (Alban): Enhance the part list export in HTML to export the group set only one time.
 - MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels.
@@ -93,6 +88,8 @@ REMOVE ALL THE TODO
 - MISSING FEATURE #11 (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
+- MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
+- MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
 - [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar
 - [target 1.8] BUG (Alban): Check why the drawing of Text layer is slow.
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1) (still buggy)
@@ -112,6 +109,8 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE #37 (doc_brown): Add a checkbox in the warning message box when not saving in BBM format.
 - NEW FEATURE (Alban): Add more options in the preference to create any of the 5 types of layer for a new map
 - NEW FEATURE (Pierre): The right click button can now cancel the current edition if you are in the middle of an edition (for any type of layer)
+- NEW FEATURE (Alban): Add some checkbox in the export window to choose what to export (currently you can add the watermark, the Hull for bricks, the electric circuit and the connection points)
+- NEW FEATURE #8 (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image: now you can draw the Hull of the part in the exported image.
 - REFACTORING (Alban): Move the display of free connection point and watermark in the View menu and add the display of the hull.
 - REFACTORING #18 (Alban): Check where I could have used the directive "where" (remove code duplication)
 - REFACTORING (Alban): Replace all the type test using a string with the "is" keyword
