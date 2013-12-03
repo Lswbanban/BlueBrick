@@ -1376,7 +1376,7 @@ namespace BlueBrick.MapData
 
 					// draw the hull if needed
 					if (needToDisplayHull)
-						g.DrawPolygon(sPentoDrawHull, selectionArea);
+						g.DrawPolygon(sPenToDrawOtherHull, selectionArea);
 
 					// draw a frame around the ruler if it is selected
 					if (isSelected)						
@@ -1783,7 +1783,7 @@ namespace BlueBrick.MapData
 
 					// draw the hull if needed
                     if (Properties.Settings.Default.DisplayOtherHull)
-						g.DrawEllipse(sPentoDrawHull, upperLeftInPixel.X, upperLeftInPixel.Y, diameterInPixel, diameterInPixel);
+						g.DrawEllipse(sPenToDrawOtherHull, upperLeftInPixel.X, upperLeftInPixel.Y, diameterInPixel, diameterInPixel);
 
 					// draw the selection overlay
 					if (isSelected)

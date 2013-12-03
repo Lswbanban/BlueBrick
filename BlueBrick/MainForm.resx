@@ -323,7 +323,7 @@ You can use double quote characters to group keywords.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAARgBAAEYAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAAVABAAFQAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -1550,7 +1550,7 @@ You can use double quote characters to group keywords.</value>
     <value>175, 22</value>
   </data>
   <data name="electricCircuitsMenuItem.Text" xml:space="preserve">
-    <value>&amp;Electric Circuits</value>
+    <value>&amp;Electric Circuit</value>
   </data>
   <data name="connectionPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>175, 22</value>
@@ -1558,17 +1558,29 @@ You can use double quote characters to group keywords.</value>
   <data name="connectionPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Connection Points</value>
   </data>
-  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 22</value>
-  </data>
-  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hulls</value>
-  </data>
   <data name="rulerAttachPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>175, 22</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ruler Attach Points</value>
+  </data>
+  <data name="hullsBricksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="hullsBricksToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bricks</value>
+  </data>
+  <data name="hullsTextsAndRulersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="hullsTextsAndRulersToolStripMenuItem.Text" xml:space="preserve">
+    <value>Texts and Rulers</value>
+  </data>
+  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 22</value>
+  </data>
+  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hulls</value>
   </data>
   <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -2145,7 +2157,7 @@ You can use double quote characters to group keywords.</value>
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>118</value>
+    <value>116</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -2648,16 +2660,28 @@ You can use double quote characters to group keywords.</value>
   <data name="&gt;&gt;connectionPointsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;rulerAttachPointsToolStripMenuItem.Name" xml:space="preserve">
+    <value>rulerAttachPointsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;rulerAttachPointsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;hullsToolStripMenuItem.Name" xml:space="preserve">
     <value>hullsToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;hullsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;rulerAttachPointsToolStripMenuItem.Name" xml:space="preserve">
-    <value>rulerAttachPointsToolStripMenuItem</value>
+  <data name="&gt;&gt;hullsBricksToolStripMenuItem.Name" xml:space="preserve">
+    <value>hullsBricksToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;rulerAttachPointsToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;hullsBricksToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hullsTextsAndRulersToolStripMenuItem.Name" xml:space="preserve">
+    <value>hullsTextsAndRulersToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;hullsTextsAndRulersToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;helpToolStripMenuItem.Name" xml:space="preserve">

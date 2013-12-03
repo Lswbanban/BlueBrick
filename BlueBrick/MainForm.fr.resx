@@ -143,7 +143,7 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAQwBAAEMAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAARwBAAEcAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -734,17 +734,29 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="connectionPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>Points de &amp;connection</value>
   </data>
-  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 22</value>
-  </data>
-  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
-    <value>En&amp;veloppes</value>
-  </data>
   <data name="rulerAttachPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>227, 22</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>Points d'attache des mesures</value>
+  </data>
+  <data name="hullsBricksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="hullsBricksToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pièces</value>
+  </data>
+  <data name="hullsTextsAndRulersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
+  <data name="hullsTextsAndRulersToolStripMenuItem.Text" xml:space="preserve">
+    <value>Textes et mesures</value>
+  </data>
+  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Con&amp;tours</value>
   </data>
   <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
