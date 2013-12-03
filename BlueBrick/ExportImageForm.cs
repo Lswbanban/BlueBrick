@@ -206,11 +206,26 @@ namespace BlueBrick
             mOriginalDisplayBrickHullInSetting = Settings.Default.DisplayBrickHull;
             mOriginalDisplayElectricCircuitInSetting = Settings.Default.DisplayElectricCircuit;
             mOriginalDisplayConnectionPointInSetting = Settings.Default.DisplayFreeConnexionPoints;
-            // now change them
-            this.exportWatermarkCheckBox.Checked = Map.Instance.ExportWatermark;
-            this.exportHullCheckBox.Checked = Map.Instance.ExportBrickHull;
-            this.exportElectricCircuitCheckBox.Checked = Map.Instance.ExportElectricCircuit;
-            this.exportConnectionPointCheckBox.Checked = Map.Instance.ExportConnectionPoints;
+            // now change them: for each we check if it is different, otherwithes the callback won't be called
+            if (this.exportWatermarkCheckBox.Checked != Map.Instance.ExportWatermark)
+                this.exportWatermarkCheckBox.Checked = Map.Instance.ExportWatermark;
+            else
+                this.exportWatermarkCheckBox_CheckedChanged(this, null);
+
+            if (this.exportHullCheckBox.Checked != Map.Instance.ExportBrickHull)
+                this.exportHullCheckBox.Checked = Map.Instance.ExportBrickHull;
+            else
+                this.exportHullCheckBox_CheckedChanged(this, null);
+
+            if (this.exportElectricCircuitCheckBox.Checked != Map.Instance.ExportElectricCircuit)
+                this.exportElectricCircuitCheckBox.Checked = Map.Instance.ExportElectricCircuit;
+            else
+                this.exportElectricCircuitCheckBox_CheckedChanged(this, null);
+
+            if (this.exportConnectionPointCheckBox.Checked != Map.Instance.ExportConnectionPoints)
+                this.exportConnectionPointCheckBox.Checked = Map.Instance.ExportConnectionPoints;
+            else
+                this.exportConnectionPointCheckBox_CheckedChanged(this, null);
         }
 
         /// <summary>
@@ -568,6 +583,10 @@ namespace BlueBrick
 			Map.Instance.saveExportAreaAndDisplaySettings(mSelectedAreaInStud, (double)(this.scaleNumericUpDown.Value),
                 this.exportWatermarkCheckBox.Checked, this.exportHullCheckBox.Checked,
                 this.exportElectricCircuitCheckBox.Checked, this.exportConnectionPointCheckBox.Checked);
+
+            // save also the UI settings: if the user has exported, that means he like the option like that, and if he make
+            // a new map and export, he wants to find back his last settings
+            saveUISettingInDefaultSettings();
 		}
 
         private void exportWatermarkCheckBox_CheckedChanged(object sender, EventArgs e)
