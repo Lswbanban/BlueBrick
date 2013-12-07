@@ -205,30 +205,40 @@ namespace BlueBrick.MapData
 			if (!Visible)
 				return;
 
-			Rectangle destinationRectangle = new Rectangle();
-			foreach (TextCell cell in mTexts)
+            GraphicsUnit unit = GraphicsUnit.Pixel;
+            // take half because we want to compute half width and height
+            float scaleForDestinationRectangle = (float)(0.5f * scalePixelPerStud) / TextCell.ANTI_ALIASING_FONT_SCALE;
+            foreach (TextCell cell in mTexts)
 			{
 				float left = cell.Position.X;
 				float right = left + cell.Width;
 				float top = cell.Position.Y;
 				float bottom = top + cell.Height;
 				if ((right >= areaInStud.Left) && (left <= areaInStud.Right) && (bottom >= areaInStud.Top) && (top <= areaInStud.Bottom))
-				{
-					// compute the position of the text in pixel coord
-					destinationRectangle.X = (int)((left - areaInStud.Left) * scalePixelPerStud);
-					destinationRectangle.Y = (int)((top - areaInStud.Top) * scalePixelPerStud);
-					destinationRectangle.Width = (int)(cell.Width * scalePixelPerStud);
-					destinationRectangle.Height = (int)(cell.Height * scalePixelPerStud);
-
-					// draw the image containing the text
-					g.DrawImage(cell.Image, destinationRectangle, 0, 0, cell.Image.Width, cell.Image.Height, GraphicsUnit.Pixel, mImageAttribute);
+				{ 
+                    // set the transform
+                    Matrix rotation = new Matrix();
+                    PointF center = Layer.sConvertPointInStudToPixel(cell.Center, areaInStud, scalePixelPerStud);
+                    rotation.Translate(center.X, center.Y);
+                    rotation.Rotate(cell.Orientation);
+                    g.Transform = rotation;
+                    // get the source and destination rectangle
+                    RectangleF srcRect = cell.Image.GetBounds(ref unit);
+                    float halfWidth = srcRect.Width * scaleForDestinationRectangle;
+                    float halfHeight = srcRect.Height * scaleForDestinationRectangle;
+                    PointF[] destRect = { new PointF(-halfWidth, -halfHeight), new PointF(halfWidth, -halfHeight), new PointF(-halfWidth, halfHeight) };
+                    // draw the image containing the text
+                    g.DrawImage(cell.Image, destRect, srcRect, unit, mImageAttribute);
 
 					// compute the selection area in pixel if the text is selected or we need to draw the hull
 					bool isSelected = mSelectedObjects.Contains(cell);
                     bool displayHull = Properties.Settings.Default.DisplayOtherHull;
-					PointF[] hull = null;
-					if (isSelected || displayHull)
-						hull = Layer.sConvertPolygonInStudToPixel(cell.SelectionArea.Vertice, areaInStud, scalePixelPerStud);
+                    PointF[] hull = null;
+                    if (isSelected || displayHull)
+                    {
+                        g.Transform = new Matrix();
+                        hull = Layer.sConvertPolygonInStudToPixel(cell.SelectionArea.Vertice, areaInStud, scalePixelPerStud);
+                    }
 
 					// draw the hull if needed
 					if (displayHull)
@@ -239,6 +249,9 @@ namespace BlueBrick.MapData
 						g.FillPolygon(mSelectionBrush, hull);
 				}
 			}
+
+            // reset the transform
+            g.Transform = new Matrix();
 
 			// call the base class to draw the surrounding selection rectangle
 			base.draw(g, areaInStud, scalePixelPerStud);
