@@ -321,6 +321,7 @@ namespace BlueBrick
 			g.SmoothingMode = SmoothingMode.None;
 			g.CompositingQuality = CompositingQuality.HighSpeed;
 			g.InterpolationMode = InterpolationMode.Low;
+            g.PixelOffsetMode = PixelOffsetMode.None;
 
 			// NOTE: the background color is set directly in this.BackColor !!!
 			this.BackColor = Map.Instance.BackgroundColor;

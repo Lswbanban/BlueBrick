@@ -25,6 +25,8 @@ namespace BlueBrick.MapData
 		[Serializable]
 		public class TextCell : LayerItem
 		{
+            public const float ANTI_ALIASING_FONT_SCALE = 4.0f;
+
 			private StringFormat mTextStringFormat = new StringFormat();
 			private Font mTextFont = Properties.Settings.Default.DefaultTextFont;
 			private SolidBrush mTextBrush = new SolidBrush(Properties.Settings.Default.DefaultTextColor);
@@ -35,36 +37,36 @@ namespace BlueBrick.MapData
 			public string Text
 			{
 				get { return mText; }
-				set { mText = value; updateBitmap(); }
+				set { mText = value; updateBitmap(true); }
 			}
 
 			public override float Orientation
 			{
-				set { mOrientation = value; updateBitmap(); }
+				set { mOrientation = value; updateBitmap(false); }
 			}
 
 			public Color FontColor
 			{
 				get { return mTextBrush.Color; }
-				set { mTextBrush.Color = value; updateBitmap(); }
+				set { mTextBrush.Color = value; updateBitmap(true); }
 			}
 
 			public StringAlignment TextAlignment
 			{
 				get { return mTextStringFormat.Alignment; }
-				set { mTextStringFormat.Alignment = value; updateBitmap(); }
+				set { mTextStringFormat.Alignment = value; updateBitmap(true); }
 			}
 
 			public Font Font
 			{
 				get { return mTextFont; }
-				set { mTextFont = value; updateBitmap(); }
+				set { mTextFont = value; updateBitmap(true); }
 			}
 
 			public FontStyle FontStyle
 			{
 				get { return mTextFont.Style; }
-				set { mTextFont = new Font(mTextFont, value); updateBitmap(); }
+				set { mTextFont = new Font(mTextFont, value); updateBitmap(true); }
 			}
 
 			public Bitmap Image
@@ -173,7 +175,7 @@ namespace BlueBrick.MapData
 			#endregion
 
 			#region method
-			private void updateBitmap()
+			private void updateBitmap(bool redrawImage)
 			{
 				// create a bitmap if the text is not empty
 				if (mText != "")
@@ -217,25 +219,28 @@ namespace BlueBrick.MapData
 					// then create the new selection area
 					mSelectionArea = new Tools.Polygon(corners);
 
-					// now create a scaled font from the current one, to avoid aliasing
-					const float FONT_SCALE = 4.0f;
-					Font scaledTextFont = new Font(mTextFont.FontFamily, mTextFont.Size * FONT_SCALE, mTextFont.Style);
-					mImage = new Bitmap(mImage, new Size((int)(mDisplayArea.Width * FONT_SCALE), (int)(mDisplayArea.Height * FONT_SCALE)));
+                    if (redrawImage)
+                    {
+                        // now create a scaled font from the current one, to avoid aliasing
+                        Font scaledTextFont = new Font(mTextFont.FontFamily, mTextFont.Size * ANTI_ALIASING_FONT_SCALE, mTextFont.Style);
+                        mImage = new Bitmap(mImage, new Size((int)(textFontSize.Width * ANTI_ALIASING_FONT_SCALE), (int)(textFontSize.Height * ANTI_ALIASING_FONT_SCALE)));
 
-					// compute the position where to draw according to the alignment (if centered == 0)
-					float posx = 0;
-					if (this.TextAlignment == StringAlignment.Far)
-						posx = halfWidth;
-					else if (this.TextAlignment == StringAlignment.Near)
-						posx = -halfWidth;
+                        // compute the position where to draw according to the alignment (if centered == 0)
+                        float posx = 0;
+                        if (this.TextAlignment == StringAlignment.Far)
+                            posx = halfWidth;
+                        else if (this.TextAlignment == StringAlignment.Near)
+                            posx = -halfWidth;
 
-					graphics = Graphics.FromImage(mImage);
-					rotation.Translate(mImage.Width / 2, mImage.Height / 2, MatrixOrder.Append);
-					graphics.Transform = rotation;
-					graphics.Clear(Color.Transparent);
-					graphics.SmoothingMode = SmoothingMode.HighQuality;
-					graphics.DrawString(mText, scaledTextFont, mTextBrush, posx * FONT_SCALE, 0, mTextStringFormat);
-					graphics.Flush();
+                        graphics = Graphics.FromImage(mImage);
+                        rotation = new Matrix();
+                        rotation.Translate(mImage.Width / 2, mImage.Height / 2, MatrixOrder.Append);
+                        graphics.Transform = rotation;
+                        graphics.Clear(Color.Transparent);
+                        graphics.SmoothingMode = SmoothingMode.HighQuality;
+                        graphics.DrawString(mText, scaledTextFont, mTextBrush, posx * ANTI_ALIASING_FONT_SCALE, 0, mTextStringFormat);
+                        graphics.Flush();
+                    }
 				}
 			}
 			#endregion

@@ -90,9 +90,9 @@ REMOVE ALL THE TODO
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
-- [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar
+- [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar (for Windows XP)
 - [target 1.8] BUG (Alban): Check why the drawing of Text layer is slow.
-- [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1) (still buggy)
+- [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1) (still buggy? en tout cas pas sous Win7, need to check again)
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
