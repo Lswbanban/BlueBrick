@@ -70,6 +70,14 @@ REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
+	- Menu "Budget": New, Open, Import, Save, Save As... | Use Budget, Show Budget Number, Show Only Parts in Budget (à voir avec filter)
+	- display numbers under parts (for ex: 5/9) + contextual menu to toggle them
+	- contextual menu to modify the budget number (undoable action)
+	- need to check if the budget was modified to prompt a message when leaving BB
+	- need to display the budget name (drop list with checkbox)
+	- In preference: load a specific budget at startup (+ error message if can't) (several budgets)
+	- error message if you try to add a part exceeding the budget
+	- bug drag'n'drop from the label: make disapear the part count
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
 - MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
@@ -91,7 +99,6 @@ REMOVE ALL THE TODO
 - MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
 - [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar (for Windows XP)
-- [target 1.8] BUG (Alban): Check why the drawing of Text layer is slow.
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1) (still buggy? en tout cas pas sous Win7, need to check again)
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
@@ -114,6 +121,7 @@ Bug fixed in 1.8.0.0:
 - REFACTORING (Alban): Move the display of free connection point and watermark in the View menu and add the display of the hull.
 - REFACTORING #18 (Alban): Check where I could have used the directive "where" (remove code duplication)
 - REFACTORING (Alban): Replace all the type test using a string with the "is" keyword
+- REFACTORING (Alban): Improve the rendering speed of Text layer.
 - BUGFIX #40 (Steffen): If you connect a gray track with a blue track, the sleeper between them should be the white 3034 one. 
 - BUGFIX #42 (Larry): CRASH!! if you export a small area after exporting a big area
 - BUGFIX #47 (doc_brown): the LDraw header is not following the standard definition

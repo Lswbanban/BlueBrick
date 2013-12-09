@@ -442,6 +442,9 @@ namespace BlueBrick
 				// even after several filtering and even if the sorting key is not set. But if it is set,
 				// the sorting key has the priority since it is place in front
 				newItem.Name = BrickLibrary.Instance.getSortingKey(brick.mPartNumber) + brick.mPartNumber;
+
+                newItem.Text = "5/9"; //TODO remove this debug hack
+
 				// and insert the item
 				try
 				{
