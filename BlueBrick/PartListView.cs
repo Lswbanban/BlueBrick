@@ -36,6 +36,9 @@ namespace BlueBrick
 		private string mFilterSentence = string.Empty;
 		private bool mIsFilterSentenceSynchroWithCurrentFiltering = false;
 
+        // for label edition
+        private int mItemIndexForLabelEdit = -1;
+
 		#region get/set
 		public bool IsFiltered
 		{
@@ -51,16 +54,31 @@ namespace BlueBrick
 		#region constructor
 		public PartListView()
 		{
+            InitializeComponent();
 			// set the property of the list view
-			this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-			this.Dock = DockStyle.Fill;
-			this.Alignment = ListViewAlignment.SnapToGrid;
 			this.BackColor = Properties.Settings.Default.PartLibBackColor;
 			this.ShowItemToolTips = Properties.Settings.Default.PartLibDisplayBubbleInfo;
-			this.MultiSelect = false;
 			this.ListViewItemSorter = sListViewItemComparer; // we want to sort the items based on their Name (which contains a sorting key)
-			this.View = View.Tile; // we always use this view, because of the layout of the item
+			this.View = View.LargeIcon; // we always use this view, because of the layout of the item
+            this.SetStyle(ControlStyles.EnableNotifyMessage, true); // set the style to receive the VM_NOTIFY Message in order to change the text before label edition
 		}
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // PartListView
+            // 
+            this.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
+            this.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelEdit = true;
+            this.MultiSelect = false;
+            this.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_AfterLabelEdit);
+            this.BeforeLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_BeforeLabelEdit);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseDown);
+            this.ResumeLayout(false);
+
+        }
 		#endregion
 		/// <summary>
 		/// Filter the current tab with the specified string. The string should be a list of keywords that can be
@@ -269,5 +287,73 @@ namespace BlueBrick
 			// return the result as a list of image
 			return (new List<Image>(imageArray));
 		}
-	}
+        #region event handler
+        private void PartListView_BeforeLabelEdit(object sender, LabelEditEventArgs e)
+        {
+            // put node label to initial state
+            // to ensure that in case of label editing cancelled
+            // the initial state of label is preserved
+            this.Items[e.Item].Text = getLabelForDisplay(e.Item, this.Items[e.Item].Text);
+        }
+
+        private void PartListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        {
+            // check if it is an int
+            try
+            {
+                // try to parse as int
+                int newBudget = int.Parse(e.Label);
+                // add the current count and change the text myself
+                if (newBudget >= 0)
+                    this.Items[e.Item].Text = getLabelForDisplay(e.Item, newBudget.ToString());
+                // cancel anyway
+                e.CancelEdit = true;
+            }
+            catch
+            {
+                e.CancelEdit = true;
+            }
+        }
+
+        protected override void OnNotifyMessage(Message m)
+        {
+            const int WM_TIMER = 0x0113;
+            // set the text for edition if we have a correct label
+            if ((m.Msg == WM_TIMER) && (mItemIndexForLabelEdit >= 0))
+                this.Items[mItemIndexForLabelEdit].Text = getLabelForEdition(mItemIndexForLabelEdit);
+            base.OnNotifyMessage(m);
+        }
+
+        private void PartListView_MouseDown(object sender, MouseEventArgs e)
+        {
+            // reset the item index
+            mItemIndexForLabelEdit = -1;
+            // check where the user clicked, if it's on the label, we have a chance that he want to edit the label
+            ListViewHitTestInfo hitTest = this.HitTest(e.Location);
+            if (hitTest.Location == ListViewHitTestLocations.Label)
+            {
+                // unselect the previous item
+                foreach (int index in this.SelectedIndices)
+                    this.Items[index].Selected = false;
+                // and try to select the clicked one (needed for the label edit)
+                if (hitTest.Item != null)
+                {
+                    // and select the clicked one
+                    mItemIndexForLabelEdit = this.Items.IndexOf(hitTest.Item);
+                    this.Items[mItemIndexForLabelEdit].Selected = true;
+                }
+            }
+        }
+
+        private string getLabelForDisplay(int itemIndex, string newBudget)
+        {
+            return ("3/" + newBudget); //TODO add the real number here
+        }
+
+        private string getLabelForEdition(int itemIndex)
+        {
+            return this.Items[itemIndex].Text.Substring(this.Items[itemIndex].Text.IndexOf('/') + 1);
+        }
+        #endregion
+    }
 }

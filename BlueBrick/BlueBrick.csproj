@@ -372,6 +372,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>GeneralInfoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PartListView.resx">
+      <DependentUpon>PartListView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PreferencesForm.de.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PreferencesForm.cs</DependentUpon>
