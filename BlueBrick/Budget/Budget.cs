@@ -29,6 +29,9 @@ namespace BlueBrick.Budget
 		// the count is the actual brick total number in the map
 		private Dictionary<string, int> mCount = new Dictionary<string, int>();
 
+		// tell if the budget limitation is enabled
+		private bool mIsEnabled = true;
+
 		#region get/set
 		/// <summary>
 		/// The static instance of the Budget
@@ -90,6 +93,18 @@ namespace BlueBrick.Budget
 			int result = 0;
 			mCount.TryGetValue(partID, out result);
 			return result;
+		}
+
+		/// <summary>
+		/// If the budget limitation is enabled, this method will check if the brick count is less than the budget
+		/// and return true, otherwise if the limit is reached return false.
+		/// If the budget limitation is not enable, this method always return true.
+		/// </summary>
+		/// <param name="partID">the full part id</param>
+		/// <returns>true if you can add this part</returns>
+		public bool canAddBrick(string partID)
+		{
+			return ((!mIsEnabled) || (getCount(partID) < getBudget(partID)));
 		}
 
 		/// <summary>
