@@ -170,6 +170,8 @@ namespace BlueBrick
 		{
 			// create the context menu
 			ContextMenuStrip contextMenu = new ContextMenuStrip();
+			// add the openning event to eventually change some states
+			contextMenu.Opening += new System.ComponentModel.CancelEventHandler(contextMenu_Opening);
 			// menu item to display the icons in large
 			ToolStripMenuItem largeIconsMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemLargeIcons, null, menuItem_LargeIconClick);
 			largeIconsMenuItem.CheckOnClick = true;
@@ -189,13 +191,15 @@ namespace BlueBrick
 			contextMenu.Items.Add(new ToolStripSeparator());
 			// menu item to display tooltips
 			ToolStripMenuItem useBudgetMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemUseBudget, null, menuItem_UseBudgetClick);
-			bubbleInfoMenuItem.CheckOnClick = true;
-			bubbleInfoMenuItem.Checked = false; // TODO should be in the settings if you can load a budget by default
+			useBudgetMenuItem.Name = "useBudgetMenuItem";
+			useBudgetMenuItem.CheckOnClick = false;
+			useBudgetMenuItem.Checked = Budget.Budget.Instance.IsEnabled;
 			contextMenu.Items.Add(useBudgetMenuItem);
 			// menu item to display tooltips
 			ToolStripMenuItem editBudgetMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemEditBudget, null, menuItem_EditBudgetClick);
-			bubbleInfoMenuItem.CheckOnClick = false;
-			bubbleInfoMenuItem.Checked = false;
+			editBudgetMenuItem.Name = "editBudgetMenuItem";
+			editBudgetMenuItem.CheckOnClick = false;
+			editBudgetMenuItem.Checked = false;
 			contextMenu.Items.Add(editBudgetMenuItem);
 			// return the well form context menu
 			return contextMenu;
@@ -843,6 +847,13 @@ namespace BlueBrick
 
 		#region event handler for parts library
 
+		private void contextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			// update the checkstate of the budget stuff, cause they are globals at all the tab
+			ContextMenuStrip contextMenu = sender as ContextMenuStrip;
+			(contextMenu.Items["useBudgetMenuItem"] as ToolStripMenuItem).Checked = Budget.Budget.Instance.IsEnabled;
+		}
+
 		private void menuItem_LargeIconClick(object sender, EventArgs e)
 		{
 			PartListView listView = this.SelectedTab.Controls[0] as PartListView;
@@ -907,7 +918,7 @@ namespace BlueBrick
 			PartListView listView = this.SelectedTab.Controls[0] as PartListView;
 			if (listView != null && menuItem != null)
 			{
-				//TODO
+				MainForm.Instance.useTheBudgetToolStripMenuItem_Click(null, null);
 			}
 		}
 

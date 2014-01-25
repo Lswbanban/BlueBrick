@@ -829,6 +829,12 @@ namespace BlueBrick.MapData
 		#endregion
 
 		#region parts management
+		public void giveFeedbackForNotAddingBrick()
+		{
+			System.Media.SystemSounds.Beep.Play();
+			BlueBrick.MainForm.Instance.setStatusBarMessage(Properties.Resources.StatusMsgBudgetReached);
+		}
+
 		public bool canAddBrick(string partNumber)
 		{
 			return ((Map.sInstance.SelectedLayer is LayerBrick) &&
@@ -839,12 +845,16 @@ namespace BlueBrick.MapData
 		{
 			if (canAddBrick(partNumber))
 				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, partNumber));
+			else
+				giveFeedbackForNotAddingBrick();
 		}
 
 		public void addBrick(Layer.LayerItem brickOrGroup)
 		{
 			if (canAddBrick(brickOrGroup.PartNumber))
 				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, brickOrGroup));
+			else
+				giveFeedbackForNotAddingBrick();
 		}
 
 		public void addConnectBrick(string partNumber)
@@ -870,6 +880,8 @@ namespace BlueBrick.MapData
 					ActionManager.Instance.doAction(action);
 				}
 			}
+			else
+				giveFeedbackForNotAddingBrick();
 		}
 
 		/// <summary>

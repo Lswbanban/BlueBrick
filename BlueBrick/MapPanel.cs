@@ -700,6 +700,8 @@ namespace BlueBrick
 						e.Effect = DragDropEffects.Copy;
 					}
 				}
+				else
+					Map.Instance.giveFeedbackForNotAddingBrick();
 			}
 
 			// check again if we are not dragging a part, maybe we drag a file
@@ -814,7 +816,9 @@ namespace BlueBrick
 			mViewCornerY += previousZoomPointInStud.Y - newZoomPointInStud.Y;
 			updateView();
 		}
+		#endregion
 
+		#region right click context menu
 		private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			// if the zoom modifier key is pressed, cancel the opening of the context menu
@@ -872,9 +876,7 @@ namespace BlueBrick
 				e.Cancel = !isEnabled;
 			}
 		}
-		#endregion
 
-		#region right click context menu
 		private void bringToFrontToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			MainForm.Instance.bringToFrontToolStripMenuItem_Click(sender, e);

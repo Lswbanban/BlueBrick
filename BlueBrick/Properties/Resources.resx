@@ -559,4 +559,7 @@
   <data name="PartLibMenuItemUseBudget" xml:space="preserve">
     <value>Use the Budget</value>
   </data>
+  <data name="StatusMsgBudgetReached" xml:space="preserve">
+    <value>Budget reached for this part!</value>
+  </data>
 </root>
