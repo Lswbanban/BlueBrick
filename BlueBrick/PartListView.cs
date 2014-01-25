@@ -287,7 +287,22 @@ namespace BlueBrick
 			// return the result as a list of image
 			return (new List<Image>(imageArray));
 		}
+
         #region event handler
+
+		/// <summary>
+		/// begin the edition of the current selected item if any. Otherwise do nothing.
+		/// </summary>
+		public void editCurrentSelectedItemLabel()
+		{
+			if (this.SelectedIndices.Count > 0)
+			{
+				mItemIndexForLabelEdit = this.SelectedIndices[0];
+				this.Items[mItemIndexForLabelEdit].Text = getLabelForEdition(mItemIndexForLabelEdit);
+				this.Items[mItemIndexForLabelEdit].BeginEdit();
+			}
+		}
+
         private void PartListView_BeforeLabelEdit(object sender, LabelEditEventArgs e)
         {
             // put node label to initial state
@@ -328,22 +343,26 @@ namespace BlueBrick
         {
             // reset the item index
             mItemIndexForLabelEdit = -1;
-            // check where the user clicked, if it's on the label, we have a chance that he want to edit the label
-            ListViewHitTestInfo hitTest = this.HitTest(e.Location);
-            if (hitTest.Location == ListViewHitTestLocations.Label)
-            {
-                // unselect the previous item
-                foreach (int index in this.SelectedIndices)
-                    this.Items[index].Selected = false;
-                // and try to select the clicked one (needed for the label edit)
-                if (hitTest.Item != null)
-                {
-                    // and select the clicked one
-                    mItemIndexForLabelEdit = this.Items.IndexOf(hitTest.Item);
-                    this.Items[mItemIndexForLabelEdit].Selected = true;
-                }
-            }
-        }
+			// check if we click with the left button
+			if (e.Button == System.Windows.Forms.MouseButtons.Left)
+			{
+				// check where the user clicked, if it's on the label, we have a chance that he want to edit the label
+				ListViewHitTestInfo hitTest = this.HitTest(e.Location);
+				if (hitTest.Location == ListViewHitTestLocations.Label)
+				{
+					// unselect the previous item
+					foreach (int index in this.SelectedIndices)
+						this.Items[index].Selected = false;
+					// and try to select the clicked one (needed for the label edit)
+					if (hitTest.Item != null)
+					{
+						// and select the clicked one
+						mItemIndexForLabelEdit = this.Items.IndexOf(hitTest.Item);
+						this.Items[mItemIndexForLabelEdit].Selected = true;
+					}
+				}
+			}
+		}
 
         private string getLabelForDisplay(int itemIndex, string newBudget)
         {

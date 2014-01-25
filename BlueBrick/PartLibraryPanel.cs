@@ -185,6 +185,18 @@ namespace BlueBrick
 			bubbleInfoMenuItem.CheckOnClick = true;
 			bubbleInfoMenuItem.Checked = Settings.Default.PartLibDisplayBubbleInfo;
 			contextMenu.Items.Add(bubbleInfoMenuItem);
+			// add a line
+			contextMenu.Items.Add(new ToolStripSeparator());
+			// menu item to display tooltips
+			ToolStripMenuItem useBudgetMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemUseBudget, null, menuItem_UseBudgetClick);
+			bubbleInfoMenuItem.CheckOnClick = true;
+			bubbleInfoMenuItem.Checked = false; // TODO should be in the settings if you can load a budget by default
+			contextMenu.Items.Add(useBudgetMenuItem);
+			// menu item to display tooltips
+			ToolStripMenuItem editBudgetMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemEditBudget, null, menuItem_EditBudgetClick);
+			bubbleInfoMenuItem.CheckOnClick = false;
+			bubbleInfoMenuItem.Checked = false;
+			contextMenu.Items.Add(editBudgetMenuItem);
 			// return the well form context menu
 			return contextMenu;
 		}
@@ -887,6 +899,25 @@ namespace BlueBrick
 				{
 				}
 			}
+		}
+
+		private void menuItem_UseBudgetClick(object sender, EventArgs e)
+		{
+			ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+			PartListView listView = this.SelectedTab.Controls[0] as PartListView;
+			if (listView != null && menuItem != null)
+			{
+				//TODO
+			}
+		}
+
+
+		private void menuItem_EditBudgetClick(object sender, EventArgs e)
+		{
+			ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+			PartListView listView = this.SelectedTab.Controls[0] as PartListView;
+			if (listView != null && menuItem != null)
+				listView.editCurrentSelectedItemLabel();
 		}
 
 		private string getSelectedPartNumberInListView(ListView listView)

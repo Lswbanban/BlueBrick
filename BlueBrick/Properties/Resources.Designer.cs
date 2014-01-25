@@ -1231,6 +1231,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit this part&apos;s budget.
+        /// </summary>
+        internal static string PartLibMenuItemEditBudget {
+            get {
+                return ResourceManager.GetString("PartLibMenuItemEditBudget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Large Icons.
         /// </summary>
         internal static string PartLibMenuItemLargeIcons {
@@ -1245,6 +1254,15 @@ namespace BlueBrick.Properties {
         internal static string PartLibMenuItemRespectProportion {
             get {
                 return ResourceManager.GetString("PartLibMenuItemRespectProportion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the Budget.
+        /// </summary>
+        internal static string PartLibMenuItemUseBudget {
+            get {
+                return ResourceManager.GetString("PartLibMenuItemUseBudget", resourceCulture);
             }
         }
         
