@@ -681,11 +681,13 @@ namespace BlueBrick
 				// by default do not accept the drop
 				e.Effect = DragDropEffects.None;
 
-				if (Map.Instance.canAddBrick())
+				// ask the main window if one part was selected in the part lib
+				// because the getData from the event doesn't work well under mono, normally it should be: e.Data.GetData(DataFormats.SystemString) as string
+				string partDropNumber = (this.TopLevelControl as MainForm).getDraggingPartNumberInPartLib();
+
+				// check if we can add it
+				if (Map.Instance.canAddBrick(partDropNumber))
 				{
-					// ask the main window if one part was selected in the part lib
-					// because the getData from the event doesn't work well under mono, normally it should be: e.Data.GetData(DataFormats.SystemString) as string
-					string partDropNumber = (this.TopLevelControl as MainForm).getDraggingPartNumberInPartLib();
 					mBrickLayerThatReceivePartDrop = Map.Instance.SelectedLayer as LayerBrick;
 					if (partDropNumber != null && mBrickLayerThatReceivePartDrop != null)
 					{

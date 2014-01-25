@@ -829,41 +829,46 @@ namespace BlueBrick.MapData
 		#endregion
 
 		#region parts management
-		public bool canAddBrick()
+		public bool canAddBrick(string partNumber)
 		{
-			return ((Map.sInstance.SelectedLayer as LayerBrick) != null);
+			return ((Map.sInstance.SelectedLayer is LayerBrick) &&
+					Budget.Budget.Instance.canAddBrick(partNumber));
 		}
 
 		public void addBrick(string partNumber)
 		{
-			if (canAddBrick())
+			if (canAddBrick(partNumber))
 				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, partNumber));
 		}
 
 		public void addBrick(Layer.LayerItem brickOrGroup)
 		{
-			if (canAddBrick())
+			if (canAddBrick(brickOrGroup.PartNumber))
 				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, brickOrGroup));
 		}
 
 		public void addConnectBrick(string partNumber)
 		{
+			// we check if we can add brick in the other signature of this method
 			addConnectBrick(partNumber, -1);
 		}
 
 		public void addConnectBrick(string partNumber, int connexion)
 		{
-			LayerBrick brickLayer = Map.sInstance.SelectedLayer as LayerBrick;
-			if ((brickLayer != null) && (brickLayer.getConnectableBrick() != null))
+			if (canAddBrick(partNumber))
 			{
-				// create the correct action depending if the part is a group or not
-				Action action = null;
-				if (BrickLibrary.Instance.isAGroup(partNumber))
-					action = new AddConnectGroup(brickLayer, partNumber, connexion);
-				else
-					action = new AddConnectBrick(brickLayer, partNumber, connexion);
-				// and add the action in the manager
-				ActionManager.Instance.doAction(action);
+				LayerBrick brickLayer = Map.sInstance.SelectedLayer as LayerBrick;
+				if ((brickLayer != null) && (brickLayer.getConnectableBrick() != null))
+				{
+					// create the correct action depending if the part is a group or not
+					Action action = null;
+					if (BrickLibrary.Instance.isAGroup(partNumber))
+						action = new AddConnectGroup(brickLayer, partNumber, connexion);
+					else
+						action = new AddConnectBrick(brickLayer, partNumber, connexion);
+					// and add the action in the manager
+					ActionManager.Instance.doAction(action);
+				}
 			}
 		}
 
