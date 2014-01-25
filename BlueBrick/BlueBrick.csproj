@@ -130,6 +130,7 @@
     <Compile Include="Actions\Texts\DeleteText.cs" />
     <Compile Include="Actions\Texts\RotateText.cs" />
     <Compile Include="Actions\Texts\SendTextToBack.cs" />
+    <Compile Include="Budget\Budget.cs" />
     <Compile Include="DownloadCenterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -667,7 +668,7 @@
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
