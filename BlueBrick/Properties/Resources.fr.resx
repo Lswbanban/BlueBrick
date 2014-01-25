@@ -488,4 +488,10 @@ Le message d'erreur est :
   <data name="ErrorMsgCannotSaveCustomPart" xml:space="preserve">
     <value>BlueBrick a rencontré un problème en sauvegardant votre groupe dans le répertoire "parts/Custom". Merci de lire le message suivant pour plus de détails :</value>
   </data>
+  <data name="PartLibMenuItemEditBudget" xml:space="preserve">
+    <value>Modifie le budget de cette pièce</value>
+  </data>
+  <data name="PartLibMenuItemUseBudget" xml:space="preserve">
+    <value>Utilise le budget</value>
+  </data>
 </root>

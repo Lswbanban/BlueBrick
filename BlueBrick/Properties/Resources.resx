@@ -553,4 +553,10 @@
   <data name="ErrorMsgCannotSaveCustomPart" xml:space="preserve">
     <value>BlueBrick has encountered a problem while saving your group in the "parts/Custom" folder. Please read the following message for more details:</value>
   </data>
+  <data name="PartLibMenuItemEditBudget" xml:space="preserve">
+    <value>Edit this part's budget</value>
+  </data>
+  <data name="PartLibMenuItemUseBudget" xml:space="preserve">
+    <value>Use the Budget</value>
+  </data>
 </root>
