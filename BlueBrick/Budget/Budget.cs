@@ -41,6 +41,12 @@ namespace BlueBrick.Budget
 			get { return sInstance; }
 			set { sInstance = value; }
 		}
+
+		public bool IsEnabled
+		{
+			get { return mIsEnabled; }
+			set { mIsEnabled = value; }
+		}
 		#endregion
 
 		#region budget management

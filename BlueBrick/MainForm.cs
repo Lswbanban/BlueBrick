@@ -2123,6 +2123,17 @@ namespace BlueBrick
 		{
 
 		}
+
+		public void useTheBudgetToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// we do not use the check on click here, cause I also want to call this method
+			// from the context menu of the part lib
+			// so compute the new state
+			bool newState = !Budget.Budget.Instance.IsEnabled;
+			// update the toolstrip and the budget flag
+			useTheBudgetToolStripMenuItem.Checked = newState;
+			Budget.Budget.Instance.IsEnabled = newState;
+		}
 		#endregion
 
 		#region Help Menu

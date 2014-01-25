@@ -1290,6 +1290,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Budget reached for this part!.
+        /// </summary>
+        internal static string StatusMsgBudgetReached {
+            get {
+                return ResourceManager.GetString("StatusMsgBudgetReached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type your text here....
         /// </summary>
         internal static string TextEnterText {

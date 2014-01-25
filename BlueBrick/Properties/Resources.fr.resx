@@ -494,4 +494,7 @@ Le message d'erreur est :
   <data name="PartLibMenuItemUseBudget" xml:space="preserve">
     <value>Utilise le budget</value>
   </data>
+  <data name="StatusMsgBudgetReached" xml:space="preserve">
+    <value>Le budget est atteint pour cette pièce !</value>
+  </data>
 </root>
