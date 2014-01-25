@@ -1031,11 +1031,13 @@ namespace BlueBrick
 		public void NotifyPartListForBrickAdded(LayerBrick layer, LayerBrick.Brick brick)
 		{
 			mPartListForm.addBrickNotification(layer, brick);
+			Budget.Budget.Instance.addBrickNotification(brick);
 		}
 
 		public void NotifyPartListForBrickRemoved(LayerBrick layer, LayerBrick.Brick brick)
 		{
 			mPartListForm.removeBrickNotification(layer, brick);
+			Budget.Budget.Instance.removeBrickNotification(brick);
 		}
 		#endregion
 
@@ -1136,6 +1138,7 @@ namespace BlueBrick
 			// update the view any way
 			this.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.FULL);
 			mPartListForm.rebuildList();
+			Budget.Budget.Instance.recountAllBricks();
 			// force a garbage collect because we just trashed the previous map
 			GC.Collect();
 		}
@@ -1210,6 +1213,7 @@ namespace BlueBrick
 				// update the view
 				this.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.FULL);
 				mPartListForm.rebuildList();
+				Budget.Budget.Instance.recountAllBricks();
 				//check if some parts were missing in the library for displaying a warning message
 				if (BrickLibrary.Instance.WereUnknownBricksAdded)
 				{
@@ -2111,6 +2115,13 @@ namespace BlueBrick
 		{
 			Properties.Settings.Default.DisplayRulerAttachPoints = this.rulerAttachPointsToolStripMenuItem.Checked;
 			this.mapPanel.Invalidate();
+		}
+		#endregion
+
+		#region Budget Menu
+		private void budgetOpenToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
 		}
 		#endregion
 

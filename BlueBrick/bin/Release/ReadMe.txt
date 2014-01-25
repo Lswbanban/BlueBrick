@@ -78,6 +78,7 @@ REMOVE ALL THE TODO
 	- In preference: load a specific budget at startup (+ error message if can't) (several budgets)
 	- error message if you try to add a part exceeding the budget
 	- bug drag'n'drop from the label: make disapear the part count
+	- bug click on the budget to edit it, add a new part on the map
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
 - MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)

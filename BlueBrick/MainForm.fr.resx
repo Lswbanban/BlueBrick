@@ -117,21 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="statusBar.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="mapPanel.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="mainSplitContainer.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="partsTabControl.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="splitContainerPartLibrary.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="textBoxPartFilter.ToolTip" xml:space="preserve">
     <value>Entrez des mots clefs pour filtrer la liste des pièces.
 Utilisez le caractère - devant un mot clef pour exclure des pièces.
@@ -184,37 +169,15 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
     <value>Applique le filtre sur tous les onglets ou seulement sur l'onglet courant.</value>
   </data>
-  <data name="tableLayoutPanel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="splitContainerPartLibrary.Panel2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="splitContainerPartLibrary.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="toolSplitContainer.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="layerStackPanel.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="layerSplitContainer.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        R0lGODlhCwAOAIIAAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
-        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
-        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
+        R0lGODlhCwAOAPIAAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH5BAEAAAQALAAAAAALAA4AAAMnSErT
+        uy06AkYQGIdRs8dSGDHCUJ6DYq6oirYku7pySb9pjN+yKjoJADs=
 </value>
   </data>
   <data name="trashLayerButton.ToolTip" xml:space="preserve">
     <value>Effacer le calque sélectionné</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="newLayerRulerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -321,14 +284,10 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="newLayerGridButton.ToolTip" xml:space="preserve">
     <value>Ajouter un calque Grille</value>
   </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        R0lGODlhEAAQAIEAAAAAAP///////wAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAEAAQ
-        AAAIOQAFCBxIsKBBgQAAHDyYcGHBhA0dIoQoUQBEig4vRmSocePDjgoNgsRIcKTHjyc5phRJMmPLigcD
-        AgA7
+        R0lGODlhEAAQAPEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAQABAAAAIglI+pBrDbXmpRMmoFxXJX
+        6H1T6Cgkh5ziuIKtiXZxthQAOw==
 </value>
   </data>
   <data name="layerUpButton.ToolTip" xml:space="preserve">
@@ -336,464 +295,484 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   </data>
   <data name="layerDownButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        R0lGODlhEAAQAIEAAAAAAP///////wAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAEAAQ
-        AAAIOAAFCBxIsKBBAQASAjhYUOFChgMdQoyoEKLDiw8JYpRocGPGhhstXpyIcSLCiiY5pvxIkqXJgwEB
-        ADs=
+        R0lGODlhEAAQAPEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAQABAAAAIglI+pAg2b3INH0uqo3BNx
+        q3xd9GnbxV1MpoLtiMLqUgAAOw==
 </value>
   </data>
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Descendre le calque sélectionné</value>
   </data>
-  <data name="LayerButtonFlowLayoutPanel.ToolTip" xml:space="preserve">
-    <value />
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
   </data>
-  <data name="layerSplitContainer.Panel2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="layerSplitContainer.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="toolSplitContainer.Panel2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="toolSplitContainer.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="mainSplitContainer.Panel2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="mainSplitContainer.ToolTip" xml:space="preserve">
-    <value />
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Fichier</value>
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>278, 22</value>
   </data>
   <data name="newToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Nouveau</value>
   </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>278, 22</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ouvrir...</value>
   </data>
   <data name="openRecentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>278, 22</value>
   </data>
   <data name="openRecentToolStripMenuItem.Text" xml:space="preserve">
     <value>Fichiers Récents</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 6</value>
+    <value>275, 6</value>
   </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>278, 22</value>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Enregistrer</value>
   </data>
   <data name="saveasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>278, 22</value>
   </data>
   <data name="saveasToolStripMenuItem.Text" xml:space="preserve">
     <value>Enregistrer &amp;Sous...</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>278, 22</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Exporter en Image...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 6</value>
+    <value>275, 6</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>278, 22</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Text" xml:space="preserve">
     <value>Recharger la librairie de pièces</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>278, 22</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Text" xml:space="preserve">
     <value>Sauvegarder la sélection dans la librairie...</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 6</value>
+    <value>275, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>278, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Quitter</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 20</value>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Fichier</value>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Edition</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="undoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Défaire</value>
   </data>
   <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="redoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Refaire</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 6</value>
+    <value>231, 6</value>
   </data>
   <data name="cutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="cutToolStripMenuItem.Text" xml:space="preserve">
     <value>Couper</value>
   </data>
   <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Copier</value>
   </data>
   <data name="pasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="pasteToolStripMenuItem.Text" xml:space="preserve">
     <value>Co&amp;ller</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Supprimer</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 6</value>
+    <value>231, 6</value>
   </data>
   <data name="findAndReplaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="findAndReplaceToolStripMenuItem.Text" xml:space="preserve">
     <value>Chercher et &amp;Remplacer...</value>
   </data>
   <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 6</value>
+    <value>231, 6</value>
   </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Sélectionner &amp;Tout</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Déselectionner tout</value>
   </data>
   <data name="selectPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Sélectionner le chemin</value>
   </data>
+  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Groupe</value>
+  </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>164, 22</value>
   </data>
   <data name="groupToolStripMenuItem.Text" xml:space="preserve">
     <value>Grouper</value>
   </data>
   <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>164, 22</value>
   </data>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Dégrouper</value>
   </data>
-  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
-  </data>
-  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Groupe</value>
-  </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 6</value>
+    <value>231, 6</value>
+  </data>
+  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Transformer</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pas de déplacement</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
+    <value>122, 22</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Text" xml:space="preserve">
     <value>Désactivé</value>
   </data>
   <data name="moveStep32ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
+    <value>122, 22</value>
   </data>
   <data name="moveStep32ToolStripMenuItem.Text" xml:space="preserve">
     <value>32 tenons</value>
   </data>
   <data name="moveStep16ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
+    <value>122, 22</value>
   </data>
   <data name="moveStep16ToolStripMenuItem.Text" xml:space="preserve">
     <value>16 tenons</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
+    <value>122, 22</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Text" xml:space="preserve">
     <value>8 tenons</value>
   </data>
   <data name="moveStep4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
+    <value>122, 22</value>
   </data>
   <data name="moveStep4ToolStripMenuItem.Text" xml:space="preserve">
     <value>4 tenons</value>
   </data>
   <data name="moveStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
+    <value>122, 22</value>
   </data>
   <data name="moveStep1ToolStripMenuItem.Text" xml:space="preserve">
     <value>1 tenon</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
+    <value>122, 22</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Text" xml:space="preserve">
     <value>1/2 tenon</value>
   </data>
-  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
-  </data>
-  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pas de déplacement</value>
-  </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Text" xml:space="preserve">
     <value>Envoyer en arrière plan</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
     <value>Mettre en avant plan</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 6</value>
+    <value>208, 6</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Pas de rotation</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotation horaire</value>
   </data>
   <data name="rotateCCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
+    <value>211, 22</value>
   </data>
   <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotation anti-horaire</value>
   </data>
-  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
   </data>
-  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
-    <value>Transformer</value>
+  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Outil de peinture</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 22</value>
+    <value>167, 22</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Text" xml:space="preserve">
     <value>Peindre</value>
   </data>
   <data name="paintToolEraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 22</value>
+    <value>167, 22</value>
   </data>
   <data name="paintToolEraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Gommer</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 6</value>
+    <value>164, 6</value>
   </data>
   <data name="paintToolChooseColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 22</value>
+    <value>167, 22</value>
   </data>
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Choisir la couleur...</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Outil de peinture</value>
+  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Outil de mesure</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Text" xml:space="preserve">
     <value>Sélectionner et éditer</value>
   </data>
   <data name="addRulerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="addRulerToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter une règle</value>
   </data>
   <data name="addCircleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="addCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter un cercle</value>
   </data>
-  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
-  </data>
-  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Outil de mesure</value>
-  </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 6</value>
+    <value>231, 6</value>
   </data>
   <data name="generalInformationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="generalInformationToolStripMenuItem.Text" xml:space="preserve">
     <value>Informations générales...</value>
   </data>
   <data name="mapBackgroundColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="mapBackgroundColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Couleur de &amp;Fond du plan...</value>
   </data>
   <data name="currentLayerOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="currentLayerOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>Options du c&amp;alque courant...</value>
   </data>
   <data name="preferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>234, 22</value>
   </data>
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>Préférences...</value>
   </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 20</value>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
   </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Edition</value>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Vue</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="toolbarMenuItem.Text" xml:space="preserve">
     <value>Barre d'&amp;Outils</value>
   </data>
   <data name="statusBarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="statusBarMenuItem.Text" xml:space="preserve">
     <value>Barre de &amp;Statut</value>
   </data>
   <data name="watermarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="watermarkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Filigrane</value>
   </data>
   <data name="partListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="partListToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Liste des briques</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 6</value>
+    <value>211, 6</value>
   </data>
   <data name="electricCircuitsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="electricCircuitsMenuItem.Text" xml:space="preserve">
     <value>Circuit &amp;électrique</value>
   </data>
   <data name="connectionPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="connectionPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>Points de &amp;connection</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>Points d'attache des mesures</value>
   </data>
+  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 22</value>
+  </data>
+  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Con&amp;tours</value>
+  </data>
   <data name="hullsBricksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="hullsBricksToolStripMenuItem.Text" xml:space="preserve">
     <value>Pièces</value>
   </data>
   <data name="hullsTextsAndRulersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="hullsTextsAndRulersToolStripMenuItem.Text" xml:space="preserve">
     <value>Textes et mesures</value>
   </data>
-  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 22</value>
+  <data name="budgetNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
   </data>
-  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Con&amp;tours</value>
+  <data name="budgetNewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Nouveau</value>
   </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 20</value>
+  <data name="budgetOpenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
   </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Vue</value>
+  <data name="budgetOpenToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ouvrir...</value>
   </data>
-  <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 22</value>
+  <data name="budgetImportAndMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
   </data>
-  <data name="helpContentsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Contenu et Index</value>
+  <data name="budgetImportAndMergeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Importer et fusionner...</value>
   </data>
-  <data name="aboutBlueBrickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 22</value>
+  <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 6</value>
   </data>
-  <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;A propos de BlueBrick...</value>
+  <data name="budgetCloseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
+  <data name="budgetCloseToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Fermer</value>
+  </data>
+  <data name="budgetSaveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="budgetSaveToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Enregistrer</value>
+  </data>
+  <data name="budgetSaveAsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="budgetSaveAsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Enregistrer &amp;Sous...</value>
+  </data>
+  <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 6</value>
+  </data>
+  <data name="useTheBudgetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="useTheBudgetToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Utiliser le Budget</value>
+  </data>
+  <data name="showOnlyBudgetedPartsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="showOnlyBudgetedPartsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Afficher seulement les pièces budgetées</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Aide</value>
   </data>
-  <data name="menuBar.ToolTip" xml:space="preserve">
-    <value />
+  <data name="helpContentsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Contenu et Index</value>
+  </data>
+  <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;A propos de BlueBrick...</value>
   </data>
   <data name="toolBarNewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEGSURBVDhPY4CBR0dz/n+81fH/9+uZ/2+vV/v/+9WE/18e
-        Tv//7HzXf6gS/ODrk/n/H+ww+v//Y8//x4cigPSE//e36f8/e7iVOAN+v5rx///naf///z7+//PTtUD6
-        MIT/Yf5/KRYpOIYqxwQ3Vyv9f7g/+P+XF+v///3/4f+311vA/Ce7zf7DAF5Dfr2aDnT25P//f+wHGwJy
-        CYj/7/18qPb//1lYWMA0VkM+P5zz//52w/9/X9b+f3YsFuj0yeAw+PZ0AVgTCIAMAGGsLnl4rPj/2X3l
-        //+/mfD/xQHr//dvzPz/+f7E/0/PNkC1owKcXgFJEANGDRj0BsASDD6M0wDSAAMDAPGL97wGl/LDAAAA
-        AElFTkSuQmCC
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAARFJREFUOE9jZICC
+        R0dz/vOLyjBwCQoyPDjSy6BgncXw8zs7w6d3nxmkDMsYYepw0l+fzP//YIfR//8fe/4/PhQBpCf8v79N
+        ///Zw63/CWoGKfj9asb//5+n/f//+/j/z0/XAunDEP6H+f+lWKTgGKdhN1cr/X+4P/j/lxfr///9/+H/
+        t9dbwPwnu83+wwDMIKyG/Ho1Hejsyf///9gPNgTkEhD/3/v5cANYWFjAbJBBGIZ8fjjn//3thv//vqz9
+        /+xYLNDpk8Fh8O3pAhQDQIZgdcnDY8X/z+4r////zYT/Lw5Y/79/Y+b/z/cn/n96tgFuADIDqytAzgJJ
+        EANGDcARlYMnEEGJhRDGGY1E5TwkRQBuee0P1bvrkwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolBarNewButton.ToolTipText" xml:space="preserve">
@@ -802,13 +781,14 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarOpenButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFsSURBVDhPvZKhTsRAEIb7CJXIfYRKZOXhKhAoUnPhZB0n
-        15A0qAV1CJIlmJNrSI6EhBpCMWSDQlYi9w1+ZqZ7dy1wCYKwyZc02/3+mZ02+beljYWuiYXD/eMT4vbv
-        Vjk3uHt43kgc9vL6Bt6XDbc0+Iq82LHa1qOYGUHkzluE4AQEC3xYOLs7ZC33AXQwkDSUhfcKlt7Zhe4x
-        Goapq3GwBLAwkjVR/si3AK4iAZHGGWEzD6uFYSfSTR274c3QGZG7lg6ThI462AVdjfHLAteXZ4MAguVm
-        Rc9yaNC6ZwqgLRBWOTqb4fTkoP8fuJ1Adx5V9zFARILFJhc5uAx6pnB1Pu1nIQG+l30Tqw9ENH1VFsMy
-        g69TlBO1/Rt5GL4ZVo/iumoUO6vgTSrVp8eH2y/Bk+RP6R0NxiQbGoaqOd1j5wqmUlL99uZiHGB0CT0n
-        qgJVWaA8ylFMcuT7GbJMIVMKai9FmqZQRFT/YiXJJ0KL6vh+fRR3AAAAAElFTkSuQmCC
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAXpJREFUOE+9k6FP
+        xDAUxvcnTCL7J0wiJw83gUCRmQsn5zhZQ7KgCuoQJCWYkzUkR0JCDWEY0qCQk8j+Bx/vtWXs4ICcYcmX
+        NFu/3/fea5dl//VIpSFb0sLg9v4BW+XWc4Wbu8fBxLCn5xfw+wAyS4Wv+i2h6xyqmQoK5t5peG+C4DXw
+        pmF0om8gfZgjgDZ6Mo3NDMBrA03f9EJGKQnFapv1/gOADSk5miWp3qhvAE4JgCRrFFjDTLSkdlIVqZJQ
+        TZuq4fJ8rwKg72gzzQQ9VfCTqDVuzy0rXJ6fIBsABGGzXREgbBq14GjtKqCr4Fclel3g+Ggv3gcux1PP
+        a+kuAYKRxEZbBrM3BeRM4OJ0GocZAC6W7mxKHxlhYyob/bKAa3PUE/F5G3kYzo56T4lDajL2WsCpPKRP
+        D/c/j5KPhY/SGRqMygZZWltKMzJKzwVUI0L69dXZOkDJGnJOaio0dYX6oEQ1KVHuFigKgUIIiJ0ceZ5D
+        kLb6kf7a/A5Ci+r4eDFcFQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolBarOpenButton.ToolTipText" xml:space="preserve">
@@ -817,13 +797,14 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarSaveButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFlSURBVDhPrZKhcsMwEETzCf2EfIJhoGCgoKFgoGCgYKBh
-        oGCgYKBgoWGhYKFg2XX3bMeKmyno9GZ2PGN5n+72vPuXSvcqqjTrViVG6FpkGGZdioQAnUfxlB9ltgMA
-        U86CD+XXql8its/i+qSa7Q3gUudPfxbNtVYxNkvXOYAaQETLBLDFV7WYy2eVziaMUcTa2AAwLwEeB9tq
-        zeMHAMek8z8DEJYCcNDW1pzHInsTxZ02AKZMAA+WemXO70XeDgC4LPY4NACsKN8FqwTEgc4PkLYGhpnZ
-        Nm9+mHnWAhheSgBAMXKdVQI2Mu296Gge3S1mC+gzAD9Guq1m2/tnOY/xQmOGTFgB/LPam2nCa+mM0fnH
-        UsWdw2RUc9wA0GK84j+Y2yaAZn8epMDMIH0Y8I7GOD0PLQDz6e0w7xlYZxBoVuU8In2uzapRhTDNQbtc
-        y50YUNL9PoSgGJYKLfPWSehwC/hb7Xbf3Z45FYUb/+MAAAAASUVORK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAWtJREFUOE+tUyFy
+        wzAQzBP6hDzB0FAwUNBQMFAwUDDQMFAwUDBQMNCwULBQsOy6e05ixU0LOr2ZncxY2r3dO2Wz+Y9KlyqK
+        dMO5SozAqcg43nAsEgJwmMQTfpJHbxJzFlyWX6t+itghixuS4rvAsf4oQHKtVYzN0nUOQo1AhGU6oMVX
+        dSeXjyqdTYhRxNq4OGBeCngcrKslT+8Q2CXN/yyAYakADtpak/NUZGuiuP1KgJOmAA/u9Yqcr0Xeegi4
+        LHY3LhFGrChfBKuEiIM6L2DaOjBkpm12fpB51gpweClBAIiR66wSsJF570WjebjTziBbiD4L4GGk80K2
+        g8fFBs4jXmjIEDBhicCX1XYmGY9EOmOEk59KFXcI6MrOJMeVACzGE97BzTYFSPaHUQrI3L8PI76RGOff
+        vnWAfJobmbccWGcw0KzIeZJ85dqsEhXYhOnV5VJuzwElfSAPYNIclgKZ2XUGHK4F/vqv/gLdnjkVIosp
+        jQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolBarSaveButton.ToolTipText" xml:space="preserve">
@@ -832,13 +813,13 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarUndoButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE8SURBVDhPvZAxS8NQFIX7k7J3yeyURaiLZgxOGetgCA4i
-        iJBFKO1SrZSmoASSmkKshmotUgtB6uKUWdMk/+D4bhICkkCJoAfu8u4737n31v5Uy48Ag4cQw/sI1iLE
-        crVG1tosMmpGjI4d4cxIS2cgcxqVQ7RBnDes5yAxS+cReNkDLxmoSya2FB9XTgR7FhYhKgPczNewXz4T
-        s6j5zOwys4u9owm2lVvwYhfCSQy9DCC3fMitGHI3SxaNpNrXr/nnuthLpuiMgyKAEgWVklPI/oGOyWz1
-        4yNNQ4C2XQIQVB+cnEJoEgJmrVwE2Dn2ceF8FQF8k3amg7ng2Ohcg5WgFSagG1hPRfhGje7moBBaMXuq
-        pl3lMUm/HL1VB/RMLzE3Dr3q5rGbmoWmh74xrQ4YOu847S9+t/c/qFb7BgFj9P987EFBAAAAAElFTkSu
-        QmCC
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAT9JREFUOE+1kTFL
+        w1AUhfuTsnfJ7JRFqItmDE4Z62AIDiKIkEUo7dJaKU1BeZDUFGI1VGuRWghSF6fM2ib5B8d3EyloAjUF
+        A2/K/b5z3n2l0n9+s/cFuvchencR7GmI2XyJP+cRaLAYDSfCGUuPyUXWKMqXGN149cN+WiSwch5BVH2I
+        CkNZsbClBbh0IzjjMCvRueB6soTz/JHAshFw2OOwh72jIba1G4hyE9JJDDNPoNYCqLUYavM7WWYcYKhf
+        vazSynI7adEYLLINKFHSKTmV7B+YGI7nPwapDQnqTo5A0gMIaiqhJiT8vXES7BwHaLmf2QZile5MC/Mg
+        8OpChR/JyDSgHdiPWfna5+3fTkAhdMW1w3kDu9pD8gIX/dfigrblJ3Dl0C8OD7wUlqo+OmxUXNBz33Da
+        mRYHN1rUJtAXAWP0/6eqD7oAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="toolBarUndoButton.ToolTipText" xml:space="preserve">
@@ -847,13 +828,13 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarRedoButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFQSURBVDhPY6A6OHvl7f8tp9/9X7Xv/f+z19/8hwoTBzYf
-        ev9/JVBj7wYEblvy/v/xi68JG7T96Lv/S3a//+9V9+C/dcbm/w4ZG/57lR/6nzH1/f9yoCEnrryEG+JQ
-        cAHTwJVAAwI6Pvw3iFjwP7Ru2//4pr1ggwwSNvxPmPDhf+Gid//3n3v5f93xt0DDD2AaMHvHG7DtltGz
-        4JKz1p75b52w+L9BwIL/yZPf/S9Y8OF/wQygJUBDoUoQYNZ2iAFB+UtQJPcevfI/q3IlWDPIJQENEFdC
-        pRFg4e7X/yPb3v93i56JITlhB8RmsOaCB0AXTcA0YMuRB9AwQHUeKMBAfgY5G2QzSLOCBxYDQADkRIeK
-        B/+37jmOXQEhsGjrJbAr4uoOk2cACETUXgAbsngzlrgmFmR23vkf0fP2/44DFBiydtfl/6t2XyXfADoB
-        BgYAFbjqY7N+eK4AAAAASUVORK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAVNJREFUOE9jYKA2
+        OHvl7f8tp9/9X7Xv/f+z19/8J8n8zYfe/18J1Ni7AYHblrz/f/zia8IGbT/67v+S3e//e9U9+G+dsfm/
+        Q8aG/17lh/5nTH3/vxxoyIkrL+GGOBRcwDRwJdCAgI4P/w0iFvwPrdv2P75pL9ggg4QN/xMmfPhfuOjd
+        //3nXv5fd/wt0PADmAbM3vEGbLtl9Cy45Ky1Z/5bJyz+bxCw4H/y5Hf/CxZ8+F8wA2gJ0FCMsJm1HWJA
+        UP4SFMm9R6/8z6pcCdYMcklAA8SVGAYs3P36f2Tb+/9u0TMxJCfsgNgM1lzwAOiiCZgGbDnyABoGqM4D
+        BRjIzyBng2wGaVbwwGIAyEkgJzpUPPi/dc9xwtGGLYEs2noJ7Iq4usPkGQAyNKL2AtiQxZuxxDWxyTKz
+        887/iJ63/3ccoMCQtbsu/1+1+yr5XiHWtRSrAwAVuOpj/JTj1QAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolBarRedoButton.ToolTipText" xml:space="preserve">
@@ -862,8 +843,9 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarDeleteButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABGSURBVDhPY6Al+I+ESQLIGtExbuDt7Q1RZCjwn8FbAhOD
-        xIHyUHVYAXaN6BiPS2CSxGCcAGELLpoAGDVgmBhAGFMTMDAAAGaIj5PlPahnAAAAAElFTkSuQmCC
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAFVJREFUOE9jYKAh
+        +A80G4ZJsgZZIzobt0He3t4QxYYC/xm8JTAxSBwoD1WH1SDsGtENg3gLhwEIP+PzBk4DQKZCXIGPJhCc
+        owYMk0AknJhIylgEFQMAZoiPkxTJumUAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="toolBarDeleteButton.ToolTipText" xml:space="preserve">
@@ -872,13 +854,13 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarCutButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFJSURBVDhPrZHPS8JgHMb399jFU+BtEQTSZce8xDqk87ZL
-        v8DivQgNIXZImBKRLTPUw2pCPzTaZFgaxCq7BXkP+hee9r7KIJTlwAfew/vl+Xy+7xg38zQfbFSNa4yu
-        fvSL+thsYqhA1U7+lA3DGpsFRtUMNFqOD4gyCScwzTZUdQhYTy4EUZ4eprlp9djGSt2ATFQkEqlwAhoK
-        0qfT7Rs7mfACaSvLYEEiuGw0wwly5W8IZABS7EPYdpHYc6GUPqaTSIc/WMl+IS7qWFrTEN+0mYSXLCiF
-        22DJrv4JYX/glQ1EBRWpTJnBr299nF89stmoOjkUdnrvsDtdv0wFTtdF4dRElP/nd9LvtjvPKNUsT0BY
-        Oa20wYvei3gRc5FYsCCtvAzL3vb55VVWPq7dI7aQRMQ7B8VKsOCoeofFZN4D1pHLnwWXZxOO+wWno8+z
-        IZ9LdgAAAABJRU5ErkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAU1JREFUOE+tk79L
+        w0Acxfv31KWT0C0iCMUlo1kkDrbplsVfUCVLwVCQGyykRcQaa6XtEE2haismJVRbQaLWTbC74L/wzF2x
+        oJWYoAe3fHnv897dcZHIf6/WtY2q0cR3rn5Sn5j9mE0BRDv4IjYMa2LmW5xoBhptZwwRZSUcwDQ7IGTU
+        wrp1wYtysPqftc7bfZZYqRuQFQJBSIUDUBA10uo0fWUjEx4grWWZmZcUnDZa4QC58ht4ZQilOAC/7kLY
+        cqGWnoNBpN13LGRfkRB1zC1pSKzaDMJJFtTChT9kU38Bvz30xAZiPEEqU2bmh8cBjs9u2Mz3/anZ6T/B
+        7vbGYgpwei4KhyZi3C/PSc9td+9QqlkeQGFpabUDTvQacSKmonH/Bmn1fiT2qk7PLzLxfu0K8Zkkot7e
+        KVb8AXvVS8wm855hGbn8UbBb/+tv/gCno8+zubci9wAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolBarCutButton.ToolTipText" xml:space="preserve">
@@ -887,13 +869,13 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarCopyButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFASURBVDhPvZGhbsQwEETzKfmEfEJgYGBhYKFhoWGhYaDh
-        QcOQVpZKUrXRWWpAVGSppNCwbLpr310uaZWQqiMNibxvZjfZn8hYj2SX3Dlo4/A2Tjg92RYPr6WNRSM1
-        huNxH8Kpa6mDhe0dGqHwOgzbEK7MshNAzeF8gNIGpg+0UrLu6JtJfhk/lkCue9EXEALgP2mQAGvJQ0Bx
-        a/H4/D5DNNVl6Z6qU5I0HkJ7aEpeS7QJXNwYPDyNCcL7skJMDzGd19BdOq4yyW4KaJSPw+y81icA7cvD
-        5+To1tEhl3+H3zDcOoLTsZYAasupbvL0gNx7SAKxeG/R+pheSxcdAdUVoKiaHxZq/r3nAE6Pf4UOn1dq
-        PuRvau4T4Dr50oDutguo72zcm+vOtnGYD5+XO4BS2MXFoyk1mobzUm4D/kFZ9g1wQuYJzr/KJgAAAABJ
-        RU5ErkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAUVJREFUOE+tU6Fu
+        wzAU7KfkE/IJhYWFg4GDhoOBg4aBhoGGIZssjWTaqlpaQDRkaWTQcOz2zt6aJqCptJ10pPK7u3cv3Wz+
+        A9YFZPrMzsNYj7dhxFX6HF7CWIeqNjgcj+sidF1Ctw6u96iUxuvhcFmEkQk3ApIcPkRoY2H7KCtlmk5+
+        s5kvw8dckHFP+AJiBMKnDIrAEnUbUd46PD6/TyJG4hKmB7Q41TZAmQAjzkuoJguXNxYPT0MW4b5ETO4x
+        uXMN0+Vytc30Y0SlQxomi735EZB9OfzrTHfVeOh2fh2+objzIi5lzQUkLV39GOSBsA+oRYjg3qoJyX1f
+        +8QksDtLUO4qLKn0dF4WSwO6p6tI8cVOXz5vdZ8Fzp1PCaS3VYH9nUvdMO5EB16NxRfblQRb5WaNszS6
+        Jspwsa3XP/Or/kx/efQNcELmCXhefr4AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="toolBarCopyButton.ToolTipText" xml:space="preserve">
@@ -902,74 +884,74 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarPasteButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF/SURBVDhPtZIhb8MwEIXzE/oT+hMCBw0LDQsNK40YDpqt
-        0DDQsNCw0DDQsNCw0HDs7V2ctGlVbdKknfRkKcn7nu8u3b9Uig6iGBzmRz9XPHksCt6gXsOkcvGwBwV/
-        tJSbztlyLzHVGgGq1oAw2On8dO/Io4OzGs70qIng8xbW6EeIAMQs8kdDE4FXz3SHMhrEQcPsFYLbIvsO
-        dv8MCAsgwDvDRJHm1Wcx0RLgbQOYnXoEhAUgfRemZ4scNncNFI2L1Fv/BBhcG1rheWH/WZO3gQ9saYhw
-        njoGWBdgPjyM9S8AknzhkEaaEwcmAJpv9cVL1opyrdAHB21W6w1ekqlRNfN5gxK6KVkqxNR0SsiFAJrT
-        mKG0aRDZr/S9mOupawBee52cLxUpF+i9ncxqp6EUByo/Rx0pMfPqhYA8cF3sWczrG8hcYsptPpTqtwQ4
-        MbcVrSUDWyensUzmeG66AaY2uH/Zt9EKWvXTC5m29LykvdIN8Kpk2vLBb5o//2t13TdDcO/RNVsk3QAA
-        AABJRU5ErkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAYFJREFUOE+1ky1y
+        wzAUhH2EHCFHMCwULBQMFMxMiWChWAMFDQUDBQMFDQUDBQMFy7b7pDpN0rQNqWZ2ZOD99v3Yw/AfJ0UH
+        UQwOD/Hj3mNR8Ab1FJrK0cNuFfzOUq7d34BirDUCVK0BYbLtfnMvyLODsxrOjKiJ4MMa1uhriADELPI7
+        QxOBJ890hzIbxEnDbBSCWyP7AXZzCwgLIMA7w0SRZumfYqIlwNsOMM/quoKwAKTvwvRskcPqSxOfaVyk
+        nsYbwOT60ArvI/vPmt2s4ANbmiKcp3YB1gWYVw9j/R2AJB85pJnmxIEJgObzeeeIakU5VeitgzYX6w1e
+        kqlZdfNhhRKGliwnxNS1T8iFAJrTnKG06ZXIfqXvxVz3QwewbFwk52NFygV6Y5tZPWsoxYHKx1FnislS
+        eiEgT1wXe5ayLyuQucSU+3woNa4JcGLuK7qUDEx6XpLTXJo5HrrOgNYG9y9fmNEKWo2NLNOWnpe0e3er
+        4Kcj05YX/tJDP9tvL30AQ3Dv0TV7l2QAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="toolBarPasteButton.ToolTipText" xml:space="preserve">
     <value>Coller les objets copiés</value>
   </data>
-  <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
-  </data>
-  <data name="toolBarGrid32Button.Text" xml:space="preserve">
-    <value>32 tenons</value>
-  </data>
-  <data name="toolBarGrid16Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
-  </data>
-  <data name="toolBarGrid16Button.Text" xml:space="preserve">
-    <value>16 tenons</value>
-  </data>
-  <data name="toolBarGrid8Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
-  </data>
-  <data name="toolBarGrid8Button.Text" xml:space="preserve">
-    <value>8 tenons</value>
-  </data>
-  <data name="toolBarGrid4Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
-  </data>
-  <data name="toolBarGrid4Button.Text" xml:space="preserve">
-    <value>4 tenons</value>
-  </data>
-  <data name="toolBarGrid1Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
-  </data>
-  <data name="toolBarGrid1Button.Text" xml:space="preserve">
-    <value>1 tenon</value>
-  </data>
-  <data name="toolBarGrid05Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 22</value>
-  </data>
-  <data name="toolBarGrid05Button.Text" xml:space="preserve">
-    <value>1/2 tenon</value>
-  </data>
   <data name="toolBarSnapGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACMSURBVDhPrZALCsAgDEMFT+LlvPAO5Bptu/rbnFsgYGP6
-        QJ1VCCHxUbWaZW0BMHwxY4q6gLSaZf0J0MIOwPoZgEFMaTbFKcZYfdbMhUKSZfjwXi+qEmuUKcAuQ6as
-        eQfAItwuQ1y2fgeQu3IsqgAYpAQDgszmNmvNGGpxufXNs3rJgvWoPAWslq/MuROqQLBGE8eA3AAAAABJ
-        RU5ErkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAIVJREFUOE+1k4EK
+        gCAQQwW/xJ/zh/sga8FkmmenkXCY4cbda4UgK6VU9Ixn77tb573c3MPhSzUdb3XwF4MK09uVQoSY9Q5W
+        AV6qgoJBztkFtyKgGPsR4/oINFBxlw3b1BKLwZzLzEC5cN5HEvv5CVaNrbQOIVpAhx1oEvkFAJK1E6Sl
+        /+MEqkCwRnSpGMgAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
     <value>Selectionner le pas de la grille aimantée</value>
   </data>
+  <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 22</value>
+  </data>
+  <data name="toolBarGrid32Button.Text" xml:space="preserve">
+    <value>32 tenons</value>
+  </data>
+  <data name="toolBarGrid16Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 22</value>
+  </data>
+  <data name="toolBarGrid16Button.Text" xml:space="preserve">
+    <value>16 tenons</value>
+  </data>
+  <data name="toolBarGrid8Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 22</value>
+  </data>
+  <data name="toolBarGrid8Button.Text" xml:space="preserve">
+    <value>8 tenons</value>
+  </data>
+  <data name="toolBarGrid4Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 22</value>
+  </data>
+  <data name="toolBarGrid4Button.Text" xml:space="preserve">
+    <value>4 tenons</value>
+  </data>
+  <data name="toolBarGrid1Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 22</value>
+  </data>
+  <data name="toolBarGrid1Button.Text" xml:space="preserve">
+    <value>1 tenon</value>
+  </data>
+  <data name="toolBarGrid05Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 22</value>
+  </data>
+  <data name="toolBarGrid05Button.Text" xml:space="preserve">
+    <value>1/2 tenon</value>
+  </data>
   <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACUSURBVDhPtY/ZDYAwDEMrlUU6SP+YpSOwKAOVGmKIaMIh
-        wZMsctkq4TOGcapSrqCnZHQNDy3TZVDO2TWe0fuU0lajQAgD7oKwo0dGR4i0xAxxbrsFvtSOayY4aNtV
-        ra2llP341gxohuYY35mBNtNg/JqNNqOH0TBTPW3aPZ1wt5UOPIJ0iDVz4fFZj8yEBi1Z/UEICw2Dlk3b
-        i7ucAAAAAElFTkSuQmCC
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAKVJREFUOE+tU9sN
+        gCAMNMFFGIQ/Z2EEF3Ug9ZCDChQ0atKo0HsVnaa/rnlZd8mFd9YjDRK0QF0i51xQfqImXVprL8d4AIm0
+        XMYpoxGT1quFa+c2EzYrvdlJbASYNRLKBsF+okKBwHufXKjKMh/BuG/GvAPH0EEdYJ5OodycCyeWwDyd
+        BriaS0pA+9I6N+Vc1K9Sy98jrsgkiUY4/C84RERhDUFfGg4Ng5ZNxi8dRwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
@@ -978,9 +960,9 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarRotateCCWButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABOSURBVDhP1YzRCgAgCAP9/58ughaSukzooQNf3HbykuZc
-        Cm+4XwgrsmxBw0nYQZAVmF5mDK4E0e8o8IaAChCYQgYtKQkGZYEelgRfItIB63I9w40V8aYAAAAASUVO
-        RK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAFpJREFUOE9jYKAh
+        +A80Gx0TZR02jUQbhE8hUYbAFOFzKk41yDYQYwBIPQogxnaYBqxqcRmAYRNS7OB1ATaNRLkAphGfATjD
+        iKioIpSaiI0NDHPITrqEXDTI5QHrcj3Dvl5aMQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolBarRotateCCWButton.ToolTipText" xml:space="preserve">
@@ -989,9 +971,9 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarRotateCWButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABOSURBVDhPzYzRCgAgCAP9/58uhBZSaqYEHfjidqNXNOVC
-        aOJ6Jl7RyyZuODA7CKIDWy8ig6sB6xceADI7dVUgQE4NpGWmJDNyoDT0HUQd9Fs9w1lw16IAAAAASUVO
-        RK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAF1JREFUOE/NklsK
+        ACAIBLv/pXt8GJYaYxAk+LfOymopj6p27t7IyhvEoJMQQUR0WjXUaAcCGPqliLsMuNoIYJzUdVIbaFBm
+        22kiAJqVyRGd8Sp99J7OW3vhUtZvugb0Wz3DytAKQwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolBarRotateCWButton.ToolTipText" xml:space="preserve">
@@ -1000,9 +982,9 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarSendToBackButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABUSURBVDhPxZEBCgAgCAP39H5eDBIirRQJT8ZA2ojCJ3oH
-        2hSoKKUFjYGtgDtLCi45VgFndYV16OQKT0hcwaVXfmq+UQI3PcuskCh1k/A7pMKCJwwMjXyhBBfAiicA
-        AAAASUVORK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAGBJREFUOE9jYKAN
+        +P+fgaEBihmANMlgQA1oADkZzQUgMWwYw2cgRSCIzQCQOEwebAk6QJZEV0x7zbj8iC5OfGwOTDTCUh4+
+        mmCqpEgzLISwGULQZoxEQWlmAhkIcglhmwGNfKEEbFV7owAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolBarSendToBackButton.ToolTipText" xml:space="preserve">
@@ -1011,23 +993,32 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarBringToFrontButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABcSURBVDhPxZFLCgAhDENzdG/uTIRC6UfiuJhXQiGYdCF6
-        5gTGq09Y2HREDB+VdGHTlvZylIIvk0Oem4LBQCigVylBk1MVcPxOVI+6nVBCthM0Ven8+o2L6wIV4AGN
-        iaP/AaMSggAAAABJRU5ErkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAGJJREFUOE/FkVEK
+        ACAIQz16N68mCLIStIgMf9Q9U0VC612kTT8yEwNQhrC4BInEKUjYGXvwnlmKh6m4ajeAho4EQGzny79Q
+        hLcDIG55bcLmk1z8XhzNyPH8LW6uoF3+A/LDDo2Jo/8pPa9sAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
     <value>Mettre en avant plan</value>
   </data>
+  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
+        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
+        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABISURBVDhP7Y1BCgAgCAT9/6cLcRLy5Hrp0sBCCbNrAuvg
-        7zhpoM8KUP96nDTQh+slEuzmslSAGviftEG95HYB6kx2HsolTcw2QXKZZ3a8yasAAAAASUVORK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
+        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
+        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="paintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="paintToolStripMenuItem.Text" xml:space="preserve">
     <value>Peindre</value>
@@ -1035,13 +1026,13 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="eraseToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABcSURBVDhP5YrRCsAwCAP9/5/uSIggGrvXwQ5CLXfxD87L
-        rpwNOG1F6SQdXpYGBo7qcLNuSE+qw826IT2pDjfrhvSkOtysGynsEv0tSibp8LJcYOSA067U0O2zRDzn
-        lh/vS50W/QAAAABJRU5ErkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEJJREFUOE9jYBgR
+        4D/Ql/gw3kD4jwsgGYrTALyaQZJQQ7AaQFAzPgOGqmZ8UQXzE0WBhk8zKBooim+wAZSktoHNjwDnlh/v
+        z9ZrkwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="eraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="eraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Gommer</value>
@@ -1049,13 +1040,14 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="rulerSelectAndEditToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACESURBVDhPpY5BDsAgCAQ9+v+X9tgb7QpYxGghTkIVdKeW
-        F8LnBAiOJASwcpunCQD2PMohcQY9j+NI9AMzPoohMaJaay/M+fifHpY+TRNgRWNe0IiIp8B1jy/S/UqG
-        4STYSbxoaKxAJT4QEliRBrD68IQV6D4lsSFfNriU6B92JVdfSnkA7S7C1FNL/iEAAAAASUVORK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAHlJREFUOE+l0jEK
+        wDAIBVBH73/Sjt1sFQxfiSXVgNDF168JEZG8NToKjBDRM0EMmCAL6CIB6CALYGbx+rMTA7Sxe5dhgZDA
+        vBM4/F0brjsmcqTCwhtw4AvJUJgdAUdywxGwS5L3s1067qCF5BF0DC+MXt4OPqbqG6M/7S7C1OVobJgA
+        AAAASUVORK5CYII=
 </value>
   </data>
   <data name="rulerSelectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="rulerSelectAndEditToolStripMenuItem.Text" xml:space="preserve">
     <value>Sélectionner et éditer</value>
@@ -1063,13 +1055,14 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="rulerAddRulerToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABuSURBVDhPrY5JCsAwCABz9P+P8XsWW21cirEhAwHXMQMA
-        aCTI1Di2+eTerQVR5DECvRIX85KdbQpsnZk1I4joQlz0NATMc00SRyHocU6AiK8kxlXPCXbe2R9I/b9g
-        NbTstYaEz54Gu693Rcg9pAsXuzdEIhK8OAAAAABJRU5ErkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAHFJREFUOE+tkWEO
+        ABAIhf3s/ofpeixbpFrjjc2Q+jyvRkS9hdFNTPb2vJNnbQ3woPMlA9BXtMCvtnDnXgL8F1KANyFTEH24
+        8EDAkImxL1mkUPAIYObVd7+v7pYCSULmAVDRsAIYoNIRwFT7DYCY+EXBABe7N0S10HUMAAAAAElFTkSu
+        QmCC
 </value>
   </data>
   <data name="rulerAddRulerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="rulerAddRulerToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter une règle</value>
@@ -1077,26 +1070,17 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="rulerAddCircleToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB4SURBVDhPlZBZCsAwCET9zP0vnJKq6dQt5oHQOItQihhj
-        zGhErqmMZUn3SurrhBXnvQkrO5OHp9nbt2TjgmXGgH7/S6AAA7GZQW3yz+wX4Jv9UICw+I3uPEmBgiFb
-        yOxsXpLjMjcloXctOyVHXyV2DrzoFTsiA0QPIwJpu0uE/ZYAAAAASUVORK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAIZJREFUOE+lUssO
+        wCAImzf+/2u5ufgg4VEMxl02oS2VtX3gIaKO6szcUN3UMvIAnXqzeQTsMSmuQharAXtDDiI5ubtF+vPe
+        CRYYYE2QbysyuUtAEzB4Wde9vpZeF/COjICOgrhBrmyMlAOUrzjR7kUF6+k3puE4hB4OfI5yxUn5quLG
+        v9GtfhM4ZzKxiaKpAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="rulerAddCircleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="rulerAddCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter un cercle</value>
-  </data>
-  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABISURBVDhP7Y1BCgAgCAT9/6cLcRLy5Hrp0sBCCbNrAuvg
-        7zhpoM8KUP96nDTQh+slEuzmslSAGviftEG95HYB6kx2HsolTcw2QXKZZ3a8yasAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="toolBar.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1139,8 +1123,5 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
   </data>
 </root>

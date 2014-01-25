@@ -306,9 +306,8 @@ namespace BlueBrick
 		/// <summary>
 		/// this method update the view by adding a brick or incrementing its count
 		/// </summary>
-		/// <param name="brick"></param>
-		/// <param name="brickLayer"></param>
-		/// <param name="groupEntry"></param>
+		/// <param name="brick">the brick to add in the view</param>
+		/// <param name="groupEntry">the concerned group in which adding the brick</param>
 		private void addBrick(LayerBrick.Brick brick, GroupEntry groupEntry)
 		{
 			// get a pointer on the current brick entry list
@@ -380,8 +379,8 @@ namespace BlueBrick
 		/// <summary>
 		/// update the view by decrementing the brick count or removing it
 		/// </summary>
-		/// <param name="brick"></param>
-		/// <param name="brickEntryList"></param>
+		/// <param name="brick">the brick to remove from the view</param>
+		/// <param name="brickEntryList">the concerned group from which removing the brick</param>
 		private void removeBrick(LayerBrick.Brick brick, GroupEntry groupEntry)
 		{
 			BrickEntry brickEntry = null;

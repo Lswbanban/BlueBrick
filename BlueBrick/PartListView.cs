@@ -308,7 +308,7 @@ namespace BlueBrick
             // put node label to initial state
             // to ensure that in case of label editing cancelled
             // the initial state of label is preserved
-            this.Items[e.Item].Text = getLabelForDisplay(e.Item, this.Items[e.Item].Text);
+            this.Items[e.Item].Text = getLabelForDisplay(e.Item);
         }
 
         private void PartListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
@@ -319,8 +319,13 @@ namespace BlueBrick
                 // try to parse as int
                 int newBudget = int.Parse(e.Label);
                 // add the current count and change the text myself
-                if (newBudget >= 0)
-                    this.Items[e.Item].Text = getLabelForDisplay(e.Item, newBudget.ToString());
+				if (newBudget >= 0)
+				{
+					// set the budget first
+					Budget.Budget.Instance.setBudget(this.Items[e.Item].Tag as string, newBudget);
+					// before asking its formating
+					this.Items[e.Item].Text = getLabelForDisplay(e.Item);
+				}
                 // cancel anyway
                 e.CancelEdit = true;
             }
@@ -364,14 +369,14 @@ namespace BlueBrick
 			}
 		}
 
-        private string getLabelForDisplay(int itemIndex, string newBudget)
+        private string getLabelForDisplay(int itemIndex)
         {
-            return ("3/" + newBudget); //TODO add the real number here
+			return Budget.Budget.Instance.getCountAndBudgetAsString(this.Items[itemIndex].Tag as string);
         }
 
         private string getLabelForEdition(int itemIndex)
         {
-            return this.Items[itemIndex].Text.Substring(this.Items[itemIndex].Text.IndexOf('/') + 1);
+			return Budget.Budget.Instance.getBudget(this.Items[itemIndex].Tag as string).ToString();
         }
         #endregion
     }
