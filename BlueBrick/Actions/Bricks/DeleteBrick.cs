@@ -23,6 +23,7 @@ namespace BlueBrick.Actions.Bricks
 	{
 		private LayerBrick mBrickLayer = null;
 		private List<Layer.LayerItem> mBricks = null;
+		private List<Layer.LayerItem> mBricksForNotification = null;
 		private List<int> mBrickIndex = null; // this list of index is for the redo, to add each text at the same place
 		private string mPartNumber = string.Empty; //if the list contains only one brick or one group, this is the name of this specific brick or group
 
@@ -30,6 +31,7 @@ namespace BlueBrick.Actions.Bricks
 		{
 			mBrickLayer = layer;
 			mBrickIndex = new List<int>(bricksToDelete.Count);
+			mBricksForNotification = Layer.sFilterListToGetOnlyBricksInLibrary(bricksToDelete);
 			// copy the list, because the pointer may change (specially if it is the selection)
 			mBricks = new List<Layer.LayerItem>(bricksToDelete.Count);
 			foreach (Layer.LayerItem obj in bricksToDelete)
@@ -63,6 +65,10 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
+			// notify the part list view
+			foreach (Layer.LayerItem item in mBricksForNotification)
+				MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, item);
+
 			// special case for easy editing: if the group of brick has connection points and is connected
 			// to bricks not deleted we select the connected brick, 
 			// such as the user can press several times on the del button to delete a full line of track.
@@ -99,6 +105,10 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void undo()
 		{
+			// notify the part list view
+			foreach (Layer.LayerItem item in mBricksForNotification)
+				MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, item);
+
 			// and add all the texts in the reverse order
 			for (int i = mBricks.Count - 1; i >= 0; --i)
 			{

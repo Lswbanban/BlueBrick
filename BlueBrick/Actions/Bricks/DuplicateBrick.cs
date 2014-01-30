@@ -24,6 +24,7 @@ namespace BlueBrick.Actions.Bricks
 	{
 		private LayerBrick mBrickLayer = null;
 		private string mPartNumber = string.Empty; //if the list contains only one brick or one group, this is the name of this specific brick or group
+		private List<Layer.LayerItem> mBricksForNotification = null;
 
 		public DuplicateBrick(LayerBrick layer, List<Layer.LayerItem> bricksToDuplicate, bool needToAddOffset)
 			: base(bricksToDuplicate, needToAddOffset)
@@ -33,6 +34,9 @@ namespace BlueBrick.Actions.Bricks
 
 			// elagate the list according to the budget limit
 			trimItemListWithBudgetLimitation();
+
+			// get bricks for the notification from the trimmed list
+			mBricksForNotification = Layer.sFilterListToGetOnlyBricksInLibrary(mItems);
 
 			// try to get a part number (which can be the name of a group)
 			Layer.LayerItem topItem = Layer.sGetTopItemFromList(mItems);
@@ -71,7 +75,7 @@ namespace BlueBrick.Actions.Bricks
 
 			// iterate on all the items of the list to find the one to remove
 			foreach (Layer.LayerItem item in mItems)
-				if (!Budget.Budget.Instance.canAddBrick(item.PartNumber))
+				if ((item.PartNumber != string.Empty) && !Budget.Budget.Instance.canAddBrick(item.PartNumber))
 				{
 					// checked if this item is a group, in that case, we need to remove all the hierachy
 					if (item.IsAGroup)
@@ -87,6 +91,10 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
+			// notify the part list view
+			foreach (Layer.LayerItem item in mBricksForNotification)
+				MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, item);
+
 			// add all the bricks (by default all the brick index are initialized with -1
 			// so the first time they are added, we just add them at the end,
 			// after the index is record in the array during the undo)
@@ -107,6 +115,10 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void undo()
 		{
+			// notify the part list view
+			foreach (Layer.LayerItem item in mBricksForNotification)
+				MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, item);
+
 			// remove the specified brick from the list of the layer,
 			// but do not delete it, also memorise its last position
 			mItemIndex.Clear();
