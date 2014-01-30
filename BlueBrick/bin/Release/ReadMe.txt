@@ -86,7 +86,7 @@ REMOVE ALL THE TODO
 	- settings to choose if you want an infinite buget or a null budget by default
 	- how to set an infinite budget in the UI -> empty string or negative value
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
-	- refactor: move the addbrick notification to the action -AddBrick-, AddConnectedBrick, AddConnectedGroup, DeleteBrick, DuplicateBrick, ReplaceBrick.
+	- refactor: move the addbrick notification to the action -AddBrick-, -AddConnectedBrick-, -AddConnectedGroup-, -DeleteBrick-, -DuplicateBrick-, ReplaceBrick.
 	    + in the SaveLoadManager maybe we need to do something on the brick count in case the brick list is open when we open a TDL or LDraw file
 		+ also the recompute the bricklist is not correct anymore in the brick list
 		+ this will normally handle correct the named group count, and the brick not listed in lib should not appear in the brick list

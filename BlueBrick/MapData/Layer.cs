@@ -1653,6 +1653,44 @@ namespace BlueBrick.MapData
 		}
 		#endregion
 
+		#region tool on list filtering
+		/// <summary>
+		/// This tool method takes a list of item and return a new list filtered, which contains only the items
+		/// which have a non empty name and that are visible in the part library and that are top a tree.
+		/// </summary>
+		/// <param name="listToFilter">the list to filter</param>
+		/// <returns>a filtered list as explained in the description</returns>
+		public static List<LayerItem> sFilterListToGetOnlyBricksInLibrary<T>(List<T> listToFilter) where T : LayerItem
+		{
+			// clone the list (but do not clone the bricks inside) because we want to iterate and decrease the list
+			// as we itare it. Also create a result list, that main contain bricks and named group
+			List<T> workingList = new List<T>(listToFilter);
+			List<LayerItem> result = new List<LayerItem>(listToFilter.Count);
+
+			// iterate until the list is empty
+			while (workingList.Count > 0)
+			{
+				// get the first named brick
+				LayerItem namedItem = workingList[0].TopNamedItem;
+				// add it to the result list
+				result.Add(namedItem);
+				// then remove all the bricks belonging to that named brick
+				if (namedItem.IsAGroup)
+				{
+					List<LayerItem> itemToRemove = (namedItem as Group).getAllItemsInTheTree();
+					foreach (LayerItem item in itemToRemove)
+						workingList.Remove(item as T);
+				}
+				else
+				{
+					workingList.Remove(namedItem as T);
+				}
+			}
+
+			return result;
+		}
+		#endregion
+
 		#region tool on point in stud
 		/// <summary>
 		/// Convert the specified point in stud coordinate into a point in pixel coordinate given the 

@@ -81,35 +81,7 @@ namespace BlueBrick.MapData
 		/// </summary>
 		public List<LayerItem> LibraryBrickList
 		{
-			get
-			{
-				// clone a list (but donot clone the bricks inside) because we want to iterate and decrease the list
-				// as we itare it. Also create a result list, that main contain bricks and named group
-				List<Brick> workingList = new List<Brick>(mBricks);
-				List<LayerItem> result = new List<LayerItem>(mBricks.Count);
-
-				// iterate until the list is empty
-				while (workingList.Count > 0)
-				{
-					// get the first named brick
-					LayerItem namedBrick = workingList[0].TopNamedItem;
-					// add it to the result list
-					result.Add(namedBrick);
-					// then remove all the bricks belonging to that named brick
-					if (namedBrick.IsAGroup)
-					{
-						List<LayerItem> brickToRemove = (namedBrick as Group).getAllLeafItems();
-						foreach (LayerItem item in brickToRemove)
-							workingList.Remove(item as Brick);
-					}
-					else
-					{
-						workingList.Remove(namedBrick as Brick);
-					}
-				}
-
-				return result;
-			}
+			get { return sFilterListToGetOnlyBricksInLibrary(mBricks); }
 		}
 		
 		/// <summary>
