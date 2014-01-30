@@ -902,7 +902,7 @@ namespace BlueBrick.MapData
 				myTopGroup = this.TopGroup;
 				if (myTopGroup != null)
 				{
-					List<LayerItem> brickList = myTopGroup.getAllChildrenItems();
+					List<LayerItem> brickList = myTopGroup.getAllLeafItems();
 
 					// create the result list with an estimation of the number of connections
 					List<ConnectionPoint> result = new List<ConnectionPoint>(brickList.Count * 2);

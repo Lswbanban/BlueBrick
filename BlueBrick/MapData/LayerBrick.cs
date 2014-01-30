@@ -1514,7 +1514,7 @@ namespace BlueBrick.MapData
 				// the part to drop is a group
 				Layer.Group groupDrop = itemDrop as Layer.Group;
 				// the part to drop is a group
-				List<Layer.LayerItem> partsInTheGroup = groupDrop.getAllChildrenItems();
+				List<Layer.LayerItem> partsInTheGroup = groupDrop.getAllLeafItems();
 				foreach (Layer.LayerItem item in partsInTheGroup)
 				{
 					Brick brick = item as Brick;
@@ -1529,7 +1529,7 @@ namespace BlueBrick.MapData
 				Brick brickUnderMouse = groupDrop.BrickThatHoldsActiveConnection;
 				if (brickUnderMouse == null)
 				{
-					List<LayerItem> children = groupDrop.getAllChildrenItems();
+					List<LayerItem> children = groupDrop.getAllLeafItems();
 					if (children.Count > 0)
 						brickUnderMouse = (children[0]) as Brick;
 				}
@@ -1572,7 +1572,7 @@ namespace BlueBrick.MapData
 			else
 			{
 				// the cast failed, the part drop is a group
-				List<Layer.LayerItem> partsInTheGroup = (itemDrop as Layer.Group).getAllChildrenItems();
+				List<Layer.LayerItem> partsInTheGroup = (itemDrop as Layer.Group).getAllLeafItems();
 				foreach (Layer.LayerItem item in partsInTheGroup)
 					mBricks.Remove(item as Brick);
 			}

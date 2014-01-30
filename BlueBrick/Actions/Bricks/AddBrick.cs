@@ -51,7 +51,7 @@ namespace BlueBrick.Actions.Bricks
 			// init the brick to add list
 			if (mBrickOrGroup.IsAGroup)
 			{
-				mBricks = (mBrickOrGroup as Layer.Group).getAllChildrenItems();
+				mBricks = (mBrickOrGroup as Layer.Group).getAllLeafItems();
 				// since the bricks are added from the end in the redo method,
 				// we reverse the order of the group, such as a group from the library can
 				// be inserted in the correct order.

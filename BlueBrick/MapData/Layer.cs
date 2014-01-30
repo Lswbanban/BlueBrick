@@ -505,7 +505,7 @@ namespace BlueBrick.MapData
 					// iterate through all the bricks to reach the correct brick
 					if (mBrickThatHoldsActiveConnection != null)
 					{
-						List<LayerItem> bricksInTheGroup = getAllChildrenItems();
+						List<LayerItem> bricksInTheGroup = getAllLeafItems();
 						foreach (Layer.LayerItem item in bricksInTheGroup)
 						{
 							LayerBrick.Brick brick = item as LayerBrick.Brick;
@@ -530,7 +530,7 @@ namespace BlueBrick.MapData
 					mBrickThatHoldsActiveConnection = null;
 					int connexionIndex = value;
 					// iterate through all the connection of the first bricks to reach the correct brick
-					List<LayerItem> bricksInTheGroup = getAllChildrenItems();
+					List<LayerItem> bricksInTheGroup = getAllLeafItems();
 					foreach (Layer.LayerItem item in bricksInTheGroup)
 					{
 						LayerBrick.Brick brick = item as LayerBrick.Brick;
@@ -826,20 +826,42 @@ namespace BlueBrick.MapData
 			/// the leaf items (which are not group) in all the branches below this group
 			/// </summary>
 			/// <returns>A flat list of all the items found in the group and sub-group</returns>
-			public List<LayerItem> getAllChildrenItems()
+			public List<LayerItem> getAllLeafItems()
 			{
 				List<LayerItem> resultList = new List<LayerItem>(mItems.Count);
-				getAllChildrenItemsRecursive(resultList);
+				getAllChildrenItemsRecursive(resultList, false);
 				return resultList;
 			}
 
-			private void getAllChildrenItemsRecursive(List<LayerItem> resultList)
+			/// <summary>
+			/// This method start from this group as the top of the tree and return the list of all
+			/// the items including intermediate groups in all the branches below this group.
+			/// This group is also included in the list.
+			/// </summary>
+			/// <returns>A flat list of all the items found in the group and sub-group</returns>
+			public List<LayerItem> getAllItemsInTheTree()
+			{
+				List<LayerItem> resultList = new List<LayerItem>(mItems.Count+1);
+				resultList.Add(this);
+				getAllChildrenItemsRecursive(resultList, true);
+				return resultList;
+			}
+
+			private void getAllChildrenItemsRecursive(List<LayerItem> resultList, bool addGroup)
 			{
 				foreach (LayerItem item in mItems)
 					if (item.IsAGroup)
-						(item as Group).getAllChildrenItemsRecursive(resultList);
+					{
+						// check if we need to add the group in the list
+						if (addGroup)
+							resultList.Add(item);
+						// then recursive calls
+						(item as Group).getAllChildrenItemsRecursive(resultList, addGroup);
+					}
 					else
+					{
 						resultList.Add(item);
+					}
 			}
 			#endregion
 

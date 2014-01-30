@@ -48,7 +48,7 @@ namespace BlueBrick.Actions.Items
 		}
 
 		/// <summary>
-		/// This static tool method, clone all the item of the specified list into a new list.
+		/// This tool method clones all the item of the specified list into a new list.
 		/// This method also clone the groups that may belong to this list of bricks.
 		/// The cloned items are in the same order as the original list
 		/// </summary>

@@ -51,20 +51,6 @@ namespace BlueBrick.Budget
 
 		#region budget management
 		/// <summary>
-		/// get the budget number associated with the specified part number if any.
-		/// If no budget is associated with this part, 0 is returned.
-		/// </summary>
-		/// <param name="partID">the full part id for which you want to know the budget</param>
-		/// <returns>the budget for that part or 0 if there's no budget</returns>
-		public int getBudget(string partID)
-		{
-			// try to get the value or return 0 by default
-			int result = 0;
-			mBudget.TryGetValue(partID, out result);
-			return result;
-		}
-
-		/// <summary>
 		/// Set a budget number for the specified part id.
 		/// </summary>
 		/// <param name="partID">the full part id for which you want to set the budget</param>
@@ -75,9 +61,36 @@ namespace BlueBrick.Budget
 			mBudget.Remove(partID);
 			mBudget.Add(partID, budget);
 		}
-		#endregion
 
-		#region brick count
+		/// <summary>
+		/// get the budget number associated with the specified part number if any.
+		/// If no budget is associated with this part, 0 is returned.
+		/// </summary>
+		/// <param name="partID">the full part id for which you want to know the budget</param>
+		/// <returns>the budget for that part or 0 if there's no budget</returns>
+		public int getBudget(string partID)
+		{
+			// try to get the value or return 0 by default
+			int result = -1; //-1 means the budget is not set, i.e. you have an infinite budgets
+			mBudget.TryGetValue(partID, out result);
+			return result;
+		}
+
+		/// <summary>
+		/// Return a formated string of the budget that display the current budget if set or the infinity sign if not set
+		/// </summary>
+		/// <param name="partID">The full part id for which you want to know the budget</param>
+		/// <returns>a string displaying the number of the infinity sign</returns>
+		public string getBudgetAsString(string partID)
+		{
+			string budgetString = "∞"; // by default if the budget is not set, it is infinite
+			int budget = getBudget(partID);
+			if (budget >= 0)
+				budgetString = budget.ToString();
+			// return the formated string
+			return budgetString;
+		}		
+
 		/// <summary>
 		/// Return a formated string in the form "count/budget" that display the current number of part and it's budget
 		/// </summary>
@@ -85,9 +98,11 @@ namespace BlueBrick.Budget
 		/// <returns>a string displaying the both number separated by a slash</returns>
 		public string getCountAndBudgetAsString(string partID)
 		{
-			return (getCount(partID).ToString() + "/" + getBudget(partID).ToString());
+			return (getCount(partID).ToString() + "/" + getBudgetAsString(partID));
 		}
+		#endregion
 
+		#region brick count
 		/// <summary>
 		/// Get the total number of the specified brick in the current map
 		/// </summary>
@@ -103,14 +118,20 @@ namespace BlueBrick.Budget
 
 		/// <summary>
 		/// If the budget limitation is enabled, this method will check if the brick count is less than the budget
-		/// and return true, otherwise if the limit is reached return false.
+		/// and return true, otherwise if the limit is reached return false. If the budget is not set for that part,
+		/// it will also return true.
 		/// If the budget limitation is not enable, this method always return true.
 		/// </summary>
 		/// <param name="partID">the full part id</param>
 		/// <returns>true if you can add this part</returns>
 		public bool canAddBrick(string partID)
 		{
-			return ((!mIsEnabled) || (getCount(partID) < getBudget(partID)));
+			if (mIsEnabled)
+			{
+				int budget = getBudget(partID);
+				return ((budget < 0) || (getCount(partID) < budget));
+			}
+			return true;
 		}
 
 		/// <summary>
