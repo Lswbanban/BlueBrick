@@ -185,6 +185,21 @@ namespace BlueBrick.MapData
 					return topGroup;
 				}
 			}
+			
+			/// <summary>
+			/// Get the top group of the whole hierarchy this item belongs to and that have a name as a part number.
+			/// This accessor can return this item if this item doesn't belong to a group
+			/// </summary>
+			public LayerItem TopNamedItem
+			{
+				get
+				{
+					LayerItem topItem = this;
+					while ((topItem.Group != null) && (topItem.Group.PartNumber != string.Empty))
+						topItem = topItem.Group;
+					return topItem;
+				}
+			}
 
 			/// <summary>
 			/// This property tells if this Item is a group or not.

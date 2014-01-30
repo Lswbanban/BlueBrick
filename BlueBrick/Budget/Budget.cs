@@ -138,13 +138,13 @@ namespace BlueBrick.Budget
 		/// Call this method when you want to notify the budget counter that a new brick has been added
 		/// </summary>
 		/// <param name="brick">the brick that was added</param>
-		public void addBrickNotification(MapData.LayerBrick.Brick brick)
+		public void addBrickNotification(MapData.Layer.LayerItem brickOrGroup)
 		{
-			string partID = brick.PartNumber;
+			string partID = brickOrGroup.PartNumber;
 			if (partID != string.Empty)
 			{
 				// get the current count
-				int currentCount = getCount(brick.PartNumber);
+				int currentCount = getCount(partID);
 				// and update the value
 				mCount.Remove(partID);
 				mCount.Add(partID, currentCount + 1);
@@ -155,13 +155,13 @@ namespace BlueBrick.Budget
 		/// Call this method when you want to notify the budget counter that a brick has been removed
 		/// </summary>
 		/// <param name="brick">the brick that was removed</param>
-		public void removeBrickNotification(MapData.LayerBrick.Brick brick)
+		public void removeBrickNotification(MapData.Layer.LayerItem brickOrGroup)
 		{
-			string partID = brick.PartNumber;
+			string partID = brickOrGroup.PartNumber;
 			if (partID != string.Empty)
 			{
 				// get the current count
-				int currentCount = getCount(brick.PartNumber);
+				int currentCount = getCount(partID);
 				if (currentCount > 0)
 				{
 					// update the value

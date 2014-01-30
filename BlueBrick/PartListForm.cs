@@ -191,15 +191,13 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// this method should be called when a brick is added
+		/// Find and return the group entry in the list that correspond to the specified layer.
 		/// </summary>
-		public void addBrickNotification(LayerBrick layer, LayerBrick.Brick brick)
+		/// <param name="layer">The layer you want to search</param>
+		/// <param name="createOneIfMissing">if true a group entry will be created if we can't find a match, otherwise null will be returned</param>
+		/// <returns>the group entry corresponding to the specified layer or null if it can't be find and it was not specified to create one</returns>
+		private GroupEntry getGroupEntryFromLayer(LayerBrick layer, bool createOneIfMissing)
 		{
-			// do nothing if the window is not visible
-			// because we rebuild everything when it becomes visible
-			if (!this.Visible)
-				return;
-
 			// search the group entry associated with this layer
 			GroupEntry currentGroupEntry = null;
 			if (this.useGroupCheckBox.Checked)
@@ -211,7 +209,7 @@ namespace BlueBrick
 						break;
 					}
 				// if the group entry is not found we create one
-				if (currentGroupEntry == null)
+				if ((currentGroupEntry == null) && createOneIfMissing)
 				{
 					currentGroupEntry = new GroupEntry(layer, this.listView);
 					mGroupEntryList.Add(currentGroupEntry);
@@ -223,41 +221,44 @@ namespace BlueBrick
 				currentGroupEntry = mGroupEntryList[0];
 			}
 
-			// add the specified brick
-			addBrick(brick, currentGroupEntry);
+			return currentGroupEntry;
 		}
 
 		/// <summary>
-		/// this method should be called when a brick is deleted
+		/// this method should be called when a brick is added
 		/// </summary>
-		public void removeBrickNotification(LayerBrick layer, LayerBrick.Brick brick)
+		public void addBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup)
 		{
 			// do nothing if the window is not visible
 			// because we rebuild everything when it becomes visible
 			if (!this.Visible)
 				return;
 
-			// search the group entry associated with this layer
-			GroupEntry currentGroupEntry = null;
-			if (this.useGroupCheckBox.Checked)
-			{
-				foreach (GroupEntry groupEntry in mGroupEntryList)
-					if (groupEntry.mLayer == layer)
-					{
-						currentGroupEntry = groupEntry;
-						break;
-					}
-				// if the group entry is not found we can exit
-				if (currentGroupEntry == null)
-					return;
-			}
-			else
-			{
-				currentGroupEntry = mGroupEntryList[0];
-			}
+			// get the group entry associated with this layer
+			GroupEntry currentGroupEntry = getGroupEntryFromLayer(layer, true);
+
+			// add the specified brick
+			addBrick(brickOrGroup, currentGroupEntry);
+		}
+
+		/// <summary>
+		/// this method should be called when a brick is deleted
+		/// </summary>
+		public void removeBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup)
+		{
+			// do nothing if the window is not visible
+			// because we rebuild everything when it becomes visible
+			if (!this.Visible)
+				return;
+
+			// get the group entry associated with this layer
+			GroupEntry currentGroupEntry = getGroupEntryFromLayer(layer, false);
+			// if the group entry is not found we can exit
+			if (currentGroupEntry == null)
+				return;
 
 			// remove the specified brick
-			removeBrick(brick, currentGroupEntry);
+			removeBrick(brickOrGroup, currentGroupEntry);
 
 			// remove the group from the list view and the mGroupEntryList if it is empty
 			if (this.useGroupCheckBox.Checked && (currentGroupEntry.Group.Items.Count == 0))
@@ -273,62 +274,43 @@ namespace BlueBrick
 			if (!brickLayer.Visible)
 				return;
 
-			// search the group entry associated with this layer
-			GroupEntry currentGroupEntry = null;
-			if (this.useGroupCheckBox.Checked)
-			{
-				foreach (GroupEntry groupEntry in mGroupEntryList)
-					if (groupEntry.mLayer == brickLayer)
-					{
-						currentGroupEntry = groupEntry;
-						break;
-					}
-
-				// if the group entry is found we can exit, else create one
-				if (currentGroupEntry != null)
-					return;
-
-				//create a new group for this new layer
-				currentGroupEntry = new GroupEntry(brickLayer, this.listView);
-				mGroupEntryList.Add(currentGroupEntry);
-				this.listView.Groups.Add(currentGroupEntry.Group);
-			}
-			else
-			{
-				currentGroupEntry = mGroupEntryList[0];
-			}
+			// get the group entry associated with this layer
+			GroupEntry currentGroupEntry = getGroupEntryFromLayer(brickLayer, true);
 
 			// iterate on all the bricks of the list
-			foreach (LayerBrick.Brick brick in brickLayer.BrickList)
-				addBrick(brick, currentGroupEntry);
+			foreach (Layer.LayerItem item in brickLayer.LibraryBrickList)
+				addBrick(item, currentGroupEntry);
 		}
 
 		/// <summary>
 		/// this method update the view by adding a brick or incrementing its count
 		/// </summary>
-		/// <param name="brick">the brick to add in the view</param>
+		/// <param name="brickOrGroup">the brick to add in the view</param>
 		/// <param name="groupEntry">the concerned group in which adding the brick</param>
-		private void addBrick(LayerBrick.Brick brick, GroupEntry groupEntry)
+		private void addBrick(Layer.LayerItem brickOrGroup, GroupEntry groupEntry)
 		{
 			// get a pointer on the current brick entry list
 			Dictionary<string, BrickEntry> brickEntryList = groupEntry.mBrickEntryList;
 
+			// get the part number
+			string partNumber = brickOrGroup.PartNumber;
+
 			// try to get an entry in the image dictionary, else add it
 			IconEntry iconEntry = null;
-			if (!mThumbnailImage.TryGetValue(brick.PartNumber, out iconEntry))
+			if (!mThumbnailImage.TryGetValue(partNumber, out iconEntry))
 			{
-				iconEntry = new IconEntry(brick.PartNumber, this.listView.SmallImageList);
-				mThumbnailImage.Add(brick.PartNumber, iconEntry);
+				iconEntry = new IconEntry(partNumber, this.listView.SmallImageList);
+				mThumbnailImage.Add(partNumber, iconEntry);
 			}
 
 			// try to get an entry in the dictionnary for the current brick
 			// to get the previous count, then increase the count and store the new value
 			BrickEntry brickEntry = null;
-			if (!brickEntryList.TryGetValue(brick.PartNumber, out brickEntry))
+			if (!brickEntryList.TryGetValue(partNumber, out brickEntry))
 			{
 				// create a new entry and add it
-				brickEntry = new BrickEntry(brick.PartNumber, iconEntry.mImageIndex);
-				brickEntryList.Add(brick.PartNumber, brickEntry);
+				brickEntry = new BrickEntry(partNumber, iconEntry.mImageIndex);
+				brickEntryList.Add(partNumber, brickEntry);
 			}
 			// affect the correct group to the item
 			brickEntry.Item.Group = groupEntry.Group;
@@ -345,28 +327,15 @@ namespace BlueBrick
 		/// </summary>
 		private void removeLayer(LayerBrick brickLayer)
 		{
-			// search the group entry associated with this layer
-			GroupEntry currentGroupEntry = null;
-			if (this.useGroupCheckBox.Checked)
-			{
-				foreach (GroupEntry groupEntry in mGroupEntryList)
-					if (groupEntry.mLayer == brickLayer)
-					{
-						currentGroupEntry = groupEntry;
-						break;
-					}
-				// if the group entry is not found we can exit
-				if (currentGroupEntry == null)
-					return;
-			}
-			else
-			{
-				currentGroupEntry = mGroupEntryList[0];
-			}
+			// get the group entry associated with this layer
+			GroupEntry currentGroupEntry = getGroupEntryFromLayer(brickLayer, false);
+			// if the group entry is not found we can exit
+			if (currentGroupEntry == null)
+				return;
 
 			// iterate on the bricks of the layer to decrease all the part count in the current dictionary
-			foreach (LayerBrick.Brick brick in brickLayer.BrickList)
-				removeBrick(brick, currentGroupEntry);
+			foreach (Layer.LayerItem item in brickLayer.LibraryBrickList)
+				removeBrick(item, currentGroupEntry);
 
 			// remove the group from the list view and the mGroupEntryList
 			if (this.useGroupCheckBox.Checked)
@@ -379,12 +348,12 @@ namespace BlueBrick
 		/// <summary>
 		/// update the view by decrementing the brick count or removing it
 		/// </summary>
-		/// <param name="brick">the brick to remove from the view</param>
+		/// <param name="brickOrGroup">the brick to remove from the view</param>
 		/// <param name="brickEntryList">the concerned group from which removing the brick</param>
-		private void removeBrick(LayerBrick.Brick brick, GroupEntry groupEntry)
+		private void removeBrick(Layer.LayerItem brickOrGroup, GroupEntry groupEntry)
 		{
 			BrickEntry brickEntry = null;
-			if (groupEntry.mBrickEntryList.TryGetValue(brick.PartNumber, out brickEntry))
+			if (groupEntry.mBrickEntryList.TryGetValue(brickOrGroup.PartNumber, out brickEntry))
 			{
 				brickEntry.decrementQuantity();
 				if (brickEntry.IsQuantityNull)
