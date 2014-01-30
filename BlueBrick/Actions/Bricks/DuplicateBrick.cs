@@ -31,15 +31,13 @@ namespace BlueBrick.Actions.Bricks
 			// init the layer
 			mBrickLayer = layer;
 
+			// elagate the list according to the budget limit
+			trimItemListWithBudgetLimitation();
+
 			// try to get a part number (which can be the name of a group)
 			Layer.LayerItem topItem = Layer.sGetTopItemFromList(mItems);
 			if (topItem != null)
-			{
-				if (topItem.IsAGroup)
-					mPartNumber = (topItem as Layer.Group).PartNumber;
-				else
-					mPartNumber = (topItem as LayerBrick.Brick).PartNumber;
-			}
+				mPartNumber = topItem.PartNumber;
 		}
 
 		public override string getName()
@@ -55,6 +53,36 @@ namespace BlueBrick.Actions.Bricks
 			{
 				return BlueBrick.Properties.Resources.ActionDuplicateSeveralBricks;
 			}
+		}
+
+		/// <summary>
+		/// The item list to duplicate has been created in the constructor of the base class wich is common
+		/// to all item list. Now for the bricks only, we need to check if some bricks have reach the limit
+		/// from the Budget, and remove them from the list to duplicate.
+		/// </summary>
+		private void trimItemListWithBudgetLimitation()
+		{
+			// first check if the budget limitation is enabled
+			if (!Budget.Budget.Instance.IsEnabled)
+				return;
+
+			// use a temporary list of items to remove
+			List<Layer.LayerItem> itemToRemove = new List<Layer.LayerItem>(mItems.Count);
+
+			// iterate on all the items of the list to find the one to remove
+			foreach (Layer.LayerItem item in mItems)
+				if (!Budget.Budget.Instance.canAddBrick(item.PartNumber))
+				{
+					// checked if this item is a group, in that case, we need to remove all the hierachy
+					if (item.IsAGroup)
+						itemToRemove.AddRange((item as Layer.Group).getAllItemsInTheTree());
+					else
+						itemToRemove.Add(item);
+				}
+
+			// then remove all the items
+			foreach (Layer.LayerItem item in itemToRemove)
+				mItems.Remove(item);
 		}
 
 		public override void redo()

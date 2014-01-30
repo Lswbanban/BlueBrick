@@ -37,7 +37,7 @@ namespace BlueBrick.Actions.Bricks
 			LayerBrick.Brick selectedBrick = layer.getConnectableBrick();
 
 			// get the flat list of bricks from the hierarchical group
-			mBricksInTheGroup = mGroup.getAllChildrenItems();
+			mBricksInTheGroup = mGroup.getAllLeafItems();
 
 			// check if we can attach the group to the unique selected object
 			if (selectedBrick != null)

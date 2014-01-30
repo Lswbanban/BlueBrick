@@ -376,7 +376,7 @@ namespace BlueBrick
 
         private string getLabelForEdition(int itemIndex)
         {
-			return Budget.Budget.Instance.getBudget(this.Items[itemIndex].Tag as string).ToString();
+			return Budget.Budget.Instance.getBudgetAsString(this.Items[itemIndex].Tag as string);
         }
         #endregion
     }
