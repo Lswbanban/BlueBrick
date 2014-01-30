@@ -70,7 +70,7 @@ REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
-	- ways to add a brick: drag'n'drop, click in the library, shortcut key, copy/paste, replacement
+	- ways to add a brick: drag'n'drop, click in the library, shortcut key, copy/paste, duplicate drag'n'drop, replacement
 	- Menu "Budget": New, Open, Import, Save, Save As... | Use Budget, Show Budget Number, Show Only Parts in Budget (à voir avec filter)
 	- display numbers under parts (for ex: 5/9) + contextual menu to toggle them
 	- contextual menu to modify the budget number (undoable action)
@@ -85,6 +85,11 @@ REMOVE ALL THE TODO
 	- how to limit the replacement of parts
 	- settings to choose if you want an infinite buget or a null budget by default
 	- how to set an infinite budget in the UI -> empty string or negative value
+	- bug when ungrouping a part from library, the count is not updated, same in the part list
+	- refactor: move the addbrick notification to the action -AddBrick-, AddConnectedBrick, AddConnectedGroup, DeleteBrick, DuplicateBrick, ReplaceBrick.
+	    + in the SaveLoadManager maybe we need to do something on the brick count in case the brick list is open when we open a TDL or LDraw file
+		+ also the recompute the bricklist is not correct anymore in the brick list
+		+ this will normally handle correct the named group count, and the brick not listed in lib should not appear in the brick list
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
 - MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)

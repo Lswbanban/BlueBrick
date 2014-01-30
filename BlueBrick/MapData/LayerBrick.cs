@@ -73,6 +73,44 @@ namespace BlueBrick.MapData
 		{
 			get { return mBricks; }
 		}
+
+		/// <summary>
+		/// A readonly accessor on the list of brick in that layer, but the list contains only the bricks visible in the
+		/// library. It may contains bricks not in library, if the user added a group from the library and ungrouped it
+		/// (for deleting part of the group, for example). This brick list is computed, use with parcimony.
+		/// </summary>
+		public List<LayerItem> LibraryBrickList
+		{
+			get
+			{
+				// clone a list (but donot clone the bricks inside) because we want to iterate and decrease the list
+				// as we itare it. Also create a result list, that main contain bricks and named group
+				List<Brick> workingList = new List<Brick>(mBricks);
+				List<LayerItem> result = new List<LayerItem>(mBricks.Count);
+
+				// iterate until the list is empty
+				while (workingList.Count > 0)
+				{
+					// get the first named brick
+					LayerItem namedBrick = workingList[0].TopNamedItem;
+					// add it to the result list
+					result.Add(namedBrick);
+					// then remove all the bricks belonging to that named brick
+					if (namedBrick.IsAGroup)
+					{
+						List<LayerItem> brickToRemove = (namedBrick as Group).getAllLeafItems();
+						foreach (LayerItem item in brickToRemove)
+							workingList.Remove(item as Brick);
+					}
+					else
+					{
+						workingList.Remove(namedBrick as Brick);
+					}
+				}
+
+				return result;
+			}
+		}
 		
 		/// <summary>
 		/// get the type name id of this type of layer used in the xml file (not localized)
@@ -218,9 +256,6 @@ namespace BlueBrick.MapData
 
 			// reattach its rulers (if it had some previously)
 			brickToAdd.reattachAllRulersTemporarilyDetached();
-
-			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickAdded(this, brickToAdd);
 		}
 
 		/// <summary>
@@ -280,9 +315,6 @@ namespace BlueBrick.MapData
 			{
 				index = 0;
 			}
-
-			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickRemoved(this, brickToRemove);
 
 			return index;
 		}

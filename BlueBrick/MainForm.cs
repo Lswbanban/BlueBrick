@@ -1028,16 +1028,16 @@ namespace BlueBrick
 			mPartListForm.renameLayerNotification(layer as LayerBrick);
 		}
 
-		public void NotifyPartListForBrickAdded(LayerBrick layer, LayerBrick.Brick brick)
+		public void NotifyPartListForBrickAdded(LayerBrick layer, Layer.LayerItem brickOrGroup)
 		{
-			mPartListForm.addBrickNotification(layer, brick);
-			Budget.Budget.Instance.addBrickNotification(brick);
+			mPartListForm.addBrickNotification(layer, brickOrGroup);
+			Budget.Budget.Instance.addBrickNotification(brickOrGroup);
 		}
 
-		public void NotifyPartListForBrickRemoved(LayerBrick layer, LayerBrick.Brick brick)
+		public void NotifyPartListForBrickRemoved(LayerBrick layer, Layer.LayerItem brickOrGroup)
 		{
-			mPartListForm.removeBrickNotification(layer, brick);
-			Budget.Budget.Instance.removeBrickNotification(brick);
+			mPartListForm.removeBrickNotification(layer, brickOrGroup);
+			Budget.Budget.Instance.removeBrickNotification(brickOrGroup);
 		}
 		#endregion
 
