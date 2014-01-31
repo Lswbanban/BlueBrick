@@ -112,8 +112,8 @@ REMOVE ALL THE TODO
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
 - [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar (for Windows XP)
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1) (still buggy? en tout cas pas sous Win7, need to check again)
-- [target 1.8] BUG (Alban): Bug cannot replace a group (it doesn't appear in the list and the replacement does nothing anyway) 
-- BUG (Alban): when you replace a part in a group, the display area of the group is not recomptuted
+- BUG (Alban): When you replace a part in a group, the display area of the group is not recomptuted
+- BUG (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
@@ -139,6 +139,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX #40 (Steffen): If you connect a gray track with a blue track, the sleeper between them should be the white 3034 one. 
 - BUGFIX #42 (Larry): CRASH!! if you export a small area after exporting a big area
 - BUGFIX #47 (doc_brown): the LDraw header is not following the standard definition
+- BUGFIX (Alban): Find/Replace was not working with the named groups from the library (it didn't appear in the list and the replacement did nothing anyway) 
 - BUGFIX (Alban): When changing the order of the part lib tabs, the previously selected tab was not reselected
 - BUGFIX (Alban): The selected tab of the part lib was not saved when exiting BB and not reset at starting
 - BUGFIX (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
