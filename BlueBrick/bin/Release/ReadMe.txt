@@ -86,10 +86,10 @@ REMOVE ALL THE TODO
 	- settings to choose if you want an infinite buget or a null budget by default
 	- how to set an infinite budget in the UI -> empty string or negative value
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
-	- refactor: move the addbrick notification to the action -AddBrick-, -AddConnectedBrick-, -AddConnectedGroup-, -DeleteBrick-, -DuplicateBrick-, ReplaceBrick.
+	- refactor: move the addbrick notification to the action -AddBrick-, -AddConnectedBrick-, -AddConnectedGroup-, -DeleteBrick-, -DuplicateBrick-, -ReplaceBrick-.
 	    + in the SaveLoadManager maybe we need to do something on the brick count in case the brick list is open when we open a TDL or LDraw file
-		+ also the recompute the bricklist is not correct anymore in the brick list
-		+ this will normally handle correct the named group count, and the brick not listed in lib should not appear in the brick list
+		+ also the recompute the bricklist is not correct anymore in the brick list: should be ok now, but no rebuild in the Budget
+		+ this will normally handle correct the named group count, and the brick not listed in lib should not appear in the brick list: yes but to test
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
 - MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
@@ -112,6 +112,8 @@ REMOVE ALL THE TODO
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
 - [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar (for Windows XP)
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1) (still buggy? en tout cas pas sous Win7, need to check again)
+- [target 1.8] BUG (Alban): Bug cannot replace a group (it doesn't appear in the list and the replacement does nothing anyway) 
+- BUG (Alban): when you replace a part in a group, the display area of the group is not recomptuted
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image

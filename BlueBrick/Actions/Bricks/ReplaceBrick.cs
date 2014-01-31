@@ -26,10 +26,10 @@ namespace BlueBrick.Actions.Bricks
 		/// </summary>
 		private class BrickPair
 		{
-			public LayerBrick.Brick mOldBrick = null;
-			public LayerBrick.Brick mNewBrick = null;
+			public Layer.LayerItem mOldBrick = null;
+            public Layer.LayerItem mNewBrick = null;
 
-			public BrickPair(LayerBrick.Brick oldBrick, LayerBrick.Brick newBrick)
+            public BrickPair(Layer.LayerItem oldBrick, Layer.LayerItem newBrick)
 			{
 				mOldBrick = oldBrick;
 				mNewBrick = newBrick;
@@ -59,18 +59,25 @@ namespace BlueBrick.Actions.Bricks
 				// add the list of brick pair (that can stay empty if no brick is found in that layer)
 				List<BrickPair> currentPairList = new List<BrickPair>();
 				mBrickPairList.Add(currentPairList);
-				// iterate on all the bricks of the layer or on the selection to find the brick to replace
+                // compute the list of bricks on which we should iterate
+                List<Layer.LayerItem> itemsToReplace = null;
 				if (replaceInSelectionOnly)
-				{
-					foreach (Layer.LayerItem item in layer.SelectedObjects)
-						createBrickPairIfNeeded(layer, currentPairList, (item as LayerBrick.Brick), newPartNumber);
-				}
+					itemsToReplace = computeListOfItemToReplace(layer.SelectedObjects);
 				else
-				{
-					foreach (LayerBrick.Brick brick in layer.BrickList)
-						createBrickPairIfNeeded(layer, currentPairList, brick, newPartNumber);
-				}
-			}
+					itemsToReplace = computeListOfItemToReplace(layer.BrickList);
+                // iterate on all the bricks of the layer or on the selection to find the brick to replace
+				foreach (Layer.LayerItem item in itemsToReplace)
+                {
+                    // create the new item
+                    Layer.LayerItem newItem = createReplacementBrick(item, newPartNumber);
+                    // create the pair and add it to the list
+                    BrickPair brickPair = new BrickPair(item, newItem);
+                    currentPairList.Add(brickPair);
+                    // check if we also need to add this pair to the list of brick to reselect
+                    if (layer.SelectedObjects.Contains(item))
+                        mReplacedBricksToSelect.Add(brickPair);
+                }
+            }
 		}
 
 		public override string getName()
@@ -80,21 +87,118 @@ namespace BlueBrick.Actions.Bricks
 			return actionName;
 		}
 
-		private void createBrickPairIfNeeded(LayerBrick currentLayer, List<BrickPair> currentPairList, LayerBrick.Brick brick, string newPartNumber)
+		/// <summary>
+		/// Compute the list of the items that should be replaced, i.e. the items that have the same part number
+		/// as the one specified for this replacement action. The list is constructed from the specified list of
+		/// brick. The computed list also included the parents of the specified list if their name match the
+		/// name to replace.
+		/// </summary>
+		/// <typeparam name="T">a base item type</typeparam>
+		/// <param name="brickList">the list from which constructing the replacement list</param>
+		/// <returns>the list of all the item that should be replaced</returns>
+		private List<Layer.LayerItem> computeListOfItemToReplace<T>(List<T> brickList) where T : Layer.LayerItem
 		{
-			if (brick.PartNumber.Equals(mPartNumberToReplace))
+			List<Layer.LayerItem> result = new List<Layer.LayerItem>(brickList.Count);
+			foreach (Layer.LayerItem item in brickList)
 			{
-				// create a new brick and copy all the paramters of the old one
-				LayerBrick.Brick newBrick = new LayerBrick.Brick(newPartNumber);
-				newBrick.Orientation = brick.Orientation;
-				newBrick.Center = brick.Center;
-				newBrick.Altitude = brick.Altitude;
-				// create the pair and add it to the list
-				BrickPair brickPair = new BrickPair(brick, newBrick);
-				currentPairList.Add(brickPair);
-				// check if we also need to add this pair to the list of brick to reselect
-				if (currentLayer.SelectedObjects.Contains(brick))
-					mReplacedBricksToSelect.Add(brickPair);
+				// add the parent of the item if they have the correct name (and not already added)
+				if (item.Group != null)
+				{
+					List<Layer.LayerItem> namedParent = item.NamedParent;
+					foreach (Layer.LayerItem group in namedParent)
+						if (group.PartNumber.Equals(mPartNumberToReplace) && !result.Contains(group))
+							result.Add(group);						
+				}
+				// add the item itself if it has the correct name
+				if (item.PartNumber.Equals(mPartNumberToReplace))
+					result.Add(item);
+			}
+			// return the resulting list
+			return result;
+		}
+
+        private Layer.LayerItem createReplacementBrick(Layer.LayerItem brick, string newPartNumber)
+		{
+			// compute the altitude of the brick we want to replace
+			float altitude = 0.0f;
+			if (brick.IsAGroup)
+			{
+				// get the average altitude of all the children
+				List<Layer.LayerItem> children = (brick as Layer.Group).getAllLeafItems();
+				if (children.Count > 0)
+				{
+					foreach (Layer.LayerItem child in children)
+						altitude += (child as LayerBrick.Brick).Altitude;
+					altitude /= children.Count;
+				}
+			}
+			else
+			{
+				altitude = (brick as LayerBrick.Brick).Altitude;
+			}
+
+			// create a new brick and copy all the paramters of the old one
+            Layer.LayerItem newBrick = null;
+            if (BrickLibrary.Instance.isAGroup(newPartNumber))
+            {
+                newBrick = new Layer.Group(newPartNumber);
+				// set the altitude to all children
+				List<Layer.LayerItem> children = (newBrick as Layer.Group).getAllLeafItems();
+				foreach (Layer.LayerItem child in children)
+					(child as LayerBrick.Brick).Altitude = altitude;
+            }
+            else
+            {
+                newBrick = new LayerBrick.Brick(newPartNumber);
+				(newBrick as LayerBrick.Brick).Altitude = altitude;
+            }
+			newBrick.Orientation = brick.Orientation;
+			newBrick.Center = brick.Center;
+            // return the new brick
+            return newBrick;
+		}
+
+        private int removeOneItem(LayerBrick layer, Layer.LayerItem itemToRemove)
+        {
+			// notify the part list view
+			MainForm.Instance.NotifyPartListForBrickRemoved(layer, itemToRemove);
+
+            int brickIndex = -1;
+            // check if it's a group or a simple brick
+            if (itemToRemove.IsAGroup)
+            {
+                List<Layer.LayerItem> bricksToRemove = (itemToRemove as Layer.Group).getAllLeafItems();
+                foreach (Layer.LayerItem item in bricksToRemove)
+                    brickIndex = layer.removeBrick(item as LayerBrick.Brick);
+				// we alsways take the last index to be sure we don't keep an index bigger than the brick list
+				// after removing all the parts of the group
+            }
+            else
+            {
+				brickIndex = layer.removeBrick(itemToRemove as LayerBrick.Brick);
+            }
+			// return the index of the removed brick
+			return brickIndex;
+        }
+
+		private void addOneItem(LayerBrick layer, Layer.LayerItem itemToAdd, int itemIndex)
+		{
+			// notify the part list view
+			MainForm.Instance.NotifyPartListForBrickAdded(layer, itemToAdd);
+
+			// check if it's a group or a simple brick
+			if (itemToAdd.IsAGroup)
+			{
+				List<Layer.LayerItem> bricksToAdd = (itemToAdd as Layer.Group).getAllLeafItems();
+				// since we will add all the brick at the same index, iterating in the normal order
+				// the insertion order will be reversed. So we reverse the list to make the insertion in correct order
+				bricksToAdd.Reverse();
+				foreach (Layer.LayerItem item in bricksToAdd)
+					layer.addBrick(item as LayerBrick.Brick, itemIndex);
+			}
+			else
+			{
+				layer.addBrick(itemToAdd as LayerBrick.Brick, itemIndex);
 			}
 		}
 
@@ -116,8 +220,8 @@ namespace BlueBrick.Actions.Bricks
 					foreach (BrickPair brickPair in currentPairList)
 					{
 						// get the old and new brick
-						LayerBrick.Brick oldOne = brickPair.mOldBrick;
-						LayerBrick.Brick newOne = brickPair.mNewBrick;
+						Layer.LayerItem oldOne = brickPair.mOldBrick;
+                        Layer.LayerItem newOne = brickPair.mNewBrick;
 						// reverse them if needed
 						if (newByOld)
 						{
@@ -125,9 +229,9 @@ namespace BlueBrick.Actions.Bricks
 							newOne = brickPair.mOldBrick;
 						}
 						// remove the specified brick from the list of the layer, and memorise its last position
-						int brickIndex = currentLayer.removeBrick(oldOne);
+						int brickIndex = removeOneItem(currentLayer, oldOne);
 						// then add the new brick at the same position
-						currentLayer.addBrick(newOne, brickIndex);
+						addOneItem(currentLayer, newOne, brickIndex);
 						// add the brick in the selection for updating connectivity later
 						currentLayer.addObjectInSelection(newOne);
 					}
