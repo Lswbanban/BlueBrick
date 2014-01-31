@@ -104,7 +104,7 @@ namespace BlueBrick.Actions.Bricks
 				// add the parent of the item if they have the correct name (and not already added)
 				if (item.Group != null)
 				{
-					List<Layer.LayerItem> namedParent = item.NamedParent;
+					List<Layer.LayerItem> namedParent = item.NamedParents;
 					foreach (Layer.LayerItem group in namedParent)
 						if (group.PartNumber.Equals(mPartNumberToReplace) && !result.Contains(group))
 							result.Add(group);						

@@ -63,20 +63,14 @@ namespace BlueBrick
 				// collapse all the selection in a dictionnary with unique instance of each part
 				// and a counter of each different part in the selection
 				Dictionary<string, int> collaspedList = new Dictionary<string, int>();
-				int nbSelectedItems = selectedLayer.SelectedObjects.Count;
-				for (int i = 0; i < nbSelectedItems; ++i)
+				foreach (Layer.LayerItem item in selectedLayer.SelectedObjects)
 				{
-					string currentPartNumber = (selectedLayer.SelectedObjects[i] as LayerBrick.Brick).PartNumber;
-					int occurence = 0;
-					if (collaspedList.TryGetValue(currentPartNumber, out occurence))
-					{
-						collaspedList.Remove(currentPartNumber);
-						collaspedList.Add(currentPartNumber, occurence + 1);
-					}
-					else
-					{
-						collaspedList.Add(currentPartNumber, 1);
-					}
+					// add the item
+					addPartToBuildingDictionnary(ref collaspedList, item.PartNumber);
+					// and also add its named parents
+					List<Layer.LayerItem> namedParents = item.NamedParents;
+					foreach (Layer.LayerItem parent in namedParents)
+						addPartToBuildingDictionnary(ref collaspedList, parent.PartNumber);
 				}
 				// construct the list by expanding the dictionnary
 				// and at the same time find the best part (the one which higher occurence)
@@ -105,6 +99,20 @@ namespace BlueBrick
 			// update the check all button according to the number of layer checked
 			// the function to update the status of the button will be called by the event handler
 			LayerCheckedListBox_SelectedIndexChanged(null, null);
+		}
+
+		private void addPartToBuildingDictionnary(ref Dictionary<string, int> collaspedList, string partNumber)
+		{
+			int occurence = 0;
+			if (collaspedList.TryGetValue(partNumber, out occurence))
+			{
+				collaspedList.Remove(partNumber);
+				collaspedList.Add(partNumber, occurence + 1);
+			}
+			else
+			{
+				collaspedList.Add(partNumber, 1);
+			}
 		}
 
 		private void setBestSelectedItemForFindComboBox()

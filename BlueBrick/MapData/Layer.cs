@@ -206,7 +206,7 @@ namespace BlueBrick.MapData
 			/// Unnamed group are skipped. If this item doesn't belong to a group or belongs to unnamed group
 			/// the returned list is empty (but do not return null)
 			/// </summary>
-			public List<LayerItem> NamedParent
+			public List<LayerItem> NamedParents
 			{
 				get
 				{
