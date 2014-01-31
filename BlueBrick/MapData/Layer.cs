@@ -202,6 +202,27 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Get the list of all the parents of this item which have a name (non empty part id).
+			/// Unnamed group are skipped. If this item doesn't belong to a group or belongs to unnamed group
+			/// the returned list is empty (but do not return null)
+			/// </summary>
+			public List<LayerItem> NamedParent
+			{
+				get
+				{
+					List<LayerItem> result = new List<LayerItem>();
+					LayerItem item = this;
+					while (item.Group != null)
+					{
+						if (item.Group.PartNumber != string.Empty)
+							result.Add(item.Group);
+						item = item.Group;
+					}
+					return result;
+				}
+			}
+
+			/// <summary>
 			/// This property tells if this Item is a group or not.
 			/// This property is overriden by the group class.
 			/// </summary>
