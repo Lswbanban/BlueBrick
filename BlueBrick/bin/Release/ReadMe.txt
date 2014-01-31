@@ -75,27 +75,22 @@ REMOVE ALL THE TODO
 	- display numbers under parts (for ex: 5/9) + contextual menu to toggle them
 	- contextual menu to modify the budget number (undoable action)
 	- need to check if the budget was modified to prompt a message when leaving BB
-	- need to display the budget name (drop list with checkbox)
-	- In preference: load a specific budget at startup (+ error message if can't) (several budgets)
+	- need to display the budget name (next to the map name in the title bar)
+	- In preference: load a specific budget at startup (+ error message if can't)
+	- settings to choose if you want an infinite buget or a null budget by default
+	- how to set an infinite budget in the UI -> empty string or negative value
 	- error message if you try to add a part exceeding the budget
 	- bug drag'n'drop from the label: make disapear the part count
 	- bug click on the budget to edit it, add a new part on the map
 	- bug if you try to drag'n'drop a part on a text layer you got the beep sound and the status message
 	- how to limit the copy/paste with the budget
 	- how to limit the replacement of parts
-	- settings to choose if you want an infinite buget or a null budget by default
-	- how to set an infinite budget in the UI -> empty string or negative value
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
-	- refactor: move the addbrick notification to the action -AddBrick-, -AddConnectedBrick-, -AddConnectedGroup-, -DeleteBrick-, -DuplicateBrick-, -ReplaceBrick-.
-	    + in the SaveLoadManager maybe we need to do something on the brick count in case the brick list is open when we open a TDL or LDraw file
-		+ also the recompute the bricklist is not correct anymore in the brick list: should be ok now, but no rebuild in the Budget
-		+ this will normally handle correct the named group count, and the brick not listed in lib should not appear in the brick list: yes but to test
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
-- MISSING FEATURE (Alban): in the generated part list, don't list the sub part of a set, list only the set
 - MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
-- MISSING FEATURE #12 (FreeBee): Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
+- MISSING FEATURE #12 (FreeBee) : Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
 - MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon)
@@ -112,6 +107,7 @@ REMOVE ALL THE TODO
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
 - [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar (for Windows XP)
 - [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1) (still buggy? en tout cas pas sous Win7, need to check again)
+- [target 1.8] BUG (Alban): If you select a named group, you cannot add a part just by clicking on it in the part lib
 - BUG (Alban): When you replace a part in a group, the display area of the group is not recomptuted
 - BUG (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
@@ -132,6 +128,7 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (Pierre): The right click button can now cancel the current edition if you are in the middle of an edition (for any type of layer)
 - NEW FEATURE (Alban): Add some checkbox in the export window to choose what to export (currently you can add the watermark, the Hull for bricks, the electric circuit and the connection points)
 - NEW FEATURE #8 (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image: now you can draw the Hull of the part in the exported image.
+- NEW FEATURE (Alban): In the generated part list, don't list the sub part of a set, list only the set (unless you ungroup the set).
 - REFACTORING (Alban): Move the display of free connection point and watermark in the View menu and add the display of the hull.
 - REFACTORING #18 (Alban): Check where I could have used the directive "where" (remove code duplication)
 - REFACTORING (Alban): Replace all the type test using a string with the "is" keyword
