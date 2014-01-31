@@ -15,6 +15,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using BlueBrick.MapData;
 
 namespace BlueBrick.Budget
 {
@@ -176,7 +177,24 @@ namespace BlueBrick.Budget
 		/// </summary>
 		public void recountAllBricks()
 		{
-			//TODO
+			// clear the count of all the bricks
+			mCount.Clear();
+
+			// iterate on all the brick of all the brick layers,
+			foreach (Layer layer in Map.Instance.LayerList)
+			{
+				LayerBrick brickLayer = layer as LayerBrick;
+				if (brickLayer != null)
+					foreach (Layer.LayerItem item in brickLayer.LibraryBrickList)
+					{
+						string partID = item.PartNumber;
+						// get the current count
+						int currentCount = getCount(partID);
+						// update the value
+						mCount.Remove(partID);
+						mCount.Add(partID, currentCount + 1);
+					}
+			}
 		}
 		#endregion
 	}
