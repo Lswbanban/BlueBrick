@@ -489,7 +489,7 @@ Le message d'erreur est :
     <value>BlueBrick a rencontré un problème en sauvegardant votre groupe dans le répertoire "parts/Custom". Merci de lire le message suivant pour plus de détails :</value>
   </data>
   <data name="PartLibMenuItemEditBudget" xml:space="preserve">
-    <value>Modifie le budget de cette pièce</value>
+    <value>Modifier le budget de cette pièce</value>
   </data>
   <data name="PartLibMenuItemShowBudgetNumbers" xml:space="preserve">
     <value>Afficher les budgets</value>
@@ -498,6 +498,6 @@ Le message d'erreur est :
     <value>Le budget est atteint pour cette pièce !</value>
   </data>
   <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
-    <value>Utilise la limite de Budget</value>
+    <value>Utiliser la limite de Budget</value>
   </data>
 </root>

@@ -2141,9 +2141,12 @@ namespace BlueBrick
 
 		}
 
-		private void useBudgetLimitationToolStripMenuItem_Click(object sender, EventArgs e)
+		public void useBudgetLimitationToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			// update the setting
+			Properties.Settings.Default.UseBudgetLimitation = !Properties.Settings.Default.UseBudgetLimitation;
+			// then udpate the check state according to the new setting
+			this.useBudgetLimitationToolStripMenuItem.Checked = Properties.Settings.Default.UseBudgetLimitation;
 		}
 		#endregion
 

@@ -1012,8 +1012,8 @@ namespace BlueBrick
             this.budgetSaveToolStripMenuItem,
             this.budgetSaveAsToolStripMenuItem,
             this.toolStripSeparator16,
-            this.showBudgetNumbersToolStripMenuItem,
             this.showOnlyBudgetedPartsToolStripMenuItem,
+            this.showBudgetNumbersToolStripMenuItem,
             this.useBudgetLimitationToolStripMenuItem});
 			this.budgetToolStripMenuItem.Name = "budgetToolStripMenuItem";
 			resources.ApplyResources(this.budgetToolStripMenuItem, "budgetToolStripMenuItem");

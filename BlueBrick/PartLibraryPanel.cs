@@ -193,20 +193,20 @@ namespace BlueBrick
 			ToolStripMenuItem showBudgetNumbersMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemShowBudgetNumbers, null, menuItem_ShowBudgetNumberClick);
 			showBudgetNumbersMenuItem.Name = "showBudgetNumbersMenuItem";
 			showBudgetNumbersMenuItem.CheckOnClick = false;
-			showBudgetNumbersMenuItem.Checked = Budget.Budget.Instance.IsEnabled;
+			showBudgetNumbersMenuItem.Checked = Properties.Settings.Default.ShowBudgetNumbers;
 			contextMenu.Items.Add(showBudgetNumbersMenuItem);
+			// menu item to display tooltips
+			ToolStripMenuItem useBudgetLimitationMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemUseBudgetLimitation, null, menuItem_UseBudgetLimitationClick);
+			useBudgetLimitationMenuItem.Name = "useBudgetLimitationMenuItem";
+			useBudgetLimitationMenuItem.CheckOnClick = false;
+			useBudgetLimitationMenuItem.Checked = Properties.Settings.Default.UseBudgetLimitation;
+			contextMenu.Items.Add(useBudgetLimitationMenuItem);
 			// menu item to display tooltips
 			ToolStripMenuItem editBudgetMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemEditBudget, null, menuItem_EditBudgetClick);
 			editBudgetMenuItem.Name = "editBudgetMenuItem";
 			editBudgetMenuItem.CheckOnClick = false;
 			editBudgetMenuItem.Checked = false;
 			contextMenu.Items.Add(editBudgetMenuItem);
-			// menu item to display tooltips
-			ToolStripMenuItem useBudgetLimitationMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemUseBudgetLimitation, null, menuItem_ShowBudgetNumberClick);
-			useBudgetLimitationMenuItem.Name = "useBudgetLimitationMenuItem";
-			useBudgetLimitationMenuItem.CheckOnClick = false;
-			useBudgetLimitationMenuItem.Checked = Budget.Budget.Instance.IsEnabled;
-			contextMenu.Items.Add(useBudgetLimitationMenuItem);
 			// return the well form context menu
 			return contextMenu;
 		}
@@ -883,7 +883,7 @@ namespace BlueBrick
 			// update the checkstate of the budget stuff, cause they are globals at all the tab
 			ContextMenuStrip contextMenu = sender as ContextMenuStrip;
 			(contextMenu.Items["showBudgetNumbersMenuItem"] as ToolStripMenuItem).Checked = Properties.Settings.Default.ShowBudgetNumbers;
-			(contextMenu.Items["useBudgetLimitationMenuItem"] as ToolStripMenuItem).Checked = Budget.Budget.Instance.IsEnabled;
+			(contextMenu.Items["useBudgetLimitationMenuItem"] as ToolStripMenuItem).Checked = Properties.Settings.Default.UseBudgetLimitation;
 		}
 
 		private void menuItem_LargeIconClick(object sender, EventArgs e)
@@ -948,6 +948,12 @@ namespace BlueBrick
 		{
 			// call the event handler of the main form
 			MainForm.Instance.showBudgetNumbersToolStripMenuItem_Click(null, null);
+		}
+
+		private void menuItem_UseBudgetLimitationClick(object sender, EventArgs e)
+		{
+			// call the event handler of the main form
+			MainForm.Instance.useBudgetLimitationToolStripMenuItem_Click(null, null);
 		}
 
 		private void menuItem_EditBudgetClick(object sender, EventArgs e)
