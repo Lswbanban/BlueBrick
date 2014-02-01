@@ -37,7 +37,8 @@ namespace BlueBrick
 		private bool mIsFilterSentenceSynchroWithCurrentFiltering = false;
 
         // for label edition
-        private int mItemIndexForLabelEdit = -1;
+		private ListViewItem mItemForLabelEdit = null;
+		private ListViewItem mItemHitOnMouseDownForAdding = null;
 
 		#region get/set
 		public bool IsFiltered
@@ -76,6 +77,7 @@ namespace BlueBrick
             this.BeforeLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_BeforeLabelEdit);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseDown);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseUp);
+			this.MouseLeave += new EventHandler(this.PartListView_MouseLeave);
 			this.ResumeLayout(false);
 
         }
@@ -299,9 +301,9 @@ namespace BlueBrick
 		{
 			if (this.SelectedIndices.Count > 0)
 			{
-				mItemIndexForLabelEdit = this.SelectedIndices[0];
-				this.Items[mItemIndexForLabelEdit].Text = Budget.Budget.Instance.getBudgetAsString(this.Items[mItemIndexForLabelEdit].Tag as string);
-				this.Items[mItemIndexForLabelEdit].BeginEdit();
+				mItemForLabelEdit = this.SelectedItems[0];
+				mItemForLabelEdit.Text = Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string);
+				mItemForLabelEdit.BeginEdit();
 			}
 		}
 
@@ -344,23 +346,31 @@ namespace BlueBrick
         private void PartListView_MouseDown(object sender, MouseEventArgs e)
         {
             // reset the item index
-            mItemIndexForLabelEdit = -1;
+            mItemForLabelEdit = null;
 			// check if we click with the left button
 			if (e.Button == System.Windows.Forms.MouseButtons.Left)
 			{
-				// check where the user clicked, if it's on the label, we have a chance that he want to edit the label
+				// unselect the previous item if we click left
+				foreach (int index in this.SelectedIndices)
+					this.Items[index].Selected = false;
+
+				// get the info to know if we click an item and where
 				ListViewHitTestInfo hitTest = this.HitTest(e.Location);
-				if (hitTest.Location == ListViewHitTestLocations.Label)
+				if (hitTest.Item != null)
 				{
-					// unselect the previous item
-					foreach (int index in this.SelectedIndices)
-						this.Items[index].Selected = false;
-					// and try to select the clicked one (needed for the label edit)
-					if (hitTest.Item != null)
+					// if we click on one item, select it
+					hitTest.Item.Selected = true;
+
+					// check where the user clicked, if it's on the label, we have a chance that he want to edit the label
+					if (hitTest.Location == ListViewHitTestLocations.Label)
 					{
 						// and select the clicked one
-						mItemIndexForLabelEdit = this.Items.IndexOf(hitTest.Item);
-						this.Items[mItemIndexForLabelEdit].Selected = true;
+						mItemForLabelEdit = hitTest.Item;
+					}
+					else
+					{
+						// enable the add on click (will be cleared if we leave the view)
+						mItemHitOnMouseDownForAdding = hitTest.Item;
 					}
 				}
 			}
@@ -379,17 +389,27 @@ namespace BlueBrick
 					if (hitTest.Location == ListViewHitTestLocations.Label)
 					{
 						// check if the clicked one is still the same
-						if (this.Items.IndexOf(hitTest.Item) == mItemIndexForLabelEdit)
-							this.Items[mItemIndexForLabelEdit].Text = Budget.Budget.Instance.getBudgetAsString(this.Items[mItemIndexForLabelEdit].Tag as string);
+						if (hitTest.Item == mItemForLabelEdit)
+							mItemForLabelEdit.Text = Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string);
 					}
-					else
+					else if (hitTest.Item == mItemHitOnMouseDownForAdding)
 					{
+						// reset the item flag
+						mItemHitOnMouseDownForAdding = null;
+						// and add an item if the part number is valid
 						string partNumber = hitTest.Item.Tag as string;
 						if (partNumber != null)
 							Map.Instance.addConnectBrick(partNumber);
 					}
 				}
 			}
+		}
+
+		void PartListView_MouseLeave(object sender, EventArgs e)
+		{
+			// clear the item hit if we moved out of the view
+			mItemForLabelEdit = null;
+			mItemHitOnMouseDownForAdding = null;	
 		}
 
 		#endregion
