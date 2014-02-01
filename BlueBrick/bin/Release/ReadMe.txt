@@ -72,7 +72,8 @@ REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
 	- ways to add a brick: drag'n'drop, click in the library, shortcut key, copy/paste, duplicate drag'n'drop, replacement
 	- Menu "Budget": New, Open, Import, Save, Save As... | Use Budget, Show Budget Number, Show Only Parts in Budget (à voir avec filter)
-	- display numbers under parts (for ex: 5/9) + contextual menu to toggle them
+	- save the UI settings of the Budget Menu
+	- display numbers under parts (for ex: 5/9) with infinite if the budget is not set
 	- contextual menu to modify the budget number
 	- need to check if the budget was modified to prompt a message when leaving BB
 	- need to display the budget name (next to the map name in the title bar)

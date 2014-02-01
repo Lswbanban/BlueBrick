@@ -67,7 +67,7 @@ namespace BlueBrick.Actions.Bricks
 		private void trimItemListWithBudgetLimitation()
 		{
 			// first check if the budget limitation is enabled
-			if (!Budget.Budget.Instance.IsEnabled)
+			if (!Properties.Settings.Default.UseBudgetLimitation)
 				return;
 
 			// use a temporary list of items to remove
