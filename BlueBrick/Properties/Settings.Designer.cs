@@ -1199,5 +1199,29 @@ namespace BlueBrick.Properties {
                 this["UIExportConnection"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowBudgetNumbers {
+            get {
+                return ((bool)(this["ShowBudgetNumbers"]));
+            }
+            set {
+                this["ShowBudgetNumbers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseBudgetLimitation {
+            get {
+                return ((bool)(this["UseBudgetLimitation"]));
+            }
+            set {
+                this["UseBudgetLimitation"] = value;
+            }
+        }
     }
 }

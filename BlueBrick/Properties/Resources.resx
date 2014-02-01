@@ -556,10 +556,13 @@
   <data name="PartLibMenuItemEditBudget" xml:space="preserve">
     <value>Edit this part's budget</value>
   </data>
-  <data name="PartLibMenuItemUseBudget" xml:space="preserve">
-    <value>Use the Budget</value>
+  <data name="PartLibMenuItemShowBudgetNumbers" xml:space="preserve">
+    <value>Show Budget Numbers</value>
   </data>
   <data name="StatusMsgBudgetReached" xml:space="preserve">
     <value>Budget reached for this part!</value>
+  </data>
+  <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
+    <value>Use Budget Limitation</value>
   </data>
 </root>
