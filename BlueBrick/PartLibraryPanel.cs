@@ -190,17 +190,23 @@ namespace BlueBrick
 			// add a line
 			contextMenu.Items.Add(new ToolStripSeparator());
 			// menu item to display tooltips
-			ToolStripMenuItem useBudgetMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemUseBudget, null, menuItem_UseBudgetClick);
-			useBudgetMenuItem.Name = "useBudgetMenuItem";
-			useBudgetMenuItem.CheckOnClick = false;
-			useBudgetMenuItem.Checked = Budget.Budget.Instance.IsEnabled;
-			contextMenu.Items.Add(useBudgetMenuItem);
+			ToolStripMenuItem showBudgetNumbersMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemShowBudgetNumbers, null, menuItem_ShowBudgetNumberClick);
+			showBudgetNumbersMenuItem.Name = "showBudgetNumbersMenuItem";
+			showBudgetNumbersMenuItem.CheckOnClick = false;
+			showBudgetNumbersMenuItem.Checked = Budget.Budget.Instance.IsEnabled;
+			contextMenu.Items.Add(showBudgetNumbersMenuItem);
 			// menu item to display tooltips
 			ToolStripMenuItem editBudgetMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemEditBudget, null, menuItem_EditBudgetClick);
 			editBudgetMenuItem.Name = "editBudgetMenuItem";
 			editBudgetMenuItem.CheckOnClick = false;
 			editBudgetMenuItem.Checked = false;
 			contextMenu.Items.Add(editBudgetMenuItem);
+			// menu item to display tooltips
+			ToolStripMenuItem useBudgetLimitationMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemUseBudgetLimitation, null, menuItem_ShowBudgetNumberClick);
+			useBudgetLimitationMenuItem.Name = "useBudgetLimitationMenuItem";
+			useBudgetLimitationMenuItem.CheckOnClick = false;
+			useBudgetLimitationMenuItem.Checked = Budget.Budget.Instance.IsEnabled;
+			contextMenu.Items.Add(useBudgetLimitationMenuItem);
 			// return the well form context menu
 			return contextMenu;
 		}
@@ -458,8 +464,8 @@ namespace BlueBrick
 				// even after several filtering and even if the sorting key is not set. But if it is set,
 				// the sorting key has the priority since it is place in front
 				newItem.Name = BrickLibrary.Instance.getSortingKey(brick.mPartNumber) + brick.mPartNumber;
-
-                newItem.Text = "5/9"; //TODO remove this debug hack
+				// the text is used to display the count and budget
+				newItem.Text = Budget.Budget.Instance.getCountAndBudgetAsString(brick.mPartNumber);
 
 				// and insert the item
 				try
@@ -733,6 +739,17 @@ namespace BlueBrick
 			}
 		}
 
+		public void updatePartCount(string partID)
+		{
+			// and iterate on all the tabs
+			foreach (TabPage tabPage in this.TabPages)
+			{
+				PartListView listView = tabPage.Controls[0] as PartListView;
+				if (listView != null)
+					listView.updatePartCount(partID);
+			}
+		}
+
 		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBubbleInfoFormat, bool updateSelectedTab, bool updateCommonFilter)
 		{
 			// save the selected tab to reselect it after reorder
@@ -818,6 +835,20 @@ namespace BlueBrick
 			}
 		}
 
+		/// <summary>
+		/// Update the view style of the list view of each tab, depending if the budgets are displayed or not
+		/// </summary>
+		public void updateViewStyle()
+		{
+			// change the view of the list view
+			foreach (TabPage tabPage in this.TabPages)
+			{
+				PartListView listView = tabPage.Controls[0] as PartListView;
+				if (listView != null)
+					listView.updateViewStyle();
+			}
+		}
+
 		public void savePartListDisplayStatusInSettings()
 		{
 			// reset the setting list
@@ -851,7 +882,8 @@ namespace BlueBrick
 		{
 			// update the checkstate of the budget stuff, cause they are globals at all the tab
 			ContextMenuStrip contextMenu = sender as ContextMenuStrip;
-			(contextMenu.Items["useBudgetMenuItem"] as ToolStripMenuItem).Checked = Budget.Budget.Instance.IsEnabled;
+			(contextMenu.Items["showBudgetNumbersMenuItem"] as ToolStripMenuItem).Checked = Properties.Settings.Default.ShowBudgetNumbers;
+			(contextMenu.Items["useBudgetLimitationMenuItem"] as ToolStripMenuItem).Checked = Budget.Budget.Instance.IsEnabled;
 		}
 
 		private void menuItem_LargeIconClick(object sender, EventArgs e)
@@ -912,16 +944,11 @@ namespace BlueBrick
 			}
 		}
 
-		private void menuItem_UseBudgetClick(object sender, EventArgs e)
+		private void menuItem_ShowBudgetNumberClick(object sender, EventArgs e)
 		{
-			ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
-			PartListView listView = this.SelectedTab.Controls[0] as PartListView;
-			if (listView != null && menuItem != null)
-			{
-				MainForm.Instance.useTheBudgetToolStripMenuItem_Click(null, null);
-			}
+			// call the event handler of the main form
+			MainForm.Instance.showBudgetNumbersToolStripMenuItem_Click(null, null);
 		}
-
 
 		private void menuItem_EditBudgetClick(object sender, EventArgs e)
 		{

@@ -491,10 +491,13 @@ Le message d'erreur est :
   <data name="PartLibMenuItemEditBudget" xml:space="preserve">
     <value>Modifie le budget de cette pièce</value>
   </data>
-  <data name="PartLibMenuItemUseBudget" xml:space="preserve">
-    <value>Utilise le budget</value>
+  <data name="PartLibMenuItemShowBudgetNumbers" xml:space="preserve">
+    <value>Afficher les budgets</value>
   </data>
   <data name="StatusMsgBudgetReached" xml:space="preserve">
     <value>Le budget est atteint pour cette pièce !</value>
+  </data>
+  <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
+    <value>Utilise la limite de Budget</value>
   </data>
 </root>

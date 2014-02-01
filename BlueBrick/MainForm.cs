@@ -1032,12 +1032,14 @@ namespace BlueBrick
 		{
 			mPartListForm.addBrickNotification(layer, brickOrGroup);
 			Budget.Budget.Instance.addBrickNotification(brickOrGroup);
+			this.PartsTabControl.updatePartCount(brickOrGroup.PartNumber);
 		}
 
 		public void NotifyPartListForBrickRemoved(LayerBrick layer, Layer.LayerItem brickOrGroup)
 		{
 			mPartListForm.removeBrickNotification(layer, brickOrGroup);
 			Budget.Budget.Instance.removeBrickNotification(brickOrGroup);
+			this.PartsTabControl.updatePartCount(brickOrGroup.PartNumber);
 		}
 		#endregion
 
@@ -2124,15 +2126,24 @@ namespace BlueBrick
 
 		}
 
-		public void useTheBudgetToolStripMenuItem_Click(object sender, EventArgs e)
+		public void showBudgetNumbersToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// we do not use the check on click here, cause I also want to call this method
-			// from the context menu of the part lib
-			// so compute the new state
-			bool newState = !Budget.Budget.Instance.IsEnabled;
-			// update the toolstrip and the budget flag
-			useTheBudgetToolStripMenuItem.Checked = newState;
-			Budget.Budget.Instance.IsEnabled = newState;
+			// update the setting
+			Properties.Settings.Default.ShowBudgetNumbers = !Properties.Settings.Default.ShowBudgetNumbers;
+			// then udpate the check state according to the new setting
+			this.showBudgetNumbersToolStripMenuItem.Checked = Properties.Settings.Default.ShowBudgetNumbers;
+			// then update the view of the part lib
+			this.PartsTabControl.updateViewStyle();
+		}
+
+		private void showOnlyBudgetedPartsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void useBudgetLimitationToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
 		}
 		#endregion
 

@@ -73,13 +73,13 @@ REMOVE ALL THE TODO
 	- ways to add a brick: drag'n'drop, click in the library, shortcut key, copy/paste, duplicate drag'n'drop, replacement
 	- Menu "Budget": New, Open, Import, Save, Save As... | Use Budget, Show Budget Number, Show Only Parts in Budget (à voir avec filter)
 	- display numbers under parts (for ex: 5/9) + contextual menu to toggle them
-	- contextual menu to modify the budget number (undoable action)
+	- contextual menu to modify the budget number
 	- need to check if the budget was modified to prompt a message when leaving BB
 	- need to display the budget name (next to the map name in the title bar)
 	- In preference: load a specific budget at startup (+ error message if can't)
 	- settings to choose if you want an infinite buget or a null budget by default
 	- how to set an infinite budget in the UI -> empty string or negative value
-	- error message if you try to add a part exceeding the budget
+	- beep if you try to add a part exceeding the budget (not working well)
 	- bug drag'n'drop from the label: make disapear the part count
 	- bug click on the budget to edit it, add a new part on the map
 	- bug if you try to drag'n'drop a part on a text layer you got the beep sound and the status message

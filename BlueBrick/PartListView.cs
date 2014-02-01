@@ -59,8 +59,8 @@ namespace BlueBrick
 			this.BackColor = Properties.Settings.Default.PartLibBackColor;
 			this.ShowItemToolTips = Properties.Settings.Default.PartLibDisplayBubbleInfo;
 			this.ListViewItemSorter = sListViewItemComparer; // we want to sort the items based on their Name (which contains a sorting key)
-			this.View = View.LargeIcon; // we always use this view, because of the layout of the item
             this.SetStyle(ControlStyles.EnableNotifyMessage, true); // set the style to receive the VM_NOTIFY Message in order to change the text before label edition
+			updateViewStyle(); // set the view style depending if budget need to be visible or not
 		}
 
         private void InitializeComponent()
@@ -80,6 +80,8 @@ namespace BlueBrick
 
         }
 		#endregion
+
+		#region filtering
 		/// <summary>
 		/// Filter the current tab with the specified string. The string should be a list of keywords that can be
 		/// prefixed by a '-' to exclude, a '+' to include or a '#' to filter on part id. Each keyword should be separated
@@ -287,9 +289,9 @@ namespace BlueBrick
 			// return the result as a list of image
 			return (new List<Image>(imageArray));
 		}
+		#endregion
 
-        #region event handler
-
+		#region event handler
 		/// <summary>
 		/// begin the edition of the current selected item if any. Otherwise do nothing.
 		/// </summary>
@@ -298,7 +300,7 @@ namespace BlueBrick
 			if (this.SelectedIndices.Count > 0)
 			{
 				mItemIndexForLabelEdit = this.SelectedIndices[0];
-				this.Items[mItemIndexForLabelEdit].Text = getLabelForEdition(mItemIndexForLabelEdit);
+				this.Items[mItemIndexForLabelEdit].Text = Budget.Budget.Instance.getBudgetAsString(this.Items[mItemIndexForLabelEdit].Tag as string);
 				this.Items[mItemIndexForLabelEdit].BeginEdit();
 			}
 		}
@@ -308,7 +310,7 @@ namespace BlueBrick
             // put node label to initial state
             // to ensure that in case of label editing cancelled
             // the initial state of label is preserved
-            this.Items[e.Item].Text = getLabelForDisplay(e.Item);
+			this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(this.Items[e.Item].Tag as string);
         }
 
         private void PartListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
@@ -324,7 +326,7 @@ namespace BlueBrick
 					// set the budget first
 					Budget.Budget.Instance.setBudget(this.Items[e.Item].Tag as string, newBudget);
 					// before asking its formating
-					this.Items[e.Item].Text = getLabelForDisplay(e.Item);
+					this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(this.Items[e.Item].Tag as string);
 				}
                 // cancel anyway
                 e.CancelEdit = true;
@@ -340,7 +342,7 @@ namespace BlueBrick
             const int WM_TIMER = 0x0113;
             // set the text for edition if we have a correct label
             if ((m.Msg == WM_TIMER) && (mItemIndexForLabelEdit >= 0))
-                this.Items[mItemIndexForLabelEdit].Text = getLabelForEdition(mItemIndexForLabelEdit);
+				this.Items[mItemIndexForLabelEdit].Text = Budget.Budget.Instance.getBudgetAsString(this.Items[mItemIndexForLabelEdit].Tag as string);
             base.OnNotifyMessage(m);
         }
 
@@ -368,16 +370,29 @@ namespace BlueBrick
 				}
 			}
 		}
+		#endregion
 
-        private string getLabelForDisplay(int itemIndex)
-        {
-			return Budget.Budget.Instance.getCountAndBudgetAsString(this.Items[itemIndex].Tag as string);
-        }
+		#region related to budget
+		public void updatePartCount(string partID)
+		{
+			// since the partID is saved in the tag, no other choice than iterating on the list (cannot use Find() for example)
+			foreach (ListViewItem item in this.Items)
+				if (partID.Equals(item.Tag as string))
+					item.Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+		}
 
-        private string getLabelForEdition(int itemIndex)
-        {
-			return Budget.Budget.Instance.getBudgetAsString(this.Items[itemIndex].Tag as string);
-        }
+		/// <summary>
+		/// Change the view style of this list view depending if the budget is visible or not.
+		/// The budget visibility is checked from the settings, so update the settings before calling this method.
+		/// If the budget is visible, the view uses LargeIcon, otherwise, it uses Tile.
+		/// </summary>
+		public void updateViewStyle()
+		{
+			if (Properties.Settings.Default.ShowBudgetNumbers)
+				this.View = View.LargeIcon;
+			else
+				this.View = View.Tile;
+		}
         #endregion
     }
 }
