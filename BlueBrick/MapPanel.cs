@@ -686,7 +686,8 @@ namespace BlueBrick
 				string partDropNumber = (this.TopLevelControl as MainForm).getDraggingPartNumberInPartLib();
 
 				// check if we can add it
-				if (Map.Instance.canAddBrick(partDropNumber))
+				Map.BrickAddability canAdd = Map.Instance.canAddBrick(partDropNumber);
+				if (canAdd == Map.BrickAddability.YES)
 				{
 					mBrickLayerThatReceivePartDrop = Map.Instance.SelectedLayer as LayerBrick;
 					if (partDropNumber != null && mBrickLayerThatReceivePartDrop != null)
@@ -700,7 +701,7 @@ namespace BlueBrick
 						e.Effect = DragDropEffects.Copy;
 					}
 				}
-				else
+				else if (canAdd == Map.BrickAddability.NO_BUDGET_EXCEEDED)
 					Map.Instance.giveFeedbackForNotAddingBrick();
 			}
 
