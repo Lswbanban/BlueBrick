@@ -75,7 +75,7 @@ namespace BlueBrick.Budget
 		/// <returns>a string displaying the number of the infinity sign</returns>
 		public string getBudgetAsString(string partID)
 		{
-			string budgetString = "∞"; // by default if the budget is not set, it is infinite
+			string budgetString = "?"; // "∞"; // by default if the budget is not set, it is infinite
 			int budget = getBudget(partID);
 			if (budget >= 0)
 				budgetString = budget.ToString();
@@ -91,6 +91,24 @@ namespace BlueBrick.Budget
 		public string getCountAndBudgetAsString(string partID)
 		{
 			return (getCount(partID).ToString() + "/" + getBudgetAsString(partID));
+		}
+
+		/// <summary>
+		/// Get the color that should be used to display the backgroun of count and budget in the list view. If the budget is infinite
+		/// or if count is less or equal than budget return transparent, otherwise return red.
+		/// </summary>
+		/// <param name="partID">The full part id for which you want to know the color</param>
+		/// <returns>the appropriate color to display the count and budget</returns>
+		public System.Drawing.Color getBudgetBackgroundColor(string partID)
+		{
+			int budget = getBudget(partID);
+			if (budget >= 0)
+			{
+				int count = getCount(partID);
+				if (count > budget)
+					return System.Drawing.Color.Red;
+			}
+			return System.Drawing.Color.Empty;
 		}
 		#endregion
 

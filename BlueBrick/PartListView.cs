@@ -320,28 +320,33 @@ namespace BlueBrick
 			// cancel the edition in any case, cause if the edition is correct, we will use a formated text
 			e.CancelEdit = true;
 
-			// if the user escaped the edition, its null. We can let the catch catch it, but it is annoying to debug
+			// if the user escaped the edition, its null, so donot change the label
 			if (e.Label == null)
 				return;
 
+			// by default it's an inifinte budget. Anything not parsable will result in an infinite budget (meaning the user erase the budget)
+			int newBudget = -1;
             // check if it is an int
             try
             {
-                // try to parse as int
-                int newBudget = int.Parse(e.Label);
-                // add the current count and change the text myself
-				if (newBudget >= 0)
-				{
-					// set the budget first
-					Budget.Budget.Instance.setBudget(this.Items[e.Item].Tag as string, newBudget);
-					// before asking its formating
-					this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(this.Items[e.Item].Tag as string);
-				}
+                // try to parse as int (positive number)
+				newBudget = int.Parse(e.Label);
+				if (newBudget < -1)
+					newBudget = -1;
             }
             catch
             {
             }
-        }
+
+			// get the partID
+			string partID = this.Items[e.Item].Tag as string;
+			// add the current count and change the text myself
+			// set the budget first
+			Budget.Budget.Instance.setBudget(partID, newBudget);
+			// before asking its formating
+			this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+			this.Items[e.Item].BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
+		}
 
         private void PartListView_MouseDown(object sender, MouseEventArgs e)
         {
@@ -420,7 +425,10 @@ namespace BlueBrick
 			// since the partID is saved in the tag, no other choice than iterating on the list (cannot use Find() for example)
 			foreach (ListViewItem item in this.Items)
 				if (partID.Equals(item.Tag as string))
+				{
 					item.Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+					item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
+				}
 		}
 
 		/// <summary>

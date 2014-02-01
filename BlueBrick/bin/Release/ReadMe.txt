@@ -73,14 +73,11 @@ REMOVE ALL THE TODO
 	- ways to add a brick: drag'n'drop, click in the library, shortcut key, copy/paste, duplicate drag'n'drop, replacement
 	- Menu "Budget": New, Open, Import, Save, Save As... | Use Budget, Show Budget Number, Show Only Parts in Budget (à voir avec filter)
 	- save the UI settings of the Budget Menu
-	- display numbers under parts (for ex: 5/9) with infinite if the budget is not set
-	- contextual menu to modify the budget number
 	- need to check if the budget was modified to prompt a message when leaving BB
 	- need to display the budget name (next to the map name in the title bar)
 	- In preference: load a specific budget at startup (+ error message if can't)
 	- settings to choose if you want an infinite buget or a null budget by default
-	- how to set an infinite budget in the UI -> empty string or negative value
-	- beep if you try to add a part exceeding the budget (not working well)
+	- beep if you try to add a part exceeding the budget (not done yet for copy/paste and replacement)
 	- how to limit the copy/paste with the budget
 	- how to limit the replacement of parts
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
