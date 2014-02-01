@@ -429,8 +429,6 @@ namespace BlueBrick
 			else
 				newListView.TileSize = PART_ITEM_SMALL_SIZE_WITH_MARGIN;
             // set the event handler
-			newListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
-			newListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
 			newListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listView_MouseMove);
 
 			// add the list view to the tab page
@@ -969,26 +967,6 @@ namespace BlueBrick
 			if (listView.SelectedItems.Count > 0)
 				return (listView.SelectedItems[0].Tag as string);
 			return null;
-		}
-
-		private void listView_MouseClick(object sender, MouseEventArgs e)
-		{
-			// try to get the list view (it can also be the tab page that contains the list view)
-			ListView listView = sender as ListView;
-			if (listView != null)
-			{
-				// for a left click
-				switch (e.Button)
-				{
-					case MouseButtons.Left:
-						{
-							string partNumber = getSelectedPartNumberInListView(listView);
-							if (partNumber != null)
-								Map.Instance.addConnectBrick(partNumber);
-							break;
-						}
-				}
-			}
 		}
 
 		private void listView_MouseMove(object sender, MouseEventArgs e)

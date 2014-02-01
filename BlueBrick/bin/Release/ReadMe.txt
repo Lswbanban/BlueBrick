@@ -81,8 +81,6 @@ REMOVE ALL THE TODO
 	- settings to choose if you want an infinite buget or a null budget by default
 	- how to set an infinite budget in the UI -> empty string or negative value
 	- beep if you try to add a part exceeding the budget (not working well)
-	- bug drag'n'drop from the label: make disapear the part count
-	- bug click on the budget to edit it, add a new part on the map
 	- how to limit the copy/paste with the budget
 	- how to limit the replacement of parts
 	- bug when ungrouping a part from library, the count is not updated, same in the part list

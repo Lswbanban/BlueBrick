@@ -59,7 +59,6 @@ namespace BlueBrick
 			this.BackColor = Properties.Settings.Default.PartLibBackColor;
 			this.ShowItemToolTips = Properties.Settings.Default.PartLibDisplayBubbleInfo;
 			this.ListViewItemSorter = sListViewItemComparer; // we want to sort the items based on their Name (which contains a sorting key)
-            this.SetStyle(ControlStyles.EnableNotifyMessage, true); // set the style to receive the VM_NOTIFY Message in order to change the text before label edition
 			updateViewStyle(); // set the view style depending if budget need to be visible or not
 		}
 
@@ -76,7 +75,8 @@ namespace BlueBrick
             this.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_AfterLabelEdit);
             this.BeforeLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_BeforeLabelEdit);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseDown);
-            this.ResumeLayout(false);
+			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseUp);
+			this.ResumeLayout(false);
 
         }
 		#endregion
@@ -315,6 +315,13 @@ namespace BlueBrick
 
         private void PartListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
+			// cancel the edition in any case, cause if the edition is correct, we will use a formated text
+			e.CancelEdit = true;
+
+			// if the user escaped the edition, its null. We can let the catch catch it, but it is annoying to debug
+			if (e.Label == null)
+				return;
+
             // check if it is an int
             try
             {
@@ -328,22 +335,10 @@ namespace BlueBrick
 					// before asking its formating
 					this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(this.Items[e.Item].Tag as string);
 				}
-                // cancel anyway
-                e.CancelEdit = true;
             }
             catch
             {
-                e.CancelEdit = true;
             }
-        }
-
-        protected override void OnNotifyMessage(Message m)
-        {
-            const int WM_TIMER = 0x0113;
-            // set the text for edition if we have a correct label
-            if ((m.Msg == WM_TIMER) && (mItemIndexForLabelEdit >= 0))
-				this.Items[mItemIndexForLabelEdit].Text = Budget.Budget.Instance.getBudgetAsString(this.Items[mItemIndexForLabelEdit].Tag as string);
-            base.OnNotifyMessage(m);
         }
 
         private void PartListView_MouseDown(object sender, MouseEventArgs e)
@@ -370,6 +365,33 @@ namespace BlueBrick
 				}
 			}
 		}
+
+		private void PartListView_MouseUp(object sender, MouseEventArgs e)
+		{
+			// check if we click with the left button
+			if (e.Button == System.Windows.Forms.MouseButtons.Left)
+			{
+				// check where the user clicked, if it's on the label, we have a chance that he want to edit the label
+				ListViewHitTestInfo hitTest = this.HitTest(e.Location);
+				if (hitTest.Item != null)
+				{
+					// check if we click on the label to edit it or on the item to add it in the map
+					if (hitTest.Location == ListViewHitTestLocations.Label)
+					{
+						// check if the clicked one is still the same
+						if (this.Items.IndexOf(hitTest.Item) == mItemIndexForLabelEdit)
+							this.Items[mItemIndexForLabelEdit].Text = Budget.Budget.Instance.getBudgetAsString(this.Items[mItemIndexForLabelEdit].Tag as string);
+					}
+					else
+					{
+						string partNumber = hitTest.Item.Tag as string;
+						if (partNumber != null)
+							Map.Instance.addConnectBrick(partNumber);
+					}
+				}
+			}
+		}
+
 		#endregion
 
 		#region related to budget

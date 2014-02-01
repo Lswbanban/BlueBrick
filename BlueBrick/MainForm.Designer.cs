@@ -141,8 +141,8 @@ namespace BlueBrick
 			this.budgetSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.budgetSaveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
-			this.showBudgetNumbersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.showOnlyBudgetedPartsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.showBudgetNumbersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.useBudgetLimitationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1059,17 +1059,17 @@ namespace BlueBrick
 			this.toolStripSeparator16.Name = "toolStripSeparator16";
 			resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
 			// 
-			// showBudgetNumbersToolStripMenuItem
-			// 
-			this.showBudgetNumbersToolStripMenuItem.Name = "showBudgetNumbersToolStripMenuItem";
-			resources.ApplyResources(this.showBudgetNumbersToolStripMenuItem, "showBudgetNumbersToolStripMenuItem");
-			this.showBudgetNumbersToolStripMenuItem.Click += new System.EventHandler(this.showBudgetNumbersToolStripMenuItem_Click);
-			// 
 			// showOnlyBudgetedPartsToolStripMenuItem
 			// 
 			this.showOnlyBudgetedPartsToolStripMenuItem.Name = "showOnlyBudgetedPartsToolStripMenuItem";
 			resources.ApplyResources(this.showOnlyBudgetedPartsToolStripMenuItem, "showOnlyBudgetedPartsToolStripMenuItem");
 			this.showOnlyBudgetedPartsToolStripMenuItem.Click += new System.EventHandler(this.showOnlyBudgetedPartsToolStripMenuItem_Click);
+			// 
+			// showBudgetNumbersToolStripMenuItem
+			// 
+			this.showBudgetNumbersToolStripMenuItem.Name = "showBudgetNumbersToolStripMenuItem";
+			resources.ApplyResources(this.showBudgetNumbersToolStripMenuItem, "showBudgetNumbersToolStripMenuItem");
+			this.showBudgetNumbersToolStripMenuItem.Click += new System.EventHandler(this.showBudgetNumbersToolStripMenuItem_Click);
 			// 
 			// useBudgetLimitationToolStripMenuItem
 			// 
