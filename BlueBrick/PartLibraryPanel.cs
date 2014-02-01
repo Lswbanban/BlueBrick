@@ -1046,7 +1046,7 @@ namespace BlueBrick
 			// we use our own cursors
 			e.UseDefaultCursors = false;
 			// check if the selected layer is a brick layer, otherwise, we can't drop a part
-			if ((e.Effect == DragDropEffects.Copy) && (Map.Instance.canAddBrick(DraggingPartNumber)))
+			if ((e.Effect == DragDropEffects.Copy) && (Map.Instance.canAddBrick(DraggingPartNumber) == Map.BrickAddability.YES))
 			{
 				Cursor.Current = MainForm.Instance.BrickDuplicateCursor;
 			}

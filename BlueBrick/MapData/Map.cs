@@ -40,6 +40,13 @@ namespace BlueBrick.MapData
 	[Serializable]
 	public class Map : IXmlSerializable
 	{
+		public enum BrickAddability
+		{
+			YES,
+			NO_WRONG_LAYER_TYPE,
+			NO_BUDGET_EXCEEDED
+		}
+
 		public static Hashtable sHashtableForRulerAttachementRebuilding = new Hashtable(); // this hashtable contains all the bricks is used to recreate the attachement of rulers to bricks when loading
 
 		// the current version of the data this version of BlueBrick can read/write
@@ -835,25 +842,33 @@ namespace BlueBrick.MapData
 			BlueBrick.MainForm.Instance.setStatusBarMessage(Properties.Resources.StatusMsgBudgetReached);
 		}
 
-		public bool canAddBrick(string partNumber)
+		public BrickAddability canAddBrick(string partNumber)
 		{
-			return ((Map.sInstance.SelectedLayer is LayerBrick) &&
-					Budget.Budget.Instance.canAddBrick(partNumber));
+			if (Map.sInstance.SelectedLayer is LayerBrick)
+			{
+				if (Budget.Budget.Instance.canAddBrick(partNumber))
+					return BrickAddability.YES;
+				else
+					return BrickAddability.NO_BUDGET_EXCEEDED;
+			}
+			return BrickAddability.NO_WRONG_LAYER_TYPE;
 		}
 
 		public void addBrick(string partNumber)
 		{
-			if (canAddBrick(partNumber))
+			BrickAddability canAdd = canAddBrick(partNumber);
+			if (canAdd == BrickAddability.YES)
 				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, partNumber));
-			else
+			else if (canAdd == BrickAddability.NO_BUDGET_EXCEEDED)
 				giveFeedbackForNotAddingBrick();
 		}
 
 		public void addBrick(Layer.LayerItem brickOrGroup)
 		{
-			if (canAddBrick(brickOrGroup.PartNumber))
+			BrickAddability canAdd = canAddBrick(brickOrGroup.PartNumber);
+			if (canAdd == BrickAddability.YES)
 				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, brickOrGroup));
-			else
+			else if (canAdd == BrickAddability.NO_BUDGET_EXCEEDED)
 				giveFeedbackForNotAddingBrick();
 		}
 
@@ -865,7 +880,8 @@ namespace BlueBrick.MapData
 
 		public void addConnectBrick(string partNumber, int connexion)
 		{
-			if (canAddBrick(partNumber))
+			BrickAddability canAdd = canAddBrick(partNumber);
+			if (canAdd == BrickAddability.YES)
 			{
 				LayerBrick brickLayer = Map.sInstance.SelectedLayer as LayerBrick;
 				if ((brickLayer != null) && (brickLayer.getConnectableBrick() != null))
@@ -880,7 +896,7 @@ namespace BlueBrick.MapData
 					ActionManager.Instance.doAction(action);
 				}
 			}
-			else
+			else if (canAdd == BrickAddability.NO_BUDGET_EXCEEDED)
 				giveFeedbackForNotAddingBrick();
 		}
 
