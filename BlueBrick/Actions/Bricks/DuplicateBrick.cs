@@ -88,23 +88,24 @@ namespace BlueBrick.Actions.Bricks
 
 			// iterate on all the items of the list to find the one to remove
 			foreach (Layer.LayerItem item in mItems)
-			{
-				// check if we already met this part
-				int count = 0;
-				if (itemCount.TryGetValue(item.PartNumber, out count))
-					itemCount.Remove(item.PartNumber);
-				// increase and add the count
-				itemCount.Add(item.PartNumber, ++count);
-				// check if we can add it
-				if ((item.PartNumber != string.Empty) && !Budget.Budget.Instance.canAddBrick(item.PartNumber, count))
+				if (item.PartNumber != string.Empty)
 				{
-					// checked if this item is a group, in that case, we need to remove all the hierachy
-					if (item.IsAGroup)
-						itemToRemove.AddRange((item as Layer.Group).getAllItemsInTheTree());
-					else
-						itemToRemove.Add(item);
+					// check if we already met this part
+					int count = 0;
+					if (itemCount.TryGetValue(item.PartNumber, out count))
+						itemCount.Remove(item.PartNumber);
+					// increase and add the count
+					itemCount.Add(item.PartNumber, ++count);
+					// check if we can add it
+					if (!Budget.Budget.Instance.canAddBrick(item.PartNumber, count))
+					{
+						// checked if this item is a group, in that case, we need to remove all the hierachy
+						if (item.IsAGroup)
+							itemToRemove.AddRange((item as Layer.Group).getAllItemsInTheTree());
+						else
+							itemToRemove.Add(item);
+					}
 				}
-			}
 
 			// then remove all the items
 			foreach (Layer.LayerItem item in itemToRemove)
