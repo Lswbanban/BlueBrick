@@ -76,7 +76,7 @@ REMOVE ALL THE TODO
 	- need to check if the budget was modified to prompt a message when leaving BB
 	- need to display the budget name (next to the map name in the title bar)
 	- In preference: load a specific budget at startup (+ error message if can't)
-	- settings to choose if you want an infinite buget or a null budget by default
+	- In preference: check the settings to choose if you want an infinite buget or a null budget by default
 	- beep if you try to add a part exceeding the budget (not done yet for copy/paste and replacement)
 	- how to limit the copy/paste with the budget
 	- how to limit the replacement of parts
