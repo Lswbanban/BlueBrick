@@ -63,8 +63,9 @@ namespace BlueBrick.Budget
 		public int getBudget(string partID)
 		{
 			// try to get the value or return 0 by default
-			int result = -1; //-1 means the budget is not set, i.e. you have an infinite budgets
-			mBudget.TryGetValue(partID, out result);
+			int result = 0; //-1 means the budget is not set, i.e. you have an infinite budgets
+			if (!mBudget.TryGetValue(partID, out result))
+				result = Properties.Settings.Default.IsDefaultBudgetInfinite ? -1 : 0; 
 			return result;
 		}
 
