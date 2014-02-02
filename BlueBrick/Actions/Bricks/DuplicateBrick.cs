@@ -27,7 +27,7 @@ namespace BlueBrick.Actions.Bricks
 		private List<Layer.LayerItem> mBricksForNotification = null;
 
 		public DuplicateBrick(LayerBrick layer, List<Layer.LayerItem> bricksToDuplicate, bool needToAddOffset)
-			: base(bricksToDuplicate, needToAddOffset)
+			: base(bricksToDuplicate, needToAddOffset, Properties.Settings.Default.UseBudgetLimitation)
 		{
 			// init the layer
 			mBrickLayer = layer;
@@ -37,6 +37,16 @@ namespace BlueBrick.Actions.Bricks
 
 			// get bricks for the notification from the trimmed list
 			mBricksForNotification = Layer.sFilterListToGetOnlyBricksInLibrary(mItems);
+
+			// remove the group that were added to the item list for brick notification purpose
+			// they are added at the end, so find the first one and erase the end
+			if (Properties.Settings.Default.UseBudgetLimitation)
+				for (int i = 0; i < mItems.Count; ++i)
+					if (mItems[i].IsAGroup)
+					{
+						mItems.RemoveRange(i, mItems.Count - i);
+						break;
+					}
 
 			// try to get a part number (which can be the name of a group)
 			Layer.LayerItem topItem = Layer.sGetTopItemFromList(mItems);
@@ -70,12 +80,23 @@ namespace BlueBrick.Actions.Bricks
 			if (!Properties.Settings.Default.UseBudgetLimitation)
 				return;
 
+			// use a temporary dictionnary to count the number of similar items the user wants to add
+			Dictionary<string, int> itemCount = new Dictionary<string, int>();
+
 			// use a temporary list of items to remove
 			List<Layer.LayerItem> itemToRemove = new List<Layer.LayerItem>(mItems.Count);
 
 			// iterate on all the items of the list to find the one to remove
 			foreach (Layer.LayerItem item in mItems)
-				if ((item.PartNumber != string.Empty) && !Budget.Budget.Instance.canAddBrick(item.PartNumber))
+			{
+				// check if we already met this part
+				int count = 0;
+				if (itemCount.TryGetValue(item.PartNumber, out count))
+					itemCount.Remove(item.PartNumber);
+				// increase and add the count
+				itemCount.Add(item.PartNumber, ++count);
+				// check if we can add it
+				if ((item.PartNumber != string.Empty) && !Budget.Budget.Instance.canAddBrick(item.PartNumber, count))
 				{
 					// checked if this item is a group, in that case, we need to remove all the hierachy
 					if (item.IsAGroup)
@@ -83,10 +104,15 @@ namespace BlueBrick.Actions.Bricks
 					else
 						itemToRemove.Add(item);
 				}
+			}
 
 			// then remove all the items
 			foreach (Layer.LayerItem item in itemToRemove)
 				mItems.Remove(item);
+
+			// beep if we removed some items
+			if (itemToRemove.Count > 0)
+				Map.Instance.giveFeedbackForNotAddingBrick();
 		}
 
 		public override void redo()

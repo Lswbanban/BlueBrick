@@ -137,10 +137,24 @@ namespace BlueBrick.Budget
 		/// <returns>true if you can add this part</returns>
 		public bool canAddBrick(string partID)
 		{
+			return canAddBrick(partID, 1);
+		}
+
+		/// <summary>
+		/// If the budget limitation is enabled, this method will check if the brick count is less than the budget
+		/// and return true, otherwise if the limit is reached return false. If the budget is not set for that part,
+		/// it will also return true.
+		/// If the budget limitation is not enable, this method always return true.
+		/// </summary>
+		/// <param name="partID">the full part id</param>
+		/// <param name="quantity">the quantity you want to add</param>
+		/// <returns>true if you can add this part</returns>
+		public bool canAddBrick(string partID, int quantity)
+		{
 			if (Properties.Settings.Default.UseBudgetLimitation)
 			{
 				int budget = getBudget(partID);
-				return ((budget < 0) || (getCount(partID) < budget));
+				return ((budget < 0) || (getCount(partID) + quantity <= budget));
 			}
 			return true;
 		}
