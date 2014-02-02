@@ -25,7 +25,7 @@ namespace BlueBrick.Actions.Texts
 		private LayerText mTextLayer = null;
 
 		public DuplicateText(LayerText layer, List<Layer.LayerItem> itemsToDuplicate, bool needToAddOffset)
-			: base(itemsToDuplicate, needToAddOffset)
+			: base(itemsToDuplicate, needToAddOffset, false)
 		{
 			// init the layer
 			mTextLayer = layer;

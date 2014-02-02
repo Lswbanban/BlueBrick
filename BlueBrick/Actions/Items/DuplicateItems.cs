@@ -26,7 +26,7 @@ namespace BlueBrick.Actions.Items
 		protected List<Layer.LayerItem> mItems = null;
 		protected List<int> mItemIndex = null; // this list of index is for the redo, to add each text at the same place
 
-		public DuplicateItems(List<Layer.LayerItem> itemsToDuplicate, bool needToAddOffset)
+		public DuplicateItems(List<Layer.LayerItem> itemsToDuplicate, bool needToAddOffset, bool addGroupsInItemList)
 		{
 			// init the index array with -1
 			mItemIndex = new List<int>(itemsToDuplicate.Count);
@@ -34,7 +34,7 @@ namespace BlueBrick.Actions.Items
 				mItemIndex.Add(-1);
 
 			// copy the list, because the pointer may change (specially if it is the selection)
-			mItems = cloneItemList(itemsToDuplicate);
+			mItems = cloneItemList(itemsToDuplicate, addGroupsInItemList);
 
 			// add an offset if needed
 			if (needToAddOffset)
@@ -53,8 +53,9 @@ namespace BlueBrick.Actions.Items
 		/// The cloned items are in the same order as the original list
 		/// </summary>
 		/// <param name="listToClone">The original list of brick to copy</param>
+		/// <param name="addGroupsInItemList">if this parameter is true, the groups are also added in the Items list</param>
 		/// <returns>A clone list of cloned brick with there cloned groups</returns>
-		protected List<Layer.LayerItem> cloneItemList(List<Layer.LayerItem> listToClone)
+		protected List<Layer.LayerItem> cloneItemList(List<Layer.LayerItem> listToClone, bool addGroupsInItemList)
 		{
 			// the resulting list
 			List<Layer.LayerItem> result = new List<Layer.LayerItem>(listToClone.Count);
@@ -79,6 +80,9 @@ namespace BlueBrick.Actions.Items
 					Layer.Group associatedGroup = null;
 					groupsToCreate.TryGetValue(originalItem as Layer.Group, out associatedGroup);
 					duplicatedItem = associatedGroup;
+					// check if we also need to add the group
+					if (addGroupsInItemList)
+						result.Add(duplicatedItem);
 				}
 				else
 				{

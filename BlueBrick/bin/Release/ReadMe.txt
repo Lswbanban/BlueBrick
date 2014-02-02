@@ -77,8 +77,7 @@ REMOVE ALL THE TODO
 	- need to display the budget name (next to the map name in the title bar)
 	- In preference: load a specific budget at startup (+ error message if can't)
 	- In preference: check the settings to choose if you want an infinite buget or a null budget by default
-	- beep if you try to add a part exceeding the budget (not done yet for copy/paste and replacement)
-	- how to limit the copy/paste with the budget
+	- beep if you try to add a part exceeding the budget (not done yet for replacement)
 	- how to limit the replacement of parts
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)

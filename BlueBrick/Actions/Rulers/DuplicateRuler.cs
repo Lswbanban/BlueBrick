@@ -24,7 +24,7 @@ namespace BlueBrick.Actions.Rulers
 		private LayerRuler mRulerLayer = null;
 
 		public DuplicateRuler(LayerRuler layer, List<Layer.LayerItem> itemsToDuplicate, bool needToAddOffset)
-			: base(itemsToDuplicate, needToAddOffset)
+			: base(itemsToDuplicate, needToAddOffset, false)
 		{
 			// init the layer
 			mRulerLayer = layer;
