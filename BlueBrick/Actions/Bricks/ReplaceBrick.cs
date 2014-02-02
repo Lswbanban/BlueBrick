@@ -50,6 +50,9 @@ namespace BlueBrick.Actions.Bricks
 			mBrickLayerList = layerList;
 			mPartNumberToReplace = partNumberToReplace;
 			mBrickPairList = new List<List<BrickPair>>(layerList.Count);
+			// use a counter of brick replaced, to avoid exceeding the budget
+			int replacedBrickCount = 0;
+			bool isBudgetLimitReached = false;
 			// iterate on all the layers
 			foreach (LayerBrick layer in layerList)
 			{
@@ -68,15 +71,32 @@ namespace BlueBrick.Actions.Bricks
                 // iterate on all the bricks of the layer or on the selection to find the brick to replace
 				foreach (Layer.LayerItem item in itemsToReplace)
                 {
-                    // create the new item
-                    Layer.LayerItem newItem = createReplacementBrick(item, newPartNumber);
-                    // create the pair and add it to the list
-                    BrickPair brickPair = new BrickPair(item, newItem);
-                    currentPairList.Add(brickPair);
-                    // check if we also need to add this pair to the list of brick to reselect
-                    if (layer.SelectedObjects.Contains(item))
-                        mReplacedBricksToSelect.Add(brickPair);
+					// increase the count of brick to replace
+					replacedBrickCount++;
+					// then check if we can add the brick
+					if (Budget.Budget.Instance.canAddBrick(newPartNumber, replacedBrickCount))
+					{
+						// create the new item
+						Layer.LayerItem newItem = createReplacementBrick(item, newPartNumber);
+						// create the pair and add it to the list
+						BrickPair brickPair = new BrickPair(item, newItem);
+						currentPairList.Add(brickPair);
+						// check if we also need to add this pair to the list of brick to reselect
+						if (layer.SelectedObjects.Contains(item))
+							mReplacedBricksToSelect.Add(brickPair);
+					}
+					else
+					{
+						// beep if we reach the limit
+						Map.Instance.giveFeedbackForNotAddingBrick();
+						// no need to continue if we cannot add more bricks, so stop the iteration
+						isBudgetLimitReached = true;
+						break;
+					}
                 }
+				// stop iterating on the layer if we reach the limit
+				if (isBudgetLimitReached)
+					break;
             }
 		}
 
