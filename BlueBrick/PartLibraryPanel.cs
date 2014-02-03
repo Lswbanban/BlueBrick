@@ -792,10 +792,7 @@ namespace BlueBrick
 					try
 					{
 						PartListView listView = tabPage.Controls[0] as PartListView;
-						if (listView.IsFiltered)
-							listView.BackColor = Settings.Default.PartLibFilteredBackColor;
-						else
-							listView.BackColor = Settings.Default.PartLibBackColor;
+						listView.updateBackgroundColor();
 						listView.ShowItemToolTips = displayBubbleInfo;
 						(tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.SHOW_BUBBLE_INFO] as ToolStripMenuItem).Checked = displayBubbleInfo;
 						// update the tooltip text of all the items

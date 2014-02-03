@@ -57,10 +57,10 @@ namespace BlueBrick
 		{
             InitializeComponent();
 			// set the property of the list view
-			this.BackColor = Properties.Settings.Default.PartLibBackColor;
 			this.ShowItemToolTips = Properties.Settings.Default.PartLibDisplayBubbleInfo;
 			this.ListViewItemSorter = sListViewItemComparer; // we want to sort the items based on their Name (which contains a sorting key)
 			updateViewStyle(); // set the view style depending if budget need to be visible or not
+			updateBackgroundColor();
 		}
 
         private void InitializeComponent()
@@ -211,7 +211,32 @@ namespace BlueBrick
 			// resort the list view
 			this.Sort();
 			// clear the background color with the default one
-			this.BackColor = Properties.Settings.Default.PartLibBackColor;
+			updateBackgroundColor();
+
+			// first filter on the budgeted parts if needed
+			try
+			{
+				if (Properties.Settings.Default.ShowOnlyBudgetedParts)
+				{
+					// do not use a foreach here because Mono doesn't support to remove items while iterating on the list
+					// so use an index instead and decrease the index when we remove the item
+					for (int i = 0; i < this.Items.Count; ++i)
+					{
+						ListViewItem item = this.Items[i];
+						string itemId = item.Tag as string;
+						// first filter on the budget: if not budgeted, remove it
+						if (!Budget.Budget.Instance.IsBudgeted(itemId))
+						{
+							item.Remove();
+							i--;
+							mFilteredItems.Add(item);
+						}
+					}
+				}
+			}
+			catch
+			{
+			}
 
 			// and now filter the current this list view if any
 			if ((includeIdFilter.Count != 0) || (includeFilter.Count != 0) || (excludeFilter.Count != 0))
@@ -290,6 +315,20 @@ namespace BlueBrick
 				imageArray[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
 			// return the result as a list of image
 			return (new List<Image>(imageArray));
+		}
+
+		/// <summary>
+		/// Update the background color according to the current filtering state. If there's some filtering keywords
+		/// it has the priority, otherwise check if we display only the budgeted part.
+		/// </summary>
+		public void updateBackgroundColor()
+		{
+			if (IsFiltered)
+				this.BackColor = Properties.Settings.Default.PartLibFilteredBackColor;
+			else if (Properties.Settings.Default.ShowOnlyBudgetedParts)
+				this.BackColor = Properties.Settings.Default.PartLibShowOnlyBudgetedPartsColor;
+			else
+				this.BackColor = Properties.Settings.Default.PartLibBackColor;
 		}
 		#endregion
 

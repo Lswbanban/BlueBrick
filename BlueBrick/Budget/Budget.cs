@@ -43,6 +43,16 @@ namespace BlueBrick.Budget
 
 		#region budget management
 		/// <summary>
+		/// Tell if the specified part has a budget defined
+		/// </summary>
+		/// <param name="partID">the part id for which you want to know if it has a budget</param>
+		/// <returns>true if the budget is defined (not infinite)</returns>
+		public bool IsBudgeted(string partID)
+		{
+			return (getBudget(partID) >= 0);
+		}
+
+		/// <summary>
 		/// Set a budget number for the specified part id.
 		/// </summary>
 		/// <param name="partID">the full part id for which you want to set the budget</param>
