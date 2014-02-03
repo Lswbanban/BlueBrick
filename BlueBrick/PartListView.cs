@@ -362,6 +362,9 @@ namespace BlueBrick
 			// before asking its formating
 			this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
 			this.Items[e.Item].BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
+			// check if we have unbudgeted the part
+			if (newBudget == -1)
+				updateFilterForUnbudgetingPart(this.Items[e.Item]);
 		}
 
         private void PartListView_MouseDown(object sender, MouseEventArgs e)
@@ -512,6 +515,33 @@ namespace BlueBrick
 
 			// update the background color with the default one
 			updateBackgroundColor();
+		}
+
+		/// <summary>
+		/// If the list view is filtered to display only budgeted part, in case the user un-budget a part
+		/// (i.e. delete its budget), we need to make it disapear from the list of item and place it in the
+		/// not budgeted part temporary list
+		/// </summary>
+		/// <param name="unbudgetedItem">The item whose budget was removed</param>
+		private void updateFilterForUnbudgetingPart(ListViewItem unbudgetedItem)
+		{
+			if (Properties.Settings.Default.ShowOnlyBudgetedParts)
+			{
+				// search in the item list and in the filtered list (but this last case should never happe
+				// as the item must be in the list to be un-bugeted, otherwise the user cannot edit its buget)
+				if (this.Items.Contains(unbudgetedItem))
+				{
+					unbudgetedItem.Remove();
+					// then add it to the list of unbugeted items
+					mNotBudgetedItems.Add(unbudgetedItem);
+				}
+				else if (this.mFilteredItems.Contains(unbudgetedItem))
+				{
+					this.mFilteredItems.Remove(unbudgetedItem);
+					// then add it to the list of unbugeted items
+					mNotBudgetedItems.Add(unbudgetedItem);
+				}
+			}
 		}
         #endregion
     }
