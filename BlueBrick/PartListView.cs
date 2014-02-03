@@ -29,8 +29,10 @@ namespace BlueBrick
 		// the comparer to sort the list view item, base on their name property
 		private static ListViewItemComparerBasedOnName sListViewItemComparer = new ListViewItemComparerBasedOnName();
 
-		// create a temporary list view to temporary store the items that have been filtered on the current tab
+		// create a temporary list view to temporary store the items that have been filtered in this list view
 		private List<ListViewItem> mFilteredItems = new List<ListViewItem>();
+		// create another temporary list view to temporary store the items that are not budgeted in this listview
+		private List<ListViewItem> mNotBudgetedItems = new List<ListViewItem>();
 		
 		// the filter sentence
 		private string mFilterSentence = string.Empty;
@@ -212,31 +214,6 @@ namespace BlueBrick
 			this.Sort();
 			// clear the background color with the default one
 			updateBackgroundColor();
-
-			// first filter on the budgeted parts if needed
-			try
-			{
-				if (Properties.Settings.Default.ShowOnlyBudgetedParts)
-				{
-					// do not use a foreach here because Mono doesn't support to remove items while iterating on the list
-					// so use an index instead and decrease the index when we remove the item
-					for (int i = 0; i < this.Items.Count; ++i)
-					{
-						ListViewItem item = this.Items[i];
-						string itemId = item.Tag as string;
-						// first filter on the budget: if not budgeted, remove it
-						if (!Budget.Budget.Instance.IsBudgeted(itemId))
-						{
-							item.Remove();
-							i--;
-							mFilteredItems.Add(item);
-						}
-					}
-				}
-			}
-			catch
-			{
-			}
 
 			// and now filter the current this list view if any
 			if ((includeIdFilter.Count != 0) || (includeFilter.Count != 0) || (excludeFilter.Count != 0))
@@ -481,6 +458,60 @@ namespace BlueBrick
 				this.View = View.LargeIcon;
 			else
 				this.View = View.Tile;
+		}
+		
+		/// <summary>
+		/// Filter or not the part lib with the budgeted parts, depending on the current value of the setting
+		/// </summary>
+		public void updateFilterOnBudgetedParts()
+		{
+			// if the list view is currently filtered, unfilter it temporarly, then we will refilter it after having moved
+			// the some items to/from the non budgeted item list
+			if (this.IsFiltered)
+				this.filter(string.Empty, false);
+
+			// if we need to filter, put the non budgeted parts in the temporary list, otherwise put them back in the listview
+			if (Properties.Settings.Default.ShowOnlyBudgetedParts)
+			{
+				try
+				{
+					// do not use a foreach here because Mono doesn't support to remove items while iterating on the list
+					// so use an index instead and decrease the index when we remove the item
+					for (int i = 0; i < this.Items.Count; ++i)
+					{
+						ListViewItem item = this.Items[i];
+						string itemId = item.Tag as string;
+						// first filter on the budget: if not budgeted, remove it
+						if (!Budget.Budget.Instance.IsBudgeted(itemId))
+						{
+							item.Remove();
+							i--;
+							mNotBudgetedItems.Add(item);
+						}
+					}
+				}
+				catch
+				{
+				}
+			}
+			else
+			{
+				//put back all the previous filtered item in the list
+				foreach (ListViewItem item in mNotBudgetedItems)
+					this.Items.Add(item);
+				// clear the list
+				mNotBudgetedItems.Clear();
+				// resort the list view if we added some item (unless we will refilter it, which will cause a sort)
+				if (!this.IsFiltered)
+					this.Sort();
+			}
+
+			// refilter after move the (non) budgeted parts if needed
+			if (this.IsFiltered)
+				this.refilter();
+
+			// update the background color with the default one
+			updateBackgroundColor();
 		}
         #endregion
     }
