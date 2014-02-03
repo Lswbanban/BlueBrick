@@ -500,4 +500,7 @@ Le message d'erreur est :
   <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
     <value>Utiliser la limite de Budget</value>
   </data>
+  <data name="PartLibMenuItemShowOnlyBudgetedParts" xml:space="preserve">
+    <value>Afficher seulement les pièces budgetées</value>
+  </data>
 </root>

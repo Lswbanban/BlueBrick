@@ -565,4 +565,7 @@
   <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
     <value>Use Budget Limitation</value>
   </data>
+  <data name="PartLibMenuItemShowOnlyBudgetedParts" xml:space="preserve">
+    <value>Show Only Budgeted Parts</value>
+  </data>
 </root>

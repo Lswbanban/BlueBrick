@@ -1267,6 +1267,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Show Only Budgeted Parts.
+        /// </summary>
+        internal static string PartLibMenuItemShowOnlyBudgetedParts {
+            get {
+                return ResourceManager.GetString("PartLibMenuItemShowOnlyBudgetedParts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Use Budget Limitation.
         /// </summary>
         internal static string PartLibMenuItemUseBudgetLimitation {
