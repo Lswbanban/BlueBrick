@@ -844,6 +844,20 @@ namespace BlueBrick
 			}
 		}
 
+		/// <summary>
+		/// Filter or not the part lib with the budgeted parts, depending on the current value of the setting
+		/// </summary>
+		public void updateFilterOnBudgetedParts()
+		{
+			// change the view of the list view
+			foreach (TabPage tabPage in this.TabPages)
+			{
+				PartListView listView = tabPage.Controls[0] as PartListView;
+				if (listView != null)
+					listView.updateFilterOnBudgetedParts();
+			}
+		}
+
 		public void savePartListDisplayStatusInSettings()
 		{
 			// reset the setting list

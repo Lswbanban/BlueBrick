@@ -2131,7 +2131,9 @@ namespace BlueBrick
 			// update the setting
 			Properties.Settings.Default.ShowOnlyBudgetedParts = !Properties.Settings.Default.ShowOnlyBudgetedParts;
 			// then udpate the check state according to the new setting
-			this.showBudgetNumbersToolStripMenuItem.Checked = Properties.Settings.Default.ShowOnlyBudgetedParts;
+			this.showOnlyBudgetedPartsToolStripMenuItem.Checked = Properties.Settings.Default.ShowOnlyBudgetedParts;
+			// update the filtering on budget of the part lib
+			this.PartsTabControl.updateFilterOnBudgetedParts();
 		}
 
 		public void showBudgetNumbersToolStripMenuItem_Click(object sender, EventArgs e)
