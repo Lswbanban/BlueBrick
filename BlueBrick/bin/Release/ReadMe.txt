@@ -72,11 +72,16 @@ REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
 	- ways to add a brick: drag'n'drop, click in the library, shortcut key, copy/paste, duplicate drag'n'drop, replacement
 	- Menu "Budget": New, Open, Import, Save, Save As... | Use Budget, Show Budget Number, Show Only Parts in Budget (à voir avec filter)
+	- implement the logic of graying the menu item (in main menu and context menu)
+	- implement logic for diplaying only parts in budget
+		- Bug on filter: filter with a keyword, for all the tab, then clear the filter, and switch tab, one tab as an empty keyword but stay red nd filtered
 	- save the UI settings of the Budget Menu
 	- need to check if the budget was modified to prompt a message when leaving BB
 	- need to display the budget name (next to the map name in the title bar)
-	- In preference: load a specific budget at startup (+ error message if can't)
-	- In preference: check the settings to choose if you want an infinite buget or a null budget by default
+	- Preference form:
+		- In preference: load a specific budget at startup (+ error message if can't)
+		- In preference: check the settings to choose if you want an infinite buget or a null budget by default
+		- one more color for the background of the part lib if we only show parts in the budget
 	- Error message when brick are limited during a copy/paste or replacement (with a don't show this again)
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)

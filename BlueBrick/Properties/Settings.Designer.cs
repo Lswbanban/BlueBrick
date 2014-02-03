@@ -1235,5 +1235,29 @@ namespace BlueBrick.Properties {
                 this["IsDefaultBudgetInfinite"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowOnlyBudgetedParts {
+            get {
+                return ((bool)(this["ShowOnlyBudgetedParts"]));
+            }
+            set {
+                this["ShowOnlyBudgetedParts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LemonChiffon")]
+        public global::System.Drawing.Color PartLibShowOnlyBudgetedPartsColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PartLibShowOnlyBudgetedPartsColor"]));
+            }
+            set {
+                this["PartLibShowOnlyBudgetedPartsColor"] = value;
+            }
+        }
     }
 }

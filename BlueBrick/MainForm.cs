@@ -2126,6 +2126,14 @@ namespace BlueBrick
 
 		}
 
+		private void showOnlyBudgetedPartsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// update the setting
+			Properties.Settings.Default.ShowOnlyBudgetedParts = !Properties.Settings.Default.ShowOnlyBudgetedParts;
+			// then udpate the check state according to the new setting
+			this.showBudgetNumbersToolStripMenuItem.Checked = Properties.Settings.Default.ShowOnlyBudgetedParts;
+		}
+
 		public void showBudgetNumbersToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// update the setting
@@ -2134,11 +2142,6 @@ namespace BlueBrick
 			this.showBudgetNumbersToolStripMenuItem.Checked = Properties.Settings.Default.ShowBudgetNumbers;
 			// then update the view of the part lib
 			this.PartsTabControl.updateViewStyle();
-		}
-
-		private void showOnlyBudgetedPartsToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-
 		}
 
 		public void useBudgetLimitationToolStripMenuItem_Click(object sender, EventArgs e)

@@ -343,5 +343,11 @@
     <Setting Name="IsDefaultBudgetInfinite" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="ShowOnlyBudgetedParts" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PartLibShowOnlyBudgetedPartsColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LemonChiffon</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
