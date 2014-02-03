@@ -2126,7 +2126,7 @@ namespace BlueBrick
 
 		}
 
-		private void showOnlyBudgetedPartsToolStripMenuItem_Click(object sender, EventArgs e)
+		public void showOnlyBudgetedPartsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// update the setting
 			Properties.Settings.Default.ShowOnlyBudgetedParts = !Properties.Settings.Default.ShowOnlyBudgetedParts;
