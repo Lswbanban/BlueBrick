@@ -187,6 +187,8 @@ namespace BlueBrick
 			this.saveExportImageDialog = new System.Windows.Forms.SaveFileDialog();
 			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.toolTipForMainForm = new System.Windows.Forms.ToolTip(this.components);
+			this.openBudgetFileDialog = new System.Windows.Forms.OpenFileDialog();
+			this.saveBudgetFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.mainSplitContainer.Panel1.SuspendLayout();
 			this.mainSplitContainer.Panel2.SuspendLayout();
 			this.mainSplitContainer.SuspendLayout();
@@ -1389,6 +1391,18 @@ namespace BlueBrick
 			// 
 			this.colorDialog.Color = System.Drawing.Color.Gold;
 			// 
+			// openBudgetFileDialog
+			// 
+			this.openBudgetFileDialog.DefaultExt = "bbb";
+			resources.ApplyResources(this.openBudgetFileDialog, "openBudgetFileDialog");
+			this.openBudgetFileDialog.SupportMultiDottedExtensions = true;
+			// 
+			// saveBudgetFileDialog
+			// 
+			this.saveBudgetFileDialog.DefaultExt = "bbb";
+			resources.ApplyResources(this.saveBudgetFileDialog, "saveBudgetFileDialog");
+			this.saveBudgetFileDialog.SupportMultiDottedExtensions = true;
+			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
@@ -1597,6 +1611,8 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripMenuItem showBudgetNumbersToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem showOnlyBudgetedPartsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem useBudgetLimitationToolStripMenuItem;
+		private System.Windows.Forms.OpenFileDialog openBudgetFileDialog;
+		private System.Windows.Forms.SaveFileDialog saveBudgetFileDialog;
 	}
 }
 
