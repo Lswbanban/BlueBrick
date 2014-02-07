@@ -2282,17 +2282,18 @@ namespace BlueBrick
 
 		private void filterAllTabCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
+			// TODO create an accessor to get a proper filter sentence according to the foreColor
+			string filterSentence = (this.textBoxPartFilter.ForeColor == Color.Black) ? this.textBoxPartFilter.Text : string.Empty;
+
 			// change the icon of the button according to the button state
 			if (filterAllTabCheckBox.Checked)
 			{
 				filterAllTabCheckBox.ImageIndex = 0;
-                if (this.textBoxPartFilter.ForeColor == Color.Black)
-                    this.PartsTabControl.filterAllTabs(this.textBoxPartFilter.Text);
+				this.PartsTabControl.filterAllTabs(filterSentence);
 			}
 			else
 			{
 				filterAllTabCheckBox.ImageIndex = 1;
-				this.PartsTabControl.unfilterAllTabs();
 				// after refiltering all tabs with their own filter, filter the current tab
 				// with the current filter text of the combo box. because we want this behavior:
 				// 1) select tab A, filter with "A"
@@ -2304,8 +2305,8 @@ namespace BlueBrick
 				// 6) we want to keep the filtering of A with "C" (and tab B is with "B" and tab C with "C")
 				// another possible behavior would be to update the filter text with the filter sentence of the
 				// current tab: in that case, the user would see the text change when he uncheck the filter all checkbox
-                if (this.textBoxPartFilter.ForeColor == Color.Black)
-                    this.PartsTabControl.filterCurrentTab(this.textBoxPartFilter.Text);
+				// so actually we give in parameter the filter sentence to use for the current tab
+				this.PartsTabControl.unfilterAllTabs(filterSentence);
 			}
 		}
 		#endregion

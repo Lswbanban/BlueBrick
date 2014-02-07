@@ -73,7 +73,6 @@ REMOVE ALL THE TODO
 	- ways to add a brick: drag'n'drop, click in the library, shortcut key, copy/paste, duplicate drag'n'drop, replacement
 	- Menu "Budget": New, Open, Import, Save, Save As... | Use Budget, Show Budget Number, Show Only Parts in Budget (à voir avec filter)
 	- implement the logic of graying the menu item (in main menu and context menu)
-	- Bug on filter: filter with a keyword, for all the tab, then clear the filter, and switch tab, one tab as an empty keyword but stay red nd filtered
 	- save the UI settings of the Budget Menu
 	- need to check if the budget was modified to prompt a message when leaving BB
 	- need to display the budget name (next to the map name in the title bar)

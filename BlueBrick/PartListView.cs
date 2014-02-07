@@ -43,9 +43,23 @@ namespace BlueBrick
 		private ListViewItem mItemHitOnMouseDownForAdding = null;
 
 		#region get/set
+		/// <summary>
+		/// Tell if this list view is filtered, no matter if it was a local filter or a global filter.
+		/// </summary>
 		public bool IsFiltered
 		{
-			get { return (mFilterSentence != string.Empty); }
+			get
+			{
+				// We need to check the filter sentence and not the count of the filtered item list,
+				// because it may happen that the filter sentence actually filter no item
+				// (i.e. all the items match the filter sentence), so the filtered list may be empty even
+				// if a filter sentence is entered by the user. But we need to check both the global and
+				// and local filter sentence to get an accurate answer.
+				if (Properties.Settings.Default.UIFilterAllLibraryTab)
+					return (Properties.Settings.Default.UIFilterAllSentence != string.Empty);
+				else
+					return (mFilterSentence != string.Empty);
+			}
 		}
 
 		public string FilterSentence
@@ -174,23 +188,34 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Call the filter function with the currently saved filter sentence
+		/// Call the filter function with the currently saved filter sentence or with the global filter sentence
+		/// depending on what is currently selected
 		/// </summary>
 		public void refilter()
 		{
-			filter(mFilterSentence, false);
+			// check with what we need to refilter
+			if (Properties.Settings.Default.UIFilterAllLibraryTab)
+				filter(Properties.Settings.Default.UIFilterAllSentence, false);
+			else
+				filter(mFilterSentence, false);
 		}
 
         /// <summary>
-        /// Call the filter function with the currently saved filter sentence
+		/// Call the filter function with the currently saved filter sentence or with the global filter sentence
+		/// depending on what is currently selected.
         /// <param name="forceEvenIfNotNeeded">if true the filtering will be performed, even if it is not needed</param>
         /// </summary>
         public void refilter(bool forceEvenIfNotNeeded)
         {
+			// to force the refiltering, we need to change the synch flag to false
             if (forceEvenIfNotNeeded)
                 mIsFilterSentenceSynchroWithCurrentFiltering = false;
-            // use true as param to save the filter in order to resynch the flag
-            filter(mFilterSentence, true);
+			// if we perform a global filtering do not save the gloabl filter sentence in the local one
+			if (Properties.Settings.Default.UIFilterAllLibraryTab)
+				filter(Properties.Settings.Default.UIFilterAllSentence, false);
+			else
+				// use true as param to save the filter in order to resynch the flag
+				filter(mFilterSentence, true);
         }
 
 		/// <summary>
@@ -468,9 +493,12 @@ namespace BlueBrick
 		/// </summary>
 		public void updateFilterOnBudgetedParts()
 		{
+			// use a bool flag to store the current filter state, because we will unfilter all, which will clear the flag
+			bool wasFiltered = this.IsFiltered;
+
 			// if the list view is currently filtered, unfilter it temporarly, then we will refilter it after having moved
 			// the some items to/from the non budgeted item list
-			if (this.IsFiltered)
+			if (wasFiltered)
 				this.filter(string.Empty, false);
 
 			// if we need to filter, put the non budgeted parts in the temporary list, otherwise put them back in the listview
@@ -505,12 +533,12 @@ namespace BlueBrick
 				// clear the list
 				mNotBudgetedItems.Clear();
 				// resort the list view if we added some item (unless we will refilter it, which will cause a sort)
-				if (!this.IsFiltered)
+				if (!wasFiltered)
 					this.Sort();
 			}
 
 			// refilter after move the (non) budgeted parts if needed
-			if (this.IsFiltered)
+			if (wasFiltered)
 				this.refilter();
 
 			// update the background color with the default one
