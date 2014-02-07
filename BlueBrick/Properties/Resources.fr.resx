@@ -503,4 +503,13 @@ Le message d'erreur est :
   <data name="PartLibMenuItemShowOnlyBudgetedParts" xml:space="preserve">
     <value>Afficher seulement les pièces budgetées</value>
   </data>
+  <data name="ErrorMsgCannotOpenBudget" xml:space="preserve">
+    <value>Impossible d'ouvrir le budget &amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveBudget" xml:space="preserve">
+    <value>Impossible de sauvegarder le budget &amp;.</value>
+  </data>
+  <data name="DefaultSaveFileNameForBudget" xml:space="preserve">
+    <value>MonBudget.bbb</value>
+  </data>
 </root>
