@@ -525,6 +525,10 @@ namespace BlueBrick
 				// add the filter incitation message (which is saved in the ressource)
 				addInputFilterIndication();
 			}
+			// budget menu
+			this.showOnlyBudgetedPartsToolStripMenuItem.Checked = Properties.Settings.Default.ShowOnlyBudgetedParts;
+			this.showBudgetNumbersToolStripMenuItem.Checked = Properties.Settings.Default.ShowBudgetNumbers;
+			this.useBudgetLimitationToolStripMenuItem.Checked = Properties.Settings.Default.UseBudgetLimitation;
 			// part list window
 			mPartListForm.Location = Properties.Settings.Default.UIPartListFormLocation;
 			mPartListForm.Size = Properties.Settings.Default.UIPartListFormSize;
