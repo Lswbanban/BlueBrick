@@ -568,4 +568,13 @@
   <data name="PartLibMenuItemShowOnlyBudgetedParts" xml:space="preserve">
     <value>Show Only Budgeted Parts</value>
   </data>
+  <data name="ErrorMsgCannotOpenBudget" xml:space="preserve">
+    <value>Cannot open the budget &amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveBudget" xml:space="preserve">
+    <value>Cannot save the budget &amp;.</value>
+  </data>
+  <data name="DefaultSaveFileNameForBudget" xml:space="preserve">
+    <value>MyBudget.bbb</value>
+  </data>
 </root>

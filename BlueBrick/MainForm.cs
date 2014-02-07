@@ -751,19 +751,34 @@ namespace BlueBrick
 				this.layerStackPanel.updateView(layerUpdateType);
 
 			// check if we need to change the "*" on the title bar
-			if (this.Text.EndsWith(" *"))
-			{
-				if (!Map.Instance.WasModified)
-					this.Text = this.Text.Remove(this.Text.Length - 2);
-			}
-			else
-			{
-				if (Map.Instance.WasModified)
-					this.Text += " *"; 
-			}
+			updateTitleBar();
 
 			// update the undo/redo stack
 			updateUndoRedoMenuItems();
+		}
+
+		/// <summary>
+		/// Update the title bar by displaying the application Name (BlueBrick) followed by the map file name with or without
+		/// an asterix, and the budget file name with or without an asterix, like this:
+		/// BlueBrick - Untitled.bbm (*) - MyBudget.bbb (*)
+		/// </summary>
+		private void updateTitleBar()
+		{
+			// use the file name of the map (not the full path)
+			FileInfo fileInfo = new FileInfo(Map.Instance.MapFileName);
+			string title = "BlueBrick - " + fileInfo.Name;
+			if (Map.Instance.WasModified)
+				title += " *";
+			// Add the budget name if any is loaded
+			if (Budget.Budget.Instance.IsOpened)
+			{
+				FileInfo budgetFileInfo = new FileInfo(Budget.Budget.Instance.BudgetFileName);
+				title += " - " + budgetFileInfo.Name;
+				if (Budget.Budget.Instance.WasModified)
+					title += " *";
+			}
+			// set the title bar text
+			this.Text = title;
 		}
 
 		/// <summary>
@@ -1137,10 +1152,10 @@ namespace BlueBrick
 			Map.Instance = new Map();
 			Layer.resetNameInstanceCounter();
 			ActionManager.Instance.clearStacks();
-			// reset the current file name
-			changeCurrentMapFileName(Properties.Resources.DefaultSaveFileName, false);
 			// reset the modified flag
 			Map.Instance.WasModified = false;
+			// reset the current file name
+			changeCurrentMapFileName(Properties.Resources.DefaultSaveFileName, false);
 			// update the view any way
 			this.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.FULL);
 			mPartListForm.rebuildList();
@@ -1197,9 +1212,8 @@ namespace BlueBrick
 			// save the filename
             Map.Instance.MapFileName = filename;
 			Map.Instance.IsMapNameValid = isAValidName;
-			// update the name (not the full path) of the title bar with the name of the file
-			FileInfo fileInfo = new FileInfo(filename);
-			this.Text = "BlueBrick - " + fileInfo.Name;
+			// update the name of the title bar with the name of the file
+			updateTitleBar();
 		}
 
 		private void openMap(string filename)
@@ -1335,8 +1349,8 @@ namespace BlueBrick
 				// after saving the map in any kind of format, we reset the WasModified flag of the map
 				// (and before the update of the title bar)
 				Map.Instance.WasModified = false;
-				// call the update view with NONE, because we just need to update the title bar
-				this.updateView(Action.UpdateViewType.NONE, Action.UpdateViewType.NONE);
+				// update the title bar to remove the asterix
+				this.updateTitleBar();
 			}
 			// restore the cursor
 			this.Cursor = Cursors.Default;
@@ -1480,10 +1494,10 @@ namespace BlueBrick
 					// save the bitmap in a file
 					image.Save(fileName, choosenFormat);
 				}
-				// if some export window (at least the first one) were validated, we need to update the view
-				// to set the little "*" after the name of the file in the tittle bar, because the export options
+				// if some export options (at least the first one) were validated, we need to update the view
+				// to set the little "*" after the name of the file in the title bar, because the export options
 				// have been saved in the map, therefore the map was modified.
-				updateView(Action.UpdateViewType.NONE, Action.UpdateViewType.NONE);
+				this.updateTitleBar();
 			}
             // restore the display settings
             mExportImageForm.restoreDisplaySettings();
@@ -2125,9 +2139,79 @@ namespace BlueBrick
 		#endregion
 
 		#region Budget Menu
+		private void changeCurrentBudgetFileName(string filename, bool isAValidName)
+		{
+			// save the filename
+			Budget.Budget.Instance.BudgetFileName = filename;
+			Budget.Budget.Instance.IsFileNameValid = isAValidName;
+			// update the name of the title bar with the name of the file
+			updateTitleBar();
+		}
+
+		private void budgetNewToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+
 		private void budgetOpenToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
+		}
+
+		private void budgetImportAndMergeToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void budgetCloseToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void saveBudget()
+		{
+			// set the wait cursor
+			this.Cursor = Cursors.WaitCursor;
+			// save the file
+			bool saveDone = SaveLoadManager.save(Budget.Budget.Instance.BudgetFileName);
+			if (saveDone)
+			{
+				// after saving the budget, we reset the WasModified flag of the budget
+				// (and before the update of the title bar)
+				Budget.Budget.Instance.WasModified = false;
+				// update the title bar
+				this.updateTitleBar();
+			}
+			// restore the cursor
+			this.Cursor = Cursors.Default;
+		}
+
+		private void budgetSaveToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// if the current file name is not defined we do a "save as..."
+			if (Budget.Budget.Instance.IsFileNameValid)
+				saveBudget();
+			else
+				budgetSaveAsToolStripMenuItem_Click(sender, e);
+		}
+
+		private void budgetSaveAsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// put the current file name in the dialog (which can be the default one)
+			this.saveFileDialog.FileName = Budget.Budget.Instance.BudgetFileName;
+			// if there's no initial directory, choose the My Documents directory
+			this.saveFileDialog.InitialDirectory = Path.GetDirectoryName(Budget.Budget.Instance.BudgetFileName);
+			if (this.saveFileDialog.InitialDirectory.Length == 0)
+				this.saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			// open the save as dialog
+			DialogResult result = this.saveFileDialog.ShowDialog();
+			if (result == DialogResult.OK)
+			{
+				// change the current file name before calling the save
+				changeCurrentBudgetFileName(this.saveFileDialog.FileName, true);
+				// save the map
+				saveBudget();
+			}
 		}
 
 		public void showOnlyBudgetedPartsToolStripMenuItem_Click(object sender, EventArgs e)

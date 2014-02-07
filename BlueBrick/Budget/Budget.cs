@@ -16,13 +16,32 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using BlueBrick.MapData;
+using System.Xml.Serialization;
 
 namespace BlueBrick.Budget
 {
-	public class Budget
+	/// <summary>
+	/// The budget class hold a limit number possibly for every part of the library.
+	/// The budget will only maintain the budget numbers that were defined by the user.
+	/// A non defined budget will return either 0 or -1 (infinity) depending on the preference settings.
+	/// The budget class also keep the count of every part on the map, but do not save it in its 
+	/// XML serialization.
+	/// </summary>
+	[Serializable]
+	public class Budget : IXmlSerializable
 	{
 		// instance on the budget (the application only handle one budget for now)
 		private static Budget sInstance = new Budget();
+
+		// the current version of the data this version of BlueBrick can read/write
+		private const int CURRENT_DATA_VERSION = 1;
+
+		// the current version of the data
+		private static int mDataVersionOfTheFileLoaded = CURRENT_DATA_VERSION;
+
+		// for the current budget
+		private string mBudgetFileName = Properties.Resources.DefaultSaveFileNameForBudget;
+		private bool mIsFileNameValid = false;
 
 		// the budget if the limit set by the user for each brick
 		private Dictionary<string, int> mBudget = new Dictionary<string,int>();
@@ -38,6 +57,68 @@ namespace BlueBrick.Budget
 		{
 			get { return sInstance; }
 			set { sInstance = value; }
+		}
+
+		public string BudgetFileName
+		{
+			get { return mBudgetFileName; }
+			set { mBudgetFileName = value; }
+		}
+
+		public bool IsFileNameValid
+		{
+			get { return mIsFileNameValid; }
+			set { mIsFileNameValid = value; }
+		}
+
+		public bool IsOpened
+		{
+			get { return true; /*TODO to implement*/ }
+		}
+
+		public bool WasModified
+		{
+			get { return true; /*TODO to implement*/ }
+			set
+			{
+				// if the value is false (meaning we just saved the file), reset all the flags
+				if (!value)
+				{
+					// TOOD to implement
+				}
+			}
+		}
+		#endregion
+
+		#region IXmlSerializable Members
+		public System.Xml.Schema.XmlSchema GetSchema()
+		{
+			return null;
+		}
+
+		public virtual void ReadXml(System.Xml.XmlReader reader)
+		{
+			// version
+			reader.ReadToDescendant("Version");
+			mDataVersionOfTheFileLoaded = reader.ReadElementContentAsInt();
+		}
+
+		public virtual void WriteXml(System.Xml.XmlWriter writer)
+		{
+			// first of all the version, we don't use the vesion read from the file,
+			// for saving we always save with the last version of data
+			writer.WriteElementString("Version", CURRENT_DATA_VERSION.ToString());
+
+			// now write the budget list
+			writer.WriteStartElement("Budgets");
+			foreach (KeyValuePair<string, int> budget in mBudget)
+			{
+				writer.WriteStartElement("Budget");
+				writer.WriteAttributeString("part", budget.Key);
+				writer.WriteString(budget.Value.ToString());
+				writer.WriteEndElement();
+			}
+			writer.WriteEndElement();
 		}
 		#endregion
 

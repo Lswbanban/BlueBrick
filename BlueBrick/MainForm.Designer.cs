@@ -1022,6 +1022,7 @@ namespace BlueBrick
 			// 
 			this.budgetNewToolStripMenuItem.Name = "budgetNewToolStripMenuItem";
 			resources.ApplyResources(this.budgetNewToolStripMenuItem, "budgetNewToolStripMenuItem");
+			this.budgetNewToolStripMenuItem.Click += new System.EventHandler(this.budgetNewToolStripMenuItem_Click);
 			// 
 			// budgetOpenToolStripMenuItem
 			// 
@@ -1033,6 +1034,7 @@ namespace BlueBrick
 			// 
 			this.budgetImportAndMergeToolStripMenuItem.Name = "budgetImportAndMergeToolStripMenuItem";
 			resources.ApplyResources(this.budgetImportAndMergeToolStripMenuItem, "budgetImportAndMergeToolStripMenuItem");
+			this.budgetImportAndMergeToolStripMenuItem.Click += new System.EventHandler(this.budgetImportAndMergeToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator15
 			// 
@@ -1043,16 +1045,19 @@ namespace BlueBrick
 			// 
 			this.budgetCloseToolStripMenuItem.Name = "budgetCloseToolStripMenuItem";
 			resources.ApplyResources(this.budgetCloseToolStripMenuItem, "budgetCloseToolStripMenuItem");
+			this.budgetCloseToolStripMenuItem.Click += new System.EventHandler(this.budgetCloseToolStripMenuItem_Click);
 			// 
 			// budgetSaveToolStripMenuItem
 			// 
 			this.budgetSaveToolStripMenuItem.Name = "budgetSaveToolStripMenuItem";
 			resources.ApplyResources(this.budgetSaveToolStripMenuItem, "budgetSaveToolStripMenuItem");
+			this.budgetSaveToolStripMenuItem.Click += new System.EventHandler(this.budgetSaveToolStripMenuItem_Click);
 			// 
 			// budgetSaveAsToolStripMenuItem
 			// 
 			this.budgetSaveAsToolStripMenuItem.Name = "budgetSaveAsToolStripMenuItem";
 			resources.ApplyResources(this.budgetSaveAsToolStripMenuItem, "budgetSaveAsToolStripMenuItem");
+			this.budgetSaveAsToolStripMenuItem.Click += new System.EventHandler(this.budgetSaveAsToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator16
 			// 

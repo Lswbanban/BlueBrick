@@ -33,22 +33,28 @@ namespace BlueBrick
 		{
 			if (File.Exists(filename))
 			{
+				string filenameLower = filename.ToLower();
+
 				try
 				{
-					string filenameLower = filename.ToLower();
-
 					if (filenameLower.EndsWith("ldr") || filenameLower.EndsWith("dat"))
 						return loadLDR(filename);
 					else if (filenameLower.EndsWith("mpd"))
 						return loadMDP(filename);
 					else if (filenameLower.EndsWith("tdl"))
 						return loadTDL(filename);
+					else if (filenameLower.EndsWith("bbb"))
+						return loadBudgetBBB(filename);
 					else
 						return loadBBM(filename);
 				}
 				catch (Exception e)
 				{
-					string message = Properties.Resources.ErrorMsgCannotOpenMap.Replace("&", filename);
+					string message = null;
+					if (filenameLower.EndsWith("bbb"))
+						message = Properties.Resources.ErrorMsgCannotOpenBudget.Replace("&", filename);
+					else
+						message = Properties.Resources.ErrorMsgCannotOpenMap.Replace("&", filename);
 					LoadErrorForm errorMessageDialog = new LoadErrorForm(Properties.Resources.ErrorMsgTitleError, message, e.Message);
 					errorMessageDialog.ShowDialog();
 					return false;
@@ -59,27 +65,61 @@ namespace BlueBrick
 
 		public static bool save(string filename)
 		{
+			string filenameLower = filename.ToLower();
+
 			try
 			{
-				string filenameLower = filename.ToLower();
-
 				if (filenameLower.EndsWith("ldr") || filenameLower.EndsWith("dat"))
 					return saveLDR(filename);
 				else if (filenameLower.EndsWith("mpd"))
 					return saveMDP(filename);
 				else if (filenameLower.EndsWith("tdl"))
 					return saveTDL(filename);
+				else if (filenameLower.EndsWith("bbb"))
+					return saveBudgetBBB(filename);
 				else
 					return saveBBM(filename);
 			}
 			catch (Exception e)
 			{
-				string message = Properties.Resources.ErrorMsgCannotSaveMap.Replace("&", filename);
+				string message = null;
+				if (filenameLower.EndsWith("bbb"))
+					message = Properties.Resources.ErrorMsgCannotSaveBudget.Replace("&", filename);
+				else
+					message = Properties.Resources.ErrorMsgCannotSaveMap.Replace("&", filename);
 				LoadErrorForm errorMessageDialog = new LoadErrorForm(Properties.Resources.ErrorMsgTitleError, message, e.Message);
 				errorMessageDialog.ShowDialog();
 				return false;
 			}
 		}
+		#endregion
+		#region Budget Files
+
+		private static bool loadBudgetBBB(string filename)
+		{
+			// create a serializer to load the map
+			XmlSerializer mySerializer = new XmlSerializer(typeof(Budget.Budget));
+			FileStream myFileStream = new FileStream(filename, FileMode.Open);
+			// parse and copy the data into this
+			Budget.Budget.Instance = mySerializer.Deserialize(myFileStream) as Budget.Budget;
+			// release the file stream
+			myFileStream.Close();
+			myFileStream.Dispose();
+			// the file can be open
+			return true;
+		}
+
+		private static bool saveBudgetBBB(string filename)
+		{
+			// the current file name must be valid to call this function
+			XmlSerializer mySerializer = new XmlSerializer(typeof(Budget.Budget));
+			StreamWriter myWriter = new StreamWriter(filename, false);
+			mySerializer.Serialize(myWriter, Budget.Budget.Instance);
+			myWriter.Close();
+			myWriter.Dispose();
+			return true;
+		}
+
 		#endregion
 		#region BlueBrick Format
 
