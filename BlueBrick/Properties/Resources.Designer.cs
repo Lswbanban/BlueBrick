@@ -757,6 +757,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your current Budget is not saved. Do you want to save your modification?.
+        /// </summary>
+        internal static string ErrorMsgBudgetWasModified {
+            get {
+                return ResourceManager.GetString("ErrorMsgBudgetWasModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string ErrorMsgCancelButton {

@@ -42,6 +42,7 @@ namespace BlueBrick.Budget
 		// for the current budget
 		private string mBudgetFileName = Properties.Resources.DefaultSaveFileNameForBudget;
 		private bool mIsFileNameValid = false;
+		private bool mIsExisting = false; // tell if a budget currently exists (was created with new, or opened)
 
 		// the budget if the limit set by the user for each brick
 		private Dictionary<string, int> mBudget = new Dictionary<string,int>();
@@ -71,9 +72,9 @@ namespace BlueBrick.Budget
 			set { mIsFileNameValid = value; }
 		}
 
-		public bool IsOpened
+		public bool IsExisting
 		{
-			get { return true; /*TODO to implement*/ }
+			get { return mIsExisting; }
 		}
 
 		public bool WasModified
@@ -98,9 +99,32 @@ namespace BlueBrick.Budget
 
 		public virtual void ReadXml(System.Xml.XmlReader reader)
 		{
+			// Do not clear the current budget, for handling the importation of budget with the same method
+			// the clear, is done outside of this class
+
+			// set the flag to tell that the budget now exists
+			mIsExisting = true;
+			// reset the was modified flag
+			this.WasModified = false;
+
 			// version
 			reader.ReadToDescendant("Version");
 			mDataVersionOfTheFileLoaded = reader.ReadElementContentAsInt();
+
+			// read the parts
+			bool partFound = reader.ReadToDescendant("Part");
+			while (partFound)
+			{
+				// read the part name and value
+				string partId = reader.GetAttribute("id");
+				int budget = reader.ReadElementContentAsInt();
+				// and set the budget
+				mBudget.Add(partId, budget);
+				// read the next part
+				partFound = reader.ReadToNextSibling("Part");
+			}
+			// read the PartList tag, to finish the list of parts
+			reader.Read();
 		}
 
 		public virtual void WriteXml(System.Xml.XmlWriter writer)
@@ -119,6 +143,44 @@ namespace BlueBrick.Budget
 				writer.WriteEndElement();
 			}
 			writer.WriteEndElement();
+		}
+
+		/// <summary>
+		/// reinit the whole budget.
+		/// </summary>
+		private void init()
+		{
+			// clear the budget and count
+			mBudget.Clear();
+			mCount.Clear();
+			// reset the flags
+			mBudgetFileName = Properties.Resources.DefaultSaveFileNameForBudget;
+			mIsFileNameValid = false;
+			// reset the was modified flag
+			this.WasModified = false;
+		}
+
+		/// <summary>
+		/// create a new budget by reiniting the current one
+		/// </summary>
+		public void create()
+		{
+			// reinit the budget
+			init();
+			// set the flag to tell that the budget now exist
+			mIsExisting = true;
+		}
+
+		/// <summary>
+		/// call this function if you want to destroy this budget. Be careful, no warning will be raised,
+		/// warning message has to be handled by the main form.
+		/// </summary>
+		public void destroy()
+		{
+			// reinit the budget
+			init();
+			// and set the flag to tell that no budget is created
+			mIsExisting = false;
 		}
 		#endregion
 

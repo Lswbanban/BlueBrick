@@ -577,4 +577,7 @@
   <data name="DefaultSaveFileNameForBudget" xml:space="preserve">
     <value>MyBudget.bbb</value>
   </data>
+  <data name="ErrorMsgBudgetWasModified" xml:space="preserve">
+    <value>Your current Budget is not saved. Do you want to save your modification?</value>
+  </data>
 </root>

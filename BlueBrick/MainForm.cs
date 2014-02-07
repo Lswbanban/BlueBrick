@@ -770,7 +770,7 @@ namespace BlueBrick
 			if (Map.Instance.WasModified)
 				title += " *";
 			// Add the budget name if any is loaded
-			if (Budget.Budget.Instance.IsOpened)
+			if (Budget.Budget.Instance.IsExisting)
 			{
 				FileInfo budgetFileInfo = new FileInfo(Budget.Budget.Instance.BudgetFileName);
 				title += " - " + budgetFileInfo.Name;
@@ -1265,9 +1265,7 @@ namespace BlueBrick
 			{
 				DialogResult result = this.openFileDialog.ShowDialog();
 				if (result == DialogResult.OK)
-				{
 					openMap(this.openFileDialog.FileName);
-				}
 			}
 		}
 
@@ -1507,7 +1505,8 @@ namespace BlueBrick
 		{
 			// we have first to undload the current file
 			// check if the current map is not save and display a warning message
-			if (checkForUnsavedMap())
+			// we also need to check for unsave budget because we will destroy the library
+			if (checkForUnsavedMap() && checkForUnsavedBudget())
 			{
 				// save the name of the current map open to reload it (if it is valid)
 				string previousOpenMapFileName = null;
@@ -1520,6 +1519,9 @@ namespace BlueBrick
 
 				// destroy the current map
 				reinitializeCurrentMap();
+
+				// destroy the current budget
+				// TODO: and we also need to reload it
 
 				// call the GC to be sure that all the image are correctly released, and no files stay locked
 				// even if the GC was normally already called in the create new map function
@@ -1576,8 +1578,8 @@ namespace BlueBrick
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			// check if the current map is not save and display a warning message
-			if (!checkForUnsavedMap())
+			// check if the current map or budget is not save and display a warning message
+			if (!checkForUnsavedMap() || !checkForUnsavedBudget())
 			{
 				// if the player cancel the closing then cancel the event
 				e.Cancel = true;
@@ -2139,6 +2141,61 @@ namespace BlueBrick
 		#endregion
 
 		#region Budget Menu
+		/// <summary>
+		/// This method check if the current budget is not saved and prompt a message box asking
+		/// what to do (save, do not save or cancel). This method sould be called before
+		/// exiting the application, and before creating or loading a new budget
+		/// <returns>true if the action can continue, false if user choose to cancel</returns>
+		/// </summary>
+		private bool checkForUnsavedBudget()
+		{
+			if (Budget.Budget.Instance.WasModified)
+			{
+				// if the user can cancel the application close, give him 3 buttons yes/no/cancel,
+				// else give him only 2 buttons yes/no:
+				DialogResult result = MessageBox.Show(this,
+					BlueBrick.Properties.Resources.ErrorMsgBudgetWasModified,
+					BlueBrick.Properties.Resources.ErrorMsgTitleWarning,
+					mCanUserCancelTheApplicationClose ? MessageBoxButtons.YesNoCancel : MessageBoxButtons.YesNo,
+					MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
+				if (result == DialogResult.Yes)
+				{
+					// call the save method (that maybe will perform a save as)
+					budgetSaveToolStripMenuItem_Click(null, null);
+				}
+				else if (result == DialogResult.Cancel)
+				{
+					// user cancel so return false
+					return false;
+				}
+			}
+			// the map was not modified (or user choose "yes" or "no"), the action can continue
+			return true;
+		}
+
+		private void openBudget(string filename)
+		{
+			// set the wait cursor
+			this.Cursor = Cursors.WaitCursor;
+			// load the file
+			bool isFileValid = SaveLoadManager.load(filename);
+			if (isFileValid)
+			{
+				// update the view
+				Budget.Budget.Instance.recountAllBricks();
+				// change the filename in the title bar
+				changeCurrentBudgetFileName(filename, true);
+			}
+			else
+			{
+				// change the filename in the title bar
+				changeCurrentBudgetFileName(Properties.Resources.DefaultSaveFileNameForBudget, false);
+			}
+			// restore the cursor after loading
+			this.Cursor = Cursors.Default;
+		}
+
 		private void changeCurrentBudgetFileName(string filename, bool isAValidName)
 		{
 			// save the filename
@@ -2150,22 +2207,38 @@ namespace BlueBrick
 
 		private void budgetNewToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			if (checkForUnsavedBudget())
+			{
+				// create a new budget and update the title bar
+				Budget.Budget.Instance.create();
+				this.updateTitleBar();
+			}
 		}
 
 		private void budgetOpenToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			// check if the current budget is not save and display a warning message
+			if (checkForUnsavedBudget())
+			{
+				DialogResult result = this.openBudgetFileDialog.ShowDialog();
+				if (result == DialogResult.OK)
+					openBudget(this.openBudgetFileDialog.FileName);
+			}
 		}
 
 		private void budgetImportAndMergeToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			//TODO to implement
 		}
 
 		private void budgetCloseToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			if (checkForUnsavedBudget())
+			{
+				// destroy the budget and update the title bar (to remove the budget name from the title bar)
+				Budget.Budget.Instance.destroy();
+				this.updateTitleBar();
+			}
 		}
 
 		private void saveBudget()
