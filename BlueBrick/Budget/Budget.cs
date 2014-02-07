@@ -110,11 +110,11 @@ namespace BlueBrick.Budget
 			writer.WriteElementString("Version", CURRENT_DATA_VERSION.ToString());
 
 			// now write the budget list
-			writer.WriteStartElement("Budgets");
+			writer.WriteStartElement("PartList");
 			foreach (KeyValuePair<string, int> budget in mBudget)
 			{
-				writer.WriteStartElement("Budget");
-				writer.WriteAttributeString("part", budget.Key);
+				writer.WriteStartElement("Part");
+				writer.WriteAttributeString("id", budget.Key);
 				writer.WriteString(budget.Value.ToString());
 				writer.WriteEndElement();
 			}

@@ -2198,17 +2198,17 @@ namespace BlueBrick
 		private void budgetSaveAsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// put the current file name in the dialog (which can be the default one)
-			this.saveFileDialog.FileName = Budget.Budget.Instance.BudgetFileName;
+			this.saveBudgetFileDialog.FileName = Budget.Budget.Instance.BudgetFileName;
 			// if there's no initial directory, choose the My Documents directory
-			this.saveFileDialog.InitialDirectory = Path.GetDirectoryName(Budget.Budget.Instance.BudgetFileName);
-			if (this.saveFileDialog.InitialDirectory.Length == 0)
-				this.saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			this.saveBudgetFileDialog.InitialDirectory = Path.GetDirectoryName(Budget.Budget.Instance.BudgetFileName);
+			if (this.saveBudgetFileDialog.InitialDirectory.Length == 0)
+				this.saveBudgetFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 			// open the save as dialog
-			DialogResult result = this.saveFileDialog.ShowDialog();
+			DialogResult result = this.saveBudgetFileDialog.ShowDialog();
 			if (result == DialogResult.OK)
 			{
 				// change the current file name before calling the save
-				changeCurrentBudgetFileName(this.saveFileDialog.FileName, true);
+				changeCurrentBudgetFileName(this.saveBudgetFileDialog.FileName, true);
 				// save the map
 				saveBudget();
 			}
