@@ -512,4 +512,7 @@ Le message d'erreur est :
   <data name="DefaultSaveFileNameForBudget" xml:space="preserve">
     <value>MonBudget.bbb</value>
   </data>
+  <data name="ErrorMsgBudgetWasModified" xml:space="preserve">
+    <value>Votre budget actuel n'est pas sauvegardé. Voulez-vous sauver vos modifications ?</value>
+  </data>
 </root>
