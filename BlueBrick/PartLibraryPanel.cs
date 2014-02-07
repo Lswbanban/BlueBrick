@@ -96,9 +96,6 @@ namespace BlueBrick
 		// the drag and drop. Null means no parts are droped
 		private string mDraggingPartNumber = null;
 
-		// the filter sentence common to all tabs, if we were asked to filter all tabs (or null, if no common filter asked)
-		private string mCommonFilterSentence = null;
-
 		#region get/set
 		public string DraggingPartNumber
 		{
@@ -717,29 +714,40 @@ namespace BlueBrick
 		public void filterAllTabs(string filterSentence)
 		{
 			// save the global filter sentence
-			mCommonFilterSentence = filterSentence;
+			Settings.Default.UIFilterAllSentence = filterSentence;
+			Settings.Default.UIFilterAllLibraryTab = true;
 			// and iterate on all the tabs
 			foreach (TabPage tabPage in this.TabPages)
 			{
 				PartListView listView = tabPage.Controls[0] as PartListView;
 				if (listView != null)
-					listView.filter(filterSentence, false);
+					listView.filter(filterSentence, (tabPage == this.SelectedTab)); // save the filter only for the selected tab
 			}
 		}
 
 		/// <summary>
 		/// remove the global filtering currently set for all tabs
+		/// <param name="filterSentence">the current filter sentence in the filter combo box, when the unfilter all button is pressed</param>
 		/// </summary>
-		public void unfilterAllTabs()
+		public void unfilterAllTabs(string filterSentence)
 		{
 			// clear the global filter sentence
-			mCommonFilterSentence = null;
+			Settings.Default.UIFilterAllSentence = string.Empty;
+			Settings.Default.UIFilterAllLibraryTab = false;
 			// and iterate on all the tabs
 			foreach (TabPage tabPage in this.TabPages)
 			{
 				PartListView listView = tabPage.Controls[0] as PartListView;
 				if (listView != null)
-					listView.refilter();
+				{
+					// if the user hit the "unfilter all button", we need to save the current filter sentence which is displayed 
+				    // in the combo box, in the list view, other wise the refiltering will not be in synch with what is displayed
+					// in the combo box
+					if (tabPage == this.SelectedTab)
+						listView.filter(filterSentence, true);
+					else
+						listView.refilter();
+				}
 			}
 		}
 
@@ -881,11 +889,6 @@ namespace BlueBrick
 				// add the new config in the list
 				Settings.Default.UIPartLibDisplayConfig.Add(tabConfig);
 			}
-			// save the global filter if any
-			if (this.mCommonFilterSentence != null)
-				Properties.Settings.Default.UIFilterAllSentence = this.mCommonFilterSentence;
-			else
-				Properties.Settings.Default.UIFilterAllSentence = string.Empty;
 			// also save the current tab displayed
 			Properties.Settings.Default.UIPartLibSelectedTabIndex = this.SelectedIndex;
 		}
@@ -1069,7 +1072,7 @@ namespace BlueBrick
 		{
 			// if we don't have a global filtering, update the filter combo box, with the 
 			// filter of the new current tab
-			if ((mCommonFilterSentence == null) && (this.SelectedTab != null))
+			if (!Settings.Default.UIFilterAllLibraryTab && (this.SelectedTab != null))
 			{
 				PartListView listView = this.SelectedTab.Controls[0] as PartListView;
 				if (listView != null)
