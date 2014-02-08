@@ -73,15 +73,14 @@ REMOVE ALL THE TODO
 	- ways to add a brick: drag'n'drop, click in the library, shortcut key, copy/paste, duplicate drag'n'drop, replacement
 	- Menu "Budget": New, Open, Import, Save, Save As... | Use Budget, Show Budget Number, Show Only Parts in Budget (à voir avec filter)
 	- implement the logic of graying the menu item (in main menu and context menu)
-	- update the part filtering at startup and after reloading part lib, and after loading a new filter file
-	- need to check if the budget was modified to prompt a message when leaving BB
-	- need to display the budget name (next to the map name in the title bar)
+	- update the part filtering at startup and after reloading part lib
 	- Preference form:
 		- In preference: load a specific budget at startup (+ error message if can't)
 		- In preference: check the settings to choose if you want an infinite buget or a null budget by default
 		- one more color for the background of the part lib if we only show parts in the budget
 	- Error message when brick are limited during a copy/paste or replacement (with a don't show this again)
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
+	- bug when double-click on the budget, the count disapear
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
