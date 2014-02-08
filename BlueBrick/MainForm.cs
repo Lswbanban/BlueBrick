@@ -762,7 +762,7 @@ namespace BlueBrick
 		/// an asterix, and the budget file name with or without an asterix, like this:
 		/// BlueBrick - Untitled.bbm (*) - MyBudget.bbb (*)
 		/// </summary>
-		private void updateTitleBar()
+		public void updateTitleBar()
 		{
 			// use the file name of the map (not the full path)
 			FileInfo fileInfo = new FileInfo(Map.Instance.MapFileName);
