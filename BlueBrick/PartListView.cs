@@ -464,15 +464,41 @@ namespace BlueBrick
 		#endregion
 
 		#region related to budget
+		private void updatePartTextAndBackColor(ListViewItem item, string onlyForThisPartId)
+		{
+			string partID = item.Tag as string;
+			if ((onlyForThisPartId == null) || (partID.Equals(onlyForThisPartId)))
+			{
+				item.Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+				item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
+			}
+		}
+
+		/// <summary>
+		/// Iterate on all the items of this list view (no matter if they are filtered or not)
+		/// and update the text and background color of the text for each of these items, based
+		/// on the budget and count value in the current Budget class.
+		/// </summary>
+		/// <param name="onlyForThisPartId">can be null for updating all items, or a non null string to update only the specified item</param>
+		private void updateAllPartTextAndBackColor(string onlyForThisPartId)
+		{
+			// iterate on the 3 lists
+			// the item list
+			foreach (ListViewItem item in this.Items)
+				updatePartTextAndBackColor(item, onlyForThisPartId);
+			// the filtered items
+			foreach (ListViewItem item in mFilteredItems)
+				updatePartTextAndBackColor(item, onlyForThisPartId);
+			// the non budgeted items
+			foreach (ListViewItem item in mNotBudgetedItems)
+				updatePartTextAndBackColor(item, onlyForThisPartId);
+		}
+
 		public void updatePartCount(string partID)
 		{
 			// since the partID is saved in the tag, no other choice than iterating on the list (cannot use Find() for example)
-			foreach (ListViewItem item in this.Items)
-				if (partID.Equals(item.Tag as string))
-				{
-					item.Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
-					item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
-				}
+			// no need to suspend the layout since we will update only one item
+			updateAllPartTextAndBackColor(partID);
 		}
 
 		/// <summary>
@@ -485,12 +511,7 @@ namespace BlueBrick
 			// suspend the layout, since we will update all the items
 			this.SuspendLayout();
 			// iterate on all items
-			foreach (ListViewItem item in this.Items)
-			{
-				string partID = item.Tag as string;
-				item.Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
-				item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
-			}
+			updateAllPartTextAndBackColor(null);
 			// resume the layout
 			this.ResumeLayout();
 		}
@@ -521,6 +542,17 @@ namespace BlueBrick
 			if (wasFiltered)
 				this.filter(string.Empty, false);
 
+			// suspend the layout since we will remove some items from the list
+			this.SuspendLayout();
+
+			// put back all the previous filtered item in the list, and then we will iterate on all the items in the
+			// list to remove them again. We do that, because it may happen that some items were filtered because they
+			// didn't have a budget, then we load a Budget file, and these items now have a budget
+			foreach (ListViewItem item in mNotBudgetedItems)
+				this.Items.Add(item);
+			// clear the list
+			mNotBudgetedItems.Clear();
+
 			// if we need to filter, put the non budgeted parts in the temporary list, otherwise put them back in the listview
 			if (Properties.Settings.Default.ShowOnlyBudgetedParts)
 			{
@@ -547,15 +579,15 @@ namespace BlueBrick
 			}
 			else
 			{
-				//put back all the previous filtered item in the list
-				foreach (ListViewItem item in mNotBudgetedItems)
-					this.Items.Add(item);
-				// clear the list
-				mNotBudgetedItems.Clear();
+				// if we don't filter on budget, we have already put all the budget in, so we just need
+				// to resort the list, but we only sort if we don't refilter (cause refilter will resort)
 				// resort the list view if we added some item (unless we will refilter it, which will cause a sort)
 				if (!wasFiltered)
 					this.Sort();
 			}
+
+			// resume the layout
+			this.ResumeLayout();
 
 			// refilter after move the (non) budgeted parts if needed
 			if (wasFiltered)
