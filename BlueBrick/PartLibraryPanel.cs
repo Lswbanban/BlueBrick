@@ -751,28 +751,28 @@ namespace BlueBrick
 			}
 		}
 
-		public void updatePartCount(string partID)
+		public void updatePartCountAndBudget(string partID)
 		{
 			// and iterate on all the tabs
 			foreach (TabPage tabPage in this.TabPages)
 			{
 				PartListView listView = tabPage.Controls[0] as PartListView;
 				if (listView != null)
-					listView.updatePartCount(partID);
+					listView.updatePartCountAndBudget(partID);
 			}
 		}
 
 		/// <summary>
 		/// Update all the budget of all the parts in all tabs of the part library
 		/// </summary>
-		public void updatePartBudget()
+		public void updateAllPartCountAndBudget()
 		{
 			// and iterate on all the tabs
 			foreach (TabPage tabPage in this.TabPages)
 			{
 				PartListView listView = tabPage.Controls[0] as PartListView;
 				if (listView != null)
-					listView.updatePartBudget();
+					listView.updateAllPartCountAndBudget();
 			}
 		}
 

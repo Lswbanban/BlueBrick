@@ -494,7 +494,7 @@ namespace BlueBrick
 				updatePartTextAndBackColor(item, onlyForThisPartId);
 		}
 
-		public void updatePartCount(string partID)
+		public void updatePartCountAndBudget(string partID)
 		{
 			// since the partID is saved in the tag, no other choice than iterating on the list (cannot use Find() for example)
 			// no need to suspend the layout since we will update only one item
@@ -506,7 +506,7 @@ namespace BlueBrick
 		/// This method should be called after loading a new budget file for example, or after reseting
 		/// the budget.
 		/// </summary>
-		public void updatePartBudget()
+		public void updateAllPartCountAndBudget()
 		{
 			// suspend the layout, since we will update all the items
 			this.SuspendLayout();

@@ -73,7 +73,7 @@ REMOVE ALL THE TODO
 	- ways to add a brick: drag'n'drop, click in the library, shortcut key, copy/paste, duplicate drag'n'drop, replacement
 	- Menu "Budget": New, Open, Import, Save, Save As... | Use Budget, Show Budget Number, Show Only Parts in Budget (à voir avec filter)
 	- implement the logic of graying the menu item (in main menu and context menu)
-	- update the part filtering at startup and after reloading part lib
+	- update the part filtering at startup
 	- Preference form:
 		- In preference: load a specific budget at startup (+ error message if can't)
 		- In preference: check the settings to choose if you want an infinite buget or a null budget by default
