@@ -493,6 +493,11 @@ namespace BlueBrick
 				// we update the list in the else because it is already updated in the openMap()
 				UpdateRecentFileMenuFromConfigFile();
 			}
+			// check if we need to open a budget at startup
+			if (false /* TODO */)
+			{
+				openBudget("TODO");
+			}
 		}
 
 		private void MainForm_Shown(object sender, EventArgs e)
@@ -1538,12 +1543,16 @@ namespace BlueBrick
 				loadPartLibraryFromDisk();
 				this.Cursor = Cursors.Default;
 
-				// most of the time the budget text for the item are correct (cause correctly set during creation)
-				// however, the user may have rename a part just before reloading, so we need to update the budget and the view again
-				Budget.Budget.Instance.updatePartId();
-				this.PartsTabControl.updateAllPartCountAndBudget();
-				// update the part lib view filtering on budget
-				this.PartsTabControl.updateFilterOnBudgetedParts();
+				// Update the budget: most of the time the budget text for the item are correct (cause correctly set during creation)
+				// however, the user may have rename a part just before reloading the part lib, 
+				// so we need to update the budget and the view again if the budget was modified
+				if (Budget.Budget.Instance.updatePartId())
+				{
+					// update the count and budget
+					this.PartsTabControl.updateAllPartCountAndBudget();
+					// update the part lib view filtering on budget (because the renamed items may appear/disappear)
+					this.PartsTabControl.updateFilterOnBudgetedParts();
+				}
 
 				// finally reload the previous map or create a new one
 				if (previousOpenMapFileName != null)

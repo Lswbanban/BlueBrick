@@ -97,6 +97,39 @@ namespace BlueBrick
 			this.ResumeLayout(false);
 
         }
+
+		/// <summary>
+		/// This method is only to encapsulate a Mono bug that throw an exception for the 16th item added.
+		/// It will add the item to the list
+		/// </summary>
+		/// <param name="itemToAdd">The item to add to the list</param>
+		private void addItemToItemsList(ListViewItem itemToAdd)
+		{
+			try
+			{
+				// for a strange reason, on mono, this method throw an exception for all the
+				// item added after the 16th one added (but the item is still added).
+				// Probably a bug from Mono.
+				this.Items.Add(itemToAdd);
+			}
+			catch
+			{
+				// so ignore this exception for mono, otherwise it is displayed in the error message box
+			}
+		}
+
+		/// <summary>
+		/// This method will add the specified item to the list view, either in the visible item list
+		/// or in the non budgeted item list if the setting to hide non budgeted item is set.
+		/// </summary>
+		/// <param name="itemToAdd">the new item to add to the list view</param>
+		public void addNewItem(ListViewItem itemToAdd)
+		{
+			if (Properties.Settings.Default.ShowOnlyBudgetedParts && !Budget.Budget.Instance.IsBudgeted(itemToAdd.Tag as string))
+				mNotBudgetedItems.Add(itemToAdd);
+			else
+				addItemToItemsList(itemToAdd);
+		}
 		#endregion
 
 		#region filtering
@@ -232,7 +265,7 @@ namespace BlueBrick
 
 			//put back all the previous filtered item in the list
 			foreach (ListViewItem item in mFilteredItems)
-				this.Items.Add(item);
+				addItemToItemsList(item);
 			// clear the list
 			mFilteredItems.Clear();
 			// resort the list view
@@ -310,10 +343,12 @@ namespace BlueBrick
 			// directly inside the good index (so at the right place)
 			// also since the user can change the proportion flag while the list is filtered,
 			// also take into account the filtered list view items
-			Image[] imageArray = new Image[this.Items.Count + mFilteredItems.Count];
+			Image[] imageArray = new Image[this.Items.Count + mFilteredItems.Count + mNotBudgetedItems.Count];
 			foreach (ListViewItem item in this.Items)
 				imageArray[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
 			foreach (ListViewItem item in mFilteredItems)
+				imageArray[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
+			foreach (ListViewItem item in mNotBudgetedItems)
 				imageArray[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
 			// return the result as a list of image
 			return (new List<Image>(imageArray));
@@ -549,7 +584,7 @@ namespace BlueBrick
 			// list to remove them again. We do that, because it may happen that some items were filtered because they
 			// didn't have a budget, then we load a Budget file, and these items now have a budget
 			foreach (ListViewItem item in mNotBudgetedItems)
-				this.Items.Add(item);
+				addItemToItemsList(item);
 			// clear the list
 			mNotBudgetedItems.Clear();
 

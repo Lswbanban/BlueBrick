@@ -469,17 +469,7 @@ namespace BlueBrick
 				newItem.Text = Budget.Budget.Instance.getCountAndBudgetAsString(brick.mPartNumber);
 
 				// and insert the item
-				try
-				{
-					// for a strange reason, on mono, this method throw an exception for all the
-					// item added after the 16th one added (but the item is still added).
-					// Probably a bug from Mono.
-					buildingInfo.mListView.Items.Add(newItem);
-				}
-				catch
-				{
-					// so ignore this exception for mono, otherwise it is displayed in the error message box
-				}
+				buildingInfo.mListView.addNewItem(newItem);
 			}
         }
 
