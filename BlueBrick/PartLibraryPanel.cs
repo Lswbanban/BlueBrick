@@ -762,6 +762,20 @@ namespace BlueBrick
 			}
 		}
 
+		/// <summary>
+		/// Update all the budget of all the parts in all tabs of the part library
+		/// </summary>
+		public void updatePartBudget()
+		{
+			// and iterate on all the tabs
+			foreach (TabPage tabPage in this.TabPages)
+			{
+				PartListView listView = tabPage.Controls[0] as PartListView;
+				if (listView != null)
+					listView.updatePartBudget();
+			}
+		}
+
 		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBubbleInfoFormat, bool updateSelectedTab, bool updateCommonFilter)
 		{
 			// save the selected tab to reselect it after reorder
