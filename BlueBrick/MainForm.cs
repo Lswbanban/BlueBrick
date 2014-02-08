@@ -1051,14 +1051,14 @@ namespace BlueBrick
 		{
 			mPartListForm.addBrickNotification(layer, brickOrGroup);
 			Budget.Budget.Instance.addBrickNotification(brickOrGroup);
-			this.PartsTabControl.updatePartCount(brickOrGroup.PartNumber);
+			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup.PartNumber);
 		}
 
 		public void NotifyPartListForBrickRemoved(LayerBrick layer, Layer.LayerItem brickOrGroup)
 		{
 			mPartListForm.removeBrickNotification(layer, brickOrGroup);
 			Budget.Budget.Instance.removeBrickNotification(brickOrGroup);
-			this.PartsTabControl.updatePartCount(brickOrGroup.PartNumber);
+			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup.PartNumber);
 		}
 		#endregion
 
@@ -1160,6 +1160,7 @@ namespace BlueBrick
 			this.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.FULL);
 			mPartListForm.rebuildList();
 			Budget.Budget.Instance.recountAllBricks();
+			this.PartsTabControl.updateAllPartCountAndBudget();
 			// force a garbage collect because we just trashed the previous map
 			GC.Collect();
 		}
@@ -1234,6 +1235,7 @@ namespace BlueBrick
 				this.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.FULL);
 				mPartListForm.rebuildList();
 				Budget.Budget.Instance.recountAllBricks();
+				this.PartsTabControl.updateAllPartCountAndBudget();
 				//check if some parts were missing in the library for displaying a warning message
 				if (BrickLibrary.Instance.WereUnknownBricksAdded)
 				{
@@ -1520,9 +1522,6 @@ namespace BlueBrick
 				// destroy the current map
 				reinitializeCurrentMap();
 
-				// destroy the current budget
-				// TODO: and we also need to reload it
-
 				// call the GC to be sure that all the image are correctly released, and no files stay locked
 				// even if the GC was normally already called in the create new map function
 				// but the GC was called at then end of the reinitializeCurrentMap function
@@ -1538,6 +1537,13 @@ namespace BlueBrick
 				this.Cursor = Cursors.WaitCursor;
 				loadPartLibraryFromDisk();
 				this.Cursor = Cursors.Default;
+
+				// most of the time the budget text for the item are correct (cause correctly set during creation)
+				// however, the user may have rename a part just before reloading, so we need to update the budget and the view again
+				Budget.Budget.Instance.updatePartId();
+				this.PartsTabControl.updateAllPartCountAndBudget();
+				// update the part lib view filtering on budget
+				this.PartsTabControl.updateFilterOnBudgetedParts();
 
 				// finally reload the previous map or create a new one
 				if (previousOpenMapFileName != null)
@@ -2185,7 +2191,7 @@ namespace BlueBrick
 				// recount the parts because, opening a new budget actually create a new instance of Budget, so the count is destroyed
 				Budget.Budget.Instance.recountAllBricks();
 				// update the part lib view (after recounting the bricks), and also the filtering on it
-				this.PartsTabControl.updatePartBudget();
+				this.PartsTabControl.updateAllPartCountAndBudget();
 				this.PartsTabControl.updateFilterOnBudgetedParts();
 				// change the filename in the title bar
 				changeCurrentBudgetFileName(filename, true);
@@ -2215,7 +2221,7 @@ namespace BlueBrick
 				// create a new budget
 				Budget.Budget.Instance.create();
 				// update the part lib view
-				this.PartsTabControl.updatePartBudget();
+				this.PartsTabControl.updateAllPartCountAndBudget();
 				this.PartsTabControl.updateFilterOnBudgetedParts();
 				// update the title bar
 				this.updateTitleBar();
@@ -2245,7 +2251,7 @@ namespace BlueBrick
 				// destroy the budget
 				Budget.Budget.Instance.destroy();
 				// update the part lib view (to reset all the budgets)
-				this.PartsTabControl.updatePartBudget();
+				this.PartsTabControl.updateAllPartCountAndBudget();
 				this.PartsTabControl.updateFilterOnBudgetedParts();
 				// update the title bar (to remove the budget name from the title bar)
 				this.updateTitleBar();

@@ -118,8 +118,8 @@ namespace BlueBrick.Budget
 			bool partFound = reader.ReadToDescendant("Part");
 			while (partFound)
 			{
-				// read the part name and value
-				string partId = reader.GetAttribute("id");
+				// read the part name and value (get the new value if it was renamed)
+				string partId = BrickLibrary.Instance.getActualPartNumber(reader.GetAttribute("id"));
 				int budget = reader.ReadElementContentAsInt();
 				// and set the budget
 				mBudget.Add(partId, budget);
@@ -186,6 +186,33 @@ namespace BlueBrick.Budget
 			init();
 			// and set the flag to tell that no budget is created
 			mIsExisting = false;
+		}
+		#endregion
+
+		#region update
+		/// <summary>
+		/// This method iterate on all the budgeted part, and update the partid, for parts that have been renamed
+		/// </summary>
+		public void updatePartId()
+		{
+			// create a list of budget that we need to rename, cause we will iterate on the dictionnary
+			List<KeyValuePair<string, int>> budgetsToRename = new List<KeyValuePair<string, int>>();
+
+			// iterate on the dictionary
+			foreach (KeyValuePair<string, int> budget in mBudget)
+			{
+				string newPartId = BrickLibrary.Instance.getActualPartNumber(budget.Key);
+				if (!newPartId.Equals(budget.Key))
+					budgetsToRename.Add(budget);
+			}
+
+			// now remove all the old keys, and add the new ones
+			foreach (KeyValuePair<string, int> budget in budgetsToRename)
+			{
+				string newPartId = BrickLibrary.Instance.getActualPartNumber(budget.Key);
+				mBudget.Remove(budget.Key);
+				mBudget.Add(newPartId, budget.Value);
+			}
 		}
 		#endregion
 
