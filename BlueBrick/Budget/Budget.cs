@@ -43,6 +43,7 @@ namespace BlueBrick.Budget
 		private string mBudgetFileName = Properties.Resources.DefaultSaveFileNameForBudget;
 		private bool mIsFileNameValid = false;
 		private bool mIsExisting = false; // tell if a budget currently exists (was created with new, or opened)
+		private bool mWasModified = false;
 
 		// the budget if the limit set by the user for each brick
 		private Dictionary<string, int> mBudget = new Dictionary<string,int>();
@@ -79,14 +80,16 @@ namespace BlueBrick.Budget
 
 		public bool WasModified
 		{
-			get { return true; /*TODO to implement*/ }
+			get { return mWasModified; }
 			set
 			{
-				// if the value is false (meaning we just saved the file), reset all the flags
-				if (!value)
-				{
-					// TOOD to implement
-				}
+ 				// check if the state will change
+				bool stateChanged = (mWasModified != value);
+				// change the flag
+				mWasModified = value;
+				//if the state changed, call the update of the title bar
+				if (stateChanged)
+					MainForm.Instance.updateTitleBar();
 			}
 		}
 		#endregion
@@ -104,7 +107,7 @@ namespace BlueBrick.Budget
 
 			// set the flag to tell that the budget now exists
 			mIsExisting = true;
-			// reset the was modified flag
+			// reset the was modified flag cause we just load a new budget
 			this.WasModified = false;
 
 			// version
@@ -129,6 +132,9 @@ namespace BlueBrick.Budget
 
 		public virtual void WriteXml(System.Xml.XmlWriter writer)
 		{
+			// reset the was modified flag each time we save
+			this.WasModified = false;
+
 			// first of all the version, we don't use the vesion read from the file,
 			// for saving we always save with the last version of data
 			writer.WriteElementString("Version", CURRENT_DATA_VERSION.ToString());
@@ -202,9 +208,19 @@ namespace BlueBrick.Budget
 		/// <param name="budget">the budget number (can be negative or null)</param>
 		public void setBudget(string partID, int budget)
 		{
-			// remove the previous value before seting the new one
-			mBudget.Remove(partID);
-			mBudget.Add(partID, budget);
+			// get the current value if any, and remove the it before seting the new one
+			int currentBudget = 0;
+			if (mBudget.TryGetValue(partID, out currentBudget))
+				mBudget.Remove(partID); // if we found the value, remove it to avoid exception when adding it, or maybe we won't add it anymore if it's infinite budget
+			else
+				currentBudget = -1; // this is necessary, cause the TryGetValue set the value to zero if not found
+			// set the new budget but only if it is defined (otherwise a -1 budget, means, it should not be included in the list)
+			if (budget >= 0)
+				mBudget.Add(partID, budget);
+			else
+				budget = -1; // for any negative value, transform it into -1 (for the comparison below)
+			// every time we set a new budget (with a different value), change the modified flag
+			this.WasModified = (budget != currentBudget);
 		}
 
 		/// <summary>
