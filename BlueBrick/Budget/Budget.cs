@@ -124,7 +124,7 @@ namespace BlueBrick.Budget
 				// and set the budget
 				mBudget.Add(partId, budget);
 				// read the next part
-				partFound = reader.ReadToNextSibling("Part");
+				partFound = reader.Name.Equals("Part");
 			}
 			// read the PartList tag, to finish the list of parts
 			reader.Read();
@@ -156,9 +156,8 @@ namespace BlueBrick.Budget
 		/// </summary>
 		private void init()
 		{
-			// clear the budget and count
+			// clear the budget but do not clear the count (as you may change your budget, but the number of part didn't changed if you didn't changed your map)
 			mBudget.Clear();
-			mCount.Clear();
 			// reset the flags
 			mBudgetFileName = Properties.Resources.DefaultSaveFileNameForBudget;
 			mIsFileNameValid = false;

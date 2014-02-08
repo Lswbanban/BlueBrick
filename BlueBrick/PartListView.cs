@@ -476,6 +476,26 @@ namespace BlueBrick
 		}
 
 		/// <summary>
+		/// Update the budget of all the parts in the list view, by asking the current Budget class.
+		/// This method should be called after loading a new budget file for example, or after reseting
+		/// the budget.
+		/// </summary>
+		public void updatePartBudget()
+		{
+			// suspend the layout, since we will update all the items
+			this.SuspendLayout();
+			// iterate on all items
+			foreach (ListViewItem item in this.Items)
+			{
+				string partID = item.Tag as string;
+				item.Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+				item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
+			}
+			// resume the layout
+			this.ResumeLayout();
+		}
+
+		/// <summary>
 		/// Change the view style of this list view depending if the budget is visible or not.
 		/// The budget visibility is checked from the settings, so update the settings before calling this method.
 		/// If the budget is visible, the view uses LargeIcon, otherwise, it uses Tile.

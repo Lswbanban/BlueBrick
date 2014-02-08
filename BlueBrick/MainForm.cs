@@ -2182,8 +2182,10 @@ namespace BlueBrick
 			bool isFileValid = SaveLoadManager.load(filename);
 			if (isFileValid)
 			{
-				// update the view
+				// recount the parts because, opening a new budget actually create a new instance of Budget, so the count is destroyed
 				Budget.Budget.Instance.recountAllBricks();
+				// update the part lib view (after recounting the bricks)
+				this.PartsTabControl.updatePartBudget();
 				// change the filename in the title bar
 				changeCurrentBudgetFileName(filename, true);
 			}
@@ -2209,8 +2211,11 @@ namespace BlueBrick
 		{
 			if (checkForUnsavedBudget())
 			{
-				// create a new budget and update the title bar
+				// create a new budget
 				Budget.Budget.Instance.create();
+				// update the part lib view
+				this.PartsTabControl.updatePartBudget();
+				// update the title bar
 				this.updateTitleBar();
 			}
 		}
@@ -2235,8 +2240,11 @@ namespace BlueBrick
 		{
 			if (checkForUnsavedBudget())
 			{
-				// destroy the budget and update the title bar (to remove the budget name from the title bar)
+				// destroy the budget
 				Budget.Budget.Instance.destroy();
+				// update the part lib view (to reset all the budgets)
+				this.PartsTabControl.updatePartBudget();
+				// update the title bar (to remove the budget name from the title bar)
 				this.updateTitleBar();
 			}
 		}
