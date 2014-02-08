@@ -185,7 +185,9 @@ namespace BlueBrick
 			bubbleInfoMenuItem.Checked = Settings.Default.PartLibDisplayBubbleInfo;
 			contextMenu.Items.Add(bubbleInfoMenuItem);
 			// add a line
-			contextMenu.Items.Add(new ToolStripSeparator());
+			ToolStripSeparator separator = new ToolStripSeparator();
+			separator.Name = "budgetSeparator";
+			contextMenu.Items.Add(separator);
 			// menu item to show only the budgeted parts
 			ToolStripMenuItem showOnlyBudgetedPartsMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemShowOnlyBudgetedParts, null, menuItem_ShowOnlyBudgetedPartsClick);
 			showOnlyBudgetedPartsMenuItem.Name = "showOnlyBudgetedPartsMenuItem";
@@ -904,11 +906,26 @@ namespace BlueBrick
 		{
 			// update the checkstate of the budget stuff, cause they are globals at all the tab
 			ContextMenuStrip contextMenu = sender as ContextMenuStrip;
-			(contextMenu.Items["showOnlyBudgetedPartsMenuItem"] as ToolStripMenuItem).Checked = Properties.Settings.Default.ShowOnlyBudgetedParts;
-			(contextMenu.Items["showBudgetNumbersMenuItem"] as ToolStripMenuItem).Checked = Properties.Settings.Default.ShowBudgetNumbers;
-			(contextMenu.Items["useBudgetLimitationMenuItem"] as ToolStripMenuItem).Checked = Properties.Settings.Default.UseBudgetLimitation;
+			bool isBudgetVisible = Budget.Budget.Instance.IsExisting;
+			// separator
+			(contextMenu.Items["budgetSeparator"] as ToolStripSeparator).Visible = isBudgetVisible;
+			// show only budget
+			ToolStripMenuItem menuItem = (contextMenu.Items["showOnlyBudgetedPartsMenuItem"] as ToolStripMenuItem);
+			menuItem.Visible = isBudgetVisible;
+			menuItem.Checked = Properties.Settings.Default.ShowOnlyBudgetedParts;
+			// show budget number
+			menuItem = (contextMenu.Items["showBudgetNumbersMenuItem"] as ToolStripMenuItem);
+			menuItem.Visible = isBudgetVisible;
+			menuItem.Checked = Properties.Settings.Default.ShowBudgetNumbers;
+			// use budget limitation
+			menuItem = (contextMenu.Items["useBudgetLimitationMenuItem"] as ToolStripMenuItem);
+			menuItem.Visible = isBudgetVisible;
+			menuItem.Checked = Properties.Settings.Default.UseBudgetLimitation;
+			// budget edition
+			menuItem = (contextMenu.Items["editBudgetMenuItem"] as ToolStripMenuItem);
+			menuItem.Visible = isBudgetVisible;
 			// enable the edition only if a part is selected
-			(contextMenu.Items["editBudgetMenuItem"] as ToolStripMenuItem).Enabled = ((this.SelectedTab.Controls[0] as PartListView).SelectedItems.Count > 0);
+			menuItem.Enabled = ((this.SelectedTab.Controls[0] as PartListView).SelectedItems.Count > 0);
 		}
 
 		private void menuItem_LargeIconClick(object sender, EventArgs e)

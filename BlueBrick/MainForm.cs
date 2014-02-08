@@ -495,9 +495,9 @@ namespace BlueBrick
 			}
 			// check if we need to open a budget at startup
 			if (false /* TODO */)
-			{
 				openBudget("TODO");
-			}
+			else
+				updateEnableStatusForBudgetMenuItem();
 		}
 
 		private void MainForm_Shown(object sender, EventArgs e)
@@ -2157,6 +2157,22 @@ namespace BlueBrick
 
 		#region Budget Menu
 		/// <summary>
+		/// Enable or disable the budget menu item, depending if there's a current budget existing
+		/// </summary>
+		/// <param name="isEnabled"></param>
+		private void updateEnableStatusForBudgetMenuItem()
+		{
+			bool isEnabled = Budget.Budget.Instance.IsExisting;
+			this.budgetImportAndMergeToolStripMenuItem.Enabled = isEnabled;
+			this.budgetCloseToolStripMenuItem.Enabled = isEnabled;
+			this.budgetSaveToolStripMenuItem.Enabled = isEnabled;
+			this.budgetSaveAsToolStripMenuItem.Enabled = isEnabled;
+			this.showOnlyBudgetedPartsToolStripMenuItem.Enabled = isEnabled;
+			this.showBudgetNumbersToolStripMenuItem.Enabled = isEnabled;
+			this.useBudgetLimitationToolStripMenuItem.Enabled = isEnabled;
+		}
+
+		/// <summary>
 		/// This method check if the current budget is not saved and prompt a message box asking
 		/// what to do (save, do not save or cancel). This method sould be called before
 		/// exiting the application, and before creating or loading a new budget
@@ -2210,6 +2226,8 @@ namespace BlueBrick
 				// change the filename in the title bar
 				changeCurrentBudgetFileName(Properties.Resources.DefaultSaveFileNameForBudget, false);
 			}
+			// update the menu items
+			updateEnableStatusForBudgetMenuItem();
 			// restore the cursor after loading
 			this.Cursor = Cursors.Default;
 		}
@@ -2234,6 +2252,8 @@ namespace BlueBrick
 				this.PartsTabControl.updateFilterOnBudgetedParts();
 				// update the title bar
 				this.updateTitleBar();
+				// update the menu items
+				updateEnableStatusForBudgetMenuItem();
 			}
 		}
 
@@ -2264,6 +2284,8 @@ namespace BlueBrick
 				this.PartsTabControl.updateFilterOnBudgetedParts();
 				// update the title bar (to remove the budget name from the title bar)
 				this.updateTitleBar();
+				// update the menu items
+				updateEnableStatusForBudgetMenuItem();
 			}
 		}
 
