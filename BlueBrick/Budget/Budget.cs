@@ -105,10 +105,8 @@ namespace BlueBrick.Budget
 			// Do not clear the current budget, for handling the importation of budget with the same method
 			// the clear, is done outside of this class
 
-			// set the flag to tell that the budget now exists
-			mIsExisting = true;
-			// reset the was modified flag cause we just load a new budget
-			this.WasModified = false;
+			// set the existing flag to false before reading. If the reading goes well (no exception thrown) we will set it to true
+			mIsExisting = false;
 
 			// version
 			reader.ReadToDescendant("Version");
@@ -128,6 +126,12 @@ namespace BlueBrick.Budget
 			}
 			// read the PartList tag, to finish the list of parts
 			reader.Read();
+
+			// after that the reading went well (no exception thrown)
+			// set the flag to tell that the budget now exists
+			mIsExisting = true;
+			// reset the was modified flag cause we just load a new budget
+			this.WasModified = false;
 		}
 
 		public virtual void WriteXml(System.Xml.XmlWriter writer)
@@ -192,8 +196,9 @@ namespace BlueBrick.Budget
 		#region update
 		/// <summary>
 		/// This method iterate on all the budgeted part, and update the partid, for parts that have been renamed
+		/// <returns>true if some parts have been updated</returns>
 		/// </summary>
-		public void updatePartId()
+		public bool updatePartId()
 		{
 			// create a list of budget that we need to rename, cause we will iterate on the dictionnary
 			List<KeyValuePair<string, int>> budgetsToRename = new List<KeyValuePair<string, int>>();
@@ -213,6 +218,9 @@ namespace BlueBrick.Budget
 				mBudget.Remove(budget.Key);
 				mBudget.Add(newPartId, budget.Value);
 			}
+
+			// return true if some update was performed
+			return (budgetsToRename.Count > 0);
 		}
 		#endregion
 
