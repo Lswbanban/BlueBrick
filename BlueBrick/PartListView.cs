@@ -558,7 +558,7 @@ namespace BlueBrick
 		/// </summary>
 		public void updateViewStyle()
 		{
-			if (Properties.Settings.Default.ShowBudgetNumbers)
+			if (Properties.Settings.Default.ShowBudgetNumbers && Budget.Budget.Instance.IsExisting)
 				this.View = View.LargeIcon;
 			else
 				this.View = View.Tile;

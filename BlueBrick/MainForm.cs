@@ -2233,6 +2233,8 @@ namespace BlueBrick
 			}
 			// update the menu items
 			updateEnableStatusForBudgetMenuItem();
+			// then update the view of the part lib
+			this.PartsTabControl.updateViewStyle();
 			// restore the cursor after loading
 			this.Cursor = Cursors.Default;
 		}
@@ -2259,6 +2261,8 @@ namespace BlueBrick
 				this.updateTitleBar();
 				// update the menu items
 				updateEnableStatusForBudgetMenuItem();
+				// then update the view of the part lib
+				this.PartsTabControl.updateViewStyle();
 			}
 		}
 
@@ -2297,6 +2301,8 @@ namespace BlueBrick
 				this.updateTitleBar();
 				// update the menu items
 				updateEnableStatusForBudgetMenuItem();
+				// then update the view of the part lib
+				this.PartsTabControl.updateViewStyle();
 			}
 		}
 
