@@ -102,8 +102,7 @@ namespace BlueBrick.Budget
 
 		public virtual void ReadXml(System.Xml.XmlReader reader)
 		{
-			// Do not clear the current budget, for handling the importation of budget with the same method
-			// the clear, is done outside of this class
+			// The budget is already cleared cause a new instance of Budget is created for serialization
 
 			// set the existing flag to false before reading. If the reading goes well (no exception thrown) we will set it to true
 			mIsExisting = false;
@@ -191,6 +190,24 @@ namespace BlueBrick.Budget
 			// and set the flag to tell that no budget is created
 			mIsExisting = false;
 		}
+
+		public void mergeWith(Budget budgetToMerge)
+		{
+			int budgetValue = 0;
+			foreach (KeyValuePair<string, int> budget in budgetToMerge.mBudget)
+				if (mBudget.TryGetValue(budget.Key, out budgetValue))
+				{
+					mBudget.Remove(budget.Key);
+					mBudget.Add(budget.Key, budget.Value + budgetValue);
+				}
+				else
+				{
+					mBudget.Add(budget.Key, budget.Value);
+				}
+			// set the was modified flag, if we actually merge something (otherwise don't touch the flag)
+			if (budgetToMerge.mBudget.Count > 0)
+				this.WasModified = true;
+		}
 		#endregion
 
 		#region update
@@ -219,8 +236,14 @@ namespace BlueBrick.Budget
 				mBudget.Add(newPartId, budget.Value);
 			}
 
-			// return true if some update was performed
-			return (budgetsToRename.Count > 0);
+			// change the flag if we modified the budget (but don't change it, if we didn't modified it)
+			if (budgetsToRename.Count > 0)
+			{
+				this.WasModified = true;
+				return true;
+			}
+			// by default return false
+			return false;
 		}
 		#endregion
 
