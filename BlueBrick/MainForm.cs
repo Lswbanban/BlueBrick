@@ -495,7 +495,7 @@ namespace BlueBrick
 			}
 			// check if we need to open a budget at startup
 			if (false /* TODO */)
-				openBudget("TODO");
+				openBudget("TODO", null);
 			else
 				updateEnableStatusForBudgetMenuItem();
 		}
@@ -2205,7 +2205,7 @@ namespace BlueBrick
 			return true;
 		}
 
-		private void openBudget(string filename)
+		private void openBudget(string filename, Budget.Budget budgetToMerge)
 		{
 			// set the wait cursor
 			this.Cursor = Cursors.WaitCursor;
@@ -2213,18 +2213,23 @@ namespace BlueBrick
 			bool isFileValid = SaveLoadManager.load(filename);
 			if (isFileValid)
 			{
+				// check if we need to merge a budget in the new opened budget or not
+				if (budgetToMerge != null)
+				{
+					Budget.Budget.Instance.mergeWith(budgetToMerge);
+					// give back the title of the original budget to the loaded budget
+					changeCurrentBudgetFileName(budgetToMerge.BudgetFileName, true);
+				}
+				else
+				{
+					// change the filename in the title bar
+					changeCurrentBudgetFileName(filename, true);
+				}
 				// recount the parts because, opening a new budget actually create a new instance of Budget, so the count is destroyed
 				Budget.Budget.Instance.recountAllBricks();
 				// update the part lib view (after recounting the bricks), and also the filtering on it
 				this.PartsTabControl.updateAllPartCountAndBudget();
 				this.PartsTabControl.updateFilterOnBudgetedParts();
-				// change the filename in the title bar
-				changeCurrentBudgetFileName(filename, true);
-			}
-			else
-			{
-				// change the filename in the title bar
-				changeCurrentBudgetFileName(Properties.Resources.DefaultSaveFileNameForBudget, false);
 			}
 			// update the menu items
 			updateEnableStatusForBudgetMenuItem();
@@ -2264,13 +2269,19 @@ namespace BlueBrick
 			{
 				DialogResult result = this.openBudgetFileDialog.ShowDialog();
 				if (result == DialogResult.OK)
-					openBudget(this.openBudgetFileDialog.FileName);
+					openBudget(this.openBudgetFileDialog.FileName, null);
 			}
 		}
 
 		private void budgetImportAndMergeToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			//TODO to implement
+			// we don't check for unsaved budget, cause we will merge the current budget with the one we open
+			// save the current budget instance, cause the loading of new budget will erase it
+			Budget.Budget currentBudget = Budget.Budget.Instance;
+			// open the new one
+			DialogResult result = this.openBudgetFileDialog.ShowDialog();
+			if (result == DialogResult.OK)
+				openBudget(this.openBudgetFileDialog.FileName, currentBudget);
 		}
 
 		private void budgetCloseToolStripMenuItem_Click(object sender, EventArgs e)

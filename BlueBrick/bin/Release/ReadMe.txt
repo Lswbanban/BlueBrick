@@ -71,7 +71,6 @@ REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
 	- ways to add a brick: drag'n'drop, click in the library, shortcut key, copy/paste, duplicate drag'n'drop, replacement
-	- implement the import and merge
 	- Preference form:
 		- In preference: load a specific budget at startup (+ error message if can't)
 		- In preference: check the settings to choose if you want an infinite buget or a null budget by default
