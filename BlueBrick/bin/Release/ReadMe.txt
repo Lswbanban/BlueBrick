@@ -75,7 +75,7 @@ REMOVE ALL THE TODO
 		- In preference: load a specific budget at startup (+ error message if can't)
 		- In preference: check the settings to choose if you want an infinite buget or a null budget by default
 		- one more color for the background of the part lib if we only show parts in the budget
-	- Error message when brick are limited during a copy/paste or replacement (with a don't show this again)
+		- display or not the warning for duplicating parts over budget
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)

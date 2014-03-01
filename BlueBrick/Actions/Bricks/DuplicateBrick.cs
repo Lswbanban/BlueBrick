@@ -25,6 +25,15 @@ namespace BlueBrick.Actions.Bricks
 		private LayerBrick mBrickLayer = null;
 		private string mPartNumber = string.Empty; //if the list contains only one brick or one group, this is the name of this specific brick or group
 		private List<Layer.LayerItem> mBricksForNotification = null;
+		private bool mWereItemsTrimmed = false;
+
+		/// <summary>
+		/// Tell if some items have been trimmed from the specified list of item to duplicate
+		/// </summary>
+		public bool WereItemsTrimmed
+		{
+			get { return mWereItemsTrimmed; }
+		}
 
 		public DuplicateBrick(LayerBrick layer, List<Layer.LayerItem> bricksToDuplicate, bool needToAddOffset)
 			: base(bricksToDuplicate, needToAddOffset, Properties.Settings.Default.UseBudgetLimitation)
@@ -33,7 +42,7 @@ namespace BlueBrick.Actions.Bricks
 			mBrickLayer = layer;
 
 			// elagate the list according to the budget limit
-			trimItemListWithBudgetLimitation();
+			mWereItemsTrimmed = trimItemListWithBudgetLimitation();
 
 			// get bricks for the notification from the trimmed list
 			mBricksForNotification = Layer.sFilterListToGetOnlyBricksInLibrary(mItems);
@@ -73,12 +82,13 @@ namespace BlueBrick.Actions.Bricks
 		/// The item list to duplicate has been created in the constructor of the base class wich is common
 		/// to all item list. Now for the bricks only, we need to check if some bricks have reach the limit
 		/// from the Budget, and remove them from the list to duplicate.
+		/// <returns>true if some items have been trimmed</returns>
 		/// </summary>
-		private void trimItemListWithBudgetLimitation()
+		private bool trimItemListWithBudgetLimitation()
 		{
 			// first check if the budget limitation is enabled
 			if (!Properties.Settings.Default.UseBudgetLimitation)
-				return;
+				return false;
 
 			// use a temporary dictionnary to count the number of similar items the user wants to add
 			Dictionary<string, int> itemCount = new Dictionary<string, int>();
@@ -111,9 +121,13 @@ namespace BlueBrick.Actions.Bricks
 			foreach (Layer.LayerItem item in itemToRemove)
 				mItems.Remove(item);
 
-			// beep if we removed some items
+			// beep if we removed some items and return true
 			if (itemToRemove.Count > 0)
+			{
 				Map.Instance.giveFeedbackForNotAddingBrick();
+				return true;
+			}
+			return false;
 		}
 
 		public override void redo()

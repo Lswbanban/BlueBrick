@@ -580,4 +580,7 @@
   <data name="ErrorMsgBudgetWasModified" xml:space="preserve">
     <value>Your current Budget is not saved. Do you want to save your modification?</value>
   </data>
+  <data name="ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation" xml:space="preserve">
+    <value>Some parts will not be duplicated due to your current Budget limitation. Do you want to continue?</value>
+  </data>
 </root>

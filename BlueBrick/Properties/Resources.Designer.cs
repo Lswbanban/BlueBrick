@@ -1063,6 +1063,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Some parts will not be duplicated due to your current Budget limitation. Do you want to continue?.
+        /// </summary>
+        internal static string ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation {
+            get {
+                return ResourceManager.GetString("ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string ErrorMsgTitleError {
