@@ -1634,6 +1634,27 @@ namespace BlueBrick.MapData
 				{
 					mLastDuplicateAction = new Actions.Bricks.DuplicateBrick((this as LayerBrick), itemsToDuplicates, addOffset);
 					typeMatch = true;
+
+					// for duplicating bricks, we may display a warning message if the list was trimmed
+					if ((mLastDuplicateAction as Actions.Bricks.DuplicateBrick).WereItemsTrimmed &&
+						Properties.Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation)
+					{
+						// if some items have been trimmed, display a warning message
+						// use a local variable to get the value of the checkbox, by default we don't suggest the user to hide it
+						bool dontDisplayMessageAgain = false;
+
+						// display the warning message
+						DialogResult result = ForgetableMessageBox.Show(BlueBrick.MainForm.Instance, Properties.Resources.ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation,
+										Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNo,
+										MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, ref dontDisplayMessageAgain);
+
+						// set back the checkbox value in the settings (don't save the settings now, it will be done when exiting the application)
+						Properties.Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = !dontDisplayMessageAgain;
+
+						// if the user cancel the duplcate, just delete the action (but keep the type match as true of course)
+						if (result == DialogResult.Cancel)
+							mLastDuplicateAction = null;
+					}
 				}
 			}
 			else if (this is LayerRuler)

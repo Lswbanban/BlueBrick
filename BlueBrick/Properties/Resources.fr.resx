@@ -515,4 +515,7 @@ Le message d'erreur est :
   <data name="ErrorMsgBudgetWasModified" xml:space="preserve">
     <value>Votre budget actuel n'est pas sauvegardé. Voulez-vous sauver vos modifications ?</value>
   </data>
+  <data name="ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation" xml:space="preserve">
+    <value>Quelques pièces ne seront pas dupliquées à cause de la limite de votre budget actuel. Souhaitez-vous continuer ?</value>
+  </data>
 </root>

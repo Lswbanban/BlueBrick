@@ -349,5 +349,8 @@
     <Setting Name="PartLibShowOnlyBudgetedPartsColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">LemonChiffon</Value>
     </Setting>
+    <Setting Name="DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

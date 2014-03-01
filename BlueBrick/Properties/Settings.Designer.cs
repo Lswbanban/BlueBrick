@@ -1259,5 +1259,17 @@ namespace BlueBrick.Properties {
                 this["PartLibShowOnlyBudgetedPartsColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation {
+            get {
+                return ((bool)(this["DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation"]));
+            }
+            set {
+                this["DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation"] = value;
+            }
+        }
     }
 }
