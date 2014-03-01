@@ -77,7 +77,6 @@ REMOVE ALL THE TODO
 		- one more color for the background of the part lib if we only show parts in the budget
 	- Error message when brick are limited during a copy/paste or replacement (with a don't show this again)
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
-	- bug when double-click on the budget, the count disapear
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
