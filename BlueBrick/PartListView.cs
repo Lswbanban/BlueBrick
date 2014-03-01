@@ -429,8 +429,9 @@ namespace BlueBrick
 
         private void PartListView_MouseDown(object sender, MouseEventArgs e)
         {
-            // reset the item index
-            mItemForLabelEdit = null;
+			// reset the item index
+			mItemForLabelEdit = null;
+
 			// check if we click with the left button
 			if (e.Button == System.Windows.Forms.MouseButtons.Left)
 			{
@@ -474,7 +475,10 @@ namespace BlueBrick
 					{
 						// check if the clicked one is still the same
 						if (hitTest.Item == mItemForLabelEdit)
+						{
 							mItemForLabelEdit.Text = Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string);
+							mItemForLabelEdit.BeginEdit();
+						}
 					}
 					else if (hitTest.Item == mItemHitOnMouseDownForAdding)
 					{
