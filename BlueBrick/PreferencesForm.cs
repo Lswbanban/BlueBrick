@@ -233,7 +233,11 @@ namespace BlueBrick
 			{
 				fillPartLibraryListBox(isForResetingDefaultSetting);
 				this.PartLibBackColorPictureBox.BackColor = Settings.Default.PartLibBackColor;
+				this.partLibBudgetFilterBackColorPictureBox.BackColor = Settings.Default.PartLibShowOnlyBudgetedPartsColor;
 				this.PartLibFilteredBackColorPictureBox.BackColor = Settings.Default.PartLibFilteredBackColor;
+				this.PartLibDefaultBudgetNotLimitedradioButton.Checked = Settings.Default.IsDefaultBudgetInfinite;
+				this.PartLibDefaultBudgetZeroRadioButton.Checked = !Settings.Default.IsDefaultBudgetInfinite;
+				this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
 				this.displayPartIDCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartID;
 				this.displayPartColorCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartColor;
 				this.displayPartDescriptionCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartDescription;
@@ -348,7 +352,10 @@ namespace BlueBrick
 				foreach (string text in source.PartLibTabOrder)
 					destination.PartLibTabOrder.Add(text.Clone() as string);
 				destination.PartLibBackColor = source.PartLibBackColor;
+				destination.PartLibShowOnlyBudgetedPartsColor = source.PartLibShowOnlyBudgetedPartsColor;
 				destination.PartLibFilteredBackColor = source.PartLibFilteredBackColor;
+				destination.IsDefaultBudgetInfinite = source.IsDefaultBudgetInfinite;
+				destination.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
 				destination.PartLibBubbleInfoPartID = source.PartLibBubbleInfoPartID;
 				destination.PartLibBubbleInfoPartColor = source.PartLibBubbleInfoPartColor;
 				destination.PartLibBubbleInfoPartDescription = source.PartLibBubbleInfoPartDescription;
@@ -470,19 +477,24 @@ namespace BlueBrick
 			// -- tab PartLib
 			savePartLibraryTabOrder();
 			bool doesAppearanceChanged = (Settings.Default.PartLibBackColor != this.PartLibBackColorPictureBox.BackColor) ||
+										(Settings.Default.PartLibShowOnlyBudgetedPartsColor != this.partLibBudgetFilterBackColorPictureBox.BackColor) ||
 										(Settings.Default.PartLibFilteredBackColor != this.PartLibFilteredBackColorPictureBox.BackColor) ||
 										(Settings.Default.PartLibDisplayBubbleInfo != this.displayBubbleInfoCheckBox.Checked);
+			bool doesBudgetCountChanged = (Settings.Default.IsDefaultBudgetInfinite != this.PartLibDefaultBudgetNotLimitedradioButton.Checked);
 			bool doesBubbleInfoChanged = (Settings.Default.PartLibBubbleInfoPartID != this.displayPartIDCheckBox.Checked) ||
 										(Settings.Default.PartLibBubbleInfoPartColor != this.displayPartColorCheckBox.Checked) ||
 										(Settings.Default.PartLibBubbleInfoPartDescription != this.displayPartDescriptionCheckBox.Checked);
 			Settings.Default.PartLibBackColor = this.PartLibBackColorPictureBox.BackColor;
+			Settings.Default.PartLibShowOnlyBudgetedPartsColor = this.partLibBudgetFilterBackColorPictureBox.BackColor;
 			Settings.Default.PartLibFilteredBackColor = this.PartLibFilteredBackColorPictureBox.BackColor;
+			Settings.Default.IsDefaultBudgetInfinite = this.PartLibDefaultBudgetNotLimitedradioButton.Checked;
+			Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.Checked;
 			Settings.Default.PartLibBubbleInfoPartID = this.displayPartIDCheckBox.Checked;
 			Settings.Default.PartLibBubbleInfoPartColor = this.displayPartColorCheckBox.Checked;
 			Settings.Default.PartLibBubbleInfoPartDescription = this.displayPartDescriptionCheckBox.Checked;
 			Settings.Default.PartLibDisplayBubbleInfo = this.displayBubbleInfoCheckBox.Checked;
 			// call the function on the part lib to reflect the change
-			BlueBrick.MainForm.Instance.PartsTabControl.updateAppearanceAccordingToSettings(mHasPartLibOrderChanged, doesAppearanceChanged, doesBubbleInfoChanged, false, false);
+			BlueBrick.MainForm.Instance.PartsTabControl.updateAppearanceAccordingToSettings(mHasPartLibOrderChanged, doesAppearanceChanged, doesBudgetCountChanged, doesBubbleInfoChanged, false, false);
 
 			// -- tab shortcut key
 			// save the list view
@@ -1150,6 +1162,19 @@ namespace BlueBrick
 			}
 		}
 
+		private void partLibBudgetFilterBackColorPictureBox_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.colorDialog.Color = partLibBudgetFilterBackColorPictureBox.BackColor;
+			// open the color box in modal
+			DialogResult result = this.colorDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				partLibBudgetFilterBackColorPictureBox.BackColor = this.colorDialog.Color;
+			}
+		}
+
 		private void PartLibFilteredBackColorPictureBox_Click(object sender, EventArgs e)
 		{
 			// set the color with the current back color of the picture box
@@ -1161,6 +1186,11 @@ namespace BlueBrick
 				// if the user choose a color, set it back in the back color of the picture box
 				PartLibFilteredBackColorPictureBox.BackColor = this.colorDialog.Color;
 			}
+		}
+
+		private void PartLibBrowseBudgetFileButton_Click(object sender, EventArgs e)
+		{
+			//TODO
 		}
 		#endregion
 

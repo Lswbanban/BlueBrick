@@ -291,7 +291,7 @@ namespace BlueBrick
 				displayErrorMessage(imageFileUnloadable, xmlFileUnloadable);
 
 				// after creating all the tabs, sort them according to the settings
-				updateAppearanceAccordingToSettings(true, false, false, true, true);
+				updateAppearanceAccordingToSettings(true, false, false, false, true, true);
 			}
 		}
 
@@ -768,7 +768,7 @@ namespace BlueBrick
 			}
 		}
 
-		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBubbleInfoFormat, bool updateSelectedTab, bool updateCommonFilter)
+		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBudgetCount, bool updateBubbleInfoFormat, bool updateSelectedTab, bool updateCommonFilter)
 		{
 			// save the selected tab to reselect it after reorder
 			TabPage selectedTab = this.SelectedTab;
@@ -799,6 +799,10 @@ namespace BlueBrick
 					}
 				}
 			}
+
+			// update the budget number if needed
+			if (updateBudgetCount)
+				updateAllPartCountAndBudget();
 
 			if (updateAppearance || updateBubbleInfoFormat)
 			{
@@ -848,6 +852,9 @@ namespace BlueBrick
 				if (selectedTab != null)
 					this.SelectTab(selectedTab);
 			}
+
+			// redraw the selected tab to have the correct background color for part exceeding budget
+			this.SelectedTab.Invalidate();
 		}
 
 		/// <summary>

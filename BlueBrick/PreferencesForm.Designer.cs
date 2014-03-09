@@ -134,7 +134,17 @@ namespace BlueBrick
 			this.label15 = new System.Windows.Forms.Label();
 			this.colorSchemeComboBox = new System.Windows.Forms.ComboBox();
 			this.partLibTabPage = new System.Windows.Forms.TabPage();
+			this.groupBox16 = new System.Windows.Forms.GroupBox();
+			this.PartLibBrowseBudgetFileButton = new System.Windows.Forms.Button();
+			this.PartLibBudgetFilenameTextBox = new System.Windows.Forms.TextBox();
+			this.label38 = new System.Windows.Forms.Label();
+			this.PartLibDefaultBudgetNotLimitedradioButton = new System.Windows.Forms.RadioButton();
+			this.PartLibDefaultBudgetZeroRadioButton = new System.Windows.Forms.RadioButton();
+			this.label37 = new System.Windows.Forms.Label();
+			this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox = new System.Windows.Forms.CheckBox();
 			this.groupBox13 = new System.Windows.Forms.GroupBox();
+			this.label36 = new System.Windows.Forms.Label();
+			this.partLibBudgetFilterBackColorPictureBox = new System.Windows.Forms.PictureBox();
 			this.label29 = new System.Windows.Forms.Label();
 			this.PartLibFilteredBackColorPictureBox = new System.Windows.Forms.PictureBox();
 			this.label26 = new System.Windows.Forms.Label();
@@ -213,7 +223,9 @@ namespace BlueBrick
 			((System.ComponentModel.ISupportInitialize)(this.gridColorPictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.backgroundColorPictureBox)).BeginInit();
 			this.partLibTabPage.SuspendLayout();
+			this.groupBox16.SuspendLayout();
 			this.groupBox13.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.partLibBudgetFilterBackColorPictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.PartLibFilteredBackColorPictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.PartLibBackColorPictureBox)).BeginInit();
 			this.groupBox12.SuspendLayout();
@@ -1162,6 +1174,7 @@ namespace BlueBrick
 			// 
 			// partLibTabPage
 			// 
+			this.partLibTabPage.Controls.Add(this.groupBox16);
 			this.partLibTabPage.Controls.Add(this.groupBox13);
 			this.partLibTabPage.Controls.Add(this.groupBox12);
 			this.partLibTabPage.Controls.Add(this.groupBox11);
@@ -1169,8 +1182,69 @@ namespace BlueBrick
 			this.partLibTabPage.Name = "partLibTabPage";
 			this.partLibTabPage.UseVisualStyleBackColor = true;
 			// 
+			// groupBox16
+			// 
+			this.groupBox16.Controls.Add(this.PartLibBrowseBudgetFileButton);
+			this.groupBox16.Controls.Add(this.PartLibBudgetFilenameTextBox);
+			this.groupBox16.Controls.Add(this.label38);
+			this.groupBox16.Controls.Add(this.PartLibDefaultBudgetNotLimitedradioButton);
+			this.groupBox16.Controls.Add(this.PartLibDefaultBudgetZeroRadioButton);
+			this.groupBox16.Controls.Add(this.label37);
+			this.groupBox16.Controls.Add(this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox);
+			resources.ApplyResources(this.groupBox16, "groupBox16");
+			this.groupBox16.Name = "groupBox16";
+			this.groupBox16.TabStop = false;
+			// 
+			// PartLibBrowseBudgetFileButton
+			// 
+			resources.ApplyResources(this.PartLibBrowseBudgetFileButton, "PartLibBrowseBudgetFileButton");
+			this.PartLibBrowseBudgetFileButton.Name = "PartLibBrowseBudgetFileButton";
+			this.PartLibBrowseBudgetFileButton.UseVisualStyleBackColor = true;
+			this.PartLibBrowseBudgetFileButton.Click += new System.EventHandler(this.PartLibBrowseBudgetFileButton_Click);
+			// 
+			// PartLibBudgetFilenameTextBox
+			// 
+			this.PartLibBudgetFilenameTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+			resources.ApplyResources(this.PartLibBudgetFilenameTextBox, "PartLibBudgetFilenameTextBox");
+			this.PartLibBudgetFilenameTextBox.Name = "PartLibBudgetFilenameTextBox";
+			this.PartLibBudgetFilenameTextBox.TabStop = false;
+			// 
+			// label38
+			// 
+			resources.ApplyResources(this.label38, "label38");
+			this.label38.Name = "label38";
+			// 
+			// PartLibDefaultBudgetNotLimitedradioButton
+			// 
+			resources.ApplyResources(this.PartLibDefaultBudgetNotLimitedradioButton, "PartLibDefaultBudgetNotLimitedradioButton");
+			this.PartLibDefaultBudgetNotLimitedradioButton.Name = "PartLibDefaultBudgetNotLimitedradioButton";
+			this.PartLibDefaultBudgetNotLimitedradioButton.UseVisualStyleBackColor = true;
+			// 
+			// PartLibDefaultBudgetZeroRadioButton
+			// 
+			resources.ApplyResources(this.PartLibDefaultBudgetZeroRadioButton, "PartLibDefaultBudgetZeroRadioButton");
+			this.PartLibDefaultBudgetZeroRadioButton.Checked = true;
+			this.PartLibDefaultBudgetZeroRadioButton.Name = "PartLibDefaultBudgetZeroRadioButton";
+			this.PartLibDefaultBudgetZeroRadioButton.TabStop = true;
+			this.PartLibDefaultBudgetZeroRadioButton.UseVisualStyleBackColor = true;
+			// 
+			// label37
+			// 
+			resources.ApplyResources(this.label37, "label37");
+			this.label37.Name = "label37";
+			// 
+			// PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox
+			// 
+			resources.ApplyResources(this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox, "PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox");
+			this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.Checked = true;
+			this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.Name = "PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox";
+			this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.UseVisualStyleBackColor = true;
+			// 
 			// groupBox13
 			// 
+			this.groupBox13.Controls.Add(this.label36);
+			this.groupBox13.Controls.Add(this.partLibBudgetFilterBackColorPictureBox);
 			this.groupBox13.Controls.Add(this.label29);
 			this.groupBox13.Controls.Add(this.PartLibFilteredBackColorPictureBox);
 			this.groupBox13.Controls.Add(this.label26);
@@ -1178,6 +1252,20 @@ namespace BlueBrick
 			resources.ApplyResources(this.groupBox13, "groupBox13");
 			this.groupBox13.Name = "groupBox13";
 			this.groupBox13.TabStop = false;
+			// 
+			// label36
+			// 
+			resources.ApplyResources(this.label36, "label36");
+			this.label36.Name = "label36";
+			// 
+			// partLibBudgetFilterBackColorPictureBox
+			// 
+			this.partLibBudgetFilterBackColorPictureBox.BackColor = System.Drawing.Color.White;
+			this.partLibBudgetFilterBackColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.partLibBudgetFilterBackColorPictureBox, "partLibBudgetFilterBackColorPictureBox");
+			this.partLibBudgetFilterBackColorPictureBox.Name = "partLibBudgetFilterBackColorPictureBox";
+			this.partLibBudgetFilterBackColorPictureBox.TabStop = false;
+			this.partLibBudgetFilterBackColorPictureBox.Click += new System.EventHandler(this.partLibBudgetFilterBackColorPictureBox_Click);
 			// 
 			// label29
 			// 
@@ -1589,7 +1677,10 @@ namespace BlueBrick
 			((System.ComponentModel.ISupportInitialize)(this.gridColorPictureBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.backgroundColorPictureBox)).EndInit();
 			this.partLibTabPage.ResumeLayout(false);
+			this.groupBox16.ResumeLayout(false);
+			this.groupBox16.PerformLayout();
 			this.groupBox13.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.partLibBudgetFilterBackColorPictureBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.PartLibFilteredBackColorPictureBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.PartLibBackColorPictureBox)).EndInit();
 			this.groupBox12.ResumeLayout(false);
@@ -1746,5 +1837,15 @@ namespace BlueBrick
 		private System.Windows.Forms.Label fontColorLabel;
 		private System.Windows.Forms.PictureBox rulerFontColorPictureBox;
 		private System.Windows.Forms.Button rulerFontButton;
+		private System.Windows.Forms.Label label36;
+		private System.Windows.Forms.PictureBox partLibBudgetFilterBackColorPictureBox;
+		private System.Windows.Forms.GroupBox groupBox16;
+		private System.Windows.Forms.Button PartLibBrowseBudgetFileButton;
+		private System.Windows.Forms.TextBox PartLibBudgetFilenameTextBox;
+		private System.Windows.Forms.Label label38;
+		private System.Windows.Forms.RadioButton PartLibDefaultBudgetNotLimitedradioButton;
+		private System.Windows.Forms.RadioButton PartLibDefaultBudgetZeroRadioButton;
+		private System.Windows.Forms.Label label37;
+		private System.Windows.Forms.CheckBox PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox;
 	}
 }
