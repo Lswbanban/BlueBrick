@@ -141,7 +141,6 @@ namespace BlueBrick
 			this.PartLibDefaultBudgetNotLimitedradioButton = new System.Windows.Forms.RadioButton();
 			this.PartLibDefaultBudgetZeroRadioButton = new System.Windows.Forms.RadioButton();
 			this.label37 = new System.Windows.Forms.Label();
-			this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox = new System.Windows.Forms.CheckBox();
 			this.groupBox13 = new System.Windows.Forms.GroupBox();
 			this.label36 = new System.Windows.Forms.Label();
 			this.partLibBudgetFilterBackColorPictureBox = new System.Windows.Forms.PictureBox();
@@ -181,6 +180,7 @@ namespace BlueBrick
 			this.restoreAllDefaultButton = new System.Windows.Forms.Button();
 			this.fontDialog = new System.Windows.Forms.FontDialog();
 			this.restoreTabDefaultButton = new System.Windows.Forms.Button();
+			this.displayWarningWhenDuplicateOverBudgetCheckBox = new System.Windows.Forms.CheckBox();
 			this.optionsTabControl.SuspendLayout();
 			this.generalTabPage.SuspendLayout();
 			this.groupBox14.SuspendLayout();
@@ -259,6 +259,7 @@ namespace BlueBrick
 			// 
 			// groupBox14
 			// 
+			this.groupBox14.Controls.Add(this.displayWarningWhenDuplicateOverBudgetCheckBox);
 			this.groupBox14.Controls.Add(this.displayWarningForNotSavingInBBMCheckBox);
 			resources.ApplyResources(this.groupBox14, "groupBox14");
 			this.groupBox14.Name = "groupBox14";
@@ -1190,7 +1191,6 @@ namespace BlueBrick
 			this.groupBox16.Controls.Add(this.PartLibDefaultBudgetNotLimitedradioButton);
 			this.groupBox16.Controls.Add(this.PartLibDefaultBudgetZeroRadioButton);
 			this.groupBox16.Controls.Add(this.label37);
-			this.groupBox16.Controls.Add(this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox);
 			resources.ApplyResources(this.groupBox16, "groupBox16");
 			this.groupBox16.Name = "groupBox16";
 			this.groupBox16.TabStop = false;
@@ -1207,6 +1207,7 @@ namespace BlueBrick
 			this.PartLibBudgetFilenameTextBox.Cursor = System.Windows.Forms.Cursors.Default;
 			resources.ApplyResources(this.PartLibBudgetFilenameTextBox, "PartLibBudgetFilenameTextBox");
 			this.PartLibBudgetFilenameTextBox.Name = "PartLibBudgetFilenameTextBox";
+			this.PartLibBudgetFilenameTextBox.ReadOnly = true;
 			this.PartLibBudgetFilenameTextBox.TabStop = false;
 			// 
 			// label38
@@ -1232,14 +1233,6 @@ namespace BlueBrick
 			// 
 			resources.ApplyResources(this.label37, "label37");
 			this.label37.Name = "label37";
-			// 
-			// PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox
-			// 
-			resources.ApplyResources(this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox, "PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox");
-			this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.Checked = true;
-			this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.Name = "PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox";
-			this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// groupBox13
 			// 
@@ -1614,6 +1607,14 @@ namespace BlueBrick
 			this.restoreTabDefaultButton.UseVisualStyleBackColor = true;
 			this.restoreTabDefaultButton.Click += new System.EventHandler(this.restoreTabDefaultButton_Click);
 			// 
+			// displayWarningWhenDuplicateOverBudgetCheckBox
+			// 
+			resources.ApplyResources(this.displayWarningWhenDuplicateOverBudgetCheckBox, "displayWarningWhenDuplicateOverBudgetCheckBox");
+			this.displayWarningWhenDuplicateOverBudgetCheckBox.Checked = true;
+			this.displayWarningWhenDuplicateOverBudgetCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.displayWarningWhenDuplicateOverBudgetCheckBox.Name = "displayWarningWhenDuplicateOverBudgetCheckBox";
+			this.displayWarningWhenDuplicateOverBudgetCheckBox.UseVisualStyleBackColor = true;
+			// 
 			// PreferencesForm
 			// 
 			this.AcceptButton = this.okButton;
@@ -1846,6 +1847,6 @@ namespace BlueBrick
 		private System.Windows.Forms.RadioButton PartLibDefaultBudgetNotLimitedradioButton;
 		private System.Windows.Forms.RadioButton PartLibDefaultBudgetZeroRadioButton;
 		private System.Windows.Forms.Label label37;
-		private System.Windows.Forms.CheckBox PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox;
+		private System.Windows.Forms.CheckBox displayWarningWhenDuplicateOverBudgetCheckBox;
 	}
 }

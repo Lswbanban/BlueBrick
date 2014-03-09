@@ -1271,5 +1271,17 @@ namespace BlueBrick.Properties {
                 this["DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BudgetFilenameToLoadAtStartup {
+            get {
+                return ((string)(this["BudgetFilenameToLoadAtStartup"]));
+            }
+            set {
+                this["BudgetFilenameToLoadAtStartup"] = value;
+            }
+        }
     }
 }

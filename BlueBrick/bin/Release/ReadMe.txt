@@ -70,8 +70,7 @@ REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
 	- Preference form:
-		- In preference: load a specific budget at startup (+ error message if can't)
-		- default budget file name
+		- load a specific budget at startup (+ error message if can't)
 		- bug: if reset default value, the flag to check if value changed are not correctly computed
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
 	- bug: left click then press ALT shows the duplicate cursor but sometime doesn't duplicate (just move)

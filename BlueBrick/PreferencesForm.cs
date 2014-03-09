@@ -68,6 +68,9 @@ namespace BlueBrick
 		// the zoom pan key doesn't have control to edit it, it is deducted from the edition of the multi select key and duplicate key
 		private int mZoomPanKeySelectedIndex = 0;
 
+		// a flag to tell if the user has set the budget file name
+		private bool mIsBudgetFilenameToLoadAtStartupSet = (Settings.Default.BudgetFilenameToLoadAtStartup != string.Empty);
+
 		#region properties
 		public bool DoesNeedToRestart
 		{
@@ -163,6 +166,7 @@ namespace BlueBrick
 				this.undoDisplayedNumericUpDown.Value = Settings.Default.UndoStackDisplayedDepth;
 				// notification
 				this.displayWarningForNotSavingInBBMCheckBox.Checked = Settings.Default.DisplayWarningMessageForNotSavingInBBM;
+				this.displayWarningWhenDuplicateOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
 				// performance
 				this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
 			}
@@ -235,9 +239,9 @@ namespace BlueBrick
 				this.PartLibBackColorPictureBox.BackColor = Settings.Default.PartLibBackColor;
 				this.partLibBudgetFilterBackColorPictureBox.BackColor = Settings.Default.PartLibShowOnlyBudgetedPartsColor;
 				this.PartLibFilteredBackColorPictureBox.BackColor = Settings.Default.PartLibFilteredBackColor;
+				setTextBoxForBudgetFilenameToLoadAtStartup(Settings.Default.BudgetFilenameToLoadAtStartup);
 				this.PartLibDefaultBudgetNotLimitedradioButton.Checked = Settings.Default.IsDefaultBudgetInfinite;
 				this.PartLibDefaultBudgetZeroRadioButton.Checked = !Settings.Default.IsDefaultBudgetInfinite;
-				this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
 				this.displayPartIDCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartID;
 				this.displayPartColorCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartColor;
 				this.displayPartDescriptionCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartDescription;
@@ -354,6 +358,7 @@ namespace BlueBrick
 				destination.PartLibBackColor = source.PartLibBackColor;
 				destination.PartLibShowOnlyBudgetedPartsColor = source.PartLibShowOnlyBudgetedPartsColor;
 				destination.PartLibFilteredBackColor = source.PartLibFilteredBackColor;
+				destination.BudgetFilenameToLoadAtStartup = source.BudgetFilenameToLoadAtStartup;
 				destination.IsDefaultBudgetInfinite = source.IsDefaultBudgetInfinite;
 				destination.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
 				destination.PartLibBubbleInfoPartID = source.PartLibBubbleInfoPartID;
@@ -394,6 +399,7 @@ namespace BlueBrick
 			Settings.Default.UndoStackDisplayedDepth = (int)this.undoDisplayedNumericUpDown.Value;
 			// notification
 			Settings.Default.DisplayWarningMessageForNotSavingInBBM = this.displayWarningForNotSavingInBBMCheckBox.Checked;
+			Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = this.displayWarningWhenDuplicateOverBudgetCheckBox.Checked;
 			// performances
 			if (setOptimSettingAccordingToComboBox())
 			{
@@ -487,8 +493,8 @@ namespace BlueBrick
 			Settings.Default.PartLibBackColor = this.PartLibBackColorPictureBox.BackColor;
 			Settings.Default.PartLibShowOnlyBudgetedPartsColor = this.partLibBudgetFilterBackColorPictureBox.BackColor;
 			Settings.Default.PartLibFilteredBackColor = this.PartLibFilteredBackColorPictureBox.BackColor;
+			Settings.Default.BudgetFilenameToLoadAtStartup = mIsBudgetFilenameToLoadAtStartupSet ? this.PartLibBudgetFilenameTextBox.Text : string.Empty;
 			Settings.Default.IsDefaultBudgetInfinite = this.PartLibDefaultBudgetNotLimitedradioButton.Checked;
-			Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = this.PartLibDisplayWarningWhenDuplicateOverBudgetCheckBox.Checked;
 			Settings.Default.PartLibBubbleInfoPartID = this.displayPartIDCheckBox.Checked;
 			Settings.Default.PartLibBubbleInfoPartColor = this.displayPartColorCheckBox.Checked;
 			Settings.Default.PartLibBubbleInfoPartDescription = this.displayPartDescriptionCheckBox.Checked;
@@ -564,6 +570,30 @@ namespace BlueBrick
 			label.Text = newFont.Name + " " + newFont.SizeInPoints.ToString();
 			label.Font = newFont;
 			label.ForeColor = color;
+		}
+
+		/// <summary>
+		/// Set the text for the textbox that display the budget filename to load at startup.
+		/// If the string is empty, it will display an hint, otherwise it display the value of the parameter
+		/// </summary>
+		/// <param name="filename">a filename to display or an empty string</param>
+		private void setTextBoxForBudgetFilenameToLoadAtStartup(string filename)
+		{
+			if (filename == string.Empty)
+			{
+				// reload the default sentence in the current language
+				System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreferencesForm));
+				resources.ApplyResources(this.PartLibBudgetFilenameTextBox, "PartLibBudgetFilenameTextBox");
+				// reset the flag
+				mIsBudgetFilenameToLoadAtStartupSet = false;
+			}
+			else
+			{
+				// set the filename in the text box
+				this.PartLibBudgetFilenameTextBox.Text = filename;
+				// set the flag to true
+				mIsBudgetFilenameToLoadAtStartupSet = true;
+			}
 		}
 
 		static public void sChangeRulerSettingsFromRuler(LayerRuler.RulerItem rulerItem)
@@ -1190,7 +1220,21 @@ namespace BlueBrick
 
 		private void PartLibBrowseBudgetFileButton_Click(object sender, EventArgs e)
 		{
-			//TODO
+			// get the open file dialog for budget from the main form
+			OpenFileDialog openBudgetFileDialog = MainForm.Instance.OpenBudgetFileDialog;
+			// set the filename in the dialog from the setting
+			if (mIsBudgetFilenameToLoadAtStartupSet)
+			{
+				System.IO.FileInfo file = new System.IO.FileInfo(this.PartLibBudgetFilenameTextBox.Text);
+				openBudgetFileDialog.InitialDirectory = file.DirectoryName;
+				openBudgetFileDialog.FileName = file.Name;
+			}
+			// then open the dialog box in modal
+			DialogResult result = openBudgetFileDialog.ShowDialog();
+			if (result == DialogResult.OK)
+				setTextBoxForBudgetFilenameToLoadAtStartup(openBudgetFileDialog.FileName);
+			else
+				setTextBoxForBudgetFilenameToLoadAtStartup(string.Empty);
 		}
 		#endregion
 
