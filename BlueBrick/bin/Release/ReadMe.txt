@@ -65,11 +65,10 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
-- [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
-- [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
-	- bug: left click then press ALT shows the duplicate cursor but sometime doesn't duplicate (just move)
+- [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
+- [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
@@ -89,9 +88,7 @@ Open bugs:
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
-- [target 1.8] BUG (Alban): CRASH!! when you drag a part over the task bar (for Windows XP)
-- [target 1.8] BUG (Alban): Bug in the creation of the library image for some group (for example 4728-1) (still buggy? en tout cas pas sous Win7, need to check again)
-- [target 1.8] BUG (Alban): If you select a named group, you cannot add a part just by clicking on it in the part lib
+- [target 1.8] BUG (Alban): If you select a named group on the map, you cannot add a part just by clicking on it in the part lib (now: If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group)
 - BUG (Alban): When you replace a part in a group, the display area of the group is not recomptuted
 - BUG (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
@@ -125,6 +122,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): When changing the order of the part lib tabs, the previously selected tab was not reselected
 - BUGFIX (Alban): The selected tab of the part lib was not saved when exiting BB and not reset at starting
 - BUGFIX (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
+- BUGFIX (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - BUGFIX (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
 - BUGFIX (Alban): Rotate and Delete a group part is not working as for a single brick. Rotate a group now rotate according to the connections, delete a group now select the next connected brick
 - BUGFIX (Alban): Now you can duplicate bricks and connect them in the same mouse move

@@ -26,6 +26,11 @@ namespace BlueBrick.Actions.Items
 		protected List<Layer.LayerItem> mItems = null;
 		protected List<int> mItemIndex = null; // this list of index is for the redo, to add each text at the same place
 
+		public bool IsDegenerated
+		{
+			get { return (mItems.Count == 0); }
+		}
+
 		public DuplicateItems(List<Layer.LayerItem> itemsToDuplicate, bool needToAddOffset, bool addGroupsInItemList)
 		{
 			// init the index array with -1
