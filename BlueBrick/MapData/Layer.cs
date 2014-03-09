@@ -912,6 +912,20 @@ namespace BlueBrick.MapData
 			#endregion
 		}
 
+		/// <summary>
+		/// This enum is used to dialog between the code calling a paste action on the layer and the
+		/// paste method. The paste method can add the action in history, or not to let the caller adding it later,
+		/// but if a dialog window need to be pop-up, the action is added anyway and the enum value is changed to
+		/// inform the caller.
+		/// </summary>
+		public enum AddActionInHistory
+		{
+			ADD_TO_HISTORY,
+			DO_NOT_ADD_TO_HISTORY_EXCEPT_IF_POPUP_OCCURED,
+			WAS_ADDED_TO_HISTORY_DUE_TO_POPUP,
+			POPUP_OCCURRED_BUT_WASNT_ADDED_DUE_TO_USER_CANCEL,
+		}
+
 		// common data to all layers
 		protected string mName = BlueBrick.Properties.Resources.DefaultLayerName;
 		protected bool mVisible = true;
@@ -1558,13 +1572,13 @@ namespace BlueBrick.MapData
 		/// Paste (duplicate) the list of bricks that was previously copied with a call to copyCurrentSelectionToClipboard()
 		/// This method should be called on a CTRL+V
 		/// <param name="offsetRule">control if the pasted items must be shifted or not</param>
-		/// <param name="addPasteActionInHistory">if true the paste action will be added in the Action Manager History</param>
-		/// <returns>true if the paste was successful</returns>
+		/// <param name="addPasteActionInHistory">specify if the paste action should be added in the Action Manager History</param>
+		/// <returns>true if the type of item pasted was the same as the type of the layer</returns>
 		/// </summary>
-		public bool pasteClipboardInLayer(AddOffsetAfterPaste offsetRule, bool addPasteActionInHistory)
+		public bool pasteClipboardInLayer(AddOffsetAfterPaste offsetRule, ref AddActionInHistory addPasteActionInHistory)
 		{
 			string itemTypeName = null;
-			return pasteClipboardInLayer(offsetRule, out itemTypeName, addPasteActionInHistory);
+			return pasteClipboardInLayer(offsetRule, out itemTypeName, ref addPasteActionInHistory);
 		}
 
 		/// <summary>
@@ -1573,10 +1587,10 @@ namespace BlueBrick.MapData
 		/// This method should be called on a CTRL+V
 		/// <param name="offsetRule">control if the pasted items must be shifted or not</param>
 		/// <param name="itemTypeName">the localized type name of items that is in the Clipboard</param>
-		/// <param name="addPasteActionInHistory">if true the paste action will be added in the Action Manager History</param>
-		/// <returns>true if the paste was successful</returns>
+		/// <param name="addPasteActionInHistory">specify if the paste action should be added in the Action Manager History</param>
+		/// <returns>true if the type of item pasted was the same as the type of the layer</returns>
 		/// </summary>
-		public bool pasteClipboardInLayer(AddOffsetAfterPaste offsetRule, out string itemTypeName, bool addPasteActionInHistory)
+		public bool pasteClipboardInLayer(AddOffsetAfterPaste offsetRule, out string itemTypeName, ref AddActionInHistory addPasteActionInHistory)
 		{
 			// that create a xml reader to read the xml copied in the clipboard
 			System.IO.StringReader stringReader = new System.IO.StringReader(Clipboard.GetText());
@@ -1605,35 +1619,37 @@ namespace BlueBrick.MapData
 			if (offsetRule == AddOffsetAfterPaste.USE_SETTINGS_RULE)
 				addOffset = (copyStyle == 2) || ((copyStyle == 1) && (layerId.Equals(this.GetHashCode().ToString())));
 
-			// read the items
-			List<Layer.LayerItem> itemsToDuplicates = new List<Layer.LayerItem>();
-			this.readItemListFromClipboard(xmlReader, ref itemsToDuplicates);
+			// check if the type of layer match the type of copied items and this must be done before reading the items
+			// basically we check that the read item type name match this layer type, but for the text layer, we also accept
+			// items without type (bare text copied from outside BlueBrick)
+			bool typeMatch = (itemTypeName.Equals(this.XmlTypeName) || ((this is LayerText) && (itemTypeName == string.Empty)));
 
-			// check if the type of layer match the type of copied items
-			bool typeMatch = false;
-			mLastDuplicateAction = null;
-			if (this is LayerText)
+			// now if the items to duplicate and the layer match, we can read the item and create the duplicate action
+			if (typeMatch)
 			{
-				if (itemTypeName.Equals(this.XmlTypeName))
+				// read the items
+				List<Layer.LayerItem> itemsToDuplicates = new List<Layer.LayerItem>();
+				this.readItemListFromClipboard(xmlReader, ref itemsToDuplicates);
+
+				// create the duplication action
+				mLastDuplicateAction = null;
+				if (this is LayerText)
 				{
-					mLastDuplicateAction = new Actions.Texts.DuplicateText((this as LayerText), itemsToDuplicates, addOffset);
-					typeMatch = true;
+					if (itemTypeName.Equals(this.XmlTypeName))
+					{
+						mLastDuplicateAction = new Actions.Texts.DuplicateText((this as LayerText), itemsToDuplicates, addOffset);
+					}
+					else
+					{
+						// this seems to be a bold text (not saved in xml) that may be copied in the clipboard from another program
+						itemsToDuplicates.Clear();
+						itemsToDuplicates.Add(new LayerText.TextCell(Clipboard.GetText(), Properties.Settings.Default.DefaultTextFont, Properties.Settings.Default.DefaultTextColor, StringAlignment.Near));
+						mLastDuplicateAction = new Actions.Texts.DuplicateText((this as LayerText), itemsToDuplicates, addOffset);
+					}
 				}
-				else if (itemTypeName == string.Empty)
-				{
-					// this seems to be a bold text (not saved in xml) that may be copied in the clipboard from another program
-					itemsToDuplicates.Clear();
-					itemsToDuplicates.Add(new LayerText.TextCell(Clipboard.GetText(), Properties.Settings.Default.DefaultTextFont, Properties.Settings.Default.DefaultTextColor, StringAlignment.Near));
-					mLastDuplicateAction = new Actions.Texts.DuplicateText((this as LayerText), itemsToDuplicates, addOffset);
-					typeMatch = true;
-				}
-			}
-			else if (this is LayerBrick)
-			{
-				if (itemTypeName.Equals(this.XmlTypeName))
+				else if (this is LayerBrick)
 				{
 					mLastDuplicateAction = new Actions.Bricks.DuplicateBrick((this as LayerBrick), itemsToDuplicates, addOffset);
-					typeMatch = true;
 
 					// for duplicating bricks, we may display a warning message if the list was trimmed
 					if ((mLastDuplicateAction as Actions.Bricks.DuplicateBrick).WereItemsTrimmed &&
@@ -1652,28 +1668,33 @@ namespace BlueBrick.MapData
 						Properties.Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = !dontDisplayMessageAgain;
 
 						// if the user cancel the duplcate, just delete the action (but keep the type match as true of course)
-						if (result == DialogResult.Cancel)
+						if (result == DialogResult.No)
+						{
 							mLastDuplicateAction = null;
+							addPasteActionInHistory = AddActionInHistory.POPUP_OCCURRED_BUT_WASNT_ADDED_DUE_TO_USER_CANCEL;
+						}
+						else
+						{
+							// if the user wants to continue the paste, force the add to history
+							if (addPasteActionInHistory == AddActionInHistory.DO_NOT_ADD_TO_HISTORY_EXCEPT_IF_POPUP_OCCURED)
+								addPasteActionInHistory = AddActionInHistory.WAS_ADDED_TO_HISTORY_DUE_TO_POPUP;
+						}
 					}
 				}
-			}
-			else if (this is LayerRuler)
-			{
-				if (itemTypeName.Equals(this.XmlTypeName))
+				else if (this is LayerRuler)
 				{
 					mLastDuplicateAction = new Actions.Rulers.DuplicateRuler((this as LayerRuler), itemsToDuplicates, addOffset);
-					typeMatch = true;
 				}
-			}
 
-			// do the paste action
-			if (mLastDuplicateAction != null)
-			{
-				// if we need to add it in the history, just add it to the action manager, otherwise, just do the action
-				if (addPasteActionInHistory)
-					ActionManager.Instance.doAction(mLastDuplicateAction);
-				else
-					mLastDuplicateAction.redo();
+				// do the paste action
+				if (mLastDuplicateAction != null)
+				{
+					// if we need to add it in the history, just add it to the action manager, otherwise, just do the action
+					if (addPasteActionInHistory == AddActionInHistory.DO_NOT_ADD_TO_HISTORY_EXCEPT_IF_POPUP_OCCURED)
+						mLastDuplicateAction.redo();
+					else
+						ActionManager.Instance.doAction(mLastDuplicateAction);
+				}
 			}
 
 			// localize the item type name
@@ -1690,7 +1711,7 @@ namespace BlueBrick.MapData
 			else
 				itemTypeName = Properties.Resources.ErrorMsgLayerTypeUnknown;
 
-			// return if it is a success
+			// return if the type was matching (for displaying error message if not)
 			return typeMatch;
 		}
 		#endregion
