@@ -31,36 +31,32 @@ namespace BlueBrick
 
 		public static bool load(string filename)
 		{
-			if (File.Exists(filename))
-			{
-				string filenameLower = filename.ToLower();
+			string filenameLower = filename.ToLower();
 
-				try
-				{
-					if (filenameLower.EndsWith("ldr") || filenameLower.EndsWith("dat"))
-						return loadLDR(filename);
-					else if (filenameLower.EndsWith("mpd"))
-						return loadMDP(filename);
-					else if (filenameLower.EndsWith("tdl"))
-						return loadTDL(filename);
-					else if (filenameLower.EndsWith("bbb"))
-						return loadBudgetBBB(filename);
-					else
-						return loadBBM(filename);
-				}
-				catch (Exception e)
-				{
-					string message = null;
-					if (filenameLower.EndsWith("bbb"))
-						message = Properties.Resources.ErrorMsgCannotOpenBudget.Replace("&", filename);
-					else
-						message = Properties.Resources.ErrorMsgCannotOpenMap.Replace("&", filename);
-					LoadErrorForm errorMessageDialog = new LoadErrorForm(Properties.Resources.ErrorMsgTitleError, message, e.Message);
-					errorMessageDialog.ShowDialog();
-					return false;
-				}
+			try
+			{
+				if (filenameLower.EndsWith("ldr") || filenameLower.EndsWith("dat"))
+					return loadLDR(filename);
+				else if (filenameLower.EndsWith("mpd"))
+					return loadMDP(filename);
+				else if (filenameLower.EndsWith("tdl"))
+					return loadTDL(filename);
+				else if (filenameLower.EndsWith("bbb"))
+					return loadBudgetBBB(filename);
+				else
+					return loadBBM(filename);
 			}
-			return false;
+			catch (Exception e)
+			{
+				string message = null;
+				if (filenameLower.EndsWith("bbb"))
+					message = Properties.Resources.ErrorMsgCannotOpenBudget.Replace("&", filename);
+				else
+					message = Properties.Resources.ErrorMsgCannotOpenMap.Replace("&", filename);
+				LoadErrorForm errorMessageDialog = new LoadErrorForm(Properties.Resources.ErrorMsgTitleError, message, e.Message);
+				errorMessageDialog.ShowDialog();
+				return false;
+			}
 		}
 
 		public static bool save(string filename)

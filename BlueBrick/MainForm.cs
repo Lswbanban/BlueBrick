@@ -502,10 +502,18 @@ namespace BlueBrick
 				UpdateRecentFileMenuFromConfigFile();
 			}
 			// check if we need to open a budget at startup
-			if (false /* TODO */)
-				openBudget("TODO", null);
+			if (Properties.Settings.Default.BudgetFilenameToLoadAtStartup != string.Empty)
+			{
+				if (!openBudget(Properties.Settings.Default.BudgetFilenameToLoadAtStartup, null))
+				{
+					// clear the settings if the budget is not valid, to avoid throwing the error message every time
+					Properties.Settings.Default.BudgetFilenameToLoadAtStartup = string.Empty;
+				}
+			}
 			else
+			{
 				updateEnableStatusForBudgetMenuItem();
+			}
 		}
 
 		private void MainForm_Shown(object sender, EventArgs e)
@@ -2214,7 +2222,13 @@ namespace BlueBrick
 			return true;
 		}
 
-		private void openBudget(string filename, Budget.Budget budgetToMerge)
+		/// <summary>
+		/// Open the specified bugdet and eventually merge it with the other specified budget
+		/// </summary>
+		/// <param name="filename">the budget file to open</param>
+		/// <param name="budgetToMerge">the optionnal budget to merge with or null</param>
+		/// <returns>true if the budget was correctly open</returns>
+		private bool openBudget(string filename, Budget.Budget budgetToMerge)
 		{
 			// set the wait cursor
 			this.Cursor = Cursors.WaitCursor;
@@ -2246,6 +2260,8 @@ namespace BlueBrick
 			this.PartsTabControl.updateViewStyle();
 			// restore the cursor after loading
 			this.Cursor = Cursors.Default;
+			// return if the file was correctly loaded
+			return isFileValid;
 		}
 
 		private void changeCurrentBudgetFileName(string filename, bool isAValidName)
