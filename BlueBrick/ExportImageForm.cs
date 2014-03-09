@@ -221,7 +221,7 @@ namespace BlueBrick
         }
 
         /// <summary>
-        /// This method is called from main form. //TODO: need refactoring?
+        /// This method is called from main form.
         /// </summary>
         public void restoreDisplaySettings()
         {
