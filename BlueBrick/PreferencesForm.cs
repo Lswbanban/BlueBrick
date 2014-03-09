@@ -482,14 +482,14 @@ namespace BlueBrick
 
 			// -- tab PartLib
 			savePartLibraryTabOrder();
-			bool doesAppearanceChanged = (Settings.Default.PartLibBackColor != this.PartLibBackColorPictureBox.BackColor) ||
-										(Settings.Default.PartLibShowOnlyBudgetedPartsColor != this.partLibBudgetFilterBackColorPictureBox.BackColor) ||
-										(Settings.Default.PartLibFilteredBackColor != this.PartLibFilteredBackColorPictureBox.BackColor) ||
-										(Settings.Default.PartLibDisplayBubbleInfo != this.displayBubbleInfoCheckBox.Checked);
-			bool doesBudgetCountChanged = (Settings.Default.IsDefaultBudgetInfinite != this.PartLibDefaultBudgetNotLimitedradioButton.Checked);
-			bool doesBubbleInfoChanged = (Settings.Default.PartLibBubbleInfoPartID != this.displayPartIDCheckBox.Checked) ||
-										(Settings.Default.PartLibBubbleInfoPartColor != this.displayPartColorCheckBox.Checked) ||
-										(Settings.Default.PartLibBubbleInfoPartDescription != this.displayPartDescriptionCheckBox.Checked);
+			bool doesAppearanceChanged = (mOldSettings.PartLibBackColor != this.PartLibBackColorPictureBox.BackColor) ||
+										(mOldSettings.PartLibShowOnlyBudgetedPartsColor != this.partLibBudgetFilterBackColorPictureBox.BackColor) ||
+										(mOldSettings.PartLibFilteredBackColor != this.PartLibFilteredBackColorPictureBox.BackColor) ||
+										(mOldSettings.PartLibDisplayBubbleInfo != this.displayBubbleInfoCheckBox.Checked);
+			bool doesBudgetCountChanged = (mOldSettings.IsDefaultBudgetInfinite != this.PartLibDefaultBudgetNotLimitedradioButton.Checked);
+			bool doesBubbleInfoChanged = (mOldSettings.PartLibBubbleInfoPartID != this.displayPartIDCheckBox.Checked) ||
+										(mOldSettings.PartLibBubbleInfoPartColor != this.displayPartColorCheckBox.Checked) ||
+										(mOldSettings.PartLibBubbleInfoPartDescription != this.displayPartDescriptionCheckBox.Checked);
 			Settings.Default.PartLibBackColor = this.PartLibBackColorPictureBox.BackColor;
 			Settings.Default.PartLibShowOnlyBudgetedPartsColor = this.partLibBudgetFilterBackColorPictureBox.BackColor;
 			Settings.Default.PartLibFilteredBackColor = this.PartLibFilteredBackColorPictureBox.BackColor;
