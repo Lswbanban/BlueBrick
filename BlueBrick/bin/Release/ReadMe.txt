@@ -63,7 +63,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
@@ -118,6 +117,7 @@ Bug fixed in 1.8.0.0:
 - REFACTORING #18 (Alban): Check where I could have used the directive "where" (remove code duplication)
 - REFACTORING (Alban): Replace all the type test using a string with the "is" keyword
 - REFACTORING (Alban): Improve the rendering speed of Text layer.
+- REFACTORING (Alban): Move the draw and save of the image from the MainForm to the ExportImageForm
 - BUGFIX #40 (Steffen): If you connect a gray track with a blue track, the sleeper between them should be the white 3034 one. 
 - BUGFIX #42 (Larry): CRASH!! if you export a small area after exporting a big area
 - BUGFIX #47 (doc_brown): the LDraw header is not following the standard definition

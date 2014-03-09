@@ -2484,11 +2484,22 @@ namespace BlueBrick
 			this.textBoxPartFilter.Text = string.Empty;
 		}
 
+		private bool isThereAnyUserFilterSentence()
+		{
+			// we use the color of the text box filter, because the user may type a sentence
+			// which could be exactly as the input filter indication (i.e. the hint)
+			return (this.textBoxPartFilter.ForeColor == Color.Black);
+		}
+
+		private string getUserFilterSentence()
+		{
+			return (isThereAnyUserFilterSentence() ? this.textBoxPartFilter.Text : string.Empty);
+		}
+
 		private void textBoxPartFilter_TextChanged(object sender, EventArgs e)
 		{
-			// do not call the filtering if it is the hint sentence (to be more precise: if the box is disabled
-			// because the user may type the filtering sentence as a valid filter)
-			if (this.textBoxPartFilter.ForeColor == Color.Black)
+			// do not call the filtering if the box is disabled
+			if (isThereAnyUserFilterSentence())
 			{
 				// checked which filter method to call
 				if (this.filterAllTabCheckBox.Checked)
@@ -2500,14 +2511,14 @@ namespace BlueBrick
 
 		private void textBoxPartFilter_Enter(object sender, EventArgs e)
 		{
-			// if the user deleted the whole text, add the incitation text
-			if (this.textBoxPartFilter.Text.Equals(Properties.Resources.InputFilterIndication))
+			// if the user enter the text box without any keyword set, delete the hint
+			if (!isThereAnyUserFilterSentence())
 				removeInputFilterIndication();
 		}
 
 		private void textBoxPartFilter_Leave(object sender, EventArgs e)
 		{
-			// if the user deleted the whole text, add the incitation text
+			// if the user deleted the whole text when leaving the box, add the incitation text
 			if (this.textBoxPartFilter.Text == string.Empty)
 				addInputFilterIndication();
 		}
@@ -2533,8 +2544,8 @@ namespace BlueBrick
 
 		private void filterAllTabCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
-			// TODO create an accessor to get a proper filter sentence according to the foreColor
-			string filterSentence = (this.textBoxPartFilter.ForeColor == Color.Black) ? this.textBoxPartFilter.Text : string.Empty;
+			// get the filter sentence that can be empty if the user didn't set one
+			string filterSentence = getUserFilterSentence();
 
 			// change the icon of the button according to the button state
 			if (filterAllTabCheckBox.Checked)
