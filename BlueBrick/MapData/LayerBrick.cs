@@ -1143,7 +1143,9 @@ namespace BlueBrick.MapData
 								AddActionInHistory addInHistory = AddActionInHistory.DO_NOT_ADD_TO_HISTORY_EXCEPT_IF_POPUP_OCCURED;
 								this.pasteClipboardInLayer(AddOffsetAfterPaste.NO, ref addInHistory);
 								// if a popup has occured, we will not received the mouse up event, so clear everything that should usually be cleared in the up event
-								if ((addInHistory == AddActionInHistory.WAS_ADDED_TO_HISTORY_DUE_TO_POPUP) || (addInHistory == AddActionInHistory.POPUP_OCCURRED_BUT_WASNT_ADDED_DUE_TO_USER_CANCEL))
+								if ((addInHistory == AddActionInHistory.WAS_ADDED_TO_HISTORY_DUE_TO_POPUP) ||
+									(addInHistory == AddActionInHistory.POPUP_OCCURRED_BUT_WASNT_ADDED_DUE_TO_USER_CANCEL) ||
+									(addInHistory == AddActionInHistory.WASNT_ADDED_DUE_TO_EMPTY_DUPLICATION))
 								{
 									// clear also the rotation snapping, in case of a series of duplication, but do not
 									// undo it, since we want to keep the rotation applied on the duplicated bricks.

@@ -924,6 +924,7 @@ namespace BlueBrick.MapData
 			DO_NOT_ADD_TO_HISTORY_EXCEPT_IF_POPUP_OCCURED,
 			WAS_ADDED_TO_HISTORY_DUE_TO_POPUP,
 			POPUP_OCCURRED_BUT_WASNT_ADDED_DUE_TO_USER_CANCEL,
+			WASNT_ADDED_DUE_TO_EMPTY_DUPLICATION,
 		}
 
 		// common data to all layers
@@ -1679,6 +1680,14 @@ namespace BlueBrick.MapData
 							if (addPasteActionInHistory == AddActionInHistory.DO_NOT_ADD_TO_HISTORY_EXCEPT_IF_POPUP_OCCURED)
 								addPasteActionInHistory = AddActionInHistory.WAS_ADDED_TO_HISTORY_DUE_TO_POPUP;
 						}
+					}
+
+					// with or without warning message, check if the resulting duplication is degenerated (empty due to budget limitation)
+					if ((mLastDuplicateAction != null) && (mLastDuplicateAction.IsDegenerated))
+					{
+						// if the resulting action is empty just cancel it
+						mLastDuplicateAction = null;
+						addPasteActionInHistory = AddActionInHistory.WASNT_ADDED_DUE_TO_EMPTY_DUPLICATION;
 					}
 				}
 				else if (this is LayerRuler)
