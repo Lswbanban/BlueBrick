@@ -125,7 +125,7 @@ namespace BlueBrick
 		/// <param name="itemToAdd">the new item to add to the list view</param>
 		public void addNewItem(ListViewItem itemToAdd)
 		{
-			if (Properties.Settings.Default.ShowOnlyBudgetedParts && !Budget.Budget.Instance.IsBudgeted(itemToAdd.Tag as string))
+			if (Budget.Budget.Instance.ShouldShowOnlyBudgetedParts && !Budget.Budget.Instance.IsBudgeted(itemToAdd.Tag as string))
 				mNotBudgetedItems.Add(itemToAdd);
 			else
 				addItemToItemsList(itemToAdd);
@@ -362,7 +362,7 @@ namespace BlueBrick
 		{
 			if (IsFiltered)
 				this.BackColor = Properties.Settings.Default.PartLibFilteredBackColor;
-			else if (Properties.Settings.Default.ShowOnlyBudgetedParts)
+			else if (Budget.Budget.Instance.ShouldShowOnlyBudgetedParts)
 				this.BackColor = Properties.Settings.Default.PartLibShowOnlyBudgetedPartsColor;
 			else
 				this.BackColor = Properties.Settings.Default.PartLibBackColor;
@@ -562,7 +562,7 @@ namespace BlueBrick
 		/// </summary>
 		public void updateViewStyle()
 		{
-			if (Properties.Settings.Default.ShowBudgetNumbers && Budget.Budget.Instance.IsExisting)
+			if (Budget.Budget.Instance.ShouldShowBudgetNumbers)
 				this.View = View.LargeIcon;
 			else
 				this.View = View.Tile;
@@ -593,7 +593,7 @@ namespace BlueBrick
 			mNotBudgetedItems.Clear();
 
 			// if we need to filter, put the non budgeted parts in the temporary list, otherwise put them back in the listview
-			if (Properties.Settings.Default.ShowOnlyBudgetedParts)
+			if (Budget.Budget.Instance.ShouldShowOnlyBudgetedParts)
 			{
 				try
 				{
@@ -644,7 +644,7 @@ namespace BlueBrick
 		/// <param name="unbudgetedItem">The item whose budget was removed</param>
 		private void updateFilterForUnbudgetingPart(ListViewItem unbudgetedItem)
 		{
-			if (Properties.Settings.Default.ShowOnlyBudgetedParts)
+			if (Budget.Budget.Instance.ShouldShowOnlyBudgetedParts)
 			{
 				// search in the item list and in the filtered list (but this last case should never happe
 				// as the item must be in the list to be un-bugeted, otherwise the user cannot edit its buget)

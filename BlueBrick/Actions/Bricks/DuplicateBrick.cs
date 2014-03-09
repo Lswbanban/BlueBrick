@@ -36,7 +36,7 @@ namespace BlueBrick.Actions.Bricks
 		}
 
 		public DuplicateBrick(LayerBrick layer, List<Layer.LayerItem> bricksToDuplicate, bool needToAddOffset)
-			: base(bricksToDuplicate, needToAddOffset, Properties.Settings.Default.UseBudgetLimitation)
+			: base(bricksToDuplicate, needToAddOffset, Budget.Budget.Instance.ShouldUseBudgetLimitation)
 		{
 			// init the layer
 			mBrickLayer = layer;
@@ -49,7 +49,7 @@ namespace BlueBrick.Actions.Bricks
 
 			// remove the group that were added to the item list for brick notification purpose
 			// they are added at the end, so find the first one and erase the end
-			if (Properties.Settings.Default.UseBudgetLimitation)
+			if (Budget.Budget.Instance.ShouldUseBudgetLimitation)
 				for (int i = 0; i < mItems.Count; ++i)
 					if (mItems[i].IsAGroup)
 					{
@@ -87,7 +87,7 @@ namespace BlueBrick.Actions.Bricks
 		private bool trimItemListWithBudgetLimitation()
 		{
 			// first check if the budget limitation is enabled
-			if (!Properties.Settings.Default.UseBudgetLimitation)
+			if (!Budget.Budget.Instance.ShouldUseBudgetLimitation)
 				return false;
 
 			// use a temporary dictionnary to count the number of similar items the user wants to add
