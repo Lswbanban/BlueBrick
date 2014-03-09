@@ -1140,9 +1140,24 @@ namespace BlueBrick.MapData
 							if (mLastDuplicateAction == null)
 							{
 								this.copyCurrentSelectionToClipboard();
-								this.pasteClipboardInLayer(AddOffsetAfterPaste.NO, false);
-								// set the flag
-								wereBrickJustDuplicated = true;
+								AddActionInHistory addInHistory = AddActionInHistory.DO_NOT_ADD_TO_HISTORY_EXCEPT_IF_POPUP_OCCURED;
+								this.pasteClipboardInLayer(AddOffsetAfterPaste.NO, ref addInHistory);
+								// if a popup has occured, we will not received the mouse up event, so clear everything that should usually be cleared in the up event
+								if ((addInHistory == AddActionInHistory.WAS_ADDED_TO_HISTORY_DUE_TO_POPUP) || (addInHistory == AddActionInHistory.POPUP_OCCURRED_BUT_WASNT_ADDED_DUE_TO_USER_CANCEL))
+								{
+									// clear also the rotation snapping, in case of a series of duplication, but do not
+									// undo it, since we want to keep the rotation applied on the duplicated bricks.
+									mRotationForSnappingDuringBrickMove = null;
+									mMouseIsBetweenDownAndUpEvent = false;
+									setBrickUnderMouse(null, PointF.Empty);
+									// cancel the edit action
+									mEditAction = EditAction.NONE;
+									// and abord this event
+									return true;
+								}
+								// set the flag if the duplicate action was ok (if a popup didn't occured,
+								// the user doesn't have a chance to cancel the action, so the duplication was done)
+								wereBrickJustDuplicated = true; 
 							}
 						}
 						// the duplication above will change the current selection

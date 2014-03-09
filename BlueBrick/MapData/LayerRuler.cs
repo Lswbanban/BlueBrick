@@ -934,7 +934,8 @@ namespace BlueBrick.MapData
 								if (mLastDuplicateAction == null)
 								{
 									this.copyCurrentSelectionToClipboard();
-									this.pasteClipboardInLayer(AddOffsetAfterPaste.NO, false);
+									AddActionInHistory addInHistory = AddActionInHistory.DO_NOT_ADD_TO_HISTORY_EXCEPT_IF_POPUP_OCCURED;
+									this.pasteClipboardInLayer(AddOffsetAfterPaste.NO, ref addInHistory);
 									// set the flag
 									wereRulersJustDuplicated = true;
 								}
