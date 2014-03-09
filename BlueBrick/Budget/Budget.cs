@@ -78,6 +78,21 @@ namespace BlueBrick.Budget
 			get { return mIsExisting; }
 		}
 
+		public bool ShouldShowOnlyBudgetedParts
+		{
+			get { return (mIsExisting && Properties.Settings.Default.ShowOnlyBudgetedParts); }
+		}
+
+		public bool ShouldShowBudgetNumbers
+		{
+			get { return (mIsExisting && Properties.Settings.Default.ShowBudgetNumbers); }
+		}
+
+		public bool ShouldUseBudgetLimitation
+		{
+			get { return (mIsExisting && Properties.Settings.Default.UseBudgetLimitation); }
+		}
+
 		public bool WasModified
 		{
 			get { return mWasModified; }
@@ -249,13 +264,13 @@ namespace BlueBrick.Budget
 
 		#region budget management
 		/// <summary>
-		/// Tell if the specified part has a budget defined
+		/// Tell if the specified part has a budget defined which is not null
 		/// </summary>
 		/// <param name="partID">the part id for which you want to know if it has a budget</param>
-		/// <returns>true if the budget is defined (not infinite)</returns>
+		/// <returns>true if the budget is defined (not infinite and not null)</returns>
 		public bool IsBudgeted(string partID)
 		{
-			return (getBudget(partID) >= 0);
+			return (getBudget(partID) > 0);
 		}
 
 		/// <summary>
@@ -377,7 +392,7 @@ namespace BlueBrick.Budget
 		/// <returns>true if you can add this part</returns>
 		public bool canAddBrick(string partID, int quantity)
 		{
-			if (Properties.Settings.Default.UseBudgetLimitation)
+			if (this.ShouldUseBudgetLimitation)
 			{
 				int budget = getBudget(partID);
 				return ((budget < 0) || (getCount(partID) + quantity <= budget));
