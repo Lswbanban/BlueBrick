@@ -180,6 +180,14 @@ namespace BlueBrick
 		}
 
 		/// <summary>
+		/// Get the open file dialog to open a budget
+		/// </summary>
+		public OpenFileDialog OpenBudgetFileDialog
+		{
+			get { return openBudgetFileDialog; }
+		}
+
+		/// <summary>
 		/// Get the current scale of the map view.
 		/// </summary>
 		public double MapViewScale
