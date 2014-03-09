@@ -65,17 +65,14 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 REMOVE ALL THE TODO
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
-	- probably cannot fix, to add in bugtracker: saving of sub group rotated is not working properly, the orientation of the parts is saved, not the orientation of the sub group
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
 - [target 1.8] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.8] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
-	- ways to add a brick: drag'n'drop, click in the library, shortcut key, copy/paste, duplicate drag'n'drop, replacement
 	- Preference form:
 		- In preference: load a specific budget at startup (+ error message if can't)
-		- In preference: check the settings to choose if you want an infinite buget or a null budget by default
-		- one more color for the background of the part lib if we only show parts in the budget
-		- display or not the warning for duplicating parts over budget
+		- default budget file name
+		- bug: if reset default value, the flag to check if value changed are not correctly computed
 	- bug when ungrouping a part from library, the count is not updated, same in the part list
 	- bug: left click then press ALT shows the duplicate cursor but sometime doesn't duplicate (just move)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
