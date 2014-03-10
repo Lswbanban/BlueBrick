@@ -308,7 +308,7 @@ namespace BlueBrick
 		{
 			// when the form is closing, destroyed the temp group created
 			if (mWasGroupToSaveCreated)
-				mGroupToSave.ungroup();
+				mGroupToSave.ungroup(null);
 		}
 
 		private void okButton_Click(object sender, EventArgs e)
