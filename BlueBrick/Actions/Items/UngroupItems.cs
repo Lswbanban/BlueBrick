@@ -70,14 +70,14 @@ namespace BlueBrick.Actions.Items
 		{
 			// disband the groups
 			foreach (Layer.Group group in mGroupToUngroup)
-				group.ungroup();
+				group.ungroup(mLayer);
 		}
 
 		public override void undo()
 		{
 			// reform the groups
 			foreach (Layer.Group group in mGroupToUngroup)
-				group.regroup();
+				group.regroup(mLayer);
 
 			// reselect the current selection, because the regroup may affect a currently selected item
 			// and if we don't reselect, we may end up with some items of the same group selected and some

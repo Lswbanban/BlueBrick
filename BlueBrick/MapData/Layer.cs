@@ -845,16 +845,52 @@ namespace BlueBrick.MapData
 				computeDisplayArea(false);
 			}
 
-			public void ungroup()
+			public void ungroup(Layer layer)
 			{
+				// reset the group property of every item of this group
 				foreach (LayerItem item in mItems)
 					item.Group = null;
+
+				// notifify the budget count and part count, that a group disapeared if it's a named group
+				// and add all the items of this group if they have a valid name
+				if (this.IsANamedGroup)
+				{
+					// cast the layer into brick layer (it should not be null normally, cause only group of bricks are named)
+					LayerBrick brickLayer = layer as LayerBrick;
+					if (brickLayer != null)
+					{
+						// remove the group
+						MainForm.Instance.NotifyPartListForBrickRemoved(brickLayer, this);
+						// add the children
+						foreach (LayerItem item in mItems)
+							if (item.PartNumber != string.Empty) // item can be a brick or another named group, but we should not add unnamed group
+								MainForm.Instance.NotifyPartListForBrickAdded(brickLayer, item);
+					}
+				}
 			}
 
-			public void regroup()
+			public void regroup(Layer layer)
 			{
+				// reset the group property with this group
 				foreach (LayerItem item in mItems)
 					item.Group = this;
+
+				// notifify the budget count and part count, that a group reappeared if it's a named group
+				// and remove all the items of this group if they have a valid name
+				if (this.IsANamedGroup)
+				{
+					// cast the layer into brick layer (it should not be null normally, cause only group of bricks are named)
+					LayerBrick brickLayer = layer as LayerBrick;
+					if (brickLayer != null)
+					{
+						// remove the group
+						MainForm.Instance.NotifyPartListForBrickAdded(brickLayer, this);
+						// add the children
+						foreach (LayerItem item in mItems)
+							if (item.PartNumber != string.Empty) // item can be a brick or another named group, but we should not add unnamed group
+								MainForm.Instance.NotifyPartListForBrickRemoved(brickLayer, item);
+					}
+				}
 			}
 
 			/// <summary>

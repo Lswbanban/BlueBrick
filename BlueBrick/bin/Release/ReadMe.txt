@@ -65,8 +65,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 - [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
 	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
-- [target 1.8] MISSING FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget (make a tab for part list?)
-	- bug when ungrouping a part from library, the count is not updated, same in the part list
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
@@ -88,7 +86,7 @@ Open bugs:
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
-- [target 1.8] BUG (Alban): If you select a named group on the map, you cannot add a part just by clicking on it in the part lib (now: If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group)
+- BUG (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
 - BUG (Alban): When you replace a part in a group, the display area of the group is not recomptuted
 - BUG (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
@@ -100,6 +98,7 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (Erik): A new layer type for mesurement tools.
 - NEW FEATURE (Alban): Add a filter combobox in the bottom of the library
 - NEW FEATURE (Alban): Add a sorting order for the parts in the library based on a new <SortingKey> tag in the XML file of the part
+- NEW FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
 - NEW FEATURE (Alban): Add more contextual cursors inside the layout panel (hidden layer, default grid cursor, new text, ruler cursors, etc...)
 - NEW FEATURE (Alban): More precise Selection: Now the picking and rectangle selection use the hull of the part, and the text rectangle for rotated text, instead of the axis aligned bounding box of the part or text.
 - NEW FEATURE #9 and #45 (Loys): Use the clipboard to allow copy paste between several BleuBrick instances (support also copy + load + paste)
