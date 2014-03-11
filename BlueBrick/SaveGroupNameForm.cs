@@ -36,6 +36,8 @@ namespace BlueBrick
 		// the resulting files to load
 		private List<FileInfo> mNewXmlFilesToLoad = new List<FileInfo>();
 		private List<string> mNewGroupName = new List<string>();
+		// this is used to store temporarily the suffix added to the group name in order to be valid
+		private string mSuffixAddedToGroupName = string.Empty;
 
 		#region get/set
 		public List<FileInfo> NewXmlFilesToLoad
@@ -111,7 +113,7 @@ namespace BlueBrick
 
 			// call explicitly the event to set the correct color and error message
 			// after setting all the data members used to check the validity of the name
-			this.nameTextBox_TextChanged(this, null);
+			this.nameTextBox_TextChanged(nameTextBox, null);
 
 			// configure the xmlSetting for writing
 			mXmlSettings.CheckCharacters = false;
@@ -304,6 +306,13 @@ namespace BlueBrick
 		}
 		#endregion
 		#region event handler
+		private void SaveGroupNameForm_Shown(object sender, EventArgs e)
+		{
+			// for some reason, I cannot focus the name text box in the constructor, so focus it here.
+			this.nameTextBox.Focus();
+			this.nameTextBox.Select(0, 0);
+		}
+
 		private void SaveGroupNameForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			// when the form is closing, destroyed the temp group created
@@ -339,6 +348,54 @@ namespace BlueBrick
 			bool hasForbiddenChar = (partNumber.IndexOfAny(mForbiddenChar) >= 0);
 			bool hasCyclicReference = isCyclicReferenceDetected(mGroupToSave, partNumber);
 			bool disableOkButton = (isEmptyName || hasForbiddenChar || hasCyclicReference);
+
+			// add a default extension if not added by user
+			const string DEFAULT_SUFFIX = ".SET";
+			string textOfTheUser = string.Empty;
+			int indexOfDot = nameTextBox.Text.IndexOf('.');
+			if (indexOfDot < 0)
+			{
+				// if there's no dot at all, we add the defaut .set at the end
+				textOfTheUser = nameTextBox.Text;
+				mSuffixAddedToGroupName = DEFAULT_SUFFIX;
+			}
+			else if ((mSuffixAddedToGroupName != string.Empty) && nameTextBox.Text.EndsWith(mSuffixAddedToGroupName))					 
+			{
+				// remove the suffix (if not empty)
+				textOfTheUser = nameTextBox.Text.Remove(nameTextBox.Text.Length - mSuffixAddedToGroupName.Length);
+				// copy the suffix only if there's nothing or just the dot
+				int suffixStartIndex = textOfTheUser.Length - indexOfDot;
+				if (suffixStartIndex < 2)
+					mSuffixAddedToGroupName = DEFAULT_SUFFIX.Substring(suffixStartIndex);
+				else
+					mSuffixAddedToGroupName = string.Empty;
+			}
+			else if (nameTextBox.Text.Length == indexOfDot + 1)
+			{
+				// if the user deleted anything after the dot, put back the suffix
+				textOfTheUser = nameTextBox.Text;
+				mSuffixAddedToGroupName = DEFAULT_SUFFIX.Substring(1);
+			}
+			else
+			{
+				textOfTheUser = nameTextBox.Text;
+				mSuffixAddedToGroupName = string.Empty;
+			}
+
+			// reset the text with the correct colors if the suffix is not null
+			int cursorPosition = nameTextBox.SelectionStart;
+			if (!textOfTheUser.Equals(nameTextBox.Text) || (mSuffixAddedToGroupName != string.Empty))
+			{
+				nameTextBox.Clear();
+				nameTextBox.SelectionColor = Color.Black;
+				nameTextBox.AppendText(textOfTheUser);
+			}
+			if (mSuffixAddedToGroupName != string.Empty)
+			{
+				nameTextBox.SelectionColor = Color.Gray;
+				nameTextBox.AppendText(mSuffixAddedToGroupName);
+			}
+			nameTextBox.Select(cursorPosition, 0);
 
 			// set the corresponding error text
 			if (isEmptyName)
