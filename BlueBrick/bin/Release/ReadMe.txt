@@ -63,8 +63,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-- [target 1.8] MISSING FEATURE (Alban): A feature to save a group that was created in BlueBrick, in the library
-	- the group name is not clear with the automatic adding of ".set": check if we should add a rich text box instead
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
@@ -102,6 +100,7 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (Alban): Add more contextual cursors inside the layout panel (hidden layer, default grid cursor, new text, ruler cursors, etc...)
 - NEW FEATURE (Alban): More precise Selection: Now the picking and rectangle selection use the hull of the part, and the text rectangle for rotated text, instead of the axis aligned bounding box of the part or text.
 - NEW FEATURE #9 and #45 (Loys): Use the clipboard to allow copy paste between several BleuBrick instances (support also copy + load + paste)
+- NEW FEATURE (Alban): A feature to save a group that was created with BlueBrick in the library
 - NEW FEATURE (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste
 - NEW FEATURE #37 (doc_brown): Add a checkbox in the warning message box when not saving in BBM format.
 - NEW FEATURE (Alban): Add more options in the preference to create any of the 5 types of layer for a new map
