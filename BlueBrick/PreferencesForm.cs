@@ -515,6 +515,27 @@ namespace BlueBrick
 			Settings.Default.Save();
 		}
 
+		/// <summary>
+		/// Reset the settings which belong to the specified page, to the default values
+		/// </summary>
+		/// <param name="tabPageFilter">A bit field that decribe the page that should be reset</param>
+		private void resetSettings(TabPageFilter tabPageFilter)
+		{
+			// reset the settings (except the language)
+			string currentLanguage = Settings.Default.Language;
+			// create a new setting object cause we only want to copy the settings of the tab page, not the UI settings
+			Settings defaultSetting = new Settings();
+			defaultSetting.Upgrade();
+			defaultSetting.Reset();
+			sSaveDefaultKeyInSettings(defaultSetting, false);
+			// restore the language
+			defaultSetting.Language = currentLanguage;
+			// now copy only the settings specified with the default settings
+			copySettings(Settings.Default, defaultSetting, tabPageFilter);
+			// init the controls
+			initControlValues(true, tabPageFilter);
+		}
+
 		private void restoreAllDefaultButton_Click(object sender, EventArgs e)
 		{
 			DialogResult result = MessageBox.Show(this,
@@ -522,17 +543,7 @@ namespace BlueBrick
 				Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNo,
 				MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 			if (result == DialogResult.Yes)
-			{
-				// reset the settings (except the language)
-				string currentLanguage = Settings.Default.Language;
-				Settings.Default.Upgrade();
-				Settings.Default.Reset();
-				sSaveDefaultKeyInSettings(Settings.Default, false);
-				// restore the language
-				Settings.Default.Language = currentLanguage;
-				// init the controls
-				initControlValues(true, TabPageFilter.ALL);
-			}
+				resetSettings(TabPageFilter.ALL);
 		}
 
 		private void restoreTabDefaultButton_Click(object sender, EventArgs e)
@@ -542,21 +553,7 @@ namespace BlueBrick
 				Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNo,
 				MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 			if (result == DialogResult.Yes)
-			{
-				// reset the settings (except the language)
-				string currentLanguage = Settings.Default.Language;
-				Settings defaultSetting = new Settings();
-				defaultSetting.Upgrade();
-				defaultSetting.Reset();
-				sSaveDefaultKeyInSettings(defaultSetting, false);
-				// restore the language
-				defaultSetting.Language = currentLanguage;
-				// now copy only the current page with the default settings
-				TabPageFilter tabPageFilter = (TabPageFilter)(1 << this.optionsTabControl.SelectedIndex);
-				copySettings(Settings.Default, defaultSetting, tabPageFilter);
-				// init the controls
-				initControlValues(true, tabPageFilter);
-			}
+				resetSettings((TabPageFilter)(1 << this.optionsTabControl.SelectedIndex));
 		}
 
 		private void cancelButton_Click(object sender, EventArgs e)
