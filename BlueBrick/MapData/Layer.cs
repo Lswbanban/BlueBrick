@@ -1169,25 +1169,34 @@ namespace BlueBrick.MapData
 			LayerItem.sHashtableForGroupRebuilding.Clear();
 			LayerBrick.Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
 
-			// read the starting tag of the list
-			reader.ReadStartElement(itemsListName);
 			// check if the list is not empty and read the first child
-			bool itemFound = !reader.IsEmptyElement;
-			while (itemFound)
+			if (!reader.IsEmptyElement)
 			{
-				// instanciate a new text cell, read and add the new text cell
-				LayerItem item = readItem<T>(reader);
-				resultingList.Add(item as T);
+				// read the starting tag of the list
+				reader.ReadStartElement(itemsListName);
+				// check if the list is not empty and read the first child
+				bool itemFound = !reader.IsEmptyElement;
+				while (itemFound)
+				{
+					// instanciate a new text cell, read and add the new text cell
+					LayerItem item = readItem<T>(reader);
+					resultingList.Add(item as T);
 
-				// check if the next element is a sibling and not the close element of the list
-				itemFound = reader.IsStartElement();
+					// check if the next element is a sibling and not the close element of the list
+					itemFound = reader.IsStartElement();
 
-				// step the progress bar for each text cell
-				if (useProgressBar)
-					MainForm.Instance.stepProgressBar();
+					// step the progress bar for each text cell
+					if (useProgressBar)
+						MainForm.Instance.stepProgressBar();
+				}
+				// read the end of the list tag, to finish the list of items (unless the list is empty)
+				reader.ReadEndElement();
 			}
-			// read the end of the list tag, to finish the list of items
-			reader.ReadEndElement();
+			else
+			{
+				// read the empty list element
+				reader.Read();
+			}
 
 			// call the post read function to read the groups
 			readGroupFromXml(reader);
