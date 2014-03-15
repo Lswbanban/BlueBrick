@@ -843,7 +843,8 @@ namespace BlueBrick
 			if (updateSelectedTab)
 			{
 				// the selected tab from the setting data
-				if (BlueBrick.Properties.Settings.Default.UIPartLibSelectedTabIndex < this.TabPages.Count)
+				int selectedTabIndex = BlueBrick.Properties.Settings.Default.UIPartLibSelectedTabIndex;
+				if ((selectedTabIndex >= 0) && (selectedTabIndex < this.TabPages.Count))
 					this.SelectTab(BlueBrick.Properties.Settings.Default.UIPartLibSelectedTabIndex);
 			}
 			else

@@ -474,8 +474,6 @@ namespace BlueBrick
 			sInstance = this;
 			// create and hide the part list form
 			mPartListForm = new PartListForm(this);
-			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED for mapping UI properties in settings
-			loadUISettingFromDefaultSettings();
 			// load the custom cursors and icons
 			LoadEmbededCustomCursors();
 			// reset the shortcut keys
@@ -484,6 +482,9 @@ namespace BlueBrick
 			PreferencesForm.sSaveDefaultKeyInSettings();
 			// load the part info
 			loadPartLibraryFromDisk();
+			// PATCH FIX BECAUSE DOT NET FRAMEWORK IS BUGGED for mapping UI properties in settings
+			// and do it after loading the library cause some UI settings concern the library
+			loadUISettingFromDefaultSettings();
 			// disbale all the buttons of the toolbar and menu items by default
 			// the open of the file or the creation of new map will enable the correct buttons
 			enableGroupingButton(false, false);
@@ -535,17 +536,19 @@ namespace BlueBrick
 			this.Size = Properties.Settings.Default.UIMainFormSize;
 			this.WindowState = Properties.Settings.Default.UIMainFormWindowState;
 			// part lib
-			this.filterAllTabCheckBox.Checked = Properties.Settings.Default.UIFilterAllLibraryTab;
 			if (Properties.Settings.Default.UIFilterAllSentence != string.Empty)
 			{
 				this.removeInputFilterIndication();
 				this.textBoxPartFilter.Text = Properties.Settings.Default.UIFilterAllSentence;
 			}
-			else
+			else if (this.textBoxPartFilter.Text == string.Empty)
 			{
 				// add the filter incitation message (which is saved in the ressource)
+				// only if not another filter sentence was set during the loading
 				addInputFilterIndication();
 			}
+			// set the flag after the sentence, cause the checked event handler will check the text
+			this.filterAllTabCheckBox.Checked = Properties.Settings.Default.UIFilterAllLibraryTab;
 			// budget menu
 			this.showOnlyBudgetedPartsToolStripMenuItem.Checked = Properties.Settings.Default.ShowOnlyBudgetedParts;
 			this.showBudgetNumbersToolStripMenuItem.Checked = Properties.Settings.Default.ShowBudgetNumbers;
