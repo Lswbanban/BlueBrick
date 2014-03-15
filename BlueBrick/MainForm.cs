@@ -1197,24 +1197,24 @@ namespace BlueBrick
 			Layer layerToSelect = null;
 			// check if we need to add layer
 			if (Properties.Settings.Default.AddGridLayerOnNewMap)
-				ActionManager.Instance.doAction(new AddLayer("LayerGrid"));
+				ActionManager.Instance.doAction(new AddLayer("LayerGrid", false));
 			if (Properties.Settings.Default.AddBrickLayerOnNewMap)
 			{
-				ActionManager.Instance.doAction(new AddLayer("LayerBrick"));
+				ActionManager.Instance.doAction(new AddLayer("LayerBrick", false));
 				// by preference we want to select the brick layer
 				layerToSelect = Map.Instance.SelectedLayer;
 			}
 			if (Properties.Settings.Default.AddAreaLayerOnNewMap)
-				ActionManager.Instance.doAction(new AddLayer("LayerArea"));
+				ActionManager.Instance.doAction(new AddLayer("LayerArea", false));
 			if (Properties.Settings.Default.AddTextLayerOnNewMap)
 			{
-				ActionManager.Instance.doAction(new AddLayer("LayerText"));
+				ActionManager.Instance.doAction(new AddLayer("LayerText", false));
 				// if there's no brick layer, the second choice is to select the text layer
 				if (layerToSelect == null)
 					layerToSelect = Map.Instance.SelectedLayer;
 			}
 			if (Properties.Settings.Default.AddRulerLayerOnNewMap)
-				ActionManager.Instance.doAction(new AddLayer("LayerRuler"));
+				ActionManager.Instance.doAction(new AddLayer("LayerRuler", false));
 			// now select the prefered layer if any
 			if (layerToSelect != null)
 				Map.Instance.SelectedLayer = layerToSelect;
@@ -2600,27 +2600,27 @@ namespace BlueBrick
 
 		private void newLayerGridButton_Click(object sender, EventArgs e)
 		{
-			ActionManager.Instance.doAction(new AddLayer("LayerGrid"));
+			ActionManager.Instance.doAction(new AddLayer("LayerGrid", true));
 		}
 
 		private void newLayerBrickButton_Click(object sender, EventArgs e)
 		{
-			ActionManager.Instance.doAction(new AddLayer("LayerBrick"));
+			ActionManager.Instance.doAction(new AddLayer("LayerBrick", true));
 		}
 
 		private void newLayerAreaButton_Click(object sender, EventArgs e)
 		{
-			ActionManager.Instance.doAction(new AddLayer("LayerArea"));
+			ActionManager.Instance.doAction(new AddLayer("LayerArea", true));
 		}
 
 		private void newLayerTextButton_Click(object sender, EventArgs e)
 		{
-			ActionManager.Instance.doAction(new AddLayer("LayerText"));
+			ActionManager.Instance.doAction(new AddLayer("LayerText", true));
 		}
 
 		private void newLayerRulerButton_Click(object sender, EventArgs e)
 		{
-			ActionManager.Instance.doAction(new AddLayer("LayerRuler"));
+			ActionManager.Instance.doAction(new AddLayer("LayerRuler", true));
 		}
 
 		private void trashLayerButton_Click(object sender, EventArgs e)

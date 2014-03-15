@@ -24,9 +24,11 @@ namespace BlueBrick.Actions
 		private string	mLayerType = "";
 		private Layer mLayerAdded = null;
 
-		public AddLayer(string layerType)
+		public AddLayer(string layerType, bool updateLayerView)
 		{
-			mUpdateLayerView = UpdateViewType.FULL;
+			// update the view unless specified by the parameter.
+			// This param can be null in case we want to create several layer and updating the view at the end (which is the case at startup)
+			mUpdateLayerView = updateLayerView ? UpdateViewType.FULL : UpdateViewType.NONE;
 			mLayerType = layerType;
 			// create the layer according to the type
 			// if the layer does not exists
