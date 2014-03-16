@@ -222,7 +222,6 @@ namespace BlueBrick
 					{
 						// new step, so finalize and add a layer then reset the pointer to make room for a new layer
                         finalizeCurrentLayerAndAddToMap();
-						sCurrentLayerLoaded = null;
 					}
 					else
 					{
@@ -268,6 +267,8 @@ namespace BlueBrick
 			StreamReader textReader = new StreamReader(filename);
 			// init the progress bar with the number of bytes of the file
 			MainForm.Instance.resetProgressBar((int)(textReader.BaseStream.Length));
+			// use a flag because in MPD, the first "0 FILE" tage is reserved for the file itself, the following one are the submodels
+			bool wasFirstFileTagFound = false;
 			// create a line spliter array
 			while (!textReader.EndOfStream)
 			{
@@ -282,11 +283,18 @@ namespace BlueBrick
 					// comment or meta command
 					if (token[1].Equals("FILE"))
 					{
-						// new file, so add a layer (if the current layer is not empty)
-                        finalizeCurrentLayerAndAddToMap();
-                        sCurrentLayerLoaded = null;
-                        // save the name the layer with the name of the sub model
-                        sCurrentLayerName = Path.GetFileNameWithoutExtension(line.Substring(7));
+						if (wasFirstFileTagFound)
+						{
+							// new file, so add a layer (if the current layer is not empty)
+							finalizeCurrentLayerAndAddToMap();
+							// save the name the layer with the name of the sub model
+							sCurrentLayerName = Path.GetFileNameWithoutExtension(line.Substring(7));
+						}
+						else
+						{
+							// we just ignore the first FILE command, it's just the file name of the file we are loading
+							wasFirstFileTagFound = true;
+						}
 					}
 					else if (token[1].Equals("STEP"))
 					{
@@ -349,20 +357,21 @@ namespace BlueBrick
             {
                 // not the correct type, so finalize and reinit
                 finalizeCurrentLayerAndAddToMap();
-                sCurrentLayerLoaded = null;
             }
 
             // create a new layer if needed
             if (sCurrentLayerLoaded == null)
             {
-                LayerBrick brickLayer = new LayerBrick();
-                LayerRuler rulerLayer = new LayerRuler();
-                if (brickLayer is T)
-                    sCurrentLayerLoaded = brickLayer;
-                else if (rulerLayer is T)
-                    sCurrentLayerLoaded = rulerLayer;
-                // TODO continue with other layer
-                // TODO search how to check two types
+				if (typeof(T) == typeof(LayerBrick))
+                    sCurrentLayerLoaded = new LayerBrick();
+				else if (typeof(T) == typeof(LayerRuler))
+                    sCurrentLayerLoaded = new LayerRuler();
+				else if (typeof(T) == typeof(LayerGrid))
+					sCurrentLayerLoaded = new LayerGrid();
+				else if (typeof(T) == typeof(LayerText))
+					sCurrentLayerLoaded = new LayerText();
+				else if (typeof(T) == typeof(LayerArea))
+					sCurrentLayerLoaded = new LayerArea();
                 // set the name if not empty
                 if (sCurrentLayerName != string.Empty)
                     sCurrentLayerLoaded.Name = sCurrentLayerName;
@@ -387,7 +396,10 @@ namespace BlueBrick
 
                 // then add the layer to the map
                 Map.Instance.addLayer(sCurrentLayerLoaded);
-            }
+
+				// then clear the pointer
+				sCurrentLayerLoaded = null;
+			}
         }
 
 		private static void checkIfItemMustBeAddedToGroup(Layer.LayerItem item)
