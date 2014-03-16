@@ -84,6 +84,7 @@ Open bugs:
 - MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
+- BUG (Alban): In the export window you can specify a selection rectangle null by setting a bottom < top
 - BUG (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
 - BUG (Alban): When you replace a part in a group, the display area of the group is not recomptuted
 - BUG (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
@@ -91,6 +92,7 @@ Open bugs:
 - BUG (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
+- REFACTORING (Alban): the layer panel is slow to resfresh
 
 Bug fixed in 1.8.0.0:
 - NEW FEATURE (Erik): A new layer type for mesurement tools.
