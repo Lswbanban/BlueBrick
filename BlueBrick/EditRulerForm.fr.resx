@@ -169,9 +169,6 @@
   <data name="lineColorLabel.Text" xml:space="preserve">
     <value>Couleur</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 13</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Epaisseur (en pixel)</value>
   </data>
@@ -185,11 +182,14 @@
     <value>Motif de Trait-Espace
 (en fois d'épaisseur)</value>
   </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Couleur</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 13</value>
+    <value>109, 13</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Epaisseur (en pixel)</value>

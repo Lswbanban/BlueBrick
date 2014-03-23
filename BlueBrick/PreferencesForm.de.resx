@@ -120,6 +120,9 @@
   <data name="generalTabPage.Text" xml:space="preserve">
     <value>Allgemein</value>
   </data>
+  <data name="editionTabPage.Text" xml:space="preserve">
+    <value>Bearbeitung</value>
+  </data>
   <data name="appearanceTabPage.Text" xml:space="preserve">
     <value>Aussehen</value>
   </data>
@@ -128,6 +131,19 @@
   </data>
   <data name="shortcutKeysTabPage.Text" xml:space="preserve">
     <value>Tastenkürzel</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>Meldungen</value>
+  </data>
+  <data name="displayWarningWhenDuplicateOverBudgetCheckBox.Text" xml:space="preserve">
+    <value>Warnung anzeigen, wenn eingefügte Teile Budget überschreiten</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="displayWarningForNotSavingInBBMCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 38</value>
+  </data>
+  <data name="displayWarningForNotSavingInBBMCheckBox.Text" xml:space="preserve">
+    <value>Warnung anzeigen, wenn nicht als BlueBrick Datei gespeichert wird</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
     <value>Zuletzt benutzte Dateien</value>
@@ -151,7 +167,6 @@ benutzten Dateien</value>
   <data name="optimComboBox.Items2" xml:space="preserve">
     <value>Weniger Speicher</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="optimComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 18</value>
   </data>
@@ -198,8 +213,27 @@ benutzten Dateien</value>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Standardeinstellungen für neue Karten</value>
   </data>
+  <data name="addAreaLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 17</value>
+  </data>
+  <data name="addAreaLayerCheckBox.Text" xml:space="preserve">
+    <value>Flächenebene auf jedem neuen Gleisplan einfügen</value>
+  </data>
+  <data name="addRulerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 30</value>
+  </data>
+  <data name="addRulerLayerCheckBox.Text" xml:space="preserve">
+    <value>Bemaßungsebene auf jedem neuen Gleisplan
+einfügen</value>
+  </data>
+  <data name="addTextLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 17</value>
+  </data>
+  <data name="addTextLayerCheckBox.Text" xml:space="preserve">
+    <value>Textebene auf jedem neuen Gleisplan einfügen</value>
+  </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 137</value>
+    <value>1, 205</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 17</value>
@@ -211,16 +245,112 @@ benutzten Dateien</value>
     <value>Autor</value>
   </data>
   <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 17</value>
+    <value>252, 17</value>
   </data>
   <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
-    <value>Füge eine Steinebene hinzu</value>
+    <value>Steinebene auf jedem neuen Gleisplan einfügen</value>
   </data>
   <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>262, 17</value>
   </data>
   <data name="addGridLayerCheckBox.Text" xml:space="preserve">
     <value>Füge eine Rasterebene auf der neuen Karte hinzu</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Wenn die Sprache geändert wird, muss die Anwendung neu gestartet werden
+um die Änderung auszuführen.</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Bemaßung</value>
+  </data>
+  <data name="rulerFontNameLabel.Text" xml:space="preserve">
+    <value>Schriftartname</value>
+  </data>
+  <data name="fontColorLabel.Text" xml:space="preserve">
+    <value>Farbe</value>
+  </data>
+  <data name="rulerFontButton.Text" xml:space="preserve">
+    <value>Schriftart ändern</value>
+  </data>
+  <data name="unitComboBox.Items" xml:space="preserve">
+    <value>Noppen</value>
+  </data>
+  <data name="unitComboBox.Items4" xml:space="preserve">
+    <value>Fuß</value>
+  </data>
+  <data name="displayUnitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 17</value>
+  </data>
+  <data name="displayUnitCheckBox.Text" xml:space="preserve">
+    <value>Maßeinheit anzeigen</value>
+  </data>
+  <data name="displayMeasureTextCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 17</value>
+  </data>
+  <data name="displayMeasureTextCheckBox.Text" xml:space="preserve">
+    <value>Maßzahl anzeigen</value>
+  </data>
+  <data name="allowOffsetCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 17</value>
+  </data>
+  <data name="allowOffsetCheckBox.Text" xml:space="preserve">
+    <value>Maßhilfslinien verwenden</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Standard gestrichelte Linie
+(Vielfaches der Breite)</value>
+  </data>
+  <data name="lineColorLabel.Text" xml:space="preserve">
+    <value>Standard Farbe</value>
+  </data>
+  <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
+    <value>201, 103</value>
+  </data>
+  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Maßhilfslinie</value>
+  </data>
+  <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 13</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>Maßlinie</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>Standard Breite
+(in Pixel)</value>
+  </data>
+  <data name="RulerSwitchToEditionAfterCreationCheckBox.Text" xml:space="preserve">
+    <value>Wechsel zum Bearbeitungsmodus nach jeder neuen Bemaßung</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Verknüpfungspunktradius (in Pixel)</value>
+  </data>
+  <data name="copyPasteGroupBox.Text" xml:space="preserve">
+    <value>Kopieren/Einfügen</value>
+  </data>
+  <data name="OffsetValueLabel.Text" xml:space="preserve">
+    <value>Versatz (in Noppen)</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Versatz nach Einfügen</value>
+  </data>
+  <data name="copyOffsetComboBox.Items" xml:space="preserve">
+    <value>Niemals</value>
+  </data>
+  <data name="copyOffsetComboBox.Items1" xml:space="preserve">
+    <value>In der gleichen Ebene</value>
+  </data>
+  <data name="copyOffsetComboBox.Items2" xml:space="preserve">
+    <value>Immer</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Maus</value>
@@ -270,16 +400,6 @@ benutzten Dateien</value>
   <data name="label3.Text" xml:space="preserve">
     <value>Mausrad Vergrößerungstempo</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Sprache</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Wenn die Sprache geändert wird, muss die Anwendung neu gestartet werden
-um die Änderung auszuführen.</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Sprache</value>
-  </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Standard Aussehen der Flächen</value>
   </data>
@@ -306,9 +426,6 @@ um die Änderung auszuführen.</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Standard Textformat</value>
-  </data>
-  <data name="defaultFontNameLabel.Text" xml:space="preserve">
-    <value>Schriftartname</value>
   </data>
   <data name="defaultFontColorLabel.Text" xml:space="preserve">
     <value>Farbe</value>
@@ -362,11 +479,42 @@ des geführten Teils</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Farbschema</value>
   </data>
+  <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
+    <value>Klicke den "…" Button zur Dateiauswahl</value>
+  </data>
+  <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 13</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Budget-Datei, die nach Start zu laden ist:</value>
+  </data>
+  <data name="PartLibDefaultBudgetNotLimitedradioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 17</value>
+  </data>
+  <data name="PartLibDefaultBudgetNotLimitedradioButton.Text" xml:space="preserve">
+    <value>Unbegrenzt</value>
+  </data>
+  <data name="PartLibDefaultBudgetZeroRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 17</value>
+  </data>
+  <data name="PartLibDefaultBudgetZeroRadioButton.Text" xml:space="preserve">
+    <value>Null</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>Standard Budget
+für jedes Teil:</value>
+  </data>
   <data name="groupBox13.Text" xml:space="preserve">
-    <value>Aussehen</value>
+    <value>Hintergrundfarbe</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Farbe, wenn nur budgetierte Teile angezeigt werden</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Farbe, wenn nur gefilterte Teile angezeigt werden</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
-    <value>Hintergrundfarbe der Teilebibliothek</value>
+    <value>Standard Hintergrundfarbe</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
     <value>Pop-up-Info</value>
