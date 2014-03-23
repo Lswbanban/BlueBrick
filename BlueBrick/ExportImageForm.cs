@@ -208,16 +208,16 @@ namespace BlueBrick
             mOriginalDisplayConnectionPointInSetting = Settings.Default.DisplayFreeConnexionPoints;
             // now change them: for each we change the check state and simulate a click
             this.exportWatermarkCheckBox.Checked = Map.Instance.ExportWatermark;
-            this.exportWatermarkCheckBox_Click(this, null);
+            this.exportWatermarkCheckBox_Click(null, null);
 
             this.exportHullCheckBox.Checked = Map.Instance.ExportBrickHull;
-            this.exportHullCheckBox_Click(this, null);
+            this.exportHullCheckBox_Click(null, null);
 
             this.exportElectricCircuitCheckBox.Checked = Map.Instance.ExportElectricCircuit;
-            this.exportElectricCircuitCheckBox_Click(this, null);
+            this.exportElectricCircuitCheckBox_Click(null, null);
 
             this.exportConnectionPointCheckBox.Checked = Map.Instance.ExportConnectionPoints;
-            this.exportConnectionPointCheckBox_Click(this, null);
+            this.exportConnectionPointCheckBox_Click(null, null);
         }
 
         /// <summary>
@@ -272,7 +272,7 @@ namespace BlueBrick
 			Map.Instance.clearAllSelection();
 			// create the map image with the correct size
 			// check that the size is not null, which can happen if the window is minimized
-			if ((this.previewPictureBox.Width >= 0) && (this.previewPictureBox.Height >= 0))
+			if ((this.previewPictureBox.Width > 0) && (this.previewPictureBox.Height > 0))
 			{
 				// the constructor of the bitmap throw an exception if the size of the image is negative or null
 				mMapImage = new Bitmap(this.previewPictureBox.Width, this.previewPictureBox.Height);
@@ -585,29 +585,45 @@ namespace BlueBrick
         {
             // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
             Settings.Default.DisplayGeneralInfoWatermark = this.exportWatermarkCheckBox.Checked;
-            drawAll();
+			// if the sender is null, this method is just called from the init function, so no need to draw several times
+			if (sender != null)
+				drawAll();
         }
 
         private void exportHullCheckBox_Click(object sender, EventArgs e)
         {
             // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
             Settings.Default.DisplayBrickHull = this.exportHullCheckBox.Checked;
-            drawAll();
-        }
+			// if the sender is null, this method is just called from the init function, so no need to draw several times
+			if (sender != null)
+				drawAll();
+		}
 
         private void exportElectricCircuitCheckBox_Click(object sender, EventArgs e)
         {
             // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
             Settings.Default.DisplayElectricCircuit = this.exportElectricCircuitCheckBox.Checked;
-            drawAll();
-        }
+			// if the sender is null, this method is just called from the init function, so no need to draw several times
+			if (sender != null)
+				drawAll();
+		}
 
         private void exportConnectionPointCheckBox_Click(object sender, EventArgs e)
         {
             // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
             Settings.Default.DisplayFreeConnexionPoints = this.exportConnectionPointCheckBox.Checked;
-            drawAll();
-        }
+			// if the sender is null, this method is just called from the init function, so no need to draw several times
+			if (sender != null)
+				drawAll();
+		}
         #endregion
+
+		private void ExportImageForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			// set the visible false for catching this strange case:
+			// Minimize the window, then right click on the task bar and choose close
+			// in such case, next time you try do do a Show Dialog, and exception is raised
+			this.Visible = false;
+		}
 	}
 }
