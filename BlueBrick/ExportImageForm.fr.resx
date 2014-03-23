@@ -123,18 +123,14 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annuler</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Taille de l'image en pixel</value>
-  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Largeur</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="linkPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        R0lGODlhEQAIAIEAAAAAAP///5qamv///yH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAADACwAAAAAEQAI
-        AAAIPQAHDABAcCDBggcFDhTAEADDhw4bLhRAsGFFihErAliI0OFGjx4NUuT4EaNFixkzTmwI8eFIgQc/
-        diw4ICAAOw==
+        R0lGODlhEQAIAPEAAAAAAP///5qamv///yH5BAEAAAMALAAAAAARAAgAAAIj3ICHuXYCAZwyPoFixjWD
+        x0ifKCoYOHKa1nVXRE2nsYxhMhQAOw==
 </value>
   </data>
   <data name="label3.Text" xml:space="preserve">
@@ -146,8 +142,8 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Pixel/Stud</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Taille de la zone en stud</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Taille de l'image en pixel</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Haut</value>
@@ -161,8 +157,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Droite</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Options d'export</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Taille de la zone en stud</value>
   </data>
   <data name="exportConnectionPointCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>384, 21</value>
@@ -196,6 +192,9 @@
   </data>
   <data name="exportHullCheckBox.Text" xml:space="preserve">
     <value>Contours (Enveloppes)</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Options d'export</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

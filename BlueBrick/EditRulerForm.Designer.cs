@@ -334,7 +334,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.lineThicknessNumericUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.lineColorPictureBox)).EndInit();
 			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dashPatternSpaceNumericUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dashPatternLineNumericUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.guidelineThicknessNumericUpDown)).EndInit();

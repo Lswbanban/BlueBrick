@@ -430,4 +430,121 @@ Die Fehlermeldung lautet:</value>
   <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
     <value>Unbekannt</value>
   </data>
+  <data name="ActionAddLayerRuler" xml:space="preserve">
+    <value>Bemaßungsschicht hinzufügen</value>
+  </data>
+  <data name="ActionAddRuler" xml:space="preserve">
+    <value>Bemaßung hinzufügen</value>
+  </data>
+  <data name="ActionAttachRulerToBrick" xml:space="preserve">
+    <value>Bemaßung mit Teil verknüpfen &amp;</value>
+  </data>
+  <data name="ActionBringRulerToFront" xml:space="preserve">
+    <value>ausgewählte Bemaßung in den Vordergrund schieben</value>
+  </data>
+  <data name="ActionDeleteRuler" xml:space="preserve">
+    <value>Bemaßung löschen</value>
+  </data>
+  <data name="ActionDeleteSeveralRulers" xml:space="preserve">
+    <value>Mehrere Bemaßungen löschen</value>
+  </data>
+  <data name="ActionDetachRuler" xml:space="preserve">
+    <value>Verknüpfung einer Bemaßung lösen</value>
+  </data>
+  <data name="ActionDuplicateRuler" xml:space="preserve">
+    <value>Bemaßung duplizieren</value>
+  </data>
+  <data name="ActionDuplicateSeveralRulers" xml:space="preserve">
+    <value>Mehrere Bemaßungen duplizieren</value>
+  </data>
+  <data name="ActionEditRuler" xml:space="preserve">
+    <value>Bemaßungseigenschaften bearbeiten</value>
+  </data>
+  <data name="ActionMoveRuler" xml:space="preserve">
+    <value>Bemaßung verschieben</value>
+  </data>
+  <data name="ActionMoveRulerControlPoint" xml:space="preserve">
+    <value>Meßpunkt verschieben</value>
+  </data>
+  <data name="ActionMoveSeveralRulers" xml:space="preserve">
+    <value>Mehrere Bemaßungen verschieben</value>
+  </data>
+  <data name="ActionRotateRuler" xml:space="preserve">
+    <value>Bemaßung drehen</value>
+  </data>
+  <data name="ActionRotateSeveralRulers" xml:space="preserve">
+    <value>Mehrere Bemaßungen drehen</value>
+  </data>
+  <data name="ActionScaleCircularRuler" xml:space="preserve">
+    <value>Bemaßungsradius ändern</value>
+  </data>
+  <data name="ActionScaleLinearRuler" xml:space="preserve">
+    <value>Bemaßungsversatz ändern</value>
+  </data>
+  <data name="ActionSendRulerToBack" xml:space="preserve">
+    <value>Ausgewählte Bemaßung in den Hintergrund schieben</value>
+  </data>
+  <data name="DefaultSaveFileNameForBudget" xml:space="preserve">
+    <value>MeinBudget.bbb</value>
+  </data>
+  <data name="ErrorMsgAbortButton" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
+  <data name="ErrorMsgBudgetWasModified" xml:space="preserve">
+    <value>Das aktuelle Budget wurde nicht gespeichert. Sollen die Änderungen gespeichert werden?</value>
+  </data>
+  <data name="ErrorMsgCancelButton" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
+  <data name="ErrorMsgCannotOpenBudget" xml:space="preserve">
+    <value>Das Budget &amp; kann nicht geöffnet werden.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveBudget" xml:space="preserve">
+    <value>Das Budget &amp; kann nicht gespeichert werden.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveCustomPart" xml:space="preserve">
+    <value>Beim Speichern der Gruppe im Ordner "parts/Custom" ist ein Fehler aufgetreten. Die nachfolgende Meldung enthält mehr Details:</value>
+  </data>
+  <data name="ErrorMsgIgnoreButton" xml:space="preserve">
+    <value>Ignorieren</value>
+  </data>
+  <data name="ErrorMsgLayerTypeRuler" xml:space="preserve">
+    <value>Bemaßung</value>
+  </data>
+  <data name="ErrorMsgNoButton" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="ErrorMsgOkButton" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="ErrorMsgReplaceExistingShortcut" xml:space="preserve">
+    <value>Dieses Tastenkürzel existiert bereits. Soll das bestehende ersetzt werden?</value>
+  </data>
+  <data name="ErrorMsgRetryButton" xml:space="preserve">
+    <value>Erneut versuchen</value>
+  </data>
+  <data name="ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation" xml:space="preserve">
+    <value>Einige Teile werden aufgrund des akutellen Budgets nicht dupliziert. Duplizierung fortsetzen?</value>
+  </data>
+  <data name="ErrorMsgYesButton" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="InputFilterIndication" xml:space="preserve">
+    <value>Hier Stichwörter für Filter eingeben</value>
+  </data>
+  <data name="PartLibMenuItemEditBudget" xml:space="preserve">
+    <value>Budget dieses Teils eingeben</value>
+  </data>
+  <data name="PartLibMenuItemShowBudgetNumbers" xml:space="preserve">
+    <value>Budget anzeigen</value>
+  </data>
+  <data name="PartLibMenuItemShowOnlyBudgetedParts" xml:space="preserve">
+    <value>Nur budgetierte Teile anzeigen</value>
+  </data>
+  <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
+    <value>Budgetgrenzen benutzen</value>
+  </data>
+  <data name="StatusMsgBudgetReached" xml:space="preserve">
+    <value>Budget für dieses Teil ausgeschöpft</value>
+  </data>
 </root>

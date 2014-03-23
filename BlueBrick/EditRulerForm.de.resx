@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,82 +117,85 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Wähle den zu exportierenden Bereich und zieh ihn auf die Vorschau oder bearbeite die Werte und wähle die Größe des Bildes, dann klicke auf OK um einen Namen eingeben zu können. </value>
-  </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Bildgröße in Pixel</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Maßzahl</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Breite</value>
+  <data name="unitLabel.Text" xml:space="preserve">
+    <value>Maßeinheit</value>
+  </data>
+  <data name="unitComboBox.Items" xml:space="preserve">
+    <value>Noppen</value>
+  </data>
+  <data name="unitComboBox.Items4" xml:space="preserve">
+    <value>Fuß</value>
+  </data>
+  <data name="fontNameLabel.Text" xml:space="preserve">
+    <value>Schriftart</value>
+  </data>
+  <data name="fontColorLabel.Text" xml:space="preserve">
+    <value>Farbe</value>
+  </data>
+  <data name="fontButton.Text" xml:space="preserve">
+    <value>Schriftart ändern</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="linkPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEQAIAPEAAAAAAP///5qamv///yH5BAEAAAMALAAAAAARAAgAAAIj3ICHuXYCAZwyPoFixjWD
-        x0ifKCoYOHKa1nVXRE2nsYxhMhQAOw==
-</value>
+  <data name="displayUnitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 17</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Höhe</value>
+  <data name="displayUnitCheckBox.Text" xml:space="preserve">
+    <value>Maßeinheit anzeigen</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 13</value>
+  <data name="displayMeasureTextCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 17</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Pixel / Noppen</value>
+  <data name="displayMeasureTextCheckBox.Text" xml:space="preserve">
+    <value>Maßzahl anzeigen</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Fläche in Noppen</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Maßlinie</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Oben</value>
+  <data name="allowOffsetCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 17</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Links</value>
+  <data name="allowOffsetCheckBox.Text" xml:space="preserve">
+    <value>Maßhilfslinien verwenden</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Unten</value>
+  <data name="lineColorLabel.Text" xml:space="preserve">
+    <value>Farbe</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Rechts</value>
+    <value>Breite (in Pixel)</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>Exportoptionen</value>
+    <value>Maßhilfslinie</value>
   </data>
-  <data name="exportConnectionPointCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>382, 19</value>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 47</value>
   </data>
-  <data name="exportConnectionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 17</value>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 26</value>
   </data>
-  <data name="exportConnectionPointCheckBox.Text" xml:space="preserve">
-    <value>Verbindungspunkte</value>
+  <data name="label7.Text" xml:space="preserve">
+    <value>gestrichelte Linie (Vielfaches der Breite)</value>
   </data>
-  <data name="exportElectricCircuitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 17</value>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>52, 80</value>
   </data>
-  <data name="exportElectricCircuitCheckBox.Text" xml:space="preserve">
-    <value>Stromkreis</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Farbe</value>
   </data>
-  <data name="exportWatermarkCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 17</value>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 25</value>
   </data>
-  <data name="exportWatermarkCheckBox.Text" xml:space="preserve">
-    <value>Wasserzeichen</value>
-  </data>
-  <data name="exportHullCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 17</value>
-  </data>
-  <data name="exportHullCheckBox.Text" xml:space="preserve">
-    <value>Hüllkurve</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Breite (in Pixel)</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        AAABAAEAICAAAAAAAACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAgAQAAAAAAAAAAAAAAAEAAAAA
+        AAABAAEAICAAAAAACACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAB
         AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAwMDAAMDcwADwyqYAACBAAAAgYAAAIIAAACCgAAAg
         wAAAIOAAAEAAAABAIAAAQEAAAEBgAABAgAAAQKAAAEDAAABA4AAAYAAAAGAgAABgQAAAYGAAAGCAAABg
         oAAAYMAAAGDgAACAAAAAgCAAAIBAAACAYAAAgIAAAICgAACAwAAAgOAAAKAAAACgIAAAoEAAAKBgAACg
@@ -214,8 +217,8 @@
         AAAAAAAAAAAAAAAAAAAAAAAAQECIiEDQiIibAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECI0NCIQNDQiEBA
         kQAAAAAAAAAAAAAAAAAAAAAAAEBAiNDQ0IhA0IhAiEBAQAAAAAAAAAAAAAAAAAAAAABAiNDQ0NDQiEDQ
         QIhA0NDQQIgAAAAAAAAAAAAAAAAAQIjQ0NDQ0NCIQNBAiEDQ0NBAiIgAAAAAAAAAAAAAAABA0NDQ0NDQ
-        0IhA0ECIQIjQ0ECI0IiSAP8AAAAAAAAAAEDQ0NDQ0NDQiEDQQIjQQIiIQMjQQEBAkgAAAAAAAAD/QMjQ
-        0NDQ0NCIQNDQQIjQQEDQ0EBAiNBAmv8AAAAAAP9AyNDQ0NDQ0IhA0NDQQECI0NDQQIhA0NBA/wAAAAAA
+        0IhA0ECIQIjQ0ECI0IiSAAAAAAAAAAAAAEDQ0NDQ0NDQiEDQQIjQQIiIQMjQQEBAkgAAAAAAAAAAQMjQ
+        0NDQ0NCIQNDQQIjQQEDQ0EBAiNBAmgAAAAAAAABAyNDQ0NDQ0IhA0NDQQECI0NDQQIhA0NBAAAAAAAAA
         AEDQ0NDQ0NDQiEDQ0NDQiNDQ0NBAiECI0EAAAAAAAAAAQNDQ0NDQ0NCIQNDQ0NCIiNDQ0ECIiECIQAAA
         AAAAAABA0NDQ0NDQ0IhA0NCIiEBAiNDQ0ECIkEBAAAAAAAAAAEDQ0NDQ0NDQiEDQiEBA0NBAiNDQ0EBA
         QNAAAAAAAAAAQNDQ0NDQ0NCIQNBAiEDQ0NBA0NDQ0NDQ0AAAAAAAAABA0NDQ0NDQ0IhA0ECIQMjQ0ECI
@@ -227,12 +230,12 @@
         AAAAAABAQIjQ0NDQ0NDQ0NDQ0NDQiEBAiMgAAAAAAAAAAAAAAAAAQECI0NDQ0NDQ0NDQ0NDQ0NBAQAAA
         AAAAAAAAAAAAAAAAAEBAiNDQ0NDQ0NDQ0IiIQEAAAAAAAAAAAAAAAAAAAAAAAABAQIjQ0NDQ0NCIQEAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAQECI0NCIQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQEAA
-        AAAAAAAAAAAAAP/n////wf///wB///4AH//4AA//8AAD/+AAAf/gAABf4AAAH8AAAAfAAAAH4AAAD+AA
+        AAAAAAAAAAAAAP/n////wf///wB///4AH//4AA//8AAD/+AAAf/gAAB/4AAAH+AAAA/gAAAP4AAAD+AA
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Bild Export Einstellungen</value>
+    <value>Bemaßung bearbeiten</value>
   </data>
 </root>

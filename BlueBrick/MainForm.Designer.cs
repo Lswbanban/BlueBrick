@@ -30,7 +30,31 @@ namespace BlueBrick
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+			this.mainSplitContainer = new BlueBrick.MainSplitContainer();
+			this.mapPanel = new BlueBrick.MapPanel();
+			this.statusBar = new System.Windows.Forms.StatusStrip();
+			this.statusBarProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+			this.statusBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolSplitContainer = new System.Windows.Forms.SplitContainer();
+			this.splitContainerPartLibrary = new System.Windows.Forms.SplitContainer();
+			this.partsTabControl = new BlueBrick.PartLibraryPanel();
+			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+			this.textBoxPartFilter = new System.Windows.Forms.TextBox();
+			this.filterAllTabCheckBox = new System.Windows.Forms.CheckBox();
 			this.filterLibraryCheckboxImageList = new System.Windows.Forms.ImageList(this.components);
+			this.layerSplitContainer = new System.Windows.Forms.SplitContainer();
+			this.layerStackPanel = new BlueBrick.LayerStackPanel();
+			this.LayerButtonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.trashLayerButton = new System.Windows.Forms.Button();
+			this.label2 = new System.Windows.Forms.Label();
+			this.newLayerRulerButton = new System.Windows.Forms.Button();
+			this.newLayerTextButton = new System.Windows.Forms.Button();
+			this.newLayerAreaButton = new System.Windows.Forms.Button();
+			this.newLayerBrickButton = new System.Windows.Forms.Button();
+			this.newLayerGridButton = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
+			this.layerUpButton = new System.Windows.Forms.Button();
+			this.layerDownButton = new System.Windows.Forms.Button();
 			this.menuBar = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -165,32 +189,6 @@ namespace BlueBrick
 			this.toolTipForMainForm = new System.Windows.Forms.ToolTip(this.components);
 			this.openBudgetFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.saveBudgetFileDialog = new System.Windows.Forms.SaveFileDialog();
-			this.mainSplitContainer = new BlueBrick.MainSplitContainer();
-			this.mapPanel = new BlueBrick.MapPanel();
-			this.statusBar = new System.Windows.Forms.StatusStrip();
-			this.statusBarProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-			this.statusBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
-			this.toolSplitContainer = new System.Windows.Forms.SplitContainer();
-			this.splitContainerPartLibrary = new System.Windows.Forms.SplitContainer();
-			this.partsTabControl = new BlueBrick.PartLibraryPanel();
-			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.textBoxPartFilter = new System.Windows.Forms.TextBox();
-			this.filterAllTabCheckBox = new System.Windows.Forms.CheckBox();
-			this.layerSplitContainer = new System.Windows.Forms.SplitContainer();
-			this.layerStackPanel = new BlueBrick.LayerStackPanel();
-			this.LayerButtonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.trashLayerButton = new System.Windows.Forms.Button();
-			this.label2 = new System.Windows.Forms.Label();
-			this.newLayerRulerButton = new System.Windows.Forms.Button();
-			this.newLayerTextButton = new System.Windows.Forms.Button();
-			this.newLayerAreaButton = new System.Windows.Forms.Button();
-			this.newLayerBrickButton = new System.Windows.Forms.Button();
-			this.newLayerGridButton = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
-			this.layerUpButton = new System.Windows.Forms.Button();
-			this.layerDownButton = new System.Windows.Forms.Button();
-			this.menuBar.SuspendLayout();
-			this.toolBar.SuspendLayout();
 			this.mainSplitContainer.Panel1.SuspendLayout();
 			this.mainSplitContainer.Panel2.SuspendLayout();
 			this.mainSplitContainer.SuspendLayout();
@@ -207,7 +205,116 @@ namespace BlueBrick
 			this.layerSplitContainer.Panel2.SuspendLayout();
 			this.layerSplitContainer.SuspendLayout();
 			this.LayerButtonFlowLayoutPanel.SuspendLayout();
+			this.menuBar.SuspendLayout();
+			this.toolBar.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// mainSplitContainer
+			// 
+			this.mainSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.mainSplitContainer, "mainSplitContainer");
+			this.mainSplitContainer.Name = "mainSplitContainer";
+			// 
+			// mainSplitContainer.Panel1
+			// 
+			this.mainSplitContainer.Panel1.Controls.Add(this.mapPanel);
+			// 
+			// mainSplitContainer.Panel2
+			// 
+			this.mainSplitContainer.Panel2.Controls.Add(this.toolSplitContainer);
+			// 
+			// mapPanel
+			// 
+			this.mapPanel.AllowDrop = true;
+			this.mapPanel.BackColor = System.Drawing.Color.CornflowerBlue;
+			this.mapPanel.Controls.Add(this.statusBar);
+			resources.ApplyResources(this.mapPanel, "mapPanel");
+			this.mapPanel.Name = "mapPanel";
+			this.mapPanel.ViewScale = 1.7D;
+			// 
+			// statusBar
+			// 
+			this.statusBar.BackColor = System.Drawing.SystemColors.Control;
+			this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusBarProgressBar,
+            this.statusBarLabel});
+			resources.ApplyResources(this.statusBar, "statusBar");
+			this.statusBar.Name = "statusBar";
+			this.statusBar.SizingGrip = false;
+			// 
+			// statusBarProgressBar
+			// 
+			resources.ApplyResources(this.statusBarProgressBar, "statusBarProgressBar");
+			this.statusBarProgressBar.Name = "statusBarProgressBar";
+			// 
+			// statusBarLabel
+			// 
+			this.statusBarLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.statusBarLabel.Name = "statusBarLabel";
+			resources.ApplyResources(this.statusBarLabel, "statusBarLabel");
+			// 
+			// toolSplitContainer
+			// 
+			this.toolSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.toolSplitContainer, "toolSplitContainer");
+			this.toolSplitContainer.Name = "toolSplitContainer";
+			// 
+			// toolSplitContainer.Panel1
+			// 
+			this.toolSplitContainer.Panel1.Controls.Add(this.splitContainerPartLibrary);
+			// 
+			// toolSplitContainer.Panel2
+			// 
+			this.toolSplitContainer.Panel2.BackColor = System.Drawing.SystemColors.Control;
+			this.toolSplitContainer.Panel2.Controls.Add(this.layerSplitContainer);
+			// 
+			// splitContainerPartLibrary
+			// 
+			resources.ApplyResources(this.splitContainerPartLibrary, "splitContainerPartLibrary");
+			this.splitContainerPartLibrary.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+			this.splitContainerPartLibrary.Name = "splitContainerPartLibrary";
+			// 
+			// splitContainerPartLibrary.Panel1
+			// 
+			this.splitContainerPartLibrary.Panel1.Controls.Add(this.partsTabControl);
+			// 
+			// splitContainerPartLibrary.Panel2
+			// 
+			this.splitContainerPartLibrary.Panel2.Controls.Add(this.tableLayoutPanel1);
+			// 
+			// partsTabControl
+			// 
+			resources.ApplyResources(this.partsTabControl, "partsTabControl");
+			this.partsTabControl.DraggingPartNumber = null;
+			this.partsTabControl.Name = "partsTabControl";
+			this.partsTabControl.SelectedIndex = 0;
+			// 
+			// tableLayoutPanel1
+			// 
+			resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+			this.tableLayoutPanel1.Controls.Add(this.textBoxPartFilter, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.filterAllTabCheckBox, 1, 0);
+			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+			// 
+			// textBoxPartFilter
+			// 
+			resources.ApplyResources(this.textBoxPartFilter, "textBoxPartFilter");
+			this.textBoxPartFilter.Name = "textBoxPartFilter";
+			this.toolTipForMainForm.SetToolTip(this.textBoxPartFilter, resources.GetString("textBoxPartFilter.ToolTip"));
+			this.textBoxPartFilter.TextChanged += new System.EventHandler(this.textBoxPartFilter_TextChanged);
+			this.textBoxPartFilter.Enter += new System.EventHandler(this.textBoxPartFilter_Enter);
+			this.textBoxPartFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPartFilter_KeyDown);
+			this.textBoxPartFilter.Leave += new System.EventHandler(this.textBoxPartFilter_Leave);
+			this.textBoxPartFilter.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBoxPartFilter_PreviewKeyDown);
+			// 
+			// filterAllTabCheckBox
+			// 
+			resources.ApplyResources(this.filterAllTabCheckBox, "filterAllTabCheckBox");
+			this.filterAllTabCheckBox.ImageList = this.filterLibraryCheckboxImageList;
+			this.filterAllTabCheckBox.Name = "filterAllTabCheckBox";
+			this.toolTipForMainForm.SetToolTip(this.filterAllTabCheckBox, resources.GetString("filterAllTabCheckBox.ToolTip"));
+			this.filterAllTabCheckBox.UseVisualStyleBackColor = true;
+			this.filterAllTabCheckBox.CheckedChanged += new System.EventHandler(this.filterAllTabCheckBox_CheckedChanged);
 			// 
 			// filterLibraryCheckboxImageList
 			// 
@@ -215,6 +322,132 @@ namespace BlueBrick
 			this.filterLibraryCheckboxImageList.TransparentColor = System.Drawing.Color.Transparent;
 			this.filterLibraryCheckboxImageList.Images.SetKeyName(0, "filterAllTabs.bmp");
 			this.filterLibraryCheckboxImageList.Images.SetKeyName(1, "filterOneTab.bmp");
+			// 
+			// layerSplitContainer
+			// 
+			resources.ApplyResources(this.layerSplitContainer, "layerSplitContainer");
+			this.layerSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+			this.layerSplitContainer.Name = "layerSplitContainer";
+			// 
+			// layerSplitContainer.Panel1
+			// 
+			this.layerSplitContainer.Panel1.Controls.Add(this.layerStackPanel);
+			// 
+			// layerSplitContainer.Panel2
+			// 
+			this.layerSplitContainer.Panel2.Controls.Add(this.LayerButtonFlowLayoutPanel);
+			// 
+			// layerStackPanel
+			// 
+			resources.ApplyResources(this.layerStackPanel, "layerStackPanel");
+			this.layerStackPanel.BackColor = System.Drawing.SystemColors.Control;
+			this.layerStackPanel.Name = "layerStackPanel";
+			// 
+			// LayerButtonFlowLayoutPanel
+			// 
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.trashLayerButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.label2);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerRulerButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerTextButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerAreaButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerBrickButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerGridButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.label1);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.layerUpButton);
+			this.LayerButtonFlowLayoutPanel.Controls.Add(this.layerDownButton);
+			resources.ApplyResources(this.LayerButtonFlowLayoutPanel, "LayerButtonFlowLayoutPanel");
+			this.LayerButtonFlowLayoutPanel.Name = "LayerButtonFlowLayoutPanel";
+			// 
+			// trashLayerButton
+			// 
+			this.trashLayerButton.BackColor = System.Drawing.SystemColors.Control;
+			this.trashLayerButton.FlatAppearance.BorderSize = 0;
+			this.trashLayerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.trashLayerButton, "trashLayerButton");
+			this.trashLayerButton.Name = "trashLayerButton";
+			this.toolTipForMainForm.SetToolTip(this.trashLayerButton, resources.GetString("trashLayerButton.ToolTip"));
+			this.trashLayerButton.UseVisualStyleBackColor = false;
+			this.trashLayerButton.Click += new System.EventHandler(this.trashLayerButton_Click);
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// newLayerRulerButton
+			// 
+			this.newLayerRulerButton.FlatAppearance.BorderSize = 0;
+			this.newLayerRulerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerRulerButton, "newLayerRulerButton");
+			this.newLayerRulerButton.Name = "newLayerRulerButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerRulerButton, resources.GetString("newLayerRulerButton.ToolTip"));
+			this.newLayerRulerButton.UseVisualStyleBackColor = true;
+			this.newLayerRulerButton.Click += new System.EventHandler(this.newLayerRulerButton_Click);
+			// 
+			// newLayerTextButton
+			// 
+			this.newLayerTextButton.FlatAppearance.BorderSize = 0;
+			this.newLayerTextButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerTextButton, "newLayerTextButton");
+			this.newLayerTextButton.Name = "newLayerTextButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerTextButton, resources.GetString("newLayerTextButton.ToolTip"));
+			this.newLayerTextButton.UseVisualStyleBackColor = true;
+			this.newLayerTextButton.Click += new System.EventHandler(this.newLayerTextButton_Click);
+			// 
+			// newLayerAreaButton
+			// 
+			this.newLayerAreaButton.FlatAppearance.BorderSize = 0;
+			this.newLayerAreaButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerAreaButton, "newLayerAreaButton");
+			this.newLayerAreaButton.Name = "newLayerAreaButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerAreaButton, resources.GetString("newLayerAreaButton.ToolTip"));
+			this.newLayerAreaButton.UseVisualStyleBackColor = true;
+			this.newLayerAreaButton.Click += new System.EventHandler(this.newLayerAreaButton_Click);
+			// 
+			// newLayerBrickButton
+			// 
+			this.newLayerBrickButton.FlatAppearance.BorderSize = 0;
+			this.newLayerBrickButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerBrickButton, "newLayerBrickButton");
+			this.newLayerBrickButton.Name = "newLayerBrickButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerBrickButton, resources.GetString("newLayerBrickButton.ToolTip"));
+			this.newLayerBrickButton.UseVisualStyleBackColor = true;
+			this.newLayerBrickButton.Click += new System.EventHandler(this.newLayerBrickButton_Click);
+			// 
+			// newLayerGridButton
+			// 
+			this.newLayerGridButton.FlatAppearance.BorderSize = 0;
+			this.newLayerGridButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerGridButton, "newLayerGridButton");
+			this.newLayerGridButton.Name = "newLayerGridButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerGridButton, resources.GetString("newLayerGridButton.ToolTip"));
+			this.newLayerGridButton.UseVisualStyleBackColor = true;
+			this.newLayerGridButton.Click += new System.EventHandler(this.newLayerGridButton_Click);
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			// 
+			// layerUpButton
+			// 
+			this.layerUpButton.FlatAppearance.BorderSize = 0;
+			this.layerUpButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.layerUpButton, "layerUpButton");
+			this.layerUpButton.Name = "layerUpButton";
+			this.toolTipForMainForm.SetToolTip(this.layerUpButton, resources.GetString("layerUpButton.ToolTip"));
+			this.layerUpButton.UseVisualStyleBackColor = true;
+			this.layerUpButton.Click += new System.EventHandler(this.layerUpButton_Click);
+			// 
+			// layerDownButton
+			// 
+			this.layerDownButton.FlatAppearance.BorderSize = 0;
+			this.layerDownButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.layerDownButton, "layerDownButton");
+			this.layerDownButton.Name = "layerDownButton";
+			this.toolTipForMainForm.SetToolTip(this.layerDownButton, resources.GetString("layerDownButton.ToolTip"));
+			this.layerDownButton.UseVisualStyleBackColor = true;
+			this.layerDownButton.Click += new System.EventHandler(this.layerDownButton_Click);
 			// 
 			// menuBar
 			// 
@@ -1170,239 +1403,6 @@ namespace BlueBrick
 			resources.ApplyResources(this.saveBudgetFileDialog, "saveBudgetFileDialog");
 			this.saveBudgetFileDialog.SupportMultiDottedExtensions = true;
 			// 
-			// mainSplitContainer
-			// 
-			this.mainSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			resources.ApplyResources(this.mainSplitContainer, "mainSplitContainer");
-			this.mainSplitContainer.Name = "mainSplitContainer";
-			// 
-			// mainSplitContainer.Panel1
-			// 
-			this.mainSplitContainer.Panel1.Controls.Add(this.mapPanel);
-			// 
-			// mainSplitContainer.Panel2
-			// 
-			this.mainSplitContainer.Panel2.Controls.Add(this.toolSplitContainer);
-			// 
-			// mapPanel
-			// 
-			this.mapPanel.AllowDrop = true;
-			this.mapPanel.BackColor = System.Drawing.Color.CornflowerBlue;
-			this.mapPanel.Controls.Add(this.statusBar);
-			resources.ApplyResources(this.mapPanel, "mapPanel");
-			this.mapPanel.Name = "mapPanel";
-			this.mapPanel.ViewScale = 1.7D;
-			// 
-			// statusBar
-			// 
-			this.statusBar.BackColor = System.Drawing.SystemColors.Control;
-			this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusBarProgressBar,
-            this.statusBarLabel});
-			resources.ApplyResources(this.statusBar, "statusBar");
-			this.statusBar.Name = "statusBar";
-			this.statusBar.SizingGrip = false;
-			// 
-			// statusBarProgressBar
-			// 
-			resources.ApplyResources(this.statusBarProgressBar, "statusBarProgressBar");
-			this.statusBarProgressBar.Name = "statusBarProgressBar";
-			// 
-			// statusBarLabel
-			// 
-			this.statusBarLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.statusBarLabel.Name = "statusBarLabel";
-			resources.ApplyResources(this.statusBarLabel, "statusBarLabel");
-			// 
-			// toolSplitContainer
-			// 
-			this.toolSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			resources.ApplyResources(this.toolSplitContainer, "toolSplitContainer");
-			this.toolSplitContainer.Name = "toolSplitContainer";
-			// 
-			// toolSplitContainer.Panel1
-			// 
-			this.toolSplitContainer.Panel1.Controls.Add(this.splitContainerPartLibrary);
-			// 
-			// toolSplitContainer.Panel2
-			// 
-			this.toolSplitContainer.Panel2.BackColor = System.Drawing.SystemColors.Control;
-			this.toolSplitContainer.Panel2.Controls.Add(this.layerSplitContainer);
-			// 
-			// splitContainerPartLibrary
-			// 
-			resources.ApplyResources(this.splitContainerPartLibrary, "splitContainerPartLibrary");
-			this.splitContainerPartLibrary.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-			this.splitContainerPartLibrary.Name = "splitContainerPartLibrary";
-			// 
-			// splitContainerPartLibrary.Panel1
-			// 
-			this.splitContainerPartLibrary.Panel1.Controls.Add(this.partsTabControl);
-			// 
-			// splitContainerPartLibrary.Panel2
-			// 
-			this.splitContainerPartLibrary.Panel2.Controls.Add(this.tableLayoutPanel1);
-			// 
-			// partsTabControl
-			// 
-			resources.ApplyResources(this.partsTabControl, "partsTabControl");
-			this.partsTabControl.DraggingPartNumber = null;
-			this.partsTabControl.Name = "partsTabControl";
-			this.partsTabControl.SelectedIndex = 0;
-			// 
-			// tableLayoutPanel1
-			// 
-			resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-			this.tableLayoutPanel1.Controls.Add(this.textBoxPartFilter, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.filterAllTabCheckBox, 1, 0);
-			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			// 
-			// textBoxPartFilter
-			// 
-			resources.ApplyResources(this.textBoxPartFilter, "textBoxPartFilter");
-			this.textBoxPartFilter.Name = "textBoxPartFilter";
-			this.toolTipForMainForm.SetToolTip(this.textBoxPartFilter, resources.GetString("textBoxPartFilter.ToolTip"));
-			this.textBoxPartFilter.TextChanged += new System.EventHandler(this.textBoxPartFilter_TextChanged);
-			this.textBoxPartFilter.Enter += new System.EventHandler(this.textBoxPartFilter_Enter);
-			this.textBoxPartFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPartFilter_KeyDown);
-			this.textBoxPartFilter.Leave += new System.EventHandler(this.textBoxPartFilter_Leave);
-			this.textBoxPartFilter.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBoxPartFilter_PreviewKeyDown);
-			// 
-			// filterAllTabCheckBox
-			// 
-			resources.ApplyResources(this.filterAllTabCheckBox, "filterAllTabCheckBox");
-			this.filterAllTabCheckBox.ImageList = this.filterLibraryCheckboxImageList;
-			this.filterAllTabCheckBox.Name = "filterAllTabCheckBox";
-			this.toolTipForMainForm.SetToolTip(this.filterAllTabCheckBox, resources.GetString("filterAllTabCheckBox.ToolTip"));
-			this.filterAllTabCheckBox.UseVisualStyleBackColor = true;
-			this.filterAllTabCheckBox.CheckedChanged += new System.EventHandler(this.filterAllTabCheckBox_CheckedChanged);
-			// 
-			// layerSplitContainer
-			// 
-			resources.ApplyResources(this.layerSplitContainer, "layerSplitContainer");
-			this.layerSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-			this.layerSplitContainer.Name = "layerSplitContainer";
-			// 
-			// layerSplitContainer.Panel1
-			// 
-			this.layerSplitContainer.Panel1.Controls.Add(this.layerStackPanel);
-			// 
-			// layerSplitContainer.Panel2
-			// 
-			this.layerSplitContainer.Panel2.Controls.Add(this.LayerButtonFlowLayoutPanel);
-			// 
-			// layerStackPanel
-			// 
-			resources.ApplyResources(this.layerStackPanel, "layerStackPanel");
-			this.layerStackPanel.BackColor = System.Drawing.SystemColors.Control;
-			this.layerStackPanel.Name = "layerStackPanel";
-			// 
-			// LayerButtonFlowLayoutPanel
-			// 
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.trashLayerButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.label2);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerRulerButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerTextButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerAreaButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerBrickButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.newLayerGridButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.label1);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.layerUpButton);
-			this.LayerButtonFlowLayoutPanel.Controls.Add(this.layerDownButton);
-			resources.ApplyResources(this.LayerButtonFlowLayoutPanel, "LayerButtonFlowLayoutPanel");
-			this.LayerButtonFlowLayoutPanel.Name = "LayerButtonFlowLayoutPanel";
-			// 
-			// trashLayerButton
-			// 
-			this.trashLayerButton.BackColor = System.Drawing.SystemColors.Control;
-			this.trashLayerButton.FlatAppearance.BorderSize = 0;
-			this.trashLayerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.trashLayerButton, "trashLayerButton");
-			this.trashLayerButton.Name = "trashLayerButton";
-			this.toolTipForMainForm.SetToolTip(this.trashLayerButton, resources.GetString("trashLayerButton.ToolTip"));
-			this.trashLayerButton.UseVisualStyleBackColor = false;
-			this.trashLayerButton.Click += new System.EventHandler(this.trashLayerButton_Click);
-			// 
-			// label2
-			// 
-			resources.ApplyResources(this.label2, "label2");
-			this.label2.Name = "label2";
-			// 
-			// newLayerRulerButton
-			// 
-			this.newLayerRulerButton.FlatAppearance.BorderSize = 0;
-			this.newLayerRulerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerRulerButton, "newLayerRulerButton");
-			this.newLayerRulerButton.Name = "newLayerRulerButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerRulerButton, resources.GetString("newLayerRulerButton.ToolTip"));
-			this.newLayerRulerButton.UseVisualStyleBackColor = true;
-			this.newLayerRulerButton.Click += new System.EventHandler(this.newLayerRulerButton_Click);
-			// 
-			// newLayerTextButton
-			// 
-			this.newLayerTextButton.FlatAppearance.BorderSize = 0;
-			this.newLayerTextButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerTextButton, "newLayerTextButton");
-			this.newLayerTextButton.Name = "newLayerTextButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerTextButton, resources.GetString("newLayerTextButton.ToolTip"));
-			this.newLayerTextButton.UseVisualStyleBackColor = true;
-			this.newLayerTextButton.Click += new System.EventHandler(this.newLayerTextButton_Click);
-			// 
-			// newLayerAreaButton
-			// 
-			this.newLayerAreaButton.FlatAppearance.BorderSize = 0;
-			this.newLayerAreaButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerAreaButton, "newLayerAreaButton");
-			this.newLayerAreaButton.Name = "newLayerAreaButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerAreaButton, resources.GetString("newLayerAreaButton.ToolTip"));
-			this.newLayerAreaButton.UseVisualStyleBackColor = true;
-			this.newLayerAreaButton.Click += new System.EventHandler(this.newLayerAreaButton_Click);
-			// 
-			// newLayerBrickButton
-			// 
-			this.newLayerBrickButton.FlatAppearance.BorderSize = 0;
-			this.newLayerBrickButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerBrickButton, "newLayerBrickButton");
-			this.newLayerBrickButton.Name = "newLayerBrickButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerBrickButton, resources.GetString("newLayerBrickButton.ToolTip"));
-			this.newLayerBrickButton.UseVisualStyleBackColor = true;
-			this.newLayerBrickButton.Click += new System.EventHandler(this.newLayerBrickButton_Click);
-			// 
-			// newLayerGridButton
-			// 
-			this.newLayerGridButton.FlatAppearance.BorderSize = 0;
-			this.newLayerGridButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerGridButton, "newLayerGridButton");
-			this.newLayerGridButton.Name = "newLayerGridButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerGridButton, resources.GetString("newLayerGridButton.ToolTip"));
-			this.newLayerGridButton.UseVisualStyleBackColor = true;
-			this.newLayerGridButton.Click += new System.EventHandler(this.newLayerGridButton_Click);
-			// 
-			// label1
-			// 
-			resources.ApplyResources(this.label1, "label1");
-			this.label1.Name = "label1";
-			// 
-			// layerUpButton
-			// 
-			this.layerUpButton.FlatAppearance.BorderSize = 0;
-			this.layerUpButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.layerUpButton, "layerUpButton");
-			this.layerUpButton.Name = "layerUpButton";
-			this.toolTipForMainForm.SetToolTip(this.layerUpButton, resources.GetString("layerUpButton.ToolTip"));
-			this.layerUpButton.UseVisualStyleBackColor = true;
-			this.layerUpButton.Click += new System.EventHandler(this.layerUpButton_Click);
-			// 
-			// layerDownButton
-			// 
-			this.layerDownButton.FlatAppearance.BorderSize = 0;
-			this.layerDownButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.layerDownButton, "layerDownButton");
-			this.layerDownButton.Name = "layerDownButton";
-			this.toolTipForMainForm.SetToolTip(this.layerDownButton, resources.GetString("layerDownButton.ToolTip"));
-			this.layerDownButton.UseVisualStyleBackColor = true;
-			this.layerDownButton.Click += new System.EventHandler(this.layerDownButton_Click);
-			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
@@ -1424,10 +1424,6 @@ namespace BlueBrick
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
 			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
 			this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseWheel);
-			this.menuBar.ResumeLayout(false);
-			this.menuBar.PerformLayout();
-			this.toolBar.ResumeLayout(false);
-			this.toolBar.PerformLayout();
 			this.mainSplitContainer.Panel1.ResumeLayout(false);
 			this.mainSplitContainer.Panel2.ResumeLayout(false);
 			this.mainSplitContainer.ResumeLayout(false);
@@ -1447,6 +1443,10 @@ namespace BlueBrick
 			this.layerSplitContainer.Panel2.ResumeLayout(false);
 			this.layerSplitContainer.ResumeLayout(false);
 			this.LayerButtonFlowLayoutPanel.ResumeLayout(false);
+			this.menuBar.ResumeLayout(false);
+			this.menuBar.PerformLayout();
+			this.toolBar.ResumeLayout(false);
+			this.toolBar.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
