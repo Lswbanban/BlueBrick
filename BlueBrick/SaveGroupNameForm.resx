@@ -186,8 +186,8 @@
   <data name="okButton.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="nameErrorLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Edit Group Info</value>
   </data>
   <data name="canUngroupCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 17</value>
@@ -312,9 +312,6 @@
   <data name="&gt;&gt;canUngroupCheckBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
   <data name="&gt;&gt;descriptionTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -378,14 +375,17 @@
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 13</value>
   </data>
-  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>groupBox1</value>
+  </data>
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 24</value>
@@ -480,14 +480,14 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Author</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Edit Group Info</value>
-  </data>
   <data name="okButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="canUngroupCheckBox.Text" xml:space="preserve">
     <value>Can be un-grouped</value>
+  </data>
+  <data name="nameErrorLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;sortingKeyTextBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
