@@ -117,20 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="generalTabPage.Text" xml:space="preserve">
-    <value>Generale</value>
+  <data name="displayWarningWhenDuplicateOverBudgetCheckBox.Text" xml:space="preserve">
+    <value>Mostra un avviso quando le parti copiate o incollate eccedono il Preventivo</value>
   </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
-    <value>Aspetto</value>
+  <data name="displayWarningForNotSavingInBBMCheckBox.Text" xml:space="preserve">
+    <value>Visualizza un avviso quando non salvi in BBM</value>
   </data>
-  <data name="partLibTabPage.Text" xml:space="preserve">
-    <value>Libreria Parti</value>
-  </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Tasti scorciatoia</value>
-  </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>File Recenti</value>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>Notifica</value>
   </data>
   <data name="clearRecentFilesButton.Text" xml:space="preserve">
     <value>Pulisci lista files recenti</value>
@@ -138,8 +132,8 @@
   <data name="label23.Text" xml:space="preserve">
     <value>Numero di files recenti</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Prestazioni</value>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>File Recenti</value>
   </data>
   <data name="optimComboBox.Items" xml:space="preserve">
     <value>Più veloce</value>
@@ -153,8 +147,8 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Rapporto Memoria/Velocità</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Annulla/Ripeti</value>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Prestazioni</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Maggiore è il numero di Annulla che vuoi registrare, maggiore sarà la memoria utilizzata dall'applicazione.</value>
@@ -165,8 +159,27 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Numero di Annulla registrati</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Configurazione di default nuova mappa</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Annulla/Ripeti</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="addAreaLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 17</value>
+  </data>
+  <data name="addAreaLayerCheckBox.Text" xml:space="preserve">
+    <value>Aggiungi un Layer Area</value>
+  </data>
+  <data name="addRulerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 17</value>
+  </data>
+  <data name="addRulerLayerCheckBox.Text" xml:space="preserve">
+    <value>Aggiungi un Layer Righello</value>
+  </data>
+  <data name="addTextLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 17</value>
+  </data>
+  <data name="addTextLayerCheckBox.Text" xml:space="preserve">
+    <value>Aggiungi un Layer Testo</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Evento</value>
@@ -174,18 +187,117 @@
   <data name="label5.Text" xml:space="preserve">
     <value>Autore</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 17</value>
+    <value>153, 17</value>
   </data>
   <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
-    <value>Aggiungi un Layer elementi sulla nuova mappa</value>
+    <value>Aggiungi un Layer elementi</value>
   </data>
   <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 17</value>
+    <value>141, 17</value>
   </data>
   <data name="addGridLayerCheckBox.Text" xml:space="preserve">
-    <value>Aggiungi un Layer griglia sulla nuova mappa</value>
+    <value>Aggiungi un Layer griglia</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Configurazione di default nuova mappa</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Se cambi la lingua dovrai riavviare
+l'applicazione per vedere la modifica</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Generale</value>
+  </data>
+  <data name="rulerFontNameLabel.Text" xml:space="preserve">
+    <value>Nome del Font</value>
+  </data>
+  <data name="fontColorLabel.Text" xml:space="preserve">
+    <value>Colore</value>
+  </data>
+  <data name="rulerFontButton.Text" xml:space="preserve">
+    <value>Cambia Font</value>
+  </data>
+  <data name="unitComboBox.Items" xml:space="preserve">
+    <value>Studs</value>
+  </data>
+  <data name="unitComboBox.Items2" xml:space="preserve">
+    <value>Moduli</value>
+  </data>
+  <data name="unitComboBox.Items3" xml:space="preserve">
+    <value>Metri</value>
+  </data>
+  <data name="unitComboBox.Items4" xml:space="preserve">
+    <value>Piedi</value>
+  </data>
+  <data name="displayUnitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 17</value>
+  </data>
+  <data name="displayUnitCheckBox.Text" xml:space="preserve">
+    <value>Mostra Unità</value>
+  </data>
+  <data name="displayMeasureTextCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 17</value>
+  </data>
+  <data name="displayMeasureTextCheckBox.Text" xml:space="preserve">
+    <value>Mostra Valore Misura</value>
+  </data>
+  <data name="allowOffsetCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 17</value>
+  </data>
+  <data name="allowOffsetCheckBox.Text" xml:space="preserve">
+    <value>Offset Consentito</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Riempimento Tratteggio default
+(in volte dello spessore)</value>
+  </data>
+  <data name="lineColorLabel.Text" xml:space="preserve">
+    <value>Colore default</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Linea Guida</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>Linea</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>Spessore default
+(in pixel)</value>
+  </data>
+  <data name="RulerSwitchToEditionAfterCreationCheckBox.Text" xml:space="preserve">
+    <value>Passa all'Editore dopo aver aggiunto un Righello</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Raggio del Punto di Controllo
+(in pixel)</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Righelli</value>
+  </data>
+  <data name="OffsetValueLabel.Text" xml:space="preserve">
+    <value>Valore dell'Offset (in Stud)</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Offset dopo Incolla</value>
+  </data>
+  <data name="copyOffsetComboBox.Items" xml:space="preserve">
+    <value>Mai</value>
+  </data>
+  <data name="copyOffsetComboBox.Items1" xml:space="preserve">
+    <value>Solo sullo stesso Layer</value>
+  </data>
+  <data name="copyOffsetComboBox.Items2" xml:space="preserve">
+    <value>Sempre</value>
+  </data>
+  <data name="copyPasteGroupBox.Text" xml:space="preserve">
+    <value>Copia/Incolla</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Tasto Copia Selezione</value>
@@ -205,18 +317,8 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Velocità di zoom rotellina mouse</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Lingua</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Se cambi la lingua dovrai riavviare
-l'applicazione per vedere la modifica</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Lingua</value>
-  </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Aspetto di default dell'Area</value>
+  <data name="editionTabPage.Text" xml:space="preserve">
+    <value>Editare</value>
   </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 44</value>
@@ -231,8 +333,8 @@ dell'area cella (in Stud)</value>
   <data name="label28.Text" xml:space="preserve">
     <value>Trasparenza di default (in %)</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Dimensioni di default della Griglia</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Aspetto di default dell'Area</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Numero di suddivisioni di default</value>
@@ -247,11 +349,8 @@ dell'area cella (in Stud)</value>
     <value>Dimensioni di default
 della Griglia (in Stud)</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Formato di default del Testo</value>
-  </data>
-  <data name="defaultFontNameLabel.Text" xml:space="preserve">
-    <value>Nome del Font</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Dimensioni di default della Griglia</value>
   </data>
   <data name="defaultFontColorLabel.Text" xml:space="preserve">
     <value>Colore</value>
@@ -259,8 +358,8 @@ della Griglia (in Stud)</value>
   <data name="defaultFontButton.Text" xml:space="preserve">
     <value>Cambia Font</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Colori</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Formato di default del Testo</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Colore parte attuale</value>
@@ -292,14 +391,44 @@ della Griglia (in Stud)</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Schema colore</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Colori</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
     <value>Aspetto</value>
   </data>
-  <data name="label26.Text" xml:space="preserve">
-    <value>Colore sfondo Libreria Parti</value>
+  <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
+    <value>Clicca il pulsante per modificare -&gt;</value>
   </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Info Pop-Up</value>
+  <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 13</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>File Preventivo da caricare all'avvio:</value>
+  </data>
+  <data name="PartLibDefaultBudgetNotLimitedradioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 17</value>
+  </data>
+  <data name="PartLibDefaultBudgetNotLimitedradioButton.Text" xml:space="preserve">
+    <value>Illimitato</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>Limite preventivo di default per ogni parte:</value>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>Preventivo</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Colore quando mostro solo parti preventivate</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Colore quando mostro solo parti filtrate</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Colore di default sfondo libreria parti</value>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>Colore sfondo</value>
   </data>
   <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 17</value>
@@ -325,8 +454,8 @@ della Griglia (in Stud)</value>
   <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
     <value>Info Pop-Up con:</value>
   </data>
-  <data name="groupBox11.Text" xml:space="preserve">
-    <value>Ordine Tabulazioni</value>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Info Pop-Up</value>
   </data>
   <data name="alphabeticOrderButton.Text" xml:space="preserve">
     <value>Ordine Alfabetico</value>
@@ -336,6 +465,12 @@ della Griglia (in Stud)</value>
   </data>
   <data name="MoveUpButton.Text" xml:space="preserve">
     <value>Sposta su</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Ordine Tabulazioni</value>
+  </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Libreria Parti</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Per rimuovere un tasto scorciatoia, selezionalo nella lista poi clicca su questo pulsante:</value>
@@ -444,6 +579,9 @@ della Griglia (in Stud)</value>
   </data>
   <data name="Connection.Text" xml:space="preserve">
     <value>Connessione</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Tasti scorciatoia</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annulla</value>

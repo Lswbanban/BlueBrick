@@ -119,6 +119,7 @@ namespace BlueBrick
 			this.defaultFontColorPictureBox = new System.Windows.Forms.PictureBox();
 			this.defaultFontButton = new System.Windows.Forms.Button();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.colorSchemeComboBox = new System.Windows.Forms.ComboBox();
 			this.label25 = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
 			this.GammaForSnappingNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -133,7 +134,6 @@ namespace BlueBrick
 			this.backgroundColorPictureBox = new System.Windows.Forms.PictureBox();
 			this.label16 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
-			this.colorSchemeComboBox = new System.Windows.Forms.ComboBox();
 			this.partLibTabPage = new System.Windows.Forms.TabPage();
 			this.groupBox16 = new System.Windows.Forms.GroupBox();
 			this.PartLibBrowseBudgetFileButton = new System.Windows.Forms.Button();
@@ -1087,6 +1087,13 @@ namespace BlueBrick
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.TabStop = false;
 			// 
+			// colorSchemeComboBox
+			// 
+			resources.ApplyResources(this.colorSchemeComboBox, "colorSchemeComboBox");
+			this.colorSchemeComboBox.FormattingEnabled = true;
+			this.colorSchemeComboBox.Name = "colorSchemeComboBox";
+			this.colorSchemeComboBox.SelectedIndexChanged += new System.EventHandler(this.colorSchemeComboBox_SelectedIndexChanged);
+			// 
 			// label25
 			// 
 			resources.ApplyResources(this.label25, "label25");
@@ -1173,13 +1180,6 @@ namespace BlueBrick
 			// 
 			resources.ApplyResources(this.label15, "label15");
 			this.label15.Name = "label15";
-			// 
-			// colorSchemeComboBox
-			// 
-			resources.ApplyResources(this.colorSchemeComboBox, "colorSchemeComboBox");
-			this.colorSchemeComboBox.FormattingEnabled = true;
-			this.colorSchemeComboBox.Name = "colorSchemeComboBox";
-			this.colorSchemeComboBox.SelectedIndexChanged += new System.EventHandler(this.colorSchemeComboBox_SelectedIndexChanged);
 			// 
 			// partLibTabPage
 			// 

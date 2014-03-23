@@ -400,4 +400,124 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
   <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
     <value>Sconosciuto</value>
   </data>
+  <data name="ActionAddLayerRuler" xml:space="preserve">
+    <value>Aggiungi un Layer Righello</value>
+  </data>
+  <data name="ActionAddRuler" xml:space="preserve">
+    <value>Aggiungi un nuovo Righello</value>
+  </data>
+  <data name="ActionAttachRulerToBrick" xml:space="preserve">
+    <value>Attacca un Righello alla Parte</value>
+  </data>
+  <data name="ActionBringRulerToFront" xml:space="preserve">
+    <value>Sposta il Righello selezionato in primo piano</value>
+  </data>
+  <data name="ActionDeleteRuler" xml:space="preserve">
+    <value>Cancella un Righello</value>
+  </data>
+  <data name="ActionDeleteSeveralRulers" xml:space="preserve">
+    <value>Cancella Righelli</value>
+  </data>
+  <data name="ActionDetachRuler" xml:space="preserve">
+    <value>Stacca Righello</value>
+  </data>
+  <data name="ActionDuplicateRuler" xml:space="preserve">
+    <value>Duplica Righello</value>
+  </data>
+  <data name="ActionDuplicateSeveralRulers" xml:space="preserve">
+    <value>Duplica Righelli</value>
+  </data>
+  <data name="ActionEditRuler" xml:space="preserve">
+    <value>Modifica le proprietà del Righello</value>
+  </data>
+  <data name="ActionMoveRuler" xml:space="preserve">
+    <value>Sposta Righello</value>
+  </data>
+  <data name="ActionMoveRulerControlPoint" xml:space="preserve">
+    <value>Sposta punto di controllo Righello</value>
+  </data>
+  <data name="ActionMoveSeveralRulers" xml:space="preserve">
+    <value>Sposta Righelli</value>
+  </data>
+  <data name="ActionRotateRuler" xml:space="preserve">
+    <value>Ruota Righello</value>
+  </data>
+  <data name="ActionRotateSeveralRulers" xml:space="preserve">
+    <value>Ruota Righelli</value>
+  </data>
+  <data name="ActionScaleCircularRuler" xml:space="preserve">
+    <value>Modifica raggio Righello</value>
+  </data>
+  <data name="ActionScaleLinearRuler" xml:space="preserve">
+    <value>Modifica offset Righello</value>
+  </data>
+  <data name="ActionSendRulerToBack" xml:space="preserve">
+    <value>Sposta i Righelli selezionati in secondo piano</value>
+  </data>
+  <data name="DefaultSaveFileNameForBudget" xml:space="preserve">
+    <value>MioPreventivo.bbb</value>
+  </data>
+  <data name="ErrorMsgAbortButton" xml:space="preserve">
+    <value>Interrompi</value>
+  </data>
+  <data name="ErrorMsgBudgetWasModified" xml:space="preserve">
+    <value>Il tuo preventivo non è stato salvato. Vuoi salvare le modifiche?</value>
+  </data>
+  <data name="ErrorMsgCancelButton" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="ErrorMsgCannotOpenBudget" xml:space="preserve">
+    <value>Non posso aprire il preventivo &amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveBudget" xml:space="preserve">
+    <value>Non posso salvare il preventivo &amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveCustomPart" xml:space="preserve">
+    <value>BlueBrick ha incontrato un problema nel salvare il tuo gruppo nella cartella "parts/Custom". Leggi il seguente messaggio per ulteriori dettagli:</value>
+  </data>
+  <data name="ErrorMsgIgnoreButton" xml:space="preserve">
+    <value>Ignora</value>
+  </data>
+  <data name="ErrorMsgLayerTypeRuler" xml:space="preserve">
+    <value>Righello</value>
+  </data>
+  <data name="ErrorMsgNoButton" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="ErrorMsgOkButton" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="ErrorMsgReplaceExistingShortcut" xml:space="preserve">
+    <value>Una scorciatoia esiste già per questa combinazione di tasti, vuoi rimpiazzarla?</value>
+  </data>
+  <data name="ErrorMsgRetryButton" xml:space="preserve">
+    <value>Riprova</value>
+  </data>
+  <data name="ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation" xml:space="preserve">
+    <value>Alcune parti non saranno duplicate a causa delle limitazioni sul budget. Vuoi continuare?</value>
+  </data>
+  <data name="ErrorMsgYesButton" xml:space="preserve">
+    <value>Si</value>
+  </data>
+  <data name="InputFilterIndication" xml:space="preserve">
+    <value>Inserisci parole chiave qui per filtrare</value>
+  </data>
+  <data name="LayerRulerOptionTitle" xml:space="preserve">
+    <value>Opzioni Layer Righello</value>
+  </data>
+  <data name="PartLibMenuItemEditBudget" xml:space="preserve">
+    <value>Modifica preventivo parti</value>
+  </data>
+  <data name="PartLibMenuItemShowBudgetNumbers" xml:space="preserve">
+    <value>Mostra numeri Preventivo</value>
+  </data>
+  <data name="PartLibMenuItemShowOnlyBudgetedParts" xml:space="preserve">
+    <value>Mostra solo parti Preventivate</value>
+  </data>
+  <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
+    <value>Usa limitazioni budget</value>
+  </data>
+  <data name="StatusMsgBudgetReached" xml:space="preserve">
+    <value>Preventivo raggiunto per questa parte!</value>
+  </data>
 </root>
