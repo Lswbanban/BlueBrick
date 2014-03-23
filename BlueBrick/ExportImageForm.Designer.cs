@@ -319,11 +319,11 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
-			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Controls.Add(this.exportConnectionPointCheckBox);
 			this.groupBox3.Controls.Add(this.exportElectricCircuitCheckBox);
 			this.groupBox3.Controls.Add(this.exportWatermarkCheckBox);
 			this.groupBox3.Controls.Add(this.exportHullCheckBox);
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 
@@ -361,7 +361,9 @@ namespace BlueBrick
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.topTableLayoutPanel);
 			this.DoubleBuffered = true;
+			this.MinimizeBox = false;
 			this.Name = "ExportImageForm";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExportImageForm_FormClosed);
 			this.SizeChanged += new System.EventHandler(this.ExportImageForm_SizeChanged);
 			((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).EndInit();
 			this.settingAndButtonTableLayoutPanel.ResumeLayout(false);
