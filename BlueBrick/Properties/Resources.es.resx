@@ -399,4 +399,121 @@
   <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
     <value>Desconocido</value>
   </data>
+  <data name="ActionAddLayerRuler" xml:space="preserve">
+    <value>Añadir una capa de regla</value>
+  </data>
+  <data name="ActionAddRuler" xml:space="preserve">
+    <value>Añadir una nueva regla</value>
+  </data>
+  <data name="ActionAttachRulerToBrick" xml:space="preserve">
+    <value>Añadir regla a la pieza &amp;</value>
+  </data>
+  <data name="ActionBringRulerToFront" xml:space="preserve">
+    <value>Traer las reglas seleccionados al frente</value>
+  </data>
+  <data name="ActionDeleteRuler" xml:space="preserve">
+    <value>Borrar regla</value>
+  </data>
+  <data name="ActionDeleteSeveralRulers" xml:space="preserve">
+    <value>Borrar varias reglas</value>
+  </data>
+  <data name="ActionDetachRuler" xml:space="preserve">
+    <value>Soltar regla</value>
+  </data>
+  <data name="ActionDuplicateRuler" xml:space="preserve">
+    <value>Duplicar regla</value>
+  </data>
+  <data name="ActionDuplicateSeveralRulers" xml:space="preserve">
+    <value>Dupliacr varias reglas</value>
+  </data>
+  <data name="ActionEditRuler" xml:space="preserve">
+    <value>Aditar propiedades de regla</value>
+  </data>
+  <data name="ActionMoveRuler" xml:space="preserve">
+    <value>Mover regla</value>
+  </data>
+  <data name="ActionMoveRulerControlPoint" xml:space="preserve">
+    <value>Mover punto de control de regla</value>
+  </data>
+  <data name="ActionMoveSeveralRulers" xml:space="preserve">
+    <value>Mover varias reglas</value>
+  </data>
+  <data name="ActionRotateRuler" xml:space="preserve">
+    <value>Girar regla</value>
+  </data>
+  <data name="ActionRotateSeveralRulers" xml:space="preserve">
+    <value>Girar varias reglas</value>
+  </data>
+  <data name="ActionScaleCircularRuler" xml:space="preserve">
+    <value>Modificar radio de regla</value>
+  </data>
+  <data name="ActionScaleLinearRuler" xml:space="preserve">
+    <value>Mofificar desplazamiento de regla</value>
+  </data>
+  <data name="ActionSendRulerToBack" xml:space="preserve">
+    <value>Enviar reglas seleccionadas al fondo</value>
+  </data>
+  <data name="DefaultSaveFileNameForBudget" xml:space="preserve">
+    <value>MiPresupuesto.bbb</value>
+  </data>
+  <data name="ErrorMsgAbortButton" xml:space="preserve">
+    <value>Abortar</value>
+  </data>
+  <data name="ErrorMsgBudgetWasModified" xml:space="preserve">
+    <value>El presupuesto actual no se ha guardado. ¿Quiere guardar la modificación?</value>
+  </data>
+  <data name="ErrorMsgCancelButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ErrorMsgCannotOpenBudget" xml:space="preserve">
+    <value>Nose puede abrir el presupuesto &amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveBudget" xml:space="preserve">
+    <value>Nos e puede guardar el presupuesto &amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveCustomPart" xml:space="preserve">
+    <value>BlueBrick ha encontrado un problema al guardar el grupo en la carpete "parts/Custom. Por favor lea el siguiente mensaje para más detalles:</value>
+  </data>
+  <data name="ErrorMsgIgnoreButton" xml:space="preserve">
+    <value>Ignorar</value>
+  </data>
+  <data name="ErrorMsgLayerTypeRuler" xml:space="preserve">
+    <value>Regla</value>
+  </data>
+  <data name="ErrorMsgNoButton" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="ErrorMsgOkButton" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="ErrorMsgReplaceExistingShortcut" xml:space="preserve">
+    <value>Ya hay un atajo asignado a esta tecla. ¿Desea cambiarlo?</value>
+  </data>
+  <data name="ErrorMsgRetryButton" xml:space="preserve">
+    <value>Reintentar</value>
+  </data>
+  <data name="ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation" xml:space="preserve">
+    <value>Algunas piezas no duplicarán debido a las limitaciones del presupuesto. ¿Desea continuar?</value>
+  </data>
+  <data name="ErrorMsgYesButton" xml:space="preserve">
+    <value>Si</value>
+  </data>
+  <data name="InputFilterIndication" xml:space="preserve">
+    <value>Escribir palabras clave para filtrar aquí</value>
+  </data>
+  <data name="PartLibMenuItemEditBudget" xml:space="preserve">
+    <value>Editar el rpesupuesto de esta pieza</value>
+  </data>
+  <data name="PartLibMenuItemShowBudgetNumbers" xml:space="preserve">
+    <value>Mostrar números de presupuesto</value>
+  </data>
+  <data name="PartLibMenuItemShowOnlyBudgetedParts" xml:space="preserve">
+    <value>Solo mostrar piezas presupuestadas</value>
+  </data>
+  <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
+    <value>Usar limitaciones de presupuesto</value>
+  </data>
+  <data name="StatusMsgBudgetReached" xml:space="preserve">
+    <value>¡Presupuesto para esta pieza alcanzado!</value>
+  </data>
 </root>

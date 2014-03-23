@@ -300,6 +300,9 @@
     <EmbeddedResource Include="EditRulerForm.de.resx">
       <DependentUpon>EditRulerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditRulerForm.es.resx">
+      <DependentUpon>EditRulerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditRulerForm.fr.resx">
       <DependentUpon>EditRulerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -354,6 +357,9 @@
       <DependentUpon>ExportImageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ForgetableMessageBox.de.resx">
+      <DependentUpon>ForgetableMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForgetableMessageBox.es.resx">
       <DependentUpon>ForgetableMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ForgetableMessageBox.fr.resx">
@@ -601,6 +607,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveGroupNameForm.de.resx">
+      <DependentUpon>SaveGroupNameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveGroupNameForm.es.resx">
       <DependentUpon>SaveGroupNameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveGroupNameForm.fr.resx">
