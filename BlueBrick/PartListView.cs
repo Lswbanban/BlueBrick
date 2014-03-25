@@ -131,9 +131,6 @@ namespace BlueBrick
 				// item added after the 16th one added (but the item is still added).
 				// Probably a bug from Mono.
 				this.Items.AddRange(itemsToAdd);
-				// The AddRange call the EndUpdate, but it's not finished, so we
-				// put back the begin update, because we want to do the end update later
-				this.BeginUpdate();
 			}
 			catch
 			{
@@ -290,6 +287,10 @@ namespace BlueBrick
 
 			//put back all the previous filtered item in the list
 			addItemToItemsList(mFilteredItems.ToArray());
+			// On Mono, the AddRange call the EndUpdate, so we put back the begin update, because we want to continue to update
+			// On Dot Net, the BeginUpdate are counted, but not on Mono, so we will have to put another EndUpdate
+			this.BeginUpdate();
+
 			// clear the list
 			mFilteredItems.Clear();
 			// resort the list view
@@ -353,6 +354,8 @@ namespace BlueBrick
 			}
 
 			// resume the redraw
+			this.EndUpdate();
+			// call it a second time because on Dot Net, the number of BeginUpdate are counted
 			this.EndUpdate();
 			this.ResumeLayout();
 		}
@@ -617,6 +620,9 @@ namespace BlueBrick
 			// list to remove them again. We do that, because it may happen that some items were filtered because they
 			// didn't have a budget, then we load a Budget file, and these items now have a budget
 			addItemToItemsList(mNotBudgetedItems.ToArray());
+			// On Mono, the AddRange call the EndUpdate, so we put back the begin update, because we want to continue to update
+			// On Dot Net, the BeginUpdate are counted, but not on Mono, so we will have to put another EndUpdate
+			this.BeginUpdate();
 			// clear the list
 			mNotBudgetedItems.Clear();
 
@@ -654,6 +660,8 @@ namespace BlueBrick
 			}
 
 			// resume the layout
+			this.EndUpdate();
+			// call it a second time because on Dot Net, the number of BeginUpdate are counted
 			this.EndUpdate();
 			this.ResumeLayout();
 
