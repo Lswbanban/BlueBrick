@@ -119,6 +119,26 @@ namespace BlueBrick
 		}
 
 		/// <summary>
+		/// This method is only to encapsulate a Mono bug that throw an exception for the 16th item added.
+		/// It will add the list of item to the list
+		/// </summary>
+		/// <param name="itemToAdd">The item to add to the list</param>
+		private void addItemToItemsList(ListViewItem[] itemsToAdd)
+		{
+			try
+			{
+				// for a strange reason, on mono, this method throw an exception for all the
+				// item added after the 16th one added (but the item is still added).
+				// Probably a bug from Mono.
+				this.Items.AddRange(itemsToAdd);
+			}
+			catch
+			{
+				// so ignore this exception for mono, otherwise it is displayed in the error message box
+			}
+		}
+
+		/// <summary>
 		/// This method will add the specified item to the list view, either in the visible item list
 		/// or in the non budgeted item list if the setting to hide non budgeted item is set.
 		/// </summary>
@@ -261,11 +281,12 @@ namespace BlueBrick
 		/// <param name="excludeFilter">All the parts whose ID, color or description contains any of this filter will be hidden</param>
 		private void filterDisplayedParts(List<string> includeIdFilter, List<string> includeFilter, List<string> excludeFilter)
 		{
+			// stop the redraw
 			this.SuspendLayout();
+			this.BeginUpdate();
 
 			//put back all the previous filtered item in the list
-			foreach (ListViewItem item in mFilteredItems)
-				addItemToItemsList(item);
+			addItemToItemsList(mFilteredItems.ToArray());
 			// clear the list
 			mFilteredItems.Clear();
 			// resort the list view
@@ -328,6 +349,8 @@ namespace BlueBrick
 				}
 			}
 
+			// resume the redraw
+			this.EndUpdate();
 			this.ResumeLayout();
 		}
 
@@ -549,9 +572,11 @@ namespace BlueBrick
 		{
 			// suspend the layout, since we will update all the items
 			this.SuspendLayout();
+			this.BeginUpdate();
 			// iterate on all items
 			updateAllPartTextAndBackColor(null);
 			// resume the layout
+			this.EndUpdate();
 			this.ResumeLayout();
 		}
 
@@ -583,12 +608,12 @@ namespace BlueBrick
 
 			// suspend the layout since we will remove some items from the list
 			this.SuspendLayout();
+			this.BeginUpdate();
 
 			// put back all the previous filtered item in the list, and then we will iterate on all the items in the
 			// list to remove them again. We do that, because it may happen that some items were filtered because they
 			// didn't have a budget, then we load a Budget file, and these items now have a budget
-			foreach (ListViewItem item in mNotBudgetedItems)
-				addItemToItemsList(item);
+			addItemToItemsList(mNotBudgetedItems.ToArray());
 			// clear the list
 			mNotBudgetedItems.Clear();
 
@@ -626,6 +651,7 @@ namespace BlueBrick
 			}
 
 			// resume the layout
+			this.EndUpdate();
 			this.ResumeLayout();
 
 			// refilter after move the (non) budgeted parts if needed

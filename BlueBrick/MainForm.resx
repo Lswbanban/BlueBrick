@@ -131,28 +131,13 @@
   <metadata name="statusBar.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="statusBarProgressBar.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="statusBarProgressBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
-  <data name="statusBarProgressBar.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="statusBarLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 17</value>
-  </data>
-  <data name="statusBarLabel.Text" xml:space="preserve">
-    <value>  </value>
-  </data>
   <data name="statusBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 438</value>
   </data>
   <data name="statusBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>471, 22</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="statusBar.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
@@ -184,7 +169,7 @@
     <value>mapPanel</value>
   </data>
   <data name="&gt;&gt;mapPanel.Type" xml:space="preserve">
-    <value>BlueBrick.MapPanel, BlueBrick, Version=1.7.6.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.MapPanel, BlueBrick, Version=1.7.7.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mapPanel.Parent" xml:space="preserve">
     <value>mainSplitContainer.Panel1</value>
@@ -244,7 +229,7 @@
     <value>partsTabControl</value>
   </data>
   <data name="&gt;&gt;partsTabControl.Type" xml:space="preserve">
-    <value>BlueBrick.PartLibraryPanel, BlueBrick, Version=1.7.6.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.PartLibraryPanel, BlueBrick, Version=1.7.7.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;partsTabControl.Parent" xml:space="preserve">
     <value>splitContainerPartLibrary.Panel1</value>
@@ -267,30 +252,6 @@
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="textBoxPartFilter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="textBoxPartFilter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="textBoxPartFilter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 2, 0</value>
-  </data>
-  <data name="textBoxPartFilter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 20</value>
-  </data>
-  <data name="textBoxPartFilter.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <metadata name="toolTipForMainForm.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>11, 83</value>
-  </metadata>
-  <data name="textBoxPartFilter.ToolTip" xml:space="preserve">
-    <value>Input keywords to filter the list of parts.
-Use - character in front of a keyword to exclude parts.
-Use # character in front of a keyword to specify a part number.
-You can use double quote characters to group keywords.</value>
-  </data>
   <data name="&gt;&gt;textBoxPartFilter.Name" xml:space="preserve">
     <value>textBoxPartFilter</value>
   </data>
@@ -302,82 +263,6 @@ You can use double quote characters to group keywords.</value>
   </data>
   <data name="&gt;&gt;textBoxPartFilter.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="filterAllTabCheckBox.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="filterAllTabCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="filterAllTabCheckBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="filterAllTabCheckBox.ImageIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <metadata name="filterLibraryCheckboxImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>162, 83</value>
-  </metadata>
-  <data name="filterLibraryCheckboxImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAYABAAGAAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
-        AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
-        AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
-        AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
-        AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
-        AZkCAAFmAcwCAAFmAf8CAAGZAwABmQEzAgABmQFmAgACmQIAAZkBzAIAAZkB/wIAAcwDAAHMATMCAAHM
-        AWYCAAHMAZkCAALMAgABzAH/AgAB/wFmAgAB/wGZAgAB/wHMAQABMwH/AgAB/wEAATMBAAEzAQABZgEA
-        ATMBAAGZAQABMwEAAcwBAAEzAQAB/wEAAf8BMwIAAzMBAAIzAWYBAAIzAZkBAAIzAcwBAAIzAf8BAAEz
-        AWYCAAEzAWYBMwEAATMCZgEAATMBZgGZAQABMwFmAcwBAAEzAWYB/wEAATMBmQIAATMBmQEzAQABMwGZ
-        AWYBAAEzApkBAAEzAZkBzAEAATMBmQH/AQABMwHMAgABMwHMATMBAAEzAcwBZgEAATMBzAGZAQABMwLM
-        AQABMwHMAf8BAAEzAf8BMwEAATMB/wFmAQABMwH/AZkBAAEzAf8BzAEAATMC/wEAAWYDAAFmAQABMwEA
-        AWYBAAFmAQABZgEAAZkBAAFmAQABzAEAAWYBAAH/AQABZgEzAgABZgIzAQABZgEzAWYBAAFmATMBmQEA
-        AWYBMwHMAQABZgEzAf8BAAJmAgACZgEzAQADZgEAAmYBmQEAAmYBzAEAAWYBmQIAAWYBmQEzAQABZgGZ
-        AWYBAAFmApkBAAFmAZkBzAEAAWYBmQH/AQABZgHMAgABZgHMATMBAAFmAcwBmQEAAWYCzAEAAWYBzAH/
-        AQABZgH/AgABZgH/ATMBAAFmAf8BmQEAAWYB/wHMAQABzAEAAf8BAAH/AQABzAEAApkCAAGZATMBmQEA
-        AZkBAAGZAQABmQEAAcwBAAGZAwABmQIzAQABmQEAAWYBAAGZATMBzAEAAZkBAAH/AQABmQFmAgABmQFm
-        ATMBAAGZATMBZgEAAZkBZgGZAQABmQFmAcwBAAGZATMB/wEAApkBMwEAApkBZgEAA5kBAAKZAcwBAAKZ
-        Af8BAAGZAcwCAAGZAcwBMwEAAWYBzAFmAQABmQHMAZkBAAGZAswBAAGZAcwB/wEAAZkB/wIAAZkB/wEz
-        AQABmQHMAWYBAAGZAf8BmQEAAZkB/wHMAQABmQL/AQABzAMAAZkBAAEzAQABzAEAAWYBAAHMAQABmQEA
-        AcwBAAHMAQABmQEzAgABzAIzAQABzAEzAWYBAAHMATMBmQEAAcwBMwHMAQABzAEzAf8BAAHMAWYCAAHM
-        AWYBMwEAAZkCZgEAAcwBZgGZAQABzAFmAcwBAAGZAWYB/wEAAcwBmQIAAcwBmQEzAQABzAGZAWYBAAHM
-        ApkBAAHMAZkBzAEAAcwBmQH/AQACzAIAAswBMwEAAswBZgEAAswBmQEAA8wBAALMAf8BAAHMAf8CAAHM
-        Af8BMwEAAZkB/wFmAQABzAH/AZkBAAHMAf8BzAEAAcwC/wEAAcwBAAEzAQAB/wEAAWYBAAH/AQABmQEA
-        AcwBMwIAAf8CMwEAAf8BMwFmAQAB/wEzAZkBAAH/ATMBzAEAAf8BMwH/AQAB/wFmAgAB/wFmATMBAAHM
-        AmYBAAH/AWYBmQEAAf8BZgHMAQABzAFmAf8BAAH/AZkCAAH/AZkBMwEAAf8BmQFmAQAB/wKZAQAB/wGZ
-        AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
-        AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
-        AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
-        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wEAIP8gACD/IAAC/wEA
-        AZoE+wGaBG0BmgT/AQAB/wT7Af8EbQP/IAAC/wEAAZoE+wGaBG0BmgT/AQAB/wT7Af8EbQP/IAAC/wEA
-        C5oE/wEADf8gAAL/AQABmgQtBJoC7wT/AQAB/wQtBP8C7wL/IAAC/wEAAZoELQGaAvwBmgLvBP8BAAH/
-        BC0B/wL8Af8C7wL/IAAC/wEAAZoELQGaAvwBmgLvBP8BAAH/BC0B/wL8Af8C7wL/IAAC/wEAAZoELQSa
-        Au8E/wEAAf8ELQT/Au8C/yAAAv8BAAuaBP8BAA3/IAAC/wEAA5oIAAT/AQAD/wgAAv8gAAL/AQADmgEA
-        BJoBAAKaBP8BAAP/AQAEmgEABP8gAAL/AQADmgEABJoBAAKaBP8BAAP/AQAEmgEABP8gAAL/Ae8DAAHv
-        BAAB7wIABP8B7wMAAe8EAAHvAgAC/yAAIP8gACD/IAABQgFNAT4HAAE+AwABKAMAAUADAAEQAwABAQEA
-        AQEFAAGAFwAD/4EACw==
-</value>
-  </data>
-  <data name="filterAllTabCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="filterAllTabCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 1</value>
-  </data>
-  <data name="filterAllTabCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>1, 1, 1, 1</value>
-  </data>
-  <data name="filterAllTabCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="filterAllTabCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
-    <value>Apply the filter on all tabs or only the current tab.</value>
   </data>
   <data name="&gt;&gt;filterAllTabCheckBox.Name" xml:space="preserve">
     <value>filterAllTabCheckBox</value>
@@ -512,7 +397,7 @@ You can use double quote characters to group keywords.</value>
     <value>layerStackPanel</value>
   </data>
   <data name="&gt;&gt;layerStackPanel.Type" xml:space="preserve">
-    <value>BlueBrick.LayerStackPanel, BlueBrick, Version=1.7.6.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>BlueBrick.LayerStackPanel, BlueBrick, Version=1.7.7.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;layerStackPanel.Parent" xml:space="preserve">
     <value>layerSplitContainer.Panel1</value>
@@ -535,6 +420,403 @@ You can use double quote characters to group keywords.</value>
   <metadata name="LayerButtonFlowLayoutPanel.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="&gt;&gt;trashLayerButton.Name" xml:space="preserve">
+    <value>trashLayerButton</value>
+  </data>
+  <data name="&gt;&gt;trashLayerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;trashLayerButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;trashLayerButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;newLayerRulerButton.Name" xml:space="preserve">
+    <value>newLayerRulerButton</value>
+  </data>
+  <data name="&gt;&gt;newLayerRulerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newLayerRulerButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;newLayerRulerButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;newLayerTextButton.Name" xml:space="preserve">
+    <value>newLayerTextButton</value>
+  </data>
+  <data name="&gt;&gt;newLayerTextButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newLayerTextButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;newLayerTextButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;newLayerAreaButton.Name" xml:space="preserve">
+    <value>newLayerAreaButton</value>
+  </data>
+  <data name="&gt;&gt;newLayerAreaButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newLayerAreaButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;newLayerAreaButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;newLayerBrickButton.Name" xml:space="preserve">
+    <value>newLayerBrickButton</value>
+  </data>
+  <data name="&gt;&gt;newLayerBrickButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newLayerBrickButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;newLayerBrickButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;newLayerGridButton.Name" xml:space="preserve">
+    <value>newLayerGridButton</value>
+  </data>
+  <data name="&gt;&gt;newLayerGridButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newLayerGridButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;newLayerGridButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;layerUpButton.Name" xml:space="preserve">
+    <value>layerUpButton</value>
+  </data>
+  <data name="&gt;&gt;layerUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;layerUpButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;layerUpButton.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;layerDownButton.Name" xml:space="preserve">
+    <value>layerDownButton</value>
+  </data>
+  <data name="&gt;&gt;layerDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;layerDownButton.Parent" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;layerDownButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>RightToLeft</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 20</value>
+  </data>
+  <data name="LayerButtonFlowLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Name" xml:space="preserve">
+    <value>LayerButtonFlowLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Parent" xml:space="preserve">
+    <value>layerSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel2.Name" xml:space="preserve">
+    <value>layerSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel2.Parent" xml:space="preserve">
+    <value>layerSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="layerSplitContainer.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="layerSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 242</value>
+  </data>
+  <data name="layerSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>218</value>
+  </data>
+  <data name="layerSplitContainer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Name" xml:space="preserve">
+    <value>layerSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.Parent" xml:space="preserve">
+    <value>toolSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;layerSplitContainer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel2.Name" xml:space="preserve">
+    <value>toolSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel2.Parent" xml:space="preserve">
+    <value>toolSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="toolSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 464</value>
+  </data>
+  <data name="toolSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>214</value>
+  </data>
+  <data name="toolSplitContainer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Name" xml:space="preserve">
+    <value>toolSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.Parent" xml:space="preserve">
+    <value>mainSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;toolSplitContainer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel2.Name" xml:space="preserve">
+    <value>mainSplitContainer.Panel2</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel2.Parent" xml:space="preserve">
+    <value>mainSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mainSplitContainer.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>206</value>
+  </data>
+  <data name="mainSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>701, 464</value>
+  </data>
+  <data name="mainSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>475</value>
+  </data>
+  <data name="mainSplitContainer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Name" xml:space="preserve">
+    <value>mainSplitContainer</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Type" xml:space="preserve">
+    <value>BlueBrick.MainSplitContainer, BlueBrick, Version=1.7.7.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mainSplitContainer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="statusBarProgressBar.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="statusBarProgressBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 16</value>
+  </data>
+  <data name="statusBarProgressBar.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="statusBarLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 17</value>
+  </data>
+  <data name="statusBarLabel.Text" xml:space="preserve">
+    <value>  </value>
+  </data>
+  <metadata name="toolTipForMainForm.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>11, 83</value>
+  </metadata>
+  <data name="textBoxPartFilter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="textBoxPartFilter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="textBoxPartFilter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 2, 0</value>
+  </data>
+  <data name="textBoxPartFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 20</value>
+  </data>
+  <data name="textBoxPartFilter.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="textBoxPartFilter.ToolTip" xml:space="preserve">
+    <value>Input keywords to filter the list of parts.
+Use - character in front of a keyword to exclude parts.
+Use # character in front of a keyword to specify a part number.
+You can use double quote characters to group keywords.</value>
+  </data>
+  <data name="&gt;&gt;textBoxPartFilter.Name" xml:space="preserve">
+    <value>textBoxPartFilter</value>
+  </data>
+  <data name="&gt;&gt;textBoxPartFilter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxPartFilter.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;textBoxPartFilter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="filterAllTabCheckBox.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="filterAllTabCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="filterAllTabCheckBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="filterAllTabCheckBox.ImageIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <metadata name="filterLibraryCheckboxImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>162, 83</value>
+  </metadata>
+  <data name="filterLibraryCheckboxImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
+        CAAAAk1TRnQBSQFMAgEBAgEAAYABAAGAAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
+        AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
+        AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
+        AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
+        AZkCAAFmAcwCAAFmAf8CAAGZAwABmQEzAgABmQFmAgACmQIAAZkBzAIAAZkB/wIAAcwDAAHMATMCAAHM
+        AWYCAAHMAZkCAALMAgABzAH/AgAB/wFmAgAB/wGZAgAB/wHMAQABMwH/AgAB/wEAATMBAAEzAQABZgEA
+        ATMBAAGZAQABMwEAAcwBAAEzAQAB/wEAAf8BMwIAAzMBAAIzAWYBAAIzAZkBAAIzAcwBAAIzAf8BAAEz
+        AWYCAAEzAWYBMwEAATMCZgEAATMBZgGZAQABMwFmAcwBAAEzAWYB/wEAATMBmQIAATMBmQEzAQABMwGZ
+        AWYBAAEzApkBAAEzAZkBzAEAATMBmQH/AQABMwHMAgABMwHMATMBAAEzAcwBZgEAATMBzAGZAQABMwLM
+        AQABMwHMAf8BAAEzAf8BMwEAATMB/wFmAQABMwH/AZkBAAEzAf8BzAEAATMC/wEAAWYDAAFmAQABMwEA
+        AWYBAAFmAQABZgEAAZkBAAFmAQABzAEAAWYBAAH/AQABZgEzAgABZgIzAQABZgEzAWYBAAFmATMBmQEA
+        AWYBMwHMAQABZgEzAf8BAAJmAgACZgEzAQADZgEAAmYBmQEAAmYBzAEAAWYBmQIAAWYBmQEzAQABZgGZ
+        AWYBAAFmApkBAAFmAZkBzAEAAWYBmQH/AQABZgHMAgABZgHMATMBAAFmAcwBmQEAAWYCzAEAAWYBzAH/
+        AQABZgH/AgABZgH/ATMBAAFmAf8BmQEAAWYB/wHMAQABzAEAAf8BAAH/AQABzAEAApkCAAGZATMBmQEA
+        AZkBAAGZAQABmQEAAcwBAAGZAwABmQIzAQABmQEAAWYBAAGZATMBzAEAAZkBAAH/AQABmQFmAgABmQFm
+        ATMBAAGZATMBZgEAAZkBZgGZAQABmQFmAcwBAAGZATMB/wEAApkBMwEAApkBZgEAA5kBAAKZAcwBAAKZ
+        Af8BAAGZAcwCAAGZAcwBMwEAAWYBzAFmAQABmQHMAZkBAAGZAswBAAGZAcwB/wEAAZkB/wIAAZkB/wEz
+        AQABmQHMAWYBAAGZAf8BmQEAAZkB/wHMAQABmQL/AQABzAMAAZkBAAEzAQABzAEAAWYBAAHMAQABmQEA
+        AcwBAAHMAQABmQEzAgABzAIzAQABzAEzAWYBAAHMATMBmQEAAcwBMwHMAQABzAEzAf8BAAHMAWYCAAHM
+        AWYBMwEAAZkCZgEAAcwBZgGZAQABzAFmAcwBAAGZAWYB/wEAAcwBmQIAAcwBmQEzAQABzAGZAWYBAAHM
+        ApkBAAHMAZkBzAEAAcwBmQH/AQACzAIAAswBMwEAAswBZgEAAswBmQEAA8wBAALMAf8BAAHMAf8CAAHM
+        Af8BMwEAAZkB/wFmAQABzAH/AZkBAAHMAf8BzAEAAcwC/wEAAcwBAAEzAQAB/wEAAWYBAAH/AQABmQEA
+        AcwBMwIAAf8CMwEAAf8BMwFmAQAB/wEzAZkBAAH/ATMBzAEAAf8BMwH/AQAB/wFmAgAB/wFmATMBAAHM
+        AmYBAAH/AWYBmQEAAf8BZgHMAQABzAFmAf8BAAH/AZkCAAH/AZkBMwEAAf8BmQFmAQAB/wKZAQAB/wGZ
+        AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
+        AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
+        AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
+        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wEAIP8gACD/IAAC/wEA
+        AZoE+wGaBG0BmgT/AQAB/wT7Af8EbQP/IAAC/wEAAZoE+wGaBG0BmgT/AQAB/wT7Af8EbQP/IAAC/wEA
+        C5oE/wEADf8gAAL/AQABmgQtBJoC7wT/AQAB/wQtBP8C7wL/IAAC/wEAAZoELQGaAvwBmgLvBP8BAAH/
+        BC0B/wL8Af8C7wL/IAAC/wEAAZoELQGaAvwBmgLvBP8BAAH/BC0B/wL8Af8C7wL/IAAC/wEAAZoELQSa
+        Au8E/wEAAf8ELQT/Au8C/yAAAv8BAAuaBP8BAA3/IAAC/wEAA5oIAAT/AQAD/wgAAv8gAAL/AQADmgEA
+        BJoBAAKaBP8BAAP/AQAEmgEABP8gAAL/AQADmgEABJoBAAKaBP8BAAP/AQAEmgEABP8gAAL/Ae8DAAHv
+        BAAB7wIABP8B7wMAAe8EAAHvAgAC/yAAIP8gACD/IAABQgFNAT4HAAE+AwABKAMAAUADAAEQAwABAQEA
+        AQEFAAGAFwAD/4EACw==
+</value>
+  </data>
+  <data name="filterAllTabCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="filterAllTabCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>197, 1</value>
+  </data>
+  <data name="filterAllTabCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 1, 1</value>
+  </data>
+  <data name="filterAllTabCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="filterAllTabCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <metadata name="toolTipForMainForm.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>11, 83</value>
+  </metadata>
+  <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
+    <value>Apply the filter on all tabs or only the current tab.</value>
+  </data>
+  <data name="&gt;&gt;filterAllTabCheckBox.Name" xml:space="preserve">
+    <value>filterAllTabCheckBox</value>
+  </data>
+  <data name="&gt;&gt;filterAllTabCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;filterAllTabCheckBox.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;filterAllTabCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="trashLayerButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -961,144 +1243,39 @@ You can use double quote characters to group keywords.</value>
   <data name="&gt;&gt;layerDownButton.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="LayerButtonFlowLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="LayerButtonFlowLayoutPanel.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
-    <value>RightToLeft</value>
-  </data>
-  <data name="LayerButtonFlowLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="LayerButtonFlowLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="LayerButtonFlowLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 20</value>
-  </data>
-  <data name="LayerButtonFlowLayoutPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Name" xml:space="preserve">
-    <value>LayerButtonFlowLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.Parent" xml:space="preserve">
-    <value>layerSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;LayerButtonFlowLayoutPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel2.Name" xml:space="preserve">
-    <value>layerSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel2.Parent" xml:space="preserve">
-    <value>layerSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="layerSplitContainer.Panel2MinSize" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="layerSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 242</value>
-  </data>
-  <data name="layerSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>218</value>
-  </data>
-  <data name="layerSplitContainer.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Name" xml:space="preserve">
-    <value>layerSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.Parent" xml:space="preserve">
-    <value>toolSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;layerSplitContainer.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel2.Name" xml:space="preserve">
-    <value>toolSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel2.Parent" xml:space="preserve">
-    <value>toolSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="toolSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 464</value>
-  </data>
-  <data name="toolSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>214</value>
-  </data>
-  <data name="toolSplitContainer.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Name" xml:space="preserve">
-    <value>toolSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.Parent" xml:space="preserve">
-    <value>mainSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;toolSplitContainer.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel2.Name" xml:space="preserve">
-    <value>mainSplitContainer.Panel2</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel2.Parent" xml:space="preserve">
-    <value>mainSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="mainSplitContainer.Panel2MinSize" type="System.Int32, mscorlib">
-    <value>206</value>
-  </data>
-  <data name="mainSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>701, 464</value>
-  </data>
-  <data name="mainSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>475</value>
-  </data>
-  <data name="mainSplitContainer.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Name" xml:space="preserve">
-    <value>mainSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Type" xml:space="preserve">
-    <value>BlueBrick.MainSplitContainer, BlueBrick, Version=1.7.6.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mainSplitContainer.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="menuBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
   </metadata>
+  <data name="menuBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>701, 24</value>
+  </data>
+  <data name="menuBar.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="menuBar.Text" xml:space="preserve">
+    <value>menuBar</value>
+  </data>
+  <data name="&gt;&gt;menuBar.Name" xml:space="preserve">
+    <value>menuBar</value>
+  </data>
+  <data name="&gt;&gt;menuBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuBar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuBar.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
   <data name="newToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+N</value>
   </data>
@@ -1180,11 +1357,11 @@ You can use double quote characters to group keywords.</value>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 20</value>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;File</value>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Edit</value>
   </data>
   <data name="undoToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1288,6 +1465,12 @@ You can use double quote characters to group keywords.</value>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Select &amp;Path</value>
   </data>
+  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>206, 22</value>
+  </data>
+  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Group</value>
+  </data>
   <data name="groupToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+G</value>
   </data>
@@ -1306,14 +1489,20 @@ You can use double quote characters to group keywords.</value>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Ungroup</value>
   </data>
-  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
-  </data>
-  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Group</value>
-  </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>
+  </data>
+  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>206, 22</value>
+  </data>
+  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Transform</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 22</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Move Step</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 22</value>
@@ -1357,12 +1546,6 @@ You can use double quote characters to group keywords.</value>
   <data name="moveStep05ToolStripMenuItem.Text" xml:space="preserve">
     <value>1/2 stud</value>
   </data>
-  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Move Step</value>
-  </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 22</value>
   </data>
@@ -1377,6 +1560,12 @@ You can use double quote characters to group keywords.</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 6</value>
+  </data>
+  <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 22</value>
+  </data>
+  <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rotation Step</value>
   </data>
   <data name="rotationStep90ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 22</value>
@@ -1402,12 +1591,6 @@ You can use double quote characters to group keywords.</value>
   <data name="rotationStep1ToolStripMenuItem.Text" xml:space="preserve">
     <value>1°</value>
   </data>
-  <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Rotation Step</value>
-  </data>
   <data name="rotateCWToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
   </data>
@@ -1426,11 +1609,11 @@ You can use double quote characters to group keywords.</value>
   <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotate CCW</value>
   </data>
-  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
-  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
-    <value>Transform</value>
+  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Paint Tool</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 22</value>
@@ -1453,11 +1636,11 @@ You can use double quote characters to group keywords.</value>
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Choose Color...</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Paint Tool</value>
+  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ruler Tool</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 22</value>
@@ -1476,12 +1659,6 @@ You can use double quote characters to group keywords.</value>
   </data>
   <data name="addCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Add Circle</value>
-  </data>
-  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
-  </data>
-  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ruler Tool</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 6</value>
@@ -1510,11 +1687,11 @@ You can use double quote characters to group keywords.</value>
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>Preferences...</value>
   </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
   </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Edit</value>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;View</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 22</value>
@@ -1561,6 +1738,12 @@ You can use double quote characters to group keywords.</value>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ruler Attach Points</value>
   </data>
+  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 22</value>
+  </data>
+  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hulls</value>
+  </data>
   <data name="hullsBricksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 22</value>
   </data>
@@ -1573,17 +1756,11 @@ You can use double quote characters to group keywords.</value>
   <data name="hullsTextsAndRulersToolStripMenuItem.Text" xml:space="preserve">
     <value>Texts and Rulers</value>
   </data>
-  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 22</value>
+  <data name="budgetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
   </data>
-  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Hulls</value>
-  </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 20</value>
-  </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;View</value>
+  <data name="budgetToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Budget</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 22</value>
@@ -1645,11 +1822,11 @@ You can use double quote characters to group keywords.</value>
   <data name="useBudgetLimitationToolStripMenuItem.Text" xml:space="preserve">
     <value>Use Budget &amp;Limitation</value>
   </data>
-  <data name="budgetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
   </data>
-  <data name="budgetToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Budget</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Help</value>
   </data>
   <data name="helpContentsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F1</value>
@@ -1666,39 +1843,33 @@ You can use double quote characters to group keywords.</value>
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About BlueBrick...</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
-  <data name="menuBar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="menuBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>701, 24</value>
-  </data>
-  <data name="menuBar.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="menuBar.Text" xml:space="preserve">
-    <value>menuBar</value>
-  </data>
-  <data name="&gt;&gt;menuBar.Name" xml:space="preserve">
-    <value>menuBar</value>
-  </data>
-  <data name="&gt;&gt;menuBar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuBar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuBar.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <metadata name="toolBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 24</value>
   </metadata>
+  <data name="toolBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 24</value>
+  </data>
+  <data name="toolBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>701, 25</value>
+  </data>
+  <data name="toolBar.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="toolBar.Text" xml:space="preserve">
+    <value>toolBar</value>
+  </data>
+  <data name="&gt;&gt;toolBar.Name" xml:space="preserve">
+    <value>toolBar</value>
+  </data>
+  <data name="&gt;&gt;toolBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolBar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;toolBar.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="toolBarNewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1901,6 +2072,24 @@ You can use double quote characters to group keywords.</value>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 25</value>
   </data>
+  <data name="toolBarSnapGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAIVJREFUOE+1k4EK
+        gCAQQwW/xJ/zh/sga8FkmmenkXCY4cbda4UgK6VU9Ixn77tb573c3MPhSzUdb3XwF4MK09uVQoSY9Q5W
+        AV6qgoJBztkFtyKgGPsR4/oINFBxlw3b1BKLwZzLzEC5cN5HEvv5CVaNrbQOIVpAhx1oEvkFAJK1E6Sl
+        /+MEqkCwRnSpGMgAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="toolBarSnapGridButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="toolBarSnapGridButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 22</value>
+  </data>
+  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
+    <value>Select the grid snaping step</value>
+  </data>
   <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 22</value>
   </data>
@@ -1937,23 +2126,23 @@ You can use double quote characters to group keywords.</value>
   <data name="toolBarGrid05Button.Text" xml:space="preserve">
     <value>1/2 stud</value>
   </data>
-  <data name="toolBarSnapGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAIVJREFUOE+1k4EK
-        gCAQQwW/xJ/zh/sga8FkmmenkXCY4cbda4UgK6VU9Ixn77tb573c3MPhSzUdb3XwF4MK09uVQoSY9Q5W
-        AV6qgoJBztkFtyKgGPsR4/oINFBxlw3b1BKLwZzLzEC5cN5HEvv5CVaNrbQOIVpAhx1oEvkFAJK1E6Sl
-        /+MEqkCwRnSpGMgAAAAASUVORK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAKVJREFUOE+tU9sN
+        gCAMNMFFGIQ/Z2EEF3Ug9ZCDChQ0atKo0HsVnaa/rnlZd8mFd9YjDRK0QF0i51xQfqImXVprL8d4AIm0
+        XMYpoxGT1quFa+c2EzYrvdlJbASYNRLKBsF+okKBwHufXKjKMh/BuG/GvAPH0EEdYJ5OodycCyeWwDyd
+        BriaS0pA+9I6N+Vc1K9Sy98jrsgkiUY4/C84RERhDUFfGg4Ng5ZNxi8dRwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="toolBarSnapGridButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+  <data name="toolBarRotationAngleButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="toolBarSnapGridButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 22</value>
+  <data name="toolBarRotationAngleButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 22</value>
   </data>
-  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
-    <value>Select the grid snaping step</value>
+  <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
+    <value>Select angle for rotation steps</value>
   </data>
   <data name="toolBarAngle90Button.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 22</value>
@@ -1978,24 +2167,6 @@ You can use double quote characters to group keywords.</value>
   </data>
   <data name="toolBarAngle1Button.Text" xml:space="preserve">
     <value>1°</value>
-  </data>
-  <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAKVJREFUOE+tU9sN
-        gCAMNMFFGIQ/Z2EEF3Ug9ZCDChQ0atKo0HsVnaa/rnlZd8mFd9YjDRK0QF0i51xQfqImXVprL8d4AIm0
-        XMYpoxGT1quFa+c2EzYrvdlJbASYNRLKBsF+okKBwHufXKjKMh/BuG/GvAPH0EEdYJ5OodycCyeWwDyd
-        BriaS0pA+9I6N+Vc1K9Sy98jrsgkiUY4/C84RERhDUFfGg4Ng5ZNxi8dRwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="toolBarRotationAngleButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="toolBarRotationAngleButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 22</value>
-  </data>
-  <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
-    <value>Select angle for rotation steps</value>
   </data>
   <data name="toolBarRotateCCWButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2064,6 +2235,23 @@ You can use double quote characters to group keywords.</value>
   </data>
   <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
     <value>Bring to Front</value>
+  </data>
+  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
+        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
+        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolBarToolButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="toolBarToolButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 22</value>
+  </data>
+  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
+    <value>Select the painting tool for Area layers</value>
   </data>
   <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2152,47 +2340,6 @@ You can use double quote characters to group keywords.</value>
   </data>
   <data name="rulerAddCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Add Circle</value>
-  </data>
-  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
-        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
-        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="toolBarToolButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="toolBarToolButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 22</value>
-  </data>
-  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
-    <value>Select the painting tool for Area layers</value>
-  </data>
-  <data name="toolBar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 24</value>
-  </data>
-  <data name="toolBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>701, 25</value>
-  </data>
-  <data name="toolBar.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="toolBar.Text" xml:space="preserve">
-    <value>toolBar</value>
-  </data>
-  <data name="&gt;&gt;toolBar.Name" xml:space="preserve">
-    <value>toolBar</value>
-  </data>
-  <data name="&gt;&gt;toolBar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolBar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;toolBar.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <metadata name="openFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>2, 41</value>

@@ -221,6 +221,9 @@ namespace BlueBrick
 		/// </summary>
 		public void initPartsTabControl()
 		{
+			// suspend layout when rebuilding the library
+			this.SuspendLayout();
+
 			// init the part tab control based on the folders found on the drive
 			// first clear the tab control
 			this.TabPages.Clear();
@@ -293,6 +296,9 @@ namespace BlueBrick
 				// after creating all the tabs, sort them according to the settings
 				updateAppearanceAccordingToSettings(true, false, false, false, true, true);
 			}
+
+			// suspend layout when rebuilding the library
+			this.ResumeLayout();
 		}
 
 		/// <summary>
@@ -477,6 +483,9 @@ namespace BlueBrick
 
 		private void fillListViewWithParts(CategoryBuildingInfo buildingInfo, DirectoryInfo folder, List<FileNameWithException> imageFileUnloadable, List<FileNameWithException> xmlFileUnloadable)
 		{
+			// start the begin update outside of the loop because on Mono it's very slow to add items in the list view
+			buildingInfo.mListView.BeginUpdate();
+
 			// get the list of xml and image in the folder
 			List<FileInfo> xmlFiles = new List<FileInfo>(folder.GetFiles("*.xml"));
 			FileInfo[] imageFiles = folder.GetFiles("*.gif");
@@ -524,6 +533,9 @@ namespace BlueBrick
 				}
 			}
 
+			// resume the update
+			buildingInfo.mListView.EndUpdate();
+
 			// now check if there's xml files without GIF. In that case we still load them but these
 			// parts will be ignored by BlueBrick
 			fillListViewWithPartsWithoutImage(buildingInfo, xmlFiles, xmlFileUnloadable, false);
@@ -563,6 +575,9 @@ namespace BlueBrick
 
 		private void fillListViewWithGroups(CategoryBuildingInfo buildingInfo, List<FileNameWithException> imageFileUnloadable, List<FileNameWithException> xmlFileUnloadable)
         {
+			// start the begin update outside of the loop because on Mono it's very slow to add items in the list view
+			buildingInfo.mListView.BeginUpdate();
+
 			// do a third pass to generate and add the group parts in the library
 			// we need to do it in a third pass in order to have read all the group xml files
 			foreach (BrickLibrary.Brick group in buildingInfo.mGroupList)
@@ -580,6 +595,9 @@ namespace BlueBrick
 					xmlFileUnloadable.Add(new FileNameWithException(group.mPartNumber + ".xml", e.Message));
 				}
 			}
+
+			// resume the update
+			buildingInfo.mListView.EndUpdate();
         }
 
 		private void fillListViewWithGroupAndImageToFinalize(CategoryBuildingInfo buildingInfo, List<FileNameWithException> imageFileUnloadable, List<FileNameWithException> xmlFileUnloadable)
