@@ -131,6 +131,9 @@ namespace BlueBrick
 				// item added after the 16th one added (but the item is still added).
 				// Probably a bug from Mono.
 				this.Items.AddRange(itemsToAdd);
+				// The AddRange call the EndUpdate, but it's not finished, so we
+				// put back the begin update, because we want to do the end update later
+				this.BeginUpdate();
 			}
 			catch
 			{
