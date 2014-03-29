@@ -76,14 +76,12 @@ Open bugs:
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
 - MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon)
 - MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optionnal.
-- MISSING FEATURE (Alban): Enhance the part list export in HTML to export the group set only one time.
 - MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels.
 - MISSING FEATURE #6 (Alban): Autosave.
 - MISSING FEATURE #7 (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE #10 (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE #11 (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
-- MISSING FEATURE (Alban): Add a hourglass cursor when loading the images of one panel for the part library (mainly for Mono which is slow)
 - MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
 - BUG (Alban): In the export window you can specify a selection rectangle null by setting a bottom < top
@@ -137,6 +135,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): The group of Texts were not correctly duplicated (specially group of group)
 - BUGFIX (Alban): When adding a new text, it was added in the back instead of the front like for parts
 - BUGFIX (Alban): The style (italic, bold, strikeout, etc...) for texts were not saved.
+- BUGFIX (Alban): Make the first display of each tab of the part library faster (especially on Mono which could take several seconds before)
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)
