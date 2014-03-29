@@ -22,6 +22,7 @@ using System.IO;
 using System.Drawing;
 using BlueBrick.MapData;
 using BlueBrick.Properties;
+using System.Drawing.Drawing2D;
 
 namespace BlueBrick
 {
@@ -632,12 +633,17 @@ namespace BlueBrick
 				globalImageRescaleFactor = (float)PART_ITEM_LARGE_SIZE.Width / (float)biggestSize;
 			}
 
-			// create two image list that will receive a snapshot of each image
-			// found in the folder
+			// create two image list that will receive a snapshot of each image found in the folder
+			// WARNING: by default the colorDepth of the image list is 8bit, so the palette is recomputed
+			// everytime new images are added. For performance issue, we need a higher palette depth to
+			// avoid quantization. If we use 32bit depth, the selection is not drawn for small image list
+			// 24 bit avoid paletization, without the selection bug ondot net 
 			ImageList largeImageList = new ImageList();
 			largeImageList.ImageSize = PART_ITEM_LARGE_SIZE;
+			largeImageList.ColorDepth = ColorDepth.Depth24Bit;
 			ImageList smallImageList = new ImageList();
 			smallImageList.ImageSize = PART_ITEM_SMALL_SIZE;
+			smallImageList.ColorDepth = ColorDepth.Depth24Bit;
 
 			// now we rescale all the images according to the biggest one in the folder
 			foreach (Image image in imageList)
@@ -667,7 +673,10 @@ namespace BlueBrick
 				// create a new bitmap to draw the scaled part
 				Bitmap snapshotImage = new Bitmap(PART_ITEM_LARGE_SIZE.Width, PART_ITEM_LARGE_SIZE.Height);
 				Graphics graphics = Graphics.FromImage(snapshotImage);
-				graphics.Clear(Color.Transparent);
+				graphics.CompositingMode = CompositingMode.SourceCopy; // copy is enough
+				graphics.SmoothingMode = SmoothingMode.AntiAlias;
+				graphics.CompositingQuality = CompositingQuality.HighSpeed;
+				graphics.InterpolationMode = InterpolationMode.Default;
 				graphics.DrawImage(image, drawRectangle);
 				graphics.Flush();
 
@@ -1119,7 +1128,7 @@ namespace BlueBrick
 		{
 			// if we don't have a global filtering, update the filter combo box, with the 
 			// filter of the new current tab
-			if (!Settings.Default.UIFilterAllLibraryTab && (this.SelectedTab != null))
+			if (!Settings.Default.UIFilterAllLibraryTab && (this.SelectedTab != null) && (this.SelectedTab.Controls.Count > 0))
 			{
 				PartListView listView = this.SelectedTab.Controls[0] as PartListView;
 				if (listView != null)

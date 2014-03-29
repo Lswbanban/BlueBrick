@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using BlueBrick.MapData;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace BlueBrick
 {
@@ -69,6 +70,10 @@ namespace BlueBrick
 		#endregion
 
 		#region constructor
+		// import this method for the optimization in the constructor
+		[System.Runtime.InteropServices.DllImport("user32")]
+		private static extern bool SendMessage(IntPtr hwnd, uint msg, IntPtr wParam, IntPtr lParam);
+
 		public PartListView()
 		{
             InitializeComponent();
@@ -77,6 +82,9 @@ namespace BlueBrick
 			this.ListViewItemSorter = sListViewItemComparer; // we want to sort the items based on their Name (which contains a sorting key)
 			updateViewStyle(); // set the view style depending if budget need to be visible or not
 			updateBackgroundColor();
+			// remove the transparent background color for the text (which is a performance issue on dot net)
+			uint LVM_SETTEXTBKCOLOR = 0x1026;
+			SendMessage(this.Handle, LVM_SETTEXTBKCOLOR, IntPtr.Zero, unchecked((IntPtr)(int)0xFFFFFF));
 		}
 
         private void InitializeComponent()
@@ -95,7 +103,6 @@ namespace BlueBrick
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseUp);
 			this.MouseLeave += new EventHandler(this.PartListView_MouseLeave);
 			this.ResumeLayout(false);
-
         }
 
 		/// <summary>
