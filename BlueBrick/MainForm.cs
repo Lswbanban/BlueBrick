@@ -2848,7 +2848,7 @@ namespace BlueBrick
 			e.Handled = false;
 
 			// if we are inputing text in the filter box do not handle the key
-			if (this.textBoxPartFilter.Focused)
+			if (this.textBoxPartFilter.Focused || this.partsTabControl.IsEditingBudget)
 				return;
 
 			// if any modifier is pressed, we don't handle the key, for example the CTRL+S will be handle
@@ -3001,7 +3001,7 @@ namespace BlueBrick
 			e.Handled = true;
 
 			// if we are inputing text in the filter box do not handle the key
-			if (this.textBoxPartFilter.Focused)
+			if (this.textBoxPartFilter.Focused || this.partsTabControl.IsEditingBudget)
 				return;
 
 			// We will warn the mapPanel if a modifier is released in case it wants to change the cursor

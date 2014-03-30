@@ -40,6 +40,7 @@ namespace BlueBrick
 		private bool mIsFilterSentenceSynchroWithCurrentFiltering = false;
 
         // for label edition
+		private bool mIsEditingBudget = false;
 		private ListViewItem mItemForLabelEdit = null;
 		private ListViewItem mItemHitOnMouseDownForAdding = null;
 
@@ -66,6 +67,11 @@ namespace BlueBrick
 		public string FilterSentence
 		{
 			get { return mFilterSentence; }
+		}
+
+		public bool IsEditingBudget
+		{
+			get { return mIsEditingBudget; }
 		}
 		#endregion
 
@@ -408,6 +414,13 @@ namespace BlueBrick
 		#endregion
 
 		#region event handler
+		private void beginEditLabel()
+		{
+			mIsEditingBudget = true;
+			mItemForLabelEdit.Text = Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string);
+			mItemForLabelEdit.BeginEdit();
+		}
+
 		/// <summary>
 		/// begin the edition of the current selected item if any. Otherwise do nothing.
 		/// </summary>
@@ -416,8 +429,7 @@ namespace BlueBrick
 			if (this.SelectedIndices.Count > 0)
 			{
 				mItemForLabelEdit = this.SelectedItems[0];
-				mItemForLabelEdit.Text = Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string);
-				mItemForLabelEdit.BeginEdit();
+				beginEditLabel();
 			}
 		}
 
@@ -469,6 +481,13 @@ namespace BlueBrick
 			else
 			{
 				this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+			}
+
+			// reset the label for edition if we are really editing the budget
+			if (mIsEditingBudget)
+			{
+				mIsEditingBudget = false;
+				mItemForLabelEdit = null;
 			}
 		}
 
@@ -536,10 +555,7 @@ namespace BlueBrick
 					{
 						// check if the clicked one is still the same
 						if (hitTest.Item == mItemForLabelEdit)
-						{
-							mItemForLabelEdit.Text = Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string);
-							mItemForLabelEdit.BeginEdit();
-						}
+							beginEditLabel();
 					}
 					else if (hitTest.Item == mItemHitOnMouseDownForAdding)
 					{
@@ -557,6 +573,7 @@ namespace BlueBrick
 		void PartListView_MouseLeave(object sender, EventArgs e)
 		{
 			// clear the item hit if we moved out of the view
+			mIsEditingBudget = false;
 			mItemForLabelEdit = null;
 			mItemHitOnMouseDownForAdding = null;	
 		}
