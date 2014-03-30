@@ -108,6 +108,20 @@ namespace BlueBrick
 			get { return mDraggingPartNumber; }
 		}
 
+		public bool IsEditingBudget
+		{
+			get
+			{
+				if ((this.SelectedTab != null) && (this.SelectedTab.Controls.Count > 0))
+				{
+					PartListView listView = this.SelectedTab.Controls[0] as PartListView;
+					if (listView != null)
+						return listView.IsEditingBudget;
+				}
+				return false;
+			}
+		}
+
 		public static string sFolderNameForCustomParts
 		{
 			get { return "Custom"; }
