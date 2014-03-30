@@ -494,23 +494,19 @@ namespace BlueBrick
 
         private void PartListView_MouseDown(object sender, MouseEventArgs e)
         {
-			// reset the item index
+			// MONO crash bug: do not try to change the selected item in this event handler,
+			// or it mess up the selection and leads to crash on Mono
+
+			// reset the item pointer
 			mItemForLabelEdit = null;
 
 			// check if we click with the left button
 			if (e.Button == System.Windows.Forms.MouseButtons.Left)
 			{
-				// unselect the previous item if we click left
-				foreach (ListViewItem item in this.SelectedItems)
-					item.Selected = false;
-
 				// get the info to know if we click an item and where
 				ListViewHitTestInfo hitTest = this.HitTest(e.Location);
 				if (hitTest.Item != null)
 				{
-					// if we click on one item, select it
-					hitTest.Item.Selected = true;
-
 					// check where the user clicked, if it's on the label, we have a chance that he want to edit the label
 					if (hitTest.Location == ListViewHitTestLocations.Label)
 					{
