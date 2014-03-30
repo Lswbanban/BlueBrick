@@ -99,6 +99,7 @@ namespace BlueBrick
 			this.LabelWrap = false;
             this.MultiSelect = false;
 			this.DoubleBuffered = true; // the double buffered also prevent a crash bug in Mono, otherwise it tries to paint while editing the list by a filtering
+			this.BeforeLabelEdit += new LabelEditEventHandler(this.PartListView_BeforeLabelEdit);
             this.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_AfterLabelEdit);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseDown);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseUp);
@@ -420,6 +421,13 @@ namespace BlueBrick
 			}
 		}
 
+		private void PartListView_BeforeLabelEdit(object sender, LabelEditEventArgs e)
+		{
+			// check if we need to cancel the edition, cause Mono just start the edition on a simple click
+			e.CancelEdit = (mItemForLabelEdit == null) ||
+				!mItemForLabelEdit.Text.Equals(Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string));
+		}
+
         private void PartListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
 			// cancel the edition in any case, cause if the edition is correct, we will use a formated text
@@ -470,8 +478,8 @@ namespace BlueBrick
 			if (e.Button == System.Windows.Forms.MouseButtons.Left)
 			{
 				// unselect the previous item if we click left
-				foreach (int index in this.SelectedIndices)
-					this.Items[index].Selected = false;
+				foreach (ListViewItem item in this.SelectedItems)
+					item.Selected = false;
 
 				// get the info to know if we click an item and where
 				ListViewHitTestInfo hitTest = this.HitTest(e.Location);
