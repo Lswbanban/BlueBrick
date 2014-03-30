@@ -469,6 +469,26 @@ namespace BlueBrick
 			}
 		}
 
+		/// <summary>
+		/// Override the HitTest method, cause on Mono, this method throw an exception if the location
+		/// is outside of the client area
+		/// </summary>
+		/// <param name="location">where you want to test</param>
+		/// <returns>the hit test result</returns>
+		public new ListViewHitTestInfo HitTest(Point location)
+		{
+			ListViewHitTestInfo result = null;
+			try
+			{
+				result = base.HitTest(location);
+			}
+			catch
+			{
+				result = new ListViewHitTestInfo(null, null, ListViewHitTestLocations.None);
+			}
+			return result;
+		}
+
         private void PartListView_MouseDown(object sender, MouseEventArgs e)
         {
 			// reset the item index
