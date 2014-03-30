@@ -127,17 +127,17 @@
   <data name="&gt;&gt;guidelineThicknessNumericUpDown.Name" xml:space="preserve">
     <value>guidelineThicknessNumericUpDown</value>
   </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 108</value>
+  </data>
   <data name="&gt;&gt;allowOffsetCheckBox.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
   <data name="lineColorLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 13</value>
   </data>
-  <data name="lineThicknessNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
-  </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 12</value>
+  <data name="&gt;&gt;unitLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="fontNameLabel.Text" xml:space="preserve">
     <value>Font name</value>
@@ -148,11 +148,11 @@
   <data name="&gt;&gt;guidelineThicknessNumericUpDown.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;lineColorPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="unitLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 16</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Line Appearance</value>
   </data>
   <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -166,8 +166,8 @@
   <data name="&gt;&gt;fontButton.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;colorDialog.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lineColorLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 105</value>
@@ -198,9 +198,6 @@
   <data name="&gt;&gt;guidelineColorPictureBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="guidelineColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 80</value>
   </data>
@@ -219,9 +216,6 @@
   <data name="guidelineThicknessNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 20</value>
   </data>
-  <data name="&gt;&gt;displayMeasureTextCheckBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="guidelineColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 16</value>
   </data>
@@ -234,8 +228,11 @@
   <data name="&gt;&gt;allowOffsetCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;unitLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lineColorPictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="displayMeasureTextCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 17</value>
   </data>
   <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
     <value>$this</value>
@@ -263,6 +260,9 @@
   </data>
   <data name="&gt;&gt;dashPatternLineNumericUpDown.Parent" xml:space="preserve">
     <value>groupBox3</value>
+  </data>
+  <data name="unitComboBox.Items4" xml:space="preserve">
+    <value>Feet</value>
   </data>
   <data name="&gt;&gt;displayUnitCheckBox.Name" xml:space="preserve">
     <value>displayUnitCheckBox</value>
@@ -303,26 +303,35 @@
   <data name="&gt;&gt;fontColorLabel.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
+  <data name="&gt;&gt;dashPatternSpaceNumericUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;fontDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.FontDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="fontButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Color</value>
   </data>
   <data name="&gt;&gt;dashPatternLineNumericUpDown.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Color</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Thickness (in pixel)</value>
   </data>
   <data name="&gt;&gt;guidelineColorPictureBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dashPatternSpaceNumericUpDown.Parent" xml:space="preserve">
     <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;colorDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
   </data>
   <data name="&gt;&gt;colorDialog.Name" xml:space="preserve">
     <value>colorDialog</value>
@@ -357,17 +366,14 @@
   <data name="allowOffsetCheckBox.Text" xml:space="preserve">
     <value>Offset Allowed</value>
   </data>
-  <data name="&gt;&gt;unitLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="fontButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;displayUnitCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lineColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 55</value>
-  </data>
-  <data name="fontColorLabel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -393,14 +399,8 @@
   <data name="fontColorPictureBox.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
-  <data name="&gt;&gt;guidelineColorPictureBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;fontColorLabel.Name" xml:space="preserve">
-    <value>fontColorLabel</value>
-  </data>
-  <data name="&gt;&gt;lineColorLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="dashPatternSpaceNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
@@ -408,8 +408,8 @@
   <data name="&gt;&gt;lineColorPictureBox.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="fontNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;displayUnitCheckBox.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -420,14 +420,14 @@
   <data name="&gt;&gt;label7.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 12</value>
+  </data>
   <data name="&gt;&gt;fontNameLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="displayUnitCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -438,8 +438,14 @@
   <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="&gt;&gt;displayMeasureTextCheckBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;guidelineThicknessNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fontNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
   </data>
   <data name="unitComboBox.Items3" xml:space="preserve">
     <value>Meter</value>
@@ -465,6 +471,9 @@
   <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="&gt;&gt;dashPatternLineNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;fontColorPictureBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
@@ -474,8 +483,8 @@
   <data name="dashPatternLineNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
   </data>
-  <data name="&gt;&gt;displayMeasureTextCheckBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="fontColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 16</value>
@@ -492,8 +501,8 @@
   <data name="displayUnitCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="unitComboBox.Items" xml:space="preserve">
-    <value>Stud</value>
+  <data name="&gt;&gt;unitLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;fontButton.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -504,23 +513,23 @@
   <data name="&gt;&gt;unitComboBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="guidelineThicknessNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 23</value>
+  </data>
   <data name="fontButton.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
   <data name="fontColorPictureBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 13</value>
-  </data>
-  <data name="&gt;&gt;unitLabel.Name" xml:space="preserve">
-    <value>unitLabel</value>
-  </data>
   <data name="&gt;&gt;lineColorLabel.Name" xml:space="preserve">
     <value>lineColorLabel</value>
   </data>
   <data name="&gt;&gt;fontColorLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dashPatternSpaceNumericUpDown.Name" xml:space="preserve">
+    <value>dashPatternSpaceNumericUpDown</value>
   </data>
   <data name="cancelButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -529,8 +538,8 @@
     <value>Dash-Space Pattern
 (in thickness times)</value>
   </data>
-  <data name="dashPatternSpaceNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>164, 52</value>
+  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>307, 310</value>
@@ -547,8 +556,11 @@
   <data name="okButton.Text" xml:space="preserve">
     <value>Ok</value>
   </data>
-  <data name="unitComboBox.Items4" xml:space="preserve">
-    <value>Feet</value>
+  <data name="lineThicknessNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="unitComboBox.Items" xml:space="preserve">
+    <value>Stud</value>
   </data>
   <data name="&gt;&gt;fontButton.Name" xml:space="preserve">
     <value>fontButton</value>
@@ -556,14 +568,11 @@
   <data name="&gt;&gt;lineThicknessNumericUpDown.Name" xml:space="preserve">
     <value>lineThicknessNumericUpDown</value>
   </data>
-  <data name="&gt;&gt;lineThicknessNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="okButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fontNameLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="&gt;&gt;displayUnitCheckBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -580,8 +589,8 @@
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;fontButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;allowOffsetCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -661,9 +670,6 @@
   <data name="&gt;&gt;dashPatternLineNumericUpDown.Name" xml:space="preserve">
     <value>dashPatternLineNumericUpDown</value>
   </data>
-  <data name="&gt;&gt;unitComboBox.Name" xml:space="preserve">
-    <value>unitComboBox</value>
-  </data>
   <data name="lineColorLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -688,20 +694,20 @@
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="&gt;&gt;guidelineColorPictureBox.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
   <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
   <data name="unitComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 21</value>
   </data>
-  <data name="&gt;&gt;guidelineThicknessNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 13</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 9</value>
-  </data>
-  <data name="unitLabel.Text" xml:space="preserve">
-    <value>Unit</value>
   </data>
   <data name="fontColorLabel.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -724,20 +730,17 @@
   <data name="fontColorLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 13</value>
   </data>
-  <data name="unitLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
   <data name="fontNameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>337, 53</value>
   </data>
-  <data name="&gt;&gt;dashPatternLineNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;fontButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="unitComboBox.Items1" xml:space="preserve">
     <value>LDU</value>
   </data>
-  <data name="&gt;&gt;dashPatternSpaceNumericUpDown.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="dashPatternSpaceNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>164, 52</value>
   </data>
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -745,8 +748,11 @@
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 26</value>
   </data>
-  <data name="lineColorPictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+  <data name="&gt;&gt;lineThicknessNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dashPatternSpaceNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
   </data>
   <data name="fontColorLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -763,23 +769,20 @@
   <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="displayMeasureTextCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 17</value>
+  <data name="&gt;&gt;displayMeasureTextCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
     <value>cancelButton</value>
   </data>
-  <data name="fontNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 113</value>
-  </data>
   <data name="&gt;&gt;okButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
+  <data name="&gt;&gt;unitLabel.Name" xml:space="preserve">
+    <value>unitLabel</value>
   </data>
-  <data name="unitComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+  <data name="unitLabel.Text" xml:space="preserve">
+    <value>Unit</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>408, 178</value>
@@ -793,14 +796,14 @@
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;allowOffsetCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="unitLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
   </data>
   <data name="displayUnitCheckBox.Text" xml:space="preserve">
     <value>Display Unit</value>
   </data>
-  <data name="guidelineThicknessNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>121, 23</value>
+  <data name="unitComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
   </data>
   <data name="allowOffsetCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 17</value>
@@ -808,8 +811,8 @@
   <data name="&gt;&gt;displayMeasureTextCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;dashPatternSpaceNumericUpDown.Name" xml:space="preserve">
-    <value>dashPatternSpaceNumericUpDown</value>
+  <data name="fontColorLabel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;allowOffsetCheckBox.Name" xml:space="preserve">
     <value>allowOffsetCheckBox</value>
@@ -817,26 +820,23 @@
   <data name="fontButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>36, 78</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Line Appearance</value>
+  <data name="&gt;&gt;unitComboBox.Name" xml:space="preserve">
+    <value>unitComboBox</value>
   </data>
-  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
+  <data name="&gt;&gt;fontColorLabel.Name" xml:space="preserve">
+    <value>fontColorLabel</value>
   </data>
   <data name="lineThicknessNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Thickness (in pixel)</value>
-  </data>
   <data name="&gt;&gt;fontDialog.Name" xml:space="preserve">
     <value>fontDialog</value>
   </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 108</value>
+  <data name="fontNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 113</value>
   </data>
-  <data name="okButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="&gt;&gt;lineColorPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Measure Value</value>
@@ -847,14 +847,14 @@
   <data name="allowOffsetCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
-  <data name="dashPatternSpaceNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 20</value>
+  <data name="&gt;&gt;fontNameLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="unitLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 48</value>
   </data>
-  <data name="dashPatternSpaceNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>

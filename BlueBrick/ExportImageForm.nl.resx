@@ -123,25 +123,27 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>&amp;Annuleren</value>
   </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Afmetingen Afbeelding in Pixels</value>
+  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Breedte</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="linkPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        R0lGODlhEQAIAIEAAAAAAP///5qamv///yH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAADACwAAAAAEQAI
-        AAAIPQAHDABAcCDBggcFDhTAEADDhw4bLhRAsGFFihErAliI0OFGjx4NUuT4EaNFixkzTmwI8eFIgQc/
-        diw4ICAAOw==
+        R0lGODlhEQAIAPEAAAAAAP///5qamv///yH5BAEAAAMALAAAAAARAAgAAAIj3ICHuXYCAZwyPoFixjWD
+        x0ifKCoYOHKa1nVXRE2nsYxhMhQAOw==
 </value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Hoogte</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Afmetingen Afbeelding in Pixels</value>
-  </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>&amp;OK</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Afmetingen Gebied in Studs</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Boven</value>
@@ -155,8 +157,29 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Rechts</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Afmetingen Gebied in Stud</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Export Opties</value>
+  </data>
+  <data name="exportConnectionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 17</value>
+  </data>
+  <data name="exportConnectionPointCheckBox.Text" xml:space="preserve">
+    <value>Verbindingspunt</value>
+  </data>
+  <data name="exportElectricCircuitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 17</value>
+  </data>
+  <data name="exportElectricCircuitCheckBox.Text" xml:space="preserve">
+    <value>Elektrisch circuit</value>
+  </data>
+  <data name="exportWatermarkCheckBox.Text" xml:space="preserve">
+    <value>Watermerk</value>
+  </data>
+  <data name="exportHullCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 17</value>
+  </data>
+  <data name="exportHullCheckBox.Text" xml:space="preserve">
+    <value>Omtrek (schil)</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

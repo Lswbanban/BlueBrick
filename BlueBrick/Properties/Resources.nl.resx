@@ -404,4 +404,124 @@ The error message is:
   <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
     <value>Onbekend</value>
   </data>
+  <data name="ActionAddLayerRuler" xml:space="preserve">
+    <value>Liniaal laag toevoegen</value>
+  </data>
+  <data name="ActionAddRuler" xml:space="preserve">
+    <value>Liniaal toevoegen</value>
+  </data>
+  <data name="ActionAttachRulerToBrick" xml:space="preserve">
+    <value>Koppel een liniaal aan onderdeel &amp;</value>
+  </data>
+  <data name="ActionBringRulerToFront" xml:space="preserve">
+    <value>Gekozen linialen naar de voorgrond brengen</value>
+  </data>
+  <data name="ActionDeleteRuler" xml:space="preserve">
+    <value>Verwijder liniaal</value>
+  </data>
+  <data name="ActionDeleteSeveralRulers" xml:space="preserve">
+    <value>Enkele linialen verwijderen</value>
+  </data>
+  <data name="ActionDetachRuler" xml:space="preserve">
+    <value>Ontkoppel een liniaal</value>
+  </data>
+  <data name="ActionDuplicateRuler" xml:space="preserve">
+    <value>Kopieer een liniaal</value>
+  </data>
+  <data name="ActionDuplicateSeveralRulers" xml:space="preserve">
+    <value>Kopieer enkele linialen</value>
+  </data>
+  <data name="ActionEditRuler" xml:space="preserve">
+    <value>Bewerk de eigenschappen van een liniaal</value>
+  </data>
+  <data name="ActionMoveRuler" xml:space="preserve">
+    <value>Verplaats een liniaal</value>
+  </data>
+  <data name="ActionMoveRulerControlPoint" xml:space="preserve">
+    <value>Verplaats meetpunt liniaal</value>
+  </data>
+  <data name="ActionMoveSeveralRulers" xml:space="preserve">
+    <value>Verplaats enkele linialen</value>
+  </data>
+  <data name="ActionRotateRuler" xml:space="preserve">
+    <value>Draai liniaal</value>
+  </data>
+  <data name="ActionRotateSeveralRulers" xml:space="preserve">
+    <value>Draai enkele linialen</value>
+  </data>
+  <data name="ActionScaleCircularRuler" xml:space="preserve">
+    <value>Wijzig Liniaal radius</value>
+  </data>
+  <data name="ActionScaleLinearRuler" xml:space="preserve">
+    <value>Wijzig Liniaal afstand</value>
+  </data>
+  <data name="ActionSendRulerToBack" xml:space="preserve">
+    <value>Geselecteerde Linialen naar achtergrond</value>
+  </data>
+  <data name="DefaultSaveFileNameForBudget" xml:space="preserve">
+    <value>MijnBudget.bbb</value>
+  </data>
+  <data name="ErrorMsgAbortButton" xml:space="preserve">
+    <value>Afbreken</value>
+  </data>
+  <data name="ErrorMsgBudgetWasModified" xml:space="preserve">
+    <value>Het huidige budget is niet bewaard. Wenst u de aanpassingen op te slaan?</value>
+  </data>
+  <data name="ErrorMsgCancelButton" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="ErrorMsgCannotOpenBudget" xml:space="preserve">
+    <value>Kan het budget niet openen &amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveBudget" xml:space="preserve">
+    <value>Kan het budget niet bewaren &amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveCustomPart" xml:space="preserve">
+    <value>BlueBrick heeft een probleem bij het bewaren van de groep in de "parts/Custom" map. Gelieve volgende melding te lezen voor meer details:</value>
+  </data>
+  <data name="ErrorMsgIgnoreButton" xml:space="preserve">
+    <value>Negeren</value>
+  </data>
+  <data name="ErrorMsgLayerTypeRuler" xml:space="preserve">
+    <value>Liniaal</value>
+  </data>
+  <data name="ErrorMsgNoButton" xml:space="preserve">
+    <value>Neen</value>
+  </data>
+  <data name="ErrorMsgOkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ErrorMsgReplaceExistingShortcut" xml:space="preserve">
+    <value>Deze shortcut bestaat al, Wenst u deze te vervangen?</value>
+  </data>
+  <data name="ErrorMsgRetryButton" xml:space="preserve">
+    <value>Opnieuw</value>
+  </data>
+  <data name="ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation" xml:space="preserve">
+    <value>Sommigen onderdelen zullen niet gekopieerd worden wegens budget limitaties. Wenst u verder te gaan?</value>
+  </data>
+  <data name="ErrorMsgYesButton" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="InputFilterIndication" xml:space="preserve">
+    <value>Voeg hier kernwoorden in om te filteren</value>
+  </data>
+  <data name="LayerRulerOptionTitle" xml:space="preserve">
+    <value>Opties voor de Liniaal laag</value>
+  </data>
+  <data name="PartLibMenuItemEditBudget" xml:space="preserve">
+    <value>Bewerk het budget van dit onderdeel</value>
+  </data>
+  <data name="PartLibMenuItemShowBudgetNumbers" xml:space="preserve">
+    <value>Toon budget nummers</value>
+  </data>
+  <data name="PartLibMenuItemShowOnlyBudgetedParts" xml:space="preserve">
+    <value>Toon enkel gebudgedeerde onderdelen</value>
+  </data>
+  <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
+    <value>Gebruik budget limieten</value>
+  </data>
+  <data name="StatusMsgBudgetReached" xml:space="preserve">
+    <value>Budget bereikt voor dit onderdeel</value>
+  </data>
 </root>

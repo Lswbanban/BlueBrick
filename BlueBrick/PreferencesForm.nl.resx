@@ -120,6 +120,9 @@
   <data name="generalTabPage.Text" xml:space="preserve">
     <value>Algemeen</value>
   </data>
+  <data name="editionTabPage.Text" xml:space="preserve">
+    <value>Editie</value>
+  </data>
   <data name="appearanceTabPage.Text" xml:space="preserve">
     <value>Voorkomen</value>
   </data>
@@ -128,6 +131,15 @@
   </data>
   <data name="shortcutKeysTabPage.Text" xml:space="preserve">
     <value>Sneltoetsen</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>Melding</value>
+  </data>
+  <data name="displayWarningWhenDuplicateOverBudgetCheckBox.Text" xml:space="preserve">
+    <value>Melding tonen als de toegevoegde delen het budget overschrijven</value>
+  </data>
+  <data name="displayWarningForNotSavingInBBMCheckBox.Text" xml:space="preserve">
+    <value>Melding weergeven wanneer er niet als BBM opgelsaan word</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
     <value>Onlangs geopende bestanden</value>
@@ -184,6 +196,24 @@
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Nieuwe kaart instellingen</value>
   </data>
+  <data name="addAreaLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 17</value>
+  </data>
+  <data name="addAreaLayerCheckBox.Text" xml:space="preserve">
+    <value>Area Laag toevoegen</value>
+  </data>
+  <data name="addRulerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 17</value>
+  </data>
+  <data name="addRulerLayerCheckBox.Text" xml:space="preserve">
+    <value>Liniaal Laag toevoegen</value>
+  </data>
+  <data name="addTextLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 17</value>
+  </data>
+  <data name="addTextLayerCheckBox.Text" xml:space="preserve">
+    <value>Tekst Laag toevoegen</value>
+  </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Evenement</value>
   </data>
@@ -201,6 +231,95 @@
   </data>
   <data name="addGridLayerCheckBox.Text" xml:space="preserve">
     <value>Voeg een rooster laag toe aan een nieuwe kaart</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Als u de taal wijzigt moet u de toepassing opnieuw starten.</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Linialen</value>
+  </data>
+  <data name="rulerFontNameLabel.Text" xml:space="preserve">
+    <value>lettertype naam</value>
+  </data>
+  <data name="fontColorLabel.Text" xml:space="preserve">
+    <value>Kleur</value>
+  </data>
+  <data name="rulerFontButton.Text" xml:space="preserve">
+    <value>Wijzig lettertype</value>
+  </data>
+  <data name="unitComboBox.Items" xml:space="preserve">
+    <value>studs</value>
+  </data>
+  <data name="unitComboBox.Items2" xml:space="preserve">
+    <value>modules</value>
+  </data>
+  <data name="unitComboBox.Items4" xml:space="preserve">
+    <value>Voet</value>
+  </data>
+  <data name="displayUnitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 17</value>
+  </data>
+  <data name="displayUnitCheckBox.Text" xml:space="preserve">
+    <value>Toon eenheden</value>
+  </data>
+  <data name="displayMeasureTextCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 17</value>
+  </data>
+  <data name="displayMeasureTextCheckBox.Text" xml:space="preserve">
+    <value>Toon meeteenheden</value>
+  </data>
+  <data name="allowOffsetCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 17</value>
+  </data>
+  <data name="allowOffsetCheckBox.Text" xml:space="preserve">
+    <value>Te gebruiken afstand voor de lijnen</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Standaard stippellijn
+patroon (dikte)</value>
+  </data>
+  <data name="lineColorLabel.Text" xml:space="preserve">
+    <value>Standaard Kleur</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Richtlijn</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>Lijn</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>Standaard dikte
+(in pixels)</value>
+  </data>
+  <data name="RulerSwitchToEditionAfterCreationCheckBox.Text" xml:space="preserve">
+    <value>Ga naar de editie tool na het aanmaken van een liniaal</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Controlepunt radius (in pixels)</value>
+  </data>
+  <data name="copyPasteGroupBox.Text" xml:space="preserve">
+    <value>Kopiëren/plakken</value>
+  </data>
+  <data name="OffsetValueLabel.Text" xml:space="preserve">
+    <value>Afstand (in studs)</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Afstand na plakken</value>
+  </data>
+  <data name="copyOffsetComboBox.Items" xml:space="preserve">
+    <value>Nooit</value>
+  </data>
+  <data name="copyOffsetComboBox.Items1" xml:space="preserve">
+    <value>Enkel in dezelfde laag</value>
+  </data>
+  <data name="copyOffsetComboBox.Items2" xml:space="preserve">
+    <value>Altijd</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Muis</value>
@@ -224,15 +343,6 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Muiswiel zoom snelheid</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Taal</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Als u de taal wijzigt moet u de toepassing opnieuw starten.</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Taal</value>
-  </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Standaard gebied voorkomen</value>
   </data>
@@ -253,9 +363,6 @@
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Standaard tekst formaat</value>
-  </data>
-  <data name="defaultFontNameLabel.Text" xml:space="preserve">
-    <value>lettertype naam</value>
   </data>
   <data name="defaultFontColorLabel.Text" xml:space="preserve">
     <value>Kleur</value>
@@ -297,11 +404,42 @@ geselecteerde onderdeel</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Kleurenschema</value>
   </data>
+  <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
+    <value>Klik op de bladeren knop om te bewerken -&gt;</value>
+  </data>
+  <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 13</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Budget bestand in te laten bij opstarten:</value>
+  </data>
+  <data name="PartLibDefaultBudgetNotLimitedradioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 17</value>
+  </data>
+  <data name="PartLibDefaultBudgetNotLimitedradioButton.Text" xml:space="preserve">
+    <value>Ongelimiteerd</value>
+  </data>
+  <data name="PartLibDefaultBudgetZeroRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 17</value>
+  </data>
+  <data name="PartLibDefaultBudgetZeroRadioButton.Text" xml:space="preserve">
+    <value>Nul</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>Standaard budget limiet
+voor elk onderdeel</value>
+  </data>
   <data name="groupBox13.Text" xml:space="preserve">
-    <value>Voorkomen</value>
+    <value>Achtergrond kleur</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Kleur wanneer enkel de gebudgeteerde onderdelen getoond worden</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Kleur bij gebruik van kernwoorden</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
-    <value>Onderdelen bibliotheek achtergrond kleur</value>
+    <value>Standaard Achtergrond kleur</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
     <value>Tooltip Info</value>
