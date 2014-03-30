@@ -844,7 +844,17 @@ namespace BlueBrick
 		{
 			if (canPaste)
 			{
-				bool isThereAnyItemCopied = Clipboard.ContainsText();
+				bool isThereAnyItemCopied = false;
+				try
+				{
+					// if there's crazy stuff copied in the clipboard, this function may throw an exception
+					// and this can happen at startup
+					isThereAnyItemCopied = Clipboard.ContainsText();
+				}
+				catch
+				{
+					// do nothing, we probably cannot copy that shit
+				}
 				this.pasteToolStripMenuItem.Enabled = isThereAnyItemCopied;
 				this.toolBarPasteButton.Enabled = isThereAnyItemCopied;
 			}
