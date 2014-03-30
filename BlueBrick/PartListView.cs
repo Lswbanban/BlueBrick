@@ -97,6 +97,7 @@ namespace BlueBrick
             this.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelEdit = true;
             this.MultiSelect = false;
+			this.DoubleBuffered = true; // the double buffered also prevent a crash bug in Mono, otherwise it tries to paint while editing the list by a filtering
             this.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_AfterLabelEdit);
             this.BeforeLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_BeforeLabelEdit);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseDown);
