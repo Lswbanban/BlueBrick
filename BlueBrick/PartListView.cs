@@ -96,10 +96,10 @@ namespace BlueBrick
             this.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
             this.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelEdit = true;
+			this.LabelWrap = false;
             this.MultiSelect = false;
 			this.DoubleBuffered = true; // the double buffered also prevent a crash bug in Mono, otherwise it tries to paint while editing the list by a filtering
             this.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_AfterLabelEdit);
-            this.BeforeLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_BeforeLabelEdit);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseDown);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseUp);
 			this.MouseLeave += new EventHandler(this.PartListView_MouseLeave);
@@ -420,48 +420,45 @@ namespace BlueBrick
 			}
 		}
 
-        private void PartListView_BeforeLabelEdit(object sender, LabelEditEventArgs e)
-        {
-            // put node label to initial state
-            // to ensure that in case of label editing cancelled
-            // the initial state of label is preserved
-			this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(this.Items[e.Item].Tag as string);
-        }
-
         private void PartListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
 			// cancel the edition in any case, cause if the edition is correct, we will use a formated text
 			e.CancelEdit = true;
 
-			// if the user escaped the edition, its null, so donot change the label
-			if (e.Label == null)
-				return;
-
-			// by default it's an inifinte budget. Anything not parsable will result in an infinite budget (meaning the user erase the budget)
-			int newBudget = -1;
-            // check if it is an int
-            try
-            {
-                // try to parse as int (positive number)
-				newBudget = int.Parse(e.Label);
-				if (newBudget < -1)
-					newBudget = -1;
-            }
-            catch
-            {
-            }
-
 			// get the partID
 			string partID = this.Items[e.Item].Tag as string;
-			// add the current count and change the text myself
-			// set the budget first
-			Budget.Budget.Instance.setBudget(partID, newBudget);
-			// before asking its formating
-			this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
-			this.Items[e.Item].BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
-			// check if we have unbudgeted the part
-			if (newBudget == -1)
-				updateFilterForUnbudgetingPart(this.Items[e.Item]);
+
+			// if the user escaped the edition, its null, so do not change the label in that case, otherwise try to change it
+			if (e.Label != null)
+			{
+				// by default it's an inifinte budget. Anything not parsable will result in an infinite budget (meaning the user erase the budget)
+				int newBudget = -1;
+				// check if it is an int
+				try
+				{
+					// try to parse as int (positive number)
+					newBudget = int.Parse(e.Label);
+					if (newBudget < -1)
+						newBudget = -1;
+				}
+				catch
+				{
+				}
+
+				// add the current count and change the text myself
+				// set the budget first
+				Budget.Budget.Instance.setBudget(partID, newBudget);
+				// before asking its formating
+				this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+				this.Items[e.Item].BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
+				// check if we have unbudgeted the part
+				if (newBudget == -1)
+					updateFilterForUnbudgetingPart(this.Items[e.Item]);
+			}
+			else
+			{
+				this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+			}
 		}
 
         private void PartListView_MouseDown(object sender, MouseEventArgs e)
