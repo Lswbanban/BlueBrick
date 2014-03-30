@@ -462,6 +462,9 @@ namespace BlueBrick
 				// check if we have unbudgeted the part
 				if (newBudget == -1)
 					updateFilterForUnbudgetingPart(this.Items[e.Item]);
+				// Bug Mono: if you change the text for a longer text, it keeps the previous displayed size
+				// even if there's enough space to display the new long text. A resize will recompute the display length of the texts
+				this.Size += new Size(1, 1);
 			}
 			else
 			{
