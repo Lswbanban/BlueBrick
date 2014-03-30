@@ -97,6 +97,10 @@ namespace BlueBrick
 		// the drag and drop. Null means no parts are droped
 		private string mDraggingPartNumber = null;
 
+		// we store also the last location from the mouse move event cause Mono call the handler when we click on the
+		// left button, even if we didn't moved yet
+		private Point mLastMousePosition = Point.Empty;
+
 		#region get/set
 		public string DraggingPartNumber
 		{
@@ -1056,22 +1060,29 @@ namespace BlueBrick
 
 		private void listView_MouseMove(object sender, MouseEventArgs e)
 		{
+			// check if we really moved (cause Mono call this even just when we click, before moving)
+			if ((e.X != mLastMousePosition.X) || (e.Y != mLastMousePosition.Y))
+				mLastMousePosition = e.Location;
+			else
+				return; // not move, so early exit
+
 			// get the sender listview
 			ListView listView = sender as ListView;
-			if (listView == null)
+			if ((listView == null) && (this.SelectedTab != null) && (this.SelectedTab.Controls.Count > 0))
 				listView = this.SelectedTab.Controls[0] as ListView;
 
-			// move the mouse on the part lib with or without a button pressed.
-			// Without: display the info
-			// With: start a drag and drop
-			switch (e.Button)
+			// we need a valid list view
+			if (listView != null)
 			{
-				case MouseButtons.None:
-					{
-						// display the part description but only if there's no button press
-						// because else it means we are doing a drag of a part on the map
-						if (listView != null)
+				// move the mouse on the part lib with or without a button pressed.
+				// Without: display the info
+				// With: start a drag and drop
+				switch (e.Button)
+				{
+					case MouseButtons.None:
 						{
+							// display the part description but only if there's no button press
+							// because else it means we are doing a drag of a part on the map
 							ListViewItem item = listView.GetItemAt(e.X, e.Y);
 							// construct the message to display
 							string message = "";
@@ -1080,13 +1091,9 @@ namespace BlueBrick
 
 							//display the message in the status bar
 							MainForm.Instance.setStatusBarMessage(message);
+							break;
 						}
-
-						break;
-					}
-				case MouseButtons.Left:
-					{
-						if (listView != null)
+					case MouseButtons.Left:
 						{
 							string partNumber = getSelectedPartNumberInListView(listView);
 							if (partNumber != null)
@@ -1098,9 +1105,9 @@ namespace BlueBrick
 								data.SetData(DataFormats.StringFormat, partNumber);
 								this.DoDragDrop(data, DragDropEffects.Copy);
 							}
+							break;
 						}
-						break;
-					}
+				}
 			}
 		}
 
