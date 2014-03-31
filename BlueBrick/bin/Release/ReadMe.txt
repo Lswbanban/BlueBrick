@@ -65,6 +65,7 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 - the buble info for the paint tool should not be the same for the ruler tool
 - accept a dash pattern of 0 for guideline
+- add the "straight track as a unit of the ruler
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
@@ -84,6 +85,7 @@ Open bugs:
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
+- MISSING FEATURE (Ludo): Add some optionnal arrows at the extremities of the linear rulers.
 - BUG (Alban): In the export window you can specify a selection rectangle null by setting a bottom < top
 - BUG (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
 - BUG (Alban): When you replace a part in a group, the display area of the group is not recomptuted

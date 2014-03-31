@@ -148,10 +148,10 @@
     <value>Hintergrundfarbe ändern</value>
   </data>
   <data name="ActionChangeGeneralInfo" xml:space="preserve">
-    <value>Allgemeine Karteninformation ändern</value>
+    <value>Allgemeine Gleisplaninformation ändern</value>
   </data>
   <data name="ActionChangeMapAppearance" xml:space="preserve">
-    <value>Aussehen der Karte ändern</value>
+    <value>Aussehen des Gleisplans ändern</value>
   </data>
   <data name="ActionDeleteArea" xml:space="preserve">
     <value>Fläche Entfernen</value>
@@ -217,7 +217,7 @@
     <value>Verschiebe den Text "&amp;"</value>
   </data>
   <data name="ActionRemoveLayer" xml:space="preserve">
-    <value>Entferne die Schicht "&amp;"</value>
+    <value>Entferne die Ebene "&amp;"</value>
   </data>
   <data name="ActionReplaceBrick" xml:space="preserve">
     <value>Ersetze das Teil &amp;</value>
@@ -235,7 +235,7 @@
     <value>Rotiere den Text "&amp;" </value>
   </data>
   <data name="ActionSelectLayer" xml:space="preserve">
-    <value>Wähle die Schicht "&amp;" aus</value>
+    <value>Wähle die Ebene "&amp;" aus</value>
   </data>
   <data name="ActionSendBrickToBack" xml:space="preserve">
     <value>Ausgewählten Steine nach Hinten setzen</value>
@@ -244,7 +244,7 @@
     <value>Ausgewählten Texte nach Hinten setzen</value>
   </data>
   <data name="ActionShowLayer" xml:space="preserve">
-    <value>Zeige die Schicht "&amp;" an</value>
+    <value>Zeige die Ebene "&amp;" an</value>
   </data>
   <data name="ActionUngroupItems" xml:space="preserve">
     <value>Gruppierung aufheben</value>
@@ -260,7 +260,7 @@
     <value>..\icons\alignright.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ChangeLayerOption" xml:space="preserve">
-    <value>Verändere die Einstellungen der Schicht "&amp;"</value>
+    <value>Verändere die Einstellungen der Ebene "&amp;"</value>
   </data>
   <data name="ColorSchemeBluePrint" xml:space="preserve">
     <value>Blaupause</value>
@@ -290,7 +290,7 @@
     <value>keine Ausstellung</value>
   </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
-    <value>Es wurden einige Standard Einstellungen das Aussehen betreffend geändert. Diese Einstellungen werden bei einer neuen Karte verwendet. Sollen diese Einstellungen auch auf die aktuelle Karte angewendet werden?</value>
+    <value>Es wurden einige Standard Einstellungen, die das Aussehen betreffen, geändert. Diese Einstellungen werden bei jedem neuen Gleisplan verwendet. Sollen diese Einstellungen auch auf den aktuellen Gleisplan angewendet werden?</value>
   </data>
   <data name="ErrorMsgCanNotLoadImage" xml:space="preserve">
     <value>BlueBrick ist auf einige Probleme beim Laden einiger Bilder aus der Teilebibleothek gestossen und hat die die entsprechenden Bilder einfach ignoriert. So etwas kann passieren wenn eine Datei beschaedigt oder zu gross ist. Um diese Anzeige abzustellen entferne die entsprechenden Bilder aus der Teilebibleothek. Die betroffenen Bilder sind:</value>
@@ -302,7 +302,7 @@
     <value>Gleisplan &amp; kann nicht geöffnet werden.</value>
   </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
-    <value>Die Objekte der Art &amp; können nicht in die gerade aktivierte Schicht der Art &amp;&amp; eingefügt werden.</value>
+    <value>Die Objekte der Art &amp; können nicht in die gerade aktivierte Ebene der Art &amp;&amp; eingefügt werden.</value>
   </data>
   <data name="ErrorMsgCannotSaveMap" xml:space="preserve">
     <value>Gleisplan &amp; kann nicht gespeichert werden.</value>
@@ -332,7 +332,7 @@ Die Fehlermeldung lautet:</value>
     <value>Text</value>
   </data>
   <data name="ErrorMsgMapWasModified" xml:space="preserve">
-    <value>Die aktuelle Karte ist nicht gespeichert. Sollen die Änderungen gespeichert werden?</value>
+    <value>Der aktuelle Gleisplan ist nicht gespeichert. Sollen die Änderungen gespeichert werden?</value>
   </data>
   <data name="ErrorMsgMissingColorInfoFile" xml:space="preserve">
     <value>Kann die Datei "&amp;" nicht öffnen. Ohne diese Datei können die Farben und Beschreibungen der Teile in der Stückliste nicht richtig dargestellt werden. Für ein korrektes Ergebnis überprüfe bitte die Anwesenheit dieser Datei oder installiere BlueBrick erneut um das problem zu lösen.</value>
@@ -431,7 +431,7 @@ Die Fehlermeldung lautet:</value>
     <value>Unbekannt</value>
   </data>
   <data name="ActionAddLayerRuler" xml:space="preserve">
-    <value>Bemaßungsschicht hinzufügen</value>
+    <value>Bemaßungsebene hinzufügen</value>
   </data>
   <data name="ActionAddRuler" xml:space="preserve">
     <value>Bemaßung hinzufügen</value>
@@ -546,5 +546,8 @@ Die Fehlermeldung lautet:</value>
   </data>
   <data name="StatusMsgBudgetReached" xml:space="preserve">
     <value>Budget für dieses Teil ausgeschöpft</value>
+  </data>
+  <data name="LayerRulerOptionTitle" xml:space="preserve">
+    <value>Einstellungen für Bemaßungsebenen</value>
   </data>
 </root>
