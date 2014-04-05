@@ -524,4 +524,10 @@ Le message d'erreur est :
   <data name="UnitStraightTrack" xml:space="preserve">
     <value>rail</value>
   </data>
+  <data name="StatusMsgWrongLayerType" xml:space="preserve">
+    <value>Le calque actif n'est pas un calque de pièces !</value>
+  </data>
+  <data name="ErrorMsgCannotAddDueToBudgetLimitation" xml:space="preserve">
+    <value>Impossible d'ajouter cette pièce car le budget a été atteint. Si vous voulez ajouter cette pièce, augmentez le budget, désactivez la limitation de budget ou fermer le fichier de budget.</value>
+  </data>
 </root>

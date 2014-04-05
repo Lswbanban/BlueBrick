@@ -88,7 +88,7 @@ namespace BlueBrick.Actions.Bricks
 					else
 					{
 						// beep if we reach the limit
-						Map.Instance.giveFeedbackForNotAddingBrick();
+						Map.Instance.giveFeedbackForNotAddingBrick(Map.BrickAddability.YES_AND_NO_TRIMMED_BY_BUDGET);
 						// no need to continue if we cannot add more bricks, so stop the iteration
 						isBudgetLimitReached = true;
 						break;

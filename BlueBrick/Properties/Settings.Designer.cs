@@ -1295,5 +1295,17 @@ namespace BlueBrick.Properties {
                 this["DisplayWarningMessageForShowingBudgetNumbers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation {
+            get {
+                return ((bool)(this["DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation"]));
+            }
+            set {
+                this["DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation"] = value;
+            }
+        }
     }
 }

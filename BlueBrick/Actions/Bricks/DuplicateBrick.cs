@@ -124,7 +124,7 @@ namespace BlueBrick.Actions.Bricks
 			// beep if we removed some items and return true
 			if (itemToRemove.Count > 0)
 			{
-				Map.Instance.giveFeedbackForNotAddingBrick();
+				Map.Instance.giveFeedbackForNotAddingBrick(Map.BrickAddability.YES_AND_NO_TRIMMED_BY_BUDGET);
 				return true;
 			}
 			return false;

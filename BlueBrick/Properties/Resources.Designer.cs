@@ -775,6 +775,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot add this part because the budget is reached. If you want to add this part, increase the budget for this part, disable the Budget Limitation or close the budget file..
+        /// </summary>
+        internal static string ErrorMsgCannotAddDueToBudgetLimitation {
+            get {
+                return ResourceManager.GetString("ErrorMsgCannotAddDueToBudgetLimitation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BlueBrick had encountered problems while loading images from the parts database. These images have been ignored. This problem may happen if an image is corrupted or too big. Remove the image(s) from your database to remove this warning. The image(s) concerned is/are: .
         /// </summary>
         internal static string ErrorMsgCanNotLoadImage {
@@ -1367,6 +1376,15 @@ namespace BlueBrick.Properties {
         internal static string StatusMsgBudgetReached {
             get {
                 return ResourceManager.GetString("StatusMsgBudgetReached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The active layer is not a Brick Layer!.
+        /// </summary>
+        internal static string StatusMsgWrongLayerType {
+            get {
+                return ResourceManager.GetString("StatusMsgWrongLayerType", resourceCulture);
             }
         }
         
