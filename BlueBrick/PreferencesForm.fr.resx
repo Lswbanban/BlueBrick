@@ -129,9 +129,8 @@
   <data name="shortcutKeysTabPage.Text" xml:space="preserve">
     <value>Racourcis clavier</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="displayWarningForNotSavingInBBMCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="askToDisplayBudgetNumbersCheckBox.Text" xml:space="preserve">
+    <value>Demande l'affichage des budgets quand vous activez la limitation de budget</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="displayWarningForNotSavingInBBMCheckBox.Location" type="System.Drawing.Point, System.Drawing">

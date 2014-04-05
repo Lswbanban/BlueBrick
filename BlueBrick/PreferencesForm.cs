@@ -167,6 +167,7 @@ namespace BlueBrick
 				// notification
 				this.displayWarningForNotSavingInBBMCheckBox.Checked = Settings.Default.DisplayWarningMessageForNotSavingInBBM;
 				this.displayWarningWhenDuplicateOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
+				this.askToDisplayBudgetNumbersCheckBox.Checked = Settings.Default.DisplayWarningMessageForShowingBudgetNumbers;
 				// performance
 				this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
 			}
@@ -293,6 +294,8 @@ namespace BlueBrick
 				destination.DefaultAuthor = source.DefaultAuthor.Clone() as string;
 				destination.DefaultLUG = source.DefaultLUG.Clone() as string;
 				destination.DefaultShow = source.DefaultShow.Clone() as string;
+				// performance
+				destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
 				// recent files
 				destination.MaxRecentFilesNum = source.MaxRecentFilesNum;
 				// undo/redo
@@ -300,8 +303,8 @@ namespace BlueBrick
 				destination.UndoStackDisplayedDepth = source.UndoStackDisplayedDepth;
 				// Notification
 				destination.DisplayWarningMessageForNotSavingInBBM = source.DisplayWarningMessageForNotSavingInBBM;
-				// performance
-				destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
+				destination.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
+				destination.DisplayWarningMessageForShowingBudgetNumbers = source.DisplayWarningMessageForShowingBudgetNumbers;
 			}
 			// edition
 			if ((tabPageFilter & TabPageFilter.EDITION) != 0)
@@ -360,7 +363,6 @@ namespace BlueBrick
 				destination.PartLibFilteredBackColor = source.PartLibFilteredBackColor;
 				destination.BudgetFilenameToLoadAtStartup = source.BudgetFilenameToLoadAtStartup;
 				destination.IsDefaultBudgetInfinite = source.IsDefaultBudgetInfinite;
-				destination.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
 				destination.PartLibBubbleInfoPartID = source.PartLibBubbleInfoPartID;
 				destination.PartLibBubbleInfoPartColor = source.PartLibBubbleInfoPartColor;
 				destination.PartLibBubbleInfoPartDescription = source.PartLibBubbleInfoPartDescription;
@@ -400,6 +402,7 @@ namespace BlueBrick
 			// notification
 			Settings.Default.DisplayWarningMessageForNotSavingInBBM = this.displayWarningForNotSavingInBBMCheckBox.Checked;
 			Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = this.displayWarningWhenDuplicateOverBudgetCheckBox.Checked;
+			Settings.Default.DisplayWarningMessageForShowingBudgetNumbers = this.askToDisplayBudgetNumbersCheckBox.Checked;
 			// performances
 			if (setOptimSettingAccordingToComboBox())
 			{

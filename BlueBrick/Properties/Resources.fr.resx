@@ -518,4 +518,7 @@ Le message d'erreur est :
   <data name="ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation" xml:space="preserve">
     <value>Quelques pièces ne seront pas dupliquées à cause de la limite de votre budget actuel. Souhaitez-vous continuer ?</value>
   </data>
+  <data name="ErrorMsgDoYouWantToDisplayBudgetNumber" xml:space="preserve">
+    <value>Vous avez activé la limitation de budget, mais actuellement les budgets ne sont pas affichés.Voulez-vous aussi les afficher ?</value>
+  </data>
 </root>

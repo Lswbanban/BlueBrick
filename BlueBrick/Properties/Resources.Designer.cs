@@ -865,6 +865,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have enabled the Budget Limitation, but currently the Budget numbers are not displayed. Do you also want to display them?.
+        /// </summary>
+        internal static string ErrorMsgDoYouWantToDisplayBudgetNumber {
+            get {
+                return ResourceManager.GetString("ErrorMsgDoYouWantToDisplayBudgetNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignore.
         /// </summary>
         internal static string ErrorMsgIgnoreButton {
