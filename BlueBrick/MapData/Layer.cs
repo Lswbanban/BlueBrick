@@ -1708,7 +1708,7 @@ namespace BlueBrick.MapData
 						// display the warning message
 						DialogResult result = ForgetableMessageBox.Show(BlueBrick.MainForm.Instance, Properties.Resources.ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation,
 										Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNo,
-										MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, ref dontDisplayMessageAgain);
+										MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, ref dontDisplayMessageAgain);
 
 						// set back the checkbox value in the settings (don't save the settings now, it will be done when exiting the application)
 						Properties.Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = !dontDisplayMessageAgain;

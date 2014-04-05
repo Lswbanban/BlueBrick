@@ -168,6 +168,7 @@ namespace BlueBrick
 				this.displayWarningForNotSavingInBBMCheckBox.Checked = Settings.Default.DisplayWarningMessageForNotSavingInBBM;
 				this.displayWarningWhenAddOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation;
 				this.displayWarningWhenDuplicateOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
+				this.displayWarningWhenReplaceOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation;
 				this.askToDisplayBudgetNumbersCheckBox.Checked = Settings.Default.DisplayWarningMessageForShowingBudgetNumbers;
 				// performance
 				this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
@@ -306,6 +307,7 @@ namespace BlueBrick
 				destination.DisplayWarningMessageForNotSavingInBBM = source.DisplayWarningMessageForNotSavingInBBM;
 				destination.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation;
 				destination.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
+				destination.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation;
 				destination.DisplayWarningMessageForShowingBudgetNumbers = source.DisplayWarningMessageForShowingBudgetNumbers;
 			}
 			// edition
@@ -405,6 +407,7 @@ namespace BlueBrick
 			Settings.Default.DisplayWarningMessageForNotSavingInBBM = this.displayWarningForNotSavingInBBMCheckBox.Checked;
 			Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation = this.displayWarningWhenAddOverBudgetCheckBox.Checked;
 			Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = this.displayWarningWhenDuplicateOverBudgetCheckBox.Checked;
+			Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation = this.displayWarningWhenReplaceOverBudgetCheckBox.Checked;
 			Settings.Default.DisplayWarningMessageForShowingBudgetNumbers = this.askToDisplayBudgetNumbersCheckBox.Checked;
 			// performances
 			if (setOptimSettingAccordingToComboBox())
