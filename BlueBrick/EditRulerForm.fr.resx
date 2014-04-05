@@ -120,14 +120,14 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annuler</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Valeur de la mesure</value>
-  </data>
   <data name="unitLabel.Text" xml:space="preserve">
     <value>Unité</value>
   </data>
   <data name="unitComboBox.Items" xml:space="preserve">
     <value>Tenon</value>
+  </data>
+  <data name="unitComboBox.Items2" xml:space="preserve">
+    <value>Rail droit</value>
   </data>
   <data name="unitComboBox.Items3" xml:space="preserve">
     <value>Mètre</value>
@@ -157,8 +157,8 @@
   <data name="displayMeasureTextCheckBox.Text" xml:space="preserve">
     <value>Affiche la valeur de la mesure</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Apparence du trait</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Valeur de la mesure</value>
   </data>
   <data name="allowOffsetCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 17</value>
@@ -172,8 +172,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Epaisseur (en pixel)</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Apparence des guides</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Apparence du trait</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 26</value>
@@ -193,6 +193,9 @@
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Epaisseur (en pixel)</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Apparence des guides</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

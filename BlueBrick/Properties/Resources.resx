@@ -586,4 +586,7 @@
   <data name="ErrorMsgDoYouWantToDisplayBudgetNumber" xml:space="preserve">
     <value>You have enabled the Budget Limitation, but currently the Budget numbers are not displayed. Do you also want to display them?</value>
   </data>
+  <data name="UnitStraightTrack" xml:space="preserve">
+    <value>Track</value>
+  </data>
 </root>

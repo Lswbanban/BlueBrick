@@ -85,6 +85,7 @@
 			// 
 			// groupBox1
 			// 
+			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Controls.Add(this.unitLabel);
 			this.groupBox1.Controls.Add(this.unitComboBox);
 			this.groupBox1.Controls.Add(this.fontNameLabel);
@@ -93,7 +94,6 @@
 			this.groupBox1.Controls.Add(this.fontButton);
 			this.groupBox1.Controls.Add(this.displayUnitCheckBox);
 			this.groupBox1.Controls.Add(this.displayMeasureTextCheckBox);
-			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
 			// 
@@ -104,21 +104,22 @@
 			// 
 			// unitComboBox
 			// 
+			resources.ApplyResources(this.unitComboBox, "unitComboBox");
 			this.unitComboBox.FormattingEnabled = true;
 			this.unitComboBox.Items.AddRange(new object[] {
             resources.GetString("unitComboBox.Items"),
             resources.GetString("unitComboBox.Items1"),
             resources.GetString("unitComboBox.Items2"),
             resources.GetString("unitComboBox.Items3"),
-            resources.GetString("unitComboBox.Items4")});
-			resources.ApplyResources(this.unitComboBox, "unitComboBox");
+            resources.GetString("unitComboBox.Items4"),
+            resources.GetString("unitComboBox.Items5")});
 			this.unitComboBox.Name = "unitComboBox";
 			// 
 			// fontNameLabel
 			// 
+			resources.ApplyResources(this.fontNameLabel, "fontNameLabel");
 			this.fontNameLabel.BackColor = System.Drawing.SystemColors.InactiveBorder;
 			this.fontNameLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			resources.ApplyResources(this.fontNameLabel, "fontNameLabel");
 			this.fontNameLabel.Name = "fontNameLabel";
 			// 
 			// fontColorLabel
@@ -128,9 +129,9 @@
 			// 
 			// fontColorPictureBox
 			// 
+			resources.ApplyResources(this.fontColorPictureBox, "fontColorPictureBox");
 			this.fontColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.fontColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			resources.ApplyResources(this.fontColorPictureBox, "fontColorPictureBox");
 			this.fontColorPictureBox.Name = "fontColorPictureBox";
 			this.fontColorPictureBox.TabStop = false;
 			this.fontColorPictureBox.Click += new System.EventHandler(this.fontColorPictureBox_Click);
@@ -157,19 +158,19 @@
 			// 
 			// groupBox2
 			// 
+			resources.ApplyResources(this.groupBox2, "groupBox2");
 			this.groupBox2.Controls.Add(this.lineThicknessNumericUpDown);
 			this.groupBox2.Controls.Add(this.allowOffsetCheckBox);
 			this.groupBox2.Controls.Add(this.lineColorLabel);
 			this.groupBox2.Controls.Add(this.lineColorPictureBox);
 			this.groupBox2.Controls.Add(this.label1);
-			resources.ApplyResources(this.groupBox2, "groupBox2");
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.TabStop = false;
 			// 
 			// lineThicknessNumericUpDown
 			// 
-			this.lineThicknessNumericUpDown.DecimalPlaces = 1;
 			resources.ApplyResources(this.lineThicknessNumericUpDown, "lineThicknessNumericUpDown");
+			this.lineThicknessNumericUpDown.DecimalPlaces = 1;
 			this.lineThicknessNumericUpDown.Maximum = new decimal(new int[] {
             50,
             0,
@@ -200,9 +201,9 @@
 			// 
 			// lineColorPictureBox
 			// 
+			resources.ApplyResources(this.lineColorPictureBox, "lineColorPictureBox");
 			this.lineColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.lineColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			resources.ApplyResources(this.lineColorPictureBox, "lineColorPictureBox");
 			this.lineColorPictureBox.Name = "lineColorPictureBox";
 			this.lineColorPictureBox.TabStop = false;
 			this.lineColorPictureBox.Click += new System.EventHandler(this.lineColorPictureBox_Click);
@@ -214,6 +215,7 @@
 			// 
 			// groupBox3
 			// 
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Controls.Add(this.dashPatternSpaceNumericUpDown);
 			this.groupBox3.Controls.Add(this.dashPatternLineNumericUpDown);
 			this.groupBox3.Controls.Add(this.guidelineThicknessNumericUpDown);
@@ -221,14 +223,13 @@
 			this.groupBox3.Controls.Add(this.label3);
 			this.groupBox3.Controls.Add(this.guidelineColorPictureBox);
 			this.groupBox3.Controls.Add(this.label5);
-			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 
 			// dashPatternSpaceNumericUpDown
 			// 
-			this.dashPatternSpaceNumericUpDown.DecimalPlaces = 1;
 			resources.ApplyResources(this.dashPatternSpaceNumericUpDown, "dashPatternSpaceNumericUpDown");
+			this.dashPatternSpaceNumericUpDown.DecimalPlaces = 1;
 			this.dashPatternSpaceNumericUpDown.Maximum = new decimal(new int[] {
             50,
             0,
@@ -243,8 +244,8 @@
 			// 
 			// dashPatternLineNumericUpDown
 			// 
-			this.dashPatternLineNumericUpDown.DecimalPlaces = 1;
 			resources.ApplyResources(this.dashPatternLineNumericUpDown, "dashPatternLineNumericUpDown");
+			this.dashPatternLineNumericUpDown.DecimalPlaces = 1;
 			this.dashPatternLineNumericUpDown.Maximum = new decimal(new int[] {
             50,
             0,
@@ -264,8 +265,8 @@
 			// 
 			// guidelineThicknessNumericUpDown
 			// 
-			this.guidelineThicknessNumericUpDown.DecimalPlaces = 1;
 			resources.ApplyResources(this.guidelineThicknessNumericUpDown, "guidelineThicknessNumericUpDown");
+			this.guidelineThicknessNumericUpDown.DecimalPlaces = 1;
 			this.guidelineThicknessNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -295,9 +296,9 @@
 			// 
 			// guidelineColorPictureBox
 			// 
+			resources.ApplyResources(this.guidelineColorPictureBox, "guidelineColorPictureBox");
 			this.guidelineColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.guidelineColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			resources.ApplyResources(this.guidelineColorPictureBox, "guidelineColorPictureBox");
 			this.guidelineColorPictureBox.Name = "guidelineColorPictureBox";
 			this.guidelineColorPictureBox.TabStop = false;
 			this.guidelineColorPictureBox.Click += new System.EventHandler(this.guidelineColorPictureBox_Click);
