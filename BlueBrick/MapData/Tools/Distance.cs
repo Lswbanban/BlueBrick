@@ -28,6 +28,7 @@ namespace BlueBrick.MapData.Tools
 		{
 			STUD,
 			LDU,
+			STRAIGHT_TRACK,
 			MODULE,
 			METER,
 			FEET
@@ -57,6 +58,7 @@ namespace BlueBrick.MapData.Tools
 				{
 					case Unit.STUD: return this.DistanceInStud;
 					case Unit.LDU: return this.DistanceInLDU;
+					case Unit.STRAIGHT_TRACK: return this.DistanceInStraightTrack;
 					case Unit.MODULE: return this.DistanceInModule;
 					case Unit.METER: return this.DistanceInMeter;
 					case Unit.FEET: return this.DistanceInFeet;
@@ -70,6 +72,7 @@ namespace BlueBrick.MapData.Tools
 				{
 					case Unit.STUD: this.DistanceInStud = value; break;
 					case Unit.LDU: this.DistanceInLDU = value; break;
+					case Unit.STRAIGHT_TRACK: this.DistanceInStraightTrack = value; break;
 					case Unit.MODULE: this.DistanceInModule = value; break;
 					case Unit.METER: this.DistanceInMeter = value; break;
 					case Unit.FEET: this.DistanceInFeet = value; break;
@@ -122,6 +125,14 @@ namespace BlueBrick.MapData.Tools
 			set { mDistanceInStud = (value * 38.09814081f); }
 		}
 
+		/// <summary>
+		/// Get or set the distance rail straight track, knowing that 1 track is 16 studs longs.
+		/// </summary>
+		public float DistanceInStraightTrack
+		{
+			get { return (mDistanceInStud * 0.0625f); }
+			set { mDistanceInStud = (value * 16.0f); }
+		}
 		#endregion
 
 		#region constructor
@@ -156,6 +167,7 @@ namespace BlueBrick.MapData.Tools
 			{
 				case Unit.STUD: return BlueBrick.Properties.Resources.UnitStud;
 				case Unit.LDU: return BlueBrick.Properties.Resources.UnitLDU;
+				case Unit.STRAIGHT_TRACK: return BlueBrick.Properties.Resources.UnitStraightTrack;
 				case Unit.MODULE: return BlueBrick.Properties.Resources.UnitModule;
 				case Unit.METER: return BlueBrick.Properties.Resources.UnitMeter;
 				case Unit.FEET: return BlueBrick.Properties.Resources.UnitFeet;

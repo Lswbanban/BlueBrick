@@ -64,7 +64,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 - the buble info for the paint tool should not be the same for the ruler tool
-- add the "straight track as a unit of the ruler
 - add a forgettable message box for budget exceed limit when adding a part
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)

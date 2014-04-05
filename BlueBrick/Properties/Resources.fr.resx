@@ -521,4 +521,7 @@ Le message d'erreur est :
   <data name="ErrorMsgDoYouWantToDisplayBudgetNumber" xml:space="preserve">
     <value>Vous avez activé la limitation de budget, mais actuellement les budgets ne sont pas affichés.Voulez-vous aussi les afficher ?</value>
   </data>
+  <data name="UnitStraightTrack" xml:space="preserve">
+    <value>rail</value>
+  </data>
 </root>

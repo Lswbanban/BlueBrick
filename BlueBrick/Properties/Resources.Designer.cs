@@ -1434,6 +1434,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Track.
+        /// </summary>
+        internal static string UnitStraightTrack {
+            get {
+                return ResourceManager.GetString("UnitStraightTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stud.
         /// </summary>
         internal static string UnitStud {

@@ -602,7 +602,8 @@ namespace BlueBrick
             resources.GetString("unitComboBox.Items1"),
             resources.GetString("unitComboBox.Items2"),
             resources.GetString("unitComboBox.Items3"),
-            resources.GetString("unitComboBox.Items4")});
+            resources.GetString("unitComboBox.Items4"),
+            resources.GetString("unitComboBox.Items5")});
 			this.unitComboBox.Name = "unitComboBox";
 			// 
 			// displayUnitCheckBox
