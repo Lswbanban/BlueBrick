@@ -45,7 +45,8 @@ namespace BlueBrick.MapData
 			YES,
 			NO_WRONG_LAYER_TYPE,
 			NO_BUDGET_EXCEEDED,
-			YES_AND_NO_TRIMMED_BY_BUDGET
+			YES_AND_NO_TRIMMED_BY_BUDGET,
+			YES_AND_NO_REPLACEMENT_LIMITED_BY_BUDGET
 		}
 
 		public static Hashtable sHashtableForRulerAttachementRebuilding = new Hashtable(); // this hashtable contains all the bricks is used to recreate the attachement of rulers to bricks when loading
@@ -839,7 +840,8 @@ namespace BlueBrick.MapData
 		#region parts management
 		public void giveFeedbackForNotAddingBrick(BrickAddability reason)
 		{
-			if ((reason == BrickAddability.YES_AND_NO_TRIMMED_BY_BUDGET) || (reason == BrickAddability.NO_BUDGET_EXCEEDED))
+			if ((reason == BrickAddability.YES_AND_NO_TRIMMED_BY_BUDGET) || (reason == BrickAddability.NO_BUDGET_EXCEEDED) ||
+				(reason == BrickAddability.YES_AND_NO_REPLACEMENT_LIMITED_BY_BUDGET))
 			{
 				// beep + status message
 				System.Media.SystemSounds.Beep.Play();

@@ -44,6 +44,16 @@ namespace BlueBrick.Actions.Bricks
 		private LayerBrick mLayerWhereToSelectTheReplacedBricks = null;
 		private List<BrickPair> mReplacedBricksToSelect = new List<BrickPair>();
 
+		// a flag to tell if this replace action was limited by the current budget
+		private bool mIsLimitedByBudget = false;
+
+		#region get/set
+		public bool IsLimitedByBudget
+		{
+			get { return mIsLimitedByBudget; }
+		}
+		#endregion
+
 		public ReplaceBrick(List<LayerBrick> layerList, string partNumberToReplace, string newPartNumber, bool replaceInSelectionOnly)
 		{
 			// store the list of layer for which this action apply and create a list of the same size for the bricks
@@ -52,7 +62,6 @@ namespace BlueBrick.Actions.Bricks
 			mBrickPairList = new List<List<BrickPair>>(layerList.Count);
 			// use a counter of brick replaced, to avoid exceeding the budget
 			int replacedBrickCount = 0;
-			bool isBudgetLimitReached = false;
 			// iterate on all the layers
 			foreach (LayerBrick layer in layerList)
 			{
@@ -88,14 +97,14 @@ namespace BlueBrick.Actions.Bricks
 					else
 					{
 						// beep if we reach the limit
-						Map.Instance.giveFeedbackForNotAddingBrick(Map.BrickAddability.YES_AND_NO_TRIMMED_BY_BUDGET);
+						Map.Instance.giveFeedbackForNotAddingBrick(Map.BrickAddability.YES_AND_NO_REPLACEMENT_LIMITED_BY_BUDGET);
 						// no need to continue if we cannot add more bricks, so stop the iteration
-						isBudgetLimitReached = true;
+						mIsLimitedByBudget = true;
 						break;
 					}
                 }
 				// stop iterating on the layer if we reach the limit
-				if (isBudgetLimitReached)
+				if (mIsLimitedByBudget)
 					break;
             }
 		}

@@ -1090,6 +1090,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Some parts will not be replaced due to your current Budget limitation. Do you want to continue?.
+        /// </summary>
+        internal static string ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation {
+            get {
+                return ResourceManager.GetString("ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string ErrorMsgTitleError {

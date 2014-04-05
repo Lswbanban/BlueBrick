@@ -595,4 +595,7 @@
   <data name="ErrorMsgCannotAddDueToBudgetLimitation" xml:space="preserve">
     <value>Cannot add this part because the budget is reached. If you want to add this part, increase the budget for this part, disable the Budget Limitation or close the budget file.</value>
   </data>
+  <data name="ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation" xml:space="preserve">
+    <value>Some parts will not be replaced due to your current Budget limitation. Do you want to continue?</value>
+  </data>
 </root>

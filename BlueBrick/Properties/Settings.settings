@@ -361,5 +361,8 @@
     <Setting Name="DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

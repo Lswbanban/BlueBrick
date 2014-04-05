@@ -20,6 +20,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using BlueBrick.MapData;
+using BlueBrick.Properties;
 
 namespace BlueBrick
 {
@@ -304,8 +305,30 @@ namespace BlueBrick
 			string searchingPartNumber = this.FindComboBox.SelectedItem as string;
 			string replacementPartNumber = this.ReplaceComboBox.SelectedItem as string;
 
-			// do the action
-			Actions.ActionManager.Instance.doAction(new Actions.Bricks.ReplaceBrick(layers, searchingPartNumber, replacementPartNumber, this.inCurrentSelectionRadioButton.Checked));
+			// create the action
+			Actions.Bricks.ReplaceBrick replaceAction = new Actions.Bricks.ReplaceBrick(layers, searchingPartNumber, replacementPartNumber, this.inCurrentSelectionRadioButton.Checked);
+			// check if there was a budget limitation and if the user cancel the action
+			bool canDoTheAction = true;
+			if (Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation && replaceAction.IsLimitedByBudget)
+			{
+				// if some brick cannot be replaced, display a warning message
+				// use a local variable to get the value of the checkbox, by default we don't suggest the user to hide it
+				bool dontDisplayMessageAgain = false;
+
+				// display the warning message
+				DialogResult result = ForgetableMessageBox.Show(BlueBrick.MainForm.Instance, Properties.Resources.ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation,
+								Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNo,
+								MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, ref dontDisplayMessageAgain);
+
+				// set back the checkbox value in the settings (don't save the settings now, it will be done when exiting the application)
+				Properties.Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation = !dontDisplayMessageAgain;
+
+				// change the action flag depending of the answer of the user
+				canDoTheAction =  (result == DialogResult.Yes);
+			}
+			// do the action if we should
+			if (canDoTheAction)
+				Actions.ActionManager.Instance.doAction(replaceAction);
 
 			// close the window
 			this.Close();

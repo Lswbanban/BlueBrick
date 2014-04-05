@@ -32,6 +32,7 @@ namespace BlueBrick
 			this.optionsTabControl = new System.Windows.Forms.TabControl();
 			this.generalTabPage = new System.Windows.Forms.TabPage();
 			this.groupBox14 = new System.Windows.Forms.GroupBox();
+			this.displayWarningWhenReplaceOverBudgetCheckBox = new System.Windows.Forms.CheckBox();
 			this.displayWarningWhenAddOverBudgetCheckBox = new System.Windows.Forms.CheckBox();
 			this.askToDisplayBudgetNumbersCheckBox = new System.Windows.Forms.CheckBox();
 			this.displayWarningWhenDuplicateOverBudgetCheckBox = new System.Windows.Forms.CheckBox();
@@ -262,12 +263,21 @@ namespace BlueBrick
 			// groupBox14
 			// 
 			resources.ApplyResources(this.groupBox14, "groupBox14");
+			this.groupBox14.Controls.Add(this.displayWarningWhenReplaceOverBudgetCheckBox);
 			this.groupBox14.Controls.Add(this.displayWarningWhenAddOverBudgetCheckBox);
 			this.groupBox14.Controls.Add(this.askToDisplayBudgetNumbersCheckBox);
 			this.groupBox14.Controls.Add(this.displayWarningWhenDuplicateOverBudgetCheckBox);
 			this.groupBox14.Controls.Add(this.displayWarningForNotSavingInBBMCheckBox);
 			this.groupBox14.Name = "groupBox14";
 			this.groupBox14.TabStop = false;
+			// 
+			// displayWarningWhenReplaceOverBudgetCheckBox
+			// 
+			resources.ApplyResources(this.displayWarningWhenReplaceOverBudgetCheckBox, "displayWarningWhenReplaceOverBudgetCheckBox");
+			this.displayWarningWhenReplaceOverBudgetCheckBox.Checked = true;
+			this.displayWarningWhenReplaceOverBudgetCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.displayWarningWhenReplaceOverBudgetCheckBox.Name = "displayWarningWhenReplaceOverBudgetCheckBox";
+			this.displayWarningWhenReplaceOverBudgetCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// displayWarningWhenAddOverBudgetCheckBox
 			// 
@@ -1865,5 +1875,6 @@ namespace BlueBrick
 		private System.Windows.Forms.CheckBox displayWarningWhenDuplicateOverBudgetCheckBox;
 		private System.Windows.Forms.CheckBox askToDisplayBudgetNumbersCheckBox;
 		private System.Windows.Forms.CheckBox displayWarningWhenAddOverBudgetCheckBox;
+		private System.Windows.Forms.CheckBox displayWarningWhenReplaceOverBudgetCheckBox;
 	}
 }
