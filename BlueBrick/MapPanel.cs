@@ -701,8 +701,8 @@ namespace BlueBrick
 						e.Effect = DragDropEffects.Copy;
 					}
 				}
-				else if (canAdd == Map.BrickAddability.NO_BUDGET_EXCEEDED)
-					Map.Instance.giveFeedbackForNotAddingBrick();
+				else
+					Map.Instance.giveFeedbackForNotAddingBrick(canAdd);
 			}
 
 			// check again if we are not dragging a part, maybe we drag a file

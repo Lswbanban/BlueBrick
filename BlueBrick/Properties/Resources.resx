@@ -589,4 +589,10 @@
   <data name="UnitStraightTrack" xml:space="preserve">
     <value>Track</value>
   </data>
+  <data name="StatusMsgWrongLayerType" xml:space="preserve">
+    <value>The active layer is not a Brick Layer!</value>
+  </data>
+  <data name="ErrorMsgCannotAddDueToBudgetLimitation" xml:space="preserve">
+    <value>Cannot add this part because the budget is reached. If you want to add this part, increase the budget for this part, disable the Budget Limitation or close the budget file.</value>
+  </data>
 </root>

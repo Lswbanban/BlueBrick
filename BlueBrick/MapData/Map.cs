@@ -44,7 +44,8 @@ namespace BlueBrick.MapData
 		{
 			YES,
 			NO_WRONG_LAYER_TYPE,
-			NO_BUDGET_EXCEEDED
+			NO_BUDGET_EXCEEDED,
+			YES_AND_NO_TRIMMED_BY_BUDGET
 		}
 
 		public static Hashtable sHashtableForRulerAttachementRebuilding = new Hashtable(); // this hashtable contains all the bricks is used to recreate the attachement of rulers to bricks when loading
@@ -836,10 +837,31 @@ namespace BlueBrick.MapData
 		#endregion
 
 		#region parts management
-		public void giveFeedbackForNotAddingBrick()
+		public void giveFeedbackForNotAddingBrick(BrickAddability reason)
 		{
-			System.Media.SystemSounds.Beep.Play();
-			BlueBrick.MainForm.Instance.setStatusBarMessage(Properties.Resources.StatusMsgBudgetReached);
+			if ((reason == BrickAddability.YES_AND_NO_TRIMMED_BY_BUDGET) || (reason == BrickAddability.NO_BUDGET_EXCEEDED))
+			{
+				// beep + status message
+				System.Media.SystemSounds.Beep.Play();
+				BlueBrick.MainForm.Instance.setStatusBarMessage(Properties.Resources.StatusMsgBudgetReached);
+				// and check if we need to display a forgetable message box (for trimmed copy it is displayed later)
+				if (Properties.Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation && (reason == BrickAddability.NO_BUDGET_EXCEEDED))
+				{
+					// the flag to forget the messagebox
+					bool dontDisplayMessageAgain = false;
+					// display the warning message
+					ForgetableMessageBox.Show(BlueBrick.MainForm.Instance, Properties.Resources.ErrorMsgCannotAddDueToBudgetLimitation,
+								Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
+								MessageBoxIcon.Stop, MessageBoxDefaultButton.Button1, ref dontDisplayMessageAgain);
+					// set back the checkbox value in the settings (don't save the settings now, it will be done when exiting the application)
+					Properties.Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation = !dontDisplayMessageAgain;
+				}
+			}
+			else if (reason == BrickAddability.NO_WRONG_LAYER_TYPE)
+			{
+				// display a status message
+				BlueBrick.MainForm.Instance.setStatusBarMessage(Properties.Resources.StatusMsgWrongLayerType);
+			}
 		}
 
 		public BrickAddability canAddBrick(string partNumber)
@@ -859,8 +881,8 @@ namespace BlueBrick.MapData
 			BrickAddability canAdd = canAddBrick(partNumber);
 			if (canAdd == BrickAddability.YES)
 				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, partNumber));
-			else if (canAdd == BrickAddability.NO_BUDGET_EXCEEDED)
-				giveFeedbackForNotAddingBrick();
+			else
+				giveFeedbackForNotAddingBrick(canAdd);
 		}
 
 		public void addBrick(Layer.LayerItem brickOrGroup)
@@ -868,8 +890,8 @@ namespace BlueBrick.MapData
 			BrickAddability canAdd = canAddBrick(brickOrGroup.PartNumber);
 			if (canAdd == BrickAddability.YES)
 				ActionManager.Instance.doAction(new AddBrick(Map.sInstance.SelectedLayer as LayerBrick, brickOrGroup));
-			else if (canAdd == BrickAddability.NO_BUDGET_EXCEEDED)
-				giveFeedbackForNotAddingBrick();
+			else
+				giveFeedbackForNotAddingBrick(canAdd);
 		}
 
 		public void addConnectBrick(string partNumber)
@@ -896,8 +918,8 @@ namespace BlueBrick.MapData
 					ActionManager.Instance.doAction(action);
 				}
 			}
-			else if (canAdd == BrickAddability.NO_BUDGET_EXCEEDED)
-				giveFeedbackForNotAddingBrick();
+			else
+				giveFeedbackForNotAddingBrick(canAdd);
 		}
 
 		/// <summary>

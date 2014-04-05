@@ -32,6 +32,7 @@ namespace BlueBrick
 			this.optionsTabControl = new System.Windows.Forms.TabControl();
 			this.generalTabPage = new System.Windows.Forms.TabPage();
 			this.groupBox14 = new System.Windows.Forms.GroupBox();
+			this.displayWarningWhenAddOverBudgetCheckBox = new System.Windows.Forms.CheckBox();
 			this.askToDisplayBudgetNumbersCheckBox = new System.Windows.Forms.CheckBox();
 			this.displayWarningWhenDuplicateOverBudgetCheckBox = new System.Windows.Forms.CheckBox();
 			this.displayWarningForNotSavingInBBMCheckBox = new System.Windows.Forms.CheckBox();
@@ -261,11 +262,20 @@ namespace BlueBrick
 			// groupBox14
 			// 
 			resources.ApplyResources(this.groupBox14, "groupBox14");
+			this.groupBox14.Controls.Add(this.displayWarningWhenAddOverBudgetCheckBox);
 			this.groupBox14.Controls.Add(this.askToDisplayBudgetNumbersCheckBox);
 			this.groupBox14.Controls.Add(this.displayWarningWhenDuplicateOverBudgetCheckBox);
 			this.groupBox14.Controls.Add(this.displayWarningForNotSavingInBBMCheckBox);
 			this.groupBox14.Name = "groupBox14";
 			this.groupBox14.TabStop = false;
+			// 
+			// displayWarningWhenAddOverBudgetCheckBox
+			// 
+			resources.ApplyResources(this.displayWarningWhenAddOverBudgetCheckBox, "displayWarningWhenAddOverBudgetCheckBox");
+			this.displayWarningWhenAddOverBudgetCheckBox.Checked = true;
+			this.displayWarningWhenAddOverBudgetCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.displayWarningWhenAddOverBudgetCheckBox.Name = "displayWarningWhenAddOverBudgetCheckBox";
+			this.displayWarningWhenAddOverBudgetCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// askToDisplayBudgetNumbersCheckBox
 			// 
@@ -1854,5 +1864,6 @@ namespace BlueBrick
 		private System.Windows.Forms.Label label37;
 		private System.Windows.Forms.CheckBox displayWarningWhenDuplicateOverBudgetCheckBox;
 		private System.Windows.Forms.CheckBox askToDisplayBudgetNumbersCheckBox;
+		private System.Windows.Forms.CheckBox displayWarningWhenAddOverBudgetCheckBox;
 	}
 }

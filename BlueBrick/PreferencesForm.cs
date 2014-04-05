@@ -166,6 +166,7 @@ namespace BlueBrick
 				this.undoDisplayedNumericUpDown.Value = Settings.Default.UndoStackDisplayedDepth;
 				// notification
 				this.displayWarningForNotSavingInBBMCheckBox.Checked = Settings.Default.DisplayWarningMessageForNotSavingInBBM;
+				this.displayWarningWhenAddOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation;
 				this.displayWarningWhenDuplicateOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
 				this.askToDisplayBudgetNumbersCheckBox.Checked = Settings.Default.DisplayWarningMessageForShowingBudgetNumbers;
 				// performance
@@ -303,6 +304,7 @@ namespace BlueBrick
 				destination.UndoStackDisplayedDepth = source.UndoStackDisplayedDepth;
 				// Notification
 				destination.DisplayWarningMessageForNotSavingInBBM = source.DisplayWarningMessageForNotSavingInBBM;
+				destination.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation;
 				destination.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
 				destination.DisplayWarningMessageForShowingBudgetNumbers = source.DisplayWarningMessageForShowingBudgetNumbers;
 			}
@@ -401,6 +403,7 @@ namespace BlueBrick
 			Settings.Default.UndoStackDisplayedDepth = (int)this.undoDisplayedNumericUpDown.Value;
 			// notification
 			Settings.Default.DisplayWarningMessageForNotSavingInBBM = this.displayWarningForNotSavingInBBMCheckBox.Checked;
+			Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation = this.displayWarningWhenAddOverBudgetCheckBox.Checked;
 			Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = this.displayWarningWhenDuplicateOverBudgetCheckBox.Checked;
 			Settings.Default.DisplayWarningMessageForShowingBudgetNumbers = this.askToDisplayBudgetNumbersCheckBox.Checked;
 			// performances
