@@ -63,7 +63,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-- bug de Denis: le splashscreen est tilé
 - the buble info for the paint tool should not be the same for the ruler tool
 - add the "straight track as a unit of the ruler
 - add a forgettable message box for budget exceed limit when adding a part
