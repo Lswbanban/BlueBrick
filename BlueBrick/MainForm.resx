@@ -2077,7 +2077,7 @@ You can use double quote characters to group keywords.</value>
     <value>Fuchsia</value>
   </data>
   <data name="paintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="paintToolStripMenuItem.Text" xml:space="preserve">
     <value>Paint</value>
@@ -2094,7 +2094,7 @@ You can use double quote characters to group keywords.</value>
     <value>Fuchsia</value>
   </data>
   <data name="eraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="eraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Erase</value>
@@ -2112,7 +2112,7 @@ You can use double quote characters to group keywords.</value>
     <value>Fuchsia</value>
   </data>
   <data name="rulerSelectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="rulerSelectAndEditToolStripMenuItem.Text" xml:space="preserve">
     <value>Select and Edit</value>
@@ -2130,7 +2130,7 @@ You can use double quote characters to group keywords.</value>
     <value>Fuchsia</value>
   </data>
   <data name="rulerAddRulerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="rulerAddRulerToolStripMenuItem.Text" xml:space="preserve">
     <value>Add Ruler</value>
@@ -2148,7 +2148,7 @@ You can use double quote characters to group keywords.</value>
     <value>Fuchsia</value>
   </data>
   <data name="rulerAddCircleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="rulerAddCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Add Circle</value>
@@ -2168,7 +2168,7 @@ You can use double quote characters to group keywords.</value>
     <value>32, 22</value>
   </data>
   <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
-    <value>Select the painting tool for Area layers</value>
+    <value>Select the tool to edit the current layer</value>
   </data>
   <data name="toolBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 24</value>
