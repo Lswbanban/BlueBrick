@@ -1283,5 +1283,17 @@ namespace BlueBrick.Properties {
                 this["BudgetFilenameToLoadAtStartup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DisplayWarningMessageForShowingBudgetNumbers {
+            get {
+                return ((bool)(this["DisplayWarningMessageForShowingBudgetNumbers"]));
+            }
+            set {
+                this["DisplayWarningMessageForShowingBudgetNumbers"] = value;
+            }
+        }
     }
 }

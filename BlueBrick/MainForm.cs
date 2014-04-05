@@ -2416,6 +2416,20 @@ namespace BlueBrick
 			Properties.Settings.Default.UseBudgetLimitation = !Properties.Settings.Default.UseBudgetLimitation;
 			// then udpate the check state according to the new setting
 			this.useBudgetLimitationToolStripMenuItem.Checked = Properties.Settings.Default.UseBudgetLimitation;
+			// now check if we need to also show the budget numbers
+			if (Properties.Settings.Default.DisplayWarningMessageForShowingBudgetNumbers &&
+				Properties.Settings.Default.UseBudgetLimitation && !this.showBudgetNumbersToolStripMenuItem.Checked)
+			{
+				bool dontDisplayMessageAgain = false;
+				DialogResult result = ForgetableMessageBox.Show(this, Properties.Resources.ErrorMsgDoYouWantToDisplayBudgetNumber,
+									Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNo,
+									MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, ref dontDisplayMessageAgain);
+				// set back the checkbox value in the settings (don't save the settings now, it will be done when exiting the application)
+				Properties.Settings.Default.DisplayWarningMessageForShowingBudgetNumbers = !dontDisplayMessageAgain;
+				// check the result, if yes, click also on display the budget numbers
+				if (result == DialogResult.Yes)
+					showBudgetNumbersToolStripMenuItem_Click(null, null);
+			}
 		}
 		#endregion
 

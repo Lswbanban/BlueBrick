@@ -67,7 +67,6 @@ Open bugs:
 - the buble info for the paint tool should not be the same for the ruler tool
 - add the "straight track as a unit of the ruler
 - add a forgettable message box for budget exceed limit when adding a part
-- add a forgettable message box for displaying budget numbers if you use budget limitation
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)

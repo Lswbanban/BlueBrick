@@ -583,4 +583,7 @@
   <data name="ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation" xml:space="preserve">
     <value>Some parts will not be duplicated due to your current Budget limitation. Do you want to continue?</value>
   </data>
+  <data name="ErrorMsgDoYouWantToDisplayBudgetNumber" xml:space="preserve">
+    <value>You have enabled the Budget Limitation, but currently the Budget numbers are not displayed. Do you also want to display them?</value>
+  </data>
 </root>
