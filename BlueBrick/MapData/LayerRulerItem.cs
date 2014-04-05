@@ -1296,7 +1296,8 @@ namespace BlueBrick.MapData
 					{
 						Color guidelineColorWithTransparency = Color.FromArgb((int)(layerTransparency * 2.55f), mGuidelineColor);
 						penForGuideline = new Pen(guidelineColorWithTransparency, mGuidelineThickness);
-						penForGuideline.DashPattern = mGuidelineDashPattern;
+						if (mGuidelineDashPattern[1] != 0.0f)
+							penForGuideline.DashPattern = mGuidelineDashPattern;
 					}
 
 					// draw one or 2 lines
@@ -1771,7 +1772,8 @@ namespace BlueBrick.MapData
 					{
 						Color guidelineColorWithTransparency = Color.FromArgb((int)(layerTransparency * 2.55f), mGuidelineColor);
 						Pen penForFakeCircle = new Pen(guidelineColorWithTransparency, mGuidelineThickness);
-						penForFakeCircle.DashPattern = mGuidelineDashPattern;
+						if (mGuidelineDashPattern[1] != 0.0f)
+							penForFakeCircle.DashPattern = mGuidelineDashPattern;
 						float fakeRadius = fakeDiameterInPixel * 0.5f;
 						PointF fakeUpperLeftInPixel = new PointF(centerInPixel.X - fakeRadius, centerInPixel.Y - fakeRadius);
 						g.DrawEllipse(penForFakeCircle, fakeUpperLeftInPixel.X, fakeUpperLeftInPixel.Y, fakeDiameterInPixel, fakeDiameterInPixel);					

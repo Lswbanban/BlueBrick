@@ -236,32 +236,32 @@ namespace BlueBrick
 			// 
 			// optionsTabControl
 			// 
-			resources.ApplyResources(this.optionsTabControl, "optionsTabControl");
 			this.optionsTabControl.Controls.Add(this.generalTabPage);
 			this.optionsTabControl.Controls.Add(this.editionTabPage);
 			this.optionsTabControl.Controls.Add(this.appearanceTabPage);
 			this.optionsTabControl.Controls.Add(this.partLibTabPage);
 			this.optionsTabControl.Controls.Add(this.shortcutKeysTabPage);
+			resources.ApplyResources(this.optionsTabControl, "optionsTabControl");
 			this.optionsTabControl.Name = "optionsTabControl";
 			this.optionsTabControl.SelectedIndex = 0;
 			// 
 			// generalTabPage
 			// 
-			resources.ApplyResources(this.generalTabPage, "generalTabPage");
 			this.generalTabPage.Controls.Add(this.groupBox14);
 			this.generalTabPage.Controls.Add(this.groupBox10);
 			this.generalTabPage.Controls.Add(this.groupBox8);
 			this.generalTabPage.Controls.Add(this.groupBox4);
 			this.generalTabPage.Controls.Add(this.groupBox3);
 			this.generalTabPage.Controls.Add(this.groupBox1);
+			resources.ApplyResources(this.generalTabPage, "generalTabPage");
 			this.generalTabPage.Name = "generalTabPage";
 			this.generalTabPage.UseVisualStyleBackColor = true;
 			// 
 			// groupBox14
 			// 
-			resources.ApplyResources(this.groupBox14, "groupBox14");
 			this.groupBox14.Controls.Add(this.displayWarningWhenDuplicateOverBudgetCheckBox);
 			this.groupBox14.Controls.Add(this.displayWarningForNotSavingInBBMCheckBox);
+			resources.ApplyResources(this.groupBox14, "groupBox14");
 			this.groupBox14.Name = "groupBox14";
 			this.groupBox14.TabStop = false;
 			// 
@@ -281,10 +281,10 @@ namespace BlueBrick
 			// 
 			// groupBox10
 			// 
-			resources.ApplyResources(this.groupBox10, "groupBox10");
 			this.groupBox10.Controls.Add(this.clearRecentFilesButton);
 			this.groupBox10.Controls.Add(this.RecentFilesNumericUpDown);
 			this.groupBox10.Controls.Add(this.label23);
+			resources.ApplyResources(this.groupBox10, "groupBox10");
 			this.groupBox10.Name = "groupBox10";
 			this.groupBox10.TabStop = false;
 			// 
@@ -322,20 +322,20 @@ namespace BlueBrick
 			// 
 			// groupBox8
 			// 
-			resources.ApplyResources(this.groupBox8, "groupBox8");
 			this.groupBox8.Controls.Add(this.optimComboBox);
 			this.groupBox8.Controls.Add(this.label11);
+			resources.ApplyResources(this.groupBox8, "groupBox8");
 			this.groupBox8.Name = "groupBox8";
 			this.groupBox8.TabStop = false;
 			// 
 			// optimComboBox
 			// 
-			resources.ApplyResources(this.optimComboBox, "optimComboBox");
 			this.optimComboBox.FormattingEnabled = true;
 			this.optimComboBox.Items.AddRange(new object[] {
             resources.GetString("optimComboBox.Items"),
             resources.GetString("optimComboBox.Items1"),
             resources.GetString("optimComboBox.Items2")});
+			resources.ApplyResources(this.optimComboBox, "optimComboBox");
 			this.optimComboBox.Name = "optimComboBox";
 			// 
 			// label11
@@ -345,12 +345,12 @@ namespace BlueBrick
 			// 
 			// groupBox4
 			// 
-			resources.ApplyResources(this.groupBox4, "groupBox4");
 			this.groupBox4.Controls.Add(this.label10);
 			this.groupBox4.Controls.Add(this.label9);
 			this.groupBox4.Controls.Add(this.undoDisplayedNumericUpDown);
 			this.groupBox4.Controls.Add(this.label8);
 			this.groupBox4.Controls.Add(this.undoRecordedNumericUpDown);
+			resources.ApplyResources(this.groupBox4, "groupBox4");
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.TabStop = false;
 			// 
@@ -411,7 +411,6 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
-			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Controls.Add(this.authorTextBox);
 			this.groupBox3.Controls.Add(this.addAreaLayerCheckBox);
 			this.groupBox3.Controls.Add(this.addRulerLayerCheckBox);
@@ -423,6 +422,7 @@ namespace BlueBrick
 			this.groupBox3.Controls.Add(this.label5);
 			this.groupBox3.Controls.Add(this.addBrickLayerCheckBox);
 			this.groupBox3.Controls.Add(this.addGridLayerCheckBox);
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 
@@ -451,14 +451,14 @@ namespace BlueBrick
 			// 
 			// showComboBox
 			// 
-			resources.ApplyResources(this.showComboBox, "showComboBox");
 			this.showComboBox.FormattingEnabled = true;
+			resources.ApplyResources(this.showComboBox, "showComboBox");
 			this.showComboBox.Name = "showComboBox";
 			// 
 			// lugComboBox
 			// 
-			resources.ApplyResources(this.lugComboBox, "lugComboBox");
 			this.lugComboBox.FormattingEnabled = true;
+			resources.ApplyResources(this.lugComboBox, "lugComboBox");
 			this.lugComboBox.Name = "lugComboBox";
 			// 
 			// label7
@@ -494,10 +494,10 @@ namespace BlueBrick
 			// 
 			// groupBox1
 			// 
-			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.languageComboBox);
+			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
 			// 
@@ -513,23 +513,22 @@ namespace BlueBrick
 			// 
 			// languageComboBox
 			// 
-			resources.ApplyResources(this.languageComboBox, "languageComboBox");
 			this.languageComboBox.FormattingEnabled = true;
+			resources.ApplyResources(this.languageComboBox, "languageComboBox");
 			this.languageComboBox.Name = "languageComboBox";
 			this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.languageComboBox_SelectedIndexChanged);
 			// 
 			// editionTabPage
 			// 
-			resources.ApplyResources(this.editionTabPage, "editionTabPage");
 			this.editionTabPage.Controls.Add(this.groupBox15);
 			this.editionTabPage.Controls.Add(this.copyPasteGroupBox);
 			this.editionTabPage.Controls.Add(this.groupBox2);
+			resources.ApplyResources(this.editionTabPage, "editionTabPage");
 			this.editionTabPage.Name = "editionTabPage";
 			this.editionTabPage.UseVisualStyleBackColor = true;
 			// 
 			// groupBox15
 			// 
-			resources.ApplyResources(this.groupBox15, "groupBox15");
 			this.groupBox15.Controls.Add(this.rulerFontNameLabel);
 			this.groupBox15.Controls.Add(this.fontColorLabel);
 			this.groupBox15.Controls.Add(this.rulerFontColorPictureBox);
@@ -552,14 +551,15 @@ namespace BlueBrick
 			this.groupBox15.Controls.Add(this.RulerSwitchToEditionAfterCreationCheckBox);
 			this.groupBox15.Controls.Add(this.label31);
 			this.groupBox15.Controls.Add(this.rulerControlPointRadiusNumericUpDown);
+			resources.ApplyResources(this.groupBox15, "groupBox15");
 			this.groupBox15.Name = "groupBox15";
 			this.groupBox15.TabStop = false;
 			// 
 			// rulerFontNameLabel
 			// 
-			resources.ApplyResources(this.rulerFontNameLabel, "rulerFontNameLabel");
 			this.rulerFontNameLabel.BackColor = System.Drawing.SystemColors.InactiveBorder;
 			this.rulerFontNameLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.rulerFontNameLabel, "rulerFontNameLabel");
 			this.rulerFontNameLabel.Name = "rulerFontNameLabel";
 			// 
 			// fontColorLabel
@@ -569,9 +569,9 @@ namespace BlueBrick
 			// 
 			// rulerFontColorPictureBox
 			// 
-			resources.ApplyResources(this.rulerFontColorPictureBox, "rulerFontColorPictureBox");
 			this.rulerFontColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.rulerFontColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.rulerFontColorPictureBox, "rulerFontColorPictureBox");
 			this.rulerFontColorPictureBox.Name = "rulerFontColorPictureBox";
 			this.rulerFontColorPictureBox.TabStop = false;
 			this.rulerFontColorPictureBox.Click += new System.EventHandler(this.rulerFontColorPictureBox_Click);
@@ -585,7 +585,6 @@ namespace BlueBrick
 			// 
 			// unitComboBox
 			// 
-			resources.ApplyResources(this.unitComboBox, "unitComboBox");
 			this.unitComboBox.FormattingEnabled = true;
 			this.unitComboBox.Items.AddRange(new object[] {
             resources.GetString("unitComboBox.Items"),
@@ -593,6 +592,7 @@ namespace BlueBrick
             resources.GetString("unitComboBox.Items2"),
             resources.GetString("unitComboBox.Items3"),
             resources.GetString("unitComboBox.Items4")});
+			resources.ApplyResources(this.unitComboBox, "unitComboBox");
 			this.unitComboBox.Name = "unitComboBox";
 			// 
 			// displayUnitCheckBox
@@ -615,15 +615,10 @@ namespace BlueBrick
 			// 
 			// dashPatternSpaceNumericUpDown
 			// 
-			resources.ApplyResources(this.dashPatternSpaceNumericUpDown, "dashPatternSpaceNumericUpDown");
 			this.dashPatternSpaceNumericUpDown.DecimalPlaces = 1;
+			resources.ApplyResources(this.dashPatternSpaceNumericUpDown, "dashPatternSpaceNumericUpDown");
 			this.dashPatternSpaceNumericUpDown.Maximum = new decimal(new int[] {
             50,
-            0,
-            0,
-            0});
-			this.dashPatternSpaceNumericUpDown.Minimum = new decimal(new int[] {
-            1,
             0,
             0,
             0});
@@ -636,8 +631,8 @@ namespace BlueBrick
 			// 
 			// dashPatternLineNumericUpDown
 			// 
-			resources.ApplyResources(this.dashPatternLineNumericUpDown, "dashPatternLineNumericUpDown");
 			this.dashPatternLineNumericUpDown.DecimalPlaces = 1;
+			resources.ApplyResources(this.dashPatternLineNumericUpDown, "dashPatternLineNumericUpDown");
 			this.dashPatternLineNumericUpDown.Maximum = new decimal(new int[] {
             50,
             0,
@@ -662,9 +657,9 @@ namespace BlueBrick
 			// 
 			// guidelineColorPictureBox
 			// 
-			resources.ApplyResources(this.guidelineColorPictureBox, "guidelineColorPictureBox");
 			this.guidelineColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.guidelineColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.guidelineColorPictureBox, "guidelineColorPictureBox");
 			this.guidelineColorPictureBox.Name = "guidelineColorPictureBox";
 			this.guidelineColorPictureBox.TabStop = false;
 			this.guidelineColorPictureBox.Click += new System.EventHandler(this.guidelineColorPictureBox_Click);
@@ -676,9 +671,9 @@ namespace BlueBrick
 			// 
 			// lineColorPictureBox
 			// 
-			resources.ApplyResources(this.lineColorPictureBox, "lineColorPictureBox");
 			this.lineColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.lineColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.lineColorPictureBox, "lineColorPictureBox");
 			this.lineColorPictureBox.Name = "lineColorPictureBox";
 			this.lineColorPictureBox.TabStop = false;
 			this.lineColorPictureBox.Click += new System.EventHandler(this.lineColorPictureBox_Click);
@@ -695,8 +690,8 @@ namespace BlueBrick
 			// 
 			// guidelineThicknessNumericUpDown
 			// 
-			resources.ApplyResources(this.guidelineThicknessNumericUpDown, "guidelineThicknessNumericUpDown");
 			this.guidelineThicknessNumericUpDown.DecimalPlaces = 1;
+			resources.ApplyResources(this.guidelineThicknessNumericUpDown, "guidelineThicknessNumericUpDown");
 			this.guidelineThicknessNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -716,8 +711,8 @@ namespace BlueBrick
 			// 
 			// lineThicknessNumericUpDown
 			// 
-			resources.ApplyResources(this.lineThicknessNumericUpDown, "lineThicknessNumericUpDown");
 			this.lineThicknessNumericUpDown.DecimalPlaces = 1;
+			resources.ApplyResources(this.lineThicknessNumericUpDown, "lineThicknessNumericUpDown");
 			this.lineThicknessNumericUpDown.Maximum = new decimal(new int[] {
             50,
             0,
@@ -773,11 +768,11 @@ namespace BlueBrick
 			// 
 			// copyPasteGroupBox
 			// 
-			resources.ApplyResources(this.copyPasteGroupBox, "copyPasteGroupBox");
 			this.copyPasteGroupBox.Controls.Add(this.OffsetValueLabel);
 			this.copyPasteGroupBox.Controls.Add(this.pasteOffsetValueNumericUpDown);
 			this.copyPasteGroupBox.Controls.Add(this.label30);
 			this.copyPasteGroupBox.Controls.Add(this.copyOffsetComboBox);
+			resources.ApplyResources(this.copyPasteGroupBox, "copyPasteGroupBox");
 			this.copyPasteGroupBox.Name = "copyPasteGroupBox";
 			this.copyPasteGroupBox.TabStop = false;
 			// 
@@ -803,18 +798,17 @@ namespace BlueBrick
 			// 
 			// copyOffsetComboBox
 			// 
-			resources.ApplyResources(this.copyOffsetComboBox, "copyOffsetComboBox");
 			this.copyOffsetComboBox.FormattingEnabled = true;
 			this.copyOffsetComboBox.Items.AddRange(new object[] {
             resources.GetString("copyOffsetComboBox.Items"),
             resources.GetString("copyOffsetComboBox.Items1"),
             resources.GetString("copyOffsetComboBox.Items2")});
+			resources.ApplyResources(this.copyOffsetComboBox, "copyOffsetComboBox");
 			this.copyOffsetComboBox.Name = "copyOffsetComboBox";
 			this.copyOffsetComboBox.SelectedIndexChanged += new System.EventHandler(this.copyOffsetComboBox_SelectedIndexChanged);
 			// 
 			// groupBox2
 			// 
-			resources.ApplyResources(this.groupBox2, "groupBox2");
 			this.groupBox2.Controls.Add(this.mouseDuplicateSelKeyComboBox);
 			this.groupBox2.Controls.Add(this.label14);
 			this.groupBox2.Controls.Add(this.mouseMultipleSelKeyComboBox);
@@ -822,18 +816,19 @@ namespace BlueBrick
 			this.groupBox2.Controls.Add(this.mouseZoomCenteredCheckBox);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.mouseZoomSpeedNumericUpDown);
+			resources.ApplyResources(this.groupBox2, "groupBox2");
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.TabStop = false;
 			// 
 			// mouseDuplicateSelKeyComboBox
 			// 
-			resources.ApplyResources(this.mouseDuplicateSelKeyComboBox, "mouseDuplicateSelKeyComboBox");
 			this.mouseDuplicateSelKeyComboBox.DisplayMember = "ALT";
 			this.mouseDuplicateSelKeyComboBox.FormattingEnabled = true;
 			this.mouseDuplicateSelKeyComboBox.Items.AddRange(new object[] {
             resources.GetString("mouseDuplicateSelKeyComboBox.Items"),
             resources.GetString("mouseDuplicateSelKeyComboBox.Items1"),
             resources.GetString("mouseDuplicateSelKeyComboBox.Items2")});
+			resources.ApplyResources(this.mouseDuplicateSelKeyComboBox, "mouseDuplicateSelKeyComboBox");
 			this.mouseDuplicateSelKeyComboBox.Name = "mouseDuplicateSelKeyComboBox";
 			this.mouseDuplicateSelKeyComboBox.SelectedIndexChanged += new System.EventHandler(this.mouseDuplicateSelKeyComboBox_SelectedIndexChanged);
 			// 
@@ -844,13 +839,13 @@ namespace BlueBrick
 			// 
 			// mouseMultipleSelKeyComboBox
 			// 
-			resources.ApplyResources(this.mouseMultipleSelKeyComboBox, "mouseMultipleSelKeyComboBox");
 			this.mouseMultipleSelKeyComboBox.DisplayMember = "Strg";
 			this.mouseMultipleSelKeyComboBox.FormattingEnabled = true;
 			this.mouseMultipleSelKeyComboBox.Items.AddRange(new object[] {
             resources.GetString("mouseMultipleSelKeyComboBox.Items"),
             resources.GetString("mouseMultipleSelKeyComboBox.Items1"),
             resources.GetString("mouseMultipleSelKeyComboBox.Items2")});
+			resources.ApplyResources(this.mouseMultipleSelKeyComboBox, "mouseMultipleSelKeyComboBox");
 			this.mouseMultipleSelKeyComboBox.Name = "mouseMultipleSelKeyComboBox";
 			this.mouseMultipleSelKeyComboBox.SelectedIndexChanged += new System.EventHandler(this.mouseMultipleSelKeyComboBox_SelectedIndexChanged);
 			// 
@@ -874,27 +869,27 @@ namespace BlueBrick
 			// 
 			// mouseZoomSpeedNumericUpDown
 			// 
-			resources.ApplyResources(this.mouseZoomSpeedNumericUpDown, "mouseZoomSpeedNumericUpDown");
 			this.mouseZoomSpeedNumericUpDown.DecimalPlaces = 4;
+			resources.ApplyResources(this.mouseZoomSpeedNumericUpDown, "mouseZoomSpeedNumericUpDown");
 			this.mouseZoomSpeedNumericUpDown.Name = "mouseZoomSpeedNumericUpDown";
 			// 
 			// appearanceTabPage
 			// 
-			resources.ApplyResources(this.appearanceTabPage, "appearanceTabPage");
 			this.appearanceTabPage.Controls.Add(this.groupBox9);
 			this.appearanceTabPage.Controls.Add(this.groupBox7);
 			this.appearanceTabPage.Controls.Add(this.groupBox6);
 			this.appearanceTabPage.Controls.Add(this.groupBox5);
+			resources.ApplyResources(this.appearanceTabPage, "appearanceTabPage");
 			this.appearanceTabPage.Name = "appearanceTabPage";
 			this.appearanceTabPage.UseVisualStyleBackColor = true;
 			// 
 			// groupBox9
 			// 
-			resources.ApplyResources(this.groupBox9, "groupBox9");
 			this.groupBox9.Controls.Add(this.label27);
 			this.groupBox9.Controls.Add(this.areaCellSizeNumericUpDown);
 			this.groupBox9.Controls.Add(this.label28);
 			this.groupBox9.Controls.Add(this.areaTransparencyNumericUpDown);
+			resources.ApplyResources(this.groupBox9, "groupBox9");
 			this.groupBox9.Name = "groupBox9";
 			this.groupBox9.TabStop = false;
 			// 
@@ -905,12 +900,12 @@ namespace BlueBrick
 			// 
 			// areaCellSizeNumericUpDown
 			// 
-			resources.ApplyResources(this.areaCellSizeNumericUpDown, "areaCellSizeNumericUpDown");
 			this.areaCellSizeNumericUpDown.Increment = new decimal(new int[] {
             8,
             0,
             0,
             0});
+			resources.ApplyResources(this.areaCellSizeNumericUpDown, "areaCellSizeNumericUpDown");
 			this.areaCellSizeNumericUpDown.Maximum = new decimal(new int[] {
             960,
             0,
@@ -945,13 +940,13 @@ namespace BlueBrick
 			// 
 			// groupBox7
 			// 
-			resources.ApplyResources(this.groupBox7, "groupBox7");
 			this.groupBox7.Controls.Add(this.subGridEnabledCheckBox);
 			this.groupBox7.Controls.Add(this.gridEnabledCheckBox);
 			this.groupBox7.Controls.Add(this.label22);
 			this.groupBox7.Controls.Add(this.gridSubdivisionNumericUpDown);
 			this.groupBox7.Controls.Add(this.label21);
 			this.groupBox7.Controls.Add(this.gridSizeNumericUpDown);
+			resources.ApplyResources(this.groupBox7, "groupBox7");
 			this.groupBox7.Name = "groupBox7";
 			this.groupBox7.TabStop = false;
 			// 
@@ -1005,12 +1000,12 @@ namespace BlueBrick
 			// 
 			// gridSizeNumericUpDown
 			// 
-			resources.ApplyResources(this.gridSizeNumericUpDown, "gridSizeNumericUpDown");
 			this.gridSizeNumericUpDown.Increment = new decimal(new int[] {
             8,
             0,
             0,
             0});
+			resources.ApplyResources(this.gridSizeNumericUpDown, "gridSizeNumericUpDown");
 			this.gridSizeNumericUpDown.Maximum = new decimal(new int[] {
             384,
             0,
@@ -1030,19 +1025,19 @@ namespace BlueBrick
 			// 
 			// groupBox6
 			// 
-			resources.ApplyResources(this.groupBox6, "groupBox6");
 			this.groupBox6.Controls.Add(this.defaultTextFontNameLabel);
 			this.groupBox6.Controls.Add(this.defaultFontColorLabel);
 			this.groupBox6.Controls.Add(this.defaultFontColorPictureBox);
 			this.groupBox6.Controls.Add(this.defaultFontButton);
+			resources.ApplyResources(this.groupBox6, "groupBox6");
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.TabStop = false;
 			// 
 			// defaultTextFontNameLabel
 			// 
-			resources.ApplyResources(this.defaultTextFontNameLabel, "defaultTextFontNameLabel");
 			this.defaultTextFontNameLabel.BackColor = System.Drawing.SystemColors.InactiveBorder;
 			this.defaultTextFontNameLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.defaultTextFontNameLabel, "defaultTextFontNameLabel");
 			this.defaultTextFontNameLabel.Name = "defaultTextFontNameLabel";
 			// 
 			// defaultFontColorLabel
@@ -1052,9 +1047,9 @@ namespace BlueBrick
 			// 
 			// defaultFontColorPictureBox
 			// 
-			resources.ApplyResources(this.defaultFontColorPictureBox, "defaultFontColorPictureBox");
 			this.defaultFontColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.defaultFontColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.defaultFontColorPictureBox, "defaultFontColorPictureBox");
 			this.defaultFontColorPictureBox.Name = "defaultFontColorPictureBox";
 			this.defaultFontColorPictureBox.TabStop = false;
 			this.defaultFontColorPictureBox.Click += new System.EventHandler(this.defaultFontColorPictureBox_Click);
@@ -1068,7 +1063,6 @@ namespace BlueBrick
 			// 
 			// groupBox5
 			// 
-			resources.ApplyResources(this.groupBox5, "groupBox5");
 			this.groupBox5.Controls.Add(this.colorSchemeComboBox);
 			this.groupBox5.Controls.Add(this.label25);
 			this.groupBox5.Controls.Add(this.label24);
@@ -1084,13 +1078,14 @@ namespace BlueBrick
 			this.groupBox5.Controls.Add(this.backgroundColorPictureBox);
 			this.groupBox5.Controls.Add(this.label16);
 			this.groupBox5.Controls.Add(this.label15);
+			resources.ApplyResources(this.groupBox5, "groupBox5");
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.TabStop = false;
 			// 
 			// colorSchemeComboBox
 			// 
-			resources.ApplyResources(this.colorSchemeComboBox, "colorSchemeComboBox");
 			this.colorSchemeComboBox.FormattingEnabled = true;
+			resources.ApplyResources(this.colorSchemeComboBox, "colorSchemeComboBox");
 			this.colorSchemeComboBox.Name = "colorSchemeComboBox";
 			this.colorSchemeComboBox.SelectedIndexChanged += new System.EventHandler(this.colorSchemeComboBox_SelectedIndexChanged);
 			// 
@@ -1123,9 +1118,9 @@ namespace BlueBrick
 			// 
 			// samplePictureBox
 			// 
-			resources.ApplyResources(this.samplePictureBox, "samplePictureBox");
 			this.samplePictureBox.BackColor = System.Drawing.Color.White;
 			this.samplePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.samplePictureBox, "samplePictureBox");
 			this.samplePictureBox.Name = "samplePictureBox";
 			this.samplePictureBox.TabStop = false;
 			// 
@@ -1136,9 +1131,9 @@ namespace BlueBrick
 			// 
 			// subGridColorPictureBox
 			// 
-			resources.ApplyResources(this.subGridColorPictureBox, "subGridColorPictureBox");
 			this.subGridColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.subGridColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.subGridColorPictureBox, "subGridColorPictureBox");
 			this.subGridColorPictureBox.Name = "subGridColorPictureBox";
 			this.subGridColorPictureBox.TabStop = false;
 			this.subGridColorPictureBox.Click += new System.EventHandler(this.subGridColorPictureBox_Click);
@@ -1150,9 +1145,9 @@ namespace BlueBrick
 			// 
 			// gridColorPictureBox
 			// 
-			resources.ApplyResources(this.gridColorPictureBox, "gridColorPictureBox");
 			this.gridColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.gridColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.gridColorPictureBox, "gridColorPictureBox");
 			this.gridColorPictureBox.Name = "gridColorPictureBox";
 			this.gridColorPictureBox.TabStop = false;
 			this.gridColorPictureBox.Click += new System.EventHandler(this.gridColorPictureBox_Click);
@@ -1164,9 +1159,9 @@ namespace BlueBrick
 			// 
 			// backgroundColorPictureBox
 			// 
-			resources.ApplyResources(this.backgroundColorPictureBox, "backgroundColorPictureBox");
 			this.backgroundColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.backgroundColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.backgroundColorPictureBox, "backgroundColorPictureBox");
 			this.backgroundColorPictureBox.Name = "backgroundColorPictureBox";
 			this.backgroundColorPictureBox.TabStop = false;
 			this.backgroundColorPictureBox.Click += new System.EventHandler(this.backgroundColorPictureBox_Click);
@@ -1183,23 +1178,23 @@ namespace BlueBrick
 			// 
 			// partLibTabPage
 			// 
-			resources.ApplyResources(this.partLibTabPage, "partLibTabPage");
 			this.partLibTabPage.Controls.Add(this.groupBox16);
 			this.partLibTabPage.Controls.Add(this.groupBox13);
 			this.partLibTabPage.Controls.Add(this.groupBox12);
 			this.partLibTabPage.Controls.Add(this.groupBox11);
+			resources.ApplyResources(this.partLibTabPage, "partLibTabPage");
 			this.partLibTabPage.Name = "partLibTabPage";
 			this.partLibTabPage.UseVisualStyleBackColor = true;
 			// 
 			// groupBox16
 			// 
-			resources.ApplyResources(this.groupBox16, "groupBox16");
 			this.groupBox16.Controls.Add(this.PartLibBrowseBudgetFileButton);
 			this.groupBox16.Controls.Add(this.PartLibBudgetFilenameTextBox);
 			this.groupBox16.Controls.Add(this.label38);
 			this.groupBox16.Controls.Add(this.PartLibDefaultBudgetNotLimitedradioButton);
 			this.groupBox16.Controls.Add(this.PartLibDefaultBudgetZeroRadioButton);
 			this.groupBox16.Controls.Add(this.label37);
+			resources.ApplyResources(this.groupBox16, "groupBox16");
 			this.groupBox16.Name = "groupBox16";
 			this.groupBox16.TabStop = false;
 			// 
@@ -1212,8 +1207,8 @@ namespace BlueBrick
 			// 
 			// PartLibBudgetFilenameTextBox
 			// 
-			resources.ApplyResources(this.PartLibBudgetFilenameTextBox, "PartLibBudgetFilenameTextBox");
 			this.PartLibBudgetFilenameTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+			resources.ApplyResources(this.PartLibBudgetFilenameTextBox, "PartLibBudgetFilenameTextBox");
 			this.PartLibBudgetFilenameTextBox.Name = "PartLibBudgetFilenameTextBox";
 			this.PartLibBudgetFilenameTextBox.ReadOnly = true;
 			this.PartLibBudgetFilenameTextBox.TabStop = false;
@@ -1244,13 +1239,13 @@ namespace BlueBrick
 			// 
 			// groupBox13
 			// 
-			resources.ApplyResources(this.groupBox13, "groupBox13");
 			this.groupBox13.Controls.Add(this.label36);
 			this.groupBox13.Controls.Add(this.partLibBudgetFilterBackColorPictureBox);
 			this.groupBox13.Controls.Add(this.label29);
 			this.groupBox13.Controls.Add(this.PartLibFilteredBackColorPictureBox);
 			this.groupBox13.Controls.Add(this.label26);
 			this.groupBox13.Controls.Add(this.PartLibBackColorPictureBox);
+			resources.ApplyResources(this.groupBox13, "groupBox13");
 			this.groupBox13.Name = "groupBox13";
 			this.groupBox13.TabStop = false;
 			// 
@@ -1261,9 +1256,9 @@ namespace BlueBrick
 			// 
 			// partLibBudgetFilterBackColorPictureBox
 			// 
-			resources.ApplyResources(this.partLibBudgetFilterBackColorPictureBox, "partLibBudgetFilterBackColorPictureBox");
 			this.partLibBudgetFilterBackColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.partLibBudgetFilterBackColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.partLibBudgetFilterBackColorPictureBox, "partLibBudgetFilterBackColorPictureBox");
 			this.partLibBudgetFilterBackColorPictureBox.Name = "partLibBudgetFilterBackColorPictureBox";
 			this.partLibBudgetFilterBackColorPictureBox.TabStop = false;
 			this.partLibBudgetFilterBackColorPictureBox.Click += new System.EventHandler(this.partLibBudgetFilterBackColorPictureBox_Click);
@@ -1275,9 +1270,9 @@ namespace BlueBrick
 			// 
 			// PartLibFilteredBackColorPictureBox
 			// 
-			resources.ApplyResources(this.PartLibFilteredBackColorPictureBox, "PartLibFilteredBackColorPictureBox");
 			this.PartLibFilteredBackColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.PartLibFilteredBackColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.PartLibFilteredBackColorPictureBox, "PartLibFilteredBackColorPictureBox");
 			this.PartLibFilteredBackColorPictureBox.Name = "PartLibFilteredBackColorPictureBox";
 			this.PartLibFilteredBackColorPictureBox.TabStop = false;
 			this.PartLibFilteredBackColorPictureBox.Click += new System.EventHandler(this.PartLibFilteredBackColorPictureBox_Click);
@@ -1289,20 +1284,20 @@ namespace BlueBrick
 			// 
 			// PartLibBackColorPictureBox
 			// 
-			resources.ApplyResources(this.PartLibBackColorPictureBox, "PartLibBackColorPictureBox");
 			this.PartLibBackColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.PartLibBackColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.PartLibBackColorPictureBox, "PartLibBackColorPictureBox");
 			this.PartLibBackColorPictureBox.Name = "PartLibBackColorPictureBox";
 			this.PartLibBackColorPictureBox.TabStop = false;
 			this.PartLibBackColorPictureBox.Click += new System.EventHandler(this.PartLibBackColorPictureBox_Click);
 			// 
 			// groupBox12
 			// 
-			resources.ApplyResources(this.groupBox12, "groupBox12");
 			this.groupBox12.Controls.Add(this.displayPartDescriptionCheckBox);
 			this.groupBox12.Controls.Add(this.displayPartColorCheckBox);
 			this.groupBox12.Controls.Add(this.displayPartIDCheckBox);
 			this.groupBox12.Controls.Add(this.displayBubbleInfoCheckBox);
+			resources.ApplyResources(this.groupBox12, "groupBox12");
 			this.groupBox12.Name = "groupBox12";
 			this.groupBox12.TabStop = false;
 			// 
@@ -1335,11 +1330,11 @@ namespace BlueBrick
 			// 
 			// groupBox11
 			// 
-			resources.ApplyResources(this.groupBox11, "groupBox11");
 			this.groupBox11.Controls.Add(this.alphabeticOrderButton);
 			this.groupBox11.Controls.Add(this.PartLibTabListBox);
 			this.groupBox11.Controls.Add(this.MoveDownButton);
 			this.groupBox11.Controls.Add(this.MoveUpButton);
+			resources.ApplyResources(this.groupBox11, "groupBox11");
 			this.groupBox11.Name = "groupBox11";
 			this.groupBox11.TabStop = false;
 			// 
@@ -1352,8 +1347,8 @@ namespace BlueBrick
 			// 
 			// PartLibTabListBox
 			// 
-			resources.ApplyResources(this.PartLibTabListBox, "PartLibTabListBox");
 			this.PartLibTabListBox.FormattingEnabled = true;
+			resources.ApplyResources(this.PartLibTabListBox, "PartLibTabListBox");
 			this.PartLibTabListBox.Name = "PartLibTabListBox";
 			this.PartLibTabListBox.SelectedValueChanged += new System.EventHandler(this.PartLibTabListBox_SelectedValueChanged);
 			// 
@@ -1373,7 +1368,6 @@ namespace BlueBrick
 			// 
 			// shortcutKeysTabPage
 			// 
-			resources.ApplyResources(this.shortcutKeysTabPage, "shortcutKeysTabPage");
 			this.shortcutKeysTabPage.Controls.Add(this.comboBoxConnexion);
 			this.shortcutKeysTabPage.Controls.Add(this.comboBoxPartNum);
 			this.shortcutKeysTabPage.Controls.Add(this.label13);
@@ -1384,26 +1378,27 @@ namespace BlueBrick
 			this.shortcutKeysTabPage.Controls.Add(this.comboBoxKey);
 			this.shortcutKeysTabPage.Controls.Add(this.label12);
 			this.shortcutKeysTabPage.Controls.Add(this.listViewShortcutKeys);
+			resources.ApplyResources(this.shortcutKeysTabPage, "shortcutKeysTabPage");
 			this.shortcutKeysTabPage.Name = "shortcutKeysTabPage";
 			this.shortcutKeysTabPage.UseVisualStyleBackColor = true;
 			// 
 			// comboBoxConnexion
 			// 
-			resources.ApplyResources(this.comboBoxConnexion, "comboBoxConnexion");
 			this.comboBoxConnexion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.comboBoxConnexion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.comboBoxConnexion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxConnexion.FormattingEnabled = true;
+			resources.ApplyResources(this.comboBoxConnexion, "comboBoxConnexion");
 			this.comboBoxConnexion.Name = "comboBoxConnexion";
 			this.comboBoxConnexion.Sorted = true;
 			// 
 			// comboBoxPartNum
 			// 
-			resources.ApplyResources(this.comboBoxPartNum, "comboBoxPartNum");
 			this.comboBoxPartNum.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.comboBoxPartNum.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.comboBoxPartNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxPartNum.FormattingEnabled = true;
+			resources.ApplyResources(this.comboBoxPartNum, "comboBoxPartNum");
 			this.comboBoxPartNum.Name = "comboBoxPartNum";
 			this.comboBoxPartNum.Sorted = true;
 			this.comboBoxPartNum.SelectedIndexChanged += new System.EventHandler(this.comboBoxPartNum_SelectedIndexChanged);
@@ -1434,7 +1429,6 @@ namespace BlueBrick
 			// 
 			// comboBoxAction
 			// 
-			resources.ApplyResources(this.comboBoxAction, "comboBoxAction");
 			this.comboBoxAction.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.comboBoxAction.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.comboBoxAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1451,12 +1445,12 @@ namespace BlueBrick
             resources.GetString("comboBoxAction.Items8"),
             resources.GetString("comboBoxAction.Items9"),
             resources.GetString("comboBoxAction.Items10")});
+			resources.ApplyResources(this.comboBoxAction, "comboBoxAction");
 			this.comboBoxAction.Name = "comboBoxAction";
 			this.comboBoxAction.SelectedIndexChanged += new System.EventHandler(this.comboBoxAction_SelectedIndexChanged);
 			// 
 			// comboBoxKey
 			// 
-			resources.ApplyResources(this.comboBoxKey, "comboBoxKey");
 			this.comboBoxKey.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.comboBoxKey.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.comboBoxKey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1539,6 +1533,7 @@ namespace BlueBrick
             resources.GetString("comboBoxKey.Items74"),
             resources.GetString("comboBoxKey.Items75"),
             resources.GetString("comboBoxKey.Items76")});
+			resources.ApplyResources(this.comboBoxKey, "comboBoxKey");
 			this.comboBoxKey.Name = "comboBoxKey";
 			// 
 			// label12
@@ -1548,7 +1543,6 @@ namespace BlueBrick
 			// 
 			// listViewShortcutKeys
 			// 
-			resources.ApplyResources(this.listViewShortcutKeys, "listViewShortcutKeys");
 			this.listViewShortcutKeys.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Key,
             this.Action,
@@ -1557,6 +1551,7 @@ namespace BlueBrick
 			this.listViewShortcutKeys.FullRowSelect = true;
 			this.listViewShortcutKeys.GridLines = true;
 			this.listViewShortcutKeys.HideSelection = false;
+			resources.ApplyResources(this.listViewShortcutKeys, "listViewShortcutKeys");
 			this.listViewShortcutKeys.Name = "listViewShortcutKeys";
 			this.listViewShortcutKeys.Sorting = System.Windows.Forms.SortOrder.Ascending;
 			this.listViewShortcutKeys.UseCompatibleStateImageBehavior = false;
@@ -1582,16 +1577,16 @@ namespace BlueBrick
 			// 
 			// cancelButton
 			// 
-			resources.ApplyResources(this.cancelButton, "cancelButton");
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			resources.ApplyResources(this.cancelButton, "cancelButton");
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
 			// 
 			// okButton
 			// 
-			resources.ApplyResources(this.okButton, "okButton");
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			resources.ApplyResources(this.okButton, "okButton");
 			this.okButton.Name = "okButton";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.buttonOk_Click);
