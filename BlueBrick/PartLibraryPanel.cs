@@ -314,6 +314,9 @@ namespace BlueBrick
 
 				// after creating all the tabs, sort them according to the settings
 				updateAppearanceAccordingToSettings(true, false, false, false, true, true);
+
+				// call the index event handler manually cause, it is not called on Mono
+				PartLibraryPanel_SelectedIndexChanged(null, null);
 			}
 
 			// suspend layout when rebuilding the library
