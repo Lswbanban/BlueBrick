@@ -1453,6 +1453,28 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// Clear the selection and select only the specified object in the selection list.
+		/// This method also refresh the bouding rectangle.
+		/// </summary>
+		/// <param name="obj">The object to select</param>
+		public void selectOnlyThisObject(LayerItem obj)
+		{
+			mSelectedObjects.Clear();
+			addObjectInSelection(obj);
+		}
+
+		/// <summary>
+		/// Clear the selection and select only the specified objects in the selection list.
+		/// This method also refresh the bouding rectangle.
+		/// </summary>
+		/// <param name="obj">The list of object to select</param>
+		public void selectOnlyThisObject<T>(List<T> objList) where T : LayerItem
+		{
+			mSelectedObjects.Clear();
+			addObjectInSelection(objList);
+		}
+
+		/// <summary>
 		/// clear the slection and select all the object in parameters.
 		/// This method is unsafe because if one object in parameter is part of a group,
 		/// the whole group will not be selected. Also the necessary updates on the MainForms are 

@@ -206,8 +206,11 @@ namespace BlueBrick.Actions.Bricks
 			if (mNewConnectionPoint != null)
 				moveToConnect(mNewConnectionPoint);
 
+			// reselect the items of the action, cause after we will update the connectivity of the selection
+			// the selection may have changed ater a succession of undo/redo
+			mLayer.selectOnlyThisObject(mItems);
+
 			// update the bounding rectangle in any case because the brick is not necessary squared
-			mLayer.updateBoundingSelectionRectangle();
 			if (mMustUpdateBrickConnectivity)
 				(mLayer as LayerBrick).updateBrickConnectivityOfSelection(false);
 		}
@@ -232,8 +235,11 @@ namespace BlueBrick.Actions.Bricks
 			if (mOldConnectionPoint != null)
 				moveToConnect(mOldConnectionPoint);
 
+			// reselect the items of the action, cause after we will update the connectivity of the selection
+			// the selection may have changed ater a succession of undo/redo
+			mLayer.selectOnlyThisObject(mItems);
+
 			// update the bounding rectangle in any case because the brick is not necessary squared
-			mLayer.updateBoundingSelectionRectangle();
 			if (mMustUpdateBrickConnectivity)
 				(mLayer as LayerBrick).updateBrickConnectivityOfSelection(false);
 		}
