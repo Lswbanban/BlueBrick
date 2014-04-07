@@ -340,14 +340,11 @@ namespace BlueBrick
 
 		private void nameTextBox_TextChanged(object sender, EventArgs e)
 		{
+			// unsubscribe the event handler to avoid being called back (make Mono crash probably on stack over flow)
+			this.nameTextBox.TextChanged -= this.nameTextBox_TextChanged;
+
 			// construct the part number from the text in the textbox
 			string partNumber = this.getGroupName(nameTextBox.Text);
-
-			// check if the name is empty or contains any forbidden char for a file name
-			bool isEmptyName = (nameTextBox.Text.Trim().Length == 0);
-			bool hasForbiddenChar = (partNumber.IndexOfAny(mForbiddenChar) >= 0);
-			bool hasCyclicReference = isCyclicReferenceDetected(mGroupToSave, partNumber);
-			bool disableOkButton = (isEmptyName || hasForbiddenChar || hasCyclicReference);
 
 			// add a default extension if not added by user
 			const string DEFAULT_SUFFIX = ".SET";
@@ -359,7 +356,7 @@ namespace BlueBrick
 				textOfTheUser = nameTextBox.Text;
 				mSuffixAddedToGroupName = DEFAULT_SUFFIX;
 			}
-			else if ((mSuffixAddedToGroupName != string.Empty) && nameTextBox.Text.EndsWith(mSuffixAddedToGroupName))					 
+			else if ((mSuffixAddedToGroupName != string.Empty) && nameTextBox.Text.EndsWith(mSuffixAddedToGroupName))
 			{
 				// remove the suffix (if not empty)
 				textOfTheUser = nameTextBox.Text.Remove(nameTextBox.Text.Length - mSuffixAddedToGroupName.Length);
@@ -396,6 +393,12 @@ namespace BlueBrick
 				nameTextBox.AppendText(mSuffixAddedToGroupName);
 			}
 			nameTextBox.Select(cursorPosition, 0);
+
+			// check if the name is empty or contains any forbidden char for a file name
+			bool isEmptyName = (textOfTheUser.Trim().Length == 0);
+			bool hasForbiddenChar = (partNumber.IndexOfAny(mForbiddenChar) >= 0);
+			bool hasCyclicReference = isCyclicReferenceDetected(mGroupToSave, partNumber);
+			bool disableOkButton = (isEmptyName || hasForbiddenChar || hasCyclicReference);
 
 			// set the corresponding error text
 			if (isEmptyName)
@@ -438,6 +441,9 @@ namespace BlueBrick
 
 			// enable or disable the Ok button
 			this.okButton.Enabled = !disableOkButton;
+
+			// resubscribe the event handler after changing the text
+			this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
 		}
 
 		private void languageCodeComboBox_TextChanged(object sender, EventArgs e)
