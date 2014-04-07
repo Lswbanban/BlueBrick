@@ -162,8 +162,7 @@ namespace BlueBrick.Actions.Bricks
 			mBrickLayer.addBrick(mBrick, mBrickIndex);
 
 			// change the selection to the new added brick (should be done after the add)
-			mBrickLayer.clearSelection();
-			mBrickLayer.addObjectInSelection(mBrick);
+			mBrickLayer.selectOnlyThisObject(mBrick);
 			// update the connectivity of the bricks after selecting it
 			mBrickLayer.updateBrickConnectivityOfSelection(false);
 

@@ -150,8 +150,7 @@ namespace BlueBrick.Actions.Bricks
 				mBrickLayer.updateFullBrickConnectivityForOneBrick(mItems[i] as LayerBrick.Brick);
 			}
 			// finally reselect all the duplicated brick
-			mBrickLayer.clearSelection();
-			mBrickLayer.addObjectInSelection(mItems);
+			mBrickLayer.selectOnlyThisObject(mItems);
 		}
 
 		public override void undo()

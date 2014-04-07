@@ -91,8 +91,7 @@ namespace BlueBrick.Actions.Bricks
 				mBrickLayer.updateFullBrickConnectivityForOneBrick(mBricks[i] as LayerBrick.Brick);
 			}
 			// finally reselect all the undeleted brick
-			mBrickLayer.clearSelection();
-			mBrickLayer.addObjectInSelection(mBricks);
+			mBrickLayer.selectOnlyThisObject(mBricks);
 		}
 
 		public override void undo()

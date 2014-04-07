@@ -179,8 +179,6 @@ namespace BlueBrick.Actions.Bricks
 		/// </summary>
 		public void finishActionConstruction()
 		{
-			// restore the selection
-			mBrickLayer.unsafeSetSelection(mSelectedBricksBeforeFlexMove);
 			// save the final state and go back to init state to prepare the redo
 			recordState(ref mFinalState);
 			moveBricks(mInitState);
@@ -625,9 +623,15 @@ namespace BlueBrick.Actions.Bricks
 				transform.mBrick.Position = transform.mPosition;
 			}
 
+			// we need to reselect the brick that were selected when the action was created to be sure
+			// that the update of the connection will be ok, just after (with a succession of undo/redo the selection can change) 
+			mBrickLayer.selectOnlyThisObject(mBricksInTheFlexChain);
+
 			// update the bounding rectangle and connectivity
-			mBrickLayer.updateBoundingSelectionRectangle();
 			mBrickLayer.updateBrickConnectivityOfSelection(false);
+
+			// restore the selection
+			mBrickLayer.selectOnlyThisObject(mSelectedBricksBeforeFlexMove);
 		}
 		#endregion
 

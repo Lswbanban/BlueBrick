@@ -56,18 +56,26 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
+			LayerBrick brickLayer = mLayer as LayerBrick;
+			// reselect the items of the action, cause after we will update the connectivity of the selection
+			// and do it before calling the base class cause the base class will update the selection rectangle
+			brickLayer.selectOnlyThisObject(mItems);
 			// call the base class
 			base.redo();
 			// update the brick connectivity
-			(mLayer as LayerBrick).updateBrickConnectivityOfSelection(false);
+			brickLayer.updateBrickConnectivityOfSelection(false);
 		}
 
 		public override void undo()
 		{
+			LayerBrick brickLayer = mLayer as LayerBrick;
+			// reselect the items of the action, cause after we will update the connectivity of the selection
+			// and do it before calling the base class cause the base class will update the selection rectangle
+			brickLayer.selectOnlyThisObject(mItems);
 			// call the base class
 			base.undo();
 			// update the brick connectivity
-			(mLayer as LayerBrick).updateBrickConnectivityOfSelection(false);
+			brickLayer.updateBrickConnectivityOfSelection(false);
 		}
 	}
 }

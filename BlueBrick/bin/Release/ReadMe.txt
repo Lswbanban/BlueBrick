@@ -63,6 +63,15 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
+Todo list before the release:
+1) bug when saving a group which also contains a group
+2) I have a more serious issue reported by the german translator about the budget limitation. I think I found the correct way to solve it (on paper) but still need to to it. I plan to work on it Monday as I'm in vaccation and tomorow I got some visit.
+3) finish testing under Mono
+4) I need to finish the work on the data you've started (as I explained to you before)
+5) I will probably try to update the english doc to reflect the new features.
+6) I plan to shoot a video that I will post on youtube on the new features for the release.
+
+
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
@@ -137,6 +146,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): When adding a new text, it was added in the back instead of the front like for parts
 - BUGFIX (Alban): The style (italic, bold, strikeout, etc...) for texts were not saved.
 - BUGFIX (Alban): Make the first display of each tab of the part library faster (especially on Mono which could take several seconds before)
+- BUGFIX (Alban): The brick connections were not correctly recomputed after a series of undo
 
 Bug fixed in 1.7.1.0:
 - NEW FEATURE (cimddwc): A shortcut key to bring the selection to front or send it to back (page up/page down by default)
