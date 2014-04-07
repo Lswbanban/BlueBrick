@@ -65,8 +65,7 @@ Please refer to the help file that comes with the application (menu Help > Conte
 Open bugs:
 Todo list before the release:
 1) bug when saving a group which also contains a group
-2) I have a more serious issue reported by the german translator about the budget limitation. I think I found the correct way to solve it (on paper) but still need to to it. I plan to work on it Monday as I'm in vaccation and tomorow I got some visit.
-3) finish testing under Mono
+- BUG (Ludger): you can exceed the budget number by saving a group in the library and adding that group after on your map
 4) I need to finish the work on the data you've started (as I explained to you before)
 5) I will probably try to update the english doc to reflect the new features.
 6) I plan to shoot a video that I will post on youtube on the new features for the release.
@@ -93,14 +92,14 @@ Todo list before the release:
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
 - MISSING FEATURE (Ludo & Denis): Add some optionnal arrows at the extremities of the linear rulers.
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
-- BUG (Alban): In the export window you can specify a selection rectangle null by setting a bottom < top
-- BUG (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
-- BUG (Alban): When you replace a part in a group, the display area of the group is not recomptuted
-- BUG (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
+- BUG #53 (Alban): In the export window you can specify a selection rectangle null by setting a bottom < top
+- BUG #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
+- BUG #55 (Alban): When you replace a part in a group, the display area of the group is not recomptuted
+- BUG #56 (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
-- BUG (Alban): The drag and drop of file is not working under Mono 2.10
+- BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
+- BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
-- BUG (Ludger): you can exceed the budget number by saving a group in the library and adding that group after on your map
 - BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): the layer panel is slow to resfresh
 
@@ -116,7 +115,7 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (David): Add a option in the preference to let the user choose if he wants an offset after a copy/paste
 - NEW FEATURE #37 (doc_brown): Add a checkbox in the warning message box when not saving in BBM format.
 - NEW FEATURE (Alban): Add more options in the preference to create any of the 5 types of layer for a new map
-- NEW FEATURE (Pierre): The right click button can now cancel the current edition if you are in the middle of an edition (for any type of layer)
+- NEW FEATURE (Pierre): The right click button can now cancel the current edition if you are in the middle of an edition (for any type of layer), but not under Mono
 - NEW FEATURE (Alban): Add some checkbox in the export window to choose what to export (currently you can add the watermark, the Hull for bricks, the electric circuit and the connection points)
 - NEW FEATURE #8 (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image: now you can draw the Hull of the part in the exported image.
 - NEW FEATURE (Alban): In the generated part list, don't list the sub part of a set, list only the set (unless you ungroup the set).
