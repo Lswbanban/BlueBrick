@@ -289,7 +289,7 @@
     <value>O BlueBrick encontrou problemas no carregamento de alguns ficheiros XML base de dados de peças; esses ficheiros foram ignorados. Este problema pode ter ocorrido porque um dos ficheiros tem erros de sintaxe. Corrija a sintaxe ou apague os ficheiros com erro para remover este aviso. Os ficheiros em causa são:</value>
   </data>
   <data name="ErrorMsgCannotOpenMap" xml:space="preserve">
-    <value>Não consegue abrir o mapa &amp;.</value>
+    <value>Não se consegue abrir o mapa &amp;.</value>
   </data>
   <data name="ErrorMsgCanNotPaste" xml:space="preserve">
     <value>Não pode ser colocado um objecto do tipo &amp; na camada actual que é do tipo &amp;&amp;.</value>
@@ -398,5 +398,122 @@
   </data>
   <data name="ErrorMsgLayerTypeUnknown" xml:space="preserve">
     <value>Desconhecido</value>
+  </data>
+  <data name="ActionAddLayerRuler" xml:space="preserve">
+    <value>Adicionar uma Camada de Regra</value>
+  </data>
+  <data name="ActionAddRuler" xml:space="preserve">
+    <value>Adicionar uma nova regra</value>
+  </data>
+  <data name="ActionAttachRulerToBrick" xml:space="preserve">
+    <value>Anexar uma regra a uma peça &amp;</value>
+  </data>
+  <data name="ActionBringRulerToFront" xml:space="preserve">
+    <value>Trazer para a Frente as Regras Selecionadas</value>
+  </data>
+  <data name="ActionDeleteRuler" xml:space="preserve">
+    <value>Eliminar uma Regra</value>
+  </data>
+  <data name="ActionDeleteSeveralRulers" xml:space="preserve">
+    <value>Eliminar várias Regras</value>
+  </data>
+  <data name="ActionDetachRuler" xml:space="preserve">
+    <value>Retire uma regra</value>
+  </data>
+  <data name="ActionDuplicateRuler" xml:space="preserve">
+    <value>Duplicar uma regra</value>
+  </data>
+  <data name="ActionDuplicateSeveralRulers" xml:space="preserve">
+    <value>Duplicar várias regras</value>
+  </data>
+  <data name="ActionEditRuler" xml:space="preserve">
+    <value>Editar as propriedades de uma regra</value>
+  </data>
+  <data name="ActionMoveRuler" xml:space="preserve">
+    <value>Mover uma regra</value>
+  </data>
+  <data name="ActionMoveRulerControlPoint" xml:space="preserve">
+    <value>Mover o ponto de controlo de uma regra</value>
+  </data>
+  <data name="ActionMoveSeveralRulers" xml:space="preserve">
+    <value>Mover várias regras</value>
+  </data>
+  <data name="ActionRotateRuler" xml:space="preserve">
+    <value>Rodar uma regra</value>
+  </data>
+  <data name="ActionRotateSeveralRulers" xml:space="preserve">
+    <value>Rodar várias regras</value>
+  </data>
+  <data name="ActionScaleCircularRuler" xml:space="preserve">
+    <value>Modificar o raio da Regra</value>
+  </data>
+  <data name="ActionScaleLinearRuler" xml:space="preserve">
+    <value>Modificar o deslocamento de uma Regra</value>
+  </data>
+  <data name="ActionSendRulerToBack" xml:space="preserve">
+    <value>Enviar as Regras selecionadas para trás</value>
+  </data>
+  <data name="DefaultSaveFileNameForBudget" xml:space="preserve">
+    <value>MeuOrçamento.bbb</value>
+  </data>
+  <data name="ErrorMsgAbortButton" xml:space="preserve">
+    <value>Abortar</value>
+  </data>
+  <data name="ErrorMsgBudgetWasModified" xml:space="preserve">
+    <value>O seu Orçamento não está guardado. Quer guardar as modificações?</value>
+  </data>
+  <data name="ErrorMsgCancelButton" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ErrorMsgCannotOpenBudget" xml:space="preserve">
+    <value>Não se consegue abrir o Orçamento &amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveBudget" xml:space="preserve">
+    <value>Não se consegue guardar o Orçamento &amp;.</value>
+  </data>
+  <data name="ErrorMsgCannotSaveCustomPart" xml:space="preserve">
+    <value>BlueBrick encontrou um problema ao guardar o seu grupo no ficheiro "parts/Custom". Por favor leia a seguinte mensagem para mais informações:</value>
+  </data>
+  <data name="ErrorMsgIgnoreButton" xml:space="preserve">
+    <value>Ignorar</value>
+  </data>
+  <data name="ErrorMsgLayerTypeRuler" xml:space="preserve">
+    <value>Regra</value>
+  </data>
+  <data name="ErrorMsgNoButton" xml:space="preserve">
+    <value>Não</value>
+  </data>
+  <data name="ErrorMsgOkButton" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="ErrorMsgReplaceExistingShortcut" xml:space="preserve">
+    <value>Já existe um atalho para esta tecla. Deseja substitui-lo?</value>
+  </data>
+  <data name="ErrorMsgRetryButton" xml:space="preserve">
+    <value>Tente novamente</value>
+  </data>
+  <data name="ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation" xml:space="preserve">
+    <value>Algumas peças não serão duplicadas, devido ao seu limite actual de orçamento. Quer continuar?</value>
+  </data>
+  <data name="ErrorMsgYesButton" xml:space="preserve">
+    <value>Sim</value>
+  </data>
+  <data name="InputFilterIndication" xml:space="preserve">
+    <value>Escreva aqui as palavras-chave para filtrar</value>
+  </data>
+  <data name="LayerRulerOptionTitle" xml:space="preserve">
+    <value>Opções para camada de Regras</value>
+  </data>
+  <data name="PartLibMenuItemEditBudget" xml:space="preserve">
+    <value>Editar o orçamento para esta peça</value>
+  </data>
+  <data name="PartLibMenuItemShowBudgetNumbers" xml:space="preserve">
+    <value>Mostrar os números do orçamento</value>
+  </data>
+  <data name="PartLibMenuItemShowOnlyBudgetedParts" xml:space="preserve">
+    <value>Mostrar apenas as peças dentro do valor orçamentado</value>
+  </data>
+  <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
+    <value>Usar limites ao orçamento</value>
   </data>
 </root>
