@@ -69,6 +69,7 @@ Todo list before the release:
 4) I need to finish the work on the data you've started (as I explained to you before)
 5) I will probably try to update the english doc to reflect the new features.
 6) I plan to shoot a video that I will post on youtube on the new features for the release.
+7) add the french doc (make it downloadable in BB code?)
 
 
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
