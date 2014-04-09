@@ -545,7 +545,7 @@ namespace BlueBrick.MapData
 						foreach (Layer.LayerItem item in bricksInTheGroup)
 						{
 							LayerBrick.Brick brick = item as LayerBrick.Brick;
-							if ((brick != null) && brick.HasConnectionPoint)
+							if ((brick != null) && (brick.ConnectionPoints != null)) // do not use brick.HasConnection cause this accessor check if the connection type is 0
 							{
 								if (brick == mBrickThatHoldsActiveConnection)
 								{
@@ -562,15 +562,15 @@ namespace BlueBrick.MapData
 				}
 				set
 				{
-					// reset the pointer on the brick and init a connection index variable with the value
-					mBrickThatHoldsActiveConnection = null;
+					// init a connection index variable with the value which will be decremented by each brick connection count
 					int connexionIndex = value;
+					bool needToResetTheActiveConnectionBrick = true;
 					// iterate through all the connection of the first bricks to reach the correct brick
 					List<LayerItem> bricksInTheGroup = getAllLeafItems();
 					foreach (Layer.LayerItem item in bricksInTheGroup)
 					{
 						LayerBrick.Brick brick = item as LayerBrick.Brick;
-						if ((brick != null) && brick.HasConnectionPoint)
+						if ((brick != null) && (brick.ConnectionPoints != null)) // do not use brick.HasConnection cause this accessor check if the connection type is 0
 						{
 							int connectionCount = brick.ConnectionPoints.Count;
 							if (connexionIndex >= connectionCount)
@@ -582,10 +582,14 @@ namespace BlueBrick.MapData
 								// set the active connexion point with the wanted one
 								brick.ActiveConnectionPointIndex = connexionIndex;
 								mBrickThatHoldsActiveConnection = brick;
+								needToResetTheActiveConnectionBrick = false;
 								break;
 							}
 						}
 					}
+					// reset the pointer if we didn't find the correct brick
+					if (needToResetTheActiveConnectionBrick)
+						mBrickThatHoldsActiveConnection = null;
 				}
 			}
 
