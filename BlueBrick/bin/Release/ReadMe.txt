@@ -66,7 +66,10 @@ Open bugs:
 Todo list before the release:
 1) bug when saving a group which also contains a group
 - BUG (Ludger): you can exceed the budget number by saving a group in the library and adding that group after on your map
-4) I need to finish the work on the data you've started (as I explained to you before)
+4) Work on database:
+	- fix the parts made of group after fixing bug 1
+	- Add new parts?
+	- create the Hulls?
 5) I will probably try to update the english doc to reflect the new features.
 6) I plan to shoot a video that I will post on youtube on the new features for the release.
 7) add the french doc (make it downloadable in BB code?)
@@ -92,7 +95,10 @@ Todo list before the release:
 - MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
 - MISSING FEATURE (Ludo & Denis): Add some optionnal arrows at the extremities of the linear rulers.
+- MISSING FEATURE (Ludo): Move the measure values along the linear rulers in order to avoid overlapping of close parallel rulers.
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
+- MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
+- BUG (Alban): After reloading the part library, all the settings of the part lib are reset to what it was when the application started instead of what it was just before reloading
 - BUG #53 (Alban): In the export window you can specify a selection rectangle null by setting a bottom < top
 - BUG #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
 - BUG #55 (Alban): When you replace a part in a group, the display area of the group is not recomptuted
@@ -130,7 +136,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX #47 (doc_brown): the LDraw header is not following the standard definition
 - BUGFIX (Alban): Find/Replace was not working with the named groups from the library (it didn't appear in the list and the replacement did nothing anyway) 
 - BUGFIX (Alban): When changing the order of the part lib tabs, the previously selected tab was not reselected
-- BUGFIX (Alban): The selected tab of the part lib was not saved when exiting BB and not reset at starting
+- BUGFIX (Alban): The current selected tab of the Part Lib was not saved when exiting the application, and not reset when restarting.
 - BUGFIX (Alban): If you do a flex move on a hinged set with other elements (for example 4728-1), only the flex part are selected, so you can split the set without ungrouping it
 - BUGFIX (Alban): Bug in the creation of the library image for some group (for example 4728-1)
 - BUGFIX (Alban): The groups are not saved in LDraw format (so Flex part, cannot be reloaded as a group in BB)
@@ -141,7 +147,6 @@ Bug fixed in 1.8.0.0:
 - BUGFIX (Alban): In the Preferences Shortcut tab, selecting a shortcut in the list updates the combo boxes below (for easy modification of an existing shortcut)
 - BUGFIX (Alban): Precision error during the computation of the size for parts with a Hull defined in the xml.
 - BUGFIX (Alban): When adding a group from the library, the brick were added in reverse order.
-- BUGFIX (Alban): The current selected tab of the Part Lib was not saved when exiting the application, and not reset when restarting.
 - BUGFIX (Alban): The group of Texts were not correctly duplicated (specially group of group)
 - BUGFIX (Alban): When adding a new text, it was added in the back instead of the front like for parts
 - BUGFIX (Alban): The style (italic, bold, strikeout, etc...) for texts were not saved.

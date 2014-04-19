@@ -162,6 +162,8 @@ namespace BlueBrick
 				mDescription.Clear();
 				mDescription.Add(BlueBrick.Properties.Settings.Default.Language, description);
 			}
+			// the image URL
+			this.imageURLTextBox.Text = BrickLibrary.Instance.getImageURL(partNumber);
 			// force the event to set the description because we are constructing the window and the focus event is skip
 			descriptionTextBox_Enter(this, null);
 		}
@@ -239,6 +241,9 @@ namespace BlueBrick
 			// in library? Only the top group is in library, the other one are hidden (normal behavior)
 			if (groupNumber != 0)
 				xmlWriter.WriteElementString("NotListedInLibrary", "true");
+			// image URL if it exists
+			if (this.imageURLTextBox.Text != string.Empty)
+				xmlWriter.WriteElementString("ImageURL", this.imageURLTextBox.Text);
 			// can ungroup?
 			if (this.canUngroupCheckBox.Checked)
 				xmlWriter.WriteElementString("CanUngroup", "true");
