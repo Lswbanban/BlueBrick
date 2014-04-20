@@ -117,32 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="generalTabPage.Text" xml:space="preserve">
-    <value>Algemeen</value>
-  </data>
-  <data name="editionTabPage.Text" xml:space="preserve">
-    <value>Editie</value>
-  </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
-    <value>Voorkomen</value>
-  </data>
-  <data name="partLibTabPage.Text" xml:space="preserve">
-    <value>Onderdelenbibliotheek</value>
-  </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Sneltoetsen</value>
-  </data>
-  <data name="groupBox14.Text" xml:space="preserve">
-    <value>Melding</value>
-  </data>
   <data name="displayWarningWhenDuplicateOverBudgetCheckBox.Text" xml:space="preserve">
     <value>Melding tonen als de toegevoegde delen het budget overschrijven</value>
   </data>
   <data name="displayWarningForNotSavingInBBMCheckBox.Text" xml:space="preserve">
     <value>Melding weergeven wanneer er niet als BBM opgelsaan word</value>
   </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Onlangs geopende bestanden</value>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>Melding</value>
   </data>
   <data name="clearRecentFilesButton.Text" xml:space="preserve">
     <value>Lijst recent geopende bestanden wissen</value>
@@ -150,8 +132,8 @@
   <data name="label23.Text" xml:space="preserve">
     <value>Aantal onlangs geopende bestanden</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Prestaties</value>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Onlangs geopende bestanden</value>
   </data>
   <data name="optimComboBox.Items" xml:space="preserve">
     <value>Sneller</value>
@@ -169,8 +151,8 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Geheugen/Snelheid balans</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Ongedaan maken/Opnieuw uitvoeren</value>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Prestaties</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 83</value>
@@ -193,8 +175,8 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Aantal ongedaan maken acties beschikbaar</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Nieuwe kaart instellingen</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Ongedaan maken/Opnieuw uitvoeren</value>
   </data>
   <data name="addAreaLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 17</value>
@@ -221,19 +203,19 @@
     <value>Auteur</value>
   </data>
   <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 17</value>
+    <value>136, 17</value>
   </data>
   <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
-    <value>Voeg een blok laag toe aan een nieuwe kaart</value>
+    <value>Voeg een blok laag toe</value>
   </data>
   <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 17</value>
+    <value>148, 17</value>
   </data>
   <data name="addGridLayerCheckBox.Text" xml:space="preserve">
-    <value>Voeg een rooster laag toe aan een nieuwe kaart</value>
+    <value>Voeg een rooster laag toe</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Taal</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Nieuwe kaart instellingen</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Als u de taal wijzigt moet u de toepassing opnieuw starten.</value>
@@ -241,8 +223,11 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Taal</value>
   </data>
-  <data name="groupBox15.Text" xml:space="preserve">
-    <value>Linialen</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Algemeen</value>
   </data>
   <data name="rulerFontNameLabel.Text" xml:space="preserve">
     <value>lettertype naam</value>
@@ -303,8 +288,8 @@ patroon (dikte)</value>
   <data name="label31.Text" xml:space="preserve">
     <value>Controlepunt radius (in pixels)</value>
   </data>
-  <data name="copyPasteGroupBox.Text" xml:space="preserve">
-    <value>Kopiëren/plakken</value>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Linialen</value>
   </data>
   <data name="OffsetValueLabel.Text" xml:space="preserve">
     <value>Afstand (in studs)</value>
@@ -321,8 +306,8 @@ patroon (dikte)</value>
   <data name="copyOffsetComboBox.Items2" xml:space="preserve">
     <value>Altijd</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Muis</value>
+  <data name="copyPasteGroupBox.Text" xml:space="preserve">
+    <value>Kopiëren/plakken</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label14.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
@@ -343,8 +328,11 @@ patroon (dikte)</value>
   <data name="label3.Text" xml:space="preserve">
     <value>Muiswiel zoom snelheid</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Standaard gebied voorkomen</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Muis</value>
+  </data>
+  <data name="editionTabPage.Text" xml:space="preserve">
+    <value>Editie</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>Standaard cel grootte gebied (in studs)</value>
@@ -352,8 +340,8 @@ patroon (dikte)</value>
   <data name="label28.Text" xml:space="preserve">
     <value>Standaard ondoorzichtigheid (in %)</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Standaard rooster grootte</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Standaard gebied voorkomen</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Standaard aantal onderverdelingen</value>
@@ -361,8 +349,8 @@ patroon (dikte)</value>
   <data name="label21.Text" xml:space="preserve">
     <value>Standaard rooster grootte (in studs)</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Standaard tekst formaat</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Standaard rooster grootte</value>
   </data>
   <data name="defaultFontColorLabel.Text" xml:space="preserve">
     <value>Kleur</value>
@@ -370,8 +358,8 @@ patroon (dikte)</value>
   <data name="defaultFontButton.Text" xml:space="preserve">
     <value>Wijzig lettertype</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Kleuren</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Standaard tekst formaat</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Top van het
@@ -404,6 +392,12 @@ geselecteerde onderdeel</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Kleurenschema</value>
   </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Kleuren</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Voorkomen</value>
+  </data>
   <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
     <value>Klik op de bladeren knop om te bewerken -&gt;</value>
   </data>
@@ -429,9 +423,6 @@ geselecteerde onderdeel</value>
     <value>Standaard budget limiet
 voor elk onderdeel</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>Achtergrond kleur</value>
-  </data>
   <data name="label36.Text" xml:space="preserve">
     <value>Kleur wanneer enkel de gebudgeteerde onderdelen getoond worden</value>
   </data>
@@ -441,8 +432,8 @@ voor elk onderdeel</value>
   <data name="label26.Text" xml:space="preserve">
     <value>Standaard Achtergrond kleur</value>
   </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Tooltip Info</value>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>Achtergrond kleur</value>
   </data>
   <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 17</value>
@@ -468,8 +459,8 @@ voor elk onderdeel</value>
   <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
     <value>Toon tooltip info met:</value>
   </data>
-  <data name="groupBox11.Text" xml:space="preserve">
-    <value>Tab volgorde</value>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Tooltip Info</value>
   </data>
   <data name="alphabeticOrderButton.Text" xml:space="preserve">
     <value>Alfabetische volgorde</value>
@@ -479,6 +470,12 @@ voor elk onderdeel</value>
   </data>
   <data name="MoveUpButton.Text" xml:space="preserve">
     <value>Omhoog verplaatsen</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Tab volgorde</value>
+  </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Onderdelenbibliotheek</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Om shorcuts te verwijderen, selecteer deze in de lijst en klik dan op deze knop:</value>
@@ -550,6 +547,9 @@ toevoegen</value>
   </data>
   <data name="Connection.Text" xml:space="preserve">
     <value>Verbinding</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Sneltoetsen</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>&amp;Annuleren</value>
