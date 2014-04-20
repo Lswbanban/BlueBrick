@@ -149,11 +149,14 @@
   <data name="canUngroupCheckBox.Text" xml:space="preserve">
     <value>Groeperen kan verwijderd worden</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Beschrijving</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Groep Id</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Taal code</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Beschrijving</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
