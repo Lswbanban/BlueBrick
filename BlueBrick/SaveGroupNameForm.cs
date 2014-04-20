@@ -105,6 +105,8 @@ namespace BlueBrick
 			}
 			else
 			{
+				// sort the top items as on the layer
+				topItems.Sort(Map.Instance.SelectedLayer.compareItemOrderOnLayer);
 				// create a group temporally for the export purpose
 				mGroupToSave = new Layer.Group();
 				mGroupToSave.addItem(topItems);

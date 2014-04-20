@@ -59,7 +59,12 @@ namespace BlueBrick.Actions.Items
             // save the item list but don't add them in the group in the constructor.
             // we do that in the redo. And we only group the top items of the tree.
             mItemsToGroup = findItemsToGroup(itemsToGroup);
-            mLayer = layer;
+			// sort the items in the group as they are on the map, because if the user wants to save this group in 
+			// the library, it's important that the items in the group are saved in the correct order to be rendered
+			// in the correct order when a group is instanciated
+			mItemsToGroup.Sort(layer.compareItemOrderOnLayer);
+			// save the layer
+			mLayer = layer;
 		}
 
 		public override string getName()

@@ -145,6 +145,18 @@ namespace BlueBrick.MapData
 		public LayerRuler()
 		{
 		}
+
+		/// <summary>
+		/// This method is used to sort items in a list in the same order as they are in the layer list.
+		/// The items can be groups, in that case, we use the max index of all the leaf children.
+		/// </summary>
+		/// <param name="item1">the first item to compare</param>
+		/// <param name="item2">the second item t compare</param>
+		/// <returns>distance between the two items in the layer list (index1 - index2)</returns>
+		public override int compareItemOrderOnLayer(Layer.LayerItem item1, Layer.LayerItem item2)
+		{
+			return compareItemOrderOnLayer(mRulers, item1, item2);
+		}
 		#endregion
 
 		#region IXmlSerializable Members
