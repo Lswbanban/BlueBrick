@@ -1427,17 +1427,22 @@ namespace BlueBrick.MapData
 			if ((itemList == null) || (itemList.Count == 0))
 				return null;
 
-			// clone the list and add the group in the list to explore
-			List<LayerItem> itemAndGroupList = new List<LayerItem>(itemList);
-			foreach (LayerItem item in itemList)
+			// clone the list and add the group in a list of exploration that will grow with all the groups
+			List<LayerItem> itemAndGroupListToExplore = new List<LayerItem>(itemList);
+
+			// find all the groups from the items in the specified list
+			// don't use a foreach cause we increase the list during the search to add all the group and the group of the group
+			for (int i = 0; i < itemAndGroupListToExplore.Count; ++i)
 			{
-				Layer.Group group = item.Group;
-				if ((group != null) && !itemAndGroupList.Contains(group))
-					itemAndGroupList.Add(group);
+				// if we found a group, add it to the exploration list (if not already in)
+				Layer.Group group = itemAndGroupListToExplore[i].Group;
+				if ((group != null) && !itemAndGroupListToExplore.Contains(group))
+					itemAndGroupListToExplore.Add(group);
 			}
-			// then explore the list, and keep only the item that doesn't have a parent
+
+			// then explore the list, and keep only the item (brick or group) that doesn't have a parent
 			List<LayerItem> result = new List<LayerItem>();
-			foreach (LayerItem item in itemAndGroupList)
+			foreach (LayerItem item in itemAndGroupListToExplore)
 				if (item.Group == null)
 					result.Add(item);
 
