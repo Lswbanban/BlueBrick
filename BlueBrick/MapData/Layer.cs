@@ -1125,6 +1125,58 @@ namespace BlueBrick.MapData
 		{
 			nameInstanceCounter = 0;
 		}
+
+		/// <summary>
+		/// This method is used to sort items in a list in the same order as they are in the layer list.
+		/// The items can be groups, in that case, we use the max index of all the leaf children.
+		/// </summary>
+		/// <param name="item1">the first item to compare</param>
+		/// <param name="item2">the second item t compare</param>
+		/// <returns>distance between the two items in the layer list (index1 - index2)</returns>
+		public virtual int compareItemOrderOnLayer(Layer.LayerItem item1, Layer.LayerItem item2)
+		{
+			return 0;
+		}
+
+		/// <summary>
+		/// This method is used to sort items in a list in the same order as they are in the layer list.
+		/// It's a template method to be able to iterate on different type of the item list, and the two items
+		/// to compare should belong to the list. The items can be groups, in that case, we use the max index
+		/// of all the leaf children.
+		/// </summary>
+		/// <param name="itemList">The list in which searching the index of the two items</param>
+		/// <param name="item1">the first item to compare</param>
+		/// <param name="item2">the second item t compare</param>
+		/// <returns>distance between the two items in the layer list (index1 - index2)</returns>
+		protected int compareItemOrderOnLayer<T>(List<T> itemList, Layer.LayerItem item1, Layer.LayerItem item2) where T : Layer.LayerItem
+		{
+			// get the max index of the first item
+			int index1 = 0;
+			if (item1.IsAGroup)
+			{
+				List<Layer.LayerItem> item1Children = (item1 as Layer.Group).getAllLeafItems();
+				foreach (Layer.LayerItem item in item1Children)
+					index1 = Math.Max(index1, itemList.IndexOf(item as T));
+			}
+			else
+			{
+				index1 = itemList.IndexOf(item1 as T);
+			}
+			// get the max index of the second item
+			int index2 = 0;
+			if (item2.IsAGroup)
+			{
+				List<Layer.LayerItem> item2Children = (item2 as Layer.Group).getAllLeafItems();
+				foreach (Layer.LayerItem item in item2Children)
+					index2 = Math.Max(index2, itemList.IndexOf(item as T));
+			}
+			else
+			{
+				index2 = itemList.IndexOf(item2 as T);
+			}
+			// return the comparison
+			return (index1 - index2);
+		}
 		#endregion
 
 		#region XmlSerializable Members
@@ -1551,7 +1603,6 @@ namespace BlueBrick.MapData
 		public virtual void selectAll()
 		{
 		}
-
 		#endregion
 
 		#region copy/paste to clipboard
