@@ -222,7 +222,6 @@ namespace BlueBrick.MapData
 				// if this brick is a group, it will have a group info class that store all the data needed for creating the group
 				public List<SubPart> mGroupSubPartList = null; // list of all the parts belonging to this group
 				public Dictionary<int, int> mGroupNextPreferedConnection = null; // list the prefered connection to select
-				public PointF mCenterPositionRelativeToGroupOrigin = new PointF(); // the coordinates of the center of the group is computed in the coordinate system of the group as defined in the XML file of the group
 			}
 
 			[Flags]
@@ -1483,13 +1482,6 @@ namespace BlueBrick.MapData
 				// transform the bounding box (which is in pixel) after that the image is created otherwise the hull may be null
 				PointF[] hullPoints = subPart.mSubPartBrick.mHull.ToArray();
 				drawingTransform.TransformVectors(hullPoints);
-				// is this subpart is also a group rotate also its center
-				PointF[] subPartCenterPosition = { new PointF() };
-				if (subPart.mSubPartBrick.IsAGroup)
-				{
-					subPartCenterPosition[0] = subPart.mSubPartBrick.mGroupInfo.mCenterPositionRelativeToGroupOrigin;
-					drawingTransform.TransformVectors(subPartCenterPosition);
-				}
 
 				// get the local min and max for this sub part
 				PointF hullMin = new PointF();
@@ -1503,8 +1495,14 @@ namespace BlueBrick.MapData
 				// compute the hull min and max inside the whole group (so with the translation of the part)
 				PointF hullMinInsideGroup = new PointF(translateX - hullHalfSize.X, translateY - hullHalfSize.Y);
 				PointF hullMaxInsideGroup = new PointF(translateX + hullHalfSize.X, translateY + hullHalfSize.Y);
-				// add the part transaltion to the transform
-				drawingTransform.Translate(hullMinInsideGroup.X - hullMin.X + subPartCenterPosition[0].X, hullMinInsideGroup.Y - hullMin.Y + subPartCenterPosition[0].Y, MatrixOrder.Append);
+				// add the part transaltion to the transform for drawing.
+				// The drawing transform want the top left corner of the image as a reference. So to compute it
+				// we use the center position of the part inside the group (translateX) from which we remove the half size
+				// of the part (hullHallSize.X) i.e. it is hullMinInsideGroup.X. But we also need to remove hullMin of the sub part
+				// to but I don't know why. So now the translation of the sub part is relative to the XML origin of the group
+				// but we will need to recentrate this, after finishing computing the whole size of the group, we can know where
+				// is the origin of the group compare to the center of the group, but this will be added after this loop
+				drawingTransform.Translate(hullMinInsideGroup.X - hullMin.X, hullMinInsideGroup.Y - hullMin.Y, MatrixOrder.Append);
 
 				// check the local min and max with the global ones
 				if (hullMinInsideGroup.X < minX)
@@ -1518,12 +1516,20 @@ namespace BlueBrick.MapData
             }
 
 			// compute the position of the center of the group inside the coordinate system defined in the XML file
-			group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.X = (maxX + minX) * 0.5f;
-			group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.Y = (maxY + minY) * 0.5f;
+			float centerPositionRelativeToGroupOriginX = (maxX + minX) * 0.5f;
+			float centerPositionRelativeToGroupOriginY = (maxY + minY) * 0.5f;
+
+			// adjust the translate of each sub part to make the center of the group, the origin of the translate
+			// This is easier when later we create an instance of this group from drag'n'droping from the library
+			foreach (Brick.SubPart subPart in group.mGroupInfo.mGroupSubPartList)
+				subPart.mLocalTransformInStud.Translate(-centerPositionRelativeToGroupOriginX / Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS,
+														-centerPositionRelativeToGroupOriginY / Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS,
+														MatrixOrder.Append);
+
 			// also compute the vector between the center expressed in the drawing coord system (whose origin is in the
 			// top left corner of the image) and the center expressed in the XML coord system
-			float centerXMLToCenterImageX = ((maxX - minX) * 0.5f) - group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.X;
-			float centerXMLToCenterImageY = ((maxY - minY) * 0.5f) - group.mGroupInfo.mCenterPositionRelativeToGroupOrigin.Y;
+			float centerXMLToCenterImageX = ((maxX - minX) * 0.5f) - centerPositionRelativeToGroupOriginX;
+			float centerXMLToCenterImageY = ((maxY - minY) * 0.5f) - centerPositionRelativeToGroupOriginY;
 
 			// create a new image with the correct size
 			int width = (int)(maxX - minX);

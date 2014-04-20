@@ -64,7 +64,7 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 Todo list before the release:
-1) bug when saving a group which also contains a group
+1) bug order when saving a group
 - BUG (Ludger): you can exceed the budget number by saving a group in the library and adding that group after on your map
 4) Work on database:
 	- fix the parts made of group after fixing bug 1
