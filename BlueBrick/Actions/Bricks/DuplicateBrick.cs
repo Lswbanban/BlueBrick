@@ -134,7 +134,7 @@ namespace BlueBrick.Actions.Bricks
 		{
 			// notify the part list view
 			foreach (Layer.LayerItem item in mBricksForNotification)
-				MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, item);
+				MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, item, false);
 
 			// add all the bricks (by default all the brick index are initialized with -1
 			// so the first time they are added, we just add them at the end,
@@ -157,7 +157,7 @@ namespace BlueBrick.Actions.Bricks
 		{
 			// notify the part list view
 			foreach (Layer.LayerItem item in mBricksForNotification)
-				MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, item);
+				MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, item, false);
 
 			// remove the specified brick from the list of the layer,
 			// but do not delete it, also memorise its last position

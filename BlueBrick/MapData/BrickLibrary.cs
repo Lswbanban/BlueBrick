@@ -1849,6 +1849,46 @@ namespace BlueBrick.MapData
 			return null;
 		}
 
+		/// <summary>
+		/// Return the global count of each sub part in a dictionary, where each pair is the part id associated with the count number.
+		/// The result doesn't include the specified part number. If the part is not a group, the returned dictionnary is empty (not null)
+		/// </summary>
+		/// <param name="partNumber"></param>
+		/// <returns></returns>
+		public Dictionary<string, int> getSubPartCount(string partNumber)
+		{
+			// this will be the final result
+			Dictionary<string, int> result = new Dictionary<string,int>();
+			// try to get the sub part of this part
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if ((brickRef != null) && (brickRef.mGroupInfo != null))
+				foreach (Brick.SubPart subPart in brickRef.mGroupInfo.mGroupSubPartList)
+					if (subPart.mSubPartBrick.IsAGroup)
+					{
+						// get the count of the subpart recursively
+						Dictionary<string, int> subpartCount = this.getSubPartCount(subPart.mSubPartNumber);
+						// then merge it in the result
+						foreach (KeyValuePair<string, int> pair in subpartCount)
+						{
+							int value = 0;
+							if (result.TryGetValue(pair.Key, out value))
+								result.Remove(pair.Key);
+							result.Add(pair.Key, value + pair.Value);
+						}
+					}
+					else
+					{
+						// if the sub part is just a single part add it to the count
+						int value = 0;
+						if (result.TryGetValue(subPart.mSubPartNumber, out value))
+							result.Remove(subPart.mSubPartNumber);
+						result.Add(subPart.mSubPartNumber, value + 1);
+					}
+			// return the result
+			return result;
+		}
+
 		public string getImageURL(string partNumber)
 		{
 			Brick brickRef = null;
@@ -2085,6 +2125,20 @@ namespace BlueBrick.MapData
 			mBrickDictionary.TryGetValue(partNumber, out brickRef);
 			if (brickRef != null)
 				return brickRef.IsAGroup;
+			return false;
+		}
+
+		/// <summary>
+		/// Tell if the specified brick id is listed in library (i.e. if it's not a hidden part)
+		/// </summary>
+		/// <param name="partNumber">the bluebrick part number</param>
+		/// <returns>true if the brick is visible in the library</returns>
+		public bool isListedInLibrary(string partNumber)
+		{
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if (brickRef != null)
+				return !brickRef.NotListedInLibrary;
 			return false;
 		}
 

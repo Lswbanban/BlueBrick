@@ -79,7 +79,7 @@ namespace BlueBrick.Actions.Bricks
 		public override void redo()
 		{
 			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, mBrickOrGroup);
+			MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, mBrickOrGroup, false);
 
 			// and add all the bricks in the reverse order
 			for (int i = mBricks.Count - 1; i >= 0; --i)
@@ -97,7 +97,7 @@ namespace BlueBrick.Actions.Bricks
 		public override void undo()
 		{
 			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, mBrickOrGroup);
+			MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, mBrickOrGroup, false);
 
 			// remove the specified brick from the list of the layer,
 			// but do not delete it, also memorise its last position

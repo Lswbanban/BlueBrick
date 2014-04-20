@@ -67,7 +67,7 @@ namespace BlueBrick.Actions.Bricks
 		{
 			// notify the part list view
 			foreach (Layer.LayerItem item in mBricksForNotification)
-				MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, item);
+				MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, item, false);
 
 			// special case for easy editing: if the group of brick has connection points and is connected
 			// to bricks not deleted we select the connected brick, 
@@ -107,7 +107,7 @@ namespace BlueBrick.Actions.Bricks
 		{
 			// notify the part list view
 			foreach (Layer.LayerItem item in mBricksForNotification)
-				MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, item);
+				MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, item, false);
 
 			// and add all the texts in the reverse order
 			for (int i = mBricks.Count - 1; i >= 0; --i)

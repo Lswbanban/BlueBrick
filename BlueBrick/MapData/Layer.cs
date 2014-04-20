@@ -862,14 +862,7 @@ namespace BlueBrick.MapData
 					// cast the layer into brick layer (it should not be null normally, cause only group of bricks are named)
 					LayerBrick brickLayer = layer as LayerBrick;
 					if (brickLayer != null)
-					{
-						// remove the group
-						MainForm.Instance.NotifyPartListForBrickRemoved(brickLayer, this);
-						// add the children
-						foreach (LayerItem item in mItems)
-							if (item.PartNumber != string.Empty) // item can be a brick or another named group, but we should not add unnamed group
-								MainForm.Instance.NotifyPartListForBrickAdded(brickLayer, item);
-					}
+						MainForm.Instance.NotifyPartListForBrickRemoved(brickLayer, this, true);
 				}
 			}
 
@@ -886,14 +879,7 @@ namespace BlueBrick.MapData
 					// cast the layer into brick layer (it should not be null normally, cause only group of bricks are named)
 					LayerBrick brickLayer = layer as LayerBrick;
 					if (brickLayer != null)
-					{
-						// remove the group
-						MainForm.Instance.NotifyPartListForBrickAdded(brickLayer, this);
-						// add the children
-						foreach (LayerItem item in mItems)
-							if (item.PartNumber != string.Empty) // item can be a brick or another named group, but we should not add unnamed group
-								MainForm.Instance.NotifyPartListForBrickRemoved(brickLayer, item);
-					}
+						MainForm.Instance.NotifyPartListForBrickAdded(brickLayer, this, true);
 				}
 			}
 

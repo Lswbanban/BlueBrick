@@ -1081,18 +1081,18 @@ namespace BlueBrick
 			mPartListForm.renameLayerNotification(layer as LayerBrick);
 		}
 
-		public void NotifyPartListForBrickAdded(LayerBrick layer, Layer.LayerItem brickOrGroup)
+		public void NotifyPartListForBrickAdded(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToRegroup)
 		{
-			mPartListForm.addBrickNotification(layer, brickOrGroup);
-			Budget.Budget.Instance.addBrickNotification(brickOrGroup);
-			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup.PartNumber);
+			mPartListForm.addBrickNotification(layer, brickOrGroup, isDueToRegroup);
+			Budget.Budget.Instance.addBrickNotification(brickOrGroup, isDueToRegroup);
+			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup);
 		}
 
-		public void NotifyPartListForBrickRemoved(LayerBrick layer, Layer.LayerItem brickOrGroup)
+		public void NotifyPartListForBrickRemoved(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToUngroup)
 		{
-			mPartListForm.removeBrickNotification(layer, brickOrGroup);
-			Budget.Budget.Instance.removeBrickNotification(brickOrGroup);
-			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup.PartNumber);
+			mPartListForm.removeBrickNotification(layer, brickOrGroup, isDueToUngroup);
+			Budget.Budget.Instance.removeBrickNotification(brickOrGroup, isDueToUngroup);
+			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup);
 		}
 		#endregion
 

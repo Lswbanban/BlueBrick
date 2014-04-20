@@ -791,15 +791,19 @@ namespace BlueBrick
 			}
 		}
 
-		public void updatePartCountAndBudget(string partID)
+		public void updatePartCountAndBudget(Layer.LayerItem brickOrGroup)
 		{
 			// and iterate on all the tabs
 			foreach (TabPage tabPage in this.TabPages)
 			{
 				PartListView listView = tabPage.Controls[0] as PartListView;
 				if (listView != null)
-					listView.updatePartCountAndBudget(partID);
+					listView.updatePartCountAndBudget(brickOrGroup.PartNumber);
 			}
+			// if the part is a group, also iterate on all it's items
+			if (brickOrGroup.IsAGroup)
+				foreach (Layer.LayerItem item in (brickOrGroup as Layer.Group).Items)
+					this.updatePartCountAndBudget(item);
 		}
 
 		/// <summary>
