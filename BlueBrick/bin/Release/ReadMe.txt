@@ -64,7 +64,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 Todo list before the release:
-1) BUG (Ludger): you can exceed the budget number by saving a group in the library and adding that group after on your map
 4) Work on database:
 	- Add new parts?
 	- create the Hulls?

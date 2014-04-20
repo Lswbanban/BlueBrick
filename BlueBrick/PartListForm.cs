@@ -227,7 +227,7 @@ namespace BlueBrick
 		/// <summary>
 		/// this method should be called when a brick is added
 		/// </summary>
-		public void addBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup)
+		public void addBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToRegroup)
 		{
 			// do nothing if the window is not visible
 			// because we rebuild everything when it becomes visible
@@ -239,12 +239,29 @@ namespace BlueBrick
 
 			// add the specified brick
 			addBrick(brickOrGroup, currentGroupEntry);
+
+			// if the specified brick is group, add also the sub items in the list
+			if (brickOrGroup.IsAGroup)
+				foreach (Layer.LayerItem item in (brickOrGroup as Layer.Group).Items)
+					if (item.PartNumber != string.Empty) // item can be a brick or another named group, but we should not add unnamed group
+					{
+						if (isDueToRegroup)
+						{
+							if (!BrickLibrary.Instance.isListedInLibrary(item.PartNumber))
+								this.removeBrickNotification(layer, item, false); // don't use true otherwise it's an infinite loop
+						}
+						else
+						{
+							if (BrickLibrary.Instance.isListedInLibrary(item.PartNumber))
+								this.addBrickNotification(layer, item, false); // anyway isDueToRegroup is false
+						}
+					}
 		}
 
 		/// <summary>
 		/// this method should be called when a brick is deleted
 		/// </summary>
-		public void removeBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup)
+		public void removeBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToUngroup)
 		{
 			// do nothing if the window is not visible
 			// because we rebuild everything when it becomes visible
@@ -259,6 +276,23 @@ namespace BlueBrick
 
 			// remove the specified brick
 			removeBrick(brickOrGroup, currentGroupEntry);
+
+			// if the specified brick is group, remove also the sub items from the list
+			if (brickOrGroup.IsAGroup)
+				foreach (Layer.LayerItem item in (brickOrGroup as Layer.Group).Items)
+					if (item.PartNumber != string.Empty) // item can be a brick or another named group, but we should not add unnamed group
+					{
+						if (isDueToUngroup)
+						{
+							if (!BrickLibrary.Instance.isListedInLibrary(item.PartNumber))
+								this.addBrickNotification(layer, item, false); // don't use true otherwise it's an infinite loop
+						}
+						else
+						{
+							if (BrickLibrary.Instance.isListedInLibrary(item.PartNumber))
+								this.removeBrickNotification(layer, item, false); // anyway isDueToUngroup is false
+						}
+					}
 
 			// remove the group from the list view and the mGroupEntryList if it is empty
 			if (this.useGroupCheckBox.Checked && (currentGroupEntry.Group.Items.Count == 0))

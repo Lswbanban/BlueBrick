@@ -190,7 +190,7 @@ namespace BlueBrick.Actions.Bricks
         private int removeOneItem(LayerBrick layer, Layer.LayerItem itemToRemove)
         {
 			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickRemoved(layer, itemToRemove);
+			MainForm.Instance.NotifyPartListForBrickRemoved(layer, itemToRemove, false);
 
             int brickIndex = -1;
             // check if it's a group or a simple brick
@@ -213,7 +213,7 @@ namespace BlueBrick.Actions.Bricks
 		private void addOneItem(LayerBrick layer, Layer.LayerItem itemToAdd, int itemIndex)
 		{
 			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickAdded(layer, itemToAdd);
+			MainForm.Instance.NotifyPartListForBrickAdded(layer, itemToAdd, false);
 
 			// check if it's a group or a simple brick
 			if (itemToAdd.IsAGroup)

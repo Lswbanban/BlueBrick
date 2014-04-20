@@ -166,7 +166,7 @@ namespace BlueBrick.Actions.Bricks
 		public override void redo()
 		{
 			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, mGroup);
+			MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, mGroup, false);
 
 			// clear the selection to reselect the parts of the group
 			mBrickLayer.clearSelection();
@@ -195,7 +195,7 @@ namespace BlueBrick.Actions.Bricks
 		public override void undo()
 		{
 			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, mGroup);
+			MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, mGroup, false);
 
 			// remove all the bricks of the group but do not delete them
 			foreach (Layer.LayerItem item in mBricksInTheGroup)

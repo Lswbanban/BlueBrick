@@ -378,7 +378,24 @@ namespace BlueBrick.Budget
 		/// <returns>true if you can add this part</returns>
 		public bool canAddBrick(string partID)
 		{
-			return canAddBrick(partID, 1);
+			// by default we can
+			bool canAdd = true;
+			// check if we need to check the budget limitation
+			if (this.ShouldUseBudgetLimitation)
+			{
+				// first check with the main brick
+				canAdd = canAddBrick(partID, 1);
+				// and if it is a group, check that all subparts don't exceed the budget
+				if (canAdd)
+				{
+					// so get the subpart count and if any part fail the whole group will fail
+					Dictionary<string, int> subPartCount = BrickLibrary.Instance.getSubPartCount(partID);
+					foreach (KeyValuePair<string, int> pair in subPartCount)
+						if (!canAddBrick(pair.Key, pair.Value))
+							return false;
+				}
+			}
+			return canAdd;
 		}
 
 		/// <summary>
@@ -404,7 +421,8 @@ namespace BlueBrick.Budget
 		/// Call this method when you want to notify the budget counter that a new brick has been added
 		/// </summary>
 		/// <param name="brick">the brick that was added</param>
-		public void addBrickNotification(MapData.Layer.LayerItem brickOrGroup)
+		/// <param name="brickOrGroup">tells if the brick is a group that was regrouped by an undo</param>
+		public void addBrickNotification(MapData.Layer.LayerItem brickOrGroup, bool isDueToRegroup)
 		{
 			string partID = brickOrGroup.PartNumber;
 			if (partID != string.Empty)
@@ -415,13 +433,23 @@ namespace BlueBrick.Budget
 				mCount.Remove(partID);
 				mCount.Add(partID, currentCount + 1);
 			}
+			// add also all the named children if the brick is a group
+			// (unless it is a regroup in that case the children are already counted)
+			if (!isDueToRegroup)
+			{
+				Layer.Group group = brickOrGroup as Layer.Group;
+				if (group != null)
+					foreach (Layer.LayerItem item in group.Items)
+						addBrickNotification(item, isDueToRegroup);
+			}
 		}
 
 		/// <summary>
 		/// Call this method when you want to notify the budget counter that a brick has been removed
 		/// </summary>
 		/// <param name="brick">the brick that was removed</param>
-		public void removeBrickNotification(MapData.Layer.LayerItem brickOrGroup)
+		/// <param name="brickOrGroup">tell if the brick is a group that is ungrouped</param>
+		public void removeBrickNotification(MapData.Layer.LayerItem brickOrGroup, bool isDueToUngroup)
 		{
 			string partID = brickOrGroup.PartNumber;
 			if (partID != string.Empty)
@@ -434,6 +462,15 @@ namespace BlueBrick.Budget
 					mCount.Remove(partID);
 					mCount.Add(partID, currentCount - 1);
 				}
+			}
+			// remove also all the named children if the brick is a group
+			// (unless it is a ungroup in that case we leave the children and just remove the one we ungrouped)
+			if (!isDueToUngroup)
+			{
+				Layer.Group group = brickOrGroup as Layer.Group;
+				if (group != null)
+					foreach (Layer.LayerItem item in group.Items)
+						removeBrickNotification(item, isDueToUngroup);
 			}
 		}
 
