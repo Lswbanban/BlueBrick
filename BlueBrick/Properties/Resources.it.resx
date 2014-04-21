@@ -520,4 +520,19 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
   <data name="StatusMsgBudgetReached" xml:space="preserve">
     <value>Preventivo raggiunto per questa parte!</value>
   </data>
+  <data name="ErrorMsgCannotAddDueToBudgetLimitation" xml:space="preserve">
+    <value>Non puoi aggiungere questa parte perché hai raggiunto il limite del preventivo. Se vuoi aggiungere questa parte, incrementa il preventivo, disabilita le limitazioni sul preventivo o chiudi il file del preventivo.</value>
+  </data>
+  <data name="ErrorMsgDoYouWantToDisplayBudgetNumber" xml:space="preserve">
+    <value>Hai abilitato le limitazioni da preventivo, ma al momento i numeri delllo stesso non sono visualizzati. Desideri visualizzare i numeri nel preventivo?</value>
+  </data>
+  <data name="ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation" xml:space="preserve">
+    <value>Alcune parti non saranno rimpiazzate a causa delle limitazioni sul preventivo. Desideri continuare?</value>
+  </data>
+  <data name="StatusMsgWrongLayerType" xml:space="preserve">
+    <value>Il layer attivo non è un Layer Brick</value>
+  </data>
+  <data name="UnitStraightTrack" xml:space="preserve">
+    <value>Binario</value>
+  </data>
 </root>
