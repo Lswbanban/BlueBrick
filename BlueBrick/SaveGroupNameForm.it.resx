@@ -123,9 +123,6 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Nome</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Id Gruppo</value>
-  </data>
   <data name="nameErrorLabel.Text" xml:space="preserve">
     <value>Nome vuoto!|Caratteri non ammessi!|Referenza Ciclica!|Nome Esistente!|Sovrascrivi!</value>
   </data>
@@ -148,11 +145,41 @@
   <data name="canUngroupCheckBox.Text" xml:space="preserve">
     <value>Può essere divisa</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Descrizione</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Id Gruppo</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Codice Lingua</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Descrizione</value>
+  </data>
+  <data name="partURLTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>106, 46</value>
+  </data>
+  <data name="partURLTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>294, 20</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 49</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>URL della parte</value>
+  </data>
+  <data name="imageURLTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>106, 20</value>
+  </data>
+  <data name="imageURLTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>294, 20</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 20</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 20</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>URL dell'immagine</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
