@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="statusBar.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mapPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mainSplitContainer.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="partsTabControl.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="splitContainerPartLibrary.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="textBoxPartFilter.ToolTip" xml:space="preserve">
     <value>Stichwörter eingeben, um die Teileliste zu filtern.
 Benutze "-" Zeichen vor Schlüsselwort, um Teile auszuschließen.
@@ -169,6 +184,24 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
     <value>Filter auf alle / nur aktuellem Karteireiter anwenden.</value>
   </data>
+  <data name="tableLayoutPanel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="splitContainerPartLibrary.Panel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="splitContainerPartLibrary.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolSplitContainer.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="layerStackPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="layerSplitContainer.Panel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -178,6 +211,9 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   </data>
   <data name="trashLayerButton.ToolTip" xml:space="preserve">
     <value>Markierte Ebene löschen</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="newLayerRulerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -284,6 +320,9 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="newLayerGridButton.ToolTip" xml:space="preserve">
     <value>Füge eine Rasterebene hinzu</value>
   </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhEAAQAPEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAQABAAAAIglI+pBrDbXmpRMmoFxXJX
@@ -302,14 +341,26 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Verschiebe die Ebene nach Unten</value>
   </data>
-  <data name="menuBar.Text" xml:space="preserve">
-    <value>Menüleiste</value>
+  <data name="LayerButtonFlowLayoutPanel.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
+  <data name="layerSplitContainer.Panel2.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Datei</value>
+  <data name="layerSplitContainer.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolSplitContainer.Panel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolSplitContainer.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mainSplitContainer.Panel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mainSplitContainer.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
@@ -374,11 +425,11 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Beenden</value>
   </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 20</value>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
   </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Bearbeiten</value>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Datei</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
@@ -449,12 +500,6 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Pfad Auswählen</value>
   </data>
-  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 22</value>
-  </data>
-  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Gruppierung</value>
-  </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>221, 22</value>
   </data>
@@ -467,20 +512,14 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Gruppierung aufheben</value>
   </data>
-  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 6</value>
-  </data>
-  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
-  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
-    <value>Position ändern</value>
+  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Gruppierung</value>
   </data>
-  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
-  </data>
-  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bewegungsschritt </value>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 6</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
@@ -524,6 +563,12 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="moveStep05ToolStripMenuItem.Text" xml:space="preserve">
     <value>1/2 Noppe</value>
   </data>
+  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 22</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bewegungsschritt </value>
+  </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>268, 22</value>
   </data>
@@ -538,12 +583,6 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>265, 6</value>
-  </data>
-  <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
-  </data>
-  <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Drehschritte</value>
   </data>
   <data name="rotationStep90ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 22</value>
@@ -569,6 +608,12 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="rotationStep1ToolStripMenuItem.Text" xml:space="preserve">
     <value>1 Grad</value>
   </data>
+  <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 22</value>
+  </data>
+  <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Drehschritte</value>
+  </data>
   <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>268, 22</value>
   </data>
@@ -581,11 +626,11 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Gegen den Uhrzeigersinn drehen</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mal Werkzeug</value>
+  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Position ändern</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 22</value>
@@ -608,11 +653,11 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Farbe wählen...</value>
   </data>
-  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
-  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bemaßung</value>
+  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mal Werkzeug</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 22</value>
@@ -631,6 +676,12 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   </data>
   <data name="addCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Kreis hinzufügen</value>
+  </data>
+  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 22</value>
+  </data>
+  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bemaßung</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>249, 6</value>
@@ -659,11 +710,11 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>Einstellungen…</value>
   </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 20</value>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 20</value>
   </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ansicht</value>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Bearbeiten</value>
   </data>
   <data name="toolbarMenuItem.Text" xml:space="preserve">
     <value>&amp;Werkzeugleiste</value>
@@ -686,9 +737,6 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Bemaßte Punkte</value>
   </data>
-  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Hüllkurve</value>
-  </data>
   <data name="hullsBricksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 22</value>
   </data>
@@ -700,6 +748,15 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   </data>
   <data name="hullsTextsAndRulersToolStripMenuItem.Text" xml:space="preserve">
     <value>Text und Bemaßung</value>
+  </data>
+  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hüllkurve</value>
+  </data>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 20</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ansicht</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>249, 22</value>
@@ -759,10 +816,7 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
     <value>249, 22</value>
   </data>
   <data name="useBudgetLimitationToolStripMenuItem.Text" xml:space="preserve">
-    <value>Budgetgrenzen benutzen</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hilfe</value>
+    <value>Budget benutzen</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
@@ -776,8 +830,14 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Über BlueBrick...</value>
   </data>
-  <data name="toolBar.Text" xml:space="preserve">
-    <value>Werkzeugleiste</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hilfe</value>
+  </data>
+  <data name="menuBar.Text" xml:space="preserve">
+    <value>Menüleiste</value>
+  </data>
+  <data name="menuBar.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="toolBarNewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -912,18 +972,6 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="toolBarPasteButton.ToolTipText" xml:space="preserve">
     <value>Ausgewählte Objekte einfügen</value>
   </data>
-  <data name="toolBarSnapGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAIVJREFUOE+1k4EK
-        gCAQQwW/xJ/zh/sga8FkmmenkXCY4cbda4UgK6VU9Ixn77tb573c3MPhSzUdb3XwF4MK09uVQoSY9Q5W
-        AV6qgoJBztkFtyKgGPsR4/oINFBxlw3b1BKLwZzLzEC5cN5HEvv5CVaNrbQOIVpAhx1oEvkFAJK1E6Sl
-        /+MEqkCwRnSpGMgAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
-    <value>Wähle die Raster-Fangstufen</value>
-  </data>
   <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
@@ -960,17 +1008,17 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="toolBarGrid05Button.Text" xml:space="preserve">
     <value>1/2 Noppe</value>
   </data>
-  <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolBarSnapGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAKVJREFUOE+tU9sN
-        gCAMNMFFGIQ/Z2EEF3Ug9ZCDChQ0atKo0HsVnaa/rnlZd8mFd9YjDRK0QF0i51xQfqImXVprL8d4AIm0
-        XMYpoxGT1quFa+c2EzYrvdlJbASYNRLKBsF+okKBwHufXKjKMh/BuG/GvAPH0EEdYJ5OodycCyeWwDyd
-        BriaS0pA+9I6N+Vc1K9Sy98jrsgkiUY4/C84RERhDUFfGg4Ng5ZNxi8dRwAAAABJRU5ErkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAIVJREFUOE+1k4EK
+        gCAQQwW/xJ/zh/sga8FkmmenkXCY4cbda4UgK6VU9Ixn77tb573c3MPhSzUdb3XwF4MK09uVQoSY9Q5W
+        AV6qgoJBztkFtyKgGPsR4/oINFBxlw3b1BKLwZzLzEC5cN5HEvv5CVaNrbQOIVpAhx1oEvkFAJK1E6Sl
+        /+MEqkCwRnSpGMgAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
-    <value>Wähle die Rotationsschritte</value>
+  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
+    <value>Wähle die Raster-Fangstufen</value>
   </data>
   <data name="toolBarAngle90Button.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 22</value>
@@ -995,6 +1043,18 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   </data>
   <data name="toolBarAngle1Button.Text" xml:space="preserve">
     <value>1 Grad</value>
+  </data>
+  <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAKVJREFUOE+tU9sN
+        gCAMNMFFGIQ/Z2EEF3Ug9ZCDChQ0atKo0HsVnaa/rnlZd8mFd9YjDRK0QF0i51xQfqImXVprL8d4AIm0
+        XMYpoxGT1quFa+c2EzYrvdlJbASYNRLKBsF+okKBwHufXKjKMh/BuG/GvAPH0EEdYJ5OodycCyeWwDyd
+        BriaS0pA+9I6N+Vc1K9Sy98jrsgkiUY4/C84RERhDUFfGg4Ng5ZNxi8dRwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
+    <value>Wähle die Rotationsschritte</value>
   </data>
   <data name="toolBarRotateCCWButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1039,14 +1099,6 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   </data>
   <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
     <value>In den Vordergrund</value>
-  </data>
-  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
-        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
-        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
-</value>
   </data>
   <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1121,6 +1173,23 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="rulerAddCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Kreis hinzufügen</value>
   </data>
+  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
+        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
+        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
+    <value>Werkzeug zur Bearbeitung der aktuellen Ebene auswählen</value>
+  </data>
+  <data name="toolBar.Text" xml:space="preserve">
+    <value>Werkzeugleiste</value>
+  </data>
+  <data name="toolBar.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="openFileDialog.Filter" xml:space="preserve">
     <value>BlueBrick Datei (*.bbm)|*.bbm|LDraw (*.ldr)|*.ldr|LDraw Multi Parts (*.mpd)|*.mpd|Track Designer (*.tdl)|*.tdl|Alle Dateien (*.*)|*.*</value>
   </data>
@@ -1189,5 +1258,8 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

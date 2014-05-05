@@ -120,11 +120,17 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Maßzahl</value>
+  </data>
   <data name="unitLabel.Text" xml:space="preserve">
     <value>Maßeinheit</value>
   </data>
   <data name="unitComboBox.Items" xml:space="preserve">
     <value>Noppen</value>
+  </data>
+  <data name="unitComboBox.Items2" xml:space="preserve">
+    <value>Gerades Gleis</value>
   </data>
   <data name="unitComboBox.Items4" xml:space="preserve">
     <value>Fuß</value>
@@ -151,8 +157,11 @@
   <data name="displayMeasureTextCheckBox.Text" xml:space="preserve">
     <value>Maßzahl anzeigen</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Maßzahl</value>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 108</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Maßlinie</value>
   </data>
   <data name="allowOffsetCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 17</value>
@@ -166,11 +175,14 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Breite (in Pixel)</value>
   </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 108</value>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>207, 12</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Maßlinie</value>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 105</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Maßhilfslinie</value>
   </data>
   <data name="dashPatternSpaceNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>173, 52</value>
@@ -205,15 +217,6 @@
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Breite (in Pixel)</value>
-  </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 12</value>
-  </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 105</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Maßhilfslinie</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

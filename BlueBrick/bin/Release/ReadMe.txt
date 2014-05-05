@@ -70,7 +70,7 @@ Todo list before the release:
 5) I will probably try to update the english doc to reflect the new features.
 6) I plan to shoot a video that I will post on youtube on the new features for the release.
 7) add the french doc (make it downloadable in BB code?)
-
+- crash bug: the mDataVersionOfTheFileLoaded should be reset to the last one when doing a copy/paste, cause now the copy paste use the xml loading: so load an old file, then copy paste = crash
 
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
@@ -95,6 +95,7 @@ Todo list before the release:
 - MISSING FEATURE (Ludo): Move the measure values along the linear rulers in order to avoid overlapping of close parallel rulers.
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
 - MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
+- MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
 - BUG (Alban): After reloading the part library, all the settings of the part lib are reset to what it was when the application started instead of what it was just before reloading
 - BUG #53 (Alban): In the export window you can specify a selection rectangle null by setting a bottom < top
 - BUG #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group

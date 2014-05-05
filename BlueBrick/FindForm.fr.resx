@@ -148,7 +148,7 @@
   <data name="inCurrentSelectionRadioButton.Text" xml:space="preserve">
     <value>Dans la sélection courante</value>
   </data>
-  <data name="CancelButton.Text" xml:space="preserve">
+  <data name="cancelButton.Text" xml:space="preserve">
     <value>Annuler</value>
   </data>
   <data name="ReplaceButton.Text" xml:space="preserve">
