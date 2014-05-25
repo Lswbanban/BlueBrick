@@ -1665,6 +1665,9 @@ namespace BlueBrick.MapData
 				xmlSettings.NewLineOnAttributes = false;
 				System.Xml.XmlWriter xmlWriter = System.Xml.XmlWriter.Create(stringWriter, xmlSettings);
 
+				// write the version number
+				Map.Instance.saveVersionNumber(xmlWriter);
+
 				// then call the serialization method on the list of object
 				this.writeSelectionToClipboard(xmlWriter);
 				xmlWriter.Flush();
@@ -1716,10 +1719,17 @@ namespace BlueBrick.MapData
 			xmlSettings.IgnoreWhitespace = true;
 			System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(stringReader, xmlSettings);
 
+			// read the version number
+			Map.Instance.readVersionNumber(xmlReader);
+
+			// normallly after it's the layer node, and we should be already on it
+			if (!xmlReader.Name.Equals("Layer"))
+				xmlReader.ReadToDescendant("Layer");
+
 			// get the type of the copied items
 			itemTypeName = string.Empty;
 			string layerId = string.Empty;
-			if (xmlReader.ReadToDescendant("Layer"))
+			if (xmlReader.Name.Equals("Layer"))
 			{
 				// get the 'type' attribute of the layer
 				xmlReader.ReadAttributeValue();
