@@ -348,8 +348,7 @@ namespace BlueBrick.MapData
 			// reset the counter of modifications because we just load the map (no modification done)
 			mNumberOfModificationSinceLastSave = 0;
 			// version
-			reader.ReadToDescendant("Version");
-			mDataVersionOfTheFileLoaded = reader.ReadElementContentAsInt();
+			readVersionNumber(reader);
 			// check if the BlueBrick program is not too old, that
 			// means the user try to load a file generated with
 			/// a earlier version of BlueBrick
@@ -506,8 +505,7 @@ namespace BlueBrick.MapData
 			mNumberOfModificationSinceLastSave = 0;
 
 			// first of all the version, we don't use the vesion read from the file,
-			// for saving we always save with the last version of data
-			writer.WriteElementString("Version", CURRENT_DATA_VERSION.ToString());
+			saveVersionNumber(writer);
 
 			// write the number of items
 			int nbItems = 0;
@@ -587,6 +585,18 @@ namespace BlueBrick.MapData
 							}
 				writer.WriteEndElement();
 			}
+		}
+
+		public void saveVersionNumber(System.Xml.XmlWriter writer)
+		{
+			// for saving we always save with the last version of data
+			writer.WriteElementString("Version", CURRENT_DATA_VERSION.ToString());
+		}
+
+		public void readVersionNumber(System.Xml.XmlReader reader)
+		{
+			reader.ReadToDescendant("Version");
+			mDataVersionOfTheFileLoaded = reader.ReadElementContentAsInt();
 		}
 		#endregion
 
