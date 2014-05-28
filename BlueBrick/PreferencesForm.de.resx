@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="displayWarningWhenReplaceOverBudgetCheckBox.Text" xml:space="preserve">
+    <value>Warnung anzeigen, wenn eingewechselte Teile das Budget überschreiten</value>
+  </data>
+  <data name="displayWarningWhenAddOverBudgetCheckBox.Text" xml:space="preserve">
+    <value>Warnung anzeigen, wenn hinzugefügtes Teil Budget überschreitet</value>
+  </data>
+  <data name="askToDisplayBudgetNumbersCheckBox.Text" xml:space="preserve">
+    <value>Nachfragen, ob das Budget angezeigt werden soll, wenn Budget aktiviert wird</value>
+  </data>
   <data name="displayWarningWhenDuplicateOverBudgetCheckBox.Text" xml:space="preserve">
     <value>Warnung anzeigen, wenn eingefügte Teile Budget überschreiten</value>
   </data>
@@ -264,6 +273,9 @@ um die Änderung auszuführen.</value>
   </data>
   <data name="unitComboBox.Items" xml:space="preserve">
     <value>Noppen</value>
+  </data>
+  <data name="unitComboBox.Items2" xml:space="preserve">
+    <value>Gerades Gleis</value>
   </data>
   <data name="unitComboBox.Items4" xml:space="preserve">
     <value>Fuß</value>

@@ -52,13 +52,13 @@ namespace BlueBrick
 			// 
 			// groupBox1
 			// 
+			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Controls.Add(this.FindPictureBox);
 			this.groupBox1.Controls.Add(this.ReplacePictureBox);
 			this.groupBox1.Controls.Add(this.ReplaceComboBox);
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.FindComboBox);
 			this.groupBox1.Controls.Add(this.label1);
-			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
 			// 
@@ -76,10 +76,10 @@ namespace BlueBrick
 			// 
 			// ReplaceComboBox
 			// 
+			resources.ApplyResources(this.ReplaceComboBox, "ReplaceComboBox");
 			this.ReplaceComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.ReplaceComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.ReplaceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			resources.ApplyResources(this.ReplaceComboBox, "ReplaceComboBox");
 			this.ReplaceComboBox.Name = "ReplaceComboBox";
 			this.ReplaceComboBox.Sorted = true;
 			this.ReplaceComboBox.SelectedIndexChanged += new System.EventHandler(this.ReplaceComboBox_SelectedIndexChanged);
@@ -92,10 +92,10 @@ namespace BlueBrick
 			// 
 			// FindComboBox
 			// 
+			resources.ApplyResources(this.FindComboBox, "FindComboBox");
 			this.FindComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.FindComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.FindComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			resources.ApplyResources(this.FindComboBox, "FindComboBox");
 			this.FindComboBox.Name = "FindComboBox";
 			this.FindComboBox.Sorted = true;
 			this.FindComboBox.SelectedIndexChanged += new System.EventHandler(this.FindComboBox_SelectedIndexChanged);
@@ -108,11 +108,11 @@ namespace BlueBrick
 			// 
 			// groupBox2
 			// 
+			resources.ApplyResources(this.groupBox2, "groupBox2");
 			this.groupBox2.Controls.Add(this.allLayerCheckBox);
 			this.groupBox2.Controls.Add(this.LayerCheckedListBox);
 			this.groupBox2.Controls.Add(this.inLayerRadioButton);
 			this.groupBox2.Controls.Add(this.inCurrentSelectionRadioButton);
-			resources.ApplyResources(this.groupBox2, "groupBox2");
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.TabStop = false;
 			// 
@@ -125,9 +125,9 @@ namespace BlueBrick
 			// 
 			// LayerCheckedListBox
 			// 
+			resources.ApplyResources(this.LayerCheckedListBox, "LayerCheckedListBox");
 			this.LayerCheckedListBox.CheckOnClick = true;
 			this.LayerCheckedListBox.FormattingEnabled = true;
-			resources.ApplyResources(this.LayerCheckedListBox, "LayerCheckedListBox");
 			this.LayerCheckedListBox.Name = "LayerCheckedListBox";
 			this.LayerCheckedListBox.SelectedIndexChanged += new System.EventHandler(this.LayerCheckedListBox_SelectedIndexChanged);
 			// 
@@ -148,8 +148,8 @@ namespace BlueBrick
 			// 
 			// cancelButton
 			// 
-			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			resources.ApplyResources(this.cancelButton, "cancelButton");
+			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
