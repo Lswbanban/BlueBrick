@@ -130,6 +130,9 @@
   <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
+  <data name="&gt;&gt;sortingKeyTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>307, 314</value>
   </data>
@@ -161,11 +164,8 @@
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;nameErrorLabel.Name" xml:space="preserve">
-    <value>nameErrorLabel</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Image URL</value>
   </data>
   <data name="sortingKeyTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>87, 45</value>
@@ -207,17 +207,14 @@
   <data name="partURLTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>305, 20</value>
   </data>
-  <data name="canUngroupCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>262, 48</value>
-  </data>
   <data name="okButton.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="nameErrorLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Edit Group Info</value>
   </data>
-  <data name="canUngroupCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 17</value>
+  <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -231,11 +228,14 @@
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Image URL</value>
-  </data>
   <data name="nameErrorLabel.Text" xml:space="preserve">
     <value>Empty Name!|Invalid Character!|Cyclic Reference!|Existing Name!|Override!</value>
+  </data>
+  <data name="&gt;&gt;nameErrorLabel.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;nameErrorLabel.Name" xml:space="preserve">
+    <value>nameErrorLabel</value>
   </data>
   <data name="&gt;&gt;okButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -291,11 +291,8 @@
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
   </data>
-  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="authorTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 71</value>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>Ok</value>
@@ -309,8 +306,11 @@
   <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="languageNameLabel.Text" xml:space="preserve">
-    <value>&lt;placeholder&gt;</value>
+  <data name="authorTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 71</value>
+  </data>
+  <data name="languageCodeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>87, 16</value>
@@ -327,14 +327,11 @@
   <data name="label5.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="descriptionTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>394, 45</value>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;authorTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -351,20 +348,14 @@
   <data name="descriptionTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
     <value>Vertical</value>
   </data>
-  <data name="&gt;&gt;descriptionTextBox.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="canUngroupCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>262, 48</value>
   </data>
   <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;canUngroupCheckBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
-  </data>
-  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;descriptionTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -375,8 +366,8 @@
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 22</value>
   </data>
-  <data name="languageCodeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SaveGroupNameForm</value>
@@ -402,6 +393,9 @@
   <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="languageNameLabel.Text" xml:space="preserve">
+    <value>&lt;placeholder&gt;</value>
+  </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
@@ -423,8 +417,8 @@
   <data name="languageCodeComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 21</value>
   </data>
-  <data name="&gt;&gt;sortingKeyTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
   </data>
   <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -438,14 +432,14 @@
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 13</value>
   </data>
-  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 49</value>
   </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
+  <data name="&gt;&gt;imageURLTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -462,8 +456,8 @@
   <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="nameTextBox.Text" xml:space="preserve">
-    <value />
+  <data name="canUngroupCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 17</value>
   </data>
   <data name="&gt;&gt;canUngroupCheckBox.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -471,17 +465,20 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 10</value>
   </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+  <data name="canUngroupCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="imageURLTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>305, 20</value>
   </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="descriptionTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>394, 45</value>
   </data>
   <data name="imageURLTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -537,8 +534,8 @@
   <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;nameErrorLabel.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 314</value>
@@ -558,32 +555,35 @@
   <data name="nameTextBox.Multiline" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="canUngroupCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;imageURLTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 24</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Author</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Edit Group Info</value>
+  <data name="&gt;&gt;descriptionTextBox.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="okButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="canUngroupCheckBox.Text" xml:space="preserve">
     <value>Can be un-grouped</value>
+  </data>
+  <data name="nameErrorLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;sortingKeyTextBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -602,9 +602,6 @@
   </data>
   <data name="nameErrorLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 29</value>
-  </data>
-  <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Name</value>
@@ -627,9 +624,6 @@
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>435, 350</value>
-  </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
   </data>
@@ -645,8 +639,8 @@
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 74</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Group Id</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>435, 350</value>
   </data>
   <data name="&gt;&gt;authorTextBox.Name" xml:space="preserve">
     <value>authorTextBox</value>
@@ -660,11 +654,11 @@
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 13</value>
+  </data>
   <data name="descriptionTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 47</value>
-  </data>
-  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 24</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -699,14 +693,17 @@
   <data name="&gt;&gt;nameErrorLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 13</value>
+  <data name="nameTextBox.Text" xml:space="preserve">
+    <value />
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>406, 103</value>
   </data>
   <data name="okButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Group Id</value>
   </data>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -731,6 +728,9 @@
   </data>
   <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
