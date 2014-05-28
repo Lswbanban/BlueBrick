@@ -117,21 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="statusBar.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="mapPanel.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="mainSplitContainer.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="partsTabControl.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="splitContainerPartLibrary.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="textBoxPartFilter.ToolTip" xml:space="preserve">
     <value>Entrez des mots clefs pour filtrer la liste des pièces.
 Utilisez le caractère - devant un mot clef pour exclure des pièces.
@@ -184,24 +169,6 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
     <value>Applique le filtre sur tous les onglets ou seulement sur l'onglet courant.</value>
   </data>
-  <data name="tableLayoutPanel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="splitContainerPartLibrary.Panel2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="splitContainerPartLibrary.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="toolSplitContainer.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="layerStackPanel.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="layerSplitContainer.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -212,24 +179,21 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="trashLayerButton.ToolTip" xml:space="preserve">
     <value>Effacer le calque sélectionné</value>
   </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="newLayerRulerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAADEDgAAxA4AAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsmkGsmkGsmkGsmkGsmkG
-        smkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGAAAAAAAAsmkGDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM
-        DAwMDAwMDAwMDAwMsmkGAAAAAAAAsmkGDAwMM8z/DAwMM8z/DAwMM8z/DAwMM8z/DAwMM8z/DAwMDAwM
-        smkGAAAAAAAAsmkGDAwMM8z/M8z/M8z/M8z/M8z/M8z/M8z/M8z/M8z/DAwMsmkGsmkGAAAAAAAAsmkG
-        DAwMM8z/DAwMDAwMDAwMDAwMDAwMM8z/M8z/DAwMsmkGsmkGmQAAAAAAAAAAsmkGDAwMM8z/DAwMsmkG
-        smkGDAwMM8z/M8z/DAwMmQAAsmkGmQAAAP//AAAAAAAAsmkGDAwMM8z/DAwMsmkGDAwMM8z/M8z/DAwM
-        smkGAP//smkGAP//smkGAAAAAAAAsmkGDAwMM8z/DAwMDAwMM8z/M8z/DAwMsmkGAP//mQAAmQAAmQAA
-        smkGAAAAAAAAsmkGDAwMM8z/DAwMM8z/M8z/DAwMmQAAsmkGAP//AP//AP//AP//smkGAAAAAAAAsmkG
-        DAwMM8z/M8z/M8z/DAwMsmkGAP//mQAAsmkGmQAAmQAAAP//smkGAAAAAAAAsmkGDAwMM8z/M8z/DAwM
-        smkGmQAAsmkGAP//mQAAAP//AP//smkGsmkGAAAAAAAAsmkGDAwMM8z/DAwMsmkGmQAAAP//smkGAP//
-        AP//smkGsmkGsmkGsmkGAAAAAAAAsmkGDAwMDAwMsmkGmQAAAP//smkGsmkGsmkGsmkGsmkGsmkGsmkG
-        smkGAAAAAAAAsmkGsmkGsmkGsmkGAP//smkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGsmkGAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/5kA/5kA/5kA/5kA/5kA
+        /5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kAAAAAAAAA/5kADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM
+        DAwMDAwMDAwMDAwM/5kAAAAAAAAA/5kADAwMMzP/DAwMMzP/DAwMMzP/DAwMMzP/DAwMMzP/DAwMDAwM
+        /5kAAAAAAAAA/5kADAwMMzP/MzP/MzP/MzP/MzP/MzP/MzP/MzP/MzP/DAwM/5kA/5kAAAAAAAAA/5kA
+        DAwMMzP/DAwMDAwMDAwMDAwMDAwMMzP/MzP/DAwM/5kA/5kAmQAAAAAAAAAA/5kADAwMMzP/DAwMzJkz
+        zJkzDAwMMzP/MzP/DAwMmQAA/5kAmQAAAP//AAAAAAAA/5kADAwMMzP/DAwMzJkzDAwMMzP/MzP/DAwM
+        /5kAAP///5kAAP///5kAAAAAAAAA/5kADAwMMzP/DAwMDAwMMzP/MzP/DAwM/5kAAP//mQAAmQAAmQAA
+        /5kAAAAAAAAA/5kADAwMMzP/DAwMMzP/MzP/DAwMmQAA/5kAAP//AP//AP//AP///5kAAAAAAAAA/5kA
+        DAwMMzP/MzP/MzP/DAwM/5kAAP//mQAA/5kAmQAAmQAAAP///5kAAAAAAAAA/5kADAwMMzP/MzP/DAwM
+        /5kAmQAA/5kAAP//mQAAAP//AP///5kA/5kAAAAAAAAA/5kADAwMMzP/DAwM/5kAmQAAAP///5kAAP//
+        AP///5kA/5kA/5kA/5kAAAAAAAAA/5kADAwMDAwM/5kAmQAAAP///5kA/5kA/5kA/5kA/5kA/5kA/5kA
+        /5kAAAAAAAAA/5kA/5kA/5kA/5kAAP///5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
   </data>
@@ -320,9 +284,6 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="newLayerGridButton.ToolTip" xml:space="preserve">
     <value>Ajouter un calque Grille</value>
   </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhEAAQAPEAAAAAAP///////wAAACH5BAEAAAIALAAAAAAQABAAAAIglI+pBrDbXmpRMmoFxXJX
@@ -341,26 +302,11 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Descendre le calque sélectionné</value>
   </data>
-  <data name="LayerButtonFlowLayoutPanel.ToolTip" xml:space="preserve">
-    <value />
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
   </data>
-  <data name="layerSplitContainer.Panel2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="layerSplitContainer.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="toolSplitContainer.Panel2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="toolSplitContainer.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="mainSplitContainer.Panel2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="mainSplitContainer.ToolTip" xml:space="preserve">
-    <value />
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Fichier</value>
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 22</value>
@@ -425,11 +371,11 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Quitter</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Fichier</value>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Edition</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
@@ -500,6 +446,12 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Sélectionner le chemin</value>
   </data>
+  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Groupe</value>
+  </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 22</value>
   </data>
@@ -512,14 +464,20 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Dégrouper</value>
   </data>
-  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
-  </data>
-  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Groupe</value>
-  </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 6</value>
+  </data>
+  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Transformer</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pas de déplacement</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 22</value>
@@ -563,12 +521,6 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="moveStep05ToolStripMenuItem.Text" xml:space="preserve">
     <value>1/2 tenon</value>
   </data>
-  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 22</value>
-  </data>
-  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pas de déplacement</value>
-  </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 22</value>
   </data>
@@ -602,11 +554,11 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotation anti-horaire</value>
   </data>
-  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
   </data>
-  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
-    <value>Transformer</value>
+  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Outil de peinture</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 22</value>
@@ -629,11 +581,11 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Choisir la couleur...</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Outil de peinture</value>
+  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Outil de mesure</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
@@ -652,12 +604,6 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   </data>
   <data name="addCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter un cercle</value>
-  </data>
-  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
-  </data>
-  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Outil de mesure</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 6</value>
@@ -686,11 +632,11 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>Préférences...</value>
   </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 20</value>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
   </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Edition</value>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Vue</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
@@ -737,6 +683,12 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>Points d'attache des mesures</value>
   </data>
+  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 22</value>
+  </data>
+  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Con&amp;tours</value>
+  </data>
   <data name="hullsBricksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 22</value>
   </data>
@@ -748,18 +700,6 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   </data>
   <data name="hullsTextsAndRulersToolStripMenuItem.Text" xml:space="preserve">
     <value>Textes et mesures</value>
-  </data>
-  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 22</value>
-  </data>
-  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Con&amp;tours</value>
-  </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Vue</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
@@ -821,17 +761,14 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="useBudgetLimitationToolStripMenuItem.Text" xml:space="preserve">
     <value>Utiliser la limite de budget</value>
   </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Aide</value>
+  </data>
   <data name="helpContentsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Contenu et Index</value>
   </data>
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;A propos de BlueBrick...</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Aide</value>
-  </data>
-  <data name="menuBar.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="toolBarNewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -966,6 +903,18 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="toolBarPasteButton.ToolTipText" xml:space="preserve">
     <value>Coller les objets copiés</value>
   </data>
+  <data name="toolBarSnapGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAIVJREFUOE+1k4EK
+        gCAQQwW/xJ/zh/sga8FkmmenkXCY4cbda4UgK6VU9Ixn77tb573c3MPhSzUdb3XwF4MK09uVQoSY9Q5W
+        AV6qgoJBztkFtyKgGPsR4/oINFBxlw3b1BKLwZzLzEC5cN5HEvv5CVaNrbQOIVpAhx1oEvkFAJK1E6Sl
+        /+MEqkCwRnSpGMgAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
+    <value>Selectionner le pas de la grille aimantée</value>
+  </data>
   <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 22</value>
   </data>
@@ -1001,18 +950,6 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   </data>
   <data name="toolBarGrid05Button.Text" xml:space="preserve">
     <value>1/2 tenon</value>
-  </data>
-  <data name="toolBarSnapGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAIVJREFUOE+1k4EK
-        gCAQQwW/xJ/zh/sga8FkmmenkXCY4cbda4UgK6VU9Ixn77tb573c3MPhSzUdb3XwF4MK09uVQoSY9Q5W
-        AV6qgoJBztkFtyKgGPsR4/oINFBxlw3b1BKLwZzLzEC5cN5HEvv5CVaNrbQOIVpAhx1oEvkFAJK1E6Sl
-        /+MEqkCwRnSpGMgAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
-    <value>Selectionner le pas de la grille aimantée</value>
   </data>
   <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1069,6 +1006,17 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   </data>
   <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
     <value>Mettre en avant plan</value>
+  </data>
+  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
+        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
+        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
+    <value>Selectionner l'outil pour éditer le calque courant</value>
   </data>
   <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1143,20 +1091,6 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="rulerAddCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter un cercle</value>
   </data>
-  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEhJREFUOE9jZCAe
-        /AcCsGpGRkYwRbxWiEqQAWAAYtNV86jtlIQ8NLqoEm0kxTs8wSAlGvIMIMcL6MmVZP8jp3U6aybHv6BM
-        AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
-    <value>Selectionner l'outil pour éditer le calque courant</value>
-  </data>
-  <data name="toolBar.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="openFileDialog.Filter" xml:space="preserve">
     <value>Plan BlueBrick (*.bbm)|*.bbm|LDraw (*.ldr)|*.ldr|LDraw Multi Parts (*.mpd)|*.mpd|Track Designer (*.tdl)|*.tdl|Tous les fichiers (*.*)|*.*</value>
   </data>
@@ -1225,8 +1159,5 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
   </data>
 </root>

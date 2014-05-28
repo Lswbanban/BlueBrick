@@ -542,12 +542,27 @@ Die Fehlermeldung lautet:</value>
     <value>Nur budgetierte Teile anzeigen</value>
   </data>
   <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
-    <value>Budgetgrenzen benutzen</value>
+    <value>Budget benutzen</value>
   </data>
   <data name="StatusMsgBudgetReached" xml:space="preserve">
     <value>Budget für dieses Teil ausgeschöpft</value>
   </data>
   <data name="LayerRulerOptionTitle" xml:space="preserve">
     <value>Einstellungen für Bemaßungsebenen</value>
+  </data>
+  <data name="ErrorMsgCannotAddDueToBudgetLimitation" xml:space="preserve">
+    <value>Teil kann nicht hinzugefügt werden, da Budget ausgeschöpft ist. Wenn das Teil hinzugefügt werden soll, entweder Budget vergrößern, Budget aufheben oder Budgetdatei schließen.</value>
+  </data>
+  <data name="ErrorMsgDoYouWantToDisplayBudgetNumber" xml:space="preserve">
+    <value>Die Begrenzung durch Budget wurde aktiviert, das Budget wird aber nicht angezeigt. Soll das Budget angezeigt werden?</value>
+  </data>
+  <data name="ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation" xml:space="preserve">
+    <value>Einige Teile werden aufgrund des akutellen Budgets nicht ersetzt. Ersetzen weiterführen?</value>
+  </data>
+  <data name="StatusMsgWrongLayerType" xml:space="preserve">
+    <value>Die aktive Ebene ist keine Steinebene</value>
+  </data>
+  <data name="UnitStraightTrack" xml:space="preserve">
+    <value>Gleis</value>
   </data>
 </root>
