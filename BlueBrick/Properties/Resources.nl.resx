@@ -524,4 +524,19 @@ The error message is:
   <data name="StatusMsgBudgetReached" xml:space="preserve">
     <value>Budget bereikt voor dit onderdeel</value>
   </data>
+  <data name="ErrorMsgCannotAddDueToBudgetLimitation" xml:space="preserve">
+    <value>Kan dit onderdeel niet toevoegen omdat het budget overschreden is. Verhoog het budget voor dit onderdeel, schakel de budget limitatie uit, of sluit het budget bestand.</value>
+  </data>
+  <data name="ErrorMsgDoYouWantToDisplayBudgetNumber" xml:space="preserve">
+    <value>U hebt budget limieten geactiveerd, maar de budget nummers worden niet getoond. Wenst u ze ook te tonen?</value>
+  </data>
+  <data name="ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation" xml:space="preserve">
+    <value>Sommige onderdelen zullen niet vervangen worden door de budget limitatie. Wenst u verder te gaan?</value>
+  </data>
+  <data name="StatusMsgWrongLayerType" xml:space="preserve">
+    <value>De actieve laag is geen Brick laag</value>
+  </data>
+  <data name="UnitStraightTrack" xml:space="preserve">
+    <value>Spoor</value>
+  </data>
 </root>

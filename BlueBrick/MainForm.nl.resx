@@ -1103,6 +1103,9 @@ Gebruik aanhalingstekens om kernwoorden te groeperen.</value>
         AgA8uZNy8ikDOQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
+    <value>Selecteer het teken hulpmiddel voor de huidige laag</value>
+  </data>
   <data name="toolBar.Text" xml:space="preserve">
     <value>Werkbalk</value>
   </data>
