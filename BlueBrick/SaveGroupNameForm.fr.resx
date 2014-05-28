@@ -146,7 +146,7 @@
     <value>Clef de Triage</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43, 74</value>
+    <value>6, 74</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Auteur</value>
