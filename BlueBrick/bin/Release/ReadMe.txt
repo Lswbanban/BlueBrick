@@ -64,13 +64,15 @@ Please refer to the help file that comes with the application (menu Help > Conte
 
 Open bugs:
 Todo list before the release:
-4) Work on database:
+4) Work on database: NO!!
 	- Add new parts?
 	- create the Hulls?
 5) I will probably try to update the english doc to reflect the new features.
+	- finish the update
+	- add the new search keywords for the new features
 6) I plan to shoot a video that I will post on youtube on the new features for the release.
-7) add the french doc (make it downloadable in BB code?)
-- crash bug: the mDataVersionOfTheFileLoaded should be reset to the last one when doing a copy/paste, cause now the copy paste use the xml loading: so load an old file, then copy paste = crash
+8) Update the slashscreen and release version number
+9) check the mono link in this readme
 
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
@@ -132,6 +134,7 @@ Bug fixed in 1.8.0.0:
 - BUGFIX #40 (Steffen): If you connect a gray track with a blue track, the sleeper between them should be the white 3034 one. 
 - BUGFIX #42 (Larry): CRASH!! if you export a small area after exporting a big area
 - BUGFIX #47 (doc_brown): the LDraw header is not following the standard definition
+- BUGFIX (Vincent): When exporting an image for the first time AFTER reloading the BBM, the export file name was the name of the folder instead of the name of the BBM
 - BUGFIX (Alban): Find/Replace was not working with the named groups from the library (it didn't appear in the list and the replacement did nothing anyway) 
 - BUGFIX (Alban): When changing the order of the part lib tabs, the previously selected tab was not reselected
 - BUGFIX (Alban): The current selected tab of the Part Lib was not saved when exiting the application, and not reset when restarting.

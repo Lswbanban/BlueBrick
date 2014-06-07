@@ -676,32 +676,45 @@ namespace BlueBrick.MapData
 
         public void computeAbsoluteExportPathAfterLoading(string absoluteStartPath, string relativeCompletivePath)
         {
-            char[] separatorList = new char[] { Path.DirectorySeparatorChar, '/', '\\' };
+			// get the BBM file name (first before truncating it)
+			string BBMFilename = Path.GetFileNameWithoutExtension(absoluteStartPath);
+			// get only the directory of the BBM, remove the file name
+			absoluteStartPath = Path.GetDirectoryName(absoluteStartPath);
 
-            // get only the directory, remove the file name
-            string resultPath = Path.GetDirectoryName(absoluteStartPath);
-            absoluteStartPath = resultPath;
+			// check if the relative path is empty of not
+			if (relativeCompletivePath == string.Empty)
+			{
+				// if the relative path is empty (nothing was saved in the BBM, i.e. the file was never exported)
+				// just return the absolute path, changing the extension to png by default
+				mExportAbsoluteFileName = Path.Combine(absoluteStartPath, BBMFilename + ".png");
+				mExportFileTypeIndex = 4;
+			}
+			else
+			{
+				char[] separatorList = new char[] { Path.DirectorySeparatorChar, '/', '\\' };
+				string resultPath = absoluteStartPath;
 
-            //remove the back track path
-            while (relativeCompletivePath.StartsWith(".."))
-            {
-                // find the last folder position
-                int separatorIndex = resultPath.LastIndexOfAny(separatorList);
-                // If the absolute path is too short for supporting all the backtracking of the relative path
-                // just return the same path as the absolute one, with the file name of the relative one.
-                if (separatorIndex == -1)
-                {
-                    mExportAbsoluteFileName = Path.Combine(absoluteStartPath, Path.GetFileName(relativeCompletivePath));
-                    return;
-                }
-                // remove the last folder from the resulting path
-                resultPath = resultPath.Remove(separatorIndex);
-                // remove the two dots and the path separator
-                relativeCompletivePath = relativeCompletivePath.Remove(0, 3);
-            }
-            
-            // compute the path as a concatanation
-            mExportAbsoluteFileName = Path.Combine(resultPath, relativeCompletivePath);
+				//remove the back track path
+				while (relativeCompletivePath.StartsWith(".."))
+				{
+					// find the last folder position
+					int separatorIndex = resultPath.LastIndexOfAny(separatorList);
+					// If the absolute path is too short for supporting all the backtracking of the relative path
+					// just return the same path as the absolute one, with the file name of the relative one.
+					if (separatorIndex == -1)
+					{
+						mExportAbsoluteFileName = Path.Combine(absoluteStartPath, Path.GetFileName(relativeCompletivePath));
+						return;
+					}
+					// remove the last folder from the resulting path
+					resultPath = resultPath.Remove(separatorIndex);
+					// remove the two dots and the path separator
+					relativeCompletivePath = relativeCompletivePath.Remove(0, 3);
+				}
+
+				// compute the path as a concatanation
+				mExportAbsoluteFileName = Path.Combine(resultPath, relativeCompletivePath);
+			}
         }
 
 		public void saveExportFileSettings(string exportFileName, int exportFileTypeIndex)
