@@ -22,11 +22,9 @@ Nothing special need to be install first. Simply extract the files contained in 
 ~~~~~~~~~~~~~~~
 You need to download and install the Microsoft .NET FrameWork (at least version 2.0), that can be found on the Microsoft website (if not already install on your machine):
 Microsoft .NET FrameWork version 3.5 SP1
-http://msdn.microsoft.com/en-us/netframework/aa569263.aspx
-or Microsoft .NET FrameWork version 2.0
 http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5&DisplayLang=en
-
 The version 2.0 is enough to run BlueBrick.
+
 Then extract the files contained in the zip, somewhere on your hardrive, by keeping the same folders organization.
 
 2.3) Linux
@@ -63,17 +61,6 @@ Please refer to the help file that comes with the application (menu Help > Conte
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Open bugs:
-Todo list before the release:
-4) Work on database: NO!!
-	- Add new parts?
-	- create the Hulls?
-5) I will probably try to update the english doc to reflect the new features.
-	- finish the update
-	- add the new search keywords for the new features
-6) I plan to shoot a video that I will post on youtube on the new features for the release.
-8) Update the slashscreen and release version number
-9) check the mono link in this readme
-
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
