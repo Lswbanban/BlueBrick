@@ -1461,7 +1461,7 @@ namespace BlueBrick
 					graphics.CompositingMode = CompositingMode.SourceOver;
 					graphics.InterpolationMode = InterpolationMode.High; // this one need to be high else there's some rendering bug appearing with a lower mode, the scale of the stud looks not correct when zooming out.
 					// draw the bitmap
-					Map.Instance.draw(graphics, mExportImageForm.AreaInStud, mExportImageForm.ScalePixelPerStud);
+					Map.Instance.draw(graphics, mExportImageForm.AreaInStud, mExportImageForm.ScalePixelPerStud, false);
                     Map.Instance.drawWatermark(graphics, mExportImageForm.AreaInStud, mExportImageForm.ScalePixelPerStud);
 					// find the correct format according to the last extension.
 					// Normally the FileName MUST have a valid extension because the SaveFileDialog

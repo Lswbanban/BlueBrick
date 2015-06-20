@@ -1084,11 +1084,12 @@ namespace BlueBrick.MapData
 		/// <remarks>The map is drawn by respecting the order of the layer.</remarks>
 		/// <param name="g">the graphic context in which draw the layer</param>
         /// <param name="areaInStud">The region in which we should draw</param>
-        /// <param name="scale">The scale to use to draw</param>
-		public void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud)
+        /// <param name="scalePixelPerStud">The scale to use to draw</param>
+        /// <param name="drawSelectionRectangle">If true draw the selection rectangle (this can be set to false when exporting the map to an image)</param>
+		public void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, bool drawSelectionRectangle)
 		{
 			foreach (Layer layer in mLayers)
-				layer.draw(g, areaInStud, scalePixelPerStud);
+                layer.draw(g, areaInStud, scalePixelPerStud, drawSelectionRectangle);
         }
 
         /// <summary>

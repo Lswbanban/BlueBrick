@@ -2036,10 +2036,13 @@ namespace BlueBrick.MapData
 		/// Draw the layer.
 		/// </summary>
 		/// <param name="g">the graphic context in which draw the layer</param>
-		public virtual void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud)
+        /// <param name="areaInStud">The region in which we should draw</param>
+        /// <param name="scalePixelPerStud">The scale to use to draw</param>
+        /// <param name="drawSelectionRectangle">If true draw the selection rectangle (this can be set to false when exporting the map to an image)</param>
+        public virtual void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, bool drawSelectionRectangle)
 		{
 			// draw the surrounding selection rectangle
-			if (mSelectedObjects.Count > 0)
+            if (drawSelectionRectangle && (mSelectedObjects.Count > 0))
 			{
 				PointF upperLeftCorner = sConvertPointInStudToPixel(mBoundingSelectionRectangle.Location, areaInStud, scalePixelPerStud);
 				float width = (float)(mBoundingSelectionRectangle.Width * scalePixelPerStud);
