@@ -98,6 +98,11 @@ Open bugs:
 - BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): the layer panel is slow to resfresh
 
+Bug fixed in 1.8.1.0:
+- BUGFIX (Alban): CRASH!! 100% crash at Startup on Linux (due to multithreading of the SplashScreen).
+- BUGFIX (Alban): Display the Help when pressing F1 (or via the Help menu) on Mac and Linux, if you have a CHM viewer installed.
+- BUGFIX (Alban): Fix some bug for the behavior of the text box in the Save Group in Library window.
+
 Bug fixed in 1.8.0.0:
 - NEW FEATURE (Erik): A new layer type for mesurement tools.
 - NEW FEATURE (Alban): Add a filter combobox in the bottom of the library

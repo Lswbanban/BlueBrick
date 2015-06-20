@@ -38,6 +38,8 @@ namespace BlueBrick
 		private List<string> mNewGroupName = new List<string>();
 		// this is used to store temporarily the suffix added to the group name in order to be valid
 		private string mSuffixAddedToGroupName = string.Empty;
+        // and this is used to store temporarily the previous group name to check what the user has changed
+        private string mPreviousGroupName = string.Empty;
 
 		#region get/set
 		public List<FileInfo> NewXmlFilesToLoad
@@ -350,20 +352,22 @@ namespace BlueBrick
 			// unsubscribe the event handler to avoid being called back (make Mono crash probably on stack over flow)
 			this.nameTextBox.TextChanged -= this.nameTextBox_TextChanged;
 
-			// construct the part number from the text in the textbox
-			string partNumber = this.getGroupName(nameTextBox.Text);
-
 			// add a default extension if not added by user
 			const string DEFAULT_SUFFIX = ".SET";
 			string textOfTheUser = string.Empty;
 			int indexOfDot = nameTextBox.Text.IndexOf('.');
 			if (indexOfDot < 0)
 			{
-				// if there's no dot at all, we add the defaut .set at the end
-				textOfTheUser = nameTextBox.Text;
-				mSuffixAddedToGroupName = DEFAULT_SUFFIX;
-			}
-			else if ((mSuffixAddedToGroupName != string.Empty) && nameTextBox.Text.EndsWith(mSuffixAddedToGroupName))
+				// if there's no dot at all, check if the user just deleted the dot on the special case
+                // of the default suffix (this can happen if he delete just the dot, or backspace all including the dot)
+                if (nameTextBox.Text.EndsWith(DEFAULT_SUFFIX.Substring(1)) && mPreviousGroupName.EndsWith(DEFAULT_SUFFIX))
+                    textOfTheUser = mPreviousGroupName.Remove(mPreviousGroupName.Length - DEFAULT_SUFFIX.Length);
+                else
+                    textOfTheUser = nameTextBox.Text;
+                // anyway we add the defaut .set at the end
+                mSuffixAddedToGroupName = DEFAULT_SUFFIX;
+            }
+            else if ((mSuffixAddedToGroupName != string.Empty) && nameTextBox.Text.EndsWith(mSuffixAddedToGroupName))
 			{
 				// remove the suffix (if not empty)
 				textOfTheUser = nameTextBox.Text.Remove(nameTextBox.Text.Length - mSuffixAddedToGroupName.Length);
@@ -386,20 +390,24 @@ namespace BlueBrick
 				mSuffixAddedToGroupName = string.Empty;
 			}
 
-			// reset the text with the correct colors if the suffix is not null
+			// reset the text with the correct colors anyway (cause the user may have modify the suffix)
 			int cursorPosition = nameTextBox.SelectionStart;
-			if (!textOfTheUser.Equals(nameTextBox.Text) || (mSuffixAddedToGroupName != string.Empty))
-			{
-				nameTextBox.Clear();
-				nameTextBox.SelectionColor = Color.Black;
-				nameTextBox.AppendText(textOfTheUser);
-			}
+			nameTextBox.Clear();
+			nameTextBox.SelectionColor = Color.Black;
+			nameTextBox.AppendText(textOfTheUser);
+            // add the suffix in grey if it is not null
 			if (mSuffixAddedToGroupName != string.Empty)
 			{
 				nameTextBox.SelectionColor = Color.Gray;
 				nameTextBox.AppendText(mSuffixAddedToGroupName);
 			}
 			nameTextBox.Select(cursorPosition, 0);
+
+            // now store the new group name, after all the modifications
+            mPreviousGroupName = nameTextBox.Text;
+
+            // construct the part number from the text in the textbox (after it has been modified)
+            string partNumber = this.getGroupName(mPreviousGroupName);
 
 			// check if the name is empty or contains any forbidden char for a file name
 			bool isEmptyName = (textOfTheUser.Trim().Length == 0);
