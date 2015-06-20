@@ -164,17 +164,21 @@ namespace BlueBrick
 									(double)this.scaleNumericUpDown.Minimum);
 			this.scaleNumericUpDown.Value = (Decimal)scaleValue;
 
-			//init the numericupdown controls for area
+			// init the numericupdown controls for area
 			// start by setting the min/max to avoid an out of bound exception when setting the value
-			this.areaLeftNumericUpDown.Minimum = (Decimal)(mTotalAreaInStud.Left);
-			this.areaRightNumericUpDown.Maximum = (Decimal)(mTotalAreaInStud.Right);
-			this.areaTopNumericUpDown.Minimum = (Decimal)(mTotalAreaInStud.Top);
-			this.areaBottomNumericUpDown.Maximum = (Decimal)(mTotalAreaInStud.Bottom);
+            // Use a margin of 1, because if you set the area by typing the values in the text box and
+            // setting a right value smaller than a left value, then the left value is set one pixel aside the right value
+			this.areaLeftNumericUpDown.Minimum = (Decimal)(mTotalAreaInStud.Left - 1.0f);
+            this.areaLeftNumericUpDown.Maximum = (Decimal)(mTotalAreaInStud.Right);
 
-			this.areaLeftNumericUpDown.Maximum = this.areaRightNumericUpDown.Maximum;
-			this.areaRightNumericUpDown.Minimum = this.areaLeftNumericUpDown.Minimum;
-			this.areaTopNumericUpDown.Maximum = this.areaBottomNumericUpDown.Maximum;
-			this.areaBottomNumericUpDown.Minimum = this.areaTopNumericUpDown.Minimum;
+            this.areaRightNumericUpDown.Minimum = (Decimal)(mTotalAreaInStud.Left);
+            this.areaRightNumericUpDown.Maximum = (Decimal)(mTotalAreaInStud.Right + 1.0f);
+
+			this.areaTopNumericUpDown.Minimum = (Decimal)(mTotalAreaInStud.Top - 1.0f);
+            this.areaTopNumericUpDown.Maximum = (Decimal)(mTotalAreaInStud.Bottom);
+
+            this.areaBottomNumericUpDown.Minimum = (Decimal)(mTotalAreaInStud.Top);
+            this.areaBottomNumericUpDown.Maximum = (Decimal)(mTotalAreaInStud.Bottom + 1.0f);
 
 			// set the value after setting the minimum and maximum otherwise we can raise an exeption
 			// and used the local saved variable because the min/max setting may have already call
@@ -399,33 +403,65 @@ namespace BlueBrick
 			float newValue = (float)(this.areaLeftNumericUpDown.Value);
 			mSelectedAreaInStud.Width += mSelectedAreaInStud.X - newValue;
 			mSelectedAreaInStud.X = newValue;
-			updateMinAndMaxScaleAccordingToSelectedArea();
-			updateImage(this.areaLeftNumericUpDown);
-		}
+            // if the new Width is valid, update the image, otherwise move the left value also
+            if (mSelectedAreaInStud.Width > 0.0f)
+            {
+			    updateMinAndMaxScaleAccordingToSelectedArea();
+			    updateImage(this.areaLeftNumericUpDown);
+            }
+            else
+            {
+                this.areaRightNumericUpDown.Value = (Decimal)(newValue + 1.0f);
+            }
+        }
 
 		private void areaTopNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
 			float newValue = (float)(this.areaTopNumericUpDown.Value);
 			mSelectedAreaInStud.Height += mSelectedAreaInStud.Y - newValue;
 			mSelectedAreaInStud.Y = newValue;
-			updateMinAndMaxScaleAccordingToSelectedArea();
-			updateImage(this.areaTopNumericUpDown);
+            // if the new height is valid, update the image, otherwise move the bottom value also (which will update the image)
+            if (mSelectedAreaInStud.Height > 0.0f)
+            {
+                updateMinAndMaxScaleAccordingToSelectedArea();
+                updateImage(this.areaTopNumericUpDown);
+            }
+            else
+            {
+                this.areaBottomNumericUpDown.Value = (Decimal)(newValue + 1.0f);
+            }
 		}
 
 		private void areaRightNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
 			float newValue = (float)(this.areaRightNumericUpDown.Value);
 			mSelectedAreaInStud.Width = newValue - mSelectedAreaInStud.X;
-			updateMinAndMaxScaleAccordingToSelectedArea();
-			updateImage(this.areaRightNumericUpDown);
+            // if the new Width is valid, update the image, otherwise move the left value also
+            if (mSelectedAreaInStud.Width > 0.0f)
+            {
+                updateMinAndMaxScaleAccordingToSelectedArea();
+                updateImage(this.areaRightNumericUpDown);
+            }
+            else
+            {
+                this.areaLeftNumericUpDown.Value = (Decimal)(newValue - 1.0f);
+            }
 		}
 
 		private void areaBottomNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
 			float newValue = (float)(this.areaBottomNumericUpDown.Value);
-			mSelectedAreaInStud.Height = newValue - mSelectedAreaInStud.Y;
-			updateMinAndMaxScaleAccordingToSelectedArea();
-			updateImage(this.areaBottomNumericUpDown);
+            mSelectedAreaInStud.Height = newValue - mSelectedAreaInStud.Y;
+            // if the new height is valid, update the image, otherwise move the top value also
+            if (mSelectedAreaInStud.Height > 0.0f)
+            {
+                updateMinAndMaxScaleAccordingToSelectedArea();
+                updateImage(this.areaBottomNumericUpDown);
+            }
+            else
+            {
+                this.areaTopNumericUpDown.Value = (Decimal)(newValue - 1.0f);
+            }
 		}
 
 		private void imageWidthNumericUpDown_ValueChanged(object sender, EventArgs e)
