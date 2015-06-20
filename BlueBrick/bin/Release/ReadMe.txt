@@ -87,7 +87,6 @@ Open bugs:
 - MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
 - MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable.
 - BUG (Alban): After reloading the part library, all the settings of the part lib are reset to what it was when the application started instead of what it was just before reloading
-- BUG #53 (Alban): In the export window you can specify a selection rectangle null by setting a bottom < top
 - BUG #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
 - BUG #55 (Alban): When you replace a part in a group, the display area of the group is not recomptuted
 - BUG #56 (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
@@ -103,6 +102,7 @@ Bug fixed in 1.8.1.0:
 - BUGFIX (Alban): Display the Help when pressing F1 (or via the Help menu) on Mac and Linux, if you have a CHM viewer installed.
 - BUGFIX (Alban): Fix some bug for the behavior of the text box in the Save Group in Library window.
 - BUGFIX (Alban): Now the selection is not cleared after an Export (but still not visible in the exported image)
+- BUGFIX #53 (Alban): In the export window you can specify a selection rectangle null by setting a (bottom < top) or (right < left)
 
 Bug fixed in 1.8.0.0:
 - NEW FEATURE (Erik): A new layer type for mesurement tools.
