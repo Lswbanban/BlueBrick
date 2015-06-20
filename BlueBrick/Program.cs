@@ -21,21 +21,6 @@ namespace BlueBrick
 {
 	static class Program
 	{
-		private static void SplashScreenLoop()
-		{
-			SplashScreen  splashScreen = new SplashScreen();
-			splashScreen.Show();
-			while (!MainForm.IsMainFormReady)
-			{
-				Thread.Sleep(200);
-			}
-			MainForm.CheckForIllegalCrossThreadCalls = false;
-			MainForm.Instance.BringToFront();
-			MainForm.CheckForIllegalCrossThreadCalls = true;
-			splashScreen.Hide();
-			splashScreen.Dispose();
-		}
-
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -48,11 +33,10 @@ namespace BlueBrick
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 
-				// create a separate thread for the splash screen
-				ThreadStart threadDelegate = new ThreadStart(SplashScreenLoop);
-				Thread newThread = new Thread(threadDelegate);
-				newThread.IsBackground = true;
-				newThread.Start();
+				// create the splash screen and show it (in the main thread)
+				SplashScreen splashScreen = new SplashScreen();
+				splashScreen.Show();
+				Application.DoEvents(); // call the DoEvent for paint event to be done
 
 				// try to load the language saved in the setting,
 				// if the setting is set to default, the window culture info is used
@@ -76,7 +60,15 @@ namespace BlueBrick
 				if (args.Length > 0)
 					fileToOpen = args[0];
 
-				Application.Run(new MainForm(fileToOpen));
+				// Create the mainWindow (which is the task that take time)
+				MainForm mainWindow = new MainForm(fileToOpen);
+
+				// when the mainwindow constructor is finished, we can hide the splashscreen and destroy it
+				splashScreen.Hide();
+				splashScreen.Dispose();
+
+				// Finally call the main loop
+				Application.Run(mainWindow);
 			}
 			catch (Exception e)
 			{

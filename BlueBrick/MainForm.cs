@@ -35,9 +35,6 @@ namespace BlueBrick
 	public partial class MainForm : Form
     {
 		#region variable
-		// this static flag is used by the splash screen thread to know when to stop
-		private static bool sIsMainFormReady = false;
-
 		// reference on the main form (set in the constructor)
 		private static MainForm sInstance = null;
 
@@ -155,14 +152,6 @@ namespace BlueBrick
 		#endregion
 
 		#region get/set
-		/// <summary>
-		/// this static flag is used by the splash screen thread to know when to stop
-		/// </summary>
-		public static bool IsMainFormReady
-		{
-			get { return sIsMainFormReady; }
-		}
-
 		/// <summary>
 		/// Get the reference pointer on the main form window
 		/// </summary>
@@ -519,9 +508,6 @@ namespace BlueBrick
 
 		private void MainForm_Shown(object sender, EventArgs e)
 		{
-			// set the static flag to terminate the thread of the splash screen
-			sIsMainFormReady = true;
-
 			// set the split container distance in the shown event because else the distance is not
 			// correct if the window was maximise
 			this.mainSplitContainer.SplitterDistance = Properties.Settings.Default.UIMainSplitContainerDistance;
