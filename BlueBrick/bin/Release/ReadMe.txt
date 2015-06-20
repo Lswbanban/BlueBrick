@@ -85,6 +85,7 @@ Open bugs:
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
 - MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
 - MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
+- MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable.
 - BUG (Alban): After reloading the part library, all the settings of the part lib are reset to what it was when the application started instead of what it was just before reloading
 - BUG #53 (Alban): In the export window you can specify a selection rectangle null by setting a bottom < top
 - BUG #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
