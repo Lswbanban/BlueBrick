@@ -146,7 +146,7 @@
     <value>129, 17</value>
   </data>
   <data name="inCurrentSelectionRadioButton.Text" xml:space="preserve">
-    <value>En la selacción actual</value>
+    <value>En la selección actual</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancelar</value>

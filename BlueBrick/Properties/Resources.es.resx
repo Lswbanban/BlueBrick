@@ -325,7 +325,7 @@
     <value>No se puede abrir el archivo "&amp;". Sin este archivo no podrá ver el color y la descripción de las piezas en la lista de piezas. Por favor, compruebe que el archivo existe o reinstale BlueBrick para solucionar este problema.</value>
   </data>
   <data name="ErrorMsgMissingConnectionTypeInfoFile" xml:space="preserve">
-    <value>No se puede abrir el archivo "&amp;". Sin este archivo no podrá conectar piezasPor favor, compruebe que el archivo existe o reinstale BlueBrick para solucionar este problema.</value>
+    <value>No se puede abrir el archivo "&amp;". Sin este archivo no podrá conectar piezas. Por favor, compruebe que el archivo existe o reinstale BlueBrick para solucionar este problema.</value>
   </data>
   <data name="ErrorMsgMissingParts" xml:space="preserve">
     <value>Algunas piezas no se cargaron correctamente porque no las tiene en la biblioteca de piezas. Algunas imágenes por defecto se han añadido temporalmente para reemplazar las originales. Deberá preguntar al autor del mapa (&amp;) dónde puede encontrarlas.</value>
@@ -424,10 +424,10 @@
     <value>Duplicar regla</value>
   </data>
   <data name="ActionDuplicateSeveralRulers" xml:space="preserve">
-    <value>Dupliacr varias reglas</value>
+    <value>Duplicar varias reglas</value>
   </data>
   <data name="ActionEditRuler" xml:space="preserve">
-    <value>Aditar propiedades de regla</value>
+    <value>Editar propiedades de regla</value>
   </data>
   <data name="ActionMoveRuler" xml:space="preserve">
     <value>Mover regla</value>
@@ -448,7 +448,7 @@
     <value>Modificar radio de regla</value>
   </data>
   <data name="ActionScaleLinearRuler" xml:space="preserve">
-    <value>Mofificar desplazamiento de regla</value>
+    <value>Modificar desplazamiento de regla</value>
   </data>
   <data name="ActionSendRulerToBack" xml:space="preserve">
     <value>Enviar reglas seleccionadas al fondo</value>
@@ -466,13 +466,13 @@
     <value>Cancelar</value>
   </data>
   <data name="ErrorMsgCannotOpenBudget" xml:space="preserve">
-    <value>Nose puede abrir el presupuesto &amp;.</value>
+    <value>No se puede abrir el presupuesto &amp;.</value>
   </data>
   <data name="ErrorMsgCannotSaveBudget" xml:space="preserve">
     <value>Nos e puede guardar el presupuesto &amp;.</value>
   </data>
   <data name="ErrorMsgCannotSaveCustomPart" xml:space="preserve">
-    <value>BlueBrick ha encontrado un problema al guardar el grupo en la carpete "parts/Custom. Por favor lea el siguiente mensaje para más detalles:</value>
+    <value>BlueBrick ha encontrado un problema al guardar el grupo en la carpeta "parts/Custom. Por favor lea el siguiente mensaje para más detalles:</value>
   </data>
   <data name="ErrorMsgIgnoreButton" xml:space="preserve">
     <value>Ignorar</value>
@@ -502,7 +502,7 @@
     <value>Escribir palabras clave para filtrar aquí</value>
   </data>
   <data name="PartLibMenuItemEditBudget" xml:space="preserve">
-    <value>Editar el rpesupuesto de esta pieza</value>
+    <value>Editar el presupuesto de esta pieza</value>
   </data>
   <data name="PartLibMenuItemShowBudgetNumbers" xml:space="preserve">
     <value>Mostrar números de presupuesto</value>
@@ -515,5 +515,20 @@
   </data>
   <data name="StatusMsgBudgetReached" xml:space="preserve">
     <value>¡Presupuesto para esta pieza alcanzado!</value>
+  </data>
+  <data name="ErrorMsgCannotAddDueToBudgetLimitation" xml:space="preserve">
+    <value>No se puede añadir la pieza porque se ha excedido el presupuesto. Aumenta el presupuesto para este elemento, deshabilite la limitación o cierre el archivo de presupuesto.</value>
+  </data>
+  <data name="ErrorMsgDoYouWantToDisplayBudgetNumber" xml:space="preserve">
+    <value>Ha habilitado limitación del presupuesto, pero no se muestran los números de presupuesto. ¿Quiere mostrarlos?</value>
+  </data>
+  <data name="ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation" xml:space="preserve">
+    <value>Algunas piezas no se remplazarán debido a las limitaciones del presupuesto. ¿Desea continuar?</value>
+  </data>
+  <data name="StatusMsgWrongLayerType" xml:space="preserve">
+    <value>La capa activa no es capa de Bricks</value>
+  </data>
+  <data name="UnitStraightTrack" xml:space="preserve">
+    <value>vía</value>
   </data>
 </root>
