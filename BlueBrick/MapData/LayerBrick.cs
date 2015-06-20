@@ -621,8 +621,10 @@ namespace BlueBrick.MapData
 		/// Draw the layer.
 		/// </summary>
 		/// <param name="g">the graphic context in which draw the layer</param>
-		/// <param name="area">the area in layer pixel</param>
-		public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud)
+        /// <param name="areaInStud">The region in which we should draw</param>
+        /// <param name="scalePixelPerStud">The scale to use to draw</param>
+        /// <param name="drawSelectionRectangle">If true draw the selection rectangle (this can be set to false when exporting the map to an image)</param>
+        public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, bool drawSelectionRectangle)
 		{
 			if (!Visible)
 				return;
@@ -762,7 +764,7 @@ namespace BlueBrick.MapData
 			}
 
 			// call the base class to draw the surrounding selection rectangle
-			base.draw(g, areaInStud, scalePixelPerStud);
+            base.draw(g, areaInStud, scalePixelPerStud, drawSelectionRectangle);
 
 			// check if there's a brick for which we need to draw the current connection point (red dot)
 			// two conditions: one brick under the mouse, or only one brick selected.

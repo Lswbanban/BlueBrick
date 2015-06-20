@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.8.0.0 |
+                    | BlueBrick version 1.8.1.0 |
                     +---------------------------+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -102,6 +102,7 @@ Bug fixed in 1.8.1.0:
 - BUGFIX (Alban): CRASH!! 100% crash at Startup on Linux (due to multithreading of the SplashScreen).
 - BUGFIX (Alban): Display the Help when pressing F1 (or via the Help menu) on Mac and Linux, if you have a CHM viewer installed.
 - BUGFIX (Alban): Fix some bug for the behavior of the text box in the Save Group in Library window.
+- BUGFIX (Alban): Now the selection is not cleared after an Export (but still not visible in the exported image)
 
 Bug fixed in 1.8.0.0:
 - NEW FEATURE (Erik): A new layer type for mesurement tools.

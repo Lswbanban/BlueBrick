@@ -268,8 +268,6 @@ namespace BlueBrick
 
 		private void drawMapImage()
 		{
-			// clear all the selection before the export
-			Map.Instance.clearAllSelection();
 			// create the map image with the correct size
 			// check that the size is not null, which can happen if the window is minimized
 			if ((this.previewPictureBox.Width > 0) && (this.previewPictureBox.Height > 0))
@@ -284,7 +282,7 @@ namespace BlueBrick
 				graphics.CompositingQuality = CompositingQuality.HighSpeed;
 				graphics.InterpolationMode = InterpolationMode.Low;
 				// draw the bitmap
-				Map.Instance.draw(graphics, mTotalAreaInStud, mTotalScalePixelPerStud);
+				Map.Instance.draw(graphics, mTotalAreaInStud, mTotalScalePixelPerStud, false);
 			}
 			else
 			{

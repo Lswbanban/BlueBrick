@@ -332,7 +332,7 @@ namespace BlueBrick
 			float startXInStud = (float)mViewCornerX;
 			float startYInStud = (float)mViewCornerY;
 			RectangleF rectangle = new RectangleF(startXInStud, startYInStud, widthInStud, heightInStud);
-			Map.Instance.draw(g, rectangle, mViewScale);
+			Map.Instance.draw(g, rectangle, mViewScale, true);
             Map.Instance.drawWatermark(g, rectangle, mViewScale);
 
 			// on top of all the layer draw the selection rectangle
