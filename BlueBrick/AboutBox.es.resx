@@ -120,29 +120,31 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="logoPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        R0lGODlhWgBuAPMAAB0jMzk/TwAzsgQxoAgvjgwsfBEqahUoVxkmRcjIyFlZWT09PSEhIf///wAAAAAA
-        ACH5BAEAAA0ALAAAAABaAG4AAAT/sMlJq704Z8W1/2AoZokSIAQRKMnovjC5AMQg3AOBrHHvfyaU7UbE
-        7Vi/pK90GhafOAJg0VJaQYlZDcot5o7XsCVx2nbP3mNVrAw60XBibrpmv5jmuN6r49lFWTRve4Ryan8a
-        QXmFjHw7dYhMCIONlWl+doGLlpxPOSuQP2RCnaVnX5g9bqascAQMCzF4lK21AgMIuQChHpq0tqy4uTYI
-        vBiKv8ClwpNExR+SycqdwpvPMoLTwF+kUNcWyNq2c9lcAwEXq+K15JtPBAoUs+vsOt1o8BKj7vSWzNLv
-        4ilgQKBfq3+M8ikoMMwgJ4SNFNawB9Chp1z89kiMgrFiP24Z/3EcOJDr3o2NcqSUs5gSwMouuAbkSFHS
-        DEo+LkNOa1cxJhQCBhgIuunJns6DRj36TFMSgNACAguiqeaxEkQ9S+W4HDLHQFSsHceVrGpk0ICt7xh8
-        3XP14dhGKDyhlbuWUNtCVK020wrgF4K6eN+yTcpJh5e5XIgy4gaQZ6m4RKRIO9dAgdSHFM0RXrb3JAI4
-        lBN8NgWSa+ZWhotAPpNPdL2cgmutvtW5yzPX41Q2LolRZ1YBqU/taoAb2GxzKFLQzPkr+I3jPxm0KG4L
-        ehqzBQowh5L1NxcE0omPNn6Ze+1bLhE4FUpptXPkw6nLLn9dbt+ZUsZHHp/CVa7p+s2HnP9ZiJV10RCS
-        nTLJbQG2Ap13Z/X1HX0C5IIDDTA1w+A00B0XYXMN4rLFewZWCCCH9J1V3ocKUhIhTWZ1tqEyxyXojIRo
-        WEcOhoY4QZl4KL6jn3cTnmIPbzyeFA+QNNI3G4nm9aRcCm/kwyR59TnT4E9bJrSkfA6W9551T1hYipUN
-        BEAWIbPNRqQ3FEa0ZGVxPlbek11m2QmaljVZhHNk/plnIXzW2Ymbe71ZpqGEztknlqpJpWiPrBTqZ5aB
-        0rYmPo4yakmHUtkYpV1TUmIppGnUoOKAdvFWkxOnVhdnNQyNylZtjsUqYIY5TakDWRASUEBQfekaJmiu
-        NnRrjMlCNcH/o7KuAyEAAYK3BrS77nQei3+GJwG2x2pjJl8uDvetp5VkSk2S6OH4U6eXKiNqhe7+FMu5
-        8QLj3KTA3XtltqgCN2iFc4Jpirr+1KbuNwbbOc2+58m1RsOHooufcgDh6Yq3/4ar4JHqvbRopHBYOwHF
-        nGQabFhcasUoLuZ2zEqgwaZQAHu28mvPxAOnW+e01LranqQR98hwz3DNum2BFVKY4KoD/qgP0gmFSK03
-        9Z6U9VkF2ABlTGfNKbMpJM6rqTnsGpHctig8UgHKlpDoYdGeweQSuxGmcjLVhAb4m85ZtxS0LguI/Tbf
-        hLwHMUBmFyWsAYX3grhG1YrZM5TcTYHF7+R6LK5az+riEoAxF6ipr35jejqp6KQfg27VJFOKT5efGB4C
-        uGSjbnkcD6pguwi4n4m6fqHjKoW/sgS+55CJ0r3fYVQoMcqmrFU7WuNZsi6GCUd17nczULOq/R/cUy8o
-        nHVH7TsiFMxgfvpMyRSxiOuz/3YTlXxtz9WHaYe8/fdzXhcwdwuVKEcXsGgdACsTgO49bypHuln0FgiC
-        8nnvVqOjoAvcFwcCpkRvGgzB9GYHQRCGcAQjTAztjnfCNjTQVFs6ywRb6MJFvGd8NAwDB+Enut/lUHr4
-        M0ztfmi/UWinfkQEoAIWAIsknlCBOYwAADs=
+        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
 </value>
   </data>
   <data name="labelVersion.Text" xml:space="preserve">
@@ -155,9 +157,9 @@
     <value>Contacto: banban@banban.org</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Este programa es software libre: puedes redistribuirlo bajo los términos de la GNU General Public Licence versiçon 3 publicada por la Free Software Foundation. Vea
-http://www.fsf.org/licensing/licenses/gpl.html e
-http://www.gnu.org/licenses/</value>
+    <value>Este programa es software libre: puedes redistribuirlo bajo los términos de la GNU General Public Licence versión 3 publicada por la Free Software Foundation.
+Vea http://www.fsf.org/licensing/licenses/gpl.html
+e http://www.gnu.org/licenses/</value>
   </data>
   <data name="columnHeader1.Text" xml:space="preserve">
     <value>Traducido en</value>

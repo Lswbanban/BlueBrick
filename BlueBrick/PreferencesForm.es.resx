@@ -117,12 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="displayWarningWhenReplaceOverBudgetCheckBox.Text" xml:space="preserve">
+    <value>Mostrar un aviso cuando las piezas remplazadas exceden el presupuesto</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="displayWarningWhenAddOverBudgetCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 49</value>
+  </data>
+  <data name="displayWarningWhenAddOverBudgetCheckBox.Text" xml:space="preserve">
+    <value>Mostrar un aviso al añadir una pieza que excede el presupuesto</value>
+  </data>
+  <data name="askToDisplayBudgetNumbersCheckBox.Text" xml:space="preserve">
+    <value>Pedir habilitar Números de presupuesto al habilitar Limitacion por presupuesto</value>
+  </data>
   <data name="displayWarningWhenDuplicateOverBudgetCheckBox.Text" xml:space="preserve">
     <value>Mostrar un aviso cuando las piezas pegadas o duplicadas exceden el presupuesto</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="displayWarningForNotSavingInBBMCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 23</value>
+    <value>11, 20</value>
   </data>
   <data name="displayWarningForNotSavingInBBMCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>262, 35</value>
@@ -231,15 +243,18 @@ más memoria se utilizará.</value>
     <value>Cambiar tipo de letra</value>
   </data>
   <data name="unitComboBox.Items" xml:space="preserve">
-    <value>studs</value>
+    <value>Studs</value>
   </data>
   <data name="unitComboBox.Items2" xml:space="preserve">
-    <value>módulos</value>
+    <value>Vía recta</value>
   </data>
   <data name="unitComboBox.Items3" xml:space="preserve">
-    <value>Metro</value>
+    <value>Módulos</value>
   </data>
   <data name="unitComboBox.Items4" xml:space="preserve">
+    <value>Metro</value>
+  </data>
+  <data name="unitComboBox.Items5" xml:space="preserve">
     <value>Pies</value>
   </data>
   <data name="displayUnitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
@@ -255,10 +270,10 @@ más memoria se utilizará.</value>
     <value>Mostrar valor de medición</value>
   </data>
   <data name="allowOffsetCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 17</value>
+    <value>142, 17</value>
   </data>
   <data name="allowOffsetCheckBox.Text" xml:space="preserve">
-    <value>Permitir desplazamiento</value>
+    <value>Distancia para las líneas</value>
   </data>
   <data name="label35.Text" xml:space="preserve">
     <value>Patrón de rayas y espacios
@@ -277,8 +292,11 @@ por defecto (en grosor)</value>
     <value>Grosor por defecto
 (en píxeles)</value>
   </data>
+  <data name="RulerSwitchToEditionAfterCreationCheckBox.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
   <data name="RulerSwitchToEditionAfterCreationCheckBox.Text" xml:space="preserve">
-    <value>Cambiar a herramiento de edición después de crear regla</value>
+    <value>Cambiar a herramienta de edición después de crear regla</value>
   </data>
   <data name="label31.Text" xml:space="preserve">
     <value>Radio de punto de control
@@ -430,6 +448,9 @@ por defecto (en studs)</value>
   <data name="appearanceTabPage.Text" xml:space="preserve">
     <value>Apariencia</value>
   </data>
+  <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
+    <value>Pinche el botón para editar -&gt;</value>
+  </data>
   <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 13</value>
   </data>
@@ -455,7 +476,7 @@ por defecto (en studs)</value>
     <value>Color al mostrar solo piezas presupuestadas</value>
   </data>
   <data name="label29.Text" xml:space="preserve">
-    <value>Color al foltrar con palabras clave</value>
+    <value>Color al filtrar con palabras clave</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Color de fondo por defecto</value>
@@ -555,6 +576,9 @@ por defecto (en studs)</value>
   </data>
   <data name="comboBoxKey.Items65" xml:space="preserve">
     <value>Retroceso</value>
+  </data>
+  <data name="comboBoxKey.Items66" xml:space="preserve">
+    <value>Intro</value>
   </data>
   <data name="comboBoxKey.Items67" xml:space="preserve">
     <value>Izquierda</value>

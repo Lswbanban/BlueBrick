@@ -126,8 +126,11 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Nombre</value>
   </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Id de grupo</value>
+  </data>
   <data name="nameErrorLabel.Text" xml:space="preserve">
-    <value>Nombre vacío!|Carácter inválido!|referencia cíclica!|Nombre ya existe!|Override!</value>
+    <value>¡Nombre vacío!|¡Carácter inválido!|¡referencia cíclica!¡|Nombre ya existe!|¡Sobreescribit!</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
@@ -155,8 +158,8 @@
   <data name="canUngroupCheckBox.Text" xml:space="preserve">
     <value>Se puede deshacer grupo</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Id de grupo</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Descripción</value>
   </data>
   <data name="languageNameLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>151, 23</value>
@@ -169,9 +172,6 @@
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Código de idioma</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Descripción</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

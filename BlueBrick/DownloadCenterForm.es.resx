@@ -119,24 +119,22 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>573, 91</value>
+    <value>590, 78</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>BlueBrick necesita descargar algunos archivos de internet. En la lista abajo puedes comprobar la URL de los archivos y dónde serán guardados en to ordenador. Puedes desmarcar archivos para que no se descarguen. Pulse el botón "Comenzar descarga" cuando esté listo, asegúrese de teenr acceso a internet y permite que BlueBrick pase por su cortafuegos.
+    <value>BlueBrick necesita descargar algunos archivos de internet. En la lista abajo puedes comprobar la URL de los archivos y dónde serán guardados en to ordenador. Puede desmarcar archivos para que no se descarguen. Pulse el botón "Comenzar descarga" cuando esté listo, asegúrese de tener acceso a internet y permite que BlueBrick pase por su cortafuegos.
 
-Si lo prefiere, también puede cerrar esta ventana, descargar los archivos con su navegardor y guardarlos en la carpeta correcta (relativa a la carpeta de instalación de BlueBrick).</value>
-  </data>
-  <data name="StartButton.Text" xml:space="preserve">
-    <value>Comenzar descarga</value>
-  </data>
-  <data name="FileColumnHeader.Text" xml:space="preserve">
-    <value>Archivo</value>
+Si lo prefiere, también puede cerrar esta ventana, descargar los archivos con su navegador y guardarlos en la carpeta correcta (relativa a la carpeta de instalación de BlueBrick).
+</value>
   </data>
   <data name="DestinationColumnHeader.Text" xml:space="preserve">
     <value>Descargar a</value>
   </data>
   <data name="PercentColumnHeader.Text" xml:space="preserve">
     <value>Progreso</value>
+  </data>
+  <data name="StartButton.Text" xml:space="preserve">
+    <value>Comenzar descarga</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Cerrar</value>
