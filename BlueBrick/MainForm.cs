@@ -2433,7 +2433,18 @@ namespace BlueBrick
 			// now check if we can open the help file, else display a warning message
 			if (helpFileInfo.Exists)
 			{
-				Help.ShowHelp(this, helpFileInfo.FullName);
+                // MONOBUG: The Help.ShowHelp is not implemented yet on Mono, do our own implementation for Linux or Mac
+                if ((Environment.OSVersion.Platform == PlatformID.Unix) ||
+                    (Environment.OSVersion.Platform == PlatformID.MacOSX))
+                {
+                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                    startInfo.FileName = helpFileInfo.FullName;
+                    System.Diagnostics.Process.Start(startInfo);
+                }
+                else
+                {
+                    Help.ShowHelp(this, helpFileInfo.FullName);
+                }
 			}
 			else
 			{
