@@ -77,6 +77,7 @@
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.nameTextBox);
             this.groupBox1.Controls.Add(this.nameErrorLabel);
             this.groupBox1.Controls.Add(this.sortingKeyTextBox);
@@ -85,21 +86,20 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.canUngroupCheckBox);
             this.groupBox1.Controls.Add(this.label1);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
             // nameTextBox
             // 
-            this.nameTextBox.BackColor = System.Drawing.Color.LightSalmon;
             resources.ApplyResources(this.nameTextBox, "nameTextBox");
+            this.nameTextBox.BackColor = System.Drawing.Color.LightSalmon;
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // nameErrorLabel
             // 
-            this.nameErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
             resources.ApplyResources(this.nameErrorLabel, "nameErrorLabel");
+            this.nameErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
             this.nameErrorLabel.Name = "nameErrorLabel";
             // 
             // sortingKeyTextBox
@@ -132,11 +132,11 @@
             // 
             // groupBox2
             // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.languageNameLabel);
             this.groupBox2.Controls.Add(this.descriptionTextBox);
             this.groupBox2.Controls.Add(this.languageCodeComboBox);
             this.groupBox2.Controls.Add(this.label3);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -154,8 +154,8 @@
             // 
             // languageCodeComboBox
             // 
-            this.languageCodeComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.languageCodeComboBox, "languageCodeComboBox");
+            this.languageCodeComboBox.FormattingEnabled = true;
             this.languageCodeComboBox.Name = "languageCodeComboBox";
             this.languageCodeComboBox.SelectedIndexChanged += new System.EventHandler(this.languageCodeComboBox_SelectedIndexChanged);
             this.languageCodeComboBox.TextChanged += new System.EventHandler(this.languageCodeComboBox_TextChanged);
@@ -168,11 +168,11 @@
             // 
             // groupBox3
             // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.partURLTextBox);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.imageURLTextBox);
             this.groupBox3.Controls.Add(this.label6);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
