@@ -907,7 +907,8 @@ namespace BlueBrick
 			}
 
 			// redraw the selected tab to have the correct background color for part exceeding budget
-			this.SelectedTab.Invalidate();
+            if (this.SelectedTab != null)
+			    this.SelectedTab.Invalidate();
 		}
 
 		/// <summary>
