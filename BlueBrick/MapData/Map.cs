@@ -934,7 +934,7 @@ namespace BlueBrick.MapData
 				if ((brickLayer != null) && (brickLayer.getConnectableBrick() != null))
 				{
 					// create the correct action depending if the part is a group or not
-					Action action = null;
+                    Actions.Action action = null;
 					if (BrickLibrary.Instance.isAGroup(partNumber))
 						action = new AddConnectGroup(brickLayer, partNumber, connexion);
 					else

@@ -124,6 +124,5 @@ namespace BlueBrick
 			}
 		}
 		#endregion
-
 	}
 }

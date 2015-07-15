@@ -153,10 +153,10 @@ namespace BlueBrick
 			return base.IsInputKey(keyData);
 		}
 		
-		public void updateView(Action.UpdateViewType layerUpdateType)
+		public void updateView(Actions.Action.UpdateViewType layerUpdateType)
 		{
 			// check if we must recreate the whole list
-			if (layerUpdateType == Action.UpdateViewType.FULL)
+            if (layerUpdateType == Actions.Action.UpdateViewType.FULL)
 			{
 				// first suspend the layout because we will recreate the full layout
 				this.SuspendLayout();
