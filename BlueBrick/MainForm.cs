@@ -750,14 +750,14 @@ namespace BlueBrick
 		/// <summary>
 		/// update all the view of the application
 		/// </summary>
-		public void updateView(Action.UpdateViewType mapUpdateType, Action.UpdateViewType layerUpdateType)
+        public void updateView(Actions.Action.UpdateViewType mapUpdateType, Actions.Action.UpdateViewType layerUpdateType)
 		{
 			// update the map
-			if (mapUpdateType > Action.UpdateViewType.NONE)
+            if (mapUpdateType > Actions.Action.UpdateViewType.NONE)
 				this.mapPanel.updateView();
 
 			// update the layer
-			if (layerUpdateType > Action.UpdateViewType.NONE)
+            if (layerUpdateType > Actions.Action.UpdateViewType.NONE)
 				this.layerStackPanel.updateView(layerUpdateType);
 
 			// check if we need to change the "*" on the title bar
@@ -1177,7 +1177,7 @@ namespace BlueBrick
 			// reset the current file name
 			changeCurrentMapFileName(Properties.Resources.DefaultSaveFileName, false);
 			// update the view any way
-			this.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.FULL);
+            this.updateView(Actions.Action.UpdateViewType.FULL, Actions.Action.UpdateViewType.FULL);
 			mPartListForm.rebuildList();
 			Budget.Budget.Instance.recountAllBricks();
 			this.PartsTabControl.updateAllPartCountAndBudget();
@@ -1218,7 +1218,7 @@ namespace BlueBrick
 			// (and before the update of the title bar)
 			Map.Instance.WasModified = false;
 			// update the view any way
-			this.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.FULL);
+            this.updateView(Actions.Action.UpdateViewType.FULL, Actions.Action.UpdateViewType.FULL);
 		}
 
 		private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1252,7 +1252,7 @@ namespace BlueBrick
 				// move the view to center of the map
 				this.mapPanel.moveViewToMapCenter();
 				// update the view
-				this.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.FULL);
+                this.updateView(Actions.Action.UpdateViewType.FULL, Actions.Action.UpdateViewType.FULL);
 				mPartListForm.rebuildList();
 				Budget.Budget.Instance.recountAllBricks();
 				this.PartsTabControl.updateAllPartCountAndBudget();
@@ -2685,7 +2685,7 @@ namespace BlueBrick
 				List<Layer.LayerItem> itemList = selectedLayer.SelectedObjects;
 
 				// create the action according to the layer type
-				Action moveAction = null;
+                Actions.Action moveAction = null;
 				if (selectedLayer is LayerBrick)
 					moveAction = new MoveBrick(selectedLayer as LayerBrick, itemList, move);
 				else if (selectedLayer is LayerText)

@@ -813,7 +813,7 @@ namespace BlueBrick.MapData
 			{
 				bool needRedraw = mMouseFlexMoveAction.update();
 				if (needRedraw)
-					MainForm.Instance.updateView(Action.UpdateViewType.FULL, Action.UpdateViewType.NONE);
+                    MainForm.Instance.updateView(Actions.Action.UpdateViewType.FULL, Actions.Action.UpdateViewType.NONE);
 				// debug draw for the flex
 				// mMouseFlexMoveAction.draw(g, areaInStud, scalePixelPerStud);
 			}
