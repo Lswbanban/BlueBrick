@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.8.1                                   # version of an app.
+Name[en_US]=BlueBrick                           # name of an app.
+GenericName=BlueBrick Lego Layout Planer        # longer name of an app.
+Exec=mono BlueBrick.exe							# command used to launch an app.
+Terminal=false                                  # whether an app requires to be run in a terminal.
+Icon[en_US]=/icons/32x32/apps/BlueBrick.png		# location of icon file.
+Type=Application                                # type.
+Categories=Application					        # categories in which this app should be listed.
+Comment[en_US]=Plan Lego Layout with BlueBrick	# comment which appears as a tooltip.

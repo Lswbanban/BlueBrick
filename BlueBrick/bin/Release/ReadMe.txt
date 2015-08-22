@@ -98,6 +98,7 @@ Open bugs:
 - REFACTORING (Alban): the layer panel is slow to resfresh
 
 Bug fixed in 1.8.1.0:
+- NEW FEATURE (Alban): Add a desktop file and icons for Linux
 - REFACTORING: Upgrade the target platform to Dot Net 4.0
 - BUGFIX (Alban): CRASH!! 100% crash at Startup on Linux (due to multithreading of the SplashScreen).
 - BUGFIX (Alban): CRASH!! If you change the Preference when the Part Library is empty
