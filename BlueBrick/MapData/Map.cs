@@ -382,7 +382,7 @@ namespace BlueBrick.MapData
 			if (mDataVersionOfTheFileLoaded > 0)
 			{
 				reader.ReadToFollowing("Comment");
-				mComment = reader.ReadElementContentAsString();
+                mComment = reader.ReadElementContentAsString().Replace("\n", Environment.NewLine);
 			}
 			else
 			{

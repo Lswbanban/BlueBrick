@@ -342,7 +342,7 @@ namespace BlueBrick
 			}
 			catch (Exception exception)
 			{
-				MessageBox.Show(Properties.Resources.ErrorMsgCannotSaveCustomPart + "\n" + exception.Message, 
+                MessageBox.Show(Properties.Resources.ErrorMsgCannotSaveCustomPart + Environment.NewLine + exception.Message, 
 								Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}

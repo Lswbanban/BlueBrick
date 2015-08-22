@@ -586,7 +586,7 @@ namespace BlueBrick
 				writer.WriteLine("\t<TR><TD ALIGN=\"right\"><B>LUG/LTC:</B></TD><TD>{0}</TD></TR>", Map.Instance.LUG);
 				writer.WriteLine("\t<TR><TD ALIGN=\"right\"><B>Show:</B></TD><TD>{0}</TD></TR>", Map.Instance.Show);
 				writer.WriteLine("\t<TR><TD ALIGN=\"right\"><B>Date:</B></TD><TD>{0}</TD></TR>", Map.Instance.Date.ToLongDateString());
-				writer.WriteLine("\t<TR><TD ALIGN=\"right\" VALIGN=\"top\"><B>Comment:</B></TD><TD>{0}</TD></TR>", Map.Instance.Comment.Replace("\n","<BR>"));
+                writer.WriteLine("\t<TR><TD ALIGN=\"right\" VALIGN=\"top\"><B>Comment:</B></TD><TD>{0}</TD></TR>", Map.Instance.Comment.Replace(Environment.NewLine, "<BR>"));
 				writer.WriteLine("</TABLE>\n<BR>\n<BR>\n<CENTER>");
 				// the parts
 				if (this.useGroupCheckBox.Checked)

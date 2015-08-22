@@ -496,7 +496,7 @@ namespace BlueBrick
 				{
 					// add the comment in the comment line
 					string comment = Map.Instance.Comment;
-					comment += line.Substring(5) + "\n";
+					comment += line.Substring(5) + Environment.NewLine;
 					Map.Instance.Comment = comment;
 				}
 			}

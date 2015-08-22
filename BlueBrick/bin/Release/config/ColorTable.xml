@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+ï»¿<?xml version="1.0" encoding="UTF-8"?>
 <info>
 	<!-- Name of the colors in different languages, based on the LDRAW color number -->
 	<ColorList>
@@ -15,12 +15,12 @@
 		<color id="2">
 			<en>Green</en>
 			<fr>Vert</fr>
-			<de>Grün (Green)</de>
+			<de>GrÃ¼n (Green)</de>
 		</color>
 		<color id="3">
 			<en>Teal</en>
 			<fr>Teal</fr>
-			<de>Grünliches Türkis (Teal)</de>
+			<de>GrÃ¼nliches TÃ¼rkis (Teal)</de>
 		</color>
 		<color id="4">
 			<en>Red</en>
@@ -29,7 +29,7 @@
 		</color>
 		<color id="5">
 			<en>Dark Pink</en>
-			<fr>Rose foncé</fr>
+			<fr>Rose foncÃ©</fr>
 			<de>Dunkelrosa (Dark Pink)</de>
 		</color>
 		<color id="6">
@@ -44,7 +44,7 @@
 		</color>
 		<color id="8">
 			<en>Dark Gray</en>
-			<fr>Gris foncé</fr>
+			<fr>Gris foncÃ©</fr>
 			<de>Dunkelgrau (Dark Gray)</de>
 		</color>
 		<color id="9">
@@ -55,7 +55,7 @@
 		<color id="10">
 			<en>Bright Green</en>
 			<fr>Vert brillant</fr>
-			<de>Leuchtend Grün (Bright Green)</de>
+			<de>Leuchtend GrÃ¼n (Bright Green)</de>
 		</color>
 		<color id="11">
 			<en>Turquoise</en>
@@ -80,12 +80,12 @@
 		<color id="15">
 			<en>White</en>
 			<fr>Blanc</fr>
-			<de>Weiß (white)</de>
+			<de>WeiÃŸ (white)</de>
 		</color>
 		<color id="17">
 			<en>Light Green</en>
 			<fr>Vert clair</fr>
-			<de>Hellgrün (Light Green)</de>
+			<de>HellgrÃ¼n (Light Green)</de>
 		</color>
 		<color id="18">
 			<en>Light Yellow</en>
@@ -134,7 +134,7 @@
 		</color>
 		<color id="28">
 			<en>Dark Tan</en>
-			<fr>Beige foncé</fr>
+			<fr>Beige foncÃ©</fr>
 			<en>Dunkelbeige (Dark Tan)</en>
 		</color>
 		<color id="29">
@@ -150,7 +150,7 @@
 		<color id="34">
 			<en>Trans Green</en>
 			<fr>Vert transparent</fr>
-			<de>Glas, Grün (Trans Green)</de>
+			<de>Glas, GrÃ¼n (Trans Green)</de>
 		</color>
 		<color id="36">
 			<en>Trans Red</en>
@@ -175,7 +175,7 @@
 		<color id="42">
 			<en>Trans Flu Lime</en>
 			<fr>Vert citron transparent</fr>
-			<de>Glas, Hellgrün (Trans Flu Lime)</de>
+			<de>Glas, HellgrÃ¼n (Trans Flu Lime)</de>
 		</color>
 		<color id="45">
 			<en>Trans Pink</en>
@@ -214,7 +214,7 @@
 		</color>
 		<color id="72">
 			<en>Dark Stone Gray</en>
-			<fr>Gris pierre foncé</fr>
+			<fr>Gris pierre foncÃ©</fr>
 			<de>Dunkelsteingrau (Dark Stone Gray)</de>
 		</color>
 		<color id="73">
@@ -225,7 +225,7 @@
 		<color id="74">
 			<en>Medium Green</en>
 			<fr>Vert moyen</fr>
-			<de>Mittelgrün (Medium Green)</de>
+			<de>MittelgrÃ¼n (Medium Green)</de>
 		</color>
 		<color id="77">
 			<en>Paradisa Pink</en>
@@ -240,7 +240,7 @@
 		<color id="79">
 			<en>Translucent White</en>
 			<fr>Blanc translucide</fr>
-			<de>Durchsichtig Weiß (Translucent White)</de>
+			<de>Durchsichtig WeiÃŸ (Translucent White)</de>
 		</color>
 		<color id="85">
 			<en>Medium Lilac</en>
@@ -249,13 +249,13 @@
 		</color>
 		<color id="86">
 			<en>Dark Flesh</en>
-			<fr>Chair foncée</fr>
+			<fr>Chair foncÃ©e</fr>
 			<de>Hautfarbe, dunkel (Dark Flesh)</de>
 		</color>
 		<color id="89">
 			<en>Royal Blue</en>
 			<fr>Bleu royal</fr>
-			<de>Königliches Blau (Royal Blue)</de>
+			<de>KÃ¶nigliches Blau (Royal Blue)</de>
 		</color>
 		<color id="92">
 			<en>Flesh</en>
@@ -264,22 +264,22 @@
 		</color>
 		<color id="134">
 			<en>Pearl Copper</en>
-			<fr>Cuivre perlé</fr>
+			<fr>Cuivre perlÃ©</fr>
 			<de>Perlen-Kupfer (Pearl Copper)</de>
 		</color>
 		<color id="135">
 			<en>Pearl Gray</en>
-			<fr>Gris perlé</fr>
+			<fr>Gris perlÃ©</fr>
 			<de>Perlengrau (Pearl Gray)</de>
 		</color>
 		<color id="137">
 			<en>Pearl Sand Blue</en>
-			<fr>Bleu pastel perlé</fr>	
+			<fr>Bleu pastel perlÃ©</fr>	
 			<de>Perlen-Sandblau (Pearl Sand Blue)</de>
 		</color>
 		<color id="142">
 			<en>Pearl Gold</en>
-			<fr>Or perlé</fr>
+			<fr>Or perlÃ©</fr>
 			<de>Perlen-Gold (Pearl Gold)</de>
 		</color>
 		<color id="151">
@@ -294,7 +294,7 @@
 		</color>
 		<color id="272">
 			<en>Dark Blue</en>
-			<fr>Bleu foncé</fr>
+			<fr>Bleu foncÃ©</fr>
 			<de>Dunkelblau (Dark Blue)</de>
 		</color>
 		<color id="273">
@@ -304,8 +304,8 @@
 		</color>
 		<color id="288">
 			<en>Dark Green</en>
-			<fr>Vert foncé</fr>
-			<de>Dunkelgrün (Dark Green)</de>
+			<fr>Vert foncÃ©</fr>
+			<de>DunkelgrÃ¼n (Dark Green)</de>
 		</color>
 		<color id="313">
 			<en>Maersk Blue</en>
@@ -314,7 +314,7 @@
 		</color>
 		<color id="320">
 			<en>Dark red</en>
-			<fr>Rouge foncé</fr>
+			<fr>Rouge foncÃ©</fr>
 			<de>Dunkelrot (Dark Red)</de>
 		</color>
 		<color id="324">
@@ -324,7 +324,7 @@
 		</color>
 		<color id="334">
 			<en>Chrome Gold</en>
-			<fr>Or chromé</fr>
+			<fr>Or chromÃ©</fr>
 			<de>Gold (Chrome Gold)</de>
 		</color>
 		<color id="335">
@@ -350,7 +350,7 @@
 		<color id="378">
 			<en>Sand Green</en>
 			<fr>Vert pastel</fr>
-			<de>Sandgrün (Sand Green)</de>
+			<de>SandgrÃ¼n (Sand Green)</de>
 		</color>
 		<color id="379">
 			<en>Sand Blue</en>
@@ -359,7 +359,7 @@
 		</color>
 		<color id="383">
 			<en>Chrome Silver</en>
-			<fr>Argent chromé</fr>
+			<fr>Argent chromÃ©</fr>
 			<de>Silber (Chrome Silver)</de>
 		</color>
 		<color id="462">
@@ -369,12 +369,12 @@
 		</color>
 		<color id="484">
 			<en>Dark Orange</en>
-			<fr>Orange foncé</fr>
+			<fr>Orange foncÃ©</fr>
 			<de>Dunkelorange (Dark Orange)</de>
 		</color>
 		<color id="494">
 			<en>Electric Contact</en>
-			<fr>Contact électrique</fr> 
+			<fr>Contact Ã©lectrique</fr> 
 			<de>Elektro-Kontakt (Electric Contact)</de>
 		</color>
 		<color id="503">
@@ -385,7 +385,7 @@
 		<color id="511">
 			<en>Rubber White</en>
 			<fr>Blanc caoutchouc</fr>
-			<de>Gummi Weiß (Rubber White)</de>
+			<de>Gummi WeiÃŸ (Rubber White)</de>
 		</color>
 	</ColorList>
 </info>
