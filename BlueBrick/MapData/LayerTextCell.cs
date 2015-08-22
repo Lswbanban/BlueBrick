@@ -144,7 +144,9 @@ namespace BlueBrick.MapData
 			{
 				base.ReadXml(reader);
 				// avoid using the accessor to reduce the number of call of updateBitmap
-				mText = reader.ReadElementContentAsString();
+                // for some strange reason, the new lines are read "/n" no matter the environnement,
+                // so reset it as the environnement wants it, such as the edit text form works correctly
+				mText = reader.ReadElementContentAsString().Replace("\n", Environment.NewLine);
 				mOrientation = reader.ReadElementContentAsFloat();
 				mTextBrush.Color = XmlReadWrite.readColor(reader);
 				mTextFont = XmlReadWrite.readFont(reader);

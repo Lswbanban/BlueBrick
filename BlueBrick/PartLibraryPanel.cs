@@ -408,8 +408,8 @@ namespace BlueBrick
 				message = Properties.Resources.ErrorMsgCanNotLoadImage;
 				foreach (FileNameWithException error in imageFileUnloadable)
 				{
-					message += "\n" + error.mFilename;
-					details += error.ShortFileName + ":\r\n" + error.mException + "\r\n\r\n";
+                    message += Environment.NewLine + error.mFilename;
+                    details += error.ShortFileName + ":" + Environment.NewLine + error.mException + Environment.NewLine + Environment.NewLine;
 				}
 			}
 			if (xmlFileUnloadable.Count > 0)
@@ -417,13 +417,13 @@ namespace BlueBrick
 				if (message == null)
 					message = "";
 				else
-					message += "\n\n";
+                    message += Environment.NewLine + Environment.NewLine;
 				// display a warning message
 				message += Properties.Resources.ErrorMsgCanNotLoadPartXML;
 				foreach (FileNameWithException error in xmlFileUnloadable)
 				{
-					message += "\n" + error.mFilename;
-					details += error.ShortFileName + ":\r\n" + error.mException + "\r\n\r\n";
+                    message += Environment.NewLine + error.mFilename;
+                    details += error.ShortFileName + ":" + Environment.NewLine + error.mException + Environment.NewLine + Environment.NewLine;
 				}
 			}
 

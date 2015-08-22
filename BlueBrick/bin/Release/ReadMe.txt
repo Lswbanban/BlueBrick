@@ -98,12 +98,14 @@ Open bugs:
 - REFACTORING (Alban): the layer panel is slow to resfresh
 
 Bug fixed in 1.8.1.0:
+- REFACTORING: Upgrade the target platform to Dot Net 4.0
 - BUGFIX (Alban): CRASH!! 100% crash at Startup on Linux (due to multithreading of the SplashScreen).
 - BUGFIX (Alban): CRASH!! If you change the Preference when the Part Library is empty
 - BUGFIX (Alban): Display the Help when pressing F1 (or via the Help menu) on Mac and Linux, if you have a CHM viewer installed.
 - BUGFIX (Alban): Fix some bug for the behavior of the text box in the Save Group in Library window.
 - BUGFIX (Alban): Now the selection is not cleared after an Export (but still not visible in the exported image)
 - BUGFIX #53 (Alban): In the export window you can specify a selection rectangle null by setting a (bottom < top) or (right < left)
+- BUGFIX (Alban): Handle correctly the new line char in the load part file Error window (on Linux and Mac). Make a pass on all the  other place in the code where endline is used, to use the platform dependant end of line.
 
 Bug fixed in 1.8.0.0:
 - NEW FEATURE (Erik): A new layer type for mesurement tools.
