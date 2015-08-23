@@ -14,40 +14,47 @@ This software was designed specially for the AFOLs who want to prepare the layou
 2) Install
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-2.1) Windows Vista or Windows 7
+Note: you can refer to the BlueBrick website (http://bluebrick.lswproject.com/), in the Download section, for detailed install instructions with pictures.
+
+2.1) Windows Vista or Windows 7, 8 or 10
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Nothing special need to be install first. Simply extract the files contained in the zip, somewhere on your hardrive, by keeping the same folders organization.
+Nothing special need to be install first. Simply extract the files contained in the zip, somewhere on your hardrive, by keeping the same folders organization. Then double click on the BlueBrick.exe file in the install folder to run BlueBrick.
 
 2.2) Windows XP
 ~~~~~~~~~~~~~~~
-You need to download and install the Microsoft .NET FrameWork (at least version 2.0), that can be found on the Microsoft website (if not already install on your machine):
-Microsoft .NET FrameWork version 3.5 SP1
-http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5&DisplayLang=en
-The version 2.0 is enough to run BlueBrick.
+a) First, you need to download and install the Microsoft .NET FrameWork (at least version 4.0), that can be found on the Microsoft website (if not already installed on your machine):
+http://www.microsoft.com/en-us/download/details.aspx?id=17851
 
-Then extract the files contained in the zip, somewhere on your hardrive, by keeping the same folders organization.
+b) Then extract the files contained in the BlueBrick zip file, somewhere on your hardrive, by keeping the same folders organization.
+
+c) Double click on the BlueBrick.exe file in the install folder.
 
 2.3) Linux
 ~~~~~~~~~~
-You need to install Mono for Linux first, please download Mono for Mac at this URL:
-http://www.go-mono.com/mono-downloads/download.html
+a) You need to install Mono for Linux first. I suggest you to use the Software Center, and search for "MonoDevelop".
 
-To run BlueBrick, in a Terminal Shell type:
-$ mono BlueBrick.exe
+a.bis) If you want to be able to open the documentation file, you should also install a CHM reader, for example "xCHM" which can also be installed from the Software Center.
 
-You can also create a Shell Script (adjust the path to where you have unzipped BlueBrick):
-#!/bin/sh
-/usr/bin/mono /usr/lib/APPLICATION/BlueBrick/BlueBrick.exe "$@"
+b) Unzip the BlueBrick zip file somewhere on your hardrive, for example in ~/BlueBrick
+
+c) Then you should run the "linux-install.sh" shell script inside the install folder. This will create a BlueBrick.desktop shortcut on your Desktop. Once the shortcut is created, simply double click it to run BlueBrick.
+
+c.bis) Or simply, if you don't want to create a shortcut, to run BlueBrick in a Terminal Shell, type:
+$ mono BlueBrick.exe &
 
 2.4) Mac OSX
 ~~~~~~~~~~~~
-You need to install Mono for Mac first, please download Mono for Mac at this URL:
+a) You need to install Mono for Mac first, please download Mono for Mac at this URL:
 http://www.go-mono.com/mono-downloads/download.html
 
 If you want some help on installing Mono, please visit:
 http://www.mono-project.com/Mono:OSX
 
-To run BlueBrick, in a Terminal Shell type:
+a.bis) If you want to be able to open the documentation file, you should also install a CHM reader, for example "iCHM" (http://www.macupdate.com/app/mac/28171/ichm) or "Chmox" (http://chmox.sourceforge.net/).
+
+b) Unzip the BlueBrick zip file somewhere on your hardrive.
+
+c) To run BlueBrick, in a Terminal Shell type:
 $ mono BlueBrick.exe
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -55,10 +62,14 @@ $ mono BlueBrick.exe
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Please refer to the help file that comes with the application (menu Help > Content and Index...)
+For Linux and Mac user, you should install a CHM reader, in order to be able to open the help file (see above for more details).
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 4) History
 ------------------------------------------------------------------------------------------------------------------------------------------------------
+Target 1.8.1:
+- Mettre à jour le site web avec les images pour l'install
+- essayer de trouver le bug de user32.dll sous mac
 
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
@@ -98,15 +109,16 @@ Open bugs:
 - REFACTORING (Alban): the layer panel is slow to resfresh
 
 Bug fixed in 1.8.1.0:
-- NEW FEATURE (Alban): Add a desktop file and icons for Linux
+- NEW FEATURE (Alban): Add a install script file and icons for Linux
 - REFACTORING: Upgrade the target platform to Dot Net 4.0
 - BUGFIX (Alban): CRASH!! 100% crash at Startup on Linux (due to multithreading of the SplashScreen).
 - BUGFIX (Alban): CRASH!! If you change the Preference when the Part Library is empty
+- BUGFIX #59 (freestorm): the parts with upper case .XML extensions cannot be loaded on Linux
 - BUGFIX (Alban): Display the Help when pressing F1 (or via the Help menu) on Mac and Linux, if you have a CHM viewer installed.
 - BUGFIX (Alban): Fix some bug for the behavior of the text box in the Save Group in Library window.
 - BUGFIX (Alban): Now the selection is not cleared after an Export (but still not visible in the exported image)
 - BUGFIX #53 (Alban): In the export window you can specify a selection rectangle null by setting a (bottom < top) or (right < left)
-- BUGFIX (Alban): Handle correctly the new line char in the load part file Error window (on Linux and Mac). Make a pass on all the  other place in the code where endline is used, to use the platform dependant end of line.
+- BUGFIX (Alban): Handle correctly the new line char in the load part file Error window (on Linux and Mac). Make a pass on all the  other places in the code where endline is used, to use the platform dependant end of line.
 
 Bug fixed in 1.8.0.0:
 - NEW FEATURE (Erik): A new layer type for mesurement tools.

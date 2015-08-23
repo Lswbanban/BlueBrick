@@ -177,14 +177,17 @@ namespace BlueBrick
 		/// <summary>
 		/// All the group files are saved in the Custom folder of the part library.
 		/// Given a specific name, this function return the full path.
+        /// The path is given in lower case because it is mandatory for Linux, otherwise BB won't find the
+        /// parts, as BB search for all *.xml files in lower case.
 		/// </summary>
 		/// <param name="groupName">The name of the group you want to save</param>
 		/// <returns>The full path of the file that will be saved, including extension</returns>
 		private string getFullFileNameFromGroupName(string groupName)
 		{
-			string filename = PartLibraryPanel.sFullPathForCustomParts + groupName.Trim().ToUpper();
-			if (!filename.EndsWith(".XML"))
-				filename += ".XML";
+            // the lower case is mandatory for Linux.
+			string filename = PartLibraryPanel.sFullPathForCustomParts + groupName.Trim().ToLower();
+			if (!filename.EndsWith(".xml"))
+				filename += ".xml";
 			return filename;
 		}
 
