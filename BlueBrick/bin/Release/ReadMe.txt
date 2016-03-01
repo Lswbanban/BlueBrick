@@ -106,8 +106,11 @@ to open the help file (see above for more details).
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
+- [target 1.9] MISSING FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count)
+- [target 1.9] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
+- [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
+- [target 1.9] BUG (Christopher): The report email in the crash window is no longer working.
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
-- MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - MISSING FEATURE #12 (FreeBee) : Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
@@ -142,7 +145,7 @@ Open bugs:
 
 Bug fixed in 1.8.1.0:
 - NEW FEATURE (Alban): Add a install script file and icons for Linux
-- REFACTORING #29 (Anonymous): Upgrade the target platform to Dot Net 4.0
+- REFACTORING #29 (Anonymous): Upgrade the target platform to .NET 4.0
 - BUGFIX (Alban): CRASH!! 100% crash at Startup on Linux (due to multithreading of the SplashScreen).
 - BUGFIX (Alban): CRASH!! If you change the Preference when the Part Library is empty
 - BUGFIX #59 (freestorm): the parts with upper case .XML extensions cannot be loaded on Linux
@@ -219,7 +222,7 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (Alban): Fix a bug regarding the color of the grid (the grid colors were transparent in the option window if you modify the transparency of the layer)
 - BUGFIX (Alban): The XML files of the parts should be save in UTF-8 (for better linux handling)
 - BUGFIX (Ghislain): Under Linux (with Mono) the drag and drop of part is not working
-- BUGFIX (Alban): Fix the maximum of bugs under Mono while keeping Dot Net working:
+- BUGFIX (Alban): Fix the maximum of bugs under Mono while keeping .NET working:
 	- The Error Window was not displayed correctly
 	- Patch to catch an exception while loading the 17th part and the following
 	- the size of the layer window is bigger than necessary at the launch time, or when you move the horizontal splitter
