@@ -62,7 +62,7 @@ namespace BlueBrick
             public UniqueId(string stringId)
             {
                 // check if it contains some dash, in such case it is a Guid
-                if (stringId.Contains("-"))
+                if (Map.DataVersionOfTheFileLoaded > 8)
                 {
                     mGuid = Guid.Parse(stringId);
                 }

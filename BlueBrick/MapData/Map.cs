@@ -50,7 +50,7 @@ namespace BlueBrick.MapData
 		}
 
 		// the current version of the data this version of BlueBrick can read/write
-		private const int CURRENT_DATA_VERSION = 8;
+		private const int CURRENT_DATA_VERSION = 9;
 
 		// the current version of the data
 		private static int mDataVersionOfTheFileLoaded = CURRENT_DATA_VERSION;
