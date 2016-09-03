@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.8.1.0 |
+                    | BlueBrick version 1.8.2.0 |
                     +---------------------------+
 
 -------------------------------------------------------------------------------
@@ -109,7 +109,6 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count)
 - [target 1.9] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
-- [target 1.9] BUG (Christopher): The report email in the crash window is no longer working.
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
 - MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
@@ -142,6 +141,11 @@ Open bugs:
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): the layer panel is slow to resfresh
+
+
+Bug fixed in 1.8.2.0:
+- BUG (Alban & many users): The unique id generator was not so unique, preventing sometime the BBM files to be reloaded (especially the large file which had more chance to have a collision of ids)
+- BUG (Christopher): The report email in the crash window is no longer working.
 
 Bug fixed in 1.8.1.0:
 - NEW FEATURE (Alban): Add a install script file and icons for Linux

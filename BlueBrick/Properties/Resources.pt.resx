@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionAddArea" xml:space="preserve">
     <value>Pintar uma Área</value>
@@ -301,7 +301,7 @@
     <value>Tem a certeza que quer restaurar as opções por defeito?</value>
   </data>
   <data name="ErrorMsgCrash" xml:space="preserve">
-    <value>BlueBrick Copyright © 2008 Alban NANTY. Este programa é um software livre sobe a licensa GPLv3 e NÂO POSSUI QUALQUER GARANTIA. Este programa encontrou um erro irrecuperável e irá ser fechado. Por favor, reporte este erro para banban@lswproject.com. A mensagem de erro é:</value>
+    <value>BlueBrick Copyright © 2008 Alban NANTY. Este programa é um software livre sobe a licensa GPLv3 e NÂO POSSUI QUALQUER GARANTIA. Este programa encontrou um erro irrecuperável e irá ser fechado. Por favor, reporte este erro para banban@banban.org. A mensagem de erro é:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
     <value>A linguagem foi alterada mas só terá efeito da próxima vez que a aplicação for iniciada. Pretende reiniciar agora?</value>

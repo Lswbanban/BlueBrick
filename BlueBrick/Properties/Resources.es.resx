@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionAddArea" xml:space="preserve">
     <value>Pintar un área</value>
@@ -301,7 +301,7 @@
     <value>¿Está seguro que quiere restaurar los ajustes por defecto?</value>
   </data>
   <data name="ErrorMsgCrash" xml:space="preserve">
-    <value>BlueBrick Copyright © 2008 Alban NANTY. Este programa es software libre bajo la licencia GPLv3 y NO TIENE NINGUNA GARANTÍA. Este programa encontró un error fatal y se cerrará. Por favor informe de este error a banban@lswproject.com. El mensaje de error es:</value>
+    <value>BlueBrick Copyright © 2008 Alban NANTY. Este programa es software libre bajo la licencia GPLv3 y NO TIENE NINGUNA GARANTÍA. Este programa encontró un error fatal y se cerrará. Por favor informe de este error a banban@banban.org. El mensaje de error es:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
     <value>Has cambiado el idioma, pero esto no tomará efecto hasta que reinicie la aplicación. ¿Quieres reiniciarla ahora?</value>
