@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionAddArea" xml:space="preserve">
     <value>Fargelegg område</value>
@@ -308,7 +308,7 @@
     <value>Er du helt sikker på at du vil gjenopprette standardinnstillingene?</value>
   </data>
   <data name="ErrorMsgCrash" xml:space="preserve">
-    <value>BlueBrick Copyright © Alban NANTY. Dette programmet er gratis under GPLv3-lisensen og lastes ned FULLSTENDIG UTEN GARANTIER. Det har oppstått en uopprettelig feil, og programmet vil bli lukket. Vennligst rapportér denne feilen til banban@lswproject.com. Feilmeldingen er:</value>
+    <value>BlueBrick Copyright © Alban NANTY. Dette programmet er gratis under GPLv3-lisensen og lastes ned FULLSTENDIG UTEN GARANTIER. Det har oppstått en uopprettelig feil, og programmet vil bli lukket. Vennligst rapportér denne feilen til banban@banban.org. Feilmeldingen er:</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
     <value>Du har endret språk, men endringen vil ikke tre i kraft før du har startet programmet på nytt. Vil du starte på nytt nå?</value>

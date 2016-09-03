@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionAddArea" xml:space="preserve">
     <value>Colora un'area</value>
@@ -302,7 +302,7 @@
   </data>
   <data name="ErrorMsgCrash" xml:space="preserve">
     <value>"BlueBrick Copyright © 2008 Alban NANTY. Questo programma è software libero sotto licenza GPL v3, e viene distribuito SENZA ALCUNA GARANZIA.
-Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favore, inoltra questo problema a banban@lswproject.com. Il messaggio di errore è:"</value>
+Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favore, inoltra questo problema a banban@banban.org. Il messaggio di errore è:"</value>
   </data>
   <data name="ErrorMsgLanguageHasChanged" xml:space="preserve">
     <value>Hai cambiato il linguaggio, ma la modifica sarà effettiva la prossima volta che lancerai l'applicazione. Vuoi riavviare il programma ora?</value>
