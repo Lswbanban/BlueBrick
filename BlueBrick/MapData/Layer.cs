@@ -1224,9 +1224,6 @@ namespace BlueBrick.MapData
 
 		protected void readItemsListFromXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, string itemsListName, bool useProgressBar) where T : LayerItem
 		{
-			// clear all the content of the hash table
-			LayerBrick.Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
-
 			// check if the list is not empty and read the first child
 			if (!reader.IsEmptyElement)
 			{
@@ -1258,9 +1255,6 @@ namespace BlueBrick.MapData
 
 			// call the post read function to read the groups
 			readGroupFromXml(reader);
-
-			// clear again the hash table to free the memory after loading
-			LayerBrick.Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
 		}
 
         protected void readGroupFromXml(System.Xml.XmlReader reader)

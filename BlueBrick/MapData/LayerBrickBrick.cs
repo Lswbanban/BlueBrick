@@ -31,8 +31,7 @@ namespace BlueBrick.MapData
 		{
 			public class ConnectionPoint
 			{
-				public static Hashtable sHashtableForLinkRebuilding = new Hashtable(); // this hashtable is used to recreate the link when loading
-
+                private SaveLoadManager.UniqueId mGUID = new SaveLoadManager.UniqueId();
 				public Brick mMyBrick = null; // reference to the brick this connection refer to
 				private PointF mPositionInStudWorldCoord = new PointF(0, 0); // the position of the connection point is world coord stud coord.
 				private ConnectionPoint mConnectionLink = null; // link toward this conection point is connected
@@ -155,11 +154,23 @@ namespace BlueBrick.MapData
 
 				#region constructor
 				/// <summary>
-				/// This default constructor is for the serialization and should not be used in the program
+				/// This constructor is for the serialization and should not be used in the program
 				/// </summary>
-				public ConnectionPoint()
+				public ConnectionPoint(SaveLoadManager.UniqueId guid)
 				{
+                    mGUID = guid;
+                    mGUID.associateWithThisObject(this);
 				}
+
+                /// <summary>
+                /// Another constructor called by the serialisation
+                /// </summary>
+                public ConnectionPoint(Brick myBrick, int connexionIndex, SaveLoadManager.UniqueId guid)
+                    : this(myBrick, connexionIndex)
+                {
+                    mGUID = guid;
+                    mGUID.associateWithThisObject(this);
+                }
 
 				/// <summary>
 				/// This constructor is used to create a dummy connection point somewhere in the world at
@@ -179,6 +190,7 @@ namespace BlueBrick.MapData
 					// save the brick type (for optimisation reasons)
 					mType = BrickLibrary.Instance.getConnexionType(myBrick.PartNumber, connexionIndex);
 				}
+
 				#endregion
 
 				#region IXmlSerializable Members
@@ -203,24 +215,23 @@ namespace BlueBrick.MapData
 					}
 					else
 					{
-						int hashCodeOfTheLink = reader.ReadElementContentAsInt();
+						SaveLoadManager.UniqueId hashCodeOfTheLink = XmlReadWrite.readItemId(reader);
 						// look in the hastable if this connexion alread exists, else create it
-						mConnectionLink = ConnectionPoint.sHashtableForLinkRebuilding[hashCodeOfTheLink] as ConnectionPoint;
+                        mConnectionLink = hashCodeOfTheLink.getObjectOfThatId<ConnectionPoint>();
 						if (mConnectionLink == null)
 						{
 							// instanciate a ConnectionPoint, and add it in the hash table
-							mConnectionLink = new ConnectionPoint();
-							ConnectionPoint.sHashtableForLinkRebuilding.Add(hashCodeOfTheLink, mConnectionLink);
+                            mConnectionLink = new ConnectionPoint(hashCodeOfTheLink);
 						}
 					}
 				}
 
 				public void WriteXml(System.Xml.XmlWriter writer)
 				{
-					writer.WriteAttributeString("id", GetHashCode().ToString());
+					writer.WriteAttributeString("id", mGUID.ToString());
 					writer.WriteStartElement("LinkedTo");
 					if (mConnectionLink != null)
-						writer.WriteString(mConnectionLink.GetHashCode().ToString());
+						writer.WriteString(mConnectionLink.mGUID.ToString());
 					writer.WriteEndElement();
 				}
 
@@ -617,18 +628,17 @@ namespace BlueBrick.MapData
 
 						// read the id (hashcode key) of the connexion
 						reader.ReadAttributeValue();
-						int hashCode = int.Parse(reader.GetAttribute(0));
+                        SaveLoadManager.UniqueId guid = new SaveLoadManager.UniqueId(reader.GetAttribute(0));
 
 						// look in the hastable if this connexion alread exists, else create it
-						ConnectionPoint connexion = ConnectionPoint.sHashtableForLinkRebuilding[hashCode] as ConnectionPoint;
+                        ConnectionPoint connexion = guid.getObjectOfThatId<ConnectionPoint>();
 						if (connexion == null)
 						{
 							// instanciate a ConnectionPoint, and add it in the hash table
-							if (isConnectionValid)
-								connexion = new ConnectionPoint(this, connexionIndex);
-							else
-								connexion = new ConnectionPoint();
-							ConnectionPoint.sHashtableForLinkRebuilding.Add(hashCode, connexion);
+                            if (isConnectionValid)
+                                connexion = new ConnectionPoint(this, connexionIndex, guid);
+                            else
+                                connexion = new ConnectionPoint(guid);
 						}
 						else
 						{
