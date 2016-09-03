@@ -49,8 +49,6 @@ namespace BlueBrick.MapData
 			YES_AND_NO_REPLACEMENT_LIMITED_BY_BUDGET
 		}
 
-		public static Hashtable sHashtableForRulerAttachementRebuilding = new Hashtable(); // this hashtable contains all the bricks is used to recreate the attachement of rulers to bricks when loading
-
 		// the current version of the data this version of BlueBrick can read/write
 		private const int CURRENT_DATA_VERSION = 8;
 
@@ -427,7 +425,7 @@ namespace BlueBrick.MapData
 
 			// layers
 			// first clear the hashtable that contains all the bricks
-			Map.sHashtableForRulerAttachementRebuilding.Clear();
+            SaveLoadManager.UniqueId.ClearHashtableForLinkRebuilding();
 			// then load all the layers
 			bool layerFound = reader.ReadToDescendant("Layer");
 			while (layerFound)
@@ -465,7 +463,7 @@ namespace BlueBrick.MapData
 			foreach (Layer layer in mLayers)
 				layer.recreateLinksAfterLoading();
 			// then clear again the hash table to free the memory
-			Map.sHashtableForRulerAttachementRebuilding.Clear();
+            SaveLoadManager.UniqueId.ClearHashtableForLinkRebuilding();
 
 			// step the progress bar after the rebuilding of links
 			MainForm.Instance.stepProgressBar();
