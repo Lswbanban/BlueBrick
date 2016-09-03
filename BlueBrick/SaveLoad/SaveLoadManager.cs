@@ -53,6 +53,12 @@ namespace BlueBrick
             {
             }
 
+            public UniqueId(UniqueId copy)
+            {
+                mGuid = copy.mGuid;
+                mIntId = copy.mIntId;
+            }
+
             public UniqueId(string stringId)
             {
                 // check if it contains some dash, in such case it is a Guid
@@ -66,7 +72,7 @@ namespace BlueBrick
                     mIntId = int.Parse(stringId);
 
                     // if the brickId already exist (this can happen with the hold way of generating brick id during saving
-                    // wich was using object.GetHashCode() which doesn't generate unique id, then try to create a new unique id
+                    // which was using object.GetHashCode() which doesn't generate unique id, then try to create a new unique id
                     // by adding one to the int until we find a good one. Of course, this may loose some ruler attachement
                     // but it is better than not being able to load the file.
                     // I have changed the way I generate unique id, so this should not happen anymore.
@@ -238,6 +244,7 @@ namespace BlueBrick
 		private static readonly string LDRAW_DATE_FORMAT_STRING = "dd/MM/yyyy";
         private static Layer sCurrentLayerLoaded = null;
         private static string sCurrentLayerName = string.Empty;
+        private static Hashtable sHashtableForGroupRebuilding = new Hashtable(); // this hashtable is used to recreate the group hierarchy when loading
 
         private static string[] splitLDrawLine(string line)
         {
@@ -274,7 +281,7 @@ namespace BlueBrick
 		private static bool loadLDR(string filename)
 		{
 			// clear the hashmap used to load the groups
-			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
+			sHashtableForGroupRebuilding.Clear();
 			// create a new map
 			Map.Instance = new Map();
 			// open the file
@@ -323,7 +330,7 @@ namespace BlueBrick
                 layer.recreateLinksAfterLoading();
 
 			// again clear the hashmap used to load the groups
-			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
+			sHashtableForGroupRebuilding.Clear();
 
 			// finish the progress bar (to hide it)
 			MainForm.Instance.finishProgressBar();
@@ -335,7 +342,7 @@ namespace BlueBrick
 		private static bool loadMDP(string filename)
 		{
 			// clear the hashmap used to load the groups
-			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
+			sHashtableForGroupRebuilding.Clear();
 			// create a new map
 			Map.Instance = new Map();
 			List<string> hiddenLayerNames = new List<string>();
@@ -417,7 +424,7 @@ namespace BlueBrick
             }
 
 			// clear again the hashmap used to load the groups
-			Layer.LayerItem.sHashtableForGroupRebuilding.Clear();
+			sHashtableForGroupRebuilding.Clear();
 
 			// finish the progress bar (to hide it)
 			MainForm.Instance.finishProgressBar();
@@ -497,13 +504,13 @@ namespace BlueBrick
 			// return the part number followed by the hash code
 			// the part number is needed at loading time to ask the part lib if this group can be split
 			// the hash code is needed to make unique group name
-			return group.PartNumber + "#" + group.GetHashCode().ToString();
+			return group.PartNumber + "#" + group.GUID.ToString();
 		}
 
 		private static Layer.Group createOrGetGroup(string groupName)
 		{
 			// look in the hastable if this group alread exists, else create it
-			Layer.Group group = Layer.LayerItem.sHashtableForGroupRebuilding[groupName] as Layer.Group;
+			Layer.Group group = sHashtableForGroupRebuilding[groupName] as Layer.Group;
 			if (group == null)
 			{
 				// remove the unique hash code at the end of the the group name to get only the part number
@@ -519,7 +526,7 @@ namespace BlueBrick
 				// instanciate a new group, and add it in the hash table
 				group = new Layer.Group(canUngroup);
 				// then add the group in the hash table
-				Layer.LayerItem.sHashtableForGroupRebuilding.Add(groupName, group);
+				sHashtableForGroupRebuilding.Add(groupName, group);
 			}
 			// return the group
 			return group;

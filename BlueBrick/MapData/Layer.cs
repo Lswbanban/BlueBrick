@@ -39,9 +39,9 @@ namespace BlueBrick.MapData
 		[Serializable]
 		public abstract class LayerItem : IXmlSerializable
 		{
-            public static Hashtable sHashtableForGroupRebuilding = new Hashtable(); // this hashtable is used to recreate the group hierarchy when loading
 			public static List<Group> sListForGroupSaving = new List<Group>(); // this list is used during the saving of BBM file to save all the grouping hierarchy
 
+            protected SaveLoadManager.UniqueId mGUID = new SaveLoadManager.UniqueId();
 			protected RectangleF mDisplayArea = new RectangleF(); // in stud coordinate
 			protected float mOrientation = 0;	// in degree
 			protected Group mMyGroup = null; // the group in which this item is
@@ -52,6 +52,14 @@ namespace BlueBrick.MapData
 			protected PointF mSnapToGridOffset = new PointF(0, 0); // an offset from the center of the part to the point that should snap to the grid border (in stud)
 
 			#region get/set
+            /// <summary>
+            /// The Global Unique Id is saved in the BBM file, and is used during loading time to recreate the links between instance.
+            /// </summary>
+            public SaveLoadManager.UniqueId GUID
+            {
+                get { return mGUID; }
+            }
+
 			/// <summary>
 			/// the part number of the item if any. A layer item always return an empty string as part number.
 			/// This accessor is overriden in the derivated class.
@@ -290,14 +298,13 @@ namespace BlueBrick.MapData
                     else
                     {
                         // get the group id
-                        int hashCodeOfTheGroup = reader.ReadElementContentAsInt();
+                        SaveLoadManager.UniqueId hashCodeOfTheGroup = XmlReadWrite.readItemId(reader);
                         // look in the hastable if this connexion alread exists, else create it
-                        Group group = sHashtableForGroupRebuilding[hashCodeOfTheGroup] as Group;
+                        Group group = hashCodeOfTheGroup.getObjectOfThatId<Group>();
                         if (group == null)
                         {
                             // instanciate a new group, and add it in the hash table
-                            group = new Group();
-                            sHashtableForGroupRebuilding.Add(hashCodeOfTheGroup, group);
+                            group = new Group(hashCodeOfTheGroup);
                         }
                         // then add this item in the group
                         group.addItem(this);
@@ -325,7 +332,7 @@ namespace BlueBrick.MapData
 				writer.WriteStartElement("MyGroup");
 				if (mMyGroup != null)
 				{
-					writer.WriteString(mMyGroup.GetHashCode().ToString());
+					writer.WriteString(mMyGroup.GUID.ToString());
 					if (!LayerItem.sListForGroupSaving.Contains(mMyGroup))
 						LayerItem.sListForGroupSaving.Add(mMyGroup);
 				}
@@ -630,6 +637,16 @@ namespace BlueBrick.MapData
 			{
 			}
 
+            /// <summary>
+            /// Construct a new group with the specified GUID (this is useful to create group during loading time)
+            /// </summary>
+            /// <param name="groupId"></param>
+            public Group(SaveLoadManager.UniqueId groupId)
+			{
+                mGUID = groupId;
+                groupId.associateWithThisObject(this);
+			}
+            
 			/// <summary>
 			/// construct an empty group but specifying if this group can ungroup.
 			/// This constructor is used by the loading code of a LDraw file
@@ -734,7 +751,7 @@ namespace BlueBrick.MapData
 			public override void WriteXml(System.Xml.XmlWriter writer)
 			{
 				writer.WriteStartElement("Group");
-				writer.WriteAttributeString("id", this.GetHashCode().ToString());
+				writer.WriteAttributeString("id", this.GUID.ToString());
 				// we don't need the display area for the group, so we don't call base.WriteXml
 				writer.WriteElementString("PartNumber", mPartNumber);
 				// Don't save canUngroup, this property is got from the library.
@@ -955,7 +972,8 @@ namespace BlueBrick.MapData
 		}
 
 		// common data to all layers
-		protected string mName = BlueBrick.Properties.Resources.DefaultLayerName;
+        protected SaveLoadManager.UniqueId mGUID = new SaveLoadManager.UniqueId();
+        protected string mName = BlueBrick.Properties.Resources.DefaultLayerName;
 		protected bool mVisible = true;
 		protected int mTransparency = 100; // percentage (in int because it is easier to modify with a slider)
 
@@ -1175,8 +1193,6 @@ namespace BlueBrick.MapData
 
 		public virtual void ReadXml(System.Xml.XmlReader reader)
 		{
-            // clear all the content of the hash table
-            LayerItem.sHashtableForGroupRebuilding.Clear();
 			// read the common properties of the layer
 			reader.ReadToDescendant("Name");
 			mName = reader.ReadElementContentAsString();
@@ -1209,7 +1225,6 @@ namespace BlueBrick.MapData
 		protected void readItemsListFromXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, string itemsListName, bool useProgressBar) where T : LayerItem
 		{
 			// clear all the content of the hash table
-			LayerItem.sHashtableForGroupRebuilding.Clear();
 			LayerBrick.Brick.ConnectionPoint.sHashtableForLinkRebuilding.Clear();
 
 			// check if the list is not empty and read the first child
@@ -1257,14 +1272,13 @@ namespace BlueBrick.MapData
 				while (groupFound)
 				{
 					// read the id of the current group
-					int groupId = int.Parse(reader.GetAttribute(0));
+                    SaveLoadManager.UniqueId groupId = new SaveLoadManager.UniqueId(reader.GetAttribute(0));
 					// look in the hastable if this group alread exists, else create it
-					Group currentGroup = LayerItem.sHashtableForGroupRebuilding[groupId] as Group;
+                    Group currentGroup = groupId.getObjectOfThatId<Group>();
 					if (currentGroup == null)
 					{
 						// instanciate a new group, and add it in the hash table
-						currentGroup = new Group();
-						LayerItem.sHashtableForGroupRebuilding.Add(groupId, currentGroup);
+                        currentGroup = new Group(groupId);
 					}
 
 					// then read the content of this group
@@ -1276,9 +1290,6 @@ namespace BlueBrick.MapData
 				// read the Groups tag, to finish the list of group
 				reader.Read();
 			}
-
-            // clear the hash table for group to free the memory after loading
-            LayerItem.sHashtableForGroupRebuilding.Clear();
         }
 
 		/// <summary>
@@ -1301,7 +1312,7 @@ namespace BlueBrick.MapData
 			// layer with its type and id
 			writer.WriteStartElement("Layer");
 			writer.WriteAttributeString("type", this.XmlTypeName);
-			writer.WriteAttributeString("id", this.GetHashCode().ToString());
+			writer.WriteAttributeString("id", this.mGUID.ToString());
 			// write the common properties
 			writer.WriteElementString("Name", mName);
 			writer.WriteElementString("Visible", mVisible.ToString().ToLower());
@@ -1742,7 +1753,7 @@ namespace BlueBrick.MapData
 			int copyStyle = Properties.Settings.Default.OffsetAfterCopyStyle;
 			bool addOffset = (offsetRule == AddOffsetAfterPaste.YES);
 			if (offsetRule == AddOffsetAfterPaste.USE_SETTINGS_RULE)
-				addOffset = (copyStyle == 2) || ((copyStyle == 1) && (layerId.Equals(this.GetHashCode().ToString())));
+				addOffset = (copyStyle == 2) || ((copyStyle == 1) && (layerId.Equals(this.mGUID.ToString())));
 
 			// check if the type of layer match the type of copied items and this must be done before reading the items
 			// basically we check that the read item type name match this layer type, but for the text layer, we also accept
