@@ -71,17 +71,17 @@ namespace BlueBrick.MapData
 			writer.WriteEndElement();
 		}
 
-		public static int readItemId(System.Xml.XmlReader reader)
+        public static SaveLoadManager.UniqueId readItemId(System.Xml.XmlReader reader)
 		{
-			return reader.ReadElementContentAsInt();
+            return new SaveLoadManager.UniqueId(reader.ReadElementContentAsString());
 		}
 
-		public static void writeItemId(System.Xml.XmlWriter writer, string name, object obj)
+        public static void writeItemId(System.Xml.XmlWriter writer, string name, SaveLoadManager.UniqueId id)
 		{
-			if (obj != null)
-				writer.WriteElementString(name, obj.GetHashCode().ToString(System.Globalization.CultureInfo.InvariantCulture));
-			else
-				writer.WriteElementString(name, "0");
+            if (id != null)
+                writer.WriteElementString(name, id.ToString());
+            else
+                writer.WriteElementString(name, SaveLoadManager.UniqueId.Empty.ToString());
 		}
 		#endregion
 

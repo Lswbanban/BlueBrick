@@ -548,7 +548,7 @@ namespace BlueBrick.MapData
 			{
 				public PointF mPoint = new PointF(); // coord of the first point in Stud coord
 				public LayerBrick.Brick mAttachedBrick = null;
-				public int mAttachedBrickHashCodeUsedDuringLoading = 0;
+                public SaveLoadManager.UniqueId mAttachedBrickGUIDUsedDuringLoading = SaveLoadManager.UniqueId.Empty;
 
 				[NonSerialized]
 				public PointF mOffsetPoint = new PointF(); // the offset point corresponding to mPoint in stud
@@ -1000,8 +1000,8 @@ namespace BlueBrick.MapData
 				mControlPoint[0].mPoint = XmlReadWrite.readPointF(reader);
 				mControlPoint[1].mPoint = XmlReadWrite.readPointF(reader);
 				// read the id of the attached brick (if any)
-				mControlPoint[0].mAttachedBrickHashCodeUsedDuringLoading = reader.ReadElementContentAsInt();
-				mControlPoint[1].mAttachedBrickHashCodeUsedDuringLoading = reader.ReadElementContentAsInt();
+                mControlPoint[0].mAttachedBrickGUIDUsedDuringLoading = XmlReadWrite.readItemId(reader);
+                mControlPoint[1].mAttachedBrickGUIDUsedDuringLoading = XmlReadWrite.readItemId(reader);
 				mOffsetDistance = reader.ReadElementContentAsFloat();
 				mAllowOffset = reader.ReadElementContentAsBoolean();
 				// read the end element of the ruler
@@ -1015,7 +1015,7 @@ namespace BlueBrick.MapData
 				for (int i = 0; i < 2; ++i)
 				{
 					// try to find the brick with the id we read
-					LayerBrick.Brick brick = Map.sHashtableForRulerAttachementRebuilding[mControlPoint[i].mAttachedBrickHashCodeUsedDuringLoading] as LayerBrick.Brick;
+					LayerBrick.Brick brick = mControlPoint[i].mAttachedBrickGUIDUsedDuringLoading.getBrickOfThatId();
 					if (brick != null)
 					{
 						// compute the attach offset in local coordinate
@@ -1034,8 +1034,8 @@ namespace BlueBrick.MapData
 				// write the data of the linear ruler
 				XmlReadWrite.writePointF(writer, "Point1", this.Point1);
 				XmlReadWrite.writePointF(writer, "Point2", this.Point2);
-				XmlReadWrite.writeItemId(writer, "AttachedBrick1", mControlPoint[0].mAttachedBrick);
-				XmlReadWrite.writeItemId(writer, "AttachedBrick2", mControlPoint[1].mAttachedBrick);
+				XmlReadWrite.writeItemId(writer, "AttachedBrick1", mControlPoint[0].mAttachedBrick.GUID);
+				XmlReadWrite.writeItemId(writer, "AttachedBrick2", mControlPoint[1].mAttachedBrick.GUID);
 				XmlReadWrite.writeFloat(writer, "OffsetDistance", this.OffsetDistance);
 				XmlReadWrite.writeBoolean(writer, "AllowOffset", mAllowOffset);
 				writer.WriteEndElement(); // end of LinearRuler
@@ -1048,8 +1048,8 @@ namespace BlueBrick.MapData
                 mControlPoint[0].mPoint = LDrawReadWrite.readPointF(line[index++]);
                 mControlPoint[1].mPoint = LDrawReadWrite.readPointF(line[index++]);
                 // read the id of the attached brick (if any)
-                mControlPoint[0].mAttachedBrickHashCodeUsedDuringLoading = LDrawReadWrite.readItemId(line[index++]);
-                mControlPoint[1].mAttachedBrickHashCodeUsedDuringLoading = LDrawReadWrite.readItemId(line[index++]);
+                mControlPoint[0].mAttachedBrickGUIDUsedDuringLoading = LDrawReadWrite.readItemId(line[index++]);
+                mControlPoint[1].mAttachedBrickGUIDUsedDuringLoading = LDrawReadWrite.readItemId(line[index++]);
                 mAllowOffset = LDrawReadWrite.readBoolean(line[index++]);
                 mOffsetDistance = LDrawReadWrite.readFloat(line[index++]);
                 // update the computing data after reading the 2 points and offset
@@ -1065,8 +1065,8 @@ namespace BlueBrick.MapData
                 // write the data of the linear ruler
                 LDrawReadWrite.writePointF(ref line, this.Point1);
                 LDrawReadWrite.writePointF(ref line, this.Point2);
-                LDrawReadWrite.writeItemId(ref line, mControlPoint[0].mAttachedBrick);
-                LDrawReadWrite.writeItemId(ref line, mControlPoint[1].mAttachedBrick);
+                LDrawReadWrite.writeItemId(ref line, mControlPoint[0].mAttachedBrick.GUID);
+                LDrawReadWrite.writeItemId(ref line, mControlPoint[1].mAttachedBrick.GUID);
                 LDrawReadWrite.writeBoolean(ref line, mAllowOffset);
                 LDrawReadWrite.writeFloat(ref line, this.OffsetDistance);
             }            
@@ -1413,7 +1413,7 @@ namespace BlueBrick.MapData
 		public class CircularRuler : RulerItem
 		{
 			private LayerBrick.Brick mAttachedBrick = null;
-			private int mAttachedBrickHashCodeUsedDuringLoading = 0;
+            private SaveLoadManager.UniqueId mAttachedBrickGUIDUsedDuringLoading = SaveLoadManager.UniqueId.Empty;
 
 			#region get/set
 			public override float Orientation
@@ -1566,7 +1566,7 @@ namespace BlueBrick.MapData
 				mSelectionArea[0] = XmlReadWrite.readPointF(reader);
 				this.Radius = reader.ReadElementContentAsFloat();
 				// read the id of the attached brick (if any)
-				mAttachedBrickHashCodeUsedDuringLoading = XmlReadWrite.readItemId(reader);
+				mAttachedBrickGUIDUsedDuringLoading = XmlReadWrite.readItemId(reader);
 				// read the end element of the ruler
 				reader.ReadEndElement();
 				// don't need to update the display area after reading the data values, because the accessor of Radius did it
@@ -1575,7 +1575,7 @@ namespace BlueBrick.MapData
 			public override void recreateLinksAfterLoading()
 			{
 				// try to find the brick with the id we read
-				LayerBrick.Brick brick = Map.sHashtableForRulerAttachementRebuilding[mAttachedBrickHashCodeUsedDuringLoading] as LayerBrick.Brick;
+				LayerBrick.Brick brick = mAttachedBrickGUIDUsedDuringLoading.getBrickOfThatId();
 				if (brick != null)
 				{
 					// compute the attach offset in local coordinate
@@ -1593,7 +1593,7 @@ namespace BlueBrick.MapData
 				// write ruler data
 				XmlReadWrite.writePointF(writer, "Center", this.Center);
 				XmlReadWrite.writeFloat(writer, "Radius", this.Radius);
-				XmlReadWrite.writeItemId(writer, "AttachedBrick", mAttachedBrick);
+				XmlReadWrite.writeItemId(writer, "AttachedBrick", mAttachedBrick.GUID);
 				writer.WriteEndElement(); // end of CircularRuler
 			}
 
@@ -1605,7 +1605,7 @@ namespace BlueBrick.MapData
                 mSelectionArea[0] = LDrawReadWrite.readPointF(line[index++]);
                 this.Radius = LDrawReadWrite.readFloat(line[index++]);
                 // read the id of the attached brick (if any)
-                mAttachedBrickHashCodeUsedDuringLoading = LDrawReadWrite.readItemId(line[index++]);
+                mAttachedBrickGUIDUsedDuringLoading = LDrawReadWrite.readItemId(line[index++]);
                 // don't need to update the display area after reading the data values, because the accessor of Radius did it
             }
 
@@ -1618,7 +1618,7 @@ namespace BlueBrick.MapData
                 // write the data of the linear ruler
                 LDrawReadWrite.writePointF(ref line, this.Center);
                 LDrawReadWrite.writeFloat(ref line, this.Radius);
-                LDrawReadWrite.writeItemId(ref line, mAttachedBrick);
+                LDrawReadWrite.writeItemId(ref line, mAttachedBrick.GUID);
             }            
             #endregion
 

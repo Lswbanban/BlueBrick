@@ -26,10 +26,78 @@ using BlueBrick.SaveLoad;
 namespace BlueBrick
 {
 	public static class SaveLoadManager
-	{
-		#region Entry point
+    {
+        #region unique Id
+        /// <summary>
+        /// This class encapsulate the representation of Unique Id for item that need to be saved.
+        /// Before I used object.GetHashCode(), but that don't generate unique id.
+        /// Now I use the Guid class (which I didn't know before). This class encapsulate
+        /// both method in order to load old files that were save with the hash code.
+        /// </summary>
+        public class UniqueId
+        {
+            public static UniqueId Empty = new UniqueId(Guid.Empty, 0);
+            private UniqueId(Guid guid, int intId)
+            {
+                mGuid = guid;
+                mIntId = intId;
+            }
 
-		public static bool load(string filename)
+            private Guid mGuid = Guid.NewGuid();
+            private int mIntId = 0;
+
+            public UniqueId()
+            {
+            }
+
+            public UniqueId(string stringId)
+            {
+                // check if it contains some dash, in such case it is a Guid
+                if (stringId.Contains("-"))
+                {
+                    mGuid = Guid.Parse(stringId);
+                }
+                else
+                {
+                    // get the brick id as int
+                    mIntId = int.Parse(stringId);
+
+                    // if the brickId already exist (this can happen with the hold way of generating brick id during saving
+                    // wich was using object.GetHashCode() which doesn't generate unique id, then try to create a new unique id
+                    // by adding one to the int until we find a good one. Of course, this may loose some ruler attachement
+                    // but it is better than not being able to load the file.
+                    // I have changed the way I generate unique id, so this should not happen anymore.
+                    while (Map.sHashtableForRulerAttachementRebuilding.ContainsKey(mIntId))
+                        mIntId++;
+                }
+            }
+
+            public override string ToString()
+            {
+                // always return the GUID as we no longer want to serialize the int id
+                return mGuid.ToString("D");
+            }
+
+            public LayerBrick.Brick getBrickOfThatId()
+            {
+                if (mIntId != 0)
+                    return Map.sHashtableForRulerAttachementRebuilding[mIntId] as LayerBrick.Brick;
+                else
+                    return Map.sHashtableForRulerAttachementRebuilding[mGuid] as LayerBrick.Brick;
+            }
+
+            public void associateWithThisBrick(LayerBrick.Brick brick)
+            {
+                if (mIntId != 0)
+                    Map.sHashtableForRulerAttachementRebuilding.Add(mIntId, brick);
+                else
+                    Map.sHashtableForRulerAttachementRebuilding.Add(mGuid, brick);
+            }
+        }
+        #endregion
+        #region Entry point
+
+        public static bool load(string filename)
 		{
 			string filenameLower = filename.ToLower();
 

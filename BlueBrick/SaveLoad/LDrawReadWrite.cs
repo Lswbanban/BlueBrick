@@ -81,19 +81,19 @@ namespace BlueBrick.SaveLoad
             line += flag.ToString(System.Globalization.CultureInfo.InvariantCulture).ToLower() + " ";
         }
 
-        public static int readItemId(string line)
+        public static SaveLoadManager.UniqueId readItemId(string line)
         {
             // remove the '#' character before parsing
-            return int.Parse(line.Substring(1));
+            return new SaveLoadManager.UniqueId(line.Substring(1));
         }
 
-        public static void writeItemId(ref string line, object obj)
+        public static void writeItemId(ref string line, SaveLoadManager.UniqueId id)
         {
             // we add a # in front of the hash code, just for compatibility with group id (who need them)
-            if (obj != null)
-                line += "#" + obj.GetHashCode().ToString(System.Globalization.CultureInfo.InvariantCulture) + " ";
+            if (id != null)
+                line += "#" + id.ToString() + " ";
             else
-                line += "#0 ";
+                line += "#" + SaveLoadManager.UniqueId.Empty + " ";
         }
         #endregion
         #region color

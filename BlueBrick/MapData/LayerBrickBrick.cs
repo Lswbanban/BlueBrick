@@ -242,6 +242,7 @@ namespace BlueBrick.MapData
 			private int mActiveConnectionPointIndex = 0; // the current active connection point in the connexion point list
 			private List<ConnectionPoint> mConnectionPoints = null; // list of all the connection point (if this brick can connect)
 			private float mAltitude = 0.0f; //for improving compatibility with LDRAW we save a up coordinate for each brick
+            private SaveLoadManager.UniqueId mGUID = new SaveLoadManager.UniqueId();
 
 			// the list of attached rulers are not serialized but reconstructed at loading
 			[NonSerialized]
@@ -264,6 +265,11 @@ namespace BlueBrick.MapData
 			private static Bitmap sInvalidDummyImageToSkip = new Bitmap(1, 1); // a dummy image to indicate the the image is not valid
 
 			#region get/set
+            public SaveLoadManager.UniqueId GUID
+            {
+                get { return mGUID; }
+            }
+
 			/// <summary>
 			/// the part number of the brick
 			/// The set of the part number is used by the serializer, but should not be used in the program
@@ -559,8 +565,10 @@ namespace BlueBrick.MapData
 				// read the id of the brick, then add this brick in the hashtable
 				if (Map.DataVersionOfTheFileLoaded >= 7)
 				{
-					int brickId = int.Parse(reader.GetAttribute(0));
-					Map.sHashtableForRulerAttachementRebuilding.Add(brickId, this);
+                    // read the brick id from the xml
+                    mGUID = new SaveLoadManager.UniqueId(reader.GetAttribute(0));
+                    // now associate that key with this new instance of brick
+                    mGUID.associateWithThisBrick(this);
 				}
 				// read the base class
 				base.ReadXml(reader);
@@ -681,7 +689,7 @@ namespace BlueBrick.MapData
 			public override void WriteXml(System.Xml.XmlWriter writer)
 			{
 				writer.WriteStartElement("Brick");
-				writer.WriteAttributeString("id", this.GetHashCode().ToString());
+                writer.WriteAttributeString("id", mGUID.ToString());
 				base.WriteXml(writer);
 				writer.WriteElementString("PartNumber", mPartNumber);
 				writer.WriteElementString("Orientation", mOrientation.ToString(System.Globalization.CultureInfo.InvariantCulture));
