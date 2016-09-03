@@ -22,6 +22,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing;
 using System.Windows.Forms;
 using BlueBrick.SaveLoad;
+using System.Collections;
 
 namespace BlueBrick
 {
@@ -36,6 +37,8 @@ namespace BlueBrick
         /// </summary>
         public class UniqueId
         {
+            private static Hashtable sHashtableForRebuildingLinkAfterLoading = new Hashtable(); // this hashtable contains all the bricks is used to recreate the attachement of rulers to bricks when loading
+
             public static UniqueId Empty = new UniqueId(Guid.Empty, 0);
             private UniqueId(Guid guid, int intId)
             {
@@ -67,7 +70,7 @@ namespace BlueBrick
                     // by adding one to the int until we find a good one. Of course, this may loose some ruler attachement
                     // but it is better than not being able to load the file.
                     // I have changed the way I generate unique id, so this should not happen anymore.
-                    while (Map.sHashtableForRulerAttachementRebuilding.ContainsKey(mIntId))
+                    while (sHashtableForRebuildingLinkAfterLoading.ContainsKey(mIntId))
                         mIntId++;
                 }
             }
@@ -78,20 +81,25 @@ namespace BlueBrick
                 return mGuid.ToString("D");
             }
 
-            public LayerBrick.Brick getBrickOfThatId()
+            public T getObjectOfThatId<T>() where T : class
             {
                 if (mIntId != 0)
-                    return Map.sHashtableForRulerAttachementRebuilding[mIntId] as LayerBrick.Brick;
+                    return sHashtableForRebuildingLinkAfterLoading[mIntId] as T;
                 else
-                    return Map.sHashtableForRulerAttachementRebuilding[mGuid] as LayerBrick.Brick;
+                    return sHashtableForRebuildingLinkAfterLoading[mGuid] as T;
             }
 
-            public void associateWithThisBrick(LayerBrick.Brick brick)
+            public void associateWithThisObject(object obj)
             {
                 if (mIntId != 0)
-                    Map.sHashtableForRulerAttachementRebuilding.Add(mIntId, brick);
+                    sHashtableForRebuildingLinkAfterLoading.Add(mIntId, obj);
                 else
-                    Map.sHashtableForRulerAttachementRebuilding.Add(mGuid, brick);
+                    sHashtableForRebuildingLinkAfterLoading.Add(mGuid, obj);
+            }
+
+            public static void ClearHashtableForLinkRebuilding()
+            {
+                sHashtableForRebuildingLinkAfterLoading.Clear();
             }
         }
         #endregion

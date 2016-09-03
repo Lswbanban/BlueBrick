@@ -568,7 +568,7 @@ namespace BlueBrick.MapData
                     // read the brick id from the xml
                     mGUID = new SaveLoadManager.UniqueId(reader.GetAttribute(0));
                     // now associate that key with this new instance of brick
-                    mGUID.associateWithThisBrick(this);
+                    mGUID.associateWithThisObject(this);
 				}
 				// read the base class
 				base.ReadXml(reader);

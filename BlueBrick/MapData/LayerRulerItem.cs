@@ -1015,7 +1015,7 @@ namespace BlueBrick.MapData
 				for (int i = 0; i < 2; ++i)
 				{
 					// try to find the brick with the id we read
-					LayerBrick.Brick brick = mControlPoint[i].mAttachedBrickGUIDUsedDuringLoading.getBrickOfThatId();
+					LayerBrick.Brick brick = mControlPoint[i].mAttachedBrickGUIDUsedDuringLoading.getObjectOfThatId<LayerBrick.Brick>();
 					if (brick != null)
 					{
 						// compute the attach offset in local coordinate
@@ -1575,7 +1575,7 @@ namespace BlueBrick.MapData
 			public override void recreateLinksAfterLoading()
 			{
 				// try to find the brick with the id we read
-				LayerBrick.Brick brick = mAttachedBrickGUIDUsedDuringLoading.getBrickOfThatId();
+                LayerBrick.Brick brick = mAttachedBrickGUIDUsedDuringLoading.getObjectOfThatId<LayerBrick.Brick>();
 				if (brick != null)
 				{
 					// compute the attach offset in local coordinate

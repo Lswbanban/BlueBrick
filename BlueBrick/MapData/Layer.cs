@@ -1195,7 +1195,7 @@ namespace BlueBrick.MapData
 		private void readItemListFromClipboard(System.Xml.XmlReader reader, ref List<Layer.LayerItem> itemsList)
 		{
 			// first clear the hashtable that contains all the bricks
-			Map.sHashtableForRulerAttachementRebuilding.Clear();
+            SaveLoadManager.UniqueId.ClearHashtableForLinkRebuilding();
 			// skip the common properties of the layer
 			if (reader.ReadToDescendant("Items"))
 				this.readItemsListFromXml<Layer.LayerItem>(reader, ref itemsList, "Items", false);
@@ -1203,7 +1203,7 @@ namespace BlueBrick.MapData
 			foreach (Layer.LayerItem item in itemsList)
 				item.recreateLinksAfterLoading();
 			// then clear again the hashmap to free the memory
-			Map.sHashtableForRulerAttachementRebuilding.Clear();
+            SaveLoadManager.UniqueId.ClearHashtableForLinkRebuilding();
 		}
 
 		protected void readItemsListFromXml<T>(System.Xml.XmlReader reader, ref List<T> resultingList, string itemsListName, bool useProgressBar) where T : LayerItem
