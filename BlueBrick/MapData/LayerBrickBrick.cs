@@ -242,7 +242,6 @@ namespace BlueBrick.MapData
 			private int mActiveConnectionPointIndex = 0; // the current active connection point in the connexion point list
 			private List<ConnectionPoint> mConnectionPoints = null; // list of all the connection point (if this brick can connect)
 			private float mAltitude = 0.0f; //for improving compatibility with LDRAW we save a up coordinate for each brick
-            private SaveLoadManager.UniqueId mGUID = new SaveLoadManager.UniqueId();
 
 			// the list of attached rulers are not serialized but reconstructed at loading
 			[NonSerialized]
@@ -265,11 +264,6 @@ namespace BlueBrick.MapData
 			private static Bitmap sInvalidDummyImageToSkip = new Bitmap(1, 1); // a dummy image to indicate the the image is not valid
 
 			#region get/set
-            public SaveLoadManager.UniqueId GUID
-            {
-                get { return mGUID; }
-            }
-
 			/// <summary>
 			/// the part number of the brick
 			/// The set of the part number is used by the serializer, but should not be used in the program
