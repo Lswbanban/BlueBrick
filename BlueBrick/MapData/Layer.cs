@@ -340,8 +340,9 @@ namespace BlueBrick.MapData
 
             public virtual void WriteLDraw(ref string line)
             {
-                // write my id
-                LDrawReadWrite.writeItemId(ref line, this);
+                // write my id, for now it is useless as we don't use it at loading
+                //TODO replace this by a proper GUID saved in the layer
+                LDrawReadWrite.writeItemId(ref line, new SaveLoadManager.UniqueId());
             }
 			#endregion
 
