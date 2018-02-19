@@ -73,7 +73,7 @@ namespace BlueBrick.MapData
 
         public static SaveLoadManager.UniqueId readItemId(System.Xml.XmlReader reader)
 		{
-            return new SaveLoadManager.UniqueId(reader.ReadElementContentAsString());
+            return new SaveLoadManager.UniqueId(reader.ReadElementContentAsString(), false);
 		}
 
         public static void writeItemId(System.Xml.XmlWriter writer, string name, SaveLoadManager.UniqueId id)
