@@ -504,7 +504,7 @@ namespace BlueBrick
 			// return the part number followed by the hash code
 			// the part number is needed at loading time to ask the part lib if this group can be split
 			// the hash code is needed to make unique group name
-			return group.PartNumber + "#" + group.GUID.ToString();
+			return group.PartNumber + "#" + ((group != null) ? group.GUID.ToString() : SaveLoadManager.UniqueId.Empty.ToString());
 		}
 
 		private static Layer.Group createOrGetGroup(string groupName)
@@ -1114,10 +1114,10 @@ namespace BlueBrick
 			// <LineThickness> <GuidelineThickness> are float in pixel
 			// <GuidelineDashPattern> is float separted by semicolon representing "space-dash" in percentage of GuidelineThickness
 			// <Unit> is an int for that order
+			// <MeasureFont> is a triplet in double quote representing the font family name, the size and the style
 			// <geometry> depends on the type
 			//		for linear:
 			//		for circular:
-			// <MeasureFont> is the rest of the line as as string representing the font name
 			// GROUPED BRICK:
 			// If the ruler is part of a group, MLCAD introduced two commands.
 			// The line "0 MLCAD BTG <my group name>" should be placed before the ruler
