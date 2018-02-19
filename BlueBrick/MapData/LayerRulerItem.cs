@@ -1034,8 +1034,8 @@ namespace BlueBrick.MapData
 				// write the data of the linear ruler
 				XmlReadWrite.writePointF(writer, "Point1", this.Point1);
 				XmlReadWrite.writePointF(writer, "Point2", this.Point2);
-				XmlReadWrite.writeItemId(writer, "AttachedBrick1", mControlPoint[0].mAttachedBrick.GUID);
-				XmlReadWrite.writeItemId(writer, "AttachedBrick2", mControlPoint[1].mAttachedBrick.GUID);
+				XmlReadWrite.writeItemId(writer, "AttachedBrick1", (mControlPoint[0].mAttachedBrick != null) ? mControlPoint[0].mAttachedBrick.GUID : SaveLoadManager.UniqueId.Empty);
+				XmlReadWrite.writeItemId(writer, "AttachedBrick2", (mControlPoint[1].mAttachedBrick != null) ? mControlPoint[1].mAttachedBrick.GUID : SaveLoadManager.UniqueId.Empty);
 				XmlReadWrite.writeFloat(writer, "OffsetDistance", this.OffsetDistance);
 				XmlReadWrite.writeBoolean(writer, "AllowOffset", mAllowOffset);
 				writer.WriteEndElement(); // end of LinearRuler
@@ -1065,8 +1065,8 @@ namespace BlueBrick.MapData
                 // write the data of the linear ruler
                 LDrawReadWrite.writePointF(ref line, this.Point1);
                 LDrawReadWrite.writePointF(ref line, this.Point2);
-                LDrawReadWrite.writeItemId(ref line, mControlPoint[0].mAttachedBrick.GUID);
-                LDrawReadWrite.writeItemId(ref line, mControlPoint[1].mAttachedBrick.GUID);
+				LDrawReadWrite.writeItemId(ref line, (mControlPoint[0].mAttachedBrick != null) ? mControlPoint[0].mAttachedBrick.GUID : SaveLoadManager.UniqueId.Empty);
+                LDrawReadWrite.writeItemId(ref line, (mControlPoint[1].mAttachedBrick != null) ? mControlPoint[1].mAttachedBrick.GUID : SaveLoadManager.UniqueId.Empty);
                 LDrawReadWrite.writeBoolean(ref line, mAllowOffset);
                 LDrawReadWrite.writeFloat(ref line, this.OffsetDistance);
             }            
@@ -1593,7 +1593,7 @@ namespace BlueBrick.MapData
 				// write ruler data
 				XmlReadWrite.writePointF(writer, "Center", this.Center);
 				XmlReadWrite.writeFloat(writer, "Radius", this.Radius);
-				XmlReadWrite.writeItemId(writer, "AttachedBrick", mAttachedBrick.GUID);
+				XmlReadWrite.writeItemId(writer, "AttachedBrick", (mAttachedBrick != null) ? mAttachedBrick.GUID : SaveLoadManager.UniqueId.Empty);
 				writer.WriteEndElement(); // end of CircularRuler
 			}
 
@@ -1618,7 +1618,7 @@ namespace BlueBrick.MapData
                 // write the data of the linear ruler
                 LDrawReadWrite.writePointF(ref line, this.Center);
                 LDrawReadWrite.writeFloat(ref line, this.Radius);
-                LDrawReadWrite.writeItemId(ref line, mAttachedBrick.GUID);
+				LDrawReadWrite.writeItemId(ref line, (mAttachedBrick != null) ? mAttachedBrick.GUID : SaveLoadManager.UniqueId.Empty);
             }            
             #endregion
 
