@@ -59,7 +59,7 @@ namespace BlueBrick
                 mIntId = copy.mIntId;
             }
 
-            public UniqueId(string stringId)
+            public UniqueId(string stringId, bool tryToMakeItUniqueIfNot)
             {
                 // check if it contains some dash, in such case it is a Guid
                 if (Map.DataVersionOfTheFileLoaded > 8)
@@ -71,13 +71,17 @@ namespace BlueBrick
                     // get the brick id as int
                     mIntId = int.Parse(stringId);
 
-                    // if the brickId already exist (this can happen with the hold way of generating brick id during saving
-                    // which was using object.GetHashCode() which doesn't generate unique id, then try to create a new unique id
-                    // by adding one to the int until we find a good one. Of course, this may loose some ruler attachement
-                    // but it is better than not being able to load the file.
-                    // I have changed the way I generate unique id, so this should not happen anymore.
-                    while (sHashtableForRebuildingLinkAfterLoading.ContainsKey(mIntId))
-                        mIntId++;
+					// check if we need to try to recover, from a bad saving
+					if (tryToMakeItUniqueIfNot)
+					{
+						// if the brickId already exist (this can happen with the hold way of generating brick id during saving
+						// which was using object.GetHashCode() which doesn't generate unique id, then try to create a new unique id
+						// by adding one to the int until we find a good one. Of course, this may loose some ruler attachement
+						// but it is better than not being able to load the file.
+						// I have changed the way I generate unique id, so this should not happen anymore.
+						while (sHashtableForRebuildingLinkAfterLoading.ContainsKey(mIntId))
+							mIntId++;
+					}
                 }
             }
 

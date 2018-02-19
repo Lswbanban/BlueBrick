@@ -84,7 +84,7 @@ namespace BlueBrick.SaveLoad
         public static SaveLoadManager.UniqueId readItemId(string line)
         {
             // remove the '#' character before parsing
-            return new SaveLoadManager.UniqueId(line.Substring(1));
+            return new SaveLoadManager.UniqueId(line.Substring(1), false);
         }
 
         public static void writeItemId(ref string line, SaveLoadManager.UniqueId id)
