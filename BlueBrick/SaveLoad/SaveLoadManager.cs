@@ -32,79 +32,80 @@ namespace BlueBrick
         /// <summary>
         /// This class encapsulate the representation of Unique Id for item that need to be saved.
         /// Before I used object.GetHashCode(), but that don't generate unique id.
-        /// Now I use the Guid class (which I didn't know before). This class encapsulate
-        /// both method in order to load old files that were save with the hash code.
+        /// Now I use this class that encapsulate the id, so that I can control the way the id are
+		/// generated through the various constructors.
+        /// The default constructor will use a static counter that is incremented each time a new
+		/// instance of UniqueId is created. The constructor that take a string as a parameter is used during
+		/// loading, we set the id as what we read, but we also adjust the static counter, 
+		/// so that newly created id after a loading can still stay unique.
         /// </summary>
         public class UniqueId
         {
             private static Hashtable sHashtableForRebuildingLinkAfterLoading = new Hashtable(); // this hashtable contains all the bricks is used to recreate the attachement of rulers to bricks when loading
 
-            public static UniqueId Empty = new UniqueId(Guid.Empty, 0);
-            private UniqueId(Guid guid, int intId)
+			// We only need unique ids for the duration of the session. So we use an id counter, that is initialized to 0 when the Application starts,
+			// then this counter is incremented everytime we need to create a new Unique Id.
+			private static ulong sInstanceCounter = 0;
+
+            public static UniqueId Empty = new UniqueId(0);
+            private UniqueId(ulong id)
             {
-                mGuid = guid;
-                mIntId = intId;
+                mId = id;
             }
 
-            private Guid mGuid = Guid.NewGuid();
-            private int mIntId = 0;
+            private ulong mId = 0;
 
             public UniqueId()
             {
+				// increment the static counter
+				sInstanceCounter++;
+				// skip 0, as 0 is the special id for empty (no id). This may happen in case the number reboot.
+				if (sInstanceCounter == 0)
+					sInstanceCounter++;
+				// give that value to the id encapsulated inside this class
+				mId = sInstanceCounter;
             }
 
             public UniqueId(UniqueId copy)
             {
-                mGuid = copy.mGuid;
-                mIntId = copy.mIntId;
+                mId = copy.mId;
             }
 
             public UniqueId(string stringId, bool tryToMakeItUniqueIfNot)
             {
-                // check if it contains some dash, in such case it is a Guid
-                if (Map.DataVersionOfTheFileLoaded > 8)
-                {
-                    mGuid = Guid.Parse(stringId);
-                }
-                else
-                {
-                    // get the brick id as int
-                    mIntId = int.Parse(stringId);
+                // get the brick id as int
+                mId = ulong.Parse(stringId);
 
-					// check if we need to try to recover, from a bad saving
-					if (tryToMakeItUniqueIfNot)
-					{
-						// if the brickId already exist (this can happen with the hold way of generating brick id during saving
-						// which was using object.GetHashCode() which doesn't generate unique id, then try to create a new unique id
-						// by adding one to the int until we find a good one. Of course, this may loose some ruler attachement
-						// but it is better than not being able to load the file.
-						// I have changed the way I generate unique id, so this should not happen anymore.
-						while (sHashtableForRebuildingLinkAfterLoading.ContainsKey(mIntId))
-							mIntId++;
-					}
-                }
+				// check if we need to try to recover, from a bad saving
+				if (tryToMakeItUniqueIfNot)
+				{
+					// if the brickId already exist (this can happen with the hold way of generating brick id during saving
+					// which was using object.GetHashCode() which doesn't generate unique id, then try to create a new unique id
+					// by adding one to the int until we find a good one. Of course, this may loose some ruler attachement
+					// but it is better than not being able to load the file.
+					// I have changed the way I generate unique id, so this should not happen anymore.
+					while (sHashtableForRebuildingLinkAfterLoading.ContainsKey(mId))
+						mId++;
+				}
+
+				// If the loaded id is bigger than the counter, set the counter like this id so that the next created id will be just after this loaded one.
+				if (mId > sInstanceCounter)
+					sInstanceCounter = mId;
             }
 
             public override string ToString()
             {
-                // always return the GUID as we no longer want to serialize the int id
-                return mGuid.ToString("D");
+				return mId.ToString("D");
             }
 
             public T getObjectOfThatId<T>() where T : class
             {
-                if (mIntId != 0)
-                    return sHashtableForRebuildingLinkAfterLoading[mIntId] as T;
-                else
-                    return sHashtableForRebuildingLinkAfterLoading[mGuid] as T;
+				return sHashtableForRebuildingLinkAfterLoading[mId] as T;
             }
 
             public void associateWithThisObject(object obj)
             {
-                if (mIntId != 0)
-                    sHashtableForRebuildingLinkAfterLoading.Add(mIntId, obj);
-                else
-                    sHashtableForRebuildingLinkAfterLoading.Add(mGuid, obj);
+                sHashtableForRebuildingLinkAfterLoading.Add(mId, obj);
             }
 
             public static void ClearHashtableForLinkRebuilding()
