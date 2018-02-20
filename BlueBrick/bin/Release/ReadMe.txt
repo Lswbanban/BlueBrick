@@ -146,6 +146,7 @@ Open bugs:
 Bug fixed in 1.8.2.0:
 - BUG (Alban & many users): CRITICAL! The unique id generator was not so unique, preventing sometime the BBM files to be reloaded (especially the large file which had more chance to have a collision of ids)
 - BUG #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
+- BUG (Alban): The xml parsing of the <GroupConnectionPreferenceList> tag for the SET xml files, was skipping one connection preference every two.
 - BUG (Christopher): The report email in the crash window is no longer working.
 
 Bug fixed in 1.8.1.0:

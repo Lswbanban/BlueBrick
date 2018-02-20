@@ -972,7 +972,7 @@ namespace BlueBrick.MapData
 						mGroupInfo.mGroupNextPreferedConnection.Add(from, to);
 
 						// go to next index
-						entryFound = !xmlReader.EOF && xmlReader.ReadToNextSibling("nextIndex");
+						entryFound = !xmlReader.EOF && xmlReader.Name.Equals("nextIndex");
 					}
 					// finish the connexion
 					if (!xmlReader.EOF)
