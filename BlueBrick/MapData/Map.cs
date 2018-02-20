@@ -929,7 +929,7 @@ namespace BlueBrick.MapData
 			if (canAdd == BrickAddability.YES)
 			{
 				LayerBrick brickLayer = Map.sInstance.SelectedLayer as LayerBrick;
-				if ((brickLayer != null) && (brickLayer.getConnectableBrick() != null))
+				if ((brickLayer != null) && (brickLayer.getSingleBrickOrGroupSelected() != null))
 				{
 					// create the correct action depending if the part is a group or not
                     Actions.Action action = null;

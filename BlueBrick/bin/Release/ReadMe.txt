@@ -108,31 +108,31 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] MISSING FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count)
 - [target 1.9] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
+- [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
+- [target 1.9] MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels.
+- [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
+- [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
-- MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - MISSING FEATURE #12 (FreeBee) : Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
 - MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon)
+- MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optionnal.
-- MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels.
-- MISSING FEATURE #6 (Alban): Autosave.
 - MISSING FEATURE #7 (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE #10 (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE #11 (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
-- MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
 - MISSING FEATURE (Ludo & Denis): Add some optionnal arrows at the extremities of the linear rulers.
 - MISSING FEATURE (Ludo): Move the measure values along the linear rulers in order to avoid overlapping of close parallel rulers.
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
-- MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
 - MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
 - MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable.
 - BUG (Alban): After reloading the part library, all the settings of the part lib are reset to what it was when the application started instead of what it was just before reloading
-- BUG #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
+- BUG (Alban) : When you just form a group, there's no active connection set by default
 - BUG #55 (Alban): When you replace a part in a group, the display area of the group is not recomptuted
 - BUG #56 (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
@@ -140,11 +140,12 @@ Open bugs:
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
-- REFACTORING (Alban): the layer panel is slow to resfresh
+- REFACTORING (Alban): the part list panel is slow to resfresh (use AddRange instead of Add to add the items)
 
 
 Bug fixed in 1.8.2.0:
-- BUG (Alban & many users): The unique id generator was not so unique, preventing sometime the BBM files to be reloaded (especially the large file which had more chance to have a collision of ids)
+- BUG (Alban & many users): CRITICAL! The unique id generator was not so unique, preventing sometime the BBM files to be reloaded (especially the large file which had more chance to have a collision of ids)
+- BUG #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
 - BUG (Christopher): The report email in the crash window is no longer working.
 
 Bug fixed in 1.8.1.0:

@@ -371,6 +371,18 @@ namespace BlueBrick.MapData
 			}
 			return null;
 		}
+
+		/// <summary>
+		/// This method return the item currently selected when the selection contains only one item selected.
+		/// This item can be a group, in that case this method return the top parent of the group.
+		/// This method return null if there's no object selected, or if there are multiple item selected which
+		/// don't belongs to the same group.
+		/// </summary>
+		/// <returns>The single item selected or the top parent of the single group selected, or null if there's no object selected, or if there are multiple item selected which don't belongs to the same group.</returns>
+		public LayerItem getSingleBrickOrGroupSelected()
+		{
+			return Layer.sGetTopItemFromList(mSelectedObjects);
+		}
 		#endregion
 
 		#region connectivity
