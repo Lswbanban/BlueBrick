@@ -842,8 +842,12 @@ namespace BlueBrick.MapData
 
 			public void addItem(List<Layer.LayerItem> itemList)
 			{
+				// add all the items from the list into the group
 				foreach (Layer.LayerItem item in itemList)
-					addItem(item);
+					addItem(item);				
+				// set the active connection index to 0 by default, this will set the brick that hold the connection
+				// this won't have any effect, if the group is grouping items that are not bricks
+				ActiveConnectionIndex = 0;
 			}
 
 			public void removeItem(LayerItem item)
