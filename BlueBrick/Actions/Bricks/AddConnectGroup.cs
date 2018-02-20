@@ -39,33 +39,33 @@ namespace BlueBrick.Actions.Bricks
 
 			// get the connectable brick among the selection
 			LayerBrick.Brick selectedBrick = layer.getConnectableBrick();
-			LayerBrick.Brick brickToConnect = null;
+			LayerBrick.Brick brickToConnectInAddedGroup = null;
 
 			// check if we can attach the group to the unique selected object
 			if ((selectedBrick != null) && selectedBrick.HasConnectionPoint)
 			{
 				// find the brick of the group that will be connected to the selected brick
-				brickToConnect = findBrickToConnectAndSetBestConnectionPointIndex(selectedBrick, ref wantedConnexion);
+				brickToConnectInAddedGroup = findBrickToConnectAndSetBestConnectionPointIndex(selectedBrick, ref wantedConnexion);
 			}
 
 			// check if the brick to connect is valid and has connection point
-			if ((brickToConnect != null) && brickToConnect.HasConnectionPoint)
+			if ((brickToConnectInAddedGroup != null) && brickToConnectInAddedGroup.HasConnectionPoint)
 			{
 				// after setting the active connection point index from which this brick will be attached,
 				// get the prefered index from the library
 				mNextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(partNumber, wantedConnexion);
 
 				// Compute the orientation of the bricks
-				float newOrientation = AddConnectBrick.sGetOrientationOfConnectedBrick(selectedBrick, brickToConnect);
-				newOrientation -= brickToConnect.Orientation;
+				float newOrientation = AddConnectBrick.sGetOrientationOfConnectedBrick(selectedBrick, brickToConnectInAddedGroup);
+				newOrientation -= brickToConnectInAddedGroup.Orientation;
 				// Rotate all the bricks of the group first before translating
-				RotateBrickOnPivotBrick rotateBricksAction = new RotateBrickOnPivotBrick(layer, mBricksInTheGroup, newOrientation, brickToConnect);
+				RotateBrickOnPivotBrick rotateBricksAction = new RotateBrickOnPivotBrick(layer, mBricksInTheGroup, newOrientation, brickToConnectInAddedGroup);
 				rotateBricksAction.MustUpdateBrickConnectivity = false;
 				rotateBricksAction.redo();
 
 				// compute the translation to add to all the bricks
-				PointF translation = new PointF(selectedBrick.ActiveConnectionPosition.X - brickToConnect.ActiveConnectionPosition.X,
-												selectedBrick.ActiveConnectionPosition.Y - brickToConnect.ActiveConnectionPosition.Y);
+				PointF translation = new PointF(selectedBrick.ActiveConnectionPosition.X - brickToConnectInAddedGroup.ActiveConnectionPosition.X,
+												selectedBrick.ActiveConnectionPosition.Y - brickToConnectInAddedGroup.ActiveConnectionPosition.Y);
 				mGroup.translate(translation);
 			}
 			else
@@ -107,6 +107,7 @@ namespace BlueBrick.Actions.Bricks
 		{
 			// the brick that will be used to attach the group
 			LayerBrick.Brick brickToAttach = null;
+			int originalWantedConnexion = wantedConnexion; // memorize the original wanted connection in case we need to reset it
 
 			// get the type of the active connexion of the selected brick
 			int fixedConnexionType = fixedBrick.ActiveConnectionPoint.Type;
@@ -163,12 +164,9 @@ namespace BlueBrick.Actions.Bricks
 				}
 			}
 
-			// if we still didn't find a compatible brick, use the first one of the list
+			// if we still didn't find a compatible brick, reset the wanted connection that we have modified
 			if (!isActiveConnectionPointChosen)
-			{
-				brickToAttach = mBricksInTheGroup[0] as LayerBrick.Brick;
-				wantedConnexion = 0;
-			}
+				wantedConnexion = originalWantedConnexion;
 
 			// finally return the brick selected for the attachement
 			return brickToAttach;
