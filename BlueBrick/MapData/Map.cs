@@ -929,16 +929,20 @@ namespace BlueBrick.MapData
 			if (canAdd == BrickAddability.YES)
 			{
 				LayerBrick brickLayer = Map.sInstance.SelectedLayer as LayerBrick;
-				if ((brickLayer != null) && (brickLayer.getSingleBrickOrGroupSelected() != null))
+				if (brickLayer != null)
 				{
-					// create the correct action depending if the part is a group or not
-                    Actions.Action action = null;
-					if (BrickLibrary.Instance.isAGroup(partNumber))
-						action = new AddConnectGroup(brickLayer, partNumber, connexion);
-					else
-						action = new AddConnectBrick(brickLayer, partNumber, connexion);
-					// and add the action in the manager
-					ActionManager.Instance.doAction(action);
+					Layer.LayerItem selectedItem = brickLayer.getSingleBrickOrGroupSelected();
+					if (selectedItem != null)
+					{
+						// create the correct action depending if the part is a group or not
+						Actions.Action action = null;
+						if (BrickLibrary.Instance.isAGroup(partNumber))
+							action = new AddConnectGroup(brickLayer, selectedItem, partNumber, connexion);
+						else
+							action = new AddConnectBrick(brickLayer, selectedItem, partNumber, connexion);
+						// and add the action in the manager
+						ActionManager.Instance.doAction(action);
+					}
 				}
 			}
 			else
