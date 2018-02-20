@@ -29,23 +29,34 @@ namespace BlueBrick.Actions.Bricks
 		private int mInsertIndex = -1; // this index is for the redo, to add the bricks at the same place
 		private int mNextPreferedActiveConnectionIndex = 0; // the prefered active connection index according to the brick library
 
-		public AddConnectGroup(LayerBrick layer, string partNumber, int wantedConnexion)
+		/// <summary>
+		/// Add a new named group which has the specified partNumber on the specifier layer, and connected it to
+		/// the specified selectedItem (part or group) using the specified wanted connection for that new part.
+		/// </summary>
+		/// <param name="layer">The layer on which to add the group, and in which the selectedItem is selected</param>
+		/// <param name="selectedItem">The single selected item (this can be a single part or a single group). This parameter cannot be null.</param>
+		/// <param name="partNumber">The number of the named group to add</param>
+		/// <param name="wantedConnexion">The connection index of the group to add that should be used to connect to the selected item, or -1 if you don't care.</param>
+		public AddConnectGroup(LayerBrick layer, Layer.LayerItem selectedItem, string partNumber, int wantedConnexion)
 		{
+			// the selected item should not be null
+			System.Diagnostics.Debug.Assert(selectedItem != null);
+
 			// save the layer and construct the group
 			mBrickLayer = layer;
 			mGroup = new Layer.Group(partNumber);
 			// get the flat list of bricks from the hierarchical group
 			mBricksInTheGroup = mGroup.getAllLeafItems();
 
-			// get the connectable brick among the selection
+			// get the connectable brick among the selection, and also the selected item (in case the selected item is a single group without connections points)
 			LayerBrick.Brick selectedBrick = layer.getConnectableBrick();
 			LayerBrick.Brick brickToConnectInAddedGroup = null;
-
+			
 			// check if we can attach the group to the unique selected object
 			if ((selectedBrick != null) && selectedBrick.HasConnectionPoint)
 			{
 				// find the brick of the group that will be connected to the selected brick
-				brickToConnectInAddedGroup = findBrickToConnectAndSetBestConnectionPointIndex(selectedBrick, ref wantedConnexion);
+				brickToConnectInAddedGroup = findBrickToConnectAndSetBestConnectionPointIndex(selectedItem, ref wantedConnexion);
 			}
 
 			// check if the brick to connect is valid and has connection point
@@ -70,26 +81,17 @@ namespace BlueBrick.Actions.Bricks
 			}
 			else
 			{
-				// if we couldn't find a connection match, re-ask the selected brick, but use the top item
-				Layer.LayerItem selectedItem = layer.getSingleBrickOrGroupSelected();
-				if (selectedItem != null)
-				{
-					// and just compute the position to the right of the selected item
-					PointF position = selectedItem.Position;
-					position.X += selectedItem.DisplayArea.Width;
-					mGroup.Position = position;
+				// and just compute the position to the right of the selected item
+				PointF position = selectedItem.Position;
+				position.X += selectedItem.DisplayArea.Width;
+				mGroup.Position = position;
 
-					// the reassing the selected brick with the first brick of the group if the selected item is a group
-					// so that the brick index can correctly be set
-					if (selectedItem.IsAGroup)
-						selectedBrick = (selectedItem as Layer.Group).getAllLeafItems()[0] as LayerBrick.Brick;
-					else
-						selectedBrick = selectedItem as LayerBrick.Brick;
-				}
+				// the reassing the selected brick with the first brick of the group if the selected item is a group
+				// so that the brick index can correctly be set
+				if (selectedItem.IsAGroup)
+					selectedBrick = (selectedItem as Layer.Group).getAllLeafItems()[0] as LayerBrick.Brick;
 				else
-				{
-					selectedBrick = null;
-				}
+					selectedBrick = selectedItem as LayerBrick.Brick;
 			}
 
 			// set the index of the group in the list just after the selected brick
@@ -103,14 +105,15 @@ namespace BlueBrick.Actions.Bricks
 			return mGroup.BrickThatHoldsActiveConnection;
 		}
 
-		private LayerBrick.Brick findBrickToConnectAndSetBestConnectionPointIndex(LayerBrick.Brick fixedBrick, ref int wantedConnexion)
+		private LayerBrick.Brick findBrickToConnectAndSetBestConnectionPointIndex(Layer.LayerItem fixedItem, ref int wantedConnexion)
 		{
 			// the brick that will be used to attach the group
 			LayerBrick.Brick brickToAttach = null;
 			int originalWantedConnexion = wantedConnexion; // memorize the original wanted connection in case we need to reset it
 
 			// get the type of the active connexion of the selected brick
-			int fixedConnexionType = fixedBrick.ActiveConnectionPoint.Type;
+			Layer.Group fixedGroup = fixedItem as Layer.Group;
+			int fixedConnexionType = (fixedGroup != null) ? fixedGroup.ActiveConnectionPoint.Type : (fixedItem as LayerBrick.Brick).ActiveConnectionPoint.Type;
 
 			// try to give the correct connexion point, either the specified wanted one, or if
 			// we add the same brick do a special case
@@ -124,11 +127,11 @@ namespace BlueBrick.Actions.Bricks
 												(brickToAttach.ActiveConnectionPoint.Type == fixedConnexionType) &&
 												brickToAttach.ActiveConnectionPoint.IsFree;
 			}
-			else if (fixedBrick.PartNumber == mGroup.PartNumber)
+			else if ((fixedGroup != null) && (fixedGroup.PartNumber == mGroup.PartNumber))
 			{
 				// check if the new added brick is the same kind of the selected one, if so,
 				// then we choose the previous connection point, but check if it is the same type
-				wantedConnexion = BrickLibrary.Instance.getConnectionNextPreferedIndex(fixedBrick.PartNumber, fixedBrick.ActiveConnectionPointIndex);
+				wantedConnexion = BrickLibrary.Instance.getConnectionNextPreferedIndex(fixedGroup.PartNumber, fixedGroup.ActiveConnectionIndex);
 				brickToAttach = setActiveConnectionIndex(wantedConnexion);
 				// check that the connection type is the same
 				isActiveConnectionPointChosen = (brickToAttach != null) &&

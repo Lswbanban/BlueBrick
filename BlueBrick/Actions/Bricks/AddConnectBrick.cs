@@ -66,8 +66,19 @@ namespace BlueBrick.Actions.Bricks
 			return newOrientation;
 		}
 
-		public AddConnectBrick(LayerBrick layer, string partNumber, int wantedConnexion)
+		/// <summary>
+		/// Add a new single part which has the specified partNumber on the specifier layer, and connected it to 
+		/// the specified selectedItem (part or group) using the specified wanted connection for that new part.
+		/// </summary>
+		/// <param name="layer">The layer on which to add the part, and in which the selectedItem is selected</param>
+		/// <param name="selectedItem">The single selected item (this can be a single part or a single group). This parameter cannot be null.</param>
+		/// <param name="partNumber">The number of the part to add</param>
+		/// <param name="wantedConnexion">The connection index of the part to add that should be used to connect to the selected item, or -1 if you don't care.</param>
+		public AddConnectBrick(LayerBrick layer, Layer.LayerItem selectedItem, string partNumber, int wantedConnexion)
 		{
+			// the selected item should not be null
+			System.Diagnostics.Debug.Assert(selectedItem != null);
+
 			mBrickLayer = layer;
 			mBrick = new LayerBrick.Brick(partNumber);
 			LayerBrick.Brick selectedBrick = layer.getConnectableBrick();
@@ -94,26 +105,17 @@ namespace BlueBrick.Actions.Bricks
 			}
 			else
 			{
-				// if we couldn't find a connection match, re-ask the selected brick, but use the top item
-				Layer.LayerItem selectedItem = layer.getSingleBrickOrGroupSelected();
-				if (selectedItem != null)
-				{
-					// and just compute the position to the right of the selected item
-					PointF position = selectedItem.Position;
-					position.X += selectedItem.DisplayArea.Width;
-					mBrick.Position = position;
+				// and just compute the position to the right of the selected item
+				PointF position = selectedItem.Position;
+				position.X += selectedItem.DisplayArea.Width;
+				mBrick.Position = position;
 
-					// the reassing the selected brick with the first brick of the group if the selected item is a group
-					// so that the brick index can correctly be set
-					if (selectedItem.IsAGroup)
-						selectedBrick = (selectedItem as Layer.Group).getAllLeafItems()[0] as LayerBrick.Brick;
-					else
-						selectedBrick = selectedItem as LayerBrick.Brick;
-				}
+				// the reassing the selected brick with the first brick of the group if the selected item is a group
+				// so that the brick index can correctly be set
+				if (selectedItem.IsAGroup)
+					selectedBrick = (selectedItem as Layer.Group).getAllLeafItems()[0] as LayerBrick.Brick;
 				else
-				{
-					selectedBrick = null;
-				}
+					selectedBrick = selectedItem as LayerBrick.Brick;
 			}
 
 			// set the index of the brick in the list just after the selected brick
