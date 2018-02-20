@@ -232,7 +232,7 @@ namespace BlueBrick
 			mNewXmlFilesToLoad.Add(new FileInfo(filename));
 
 			// open the stream
-			XmlWriter xmlWriter = System.Xml.XmlWriter.Create(filename, mXmlSettings);
+			XmlWriter xmlWriter = XmlWriter.Create(filename, mXmlSettings);
 			// start to write the header and the top node
 			xmlWriter.WriteStartDocument();
 			xmlWriter.WriteStartElement("group");
@@ -275,6 +275,11 @@ namespace BlueBrick
 				xmlWriter.WriteEndElement(); // SubPart
 			}
 			xmlWriter.WriteEndElement(); // SubPartList
+			
+			// for the top group we should also write cyclic prefered connection lists (one cycle per type of connection among the free connections)
+			if (groupNumber == 0)
+				writeGroupConnectionPreferenceList(xmlWriter, group);
+
 			// write the end element and close the stream
 			xmlWriter.WriteEndElement(); // group
 			xmlWriter.Close();
@@ -288,6 +293,95 @@ namespace BlueBrick
 					saveGroup(item as Layer.Group, getSubGroupName(groupName, subGroupNumber), subGroupNumber);
 					subGroupNumber++;
 				}
+		}
+
+		/// <summary>
+		/// This small class is used for generating the group connection preference list.
+		/// It store a reference on a connection, and its global index inside the group.
+		/// </summary>
+		private class ConnectionAndIndex
+		{
+			public LayerBrick.Brick.ConnectionPoint mConnection = null;
+			public int mIndexInTheGroup = 0;
+
+			public ConnectionAndIndex(LayerBrick.Brick.ConnectionPoint connection, int index)
+			{
+				mConnection = connection;
+				mIndexInTheGroup = index;
+			}
+		}
+
+		/// <summary>
+		/// Write a list of prefered connections. The list is computed as follow:
+		/// First we get all the free connections in the whole group, then we split that
+		/// list into sub-list per connection type, and then for each sub-list we create
+		/// a loop of next connection preferences.
+		/// For example if the group contains 4 track and 3 road connections, and the 
+		/// two track parts are connected, then we have only 2 free track connections
+		/// and 3 free road connection. We will generate a first cycle for the track
+		/// and a second cycle for the road.
+		/// </summary>
+		/// <param name="xmlWriter">The xmlWritter where to write the list</param>
+		/// <param name="group">The group for which we are writting the list</param>
+		private void writeGroupConnectionPreferenceList(XmlWriter xmlWriter, Layer.Group group)
+		{
+			// get all the bricks in a flat list (removing intermediate group)
+			List<Layer.LayerItem> allBricks = group.getAllLeafItems();
+			// if the group doesn't contains brick, just early exit
+			if ((allBricks.Count == 0) || !(allBricks[0] is LayerBrick.Brick))
+				return;
+
+			// declare a dictionary of list of connections, to store all the connections separated by connection type (which is the key of the dictionnary)
+			Dictionary<int, List<ConnectionAndIndex>> connectionsPerType = new Dictionary<int, List<ConnectionAndIndex>>();
+			// declare a global counter to count the connection index inside the group
+			int connectionCounter = 0;
+
+			// now, iterate on all the connections of all the bricks, and create separated list of free connection
+			foreach (Layer.LayerItem item in allBricks)
+			{
+				LayerBrick.Brick brick = item as LayerBrick.Brick;
+				foreach (LayerBrick.Brick.ConnectionPoint connection in brick.ConnectionPoints)
+				{
+					if (connection.IsFree)
+					{
+						// we found a free connection, check if the list for its type was already added in the dictionary
+						if (!connectionsPerType.ContainsKey(connection.Type))
+							connectionsPerType.Add(connection.Type, new List<ConnectionAndIndex>());
+						// now get the list corresponding to the type
+						List<ConnectionAndIndex> freeConnectionList = connectionsPerType[connection.Type];
+						// then add the connection in the list
+						freeConnectionList.Add(new ConnectionAndIndex(connection, connectionCounter));
+					}
+
+					// increase the connection counter, no matter if the current connection is free or not
+					connectionCounter++;
+				}
+			}
+
+			// check if we found something
+			if (connectionsPerType.Count > 0)
+			{
+				// write the header of the list
+				xmlWriter.WriteStartElement("GroupConnectionPreferenceList");
+
+				// now iterate on the dictionary, and for each list, create a cycle 
+				foreach (KeyValuePair<int, List<ConnectionAndIndex>> connectionsOfOneType in connectionsPerType)
+				{
+					for (int i = 0; i < connectionsOfOneType.Value.Count; ++i)
+					{
+						// get the current and the next connection
+						ConnectionAndIndex currentConnection = connectionsOfOneType.Value[i];
+						ConnectionAndIndex nextConnection = (i == connectionsOfOneType.Value.Count - 1) ? connectionsOfOneType.Value[0] : connectionsOfOneType.Value[i+1];
+						// write the current prefered link
+						xmlWriter.WriteStartElement("nextIndex");
+						xmlWriter.WriteAttributeString("from", currentConnection.mIndexInTheGroup.ToString());
+						xmlWriter.WriteValue(nextConnection.mIndexInTheGroup);
+						xmlWriter.WriteEndElement(); // nextIndex
+					}
+				}
+
+				xmlWriter.WriteEndElement(); // GroupConnectionPreferenceList
+			}
 		}
 
 		/// <summary>

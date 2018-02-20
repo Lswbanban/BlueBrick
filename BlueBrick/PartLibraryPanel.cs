@@ -329,6 +329,7 @@ namespace BlueBrick
 		/// part, but will update the existing part if you reload the same part.
 		/// </summary>
 		/// <param name="xmlFiles">The list of group xml to load</param>
+		/// <param name="groupNames">The list of group names corresponding to the list of xml files</param>
 		public void loadAdditionnalGroups(List<FileInfo> xmlFiles, List<string> groupNames)
 		{
 			// use a default display setting that won't be used to change the setting of the Custom tab page
