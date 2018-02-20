@@ -71,34 +71,54 @@ namespace BlueBrick.Actions.Bricks
 			mBrickLayer = layer;
 			mBrick = new LayerBrick.Brick(partNumber);
 			LayerBrick.Brick selectedBrick = layer.getConnectableBrick();
+			bool hasAGoodConnectionBeenFound = false;
 
-			if (selectedBrick != null)
+			// check if the selected brick and the brick to add have connection points, and if we can find a good connection match
+			// The selected brick can be null if there's no connection in the single group connected in the layer
+			if ((selectedBrick != null) && selectedBrick.HasConnectionPoint && mBrick.HasConnectionPoint)
 			{
-				// check if the selected brick has connection point
-				if (selectedBrick.HasConnectionPoint && mBrick.HasConnectionPoint)
+				// choose the best active connection point for the brick
+				hasAGoodConnectionBeenFound = setBestConnectionPointIndex(selectedBrick, mBrick, wantedConnexion);
+			}
+
+			// check if we found a good connection, continue to set the position of the brick to add relative to the connection
+			if (hasAGoodConnectionBeenFound)
+			{
+				// after setting the active connection point index from which this brick will be attached,
+				// get the prefered index from the library
+				mNextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(partNumber, mBrick.ActiveConnectionPointIndex);
+				// then rotate the brick to connect
+				mBrick.Orientation = sGetOrientationOfConnectedBrick(selectedBrick, mBrick);
+				// the place the brick to add at the correct position
+				mBrick.ActiveConnectionPosition = selectedBrick.ActiveConnectionPosition;
+			}
+			else
+			{
+				// if we couldn't find a connection match, re-ask the selected brick, but use the top item
+				Layer.LayerItem selectedItem = layer.getSingleBrickOrGroupSelected();
+				if (selectedItem != null)
 				{
-					// choose the best active connection point for the brick
-					setBestConnectionPointIndex(selectedBrick, mBrick, wantedConnexion);
+					// and just compute the position to the right of the selected item
+					PointF position = selectedItem.Position;
+					position.X += selectedItem.DisplayArea.Width;
+					mBrick.Position = position;
 
-					// after setting the active connection point index from which this brick will be attached,
-					// get the prefered index from the library
-					mNextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(partNumber, mBrick.ActiveConnectionPointIndex);
-
-					// then rotate the brick to connect
-					mBrick.Orientation = sGetOrientationOfConnectedBrick(selectedBrick, mBrick);
-					// the place the brick to add at the correct position
-					mBrick.ActiveConnectionPosition = selectedBrick.ActiveConnectionPosition;
+					// the reassing the selected brick with the first brick of the group if the selected item is a group
+					// so that the brick index can correctly be set
+					if (selectedItem.IsAGroup)
+						selectedBrick = (selectedItem as Layer.Group).getAllLeafItems()[0] as LayerBrick.Brick;
+					else
+						selectedBrick = selectedItem as LayerBrick.Brick;
 				}
 				else
 				{
-					PointF position = selectedBrick.Position;
-					position.X += selectedBrick.DisplayArea.Width;
-					mBrick.Position = position;
+					selectedBrick = null;
 				}
-
-				// set the index of the brick in the list just after the selected brick
-				mBrickIndex = layer.BrickList.IndexOf(selectedBrick) + 1;
 			}
+
+			// set the index of the brick in the list just after the selected brick
+			if (selectedBrick != null)
+				mBrickIndex = layer.BrickList.IndexOf(selectedBrick) + 1;
 		}
 
 		/// <summary>
@@ -108,7 +128,7 @@ namespace BlueBrick.Actions.Bricks
 		/// <param name="fixedBrick">The brick that doesn't move neither change its connection point</param>
 		/// <param name="brickToAttach">The brick for which computing the best connection point</param>
 		/// <param name="wantedConnexion">The prefered connection index if possible</param>
-		private void setBestConnectionPointIndex(LayerBrick.Brick fixedBrick, LayerBrick.Brick brickToAttach, int wantedConnexion)
+		private bool setBestConnectionPointIndex(LayerBrick.Brick fixedBrick, LayerBrick.Brick brickToAttach, int wantedConnexion)
 		{
 			// get the type of the active connexion of the selected brick
 			int fixedConnexionType = fixedBrick.ActiveConnectionPoint.Type;
@@ -142,8 +162,12 @@ namespace BlueBrick.Actions.Bricks
 						brickToAttach.ConnectionPoints[i].IsFree)
 					{
 						brickToAttach.ActiveConnectionPointIndex = i;
+						isActiveConnectionPointChosen = true;
 						break;
 					}
+
+			// return if we found a good connection for the brick to add
+			return isActiveConnectionPointChosen;
 		}
 
 		public override string getName()
