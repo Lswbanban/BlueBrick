@@ -160,8 +160,8 @@ namespace BlueBrick.Actions.Bricks
 			// with the first connexion of the same type that we can find (if the brick as any connection point)
 			if (!isActiveConnectionPointChosen)
 				for (int i = 0; i < brickToAttach.ConnectionPoints.Count; ++i)
-					if ((brickToAttach.ConnectionPoints[i].Type == fixedConnexionType) &&
-						brickToAttach.ConnectionPoints[i].IsFree)
+					if ((brickToAttach.ConnectionPoints[i].Type == fixedConnexionType)
+						/* && brickToAttach.ConnectionPoints[i].IsFree*/) // actually it is useless to check if it is free, because all connection of a new part added are all free
 					{
 						brickToAttach.ActiveConnectionPointIndex = i;
 						isActiveConnectionPointChosen = true;

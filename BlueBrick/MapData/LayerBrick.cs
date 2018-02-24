@@ -387,21 +387,24 @@ namespace BlueBrick.MapData
 
 		#region connectivity
 		/// <summary>
-		/// Connect the two connexion if possible (i.e. if both connexion are free)
+		/// Connect the two connexion if possible (i.e. if both connexion are free).
+		/// This function also update the free connection set given in parameter, assuming that this free connection point set
+		/// contains the two connections that you want to connect. Normally you should specify the free connection set of the Brick Layer.
 		/// </summary>
 		/// <param name="connexion1">the first connexion to connect with the second one</param>
 		/// <param name="connexion2">the second connexion to connect with the first one</param>
+		/// <param name="freeConnectionPoints">The free connection set that holds the two free connections specified in the two first parameters</param>
 		/// <param name="checkElectricShortcut">boolean to tell if we need to check the electric circuits</param>
 		/// <returns>true if the connexion was made, else false.</returns>
-		private bool connectTwoConnectionPoints(Brick.ConnectionPoint connexion1, Brick.ConnectionPoint connexion2, bool checkElectricShortcut)
+		private static bool connectTwoConnectionPoints(Brick.ConnectionPoint connexion1, Brick.ConnectionPoint connexion2, FreeConnectionSet freeConnectionPoints, bool checkElectricShortcut)
 		{
 			// the connexion can never be stolen
 			if (connexion1.IsFree && connexion2.IsFree)
 			{
 				connexion1.ConnectionLink = connexion2;
 				connexion2.ConnectionLink = connexion1;
-				mFreeConnectionPoints.remove(connexion1);
-				mFreeConnectionPoints.remove(connexion2);
+				freeConnectionPoints.remove(connexion1);
+				freeConnectionPoints.remove(connexion2);
 				// check the current for the new connection (only one call with one brick is enough, since the two bricks are connected)
 				if (checkElectricShortcut)
 					ElectricCircuitChecker.check(connexion1.mMyBrick);
@@ -431,7 +434,7 @@ namespace BlueBrick.MapData
 				ElectricCircuitChecker.check(connexion2.mMyBrick);
 		}
 
-		private bool arePositionsEqual(PointF pos1, PointF pos2)
+		private static bool arePositionsEqual(PointF pos1, PointF pos2)
 		{
 			if (Math.Abs(pos1.X - pos2.X) < 0.5)
 				return (Math.Abs(pos1.Y - pos2.Y) < 0.5);
@@ -481,7 +484,7 @@ namespace BlueBrick.MapData
 						// try to find a new connection
 						foreach (Brick.ConnectionPoint freeConnexion in freeConnexionPoints.getListForType(i))
 							if (arePositionsEqual(selConnexion.PositionInStudWorldCoord, freeConnexion.PositionInStudWorldCoord))
-								connectTwoConnectionPoints(selConnexion, freeConnexion, true);
+								connectTwoConnectionPoints(selConnexion, freeConnexion, mFreeConnectionPoints, true);
 					}
 			}
 		}
@@ -493,23 +496,26 @@ namespace BlueBrick.MapData
 		/// <param name="brick">the brick for which we need to check the connectivity</param>
 		public void updateFullBrickConnectivityForOneBrick(Brick brick)
 		{
-			updateFullBrickConnectivityForOneBrick(brick, true);
+			updateFullBrickConnectivityForOneBrick(brick, mFreeConnectionPoints, true);
 		}
 
 		/// <summary>
-		/// update the connectivity of the specified brick with all possible bricks on the map.
+		/// Update the connectivity of the specified brick with all possible bricks on the map.
 		/// This method doesn't break existing connection for the brick, only create new links.
+		/// The free connection set given in parameter should be the FreeConnectionSet of the Brick Layer 
+		/// on which the specified brick is added.
 		/// </summary>
 		/// <param name="brick">the brick for which we need to check the connectivity</param>
+		/// <param name="freeConnectionPoints">The free connection set that holds the free connections of the specified bricks</param>
 		/// <param name="checkElectricShortcut">boolean to tell if we need to check the electric circuits</param>
-		private void updateFullBrickConnectivityForOneBrick(Brick brick, bool checkElectricShortcut)
+		private static void updateFullBrickConnectivityForOneBrick(Brick brick, FreeConnectionSet freeConnectionPoints, bool checkElectricShortcut)
 		{
 			if (brick.HasConnectionPoint)
 				foreach (Brick.ConnectionPoint brickConnexion in brick.ConnectionPoints)
 					if (brickConnexion.IsFree)
 					{
 						// get the list of freeConnection for the specified type
-						List<Brick.ConnectionPoint> freeConnectionList = mFreeConnectionPoints.getListForType(brickConnexion.Type);
+						List<Brick.ConnectionPoint> freeConnectionList = freeConnectionPoints.getListForType(brickConnexion.Type);
 						// ask the Count of the list in the for loop because the list can decrease.
 						for (int i = 0; i < freeConnectionList.Count; ++i)
 						{
@@ -518,17 +524,37 @@ namespace BlueBrick.MapData
 							// check that we are not linking a free connection of the brick with another free connection of
 							// the same brick (avoiding linking the brick to itself and at the same time avoiding linking
 							// the freeconnection with itself which is at the same place of course)
-							// We don't need to check is the type of the connection are the same because we asked the list
+							// We don't need to check if the type of the connection are the same because we asked the list
 							// of the free connection for the specific type of the current connection.
 							// and of course the most important is to check that the two connection are at the same place
 							if ((freeConnexion.mMyBrick != brick) &&
 								arePositionsEqual(brickConnexion.PositionInStudWorldCoord, freeConnexion.PositionInStudWorldCoord))
 							{
-								if (connectTwoConnectionPoints(brickConnexion, freeConnexion, checkElectricShortcut))
+								if (connectTwoConnectionPoints(brickConnexion, freeConnexion, freeConnectionPoints, checkElectricShortcut))
 									--i;
 							}
 						}
 					}
+		}
+
+		/// <summary>
+		/// This function will connect all the bricks in the specified list between themselves if needed.
+		/// (if there's some compatible free connections points at the same place).
+		/// This function is quite slow and should not be used on a large set of brick. It is typically usefull
+		/// to connect the internal brick of group, before adding the group on the layer.
+		/// WARNING! Never call this function if the bricks are already on the layer, as it won't update the free
+		/// connection set of the layer. Use this function for a spare set of brick, like a non yet added group.
+		/// </summary>
+		public static void updateBrickConnectivityForASpareSetOfBrickAmongThemselve(List<Layer.LayerItem> bricksToConnectTogether)
+		{
+			// first get all the free connections among the bricks in the set, and save them in a FreeConnectionSet
+			FreeConnectionSet freeConnectionSetOfTheBrickList = new FreeConnectionSet();
+			foreach (LayerBrick.Brick brick in bricksToConnectTogether)
+				freeConnectionSetOfTheBrickList.addAllBrickConnections(brick);
+
+			// then connect all the brick between themselves
+			foreach (LayerBrick.Brick brick in bricksToConnectTogether)
+				updateFullBrickConnectivityForOneBrick(brick, freeConnectionSetOfTheBrickList, false);
 		}
 
 		/// <summary>
@@ -539,7 +565,7 @@ namespace BlueBrick.MapData
 		{
 			// for optimization reason do not update the electric circuit for every brick
 			foreach (Layer.LayerItem item in mSelectedObjects)
-				updateFullBrickConnectivityForOneBrick(item as Brick, false);
+				updateFullBrickConnectivityForOneBrick(item as Brick, mFreeConnectionPoints, false);
 
 			// update the electric circuit for the whole layer
 			ElectricCircuitChecker.check(this);
@@ -554,7 +580,7 @@ namespace BlueBrick.MapData
 		{
 			// for optimization reason do not update the electric circuit for every brick
 			foreach (Brick brick in mBricks)
-				updateFullBrickConnectivityForOneBrick(brick, false);
+				updateFullBrickConnectivityForOneBrick(brick, mFreeConnectionPoints, false);
 
 			// update the electric circuit for the whole layer
 			ElectricCircuitChecker.check(this);
