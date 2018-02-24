@@ -115,6 +115,11 @@ namespace BlueBrick.Actions.Bricks
 			Layer.Group fixedGroup = fixedItem as Layer.Group;
 			int fixedConnexionType = (fixedGroup != null) ? fixedGroup.ActiveConnectionPoint.Type : (fixedItem as LayerBrick.Brick).ActiveConnectionPoint.Type;
 
+			// first connect all the connection inside the group. Normally the connection of the bricks of the group
+			// are done directly on the layer, afer that the brick has been added. But here we need to connect the bricks
+			// inisde the group, in order to check the free remaining connections
+			LayerBrick.updateBrickConnectivityForASpareSetOfBrickAmongThemselve(mBricksInTheGroup);
+
 			// try to give the correct connexion point, either the specified wanted one, or if
 			// we add the same brick do a special case
 			bool isActiveConnectionPointChosen = false;

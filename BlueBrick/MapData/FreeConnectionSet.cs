@@ -57,7 +57,8 @@ namespace BlueBrick.MapData
 			// add its connection points to the free list
 			if (brick.HasConnectionPoint)
 				foreach (LayerBrick.Brick.ConnectionPoint connection in brick.ConnectionPoints)
-					mFreeConnections[connection.Type].Add(connection);
+					if (connection.IsFree)
+						mFreeConnections[connection.Type].Add(connection);
 		}
 
 		public void remove(LayerBrick.Brick.ConnectionPoint connection)
