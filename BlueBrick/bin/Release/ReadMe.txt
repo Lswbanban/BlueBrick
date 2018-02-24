@@ -132,23 +132,23 @@ Open bugs:
 - MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
 - MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable.
 - BUG (Alban): After reloading the part library, all the settings of the part lib are reset to what it was when the application started instead of what it was just before reloading
-- BUG #55 (Alban): When you replace a part in a group, the display area of the group is not recomptuted
-- BUG #56 (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
 - BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
 - BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
-- REFACTORING (Alban): the part list panel is slow to resfresh (use AddRange instead of Add to add the items)
+- REFACTORING (Alban): the part list panel is slow to refresh (use AddRange instead of Add to add the items)
 
 
 Bug fixed in 1.8.2.0:
 - NEW FEATURE (Alban): Implement the saving of the "Connection Preference List" when saving a group in the library from the File menu.
-- BUG (Alban & many users): CRITICAL! The unique id generator was not so unique, preventing sometime the BBM files to be reloaded (especially the large file which had more chance to have a collision of ids)
-- BUG #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
-- BUG (Alban): The xml parsing of the <GroupConnectionPreferenceList> tag for the SET xml files, was skipping one connection preference every two.
-- BUG (Alban): When you just form a group, there was no active connection set by default.
-- BUG (Christopher): The report email in the crash window is no longer working.
+- BUGFIX (Alban & many users): CRITICAL! The unique id generator was not so unique, preventing sometime the BBM files to be reloaded (especially the large file which had more chance to have a collision of ids)
+- BUGFIX #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
+- BUGFIX (Alban): The xml parsing of the <GroupConnectionPreferenceList> tag for the SET xml files, was skipping one connection preference every two.
+- BUGFIX (Alban): When you just form a group, there was no active connection set by default.
+- BUGFIX #55 (Alban): When you replace a part in a group, the display area of the group is not recomptuted
+- BUGFIX #56 (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
+- BUGFIX (Christopher): The report email in the crash window is no longer working.
 
 Bug fixed in 1.8.1.0:
 - NEW FEATURE (Alban): Add a install script file and icons for Linux

@@ -166,7 +166,7 @@ namespace BlueBrick.Actions.Bricks
 				altitude = (brick as LayerBrick.Brick).Altitude;
 			}
 
-			// create a new brick and copy all the paramters of the old one
+			// create a new brick and copy all the parameters of the old one
             Layer.LayerItem newBrick = null;
             if (BrickLibrary.Instance.isAGroup(newPartNumber))
             {
@@ -187,35 +187,36 @@ namespace BlueBrick.Actions.Bricks
             return newBrick;
 		}
 
-        private int removeOneItem(LayerBrick layer, Layer.LayerItem itemToRemove)
+		private void replaceOneItem(LayerBrick layer, Layer.LayerItem itemToRemove, Layer.LayerItem itemToAdd)
         {
 			// notify the part list view
 			MainForm.Instance.NotifyPartListForBrickRemoved(layer, itemToRemove, false);
+			MainForm.Instance.NotifyPartListForBrickAdded(layer, itemToAdd, false);
 
-            int brickIndex = -1;
-            // check if it's a group or a simple brick
+			// memorise the brick index order and the group of the old brick
+			int oldItemIndex = -1;
+			Layer.Group oldItemGroup = itemToRemove.Group;
+
+			// first remove the item from its group, in case it belongs to a group
+			// (so that later if someone ask all item of this group, it won't get this limbo item)
+			if (itemToRemove.Group != null)
+				itemToRemove.Group.removeItem(itemToRemove);
+
+            // check if the item to remove is a group or a simple brick
             if (itemToRemove.IsAGroup)
             {
                 List<Layer.LayerItem> bricksToRemove = (itemToRemove as Layer.Group).getAllLeafItems();
                 foreach (Layer.LayerItem item in bricksToRemove)
-                    brickIndex = layer.removeBrick(item as LayerBrick.Brick);
+					oldItemIndex = layer.removeBrick(item as LayerBrick.Brick);
 				// we alsways take the last index to be sure we don't keep an index bigger than the brick list
 				// after removing all the parts of the group
             }
             else
             {
-				brickIndex = layer.removeBrick(itemToRemove as LayerBrick.Brick);
+				oldItemIndex = layer.removeBrick(itemToRemove as LayerBrick.Brick);
             }
-			// return the index of the removed brick
-			return brickIndex;
-        }
 
-		private void addOneItem(LayerBrick layer, Layer.LayerItem itemToAdd, int itemIndex)
-		{
-			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickAdded(layer, itemToAdd, false);
-
-			// check if it's a group or a simple brick
+			// check if the item to add is a group or a simple brick
 			if (itemToAdd.IsAGroup)
 			{
 				List<Layer.LayerItem> bricksToAdd = (itemToAdd as Layer.Group).getAllLeafItems();
@@ -223,12 +224,16 @@ namespace BlueBrick.Actions.Bricks
 				// the insertion order will be reversed. So we reverse the list to make the insertion in correct order
 				bricksToAdd.Reverse();
 				foreach (Layer.LayerItem item in bricksToAdd)
-					layer.addBrick(item as LayerBrick.Brick, itemIndex);
+					layer.addBrick(item as LayerBrick.Brick, oldItemIndex);
 			}
 			else
 			{
-				layer.addBrick(itemToAdd as LayerBrick.Brick, itemIndex);
+				layer.addBrick(itemToAdd as LayerBrick.Brick, oldItemIndex);
 			}
+
+			// then once the item has been added to the layer, add it also to the group if the old item had a group
+			if (oldItemGroup != null)
+				oldItemGroup.addItem(itemToAdd);
 		}
 
 		private void replace(bool newByOld)
@@ -257,10 +262,8 @@ namespace BlueBrick.Actions.Bricks
 							oldOne = brickPair.mNewBrick;
 							newOne = brickPair.mOldBrick;
 						}
-						// remove the specified brick from the list of the layer, and memorise its last position
-						int brickIndex = removeOneItem(currentLayer, oldOne);
-						// then add the new brick at the same position
-						addOneItem(currentLayer, newOne, brickIndex);
+						// replace the old brick with the new one in the current layer
+						replaceOneItem(currentLayer, oldOne, newOne);
 						// add the brick in the selection for updating connectivity later
 						currentLayer.addObjectInSelection(newOne);
 					}

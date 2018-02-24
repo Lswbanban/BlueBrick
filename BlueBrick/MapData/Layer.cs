@@ -829,10 +829,29 @@ namespace BlueBrick.MapData
 			#endregion
 
 			#region grouping management
+			/// <summary>
+			/// Add the specified item in the group. This method will also automatically recompute the display area of this group.
+			/// If the specified item already belongs to another group, then the item will be removed from that other group
+			/// before being added to this group.
+			/// If the item already belongs to this group, then nothing happen.
+			/// </summary>
+			/// <param name="item">The item that you want to add to the group. Cannot be null.</param>
 			public void addItem(LayerItem item)
 			{
+				// check if the item belong to another group
+				if (item.Group != null)
+				{
+					// check if the item doesn't belongs already to this group (in that case does nothing)
+					if (item.Group != this)
+						item.Group.removeItem(item);
+					else
+						return; // does nothing if the item already belongs to this group
+				}
+
+				// now add the item to this group
 				mItems.Add(item);
 				item.Group = this;
+
 				// if this item is the first added to the group, use its display area for the group
 				if (mItems.Count == 1)
 					mDisplayArea = item.DisplayArea;
@@ -840,6 +859,12 @@ namespace BlueBrick.MapData
 					increaseDisplayAreaWithThisItem(item);
 			}
 
+			/// <summary>
+			/// Add the specified list of items to this group, and set the current active connection index to 0.
+			/// This method will call the <c>addItem(LayerItem item)</c> method for each item of the list, so
+			/// read the doc of that method for more details.
+			/// </summary>
+			/// <param name="itemList">the list of all the items that you want to add to this group.</param>
 			public void addItem(List<Layer.LayerItem> itemList)
 			{
 				// add all the items from the list into the group
@@ -850,6 +875,11 @@ namespace BlueBrick.MapData
 				ActiveConnectionIndex = 0;
 			}
 
+			/// <summary>
+			/// Remove the specified item from this group. This method will also automatically recompute the display area of this group.
+			/// If the specified item doesn't belong to this group, its Group property will anyway be set to null.
+			/// </summary>
+			/// <param name="item">The item that you want to remove from this group. Cannot be null.</param>
 			public void removeItem(LayerItem item)
 			{
 				mItems.Remove(item);
@@ -858,6 +888,11 @@ namespace BlueBrick.MapData
 				computeDisplayArea(false);
 			}
 
+			/// <summary>
+			/// Remove all the specified items from this group. This method will also automatically recompute the display area of this group.
+			/// If a specified item doesn't belongs to that group, its Group property will anyway be set to null.
+			/// </summary>
+			/// <param name="itemList">The list of all the items that you want to remove from the group.</param>
 			public void removeItem(List<Layer.LayerItem> itemList)
 			{
 				// for optim reason call the compute display area one time after removing all the items
@@ -870,6 +905,12 @@ namespace BlueBrick.MapData
 				computeDisplayArea(false);
 			}
 
+			/// <summary>
+			/// Reset to null the Group property of all the items belonging to this group, so that each item can
+			/// now consider that it doesn't belong to any group. However, all these items will stay inside the
+			/// item list of this group, so that you can call the regroup() method to reform the group.
+			/// </summary>
+			/// <param name="layer">The layer in which belong this group. Can be null.</param>
 			public void ungroup(Layer layer)
 			{
 				// reset the group property of every item of this group
@@ -887,6 +928,11 @@ namespace BlueBrick.MapData
 				}
 			}
 
+			/// <summary>
+			/// Reset to this group reference, the Group property of all the items belonging to this group,
+			/// so that all the items can think again that it belongs to this group.
+			/// </summary>
+			/// <param name="layer">The layer in which belong this group. Can be null.</param>
 			public void regroup(Layer layer)
 			{
 				// reset the group property with this group
