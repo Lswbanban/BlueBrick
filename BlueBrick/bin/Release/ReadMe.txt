@@ -131,7 +131,6 @@ Open bugs:
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
 - MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
 - MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable.
-- BUG (Alban): After reloading the part library, all the settings of the part lib are reset to what it was when the application started instead of what it was just before reloading
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
@@ -148,6 +147,7 @@ Bug fixed in 1.8.2.0:
 - BUGFIX (Alban): When you just form a group, there was no active connection set by default.
 - BUGFIX #55 (Alban): When you replace a part in a group, the display area of the group is not recomptuted
 - BUGFIX #56 (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
+- BUGFIX (Alban): After reloading the part library, all the settings of the part lib are reset to what it was when the application started instead of what it was just before reloading
 - BUGFIX (Christopher): The report email in the crash window is no longer working.
 
 Bug fixed in 1.8.1.0:
