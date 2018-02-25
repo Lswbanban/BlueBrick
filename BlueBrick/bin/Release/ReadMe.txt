@@ -131,6 +131,7 @@ Open bugs:
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
 - MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
 - MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable.
+- BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono

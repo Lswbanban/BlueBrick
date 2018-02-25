@@ -45,16 +45,28 @@ namespace BlueBrick
 
 			// We only need unique ids for the duration of the session. So we use an id counter, that is initialized to 0 when the Application starts,
 			// then this counter is incremented everytime we need to create a new Unique Id.
+			// Moreover, when we load a file, we set this counter to the maximum id that was loaded, so that future id created after load won't collide.
+			// This is why it must be a long an not just an int (see the comment on mId)
 			private static ulong sInstanceCounter = 0;
 
-            public static UniqueId Empty = new UniqueId(0);
+            public static readonly UniqueId Empty = new UniqueId(0);
             private UniqueId(ulong id)
             {
                 mId = id;
             }
 
+			/// <summary>
+			/// The integer storing the id. The reason why it is a long and not an int, is because before the unique id
+			/// were generated using the GetHashCode() which could have return a value close to int.MaxValue,
+			/// therefore, all the following uniqueId instantiated would have potentially reboot the number.
+			/// </summary>
             private ulong mId = 0;
 
+			/// <summary>
+			/// Default constructor of the UniqueId. This will initialized the unique id value from the
+			/// instance counter, and will increase the instance counter, so that the next unique id constructed
+			/// is guarantied to be unique.
+			/// </summary>
             public UniqueId()
             {
 				// increment the static counter
@@ -66,11 +78,24 @@ namespace BlueBrick
 				mId = sInstanceCounter;
             }
 
+			/// <summary>
+			/// Copy constructor. This copy the id, so that the two UniqueId have the same id.
+			/// If you copy the UniqueId, we assume that you know what you are doing.
+			/// </summary>
+			/// <param name="copy">The UniqueId that should be copied.</param>
             public UniqueId(UniqueId copy)
             {
                 mId = copy.mId;
             }
 
+			/// <summary>
+			/// Construct a unique id from the string given in parameter. This constructor is supposed to be called
+			/// during the loading of a file, when we read the unique id from the file.
+			/// The second parameter try to repair the loading of file that was generated with the GetHashCode() that
+			/// had generated two times the same id (so that made a collision of ids)
+			/// </summary>
+			/// <param name="stringId">A string representing an integer (int or long) that will be used as the unique id value of this instance</param>
+			/// <param name="tryToMakeItUniqueIfNot">If <c>true</c> and if the specified value is already existing, the value will be increased until we find a free unique id</param>
             public UniqueId(string stringId, bool tryToMakeItUniqueIfNot)
             {
                 // get the brick id as int
@@ -81,9 +106,17 @@ namespace BlueBrick
 				{
 					// if the brickId already exist (this can happen with the hold way of generating brick id during saving
 					// which was using object.GetHashCode() which doesn't generate unique id, then try to create a new unique id
-					// by adding one to the int until we find a good one. Of course, this may loose some ruler attachement
+					// from after the int max value. Of course, this may loose some ruler attachement
 					// but it is better than not being able to load the file.
 					// I have changed the way I generate unique id, so this should not happen anymore.
+					if (sHashtableForRebuildingLinkAfterLoading.ContainsKey(mId))
+					{
+						if (sInstanceCounter > (ulong)int.MaxValue)
+							mId = sInstanceCounter + 1;
+						else
+							mId = ((ulong)int.MaxValue) + 1;
+					}
+					// Add one to the int until we find a good one. 
 					while (sHashtableForRebuildingLinkAfterLoading.ContainsKey(mId))
 						mId++;
 				}
@@ -93,21 +126,50 @@ namespace BlueBrick
 					sInstanceCounter = mId;
             }
 
+			/// <summary>
+			/// Serialize the id into a string. This is usefull when saving the file.
+			/// </summary>
+			/// <returns>a string representation of this id.</returns>
             public override string ToString()
             {
 				return mId.ToString("D");
             }
 
+			/// <summary>
+			/// Return the object associated with this id in the hastable used during loading.
+			/// If the object associated with this id is not of the correct specified type, 
+			/// then this function return null.
+			/// </summary>
+			/// <typeparam name="T">The type of the object that should be associated with this id</typeparam>
+			/// <returns>The object instance associated with this id, or null if there's no object associated, or if the object associated is of a different type.</returns>
             public T getObjectOfThatId<T>() where T : class
             {
 				return sHashtableForRebuildingLinkAfterLoading[mId] as T;
             }
 
+			/// <summary>
+			/// Associate the specified object with this id, and store this association in an Hashtable.
+			/// This association is temporary and should only be used during the loading of the file.
+			/// </summary>
+			/// <param name="obj">The object instance to associate with this id.</param>
             public void associateWithThisObject(object obj)
             {
-                sHashtableForRebuildingLinkAfterLoading.Add(mId, obj);
+				try
+				{
+					sHashtableForRebuildingLinkAfterLoading.Add(mId, obj);
+				}
+				catch
+				{
+					// Normally this should never fail. However, if the file loaded was containing duplicated id
+					// and we tried to make them unique during, loading we may actually create a collision of ids
+					// In that case just keep the association
+				}
             }
 
+			/// <summary>
+			/// This method will clear the hastable used during the loading process.
+			/// You should call this method everytime before loading a new file.
+			/// </summary>
             public static void ClearHashtableForLinkRebuilding()
             {
                 sHashtableForRebuildingLinkAfterLoading.Clear();
