@@ -877,30 +877,36 @@ namespace BlueBrick.MapData
 
 			/// <summary>
 			/// Remove the specified item from this group. This method will also automatically recompute the display area of this group.
-			/// If the specified item doesn't belong to this group, its Group property will anyway be set to null.
+			/// If the specified item belongs to another group, nothing happen, otherwise if the Group property of the specified item
+			/// is null or equals to this group, then it is removed from this group.
 			/// </summary>
 			/// <param name="item">The item that you want to remove from this group. Cannot be null.</param>
 			public void removeItem(LayerItem item)
 			{
-				mItems.Remove(item);
-				item.Group = null;
-				// recompute the whole display area of the group
-				computeDisplayArea(false);
+				// we need to check if the group is null, in case the item has been ungrouped, the Group property is null but you still want to remove it from the list
+				if ((item.Group == this) || (item.Group == null))
+				{
+					mItems.Remove(item);
+					item.Group = null;
+					// recompute the whole display area of the group
+					computeDisplayArea(false);
+				}
 			}
 
 			/// <summary>
 			/// Remove all the specified items from this group. This method will also automatically recompute the display area of this group.
-			/// If a specified item doesn't belongs to that group, its Group property will anyway be set to null.
+			/// If a specified item belongs to another group, this item is skipped and nothing happen for it.
 			/// </summary>
 			/// <param name="itemList">The list of all the items that you want to remove from the group.</param>
 			public void removeItem(List<Layer.LayerItem> itemList)
 			{
 				// for optim reason call the compute display area one time after removing all the items
 				foreach (Layer.LayerItem item in itemList)
-				{
-					mItems.Remove(item);
-					item.Group = null;
-				}
+					if ((item.Group == this) || (item.Group == null))
+					{
+						mItems.Remove(item);
+						item.Group = null;
+					}
 				// recompute the whole display area of the group
 				computeDisplayArea(false);
 			}
