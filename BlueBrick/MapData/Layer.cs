@@ -1323,7 +1323,7 @@ namespace BlueBrick.MapData
 				while (groupFound)
 				{
 					// read the id of the current group
-                    SaveLoadManager.UniqueId groupId = new SaveLoadManager.UniqueId(reader.GetAttribute(0), true);
+                    SaveLoadManager.UniqueId groupId = new SaveLoadManager.UniqueId(reader.GetAttribute(0), false);
 					// look in the hastable if this group alread exists, else create it
                     Group currentGroup = groupId.getObjectOfThatId<Group>();
 					if (currentGroup == null)
