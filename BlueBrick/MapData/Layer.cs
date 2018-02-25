@@ -1249,7 +1249,8 @@ namespace BlueBrick.MapData
 		public virtual void ReadXml(System.Xml.XmlReader reader)
 		{
 			// read my GUID of this layer
-			mGUID = new SaveLoadManager.UniqueId(reader.GetAttribute(1), true);
+			if (Map.DataVersionOfTheFileLoaded > 5)
+				mGUID = new SaveLoadManager.UniqueId(reader.GetAttribute(1), true);
 			// read the common properties of the layer
 			reader.ReadToDescendant("Name");
 			mName = reader.ReadElementContentAsString();
