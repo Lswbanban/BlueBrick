@@ -638,8 +638,7 @@ namespace BlueBrick
 			Properties.Settings.Default.UIStatusbarIsVisible = this.statusBar.Visible;
 
 			// the part lib display config
-			this.partsTabControl.savePartListDisplayStatusInSettings();
-			Properties.Settings.Default.UIFilterAllLibraryTab = this.filterAllTabCheckBox.Checked;
+			savePartLibUISettingInDefaultSettings();
 
             // the export window
             this.mExportImageForm.saveUISettingInDefaultSettings();
@@ -653,6 +652,17 @@ namespace BlueBrick
 			catch
 			{
 			}
+		}
+
+		/// <summary>
+		/// Save all the UI setting related to the part library panel inside the default settings.
+		/// This function is separated from the general save UI setting function, because it should
+		/// be called also before reloading the library without closing the application
+		/// </summary>
+		private void savePartLibUISettingInDefaultSettings()
+		{
+			this.partsTabControl.savePartListDisplayStatusInSettings();
+			Properties.Settings.Default.UIFilterAllLibraryTab = this.filterAllTabCheckBox.Checked;
 		}
 
 		/// <summary>
@@ -1535,6 +1545,11 @@ namespace BlueBrick
                 if (Map.Instance.IsMapNameValid)
                     previousOpenMapFileName = Map.Instance.MapFileName;
 
+				// save the UI settings of the part lib before reloading it (and before clearing it), because the user may
+				// have change some UI setting after the startup of the application, and now he wants to reload the part lib
+				// and normally the settings are saved when you exit the application.
+				savePartLibUISettingInDefaultSettings();
+
 				// then clear the part lib panel and the brick library (before creating the new map)
 				this.partsTabControl.clearAllData();
 				BrickLibrary.Instance.clearAllData();
@@ -1547,12 +1562,11 @@ namespace BlueBrick
 				// but the GC was called at then end of the reinitializeCurrentMap function
 				//GC.Collect();
 
-				// then display a waiting message box, giving the user the oppotunity to change the
-				// data before reloading
-				DialogResult result = MessageBox.Show(this,
-					BlueBrick.Properties.Resources.ErrorMsgReadyToReloadPartLib,
+				// then display a waiting message box, giving the user the oppotunity to change the data before reloading
+				MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgReadyToReloadPartLib,
 					BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
 					MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+
 				// then reload the library
 				this.Cursor = Cursors.WaitCursor;
 				loadPartLibraryFromDisk();
