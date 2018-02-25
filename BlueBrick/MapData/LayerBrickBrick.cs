@@ -628,7 +628,7 @@ namespace BlueBrick.MapData
 
 						// read the id (hashcode key) of the connexion
 						reader.ReadAttributeValue();
-                        SaveLoadManager.UniqueId guid = new SaveLoadManager.UniqueId(reader.GetAttribute(0), true);
+                        SaveLoadManager.UniqueId guid = new SaveLoadManager.UniqueId(reader.GetAttribute(0), false);
 
 						// look in the hastable if this connexion alread exists, else create it
                         ConnectionPoint connexion = guid.getObjectOfThatId<ConnectionPoint>();

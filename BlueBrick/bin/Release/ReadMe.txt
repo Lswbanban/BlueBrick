@@ -120,13 +120,13 @@ Open bugs:
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
 - MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon)
 - MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
-- MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optionnal.
+- MISSING FEATURE (Alban): Enhance the part list export in HTML with some javascript for making the image optional.
 - MISSING FEATURE #7 (Alban): Split the toolbar in two (one for file, one for edition) + add a new toolbar for navigation
 - MISSING FEATURE #10 (Alban): Compatibility with TrackDraw?
 - MISSING FEATURE #11 (FreeBee): Mirroring selected (just like rotating) -> almost impossible to do
 - MISSING FEATURE (Alban): The selection should be an undoable action
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
-- MISSING FEATURE (Ludo & Denis): Add some optionnal arrows at the extremities of the linear rulers.
+- MISSING FEATURE (Ludo & Denis): Add some optional arrows at the extremities of the linear rulers.
 - MISSING FEATURE (Ludo): Move the measure values along the linear rulers in order to avoid overlapping of close parallel rulers.
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
 - MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
@@ -134,8 +134,6 @@ Open bugs:
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
-- BUG (Loys): wrong keyboard setup in the save file dialog when exporting an image
-- BUG #16 (Didier & Alexander): SEEMS UNFIXABLE: The standard windows (choose date, color picker, save/open dialog) are spawn in the language of the OS, not the one selected in the application.
 - REFACTORING (Alban): the part list panel is slow to refresh (use AddRange instead of Add to add the items)
 
 
@@ -145,7 +143,7 @@ Bug fixed in 1.8.2.0:
 - BUGFIX #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group
 - BUGFIX (Alban): The xml parsing of the <GroupConnectionPreferenceList> tag for the SET xml files, was skipping one connection preference every two.
 - BUGFIX (Alban): When you just form a group, there was no active connection set by default.
-- BUGFIX #55 (Alban): When you replace a part in a group, the display area of the group is not recomptuted
+- BUGFIX #55 (Alban): When you replace a part in a group, the display area of the group is not recomputed
 - BUGFIX #56 (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
 - BUGFIX (Alban): After reloading the part library, all the settings of the part lib are reset to what it was when the application started instead of what it was just before reloading
 - BUGFIX (Christopher): The report email in the crash window is no longer working.
@@ -153,17 +151,17 @@ Bug fixed in 1.8.2.0:
 Bug fixed in 1.8.1.0:
 - NEW FEATURE (Alban): Add a install script file and icons for Linux
 - REFACTORING #29 (Anonymous): Upgrade the target platform to .NET 4.0
-- BUGFIX (Alban): CRASH!! 100% crash at Startup on Linux (due to multithreading of the SplashScreen).
+- BUGFIX (Alban): CRASH!! 100% crash at Startup on Linux (due to multi-threading of the SplashScreen).
 - BUGFIX (Alban): CRASH!! If you change the Preference when the Part Library is empty
 - BUGFIX #59 (freestorm): the parts with upper case .XML extensions cannot be loaded on Linux
 - BUGFIX #46 (Anonymous + Alban): Display the Help when pressing F1 (or via the Help menu) on Mac and Linux, if you have a CHM viewer installed.
-- BUGFIX (Alban): Fix some bug for the behavior of the text box in the Save Group in Library window.
+- BUGFIX (Alban): Fix some bug for the behaviour of the text box in the Save Group in Library window.
 - BUGFIX (Alban): Now the selection is not cleared after an Export (but still not visible in the exported image)
 - BUGFIX #53 (Alban): In the export window you can specify a selection rectangle null by setting a (bottom < top) or (right < left)
 - BUGFIX (Alban): Handle correctly the new line char in the load part file Error window (on Linux and Mac). Make a pass on all the  other places in the code where endline is used, to use the platform dependant end of line.
 
 Bug fixed in 1.8.0.0:
-- NEW FEATURE (Erik): A new layer type for mesurement tools.
+- NEW FEATURE (Erik): A new layer type for measurement tools.
 - NEW FEATURE (Alban): Add a filter combobox in the bottom of the library
 - NEW FEATURE (Alban): Add a sorting order for the parts in the library based on a new <SortingKey> tag in the XML file of the part
 - NEW FEATURE #23 (many users): A feature to set a budget of parts and let BlueBrick warn you when you reach the budget
@@ -176,7 +174,7 @@ Bug fixed in 1.8.0.0:
 - NEW FEATURE (Alban): Add more options in the preference to create any of the 5 types of layer for a new map
 - NEW FEATURE (Pierre): The right click button can now cancel the current edition if you are in the middle of an edition (for any type of layer), but not under Mono
 - NEW FEATURE (Alban): Add some checkbox in the export window to choose what to export (currently you can add the watermark, the Hull for bricks, the electric circuit and the connection points)
-- NEW FEATURE #8 (Patrick): Add an optionnal part outline to see more clearly the different parts when exporting the image: now you can draw the Hull of the part in the exported image.
+- NEW FEATURE #8 (Patrick): Add an optional part outline to see more clearly the different parts when exporting the image: now you can draw the Hull of the part in the exported image.
 - NEW FEATURE (Alban): In the generated part list, don't list the sub part of a set, list only the set (unless you ungroup the set).
 - REFACTORING (Alban): Move the display of free connection point and watermark in the View menu and add the display of the hull.
 - REFACTORING #18 (Alban): Check where I could have used the directive "where" (remove code duplication)
@@ -216,7 +214,7 @@ Bug fixed in 1.7.1.0:
 - BUGFIX (Alban): CRASH!! Press enter key on a part without connection makes the application crash
 - BUGFIX (Lesgoss+Daniel): CRASH! When opening the Export Window (negative size computed for the preview bitmap)
 - BUGFIX (Alban): In the download window, remove the useless File column and fix a bug about the edition of the file name.
-- BUGFIX (Alban): The Find and Replace window was resizable but controls in it were not resized
+- BUGFIX (Alban): The Find and Replace window was resizeable but controls in it were not resized
 - BUGFIX (Alex): The "Restore Default" in the Global options should only restore the default option of the current tab.
 - BUGFIX (Alban): The selection/duplication keys were not reset to the default value when clicking the "restore default" button in the Preferences Window
 - BUGFIX (Alban): The order of the shortcut key list was switching when the "restore default" button was clicked in the Preferences Window
