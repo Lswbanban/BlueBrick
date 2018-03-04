@@ -1262,7 +1262,7 @@ namespace BlueBrick
 				// move the view to center of the map
 				this.mapPanel.moveViewToMapCenter();
 				// update the view
-                this.updateView(Actions.Action.UpdateViewType.FULL, Actions.Action.UpdateViewType.FULL);
+				this.updateView(Actions.Action.UpdateViewType.FULL, Actions.Action.UpdateViewType.FULL);
 				mPartListForm.rebuildList();
 				Budget.Budget.Instance.recountAllBricks();
 				this.PartsTabControl.updateAllPartCountAndBudget();
@@ -1276,6 +1276,11 @@ namespace BlueBrick
 						BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
 						MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 				}
+			}
+			else
+			{
+				// call the finish progress bar to hide it, in case we had a error while loading the file
+				finishProgressBar();
 			}
 			// restore the cursor after loading
 			this.Cursor = Cursors.Default;
