@@ -24,7 +24,7 @@
 			<Size>1</Size>
 		</ConnectionType>
 		<ConnectionType name="4"> <!-- MONORAIL_SHORT_CURVE -->
-			<ColorARGB>FFC1B6FF</ColorARGB>
+			<ColorARGB>FFA899FF</ColorARGB>
 			<Size>1</Size>
 		</ConnectionType>
 		<ConnectionType name="5"> <!-- Duplo rail -->
@@ -51,5 +51,30 @@
 			<Size>0.5</Size>
 			<HingeAngle>45</HingeAngle>
 		</ConnectionType>
-  </ConnectionTypeList>
+		<!-- The following Connection are used for the unofficial MILS parts. For more details visit http://l-gauge.org/wiki/index.php/Reference_Instructions -->
+		<ConnectionType name="mils_terrain">
+			<ColorARGB>FF8C5C00</ColorARGB>
+			<Size>1.5</Size>
+		</ConnectionType>
+		<ConnectionType name="mils_road">
+			<ColorARGB>FF242EFE</ColorARGB>
+			<Size>1.5</Size>
+		</ConnectionType>
+		<ConnectionType name="mils_track">
+			<ColorARGB>FF84FF00</ColorARGB>
+			<Size>1.5</Size>
+		</ConnectionType>
+		<ConnectionType name="mils_airport">
+			<ColorARGB>FFFFC4A7</ColorARGB>
+			<Size>1.5</Size>
+		</ConnectionType>
+		<ConnectionType name="mils_river">
+			<ColorARGB>FFB4D2E3</ColorARGB>
+			<Size>1.5</Size>
+		</ConnectionType>
+		<ConnectionType name="mils_coast">
+			<ColorARGB>FFD3C774</ColorARGB>
+			<Size>1.5</Size>
+		</ConnectionType>
+	</ConnectionTypeList>
 </info>
