@@ -571,7 +571,7 @@ namespace BlueBrick.MapData
 				if (Map.DataVersionOfTheFileLoaded >= 7)
 				{
                     // read the brick id from the xml
-                    mGUID = new SaveLoadManager.UniqueId(reader.GetAttribute(0), true);
+                    mGUID = new SaveLoadManager.UniqueId(reader.GetAttribute(0));
                     // now associate that key with this new instance of brick
                     mGUID.associateWithThisObject(this);
 				}
@@ -628,7 +628,7 @@ namespace BlueBrick.MapData
 
 						// read the id (hashcode key) of the connexion
 						reader.ReadAttributeValue();
-                        SaveLoadManager.UniqueId guid = new SaveLoadManager.UniqueId(reader.GetAttribute(0), false);
+                        SaveLoadManager.UniqueId guid = new SaveLoadManager.UniqueId(reader.GetAttribute(0));
 
 						// look in the hastable if this connexion alread exists, else create it
                         ConnectionPoint connexion = guid.getObjectOfThatId<ConnectionPoint>();

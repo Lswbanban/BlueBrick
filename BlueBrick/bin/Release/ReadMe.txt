@@ -135,6 +135,7 @@ Open bugs:
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
+- BUG (Alban): If there's an error while loading a file, the loading progress bar stay visible after closing the error window
 - REFACTORING (Alban): the part list panel is slow to refresh (use AddRange instead of Add to add the items)
 
 

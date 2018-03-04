@@ -1250,7 +1250,7 @@ namespace BlueBrick.MapData
 		{
 			// read my GUID of this layer
 			if (Map.DataVersionOfTheFileLoaded > 5)
-				mGUID = new SaveLoadManager.UniqueId(reader.GetAttribute(1), true);
+				mGUID = new SaveLoadManager.UniqueId(reader.GetAttribute(1));
 			// read the common properties of the layer
 			reader.ReadToDescendant("Name");
 			mName = reader.ReadElementContentAsString();
@@ -1324,7 +1324,7 @@ namespace BlueBrick.MapData
 				while (groupFound)
 				{
 					// read the id of the current group
-                    SaveLoadManager.UniqueId groupId = new SaveLoadManager.UniqueId(reader.GetAttribute(0), false);
+                    SaveLoadManager.UniqueId groupId = new SaveLoadManager.UniqueId(reader.GetAttribute(0));
 					// look in the hastable if this group alread exists, else create it
                     Group currentGroup = groupId.getObjectOfThatId<Group>();
 					if (currentGroup == null)
