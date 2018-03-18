@@ -97,7 +97,7 @@ namespace BlueBrick.MapData
 								// the link is broken, check if the active connection point is not free
 								// because then it can become me
 								if (activeConnectionPoint != null && !activeConnectionPoint.IsFree)
-									mMyBrick.mActiveConnectionPointIndex = mMyBrick.ConnectionPoints.IndexOf(this);
+									mMyBrick.ActiveConnectionPointIndex = mMyBrick.ConnectionPoints.IndexOf(this);
 							}
 							else
 							{
@@ -582,7 +582,7 @@ namespace BlueBrick.MapData
 				// but then update its electric list
 				mElectricCircuitIndexList = BrickLibrary.Instance.getElectricCircuitList(mPartNumber);
 				mOrientation = reader.ReadElementContentAsFloat();
-				mActiveConnectionPointIndex = reader.ReadElementContentAsInt();
+				int activeConnectionPointIndexReadInFile = reader.ReadElementContentAsInt();
 				// the altitude
 				if (Map.DataVersionOfTheFileLoaded >= 3)
 					mAltitude = reader.ReadElementContentAsFloat();
@@ -665,27 +665,34 @@ namespace BlueBrick.MapData
 						connexionFound = reader.ReadToNextSibling("Connexion");
 					}
 					reader.ReadEndElement();
+				}
+				else
+				{
+					reader.Read();
+				}
 
-					// check if we read all the connections in the file, if not we have to instanciate
-					// empty connection to fullfill the list
-					if (mConnectionPoints != null)
-						for (int i = mConnectionPoints.Count; i < mConnectionPoints.Capacity; ++i)
-						{
-							ConnectionPoint connexion = new ConnectionPoint(this, i);
-							mConnectionPoints.Add(connexion);
-							// we don't need to add this connection in the hastable since we know this
-							// connection doesn't exist in the file, so there is no link attached to it
-						}
+				// check if we read all the connections in the file, if not we have to instanciate
+				// empty connection to fullfill the list
+				if (mConnectionPoints != null)
+				{
+					for (int i = mConnectionPoints.Count; i < mConnectionPoints.Capacity; ++i)
+					{
+						ConnectionPoint connexion = new ConnectionPoint(this, i);
+						mConnectionPoints.Add(connexion);
+						// we don't need to add this connection in the hastable since we know this
+						// connection doesn't exist in the file, so there is no link attached to it
+					}
 
 					// update the connexion position which is not stored in the bbm file
 					// in file version before 3 it was stored, but I removed it because the connexion
 					// point can move in different part libraries
 					updateConnectionPosition();
 				}
-				else
-				{
-					reader.Read();
-				}
+
+				// after that all the connections list has been updated (even if the list becomes empty),
+				// call the accesor to set the active connexion point, to make sure that the index stay inside the list size.
+				this.ActiveConnectionPointIndex = activeConnectionPointIndexReadInFile;
+
 				// read the end element of the brick
 				reader.ReadEndElement();
 			}
@@ -976,7 +983,7 @@ namespace BlueBrick.MapData
 					if (myTopGroup != null)
 						myTopGroup.ActiveConnectionIndex = bestConnectionIndex;
 					else
-						mActiveConnectionPointIndex = bestConnectionIndex;
+						this.ActiveConnectionPointIndex = bestConnectionIndex;
 				}
 			}
 
