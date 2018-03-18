@@ -687,7 +687,7 @@ namespace BlueBrick.MapData
 			List<Brick> visibleElectricBricks = new List<Brick>();
 
 			// iterate on all the bricks
-			Rectangle destinationRectangle = new Rectangle();
+			PointF[] destinationPoints = new PointF[3];
 			foreach (Brick brick in mBricks)
 			{
 				float left = brick.Position.X;
@@ -700,22 +700,27 @@ namespace BlueBrick.MapData
 					// the return image can be null if too small to be visible
 					if (image != null)
 					{
-						// the -0.5 and +1 is a hack to add 1 more pixel to have jointive baseplates
-						destinationRectangle.X = (int)(((left - areaInStud.Left) * scalePixelPerStud) - 0.5f);
-						destinationRectangle.Y = (int)(((top - areaInStud.Top) * scalePixelPerStud) - 0.5f);
-						destinationRectangle.Width = (int)((brick.Width * scalePixelPerStud) + 1.0f);
-						destinationRectangle.Height = (int)((brick.Height * scalePixelPerStud) + 1.0f);
+						// the -+0.5 and -+1 is a hack to add 1 more pixel to have jointive baseplates
+						destinationPoints[0].X = (float)((left - areaInStud.Left) * scalePixelPerStud) - 1f;
+						destinationPoints[0].Y = (float)((top - areaInStud.Top) * scalePixelPerStud) - 1f;
+						destinationPoints[1].X = (float)((right - areaInStud.Left) * scalePixelPerStud) + 1f;
+						destinationPoints[1].Y = destinationPoints[0].Y;
+						destinationPoints[2].X = destinationPoints[0].X;
+						destinationPoints[2].Y = (float)((bottom - areaInStud.Top) * scalePixelPerStud) + 1f;
+
+						// declare a unit variable for the image.GetBounds() which needs it as a ref
+						GraphicsUnit unit = GraphicsUnit.Pixel;
 
 						// draw the current brick eventually highlighted
 						if (mSelectedObjects.Contains(brick))
 						{
 							if (brick == mCurrentBrickUnderMouse)
-								g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSnapping);
+								g.DrawImage(image, destinationPoints, image.GetBounds(ref unit), GraphicsUnit.Pixel, mImageAttributeForSnapping);
 							else
-								g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeForSelection);
+								g.DrawImage(image, destinationPoints, image.GetBounds(ref unit), GraphicsUnit.Pixel, mImageAttributeForSelection);
 						}
 						else
-							g.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, mImageAttributeDefault);
+							g.DrawImage(image, destinationPoints, image.GetBounds(ref unit), GraphicsUnit.Pixel, mImageAttributeDefault);
 
 						if (Properties.Settings.Default.DisplayBrickHull)
                             g.DrawPolygon(sPenToDrawBrickHull, Layer.sConvertPolygonInStudToPixel(brick.SelectionArea.Vertice, areaInStud, scalePixelPerStud));
