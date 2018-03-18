@@ -148,6 +148,7 @@ Bug fixed in 1.8.2.0:
 - BUGFIX #56 (Alban): When you replace a part in a group, the replaced part doesn't belong to the group
 - BUGFIX (Alban): After reloading the part library, all the settings of the part lib are reset to what it was when the application started instead of what it was just before reloading
 - BUGFIX (Alban): If there's an error while loading a file, the loading progress bar was staying visible after closing the error window
+- BUGFIX (Ludo): Improve the rendering of the LOD images of each brick. There was a 1 pixel shift, visible when you rotate a baseplate for example.
 - BUGFIX (Christopher): The report email in the crash window is no longer working.
 
 Bug fixed in 1.8.1.0:
