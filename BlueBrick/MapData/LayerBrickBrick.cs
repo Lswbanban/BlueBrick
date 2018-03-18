@@ -738,10 +738,14 @@ namespace BlueBrick.MapData
 					if (points[i].Y > max.Y)
 						max.Y = points[i].Y;
 				}
-				// The +1 is added because this function is currently used for computing a size from
+				// We add 0.5f on each border because this function is currently used for computing a size from
 				// the hull or bounding box which is expressed in pixel, and both min and max pixel
 				// coord should be included in the size
-				return new PointF(Math.Abs(max.X - min.X) + 1.0f, Math.Abs(max.Y - min.Y) + 1.0f);
+				min.X -= 0.5f;
+				min.Y -= 0.5f;
+				max.X += 0.5f;
+				max.Y += 0.5f;
+				return new PointF(Math.Abs(max.X - min.X), Math.Abs(max.Y - min.Y));
 			}
 
 			private void updateImage()
@@ -858,7 +862,9 @@ namespace BlueBrick.MapData
 					graphics.SmoothingMode = SmoothingMode.HighQuality;
 					graphics.CompositingQuality = CompositingQuality.HighSpeed;
 					graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
-					graphics.DrawImage(mOriginalImageReference, 0, 0, (float)(mOriginalImageReference.Width) / powerOfTwo, (float)(mOriginalImageReference.Height) / powerOfTwo);
+					RectangleF srcRectangle = new RectangleF(-0.5f, -0.5f, mOriginalImageReference.Width + 1f, mOriginalImageReference.Height + 1f);
+					RectangleF destRectangle = new RectangleF(0, 0, ((float)(mOriginalImageReference.Width) / powerOfTwo) + 1f, ((float)(mOriginalImageReference.Height) / powerOfTwo) + 1f);
+					graphics.DrawImage(mOriginalImageReference, destRectangle, srcRectangle, GraphicsUnit.Pixel);
 					graphics.Flush();
 					// return the created image
 					return image;
