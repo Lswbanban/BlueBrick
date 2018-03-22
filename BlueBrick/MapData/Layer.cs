@@ -2021,7 +2021,7 @@ namespace BlueBrick.MapData
 		/// Snap the specified point onto the current grid
 		/// </summary>
 		/// <param name="pointInStud">The point in stud coord</param>
-		/// <param name="isSnappingCentered">if true the snapping is </param>
+		/// <param name="isSnappingCentered">if true the snapping is centered (meaning it can snap to the left or right, or to the top or down), if false, the snapping will be only to the left and top.</param>
 		/// <returns>the nearest point on the grid</returns>
 		public static PointF snapToGrid(PointF pointInStud, bool isSnappingCentered)
 		{

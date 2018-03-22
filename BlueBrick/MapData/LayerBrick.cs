@@ -954,7 +954,7 @@ namespace BlueBrick.MapData
 															brickCenter.Y - currentAnchorCornerPosition.Y);
 
 				// we need to compute the vector from the corner to the mouse and not the vector from
-				// the mouse to the corner bacause, the snapToGrid is a Floor type of snapping so the
+				// the mouse to the corner because, the snapToGrid is a Floor type of snapping so the
 				// resulting snapped vector won't be the same
 				PointF anchorCornerToMouseSnapped = Layer.snapToGrid(new PointF(mouseCoordInStud.X - currentAnchorCornerPosition.X,
 																				mouseCoordInStud.Y - currentAnchorCornerPosition.Y), false);
@@ -1222,7 +1222,10 @@ namespace BlueBrick.MapData
 						// the duplication above will change the current selection
 						// The code below is to move the selection, either the original one or the duplicated one
 						foreach (LayerBrick.Brick brick in mSelectedObjects)
-							brick.Center = new PointF(brick.Center.X + deltaMove.X, brick.Center.Y + deltaMove.Y);
+						{
+							PointF brickCenter = brick.Center;
+							brick.Center = new PointF(brickCenter.X + deltaMove.X, brickCenter.Y + deltaMove.Y);
+						}
 						// update the free connexion list
 						updateBrickConnectivityOfSelection(true);
 						// move also the bounding rectangle
