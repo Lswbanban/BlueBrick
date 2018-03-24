@@ -868,7 +868,7 @@ namespace BlueBrick.MapData
 					graphics.CompositingMode = CompositingMode.SourceCopy; // this should be enough since we draw the image on an empty transparent area
 					graphics.SmoothingMode = SmoothingMode.HighQuality;
 					graphics.CompositingQuality = CompositingQuality.HighSpeed;
-					graphics.InterpolationMode = InterpolationMode.HighQualityBilinear; // we need it for the high scale down version
+					graphics.InterpolationMode = InterpolationMode.Bilinear; // the "HighQualityBilinear" will make tracks become whites when scaling down, due to the transparent pixel around the border
 					RectangleF srcRectangle = new RectangleF(-0.5f, -0.5f, mOriginalImageReference.Width + 1f, mOriginalImageReference.Height + 1f);
 					RectangleF destRectangle = new RectangleF(0, 0, ((float)(mOriginalImageReference.Width) / powerOfTwo) + 1f, ((float)(mOriginalImageReference.Height) / powerOfTwo) + 1f);
 					graphics.DrawImage(mOriginalImageReference, destRectangle, srcRectangle, GraphicsUnit.Pixel);
