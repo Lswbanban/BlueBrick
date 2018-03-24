@@ -18,6 +18,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace BlueBrick
 {
@@ -36,6 +37,12 @@ namespace BlueBrick
 			this.labelVersion.Text = this.labelVersion.Text + AssemblyVersion;
 //			this.labelCopyright.Text = AssemblyCopyright;
 //			this.labelWebSiteName.Text = AssemblyCompany;
+
+			// adjust the part of the clickable link, because that depends on the language of the about box.
+			string url = "bluebrick.lswproject.com";
+			int startIndex = labelWebSiteName.Text.ToLower().IndexOf(url);
+			if (startIndex != -1)
+				labelWebSiteName.LinkArea = new LinkArea(startIndex, url.Length);
 		}
 
 		#region Assembly Attribute Accessors
@@ -124,5 +131,12 @@ namespace BlueBrick
 			}
 		}
 		#endregion
+
+		private void labelWebSiteName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			ProcessStartInfo sInfo = new ProcessStartInfo("http://bluebrick.lswproject.com");
+			Process.Start(sInfo);
+			labelWebSiteName.LinkVisited = true;
+		}
 	}
 }
