@@ -140,6 +140,7 @@ Open bugs:
 
 Bug fixed in 1.8.2.0:
 - NEW FEATURE (Alban): Implement the saving of the "Connection Preference List" when saving a group in the library from the File menu.
+- NEW FEATURE (Ludo): Make the link to the bluebrick website clickable in the About Box.
 - BUGFIX (Alban & many users): CRITICAL! The unique id generator was not so unique, preventing sometime the BBM files to be reloaded (especially the large file which had more chance to have a collision of ids)
 - BUGFIX (Nicolas): Potential CRASH! when loading a file containing a part with connection, for which the connection list has been updated in the library between the save and the load of the file.
 - BUGFIX #54 (Alban): If you select a named group on the map and click on a part in the part lib, the part is added in the middle of the group.
