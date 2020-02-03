@@ -122,7 +122,7 @@ Open bugs:
 - [target 1.9] BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
 - MISSING FEATURE (Alban): Export in 4dbrix.com format
 - MISSING FEATURE (Alban): Implement elevation by displaying a number next to the part and edition of elevation
-- MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget, and the total sum of all the parts in the budget (and other stats that I may found)
+- MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget in percentage, and the total sum of all the parts in the budget (and other stats that I may found)
 - MISSING FEATURE (Alban): Extend the ConnectionTypeList.xml to precise for each connection, to which connection it can connect (this allow a male/female connections types)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
