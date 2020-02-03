@@ -30,7 +30,7 @@ namespace BlueBrick
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PartListForm));
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.listView = new System.Windows.Forms.ListView();
+			this.PartUsageListView = new System.Windows.Forms.ListView();
 			this.partColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.quantiyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -40,6 +40,7 @@ namespace BlueBrick
 			this.buttonExport = new System.Windows.Forms.Button();
 			this.useGroupCheckBox = new System.Windows.Forms.CheckBox();
 			this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
@@ -54,29 +55,28 @@ namespace BlueBrick
 			// 
 			// splitContainer1.Panel1
 			// 
-			resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
-			this.splitContainer1.Panel1.Controls.Add(this.listView);
+			this.splitContainer1.Panel1.Controls.Add(this.PartUsageListView);
 			// 
 			// splitContainer1.Panel2
 			// 
-			resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
 			this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel);
 			// 
-			// listView
+			// PartUsageListView
 			// 
-			resources.ApplyResources(this.listView, "listView");
-			this.listView.AllowColumnReorder = true;
-			this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+			this.PartUsageListView.AllowColumnReorder = true;
+			this.PartUsageListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.partColumnHeader,
             this.quantiyColumnHeader,
             this.colorColumnHeader,
             this.descriptionColumnHeader});
-			this.listView.FullRowSelect = true;
-			this.listView.Name = "listView";
-			this.listView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-			this.listView.UseCompatibleStateImageBehavior = false;
-			this.listView.View = System.Windows.Forms.View.Details;
-			this.listView.VisibleChanged += new System.EventHandler(this.listView_VisibleChanged);
+			resources.ApplyResources(this.PartUsageListView, "PartUsageListView");
+			this.PartUsageListView.FullRowSelect = true;
+			this.PartUsageListView.HideSelection = false;
+			this.PartUsageListView.Name = "PartUsageListView";
+			this.PartUsageListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+			this.PartUsageListView.UseCompatibleStateImageBehavior = false;
+			this.PartUsageListView.View = System.Windows.Forms.View.Details;
+			this.PartUsageListView.VisibleChanged += new System.EventHandler(this.listView_VisibleChanged);
 			// 
 			// partColumnHeader
 			// 
@@ -104,8 +104,8 @@ namespace BlueBrick
 			// 
 			// buttonClose
 			// 
-			resources.ApplyResources(this.buttonClose, "buttonClose");
 			this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.OK;
+			resources.ApplyResources(this.buttonClose, "buttonClose");
 			this.buttonClose.Name = "buttonClose";
 			this.buttonClose.UseVisualStyleBackColor = true;
 			this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
@@ -143,6 +143,7 @@ namespace BlueBrick
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PartListForm_FormClosing);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.tableLayoutPanel.ResumeLayout(false);
 			this.tableLayoutPanel.PerformLayout();
@@ -152,7 +153,7 @@ namespace BlueBrick
 
 		#endregion
 
-		private System.Windows.Forms.ListView listView;
+		private System.Windows.Forms.ListView PartUsageListView;
 		private System.Windows.Forms.ColumnHeader partColumnHeader;
 		private System.Windows.Forms.ColumnHeader descriptionColumnHeader;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;

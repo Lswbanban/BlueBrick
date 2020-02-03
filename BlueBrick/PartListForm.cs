@@ -137,8 +137,8 @@ namespace BlueBrick
 		{
 			InitializeComponent();
 			// set the size of the image (do not change)
-			this.listView.SmallImageList = new ImageList();
-			this.listView.SmallImageList.ImageSize = new Size(16, 16);
+			this.PartUsageListView.SmallImageList = new ImageList();
+			this.PartUsageListView.SmallImageList.ImageSize = new Size(16, 16);
 			// save the parent form
 			mMainFormReference = parentForm;
 		}
@@ -211,9 +211,9 @@ namespace BlueBrick
 				// if the group entry is not found we create one
 				if ((currentGroupEntry == null) && createOneIfMissing)
 				{
-					currentGroupEntry = new GroupEntry(layer, this.listView);
+					currentGroupEntry = new GroupEntry(layer, this.PartUsageListView);
 					mGroupEntryList.Add(currentGroupEntry);
-					this.listView.Groups.Add(currentGroupEntry.Group);
+					this.PartUsageListView.Groups.Add(currentGroupEntry.Group);
 				}
 			}
 			else
@@ -297,7 +297,7 @@ namespace BlueBrick
 			// remove the group from the list view and the mGroupEntryList if it is empty
 			if (this.useGroupCheckBox.Checked && (currentGroupEntry.Group.Items.Count == 0))
 			{
-				this.listView.Groups.Remove(currentGroupEntry.Group);
+				this.PartUsageListView.Groups.Remove(currentGroupEntry.Group);
 				mGroupEntryList.Remove(currentGroupEntry);
 			}
 		}
@@ -333,7 +333,7 @@ namespace BlueBrick
 			IconEntry iconEntry = null;
 			if (!mThumbnailImage.TryGetValue(partNumber, out iconEntry))
 			{
-				iconEntry = new IconEntry(partNumber, this.listView.SmallImageList);
+				iconEntry = new IconEntry(partNumber, this.PartUsageListView.SmallImageList);
 				mThumbnailImage.Add(partNumber, iconEntry);
 			}
 
@@ -351,7 +351,7 @@ namespace BlueBrick
 
 			// add the item in the list view if not already in
 			if (brickEntry.IsQuantityNull)
-				this.listView.Items.Add(brickEntry.Item);
+				this.PartUsageListView.Items.Add(brickEntry.Item);
 			// and increment its count
 			brickEntry.incrementQuantity();
 		}
@@ -374,7 +374,7 @@ namespace BlueBrick
 			// remove the group from the list view and the mGroupEntryList
 			if (this.useGroupCheckBox.Checked)
 			{
-				this.listView.Groups.Remove(currentGroupEntry.Group);
+				this.PartUsageListView.Groups.Remove(currentGroupEntry.Group);
 				mGroupEntryList.Remove(currentGroupEntry);
 			}
 		}
@@ -392,7 +392,7 @@ namespace BlueBrick
 				brickEntry.decrementQuantity();
 				if (brickEntry.IsQuantityNull)
 				{
-					this.listView.Items.Remove(brickEntry.Item);
+					this.PartUsageListView.Items.Remove(brickEntry.Item);
 				}
 			}
 		}
@@ -410,9 +410,9 @@ namespace BlueBrick
 			// clear everyting that we will rebuild
 			mThumbnailImage.Clear();
 			mGroupEntryList.Clear();
-			this.listView.Groups.Clear();
-			this.listView.Items.Clear();
-			this.listView.SmallImageList.Images.Clear();
+			this.PartUsageListView.Groups.Clear();
+			this.PartUsageListView.Items.Clear();
+			this.PartUsageListView.SmallImageList.Images.Clear();
 
 			// create a default dictionnary if we don't use the layers
 			if (!this.useGroupCheckBox.Checked)
@@ -459,10 +459,10 @@ namespace BlueBrick
 		private void exportListInTxt(string fileName, int[] columnOrder)
 		{
 			//compute the max lenght of texts of each column
-			int[] maxLength = new int[this.listView.Columns.Count];
+			int[] maxLength = new int[this.PartUsageListView.Columns.Count];
 			for (int i = 0; i < maxLength.Length; ++i)
 				maxLength[i] = 0;
-			foreach (ListViewItem item in this.listView.Items)
+			foreach (ListViewItem item in this.PartUsageListView.Items)
 			{
 				for (int i = 0; i < maxLength.Length; ++i)
 				{
@@ -502,7 +502,7 @@ namespace BlueBrick
 				// the parts
 				if (this.useGroupCheckBox.Checked)
 				{
-					foreach (ListViewGroup group in this.listView.Groups)
+					foreach (ListViewGroup group in this.PartUsageListView.Groups)
 					{
 						writer.WriteLine("| " + group.Header);
 						writer.WriteLine(headerLine);
@@ -514,7 +514,7 @@ namespace BlueBrick
 				else
 				{
 					writer.WriteLine(headerLine);
-					exportItemsInTxt(writer, columnOrder, maxLength, this.listView.Items);
+					exportItemsInTxt(writer, columnOrder, maxLength, this.PartUsageListView.Items);
 					writer.WriteLine(headerLine);
 				}
 
@@ -591,7 +591,7 @@ namespace BlueBrick
 				// the parts
 				if (this.useGroupCheckBox.Checked)
 				{
-					foreach (ListViewGroup group in this.listView.Groups)
+					foreach (ListViewGroup group in this.PartUsageListView.Groups)
 					{
 						writer.WriteLine("<TABLE BORDER=1 WIDTH=95% CELLPADDING=10>");
 						writer.WriteLine("<TR><TD COLSPAN={0}><B>{1}</B></TD></TR>", columnOrder.Length, group.Header);
@@ -605,9 +605,9 @@ namespace BlueBrick
 					writer.WriteLine("<TABLE BORDER=1 WIDTH=95% CELLPADDING=10>");
 					writer.WriteLine("<TR>");
 					for (int i = 0; i < columnOrder.Length; ++i)
-						writer.WriteLine("\t<TD ALIGN=\"center\"><B>{0}</B></TD>", this.listView.Columns[columnOrder[i]].Text);
+						writer.WriteLine("\t<TD ALIGN=\"center\"><B>{0}</B></TD>", this.PartUsageListView.Columns[columnOrder[i]].Text);
 					writer.WriteLine("</TR>");
-					exportItemsInHtml(writer, columnOrder, this.listView.Items);
+					exportItemsInHtml(writer, columnOrder, this.PartUsageListView.Items);
 					writer.WriteLine("</TABLE>");
 				}
 				writer.WriteLine("</CENTER></BODY>\n</HTML>");
@@ -654,9 +654,9 @@ namespace BlueBrick
 			if (result == DialogResult.OK)
 			{
 				// compute an array to store the order of the columns
-				int[] columnOrder = new int[this.listView.Columns.Count];
+				int[] columnOrder = new int[this.PartUsageListView.Columns.Count];
 				int columnIndex = 0;
-				foreach (ColumnHeader columnHeader in this.listView.Columns)
+				foreach (ColumnHeader columnHeader in this.PartUsageListView.Columns)
 				{
 					columnOrder[columnHeader.DisplayIndex] = columnIndex;
 					columnIndex++;
