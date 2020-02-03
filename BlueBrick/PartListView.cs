@@ -163,6 +163,41 @@ namespace BlueBrick
 		}
 		#endregion
 
+		#region util function
+		/// <summary>
+		///  This function make the first items found that match the specified tag, visible on screen by scrolling the list view.
+		/// </summary>
+		/// <param name="tagToShow">The tag of the item that you want to show</param>
+		public void ensureVisibleByTag(string tagToShow)
+		{
+			// find the first item that match the tag and make it visible
+			foreach (ListViewItem item in this.Items)
+				if (item.Tag.Equals(tagToShow))
+				{
+					this.EnsureVisible(item.Index);
+					break;
+				}
+		}
+
+		/// <summary>
+		/// Call this funtion when you want to change the format of the tooltip texts
+		/// </summary>
+		public void updateToolTipTextOfAllItems()
+		{
+			bool displayPartId = Properties.Settings.Default.PartLibBubbleInfoPartID;
+			bool displayColor = Properties.Settings.Default.PartLibBubbleInfoPartColor;
+			bool displayDescription = Properties.Settings.Default.PartLibBubbleInfoPartDescription;
+
+			// update the items of the three lists
+			foreach (ListViewItem item in mVisibleItems)
+				item.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string, displayPartId, displayColor, displayDescription);
+			foreach (ListViewItem item in mFilteredItems)
+				item.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string, displayPartId, displayColor, displayDescription);
+			foreach (ListViewItem item in mNotBudgetedItems)
+				item.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string, displayPartId, displayColor, displayDescription);
+		}
+		#endregion
+
 		#region filtering
 		/// <summary>
 		/// Filter the current tab with the specified string. The string should be a list of keywords that can be

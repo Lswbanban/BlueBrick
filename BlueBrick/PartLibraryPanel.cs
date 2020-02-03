@@ -395,12 +395,7 @@ namespace BlueBrick
 				// select the Custom tab
 				this.SelectTab(cutsomTabIndex);
 				// find the first item created and scroll it in view
-				foreach (ListViewItem item in buildingInfo.mListView.Items)
-					if (item.Tag.Equals(groupNames[0]))
-					{
-						buildingInfo.mListView.EnsureVisible(item.Index);
-						break;
-					}
+				buildingInfo.mListView.ensureVisibleByTag(groupNames[0]);
 			}
 		}
 
@@ -873,9 +868,6 @@ namespace BlueBrick
 			{
 				// then update the background color and the bubble info status
 				bool displayBubbleInfo = Settings.Default.PartLibDisplayBubbleInfo;
-				bool displayPartId = Settings.Default.PartLibBubbleInfoPartID;
-				bool displayColor = Settings.Default.PartLibBubbleInfoPartColor;
-				bool displayDescription = Settings.Default.PartLibBubbleInfoPartDescription;
 				foreach (TabPage tabPage in this.TabPages)
 				{
 					try
@@ -884,11 +876,9 @@ namespace BlueBrick
 						listView.updateBackgroundColor();
 						listView.ShowItemToolTips = displayBubbleInfo;
 						(tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.SHOW_BUBBLE_INFO] as ToolStripMenuItem).Checked = displayBubbleInfo;
-						// update the tooltip text of all the items
+						// update the tooltip text of all the items if needed
 						if (updateBubbleInfoFormat)
-							foreach (ListViewItem item in listView.Items)
-								item.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string,
-													displayPartId, displayColor, displayDescription);
+							listView.updateToolTipTextOfAllItems();
 					}
 					catch
 					{
