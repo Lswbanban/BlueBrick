@@ -443,8 +443,9 @@ namespace BlueBrick.MapData
 					string defaultDescription = BlueBrick.Properties.Resources.TextUnknown;
 					bool isDescriptionFound = false;
 
-					// read the first child node
+					// read the first child node (and check that it is not the end element)
 					xmlReader.Read();
+					continueToRead = !xmlReader.Name.Equals("Description") && !xmlReader.EOF;
 					while (continueToRead)
 					{
 						// get the current language tag
@@ -511,8 +512,9 @@ namespace BlueBrick.MapData
 				bool continueToRead = !xmlReader.IsEmptyElement;
 				if (continueToRead)
 				{
-					// read the first child node
+					// read the first child node (and check if the list is not empty)
 					xmlReader.Read();
+					continueToRead = !xmlReader.Name.Equals("OldNameList") && !xmlReader.EOF;
 					while (continueToRead)
 					{
 						if (xmlReader.Name.Equals("OldName"))
@@ -543,8 +545,9 @@ namespace BlueBrick.MapData
 				bool continueToRead = !xmlReader.IsEmptyElement;
 				if (continueToRead)
 				{
-					// read the first child node
+					// read the first child node (and check if the margin is not empty)
 					xmlReader.Read();
+					continueToRead = !xmlReader.Name.Equals("SnapMargin") && !xmlReader.EOF;
 					while (continueToRead)
 					{
 						if (xmlReader.Name.Equals("left"))
@@ -589,7 +592,7 @@ namespace BlueBrick.MapData
 
 						// read the first child node of the connexion
 						xmlReader.Read();
-						bool continueToReadConnexion = true;
+						bool continueToReadConnexion = !xmlReader.Name.Equals("connexion") && !xmlReader.EOF;
 						while (continueToReadConnexion)
 						{
 							if (xmlReader.Name.Equals("type"))
@@ -697,9 +700,9 @@ namespace BlueBrick.MapData
 					// the Track designer tag is not empty, instanciate the class that will hold the data
 					mTDRemapData = new TDRemapData();
 
-					// read the first child node
+					// read the first child node (and check that the list is not empty)
 					xmlReader.Read();
-					bool continueToRead = !xmlReader.EOF;
+					bool continueToRead = !xmlReader.Name.Equals("TrackDesigner") && !xmlReader.EOF;
 					while (continueToRead)
 					{
 						if (xmlReader.Name.Equals("ID"))
@@ -754,9 +757,9 @@ namespace BlueBrick.MapData
 				// check if the id list is not empty
 				if (!xmlReader.IsEmptyElement)
 				{
-					// read the first child node
+					// read the first child node (and check that the list is not empty)
 					xmlReader.Read();
-					bool continueToRead = !xmlReader.EOF;
+					bool continueToRead = !xmlReader.Name.Equals("IDList") && !xmlReader.EOF;
 					while (continueToRead)
 					{
 						if (xmlReader.Name.Equals("ID"))
@@ -790,9 +793,9 @@ namespace BlueBrick.MapData
 					// instanciate a connection point for the current connexion
 					TDRemapData.ConnexionData connexionData = new TDRemapData.ConnexionData();
 
-					// read the first child node
+					// read the first child node (and check that the list is not empty)
 					xmlReader.Read();
-					bool continueToRead = !xmlReader.EOF;
+					bool continueToRead = !xmlReader.Name.Equals("TDBitmap") && !xmlReader.EOF;
 					while (continueToRead)
 					{
 						if (xmlReader.Name.Equals("BBConnexionPointIndex"))
@@ -829,9 +832,9 @@ namespace BlueBrick.MapData
 					// the LDRAW tag is not empty, instanciate the class that will hold the data
 					mLDrawRemapData = new LDrawRemapData();
 
-					// read the first child node
+					// read the first child node (and check if the list is not empty)
 					xmlReader.Read();
-					continueToRead = !xmlReader.EOF;
+					continueToRead = !xmlReader.Name.Equals("LDraw") && !xmlReader.EOF;
 					while (continueToRead)
 					{
 						if (xmlReader.Name.Equals("Angle"))
@@ -912,9 +915,9 @@ namespace BlueBrick.MapData
 						// variable to store the position of the sub part from which we will construct a transform
 						PointF position = new PointF();
 
-                        // read the first child node of the connexion
+                        // read the first child node of the connexion (and check that the sub part is not empty)
                         xmlReader.Read();
-                        bool continueToReadSubPart = (subPart.mSubPartNumber.Length > 0);
+                        bool continueToReadSubPart = !xmlReader.Name.Equals("SubPart") && !xmlReader.EOF && (subPart.mSubPartNumber.Length > 0);
                         while (continueToReadSubPart)
                         {
                             if (xmlReader.Name.Equals("position"))
@@ -1018,9 +1021,9 @@ namespace BlueBrick.MapData
 				float y = 0;
 				if (!xmlReader.IsEmptyElement)
 				{
-					// read the first child node (x or y)
+					// read the first child node (x or y) and check that the point is not empty
 					xmlReader.Read();
-					bool continueToReadPoint = true;
+					bool continueToReadPoint = !xmlReader.Name.Equals(pointTagName) && !xmlReader.EOF;
 					while (continueToReadPoint)
 					{
 						if (xmlReader.Name.Equals("x") && !xmlReader.IsEmptyElement)

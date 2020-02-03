@@ -104,15 +104,27 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
+- [target 1.9] MISSING FEATURE (Alban): A feature to download library package online.
+- [target 1.9] MISSING FEATURE (Alban): Support multiple Connection type file, in order to facilitate the deployment of package (one file inside the part folder, probably in subfolder like "config" in order to be delivered in one zip)
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
-- [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
+- [target 1.9] MISSING FEATURE (Matthias): An option to display part names below the parts (careful with the Budget feature)
 - [target 1.9] MISSING FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count)
+- [target 1.9] MISSING FEATURE (Matthias): Better resolution for part images (Images can have an additional <scale> property in the xml-File, if no scale parameter is provided, the default resolution of 8 pixels/stud is used)
+- [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - [target 1.9] MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels.
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
+- [target 1.9] MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
+- [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
+- [target 1.9] REFACTORING (Alban): the part list panel is slow to refresh (use AddRange instead of Add to add the items)
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
+- [target 1.9] BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
+- MISSING FEATURE (Alban): Export in 4dbrix.com format
+- MISSING FEATURE (Alban): Implement elevation by displaying a number next to the part and edition of elevation
+- MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget, and the total sum of all the parts in the budget (and other stats that I may found)
+- MISSING FEATURE (Alban): Extend the ConnectionTypeList.xml to precise for each connection, to which connection it can connect (this allow a male/female connections types)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
 - MISSING FEATURE #12 (FreeBee) : Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
@@ -129,13 +141,12 @@ Open bugs:
 - MISSING FEATURE (Ludo & Denis): Add some optional arrows at the extremities of the linear rulers.
 - MISSING FEATURE (Ludo): Move the measure values along the linear rulers in order to avoid overlapping of close parallel rulers.
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
-- MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
-- MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable.
-- BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
-- REFACTORING (Alban): the part list panel is slow to refresh (use AddRange instead of Add to add the items)
+
+Bug fixed in 1.9.0.0:
+- BUG (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 
 
 Bug fixed in 1.8.2.0:
