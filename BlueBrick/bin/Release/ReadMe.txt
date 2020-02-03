@@ -105,7 +105,6 @@ to open the help file (see above for more details).
 -------------------------------------------------------------------------------
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): A feature to download library package online.
-- [target 1.9] MISSING FEATURE (Alban): Support multiple Connection type file, in order to facilitate the deployment of package (one file inside the part folder, probably in subfolder like "config" in order to be delivered in one zip)
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Matthias): An option to display part names below the parts (careful with the Budget feature)
 - [target 1.9] MISSING FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count)
@@ -146,6 +145,7 @@ Open bugs:
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
 
 Bug fixed in 1.9.0.0:
+- NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
 - BUG (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 
 

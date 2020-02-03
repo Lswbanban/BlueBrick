@@ -299,6 +299,12 @@ namespace BlueBrick
 					// create the tab page corresponding to the folder
 					addOneTabPageWithItsListView(buildingInfo, category.Name, displaySetting);
 
+					// check if there's a local config folder in that directory, and load the connection types before loading the parts
+					// because the parts will probably need those type of connections
+					string connectionTypeFileName = category.FullName + @"/config/ConnectionTypeList.xml";
+					if (File.Exists(connectionTypeFileName))
+						BrickLibrary.Instance.loadConnectionTypeInfo(connectionTypeFileName, false);
+
 					// fill the list view with the parts loaded from the files
 					fillListViewWithParts(buildingInfo, category, imageFileUnloadable, xmlFileUnloadable);
 				}
