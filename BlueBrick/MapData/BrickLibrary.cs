@@ -1214,8 +1214,32 @@ namespace BlueBrick.MapData
 			// add the default connection at first in the list
 			mConnectionTypes.Add(new ConnectionType(string.Empty, Color.Black, 1.0f, 0.0f));
 
-			// try to load the xml file
+			// try to load the default xml file
 			string xmlFileName = Application.StartupPath + @"/config/ConnectionTypeList.xml";
+			if (System.IO.File.Exists(xmlFileName))
+			{
+				// call the function to load the file (and load the selected connection description)
+				loadConnectionTypeInfo(xmlFileName, true);
+			}
+			else
+			{
+				string message = Properties.Resources.ErrorMsgMissingConnectionTypeInfoFile.Replace("&", xmlFileName);
+				MessageBox.Show(null, message,
+					Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
+					MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+			}
+		}
+
+		/// <summary>
+		/// This method can be used to load the specified xml file describing connection types.
+		/// The connection list is not reset, and the connections found in the files will be added to the current connection list.
+		/// If the specified file doesn't exist, nothing happen.
+		/// </summary>
+		/// <param name="xmlFileName">The full path of the xml file to load</param>
+		/// <param name="shouldReadSelectedConnection">if <c>true</c> is specified then the selectedConnection section will be ignored in the xml file</param>
+		public void loadConnectionTypeInfo(string xmlFileName, bool shouldReadSelectedConnection)
+		{ 
+			// try to load the xml file
 			if (System.IO.File.Exists(xmlFileName))
 			{
 				System.Xml.XmlReaderSettings xmlSettings = new System.Xml.XmlReaderSettings();
@@ -1233,7 +1257,7 @@ namespace BlueBrick.MapData
 					xmlReader.Read();
 					bool continueToRead = !xmlReader.EOF;
 					// check if we have an override color fo the selected connection
-					if (continueToRead && xmlReader.Name.Equals("SelectedConnection"))
+					if (continueToRead && xmlReader.Name.Equals("SelectedConnection") && shouldReadSelectedConnection)
 					{
 						Color color = Color.Red;
 						if (xmlReader.ReadToDescendant("ColorARGB"))
@@ -1247,12 +1271,13 @@ namespace BlueBrick.MapData
 						// update the selected connection rendering
 						ConnectionType.sSelectedConnection = new ConnectionType(string.Empty, color, size, 0.0f);
 					}
-					// now parse the list of connection
+					// now skip all the nodes until reaching the first connection type
 					while (continueToRead && !xmlReader.Name.Equals("ConnectionType"))
 					{
 						xmlReader.Read();
 						continueToRead = !xmlReader.EOF;
 					}
+					// now parse the list of connection
 					while (continueToRead)
 					{
 						// read the connection id
@@ -1277,9 +1302,12 @@ namespace BlueBrick.MapData
 						if (xmlReader.Name.Equals("HingeAngle"))
 							hingeAngle = xmlReader.ReadElementContentAsFloat();
 
-						// add the new connection to the list
-						mConnectionTypeRemapingDictionnary.Add(name, mConnectionTypes.Count);
-						mConnectionTypes.Add(new ConnectionType(name, color, size, hingeAngle));
+						// add the new connection to the list (if not already there)
+						if (!mConnectionTypeRemapingDictionnary.ContainsKey(name))
+						{
+							mConnectionTypeRemapingDictionnary.Add(name, mConnectionTypes.Count);
+							mConnectionTypes.Add(new ConnectionType(name, color, size, hingeAngle));
+						}
 
 						// read the next connection
 						while (continueToRead && !xmlReader.Name.Equals("ConnectionType"))
@@ -1294,13 +1322,6 @@ namespace BlueBrick.MapData
 
 				//close the stream
 				xmlReader.Close();
-			}
-			else
-			{
-				string message = Properties.Resources.ErrorMsgMissingConnectionTypeInfoFile.Replace("&", xmlFileName);
-				MessageBox.Show(null, message,
-					Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
-					MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 			}
 		}
 
