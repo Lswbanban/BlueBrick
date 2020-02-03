@@ -562,6 +562,9 @@ namespace BlueBrick
 				}
 			}
 
+			// call the refilter to make appearing all the parts
+			buildingInfo.mListView.resetThisListViewWithVisibleList();
+
 			// resume the update
 			buildingInfo.mListView.EndUpdate();
 
@@ -624,6 +627,9 @@ namespace BlueBrick
 					xmlFileUnloadable.Add(new FileNameWithException(group.mPartNumber + ".xml", e.Message));
 				}
 			}
+
+			// call the refilter to make appearing all the parts
+			buildingInfo.mListView.resetThisListViewWithVisibleList();
 
 			// resume the update
 			buildingInfo.mListView.EndUpdate();

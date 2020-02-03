@@ -30,6 +30,8 @@ namespace BlueBrick
 		// the comparer to sort the list view item, base on their name property
 		private static ListViewItemComparerBasedOnName sListViewItemComparer = new ListViewItemComparerBasedOnName();
 
+		// create a list of list view item containing all the visible not filtered and bugeted item, i.e. the currently visible item in this list view for optim reason (to use the AddRange, and not adding items one by one)
+		private List<ListViewItem> mVisibleItems = new List<ListViewItem>();
 		// create a temporary list view to temporary store the items that have been filtered in this list view
 		private List<ListViewItem> mFilteredItems = new List<ListViewItem>();
 		// create another temporary list view to temporary store the items that are not budgeted in this listview
@@ -114,43 +116,37 @@ namespace BlueBrick
         }
 
 		/// <summary>
-		/// This method is only to encapsulate a Mono bug that throw an exception for the 16th item added.
-		/// It will add the item to the list
+		/// Reset the this.Items list with all the listViewItems present in the mVisibleItems list
 		/// </summary>
-		/// <param name="itemToAdd">The item to add to the list</param>
-		private void addItemToItemsList(ListViewItem itemToAdd)
+		public void resetThisListViewWithVisibleList()
 		{
+			this.BeginUpdate();
+			// reset the list of item of this list view, with an AddRange for optim reason
+			this.Items.Clear();
 			try
 			{
 				// for a strange reason, on mono, this method throw an exception for all the
 				// item added after the 16th one added (but the item is still added).
 				// Probably a bug from Mono.
-				this.Items.Add(itemToAdd);
+				this.Items.AddRange(mVisibleItems.ToArray());
 			}
 			catch
 			{
 				// so ignore this exception for mono, otherwise it is displayed in the error message box
 			}
+			// On Mono the EndUpate is called, but on Dot Net the begin and End update are counted
+			this.EndUpdate();
 		}
 
 		/// <summary>
-		/// This method is only to encapsulate a Mono bug that throw an exception for the 16th item added.
-		/// It will add the list of item to the list
+		/// Move all the items of the specified list into the mVisibleList of this class.
+		/// The specified list will be emptied after the call of this function
 		/// </summary>
-		/// <param name="itemToAdd">The item to add to the list</param>
-		private void addItemToItemsList(ListViewItem[] itemsToAdd)
+		/// <param name="itemsToMove">The item to add to the list</param>
+		private void moveItemsToVisibleList(List<ListViewItem> itemsToMove)
 		{
-			try
-			{
-				// for a strange reason, on mono, this method throw an exception for all the
-				// item added after the 16th one added (but the item is still added).
-				// Probably a bug from Mono.
-				this.Items.AddRange(itemsToAdd);
-			}
-			catch
-			{
-				// so ignore this exception for mono, otherwise it is displayed in the error message box
-			}
+			mVisibleItems.AddRange(itemsToMove);
+			itemsToMove.Clear();
 		}
 
 		/// <summary>
@@ -163,7 +159,7 @@ namespace BlueBrick
 			if (Budget.Budget.Instance.ShouldShowOnlyBudgetedParts && !Budget.Budget.Instance.IsBudgeted(itemToAdd.Tag as string))
 				mNotBudgetedItems.Add(itemToAdd);
 			else
-				addItemToItemsList(itemToAdd);
+				mVisibleItems.Add(itemToAdd);
 		}
 		#endregion
 
@@ -301,15 +297,8 @@ namespace BlueBrick
 			this.BeginUpdate();
 
 			//put back all the previous filtered item in the list
-			addItemToItemsList(mFilteredItems.ToArray());
-			// On Mono, the AddRange call the EndUpdate, so we put back the begin update, because we want to continue to update
-			// On Dot Net, the BeginUpdate are counted, but not on Mono, so we will have to put another EndUpdate
-			this.BeginUpdate();
+			moveItemsToVisibleList(mFilteredItems);
 
-			// clear the list
-			mFilteredItems.Clear();
-			// resort the list view
-			this.Sort();
 			// clear the background color with the default one
 			updateBackgroundColor();
 
@@ -321,9 +310,9 @@ namespace BlueBrick
 					this.BackColor = Properties.Settings.Default.PartLibFilteredBackColor;
 					// do not use a foreach here because Mono doesn't support to remove items while iterating on the list
 					// so use an index instead and decrease the index when we remove the item
-					for (int i = 0; i < this.Items.Count; ++i)
+					for (int i = 0; i < mVisibleItems.Count; ++i)
 					{
-						ListViewItem item = this.Items[i];
+						ListViewItem item = mVisibleItems[i];
 						string itemId = item.Tag as string;
 						string brickInfo = BrickLibrary.Instance.getFormatedBrickInfo(itemId, true, true, true).ToLower();
 						// a flag to stop search if it is already removed
@@ -333,7 +322,7 @@ namespace BlueBrick
 						foreach (string filter in includeIdFilter)
 							if (!itemId.Contains(filter))
 							{
-								item.Remove();
+								mVisibleItems.RemoveAt(i);
 								i--;
 								mFilteredItems.Add(item);
 								continueSearch = false;
@@ -344,7 +333,7 @@ namespace BlueBrick
 							foreach (string filter in includeFilter)
 								if (!brickInfo.Contains(filter))
 								{
-									item.Remove();
+									mVisibleItems.RemoveAt(i);
 									i--;
 									mFilteredItems.Add(item);
 									continueSearch = false;
@@ -355,7 +344,7 @@ namespace BlueBrick
 							foreach (string filter in excludeFilter)
 								if (brickInfo.Contains(filter))
 								{
-									item.Remove();
+									mVisibleItems.RemoveAt(i);
 									i--;
 									mFilteredItems.Add(item);
 									continueSearch = false;
@@ -367,6 +356,16 @@ namespace BlueBrick
 				{
 				}
 			}
+
+			// after having updated the visible list, copy it to the actual list of items of this listView
+			resetThisListViewWithVisibleList();
+
+			// On Mono, the AddRange call the EndUpdate, so we put back the begin update, because we want to continue to update
+			// On Dot Net, the BeginUpdate are counted, but not on Mono, so we will have to put another EndUpdate
+			this.BeginUpdate();
+
+			// resort the list view
+			this.Sort();
 
 			// resume the redraw
 			this.EndUpdate();
@@ -387,8 +386,8 @@ namespace BlueBrick
 			// directly inside the good index (so at the right place)
 			// also since the user can change the proportion flag while the list is filtered,
 			// also take into account the filtered list view items
-			Image[] imageArray = new Image[this.Items.Count + mFilteredItems.Count + mNotBudgetedItems.Count];
-			foreach (ListViewItem item in this.Items)
+			Image[] imageArray = new Image[mVisibleItems.Count + mFilteredItems.Count + mNotBudgetedItems.Count];
+			foreach (ListViewItem item in mVisibleItems)
 				imageArray[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
 			foreach (ListViewItem item in mFilteredItems)
 				imageArray[item.ImageIndex] = BrickLibrary.Instance.getImage(item.Tag as string);
@@ -601,7 +600,7 @@ namespace BlueBrick
 		{
 			// iterate on the 3 lists
 			// the item list
-			foreach (ListViewItem item in this.Items)
+			foreach (ListViewItem item in mVisibleItems)
 				updatePartTextAndBackColor(item, onlyForThisPartId);
 			// the filtered items
 			foreach (ListViewItem item in mFilteredItems)
@@ -653,43 +652,32 @@ namespace BlueBrick
 		/// </summary>
 		public void updateFilterOnBudgetedParts()
 		{
-			// use a bool flag to store the current filter state, because we will unfilter all, which will clear the flag
-			bool wasFiltered = this.IsFiltered;
-
-			// if the list view is currently filtered, unfilter it temporarly, then we will refilter it after having moved
-			// the some items to/from the non budgeted item list
-			if (wasFiltered)
-				this.filter(string.Empty, false);
-
 			// suspend the layout since we will remove some items from the list
 			this.SuspendLayout();
 			this.BeginUpdate();
 
-			// put back all the previous filtered item in the list, and then we will iterate on all the items in the
-			// list to remove them again. We do that, because it may happen that some items were filtered because they
+			// put back all the previous not budgeted item in the list, and then we will iterate on all the items in the
+			// list to remove them again. We do that, because it may happen that some items were not visible because they
 			// didn't have a budget, then we load a Budget file, and these items now have a budget
-			addItemToItemsList(mNotBudgetedItems.ToArray());
-			// On Mono, the AddRange call the EndUpdate, so we put back the begin update, because we want to continue to update
-			// On Dot Net, the BeginUpdate are counted, but not on Mono, so we will have to put another EndUpdate
-			this.BeginUpdate();
-			// clear the list
-			mNotBudgetedItems.Clear();
+			moveItemsToVisibleList(mNotBudgetedItems);
+			// put back all the filtered items also, we will refilter the list after
+			moveItemsToVisibleList(mFilteredItems);
 
-			// if we need to filter, put the non budgeted parts in the temporary list, otherwise put them back in the listview
+			// if we need to remove the non budgeted parts, put the non budgeted parts in the temporary list, otherwise put them back in the visible list
 			if (Budget.Budget.Instance.ShouldShowOnlyBudgetedParts)
 			{
 				try
 				{
 					// do not use a foreach here because Mono doesn't support to remove items while iterating on the list
 					// so use an index instead and decrease the index when we remove the item
-					for (int i = 0; i < this.Items.Count; ++i)
+					for (int i = 0; i < mVisibleItems.Count; ++i)
 					{
-						ListViewItem item = this.Items[i];
+						ListViewItem item = mVisibleItems[i];
 						string itemId = item.Tag as string;
-						// first filter on the budget: if not budgeted, remove it
+						// filter on the budget: if not budgeted, remove it
 						if (!Budget.Budget.Instance.IsBudgeted(itemId))
 						{
-							item.Remove();
+							mVisibleItems.RemoveAt(i);
 							i--;
 							mNotBudgetedItems.Add(item);
 						}
@@ -699,24 +687,21 @@ namespace BlueBrick
 				{
 				}
 			}
-			else
-			{
-				// if we don't filter on budget, we have already put all the budget in, so we just need
-				// to resort the list, but we only sort if we don't refilter (cause refilter will resort)
-				// resort the list view if we added some item (unless we will refilter it, which will cause a sort)
-				if (!wasFiltered)
-					this.Sort();
-			}
+
+			// after having updated the visible list, copy it to the actual list of items of this listView
+			resetThisListViewWithVisibleList();
 
 			// resume the layout
-			this.EndUpdate();
-			// call it a second time because on Dot Net, the number of BeginUpdate are counted
 			this.EndUpdate();
 			this.ResumeLayout();
 
 			// refilter after move the (non) budgeted parts if needed
-			if (wasFiltered)
+			// if we don't filter on budget, we have already put all the budget in, so we just need to resort the list,
+			// and the refilter will also sort, so we don't need to sort if we refilter
+			if (this.IsFiltered)
 				this.refilter();
+			else
+				this.Sort();
 
 			// update the background color with the default one
 			updateBackgroundColor();
@@ -732,10 +717,12 @@ namespace BlueBrick
 		{
 			if (Budget.Budget.Instance.ShouldShowOnlyBudgetedParts)
 			{
-				// search in the item list and in the filtered list (but this last case should never happe
+				// search in the visible list and in the filtered list (but this last case should never happen
 				// as the item must be in the list to be un-bugeted, otherwise the user cannot edit its buget)
-				if (this.Items.Contains(unbudgetedItem))
+				if (mVisibleItems.Contains(unbudgetedItem))
 				{
+					mVisibleItems.Remove(unbudgetedItem);
+					// also remove it from the actual list of items
 					unbudgetedItem.Remove();
 					// then add it to the list of unbugeted items
 					mNotBudgetedItems.Add(unbudgetedItem);
