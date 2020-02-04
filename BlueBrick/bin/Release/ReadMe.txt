@@ -117,7 +117,6 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
 - [target 1.9] MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
-- [target 1.9] REFACTORING (Alban): the part list panel is slow to refresh (use AddRange instead of Add to add the items)
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
 - [target 1.9] BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
 - MISSING FEATURE (Alban): Export in 4dbrix.com format
@@ -148,6 +147,8 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points
+- BUGFIX (Alban): When updating in the library a group of parts that was not displayed in the library (because filtered with keyword) the image was added two times
+- REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 
 
 Bug fixed in 1.8.2.0:
