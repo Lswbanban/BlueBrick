@@ -168,6 +168,7 @@
     <Compile Include="LayerRulerPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MapData\OnlineBrickResources.cs" />
     <Compile Include="MapData\RulerAttachementSet.cs" />
     <Compile Include="MapData\LayerBrickBrick.cs" />
     <Compile Include="MapData\LayerRuler.cs" />
