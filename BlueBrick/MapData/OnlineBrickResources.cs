@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace BlueBrick.MapData
 {
@@ -18,6 +19,23 @@ namespace BlueBrick.MapData
 
         private static List<string[]> removeAlreadyInstalledPackagesFromList(List<string[]> packageListToFilter)
         {
+            // get all the folders in the parts folder to know what is already installed
+            DirectoryInfo partsFolder = new DirectoryInfo(PartLibraryPanel.sFullPathForLibrary);
+            DirectoryInfo[] directoriesInPartsFolder = partsFolder.GetDirectories();
+
+            // create a list with only the name of the directory (adding the zip at the end to facilitate comparison
+            List<string> installedPackageFolder = new List<string>();
+            foreach (DirectoryInfo directory in directoriesInPartsFolder)
+                installedPackageFolder.Add(@"/parts/" + directory.Name.ToLower() + ".zip");
+
+            // then iterate on the list to filter and remove the items already installed
+            for (int i = 0; i < packageListToFilter.Count; ++i)
+                if (installedPackageFolder.Contains(packageListToFilter[i][0].ToLower()))
+                {
+                    packageListToFilter.RemoveAt(i);
+                    i--;
+                }
+
             return packageListToFilter;
         }
 

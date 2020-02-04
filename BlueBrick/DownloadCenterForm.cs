@@ -42,7 +42,7 @@ namespace BlueBrick
 
 		/// <summary>
 		/// Instantiate a form and fill it with the specified file list. Each entry in the list is an array of three string
-		/// which first string is the full destination path on the local drive, and the second string is the
+		/// which first string is the local destination path on the local drive, and the second string is the
 		/// source URL path. The last string should be the empty string.
 		/// Also the specified boolean change a bit the behavior of the download form, if <c>true</c> is specified
 		/// then the explanation text will changed, and the files will be unziped after download.
@@ -107,7 +107,7 @@ namespace BlueBrick
 		#region ListView
 		/// <summary>
 		/// Fill the download form with the specified list of file. Each entry in the list is an array of three string
-		/// which first string is the full destination path on the local drive, and the second string is the
+		/// which first string is the local destination path on the local drive, and the second string is the
 		/// source URL path. The last string should be the empty string.
 		/// </summary>
 		/// <param name="fileList">A list of file to download, for each with destination and source path</param>

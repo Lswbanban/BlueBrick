@@ -1617,18 +1617,29 @@ namespace BlueBrick
 			// get the available packages on the official website
 			List<string[]> filesToDownload = OnlineBrickResources.getUninstalledBrickPackageAvailableOnline("http://bluebrick.lswproject.com/download/package/");
 
-			// open the download center form in dialog mode
-			DownloadCenterForm downloadCenterForm = new DownloadCenterForm(filesToDownload, true);
-			downloadCenterForm.ShowDialog();
+			// check if we have something to download (otherwise display an error message)
+			if (filesToDownload.Count > 0)
+			{
+				// open the download center form in dialog mode
+				DownloadCenterForm downloadCenterForm = new DownloadCenterForm(filesToDownload, true);
+				downloadCenterForm.ShowDialog();
 
-			// when the user closed the dialog, check if any package was successfully installed, and if yes, we need to reload the library
-			if (downloadCenterForm.SuccessfulDownloadCount > 0)
+				// when the user closed the dialog, check if any package was successfully installed, and if yes, we need to reload the library
+				if (downloadCenterForm.SuccessfulDownloadCount > 0)
+				{
+					// display a warning message and reload the library
+					MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgNeedToReloadPartLib,
+									BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
+									MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+					reloadPartLibrary(false);
+				}
+			}
+			else
 			{
 				// display a warning message and reload the library
-				MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgNeedToReloadPartLib,
+				MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgNoAvailablePartsPackageToDownload,
 								BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
 								MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-				reloadPartLibrary(false);
 			}
 		}
 
