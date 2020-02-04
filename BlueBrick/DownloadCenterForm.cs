@@ -210,9 +210,15 @@ namespace BlueBrick
 				item.ForeColor = Color.Red;
 				// change the text
 				item.SubItems[SUBITEM_PERCENTAGE_INDEX].Text = BlueBrick.Properties.Resources.ErrorMsgTitleError;
-				// update the overall percentage for this file
-				updatePercentageOfTotalBar(result.fileIndex, 100);
 			}
+			else
+			{
+				// update the full percentage of for the file to 100% (but not if there was errors)
+				updatePercentageOfOneFile(result.fileIndex, 100);
+			}
+
+			// update the overall percentage for this file
+			updatePercentageOfTotalBar(result.fileIndex, 100);
 
 			// then download the next file
 			downloadOneFile(result.fileIndex + 1);

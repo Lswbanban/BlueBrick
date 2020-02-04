@@ -1606,7 +1606,18 @@ namespace BlueBrick
 			}
 		}
 
-        private void saveSelectionInLibraryToolStripMenuItem_Click(object sender, EventArgs e)
+		private void downloadAdditionnalPartsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			string test = "MILS.zip";
+			string partsFolder = @"/parts/";
+			string url = "http://bluebrick.lswproject.com/download/package/" + test;
+			List<string[]> filesToDownload = new List<string[]>() { new string[] { partsFolder + test, url, string.Empty } };
+
+			DownloadCenterForm languageManager = new DownloadCenterForm(filesToDownload, true);
+			languageManager.ShowDialog();
+		}
+
+		private void saveSelectionInLibraryToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			// create a window for editing the option of the group and show it
 			SaveGroupNameForm form = new SaveGroupNameForm();
