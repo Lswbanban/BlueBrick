@@ -1614,10 +1614,8 @@ namespace BlueBrick
 
 		private void downloadAdditionnalPartsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			string test = "MILS.zip";
-			string partsFolder = @"/parts/";
-			string url = "http://bluebrick.lswproject.com/download/package/" + test;
-			List<string[]> filesToDownload = new List<string[]>() { new string[] { partsFolder + test, url, string.Empty } };
+			// get the available packages on the official website
+			List<string[]> filesToDownload = OnlineBrickResources.getUninstalledBrickPackageAvailableOnline("http://bluebrick.lswproject.com/download/package/");
 
 			// open the download center form in dialog mode
 			DownloadCenterForm downloadCenterForm = new DownloadCenterForm(filesToDownload, true);
