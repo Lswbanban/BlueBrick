@@ -533,4 +533,9 @@ Le message d'erreur est :
   <data name="ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation" xml:space="preserve">
     <value>Quelques pièces ne seront pas remplacées à cause de la limite de votre budget actuel. Souhaitez-vous continuer ?</value>
   </data>
+  <data name="DownloadLibraryPackageExplanation" xml:space="preserve">
+    <value>Merci de cocher les cases des paquets de librairie que vous voulez télécharger et installer, puis cliquez sur le bouton "télécharger" pour lancer le téléchargement.
+
+Si vous préférez, vous pouvez aussi fermer BlueBrick et télécharger les paquets depuis votre navigateur internet et les dézipper dans le dossier "parts".</value>
+  </data>
 </root>
