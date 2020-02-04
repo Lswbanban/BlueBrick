@@ -350,26 +350,13 @@ namespace BlueBrick
 				TabPage tabPage = this.TabPages[this.TabPages.IndexOfKey(PartLibraryPanel.sFolderNameForCustomParts)];
 				// patch the building info with the correct listview
 				buildingInfo.mListView = tabPage.Controls[0] as PartListView;
-				// patch also the image list
+				// now check if the part is already in, and remove it in order to replace it
+				foreach (string name in groupNames)
+					buildingInfo.mListView.removeItemByTag(name);
+				// patch also the image list after having removed the item
 				buildingInfo.mImageList = buildingInfo.mListView.reconstructImageListFromBrickLibrary();
 				// patch the respect proportion
 				buildingInfo.mRespectProportion = (tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.RESPECT_PROPORTION] as ToolStripMenuItem).Checked;
-
-				// now check if the part is already in, and remove it in order to replace it
-				foreach (string name in groupNames)
-					foreach (ListViewItem item in buildingInfo.mListView.Items)
-						if (item.Tag.Equals(name))
-						{
-							int removedImageIndex = item.ImageIndex;
-							buildingInfo.mImageList.RemoveAt(removedImageIndex);
-							buildingInfo.mListView.Items.Remove(item);
-							// then iterate again on all the item to shift all the image index that are after the item removed of -1
-							foreach (ListViewItem itemToShift in buildingInfo.mListView.Items)
-								if (itemToShift.ImageIndex > removedImageIndex)
-									itemToShift.ImageIndex = itemToShift.ImageIndex - 1;
-							// break the list view search since we found the item to remove
-							break;
-						}
 			}
 			else
 			{
@@ -563,8 +550,7 @@ namespace BlueBrick
 			// resume the update
 			buildingInfo.mListView.EndUpdate();
 
-			// now check if there's xml files without GIF. In that case we still load them but these
-			// parts will be ignored by BlueBrick
+			// now check if there's xml files without GIF. In that case we still load them because they may be group parts
 			fillListViewWithPartsWithoutImage(buildingInfo, xmlFiles, xmlFileUnloadable, false);
 		}
 
@@ -666,7 +652,7 @@ namespace BlueBrick
 			// WARNING: by default the colorDepth of the image list is 8bit, so the palette is recomputed
 			// everytime new images are added. For performance issue, we need a higher palette depth to
 			// avoid quantization. If we use 32bit depth, the selection is not drawn for small image list
-			// 24 bit avoid paletization, without the selection bug ondot net 
+			// 24 bit avoid paletization, without the selection bug on dot net 
 			ImageList largeImageList = new ImageList();
 			largeImageList.ImageSize = PART_ITEM_LARGE_SIZE;
 			largeImageList.ColorDepth = ColorDepth.Depth24Bit;

@@ -161,6 +161,33 @@ namespace BlueBrick
 			else
 				mVisibleItems.Add(itemToAdd);
 		}
+
+		/// <summary>
+		/// Remove from internal lists the item which has the specified matching tag
+		/// </summary>
+		/// <param name="">the tag of the item that you want to remove</param>
+		public void removeItemByTag(string tag)
+		{
+			// create a list with the 3 internal lists
+			List<List<ListViewItem>> allLists = new List<List<ListViewItem>>() { mVisibleItems, mFilteredItems, mNotBudgetedItems };
+
+			// iterate on all the item of all the lists
+			foreach (List<ListViewItem> list in allLists)
+				foreach (ListViewItem item in list)
+					if (item.Tag.Equals(tag))
+					{
+						// remove the item from the list
+						int removedImageIndex = item.ImageIndex;
+						list.Remove(item);
+						// then iterate again on all the item of all list to shift all the image index that are after the item removed of -1
+						foreach (List<ListViewItem> listToShift in allLists)
+							foreach (ListViewItem itemToShift in listToShift)
+							if (itemToShift.ImageIndex > removedImageIndex)
+								itemToShift.ImageIndex = itemToShift.ImageIndex - 1;
+						// stop the list search since we found the item to remove
+						return;
+					}
+		}
 		#endregion
 
 		#region util function
