@@ -15,22 +15,23 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
-using System.Threading;
+using System.IO.Compression;
 
 namespace BlueBrick
 {
 	public partial class DownloadCenterForm : Form
 	{
-		const int SUBITEM_DEST_INDEX = 0;
-		const int SUBITEM_URL_INDEX = 1;
-		const int SUBITEM_PERCENTAGE_INDEX = 2;
-		const int NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR = 10;
+		private const int SUBITEM_DEST_INDEX = 0;
+		private const int SUBITEM_URL_INDEX = 1;
+		private const int SUBITEM_PERCENTAGE_INDEX = 2;
+		private const int NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR = 10;
+
+		// a flag to tell if we need to unzip after download
+		private bool mDoFilesNeedToBeUnziped = false;
 
 		/// <summary>
 		/// Instantiate a form and fill it with the specified file list. Each entry in the list is an array of three string
@@ -44,6 +45,9 @@ namespace BlueBrick
 		public DownloadCenterForm(List<string[]> fileList, bool isUsedToDownloadLibraryPackage)
 		{
 			InitializeComponent();
+
+			// library packages need to be unzipped
+			mDoFilesNeedToBeUnziped = isUsedToDownloadLibraryPackage;
 
 			// change the explanation text, if we want to download brick package
 			if (isUsedToDownloadLibraryPackage)
@@ -201,6 +205,9 @@ namespace BlueBrick
 			// get the result object
 			ResultParameter result = (e.Result) as ResultParameter;
 
+			// update the overall percentage for this file
+			updatePercentageOfTotalBar(result.fileIndex, 100);
+
 			// check if there was an error to change the color
 			if (result.hasErrorOccurs)
 			{
@@ -215,10 +222,18 @@ namespace BlueBrick
 			{
 				// update the full percentage of for the file to 100% (but not if there was errors)
 				updatePercentageOfOneFile(result.fileIndex, 100);
-			}
 
-			// update the overall percentage for this file
-			updatePercentageOfTotalBar(result.fileIndex, 100);
+				// check if we need to unzip in place if there was no errors
+				if (mDoFilesNeedToBeUnziped)
+				{
+					// unzip the archive
+					string zipFileName = Application.StartupPath + this.DownloadListView.Items[result.fileIndex].SubItems[SUBITEM_DEST_INDEX].Text;
+					ZipFile.ExtractToDirectory(zipFileName, Application.StartupPath + @"/parts" );
+
+					// then delete the archive
+					File.Delete(zipFileName);
+				}
+			}
 
 			// then download the next file
 			downloadOneFile(result.fileIndex + 1);
@@ -246,7 +261,7 @@ namespace BlueBrick
 					ListViewItem.ListViewSubItemCollection subitems = item.SubItems;
 					DownloadParameter parameters = new DownloadParameter();
 					parameters.url = subitems[SUBITEM_URL_INDEX].Text;
-					parameters.destination = System.Windows.Forms.Application.StartupPath + subitems[SUBITEM_DEST_INDEX].Text;
+					parameters.destination = Application.StartupPath + subitems[SUBITEM_DEST_INDEX].Text;
 					parameters.fileIndex = fileIndex;
 
 					// start the download asynchronously by giving the parameters
