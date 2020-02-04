@@ -146,7 +146,8 @@ Open bugs:
 
 Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
-- BUG (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
+- BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
+- BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points
 
 
 Bug fixed in 1.8.2.0:

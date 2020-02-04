@@ -340,22 +340,23 @@ namespace BlueBrick
 			foreach (Layer.LayerItem item in allBricks)
 			{
 				LayerBrick.Brick brick = item as LayerBrick.Brick;
-				foreach (LayerBrick.Brick.ConnectionPoint connection in brick.ConnectionPoints)
-				{
-					if (connection.IsFree)
+				if (brick.HasConnectionPoint)
+					foreach (LayerBrick.Brick.ConnectionPoint connection in brick.ConnectionPoints)
 					{
-						// we found a free connection, check if the list for its type was already added in the dictionary
-						if (!connectionsPerType.ContainsKey(connection.Type))
-							connectionsPerType.Add(connection.Type, new List<ConnectionAndIndex>());
-						// now get the list corresponding to the type
-						List<ConnectionAndIndex> freeConnectionList = connectionsPerType[connection.Type];
-						// then add the connection in the list
-						freeConnectionList.Add(new ConnectionAndIndex(connection, connectionCounter));
-					}
+						if (connection.IsFree)
+						{
+							// we found a free connection, check if the list for its type was already added in the dictionary
+							if (!connectionsPerType.ContainsKey(connection.Type))
+								connectionsPerType.Add(connection.Type, new List<ConnectionAndIndex>());
+							// now get the list corresponding to the type
+							List<ConnectionAndIndex> freeConnectionList = connectionsPerType[connection.Type];
+							// then add the connection in the list
+							freeConnectionList.Add(new ConnectionAndIndex(connection, connectionCounter));
+						}
 
-					// increase the connection counter, no matter if the current connection is free or not
-					connectionCounter++;
-				}
+						// increase the connection counter, no matter if the current connection is free or not
+						connectionCounter++;
+					}
 			}
 
 			// check if we found something
