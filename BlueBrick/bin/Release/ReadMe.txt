@@ -109,14 +109,14 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Matthias): An option to display part names below the parts (careful with the Budget feature)
 - [target 1.9] MISSING FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count)
 - [target 1.9] MISSING FEATURE (Matthias): Better resolution for part images (Images can have an additional <scale> property in the xml-File, if no scale parameter is provided, the default resolution of 8 pixels/stud is used)
-- [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
-- [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
-- [target 1.9] MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels.
+- [target 1.9] MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels (mouse over should give the focus?).
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
 - [target 1.9] MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
+- [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
+- [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
 - [target 1.9] BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
 - MISSING FEATURE (Alban): Export in 4dbrix.com format

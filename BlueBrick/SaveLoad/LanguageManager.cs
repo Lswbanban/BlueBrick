@@ -80,8 +80,7 @@ namespace BlueBrick
 			// now check if the list of file to download is not null, call the download manager
 			if (filesToDownload.Count > 0)
 			{
-				DownloadCenterForm languageManager = new DownloadCenterForm();
-				languageManager.fillListView(filesToDownload);
+				DownloadCenterForm languageManager = new DownloadCenterForm(filesToDownload, false);
 				languageManager.ShowDialog();
 			}
 		}

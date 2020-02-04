@@ -598,4 +598,9 @@
   <data name="ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation" xml:space="preserve">
     <value>Some parts will not be replaced due to your current Budget limitation. Do you want to continue?</value>
   </data>
+  <data name="DownloadLibraryPackageExplanation" xml:space="preserve">
+    <value>Please check the check boxes of the Library Package that you want to download and install, then click on the "Download" button to start the download.
+
+If you prefer, you can close BlueBrick and download the packages from your web browser and unzip them in the parts folder.</value>
+  </data>
 </root>

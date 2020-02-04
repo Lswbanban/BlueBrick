@@ -32,9 +32,25 @@ namespace BlueBrick
 		const int SUBITEM_PERCENTAGE_INDEX = 2;
 		const int NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR = 10;
 
-		public DownloadCenterForm()
+		/// <summary>
+		/// Instantiate a form and fill it with the specified file list. Each entry in the list is an array of three string
+		/// which first string is the full destination path on the local drive, and the second string is the
+		/// source URL path. The last string should be the empty string.
+		/// Also the specified boolean change a bit the behavior of the download form, if <c>true</c> is specified
+		/// then the explanation text will changed, and the files will be unziped after download.
+		/// </summary>
+		/// <param name="fileList">A list of file to download, for each with destination and source path</param>
+		/// <param name="isUsedToDownloadLibraryPackage">if <c>true</c> then the form will adapt its behavior for library package download</param>
+		public DownloadCenterForm(List<string[]> fileList, bool isUsedToDownloadLibraryPackage)
 		{
 			InitializeComponent();
+
+			// change the explanation text, if we want to download brick package
+			if (isUsedToDownloadLibraryPackage)
+				this.ExplanationLabel.Text = Properties.Resources.DownloadLibraryPackageExplanation;
+
+			// fill the list with the filles
+			fillListView(fileList);
 		}
 
 		#region event
@@ -75,7 +91,13 @@ namespace BlueBrick
 		#endregion
 
 		#region ListView
-		public void fillListView(List<string[]> fileList)
+		/// <summary>
+		/// Fill the download form with the specified list of file. Each entry in the list is an array of three string
+		/// which first string is the full destination path on the local drive, and the second string is the
+		/// source URL path. The last string should be the empty string.
+		/// </summary>
+		/// <param name="fileList">A list of file to download, for each with destination and source path</param>
+		private void fillListView(List<string[]> fileList)
 		{
 			// start of the update of the control
 			this.DownloadListView.BeginUpdate();
