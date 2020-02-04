@@ -1540,6 +1540,11 @@ namespace BlueBrick
 
 		private void reloadPartLibraryToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			reloadPartLibrary(true);
+		}
+
+		private void reloadPartLibrary(bool displayAWaitMessageBox)
+		{
 			// we have first to undload the current file
 			// check if the current map is not save and display a warning message
 			// we also need to check for unsave budget because we will destroy the library
@@ -1568,9 +1573,10 @@ namespace BlueBrick
 				//GC.Collect();
 
 				// then display a waiting message box, giving the user the oppotunity to change the data before reloading
-				MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgReadyToReloadPartLib,
-					BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
-					MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+				if (displayAWaitMessageBox)
+					MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgReadyToReloadPartLib,
+						BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
+						MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
 
 				// then reload the library
 				this.Cursor = Cursors.WaitCursor;
@@ -1613,8 +1619,13 @@ namespace BlueBrick
 			string url = "http://bluebrick.lswproject.com/download/package/" + test;
 			List<string[]> filesToDownload = new List<string[]>() { new string[] { partsFolder + test, url, string.Empty } };
 
-			DownloadCenterForm languageManager = new DownloadCenterForm(filesToDownload, true);
-			languageManager.ShowDialog();
+			// open the download center form in dialog mode
+			DownloadCenterForm downloadCenterForm = new DownloadCenterForm(filesToDownload, true);
+			downloadCenterForm.ShowDialog();
+
+			// when the user closed the dialog, check if any package was successfully installed, and if yes, we need to reload the library
+			if (downloadCenterForm.SuccessfulDownloadCount > 0)
+				reloadPartLibrary(false);
 		}
 
 		private void saveSelectionInLibraryToolStripMenuItem_Click(object sender, EventArgs e)

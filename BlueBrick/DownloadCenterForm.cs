@@ -33,6 +33,13 @@ namespace BlueBrick
 		// a flag to tell if we need to unzip after download
 		private bool mDoFilesNeedToBeUnziped = false;
 
+		// a variable to count how many files has been successfully downloaded and installed
+		private int mSuccessfulDownloadCount = 0;
+		public int SuccessfulDownloadCount
+		{
+			get { return mSuccessfulDownloadCount; }
+		}
+
 		/// <summary>
 		/// Instantiate a form and fill it with the specified file list. Each entry in the list is an array of three string
 		/// which first string is the full destination path on the local drive, and the second string is the
@@ -52,6 +59,9 @@ namespace BlueBrick
 			// change the explanation text, if we want to download brick package
 			if (isUsedToDownloadLibraryPackage)
 				this.ExplanationLabel.Text = Properties.Resources.DownloadLibraryPackageExplanation;
+
+			// reset the counter of downloaded files
+			mSuccessfulDownloadCount = 0;
 
 			// fill the list with the filles
 			fillListView(fileList);
@@ -223,16 +233,30 @@ namespace BlueBrick
 				// update the full percentage of for the file to 100% (but not if there was errors)
 				updatePercentageOfOneFile(result.fileIndex, 100);
 
+				// by default if we reach here, that means the file has been successfully downloaded
+				bool isInstallSuccessful = true;
+
 				// check if we need to unzip in place if there was no errors
 				if (mDoFilesNeedToBeUnziped)
 				{
-					// unzip the archive
-					string zipFileName = Application.StartupPath + this.DownloadListView.Items[result.fileIndex].SubItems[SUBITEM_DEST_INDEX].Text;
-					ZipFile.ExtractToDirectory(zipFileName, Application.StartupPath + @"/parts" );
-
-					// then delete the archive
-					File.Delete(zipFileName);
+					try
+					{
+						// unzip the archive
+						string zipFileName = Application.StartupPath + this.DownloadListView.Items[result.fileIndex].SubItems[SUBITEM_DEST_INDEX].Text;
+						ZipFile.ExtractToDirectory(zipFileName, Application.StartupPath + @"/parts");
+						// then delete the archive
+						File.Delete(zipFileName);
+					}
+					catch
+					{
+						// the zip file extraction can throw many exception, if the extraction failed, clear the flag
+						isInstallSuccessful = false;
+					}
 				}
+
+				// increase the counter of successful install, if the install was successful
+				if (isInstallSuccessful)
+					mSuccessfulDownloadCount++;
 			}
 
 			// then download the next file
