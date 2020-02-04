@@ -1029,6 +1029,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There&apos;s no additionnal Part Library Package available online..
+        /// </summary>
+        internal static string ErrorMsgNoAvailablePartsPackageToDownload {
+            get {
+                return ResourceManager.GetString("ErrorMsgNoAvailablePartsPackageToDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string ErrorMsgNoButton {

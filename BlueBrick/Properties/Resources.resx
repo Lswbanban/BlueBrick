@@ -606,4 +606,7 @@ If you prefer, you can close BlueBrick and download the packages from your web b
   <data name="ErrorMsgNeedToReloadPartLib" xml:space="preserve">
     <value>BlueBrick has installed new parts and need to reload the Part Library.</value>
   </data>
+  <data name="ErrorMsgNoAvailablePartsPackageToDownload" xml:space="preserve">
+    <value>There's no additionnal Part Library Package available online.</value>
+  </data>
 </root>
