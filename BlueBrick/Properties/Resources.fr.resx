@@ -538,4 +538,7 @@ Le message d'erreur est :
 
 Si vous préférez, vous pouvez aussi fermer BlueBrick et télécharger les paquets depuis votre navigateur internet et les dézipper dans le dossier "parts".</value>
   </data>
+  <data name="ErrorMsgNeedToReloadPartLib" xml:space="preserve">
+    <value>BlueBrick a installé des nouvelles pièces et a besoin de recharger la librairie de pièces.</value>
+  </data>
 </root>

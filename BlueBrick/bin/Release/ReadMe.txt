@@ -105,6 +105,7 @@ to open the help file (see above for more details).
 -------------------------------------------------------------------------------
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): A feature to download library package online.
+- [target 1.9] MISSING FEATURE (Alban): Need to be able to cancel the download of files from the download center form
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Matthias): An option to display part names below the parts (careful with the Budget feature)
 - [target 1.9] MISSING FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count)

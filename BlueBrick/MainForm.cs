@@ -1625,7 +1625,13 @@ namespace BlueBrick
 
 			// when the user closed the dialog, check if any package was successfully installed, and if yes, we need to reload the library
 			if (downloadCenterForm.SuccessfulDownloadCount > 0)
+			{
+				// display a warning message and reload the library
+				MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgNeedToReloadPartLib,
+								BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
+								MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
 				reloadPartLibrary(false);
+			}
 		}
 
 		private void saveSelectionInLibraryToolStripMenuItem_Click(object sender, EventArgs e)
