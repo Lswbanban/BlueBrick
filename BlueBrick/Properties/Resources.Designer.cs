@@ -1020,6 +1020,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BlueBrick has installed new parts and need to reload the Part Library..
+        /// </summary>
+        internal static string ErrorMsgNeedToReloadPartLib {
+            get {
+                return ResourceManager.GetString("ErrorMsgNeedToReloadPartLib", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string ErrorMsgNoButton {
