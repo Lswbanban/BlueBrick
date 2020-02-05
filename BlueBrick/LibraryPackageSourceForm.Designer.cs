@@ -46,6 +46,7 @@
 			resources.ApplyResources(this.checkBoxSearchNonLego, "checkBoxSearchNonLego");
 			this.checkBoxSearchNonLego.Name = "checkBoxSearchNonLego";
 			this.checkBoxSearchNonLego.UseVisualStyleBackColor = true;
+			this.checkBoxSearchNonLego.CheckedChanged += new System.EventHandler(this.checkBoxSearchNonLego_CheckedChanged);
 			// 
 			// label1
 			// 
@@ -56,6 +57,7 @@
 			// 
 			resources.ApplyResources(this.textBoxUnofficialPartLibraryURL, "textBoxUnofficialPartLibraryURL");
 			this.textBoxUnofficialPartLibraryURL.Name = "textBoxUnofficialPartLibraryURL";
+			this.textBoxUnofficialPartLibraryURL.TextChanged += new System.EventHandler(this.textBoxUnofficialPartLibraryURL_TextChanged);
 			// 
 			// buttonCancel
 			// 
@@ -78,6 +80,7 @@
 			this.checkBoxSearchOfficial.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBoxSearchOfficial.Name = "checkBoxSearchOfficial";
 			this.checkBoxSearchOfficial.UseVisualStyleBackColor = true;
+			this.checkBoxSearchOfficial.CheckedChanged += new System.EventHandler(this.checkBoxSearchOfficial_CheckedChanged);
 			// 
 			// checkBoxSearchUnofficial
 			// 
