@@ -104,7 +104,6 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (Alban): A feature to download library package online.
 - [target 1.9] MISSING FEATURE (Alban): Need to be able to cancel the download of files from the download center form
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Matthias): An option to display part names below the parts (careful with the Budget feature)
@@ -123,7 +122,7 @@ Open bugs:
 - MISSING FEATURE (Alban): Export in 4dbrix.com format
 - MISSING FEATURE (Alban): Implement elevation by displaying a number next to the part and edition of elevation
 - MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget in percentage, and the total sum of all the parts in the budget (and other stats that I may found)
-- MISSING FEATURE (Alban): Extend the ConnectionTypeList.xml to precise for each connection, to which connection it can connect (this allow a male/female connections types)
+- MISSING FEATURE (Alban): Extend the ConnectionTypeList.xml to precise for each connection, to which connection it can connect (this allow a male/female connections types, by default it connect to itself, otherwise if another type is specified, it connect to that type)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
 - MISSING FEATURE #12 (FreeBee) : Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
@@ -145,6 +144,7 @@ Open bugs:
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
 
 Bug fixed in 1.9.0.0:
+- NEW FEATURE (Alban): A feature to download library package online from various sources (official web site, and non official url).
 - NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points
