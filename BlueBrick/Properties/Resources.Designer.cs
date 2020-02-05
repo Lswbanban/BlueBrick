@@ -649,6 +649,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Searching now. Please Wait..
+        /// </summary>
+        internal static string ButtonPleaseWait {
+            get {
+                return ResourceManager.GetString("ButtonPleaseWait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change the options of layer &quot;&amp;&quot;.
         /// </summary>
         internal static string ChangeLayerOption {
@@ -1409,6 +1418,42 @@ namespace BlueBrick.Properties {
         internal static string PartLibMenuItemUseBudgetLimitation {
             get {
                 return ResourceManager.GetString("PartLibMenuItemUseBudgetLimitation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error. Cannot get info from URL..
+        /// </summary>
+        internal static string SearchStatusError {
+            get {
+                return ResourceManager.GetString("SearchStatusError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read Finished.
+        /// </summary>
+        internal static string SearchStatusFinished {
+            get {
+                return ResourceManager.GetString("SearchStatusFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read HTTP Stream.
+        /// </summary>
+        internal static string SearchStatusReadStream {
+            get {
+                return ResourceManager.GetString("SearchStatusReadStream", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wait for HTTP Response.
+        /// </summary>
+        internal static string SearchStatusWaitResponse {
+            get {
+                return ResourceManager.GetString("SearchStatusWaitResponse", resourceCulture);
             }
         }
         

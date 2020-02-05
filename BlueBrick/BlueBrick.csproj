@@ -168,6 +168,12 @@
     <Compile Include="LayerRulerPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LibraryPackageSourceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibraryPackageSourceForm.Designer.cs">
+      <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapData\OnlineBrickResources.cs" />
     <Compile Include="MapData\RulerAttachementSet.cs" />
     <Compile Include="MapData\LayerBrickBrick.cs" />
@@ -407,6 +413,12 @@
     <EmbeddedResource Include="GeneralInfoForm.pt.resx">
       <SubType>Designer</SubType>
       <DependentUpon>GeneralInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibraryPackageSourceForm.fr.resx">
+      <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibraryPackageSourceForm.resx">
+      <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartListView.resx">
       <DependentUpon>PartListView.cs</DependentUpon>

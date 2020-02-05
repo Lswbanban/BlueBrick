@@ -544,4 +544,19 @@ Si vous préférez, vous pouvez aussi fermer BlueBrick et télécharger les paqu
   <data name="ErrorMsgNoAvailablePartsPackageToDownload" xml:space="preserve">
     <value>Il n'y a pas de pack de librairie de pièces additionnel disponible en ligne.</value>
   </data>
+  <data name="ButtonPleaseWait" xml:space="preserve">
+    <value>Recherche en cours. Merci de patienter.</value>
+  </data>
+  <data name="SearchStatusError" xml:space="preserve">
+    <value>Erreur. Pas d'info depuis l'URL.</value>
+  </data>
+  <data name="SearchStatusFinished" xml:space="preserve">
+    <value>Lecture terminée</value>
+  </data>
+  <data name="SearchStatusReadStream" xml:space="preserve">
+    <value>Lecture du flux HTTP</value>
+  </data>
+  <data name="SearchStatusWaitResponse" xml:space="preserve">
+    <value>En attente de la réponse HTTP</value>
+  </data>
 </root>

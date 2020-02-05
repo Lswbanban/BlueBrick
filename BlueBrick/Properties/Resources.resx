@@ -609,4 +609,19 @@ If you prefer, you can close BlueBrick and download the packages from your web b
   <data name="ErrorMsgNoAvailablePartsPackageToDownload" xml:space="preserve">
     <value>There's no additionnal Part Library Package available online.</value>
   </data>
+  <data name="ButtonPleaseWait" xml:space="preserve">
+    <value>Searching now. Please Wait.</value>
+  </data>
+  <data name="SearchStatusError" xml:space="preserve">
+    <value>Error. Cannot get info from URL.</value>
+  </data>
+  <data name="SearchStatusFinished" xml:space="preserve">
+    <value>Read Finished</value>
+  </data>
+  <data name="SearchStatusReadStream" xml:space="preserve">
+    <value>Read HTTP Stream</value>
+  </data>
+  <data name="SearchStatusWaitResponse" xml:space="preserve">
+    <value>Wait for HTTP Response</value>
+  </data>
 </root>
