@@ -14,6 +14,10 @@ namespace BlueBrick
 		private const string mOfficialPartLibraryURL = "http://bluebrick.lswproject.com/download/package/";
 		private const string mOfficialNonLegoPartLibraryURL = "http://bluebrick.lswproject.com/download/packageOther/";
 
+		// a variable to memorize the button text because we will change it
+		private string mOriginalSearchButtonLabel = string.Empty;
+
+		// the result of this search form
 		private List<string[]> mFilesToDownload = new List<string[]>();
 
 		#region get set
@@ -23,22 +27,34 @@ namespace BlueBrick
 		}
 		#endregion
 
+		#region init
 		public LibraryPackageSourceForm()
 		{
 			InitializeComponent();
+			mOriginalSearchButtonLabel = buttonSearch.Text;
 		}
+
+		private void changeSearchButton(bool isEnabled)
+		{
+			buttonSearch.Enabled = isEnabled;
+			buttonSearch.Text = isEnabled ? mOriginalSearchButtonLabel : Properties.Resources.ButtonPleaseWait;
+		}
+		#endregion
 
 		#region UI event
 		private void buttonCancel_Click(object sender, EventArgs e)
 		{
-			mFilesToDownload = BlueBrick.MapData.OnlineBrickResources.getUninstalledBrickPackageAvailableOnline(mOfficialPartLibraryURL);
+			// if the user cancel, stop the background worker
+			backgroundWorkerSearchOnline.CancelAsync();
+			// then clear the result list and close the form
+			mFilesToDownload.Clear();
+			this.Close();
 		}
 
 		private void buttonSearch_Click(object sender, EventArgs e)
 		{
 			// disable the button and change its text
-			buttonSearch.Enabled = false;
-			buttonSearch.Text = Properties.Resources.ButtonPleaseWait;
+			changeSearchButton(false);
 
 			// get the URLs depending on what is checked and create a parameter for async work
 			SearchParameter parameters = new SearchParameter();
@@ -91,6 +107,30 @@ namespace BlueBrick
 		}
 		#endregion
 
+		#region package list filtering
+		private List<string[]> removeAlreadyInstalledPackagesFromList(List<string[]> packageListToFilter)
+		{
+			// get all the folders in the parts folder to know what is already installed
+			DirectoryInfo partsFolder = new DirectoryInfo(PartLibraryPanel.sFullPathForLibrary);
+			DirectoryInfo[] directoriesInPartsFolder = partsFolder.GetDirectories();
+
+			// create a list with only the name of the directory (adding the zip at the end to facilitate comparison
+			List<string> installedPackageFolder = new List<string>();
+			foreach (DirectoryInfo directory in directoriesInPartsFolder)
+				installedPackageFolder.Add(@"/parts/" + directory.Name.ToLower() + ".zip");
+
+			// then iterate on the list to filter and remove the items already installed
+			for (int i = 0; i < packageListToFilter.Count; ++i)
+				if (installedPackageFolder.Contains(packageListToFilter[i][0].ToLower()))
+				{
+					packageListToFilter.RemoveAt(i);
+					i--;
+				}
+
+			return packageListToFilter;
+		}
+		#endregion
+
 		#region background worker event
 		/// <summary>
 		/// a small container to provide parameters to the background worker thread
@@ -105,14 +145,8 @@ namespace BlueBrick
 		/// </summary>
 		private class ResultParameter
 		{
-			public class BrickPackageListForOneURL
-			{
-				public List<string[]> resultBrickPackageList = new List<string[]>();
-				public bool hasErrorOccurs = false;
-			}
-
-			// this list contains all the package list found for all the url we search in the same order as the url list which is in the SearchParameter class
-			public List<BrickPackageListForOneURL> allPackageListFound = new List<BrickPackageListForOneURL>();
+			// this list contains all the package list found for all the url we search
+			public List<string[]> allPackageListFound = new List<string[]>();
 		}
 
 		/// <summary>
@@ -149,10 +183,6 @@ namespace BlueBrick
 				currentUrlIndex++;
 				int searchStep = 0;
 
-				// create the result for the current url and add it to the overall result instance
-				ResultParameter.BrickPackageListForOneURL brickPackageListForCurrentURL = new ResultParameter.BrickPackageListForOneURL();
-				result.allPackageListFound.Add(brickPackageListForCurrentURL);
-
 				try
 				{
 					// report the begining of the search
@@ -179,7 +209,7 @@ namespace BlueBrick
 									// create an array to store the destination file name, and url source file name
 									string[] destAndSource = new string[] { partsFolder + fileName, url + fileName, string.Empty };
 									// add the array in the result list
-									brickPackageListForCurrentURL.resultBrickPackageList.Add(destAndSource);
+									result.allPackageListFound.Add(destAndSource);
 								}
 
 							// report that we have finished to parse the html
@@ -189,8 +219,6 @@ namespace BlueBrick
 				}
 				catch
 				{
-					// set the error flag if the online search add problems
-					brickPackageListForCurrentURL.hasErrorOccurs = true;
 					// report that the error
 					worker.ReportProgress(3, new ProgressParameter(currentUrlIndex, parameters.searchURLs.Count));
 				}
@@ -210,7 +238,28 @@ namespace BlueBrick
 
 		private void backgroundWorkerSearchOnline_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
+			// get the result object
+			ResultParameter result = (e.Result) as ResultParameter;
 
+			// filter all the package we have found, from the one already installed locally, and save it in the result list of the form
+			mFilesToDownload = removeAlreadyInstalledPackagesFromList(result.allPackageListFound);
+
+			// if the list is empty, display an error message, but stay on this form to let the user try again
+			if (mFilesToDownload.Count == 0)
+			{
+				// display a warning message and reload the library
+				MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgNoAvailablePartsPackageToDownload,
+								BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
+								MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+
+				// reenable the search button for a second chance
+				changeSearchButton(true);
+			}
+			else
+			{
+				// if we have something to download, close the form, to let the main form open the next form to download the packages
+				this.Close();
+			}
 		}
 		#endregion
 	}

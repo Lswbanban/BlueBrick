@@ -1621,7 +1621,7 @@ namespace BlueBrick
 			// get the list of files that has been collected by the previous form dialog
 			List<string[]> filesToDownload = packageSourceForm.FilesToDownload;
 
-			// check if we have something to download (otherwise display an error message)
+			// check if we have something to download (if not just ignore, because the error message as already been displayed in the previous form)
 			if (filesToDownload.Count > 0)
 			{
 				// open the download center form in dialog mode
@@ -1637,13 +1637,6 @@ namespace BlueBrick
 									MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
 					reloadPartLibrary(false);
 				}
-			}
-			else
-			{
-				// display a warning message and reload the library
-				MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgNoAvailablePartsPackageToDownload,
-								BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
-								MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
 			}
 		}
 
