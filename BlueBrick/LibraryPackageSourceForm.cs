@@ -53,10 +53,41 @@ namespace BlueBrick
 			backgroundWorkerSearchOnline.RunWorkerAsync(parameters);
 		}
 
+		/// <summary>
+		/// Check if the search can be launch, at least one checkbox should be checked, and if the unofficial location is checked,
+		/// the URL address cannot be empty; and then enable or disable the button that launch the search
+		/// </summary>
+		private void enableDisableTheSearchButton()
+		{
+			buttonSearch.Enabled = checkBoxSearchOfficial.Checked || checkBoxSearchNonLego.Checked || checkBoxSearchUnofficial.Checked;
+			if (checkBoxSearchUnofficial.Checked && textBoxUnofficialPartLibraryURL.Text == string.Empty)
+				buttonSearch.Enabled = false;
+		}
+
+		private void checkBoxSearchOfficial_CheckedChanged(object sender, EventArgs e)
+		{
+			// enable the search button if the search is valid
+			enableDisableTheSearchButton();
+		}
+
+		private void checkBoxSearchNonLego_CheckedChanged(object sender, EventArgs e)
+		{
+			// enable the search button if the search is valid
+			enableDisableTheSearchButton();
+		}
+
 		private void checkBoxSearchUnofficial_CheckedChanged(object sender, EventArgs e)
 		{
+			// enable the search button if the search is valid
+			enableDisableTheSearchButton();
 			// enable the URL text box, only if the checkbox is checked
 			textBoxUnofficialPartLibraryURL.Enabled = checkBoxSearchUnofficial.Checked;
+		}
+
+		private void textBoxUnofficialPartLibraryURL_TextChanged(object sender, EventArgs e)
+		{
+			// enable the search button if the search is valid
+			enableDisableTheSearchButton();
 		}
 		#endregion
 
