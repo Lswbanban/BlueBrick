@@ -1614,8 +1614,12 @@ namespace BlueBrick
 
 		private void downloadAdditionnalPartsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// get the available packages on the official website
-			List<string[]> filesToDownload = OnlineBrickResources.getUninstalledBrickPackageAvailableOnline("http://bluebrick.lswproject.com/download/package/");
+			// first spawn the window to let the user choose the online source of the part library
+			LibraryPackageSourceForm packageSourceForm = new LibraryPackageSourceForm();
+			packageSourceForm.ShowDialog();
+
+			// get the list of files that has been collected by the previous form dialog
+			List<string[]> filesToDownload = packageSourceForm.FilesToDownload;
 
 			// check if we have something to download (otherwise display an error message)
 			if (filesToDownload.Count > 0)
