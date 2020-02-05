@@ -17,6 +17,10 @@ namespace BlueBrick
 		// a variable to memorize the button text because we will change it
 		private string mOriginalSearchButtonLabel = string.Empty;
 
+		// a flag set in case the search was successful, and the form auto close
+		private bool mIsFormClosingSuccessfully = false;
+		private bool mHasSearchBeenCancelled = false;
+
 		// the result of this search form
 		private List<string[]> mFilesToDownload = new List<string[]>();
 
@@ -42,13 +46,16 @@ namespace BlueBrick
 		#endregion
 
 		#region UI event
-		private void buttonCancel_Click(object sender, EventArgs e)
+		private void LibraryPackageSourceForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			// if the user cancel, stop the background worker
-			backgroundWorkerSearchOnline.CancelAsync();
-			// then clear the result list and close the form
-			mFilesToDownload.Clear();
-			this.Close();
+			if (!mIsFormClosingSuccessfully)
+			{
+				// if the user cancel, stop the background worker
+				mHasSearchBeenCancelled = true;
+				backgroundWorkerSearchOnline.CancelAsync();
+				// then clear the result list and close the form
+				mFilesToDownload.Clear();
+			}
 		}
 
 		private void buttonSearch_Click(object sender, EventArgs e)
@@ -65,6 +72,8 @@ namespace BlueBrick
 			if (checkBoxSearchUnofficial.Checked)
 				parameters.searchURLs.Add(textBoxUnofficialPartLibraryURL.Text);
 
+			// reset the cancel flag
+			mHasSearchBeenCancelled = false;
 			// start the download asynchronously by giving the parameters
 			backgroundWorkerSearchOnline.RunWorkerAsync(parameters);
 		}
@@ -238,6 +247,10 @@ namespace BlueBrick
 
 		private void backgroundWorkerSearchOnline_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
+			// does nothing if the search been canceled
+			if (e.Cancelled || mHasSearchBeenCancelled)
+				return;
+
 			// get the result object
 			ResultParameter result = (e.Result) as ResultParameter;
 
@@ -258,6 +271,7 @@ namespace BlueBrick
 			else
 			{
 				// if we have something to download, close the form, to let the main form open the next form to download the packages
+				mIsFormClosingSuccessfully = true;
 				this.Close();
 			}
 		}

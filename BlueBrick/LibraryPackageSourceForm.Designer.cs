@@ -62,9 +62,9 @@
 			// buttonCancel
 			// 
 			resources.ApplyResources(this.buttonCancel, "buttonCancel");
+			this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.UseVisualStyleBackColor = true;
-			this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
 			// 
 			// buttonSearch
 			// 
@@ -112,6 +112,7 @@
 			// 
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.CancelButton = this.buttonCancel;
 			this.Controls.Add(this.labelSearchStatus);
 			this.Controls.Add(this.labelURL);
 			this.Controls.Add(this.checkBoxSearchUnofficial);
@@ -122,6 +123,7 @@
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.checkBoxSearchNonLego);
 			this.Name = "LibraryPackageSourceForm";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LibraryPackageSourceForm_FormClosing);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
