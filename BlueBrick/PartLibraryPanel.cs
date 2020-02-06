@@ -322,7 +322,7 @@ namespace BlueBrick
 				displayErrorMessage(imageFileUnloadable, xmlFileUnloadable);
 
 				// after creating all the tabs, sort them according to the settings
-				updateAppearanceAccordingToSettings(true, false, false, false, true, true);
+				updateAppearanceAccordingToSettings(true, false, false, false, false, true, true);
 
 				// call the index event handler manually cause, it is not called on Mono
 				PartLibraryPanel_SelectedIndexChanged(null, null);
@@ -817,7 +817,7 @@ namespace BlueBrick
 			}
 		}
 
-		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateBudgetCount, bool updateBubbleInfoFormat, bool updateSelectedTab, bool updateCommonFilter)
+		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateStyle, bool updateBudgetCount, bool updateBubbleInfoFormat, bool updateSelectedTab, bool updateCommonFilter)
 		{
 			// save the selected tab to reselect it after reorder
 			TabPage selectedTab = this.SelectedTab;
@@ -849,8 +849,10 @@ namespace BlueBrick
 				}
 			}
 
-			// update the budget number if needed
-			if (updateBudgetCount)
+			// update the style and budget number if needed
+			if (updateStyle)
+				updateViewStyle(); // this will call the update updateAllPartCountAndBudget
+			else if (updateBudgetCount)
 				updateAllPartCountAndBudget();
 
 			if (updateAppearance || updateBubbleInfoFormat)

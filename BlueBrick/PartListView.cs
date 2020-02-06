@@ -677,9 +677,9 @@ namespace BlueBrick
 			if (Properties.Settings.Default.PartLibDisplayPartInfo)
 			{
 				itemText = BrickLibrary.Instance.getFormatedBrickInfo(partID,
-								Properties.Settings.Default.PartLibBubbleInfoPartID,
-								Properties.Settings.Default.PartLibBubbleInfoPartColor,
-								Properties.Settings.Default.PartLibBubbleInfoPartDescription) + "\n";
+								Properties.Settings.Default.PartLibPartInfoPartID,
+								Properties.Settings.Default.PartLibPartInfoPartColor,
+								Properties.Settings.Default.PartLibPartInfoPartDescription) + "\n";
 			}
 
 			// then concatene the part info with the budget if we have some
