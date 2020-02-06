@@ -104,7 +104,6 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (Alban): Need to be able to cancel the download of files from the download center form
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online.
 - [target 1.9] MISSING FEATURE (Matthias): An option to display part names below the parts (careful with the Budget feature)
 - [target 1.9] MISSING FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count)
@@ -149,6 +148,7 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points
 - BUGFIX (Alban): When updating in the library a group of parts that was not displayed in the library (because filtered with keyword) the image was added two times
+- BUGFIX (Alban): The cancel of the files download from the download center form was not properly stopped
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 
 
