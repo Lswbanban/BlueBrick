@@ -323,16 +323,22 @@ namespace BlueBrick.Budget
 				budgetString = budget.ToString();
 			// return the formated string
 			return budgetString;
-		}		
+		}
 
 		/// <summary>
-		/// Return a formated string in the form "count/budget" that display the current number of part and it's budget
+		/// Return a formated string in the form "count/budget" that display the current number of part and it's budget.
+		/// Depending on the Settings.Default.DisplayRemainingPartCountInBudgetInsteadOfUsedCount the count will be either
+		/// the currently used parts, or the remaining part against its bugdet (which could be negative if you exceed the
+		/// budget)
 		/// </summary>
 		/// <param name="partID">The full part id for which you want to know the count and budget</param>
 		/// <returns>a string displaying the both number separated by a slash</returns>
 		public string getCountAndBudgetAsString(string partID)
 		{
-			return (getCount(partID).ToString() + "/" + getBudgetAsString(partID));
+			// get the count or remaining count depending on the settings
+			int count = Properties.Settings.Default.DisplayRemainingPartCountInBudgetInsteadOfUsedCount ? getRemainingCount(partID) : getCount(partID);
+			// retur the formated string
+			return (count.ToString() + "/" + getBudgetAsString(partID));
 		}
 
 		/// <summary>
@@ -366,6 +372,22 @@ namespace BlueBrick.Budget
 			int result = 0;
 			mCount.TryGetValue(partID, out result);
 			return result;
+		}
+
+		/// <summary>
+		/// Return the remaining parts available according to the budget set for the specified part.
+		/// If the part doesn't have a budget set, then the negative count (number of used parts
+		/// with a minus sign in front of it) is returned.
+		/// </summary>
+		/// <param name="partID">The part for which you want to know the remaining parts</param>
+		/// <returns>the number of part you can use before exhausting the budget for this part.</returns>
+		public int getRemainingCount(string partID)
+		{
+			int count = getCount(partID);
+			int budget = getBudget(partID);
+			if (budget >= 0)
+				return (budget - count);
+			return -count;
 		}
 
 		/// <summary>
