@@ -471,31 +471,31 @@ les pièces budgétées</value>
     <value>Couleur de fond par défaut</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
-    <value>Info-bulles</value>
+    <value>Info de pièces et Info-bulles</value>
   </data>
-  <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 17</value>
+  <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 13</value>
   </data>
-  <data name="displayPartDescriptionCheckBox.Text" xml:space="preserve">
-    <value>La description des pièces</value>
+  <data name="label40.Text" xml:space="preserve">
+    <value>Couleur</value>
   </data>
-  <data name="displayPartColorCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 17</value>
+  <data name="PartLibDisplayPartInfocheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 17</value>
   </data>
-  <data name="displayPartColorCheckBox.Text" xml:space="preserve">
-    <value>La couleur des pièces</value>
+  <data name="PartLibDisplayPartInfocheckBox.Text" xml:space="preserve">
+    <value>Info de pièces :</value>
   </data>
-  <data name="displayPartIDCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 17</value>
+  <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 13</value>
   </data>
-  <data name="displayPartIDCheckBox.Text" xml:space="preserve">
-    <value>L'identifiant des pièces</value>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Réf pièce</value>
   </data>
-  <data name="displayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 17</value>
+  <data name="PartLibDisplayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 17</value>
   </data>
-  <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
-    <value>Afficher les info-bulles avec :</value>
+  <data name="PartLibDisplayBubbleInfoCheckBox.Text" xml:space="preserve">
+    <value>Info-bulles :</value>
   </data>
   <data name="groupBox11.Text" xml:space="preserve">
     <value>Ordre des onglets</value>

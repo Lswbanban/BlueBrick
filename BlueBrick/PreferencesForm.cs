@@ -243,10 +243,14 @@ namespace BlueBrick
 				this.PartLibDefaultBudgetNotLimitedradioButton.Checked = Settings.Default.IsDefaultBudgetInfinite;
 				this.PartLibDefaultBudgetZeroRadioButton.Checked = !Settings.Default.IsDefaultBudgetInfinite;
 				this.PartLibDisplayRemaingPartCountCheckBox.Checked = Settings.Default.DisplayRemainingPartCountInBudgetInsteadOfUsedCount;
-				this.displayPartIDCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartID;
-				this.displayPartColorCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartColor;
-				this.displayPartDescriptionCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartDescription;
-				this.displayBubbleInfoCheckBox.Checked = Settings.Default.PartLibDisplayBubbleInfo;
+				this.PartLibDisplayPartInfoCheckBox.Checked = Settings.Default.PartLibDisplayPartInfo;
+				this.PartLibDisplayPartPartIDCheckBox.Checked = Settings.Default.PartLibPartInfoPartID;
+				this.PartLibDisplayPartPartColorCheckBox.Checked = Settings.Default.PartLibPartInfoPartColor;
+				this.PartLibDisplayPartPartDescriptionCheckBox.Checked = Settings.Default.PartLibPartInfoPartDescription;
+				this.PartLibDisplayBubbleInfoCheckBox.Checked = Settings.Default.PartLibDisplayBubbleInfo;
+				this.PartLibDisplayBubblePartIDCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartID;
+				this.PartLibDisplayBubblePartColorCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartColor;
+				this.PartLibDisplayBubblePartDescriptionCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartDescription;
 			}
 
 			// -- tab shortcut key
@@ -366,10 +370,14 @@ namespace BlueBrick
 				destination.BudgetFilenameToLoadAtStartup = source.BudgetFilenameToLoadAtStartup;
 				destination.IsDefaultBudgetInfinite = source.IsDefaultBudgetInfinite;
 				destination.DisplayRemainingPartCountInBudgetInsteadOfUsedCount = source.DisplayRemainingPartCountInBudgetInsteadOfUsedCount;
+				destination.PartLibDisplayPartInfo = source.PartLibDisplayPartInfo;
+				destination.PartLibPartInfoPartID = source.PartLibPartInfoPartID;
+				destination.PartLibPartInfoPartColor = source.PartLibPartInfoPartColor;
+				destination.PartLibPartInfoPartDescription = source.PartLibPartInfoPartDescription;
+				destination.PartLibDisplayBubbleInfo = source.PartLibDisplayBubbleInfo;
 				destination.PartLibBubbleInfoPartID = source.PartLibBubbleInfoPartID;
 				destination.PartLibBubbleInfoPartColor = source.PartLibBubbleInfoPartColor;
 				destination.PartLibBubbleInfoPartDescription = source.PartLibBubbleInfoPartDescription;
-				destination.PartLibDisplayBubbleInfo = source.PartLibDisplayBubbleInfo;
 			}
 			// shortcut
 			if ((tabPageFilter & TabPageFilter.SHORTCUT_KEYS) != 0)
@@ -490,27 +498,35 @@ namespace BlueBrick
 
 			// -- tab PartLib
 			savePartLibraryTabOrder();
-			bool doesAppearanceChanged = (mOldSettings.PartLibBackColor != this.PartLibBackColorPictureBox.BackColor) ||
+			bool didAppearanceChanged = (mOldSettings.PartLibBackColor != this.PartLibBackColorPictureBox.BackColor) ||
 										(mOldSettings.PartLibShowOnlyBudgetedPartsColor != this.partLibBudgetFilterBackColorPictureBox.BackColor) ||
 										(mOldSettings.PartLibFilteredBackColor != this.PartLibFilteredBackColorPictureBox.BackColor) ||
-										(mOldSettings.PartLibDisplayBubbleInfo != this.displayBubbleInfoCheckBox.Checked);
-			bool doesBudgetCountChanged = (mOldSettings.IsDefaultBudgetInfinite != this.PartLibDefaultBudgetNotLimitedradioButton.Checked) ||
-										(mOldSettings.DisplayRemainingPartCountInBudgetInsteadOfUsedCount != this.PartLibDisplayRemaingPartCountCheckBox.Checked);
-			bool doesBubbleInfoChanged = (mOldSettings.PartLibBubbleInfoPartID != this.displayPartIDCheckBox.Checked) ||
-										(mOldSettings.PartLibBubbleInfoPartColor != this.displayPartColorCheckBox.Checked) ||
-										(mOldSettings.PartLibBubbleInfoPartDescription != this.displayPartDescriptionCheckBox.Checked);
+										(mOldSettings.PartLibDisplayBubbleInfo != this.PartLibDisplayBubbleInfoCheckBox.Checked);
+			bool didStyleChanged = (mOldSettings.PartLibDisplayPartInfo != this.PartLibDisplayPartInfoCheckBox.Checked);
+			bool didBudgetCountChanged = (mOldSettings.IsDefaultBudgetInfinite != this.PartLibDefaultBudgetNotLimitedradioButton.Checked) ||
+										(mOldSettings.DisplayRemainingPartCountInBudgetInsteadOfUsedCount != this.PartLibDisplayRemaingPartCountCheckBox.Checked) ||
+										(mOldSettings.PartLibPartInfoPartID != this.PartLibDisplayPartPartIDCheckBox.Checked) ||
+										(mOldSettings.PartLibPartInfoPartColor != this.PartLibDisplayPartPartColorCheckBox.Checked) ||
+										(mOldSettings.PartLibPartInfoPartDescription != this.PartLibDisplayPartPartDescriptionCheckBox.Checked);
+			bool didBubbleInfoChanged = (mOldSettings.PartLibBubbleInfoPartID != this.PartLibDisplayBubblePartIDCheckBox.Checked) ||
+										(mOldSettings.PartLibBubbleInfoPartColor != this.PartLibDisplayBubblePartColorCheckBox.Checked) ||
+										(mOldSettings.PartLibBubbleInfoPartDescription != this.PartLibDisplayBubblePartDescriptionCheckBox.Checked);
 			Settings.Default.PartLibBackColor = this.PartLibBackColorPictureBox.BackColor;
 			Settings.Default.PartLibShowOnlyBudgetedPartsColor = this.partLibBudgetFilterBackColorPictureBox.BackColor;
 			Settings.Default.PartLibFilteredBackColor = this.PartLibFilteredBackColorPictureBox.BackColor;
 			Settings.Default.BudgetFilenameToLoadAtStartup = mIsBudgetFilenameToLoadAtStartupSet ? this.PartLibBudgetFilenameTextBox.Text : string.Empty;
 			Settings.Default.IsDefaultBudgetInfinite = this.PartLibDefaultBudgetNotLimitedradioButton.Checked;
 			Settings.Default.DisplayRemainingPartCountInBudgetInsteadOfUsedCount = this.PartLibDisplayRemaingPartCountCheckBox.Checked;
-			Settings.Default.PartLibBubbleInfoPartID = this.displayPartIDCheckBox.Checked;
-			Settings.Default.PartLibBubbleInfoPartColor = this.displayPartColorCheckBox.Checked;
-			Settings.Default.PartLibBubbleInfoPartDescription = this.displayPartDescriptionCheckBox.Checked;
-			Settings.Default.PartLibDisplayBubbleInfo = this.displayBubbleInfoCheckBox.Checked;
+			Settings.Default.PartLibDisplayPartInfo = this.PartLibDisplayPartInfoCheckBox.Checked;
+			Settings.Default.PartLibPartInfoPartID = this.PartLibDisplayPartPartIDCheckBox.Checked;
+			Settings.Default.PartLibPartInfoPartColor = this.PartLibDisplayPartPartColorCheckBox.Checked;
+			Settings.Default.PartLibPartInfoPartDescription = this.PartLibDisplayPartPartDescriptionCheckBox.Checked;
+			Settings.Default.PartLibDisplayBubbleInfo = this.PartLibDisplayBubbleInfoCheckBox.Checked;
+			Settings.Default.PartLibBubbleInfoPartID = this.PartLibDisplayBubblePartIDCheckBox.Checked;
+			Settings.Default.PartLibBubbleInfoPartColor = this.PartLibDisplayBubblePartColorCheckBox.Checked;
+			Settings.Default.PartLibBubbleInfoPartDescription = this.PartLibDisplayBubblePartDescriptionCheckBox.Checked;
 			// call the function on the part lib to reflect the change
-			BlueBrick.MainForm.Instance.PartsTabControl.updateAppearanceAccordingToSettings(mHasPartLibOrderChanged, doesAppearanceChanged, doesBudgetCountChanged, doesBubbleInfoChanged, false, false);
+			BlueBrick.MainForm.Instance.PartsTabControl.updateAppearanceAccordingToSettings(mHasPartLibOrderChanged, didAppearanceChanged, didStyleChanged, didBudgetCountChanged, didBubbleInfoChanged, false, false);
 
 			// -- tab shortcut key
 			// save the list view
@@ -1180,10 +1196,10 @@ namespace BlueBrick
 
 		private void displayBubbleInfoCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
-			bool isEnabled = this.displayBubbleInfoCheckBox.Checked;
-			this.displayPartIDCheckBox.Enabled = isEnabled;
-			this.displayPartColorCheckBox.Enabled = isEnabled;
-			this.displayPartDescriptionCheckBox.Enabled = isEnabled;
+			bool isEnabled = this.PartLibDisplayBubbleInfoCheckBox.Checked;
+			this.PartLibDisplayBubblePartIDCheckBox.Enabled = isEnabled;
+			this.PartLibDisplayBubblePartColorCheckBox.Enabled = isEnabled;
+			this.PartLibDisplayBubblePartDescriptionCheckBox.Enabled = isEnabled;
 		}
 
 		private void PartLibBackColorPictureBox_Click(object sender, EventArgs e)

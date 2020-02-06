@@ -1343,5 +1343,41 @@ namespace BlueBrick.Properties {
                 this["PartLibDisplayPartInfo"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PartLibPartInfoPartDescription {
+            get {
+                return ((bool)(this["PartLibPartInfoPartDescription"]));
+            }
+            set {
+                this["PartLibPartInfoPartDescription"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PartLibPartInfoPartColor {
+            get {
+                return ((bool)(this["PartLibPartInfoPartColor"]));
+            }
+            set {
+                this["PartLibPartInfoPartColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PartLibPartInfoPartID {
+            get {
+                return ((bool)(this["PartLibPartInfoPartID"]));
+            }
+            set {
+                this["PartLibPartInfoPartID"] = value;
+            }
+        }
     }
 }
