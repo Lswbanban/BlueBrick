@@ -33,6 +33,9 @@ namespace BlueBrick
 		// a flag to tell if we need to unzip after download
 		private bool mDoFilesNeedToBeUnziped = false;
 
+		// a flag to tell if the user has canceled the download
+		private bool mHasDownloadBeenCancelled = false;
+
 		// a variable to count how many files has been successfully downloaded and installed
 		private int mSuccessfulDownloadCount = 0;
 		public int SuccessfulDownloadCount
@@ -75,6 +78,8 @@ namespace BlueBrick
 			// set the hourglass except for the cancel button
 			this.Cursor = Cursors.WaitCursor;
 			this.cancelButton.Cursor = Cursors.Default;
+			// reset the cancel flag
+			mHasDownloadBeenCancelled = false;
 			// launch the download
 			downloadAllTheFile();
 		}
@@ -82,6 +87,7 @@ namespace BlueBrick
 		private void DownloadCenterForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			// cancel the background download thread if the cancel button is pressed.
+			mHasDownloadBeenCancelled = true;
 			this.downloadBackgroundWorker.CancelAsync();
 			// re-enable the start button
 			this.StartButton.Enabled = true;
@@ -212,6 +218,10 @@ namespace BlueBrick
 
 		private void downloadBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
+			// does nothing if the search been canceled
+			if (e.Cancelled || mHasDownloadBeenCancelled)
+				return;
+
 			// get the result object
 			ResultParameter result = (e.Result) as ResultParameter;
 
@@ -466,7 +476,7 @@ namespace BlueBrick
 				{
 					// the red component stay null
 					// linear inc for the green
-					greenColor = 255 - (int)(2.55 * percentage);
+					greenColor = 200 - (int)(2 * percentage);
 				}
 
 				return Color.FromArgb(0xFF, redColor, greenColor, 0x00);

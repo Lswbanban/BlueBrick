@@ -63,6 +63,10 @@ namespace BlueBrick
 			// disable the button and change its text
 			changeSearchButton(false);
 
+			// set the hourglass except for the cancel button
+			this.Cursor = Cursors.WaitCursor;
+			this.buttonCancel.Cursor = Cursors.Default;
+
 			// get the URLs depending on what is checked and create a parameter for async work
 			SearchParameter parameters = new SearchParameter();
 			if (checkBoxSearchOfficial.Checked)
@@ -267,6 +271,9 @@ namespace BlueBrick
 
 				// reenable the search button for a second chance
 				changeSearchButton(true);
+
+				// and reset the default cursor for the form
+				this.Cursor = Cursors.Default;
 			}
 			else
 			{
