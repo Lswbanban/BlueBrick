@@ -106,6 +106,7 @@ namespace BlueBrick
             this.LabelEdit = true;
 			this.LabelWrap = false;
             this.MultiSelect = false;
+			this.LabelWrap = true; // we need label wrap for the "\n" to work, between the part name and the budget display
 			this.DoubleBuffered = true; // the double buffered also prevent a crash bug in Mono, otherwise it tries to paint while editing the list by a filtering
 			this.BeforeLabelEdit += new LabelEditEventHandler(this.PartListView_BeforeLabelEdit);
             this.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_AfterLabelEdit);
@@ -668,8 +669,20 @@ namespace BlueBrick
 		#region related to budget
 		public void updatePartTextAndBackColor(ListViewItem item)
 		{
+			// get the part id
 			string partID = item.Tag as string;
-			item.Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+			
+			// first get the part info if it is displayed
+			string itemText = string.Empty;
+			if (Properties.Settings.Default.PartLibDisplayPartInfo)
+			{
+				itemText = BrickLibrary.Instance.getFormatedBrickInfo(partID,
+								Properties.Settings.Default.PartLibBubbleInfoPartID,
+								Properties.Settings.Default.PartLibBubbleInfoPartColor,
+								Properties.Settings.Default.PartLibBubbleInfoPartDescription) + "\n";
+			}
+			// then concatene the part info with the budget
+			item.Text = itemText + Budget.Budget.Instance.getCountAndBudgetAsString(partID);
 			item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
 		}
 

@@ -35,6 +35,7 @@ namespace BlueBrick
 		{
 			LARGE_ICON = 0,
 			RESPECT_PROPORTION,
+			SHOW_PART_INFO,
 			SHOW_BUBBLE_INFO
 		}
 
@@ -195,6 +196,11 @@ namespace BlueBrick
 			proportionMenuItem.CheckOnClick = true;
 			proportionMenuItem.Checked = respectProportionIsChecked;
 			contextMenu.Items.Add(proportionMenuItem);
+			// menu item to display part info
+			ToolStripMenuItem partInfoMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemDisplayPartInfo, null, menuItem_DisplayPartInfoClick);
+			partInfoMenuItem.CheckOnClick = true;
+			partInfoMenuItem.Checked = Settings.Default.PartLibDisplayPartInfo;
+			contextMenu.Items.Add(partInfoMenuItem);
 			// menu item to display tooltips
 			ToolStripMenuItem bubbleInfoMenuItem = new ToolStripMenuItem(Resources.PartLibMenuItemDisplayTooltips, null, menuItem_DisplayTooltipsClick);
 			bubbleInfoMenuItem.CheckOnClick = true;
@@ -849,7 +855,8 @@ namespace BlueBrick
 
 			if (updateAppearance || updateBubbleInfoFormat)
 			{
-				// then update the background color and the bubble info status
+				// then update the background color and the part and bubble info status
+				bool displayPartInfo = Settings.Default.PartLibDisplayPartInfo;
 				bool displayBubbleInfo = Settings.Default.PartLibDisplayBubbleInfo;
 				foreach (TabPage tabPage in this.TabPages)
 				{
@@ -857,6 +864,7 @@ namespace BlueBrick
 					{
 						PartListView listView = tabPage.Controls[0] as PartListView;
 						listView.updateBackgroundColor();
+						(tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.SHOW_PART_INFO] as ToolStripMenuItem).Checked = displayPartInfo;
 						listView.ShowItemToolTips = displayBubbleInfo;
 						(tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.SHOW_BUBBLE_INFO] as ToolStripMenuItem).Checked = displayBubbleInfo;
 						// update the tooltip text of all the items if needed
@@ -1013,12 +1021,31 @@ namespace BlueBrick
 			}
 		}
 
+		private void menuItem_DisplayPartInfoClick(object sender, EventArgs e)
+		{
+			// get the checked status
+			bool displayPartInfo = (sender as ToolStripMenuItem).Checked;
+			// update the setting
+			Settings.Default.PartLibDisplayPartInfo = displayPartInfo;
+			// the display part info is global to all the tabpage, so update all the pages
+			foreach (TabPage tabPage in this.TabPages)
+			{
+				try
+				{
+					(tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.SHOW_PART_INFO] as ToolStripMenuItem).Checked = displayPartInfo;
+				}
+				catch
+				{
+				}
+			}
+		}
+
 		private void menuItem_DisplayTooltipsClick(object sender, EventArgs e)
 		{
 			// get the checked status
 			bool displayBubbleInfo = (sender as ToolStripMenuItem).Checked;
 			// update the setting
-			BlueBrick.Properties.Settings.Default.PartLibDisplayBubbleInfo = displayBubbleInfo;
+			Settings.Default.PartLibDisplayBubbleInfo = displayBubbleInfo;
 			// the display tooltip is global to all the tabpage, so update all the pages
 			foreach (TabPage tabPage in this.TabPages)
 			{

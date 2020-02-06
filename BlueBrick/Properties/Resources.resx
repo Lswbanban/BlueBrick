@@ -624,4 +624,7 @@ If you prefer, you can close BlueBrick and download the packages from your web b
   <data name="SearchStatusWaitResponse" xml:space="preserve">
     <value>Wait for HTTP Response</value>
   </data>
+  <data name="PartLibMenuItemDisplayPartInfo" xml:space="preserve">
+    <value>Part Information</value>
+  </data>
 </root>

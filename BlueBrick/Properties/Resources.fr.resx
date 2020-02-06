@@ -559,4 +559,7 @@ Si vous préférez, vous pouvez aussi fermer BlueBrick et télécharger les paqu
   <data name="SearchStatusWaitResponse" xml:space="preserve">
     <value>En attente de la réponse HTTP</value>
   </data>
+  <data name="PartLibMenuItemDisplayPartInfo" xml:space="preserve">
+    <value>Info des pièces</value>
+  </data>
 </root>

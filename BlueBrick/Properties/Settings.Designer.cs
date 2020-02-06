@@ -1331,5 +1331,17 @@ namespace BlueBrick.Properties {
                 this["DisplayRemainingPartCountInBudgetInsteadOfUsedCount"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PartLibDisplayPartInfo {
+            get {
+                return ((bool)(this["PartLibDisplayPartInfo"]));
+            }
+            set {
+                this["PartLibDisplayPartInfo"] = value;
+            }
+        }
     }
 }
