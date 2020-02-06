@@ -514,16 +514,16 @@ namespace BlueBrick
 			{
 				// by default it's an inifinte budget. Anything not parsable will result in an infinite budget (meaning the user erase the budget)
 				int newBudget = -1;
-				// check if it is an int
-				try
+				// try to parse as int (positive number)
+				if (int.TryParse(e.Label, out newBudget))
 				{
-					// try to parse as int (positive number)
-					newBudget = int.Parse(e.Label);
-					if (newBudget < -1)
+					// every negative number will result as - 1 for infinite budget
+ 					if (newBudget < -1)
 						newBudget = -1;
 				}
-				catch
+				else
 				{
+					newBudget = -1;
 				}
 
 				// add the current count and change the text myself

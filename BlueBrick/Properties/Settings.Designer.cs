@@ -1319,5 +1319,17 @@ namespace BlueBrick.Properties {
                 this["DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DisplayRemainingPartCountInBudgetInsteadOfUsedCount {
+            get {
+                return ((bool)(this["DisplayRemainingPartCountInBudgetInsteadOfUsedCount"]));
+            }
+            set {
+                this["DisplayRemainingPartCountInBudgetInsteadOfUsedCount"] = value;
+            }
+        }
     }
 }

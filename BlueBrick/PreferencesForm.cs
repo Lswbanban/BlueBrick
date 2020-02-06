@@ -14,11 +14,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Text;
 using System.Windows.Forms;
 using BlueBrick.Properties;
 using BlueBrick.Actions;
@@ -245,6 +242,7 @@ namespace BlueBrick
 				setTextBoxForBudgetFilenameToLoadAtStartup(Settings.Default.BudgetFilenameToLoadAtStartup);
 				this.PartLibDefaultBudgetNotLimitedradioButton.Checked = Settings.Default.IsDefaultBudgetInfinite;
 				this.PartLibDefaultBudgetZeroRadioButton.Checked = !Settings.Default.IsDefaultBudgetInfinite;
+				this.PartLibDisplayRemaingPartCountCheckBox.Checked = Settings.Default.DisplayRemainingPartCountInBudgetInsteadOfUsedCount;
 				this.displayPartIDCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartID;
 				this.displayPartColorCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartColor;
 				this.displayPartDescriptionCheckBox.Checked = Settings.Default.PartLibBubbleInfoPartDescription;
@@ -367,6 +365,7 @@ namespace BlueBrick
 				destination.PartLibFilteredBackColor = source.PartLibFilteredBackColor;
 				destination.BudgetFilenameToLoadAtStartup = source.BudgetFilenameToLoadAtStartup;
 				destination.IsDefaultBudgetInfinite = source.IsDefaultBudgetInfinite;
+				destination.DisplayRemainingPartCountInBudgetInsteadOfUsedCount = source.DisplayRemainingPartCountInBudgetInsteadOfUsedCount;
 				destination.PartLibBubbleInfoPartID = source.PartLibBubbleInfoPartID;
 				destination.PartLibBubbleInfoPartColor = source.PartLibBubbleInfoPartColor;
 				destination.PartLibBubbleInfoPartDescription = source.PartLibBubbleInfoPartDescription;
@@ -495,7 +494,8 @@ namespace BlueBrick
 										(mOldSettings.PartLibShowOnlyBudgetedPartsColor != this.partLibBudgetFilterBackColorPictureBox.BackColor) ||
 										(mOldSettings.PartLibFilteredBackColor != this.PartLibFilteredBackColorPictureBox.BackColor) ||
 										(mOldSettings.PartLibDisplayBubbleInfo != this.displayBubbleInfoCheckBox.Checked);
-			bool doesBudgetCountChanged = (mOldSettings.IsDefaultBudgetInfinite != this.PartLibDefaultBudgetNotLimitedradioButton.Checked);
+			bool doesBudgetCountChanged = (mOldSettings.IsDefaultBudgetInfinite != this.PartLibDefaultBudgetNotLimitedradioButton.Checked) ||
+										(mOldSettings.DisplayRemainingPartCountInBudgetInsteadOfUsedCount != this.PartLibDisplayRemaingPartCountCheckBox.Checked);
 			bool doesBubbleInfoChanged = (mOldSettings.PartLibBubbleInfoPartID != this.displayPartIDCheckBox.Checked) ||
 										(mOldSettings.PartLibBubbleInfoPartColor != this.displayPartColorCheckBox.Checked) ||
 										(mOldSettings.PartLibBubbleInfoPartDescription != this.displayPartDescriptionCheckBox.Checked);
@@ -504,6 +504,7 @@ namespace BlueBrick
 			Settings.Default.PartLibFilteredBackColor = this.PartLibFilteredBackColorPictureBox.BackColor;
 			Settings.Default.BudgetFilenameToLoadAtStartup = mIsBudgetFilenameToLoadAtStartupSet ? this.PartLibBudgetFilenameTextBox.Text : string.Empty;
 			Settings.Default.IsDefaultBudgetInfinite = this.PartLibDefaultBudgetNotLimitedradioButton.Checked;
+			Settings.Default.DisplayRemainingPartCountInBudgetInsteadOfUsedCount = this.PartLibDisplayRemaingPartCountCheckBox.Checked;
 			Settings.Default.PartLibBubbleInfoPartID = this.displayPartIDCheckBox.Checked;
 			Settings.Default.PartLibBubbleInfoPartColor = this.displayPartColorCheckBox.Checked;
 			Settings.Default.PartLibBubbleInfoPartDescription = this.displayPartDescriptionCheckBox.Checked;
