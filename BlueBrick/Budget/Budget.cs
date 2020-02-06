@@ -315,12 +315,14 @@ namespace BlueBrick.Budget
 		/// </summary>
 		/// <param name="partID">The full part id for which you want to know the budget</param>
 		/// <returns>a string displaying the number of the infinity sign</returns>
-		public string getBudgetAsString(string partID)
+		public string getBudgetAsString(string partID, bool returnEmptyStringIfNoBudget)
 		{
 			string budgetString = "?"; // "∞"; // by default if the budget is not set, it is infinite
 			int budget = getBudget(partID);
 			if (budget >= 0)
 				budgetString = budget.ToString();
+			else if (returnEmptyStringIfNoBudget)
+				budgetString = string.Empty;
 			// return the formated string
 			return budgetString;
 		}
@@ -338,7 +340,7 @@ namespace BlueBrick.Budget
 			// get the count or remaining count depending on the settings
 			int count = Properties.Settings.Default.DisplayRemainingPartCountInBudgetInsteadOfUsedCount ? getRemainingCount(partID) : getCount(partID);
 			// retur the formated string
-			return (count.ToString() + "/" + getBudgetAsString(partID));
+			return (count.ToString() + "/" + getBudgetAsString(partID, false));
 		}
 
 		/// <summary>
