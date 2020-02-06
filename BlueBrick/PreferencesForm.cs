@@ -1194,6 +1194,14 @@ namespace BlueBrick
 			mHasPartLibOrderChanged = true;
 		}
 
+		private void PartLibDisplayPartInfoCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			bool isEnabled = this.PartLibDisplayPartInfoCheckBox.Checked;
+			this.PartLibDisplayPartPartIDCheckBox.Enabled = isEnabled;
+			this.PartLibDisplayPartPartColorCheckBox.Enabled = isEnabled;
+			this.PartLibDisplayPartPartDescriptionCheckBox.Enabled = isEnabled;
+		}
+
 		private void displayBubbleInfoCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			bool isEnabled = this.PartLibDisplayBubbleInfoCheckBox.Checked;
