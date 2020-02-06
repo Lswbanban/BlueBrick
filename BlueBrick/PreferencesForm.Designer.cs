@@ -1387,6 +1387,7 @@ namespace BlueBrick
 			resources.ApplyResources(this.PartLibDisplayPartInfoCheckBox, "PartLibDisplayPartInfoCheckBox");
 			this.PartLibDisplayPartInfoCheckBox.Name = "PartLibDisplayPartInfoCheckBox";
 			this.PartLibDisplayPartInfoCheckBox.UseVisualStyleBackColor = true;
+			this.PartLibDisplayPartInfoCheckBox.CheckedChanged += new System.EventHandler(this.PartLibDisplayPartInfoCheckBox_CheckedChanged);
 			// 
 			// label39
 			// 

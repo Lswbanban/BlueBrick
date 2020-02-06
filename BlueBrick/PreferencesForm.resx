@@ -564,6 +564,9 @@
   <data name="PartLibDisplayPartPartDescriptionCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="PartLibDisplayPartPartDescriptionCheckBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="PartLibDisplayPartPartDescriptionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>237, 39</value>
   </data>
@@ -588,6 +591,9 @@
   <data name="PartLibDisplayPartPartColorCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="PartLibDisplayPartPartColorCheckBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="PartLibDisplayPartPartColorCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>175, 40</value>
   </data>
@@ -611,6 +617,9 @@
   </data>
   <data name="PartLibDisplayPartPartIDCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="PartLibDisplayPartPartIDCheckBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="PartLibDisplayPartPartIDCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>116, 40</value>
