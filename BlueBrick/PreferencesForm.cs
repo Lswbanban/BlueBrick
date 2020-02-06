@@ -1202,12 +1202,54 @@ namespace BlueBrick
 			this.PartLibDisplayPartPartDescriptionCheckBox.Enabled = isEnabled;
 		}
 
+		private void PartLibDisplayPartPartIDCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			// avoid having all the 3 checkbox empty
+			if (!this.PartLibDisplayPartPartIDCheckBox.Checked && !this.PartLibDisplayPartPartColorCheckBox.Checked && !this.PartLibDisplayPartPartDescriptionCheckBox.Checked)
+				this.PartLibDisplayPartPartDescriptionCheckBox.Checked = true;
+		}
+
+		private void PartLibDisplayPartPartColorCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			// avoid having all the 3 checkbox empty
+			if (!this.PartLibDisplayPartPartIDCheckBox.Checked && !this.PartLibDisplayPartPartColorCheckBox.Checked && !this.PartLibDisplayPartPartDescriptionCheckBox.Checked)
+				this.PartLibDisplayPartPartDescriptionCheckBox.Checked = true;
+		}
+
+		private void PartLibDisplayPartPartDescriptionCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			// avoid having all the 3 checkbox empty
+			if (!this.PartLibDisplayPartPartIDCheckBox.Checked && !this.PartLibDisplayPartPartColorCheckBox.Checked && !this.PartLibDisplayPartPartDescriptionCheckBox.Checked)
+				this.PartLibDisplayPartPartIDCheckBox.Checked = true;
+		}
+
 		private void displayBubbleInfoCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			bool isEnabled = this.PartLibDisplayBubbleInfoCheckBox.Checked;
 			this.PartLibDisplayBubblePartIDCheckBox.Enabled = isEnabled;
 			this.PartLibDisplayBubblePartColorCheckBox.Enabled = isEnabled;
 			this.PartLibDisplayBubblePartDescriptionCheckBox.Enabled = isEnabled;
+		}
+
+		private void PartLibDisplayBubblePartIDCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			// avoid having all the 3 checkbox empty
+			if (!this.PartLibDisplayBubblePartIDCheckBox.Checked && !this.PartLibDisplayBubblePartColorCheckBox.Checked && !this.PartLibDisplayBubblePartDescriptionCheckBox.Checked)
+				this.PartLibDisplayBubblePartDescriptionCheckBox.Checked = true;
+		}
+
+		private void PartLibDisplayBubblePartColorCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			// avoid having all the 3 checkbox empty
+			if (!this.PartLibDisplayBubblePartIDCheckBox.Checked && !this.PartLibDisplayBubblePartColorCheckBox.Checked && !this.PartLibDisplayBubblePartDescriptionCheckBox.Checked)
+				this.PartLibDisplayBubblePartDescriptionCheckBox.Checked = true;
+		}
+
+		private void PartLibDisplayBubblePartDescriptionCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			// avoid having all the 3 checkbox empty
+			if (!this.PartLibDisplayBubblePartIDCheckBox.Checked && !this.PartLibDisplayBubblePartColorCheckBox.Checked && !this.PartLibDisplayBubblePartDescriptionCheckBox.Checked)
+				this.PartLibDisplayBubblePartIDCheckBox.Checked = true;
 		}
 
 		private void PartLibBackColorPictureBox_Click(object sender, EventArgs e)

@@ -855,7 +855,7 @@ namespace BlueBrick
 			else if (updateBudgetCount)
 				updateAllPartCountAndBudget();
 
-			if (updateAppearance || updateBubbleInfoFormat)
+			if (updateAppearance || updateBubbleInfoFormat || updateStyle)
 			{
 				// then update the background color and the part and bubble info status
 				bool displayPartInfo = Settings.Default.PartLibDisplayPartInfo;
