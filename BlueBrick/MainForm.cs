@@ -728,10 +728,11 @@ namespace BlueBrick
 			BrickLibrary.Instance.clearAllData();
 			// reload first the connection type info because we will need it for loading the part library
 			BrickLibrary.Instance.loadConnectionTypeInfo();
+			// reload the color info, because the bricks also need the color name (for correctly setting up the color name in the bubble info)
+			BrickLibrary.Instance.loadColorInfo();
 			// reinit the parts tab control (that will fill the brick library again)
 			this.partsTabControl.initPartsTabControl();
 			// and relod the other data for the brick library (after the brick library is loaded)
-			BrickLibrary.Instance.loadColorInfo();
 			BrickLibrary.Instance.createEntriesForRenamedParts();
 			BrickLibrary.Instance.loadTrackDesignerRegistryFileList();
 		}
