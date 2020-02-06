@@ -915,7 +915,7 @@ namespace BlueBrick
 			{
 				PartListView listView = tabPage.Controls[0] as PartListView;
 				if (listView != null)
-					listView.updateViewStyle();
+					listView.updateViewStyle(true);
 			}
 		}
 
@@ -1033,6 +1033,10 @@ namespace BlueBrick
 				try
 				{
 					(tabPage.ContextMenuStrip.Items[(int)ContextMenuIndex.SHOW_PART_INFO] as ToolStripMenuItem).Checked = displayPartInfo;
+					// also change the style to display or not the text of each item
+					PartListView listView = tabPage.Controls[0] as PartListView;
+					if (listView != null)
+						listView.updateViewStyle(true);
 				}
 				catch
 				{

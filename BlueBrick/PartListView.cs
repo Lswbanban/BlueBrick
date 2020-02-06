@@ -88,7 +88,7 @@ namespace BlueBrick
 			// set the property of the list view
 			this.ShowItemToolTips = Properties.Settings.Default.PartLibDisplayBubbleInfo;
 			this.ListViewItemSorter = sListViewItemComparer; // we want to sort the items based on their Name (which contains a sorting key)
-			updateViewStyle(); // set the view style depending if budget need to be visible or not
+			updateViewStyle(false); // set the view style depending if budget need to be visible or not
 			updateBackgroundColor();
 			// remove the transparent background color for the text (which is a performance issue on dot net)
 			uint LVM_SETTEXTBKCOLOR = 0x1026;
@@ -681,9 +681,20 @@ namespace BlueBrick
 								Properties.Settings.Default.PartLibBubbleInfoPartColor,
 								Properties.Settings.Default.PartLibBubbleInfoPartDescription) + "\n";
 			}
-			// then concatene the part info with the budget
-			item.Text = itemText + Budget.Budget.Instance.getCountAndBudgetAsString(partID);
-			item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
+
+			// then concatene the part info with the budget if we have some
+			if (Budget.Budget.Instance.ShouldShowBudgetNumbers)
+			{
+				itemText += Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+				item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
+			}
+			else
+			{
+				item.BackColor = System.Drawing.Color.Empty;
+			}
+
+			// set the resulting text
+			item.Text = itemText;
 		}
 
 		/// <summary>
@@ -736,13 +747,18 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Change the view style of this list view depending if the budget is visible or not.
-		/// The budget visibility is checked from the settings, so update the settings before calling this method.
-		/// If the budget is visible, the view uses LargeIcon, otherwise, it uses Tile.
+		/// Change the view style of this list view depending if the budget and/or the part info are visible or not.
+		/// The budget visibility and part info visibility are checked from the settings, so update the settings before calling this method.
+		/// If the budget or part info is visible, the view uses LargeIcon, otherwise, it uses Tile.
+		/// <param name="shouldUpdateItemText"/>Tells if we should also update the text of each list view items</param>
 		/// </summary>
-		public void updateViewStyle()
+		public void updateViewStyle(bool shouldUpdateItemText)
 		{
-			if (Budget.Budget.Instance.ShouldShowBudgetNumbers)
+			// update all the item text if we need to
+			if (shouldUpdateItemText)
+				updateAllPartCountAndBudget();
+			// change the view style
+			if (Budget.Budget.Instance.ShouldShowBudgetNumbers || Properties.Settings.Default.PartLibDisplayPartInfo)
 				this.View = View.LargeIcon;
 			else
 				this.View = View.Tile;

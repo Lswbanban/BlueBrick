@@ -2303,8 +2303,7 @@ namespace BlueBrick
 				}
 				// recount the parts because, opening a new budget actually create a new instance of Budget, so the count is destroyed
 				Budget.Budget.Instance.recountAllBricks();
-				// update the part lib view (after recounting the bricks), and also the filtering on it
-				this.PartsTabControl.updateAllPartCountAndBudget();
+				// update the filtering on of the part lib after recounting all the bricks
 				this.PartsTabControl.updateFilterOnBudgetedParts();
 			}
 			// update the menu items
@@ -2333,7 +2332,6 @@ namespace BlueBrick
 				// create a new budget
 				Budget.Budget.Instance.create();
 				// update the part lib view
-				this.PartsTabControl.updateAllPartCountAndBudget();
 				this.PartsTabControl.updateFilterOnBudgetedParts();
 				// update the title bar
 				this.updateTitleBar();
@@ -2372,8 +2370,7 @@ namespace BlueBrick
 			{
 				// destroy the budget
 				Budget.Budget.Instance.destroy();
-				// update the part lib view (to reset all the budgets)
-				this.PartsTabControl.updateAllPartCountAndBudget();
+				// update the part lib view
 				this.PartsTabControl.updateFilterOnBudgetedParts();
 				// update the title bar (to remove the budget name from the title bar)
 				this.updateTitleBar();
