@@ -1359,18 +1359,21 @@ namespace BlueBrick
 			resources.ApplyResources(this.PartLibDisplayPartPartDescriptionCheckBox, "PartLibDisplayPartPartDescriptionCheckBox");
 			this.PartLibDisplayPartPartDescriptionCheckBox.Name = "PartLibDisplayPartPartDescriptionCheckBox";
 			this.PartLibDisplayPartPartDescriptionCheckBox.UseVisualStyleBackColor = true;
+			this.PartLibDisplayPartPartDescriptionCheckBox.CheckedChanged += new System.EventHandler(this.PartLibDisplayPartPartDescriptionCheckBox_CheckedChanged);
 			// 
 			// PartLibDisplayPartPartColorCheckBox
 			// 
 			resources.ApplyResources(this.PartLibDisplayPartPartColorCheckBox, "PartLibDisplayPartPartColorCheckBox");
 			this.PartLibDisplayPartPartColorCheckBox.Name = "PartLibDisplayPartPartColorCheckBox";
 			this.PartLibDisplayPartPartColorCheckBox.UseVisualStyleBackColor = true;
+			this.PartLibDisplayPartPartColorCheckBox.CheckedChanged += new System.EventHandler(this.PartLibDisplayPartPartColorCheckBox_CheckedChanged);
 			// 
 			// PartLibDisplayPartPartIDCheckBox
 			// 
 			resources.ApplyResources(this.PartLibDisplayPartPartIDCheckBox, "PartLibDisplayPartPartIDCheckBox");
 			this.PartLibDisplayPartPartIDCheckBox.Name = "PartLibDisplayPartPartIDCheckBox";
 			this.PartLibDisplayPartPartIDCheckBox.UseVisualStyleBackColor = true;
+			this.PartLibDisplayPartPartIDCheckBox.CheckedChanged += new System.EventHandler(this.PartLibDisplayPartPartIDCheckBox_CheckedChanged);
 			// 
 			// label41
 			// 
@@ -1401,18 +1404,21 @@ namespace BlueBrick
 			this.PartLibDisplayBubblePartDescriptionCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.PartLibDisplayBubblePartDescriptionCheckBox.Name = "PartLibDisplayBubblePartDescriptionCheckBox";
 			this.PartLibDisplayBubblePartDescriptionCheckBox.UseVisualStyleBackColor = true;
+			this.PartLibDisplayBubblePartDescriptionCheckBox.CheckedChanged += new System.EventHandler(this.PartLibDisplayBubblePartDescriptionCheckBox_CheckedChanged);
 			// 
 			// PartLibDisplayBubblePartColorCheckBox
 			// 
 			resources.ApplyResources(this.PartLibDisplayBubblePartColorCheckBox, "PartLibDisplayBubblePartColorCheckBox");
 			this.PartLibDisplayBubblePartColorCheckBox.Name = "PartLibDisplayBubblePartColorCheckBox";
 			this.PartLibDisplayBubblePartColorCheckBox.UseVisualStyleBackColor = true;
+			this.PartLibDisplayBubblePartColorCheckBox.CheckedChanged += new System.EventHandler(this.PartLibDisplayBubblePartColorCheckBox_CheckedChanged);
 			// 
 			// PartLibDisplayBubblePartIDCheckBox
 			// 
 			resources.ApplyResources(this.PartLibDisplayBubblePartIDCheckBox, "PartLibDisplayBubblePartIDCheckBox");
 			this.PartLibDisplayBubblePartIDCheckBox.Name = "PartLibDisplayBubblePartIDCheckBox";
 			this.PartLibDisplayBubblePartIDCheckBox.UseVisualStyleBackColor = true;
+			this.PartLibDisplayBubblePartIDCheckBox.CheckedChanged += new System.EventHandler(this.PartLibDisplayBubblePartIDCheckBox_CheckedChanged);
 			// 
 			// PartLibDisplayBubbleInfoCheckBox
 			// 
