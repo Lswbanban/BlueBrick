@@ -223,6 +223,30 @@ namespace BlueBrick
 			foreach (ListViewItem item in mNotBudgetedItems)
 				item.ToolTipText = BrickLibrary.Instance.getFormatedBrickInfo(item.Tag as string, displayPartId, displayColor, displayDescription);
 		}
+
+		/// <summary>
+		/// Search in all internal list and return the first ListViewItem whose tag is matching the specified part id
+		/// </summary>
+		/// <param name="partId">The tag you are looking for</param>
+		/// <returns>The list view item that match the specified tag, or null if no matching item was found</returns>
+		private ListViewItem getListViewItemFromTag(string partId)
+		{
+			// iterate on the 3 lists
+			// the item list
+			foreach (ListViewItem item in mVisibleItems)
+				if (partId.Equals(item.Tag as string))
+					return item;
+			// the filtered items
+			foreach (ListViewItem item in mFilteredItems)
+				if (partId.Equals(item.Tag as string))
+					return item;
+			// the non budgeted items
+			foreach (ListViewItem item in mNotBudgetedItems)
+				if (partId.Equals(item.Tag as string))
+					return item;
+			// no matching item found.
+			return null;
+		}
 		#endregion
 
 		#region filtering
@@ -530,8 +554,7 @@ namespace BlueBrick
 				// set the budget first
 				Budget.Budget.Instance.setBudget(partID, newBudget);
 				// before asking its formating
-				this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
-				this.Items[e.Item].BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
+				updatePartTextAndBackColor(this.Items[e.Item]);
 				// check if we have unbudgeted the part
 				if (newBudget == -1)
 					updateFilterForUnbudgetingPart(this.Items[e.Item]);
@@ -541,7 +564,8 @@ namespace BlueBrick
 			}
 			else
 			{
-				this.Items[e.Item].Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+				// just set back the proper text after the edition
+				updatePartTextAndBackColor(this.Items[e.Item]);
 			}
 
 			// reset the label for edition if we are really editing the budget
@@ -642,14 +666,11 @@ namespace BlueBrick
 		#endregion
 
 		#region related to budget
-		private void updatePartTextAndBackColor(ListViewItem item, string onlyForThisPartId)
+		public void updatePartTextAndBackColor(ListViewItem item)
 		{
 			string partID = item.Tag as string;
-			if ((onlyForThisPartId == null) || (partID.Equals(onlyForThisPartId)))
-			{
-				item.Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
-				item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
-			}
+			item.Text = Budget.Budget.Instance.getCountAndBudgetAsString(partID);
+			item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
 		}
 
 		/// <summary>
@@ -657,26 +678,31 @@ namespace BlueBrick
 		/// and update the text and background color of the text for each of these items, based
 		/// on the budget and count value in the current Budget class.
 		/// </summary>
-		/// <param name="onlyForThisPartId">can be null for updating all items, or a non null string to update only the specified item</param>
-		private void updateAllPartTextAndBackColor(string onlyForThisPartId)
+		private void updateAllPartTextAndBackColor()
 		{
 			// iterate on the 3 lists
 			// the item list
 			foreach (ListViewItem item in mVisibleItems)
-				updatePartTextAndBackColor(item, onlyForThisPartId);
+				updatePartTextAndBackColor(item);
 			// the filtered items
 			foreach (ListViewItem item in mFilteredItems)
-				updatePartTextAndBackColor(item, onlyForThisPartId);
+				updatePartTextAndBackColor(item);
 			// the non budgeted items
 			foreach (ListViewItem item in mNotBudgetedItems)
-				updatePartTextAndBackColor(item, onlyForThisPartId);
+				updatePartTextAndBackColor(item);
 		}
 
+		/// <summary>
+		/// Update the part count and budget text written under the part in the part library for the specified part id.
+		/// </summary>
+		/// <param name="partID">The part id of the part that you want to update</param>
 		public void updatePartCountAndBudget(string partID)
 		{
 			// since the partID is saved in the tag, no other choice than iterating on the list (cannot use Find() for example)
 			// no need to suspend the layout since we will update only one item
-			updateAllPartTextAndBackColor(partID);
+			ListViewItem item = getListViewItemFromTag(partID);
+			if (item != null)
+				updatePartTextAndBackColor(item);
 		}
 
 		/// <summary>
@@ -690,7 +716,7 @@ namespace BlueBrick
 			this.SuspendLayout();
 			this.BeginUpdate();
 			// iterate on all items
-			updateAllPartTextAndBackColor(null);
+			updateAllPartTextAndBackColor();
 			// resume the layout
 			this.EndUpdate();
 			this.ResumeLayout();
