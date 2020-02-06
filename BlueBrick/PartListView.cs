@@ -478,7 +478,7 @@ namespace BlueBrick
 		private void beginEditLabel()
 		{
 			mIsEditingBudget = true;
-			mItemForLabelEdit.Text = Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string);
+			mItemForLabelEdit.Text = Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string, true);
 			mItemForLabelEdit.BeginEdit();
 		}
 
@@ -498,7 +498,7 @@ namespace BlueBrick
 		{
 			// check if we need to cancel the edition, cause Mono just start the edition on a simple click
 			e.CancelEdit = (mItemForLabelEdit == null) ||
-				!mItemForLabelEdit.Text.Equals(Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string));
+				!mItemForLabelEdit.Text.Equals(Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string, true));
 		}
 
         private void PartListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
