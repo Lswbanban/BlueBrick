@@ -106,7 +106,6 @@ to open the help file (see above for more details).
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - [target 1.9] MISSING FEATURE (Matthias): An option to display part names below the parts (careful with the Budget feature)
-- [target 1.9] MISSING FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count)
 - [target 1.9] MISSING FEATURE (Matthias): Better resolution for part images (Images can have an additional <scale> property in the xml-File, if no scale parameter is provided, the default resolution of 8 pixels/stud is used)
 - [target 1.9] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - [target 1.9] MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels (mouse over should give the focus?).
@@ -145,6 +144,7 @@ Open bugs:
 Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): A feature to download library package online from various sources (official web site, and non official url).
 - NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
+- NEW FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count, option available in Preferences)
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points
 - BUGFIX (Alban): When updating in the library a group of parts that was not displayed in the library (because filtered with keyword) the image was added two times
