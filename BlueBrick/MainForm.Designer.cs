@@ -71,6 +71,7 @@ namespace BlueBrick
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exportAsPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exportPartListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.reloadPartLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.downloadAdditionnalPartsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -196,6 +197,7 @@ namespace BlueBrick
 			this.toolTipForMainForm = new System.Windows.Forms.ToolTip(this.components);
 			this.openBudgetFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.saveBudgetFileDialog = new System.Windows.Forms.SaveFileDialog();
+			this.exportPartListFileDialog = new System.Windows.Forms.SaveFileDialog();
 			((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
 			this.mainSplitContainer.Panel1.SuspendLayout();
 			this.mainSplitContainer.Panel2.SuspendLayout();
@@ -552,6 +554,7 @@ namespace BlueBrick
             this.saveToolStripMenuItem,
             this.saveasToolStripMenuItem,
             this.exportAsPictureToolStripMenuItem,
+            this.exportPartListToolStripMenuItem,
             this.toolStripSeparator2,
             this.reloadPartLibraryToolStripMenuItem,
             this.downloadAdditionnalPartsToolStripMenuItem,
@@ -600,6 +603,12 @@ namespace BlueBrick
 			this.exportAsPictureToolStripMenuItem.Name = "exportAsPictureToolStripMenuItem";
 			resources.ApplyResources(this.exportAsPictureToolStripMenuItem, "exportAsPictureToolStripMenuItem");
 			this.exportAsPictureToolStripMenuItem.Click += new System.EventHandler(this.exportAsPictureToolStripMenuItem_Click);
+			// 
+			// exportPartListToolStripMenuItem
+			// 
+			this.exportPartListToolStripMenuItem.Name = "exportPartListToolStripMenuItem";
+			resources.ApplyResources(this.exportPartListToolStripMenuItem, "exportPartListToolStripMenuItem");
+			this.exportPartListToolStripMenuItem.Click += new System.EventHandler(this.exportPartListToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
@@ -1485,6 +1494,12 @@ namespace BlueBrick
 			resources.ApplyResources(this.saveBudgetFileDialog, "saveBudgetFileDialog");
 			this.saveBudgetFileDialog.SupportMultiDottedExtensions = true;
 			// 
+			// exportPartListFileDialog
+			// 
+			this.exportPartListFileDialog.DefaultExt = "html";
+			resources.ApplyResources(this.exportPartListFileDialog, "exportPartListFileDialog");
+			this.exportPartListFileDialog.SupportMultiDottedExtensions = true;
+			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
@@ -1714,6 +1729,8 @@ namespace BlueBrick
 		private System.Windows.Forms.SplitContainer DocumentDataPartListSplitContainer;
 		private System.Windows.Forms.CheckBox SplitPartUsagePerLayerCheckBox;
 		private PartUsageView PartUsageListView;
+		private System.Windows.Forms.ToolStripMenuItem exportPartListToolStripMenuItem;
+		private System.Windows.Forms.SaveFileDialog exportPartListFileDialog;
 	}
 }
 

@@ -106,7 +106,6 @@ to open the help file (see above for more details).
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - [target 1.9] MISSING FEATURE (Matthias): Better resolution for part images (Images can have an additional <scale> property in the xml-File, if no scale parameter is provided, the default resolution of 8 pixels/stud is used)
-- [target 1.9] MISSING FEATURE (Alban): Move the part list window in a tab (with part lib or layer TBD)
 - [target 1.9] MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels (mouse over should give the focus?).
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
@@ -141,6 +140,7 @@ Open bugs:
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
 
 Bug fixed in 1.9.0.0:
+- NEW FEATURE (Alban): The part list window has been moved to a tab next to the layers list
 - NEW FEATURE (Alban): A feature to download library package online from various sources (official web site, and non official url).
 - NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
 - NEW FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count, option available in Preferences)

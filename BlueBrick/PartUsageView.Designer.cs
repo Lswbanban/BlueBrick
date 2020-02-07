@@ -32,7 +32,6 @@
 			this.quantiyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.descriptionColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.SuspendLayout();
 			// 
 			// partColumnHeader
@@ -52,12 +51,6 @@
 			// descriptionColumnHeader
 			// 
 			this.descriptionColumnHeader.Text = "Description";
-			// 
-			// saveFileDialog
-			// 
-			this.saveFileDialog.DefaultExt = "txt";
-			this.saveFileDialog.SupportMultiDottedExtensions = true;
-			this.saveFileDialog.Title = "Export Part List";
 			// 
 			// PartUsageView
 			// 
@@ -81,6 +74,5 @@
 		private System.Windows.Forms.ColumnHeader descriptionColumnHeader;
 		private System.Windows.Forms.ColumnHeader quantiyColumnHeader;
 		private System.Windows.Forms.ColumnHeader colorColumnHeader;
-		private System.Windows.Forms.SaveFileDialog saveFileDialog;
 	}
 }

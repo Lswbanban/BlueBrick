@@ -1521,6 +1521,14 @@ namespace BlueBrick
             mExportImageForm.restoreDisplaySettings();
 		}
 
+		private void exportPartListToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// open the save file dialog
+			DialogResult result = this.exportPartListFileDialog.ShowDialog();
+			if (result == DialogResult.OK)
+				this.PartUsageListView.export(this.exportPartListFileDialog.FileName);
+		}
+
 		private void reloadPartLibraryToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			reloadPartLibrary(true);
