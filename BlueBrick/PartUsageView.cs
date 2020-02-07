@@ -445,6 +445,23 @@ namespace BlueBrick
 		#endregion
 		#region export list
 
+		public void export(string filename)
+		{
+			// compute an array to store the order of the columns
+			int[] columnOrder = new int[this.Columns.Count];
+			int columnIndex = 0;
+			foreach (ColumnHeader columnHeader in this.Columns)
+			{
+				columnOrder[columnHeader.DisplayIndex] = columnIndex;
+				columnIndex++;
+			}
+			// call the correct exporter
+			if (filename.ToLower().EndsWith(".txt"))
+				exportListInTxt(filename, columnOrder);
+			else
+				exportListInHtml(filename, columnOrder);
+		}
+
 		private void exportItemsInTxt(StreamWriter writer, int[] columnOrder, int[] maxLength, ListView.ListViewItemCollection itemList)
 		{
 			foreach (ListViewItem item in itemList)
@@ -631,34 +648,12 @@ namespace BlueBrick
 		}
 
 		#endregion
-		#region form events
+		#region list view events
 		protected override void OnVisibleChanged(EventArgs e)
 		{
 			// rebuild the list if the form becomes visible
 			if (this.Visible)
 				rebuildList();
-		}
-
-		private void buttonExport_Click(object sender, EventArgs e)
-		{
-			// open the save file dialog
-			DialogResult result = this.saveFileDialog.ShowDialog();
-			if (result == DialogResult.OK)
-			{
-				// compute an array to store the order of the columns
-				int[] columnOrder = new int[this.Columns.Count];
-				int columnIndex = 0;
-				foreach (ColumnHeader columnHeader in this.Columns)
-				{
-					columnOrder[columnHeader.DisplayIndex] = columnIndex;
-					columnIndex++;
-				}
-				// call the correct exporter
-				if (this.saveFileDialog.FileName.EndsWith(".txt"))
-					exportListInTxt(this.saveFileDialog.FileName, columnOrder);
-				else
-					exportListInHtml(this.saveFileDialog.FileName, columnOrder);
-			}
 		}
 		#endregion
 	}
