@@ -1331,5 +1331,17 @@ namespace BlueBrick.Properties {
                 this["PartLibPartInfoPartID"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UISplitPartUsagePerLayer {
+            get {
+                return ((bool)(this["UISplitPartUsagePerLayer"]));
+            }
+            set {
+                this["UISplitPartUsagePerLayer"] = value;
+            }
+        }
     }
 }

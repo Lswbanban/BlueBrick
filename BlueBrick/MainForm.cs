@@ -553,6 +553,8 @@ namespace BlueBrick
 				paintToolEraseToolStripMenuItem_Click(this, null);
 			else
 				paintToolPaintToolStripMenuItem_Click(this, null);
+			// flag to split the part usage list
+			this.SplitPartUsagePerLayerCheckBox.Checked = Properties.Settings.Default.UISplitPartUsagePerLayer;
 			// toolbar and status bar visibility
 			this.toolBar.Visible = this.toolbarMenuItem.Checked = Properties.Settings.Default.UIToolbarIsVisible;
 			this.statusBar.Visible = this.statusBarMenuItem.Checked = Properties.Settings.Default.UIStatusbarIsVisible;
@@ -608,6 +610,9 @@ namespace BlueBrick
 
 			// ruler tool selected
 			Properties.Settings.Default.UIRulerToolSelected = (int)(LayerRuler.CurrentEditTool);
+
+			// flag to split the part usage list
+			Properties.Settings.Default.UISplitPartUsagePerLayer = this.SplitPartUsagePerLayerCheckBox.Checked;
 
 			// toolbar and status bar visibility
 			Properties.Settings.Default.UIToolbarIsVisible = this.toolBar.Visible;
@@ -2666,6 +2671,14 @@ namespace BlueBrick
 				ActionManager.Instance.doAction(new RemoveLayer(Map.Instance.SelectedLayer));
 		}
 
+		#endregion
+
+		#region event handler for part usage list
+		private void SplitPartUsagePerLayerCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			// change the status of the split status
+			this.PartUsageListView.SplitPartPerLayer = SplitPartUsagePerLayerCheckBox.Checked;
+		}
 		#endregion
 
 		#region event handler for map

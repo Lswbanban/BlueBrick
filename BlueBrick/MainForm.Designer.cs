@@ -194,7 +194,7 @@ namespace BlueBrick
 			this.DocumentDataPartListTabPage = new System.Windows.Forms.TabPage();
 			this.DocumentDataPartListSplitContainer = new System.Windows.Forms.SplitContainer();
 			this.PartUsageListView = new BlueBrick.PartUsageView();
-			this.useGroupCheckBox = new System.Windows.Forms.CheckBox();
+			this.SplitPartUsagePerLayerCheckBox = new System.Windows.Forms.CheckBox();
 			this.DocumentDataPropertiesTabPage = new System.Windows.Forms.TabPage();
 			this.menuBar.SuspendLayout();
 			this.toolBar.SuspendLayout();
@@ -1456,7 +1456,7 @@ namespace BlueBrick
 			// 
 			// DocumentDataPartListSplitContainer.Panel2
 			// 
-			this.DocumentDataPartListSplitContainer.Panel2.Controls.Add(this.useGroupCheckBox);
+			this.DocumentDataPartListSplitContainer.Panel2.Controls.Add(this.SplitPartUsagePerLayerCheckBox);
 			// 
 			// PartUsageListView
 			// 
@@ -1470,13 +1470,14 @@ namespace BlueBrick
 			this.PartUsageListView.UseCompatibleStateImageBehavior = false;
 			this.PartUsageListView.View = System.Windows.Forms.View.Details;
 			// 
-			// useGroupCheckBox
+			// SplitPartUsagePerLayerCheckBox
 			// 
-			resources.ApplyResources(this.useGroupCheckBox, "useGroupCheckBox");
-			this.useGroupCheckBox.Checked = true;
-			this.useGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.useGroupCheckBox.Name = "useGroupCheckBox";
-			this.useGroupCheckBox.UseVisualStyleBackColor = true;
+			resources.ApplyResources(this.SplitPartUsagePerLayerCheckBox, "SplitPartUsagePerLayerCheckBox");
+			this.SplitPartUsagePerLayerCheckBox.Checked = true;
+			this.SplitPartUsagePerLayerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.SplitPartUsagePerLayerCheckBox.Name = "SplitPartUsagePerLayerCheckBox";
+			this.SplitPartUsagePerLayerCheckBox.UseVisualStyleBackColor = true;
+			this.SplitPartUsagePerLayerCheckBox.CheckedChanged += new System.EventHandler(this.SplitPartUsagePerLayerCheckBox_CheckedChanged);
 			// 
 			// DocumentDataPropertiesTabPage
 			// 
@@ -1711,7 +1712,7 @@ namespace BlueBrick
 		private System.Windows.Forms.TabPage DocumentDataPartListTabPage;
 		private System.Windows.Forms.TabPage DocumentDataPropertiesTabPage;
 		private System.Windows.Forms.SplitContainer DocumentDataPartListSplitContainer;
-		private System.Windows.Forms.CheckBox useGroupCheckBox;
+		private System.Windows.Forms.CheckBox SplitPartUsagePerLayerCheckBox;
 		private PartUsageView PartUsageListView;
 	}
 }
