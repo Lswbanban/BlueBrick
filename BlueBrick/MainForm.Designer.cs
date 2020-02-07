@@ -101,7 +101,6 @@ namespace BlueBrick
 			this.toolbarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusBarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.watermarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.partListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
 			this.electricCircuitsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.connectionPointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -185,22 +184,18 @@ namespace BlueBrick
 			this.splitContainerPartLibrary = new System.Windows.Forms.SplitContainer();
 			this.partsTabControl = new BlueBrick.PartLibraryPanel();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+			this.DocumentDataTabControl = new System.Windows.Forms.TabControl();
+			this.DocumentDataLayerTabPage = new System.Windows.Forms.TabPage();
 			this.layerSplitContainer = new System.Windows.Forms.SplitContainer();
 			this.layerStackPanel = new BlueBrick.LayerStackPanel();
 			this.LayerButtonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.DocumentDataTabControl = new System.Windows.Forms.TabControl();
-			this.DocumentDataLayerTabPage = new System.Windows.Forms.TabPage();
 			this.DocumentDataPartListTabPage = new System.Windows.Forms.TabPage();
-			this.DocumentDataPropertiesTabPage = new System.Windows.Forms.TabPage();
 			this.DocumentDataPartListSplitContainer = new System.Windows.Forms.SplitContainer();
-			this.PartUsageListView = new System.Windows.Forms.ListView();
-			this.partColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.quantiyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.colorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.descriptionColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.PartUsageListView = new BlueBrick.PartUsageView();
 			this.useGroupCheckBox = new System.Windows.Forms.CheckBox();
+			this.DocumentDataPropertiesTabPage = new System.Windows.Forms.TabPage();
 			this.menuBar.SuspendLayout();
 			this.toolBar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
@@ -218,13 +213,13 @@ namespace BlueBrick
 			this.splitContainerPartLibrary.Panel2.SuspendLayout();
 			this.splitContainerPartLibrary.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
+			this.DocumentDataTabControl.SuspendLayout();
+			this.DocumentDataLayerTabPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layerSplitContainer)).BeginInit();
 			this.layerSplitContainer.Panel1.SuspendLayout();
 			this.layerSplitContainer.Panel2.SuspendLayout();
 			this.layerSplitContainer.SuspendLayout();
 			this.LayerButtonFlowLayoutPanel.SuspendLayout();
-			this.DocumentDataTabControl.SuspendLayout();
-			this.DocumentDataLayerTabPage.SuspendLayout();
 			this.DocumentDataPartListTabPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.DocumentDataPartListSplitContainer)).BeginInit();
 			this.DocumentDataPartListSplitContainer.Panel1.SuspendLayout();
@@ -706,7 +701,6 @@ namespace BlueBrick
             this.toolbarMenuItem,
             this.statusBarMenuItem,
             this.watermarkToolStripMenuItem,
-            this.partListToolStripMenuItem,
             this.toolStripSeparator13,
             this.electricCircuitsMenuItem,
             this.connectionPointsToolStripMenuItem,
@@ -741,12 +735,6 @@ namespace BlueBrick
 			this.watermarkToolStripMenuItem.Name = "watermarkToolStripMenuItem";
 			resources.ApplyResources(this.watermarkToolStripMenuItem, "watermarkToolStripMenuItem");
 			this.watermarkToolStripMenuItem.Click += new System.EventHandler(this.watermarkToolStripMenuItem_Click);
-			// 
-			// partListToolStripMenuItem
-			// 
-			this.partListToolStripMenuItem.Name = "partListToolStripMenuItem";
-			resources.ApplyResources(this.partListToolStripMenuItem, "partListToolStripMenuItem");
-			this.partListToolStripMenuItem.Click += new System.EventHandler(this.partListToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator13
 			// 
@@ -1388,6 +1376,22 @@ namespace BlueBrick
 			this.tableLayoutPanel1.Controls.Add(this.filterAllTabCheckBox, 1, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			// 
+			// DocumentDataTabControl
+			// 
+			resources.ApplyResources(this.DocumentDataTabControl, "DocumentDataTabControl");
+			this.DocumentDataTabControl.Controls.Add(this.DocumentDataLayerTabPage);
+			this.DocumentDataTabControl.Controls.Add(this.DocumentDataPartListTabPage);
+			this.DocumentDataTabControl.Controls.Add(this.DocumentDataPropertiesTabPage);
+			this.DocumentDataTabControl.Name = "DocumentDataTabControl";
+			this.DocumentDataTabControl.SelectedIndex = 0;
+			// 
+			// DocumentDataLayerTabPage
+			// 
+			this.DocumentDataLayerTabPage.BackColor = System.Drawing.SystemColors.Control;
+			this.DocumentDataLayerTabPage.Controls.Add(this.layerSplitContainer);
+			resources.ApplyResources(this.DocumentDataLayerTabPage, "DocumentDataLayerTabPage");
+			this.DocumentDataLayerTabPage.Name = "DocumentDataLayerTabPage";
+			// 
 			// layerSplitContainer
 			// 
 			resources.ApplyResources(this.layerSplitContainer, "layerSplitContainer");
@@ -1433,34 +1437,12 @@ namespace BlueBrick
 			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
 			// 
-			// DocumentDataTabControl
-			// 
-			resources.ApplyResources(this.DocumentDataTabControl, "DocumentDataTabControl");
-			this.DocumentDataTabControl.Controls.Add(this.DocumentDataLayerTabPage);
-			this.DocumentDataTabControl.Controls.Add(this.DocumentDataPartListTabPage);
-			this.DocumentDataTabControl.Controls.Add(this.DocumentDataPropertiesTabPage);
-			this.DocumentDataTabControl.Name = "DocumentDataTabControl";
-			this.DocumentDataTabControl.SelectedIndex = 0;
-			// 
-			// DocumentDataLayerTabPage
-			// 
-			this.DocumentDataLayerTabPage.BackColor = System.Drawing.SystemColors.Control;
-			this.DocumentDataLayerTabPage.Controls.Add(this.layerSplitContainer);
-			resources.ApplyResources(this.DocumentDataLayerTabPage, "DocumentDataLayerTabPage");
-			this.DocumentDataLayerTabPage.Name = "DocumentDataLayerTabPage";
-			// 
 			// DocumentDataPartListTabPage
 			// 
 			this.DocumentDataPartListTabPage.BackColor = System.Drawing.SystemColors.Control;
 			this.DocumentDataPartListTabPage.Controls.Add(this.DocumentDataPartListSplitContainer);
 			resources.ApplyResources(this.DocumentDataPartListTabPage, "DocumentDataPartListTabPage");
 			this.DocumentDataPartListTabPage.Name = "DocumentDataPartListTabPage";
-			// 
-			// DocumentDataPropertiesTabPage
-			// 
-			this.DocumentDataPropertiesTabPage.BackColor = System.Drawing.SystemColors.Control;
-			resources.ApplyResources(this.DocumentDataPropertiesTabPage, "DocumentDataPropertiesTabPage");
-			this.DocumentDataPropertiesTabPage.Name = "DocumentDataPropertiesTabPage";
 			// 
 			// DocumentDataPartListSplitContainer
 			// 
@@ -1479,34 +1461,14 @@ namespace BlueBrick
 			// PartUsageListView
 			// 
 			this.PartUsageListView.AllowColumnReorder = true;
-			this.PartUsageListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.partColumnHeader,
-            this.quantiyColumnHeader,
-            this.colorColumnHeader,
-            this.descriptionColumnHeader});
 			resources.ApplyResources(this.PartUsageListView, "PartUsageListView");
 			this.PartUsageListView.FullRowSelect = true;
 			this.PartUsageListView.HideSelection = false;
 			this.PartUsageListView.Name = "PartUsageListView";
 			this.PartUsageListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+			this.PartUsageListView.SplitPartPerLayer = false;
 			this.PartUsageListView.UseCompatibleStateImageBehavior = false;
 			this.PartUsageListView.View = System.Windows.Forms.View.Details;
-			// 
-			// partColumnHeader
-			// 
-			resources.ApplyResources(this.partColumnHeader, "partColumnHeader");
-			// 
-			// quantiyColumnHeader
-			// 
-			resources.ApplyResources(this.quantiyColumnHeader, "quantiyColumnHeader");
-			// 
-			// colorColumnHeader
-			// 
-			resources.ApplyResources(this.colorColumnHeader, "colorColumnHeader");
-			// 
-			// descriptionColumnHeader
-			// 
-			resources.ApplyResources(this.descriptionColumnHeader, "descriptionColumnHeader");
 			// 
 			// useGroupCheckBox
 			// 
@@ -1515,6 +1477,12 @@ namespace BlueBrick
 			this.useGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.useGroupCheckBox.Name = "useGroupCheckBox";
 			this.useGroupCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// DocumentDataPropertiesTabPage
+			// 
+			this.DocumentDataPropertiesTabPage.BackColor = System.Drawing.SystemColors.Control;
+			resources.ApplyResources(this.DocumentDataPropertiesTabPage, "DocumentDataPropertiesTabPage");
+			this.DocumentDataPropertiesTabPage.Name = "DocumentDataPropertiesTabPage";
 			// 
 			// MainForm
 			// 
@@ -1559,13 +1527,13 @@ namespace BlueBrick
 			this.splitContainerPartLibrary.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
+			this.DocumentDataTabControl.ResumeLayout(false);
+			this.DocumentDataLayerTabPage.ResumeLayout(false);
 			this.layerSplitContainer.Panel1.ResumeLayout(false);
 			this.layerSplitContainer.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layerSplitContainer)).EndInit();
 			this.layerSplitContainer.ResumeLayout(false);
 			this.LayerButtonFlowLayoutPanel.ResumeLayout(false);
-			this.DocumentDataTabControl.ResumeLayout(false);
-			this.DocumentDataLayerTabPage.ResumeLayout(false);
 			this.DocumentDataPartListTabPage.ResumeLayout(false);
 			this.DocumentDataPartListSplitContainer.Panel1.ResumeLayout(false);
 			this.DocumentDataPartListSplitContainer.Panel2.ResumeLayout(false);
@@ -1651,7 +1619,6 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
 		private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-		private System.Windows.Forms.ToolStripMenuItem partListToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSplitButton toolBarToolButton;
 		private System.Windows.Forms.ToolStripMenuItem paintToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem eraseToolStripMenuItem;
@@ -1744,12 +1711,8 @@ namespace BlueBrick
 		private System.Windows.Forms.TabPage DocumentDataPartListTabPage;
 		private System.Windows.Forms.TabPage DocumentDataPropertiesTabPage;
 		private System.Windows.Forms.SplitContainer DocumentDataPartListSplitContainer;
-		private System.Windows.Forms.ListView PartUsageListView;
-		private System.Windows.Forms.ColumnHeader partColumnHeader;
-		private System.Windows.Forms.ColumnHeader quantiyColumnHeader;
-		private System.Windows.Forms.ColumnHeader colorColumnHeader;
-		private System.Windows.Forms.ColumnHeader descriptionColumnHeader;
 		private System.Windows.Forms.CheckBox useGroupCheckBox;
+		private PartUsageView PartUsageListView;
 	}
 }
 

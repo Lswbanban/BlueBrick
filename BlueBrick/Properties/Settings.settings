@@ -122,15 +122,6 @@
     <Setting Name="UIMainFormWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>
     </Setting>
-    <Setting Name="UIPartListFormLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="UIPartListFormWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
-      <Value Profile="(Default)">Normal</Value>
-    </Setting>
-    <Setting Name="UIPartListFormSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">446, 577</Value>
-    </Setting>
     <Setting Name="UISnapGridEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -139,9 +130,6 @@
     </Setting>
     <Setting Name="UIRotationStep" Type="System.Single" Scope="User">
       <Value Profile="(Default)">90</Value>
-    </Setting>
-    <Setting Name="UIPartListFormIsVisible" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="UIToolbarIsVisible" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
