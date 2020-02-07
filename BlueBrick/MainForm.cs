@@ -553,8 +553,9 @@ namespace BlueBrick
 				paintToolEraseToolStripMenuItem_Click(this, null);
 			else
 				paintToolPaintToolStripMenuItem_Click(this, null);
-			// flag to split the part usage list
+			// flag to split the part usage list (and force the check change in case it was not changed)
 			this.SplitPartUsagePerLayerCheckBox.Checked = Properties.Settings.Default.UISplitPartUsagePerLayer;
+			SplitPartUsagePerLayerCheckBox_CheckedChanged(this, null);
 			// toolbar and status bar visibility
 			this.toolBar.Visible = this.toolbarMenuItem.Checked = Properties.Settings.Default.UIToolbarIsVisible;
 			this.statusBar.Visible = this.statusBarMenuItem.Checked = Properties.Settings.Default.UIStatusbarIsVisible;
