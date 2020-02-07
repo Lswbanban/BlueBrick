@@ -164,6 +164,16 @@ namespace BlueBrick
 			this.saveExportImageDialog = new System.Windows.Forms.SaveFileDialog();
 			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.toolTipForMainForm = new System.Windows.Forms.ToolTip(this.components);
+			this.textBoxPartFilter = new System.Windows.Forms.TextBox();
+			this.filterAllTabCheckBox = new System.Windows.Forms.CheckBox();
+			this.trashLayerButton = new System.Windows.Forms.Button();
+			this.newLayerRulerButton = new System.Windows.Forms.Button();
+			this.newLayerTextButton = new System.Windows.Forms.Button();
+			this.newLayerAreaButton = new System.Windows.Forms.Button();
+			this.newLayerBrickButton = new System.Windows.Forms.Button();
+			this.newLayerGridButton = new System.Windows.Forms.Button();
+			this.layerUpButton = new System.Windows.Forms.Button();
+			this.layerDownButton = new System.Windows.Forms.Button();
 			this.openBudgetFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.saveBudgetFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.mainSplitContainer = new BlueBrick.MainSplitContainer();
@@ -175,21 +185,22 @@ namespace BlueBrick
 			this.splitContainerPartLibrary = new System.Windows.Forms.SplitContainer();
 			this.partsTabControl = new BlueBrick.PartLibraryPanel();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.textBoxPartFilter = new System.Windows.Forms.TextBox();
-			this.filterAllTabCheckBox = new System.Windows.Forms.CheckBox();
 			this.layerSplitContainer = new System.Windows.Forms.SplitContainer();
 			this.layerStackPanel = new BlueBrick.LayerStackPanel();
 			this.LayerButtonFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.trashLayerButton = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
-			this.newLayerRulerButton = new System.Windows.Forms.Button();
-			this.newLayerTextButton = new System.Windows.Forms.Button();
-			this.newLayerAreaButton = new System.Windows.Forms.Button();
-			this.newLayerBrickButton = new System.Windows.Forms.Button();
-			this.newLayerGridButton = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
-			this.layerUpButton = new System.Windows.Forms.Button();
-			this.layerDownButton = new System.Windows.Forms.Button();
+			this.DocumentDataTabControl = new System.Windows.Forms.TabControl();
+			this.DocumentDataLayerTabPage = new System.Windows.Forms.TabPage();
+			this.DocumentDataPartListTabPage = new System.Windows.Forms.TabPage();
+			this.DocumentDataPropertiesTabPage = new System.Windows.Forms.TabPage();
+			this.DocumentDataPartListSplitContainer = new System.Windows.Forms.SplitContainer();
+			this.PartUsageListView = new System.Windows.Forms.ListView();
+			this.partColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.quantiyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.descriptionColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.useGroupCheckBox = new System.Windows.Forms.CheckBox();
 			this.menuBar.SuspendLayout();
 			this.toolBar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
@@ -212,6 +223,13 @@ namespace BlueBrick
 			this.layerSplitContainer.Panel2.SuspendLayout();
 			this.layerSplitContainer.SuspendLayout();
 			this.LayerButtonFlowLayoutPanel.SuspendLayout();
+			this.DocumentDataTabControl.SuspendLayout();
+			this.DocumentDataLayerTabPage.SuspendLayout();
+			this.DocumentDataPartListTabPage.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.DocumentDataPartListSplitContainer)).BeginInit();
+			this.DocumentDataPartListSplitContainer.Panel1.SuspendLayout();
+			this.DocumentDataPartListSplitContainer.Panel2.SuspendLayout();
+			this.DocumentDataPartListSplitContainer.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// filterLibraryCheckboxImageList
@@ -1170,6 +1188,107 @@ namespace BlueBrick
 			// 
 			this.colorDialog.Color = System.Drawing.Color.Gold;
 			// 
+			// textBoxPartFilter
+			// 
+			resources.ApplyResources(this.textBoxPartFilter, "textBoxPartFilter");
+			this.textBoxPartFilter.Name = "textBoxPartFilter";
+			this.toolTipForMainForm.SetToolTip(this.textBoxPartFilter, resources.GetString("textBoxPartFilter.ToolTip"));
+			this.textBoxPartFilter.TextChanged += new System.EventHandler(this.textBoxPartFilter_TextChanged);
+			this.textBoxPartFilter.Enter += new System.EventHandler(this.textBoxPartFilter_Enter);
+			this.textBoxPartFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPartFilter_KeyDown);
+			this.textBoxPartFilter.Leave += new System.EventHandler(this.textBoxPartFilter_Leave);
+			this.textBoxPartFilter.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBoxPartFilter_PreviewKeyDown);
+			// 
+			// filterAllTabCheckBox
+			// 
+			resources.ApplyResources(this.filterAllTabCheckBox, "filterAllTabCheckBox");
+			this.filterAllTabCheckBox.ImageList = this.filterLibraryCheckboxImageList;
+			this.filterAllTabCheckBox.Name = "filterAllTabCheckBox";
+			this.toolTipForMainForm.SetToolTip(this.filterAllTabCheckBox, resources.GetString("filterAllTabCheckBox.ToolTip"));
+			this.filterAllTabCheckBox.UseVisualStyleBackColor = true;
+			this.filterAllTabCheckBox.CheckedChanged += new System.EventHandler(this.filterAllTabCheckBox_CheckedChanged);
+			// 
+			// trashLayerButton
+			// 
+			this.trashLayerButton.BackColor = System.Drawing.SystemColors.Control;
+			this.trashLayerButton.FlatAppearance.BorderSize = 0;
+			this.trashLayerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.trashLayerButton, "trashLayerButton");
+			this.trashLayerButton.Name = "trashLayerButton";
+			this.toolTipForMainForm.SetToolTip(this.trashLayerButton, resources.GetString("trashLayerButton.ToolTip"));
+			this.trashLayerButton.UseVisualStyleBackColor = false;
+			this.trashLayerButton.Click += new System.EventHandler(this.trashLayerButton_Click);
+			// 
+			// newLayerRulerButton
+			// 
+			this.newLayerRulerButton.FlatAppearance.BorderSize = 0;
+			this.newLayerRulerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerRulerButton, "newLayerRulerButton");
+			this.newLayerRulerButton.Name = "newLayerRulerButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerRulerButton, resources.GetString("newLayerRulerButton.ToolTip"));
+			this.newLayerRulerButton.UseVisualStyleBackColor = true;
+			this.newLayerRulerButton.Click += new System.EventHandler(this.newLayerRulerButton_Click);
+			// 
+			// newLayerTextButton
+			// 
+			this.newLayerTextButton.FlatAppearance.BorderSize = 0;
+			this.newLayerTextButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerTextButton, "newLayerTextButton");
+			this.newLayerTextButton.Name = "newLayerTextButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerTextButton, resources.GetString("newLayerTextButton.ToolTip"));
+			this.newLayerTextButton.UseVisualStyleBackColor = true;
+			this.newLayerTextButton.Click += new System.EventHandler(this.newLayerTextButton_Click);
+			// 
+			// newLayerAreaButton
+			// 
+			this.newLayerAreaButton.FlatAppearance.BorderSize = 0;
+			this.newLayerAreaButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerAreaButton, "newLayerAreaButton");
+			this.newLayerAreaButton.Name = "newLayerAreaButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerAreaButton, resources.GetString("newLayerAreaButton.ToolTip"));
+			this.newLayerAreaButton.UseVisualStyleBackColor = true;
+			this.newLayerAreaButton.Click += new System.EventHandler(this.newLayerAreaButton_Click);
+			// 
+			// newLayerBrickButton
+			// 
+			this.newLayerBrickButton.FlatAppearance.BorderSize = 0;
+			this.newLayerBrickButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerBrickButton, "newLayerBrickButton");
+			this.newLayerBrickButton.Name = "newLayerBrickButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerBrickButton, resources.GetString("newLayerBrickButton.ToolTip"));
+			this.newLayerBrickButton.UseVisualStyleBackColor = true;
+			this.newLayerBrickButton.Click += new System.EventHandler(this.newLayerBrickButton_Click);
+			// 
+			// newLayerGridButton
+			// 
+			this.newLayerGridButton.FlatAppearance.BorderSize = 0;
+			this.newLayerGridButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.newLayerGridButton, "newLayerGridButton");
+			this.newLayerGridButton.Name = "newLayerGridButton";
+			this.toolTipForMainForm.SetToolTip(this.newLayerGridButton, resources.GetString("newLayerGridButton.ToolTip"));
+			this.newLayerGridButton.UseVisualStyleBackColor = true;
+			this.newLayerGridButton.Click += new System.EventHandler(this.newLayerGridButton_Click);
+			// 
+			// layerUpButton
+			// 
+			this.layerUpButton.FlatAppearance.BorderSize = 0;
+			this.layerUpButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.layerUpButton, "layerUpButton");
+			this.layerUpButton.Name = "layerUpButton";
+			this.toolTipForMainForm.SetToolTip(this.layerUpButton, resources.GetString("layerUpButton.ToolTip"));
+			this.layerUpButton.UseVisualStyleBackColor = true;
+			this.layerUpButton.Click += new System.EventHandler(this.layerUpButton_Click);
+			// 
+			// layerDownButton
+			// 
+			this.layerDownButton.FlatAppearance.BorderSize = 0;
+			this.layerDownButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
+			resources.ApplyResources(this.layerDownButton, "layerDownButton");
+			this.layerDownButton.Name = "layerDownButton";
+			this.toolTipForMainForm.SetToolTip(this.layerDownButton, resources.GetString("layerDownButton.ToolTip"));
+			this.layerDownButton.UseVisualStyleBackColor = true;
+			this.layerDownButton.Click += new System.EventHandler(this.layerDownButton_Click);
+			// 
 			// openBudgetFileDialog
 			// 
 			this.openBudgetFileDialog.DefaultExt = "bbb";
@@ -1239,7 +1358,7 @@ namespace BlueBrick
 			// toolSplitContainer.Panel2
 			// 
 			this.toolSplitContainer.Panel2.BackColor = System.Drawing.SystemColors.Control;
-			this.toolSplitContainer.Panel2.Controls.Add(this.layerSplitContainer);
+			this.toolSplitContainer.Panel2.Controls.Add(this.DocumentDataTabControl);
 			// 
 			// splitContainerPartLibrary
 			// 
@@ -1268,26 +1387,6 @@ namespace BlueBrick
 			this.tableLayoutPanel1.Controls.Add(this.textBoxPartFilter, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.filterAllTabCheckBox, 1, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			// 
-			// textBoxPartFilter
-			// 
-			resources.ApplyResources(this.textBoxPartFilter, "textBoxPartFilter");
-			this.textBoxPartFilter.Name = "textBoxPartFilter";
-			this.toolTipForMainForm.SetToolTip(this.textBoxPartFilter, resources.GetString("textBoxPartFilter.ToolTip"));
-			this.textBoxPartFilter.TextChanged += new System.EventHandler(this.textBoxPartFilter_TextChanged);
-			this.textBoxPartFilter.Enter += new System.EventHandler(this.textBoxPartFilter_Enter);
-			this.textBoxPartFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPartFilter_KeyDown);
-			this.textBoxPartFilter.Leave += new System.EventHandler(this.textBoxPartFilter_Leave);
-			this.textBoxPartFilter.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBoxPartFilter_PreviewKeyDown);
-			// 
-			// filterAllTabCheckBox
-			// 
-			resources.ApplyResources(this.filterAllTabCheckBox, "filterAllTabCheckBox");
-			this.filterAllTabCheckBox.ImageList = this.filterLibraryCheckboxImageList;
-			this.filterAllTabCheckBox.Name = "filterAllTabCheckBox";
-			this.toolTipForMainForm.SetToolTip(this.filterAllTabCheckBox, resources.GetString("filterAllTabCheckBox.ToolTip"));
-			this.filterAllTabCheckBox.UseVisualStyleBackColor = true;
-			this.filterAllTabCheckBox.CheckedChanged += new System.EventHandler(this.filterAllTabCheckBox_CheckedChanged);
 			// 
 			// layerSplitContainer
 			// 
@@ -1324,96 +1423,98 @@ namespace BlueBrick
 			resources.ApplyResources(this.LayerButtonFlowLayoutPanel, "LayerButtonFlowLayoutPanel");
 			this.LayerButtonFlowLayoutPanel.Name = "LayerButtonFlowLayoutPanel";
 			// 
-			// trashLayerButton
-			// 
-			this.trashLayerButton.BackColor = System.Drawing.SystemColors.Control;
-			this.trashLayerButton.FlatAppearance.BorderSize = 0;
-			this.trashLayerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.trashLayerButton, "trashLayerButton");
-			this.trashLayerButton.Name = "trashLayerButton";
-			this.toolTipForMainForm.SetToolTip(this.trashLayerButton, resources.GetString("trashLayerButton.ToolTip"));
-			this.trashLayerButton.UseVisualStyleBackColor = false;
-			this.trashLayerButton.Click += new System.EventHandler(this.trashLayerButton_Click);
-			// 
 			// label2
 			// 
 			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
-			// 
-			// newLayerRulerButton
-			// 
-			this.newLayerRulerButton.FlatAppearance.BorderSize = 0;
-			this.newLayerRulerButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerRulerButton, "newLayerRulerButton");
-			this.newLayerRulerButton.Name = "newLayerRulerButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerRulerButton, resources.GetString("newLayerRulerButton.ToolTip"));
-			this.newLayerRulerButton.UseVisualStyleBackColor = true;
-			this.newLayerRulerButton.Click += new System.EventHandler(this.newLayerRulerButton_Click);
-			// 
-			// newLayerTextButton
-			// 
-			this.newLayerTextButton.FlatAppearance.BorderSize = 0;
-			this.newLayerTextButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerTextButton, "newLayerTextButton");
-			this.newLayerTextButton.Name = "newLayerTextButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerTextButton, resources.GetString("newLayerTextButton.ToolTip"));
-			this.newLayerTextButton.UseVisualStyleBackColor = true;
-			this.newLayerTextButton.Click += new System.EventHandler(this.newLayerTextButton_Click);
-			// 
-			// newLayerAreaButton
-			// 
-			this.newLayerAreaButton.FlatAppearance.BorderSize = 0;
-			this.newLayerAreaButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerAreaButton, "newLayerAreaButton");
-			this.newLayerAreaButton.Name = "newLayerAreaButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerAreaButton, resources.GetString("newLayerAreaButton.ToolTip"));
-			this.newLayerAreaButton.UseVisualStyleBackColor = true;
-			this.newLayerAreaButton.Click += new System.EventHandler(this.newLayerAreaButton_Click);
-			// 
-			// newLayerBrickButton
-			// 
-			this.newLayerBrickButton.FlatAppearance.BorderSize = 0;
-			this.newLayerBrickButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerBrickButton, "newLayerBrickButton");
-			this.newLayerBrickButton.Name = "newLayerBrickButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerBrickButton, resources.GetString("newLayerBrickButton.ToolTip"));
-			this.newLayerBrickButton.UseVisualStyleBackColor = true;
-			this.newLayerBrickButton.Click += new System.EventHandler(this.newLayerBrickButton_Click);
-			// 
-			// newLayerGridButton
-			// 
-			this.newLayerGridButton.FlatAppearance.BorderSize = 0;
-			this.newLayerGridButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.newLayerGridButton, "newLayerGridButton");
-			this.newLayerGridButton.Name = "newLayerGridButton";
-			this.toolTipForMainForm.SetToolTip(this.newLayerGridButton, resources.GetString("newLayerGridButton.ToolTip"));
-			this.newLayerGridButton.UseVisualStyleBackColor = true;
-			this.newLayerGridButton.Click += new System.EventHandler(this.newLayerGridButton_Click);
 			// 
 			// label1
 			// 
 			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
 			// 
-			// layerUpButton
+			// DocumentDataTabControl
 			// 
-			this.layerUpButton.FlatAppearance.BorderSize = 0;
-			this.layerUpButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.layerUpButton, "layerUpButton");
-			this.layerUpButton.Name = "layerUpButton";
-			this.toolTipForMainForm.SetToolTip(this.layerUpButton, resources.GetString("layerUpButton.ToolTip"));
-			this.layerUpButton.UseVisualStyleBackColor = true;
-			this.layerUpButton.Click += new System.EventHandler(this.layerUpButton_Click);
+			resources.ApplyResources(this.DocumentDataTabControl, "DocumentDataTabControl");
+			this.DocumentDataTabControl.Controls.Add(this.DocumentDataLayerTabPage);
+			this.DocumentDataTabControl.Controls.Add(this.DocumentDataPartListTabPage);
+			this.DocumentDataTabControl.Controls.Add(this.DocumentDataPropertiesTabPage);
+			this.DocumentDataTabControl.Name = "DocumentDataTabControl";
+			this.DocumentDataTabControl.SelectedIndex = 0;
 			// 
-			// layerDownButton
+			// DocumentDataLayerTabPage
 			// 
-			this.layerDownButton.FlatAppearance.BorderSize = 0;
-			this.layerDownButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonShadow;
-			resources.ApplyResources(this.layerDownButton, "layerDownButton");
-			this.layerDownButton.Name = "layerDownButton";
-			this.toolTipForMainForm.SetToolTip(this.layerDownButton, resources.GetString("layerDownButton.ToolTip"));
-			this.layerDownButton.UseVisualStyleBackColor = true;
-			this.layerDownButton.Click += new System.EventHandler(this.layerDownButton_Click);
+			this.DocumentDataLayerTabPage.BackColor = System.Drawing.SystemColors.Control;
+			this.DocumentDataLayerTabPage.Controls.Add(this.layerSplitContainer);
+			resources.ApplyResources(this.DocumentDataLayerTabPage, "DocumentDataLayerTabPage");
+			this.DocumentDataLayerTabPage.Name = "DocumentDataLayerTabPage";
+			// 
+			// DocumentDataPartListTabPage
+			// 
+			this.DocumentDataPartListTabPage.BackColor = System.Drawing.SystemColors.Control;
+			this.DocumentDataPartListTabPage.Controls.Add(this.DocumentDataPartListSplitContainer);
+			resources.ApplyResources(this.DocumentDataPartListTabPage, "DocumentDataPartListTabPage");
+			this.DocumentDataPartListTabPage.Name = "DocumentDataPartListTabPage";
+			// 
+			// DocumentDataPropertiesTabPage
+			// 
+			this.DocumentDataPropertiesTabPage.BackColor = System.Drawing.SystemColors.Control;
+			resources.ApplyResources(this.DocumentDataPropertiesTabPage, "DocumentDataPropertiesTabPage");
+			this.DocumentDataPropertiesTabPage.Name = "DocumentDataPropertiesTabPage";
+			// 
+			// DocumentDataPartListSplitContainer
+			// 
+			resources.ApplyResources(this.DocumentDataPartListSplitContainer, "DocumentDataPartListSplitContainer");
+			this.DocumentDataPartListSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+			this.DocumentDataPartListSplitContainer.Name = "DocumentDataPartListSplitContainer";
+			// 
+			// DocumentDataPartListSplitContainer.Panel1
+			// 
+			this.DocumentDataPartListSplitContainer.Panel1.Controls.Add(this.PartUsageListView);
+			// 
+			// DocumentDataPartListSplitContainer.Panel2
+			// 
+			this.DocumentDataPartListSplitContainer.Panel2.Controls.Add(this.useGroupCheckBox);
+			// 
+			// PartUsageListView
+			// 
+			this.PartUsageListView.AllowColumnReorder = true;
+			this.PartUsageListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.partColumnHeader,
+            this.quantiyColumnHeader,
+            this.colorColumnHeader,
+            this.descriptionColumnHeader});
+			resources.ApplyResources(this.PartUsageListView, "PartUsageListView");
+			this.PartUsageListView.FullRowSelect = true;
+			this.PartUsageListView.HideSelection = false;
+			this.PartUsageListView.Name = "PartUsageListView";
+			this.PartUsageListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+			this.PartUsageListView.UseCompatibleStateImageBehavior = false;
+			this.PartUsageListView.View = System.Windows.Forms.View.Details;
+			// 
+			// partColumnHeader
+			// 
+			resources.ApplyResources(this.partColumnHeader, "partColumnHeader");
+			// 
+			// quantiyColumnHeader
+			// 
+			resources.ApplyResources(this.quantiyColumnHeader, "quantiyColumnHeader");
+			// 
+			// colorColumnHeader
+			// 
+			resources.ApplyResources(this.colorColumnHeader, "colorColumnHeader");
+			// 
+			// descriptionColumnHeader
+			// 
+			resources.ApplyResources(this.descriptionColumnHeader, "descriptionColumnHeader");
+			// 
+			// useGroupCheckBox
+			// 
+			resources.ApplyResources(this.useGroupCheckBox, "useGroupCheckBox");
+			this.useGroupCheckBox.Checked = true;
+			this.useGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.useGroupCheckBox.Name = "useGroupCheckBox";
+			this.useGroupCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
@@ -1463,6 +1564,14 @@ namespace BlueBrick
 			((System.ComponentModel.ISupportInitialize)(this.layerSplitContainer)).EndInit();
 			this.layerSplitContainer.ResumeLayout(false);
 			this.LayerButtonFlowLayoutPanel.ResumeLayout(false);
+			this.DocumentDataTabControl.ResumeLayout(false);
+			this.DocumentDataLayerTabPage.ResumeLayout(false);
+			this.DocumentDataPartListTabPage.ResumeLayout(false);
+			this.DocumentDataPartListSplitContainer.Panel1.ResumeLayout(false);
+			this.DocumentDataPartListSplitContainer.Panel2.ResumeLayout(false);
+			this.DocumentDataPartListSplitContainer.Panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.DocumentDataPartListSplitContainer)).EndInit();
+			this.DocumentDataPartListSplitContainer.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1630,6 +1739,17 @@ namespace BlueBrick
 		private System.Windows.Forms.OpenFileDialog openBudgetFileDialog;
 		private System.Windows.Forms.SaveFileDialog saveBudgetFileDialog;
         private System.Windows.Forms.ToolStripMenuItem downloadAdditionnalPartsToolStripMenuItem;
-    }
+		private System.Windows.Forms.TabControl DocumentDataTabControl;
+		private System.Windows.Forms.TabPage DocumentDataLayerTabPage;
+		private System.Windows.Forms.TabPage DocumentDataPartListTabPage;
+		private System.Windows.Forms.TabPage DocumentDataPropertiesTabPage;
+		private System.Windows.Forms.SplitContainer DocumentDataPartListSplitContainer;
+		private System.Windows.Forms.ListView PartUsageListView;
+		private System.Windows.Forms.ColumnHeader partColumnHeader;
+		private System.Windows.Forms.ColumnHeader quantiyColumnHeader;
+		private System.Windows.Forms.ColumnHeader colorColumnHeader;
+		private System.Windows.Forms.ColumnHeader descriptionColumnHeader;
+		private System.Windows.Forms.CheckBox useGroupCheckBox;
+	}
 }
 

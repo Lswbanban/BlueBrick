@@ -117,19 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="splitContainer1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="splitContainer1.IsSplitterFixed" type="System.Boolean, mscorlib">
+  <data name="DocumentDataPartListSplitContainer.IsSplitterFixed" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="splitContainer1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="DocumentDataPartListSplitContainer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
   </data>
-  <data name="splitContainer1.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DocumentDataPartListSplitContainer.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
     <value>Horizontal</value>
   </data>
   <data name="partColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
@@ -168,14 +165,11 @@
   <data name="descriptionColumnHeader.Width" type="System.Int32, mscorlib">
     <value>198</value>
   </data>
-  <data name="PartUsageListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
   <data name="PartUsageListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="PartUsageListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>407, 454</value>
+    <value>368, 376</value>
   </data>
   <data name="PartUsageListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -187,24 +181,24 @@
     <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PartUsageListView.Parent" xml:space="preserve">
-    <value>splitContainer1.Panel1</value>
+    <value>DocumentDataPartListSplitContainer.Panel1</value>
   </data>
   <data name="&gt;&gt;PartUsageListView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Panel1.Name" xml:space="preserve">
-    <value>splitContainer1.Panel1</value>
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.Panel1.Name" xml:space="preserve">
+    <value>DocumentDataPartListSplitContainer.Panel1</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Panel1.Type" xml:space="preserve">
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.Panel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Panel1.Parent" xml:space="preserve">
-    <value>splitContainer1</value>
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.Panel1.Parent" xml:space="preserve">
+    <value>DocumentDataPartListSplitContainer</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Panel1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.Panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="splitContainer1.Panel1MinSize" type="System.Int32, mscorlib">
+  <data name="DocumentDataPartListSplitContainer.Panel1MinSize" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
   <data name="tableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
@@ -214,7 +208,7 @@
     <value>Right</value>
   </data>
   <data name="buttonClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>294, 9</value>
+    <value>258, 9</value>
   </data>
   <data name="buttonClose.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 26</value>
@@ -271,7 +265,7 @@
     <value>True</value>
   </data>
   <data name="useGroupCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 13</value>
+    <value>124, 13</value>
   </data>
   <data name="useGroupCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 17</value>
@@ -307,7 +301,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>407, 44</value>
+    <value>371, 44</value>
   </data>
   <data name="tableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -319,7 +313,7 @@
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel.Parent" xml:space="preserve">
-    <value>splitContainer1.Panel2</value>
+    <value>DocumentDataPartListSplitContainer.Panel2</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -327,40 +321,40 @@
   <data name="tableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="buttonClose" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="buttonExport" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="useGroupCheckBox" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,32,15963,Percent,35,21127,Percent,32,39437" /&gt;&lt;Rows Styles="Percent,100,Absolute,32,Absolute,32" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Panel2.Name" xml:space="preserve">
-    <value>splitContainer1.Panel2</value>
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.Panel2.Name" xml:space="preserve">
+    <value>DocumentDataPartListSplitContainer.Panel2</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Panel2.Type" xml:space="preserve">
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.Panel2.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Panel2.Parent" xml:space="preserve">
-    <value>splitContainer1</value>
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.Panel2.Parent" xml:space="preserve">
+    <value>DocumentDataPartListSplitContainer</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Panel2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.Panel2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="splitContainer1.Panel2MinSize" type="System.Int32, mscorlib">
+  <data name="DocumentDataPartListSplitContainer.Panel2MinSize" type="System.Int32, mscorlib">
     <value>44</value>
   </data>
-  <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>407, 502</value>
+  <data name="DocumentDataPartListSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>371, 445</value>
   </data>
-  <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>454</value>
+  <data name="DocumentDataPartListSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>397</value>
   </data>
-  <data name="splitContainer1.TabIndex" type="System.Int32, mscorlib">
+  <data name="DocumentDataPartListSplitContainer.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Name" xml:space="preserve">
-    <value>splitContainer1</value>
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.Name" xml:space="preserve">
+    <value>DocumentDataPartListSplitContainer</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Type" xml:space="preserve">
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;DocumentDataPartListSplitContainer.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="saveFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
