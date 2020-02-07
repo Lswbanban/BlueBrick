@@ -126,11 +126,19 @@ namespace BlueBrick
 			}
 		}
 
-		private bool mSplitPartPerLayer = false;
+		private bool mSplitPartPerLayer = true;
 		public bool SplitPartPerLayer
 		{
 			get { return mSplitPartPerLayer; }
-			set { mSplitPartPerLayer = value; }
+			set
+			{
+				// check if the value has actually changed (to avoid rebuilding list for nothing)
+				if (mSplitPartPerLayer != value)
+				{
+					mSplitPartPerLayer = value;
+					rebuildList();
+				}
+			}
 		}
 
 		private List<GroupEntry> mGroupEntryList = new List<GroupEntry>();
@@ -629,11 +637,6 @@ namespace BlueBrick
 			// rebuild the list if the form becomes visible
 			if (this.Visible)
 				rebuildList();
-		}
-
-		private void useGroupCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
-			rebuildList();
 		}
 
 		private void buttonExport_Click(object sender, EventArgs e)
