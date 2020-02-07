@@ -43,6 +43,7 @@
 			// quantiyColumnHeader
 			// 
 			this.quantiyColumnHeader.Text = "Quantity";
+			this.quantiyColumnHeader.Width = 55;
 			// 
 			// colorColumnHeader
 			// 
