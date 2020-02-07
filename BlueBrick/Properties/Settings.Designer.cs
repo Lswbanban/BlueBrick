@@ -432,42 +432,6 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point UIPartListFormLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["UIPartListFormLocation"]));
-            }
-            set {
-                this["UIPartListFormLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public global::System.Windows.Forms.FormWindowState UIPartListFormWindowState {
-            get {
-                return ((global::System.Windows.Forms.FormWindowState)(this["UIPartListFormWindowState"]));
-            }
-            set {
-                this["UIPartListFormWindowState"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("446, 577")]
-        public global::System.Drawing.Size UIPartListFormSize {
-            get {
-                return ((global::System.Drawing.Size)(this["UIPartListFormSize"]));
-            }
-            set {
-                this["UIPartListFormSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool UISnapGridEnabled {
             get {
@@ -499,18 +463,6 @@ namespace BlueBrick.Properties {
             }
             set {
                 this["UIRotationStep"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool UIPartListFormIsVisible {
-            get {
-                return ((bool)(this["UIPartListFormIsVisible"]));
-            }
-            set {
-                this["UIPartListFormIsVisible"] = value;
             }
         }
         

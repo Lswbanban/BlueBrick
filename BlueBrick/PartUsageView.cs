@@ -14,8 +14,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -24,7 +22,7 @@ using System.IO;
 
 namespace BlueBrick
 {
-	public partial class PartListForm : Form
+	public partial class PartUsageView : ListView
 	{
 		private class IconEntry
 		{
@@ -128,19 +126,23 @@ namespace BlueBrick
 			}
 		}
 
-		private MainForm mMainFormReference = null;
+		private bool mSplitPartPerLayer = false;
+		public bool SplitPartPerLayer
+		{
+			get { return mSplitPartPerLayer; }
+			set { mSplitPartPerLayer = value; }
+		}
+
 		private List<GroupEntry> mGroupEntryList = new List<GroupEntry>();
 		private Dictionary<string, IconEntry> mThumbnailImage = new Dictionary<string, IconEntry>();
 
 		#region constructor
-		public PartListForm(MainForm parentForm)
+		public PartUsageView()
 		{
 			InitializeComponent();
 			// set the size of the image (do not change)
-			this.PartUsageListView.SmallImageList = new ImageList();
-			this.PartUsageListView.SmallImageList.ImageSize = new Size(16, 16);
-			// save the parent form
-			mMainFormReference = parentForm;
+			this.SmallImageList = new ImageList();
+			this.SmallImageList.ImageSize = new Size(16, 16);
 		}
 		#endregion
 		#region update
@@ -178,7 +180,7 @@ namespace BlueBrick
 		{
 			// do nothing if the window is not visible
 			// because we rebuild everything when it becomes visible
-			if (layer == null || !this.Visible || !this.useGroupCheckBox.Checked)
+			if (layer == null || !this.Visible || !this.SplitPartPerLayer)
 				return;
 
 			// search the layer
@@ -200,7 +202,7 @@ namespace BlueBrick
 		{
 			// search the group entry associated with this layer
 			GroupEntry currentGroupEntry = null;
-			if (this.useGroupCheckBox.Checked)
+			if (this.SplitPartPerLayer)
 			{
 				foreach (GroupEntry groupEntry in mGroupEntryList)
 					if (groupEntry.mLayer == layer)
@@ -211,9 +213,9 @@ namespace BlueBrick
 				// if the group entry is not found we create one
 				if ((currentGroupEntry == null) && createOneIfMissing)
 				{
-					currentGroupEntry = new GroupEntry(layer, this.PartUsageListView);
+					currentGroupEntry = new GroupEntry(layer, this);
 					mGroupEntryList.Add(currentGroupEntry);
-					this.PartUsageListView.Groups.Add(currentGroupEntry.Group);
+					this.Groups.Add(currentGroupEntry.Group);
 				}
 			}
 			else
@@ -295,9 +297,9 @@ namespace BlueBrick
 					}
 
 			// remove the group from the list view and the mGroupEntryList if it is empty
-			if (this.useGroupCheckBox.Checked && (currentGroupEntry.Group.Items.Count == 0))
+			if (this.SplitPartPerLayer && (currentGroupEntry.Group.Items.Count == 0))
 			{
-				this.PartUsageListView.Groups.Remove(currentGroupEntry.Group);
+				this.Groups.Remove(currentGroupEntry.Group);
 				mGroupEntryList.Remove(currentGroupEntry);
 			}
 		}
@@ -333,7 +335,7 @@ namespace BlueBrick
 			IconEntry iconEntry = null;
 			if (!mThumbnailImage.TryGetValue(partNumber, out iconEntry))
 			{
-				iconEntry = new IconEntry(partNumber, this.PartUsageListView.SmallImageList);
+				iconEntry = new IconEntry(partNumber, this.SmallImageList);
 				mThumbnailImage.Add(partNumber, iconEntry);
 			}
 
@@ -351,7 +353,7 @@ namespace BlueBrick
 
 			// add the item in the list view if not already in
 			if (brickEntry.IsQuantityNull)
-				this.PartUsageListView.Items.Add(brickEntry.Item);
+				this.Items.Add(brickEntry.Item);
 			// and increment its count
 			brickEntry.incrementQuantity();
 		}
@@ -372,9 +374,9 @@ namespace BlueBrick
 				removeBrick(item, currentGroupEntry);
 
 			// remove the group from the list view and the mGroupEntryList
-			if (this.useGroupCheckBox.Checked)
+			if (this.SplitPartPerLayer)
 			{
-				this.PartUsageListView.Groups.Remove(currentGroupEntry.Group);
+				this.Groups.Remove(currentGroupEntry.Group);
 				mGroupEntryList.Remove(currentGroupEntry);
 			}
 		}
@@ -392,7 +394,7 @@ namespace BlueBrick
 				brickEntry.decrementQuantity();
 				if (brickEntry.IsQuantityNull)
 				{
-					this.PartUsageListView.Items.Remove(brickEntry.Item);
+					this.Items.Remove(brickEntry.Item);
 				}
 			}
 		}
@@ -410,12 +412,12 @@ namespace BlueBrick
 			// clear everyting that we will rebuild
 			mThumbnailImage.Clear();
 			mGroupEntryList.Clear();
-			this.PartUsageListView.Groups.Clear();
-			this.PartUsageListView.Items.Clear();
-			this.PartUsageListView.SmallImageList.Images.Clear();
+			this.Groups.Clear();
+			this.Items.Clear();
+			this.SmallImageList.Images.Clear();
 
 			// create a default dictionnary if we don't use the layers
-			if (!this.useGroupCheckBox.Checked)
+			if (!this.SplitPartPerLayer)
 			{
 				GroupEntry groupEntry = new GroupEntry(null, null);
 				mGroupEntryList.Add(groupEntry);
@@ -459,10 +461,10 @@ namespace BlueBrick
 		private void exportListInTxt(string fileName, int[] columnOrder)
 		{
 			//compute the max lenght of texts of each column
-			int[] maxLength = new int[this.PartUsageListView.Columns.Count];
+			int[] maxLength = new int[this.Columns.Count];
 			for (int i = 0; i < maxLength.Length; ++i)
 				maxLength[i] = 0;
-			foreach (ListViewItem item in this.PartUsageListView.Items)
+			foreach (ListViewItem item in this.Items)
 			{
 				for (int i = 0; i < maxLength.Length; ++i)
 				{
@@ -500,9 +502,9 @@ namespace BlueBrick
 				writer.WriteLine();
 				writer.WriteLine();
 				// the parts
-				if (this.useGroupCheckBox.Checked)
+				if (this.SplitPartPerLayer)
 				{
-					foreach (ListViewGroup group in this.PartUsageListView.Groups)
+					foreach (ListViewGroup group in this.Groups)
 					{
 						writer.WriteLine("| " + group.Header);
 						writer.WriteLine(headerLine);
@@ -514,7 +516,7 @@ namespace BlueBrick
 				else
 				{
 					writer.WriteLine(headerLine);
-					exportItemsInTxt(writer, columnOrder, maxLength, this.PartUsageListView.Items);
+					exportItemsInTxt(writer, columnOrder, maxLength, this.Items);
 					writer.WriteLine(headerLine);
 				}
 
@@ -589,9 +591,9 @@ namespace BlueBrick
                 writer.WriteLine("\t<TR><TD ALIGN=\"right\" VALIGN=\"top\"><B>Comment:</B></TD><TD>{0}</TD></TR>", Map.Instance.Comment.Replace(Environment.NewLine, "<BR>"));
 				writer.WriteLine("</TABLE>\n<BR>\n<BR>\n<CENTER>");
 				// the parts
-				if (this.useGroupCheckBox.Checked)
+				if (this.SplitPartPerLayer)
 				{
-					foreach (ListViewGroup group in this.PartUsageListView.Groups)
+					foreach (ListViewGroup group in this.Groups)
 					{
 						writer.WriteLine("<TABLE BORDER=1 WIDTH=95% CELLPADDING=10>");
 						writer.WriteLine("<TR><TD COLSPAN={0}><B>{1}</B></TD></TR>", columnOrder.Length, group.Header);
@@ -605,9 +607,9 @@ namespace BlueBrick
 					writer.WriteLine("<TABLE BORDER=1 WIDTH=95% CELLPADDING=10>");
 					writer.WriteLine("<TR>");
 					for (int i = 0; i < columnOrder.Length; ++i)
-						writer.WriteLine("\t<TD ALIGN=\"center\"><B>{0}</B></TD>", this.PartUsageListView.Columns[columnOrder[i]].Text);
+						writer.WriteLine("\t<TD ALIGN=\"center\"><B>{0}</B></TD>", this.Columns[columnOrder[i]].Text);
 					writer.WriteLine("</TR>");
-					exportItemsInHtml(writer, columnOrder, this.PartUsageListView.Items);
+					exportItemsInHtml(writer, columnOrder, this.Items);
 					writer.WriteLine("</TABLE>");
 				}
 				writer.WriteLine("</CENTER></BODY>\n</HTML>");
@@ -622,20 +624,7 @@ namespace BlueBrick
 
 		#endregion
 		#region form events
-		private void PartListForm_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			// the form is never closed, only hidden, call the menu item instead
-			mMainFormReference.partListToolStripMenuItem_Click(sender, null);
-			e.Cancel = true;
-		}
-
-		private void buttonClose_Click(object sender, EventArgs e)
-		{
-			// the form is never closed, only hidden, call the menu item instead
-			mMainFormReference.partListToolStripMenuItem_Click(sender, e);
-		}
-
-		private void listView_VisibleChanged(object sender, EventArgs e)
+		protected override void OnVisibleChanged(EventArgs e)
 		{
 			// rebuild the list if the form becomes visible
 			if (this.Visible)
@@ -654,9 +643,9 @@ namespace BlueBrick
 			if (result == DialogResult.OK)
 			{
 				// compute an array to store the order of the columns
-				int[] columnOrder = new int[this.PartUsageListView.Columns.Count];
+				int[] columnOrder = new int[this.Columns.Count];
 				int columnIndex = 0;
-				foreach (ColumnHeader columnHeader in this.PartUsageListView.Columns)
+				foreach (ColumnHeader columnHeader in this.Columns)
 				{
 					columnOrder[columnHeader.DisplayIndex] = columnIndex;
 					columnIndex++;

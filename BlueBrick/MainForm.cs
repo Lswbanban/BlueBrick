@@ -110,9 +110,6 @@ namespace BlueBrick
 		private Bitmap mPaintIcon = null; // the paint icon contains the color of the paint in the background
 		private Color mCurrentPaintIconColor = Color.Empty;
 
-		// the part list view
-		private PartListForm mPartListForm = null;
-
 		// for some strange reason, under Mono, the export form crash in the ctor when instanciated a second time.
 		// so instanciate only one time and keep the instance
 		private ExportImageForm mExportImageForm = new ExportImageForm();
@@ -461,8 +458,6 @@ namespace BlueBrick
 		{
 			InitializeComponent();
 			sInstance = this;
-			// create and hide the part list form
-			mPartListForm = new PartListForm(this);
 			// load the custom cursors and icons
 			LoadEmbededCustomCursors();
 			// reset the shortcut keys
@@ -539,11 +534,6 @@ namespace BlueBrick
 			this.showOnlyBudgetedPartsToolStripMenuItem.Checked = Properties.Settings.Default.ShowOnlyBudgetedParts;
 			this.showBudgetNumbersToolStripMenuItem.Checked = Properties.Settings.Default.ShowBudgetNumbers;
 			this.useBudgetLimitationToolStripMenuItem.Checked = Properties.Settings.Default.UseBudgetLimitation;
-			// part list window
-			mPartListForm.Location = Properties.Settings.Default.UIPartListFormLocation;
-			mPartListForm.Size = Properties.Settings.Default.UIPartListFormSize;
-			mPartListForm.WindowState = Properties.Settings.Default.UIPartListFormWindowState;
-			mPartListForm.Visible = this.partListToolStripMenuItem.Checked = Properties.Settings.Default.UIPartListFormIsVisible;
 			// snap grid button enable and size
 			enableSnapGridButton(Properties.Settings.Default.UISnapGridEnabled, Properties.Settings.Default.UISnapGridSize);
 			// rotation step
@@ -600,20 +590,6 @@ namespace BlueBrick
 				// save the restore window size
 				Properties.Settings.Default.UIMainFormLocation = this.RestoreBounds.Location;
 				Properties.Settings.Default.UIMainFormSize = this.RestoreBounds.Size;
-			}
-
-			// save also the window size/position/state of the Part List Window
-			Properties.Settings.Default.UIPartListFormIsVisible = mPartListForm.Visible;
-			Properties.Settings.Default.UIPartListFormWindowState = mPartListForm.WindowState;
-			if (mPartListForm.WindowState == FormWindowState.Normal)
-			{
-				Properties.Settings.Default.UIPartListFormLocation = mPartListForm.Location;
-				Properties.Settings.Default.UIPartListFormSize = mPartListForm.Size;
-			}
-			else
-			{
-				Properties.Settings.Default.UIPartListFormLocation = mPartListForm.RestoreBounds.Location;
-				Properties.Settings.Default.UIPartListFormSize = mPartListForm.RestoreBounds.Size;
 			}
 
 			// split container
@@ -1065,29 +1041,29 @@ namespace BlueBrick
 
 		public void NotifyPartListForLayerAdded(Layer layer)
 		{
-			mPartListForm.addLayerNotification(layer as LayerBrick);
+			this.PartUsageListView.addLayerNotification(layer as LayerBrick);
 		}
 
 		public void NotifyPartListForLayerRemoved(Layer layer)
 		{
-			mPartListForm.removeLayerNotification(layer as LayerBrick);
+			this.PartUsageListView.removeLayerNotification(layer as LayerBrick);
 		}
 
 		public void NotifyPartListForLayerRenamed(Layer layer)
 		{
-			mPartListForm.renameLayerNotification(layer as LayerBrick);
+			this.PartUsageListView.renameLayerNotification(layer as LayerBrick);
 		}
 
 		public void NotifyPartListForBrickAdded(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToRegroup)
 		{
-			mPartListForm.addBrickNotification(layer, brickOrGroup, isDueToRegroup);
+			this.PartUsageListView.addBrickNotification(layer, brickOrGroup, isDueToRegroup);
 			Budget.Budget.Instance.addBrickNotification(brickOrGroup, isDueToRegroup);
 			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup);
 		}
 
 		public void NotifyPartListForBrickRemoved(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToUngroup)
 		{
-			mPartListForm.removeBrickNotification(layer, brickOrGroup, isDueToUngroup);
+			this.PartUsageListView.removeBrickNotification(layer, brickOrGroup, isDueToUngroup);
 			Budget.Budget.Instance.removeBrickNotification(brickOrGroup, isDueToUngroup);
 			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup);
 		}
@@ -1189,7 +1165,7 @@ namespace BlueBrick
 			changeCurrentMapFileName(Properties.Resources.DefaultSaveFileName, false);
 			// update the view any way
             this.updateView(Actions.Action.UpdateViewType.FULL, Actions.Action.UpdateViewType.FULL);
-			mPartListForm.rebuildList();
+			this.PartUsageListView.rebuildList();
 			Budget.Budget.Instance.recountAllBricks();
 			this.PartsTabControl.updateAllPartCountAndBudget();
 			// force a garbage collect because we just trashed the previous map
@@ -1264,7 +1240,7 @@ namespace BlueBrick
 				this.mapPanel.moveViewToMapCenter();
 				// update the view
 				this.updateView(Actions.Action.UpdateViewType.FULL, Actions.Action.UpdateViewType.FULL);
-				mPartListForm.rebuildList();
+				this.PartUsageListView.rebuildList();
 				Budget.Budget.Instance.recountAllBricks();
 				this.PartsTabControl.updateAllPartCountAndBudget();
 				//check if some parts were missing in the library for displaying a warning message
@@ -2156,9 +2132,6 @@ namespace BlueBrick
 					// it will launch a new instance of the application, so if the user can cancel the close
 					// of the current instance he may end up with two instances.
 					mCanUserCancelTheApplicationClose = false;
-					// close the Part List else it prevent the application to close
-					mPartListForm.Close();
-					mPartListForm.Dispose();
 					// and restart the application
 					Application.Restart();
 				}
@@ -2184,14 +2157,6 @@ namespace BlueBrick
 		{
 			Properties.Settings.Default.DisplayGeneralInfoWatermark = this.watermarkToolStripMenuItem.Checked;
 			this.mapPanel.Invalidate();
-		}
-
-		public void partListToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			// reverse the state of the visibility of the part list form
-			mPartListForm.Visible = !mPartListForm.Visible;
-			// and set the checkbox as the visibility
-			this.partListToolStripMenuItem.Checked = mPartListForm.Visible;
 		}
 
 		private void electricCircuitsMenuItem_Click(object sender, EventArgs e)
