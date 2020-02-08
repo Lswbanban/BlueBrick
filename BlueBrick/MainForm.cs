@@ -1048,6 +1048,37 @@ namespace BlueBrick
 			Layer.CurrentSnapGridSize = size;
 		}
 
+		/// <summary>
+		/// Update the General info UI controls in the property tab from the currently loaded map.
+		/// </summary>
+		private void updateMapGeneralInfo()
+		{
+			// fill the text controls
+			this.AuthorTextBox.Text = Map.Instance.Author;
+			this.lugComboBox.Text = Map.Instance.LUG;
+			this.showComboBox.Text = Map.Instance.Show;
+			this.dateTimePicker.Value = Map.Instance.Date;
+			char[] splitter = { '\n' };
+			this.commentTextBox.Lines = Map.Instance.Comment.Split(splitter);
+
+			// compute the size
+			RectangleF totalArea = Map.Instance.getTotalAreaInStud(true);
+			MapData.Tools.Distance width = new MapData.Tools.Distance(totalArea.Width, MapData.Tools.Distance.Unit.STUD);
+			MapData.Tools.Distance height = new MapData.Tools.Distance(totalArea.Height, MapData.Tools.Distance.Unit.STUD);
+
+			this.labelWidthModule.Text = Math.Ceiling(width.DistanceInModule).ToString();
+			this.labelHeightModule.Text = Math.Ceiling(height.DistanceInModule).ToString();
+
+			this.labelWidthStud.Text = Math.Round(width.DistanceInStud).ToString();
+			this.labelHeightStud.Text = Math.Round(height.DistanceInStud).ToString();
+
+			this.labelWidthMeter.Text = width.DistanceInMeter.ToString("N2");
+			this.labelHeightMeter.Text = height.DistanceInMeter.ToString("N2");
+
+			this.labelWidthFeet.Text = width.DistanceInFeet.ToString("N2");
+			this.labelHeightFeet.Text = height.DistanceInFeet.ToString("N2");
+		}
+
 		public void NotifyPartListForLayerAdded(Layer layer)
 		{
 			this.PartUsageListView.addLayerNotification(layer as LayerBrick);
@@ -1177,6 +1208,8 @@ namespace BlueBrick
 			this.PartUsageListView.rebuildList();
 			Budget.Budget.Instance.recountAllBricks();
 			this.PartsTabControl.updateAllPartCountAndBudget();
+			// update the properties
+			updateMapGeneralInfo();
 			// force a garbage collect because we just trashed the previous map
 			GC.Collect();
 		}
@@ -1252,6 +1285,8 @@ namespace BlueBrick
 				this.PartUsageListView.rebuildList();
 				Budget.Budget.Instance.recountAllBricks();
 				this.PartsTabControl.updateAllPartCountAndBudget();
+				// update the properties
+				updateMapGeneralInfo();
 				//check if some parts were missing in the library for displaying a warning message
 				if (BrickLibrary.Instance.WereUnknownBricksAdded)
 				{
