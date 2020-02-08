@@ -25,9 +25,16 @@ namespace BlueBrick.Actions.Maps
 		{
 			public string mAuthor = null;
 			public string mLUG = null;
-			public string mShow = null;
+			public string mEvent = null;
 			public DateTime mDate;
 			public string mComment = null;
+			public override bool Equals(object obj)
+			{
+				GeneralMapInfo other = obj as GeneralMapInfo;
+				if (other != null)
+					return other.mAuthor.Equals(this.mAuthor) && other.mLUG.Equals(this.mLUG) && other.mEvent.Equals(this.mEvent) && other.mDate.Equals(this.mDate) && other.mComment.Equals(this.mComment);
+				return false;
+			}
 		}
 
 		private GeneralMapInfo oldInfo = new GeneralMapInfo();
@@ -38,13 +45,13 @@ namespace BlueBrick.Actions.Maps
 			// save old data
 			oldInfo.mAuthor = Map.Instance.Author.Clone() as string;
 			oldInfo.mLUG = Map.Instance.LUG.Clone() as string;
-			oldInfo.mShow = Map.Instance.Show.Clone() as string;
+			oldInfo.mEvent = Map.Instance.Show.Clone() as string;
 			oldInfo.mDate = Map.Instance.Date;
 			oldInfo.mComment = Map.Instance.Comment.Clone() as string;
 			// save new data
 			newInfo.mAuthor = author.Clone() as string;
 			newInfo.mLUG = lug.Clone() as string;
-			newInfo.mShow = show.Clone() as string;
+			newInfo.mEvent = show.Clone() as string;
 			newInfo.mDate = date;
 			newInfo.mComment = comment.Clone() as string;
 		}
@@ -58,7 +65,7 @@ namespace BlueBrick.Actions.Maps
 		{
 			Map.Instance.Author = newInfo.mAuthor;
 			Map.Instance.LUG = newInfo.mLUG;
-			Map.Instance.Show = newInfo.mShow;
+			Map.Instance.Show = newInfo.mEvent;
 			Map.Instance.Date = newInfo.mDate;
 			Map.Instance.Comment = newInfo.mComment;
 			// inform MainForm to update its UI
@@ -69,11 +76,21 @@ namespace BlueBrick.Actions.Maps
 		{
 			Map.Instance.Author = oldInfo.mAuthor;
 			Map.Instance.LUG = oldInfo.mLUG;
-			Map.Instance.Show = oldInfo.mShow;
+			Map.Instance.Show = oldInfo.mEvent;
 			Map.Instance.Date = oldInfo.mDate;
 			Map.Instance.Comment = oldInfo.mComment;
 			// inform MainForm to update its UI
 			MainForm.Instance.updateMapGeneralInfo();
+		}
+
+		public override bool Equals(object obj)
+		{
+			// we only change the new data, to know if something new will be changed
+			ChangeGeneralInfo other = obj as ChangeGeneralInfo;
+			if (other != null)
+				return other.newInfo.Equals(this.newInfo);
+			// if the specified action is not of the same type as me, for sure it is different
+			return false;
 		}
 	}
 }
