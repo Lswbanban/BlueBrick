@@ -570,7 +570,7 @@ namespace BlueBrick
             this.mExportImageForm.loadUISettingFromDefaultSettings();
 			// fill the combo box in the Properties panel
 			PreferencesForm.sFillComboBoxFromTextFile(this.lugComboBox, @"/config/LugList.txt");
-			PreferencesForm.sFillComboBoxFromTextFile(this.showComboBox, @"/config/EventList.txt");
+			PreferencesForm.sFillComboBoxFromTextFile(this.eventComboBox, @"/config/EventList.txt");
 		}
 
 		private void saveUISettingInDefaultSettings()
@@ -1056,7 +1056,7 @@ namespace BlueBrick
 			// fill the text controls
 			this.AuthorTextBox.Text = Map.Instance.Author;
 			this.lugComboBox.Text = Map.Instance.LUG;
-			this.showComboBox.Text = Map.Instance.Show;
+			this.eventComboBox.Text = Map.Instance.Show;
 			this.dateTimePicker.Value = Map.Instance.Date;
 			char[] splitter = { '\n' };
 			this.commentTextBox.Lines = Map.Instance.Comment.Split(splitter);
@@ -2726,14 +2726,35 @@ namespace BlueBrick
 		private void doChangeGeneralInfoAction()
 		{
 			ActionManager.Instance.doAction(new ChangeGeneralInfo(this.AuthorTextBox.Text,
-				this.lugComboBox.Text, this.showComboBox.Text, this.dateTimePicker.Value,
+				this.lugComboBox.Text, this.eventComboBox.Text, this.dateTimePicker.Value,
 				this.commentTextBox.Text));
+		}
+
+		private void AuthorTextBox_Leave(object sender, EventArgs e)
+		{
+			doChangeGeneralInfoAction();
+		}
+
+		private void lugComboBox_Leave(object sender, EventArgs e)
+		{
+			doChangeGeneralInfoAction();
+		}
+
+		private void eventComboBox_Leave(object sender, EventArgs e)
+		{
+			doChangeGeneralInfoAction();
 		}
 
 		private void dateTimePicker_ValueChanged(object sender, EventArgs e)
 		{
 			doChangeGeneralInfoAction();
 		}
+
+		private void commentTextBox_Leave(object sender, EventArgs e)
+		{
+			doChangeGeneralInfoAction();
+		}
+
 		#endregion
 
 		#region event handler for map
