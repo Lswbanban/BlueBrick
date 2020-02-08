@@ -2757,6 +2757,11 @@ namespace BlueBrick
 			// change the status of the split status
 			this.PartUsageListView.SplitPartPerLayer = SplitPartUsagePerLayerCheckBox.Checked;
 		}
+
+		private void IncludeHiddenLayerInPartListCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+
+		}
 		#endregion
 
 		#region event handler for properties tab
