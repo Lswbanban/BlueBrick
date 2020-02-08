@@ -85,34 +85,42 @@ namespace BlueBrick
 				mPartNumber = partNumber;
 				mImageIndex = imageIndex;
 
-				// get the current budget for this part
-				string usageAsString = Properties.Resources.TextNA;
-				if (Budget.Budget.Instance.IsExisting)
-				{
-					usagePercentage = Budget.Budget.Instance.getUsagePercentage(partNumber);
-					usageAsString = usagePercentage.ToString();
-				}
-
 				// get the description and color from the database
 				string[] brickInfo = BrickLibrary.Instance.getBrickInfo(mPartNumber);
 				// the first text of the array must be the part number because it is treated as the item text itself
 				// and the columns are defined in this order: part, quantity, color and description
 				// even if the display order is different (quantity, part, color and description)
-				string[] itemTexts = { brickInfo[0], mQuantity.ToString(), usageAsString, brickInfo[2], brickInfo[3] };
+				string[] itemTexts = { brickInfo[0], mQuantity.ToString(), Properties.Resources.TextNA, brickInfo[2], brickInfo[3] };
 				mItem = new ListViewItem(itemTexts, mImageIndex);
 				mItem.SubItems[2].Tag = brickInfo[1]; // store the color index in the tag of the color subitem, used in the html export
+				// update the part usage percentage
+				updateUsagePercentage();
 			}
 
 			public void incrementQuantity()
 			{
 				mQuantity++;
 				mItem.SubItems[1].Text = mQuantity.ToString();
+				updateUsagePercentage();
 			}
 
 			public void decrementQuantity()
 			{
 				mQuantity--;
 				mItem.SubItems[1].Text = mQuantity.ToString();
+				updateUsagePercentage();
+			}
+
+			public void updateUsagePercentage()
+			{
+				// get the current budget for this part
+				string usageAsString = Properties.Resources.TextNA;
+				if (Budget.Budget.Instance.IsExisting)
+				{
+					usagePercentage = Budget.Budget.Instance.getUsagePercentage(mPartNumber, mQuantity);
+					usageAsString = usagePercentage.ToString();
+				}
+				mItem.SubItems[2].Text = usageAsString;
 			}
 		}
 
