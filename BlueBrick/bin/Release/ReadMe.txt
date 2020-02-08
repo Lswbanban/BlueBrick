@@ -104,20 +104,28 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
-- [target 1.9] MISSING FEATURE (Matthias): Better resolution for part images (Images can have an additional <scale> property in the xml-File, if no scale parameter is provided, the default resolution of 8 pixels/stud is used)
+- [target 1.9] MISSING FEATURE (Alban): Move the general info + the map background color in the property tab
+- [target 1.9] MISSING FEATURE (Alban): Add a version number in the general info
+- [target 1.9] MISSING FEATURE (Alban): Being able to sort the usage part list, by clicking on the column
+- [target 1.9] MISSING FEATURE (Alban): Add a checkbox to include or not hidden layers in the part usage list
+- [target 1.9] MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget in percentage, and the total sum of all the parts in the budget (and other stats that I may found): this should be merged into the brick list window
+
 - [target 1.9] MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels (mouse over should give the focus?).
-- [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
-- [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
 - [target 1.9] MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
+
+- [target 1.9] MISSING FEATURE (Matthias): Better resolution for part images (Images can have an additional <scale> property in the xml-File, if no scale parameter is provided, the default resolution of 8 pixels/stud is used)
+- [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
+- [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
+- [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
 - [target 1.9] BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
+- [target 1.9] BUG (Alban): The vertical scroll bar of layer panel is too big (scroll useless empty space)
+- MISSING FEATURE (Alban): Preferences option to edit what is displayed on watermark?
 - MISSING FEATURE (Alban): Implement elevation by displaying a number next to the part and edition of elevation
-- MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget in percentage, and the total sum of all the parts in the budget (and other stats that I may found): this should be merged into the brick list window
 - MISSING FEATURE (Alban): Extend the ConnectionTypeList.xml to precise for each connection, to which connection it can connect (this allow a male/female connections types, by default it connect to itself, otherwise if another type is specified, it connect to that type)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - MISSING FEATURE (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)

@@ -62,6 +62,34 @@ namespace BlueBrick
 			this.PartUsageListView = new BlueBrick.PartUsageView();
 			this.SplitPartUsagePerLayerCheckBox = new System.Windows.Forms.CheckBox();
 			this.DocumentDataPropertiesTabPage = new System.Windows.Forms.TabPage();
+			this.showComboBox = new System.Windows.Forms.ComboBox();
+			this.lugComboBox = new System.Windows.Forms.ComboBox();
+			this.labelHeightModule = new System.Windows.Forms.Label();
+			this.labelWidthModule = new System.Windows.Forms.Label();
+			this.label12 = new System.Windows.Forms.Label();
+			this.label13 = new System.Windows.Forms.Label();
+			this.labelHeightFeet = new System.Windows.Forms.Label();
+			this.labelWidthFeet = new System.Windows.Forms.Label();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label19 = new System.Windows.Forms.Label();
+			this.labelHeightMeter = new System.Windows.Forms.Label();
+			this.labelWidthMeter = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
+			this.labelHeightStud = new System.Windows.Forms.Label();
+			this.labelWidthStud = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			this.label11 = new System.Windows.Forms.Label();
+			this.AuthorTextBox = new System.Windows.Forms.TextBox();
+			this.commentTextBox = new System.Windows.Forms.TextBox();
 			this.menuBar = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -198,6 +226,9 @@ namespace BlueBrick
 			this.openBudgetFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.saveBudgetFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.exportPartListFileDialog = new System.Windows.Forms.SaveFileDialog();
+			this.DocumentDataPropertiesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+			this.label16 = new System.Windows.Forms.Label();
+			this.DocumentDataPropertiesMapBackgroundColorButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
 			this.mainSplitContainer.Panel1.SuspendLayout();
 			this.mainSplitContainer.Panel2.SuspendLayout();
@@ -225,8 +256,10 @@ namespace BlueBrick
 			this.DocumentDataPartListSplitContainer.Panel1.SuspendLayout();
 			this.DocumentDataPartListSplitContainer.Panel2.SuspendLayout();
 			this.DocumentDataPartListSplitContainer.SuspendLayout();
+			this.DocumentDataPropertiesTabPage.SuspendLayout();
 			this.menuBar.SuspendLayout();
 			this.toolBar.SuspendLayout();
+			this.DocumentDataPropertiesTableLayoutPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// mainSplitContainer
@@ -530,8 +563,158 @@ namespace BlueBrick
 			// DocumentDataPropertiesTabPage
 			// 
 			this.DocumentDataPropertiesTabPage.BackColor = System.Drawing.SystemColors.Control;
+			this.DocumentDataPropertiesTabPage.Controls.Add(this.DocumentDataPropertiesTableLayoutPanel);
 			resources.ApplyResources(this.DocumentDataPropertiesTabPage, "DocumentDataPropertiesTabPage");
 			this.DocumentDataPropertiesTabPage.Name = "DocumentDataPropertiesTabPage";
+			// 
+			// showComboBox
+			// 
+			this.DocumentDataPropertiesTableLayoutPanel.SetColumnSpan(this.showComboBox, 8);
+			resources.ApplyResources(this.showComboBox, "showComboBox");
+			this.showComboBox.FormattingEnabled = true;
+			this.showComboBox.Name = "showComboBox";
+			// 
+			// lugComboBox
+			// 
+			this.DocumentDataPropertiesTableLayoutPanel.SetColumnSpan(this.lugComboBox, 8);
+			resources.ApplyResources(this.lugComboBox, "lugComboBox");
+			this.lugComboBox.FormattingEnabled = true;
+			this.lugComboBox.Name = "lugComboBox";
+			// 
+			// labelHeightModule
+			// 
+			resources.ApplyResources(this.labelHeightModule, "labelHeightModule");
+			this.labelHeightModule.Name = "labelHeightModule";
+			// 
+			// labelWidthModule
+			// 
+			resources.ApplyResources(this.labelWidthModule, "labelWidthModule");
+			this.labelWidthModule.Name = "labelWidthModule";
+			// 
+			// label12
+			// 
+			resources.ApplyResources(this.label12, "label12");
+			this.label12.Name = "label12";
+			// 
+			// label13
+			// 
+			resources.ApplyResources(this.label13, "label13");
+			this.label13.Name = "label13";
+			// 
+			// labelHeightFeet
+			// 
+			resources.ApplyResources(this.labelHeightFeet, "labelHeightFeet");
+			this.labelHeightFeet.Name = "labelHeightFeet";
+			// 
+			// labelWidthFeet
+			// 
+			resources.ApplyResources(this.labelWidthFeet, "labelWidthFeet");
+			this.labelWidthFeet.Name = "labelWidthFeet";
+			// 
+			// label18
+			// 
+			resources.ApplyResources(this.label18, "label18");
+			this.label18.Name = "label18";
+			// 
+			// label19
+			// 
+			resources.ApplyResources(this.label19, "label19");
+			this.label19.Name = "label19";
+			// 
+			// labelHeightMeter
+			// 
+			resources.ApplyResources(this.labelHeightMeter, "labelHeightMeter");
+			this.labelHeightMeter.Name = "labelHeightMeter";
+			// 
+			// labelWidthMeter
+			// 
+			resources.ApplyResources(this.labelWidthMeter, "labelWidthMeter");
+			this.labelWidthMeter.Name = "labelWidthMeter";
+			// 
+			// label14
+			// 
+			resources.ApplyResources(this.label14, "label14");
+			this.label14.Name = "label14";
+			// 
+			// label15
+			// 
+			resources.ApplyResources(this.label15, "label15");
+			this.label15.Name = "label15";
+			// 
+			// labelHeightStud
+			// 
+			resources.ApplyResources(this.labelHeightStud, "labelHeightStud");
+			this.labelHeightStud.Name = "labelHeightStud";
+			// 
+			// labelWidthStud
+			// 
+			resources.ApplyResources(this.labelWidthStud, "labelWidthStud");
+			this.labelWidthStud.Name = "labelWidthStud";
+			// 
+			// label9
+			// 
+			resources.ApplyResources(this.label9, "label9");
+			this.label9.Name = "label9";
+			// 
+			// label8
+			// 
+			resources.ApplyResources(this.label8, "label8");
+			this.label8.Name = "label8";
+			// 
+			// label7
+			// 
+			resources.ApplyResources(this.label7, "label7");
+			this.label7.Name = "label7";
+			// 
+			// label6
+			// 
+			resources.ApplyResources(this.label6, "label6");
+			this.label6.Name = "label6";
+			// 
+			// label5
+			// 
+			resources.ApplyResources(this.label5, "label5");
+			this.label5.Name = "label5";
+			// 
+			// label4
+			// 
+			resources.ApplyResources(this.label4, "label4");
+			this.label4.Name = "label4";
+			// 
+			// dateTimePicker
+			// 
+			this.DocumentDataPropertiesTableLayoutPanel.SetColumnSpan(this.dateTimePicker, 8);
+			resources.ApplyResources(this.dateTimePicker, "dateTimePicker");
+			this.dateTimePicker.Name = "dateTimePicker";
+			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
+			// label10
+			// 
+			resources.ApplyResources(this.label10, "label10");
+			this.label10.Name = "label10";
+			// 
+			// label11
+			// 
+			resources.ApplyResources(this.label11, "label11");
+			this.label11.Name = "label11";
+			// 
+			// AuthorTextBox
+			// 
+			this.DocumentDataPropertiesTableLayoutPanel.SetColumnSpan(this.AuthorTextBox, 8);
+			resources.ApplyResources(this.AuthorTextBox, "AuthorTextBox");
+			this.AuthorTextBox.Name = "AuthorTextBox";
+			// 
+			// commentTextBox
+			// 
+			this.commentTextBox.AcceptsReturn = true;
+			this.commentTextBox.AcceptsTab = true;
+			this.DocumentDataPropertiesTableLayoutPanel.SetColumnSpan(this.commentTextBox, 8);
+			resources.ApplyResources(this.commentTextBox, "commentTextBox");
+			this.commentTextBox.Name = "commentTextBox";
 			// 
 			// menuBar
 			// 
@@ -1500,6 +1683,52 @@ namespace BlueBrick
 			resources.ApplyResources(this.exportPartListFileDialog, "exportPartListFileDialog");
 			this.exportPartListFileDialog.SupportMultiDottedExtensions = true;
 			// 
+			// DocumentDataPropertiesTableLayoutPanel
+			// 
+			resources.ApplyResources(this.DocumentDataPropertiesTableLayoutPanel, "DocumentDataPropertiesTableLayoutPanel");
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label16, 0, 0);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.commentTextBox, 1, 7);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label12, 2, 6);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label5, 0, 7);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label18, 8, 6);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.labelHeightFeet, 7, 6);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.labelHeightModule, 1, 6);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label14, 6, 6);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.labelHeightMeter, 5, 6);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label9, 4, 6);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.labelHeightStud, 3, 6);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label7, 0, 6);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label6, 0, 5);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.labelWidthModule, 1, 5);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label13, 2, 5);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.labelWidthStud, 3, 5);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label8, 4, 5);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.labelWidthMeter, 5, 5);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label15, 6, 5);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.labelWidthFeet, 7, 5);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label19, 8, 5);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label4, 0, 4);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.dateTimePicker, 1, 4);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label3, 0, 3);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.showComboBox, 1, 3);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label10, 0, 2);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.lugComboBox, 1, 2);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.label11, 0, 1);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.AuthorTextBox, 1, 1);
+			this.DocumentDataPropertiesTableLayoutPanel.Controls.Add(this.DocumentDataPropertiesMapBackgroundColorButton, 1, 0);
+			this.DocumentDataPropertiesTableLayoutPanel.Name = "DocumentDataPropertiesTableLayoutPanel";
+			// 
+			// label16
+			// 
+			resources.ApplyResources(this.label16, "label16");
+			this.label16.Name = "label16";
+			// 
+			// DocumentDataPropertiesMapBackgroundColorButton
+			// 
+			resources.ApplyResources(this.DocumentDataPropertiesMapBackgroundColorButton, "DocumentDataPropertiesMapBackgroundColorButton");
+			this.DocumentDataPropertiesMapBackgroundColorButton.Name = "DocumentDataPropertiesMapBackgroundColorButton";
+			this.DocumentDataPropertiesMapBackgroundColorButton.UseVisualStyleBackColor = true;
+			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
@@ -1552,10 +1781,13 @@ namespace BlueBrick
 			this.DocumentDataPartListSplitContainer.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.DocumentDataPartListSplitContainer)).EndInit();
 			this.DocumentDataPartListSplitContainer.ResumeLayout(false);
+			this.DocumentDataPropertiesTabPage.ResumeLayout(false);
 			this.menuBar.ResumeLayout(false);
 			this.menuBar.PerformLayout();
 			this.toolBar.ResumeLayout(false);
 			this.toolBar.PerformLayout();
+			this.DocumentDataPropertiesTableLayoutPanel.ResumeLayout(false);
+			this.DocumentDataPropertiesTableLayoutPanel.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1731,6 +1963,37 @@ namespace BlueBrick
 		private PartUsageView PartUsageListView;
 		private System.Windows.Forms.ToolStripMenuItem exportPartListToolStripMenuItem;
 		private System.Windows.Forms.SaveFileDialog exportPartListFileDialog;
+		private System.Windows.Forms.ComboBox showComboBox;
+		private System.Windows.Forms.ComboBox lugComboBox;
+		private System.Windows.Forms.Label labelHeightModule;
+		private System.Windows.Forms.Label labelWidthModule;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.Label labelHeightFeet;
+		private System.Windows.Forms.Label labelWidthFeet;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.Label labelHeightMeter;
+		private System.Windows.Forms.Label labelWidthMeter;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.Label labelHeightStud;
+		private System.Windows.Forms.Label labelWidthStud;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.DateTimePicker dateTimePicker;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.TextBox AuthorTextBox;
+		private System.Windows.Forms.TextBox commentTextBox;
+		private System.Windows.Forms.TableLayoutPanel DocumentDataPropertiesTableLayoutPanel;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.Button DocumentDataPropertiesMapBackgroundColorButton;
 	}
 }
 
