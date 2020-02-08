@@ -1053,6 +1053,8 @@ namespace BlueBrick
 		/// </summary>
 		public void updateMapGeneralInfo()
 		{
+			// update the back color of the background color button
+			this.DocumentDataPropertiesMapBackgroundColorButton.BackColor = Map.Instance.BackgroundColor;
 			// fill the text controls
 			this.AuthorTextBox.Text = Map.Instance.Author;
 			this.lugComboBox.Text = Map.Instance.LUG;
@@ -1128,6 +1130,12 @@ namespace BlueBrick
 		{
 			// update the map dimensions
 			updateMapDimensionInfo();
+		}
+
+		public void NotifyForMapBackgroundColorChanged()
+		{
+			// update the back color of the background color button
+			this.DocumentDataPropertiesMapBackgroundColorButton.BackColor = Map.Instance.BackgroundColor;
 		}
 		#endregion
 
@@ -2122,13 +2130,20 @@ namespace BlueBrick
 			}
 		}
 
-		private void mapBackgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
+		/// <summary>
+		/// This function can be called via two different places, either via the menu "Edit > Map Background Color"
+		/// of via the button in the Properties tab. Both way do the same thing.
+		/// </summary>
+		private void openColorPickerToChangeMapBackgroundColor()
 		{
 			DialogResult result = this.colorDialog.ShowDialog();
 			if (result == DialogResult.OK)
-			{
 				ActionManager.Instance.doAction(new ChangeBackgroundColor(this.colorDialog.Color));
-			}
+		}
+
+		private void mapBackgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			openColorPickerToChangeMapBackgroundColor();
 		}
 
 		private void currentLayerOptionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2752,6 +2767,11 @@ namespace BlueBrick
 			// update the map dimension if we just selected the properties tab
 			if (e.TabPage == this.DocumentDataPropertiesTabPage)
 				updateMapDimensionInfo();
+		}
+
+		private void DocumentDataPropertiesMapBackgroundColorButton_Click(object sender, EventArgs e)
+		{
+			openColorPickerToChangeMapBackgroundColor();
 		}
 
 		private ChangeGeneralInfo getGeneralInfoActionFromUI()

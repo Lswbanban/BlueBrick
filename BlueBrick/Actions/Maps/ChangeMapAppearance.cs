@@ -133,6 +133,8 @@ namespace BlueBrick.Actions.Maps
 				// copy the options
 				layerChange.mReference.CopyOptionsFrom(layerChange.mNewData);
 			}
+			// notify the main form
+			MainForm.Instance.NotifyForMapBackgroundColorChanged();
 		}
 
 		public override void undo()
@@ -150,6 +152,8 @@ namespace BlueBrick.Actions.Maps
 				// copy the options
 				layerChange.mReference.CopyOptionsFrom(layerChange.mOldData);
 			}
+			// notify the main form
+			MainForm.Instance.NotifyForMapBackgroundColorChanged();
 		}
 	}
 }

@@ -39,11 +39,15 @@ namespace BlueBrick.Actions.Maps
 		public override void redo()
 		{
 			Map.Instance.BackgroundColor = mNewColor;
+			// notify the main form
+			MainForm.Instance.NotifyForMapBackgroundColorChanged();
 		}
 
 		public override void undo()
 		{
 			Map.Instance.BackgroundColor = mOldColor;
+			// notify the main form
+			MainForm.Instance.NotifyForMapBackgroundColorChanged();
 		}
 	}
 }
