@@ -104,8 +104,6 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (Alban): Move the general info + the map background color in the property tab
-- [target 1.9] MISSING FEATURE (Alban): Add a version number in the general info
 - [target 1.9] MISSING FEATURE (Alban): Being able to sort the usage part list, by clicking on the column
 - [target 1.9] MISSING FEATURE (Alban): Add a checkbox to include or not hidden layers in the part usage list
 - [target 1.9] MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget in percentage, and the total sum of all the parts in the budget (and other stats that I may found): this should be merged into the brick list window
@@ -125,6 +123,7 @@ Open bugs:
 - [target 1.9] BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
 - [target 1.9] BUG (Alban): The vertical scroll bar of layer panel is too big (scroll useless empty space)
 - MISSING FEATURE (Alban): Preferences option to edit what is displayed on watermark?
+- MISSING FEATURE (Alban): Add a version number in the general info?
 - MISSING FEATURE (Alban): Implement elevation by displaying a number next to the part and edition of elevation
 - MISSING FEATURE (Alban): Extend the ConnectionTypeList.xml to precise for each connection, to which connection it can connect (this allow a male/female connections types, by default it connect to itself, otherwise if another type is specified, it connect to that type)
 - MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
@@ -149,6 +148,7 @@ Open bugs:
 
 Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): The part list window has been moved to a tab next to the layers list
+- NEW FEATURE (Alban): The window to edit the general info has been moved to a tab next to the layer list, including the edition of the map background color
 - NEW FEATURE (Alban): A feature to download library package online from various sources (official web site, and non official url).
 - NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
 - NEW FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count, option available in Preferences)

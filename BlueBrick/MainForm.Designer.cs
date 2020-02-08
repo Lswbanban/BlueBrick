@@ -1733,6 +1733,7 @@ namespace BlueBrick
 			resources.ApplyResources(this.DocumentDataPropertiesMapBackgroundColorButton, "DocumentDataPropertiesMapBackgroundColorButton");
 			this.DocumentDataPropertiesMapBackgroundColorButton.Name = "DocumentDataPropertiesMapBackgroundColorButton";
 			this.DocumentDataPropertiesMapBackgroundColorButton.UseVisualStyleBackColor = true;
+			this.DocumentDataPropertiesMapBackgroundColorButton.Click += new System.EventHandler(this.DocumentDataPropertiesMapBackgroundColorButton_Click);
 			// 
 			// MainForm
 			// 
