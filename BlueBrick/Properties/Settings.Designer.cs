@@ -1343,5 +1343,17 @@ namespace BlueBrick.Properties {
                 this["UISplitPartUsagePerLayer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UIIncludeHiddenPartsInPartUsage {
+            get {
+                return ((bool)(this["UIIncludeHiddenPartsInPartUsage"]));
+            }
+            set {
+                this["UIIncludeHiddenPartsInPartUsage"] = value;
+            }
+        }
     }
 }

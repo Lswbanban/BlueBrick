@@ -556,6 +556,8 @@ namespace BlueBrick
 			// flag to split the part usage list (and force the check change in case it was not changed)
 			this.SplitPartUsagePerLayerCheckBox.Checked = Properties.Settings.Default.UISplitPartUsagePerLayer;
 			SplitPartUsagePerLayerCheckBox_CheckedChanged(this, null);
+			this.IncludeHiddenLayerInPartListCheckBox.Checked = Properties.Settings.Default.UIIncludeHiddenPartsInPartUsage;
+			IncludeHiddenLayerInPartListCheckBox_CheckedChanged(this, null);
 			// toolbar and status bar visibility
 			this.toolBar.Visible = this.toolbarMenuItem.Checked = Properties.Settings.Default.UIToolbarIsVisible;
 			this.statusBar.Visible = this.statusBarMenuItem.Checked = Properties.Settings.Default.UIStatusbarIsVisible;
@@ -615,8 +617,9 @@ namespace BlueBrick
 			// ruler tool selected
 			Properties.Settings.Default.UIRulerToolSelected = (int)(LayerRuler.CurrentEditTool);
 
-			// flag to split the part usage list
+			// flags for the part usage list
 			Properties.Settings.Default.UISplitPartUsagePerLayer = this.SplitPartUsagePerLayerCheckBox.Checked;
+			Properties.Settings.Default.UIIncludeHiddenPartsInPartUsage = this.IncludeHiddenLayerInPartListCheckBox.Checked;
 
 			// toolbar and status bar visibility
 			Properties.Settings.Default.UIToolbarIsVisible = this.toolBar.Visible;
@@ -2760,7 +2763,8 @@ namespace BlueBrick
 
 		private void IncludeHiddenLayerInPartListCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
-
+			// change the status of the hidden status
+			this.PartUsageListView.IncludeHiddenLayers = IncludeHiddenLayerInPartListCheckBox.Checked;
 		}
 		#endregion
 

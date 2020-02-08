@@ -105,7 +105,6 @@ to open the help file (see above for more details).
 -------------------------------------------------------------------------------
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Being able to sort the usage part list, by clicking on the column
-- [target 1.9] MISSING FEATURE (Alban): Add a checkbox to include or not hidden layers in the part usage list
 - [target 1.9] MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget in percentage, and the total sum of all the parts in the budget (and other stats that I may found): this should be merged into the brick list window
 
 - [target 1.9] MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels (mouse over should give the focus?).
@@ -154,10 +153,12 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count, option available in Preferences)
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - NEW FEATURE (Matthias): An option to display part names below the parts
+- NEW FEATURE (Alban): Add a checkbox to include or not hidden layers in the part usage list
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points
 - BUGFIX (Alban): When updating in the library a group of parts that was not displayed in the library (because filtered with keyword) the image was added two times
 - BUGFIX (Alban): The cancel of the files download from the download center form was not properly stopped
 - BUGFIX (Matthias): The color name was "unknown" in the Bubble info at BlueBrick startup or after every Part Library Reload (and could only be valid after changing the preferences regarding the Bubble info)
+-  BUGFIX (Alban): Adding a part on a hidden layer was counting that part in the Part Usage list
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 
 
