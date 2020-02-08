@@ -2735,14 +2735,32 @@ namespace BlueBrick
 			doChangeGeneralInfoAction();
 		}
 
+		private void AuthorTextBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+				SendKeys.Send("{TAB}");
+		}
+
 		private void lugComboBox_Leave(object sender, EventArgs e)
 		{
 			doChangeGeneralInfoAction();
 		}
 
+		private void lugComboBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+				SendKeys.Send("{TAB}");
+		}
+
 		private void eventComboBox_Leave(object sender, EventArgs e)
 		{
 			doChangeGeneralInfoAction();
+		}
+
+		private void eventComboBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+				SendKeys.Send("{TAB}");
 		}
 
 		private void dateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -2958,13 +2976,19 @@ namespace BlueBrick
 			}
 		}
 
+		private bool isUserTypingTextInATextBox()
+		{
+			return this.textBoxPartFilter.Focused || this.partsTabControl.IsEditingBudget ||
+					this.AuthorTextBox.Focused || this.lugComboBox.Focused || this.eventComboBox.Focused || this.commentTextBox.Focused;
+		}
+
 		private void MainForm_KeyDown(object sender, KeyEventArgs e)
 		{
 			// by default we don't handle the keys
 			e.Handled = false;
 
 			// if we are inputing text in the filter box do not handle the key
-			if (this.textBoxPartFilter.Focused || this.partsTabControl.IsEditingBudget)
+			if (isUserTypingTextInATextBox())
 				return;
 
 			// if any modifier is pressed, we don't handle the key, for example the CTRL+S will be handle
@@ -3117,7 +3141,7 @@ namespace BlueBrick
 			e.Handled = true;
 
 			// if we are inputing text in the filter box do not handle the key
-			if (this.textBoxPartFilter.Focused || this.partsTabControl.IsEditingBudget)
+			if (isUserTypingTextInATextBox())
 				return;
 
 			// We will warn the mapPanel if a modifier is released in case it wants to change the cursor
