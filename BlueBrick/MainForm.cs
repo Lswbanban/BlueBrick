@@ -2723,16 +2723,36 @@ namespace BlueBrick
 		#endregion
 
 		#region event handler for properties tab
-		private void doChangeGeneralInfoAction()
+		private ChangeGeneralInfo mGeneralInfoStateWhenEnteringFocus = null;
+
+		private ChangeGeneralInfo getGeneralInfoActionFromUI()
 		{
-			ActionManager.Instance.doAction(new ChangeGeneralInfo(this.AuthorTextBox.Text,
-				this.lugComboBox.Text, this.eventComboBox.Text, this.dateTimePicker.Value,
-				this.commentTextBox.Text));
+			return new ChangeGeneralInfo(this.AuthorTextBox.Text, this.lugComboBox.Text,
+					this.eventComboBox.Text, this.dateTimePicker.Value, this.commentTextBox.Text);
+		}
+
+		private void memorizeGeneralInfoActionWhenEnteringFocus()
+		{
+			mGeneralInfoStateWhenEnteringFocus = getGeneralInfoActionFromUI();
+		}
+
+		private void doChangeGeneralInfoActionIfSomethingChangedInUI()
+		{
+			// create a new action from UI
+			ChangeGeneralInfo newAction = getGeneralInfoActionFromUI();
+			// check if the new action is diffent than we enter the focus, add it to the action manager
+			if (!newAction.Equals(mGeneralInfoStateWhenEnteringFocus))
+				ActionManager.Instance.doAction(newAction);
+			}
+
+		private void AuthorTextBox_Enter(object sender, EventArgs e)
+		{
+			memorizeGeneralInfoActionWhenEnteringFocus();
 		}
 
 		private void AuthorTextBox_Leave(object sender, EventArgs e)
 		{
-			doChangeGeneralInfoAction();
+			doChangeGeneralInfoActionIfSomethingChangedInUI();
 		}
 
 		private void AuthorTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -2741,9 +2761,14 @@ namespace BlueBrick
 				SendKeys.Send("{TAB}");
 		}
 
+		private void lugComboBox_Enter(object sender, EventArgs e)
+		{
+			memorizeGeneralInfoActionWhenEnteringFocus();
+		}
+
 		private void lugComboBox_Leave(object sender, EventArgs e)
 		{
-			doChangeGeneralInfoAction();
+			doChangeGeneralInfoActionIfSomethingChangedInUI();
 		}
 
 		private void lugComboBox_KeyDown(object sender, KeyEventArgs e)
@@ -2752,9 +2777,14 @@ namespace BlueBrick
 				SendKeys.Send("{TAB}");
 		}
 
+		private void eventComboBox_Enter(object sender, EventArgs e)
+		{
+			memorizeGeneralInfoActionWhenEnteringFocus();
+		}
+
 		private void eventComboBox_Leave(object sender, EventArgs e)
 		{
-			doChangeGeneralInfoAction();
+			doChangeGeneralInfoActionIfSomethingChangedInUI();
 		}
 
 		private void eventComboBox_KeyDown(object sender, KeyEventArgs e)
@@ -2765,12 +2795,17 @@ namespace BlueBrick
 
 		private void dateTimePicker_ValueChanged(object sender, EventArgs e)
 		{
-			doChangeGeneralInfoAction();
+			doChangeGeneralInfoActionIfSomethingChangedInUI();
+		}
+
+		private void commentTextBox_Enter(object sender, EventArgs e)
+		{
+			memorizeGeneralInfoActionWhenEnteringFocus();
 		}
 
 		private void commentTextBox_Leave(object sender, EventArgs e)
 		{
-			doChangeGeneralInfoAction();
+			doChangeGeneralInfoActionIfSomethingChangedInUI();
 		}
 
 		#endregion

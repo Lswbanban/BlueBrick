@@ -1573,6 +1573,7 @@ namespace BlueBrick
 			this.DocumentDataPropertiesTableLayoutPanel.SetColumnSpan(this.commentTextBox, 8);
 			resources.ApplyResources(this.commentTextBox, "commentTextBox");
 			this.commentTextBox.Name = "commentTextBox";
+			this.commentTextBox.Enter += new System.EventHandler(this.commentTextBox_Enter);
 			this.commentTextBox.Leave += new System.EventHandler(this.commentTextBox_Leave);
 			// 
 			// label12
@@ -1693,6 +1694,7 @@ namespace BlueBrick
 			resources.ApplyResources(this.eventComboBox, "eventComboBox");
 			this.eventComboBox.FormattingEnabled = true;
 			this.eventComboBox.Name = "eventComboBox";
+			this.eventComboBox.Enter += new System.EventHandler(this.eventComboBox_Enter);
 			this.eventComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.eventComboBox_KeyDown);
 			this.eventComboBox.Leave += new System.EventHandler(this.eventComboBox_Leave);
 			// 
@@ -1707,6 +1709,7 @@ namespace BlueBrick
 			resources.ApplyResources(this.lugComboBox, "lugComboBox");
 			this.lugComboBox.FormattingEnabled = true;
 			this.lugComboBox.Name = "lugComboBox";
+			this.lugComboBox.Enter += new System.EventHandler(this.lugComboBox_Enter);
 			this.lugComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lugComboBox_KeyDown);
 			this.lugComboBox.Leave += new System.EventHandler(this.lugComboBox_Leave);
 			// 
@@ -1720,6 +1723,7 @@ namespace BlueBrick
 			this.DocumentDataPropertiesTableLayoutPanel.SetColumnSpan(this.AuthorTextBox, 8);
 			resources.ApplyResources(this.AuthorTextBox, "AuthorTextBox");
 			this.AuthorTextBox.Name = "AuthorTextBox";
+			this.AuthorTextBox.Enter += new System.EventHandler(this.AuthorTextBox_Enter);
 			this.AuthorTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AuthorTextBox_KeyDown);
 			this.AuthorTextBox.Leave += new System.EventHandler(this.AuthorTextBox_Leave);
 			// 
