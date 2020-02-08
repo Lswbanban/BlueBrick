@@ -32,6 +32,7 @@
 			this.quantiyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.descriptionColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.budgetColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
 			// partColumnHeader
@@ -52,12 +53,17 @@
 			// 
 			this.descriptionColumnHeader.Text = "Description";
 			// 
+			// budgetColumnHeader
+			// 
+			this.budgetColumnHeader.Text = "Usage %";
+			// 
 			// PartUsageView
 			// 
 			this.AllowColumnReorder = true;
 			this.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.partColumnHeader,
             this.quantiyColumnHeader,
+            this.budgetColumnHeader,
             this.colorColumnHeader,
             this.descriptionColumnHeader});
 			this.FullRowSelect = true;
@@ -74,5 +80,6 @@
 		private System.Windows.Forms.ColumnHeader descriptionColumnHeader;
 		private System.Windows.Forms.ColumnHeader quantiyColumnHeader;
 		private System.Windows.Forms.ColumnHeader colorColumnHeader;
+		private System.Windows.Forms.ColumnHeader budgetColumnHeader;
 	}
 }
