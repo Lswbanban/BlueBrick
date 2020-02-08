@@ -1693,6 +1693,7 @@ namespace BlueBrick
 			resources.ApplyResources(this.eventComboBox, "eventComboBox");
 			this.eventComboBox.FormattingEnabled = true;
 			this.eventComboBox.Name = "eventComboBox";
+			this.eventComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.eventComboBox_KeyDown);
 			this.eventComboBox.Leave += new System.EventHandler(this.eventComboBox_Leave);
 			// 
 			// label10
@@ -1706,6 +1707,7 @@ namespace BlueBrick
 			resources.ApplyResources(this.lugComboBox, "lugComboBox");
 			this.lugComboBox.FormattingEnabled = true;
 			this.lugComboBox.Name = "lugComboBox";
+			this.lugComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lugComboBox_KeyDown);
 			this.lugComboBox.Leave += new System.EventHandler(this.lugComboBox_Leave);
 			// 
 			// label11
@@ -1718,6 +1720,7 @@ namespace BlueBrick
 			this.DocumentDataPropertiesTableLayoutPanel.SetColumnSpan(this.AuthorTextBox, 8);
 			resources.ApplyResources(this.AuthorTextBox, "AuthorTextBox");
 			this.AuthorTextBox.Name = "AuthorTextBox";
+			this.AuthorTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AuthorTextBox_KeyDown);
 			this.AuthorTextBox.Leave += new System.EventHandler(this.AuthorTextBox_Leave);
 			// 
 			// DocumentDataPropertiesMapBackgroundColorButton
