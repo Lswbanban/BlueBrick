@@ -568,6 +568,9 @@ namespace BlueBrick
             this.rulerAttachPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayRulerAttachPoints;
             // the export window
             this.mExportImageForm.loadUISettingFromDefaultSettings();
+			// fill the combo box in the Properties panel
+			PreferencesForm.sFillComboBoxFromTextFile(this.lugComboBox, @"/config/LugList.txt");
+			PreferencesForm.sFillComboBoxFromTextFile(this.showComboBox, @"/config/EventList.txt");
 		}
 
 		private void saveUISettingInDefaultSettings()
