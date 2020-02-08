@@ -1051,7 +1051,7 @@ namespace BlueBrick
 		/// <summary>
 		/// Update the General info UI controls in the property tab from the currently loaded map.
 		/// </summary>
-		private void updateMapGeneralInfo()
+		public void updateMapGeneralInfo()
 		{
 			// fill the text controls
 			this.AuthorTextBox.Text = Map.Instance.Author;
@@ -2100,12 +2100,6 @@ namespace BlueBrick
 			}
 		}
 
-		private void generalInformationToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			GeneralInfoForm infoForm = new GeneralInfoForm();
-			infoForm.ShowDialog();
-		}
-
 		private void mapBackgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			DialogResult result = this.colorDialog.ShowDialog();
@@ -2720,11 +2714,25 @@ namespace BlueBrick
 
 		#endregion
 
-		#region event handler for part usage list
+		#region event handler for part usage list tab
 		private void SplitPartUsagePerLayerCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			// change the status of the split status
 			this.PartUsageListView.SplitPartPerLayer = SplitPartUsagePerLayerCheckBox.Checked;
+		}
+		#endregion
+
+		#region event handler for properties tab
+		private void doChangeGeneralInfoAction()
+		{
+			ActionManager.Instance.doAction(new ChangeGeneralInfo(this.AuthorTextBox.Text,
+				this.lugComboBox.Text, this.showComboBox.Text, this.dateTimePicker.Value,
+				this.commentTextBox.Text));
+		}
+
+		private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+		{
+			doChangeGeneralInfoAction();
 		}
 		#endregion
 

@@ -61,6 +61,8 @@ namespace BlueBrick.Actions.Maps
 			Map.Instance.Show = newInfo.mShow;
 			Map.Instance.Date = newInfo.mDate;
 			Map.Instance.Comment = newInfo.mComment;
+			// inform MainForm to update its UI
+			MainForm.Instance.updateMapGeneralInfo();
 		}
 
 		public override void undo()
@@ -70,6 +72,8 @@ namespace BlueBrick.Actions.Maps
 			Map.Instance.Show = oldInfo.mShow;
 			Map.Instance.Date = oldInfo.mDate;
 			Map.Instance.Comment = oldInfo.mComment;
+			// inform MainForm to update its UI
+			MainForm.Instance.updateMapGeneralInfo();
 		}
 	}
 }
