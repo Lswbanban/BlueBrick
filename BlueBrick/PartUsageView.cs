@@ -141,6 +141,21 @@ namespace BlueBrick
 			}
 		}
 
+		private bool mIncludeHiddenLayers = false;
+		public bool IncludeHiddenLayers
+		{
+			get { return mIncludeHiddenLayers; }
+			set
+			{
+				// check if the value has actually changed (to avoid rebuilding list for nothing)
+				if (mIncludeHiddenLayers != value)
+				{
+					mIncludeHiddenLayers = value;
+					rebuildList();
+				}
+			}
+		}
+
 		private List<GroupEntry> mGroupEntryList = new List<GroupEntry>();
 		private Dictionary<string, IconEntry> mThumbnailImage = new Dictionary<string, IconEntry>();
 
@@ -244,6 +259,10 @@ namespace BlueBrick
 			if (!this.Visible)
 				return;
 
+			// do nothing if the layer is hidden, unless we should also count hidden bricks
+			if (!layer.Visible && !IncludeHiddenLayers)
+				return;
+
 			// get the group entry associated with this layer
 			GroupEntry currentGroupEntry = getGroupEntryFromLayer(layer, true);
 
@@ -276,6 +295,10 @@ namespace BlueBrick
 			// do nothing if the window is not visible
 			// because we rebuild everything when it becomes visible
 			if (!this.Visible)
+				return;
+
+			// do nothing if the layer is hidden, unless we should also count hidden bricks
+			if (!layer.Visible && !IncludeHiddenLayers)
 				return;
 
 			// get the group entry associated with this layer
@@ -314,8 +337,8 @@ namespace BlueBrick
 
 		private void addLayer(LayerBrick brickLayer)
 		{
-			// skip the invisible layers
-			if (!brickLayer.Visible)
+			// skip the invisible layers unless we should include them
+			if (!brickLayer.Visible && !IncludeHiddenLayers)
 				return;
 
 			// get the group entry associated with this layer
