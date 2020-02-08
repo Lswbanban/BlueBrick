@@ -1424,6 +1424,7 @@ namespace BlueBrick
 			this.DocumentDataTabControl.Controls.Add(this.DocumentDataPropertiesTabPage);
 			this.DocumentDataTabControl.Name = "DocumentDataTabControl";
 			this.DocumentDataTabControl.SelectedIndex = 0;
+			this.DocumentDataTabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.DocumentDataTabControl_Selected);
 			// 
 			// DocumentDataLayerTabPage
 			// 

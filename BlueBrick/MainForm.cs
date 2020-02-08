@@ -1060,6 +1060,18 @@ namespace BlueBrick
 			this.dateTimePicker.Value = Map.Instance.Date;
 			char[] splitter = { '\n' };
 			this.commentTextBox.Lines = Map.Instance.Comment.Split(splitter);
+			// update also the map dimensions
+			updateMapDimensionInfo();
+		}
+
+		/// <summary>
+		/// This function recompute the overall size of the map, and display it on the properties tab
+		/// </summary>
+		private void updateMapDimensionInfo()
+		{
+			// ignore if the properties tab is not visible
+			if (this.DocumentDataTabControl.SelectedTab != this.DocumentDataPropertiesTabPage)
+				return;
 
 			// compute the size
 			RectangleF totalArea = Map.Instance.getTotalAreaInStud(true);
@@ -1099,6 +1111,8 @@ namespace BlueBrick
 			this.PartUsageListView.addBrickNotification(layer, brickOrGroup, isDueToRegroup);
 			Budget.Budget.Instance.addBrickNotification(brickOrGroup, isDueToRegroup);
 			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup);
+			// update the map dimensions
+			updateMapDimensionInfo();
 		}
 
 		public void NotifyPartListForBrickRemoved(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToUngroup)
@@ -1106,6 +1120,8 @@ namespace BlueBrick
 			this.PartUsageListView.removeBrickNotification(layer, brickOrGroup, isDueToUngroup);
 			Budget.Budget.Instance.removeBrickNotification(brickOrGroup, isDueToUngroup);
 			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup);
+			// update the map dimensions
+			updateMapDimensionInfo();
 		}
 		#endregion
 
@@ -2724,6 +2740,13 @@ namespace BlueBrick
 
 		#region event handler for properties tab
 		private ChangeGeneralInfo mGeneralInfoStateWhenEnteringFocus = null;
+
+		private void DocumentDataTabControl_Selected(object sender, TabControlEventArgs e)
+		{
+			// update the map dimension if we just selected the properties tab
+			if (e.TabPage == this.DocumentDataPropertiesTabPage)
+				updateMapDimensionInfo();
+		}
 
 		private ChangeGeneralInfo getGeneralInfoActionFromUI()
 		{
