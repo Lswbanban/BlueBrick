@@ -61,6 +61,7 @@ namespace BlueBrick
 		{
 			private string mPartNumber = string.Empty;
 			private int mQuantity = 0;
+			private float usagePercentage = -1f;
 			private int mImageIndex = 0;
 			private ListViewItem mItem = null;
 
@@ -84,12 +85,20 @@ namespace BlueBrick
 				mPartNumber = partNumber;
 				mImageIndex = imageIndex;
 
+				// get the current budget for this part
+				string usageAsString = Properties.Resources.TextNA;
+				if (Budget.Budget.Instance.IsExisting)
+				{
+					usagePercentage = Budget.Budget.Instance.getUsagePercentage(partNumber);
+					usageAsString = usagePercentage.ToString();
+				}
+
 				// get the description and color from the database
 				string[] brickInfo = BrickLibrary.Instance.getBrickInfo(mPartNumber);
 				// the first text of the array must be the part number because it is treated as the item text itself
 				// and the columns are defined in this order: part, quantity, color and description
 				// even if the display order is different (quantity, part, color and description)
-				string[] itemTexts = { brickInfo[0], mQuantity.ToString(), brickInfo[2], brickInfo[3] };
+				string[] itemTexts = { brickInfo[0], mQuantity.ToString(), usageAsString, brickInfo[2], brickInfo[3] };
 				mItem = new ListViewItem(itemTexts, mImageIndex);
 				mItem.SubItems[2].Tag = brickInfo[1]; // store the color index in the tag of the color subitem, used in the html export
 			}
@@ -379,7 +388,7 @@ namespace BlueBrick
 				brickEntry = new BrickEntry(partNumber, iconEntry.mImageIndex);
 				brickEntryList.Add(partNumber, brickEntry);
 			}
-			// affect the correct group to the item
+			// assign the correct group to the item
 			brickEntry.Item.Group = groupEntry.Group;
 
 			// add the item in the list view if not already in

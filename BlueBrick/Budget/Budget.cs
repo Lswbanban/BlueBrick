@@ -311,6 +311,37 @@ namespace BlueBrick.Budget
 		}
 
 		/// <summary>
+		/// get the percentage of usage of the specified part, according to its current budget.
+		/// If no budget is associated with this part (illimited budget), a negative value is returned
+		/// </summary>
+		/// <param name="partID">the full part id for which you want to know the usage percentage</param>
+		/// <returns>the usage percentage for that part or -1 if there's no budget (illimited budget)</returns>
+		public float getUsagePercentage(string partID)
+		{
+			// try to get the value or return 0 by default
+			float result = -1f; //-1 means the budget is not set, i.e. you have an infinite budgets
+			int budget = getBudget(partID);
+			int count = getCount(partID);
+			if (budget < 0)
+			{
+				// if budget is negative, that means infinite budget, so the percentage will also be negative
+				result = -1f;
+			}
+			else if (budget == 0)
+			{
+				// if the budget is null, you use all of it if you have no part,
+				// otherwise you exceed the budget, and each part count as a 100% exceed
+				result = (count + 1) * 100f;
+			}
+			else
+			{
+				result = (float)(count * 100) / (float)budget;
+			}
+			// return the result
+			return result;
+		}
+
+		/// <summary>
 		/// Return a formated string of the budget that display the current budget if set or the infinity sign if not set
 		/// </summary>
 		/// <param name="partID">The full part id for which you want to know the budget</param>

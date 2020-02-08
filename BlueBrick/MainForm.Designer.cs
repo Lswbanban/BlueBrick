@@ -548,6 +548,7 @@ namespace BlueBrick
 			resources.ApplyResources(this.PartUsageListView, "PartUsageListView");
 			this.PartUsageListView.FullRowSelect = true;
 			this.PartUsageListView.HideSelection = false;
+			this.PartUsageListView.IncludeHiddenLayers = false;
 			this.PartUsageListView.Name = "PartUsageListView";
 			this.PartUsageListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
 			this.PartUsageListView.SplitPartPerLayer = false;
