@@ -118,6 +118,30 @@ namespace BlueBrick
 			}
 		}
 
+		/// <summary>
+		/// A util function to fill a combobox with text that is read from a text file.
+		/// The format of the text file is simple: every line in the text file will create an entry in the combo box
+		/// This is used to fill the LUG and Event combo box
+		/// </summary>
+		/// <param name="comboBoxToFill">The combobox you want to fill</param>
+		/// <param name="sourceDataFileName">The text file you want to read the data from</param>
+		public static void sFillComboBoxFromTextFile(ComboBox comboBoxToFill, string sourceDataFileName)
+		{
+			try
+			{
+				string sourceDataFullFileName = Application.StartupPath + sourceDataFileName;
+				System.IO.StreamReader textReader = new System.IO.StreamReader(sourceDataFullFileName);
+				comboBoxToFill.Items.Clear();
+				comboBoxToFill.Sorted = true;
+				while (!textReader.EndOfStream)
+					comboBoxToFill.Items.Add(textReader.ReadLine());
+				textReader.Close();
+			}
+			catch
+			{
+			}
+		}
+
 		public PreferencesForm()
 		{
 			InitializeComponent();
@@ -136,8 +160,8 @@ namespace BlueBrick
 				// language
 				fillAndSelectLanguageComboBox();
 				// new map
-				GeneralInfoForm.sFillLUGComboBox(this.lugComboBox, @"/config/LugList.txt");
-				GeneralInfoForm.sFillLUGComboBox(this.showComboBox, @"/config/EventList.txt");
+				sFillComboBoxFromTextFile(this.lugComboBox, @"/config/LugList.txt");
+				sFillComboBoxFromTextFile(this.showComboBox, @"/config/EventList.txt");
 				this.addGridLayerCheckBox.Checked = Settings.Default.AddGridLayerOnNewMap;
 				this.addBrickLayerCheckBox.Checked = Settings.Default.AddBrickLayerOnNewMap;
 				this.addAreaLayerCheckBox.Checked = Settings.Default.AddAreaLayerOnNewMap;
