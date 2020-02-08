@@ -393,26 +393,6 @@
     <EmbeddedResource Include="ForgetableMessageBox.resx">
       <DependentUpon>ForgetableMessageBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GeneralInfoForm.de.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GeneralInfoForm.es.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GeneralInfoForm.fr.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GeneralInfoForm.nl.resx">
-      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GeneralInfoForm.pt.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LibraryPackageSourceForm.fr.resx">
       <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -600,10 +580,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>EditTextForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GeneralInfoForm.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.nl.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -660,12 +636,6 @@
     </Compile>
     <Compile Include="EditTextForm.Designer.cs">
       <DependentUpon>EditTextForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GeneralInfoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GeneralInfoForm.Designer.cs">
-      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SaveLoad\SaveLoadManager.cs" />
     <Compile Include="SplashScreen.cs">
@@ -870,18 +840,6 @@
     <EmbeddedResource Include="FindForm.sv.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FindForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GeneralInfoForm.it.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GeneralInfoForm.no.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GeneralInfoForm.sv.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>GeneralInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PreferencesForm.it.resx">
       <SubType>Designer</SubType>

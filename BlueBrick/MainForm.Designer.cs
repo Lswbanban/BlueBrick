@@ -153,7 +153,6 @@ namespace BlueBrick
 			this.addRulerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.addCircleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-			this.generalInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mapBackgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.currentLayerOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.preferencesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -686,6 +685,7 @@ namespace BlueBrick
 			this.DocumentDataPropertiesTableLayoutPanel.SetColumnSpan(this.dateTimePicker, 8);
 			resources.ApplyResources(this.dateTimePicker, "dateTimePicker");
 			this.dateTimePicker.Name = "dateTimePicker";
+			this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
 			// 
 			// label3
 			// 
@@ -849,7 +849,6 @@ namespace BlueBrick
             this.paintToolToolStripMenuItem,
             this.rulerToolToolStripMenuItem,
             this.toolStripSeparator10,
-            this.generalInformationToolStripMenuItem,
             this.mapBackgroundColorToolStripMenuItem,
             this.currentLayerOptionsToolStripMenuItem,
             this.preferencesMenuItem});
@@ -1159,12 +1158,6 @@ namespace BlueBrick
 			// 
 			this.toolStripSeparator10.Name = "toolStripSeparator10";
 			resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
-			// 
-			// generalInformationToolStripMenuItem
-			// 
-			this.generalInformationToolStripMenuItem.Name = "generalInformationToolStripMenuItem";
-			resources.ApplyResources(this.generalInformationToolStripMenuItem, "generalInformationToolStripMenuItem");
-			this.generalInformationToolStripMenuItem.Click += new System.EventHandler(this.generalInformationToolStripMenuItem_Click);
 			// 
 			// mapBackgroundColorToolStripMenuItem
 			// 
@@ -1895,7 +1888,6 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripMenuItem findAndReplaceToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
 		private System.Windows.Forms.ToolStripMenuItem electricCircuitsMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem generalInformationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem groupMenuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem groupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ungroupToolStripMenuItem;
