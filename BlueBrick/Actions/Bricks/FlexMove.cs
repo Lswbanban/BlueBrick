@@ -632,6 +632,9 @@ namespace BlueBrick.Actions.Bricks
 
 			// restore the selection
 			mBrickLayer.selectOnlyThisObject(mSelectedBricksBeforeFlexMove);
+
+			// notify the main form for the brick move
+			MainForm.Instance.NotifyForPartMoved();
 		}
 		#endregion
 

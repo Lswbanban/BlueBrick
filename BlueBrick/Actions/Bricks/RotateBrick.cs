@@ -213,6 +213,9 @@ namespace BlueBrick.Actions.Bricks
 			// update the bounding rectangle in any case because the brick is not necessary squared
 			if (mMustUpdateBrickConnectivity)
 				(mLayer as LayerBrick).updateBrickConnectivityOfSelection(false);
+
+			// notify the main form for the brick move
+			MainForm.Instance.NotifyForPartMoved();
 		}
 
 		public override void undo()
@@ -242,6 +245,9 @@ namespace BlueBrick.Actions.Bricks
 			// update the bounding rectangle in any case because the brick is not necessary squared
 			if (mMustUpdateBrickConnectivity)
 				(mLayer as LayerBrick).updateBrickConnectivityOfSelection(false);
+
+			// notify the main form for the brick move
+			MainForm.Instance.NotifyForPartMoved();
 		}
 
 		private void moveToConnect(LayerBrick.Brick.ConnectionPoint connectionToUse)

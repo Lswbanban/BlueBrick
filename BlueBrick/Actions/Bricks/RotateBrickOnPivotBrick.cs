@@ -30,6 +30,8 @@ namespace BlueBrick.Actions.Bricks
 				brick.Center = new PointF(brick.Center.X + pivotShift.X, brick.Center.Y + pivotShift.Y);
 			// update the selection rectangle after moving all the parts
 			mLayer.updateBoundingSelectionRectangle();
+			// notify the main form for the brick move
+			MainForm.Instance.NotifyForPartMoved();
 		}
 
 		public override void undo()
@@ -46,6 +48,8 @@ namespace BlueBrick.Actions.Bricks
 				brick.Center = new PointF(brick.Center.X + pivotShift.X, brick.Center.Y + pivotShift.Y);
 			// update the selection rectangle after moving all the parts
 			mLayer.updateBoundingSelectionRectangle();
+			// notify the main form for the brick move
+			MainForm.Instance.NotifyForPartMoved();
 		}
 	}
 }

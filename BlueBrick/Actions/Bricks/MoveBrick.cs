@@ -64,6 +64,8 @@ namespace BlueBrick.Actions.Bricks
 			base.redo();
 			// update the brick connectivity
 			brickLayer.updateBrickConnectivityOfSelection(false);
+			// notify the main form for the brick move
+			MainForm.Instance.NotifyForPartMoved();
 		}
 
 		public override void undo()
@@ -76,6 +78,8 @@ namespace BlueBrick.Actions.Bricks
 			base.undo();
 			// update the brick connectivity
 			brickLayer.updateBrickConnectivityOfSelection(false);
+			// notify the main form for the brick move
+			MainForm.Instance.NotifyForPartMoved();
 		}
 	}
 }

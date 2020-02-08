@@ -1123,6 +1123,12 @@ namespace BlueBrick
 			// update the map dimensions
 			updateMapDimensionInfo();
 		}
+
+		public void NotifyForPartMoved()
+		{
+			// update the map dimensions
+			updateMapDimensionInfo();
+		}
 		#endregion
 
 		#region status bar
