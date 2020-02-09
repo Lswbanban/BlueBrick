@@ -562,4 +562,7 @@ Si vous préférez, vous pouvez aussi fermer BlueBrick et télécharger les paqu
   <data name="PartLibMenuItemDisplayPartInfo" xml:space="preserve">
     <value>Info des pièces</value>
   </data>
+  <data name="TextUnlimited" xml:space="preserve">
+    <value>Illimité</value>
+  </data>
 </root>

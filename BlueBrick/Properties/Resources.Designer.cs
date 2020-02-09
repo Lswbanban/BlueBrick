@@ -1541,6 +1541,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unlimited.
+        /// </summary>
+        internal static string TextUnlimited {
+            get {
+                return ResourceManager.GetString("TextUnlimited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ft.
         /// </summary>
         internal static string UnitFeet {
