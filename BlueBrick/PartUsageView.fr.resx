@@ -117,19 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="budgetColumnHeader.Text" xml:space="preserve">
-    <value>% d'utilisation</value>
-  </data>
-  <data name="colorColumnHeader.Text" xml:space="preserve">
-    <value>Couleur</value>
-  </data>
-  <data name="descriptionColumnHeader.Text" xml:space="preserve">
-    <value>Description</value>
-  </data>
   <data name="partColumnHeader.Text" xml:space="preserve">
     <value>Pièce</value>
   </data>
   <data name="quantiyColumnHeader.Text" xml:space="preserve">
     <value>Quantité</value>
+  </data>
+  <data name="colorColumnHeader.Text" xml:space="preserve">
+    <value>Couleur</value>
+  </data>
+  <data name="budgetColumnHeader.Text" xml:space="preserve">
+    <value>% d'utilisation</value>
   </data>
 </root>

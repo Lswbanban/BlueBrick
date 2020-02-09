@@ -117,6 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;quantiyColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;budgetColumnHeader.Name" xml:space="preserve">
+    <value>budgetColumnHeader</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="quantiyColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;quantiyColumnHeader.Name" xml:space="preserve">
+    <value>quantiyColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;descriptionColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="quantiyColumnHeader.Text" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="&gt;&gt;budgetColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="budgetColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="&gt;&gt;colorColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="colorColumnHeader.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="&gt;&gt;colorColumnHeader.Name" xml:space="preserve">
+    <value>colorColumnHeader</value>
+  </data>
+  <data name="partColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="&gt;&gt;partColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>PartUsageView</value>
+  </data>
+  <data name="descriptionColumnHeader.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="partColumnHeader.Text" xml:space="preserve">
+    <value>Part</value>
+  </data>
+  <data name="budgetColumnHeader.Text" xml:space="preserve">
+    <value>Part Usage %</value>
+  </data>
+  <data name="&gt;&gt;partColumnHeader.Name" xml:space="preserve">
+    <value>partColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;descriptionColumnHeader.Name" xml:space="preserve">
+    <value>descriptionColumnHeader</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
