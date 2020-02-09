@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PartUsageView));
 			this.partColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.quantiyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,33 +39,31 @@
 			// partColumnHeader
 			// 
 			this.partColumnHeader.Name = "partColumnHeader";
-			this.partColumnHeader.Text = "Part";
-			this.partColumnHeader.Width = 80;
+			resources.ApplyResources(this.partColumnHeader, "partColumnHeader");
 			// 
 			// quantiyColumnHeader
 			// 
 			this.quantiyColumnHeader.Name = "quantiyColumnHeader";
-			this.quantiyColumnHeader.Text = "Quantity";
-			this.quantiyColumnHeader.Width = 55;
+			resources.ApplyResources(this.quantiyColumnHeader, "quantiyColumnHeader");
 			// 
 			// colorColumnHeader
 			// 
 			this.colorColumnHeader.Name = "colorColumnHeader";
-			this.colorColumnHeader.Text = "Color";
+			resources.ApplyResources(this.colorColumnHeader, "colorColumnHeader");
 			// 
 			// descriptionColumnHeader
 			// 
 			this.descriptionColumnHeader.Name = "descriptionColumnHeader";
-			this.descriptionColumnHeader.Text = "Description";
+			resources.ApplyResources(this.descriptionColumnHeader, "descriptionColumnHeader");
 			// 
 			// budgetColumnHeader
 			// 
 			this.budgetColumnHeader.Name = "budgetColumnHeader";
-			this.budgetColumnHeader.Text = "Part Usage %";
-			this.budgetColumnHeader.Width = 150;
+			resources.ApplyResources(this.budgetColumnHeader, "budgetColumnHeader");
 			// 
 			// PartUsageView
 			// 
+			resources.ApplyResources(this, "$this");
 			this.AllowColumnReorder = true;
 			this.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.partColumnHeader,
