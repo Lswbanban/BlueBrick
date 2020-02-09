@@ -131,7 +131,7 @@ namespace BlueBrick
 				// create an item
 				ListViewItem item = new ListViewItem(file);
 				item.Checked = true; // by default we download all the files
-				// add it to the list
+									 // add it to the list
 				this.DownloadListView.Items.Add(item);
 				// call the update of the percentage for updating the color
 				updatePercentageOfOneFile(itemIndex, 0);
@@ -153,22 +153,7 @@ namespace BlueBrick
 			ListViewItem.ListViewSubItemCollection subitems = this.DownloadListView.Items[fileIndex].SubItems;
 
 			// add the percentage bar
-			string percentageString = "";
-			int nbTenth = (int)(percentage * 0.1);
-			if (nbTenth > 10)
-				nbTenth = 10;
-			for (int i = 0; i < nbTenth; ++i)
-				percentageString += char.ConvertFromUtf32(0x2588);
-			if ((nbTenth < 10) && ((percentage - (nbTenth * 10)) >= 5.0))
-			{
-				percentageString += char.ConvertFromUtf32(0x258C);
-				++nbTenth;
-			}
-			int nbSpaces = 10 - nbTenth;
-			for (int i = 0; i < nbSpaces; ++i)
-				percentageString += char.ConvertFromUtf32(0x2550);
-
-			subitems[SUBITEM_PERCENTAGE_INDEX].Text = percentageString + " " + percentage.ToString();
+			subitems[SUBITEM_PERCENTAGE_INDEX].Text = ComputePercentageBarAsString(percentage);
 
 			// change the color according to the percentage value
 			this.DownloadListView.Items[fileIndex].ForeColor = ComputeColorFromPercentage(100 - percentage, false);
@@ -327,7 +312,7 @@ namespace BlueBrick
 		private void downloadBackgroundWorker_DoWork(object sender, DoWorkEventArgs eventArgs)
 		{
 			// Get the BackgroundWorker that raised this event.
-            BackgroundWorker worker = sender as BackgroundWorker;
+			BackgroundWorker worker = sender as BackgroundWorker;
 			// and get the parameters
 			DownloadParameter parameters = eventArgs.Argument as DownloadParameter;
 
@@ -421,13 +406,60 @@ namespace BlueBrick
 			// get the parameters
 			int fileIndex = (int)(e.UserState);
 			int percentage = Math.Min(e.ProgressPercentage, 100); // clamp the value to 100
-			// update the progress bar of one file and global progress bar
+																  // update the progress bar of one file and global progress bar
 			updatePercentageOfOneFile(fileIndex, percentage);
 			updatePercentageOfTotalBar(fileIndex, percentage);
 		}
 		#endregion
 
 		#region tool function
+
+		/// <summary>
+		/// Transform the specified percentage in a string representing a percentage bar follower by the percentage value.
+		/// If the value is greater than 100, the bar will be full as if it will be 100%, but the value display after will be correct.
+		/// </summary>
+		/// <param name="percentage">The percentage value betwen 0 and 100 (can be greater than 100)</param>
+		/// <returns></returns>
+		public static string ComputePercentageBarAsString(float percentage)
+		{
+			string percentageString = "";
+			int nbTenth = (int)(percentage * 0.1);
+			if (nbTenth > 10)
+				nbTenth = 10;
+			// write the first tenth of characters
+			for (int i = 0; i < nbTenth; ++i)
+				percentageString += char.ConvertFromUtf32(0x2588);
+			// write the middle character in between the filled part of the bar and the empty part
+			if (nbTenth < 10)
+			{
+				float remain = (percentage - (nbTenth * 10));
+				if (remain >= 8.75) // 7/8
+					percentageString += char.ConvertFromUtf32(0x2588);
+				else if (remain >= 7.5) // 6/8 i.e. 3/4
+					percentageString += char.ConvertFromUtf32(0x2589);
+				else if (remain >= 6.25) // 5/8
+					percentageString += char.ConvertFromUtf32(0x258A);
+				else if (remain >= 5.0) // 4/8 i.e. 1/2
+					percentageString += char.ConvertFromUtf32(0x258B);
+				else if (remain >= 3.75) // 3/8
+					percentageString += char.ConvertFromUtf32(0x258C);
+				else if (remain >= 2.5) // 2/8 i.e. 1/4
+					percentageString += char.ConvertFromUtf32(0x258D);
+				else if (remain >= 1.25) // 1/8
+					percentageString += char.ConvertFromUtf32(0x258E);
+				else
+					percentageString += char.ConvertFromUtf32(0x258F);
+				++nbTenth;
+			}
+			// write the remaining spaces
+			int nbSpaces = 10 - nbTenth;
+			for (int i = 0; i < nbSpaces; ++i)
+				percentageString += char.ConvertFromUtf32(0x254C); //0x2550 //0x2591 //0x2007
+
+			// return the result
+			return percentageString + " " + percentage.ToString("N2");
+		}
+
 		/// <summary>
 		/// Compute a gradient color from green to red (if shouldGoToRed is true) or from green to Black depending
 		/// on the percentage value given in parameter

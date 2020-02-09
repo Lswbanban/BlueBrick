@@ -55,7 +55,8 @@
 			// 
 			// budgetColumnHeader
 			// 
-			this.budgetColumnHeader.Text = "Usage %";
+			this.budgetColumnHeader.Text = "Part Usage %";
+			this.budgetColumnHeader.Width = 150;
 			// 
 			// PartUsageView
 			// 
