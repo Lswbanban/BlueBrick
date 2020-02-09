@@ -2365,6 +2365,8 @@ namespace BlueBrick
 			updateEnableStatusForBudgetMenuItem();
 			// then update the view of the part lib
 			this.PartsTabControl.updateViewStyle();
+			// update the budgets in the part usage view
+			this.PartUsageListView.updateBudgetNotification();
 			// restore the cursor after loading
 			this.Cursor = Cursors.Default;
 			// return if the file was correctly loaded
@@ -2394,6 +2396,8 @@ namespace BlueBrick
 				updateEnableStatusForBudgetMenuItem();
 				// then update the view of the part lib
 				this.PartsTabControl.updateViewStyle();
+				// update the budgets in the part usage view
+				this.PartUsageListView.updateBudgetNotification();
 			}
 		}
 
@@ -2433,6 +2437,8 @@ namespace BlueBrick
 				updateEnableStatusForBudgetMenuItem();
 				// then update the view of the part lib
 				this.PartsTabControl.updateViewStyle();
+				// update the budgets in the part usage view
+				this.PartUsageListView.updateBudgetNotification();
 			}
 		}
 
