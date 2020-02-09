@@ -2712,12 +2712,6 @@ namespace BlueBrick
 		#endregion
 
 		#region event handler for layers
-		private void layerStackPanel_MouseEnter(object sender, EventArgs e)
-		{
-			// give focus to layer panel so that you can scroll with mouse, just by moving the mouse above
-			layerStackPanel.Focus();
-		}
-
 		private void layerUpButton_Click(object sender, EventArgs e)
 		{
 			if (Map.Instance.SelectedLayer != null)
@@ -2886,13 +2880,6 @@ namespace BlueBrick
 		#endregion
 
 		#region event handler for map
-
-		private void mapPanel_MouseEnter(object sender, EventArgs e)
-		{
-			// give focus to map panel so that you can scroll with mouse, just by moving the mouse above
-			mapPanel.Focus();
-		}
-
 		private void MainForm_MouseWheel(object sender, MouseEventArgs e)
 		{
 			if (this.mapPanel.Focused)

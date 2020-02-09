@@ -1253,7 +1253,6 @@ namespace BlueBrick
 			resources.ApplyResources(this.mapPanel, "mapPanel");
 			this.mapPanel.Name = "mapPanel";
 			this.mapPanel.ViewScale = 1.7D;
-			this.mapPanel.MouseEnter += new System.EventHandler(this.mapPanel_MouseEnter);
 			// 
 			// statusBar
 			// 
@@ -1375,7 +1374,6 @@ namespace BlueBrick
 			resources.ApplyResources(this.layerStackPanel, "layerStackPanel");
 			this.layerStackPanel.BackColor = System.Drawing.SystemColors.Control;
 			this.layerStackPanel.Name = "layerStackPanel";
-			this.layerStackPanel.MouseEnter += new System.EventHandler(this.layerStackPanel_MouseEnter);
 			// 
 			// LayerButtonFlowLayoutPanel
 			// 
