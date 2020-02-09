@@ -37,24 +37,29 @@
 			// 
 			// partColumnHeader
 			// 
+			this.partColumnHeader.Name = "partColumnHeader";
 			this.partColumnHeader.Text = "Part";
 			this.partColumnHeader.Width = 80;
 			// 
 			// quantiyColumnHeader
 			// 
+			this.quantiyColumnHeader.Name = "quantiyColumnHeader";
 			this.quantiyColumnHeader.Text = "Quantity";
 			this.quantiyColumnHeader.Width = 55;
 			// 
 			// colorColumnHeader
 			// 
+			this.colorColumnHeader.Name = "colorColumnHeader";
 			this.colorColumnHeader.Text = "Color";
 			// 
 			// descriptionColumnHeader
 			// 
+			this.descriptionColumnHeader.Name = "descriptionColumnHeader";
 			this.descriptionColumnHeader.Text = "Description";
 			// 
 			// budgetColumnHeader
 			// 
+			this.budgetColumnHeader.Name = "budgetColumnHeader";
 			this.budgetColumnHeader.Text = "Part Usage %";
 			this.budgetColumnHeader.Width = 150;
 			// 
