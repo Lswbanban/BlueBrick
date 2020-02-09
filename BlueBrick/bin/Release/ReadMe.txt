@@ -106,6 +106,8 @@ to open the help file (see above for more details).
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Being able to sort the usage part list, by clicking on the column
 - [target 1.9] MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget in percentage, and the total sum of all the parts in the budget (and other stats that I may found): this should be merged into the brick list window
+- [target 1.9] MISSING FEATURE (Alban): Being able to export the budget in csv
+- [target 1.9] BUG (Alban): the usage percentage and/or the budget in the Part Usage List doesn't take in consideration the hidden layers
 
 - [target 1.9] MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels (mouse over should give the focus?).
 - [target 1.9] MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 

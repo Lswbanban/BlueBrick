@@ -92,7 +92,7 @@ namespace BlueBrick
 				// even if the display order is different (quantity, part, color and description)
 				string[] itemTexts = { brickInfo[0], mQuantity.ToString(), Properties.Resources.TextNA, brickInfo[2], brickInfo[3] };
 				mItem = new ListViewItem(itemTexts, mImageIndex);
-				mItem.SubItems[2].Tag = brickInfo[1]; // store the color index in the tag of the color subitem, used in the html export
+				mItem.SubItems[3].Tag = brickInfo[1]; // store the color index in the tag of the color subitem, used in the html export
 				// update the part usage percentage
 				updateUsagePercentage();
 			}
@@ -101,14 +101,12 @@ namespace BlueBrick
 			{
 				mQuantity++;
 				mItem.SubItems[1].Text = mQuantity.ToString();
-				updateUsagePercentage();
 			}
 
 			public void decrementQuantity()
 			{
 				mQuantity--;
 				mItem.SubItems[1].Text = mQuantity.ToString();
-				updateUsagePercentage();
 			}
 
 			public void updateUsagePercentage()
@@ -447,6 +445,8 @@ namespace BlueBrick
 				this.Items.Add(brickEntry.Item);
 			// and increment its count
 			brickEntry.incrementQuantity();
+			// update the part usage for all the part that bear the same part number in all the groups
+			updateBudgetNotification(partNumber);
 		}
 
 		/// <summary>
@@ -487,6 +487,8 @@ namespace BlueBrick
 				{
 					this.Items.Remove(brickEntry.Item);
 				}
+				// update the part usage for all the part that bear the same part number in all the groups
+				updateBudgetNotification(brickOrGroup.PartNumber);
 			}
 		}
 
@@ -648,7 +650,7 @@ namespace BlueBrick
 					{
 						case 0: //this is the part
 							//special case for the part column, we also add the picture
-							string colorNum = item.SubItems[2].Tag as string;
+							string colorNum = item.SubItems[3].Tag as string;
 							// check if we have an imageURL or if we need to construct the default image path
 							string partNumber = text;
 							if (colorNum != string.Empty)
