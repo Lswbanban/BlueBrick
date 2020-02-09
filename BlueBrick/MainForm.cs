@@ -1113,8 +1113,9 @@ namespace BlueBrick
 
 		public void NotifyPartListForBrickAdded(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToRegroup)
 		{
-			this.PartUsageListView.addBrickNotification(layer, brickOrGroup, isDueToRegroup);
+			// inform the budget first, because the part usage also display the budget
 			Budget.Budget.Instance.addBrickNotification(brickOrGroup, isDueToRegroup);
+			this.PartUsageListView.addBrickNotification(layer, brickOrGroup, isDueToRegroup);
 			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup);
 			// update the map dimensions
 			updateMapDimensionInfo();
@@ -1122,8 +1123,9 @@ namespace BlueBrick
 
 		public void NotifyPartListForBrickRemoved(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToUngroup)
 		{
-			this.PartUsageListView.removeBrickNotification(layer, brickOrGroup, isDueToUngroup);
+			// inform the budget first, because the part usage also display the budget
 			Budget.Budget.Instance.removeBrickNotification(brickOrGroup, isDueToUngroup);
+			this.PartUsageListView.removeBrickNotification(layer, brickOrGroup, isDueToUngroup);
 			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup);
 			// update the map dimensions
 			updateMapDimensionInfo();
