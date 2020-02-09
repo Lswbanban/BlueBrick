@@ -116,14 +116,24 @@ namespace BlueBrick
 				mItem.UseItemStyleForSubItems = true;
 				if (Budget.Budget.Instance.IsExisting)
 				{
+					// activate the fore color because we have a budget
+					mItem.UseItemStyleForSubItems = false;
+
 					// we should not use the mQuantity to compute the budget percentage, because this quantity is only for this
 					// group, but the part can appear in multiple group (on multiple layer), and the budget is an overall budget
 					// all part included, so let the Budget class to use its own count of part
 					usagePercentage = Budget.Budget.Instance.getUsagePercentage(mPartNumber);
-					usageAsString = DownloadCenterForm.ComputePercentageBarAsString(usagePercentage);
-					// set the fore color (if we have budgets)
-					mItem.UseItemStyleForSubItems = false;
-					mItem.SubItems[2].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
+					if (usagePercentage < 0)
+					{
+						// illimited budget
+						usageAsString = Properties.Resources.TextUnlimited;
+						mItem.SubItems[2].ForeColor = Color.CadetBlue;
+					}
+					else
+					{
+						usageAsString = DownloadCenterForm.ComputePercentageBarAsString(usagePercentage);
+						mItem.SubItems[2].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
+					}
 				}
 				mItem.SubItems[2].Text = usageAsString;
 			}
