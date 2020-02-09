@@ -405,6 +405,9 @@
     <EmbeddedResource Include="PartUsageView.resx">
       <DependentUpon>PartUsageView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PartUsageView.fr.resx">
+      <DependentUpon>PartUsageView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PreferencesForm.de.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PreferencesForm.cs</DependentUpon>
