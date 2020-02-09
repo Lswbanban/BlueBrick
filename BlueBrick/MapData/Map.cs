@@ -762,7 +762,19 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
-		/// Add the specified layer to the map
+		/// Return the index just above of the selected layer.
+		/// If no layer is selected, return the index after the last layer (which may be 0 if the list is empty)
+		/// </summary>
+		/// <returns>The index of the selected layer or the index of the last layer if no layer is selected</return>
+		public int getIndexAboveTheSelectedLayer()
+		{
+			if (SelectedLayer != null)
+				return mLayers.IndexOf(SelectedLayer) + 1;
+			return mLayers.Count;
+		}
+
+		/// <summary>
+		/// Add the specified layer to the map at the top of the list
 		/// </summary>
 		/// <param name="layerToAdd">the layer to add</param>
 		public void addLayer(Layer layerToAdd)
