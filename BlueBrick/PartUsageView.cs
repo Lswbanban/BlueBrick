@@ -277,6 +277,11 @@ namespace BlueBrick
 		/// <param name="partNumber">The part id for which the budget has been updated.</param>
 		public void updateBudgetNotification(string partNumber)
 		{
+			// do nothing if the window is not visible
+			// because we rebuild everything when it becomes visible
+			if (!this.Visible)
+				return;
+
 			// iterate on all the group entry, because the specified part can be in multiple group (if the part list is split by layers)
 			foreach (GroupEntry groupEntry in mGroupEntryList)
 			{
@@ -286,6 +291,22 @@ namespace BlueBrick
 				if (groupEntry.mBrickEntryList.TryGetValue(partNumber, out brickEntry))
 					brickEntry.updateUsagePercentage();
 			}
+		}
+
+		/// <summary>
+		/// Update all the part usage percentage of all the brick in the list view
+		/// </summary>
+		public void updateBudgetNotification()
+		{
+			// do nothing if the window is not visible
+			// because we rebuild everything when it becomes visible
+			if (!this.Visible)
+				return;
+
+			// iterate on all brick entrey on all the group entry to update the usage percentage
+			foreach (GroupEntry groupEntry in mGroupEntryList)
+				foreach (BrickEntry brickEntry in groupEntry.mBrickEntryList.Values)
+					brickEntry.updateUsagePercentage();
 		}
 
 		/// <summary>
