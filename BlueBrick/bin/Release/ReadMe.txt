@@ -107,9 +107,7 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Being able to sort the usage part list, by clicking on the column
 - [target 1.9] MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget in percentage, and the total sum of all the parts in the budget (and other stats that I may found): this should be merged into the brick list window
 - [target 1.9] MISSING FEATURE (Alban): Being able to export the budget in csv
-- [target 1.9] BUG (Alban): the usage percentage and/or the budget in the Part Usage List doesn't take in consideration the hidden layers
 
-- [target 1.9] MISSING FEATURE (Alban): Support mouse wheel in the library and layer panels (mouse over should give the focus?).
 - [target 1.9] MISSING FEATURE (Alban): The new layers should be inserted above the selected layer, not at the top of the stack 
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
 
@@ -143,6 +141,7 @@ Open bugs:
 - MISSING FEATURE (Ludo & Denis): Add some optional arrows at the extremities of the linear rulers.
 - MISSING FEATURE (Ludo): Move the measure values along the linear rulers in order to avoid overlapping of close parallel rulers.
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
+- BUG (Alban): the budget calculation doesn't take in consideration the hidden layers (hidden parts are counted against the budget)
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
@@ -158,6 +157,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Matthias): An option to display part names below the parts
 - NEW FEATURE (Alban): Add a checkbox to include or not hidden layers in the part usage list
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points
+- BUGFIX (Alban): The scroll of the mouse wheel was not happening when moving the mouse over the part lib or layer stack, only after you click on it (now the focus is automatically given to the region of the application where the mouse move)
 - BUGFIX (Alban): When updating in the library a group of parts that was not displayed in the library (because filtered with keyword) the image was added two times
 - BUGFIX (Alban): The cancel of the files download from the download center form was not properly stopped
 - BUGFIX (Matthias): The color name was "unknown" in the Bubble info at BlueBrick startup or after every Part Library Reload (and could only be valid after changing the preferences regarding the Bubble info)
