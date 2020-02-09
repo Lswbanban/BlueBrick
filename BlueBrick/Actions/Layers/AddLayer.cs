@@ -12,9 +12,6 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using BlueBrick.MapData;
 
 namespace BlueBrick.Actions
@@ -23,6 +20,7 @@ namespace BlueBrick.Actions
 	{
 		private string	mLayerType = "";
 		private Layer mLayerAdded = null;
+		private int mInsertionIndex = 0;
 
 		public AddLayer(string layerType, bool updateLayerView)
 		{
@@ -51,6 +49,8 @@ namespace BlueBrick.Actions
 					mLayerAdded = new LayerRuler();
 					break;
 			}
+			// get the current position of the selected layer
+			mInsertionIndex = Map.Instance.getIndexAboveTheSelectedLayer();
 		}
 
 		public override string getName()
@@ -71,7 +71,7 @@ namespace BlueBrick.Actions
 
 		public override void redo()
 		{
-			Map.Instance.addLayer(mLayerAdded);
+			Map.Instance.addLayer(mLayerAdded, mInsertionIndex);
 		}
 
 		public override void undo()
