@@ -117,7 +117,10 @@ namespace BlueBrick
 				string usageAsString = Properties.Resources.TextNA;
 				if (Budget.Budget.Instance.IsExisting)
 				{
-					usagePercentage = Budget.Budget.Instance.getUsagePercentage(mPartNumber, mQuantity);
+					// we should not use the mQuantity to compute the budget percentage, because this quantity is only for this
+					// group, but the part can appear in multiple group (on multiple layer), and the budget is an overall budget
+					// all part included, so let the Budget class to use its own count of part
+					usagePercentage = Budget.Budget.Instance.getUsagePercentage(mPartNumber);
 					usageAsString = usagePercentage.ToString();
 				}
 				mItem.SubItems[2].Text = usageAsString;
@@ -264,6 +267,25 @@ namespace BlueBrick
 			}
 
 			return currentGroupEntry;
+		}
+
+		/// <summary>
+		/// Update the part usage percentage for the specified part number, everywhere it appears in the list.
+		/// The specified part can appear multiple time if the part list is split by layer, and if the specified part
+		/// appears in multiple layers
+		/// </summary>
+		/// <param name="partNumber">The part id for which the budget has been updated.</param>
+		public void updateBudgetNotification(string partNumber)
+		{
+			// iterate on all the group entry, because the specified part can be in multiple group (if the part list is split by layers)
+			foreach (GroupEntry groupEntry in mGroupEntryList)
+			{
+				// try to get an entry in the dictionnary for the specified brick
+				// if we find it, update its usage percentage, otherwise just ignore it
+				BrickEntry brickEntry = null;
+				if (groupEntry.mBrickEntryList.TryGetValue(partNumber, out brickEntry))
+					brickEntry.updateUsagePercentage();
+			}
 		}
 
 		/// <summary>
