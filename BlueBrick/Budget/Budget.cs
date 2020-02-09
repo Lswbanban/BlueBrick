@@ -291,8 +291,11 @@ namespace BlueBrick.Budget
 				mBudget.Add(partID, budget);
 			else
 				budget = -1; // for any negative value, transform it into -1 (for the comparison below)
-			// every time we set a new budget (with a different value), change the modified flag
-			this.WasModified = (budget != currentBudget);
+			// every time we set a new budget (with a different value), change the modified flag. But do not change the flag if it is already true.
+			if (budget != currentBudget)
+				this.WasModified = true;
+			// notify the MainForm for budget change
+			MainForm.Instance.NotifyForBudgetChanged(partID);
 		}
 
 		/// <summary>
@@ -312,17 +315,16 @@ namespace BlueBrick.Budget
 
 		/// <summary>
 		/// get the percentage of usage of the specified part, according to its current budget.
-		/// If no budget is associated with this part (illimited budget), a negative value is returned
+		/// If no budget is associated with this part (illimited budget), a negative value is returned.
 		/// </summary>
 		/// <param name="partID">the full part id for which you want to know the usage percentage</param>
-		/// <param name="countToUse">A count number that you can specify. If you specify -1, the budget wil use its own count</param>
 		/// <returns>the usage percentage for that part or -1 if there's no budget (illimited budget)</returns>
-		public float getUsagePercentage(string partID, int countToUse)
+		public float getUsagePercentage(string partID)
 		{
 			// try to get the value or return 0 by default
 			float result = -1f; //-1 means the budget is not set, i.e. you have an infinite budgets
 			int budget = getBudget(partID);
-			int count = (countToUse < 0) ? getCount(partID) : countToUse;
+			int count = getCount(partID);
 			if (budget < 0)
 			{
 				// if budget is negative, that means infinite budget, so the percentage will also be negative

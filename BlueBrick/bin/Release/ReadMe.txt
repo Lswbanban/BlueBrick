@@ -158,7 +158,8 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Alban): When updating in the library a group of parts that was not displayed in the library (because filtered with keyword) the image was added two times
 - BUGFIX (Alban): The cancel of the files download from the download center form was not properly stopped
 - BUGFIX (Matthias): The color name was "unknown" in the Bubble info at BlueBrick startup or after every Part Library Reload (and could only be valid after changing the preferences regarding the Bubble info)
--  BUGFIX (Alban): Adding a part on a hidden layer was counting that part in the Part Usage list
+- BUGFIX (Alban): Adding a part on a hidden layer was counting that part in the Part Usage list
+- BUGFIX (Alban): The flag that check if a budget was modified was not correctly set
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 
 

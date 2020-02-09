@@ -1140,6 +1140,10 @@ namespace BlueBrick
 			// update the back color of the background color button
 			this.DocumentDataPropertiesMapBackgroundColorButton.BackColor = Map.Instance.BackgroundColor;
 		}
+		public void NotifyForBudgetChanged(string partId)
+		{
+			this.PartUsageListView.updateBudgetNotification(partId);
+		}
 		#endregion
 
 		#region status bar
