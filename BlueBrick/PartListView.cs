@@ -500,6 +500,12 @@ namespace BlueBrick
 		#endregion
 
 		#region event handler
+		protected override void OnMouseEnter(EventArgs e)
+		{
+			// give focus to me so that user can scroll with mouse, just by moving the mouse above the part list view
+			this.Focus();
+		}
+
 		private void beginEditLabel()
 		{
 			mIsEditingBudget = true;
