@@ -774,6 +774,8 @@ namespace BlueBrick
 		{
 			// set the default cursor
 			this.Cursor = getDefaultCursor(PointF.Empty);
+			// focus on the panel for handling the mouse scroll
+			this.Focus();
 		}
 
 		public void MapPanel_MouseWheel(object sender, MouseEventArgs e)

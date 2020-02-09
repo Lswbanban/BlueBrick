@@ -110,16 +110,16 @@ Open bugs:
 
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
 
+- [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
 - [target 1.9] MISSING FEATURE (Matthias): Better resolution for part images (Images can have an additional <scale> property in the xml-File, if no scale parameter is provided, the default resolution of 8 pixels/stud is used)
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
-- [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw
 - [target 1.9] MISSING FEATURE (Alban): Slide bars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
 - [target 1.9] BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
-- [target 1.9] BUG (Alban): The vertical scroll bar of layer panel is too big (scroll useless empty space)
+- [target 1.9] BUG (Alban): The vertical scroll bar of layer panel is too big when placing the scrollbar on the bottom, changing tab, and come back (scroll useless empty space)
 - MISSING FEATURE (Alban): Preferences option to edit what is displayed on watermark?
 - MISSING FEATURE (Alban): Add a version number in the general info?
 - MISSING FEATURE (Alban): Implement elevation by displaying a number next to the part and edition of elevation

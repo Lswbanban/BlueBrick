@@ -120,7 +120,6 @@ namespace BlueBrick
 			this.AutoScroll = true;
 			this.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.Margin = new System.Windows.Forms.Padding(0);
-			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LayerStackPanel_MouseDown);
 			this.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.LayerStackPanel_ControlAdded);
 			this.ResumeLayout(false);
 
@@ -219,9 +218,9 @@ namespace BlueBrick
 			this.Height += 1;
 		}
 
-		private void LayerStackPanel_MouseDown(object sender, MouseEventArgs e)
+		protected override void OnMouseEnter(EventArgs e)
 		{
-			// take the focus if the user click in the stack panel
+			// give focus to me so that user can scroll with mouse, just by moving the mouse above the part list view
 			this.Focus();
 		}
 	}
