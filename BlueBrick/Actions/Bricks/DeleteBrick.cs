@@ -73,6 +73,7 @@ namespace BlueBrick.Actions.Bricks
 			// to bricks not deleted we select the connected brick, 
 			// such as the user can press several times on the del button to delete a full line of track.
 			LayerBrick.Brick nextBrickToSelect = null;
+			int nextActiveConnectionPointIndex = -1;
 			foreach (Layer.LayerItem item in mBricks)
 			{
 				LayerBrick.Brick brick = item as LayerBrick.Brick;
@@ -81,6 +82,7 @@ namespace BlueBrick.Actions.Bricks
 						if (!connexion.IsFree && !mBricks.Contains(connexion.ConnectionLink.mMyBrick))
 						{
 							nextBrickToSelect = connexion.ConnectionLink.mMyBrick;
+							nextActiveConnectionPointIndex = connexion.ConnectionLink.Index;
 							break;
 						}
 				if (nextBrickToSelect != null)
@@ -100,6 +102,9 @@ namespace BlueBrick.Actions.Bricks
 			{
 				mBrickLayer.clearSelection();
 				mBrickLayer.addObjectInSelection(nextBrickToSelect);
+				// set also the active connection point
+				if (nextActiveConnectionPointIndex >= 0)
+					nextBrickToSelect.ActiveConnectionPointIndex = nextActiveConnectionPointIndex;
 			}
 		}
 

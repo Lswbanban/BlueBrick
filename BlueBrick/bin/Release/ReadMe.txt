@@ -107,6 +107,8 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Being able to sort the usage part list, by clicking on the column
 - [target 1.9] MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget in percentage, and the total sum of all the parts in the budget (and other stats that I may found): this should be merged into the brick list window
 - [target 1.9] MISSING FEATURE (Alban): Being able to export the budget in csv
+- [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably
+- [target 1.9] MISSING FEATURE (Matthias): A versionning system for the library packages
 
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
 
@@ -152,10 +154,11 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): A feature to download library package online from various sources (official web site, and non official url).
 - NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
 - NEW FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count, option available in Preferences)
-- BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - NEW FEATURE (Matthias): An option to display part names below the parts
 - NEW FEATURE (Alban): Add a checkbox to include or not hidden layers in the part usage list
 - NEW FEATURE (Alban): The new layers are now inserted above the selected layer, not at the top of the stack by default
+- NEW FEATURE (Matthias): When you delete a part, the active connection of the new selected part is the one where the deleted part was connected.
+- BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points
 - BUGFIX (Alban): The scroll of the mouse wheel was not happening when moving the mouse over the part lib or layer stack, only after you click on it (now the focus is automatically given to the region of the application where the mouse move)
 - BUGFIX (Alban): When updating in the library a group of parts that was not displayed in the library (because filtered with keyword) the image was added two times
