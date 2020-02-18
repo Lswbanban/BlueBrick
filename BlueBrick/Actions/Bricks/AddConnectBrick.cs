@@ -26,7 +26,6 @@ namespace BlueBrick.Actions.Bricks
 		private LayerBrick mBrickLayer = null;
 		private LayerBrick.Brick mBrick = null;
 		private int mBrickIndex = -1; // this index is for the redo, to add the brick at the same place
-		private int mNextPreferedActiveConnectionIndex = 0; // the prefered active connection index according to the brick library
 
 		/// <summary>
 		/// Compute and return the angle that should take the brickToAttach if it is connected to the
@@ -95,9 +94,6 @@ namespace BlueBrick.Actions.Bricks
 			// check if we found a good connection, continue to set the position of the brick to add relative to the connection
 			if (hasAGoodConnectionBeenFound)
 			{
-				// after setting the active connection point index from which this brick will be attached,
-				// get the prefered index from the library
-				mNextPreferedActiveConnectionIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(partNumber, mBrick.ActiveConnectionPointIndex);
 				// then rotate the brick to connect
 				mBrick.Orientation = sGetOrientationOfConnectedBrick(selectedBrick, mBrick);
 				// the place the brick to add at the correct position
@@ -191,10 +187,6 @@ namespace BlueBrick.Actions.Bricks
 			mBrickLayer.selectOnlyThisObject(mBrick);
 			// update the connectivity of the bricks after selecting it
 			mBrickLayer.updateBrickConnectivityOfSelection(false);
-
-			// set the prefered index after the adding,
-			// because the connection of the brick will move automatically the the active connection
-			mBrick.ActiveConnectionPointIndex = mNextPreferedActiveConnectionIndex;
 		}
 
 		public override void undo()
