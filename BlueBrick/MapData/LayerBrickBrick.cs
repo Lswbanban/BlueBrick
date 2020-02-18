@@ -77,9 +77,10 @@ namespace BlueBrick.MapData
 
 				/// <summary>
 				/// Property to get/set the link. When a link is created, if this is the active
-				/// connection point of the brick, we try to find another one that is free. If the
-				/// link is broken and the active connection point of the brick is not free, then
-				/// this connection becomes the active connection point
+				/// connection point of the brick, we try to find another one that is free.
+				/// In priority we check the next prefered connection index if it is free.
+				/// When the link is broken and the active connection point of the brick is not free,
+				/// then this connection becomes the active connection point
 				/// </summary>
 				public ConnectionPoint ConnectionLink
 				{
@@ -101,10 +102,13 @@ namespace BlueBrick.MapData
 							}
 							else
 							{
-								// the link is set, check if the active connection point is me, then force
-								// the brick to choose someone else
+								// the link is set, check if the active connection point is me, then force the brick to choose someone else
+								// in priority choose my next prefered connection point, otherwise the function will choose the next free one
 								if (activeConnectionPoint == this)
-									mMyBrick.setActiveConnectionPointWithNextOne(true);
+								{
+									int nextPreferedIndex = BrickLibrary.Instance.getConnectionNextPreferedIndex(mMyBrick.PartNumber, activeConnectionPoint.Index);
+									mMyBrick.setActiveConnectionPointIndex(nextPreferedIndex, true);
+								}
 							}
 						}
 						// finally set the link
@@ -439,21 +443,22 @@ namespace BlueBrick.MapData
 			public int ActiveConnectionPointIndex
 			{
 				get { return mActiveConnectionPointIndex; }
-				set
+				set	{ setActiveConnectionPointIndex(value, false); }
+			}
+			private void setActiveConnectionPointIndex(int index, bool dontChangeActiveConnectionPointIfNotMainBrickOfAGroup)
+			{
+				if (mConnectionPoints != null)
 				{
-					if (mConnectionPoints != null)
-					{
-						// check if the value is in the range
-						if (value < 0)
-							mActiveConnectionPointIndex = 0;
-						else if (value >= mConnectionPoints.Count)
-							mActiveConnectionPointIndex = mConnectionPoints.Count - 1;
-						else
-							mActiveConnectionPointIndex = value;
-						// check if the active connection point is Free, else select the next one
-						if (!ActiveConnectionPoint.IsFree)
-							setActiveConnectionPointWithNextOne(false);
-					}
+					// check if the value is in the range
+					if (index < 0)
+						mActiveConnectionPointIndex = 0;
+					else if (index >= mConnectionPoints.Count)
+						mActiveConnectionPointIndex = mConnectionPoints.Count - 1;
+					else
+						mActiveConnectionPointIndex = index;
+					// check if the active connection point is Free, else select the next one
+					if (!ActiveConnectionPoint.IsFree)
+						setActiveConnectionPointWithNextOne(dontChangeActiveConnectionPointIfNotMainBrickOfAGroup);
 				}
 			}
 

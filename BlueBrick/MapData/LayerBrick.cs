@@ -401,6 +401,7 @@ namespace BlueBrick.MapData
 			// the connexion can never be stolen
 			if (connexion1.IsFree && connexion2.IsFree)
 			{
+				// create the link in between the two connections
 				connexion1.ConnectionLink = connexion2;
 				connexion2.ConnectionLink = connexion1;
 				freeConnectionPoints.remove(connexion1);
