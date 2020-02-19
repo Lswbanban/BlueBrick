@@ -104,7 +104,6 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (Alban): Being able to sort the usage part list, by clicking on the column
 - [target 1.9] MISSING FEATURE (Ludo): Add a "Budget > View Statistics" to display the part usage of whole the budget in percentage, and the total sum of all the parts in the budget (and other stats that I may found): this should be merged into the brick list window
 - [target 1.9] MISSING FEATURE (Alban): Being able to export the budget in csv
 - [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably
@@ -157,6 +156,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): Add a checkbox to include or not hidden layers in the part usage list
 - NEW FEATURE (Alban): The new layers are now inserted above the selected layer, not at the top of the stack by default
 - NEW FEATURE (Matthias): When you delete a part, the active connection of the new selected part is the one where the deleted part was connected.
+- NEW FEATURE (Alban): Being able to sort the usage part list, by clicking on the columns.
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points
 - BUGFIX (Alban): The scroll of the mouse wheel was not happening when moving the mouse over the part lib or layer stack, only after you click on it (now the focus is automatically given to the region of the application where the mouse move)

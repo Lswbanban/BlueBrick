@@ -336,6 +336,10 @@ namespace BlueBrick
 				if (groupEntry.mBrickEntryList.TryGetValue(partNumber, out brickEntry))
 					brickEntry.updateUsagePercentage();
 			}
+
+			// if it is currently sorted by budget, we need to resort
+			if (mLastColumnSortedIndex == 2)
+				this.Sort();
 		}
 
 		/// <summary>
@@ -352,6 +356,10 @@ namespace BlueBrick
 			foreach (GroupEntry groupEntry in mGroupEntryList)
 				foreach (BrickEntry brickEntry in groupEntry.mBrickEntryList.Values)
 					brickEntry.updateUsagePercentage();
+
+			// if it is currently sorted by budget, we need to resort
+			if (mLastColumnSortedIndex == 2)
+				this.Sort();
 		}
 
 		/// <summary>
@@ -390,6 +398,10 @@ namespace BlueBrick
 								this.addBrickNotification(layer, item, false); // anyway isDueToRegroup is false
 						}
 					}
+
+			// if it is currently sorted by quantity or by budget, we need to resort
+			if ((mLastColumnSortedIndex == 1) || (mLastColumnSortedIndex == 2))
+				this.Sort();
 		}
 
 		/// <summary>
@@ -438,6 +450,10 @@ namespace BlueBrick
 				this.Groups.Remove(currentGroupEntry.Group);
 				mGroupEntryList.Remove(currentGroupEntry);
 			}
+
+			// if it is currently sorted by quantity or by budget, we need to resort
+			if ((mLastColumnSortedIndex == 1) || (mLastColumnSortedIndex == 2))
+				this.Sort();
 		}
 
 		private void addLayer(LayerBrick brickLayer)

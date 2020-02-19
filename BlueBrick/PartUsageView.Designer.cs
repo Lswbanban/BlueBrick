@@ -63,7 +63,6 @@
 			// 
 			// PartUsageView
 			// 
-			resources.ApplyResources(this, "$this");
 			this.AllowColumnReorder = true;
 			this.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.partColumnHeader,
