@@ -121,7 +121,6 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
 - [target 1.9] BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
-- [target 1.9] BUG (Alban): The vertical scroll bar of layer panel is too big when placing the scrollbar on the bottom, changing tab, and come back (scroll useless empty space)
 - MISSING FEATURE (Alban): Preferences option to edit what is displayed on watermark?
 - MISSING FEATURE (Alban): Add a version number in the general info?
 - MISSING FEATURE (Alban): Implement elevation by displaying a number next to the part and edition of elevation
@@ -167,6 +166,7 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Alban): Adding a part on a hidden layer was counting that part in the Part Usage list
 - BUGFIX (Alban): The flag that check if a budget was modified was not correctly set
 - BUGFIX (Matthias): The next connection preference set in part xml file was not respected when connecting a brick with drag'n'drop from the library, or after a move.
+- BUGFIX (Alban): The vertical scroll bar of layer panel was too big when placing the scrollbar on the bottom, changing tab, and come back (scroll useless empty space)
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 
 

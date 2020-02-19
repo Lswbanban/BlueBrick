@@ -30,56 +30,51 @@ namespace BlueBrick
 		{
 			public override bool Layout(object container, LayoutEventArgs layoutEventArgs)
 			{
-				Control parent = container as Control;
+				Panel panel = container as Panel;
 
-				// Use ClientRectangle so that parent.Padding is honored.
+				// early exit if the panel doesn't have control yet, or if the panel is not visible
+				if ((panel.Controls.Count == 0) || (!panel.Visible))
+					return false;
+
+				// Use ClientRectangle so that panel.Padding is honored.
 				// do not use DisplayRectangle because this rectangle is not correctly computed in Mono
-				Rectangle parentDisplayRectangle = parent.ClientRectangle;
-				Point nextControlLocation = new Point(parentDisplayRectangle.Left, parentDisplayRectangle.Bottom);
+				Rectangle panelDisplayRectangle = panel.ClientRectangle;
+				Point nextControlLocation = new Point(panelDisplayRectangle.Left, panelDisplayRectangle.Bottom);
 
 				// compute the total height of the child control (a layer) including the margin
 				// the height is normally the same for all the controls in the list, so we can just take the first one
-				int controlTotalHeight = 0;
-				int controlTotalWidthMargin = 6;
-				if (parent.Controls.Count > 0)
-				{
-					Control control = parent.Controls[0];
-					controlTotalWidthMargin = control.Margin.Left + control.Margin.Right;
-					controlTotalHeight = control.Margin.Top + control.Height + control.Margin.Bottom;
-				}
+				// we know that there's at least one control in the list, because of the early exit
+				Control firstLayer = panel.Controls[0];
+				int controlTotalWidthMargin = firstLayer.Margin.Left + firstLayer.Margin.Right;
+				int controlTotalHeight = firstLayer.Margin.Top + firstLayer.Height + firstLayer.Margin.Bottom;
 
 				// check if we will need the vertical scrollbar
-				int displayHeight = parentDisplayRectangle.Height - 3;
-				if (controlTotalHeight * parent.Controls.Count > displayHeight)
+				int displayHeight = panelDisplayRectangle.Height - panel.Margin.Top;
+				if (controlTotalHeight * panel.Controls.Count > displayHeight)
 				{
-					nextControlLocation.Y += (controlTotalHeight * parent.Controls.Count) - displayHeight;
-					controlTotalWidthMargin += 18;
+					int currentVerticalScrollValue = panel.VerticalScroll != null ? panel.VerticalScroll.Value : 0;
+					nextControlLocation.Y += (controlTotalHeight * panel.Controls.Count) - displayHeight - currentVerticalScrollValue;
+					controlTotalWidthMargin += System.Windows.Forms.SystemInformation.VerticalScrollBarWidth;
 				}
 
 				// compute the width for all the controls
-				int controlWidth = parent.ClientSize.Width - controlTotalWidthMargin;
-				if (parent.Parent != null)
-					controlWidth = parent.Parent.ClientSize.Width - controlTotalWidthMargin;
+				int controlWidth = panel.ClientSize.Width - controlTotalWidthMargin;
+				if (panel.Parent != null)
+					controlWidth = panel.Parent.ClientSize.Width - controlTotalWidthMargin;
 
-				foreach (Control control in parent.Controls)
+				foreach (Control layer in panel.Controls)
 				{
-					// Only apply layout to visible controls.
-					if (!control.Visible)
-					{
-						continue; // this should never happen
-					}
-
 					// Respect the margin of the control:
 					// shift over the left and the full height.
-					nextControlLocation.Offset(control.Margin.Left, -controlTotalHeight);
+					nextControlLocation.Offset(layer.Margin.Left, -controlTotalHeight);
 
 					// Set the location of the control.
-					control.Location = nextControlLocation;
+					layer.Location = nextControlLocation;
 					// resize each layer item at the correct size
-					control.Width = controlWidth;
+					layer.Width = controlWidth;
 
 					// Move X back to the display rectangle origin.
-					nextControlLocation.X = parentDisplayRectangle.X;
+					nextControlLocation.X = panelDisplayRectangle.X;
 				}
 
 				// Optional: Return whether or not the container's 
