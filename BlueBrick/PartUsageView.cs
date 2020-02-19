@@ -93,7 +93,7 @@ namespace BlueBrick
 				string[] itemTexts = { brickInfo[0], mQuantity.ToString(), Properties.Resources.TextNA, brickInfo[2], brickInfo[3] };
 				mItem = new ListViewItem(itemTexts, mImageIndex);
 				mItem.SubItems[3].Tag = brickInfo[1]; // store the color index in the tag of the color subitem, used in the html export
-				// update the part usage percentage
+													  // update the part usage percentage
 				updateUsagePercentage();
 			}
 
@@ -158,6 +158,32 @@ namespace BlueBrick
 			}
 		}
 
+		/// <summary>
+		/// This class is used to sort the column of the list view
+		/// </summary>
+		private class MyListViewItemComparer : System.Collections.IComparer
+		{
+			private int mColumn;
+			private SortOrder mOrder;
+
+			public MyListViewItemComparer(int column, SortOrder order)
+			{
+				mColumn = column;
+				mOrder = order;
+			}
+
+			public int Compare(Object x, Object y)
+			{
+				// use a string compare with the correct column
+				int result = string.Compare((x as ListViewItem).SubItems[mColumn].Text, (y as ListViewItem).SubItems[mColumn].Text);
+				// check the order
+				if (mOrder == SortOrder.Descending)
+					result = -result;
+				return result;
+			}
+		}
+
+
 		private bool mSplitPartPerLayer = true;
 		public bool SplitPartPerLayer
 		{
@@ -191,13 +217,20 @@ namespace BlueBrick
 		private List<GroupEntry> mGroupEntryList = new List<GroupEntry>();
 		private Dictionary<string, IconEntry> mThumbnailImage = new Dictionary<string, IconEntry>();
 
+		//save the last sorted column
+		private int mLastColumnSortedIndex = -1;
+
 		#region constructor
 		public PartUsageView()
 		{
 			InitializeComponent();
+
 			// set the size of the image (do not change)
 			this.SmallImageList = new ImageList();
 			this.SmallImageList.ImageSize = new Size(16, 16);
+
+			// sort the first column
+			OnColumnClick(new ColumnClickEventArgs(0));
 		}
 		#endregion
 		#region update
@@ -663,7 +696,7 @@ namespace BlueBrick
 					switch (columnOrder[i])
 					{
 						case 0: //this is the part
-							//special case for the part column, we also add the picture
+								//special case for the part column, we also add the picture
 							string colorNum = item.SubItems[3].Tag as string;
 							// check if we have an imageURL or if we need to construct the default image path
 							string partNumber = text;
@@ -712,7 +745,7 @@ namespace BlueBrick
 				writer.WriteLine("\t<TR><TD ALIGN=\"right\"><B>LUG/LTC:</B></TD><TD>{0}</TD></TR>", Map.Instance.LUG);
 				writer.WriteLine("\t<TR><TD ALIGN=\"right\"><B>Show:</B></TD><TD>{0}</TD></TR>", Map.Instance.Show);
 				writer.WriteLine("\t<TR><TD ALIGN=\"right\"><B>Date:</B></TD><TD>{0}</TD></TR>", Map.Instance.Date.ToLongDateString());
-                writer.WriteLine("\t<TR><TD ALIGN=\"right\" VALIGN=\"top\"><B>Comment:</B></TD><TD>{0}</TD></TR>", Map.Instance.Comment.Replace(Environment.NewLine, "<BR>"));
+				writer.WriteLine("\t<TR><TD ALIGN=\"right\" VALIGN=\"top\"><B>Comment:</B></TD><TD>{0}</TD></TR>", Map.Instance.Comment.Replace(Environment.NewLine, "<BR>"));
 				writer.WriteLine("</TABLE>\n<BR>\n<BR>\n<CENTER>");
 				// the parts
 				if (this.SplitPartPerLayer)
@@ -753,6 +786,61 @@ namespace BlueBrick
 			// rebuild the list if the form becomes visible
 			if (this.Visible)
 				rebuildList();
+		}
+
+		protected override void OnColumnClick(ColumnClickEventArgs e)
+		{
+			// start of the update of the control
+			this.BeginUpdate();
+
+			// change the sort order if we click again on the same column
+			// but if we change the column, don't change the sort order
+			if (mLastColumnSortedIndex == e.Column)
+			{
+				if (this.Sorting == SortOrder.Ascending)
+					this.Sorting = SortOrder.Descending;
+				else
+					this.Sorting = SortOrder.Ascending;
+			}
+			else
+			{
+				// We change the twice the listViewShortcutKeys.Sorting value
+				// and reset it with the same value to FORCE the Sort to be done,
+				// once if the listViewShortcutKeys.Sorting didn't changed the Sort
+				// method does nothing.
+				SortOrder oldOrder = this.Sorting;
+				this.Sorting = SortOrder.None;
+				this.Sorting = oldOrder;
+			}
+
+			// remove the previous sorting icon, and add the icon to the new column
+			setSortIcon(e.Column);
+
+			// create a new comparer with the right column then call the sort method
+			this.ListViewItemSorter = new MyListViewItemComparer(e.Column, this.Sorting);
+			this.Sort();
+
+			// end of the update of the control
+			this.EndUpdate();
+		}
+
+		private void setSortIcon(int columnIndex)
+		{
+			// remove the order sign on the previous sorted column
+			if (mLastColumnSortedIndex != -1)
+			{
+				string header = this.Columns[mLastColumnSortedIndex].Text;
+				this.Columns[mLastColumnSortedIndex].Text = header.Substring(2);
+			}
+
+			// save the new current column index
+			mLastColumnSortedIndex = columnIndex;
+
+			// add a descending or ascending sign to the header of the column
+			if (this.Sorting == SortOrder.Ascending)
+				this.Columns[columnIndex].Text = char.ConvertFromUtf32(0x25B2) + " " + this.Columns[columnIndex].Text;
+			else
+				this.Columns[columnIndex].Text = char.ConvertFromUtf32(0x25BC) + " " + this.Columns[columnIndex].Text;
 		}
 		#endregion
 	}
