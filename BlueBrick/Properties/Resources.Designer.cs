@@ -1532,20 +1532,20 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unbudgeted.
+        /// </summary>
+        internal static string TextUnbudgeted {
+            get {
+                return ResourceManager.GetString("TextUnbudgeted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown.
         /// </summary>
         internal static string TextUnknown {
             get {
                 return ResourceManager.GetString("TextUnknown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unlimited.
-        /// </summary>
-        internal static string TextUnlimited {
-            get {
-                return ResourceManager.GetString("TextUnlimited", resourceCulture);
             }
         }
         

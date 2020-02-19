@@ -627,7 +627,7 @@ If you prefer, you can close BlueBrick and download the packages from your web b
   <data name="PartLibMenuItemDisplayPartInfo" xml:space="preserve">
     <value>Part Information</value>
   </data>
-  <data name="TextUnlimited" xml:space="preserve">
-    <value>Unlimited</value>
+  <data name="TextUnbudgeted" xml:space="preserve">
+    <value>Unbudgeted</value>
   </data>
 </root>
