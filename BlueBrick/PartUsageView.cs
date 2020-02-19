@@ -126,7 +126,7 @@ namespace BlueBrick
 					if (usagePercentage < 0)
 					{
 						// illimited budget
-						usageAsString = Properties.Resources.TextUnlimited;
+						usageAsString = Properties.Resources.TextUnbudgeted;
 						mItem.SubItems[2].ForeColor = Color.CadetBlue;
 					}
 					else

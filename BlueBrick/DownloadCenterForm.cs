@@ -457,7 +457,7 @@ namespace BlueBrick
 				percentageString += char.ConvertFromUtf32(0x254C); //0x2550 //0x2591 //0x2007
 
 			// return the result
-			return percentageString + " " + percentage.ToString("N2");
+			return percentageString + " " + percentage.ToString("N0") + "%";
 		}
 
 		/// <summary>
@@ -489,14 +489,14 @@ namespace BlueBrick
 				if (shouldGoToRed)
 				{
 					const double PERCENTAGE_GAP = 7.5;
-					const double RED_SLOPE = (255 / (50.0 + PERCENTAGE_GAP));
-					const double GREEN_SLOPE = (200 / (50.0 + PERCENTAGE_GAP));
+					const double RED_SLOPE = (227 / (75.0 + PERCENTAGE_GAP));
+					const double GREEN_SLOPE = (50 / (50.0 + PERCENTAGE_GAP));
 
 					// compute the red color
-					if (percentage <= (50.0 + PERCENTAGE_GAP))
+					if (percentage <= (75.0 + PERCENTAGE_GAP))
 						redColor = (int)(RED_SLOPE * percentage);
 					else
-						redColor = 255;
+						redColor = 227;
 
 					// compute the green color
 					if (percentage >= (50.0 - PERCENTAGE_GAP))
