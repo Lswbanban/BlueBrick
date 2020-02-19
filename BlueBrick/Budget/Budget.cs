@@ -51,6 +51,9 @@ namespace BlueBrick.Budget
 		// the count is the actual brick total number in the map
 		private Dictionary<string, int> mCount = new Dictionary<string, int>();
 
+		// We also store the count of brick on the map but per layer, in order to facilitate the statistics with the part usage view
+		private Dictionary<LayerBrick, Dictionary<string, int>> mCountPerLayer = new Dictionary<LayerBrick, Dictionary<string, int>>();
+
 		#region get/set
 		/// <summary>
 		/// The static instance of the Budget
@@ -243,12 +246,14 @@ namespace BlueBrick.Budget
 					budgetsToRename.Add(budget);
 			}
 
-			// now remove all the old keys, and add the new ones
+			// now remove all the old keys, and add the new ones in both budget and count dictionary
 			foreach (KeyValuePair<string, int> budget in budgetsToRename)
 			{
+				// rename in the budget
 				string newPartId = BrickLibrary.Instance.getActualPartNumber(budget.Key);
 				mBudget.Remove(budget.Key);
 				mBudget.Add(newPartId, budget.Value);
+				// no need to rename the count, because the map as been unloaded when this function is called
 			}
 
 			// change the flag if we modified the budget (but don't change it, if we didn't modified it)
@@ -427,6 +432,22 @@ namespace BlueBrick.Budget
 		}
 
 		/// <summary>
+		/// Get the number of the specified brick in the specified layer of the current map
+		/// </summary>
+		/// <param name="partID">the full part id for which you want to know the count</param>
+		/// <param name="layer">The layer in which you want to know the count</param>
+		/// <returns>the number of that brick in the specified layer of the map which could be 0</returns>
+		public int getCountForLayer(string partID, LayerBrick layer)
+		{
+			int result = 0;
+			// try to find the layer first, then the count
+			Dictionary<string, int> layeredCount = null;
+			if (mCountPerLayer.TryGetValue(layer, out layeredCount))
+				layeredCount.TryGetValue(partID, out result);
+			return result;
+		}
+
+		/// <summary>
 		/// If the budget limitation is enabled, this method will check if the brick count is less than the budget
 		/// and return true, otherwise if the limit is reached return false. If the budget is not set for that part,
 		/// it will also return true.
@@ -478,18 +499,36 @@ namespace BlueBrick.Budget
 		/// <summary>
 		/// Call this method when you want to notify the budget counter that a new brick has been added
 		/// </summary>
+		/// <param name="layer">The layer on which the brick is added</param>
 		/// <param name="brick">the brick that was added</param>
-		/// <param name="brickOrGroup">tells if the brick is a group that was regrouped by an undo</param>
-		public void addBrickNotification(MapData.Layer.LayerItem brickOrGroup, bool isDueToRegroup)
+		/// <param name="isDueToRegroup">tells if the brick is a group that was regrouped by an undo</param>
+		public void addBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToRegroup)
 		{
 			string partID = brickOrGroup.PartNumber;
 			if (partID != string.Empty)
 			{
 				// get the current count
 				int currentCount = getCount(partID);
-				// and update the value
+				// and update the value in the global dictionnary
 				mCount.Remove(partID);
 				mCount.Add(partID, currentCount + 1);
+
+				// also update in the layered dictionary
+				Dictionary<string, int> layeredCount = null;
+				if (mCountPerLayer.TryGetValue(layer, out layeredCount))
+				{
+					int currentCountInLayer = 0;
+					layeredCount.TryGetValue(partID, out currentCountInLayer);
+					layeredCount.Remove(partID);
+					layeredCount.Add(partID, currentCountInLayer + 1);
+				}
+				else
+				{
+					// this is a new layer (this layer didn't exist before), so add the layer and also the count
+					layeredCount = new Dictionary<string, int>();
+					layeredCount.Add(partID, 1);
+					mCountPerLayer.Add(layer, layeredCount);
+				}
 			}
 			// add also all the named children if the brick is a group
 			// (unless it is a regroup in that case the children are already counted)
@@ -498,16 +537,17 @@ namespace BlueBrick.Budget
 				Layer.Group group = brickOrGroup as Layer.Group;
 				if (group != null)
 					foreach (Layer.LayerItem item in group.Items)
-						addBrickNotification(item, isDueToRegroup);
+						addBrickNotification(layer, item, isDueToRegroup);
 			}
 		}
 
 		/// <summary>
 		/// Call this method when you want to notify the budget counter that a brick has been removed
 		/// </summary>
+		/// <param name="layer">The layer on which the brick is removed</param>
 		/// <param name="brick">the brick that was removed</param>
-		/// <param name="brickOrGroup">tell if the brick is a group that is ungrouped</param>
-		public void removeBrickNotification(MapData.Layer.LayerItem brickOrGroup, bool isDueToUngroup)
+		/// <param name="isDueToUngroup">tell if the brick is a group that is ungrouped</param>
+		public void removeBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToUngroup)
 		{
 			string partID = brickOrGroup.PartNumber;
 			if (partID != string.Empty)
@@ -520,6 +560,20 @@ namespace BlueBrick.Budget
 					mCount.Remove(partID);
 					mCount.Add(partID, currentCount - 1);
 				}
+
+				// also update in the layered dictionary
+				Dictionary<string, int> layeredCount = null;
+				if (mCountPerLayer.TryGetValue(layer, out layeredCount))
+				{
+					int currentCountInLayer = 0;
+					layeredCount.TryGetValue(partID, out currentCountInLayer);
+					if (currentCountInLayer > 0)
+					{
+						layeredCount.Remove(partID);
+						layeredCount.Add(partID, currentCountInLayer - 1);
+					}
+				}
+				// if the layer doesn't exist, we have nothing to remove
 			}
 			// remove also all the named children if the brick is a group
 			// (unless it is a ungroup in that case we leave the children and just remove the one we ungrouped)
@@ -528,7 +582,7 @@ namespace BlueBrick.Budget
 				Layer.Group group = brickOrGroup as Layer.Group;
 				if (group != null)
 					foreach (Layer.LayerItem item in group.Items)
-						removeBrickNotification(item, isDueToUngroup);
+						removeBrickNotification(layer, item, isDueToUngroup);
 			}
 		}
 
@@ -539,21 +593,38 @@ namespace BlueBrick.Budget
 		{
 			// clear the count of all the bricks
 			mCount.Clear();
+			mCountPerLayer.Clear();
 
 			// iterate on all the brick of all the brick layers,
 			foreach (Layer layer in Map.Instance.LayerList)
 			{
 				LayerBrick brickLayer = layer as LayerBrick;
 				if (brickLayer != null)
+				{
+					// add a layered count for this current layer
+					Dictionary<string, int> layeredCount = new Dictionary<string, int>();
+					mCountPerLayer.Add(brickLayer, layeredCount);
+
+					// now iterate on all the brick of the current layer
 					foreach (Layer.LayerItem item in brickLayer.LibraryBrickList)
 					{
+						// get the part id
 						string partID = item.PartNumber;
-						// get the current count
+
+						// get the current global count
 						int currentCount = getCount(partID);
 						// update the value
 						mCount.Remove(partID);
 						mCount.Add(partID, currentCount + 1);
+
+						// also count the brick on the layered count
+						int currentCountInLayer = 0;
+						layeredCount.TryGetValue(partID, out currentCountInLayer);
+						// update the value
+						layeredCount.Remove(partID);
+						layeredCount.Add(partID, currentCountInLayer + 1);
 					}
+				}
 			}
 		}
 		#endregion

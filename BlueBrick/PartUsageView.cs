@@ -399,8 +399,9 @@ namespace BlueBrick
 						}
 					}
 
-			// if it is currently sorted by quantity or by budget, we need to resort
-			if ((mLastColumnSortedIndex == 1) || (mLastColumnSortedIndex == 2))
+			// if it is currently sorted by quantity, we need to resort.
+			// if it is sorted by budget, the addBrick function will anyway call the update budget modification
+			if (mLastColumnSortedIndex == 1)
 				this.Sort();
 		}
 
@@ -451,8 +452,9 @@ namespace BlueBrick
 				mGroupEntryList.Remove(currentGroupEntry);
 			}
 
-			// if it is currently sorted by quantity or by budget, we need to resort
-			if ((mLastColumnSortedIndex == 1) || (mLastColumnSortedIndex == 2))
+			// if it is currently sorted by quantity, we need to resort
+			// if it is sorted by budget, the removeBrick function will anyway call the update budget modification
+			if (mLastColumnSortedIndex == 1)
 				this.Sort();
 		}
 

@@ -108,6 +108,8 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Being able to export the budget in csv
 - [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably
 - [target 1.9] MISSING FEATURE (Matthias): A versionning system for the library packages
+- [target 1.9] BUG (Alban): Budget count bug when adding a new part in the library through the file menu, the count is not updated
+
 
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
 
