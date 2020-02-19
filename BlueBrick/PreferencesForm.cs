@@ -1490,7 +1490,7 @@ namespace BlueBrick
 
 			// change the sort order if we click again on the same column
 			// but if we change the column, don't change the sort order
-			if (mGlobalStatsLastColumnSorted == e.Column || mGlobalStatsLastColumnSorted == -1)
+			if (mGlobalStatsLastColumnSorted == e.Column)
 			{
 				if (this.listViewShortcutKeys.Sorting == SortOrder.Ascending)
 					this.listViewShortcutKeys.Sorting = SortOrder.Descending;
@@ -1525,7 +1525,7 @@ namespace BlueBrick
 			if (mGlobalStatsLastColumnSorted != -1)
 			{
 				string header = this.listViewShortcutKeys.Columns[mGlobalStatsLastColumnSorted].Text;
-				this.listViewShortcutKeys.Columns[mGlobalStatsLastColumnSorted].Text = header.Substring(0, header.Length - 2);
+				this.listViewShortcutKeys.Columns[mGlobalStatsLastColumnSorted].Text = header.Substring(2);
 			}
 
 			// save the new current column index
@@ -1533,9 +1533,9 @@ namespace BlueBrick
 
 			// add a descending or ascending sign to the header of the column
 			if (this.listViewShortcutKeys.Sorting == SortOrder.Ascending)
-				this.listViewShortcutKeys.Columns[columnIndex].Text += " " + char.ConvertFromUtf32(0x25B2);
+				this.listViewShortcutKeys.Columns[columnIndex].Text = char.ConvertFromUtf32(0x25B2) + " " + this.listViewShortcutKeys.Columns[columnIndex].Text;
 			else
-				this.listViewShortcutKeys.Columns[columnIndex].Text += " " + char.ConvertFromUtf32(0x25BC);
+				this.listViewShortcutKeys.Columns[columnIndex].Text = char.ConvertFromUtf32(0x25BC) + " " + this.listViewShortcutKeys.Columns[columnIndex].Text;
 		}
 
 		#endregion
