@@ -1244,8 +1244,8 @@ namespace BlueBrick
 			changeCurrentMapFileName(Properties.Resources.DefaultSaveFileName, false);
 			// update the view any way
             this.updateView(Actions.Action.UpdateViewType.FULL, Actions.Action.UpdateViewType.FULL);
-			this.PartUsageListView.rebuildList();
 			Budget.Budget.Instance.recountAllBricks();
+			this.PartUsageListView.rebuildList();
 			this.PartsTabControl.updateAllPartCountAndBudget();
 			// update the properties
 			updateMapGeneralInfo();
@@ -1321,8 +1321,8 @@ namespace BlueBrick
 				this.mapPanel.moveViewToMapCenter();
 				// update the view
 				this.updateView(Actions.Action.UpdateViewType.FULL, Actions.Action.UpdateViewType.FULL);
-				this.PartUsageListView.rebuildList();
 				Budget.Budget.Instance.recountAllBricks();
+				this.PartUsageListView.rebuildList();
 				this.PartsTabControl.updateAllPartCountAndBudget();
 				// update the properties
 				updateMapGeneralInfo();
@@ -2360,6 +2360,7 @@ namespace BlueBrick
 				}
 				// recount the parts because, opening a new budget actually create a new instance of Budget, so the count is destroyed
 				Budget.Budget.Instance.recountAllBricks();
+				this.PartUsageListView.rebuildList();
 				// update the filtering on of the part lib after recounting all the bricks
 				this.PartsTabControl.updateFilterOnBudgetedParts();
 			}
