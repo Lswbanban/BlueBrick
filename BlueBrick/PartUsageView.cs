@@ -96,16 +96,18 @@ namespace BlueBrick
 
 				// activate the style for subitems because we have a budget in different colors
 				mItem.UseItemStyleForSubItems = false;
-				updateUsagePercentage();
+				updateUsagePercentage(true); // we don't care about this parameter as it is not a sum line brick entry
 			}
 
 			/// <summary>
 			/// Create a brick entry that is a sum for a layer
 			/// </summary>
-			public BrickEntry(LayerBrick brickLayer)
+			/// <param name="brickLayer">The layer associated with this sum</param>
+			/// <param name="shouldIncludeHiddenParts">Tell if we should count the hidden parts or not when initializing the sum</param>
+			public BrickEntry(LayerBrick brickLayer, bool shouldIncludeHiddenParts)
 			{
 				// get the total count (for the specified layer or for the whole map)
-				mQuantity = (brickLayer != null) ? Budget.Budget.Instance.getTotalCountForLayer(brickLayer) : Budget.Budget.Instance.getTotalCount();
+				mQuantity = (brickLayer != null) ? Budget.Budget.Instance.getTotalCountForLayer(brickLayer) : Budget.Budget.Instance.getTotalCount(shouldIncludeHiddenParts);
 				// create a list view item with the total count and the total part usage
 				string[] itemTexts = { Properties.Resources.TextTotal, mQuantity.ToString(), Properties.Resources.TextNA, string.Empty, string.Empty };
 				mItem = new ListViewItem(itemTexts);
@@ -119,15 +121,15 @@ namespace BlueBrick
 				else
 					mItem.Tag = mItem;
 				// update percentage
-				updateUsagePercentage();
+				updateUsagePercentage(shouldIncludeHiddenParts);
 			}
 
-			private float getTotalUsagePercentage()
+			private float getTotalUsagePercentage(bool shouldIncludeHiddenParts)
 			{
 				if (mItem.Tag is LayerBrick)
 					return Budget.Budget.Instance.getUsagePercentageForLayer(this.mItem.Tag as LayerBrick);
 				else
-					return Budget.Budget.Instance.getTotalUsagePercentage();
+					return Budget.Budget.Instance.getTotalUsagePercentage(shouldIncludeHiddenParts);
 			}
 
 			public void incrementQuantity()
@@ -142,7 +144,7 @@ namespace BlueBrick
 				mItem.SubItems[1].Text = mQuantity.ToString();
 			}
 
-			public void updateUsagePercentage()
+			public void updateUsagePercentage(bool shouldIncludeHiddenParts)
 			{
 				// get the current budget for this part
 				string usageAsString = Properties.Resources.TextNA;
@@ -154,7 +156,7 @@ namespace BlueBrick
 					// we should not use the mQuantity to compute the budget percentage, because this quantity is only for this
 					// group, but the part can appear in multiple group (on multiple layer), and the budget is an overall budget
 					// all part included, so let the Budget class to use its own count of part
-					float usagePercentage = isLayerSum ? this.getTotalUsagePercentage() : Budget.Budget.Instance.getUsagePercentage(mPartNumber);
+					float usagePercentage = isLayerSum ? this.getTotalUsagePercentage(shouldIncludeHiddenParts) : Budget.Budget.Instance.getUsagePercentage(mPartNumber);
 					if (usagePercentage < 0)
 					{
 						// illimited budget
@@ -187,13 +189,13 @@ namespace BlueBrick
 				get { return mGroup; }
 			}
 
-			public GroupEntry(LayerBrick layer, ListView listView)
+			public GroupEntry(LayerBrick layer, PartUsageView listView)
 			{
 				// save the layer
 				mLayer = layer;
 
 				// create the specific brick entry for the sum line
-				mBrickEntrySumLine = new BrickEntry(layer);
+				mBrickEntrySumLine = new BrickEntry(layer, listView.IncludeHiddenLayers);
 
 				// if the layer is not null, that means we use group
 				if (layer != null)
@@ -394,9 +396,9 @@ namespace BlueBrick
 				if (groupEntry.mBrickEntryList.TryGetValue(partNumber, out brickEntry))
 				{
 					// update the percentage of the found brick
-					brickEntry.updateUsagePercentage();
+					brickEntry.updateUsagePercentage(this.IncludeHiddenLayers);
 					// since we found the brick in this group entry, update also the percentage of the sum line
-					groupEntry.mBrickEntrySumLine.updateUsagePercentage();
+					groupEntry.mBrickEntrySumLine.updateUsagePercentage(this.IncludeHiddenLayers);
 				}
 			}
 
@@ -419,10 +421,10 @@ namespace BlueBrick
 			foreach (GroupEntry groupEntry in mGroupEntryList)
 			{
 				// update the percentage of the sum brick entry
-				groupEntry.mBrickEntrySumLine.updateUsagePercentage();
+				groupEntry.mBrickEntrySumLine.updateUsagePercentage(this.IncludeHiddenLayers);
 				// and also of all the other brick entries
 				foreach (BrickEntry brickEntry in groupEntry.mBrickEntryList.Values)
-					brickEntry.updateUsagePercentage();
+					brickEntry.updateUsagePercentage(this.IncludeHiddenLayers);
 			}
 
 			// if it is currently sorted by budget, we need to resort

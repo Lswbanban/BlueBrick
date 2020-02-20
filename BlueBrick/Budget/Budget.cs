@@ -365,10 +365,11 @@ namespace BlueBrick.Budget
 		/// Get the total usage percentage of the whole map, i.e. the total count of brick divided
 		/// by the total count of budget.
 		/// </summary>
+		/// <param name="shouldIncludeHiddenParts">tell if we should count the hidden parts</param>
 		/// <returns>The percentage of the budget already used on the current map</returns>
-		public float getTotalUsagePercentage()
+		public float getTotalUsagePercentage(bool shouldIncludeHiddenParts)
 		{
-			return (float)getTotalCount() / (float)getTotalBudget();
+			return (float)getTotalCount(shouldIncludeHiddenParts) / (float)getTotalBudget();
 		}
 
 		/// <summary>
@@ -490,14 +491,28 @@ namespace BlueBrick.Budget
 		}
 
 		/// <summary>
-		/// Get the total count of brick used in the map.
+		/// Get the total count of brick used in the map. You can specify if you want to also count the parts
+		/// that are currently on hidden layers.
 		/// </summary>
-		/// <returns>The number of bricks used on the current map</returns>
-		public int getTotalCount()
+		/// <param name="shouldIncludeHiddenParts">tell if we should count the hidden parts</param>
+		/// <returns>The number of bricks used on the current map, with ot without the hidden parts</returns>
+		public int getTotalCount(bool shouldIncludeHiddenParts)
 		{
 			int total = 0;
-			foreach (int count in mCount.Values)
-				total += count;
+			if (shouldIncludeHiddenParts)
+			{
+				// if we include hidden parts, count on all parts
+				foreach (int count in mCount.Values)
+					total += count;
+			}
+			else
+			{
+				// otherwise iterate on the count per layer, and only count the parts if the layer is visible
+				foreach (KeyValuePair<LayerBrick, Dictionary<string, int>> layerPair in mCountPerLayer)
+					if (layerPair.Key.Visible)
+						foreach (int count in layerPair.Value.Values)
+							total += count;
+			}
 			return total;
 		}
 
