@@ -61,7 +61,6 @@ namespace BlueBrick
 		{
 			private string mPartNumber = string.Empty;
 			private int mQuantity = 0;
-			private float usagePercentage = -1f;
 			private int mImageIndex = 0;
 			private ListViewItem mItem = null;
 
@@ -106,9 +105,9 @@ namespace BlueBrick
 			public BrickEntry(LayerBrick brickLayer)
 			{
 				// get the total count (for the specified layer or for the whole map)
-				int totalCount = (brickLayer != null) ? Budget.Budget.Instance.getTotalCountForLayer(brickLayer) : Budget.Budget.Instance.getTotalCount();
+				mQuantity = (brickLayer != null) ? Budget.Budget.Instance.getTotalCountForLayer(brickLayer) : Budget.Budget.Instance.getTotalCount();
 				// create a list view item with the total count and the total part usage
-				string[] itemTexts = { Properties.Resources.TextTotal, totalCount.ToString(), Properties.Resources.TextNA, string.Empty, string.Empty };
+				string[] itemTexts = { Properties.Resources.TextTotal, mQuantity.ToString(), Properties.Resources.TextNA, string.Empty, string.Empty };
 				mItem = new ListViewItem(itemTexts);
 				// set a color
 				mItem.UseItemStyleForSubItems = true; // use the same color for the whole line, even the budget
@@ -155,7 +154,7 @@ namespace BlueBrick
 					// we should not use the mQuantity to compute the budget percentage, because this quantity is only for this
 					// group, but the part can appear in multiple group (on multiple layer), and the budget is an overall budget
 					// all part included, so let the Budget class to use its own count of part
-					usagePercentage = isLayerSum ? this.getTotalUsagePercentage() : Budget.Budget.Instance.getUsagePercentage(mPartNumber);
+					float usagePercentage = isLayerSum ? this.getTotalUsagePercentage() : Budget.Budget.Instance.getUsagePercentage(mPartNumber);
 					if (usagePercentage < 0)
 					{
 						// illimited budget
@@ -451,6 +450,9 @@ namespace BlueBrick
 			// add the specified brick
 			addBrick(brickOrGroup, currentGroupEntry);
 
+			// also increment the count for the whole group
+			currentGroupEntry.mBrickEntrySumLine.incrementQuantity();
+
 			// if the specified brick is group, add also the sub items in the list
 			if (brickOrGroup.IsAGroup)
 				foreach (Layer.LayerItem item in (brickOrGroup as Layer.Group).Items)
@@ -496,6 +498,9 @@ namespace BlueBrick
 
 			// remove the specified brick
 			removeBrick(brickOrGroup, currentGroupEntry);
+
+			// also decrement the count for the whole group
+			currentGroupEntry.mBrickEntrySumLine.decrementQuantity();
 
 			// if the specified brick is group, remove also the sub items from the list
 			if (brickOrGroup.IsAGroup)
