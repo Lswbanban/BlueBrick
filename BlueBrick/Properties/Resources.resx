@@ -630,4 +630,7 @@ If you prefer, you can close BlueBrick and download the packages from your web b
   <data name="TextUnbudgeted" xml:space="preserve">
     <value>Unbudgeted</value>
   </data>
+  <data name="TextTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
 </root>

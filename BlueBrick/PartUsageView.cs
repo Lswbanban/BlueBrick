@@ -127,7 +127,7 @@ namespace BlueBrick
 					{
 						// illimited budget
 						usageAsString = Properties.Resources.TextUnbudgeted;
-						mItem.SubItems[2].ForeColor = Color.CadetBlue;
+						mItem.SubItems[2].ForeColor = Color.DarkCyan;
 					}
 					else
 					{
@@ -174,8 +174,15 @@ namespace BlueBrick
 
 			public int Compare(Object x, Object y)
 			{
+				// check if the tag is not null, that means it is the sum line and should appear at the end
+				ListViewItem xItem = x as ListViewItem;
+				if (xItem.Tag != null)
+					return int.MaxValue;
+				ListViewItem yItem = y as ListViewItem;
+				if (yItem.Tag != null)
+					return int.MinValue;
 				// use a string compare with the correct column
-				int result = string.Compare((x as ListViewItem).SubItems[mColumn].Text, (y as ListViewItem).SubItems[mColumn].Text);
+				int result = string.Compare(xItem.SubItems[mColumn].Text, yItem.SubItems[mColumn].Text);
 				// check the order
 				if (mOrder == SortOrder.Descending)
 					result = -result;
@@ -470,6 +477,30 @@ namespace BlueBrick
 			// iterate on all the bricks of the list
 			foreach (Layer.LayerItem item in brickLayer.LibraryBrickList)
 				addBrick(item, currentGroupEntry);
+
+			// add the sum for the layer
+			addSum(brickLayer, currentGroupEntry);
+		}
+
+		/// <summary>
+		/// Add a specific line that should display the whole sum of part count and part usage for the specified layer
+		/// </summary>
+		/// <param name="brickLayer">The layer for which you want to add the sum</param>
+		/// <param name="groupEntry">the concerned group for this sum</param>
+		private void addSum(LayerBrick brickLayer, GroupEntry groupEntry)
+		{
+			// create a list view item with the total count and the total part usage
+			string[] itemTexts = { Properties.Resources.TextTotal, Budget.Budget.Instance.getTotalCountForLayer(brickLayer).ToString(), Properties.Resources.TextNA, string.Empty, string.Empty };
+			ListViewItem sumItem = new ListViewItem(itemTexts);
+			sumItem.Group = groupEntry.Group;
+			// set a color
+			sumItem.ForeColor = Color.MediumBlue;
+			sumItem.BackColor = Color.MintCream; // Color.Azure;
+			sumItem.UseItemStyleForSubItems = true;
+			// add a tag to the item, so that it can be sorted, always at the bottom
+			sumItem.Tag = brickLayer;
+			// add the item
+			this.Items.Add(sumItem);
 		}
 
 		/// <summary>
