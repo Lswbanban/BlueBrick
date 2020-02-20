@@ -107,8 +107,8 @@ namespace BlueBrick
 			/// <param name="shouldIncludeHiddenParts">Tell if we should count the hidden parts or not when initializing the sum</param>
 			public BrickEntry(LayerBrick brickLayer, bool shouldIncludeHiddenParts)
 			{
-				// get the total count (for the specified layer or for the whole map)
-				mQuantity = (brickLayer != null) ? Budget.Budget.Instance.getTotalCountForLayer(brickLayer) : Budget.Budget.Instance.getTotalCount(shouldIncludeHiddenParts);
+				// get the total count (for the specified layer or for the whole map). And we want all the parts, not only the budgeted ones
+				mQuantity = (brickLayer != null) ? Budget.Budget.Instance.getTotalCountForLayer(brickLayer, false) : Budget.Budget.Instance.getTotalCount(false, shouldIncludeHiddenParts);
 				// create a list view item with the total count and the total part usage
 				string[] itemTexts = { Properties.Resources.TextTotal, mQuantity.ToString(), Properties.Resources.TextNA, string.Empty, string.Empty };
 				mItem = new ListViewItem(itemTexts);
