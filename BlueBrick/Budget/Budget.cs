@@ -335,13 +335,14 @@ namespace BlueBrick.Budget
 		/// If no budget is associated with this part (illimited budget), a negative value is returned.
 		/// </summary>
 		/// <param name="partID">the full part id for which you want to know the usage percentage</param>
+		/// <param name="shouldIncludeHiddenParts">tell if we should count the hidden parts when computing the usage percentage</param>
 		/// <returns>the usage percentage for that part or -1 if there's no budget (illimited budget)</returns>
-		public float getUsagePercentage(string partID)
+		public float getUsagePercentage(string partID, bool shouldIncludeHiddenParts)
 		{
 			// try to get the value or return 0 by default
 			float result = -1f; //-1 means the budget is not set, i.e. you have an infinite budgets
 			int budget = getBudget(partID);
-			int count = getCount(partID);
+			int count = getCount(partID, shouldIncludeHiddenParts);
 			if (budget < 0)
 			{
 				// if budget is negative, that means infinite budget, so the percentage will also be negative
@@ -432,11 +433,12 @@ namespace BlueBrick.Budget
 		/// budget)
 		/// </summary>
 		/// <param name="partID">The full part id for which you want to know the count and budget</param>
+		/// <param name="shouldIncludeHiddenParts">Tell if we should include the hidden layers when counting the specified part id</param>
 		/// <returns>a string displaying the both number separated by a slash</returns>
-		public string getCountAndBudgetAsString(string partID)
+		public string getCountAndBudgetAsString(string partID, bool shouldIncludeHiddenParts)
 		{
 			// get the count or remaining count depending on the settings
-			int count = Properties.Settings.Default.DisplayRemainingPartCountInBudgetInsteadOfUsedCount ? getRemainingCount(partID) : getCount(partID);
+			int count = Properties.Settings.Default.DisplayRemainingPartCountInBudgetInsteadOfUsedCount ? getRemainingCount(partID, shouldIncludeHiddenParts) : getCount(partID, shouldIncludeHiddenParts);
 			// retur the formated string
 			return (count.ToString() + "/" + getBudgetAsString(partID, false));
 		}
@@ -446,13 +448,14 @@ namespace BlueBrick.Budget
 		/// or if count is less or equal than budget return transparent, otherwise return red.
 		/// </summary>
 		/// <param name="partID">The full part id for which you want to know the color</param>
+		/// <param name="shouldIncludeHiddenParts">Tell if we should include the hidden layers when counting the specified part id to determine the back color</param>
 		/// <returns>the appropriate color to display the count and budget</returns>
-		public System.Drawing.Color getBudgetBackgroundColor(string partID)
+		public System.Drawing.Color getBudgetBackgroundColor(string partID, bool shouldIncludeHiddenParts)
 		{
 			int budget = getBudget(partID);
 			if (budget >= 0)
 			{
-				int count = getCount(partID);
+				int count = getCount(partID, shouldIncludeHiddenParts);
 				if (count > budget)
 					return System.Drawing.Color.Red;
 			}
@@ -465,12 +468,28 @@ namespace BlueBrick.Budget
 		/// Get the total number of the specified brick in the current map
 		/// </summary>
 		/// <param name="partID">the full part id for which you want to know the count</param>
+		/// <param name="shouldIncludeHiddenParts">Tell if we should include the hidden layers when counting the specified part id</param>
 		/// <returns>the number of that brick in the map which could be 0</returns>
-		public int getCount(string partID)
+		public int getCount(string partID, bool shouldIncludeHiddenParts)
 		{
 			// try to get the value or return 0 by default
 			int result = 0;
-			mCount.TryGetValue(partID, out result);
+			if (shouldIncludeHiddenParts)
+			{
+				// if we can count the hidden parts, just return the value of the global count
+				mCount.TryGetValue(partID, out result);
+			}
+			else
+			{
+				// otherwise iterate on the count per layer, and only count the parts if the layer is visible
+				foreach (KeyValuePair<LayerBrick, Dictionary<string, int>> layerPair in mCountPerLayer)
+					if (layerPair.Key.Visible)
+					{
+						int count = 0;
+						if (layerPair.Value.TryGetValue(partID, out count))
+							result += count;
+					}
+			}
 			return result;
 		}
 
@@ -480,10 +499,11 @@ namespace BlueBrick.Budget
 		/// with a minus sign in front of it) is returned.
 		/// </summary>
 		/// <param name="partID">The part for which you want to know the remaining parts</param>
+		/// <param name="shouldIncludeHiddenParts">Tell if we should include the hidden layers when counting the specified part id</param>
 		/// <returns>the number of part you can use before exhausting the budget for this part.</returns>
-		public int getRemainingCount(string partID)
+		public int getRemainingCount(string partID, bool shouldIncludeHiddenParts)
 		{
-			int count = getCount(partID);
+			int count = getCount(partID, shouldIncludeHiddenParts);
 			int budget = getBudget(partID);
 			if (budget >= 0)
 				return (budget - count);
@@ -539,8 +559,9 @@ namespace BlueBrick.Budget
 		/// If the budget limitation is not enable, this method always return true.
 		/// </summary>
 		/// <param name="partID">the full part id</param>
+		/// <param name="shouldIncludeHiddenParts">Tell if we should count the hidden parts to know if we can or cannot add parts</param>
 		/// <returns>true if you can add this part</returns>
-		public bool canAddBrick(string partID)
+		public bool canAddBrick(string partID, bool shouldIncludeHiddenParts)
 		{
 			// by default we can
 			bool canAdd = true;
@@ -548,14 +569,14 @@ namespace BlueBrick.Budget
 			if (this.ShouldUseBudgetLimitation)
 			{
 				// first check with the main brick
-				canAdd = canAddBrick(partID, 1);
+				canAdd = canAddBrick(partID, shouldIncludeHiddenParts);
 				// and if it is a group, check that all subparts don't exceed the budget
 				if (canAdd)
 				{
 					// so get the subpart count and if any part fail the whole group will fail
 					Dictionary<string, int> subPartCount = BrickLibrary.Instance.getSubPartCount(partID);
 					foreach (KeyValuePair<string, int> pair in subPartCount)
-						if (!canAddBrick(pair.Key, pair.Value))
+						if (!canAddBrick(pair.Key, pair.Value, shouldIncludeHiddenParts))
 							return false;
 				}
 			}
@@ -570,13 +591,14 @@ namespace BlueBrick.Budget
 		/// </summary>
 		/// <param name="partID">the full part id</param>
 		/// <param name="quantity">the quantity you want to add</param>
+		/// <param name="shouldIncludeHiddenParts">Tell if we should count the hidden parts to know if we can or cannot add parts</param>
 		/// <returns>true if you can add this part</returns>
-		public bool canAddBrick(string partID, int quantity)
+		public bool canAddBrick(string partID, int quantity, bool shouldIncludeHiddenParts)
 		{
 			if (this.ShouldUseBudgetLimitation)
 			{
 				int budget = getBudget(partID);
-				return ((budget < 0) || (getCount(partID) + quantity <= budget));
+				return ((budget < 0) || (getCount(partID, shouldIncludeHiddenParts) + quantity <= budget));
 			}
 			return true;
 		}
@@ -592,8 +614,9 @@ namespace BlueBrick.Budget
 			string partID = brickOrGroup.PartNumber;
 			if (partID != string.Empty)
 			{
-				// get the current count
-				int currentCount = getCount(partID);
+				// get the current count in the count dictionary
+				int currentCount = 0;
+				mCount.TryGetValue(partID, out currentCount);
 				// and update the value in the global dictionnary
 				mCount.Remove(partID);
 				mCount.Add(partID, currentCount + 1);
@@ -638,7 +661,8 @@ namespace BlueBrick.Budget
 			if (partID != string.Empty)
 			{
 				// get the current count
-				int currentCount = getCount(partID);
+				int currentCount = 0;
+				mCount.TryGetValue(partID, out currentCount);
 				if (currentCount > 0)
 				{
 					// update the value
@@ -697,7 +721,8 @@ namespace BlueBrick.Budget
 						string partID = item.PartNumber;
 
 						// get the current global count
-						int currentCount = getCount(partID);
+						int currentCount = 0;
+						mCount.TryGetValue(partID, out currentCount);
 						// update the value
 						mCount.Remove(partID);
 						mCount.Add(partID, currentCount + 1);

@@ -903,7 +903,7 @@ namespace BlueBrick.MapData
 		{
 			if (Map.sInstance.SelectedLayer is LayerBrick)
 			{
-				if (Budget.Budget.Instance.canAddBrick(partNumber))
+				if (Budget.Budget.Instance.canAddBrick(partNumber, true))
 					return BrickAddability.YES;
 				else
 					return BrickAddability.NO_BUDGET_EXCEEDED;

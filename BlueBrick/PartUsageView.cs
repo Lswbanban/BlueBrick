@@ -79,7 +79,8 @@ namespace BlueBrick
 			/// </summary>
 			/// <param name="partNumber">The id of the part for this brick entry</param>
 			/// <param name="imageIndex">The index of the image to use</param>
-			public BrickEntry(string partNumber, int imageIndex)
+			/// <param name="shouldIncludeHiddenParts">Tell if we should count the hidden parts when computing the part usage</param>
+			public BrickEntry(string partNumber, int imageIndex, bool shouldIncludeHiddenParts)
 			{
 				mPartNumber = partNumber;
 				mImageIndex = imageIndex;
@@ -96,7 +97,7 @@ namespace BlueBrick
 
 				// activate the style for subitems because we have a budget in different colors
 				mItem.UseItemStyleForSubItems = false;
-				updateUsagePercentage(true); // we don't care about this parameter as it is not a sum line brick entry
+				updateUsagePercentage(shouldIncludeHiddenParts);
 			}
 
 			/// <summary>
@@ -156,7 +157,7 @@ namespace BlueBrick
 					// we should not use the mQuantity to compute the budget percentage, because this quantity is only for this
 					// group, but the part can appear in multiple group (on multiple layer), and the budget is an overall budget
 					// all part included, so let the Budget class to use its own count of part
-					float usagePercentage = isLayerSum ? this.getTotalUsagePercentage(shouldIncludeHiddenParts) : Budget.Budget.Instance.getUsagePercentage(mPartNumber);
+					float usagePercentage = isLayerSum ? this.getTotalUsagePercentage(shouldIncludeHiddenParts) : Budget.Budget.Instance.getUsagePercentage(mPartNumber, shouldIncludeHiddenParts);
 					if (usagePercentage < 0)
 					{
 						// illimited budget
@@ -575,7 +576,7 @@ namespace BlueBrick
 			if (!brickEntryList.TryGetValue(partNumber, out brickEntry))
 			{
 				// create a new entry and add it
-				brickEntry = new BrickEntry(partNumber, iconEntry.mImageIndex);
+				brickEntry = new BrickEntry(partNumber, iconEntry.mImageIndex, this.IncludeHiddenLayers);
 				brickEntryList.Add(partNumber, brickEntry);
 			}
 			// assign the correct group to the item
