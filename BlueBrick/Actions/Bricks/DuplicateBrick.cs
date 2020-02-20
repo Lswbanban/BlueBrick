@@ -107,7 +107,7 @@ namespace BlueBrick.Actions.Bricks
 					// increase and add the count
 					itemCount.Add(item.PartNumber, ++count);
 					// check if we can add it
-					if (!Budget.Budget.Instance.canAddBrick(item.PartNumber, count))
+					if (!Budget.Budget.Instance.canAddBrick(item.PartNumber, count, true))
 					{
 						// checked if this item is a group, in that case, we need to remove all the hierachy
 						if (item.IsAGroup)

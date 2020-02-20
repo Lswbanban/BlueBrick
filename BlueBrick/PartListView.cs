@@ -691,8 +691,8 @@ namespace BlueBrick
 			// then concatene the part info with the budget if we have some
 			if (Budget.Budget.Instance.ShouldShowBudgetNumbers)
 			{
-				itemText += Budget.Budget.Instance.getCountAndBudgetAsString(partID);
-				item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID);
+				itemText += Budget.Budget.Instance.getCountAndBudgetAsString(partID, true); // in the part list view we count all the parts including in the hidden layers
+				item.BackColor = Budget.Budget.Instance.getBudgetBackgroundColor(partID, true);
 			}
 			else
 			{

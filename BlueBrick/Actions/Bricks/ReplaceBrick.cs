@@ -83,7 +83,7 @@ namespace BlueBrick.Actions.Bricks
 					// increase the count of brick to replace
 					replacedBrickCount++;
 					// then check if we can add the brick
-					if (Budget.Budget.Instance.canAddBrick(newPartNumber, replacedBrickCount))
+					if (Budget.Budget.Instance.canAddBrick(newPartNumber, replacedBrickCount, true))
 					{
 						// create the new item
 						Layer.LayerItem newItem = createReplacementBrick(item, newPartNumber);
