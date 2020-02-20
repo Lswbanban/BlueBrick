@@ -565,4 +565,7 @@ Si vous préférez, vous pouvez aussi fermer BlueBrick et télécharger les paqu
   <data name="TextUnbudgeted" xml:space="preserve">
     <value>Hors-Budget</value>
   </data>
+  <data name="TextTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
 </root>

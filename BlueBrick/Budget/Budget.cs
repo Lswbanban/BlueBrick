@@ -350,6 +350,42 @@ namespace BlueBrick.Budget
 		}
 
 		/// <summary>
+		/// Get the percentage of usage for the specified layer, according to the current budget.
+		/// This method will iterate on all the bricks present on the specified layer and will
+		/// sum all the budget of those bricks. Then it will compute a percentage between the
+		/// total count of the budgeted bricks on this layer, and the total budget count computed.
+		/// </summary>
+		/// <param name="layer">The layer in which you want to know the brick usage</param>
+		/// <returns>the brick usage percentage on the specified layer</returns>
+		public float getUsagePercentageForLayer(LayerBrick layer)
+		{
+			float result = 0;
+			// try to get the specified layer and iterate on all its values
+			Dictionary<string, int> layeredCount = null;
+			if (mCountPerLayer.TryGetValue(layer, out layeredCount))
+			{
+				int totalCount = 0;
+				int totalBudget = 0;
+				// itearate on all the pair on the specified layer
+				foreach (KeyValuePair<string, int> brickCount in layeredCount)
+				{
+					// check if the current brick has a budget, otherwise ignore it
+					int budget = 0;
+					if (mBudget.TryGetValue(brickCount.Key, out budget))
+					{
+						// increase the count and budget
+						totalCount += brickCount.Value;
+						totalBudget += budget;
+					}
+				}
+				// compute the result (if budget is not null to avoid division by zero)
+				if (totalBudget > 0)
+					result = (float)(totalCount * 100) / (float)totalBudget;
+			}
+			return result;
+		}
+
+		/// <summary>
 		/// Return a formated string of the budget that display the current budget if set or the infinity sign if not set
 		/// </summary>
 		/// <param name="partID">The full part id for which you want to know the budget</param>
@@ -444,6 +480,22 @@ namespace BlueBrick.Budget
 			Dictionary<string, int> layeredCount = null;
 			if (mCountPerLayer.TryGetValue(layer, out layeredCount))
 				layeredCount.TryGetValue(partID, out result);
+			return result;
+		}
+
+		/// <summary>
+		/// Get the total number of bricks present in the specified layer of the current map
+		/// </summary>
+		/// <param name="layer">The layer in which you want to know the count</param>
+		/// <returns>the number of bricks in the specified layer of the map which could be 0</returns>
+		public int getTotalCountForLayer(LayerBrick layer)
+		{
+			int result = 0;
+			// try to get the specified layer and iterate on all its values
+			Dictionary<string, int> layeredCount = null;
+			if (mCountPerLayer.TryGetValue(layer, out layeredCount))
+				foreach (int count in layeredCount.Values)
+					result += count;
 			return result;
 		}
 

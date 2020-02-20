@@ -1532,6 +1532,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        internal static string TextTotal {
+            get {
+                return ResourceManager.GetString("TextTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unbudgeted.
         /// </summary>
         internal static string TextUnbudgeted {
