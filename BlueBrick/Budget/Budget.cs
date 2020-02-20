@@ -319,6 +319,18 @@ namespace BlueBrick.Budget
 		}
 
 		/// <summary>
+		/// Get the total budget count of brick present in this budget
+		/// </summary>
+		/// <returns>The number of bricks that can be budgeted</returns>
+		public int getTotalBudget()
+		{
+			int total = 0;
+			foreach (int count in mBudget.Values)
+				total += count;
+			return total;
+		}
+
+		/// <summary>
 		/// get the percentage of usage of the specified part, according to its current budget.
 		/// If no budget is associated with this part (illimited budget), a negative value is returned.
 		/// </summary>
@@ -347,6 +359,16 @@ namespace BlueBrick.Budget
 			}
 			// return the result
 			return result;
+		}
+
+		/// <summary>
+		/// Get the total usage percentage of the whole map, i.e. the total count of brick divided
+		/// by the total count of budget.
+		/// </summary>
+		/// <returns>The percentage of the budget already used on the current map</returns>
+		public float getTotalUsagePercentage()
+		{
+			return (float)getTotalCount() / (float)getTotalBudget();
 		}
 
 		/// <summary>
@@ -468,19 +490,15 @@ namespace BlueBrick.Budget
 		}
 
 		/// <summary>
-		/// Get the number of the specified brick in the specified layer of the current map
+		/// Get the total count of brick used in the map.
 		/// </summary>
-		/// <param name="partID">the full part id for which you want to know the count</param>
-		/// <param name="layer">The layer in which you want to know the count</param>
-		/// <returns>the number of that brick in the specified layer of the map which could be 0</returns>
-		public int getCountForLayer(string partID, LayerBrick layer)
+		/// <returns>The number of bricks used on the current map</returns>
+		public int getTotalCount()
 		{
-			int result = 0;
-			// try to find the layer first, then the count
-			Dictionary<string, int> layeredCount = null;
-			if (mCountPerLayer.TryGetValue(layer, out layeredCount))
-				layeredCount.TryGetValue(partID, out result);
-			return result;
+			int total = 0;
+			foreach (int count in mCount.Values)
+				total += count;
+			return total;
 		}
 
 		/// <summary>

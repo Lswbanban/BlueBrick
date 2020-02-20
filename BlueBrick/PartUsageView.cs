@@ -78,8 +78,8 @@ namespace BlueBrick
 			/// <summary>
 			/// Create a brick entry, and also create a thumbnail image of this part
 			/// </summary>
-			/// <param name="partNumber"></param>
-			/// <param name="group"></param>
+			/// <param name="partNumber">The id of the part for this brick entry</param>
+			/// <param name="imageIndex">The index of the image to use</param>
 			public BrickEntry(string partNumber, int imageIndex)
 			{
 				mPartNumber = partNumber;
@@ -94,7 +94,41 @@ namespace BlueBrick
 				mItem = new ListViewItem(itemTexts, mImageIndex);
 				mItem.SubItems[3].Tag = brickInfo[1]; // store the color index in the tag of the color subitem, used in the html export
 													  // update the part usage percentage
+
+				// activate the style for subitems because we have a budget in different colors
+				mItem.UseItemStyleForSubItems = false;
 				updateUsagePercentage();
+			}
+
+			/// <summary>
+			/// Create a brick entry that is a sum for a layer
+			/// </summary>
+			public BrickEntry(LayerBrick brickLayer)
+			{
+				// get the total count (for the specified layer or for the whole map)
+				int totalCount = (brickLayer != null) ? Budget.Budget.Instance.getTotalCountForLayer(brickLayer) : Budget.Budget.Instance.getTotalCount();
+				// create a list view item with the total count and the total part usage
+				string[] itemTexts = { Properties.Resources.TextTotal, totalCount.ToString(), Properties.Resources.TextNA, string.Empty, string.Empty };
+				mItem = new ListViewItem(itemTexts);
+				// set a color
+				mItem.UseItemStyleForSubItems = true; // use the same color for the whole line, even the budget
+				mItem.ForeColor = Color.MediumBlue;
+				mItem.BackColor = Color.MintCream;
+				// add a tag to the item, so that it can be sorted, always at the bottom
+				if (brickLayer != null)
+					mItem.Tag = brickLayer;
+				else
+					mItem.Tag = mItem;
+				// update percentage
+				updateUsagePercentage();
+			}
+
+			private float getTotalUsagePercentage()
+			{
+				if (mItem.Tag is LayerBrick)
+					return Budget.Budget.Instance.getUsagePercentageForLayer(this.mItem.Tag as LayerBrick);
+				else
+					return Budget.Budget.Instance.getTotalUsagePercentage();
 			}
 
 			public void incrementQuantity()
@@ -113,16 +147,15 @@ namespace BlueBrick
 			{
 				// get the current budget for this part
 				string usageAsString = Properties.Resources.TextNA;
-				mItem.UseItemStyleForSubItems = true;
 				if (Budget.Budget.Instance.IsExisting)
 				{
-					// activate the fore color because we have a budget
-					mItem.UseItemStyleForSubItems = false;
+					// check if this brick entry is actually the brick entry of the whole layer
+					bool isLayerSum = (this.mItem.Tag != null);
 
 					// we should not use the mQuantity to compute the budget percentage, because this quantity is only for this
 					// group, but the part can appear in multiple group (on multiple layer), and the budget is an overall budget
 					// all part included, so let the Budget class to use its own count of part
-					usagePercentage = Budget.Budget.Instance.getUsagePercentage(mPartNumber);
+					usagePercentage = isLayerSum ? this.getTotalUsagePercentage() : Budget.Budget.Instance.getUsagePercentage(mPartNumber);
 					if (usagePercentage < 0)
 					{
 						// illimited budget
@@ -135,6 +168,10 @@ namespace BlueBrick
 						mItem.SubItems[2].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
 					}
 				}
+				else
+				{
+					mItem.SubItems[2].ForeColor = mItem.SubItems[0].ForeColor;
+				}
 				mItem.SubItems[2].Text = usageAsString;
 			}
 		}
@@ -143,6 +180,7 @@ namespace BlueBrick
 		{
 			public Dictionary<string, BrickEntry> mBrickEntryList = new Dictionary<string, BrickEntry>();
 			public LayerBrick mLayer = null;
+			public BrickEntry mBrickEntrySumLine = null;
 			private ListViewGroup mGroup = null;
 
 			public ListViewGroup Group
@@ -152,9 +190,23 @@ namespace BlueBrick
 
 			public GroupEntry(LayerBrick layer, ListView listView)
 			{
+				// save the layer
 				mLayer = layer;
+
+				// create the specific brick entry for the sum line
+				mBrickEntrySumLine = new BrickEntry(layer);
+
+				// if the layer is not null, that means we use group
 				if (layer != null)
+				{
+					// so create the group
 					mGroup = new ListViewGroup(layer.Name);
+					// and assign the correct group to the sum line
+					mBrickEntrySumLine.Item.Group = mGroup;
+				}
+
+				// and add the line to the list view
+				listView.Items.Add(mBrickEntrySumLine.Item);
 			}
 		}
 
@@ -341,7 +393,12 @@ namespace BlueBrick
 				// if we find it, update its usage percentage, otherwise just ignore it
 				BrickEntry brickEntry = null;
 				if (groupEntry.mBrickEntryList.TryGetValue(partNumber, out brickEntry))
+				{
+					// update the percentage of the found brick
 					brickEntry.updateUsagePercentage();
+					// since we found the brick in this group entry, update also the percentage of the sum line
+					groupEntry.mBrickEntrySumLine.updateUsagePercentage();
+				}
 			}
 
 			// if it is currently sorted by budget, we need to resort
@@ -361,8 +418,13 @@ namespace BlueBrick
 
 			// iterate on all brick entrey on all the group entry to update the usage percentage
 			foreach (GroupEntry groupEntry in mGroupEntryList)
+			{
+				// update the percentage of the sum brick entry
+				groupEntry.mBrickEntrySumLine.updateUsagePercentage();
+				// and also of all the other brick entries
 				foreach (BrickEntry brickEntry in groupEntry.mBrickEntryList.Values)
 					brickEntry.updateUsagePercentage();
+			}
 
 			// if it is currently sorted by budget, we need to resort
 			if (mLastColumnSortedIndex == 2)
@@ -477,30 +539,6 @@ namespace BlueBrick
 			// iterate on all the bricks of the list
 			foreach (Layer.LayerItem item in brickLayer.LibraryBrickList)
 				addBrick(item, currentGroupEntry);
-
-			// add the sum for the layer
-			addSum(brickLayer, currentGroupEntry);
-		}
-
-		/// <summary>
-		/// Add a specific line that should display the whole sum of part count and part usage for the specified layer
-		/// </summary>
-		/// <param name="brickLayer">The layer for which you want to add the sum</param>
-		/// <param name="groupEntry">the concerned group for this sum</param>
-		private void addSum(LayerBrick brickLayer, GroupEntry groupEntry)
-		{
-			// create a list view item with the total count and the total part usage
-			string[] itemTexts = { Properties.Resources.TextTotal, Budget.Budget.Instance.getTotalCountForLayer(brickLayer).ToString(), Properties.Resources.TextNA, string.Empty, string.Empty };
-			ListViewItem sumItem = new ListViewItem(itemTexts);
-			sumItem.Group = groupEntry.Group;
-			// set a color
-			sumItem.ForeColor = Color.MediumBlue;
-			sumItem.BackColor = Color.MintCream; // Color.Azure;
-			sumItem.UseItemStyleForSubItems = true;
-			// add a tag to the item, so that it can be sorted, always at the bottom
-			sumItem.Tag = brickLayer;
-			// add the item
-			this.Items.Add(sumItem);
 		}
 
 		/// <summary>
@@ -608,7 +646,7 @@ namespace BlueBrick
 			// create a default dictionnary if we don't use the layers
 			if (!this.SplitPartPerLayer)
 			{
-				GroupEntry groupEntry = new GroupEntry(null, null);
+				GroupEntry groupEntry = new GroupEntry(null, this);
 				mGroupEntryList.Add(groupEntry);
 			}
 
