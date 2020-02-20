@@ -370,7 +370,9 @@ namespace BlueBrick.Budget
 		/// <returns>The percentage of the budget already used on the current map</returns>
 		public float getTotalUsagePercentage(bool shouldIncludeHiddenParts)
 		{
-			return (float)getTotalCount(shouldIncludeHiddenParts) / (float)getTotalBudget();
+			int totalBudget = getTotalBudget();
+			// for the total count, of course we should only count the budgeted parts for having a correct usage
+			return (totalBudget == 0) ? 0 : (float)(getTotalCount(true, shouldIncludeHiddenParts) * 100) / (float)totalBudget;
 		}
 
 		/// <summary>
@@ -510,28 +512,46 @@ namespace BlueBrick.Budget
 			return -count;
 		}
 
+		private int getCountInDictionary(Dictionary<string, int> countDictionary, bool onlyBudgetedParts)
+		{
+			int total = 0;
+			if (onlyBudgetedParts)
+			{
+				// for optim reason iterate on the budget keys
+				int count = 0;
+				foreach (string partId in mBudget.Keys)
+					if (countDictionary.TryGetValue(partId, out count))
+						total += count;
+			}
+			else
+			{
+				// otherwise count all the parts even those not budgeted
+				foreach (int count in countDictionary.Values)
+					total += count;
+			}
+			return total;
+		}
+
 		/// <summary>
 		/// Get the total count of brick used in the map. You can specify if you want to also count the parts
 		/// that are currently on hidden layers.
 		/// </summary>
+		/// <param name="onlyBudgetedParts">If true, it will count only the budgeted parts, otherwise all the parts on the map</param>
 		/// <param name="shouldIncludeHiddenParts">tell if we should count the hidden parts</param>
 		/// <returns>The number of bricks used on the current map, with ot without the hidden parts</returns>
-		public int getTotalCount(bool shouldIncludeHiddenParts)
+		public int getTotalCount(bool onlyBudgetedParts, bool shouldIncludeHiddenParts)
 		{
 			int total = 0;
 			if (shouldIncludeHiddenParts)
 			{
-				// if we include hidden parts, count on all parts
-				foreach (int count in mCount.Values)
-					total += count;
+				total = getCountInDictionary(mCount, onlyBudgetedParts);
 			}
 			else
 			{
 				// otherwise iterate on the count per layer, and only count the parts if the layer is visible
 				foreach (KeyValuePair<LayerBrick, Dictionary<string, int>> layerPair in mCountPerLayer)
 					if (layerPair.Key.Visible)
-						foreach (int count in layerPair.Value.Values)
-							total += count;
+						total += getCountInDictionary(layerPair.Value, onlyBudgetedParts);
 			}
 			return total;
 		}
@@ -540,15 +560,15 @@ namespace BlueBrick.Budget
 		/// Get the total number of bricks present in the specified layer of the current map
 		/// </summary>
 		/// <param name="layer">The layer in which you want to know the count</param>
+		/// <param name="onlyBudgetedParts">if true only the budgeted parts will be counted, otherwise all the parts on the layer</param>
 		/// <returns>the number of bricks in the specified layer of the map which could be 0</returns>
-		public int getTotalCountForLayer(LayerBrick layer)
+		public int getTotalCountForLayer(LayerBrick layer, bool onlyBudgetedParts)
 		{
 			int result = 0;
 			// try to get the specified layer and iterate on all its values
 			Dictionary<string, int> layeredCount = null;
 			if (mCountPerLayer.TryGetValue(layer, out layeredCount))
-				foreach (int count in layeredCount.Values)
-					result += count;
+				result = getCountInDictionary(layeredCount, onlyBudgetedParts);
 			return result;
 		}
 
