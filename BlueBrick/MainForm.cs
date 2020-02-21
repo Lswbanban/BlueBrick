@@ -1111,21 +1111,21 @@ namespace BlueBrick
 			this.PartUsageListView.renameLayerNotification(layer as LayerBrick);
 		}
 
-		public void NotifyPartListForBrickAdded(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToRegroup)
+		public void NotifyPartListForBrickAdded(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isCausedByRegroup)
 		{
 			// inform the budget first, because the part usage also display the budget
-			Budget.Budget.Instance.addBrickNotification(layer, brickOrGroup, isDueToRegroup);
-			this.PartUsageListView.addBrickNotification(layer, brickOrGroup, isDueToRegroup);
+			Budget.Budget.Instance.addBrickNotification(layer, brickOrGroup, isCausedByRegroup);
+			this.PartUsageListView.addBrickNotification(layer, brickOrGroup, isCausedByRegroup);
 			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup);
 			// update the map dimensions
 			updateMapDimensionInfo();
 		}
 
-		public void NotifyPartListForBrickRemoved(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToUngroup)
+		public void NotifyPartListForBrickRemoved(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isCausedByUngroup)
 		{
 			// inform the budget first, because the part usage also display the budget
-			Budget.Budget.Instance.removeBrickNotification(layer, brickOrGroup, isDueToUngroup);
-			this.PartUsageListView.removeBrickNotification(layer, brickOrGroup, isDueToUngroup);
+			Budget.Budget.Instance.removeBrickNotification(layer, brickOrGroup, isCausedByUngroup);
+			this.PartUsageListView.removeBrickNotification(layer, brickOrGroup, isCausedByUngroup);
 			this.PartsTabControl.updatePartCountAndBudget(brickOrGroup);
 			// update the map dimensions
 			updateMapDimensionInfo();
