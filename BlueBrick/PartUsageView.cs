@@ -107,8 +107,6 @@ namespace BlueBrick
 			/// <param name="shouldIncludeHiddenParts">Tell if we should count the hidden parts or not when initializing the sum</param>
 			public BrickEntry(LayerBrick brickLayer, bool shouldIncludeHiddenParts)
 			{
-				// get the total count (for the specified layer or for the whole map). And we want all the parts, not only the budgeted ones
-				mQuantity = (brickLayer != null) ? Budget.Budget.Instance.getTotalCountForLayer(brickLayer, false) : Budget.Budget.Instance.getTotalCount(false, shouldIncludeHiddenParts);
 				// create a list view item with the total count and the total part usage
 				string[] itemTexts = { Properties.Resources.TextTotal, mQuantity.ToString(), Properties.Resources.TextNA, string.Empty, string.Empty };
 				mItem = new ListViewItem(itemTexts);
@@ -434,9 +432,16 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// this method should be called when a brick is added
+		/// this method should be called when a brick is added on the specified layer. This will add the specified brick to the list.
+		/// Moreover, if the specified brick is an unnamed group (i.e. a simple group, but not a composed set), it will also add all
+		/// the bricks belonging to the group to the list. But this never happen as other code filter the list to remove unnamed group.
+		/// On the contrary, if the specified brick is actually a named group and this notifaction is due to an regroup action (specified flag set to true)
+		/// then it will remove all the sub brick of this named group to the list, because those brick has been added during the ungroup action.
+		/// <param name="layer">The layer on which the brick or group has been added</param>
+		/// <param name="brickOrGroup"/>The brick or group that has been added</param>
+		/// <param name="isCausedByRegroup">Tell if this add notification was caused by an regroup action</param>
 		/// </summary>
-		public void addBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToRegroup)
+		public void addBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isCausedByRegroup)
 		{
 			// do nothing if the window is not visible
 			// because we rebuild everything when it becomes visible
@@ -450,28 +455,27 @@ namespace BlueBrick
 			// get the group entry associated with this layer
 			GroupEntry currentGroupEntry = getGroupEntryFromLayer(layer, true);
 
-			// add the specified brick
+			// add the specified brick (will do nothing if the brick is unnamed, such as anonym group, or not listed in library)
 			addBrick(brickOrGroup, currentGroupEntry);
-
-			// also increment the count for the whole group
-			currentGroupEntry.mBrickEntrySumLine.incrementQuantity();
 
 			// if the specified brick is group, add also the sub items in the list
 			if (brickOrGroup.IsAGroup)
-				foreach (Layer.LayerItem item in (brickOrGroup as Layer.Group).Items)
-					if (item.PartNumber != string.Empty) // item can be a brick or another named group, but we should not add unnamed group
-					{
-						if (isDueToRegroup)
-						{
-							if (!BrickLibrary.Instance.isListedInLibrary(item.PartNumber))
-								this.removeBrickNotification(layer, item, false); // don't use true otherwise it's an infinite loop
-						}
-						else
-						{
-							if (BrickLibrary.Instance.isListedInLibrary(item.PartNumber))
-								this.addBrickNotification(layer, item, false); // anyway isDueToRegroup is false
-						}
-					}
+				if (brickOrGroup.PartNumber == string.Empty) // if the group is unnamed, add also all the brick in the group
+				{
+					// however, this should never happen, as usually when adding/duplicating a group, the unnamed group has been filtered
+					// We need to do a recursive call on all the brick, even the unnamed group, because those unnamed group may contains named brick inside
+					// but no worries, the addBrick() function will check and avoid adding unnamed group
+					foreach (Layer.LayerItem item in (brickOrGroup as Layer.Group).Items)
+						this.addBrickNotification(layer, item, false); // allways isCausedByRegroup is false in that case, the regroup is only on the first level of the recursion
+				}
+				else if (isCausedByRegroup)
+				{
+					// otherwise if the group is named, stop here, does nothing, unless we are regrouping an old named group,
+					// and in that case we need to remove all the sub element of that group
+					// because of the false flag, it will not readd anything
+					foreach (Layer.LayerItem item in (brickOrGroup as Layer.Group).Items)
+						this.removeBrickNotification(layer, item, false); // don't use true otherwise it's an infinite loop
+				}
 
 			// if it is currently sorted by quantity, we need to resort.
 			// if it is sorted by budget, the addBrick function will anyway call the update budget modification
@@ -480,9 +484,17 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// this method should be called when a brick is deleted
+		/// this method should be called when a brick is deleted on the specified layer. This will remove the specified brick from the list.
+		/// Moreover, if the specified brick is an unnamed group (i.e. a simple group, but not a composed set), it will also remove all
+		/// the bricks belonging to the group from the list. But this never happen as other code filter the list to remove unnamed group.
+		/// On the contrary, if the specified brick is actually a named group and this notifaction is due to an ungroup action (specified flag set to true)
+		/// then it will add all the sub brick of this named group to the list, because now each sub element of the specified group
+		/// will appeared as single part on the map.
+		/// <param name="layer">The layer on which the brick or group has been removed</param>
+		/// <param name="brickOrGroup"/>The brick or group that has been removed</param>
+		/// <param name="isCausedByUngroup">Tell if this remove notification was caused by an ungroup action</param>
 		/// </summary>
-		public void removeBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isDueToUngroup)
+		public void removeBrickNotification(LayerBrick layer, Layer.LayerItem brickOrGroup, bool isCausedByUngroup)
 		{
 			// do nothing if the window is not visible
 			// because we rebuild everything when it becomes visible
@@ -499,28 +511,27 @@ namespace BlueBrick
 			if (currentGroupEntry == null)
 				return;
 
-			// remove the specified brick
+			// remove the specified brick (will do nothing if the brick is unnamed, such as anonym group, or not listed in library)
 			removeBrick(brickOrGroup, currentGroupEntry);
-
-			// also decrement the count for the whole group
-			currentGroupEntry.mBrickEntrySumLine.decrementQuantity();
 
 			// if the specified brick is group, remove also the sub items from the list
 			if (brickOrGroup.IsAGroup)
-				foreach (Layer.LayerItem item in (brickOrGroup as Layer.Group).Items)
-					if (item.PartNumber != string.Empty) // item can be a brick or another named group, but we should not add unnamed group
-					{
-						if (isDueToUngroup)
-						{
-							if (!BrickLibrary.Instance.isListedInLibrary(item.PartNumber))
-								this.addBrickNotification(layer, item, false); // don't use true otherwise it's an infinite loop
-						}
-						else
-						{
-							if (BrickLibrary.Instance.isListedInLibrary(item.PartNumber))
-								this.removeBrickNotification(layer, item, false); // anyway isDueToUngroup is false
-						}
-					}
+				if (brickOrGroup.PartNumber == string.Empty) // if the group is unnamed, remove also all the brick in the group
+				{
+					// however, this should never happen, as usually when deleting a group, the unnamed group has been filtered
+					// We need to do a recursive call on all the brick, even the unnamed group, because those unnamed group may contains named brick inside
+					// but no worries, the removeBrick() function will check and avoid removing unnamed group
+					foreach (Layer.LayerItem item in (brickOrGroup as Layer.Group).Items)
+						this.removeBrickNotification(layer, item, false); // alway isCausedByUngroup is false otherwise it's an infinite loop
+				}
+				else if (isCausedByUngroup)
+				{
+					// else if it is a named group and we just ungroup it, then we should add all its named items
+					// because of the false flag set in the recursive call, we will only add the named group and not under,
+					// and will add hierrachy of unnamed group
+					foreach (Layer.LayerItem item in (brickOrGroup as Layer.Group).Items)
+						this.addBrickNotification(layer, item, false); // don't use true otherwise it's an infinite loop
+				}
 
 			// remove the group from the list view and the mGroupEntryList if it is empty
 			if (this.SplitPartPerLayer && (currentGroupEntry.Group.Items.Count == 0))
@@ -550,12 +561,18 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// this method update the view by adding a brick or incrementing its count
+		/// this method update the view by adding the specified brick or incrementing its count.
+		/// The brick will be ignored if it is not named, as we don't list unnamed brick or group,
+		/// so in that case, this method does nothing.
 		/// </summary>
 		/// <param name="brickOrGroup">the brick to add in the view</param>
 		/// <param name="groupEntry">the concerned group in which adding the brick</param>
 		private void addBrick(Layer.LayerItem brickOrGroup, GroupEntry groupEntry)
 		{
+			// early exit if the brick is unnamed or unlisted
+			if (brickOrGroup.PartNumber == string.Empty)
+				return;
+
 			// get a pointer on the current brick entry list
 			Dictionary<string, BrickEntry> brickEntryList = groupEntry.mBrickEntryList;
 
@@ -587,6 +604,8 @@ namespace BlueBrick
 				this.Items.Add(brickEntry.Item);
 			// and increment its count
 			brickEntry.incrementQuantity();
+			// also increment the count for the whole group
+			groupEntry.mBrickEntrySumLine.incrementQuantity();
 			// update the part usage for all the part that bear the same part number in all the groups
 			updateBudgetNotification(partNumber);
 		}
@@ -615,16 +634,24 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// update the view by decrementing the brick count or removing it
+		/// Update the view by decrementing the brick count or removing it.
+		/// This function does nothing if the brick is unnamed.
 		/// </summary>
 		/// <param name="brickOrGroup">the brick to remove from the view</param>
 		/// <param name="brickEntryList">the concerned group from which removing the brick</param>
 		private void removeBrick(Layer.LayerItem brickOrGroup, GroupEntry groupEntry)
 		{
+			// early exit if the brick is unnamed or unlisted
+			if (brickOrGroup.PartNumber == string.Empty)
+				return;
+
 			BrickEntry brickEntry = null;
 			if (groupEntry.mBrickEntryList.TryGetValue(brickOrGroup.PartNumber, out brickEntry))
 			{
+				// decrement the count for the brick and the whole group
 				brickEntry.decrementQuantity();
+				groupEntry.mBrickEntrySumLine.decrementQuantity();
+				// check if the brick becomes null
 				if (brickEntry.IsQuantityNull)
 				{
 					this.Items.Remove(brickEntry.Item);
