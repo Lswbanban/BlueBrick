@@ -169,6 +169,7 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Matthias): The next connection preference set in part xml file was not respected when connecting a brick with drag'n'drop from the library, or after a move.
 - BUGFIX (Alban): The vertical scroll bar of layer panel was too big when placing the scrollbar on the bottom, changing tab, and come back (scroll useless empty space)
 - BUGFIX (Alban): the part usage calculation wasn't taking in consideration the flag to include or not the hidden layers.
+- BUGFIX (Alban): The Part Usage list was not properly updated when ungrouping a named group while being visible.
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 
 
