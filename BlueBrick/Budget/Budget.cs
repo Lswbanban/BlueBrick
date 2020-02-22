@@ -305,10 +305,10 @@ namespace BlueBrick.Budget
 
 		/// <summary>
 		/// get the budget number associated with the specified part number if any.
-		/// If no budget is associated with this part, 0 is returned.
+		/// If no budget is associated with this part, 0 or -1 is returned depending on Properties.Settings.Default.IsDefaultBudgetInfinite flag.
 		/// </summary>
 		/// <param name="partID">the full part id for which you want to know the budget</param>
-		/// <returns>the budget for that part or 0 if there's no budget</returns>
+		/// <returns>the budget for that part or 0 or -1 if there's no budget</returns>
 		public int getBudget(string partID)
 		{
 			// try to get the value or return 0 by default
@@ -319,14 +319,47 @@ namespace BlueBrick.Budget
 		}
 
 		/// <summary>
-		/// Get the total budget count of brick present in this budget
+		/// Get the total budget count of brick present in this budget.
+		/// You can specify if you want the absolute total budget count, or the budget count only for the used parts.
+		/// If onlyUsedParts is false then the second parameter is useless and the total budget count will be returned.
+		/// But if you want the budget for only the used parts, then you can specify if we should consider the hidden
+		/// parts as used part
 		/// </summary>
 		/// <returns>The number of bricks that can be budgeted</returns>
-		public int getTotalBudget()
+		public int getTotalBudget(bool onlyUsedParts, bool shouldIncludeHiddenParts)
 		{
 			int total = 0;
-			foreach (int count in mBudget.Values)
-				total += count;
+			// check if we need to count the budget of only the used parts
+			if (onlyUsedParts)
+			{
+				// if we should include hidden part, we can iterate on the whole dictionary
+				if (shouldIncludeHiddenParts)
+				{
+					foreach (KeyValuePair<string, int> budgetPair in mBudget)
+						if (mCount.ContainsKey(budgetPair.Key))
+							total += budgetPair.Value;
+				}
+				else
+				{
+					// create a list of visible parts
+					List<string> visibleParts = new List<string>();
+					foreach (KeyValuePair<LayerBrick, Dictionary<string, int>> layerPair in mCountPerLayer)
+						if (layerPair.Key.Visible)
+							visibleParts.AddRange(layerPair.Value.Keys);
+
+					// then iterate on the budget and add the budget count of the visible parts
+					foreach (KeyValuePair<string, int> budgetPair in mBudget)
+						if (visibleParts.Contains(budgetPair.Key))
+							total += budgetPair.Value;
+				}
+			}
+			else
+			{
+				// if we don't need to count only the used part, we can iterate on the whole dictionary of budget
+				foreach (int count in mBudget.Values)
+					total += count;
+			}
+
 			return total;
 		}
 
@@ -336,13 +369,15 @@ namespace BlueBrick.Budget
 		/// </summary>
 		/// <param name="partID">the full part id for which you want to know the usage percentage</param>
 		/// <param name="shouldIncludeHiddenParts">tell if we should count the hidden parts when computing the usage percentage</param>
+		/// <param name="count">The number of instance of the specified part used on the whole map</param>
+		/// <param name="budget">The budget associated with the specified part</param>
 		/// <returns>the usage percentage for that part or -1 if there's no budget (illimited budget)</returns>
-		public float getUsagePercentage(string partID, bool shouldIncludeHiddenParts)
+		public float getUsagePercentage(string partID, bool shouldIncludeHiddenParts, out int count, out int budget)
 		{
 			// try to get the value or return 0 by default
 			float result = -1f; //-1 means the budget is not set, i.e. you have an infinite budgets
-			int budget = getBudget(partID);
-			int count = getCount(partID, shouldIncludeHiddenParts);
+			budget = getBudget(partID);
+			count = getCount(partID, shouldIncludeHiddenParts);
 			if (budget < 0)
 			{
 				// if budget is negative, that means infinite budget, so the percentage will also be negative
@@ -367,12 +402,14 @@ namespace BlueBrick.Budget
 		/// by the total count of budget.
 		/// </summary>
 		/// <param name="shouldIncludeHiddenParts">tell if we should count the hidden parts</param>
+		/// <param name="totalBudgetOfUsedParts">The total budget sum but only for the used part in the map</param>
 		/// <returns>The percentage of the budget already used on the current map</returns>
-		public float getTotalUsagePercentage(bool shouldIncludeHiddenParts)
+		public float getTotalUsagePercentage(bool shouldIncludeHiddenParts, out int totalBudgetOfUsedParts)
 		{
-			int totalBudget = getTotalBudget();
+			// compute the total budget if not valid
+			totalBudgetOfUsedParts = getTotalBudget(true, shouldIncludeHiddenParts);
 			// for the total count, of course we should only count the budgeted parts for having a correct usage
-			return (totalBudget == 0) ? 0 : (float)(getTotalCount(true, shouldIncludeHiddenParts) * 100) / (float)totalBudget;
+			return (totalBudgetOfUsedParts == 0) ? 0 : (float)(getTotalCount(true, shouldIncludeHiddenParts) * 100) / (float)totalBudgetOfUsedParts;
 		}
 
 		/// <summary>
@@ -382,16 +419,17 @@ namespace BlueBrick.Budget
 		/// total count of the budgeted bricks on this layer, and the total budget count computed.
 		/// </summary>
 		/// <param name="layer">The layer in which you want to know the brick usage</param>
+		/// <param name="totalBudgetForTheLayer">this out parameter will contains the total budget count for the parts used on the layer</param>
 		/// <returns>the brick usage percentage on the specified layer</returns>
-		public float getUsagePercentageForLayer(LayerBrick layer)
+		public float getUsagePercentageForLayer(LayerBrick layer, out int totalBudgetForTheLayer)
 		{
 			float result = 0;
+			totalBudgetForTheLayer = 0;
 			// try to get the specified layer and iterate on all its values
 			Dictionary<string, int> layeredCount = null;
 			if (mCountPerLayer.TryGetValue(layer, out layeredCount))
 			{
 				int totalCount = 0;
-				int totalBudget = 0;
 				// itearate on all the pair on the specified layer
 				foreach (KeyValuePair<string, int> brickCount in layeredCount)
 				{
@@ -401,12 +439,12 @@ namespace BlueBrick.Budget
 					{
 						// increase the count and budget
 						totalCount += brickCount.Value;
-						totalBudget += budget;
+						totalBudgetForTheLayer += budget;
 					}
 				}
 				// compute the result (if budget is not null to avoid division by zero)
-				if (totalBudget > 0)
-					result = (float)(totalCount * 100) / (float)totalBudget;
+				if (totalBudgetForTheLayer > 0)
+					result = (float)(totalCount * 100) / (float)totalBudgetForTheLayer;
 			}
 			return result;
 		}
