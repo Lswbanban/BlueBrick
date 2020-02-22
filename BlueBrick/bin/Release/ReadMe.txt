@@ -110,8 +110,6 @@ Open bugs:
 - [target 1.9] BUG (Alban): It is difficult to edit the budget, since the update of Dot.Net (do not reccord that bug)
 - [target 1.9] MISSING FEATURE (Matthias): Add a column to also display the Budget count, and maybe one column for the missing parts (that could be sorted, we could also include all the non budgeted part in that column)
 - [target 1.9] MISSING FEATURE (Matthias): Hide the column, budget quantity, missing quantity and part usage percentage, if no budget is open
-- [target 1.9] MISSING FEATURE (supertruper1988): Its small but can the default export be updated to be png instead of BMP?
-
 
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
 
@@ -154,14 +152,16 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): The Part Usage now also display the usage percentage against the current budget
 - NEW FEATURE (Ludo): The Part Usage now display the sum of all the parts on each layer (or globally) and the part usage percentage per layer (or globally)
 - NEW FEATURE (Alban): The Part Usage can now be exported in CSV format (on top of HTML and Text)
+- NEW FEATURE (Alban): The Part Usage can now be reordered by clicking on the columns headers
+- NEW FEATURE (Alban): Added a checkbox to include or not hidden layers in the Part Usage list
+
+- NEW FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count, option available in Preferences)
 - NEW FEATURE (Alban): A feature to download library package online from various sources (official web site, and non official url).
 - NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
-- NEW FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count, option available in Preferences)
-- NEW FEATURE (Matthias): An option to display part names below the parts
-- NEW FEATURE (Alban): Add a checkbox to include or not hidden layers in the part usage list
+- NEW FEATURE (Matthias): An option to display part names below the parts, in the part library.
 - NEW FEATURE (Alban): The new layers are now inserted above the selected layer, not at the top of the stack by default
 - NEW FEATURE (Matthias): When you delete a part, the active connection of the new selected part is the one where the deleted part was connected.
-- NEW FEATURE (Alban): Being able to sort the usage part list, by clicking on the columns.
+- NEW FEATURE (supertruper1988): The default export image extension is now PNG instead of BMP (and the list of available formats has been reordered)
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points
 - BUGFIX (Alban): The scroll of the mouse wheel was not happening when moving the mouse over the part lib or layer stack, only after you click on it (now the focus is automatically given to the region of the application where the mouse move)
