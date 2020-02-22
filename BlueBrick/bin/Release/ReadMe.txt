@@ -108,7 +108,6 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Matthias): A versionning system for the library packages
 - [target 1.9] MISSING FEATURE (Alban): The export of part usage list is not localized
 - [target 1.9] BUG (Alban): It is difficult to edit the budget, since the update of Dot.Net (do not reccord that bug)
-- [target 1.9] MISSING FEATURE (Matthias): Add a column to also display the Budget count, and maybe one column for the missing parts (that could be sorted, we could also include all the non budgeted part in that column)
 - [target 1.9] MISSING FEATURE (Matthias): Hide the column, budget quantity, missing quantity and part usage percentage, if no budget is open
 
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
@@ -150,7 +149,7 @@ Open bugs:
 Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): The window to edit the general info has been moved to a tab next to the layer list, including the edition of the map background color
 - NEW FEATURE (Alban): The part list window (now renamed into Part Usage) has been moved to a tab next to the layers list
-- NEW FEATURE (Alban): The Part Usage now also display the usage percentage against the current budget
+- NEW FEATURE (Alban & Matthias): The Part Usage now also display the Budget count, the missing count and the part usage percentage against the current budget
 - NEW FEATURE (Ludo): The Part Usage now display the sum of all the parts on each layer (or globally) and the part usage percentage per layer (or globally)
 - NEW FEATURE (Alban): The Part Usage can now be exported in CSV format (on top of HTML and Text)
 - NEW FEATURE (Alban): The Part Usage can now be reordered by clicking on the columns headers
