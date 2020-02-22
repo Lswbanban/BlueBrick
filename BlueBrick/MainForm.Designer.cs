@@ -1509,6 +1509,8 @@ namespace BlueBrick
 			this.PartUsageListView.FullRowSelect = true;
 			this.PartUsageListView.HideSelection = false;
 			this.PartUsageListView.IncludeHiddenLayers = false;
+			this.PartUsageListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            ((System.Windows.Forms.ListViewItem)(resources.GetObject("PartUsageListView.Items")))});
 			this.PartUsageListView.Name = "PartUsageListView";
 			this.PartUsageListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
 			this.PartUsageListView.SplitPartPerLayer = false;

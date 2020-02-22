@@ -850,9 +850,12 @@ namespace BlueBrick
 			{
 				// get the text
 				string text = item.SubItems[columnOrder[i]].Text;
-				// for the part usage, remove the progress bar, as in CSV export user is more interested by the value
-				// the first 10 characters is the progress bar, then a space character, then the number and the % char at the end
-				if ((columnOrder[i] == (int)ColumnId.PART_USAGE) && !text.Equals(Properties.Resources.TextUnbudgeted) && !text.Equals(Properties.Resources.TextNA))
+				// remove the comma from the description (in case some part description has a comma
+				if (columnOrder[i] == (int)ColumnId.DESCRIPTION)
+					text = text.Replace(",", " ");
+				else if ((columnOrder[i] == (int)ColumnId.PART_USAGE) && !text.Equals(Properties.Resources.TextUnbudgeted) && !text.Equals(Properties.Resources.TextNA))
+					// for the part usage, remove the progress bar, as in CSV export user is more interested by the value
+					// the first 10 characters is the progress bar, then a space character, then the number and the % char at the end
 					text = text.Substring(11, text.Length - 12);
 				// add the text to the line
 				line += text;
