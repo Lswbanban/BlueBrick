@@ -28,8 +28,8 @@ namespace BlueBrick
 		{
 			PART_ID = 0,
 			PART_COUNT,
-			// BUDGET_COUNT,
-			// MISSING_COUNT,
+			BUDGET_COUNT,
+			MISSING_COUNT,
 			PART_USAGE,
 			COLOR,
 			DESCRIPTION,
@@ -101,7 +101,7 @@ namespace BlueBrick
 				// the first text of the array must be the part number because it is treated as the item text itself
 				// and the columns are defined in this order: part, quantity, color and description
 				// even if the display order is different (quantity, part, color and description)
-				string[] itemTexts = { brickInfo[0], mQuantity.ToString(), Properties.Resources.TextNA, brickInfo[2], brickInfo[3] };
+				string[] itemTexts = { brickInfo[0], mQuantity.ToString(), Properties.Resources.TextNA, Properties.Resources.TextNA, Properties.Resources.TextNA, brickInfo[2], brickInfo[3] };
 				mItem = new ListViewItem(itemTexts, mImageIndex);
 				mItem.SubItems[(int)ColumnId.COLOR].Tag = brickInfo[1]; // store the color index in the tag of the color subitem, used in the html export
 				// activate the style for subitems because we have a budget in different colors
@@ -118,7 +118,7 @@ namespace BlueBrick
 			public BrickEntry(LayerBrick brickLayer, bool shouldIncludeHiddenParts)
 			{
 				// create a list view item with the total count and the total part usage
-				string[] itemTexts = { Properties.Resources.TextTotal, mQuantity.ToString(), Properties.Resources.TextNA, string.Empty, string.Empty };
+				string[] itemTexts = { Properties.Resources.TextTotal, mQuantity.ToString(), Properties.Resources.TextNA, Properties.Resources.TextNA, Properties.Resources.TextNA, string.Empty, string.Empty };
 				mItem = new ListViewItem(itemTexts);
 				// set a color
 				mItem.UseItemStyleForSubItems = true; // use the same color for the whole line, even the budget
@@ -156,11 +156,16 @@ namespace BlueBrick
 			public void updateUsagePercentage(bool shouldIncludeHiddenParts)
 			{
 				// get the current budget for this part
+				string budgetCountAsString = Properties.Resources.TextNA;
+				string missingAsString = Properties.Resources.TextNA;
 				string usageAsString = Properties.Resources.TextNA;
 				if (Budget.Budget.Instance.IsExisting)
 				{
 					// check if this brick entry is actually the brick entry of the whole layer
 					bool isLayerSum = (this.mItem.Tag != null);
+
+					// get the total count of the part all layer included
+					int totalPartCount = Budget.Budget.Instance.getCount(mPartNumber, shouldIncludeHiddenParts);
 
 					// we should not use the mQuantity to compute the budget percentage, because this quantity is only for this
 					// group, but the part can appear in multiple group (on multiple layer), and the budget is an overall budget
@@ -169,11 +174,16 @@ namespace BlueBrick
 					if (usagePercentage < 0)
 					{
 						// illimited budget
+						budgetCountAsString = Properties.Resources.TextUnbudgeted;
+						missingAsString = totalPartCount.ToString(); // if not budgeted, then we need all of them
 						usageAsString = Properties.Resources.TextUnbudgeted;
 						mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = Color.DarkCyan;
 					}
 					else
 					{
+						int partBudget = Budget.Budget.Instance.getBudget(mPartNumber);
+						budgetCountAsString = partBudget.ToString();
+						missingAsString = (totalPartCount <= partBudget) ? "0" : (totalPartCount - partBudget).ToString();
 						usageAsString = DownloadCenterForm.ComputePercentageBarAsString(usagePercentage);
 						mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
 					}
@@ -182,6 +192,8 @@ namespace BlueBrick
 				{
 					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = mItem.SubItems[(int)ColumnId.PART_ID].ForeColor;
 				}
+				mItem.SubItems[(int)ColumnId.BUDGET_COUNT].Text = budgetCountAsString;
+				mItem.SubItems[(int)ColumnId.MISSING_COUNT].Text = missingAsString;
 				mItem.SubItems[(int)ColumnId.PART_USAGE].Text = usageAsString;
 			}
 		}

@@ -121,12 +121,18 @@
     <value>Pièce</value>
   </data>
   <data name="quantiyColumnHeader.Text" xml:space="preserve">
-    <value>Quantité</value>
+    <value>Utilisé</value>
   </data>
   <data name="colorColumnHeader.Text" xml:space="preserve">
     <value>Couleur</value>
   </data>
-  <data name="budgetColumnHeader.Text" xml:space="preserve">
-    <value>% d'utilisation</value>
+  <data name="usagePercentageColumnHeader.Text" xml:space="preserve">
+    <value>% d'Utilisation</value>
+  </data>
+  <data name="budgetCountColumnHeader.Text" xml:space="preserve">
+    <value>Budgeté</value>
+  </data>
+  <data name="missingCountColumnHeader.Text" xml:space="preserve">
+    <value>Manquant</value>
   </data>
 </root>
