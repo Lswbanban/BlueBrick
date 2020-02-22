@@ -28,11 +28,11 @@ namespace BlueBrick
 		{
 			PART_ID = 0,
 			PART_COUNT,
+			COLOR,
+			DESCRIPTION,
 			BUDGET_COUNT,
 			MISSING_COUNT,
 			PART_USAGE,
-			COLOR,
-			DESCRIPTION,
 		}
 
 		private class IconEntry
@@ -101,7 +101,7 @@ namespace BlueBrick
 				// the first text of the array must be the part number because it is treated as the item text itself
 				// and the columns are defined in this order: part, quantity, color and description
 				// even if the display order is different (quantity, part, color and description)
-				string[] itemTexts = { brickInfo[0], mQuantity.ToString(), Properties.Resources.TextNA, Properties.Resources.TextNA, Properties.Resources.TextNA, brickInfo[2], brickInfo[3] };
+				string[] itemTexts = { brickInfo[0], mQuantity.ToString(), brickInfo[2], brickInfo[3], Properties.Resources.TextNA, Properties.Resources.TextNA, Properties.Resources.TextNA };
 				mItem = new ListViewItem(itemTexts, mImageIndex);
 				mItem.SubItems[(int)ColumnId.COLOR].Tag = brickInfo[1]; // store the color index in the tag of the color subitem, used in the html export
 				// activate the style for subitems because we have a budget in different colors
@@ -121,7 +121,7 @@ namespace BlueBrick
 			public BrickEntry(LayerBrick brickLayer, bool shouldIncludeHiddenParts)
 			{
 				// create a list view item with the total count and the total part usage
-				string[] itemTexts = { Properties.Resources.TextTotal, mQuantity.ToString(), Properties.Resources.TextNA, Properties.Resources.TextNA, Properties.Resources.TextNA, string.Empty, string.Empty };
+				string[] itemTexts = { Properties.Resources.TextTotal, mQuantity.ToString(), string.Empty, string.Empty, Properties.Resources.TextNA, Properties.Resources.TextNA, Properties.Resources.TextNA };
 				mItem = new ListViewItem(itemTexts);
 				// set a color
 				mItem.UseItemStyleForSubItems = true; // use the same color for the whole line, even the budget
@@ -495,6 +495,9 @@ namespace BlueBrick
 		/// </summary>
 		public void updateBudgetNotification()
 		{
+			// when the budget status is changed (open or close a budget), we need first to add or remove the column, even if the list view is not visible
+			showHideBudgetColumns(Budget.Budget.Instance.IsExisting);
+
 			// do nothing if the window is not visible
 			// because we rebuild everything when it becomes visible
 			if (!this.Visible)
@@ -513,6 +516,35 @@ namespace BlueBrick
 			// if it is currently sorted by budget, we need to resort
 			if (mLastColumnSortedIndex == 2)
 				this.Sort();
+		}
+
+		/// <summary>
+		/// This method should be called when a budget is active on the map
+		/// </summary>
+		private void showHideBudgetColumns(bool shouldShow)
+		{
+			if (shouldShow)
+			{
+				// add the budget column if they are not already there and set there correct dispay index
+				if (!this.Columns.Contains(budgetCountColumnHeader))
+					this.Columns.Insert((int)ColumnId.BUDGET_COUNT, budgetCountColumnHeader);
+				budgetCountColumnHeader.DisplayIndex = 2;
+
+				if (!this.Columns.Contains(missingCountColumnHeader))
+					this.Columns.Insert((int)ColumnId.MISSING_COUNT, missingCountColumnHeader);
+				missingCountColumnHeader.DisplayIndex = 3;
+
+				if (!this.Columns.Contains(usagePercentageColumnHeader))
+					this.Columns.Insert((int)ColumnId.PART_USAGE, usagePercentageColumnHeader);
+				usagePercentageColumnHeader.DisplayIndex = 4;
+			}
+			else
+			{
+				// remove the budget columns
+				this.Columns.Remove(budgetCountColumnHeader);
+				this.Columns.Remove(missingCountColumnHeader);
+				this.Columns.Remove(usagePercentageColumnHeader);
+			}
 		}
 
 		/// <summary>

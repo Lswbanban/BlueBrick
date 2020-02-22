@@ -498,6 +498,7 @@ namespace BlueBrick
 			else
 			{
 				updateEnableStatusForBudgetMenuItem();
+				this.PartUsageListView.updateBudgetNotification();
 			}
 		}
 
