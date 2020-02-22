@@ -1205,7 +1205,7 @@ namespace BlueBrick
 			// 
 			// saveExportImageDialog
 			// 
-			this.saveExportImageDialog.DefaultExt = "bmp";
+			this.saveExportImageDialog.DefaultExt = "png";
 			resources.ApplyResources(this.saveExportImageDialog, "saveExportImageDialog");
 			this.saveExportImageDialog.SupportMultiDottedExtensions = true;
 			// 
