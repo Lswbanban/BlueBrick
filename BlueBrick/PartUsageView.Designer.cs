@@ -50,28 +50,28 @@
 			// 
 			// colorColumnHeader
 			// 
-			this.colorColumnHeader.Name = "colorColumnHeader";
 			resources.ApplyResources(this.colorColumnHeader, "colorColumnHeader");
+			this.colorColumnHeader.Name = "colorColumnHeader";
 			// 
 			// descriptionColumnHeader
 			// 
-			this.descriptionColumnHeader.Name = "descriptionColumnHeader";
 			resources.ApplyResources(this.descriptionColumnHeader, "descriptionColumnHeader");
+			this.descriptionColumnHeader.Name = "descriptionColumnHeader";
 			// 
 			// usagePercentageColumnHeader
 			// 
-			this.usagePercentageColumnHeader.Name = "usagePercentageColumnHeader";
 			resources.ApplyResources(this.usagePercentageColumnHeader, "usagePercentageColumnHeader");
+			this.usagePercentageColumnHeader.Name = "usagePercentageColumnHeader";
 			// 
 			// budgetCountColumnHeader
 			// 
-			this.budgetCountColumnHeader.Name = "budgetCountColumnHeader";
 			resources.ApplyResources(this.budgetCountColumnHeader, "budgetCountColumnHeader");
+			this.budgetCountColumnHeader.Name = "budgetCountColumnHeader";
 			// 
 			// missingCountColumnHeader
 			// 
-			this.missingCountColumnHeader.Name = "missingCountColumnHeader";
 			resources.ApplyResources(this.missingCountColumnHeader, "missingCountColumnHeader");
+			this.missingCountColumnHeader.Name = "missingCountColumnHeader";
 			// 
 			// PartUsageView
 			// 
@@ -79,11 +79,11 @@
 			this.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.partColumnHeader,
             this.quantiyColumnHeader,
+            this.colorColumnHeader,
+            this.descriptionColumnHeader,
             this.budgetCountColumnHeader,
             this.missingCountColumnHeader,
-            this.usagePercentageColumnHeader,
-            this.colorColumnHeader,
-            this.descriptionColumnHeader});
+            this.usagePercentageColumnHeader});
 			this.FullRowSelect = true;
 			this.Sorting = System.Windows.Forms.SortOrder.Ascending;
 			this.UseCompatibleStateImageBehavior = false;
@@ -101,6 +101,5 @@
 		private System.Windows.Forms.ColumnHeader usagePercentageColumnHeader;
 		private System.Windows.Forms.ColumnHeader budgetCountColumnHeader;
 		private System.Windows.Forms.ColumnHeader missingCountColumnHeader;
-		private System.Windows.Forms.ColumnHeader budgetColumnHeader;
 	}
 }

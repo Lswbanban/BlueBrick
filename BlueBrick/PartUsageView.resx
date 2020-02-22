@@ -130,11 +130,17 @@
   <data name="quantiyColumnHeader.Width" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
+  <data name="colorColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
   <data name="colorColumnHeader.Text" xml:space="preserve">
     <value>Color</value>
   </data>
   <data name="colorColumnHeader.Width" type="System.Int32, mscorlib">
     <value>70</value>
+  </data>
+  <data name="descriptionColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="descriptionColumnHeader.Text" xml:space="preserve">
     <value>Description</value>
@@ -142,14 +148,23 @@
   <data name="descriptionColumnHeader.Width" type="System.Int32, mscorlib">
     <value>200</value>
   </data>
+  <data name="usagePercentageColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
   <data name="usagePercentageColumnHeader.Text" xml:space="preserve">
     <value>Part Usage %</value>
   </data>
   <data name="usagePercentageColumnHeader.Width" type="System.Int32, mscorlib">
     <value>125</value>
   </data>
+  <data name="budgetCountColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
   <data name="budgetCountColumnHeader.Text" xml:space="preserve">
     <value>Budgeted</value>
+  </data>
+  <data name="missingCountColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="missingCountColumnHeader.Text" xml:space="preserve">
     <value>Missing</value>
