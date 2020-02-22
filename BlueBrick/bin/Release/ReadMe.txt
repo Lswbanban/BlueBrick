@@ -107,6 +107,12 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Being able to export the budget in csv
 - [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably
 - [target 1.9] MISSING FEATURE (Matthias): A versionning system for the library packages
+- [target 1.9] MISSING FEATURE (Alban): The export of part usage list is not localized
+- [target 1.9] BUG (Alban): It is difficult to edit the budget, since the update of Dot.Net (do not reccord that bug)
+- [target 1.9] MISSING FEATURE (Matthias): Add a column to also display the Budget count, and maybe one column for the missing parts (that could be sorted, we could also include all the non budgeted part in that column)
+- [target 1.9] MISSING FEATURE (Matthias): Hide the column, budget quantity, missing quantity and part usage percentage, if no budget is open
+- [target 1.9] MISSING FEATURE (supertruper1988): Its small but can the default export be updated to be png instead of BMP?
+
 
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
 

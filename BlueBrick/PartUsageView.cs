@@ -24,6 +24,17 @@ namespace BlueBrick
 {
 	public partial class PartUsageView : ListView
 	{
+		enum ColumnId
+		{
+			PART_ID = 0,
+			PART_COUNT,
+			// BUDGET_COUNT,
+			// MISSING_COUNT,
+			PART_USAGE,
+			COLOR,
+			DESCRIPTION,
+		}
+
 		private class IconEntry
 		{
 			public Bitmap mImage = null;
@@ -92,11 +103,10 @@ namespace BlueBrick
 				// even if the display order is different (quantity, part, color and description)
 				string[] itemTexts = { brickInfo[0], mQuantity.ToString(), Properties.Resources.TextNA, brickInfo[2], brickInfo[3] };
 				mItem = new ListViewItem(itemTexts, mImageIndex);
-				mItem.SubItems[3].Tag = brickInfo[1]; // store the color index in the tag of the color subitem, used in the html export
-													  // update the part usage percentage
-
+				mItem.SubItems[(int)ColumnId.COLOR].Tag = brickInfo[1]; // store the color index in the tag of the color subitem, used in the html export
 				// activate the style for subitems because we have a budget in different colors
 				mItem.UseItemStyleForSubItems = false;
+				// update the part usage percentage
 				updateUsagePercentage(shouldIncludeHiddenParts);
 			}
 
@@ -134,13 +144,13 @@ namespace BlueBrick
 			public void incrementQuantity()
 			{
 				mQuantity++;
-				mItem.SubItems[1].Text = mQuantity.ToString();
+				mItem.SubItems[(int)ColumnId.PART_COUNT].Text = mQuantity.ToString();
 			}
 
 			public void decrementQuantity()
 			{
 				mQuantity--;
-				mItem.SubItems[1].Text = mQuantity.ToString();
+				mItem.SubItems[(int)ColumnId.PART_COUNT].Text = mQuantity.ToString();
 			}
 
 			public void updateUsagePercentage(bool shouldIncludeHiddenParts)
@@ -160,19 +170,19 @@ namespace BlueBrick
 					{
 						// illimited budget
 						usageAsString = Properties.Resources.TextUnbudgeted;
-						mItem.SubItems[2].ForeColor = Color.DarkCyan;
+						mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = Color.DarkCyan;
 					}
 					else
 					{
 						usageAsString = DownloadCenterForm.ComputePercentageBarAsString(usagePercentage);
-						mItem.SubItems[2].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
+						mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
 					}
 				}
 				else
 				{
-					mItem.SubItems[2].ForeColor = mItem.SubItems[0].ForeColor;
+					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = mItem.SubItems[(int)ColumnId.PART_ID].ForeColor;
 				}
-				mItem.SubItems[2].Text = usageAsString;
+				mItem.SubItems[(int)ColumnId.PART_USAGE].Text = usageAsString;
 			}
 		}
 
@@ -712,10 +722,13 @@ namespace BlueBrick
 			// call the correct exporter
 			if (filename.ToLower().EndsWith(".txt"))
 				exportListInTxt(filename, columnOrder);
+			if (filename.ToLower().EndsWith(".csv"))
+				exportListInCSV(filename, columnOrder);
 			else
 				exportListInHtml(filename, columnOrder);
 		}
 
+		#region export in text
 		private void exportItemsInTxt(StreamWriter writer, int[] columnOrder, int[] maxLength, ListView.ListViewItemCollection itemList)
 		{
 			foreach (ListViewItem item in itemList)
@@ -806,20 +819,124 @@ namespace BlueBrick
 			{
 			}
 		}
+		#endregion
 
+		#region export in CSV
+		private void exportColumnHeaderInCSV(StreamWriter writer, int[] columnOrder)
+		{
+			// construct the line with all the info
+			string line = string.Empty;
+			for (int i = 0; i < columnOrder.Length; ++i)
+			{
+				string text = this.Columns[columnOrder[i]].Text;
+				// remove the column sorter char
+				if (columnOrder[i] == this.mLastColumnSortedIndex)
+					text = text.Substring(2);
+				// add the text
+				line += text;
+				// add the comma except for the last item
+				if (i < columnOrder.Length - 1)
+					line += ",";
+			}
+			// write the line
+			writer.WriteLine(line);
+		}
+
+		private void exportOneItemInCSV(StreamWriter writer, int[] columnOrder, ListViewItem item)
+		{
+			// construct the line with all the info
+			string line = string.Empty;
+			for (int i = 0; i < columnOrder.Length; ++i)
+			{
+				// get the text
+				string text = item.SubItems[columnOrder[i]].Text;
+				// for the part usage, remove the progress bar, as in CSV export user is more interested by the value
+				// the first 10 characters is the progress bar, then a space character, then the number and the % char at the end
+				if ((columnOrder[i] == (int)ColumnId.PART_USAGE) && !text.Equals(Properties.Resources.TextUnbudgeted) && !text.Equals(Properties.Resources.TextNA))
+					text = text.Substring(11, text.Length - 12);
+				// add the text to the line
+				line += text;
+				// add the comma except for the last item
+				if (i < columnOrder.Length - 1)
+					line += ",";
+			}
+			// write the line
+			writer.WriteLine(line);
+		}
+
+		private void exportItemsInCSV(StreamWriter writer, int[] columnOrder, ListView.ListViewItemCollection itemList)
+		{
+			ListViewItem sumLineItem = null;
+
+			foreach (ListViewItem item in itemList)
+			{
+				// skip the sum line in order to add it at the end only
+				if (item.Tag != null)
+				{
+					sumLineItem = item;
+					continue;
+				}
+				// export the current item
+				exportOneItemInCSV(writer, columnOrder, item);
+			}
+
+			// finally export the sum line if not null
+			if (sumLineItem != null)
+				exportOneItemInCSV(writer, columnOrder, sumLineItem);
+		}
+
+		private void exportListInCSV(string fileName, int[] columnOrder)
+		{
+			try
+			{
+				// open a stream
+				StreamWriter writer = new StreamWriter(fileName, false, Encoding.UTF8);
+
+				// the parts
+				if (this.SplitPartPerLayer)
+				{
+					foreach (ListViewGroup group in this.Groups)
+					{
+						// write the name of the layer
+						writer.WriteLine(group.Header);
+						// write the column header in front of each group
+						exportColumnHeaderInCSV(writer, columnOrder);
+						exportItemsInCSV(writer, columnOrder, group.Items);
+						// write the name of the layer
+						writer.WriteLine("\n");
+					}
+				}
+				else
+				{
+					// write the column header
+					exportColumnHeaderInCSV(writer, columnOrder);
+					// and the item list
+					exportItemsInHtml(writer, columnOrder, this.Items);
+				}
+
+				// close the stream
+				writer.Close();
+			}
+			catch
+			{
+			}
+		}
+		#endregion
+
+		#region export in HTML
 		private void exportItemsInHtml(StreamWriter writer, int[] columnOrder, ListView.ListViewItemCollection itemList)
 		{
 			foreach (ListViewItem item in itemList)
 			{
-				writer.WriteLine("<TR>");
+				writer.WriteLine("<tr>");
 				for (int i = 0; i < columnOrder.Length; ++i)
 				{
 					string text = item.SubItems[columnOrder[i]].Text;
 					switch (columnOrder[i])
 					{
-						case 0: //this is the part
+						case (int)ColumnId.PART_ID: //this is the part
 								//special case for the part column, we also add the picture
-							string colorNum = item.SubItems[3].Tag as string;
+							string colorNum = item.SubItems[(int)ColumnId.COLOR].Tag as string;
 							// check if we have an imageURL or if we need to construct the default image path
 							string partNumber = text;
 							if (colorNum != string.Empty)
@@ -828,25 +945,25 @@ namespace BlueBrick
 							if (imageURL == null)
 								imageURL = colorNum + "/" + text + ".png";
 							// construct the text for the IMG tag
-							text = "<IMG WIDTH=100% SRC=\"" + imageURL + "\"><BR>" + text;
+							text = "<img width=\"100%\" src=\"" + imageURL + "\"><br/>" + text;
 							// write the cell
-							writer.WriteLine("\t<TD WIDTH=20% ALIGN=\"center\">{0}</TD>", text);
+							writer.WriteLine("\t<td width=\"20%\" align=\"center\">{0}</td>", text);
 							break;
-						case 1: //this is the quantity
-							writer.WriteLine("\t<TD WIDTH=6% ALIGN=\"center\">{0}</TD>", text);
+						case (int)ColumnId.PART_COUNT: //this is the quantity
+							writer.WriteLine("\t<td width=\"6%\" ALIGN=\"center\">{0}</td>", text);
 							break;
-						case 2: //this is the color
-							writer.WriteLine("\t<TD WIDTH=12% ALIGN=\"center\">{0}</TD>", text);
+						case (int)ColumnId.COLOR: //this is the color
+							writer.WriteLine("\t<td width=\"12%\" align=\"center\">{0}</td>", text);
 							break;
-						case 3: //this is the description
-							writer.WriteLine("\t<TD WIDTH=62%>{0}</TD>", text);
+						case (int)ColumnId.DESCRIPTION: //this is the description
+							writer.WriteLine("\t<td width=\"62%\">{0}</td>", text);
 							break;
 						default:
-							writer.WriteLine("\t<TD>{0}</TD>", text);
+							writer.WriteLine("\t<td>{0}</td>", text);
 							break;
 					}
 				}
-				writer.WriteLine("</TR>");
+				writer.WriteLine("</tr>");
 			}
 		}
 
@@ -858,40 +975,40 @@ namespace BlueBrick
 				StreamWriter writer = new StreamWriter(fileName, false, Encoding.UTF8);
 
 				// header
-				writer.WriteLine("<HTML>\n<HEAD>\n\t<TITLE>Part List generated by BlueBrick</TITLE>");
-				writer.WriteLine("\t<BASE HREF=\"http://media.peeron.com/ldraw/images/\">");
-				writer.WriteLine("</HEAD>\n<BODY>");
-				writer.WriteLine("<CENTER><H2>Part List generated by BlueBrick</H2></CENTER>");
+				writer.WriteLine("<html>\n<head>\n\t<title>Part List generated by BlueBrick</title>");
+				writer.WriteLine("\t<base href=\"http://media.peeron.com/ldraw/images/\">");
+				writer.WriteLine("</head>\n<body>");
+				writer.WriteLine("<center><h2>Part List generated by BlueBrick</h2></center>");
 				writer.WriteLine("<TABLE BORDER=0>");
-				writer.WriteLine("\t<TR><TD ALIGN=\"right\"><B>Author:</B></TD><TD>{0}</TD></TR>", Map.Instance.Author);
-				writer.WriteLine("\t<TR><TD ALIGN=\"right\"><B>LUG/LTC:</B></TD><TD>{0}</TD></TR>", Map.Instance.LUG);
-				writer.WriteLine("\t<TR><TD ALIGN=\"right\"><B>Show:</B></TD><TD>{0}</TD></TR>", Map.Instance.Show);
-				writer.WriteLine("\t<TR><TD ALIGN=\"right\"><B>Date:</B></TD><TD>{0}</TD></TR>", Map.Instance.Date.ToLongDateString());
-				writer.WriteLine("\t<TR><TD ALIGN=\"right\" VALIGN=\"top\"><B>Comment:</B></TD><TD>{0}</TD></TR>", Map.Instance.Comment.Replace(Environment.NewLine, "<BR>"));
-				writer.WriteLine("</TABLE>\n<BR>\n<BR>\n<CENTER>");
+				writer.WriteLine("\t<tr><td align=\"right\"><b>Author:</b></td><td>{0}</td></tr>", Map.Instance.Author);
+				writer.WriteLine("\t<tr><td align=\"right\"><b>LUG/LTC:</b></td><td>{0}</td></tr>", Map.Instance.LUG);
+				writer.WriteLine("\t<tr><td align=\"right\"><b>Show:</b></td><td>{0}</td></tr>", Map.Instance.Show);
+				writer.WriteLine("\t<tr><td align=\"right\"><b>Date:</b></td><td>{0}</td></tr>", Map.Instance.Date.ToLongDateString());
+				writer.WriteLine("\t<tr><td align=\"right\" valign=\"top\"><b>Comment:</b></td><td>{0}</td></tr>", Map.Instance.Comment.Replace(Environment.NewLine, "<br/>"));
+				writer.WriteLine("</table>\n<br/>\n<br/>\n<center>");
 				// the parts
 				if (this.SplitPartPerLayer)
 				{
 					foreach (ListViewGroup group in this.Groups)
 					{
-						writer.WriteLine("<TABLE BORDER=1 WIDTH=95% CELLPADDING=10>");
-						writer.WriteLine("<TR><TD COLSPAN={0}><B>{1}</B></TD></TR>", columnOrder.Length, group.Header);
+						writer.WriteLine("<table border=\"1px\" width=\"95%\" cellpadding=\"10\">");
+						writer.WriteLine("<tr><td colspan={0}><b>{1}</b></td></tr>", columnOrder.Length, group.Header);
 						exportItemsInHtml(writer, columnOrder, group.Items);
-						writer.WriteLine("</TABLE>");
-						writer.WriteLine("<BR>");
+						writer.WriteLine("</table>");
+						writer.WriteLine("<br/>");
 					}
 				}
 				else
 				{
-					writer.WriteLine("<TABLE BORDER=1 WIDTH=95% CELLPADDING=10>");
-					writer.WriteLine("<TR>");
+					writer.WriteLine("<table border=\"1\" width=\"95%\" cellpadding=\"10\">");
+					writer.WriteLine("<tr>");
 					for (int i = 0; i < columnOrder.Length; ++i)
-						writer.WriteLine("\t<TD ALIGN=\"center\"><B>{0}</B></TD>", this.Columns[columnOrder[i]].Text);
-					writer.WriteLine("</TR>");
+						writer.WriteLine("\t<td align=\"center\"><b>{0}</b></td>", this.Columns[columnOrder[i]].Text);
+					writer.WriteLine("</tr>");
 					exportItemsInHtml(writer, columnOrder, this.Items);
-					writer.WriteLine("</TABLE>");
+					writer.WriteLine("</table>");
 				}
-				writer.WriteLine("</CENTER></BODY>\n</HTML>");
+				writer.WriteLine("</center></body>\n</html>");
 
 				// close the stream
 				writer.Close();
@@ -900,6 +1017,7 @@ namespace BlueBrick
 			{
 			}
 		}
+		#endregion
 
 		#endregion
 		#region list view events
