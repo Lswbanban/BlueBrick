@@ -122,6 +122,7 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
 - [target 1.9] BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
+- MISSING FEATURE (zephyr1934): Add a favorite feature where you can tag a part as your favorite, and display all your favorite parts in a specific tab of the library
 - MISSING FEATURE (Alban): Preferences option to edit what is displayed on watermark?
 - MISSING FEATURE (Alban): Add a version number in the general info?
 - MISSING FEATURE (Alban): Implement elevation by displaying a number next to the part and edition of elevation

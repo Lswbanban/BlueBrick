@@ -33,7 +33,9 @@
 			this.quantiyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colorColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.descriptionColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.budgetColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.usagePercentageColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.budgetCountColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.missingCountColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
 			// partColumnHeader
@@ -56,10 +58,20 @@
 			this.descriptionColumnHeader.Name = "descriptionColumnHeader";
 			resources.ApplyResources(this.descriptionColumnHeader, "descriptionColumnHeader");
 			// 
-			// budgetColumnHeader
+			// usagePercentageColumnHeader
 			// 
-			this.budgetColumnHeader.Name = "budgetColumnHeader";
-			resources.ApplyResources(this.budgetColumnHeader, "budgetColumnHeader");
+			this.usagePercentageColumnHeader.Name = "usagePercentageColumnHeader";
+			resources.ApplyResources(this.usagePercentageColumnHeader, "usagePercentageColumnHeader");
+			// 
+			// budgetCountColumnHeader
+			// 
+			this.budgetCountColumnHeader.Name = "budgetCountColumnHeader";
+			resources.ApplyResources(this.budgetCountColumnHeader, "budgetCountColumnHeader");
+			// 
+			// missingCountColumnHeader
+			// 
+			this.missingCountColumnHeader.Name = "missingCountColumnHeader";
+			resources.ApplyResources(this.missingCountColumnHeader, "missingCountColumnHeader");
 			// 
 			// PartUsageView
 			// 
@@ -67,7 +79,9 @@
 			this.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.partColumnHeader,
             this.quantiyColumnHeader,
-            this.budgetColumnHeader,
+            this.budgetCountColumnHeader,
+            this.missingCountColumnHeader,
+            this.usagePercentageColumnHeader,
             this.colorColumnHeader,
             this.descriptionColumnHeader});
 			this.FullRowSelect = true;
@@ -84,6 +98,9 @@
 		private System.Windows.Forms.ColumnHeader descriptionColumnHeader;
 		private System.Windows.Forms.ColumnHeader quantiyColumnHeader;
 		private System.Windows.Forms.ColumnHeader colorColumnHeader;
+		private System.Windows.Forms.ColumnHeader usagePercentageColumnHeader;
+		private System.Windows.Forms.ColumnHeader budgetCountColumnHeader;
+		private System.Windows.Forms.ColumnHeader missingCountColumnHeader;
 		private System.Windows.Forms.ColumnHeader budgetColumnHeader;
 	}
 }

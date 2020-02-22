@@ -125,10 +125,10 @@
     <value>80</value>
   </data>
   <data name="quantiyColumnHeader.Text" xml:space="preserve">
-    <value>Quantity</value>
+    <value>In Use</value>
   </data>
   <data name="quantiyColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>70</value>
+    <value>50</value>
   </data>
   <data name="colorColumnHeader.Text" xml:space="preserve">
     <value>Color</value>
@@ -142,11 +142,20 @@
   <data name="descriptionColumnHeader.Width" type="System.Int32, mscorlib">
     <value>200</value>
   </data>
-  <data name="budgetColumnHeader.Text" xml:space="preserve">
+  <data name="usagePercentageColumnHeader.Text" xml:space="preserve">
     <value>Part Usage %</value>
   </data>
-  <data name="budgetColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>150</value>
+  <data name="usagePercentageColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>125</value>
+  </data>
+  <data name="budgetCountColumnHeader.Text" xml:space="preserve">
+    <value>Budgeted</value>
+  </data>
+  <data name="missingCountColumnHeader.Text" xml:space="preserve">
+    <value>Missing</value>
+  </data>
+  <data name="missingCountColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>50</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -178,10 +187,22 @@
   <data name="&gt;&gt;descriptionColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;budgetColumnHeader.Name" xml:space="preserve">
-    <value>budgetColumnHeader</value>
+  <data name="&gt;&gt;usagePercentageColumnHeader.Name" xml:space="preserve">
+    <value>usagePercentageColumnHeader</value>
   </data>
-  <data name="&gt;&gt;budgetColumnHeader.Type" xml:space="preserve">
+  <data name="&gt;&gt;usagePercentageColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;budgetCountColumnHeader.Name" xml:space="preserve">
+    <value>budgetCountColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;budgetCountColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;missingCountColumnHeader.Name" xml:space="preserve">
+    <value>missingCountColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;missingCountColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
