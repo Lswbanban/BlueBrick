@@ -104,7 +104,6 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (Alban): Being able to export the budget in csv
 - [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably
 - [target 1.9] MISSING FEATURE (Matthias): A versionning system for the library packages
 - [target 1.9] MISSING FEATURE (Alban): The export of part usage list is not localized
@@ -154,6 +153,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): The part list window (now renamed into Part Usage) has been moved to a tab next to the layers list
 - NEW FEATURE (Alban): The Part Usage now also display the usage percentage against the current budget
 - NEW FEATURE (Ludo): The Part Usage now display the sum of all the parts on each layer (or globally) and the part usage percentage per layer (or globally)
+- NEW FEATURE (Alban): The Part Usage can now be exported in CSV format (on top of HTML and Text)
 - NEW FEATURE (Alban): A feature to download library package online from various sources (official web site, and non official url).
 - NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
 - NEW FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count, option available in Preferences)
