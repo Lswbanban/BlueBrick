@@ -172,14 +172,18 @@ namespace BlueBrick
 				{
 					// illimited budget
 					budgetCountAsString = Properties.Resources.TextUnbudgeted;
+					mItem.SubItems[(int)ColumnId.BUDGET_COUNT].ForeColor = Color.BlueViolet;
 					missingCount = partCount; // if not budgeted, then we need all of them
+					mItem.SubItems[(int)ColumnId.MISSING_COUNT].ForeColor = Color.BlueViolet;
 					usageAsString = Properties.Resources.TextUnbudgeted;
-					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = Color.DarkCyan;
+					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = Color.BlueViolet;
 				}
 				else
 				{
 					budgetCountAsString = partBudget.ToString();
+					mItem.SubItems[(int)ColumnId.BUDGET_COUNT].ForeColor = Color.Black;
 					missingCount = (partCount <= partBudget) ? 0 : (partCount - partBudget);
+					mItem.SubItems[(int)ColumnId.MISSING_COUNT].ForeColor = (missingCount == 0) ? Color.Black : Color.Red;
 					usageAsString = DownloadCenterForm.ComputePercentageBarAsString(usagePercentage);
 					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
 				}
