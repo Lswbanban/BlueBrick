@@ -106,11 +106,12 @@ namespace BlueBrick
 				mItem.SubItems[(int)ColumnId.COLOR].Tag = brickInfo[1]; // store the color index in the tag of the color subitem, used in the html export
 				// activate the style for subitems because we have a budget in different colors
 				mItem.UseItemStyleForSubItems = false;
-				// set my tag to zero, in order for the sum to work
+				// set my tag to zero, in order for the sum to work in any way
 				mItem.SubItems[(int)ColumnId.BUDGET_COUNT].Tag = 0;
 				mItem.SubItems[(int)ColumnId.MISSING_COUNT].Tag = 0;
-				// update the part usage percentage
-				updateUsagePercentage(shouldIncludeHiddenParts);
+				// update the part usage percentage if there's some budget
+				if (Budget.Budget.Instance.IsExisting)
+					updateUsagePercentageForPart(shouldIncludeHiddenParts);
 			}
 
 			/// <summary>
@@ -132,11 +133,12 @@ namespace BlueBrick
 					mItem.Tag = brickLayer;
 				else
 					mItem.Tag = mItem;
-				// set my tag to zero, in order for the sum to work
+				// set my tag to zero, in order for the sum to work in any way
 				mItem.SubItems[(int)ColumnId.BUDGET_COUNT].Tag = 0;
 				mItem.SubItems[(int)ColumnId.MISSING_COUNT].Tag = 0;
-				// update percentage
-				updateUsagePercentage(shouldIncludeHiddenParts);
+				// update the part usage percentage if there's some budget
+				if (Budget.Budget.Instance.IsExisting)
+					updateUsagePercentageForLayerSum(shouldIncludeHiddenParts);
 			}
 
 			public void incrementQuantity()
@@ -151,16 +153,7 @@ namespace BlueBrick
 				mItem.SubItems[(int)ColumnId.PART_COUNT].Text = mQuantity.ToString();
 			}
 
-			public void updateUsagePercentage(bool shouldIncludeHiddenParts)
-			{
-				// check if this brick entry is actually the brick entry of the whole layer
-				if (this.mItem.Tag != null)
-					updateUsagePercentageForLayerSum(shouldIncludeHiddenParts);
-				else
-					updateUsagePercentageForPart(shouldIncludeHiddenParts);
-			}
-
-			private void updateUsagePercentageForPart(bool shouldIncludeHiddenParts)
+			public void updateUsagePercentageForPart(bool shouldIncludeHiddenParts)
 			{
 				// get the total count of the part all layer included
 				int partCount = 0;
@@ -168,83 +161,60 @@ namespace BlueBrick
 				int missingCount = 0;
 
 				// get the current budget for this part
-				string budgetCountAsString = Properties.Resources.TextNA;
-				string missingAsString = Properties.Resources.TextNA;
-				string usageAsString = Properties.Resources.TextNA;
-				if (Budget.Budget.Instance.IsExisting)
-				{
+				string budgetCountAsString;
+				string usageAsString;
 
-					// we should not use the mQuantity to compute the budget percentage, because this quantity is only for this
-					// group, but the part can appear in multiple group (on multiple layer), and the budget is an overall budget
-					// all part included, so let the Budget class to use its own count of part
-					float usagePercentage = Budget.Budget.Instance.getUsagePercentage(mPartNumber, shouldIncludeHiddenParts, out partCount, out partBudget);
-					if (usagePercentage < 0)
-					{
-						// illimited budget
-						budgetCountAsString = Properties.Resources.TextUnbudgeted;
-						missingCount = partCount; // if not budgeted, then we need all of them
-						missingAsString = missingCount.ToString();
-						usageAsString = Properties.Resources.TextUnbudgeted;
-						mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = Color.DarkCyan;
-					}
-					else
-					{
-						budgetCountAsString = partBudget.ToString();
-						missingCount = (partCount <= partBudget) ? 0 : (partCount - partBudget);
-						missingAsString = missingCount.ToString();
-						usageAsString = DownloadCenterForm.ComputePercentageBarAsString(usagePercentage);
-						mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
-					}
+				// we should not use the mQuantity to compute the budget percentage, because this quantity is only for this
+				// group, but the part can appear in multiple group (on multiple layer), and the budget is an overall budget
+				// all part included, so let the Budget class to use its own count of part
+				float usagePercentage = Budget.Budget.Instance.getUsagePercentage(mPartNumber, shouldIncludeHiddenParts, out partCount, out partBudget);
+				if (usagePercentage < 0)
+				{
+					// illimited budget
+					budgetCountAsString = Properties.Resources.TextUnbudgeted;
+					missingCount = partCount; // if not budgeted, then we need all of them
+					usageAsString = Properties.Resources.TextUnbudgeted;
+					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = Color.DarkCyan;
 				}
 				else
 				{
-					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = mItem.SubItems[(int)ColumnId.PART_ID].ForeColor;
+					budgetCountAsString = partBudget.ToString();
+					missingCount = (partCount <= partBudget) ? 0 : (partCount - partBudget);
+					usageAsString = DownloadCenterForm.ComputePercentageBarAsString(usagePercentage);
+					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
 				}
+
 				mItem.SubItems[(int)ColumnId.BUDGET_COUNT].Text = budgetCountAsString;
 				mItem.SubItems[(int)ColumnId.BUDGET_COUNT].Tag = partBudget;
-				mItem.SubItems[(int)ColumnId.MISSING_COUNT].Text = missingAsString;
+				mItem.SubItems[(int)ColumnId.MISSING_COUNT].Text = missingCount.ToString();
 				mItem.SubItems[(int)ColumnId.MISSING_COUNT].Tag = missingCount;
 				mItem.SubItems[(int)ColumnId.PART_USAGE].Text = usageAsString;
 			}
 
-			private void updateUsagePercentageForLayerSum(bool shouldIncludeHiddenParts)
+			public void updateUsagePercentageForLayerSum(bool shouldIncludeHiddenParts)
 			{
-				// get the current budget for this part
-				string budgetCountAsString = Properties.Resources.TextNA;
-				string missingAsString = Properties.Resources.TextNA;
-				string usageAsString = Properties.Resources.TextNA;
-				if (Budget.Budget.Instance.IsExisting)
+				// get the total count of the part all layer included
+				int totalPartCount = 0;
+				int partBudget = 0;
+				float usagePercentage = 0f;
+
+				// check if this layer sum is a sum for a layer or for the whole map
+				if (mItem.Tag is LayerBrick)
 				{
-					// get the total count of the part all layer included
-					int totalPartCount = 0;
-					int partBudget = 0;
-					float usagePercentage = 0f;
-
-					// check if this layer sum is a sum for a layer or for the whole map
-					if (mItem.Tag is LayerBrick)
-					{
-						LayerBrick layerBrick = this.mItem.Tag as LayerBrick;
-						totalPartCount = Budget.Budget.Instance.getTotalCountForLayer(layerBrick, false);
-						usagePercentage = Budget.Budget.Instance.getUsagePercentageForLayer(layerBrick, out partBudget);
-					}
-					else
-					{
-						totalPartCount = Budget.Budget.Instance.getTotalCount(false, shouldIncludeHiddenParts);
-						usagePercentage = Budget.Budget.Instance.getTotalUsagePercentage(shouldIncludeHiddenParts, out partBudget);
-					}
-
-					budgetCountAsString = partBudget.ToString();
-					missingAsString = sumUpTagOfMyGroup((int)ColumnId.MISSING_COUNT).ToString();
-					usageAsString = DownloadCenterForm.ComputePercentageBarAsString(usagePercentage);
-					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
+					LayerBrick layerBrick = this.mItem.Tag as LayerBrick;
+					totalPartCount = Budget.Budget.Instance.getTotalCountForLayer(layerBrick, false);
+					usagePercentage = Budget.Budget.Instance.getUsagePercentageForLayer(layerBrick, out partBudget);
 				}
 				else
 				{
-					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = mItem.SubItems[(int)ColumnId.PART_ID].ForeColor;
+					totalPartCount = Budget.Budget.Instance.getTotalCount(false, shouldIncludeHiddenParts);
+					usagePercentage = Budget.Budget.Instance.getTotalUsagePercentage(shouldIncludeHiddenParts, out partBudget);
 				}
-				mItem.SubItems[(int)ColumnId.BUDGET_COUNT].Text = budgetCountAsString;
-				mItem.SubItems[(int)ColumnId.MISSING_COUNT].Text = missingAsString;
-				mItem.SubItems[(int)ColumnId.PART_USAGE].Text = usageAsString;
+
+				mItem.SubItems[(int)ColumnId.BUDGET_COUNT].Text = partBudget.ToString();
+				mItem.SubItems[(int)ColumnId.MISSING_COUNT].Text = sumUpTagOfMyGroup((int)ColumnId.MISSING_COUNT).ToString();
+				mItem.SubItems[(int)ColumnId.PART_USAGE].Text = DownloadCenterForm.ComputePercentageBarAsString(usagePercentage);
+				mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
 			}
 
 			private int sumUpTagOfMyGroup(int columnId)
@@ -467,7 +437,8 @@ namespace BlueBrick
 		{
 			// do nothing if the window is not visible
 			// because we rebuild everything when it becomes visible
-			if (!this.Visible)
+			// or if there's no budget open
+			if (!this.Visible || !Budget.Budget.Instance.IsExisting)
 				return;
 
 			// iterate on all the group entry, because the specified part can be in multiple group (if the part list is split by layers)
@@ -479,9 +450,9 @@ namespace BlueBrick
 				if (groupEntry.mBrickEntryList.TryGetValue(partNumber, out brickEntry))
 				{
 					// update the percentage of the found brick
-					brickEntry.updateUsagePercentage(this.IncludeHiddenLayers);
+					brickEntry.updateUsagePercentageForPart(this.IncludeHiddenLayers);
 					// since we found the brick in this group entry, update also the percentage of the sum line
-					groupEntry.mBrickEntrySumLine.updateUsagePercentage(this.IncludeHiddenLayers);
+					groupEntry.mBrickEntrySumLine.updateUsagePercentageForLayerSum(this.IncludeHiddenLayers);
 				}
 			}
 
@@ -500,7 +471,8 @@ namespace BlueBrick
 
 			// do nothing if the window is not visible
 			// because we rebuild everything when it becomes visible
-			if (!this.Visible)
+			// or if there's no budget open
+			if (!this.Visible || !Budget.Budget.Instance.IsExisting)
 				return;
 
 			// iterate on all brick entrey on all the group entry to update the usage percentage
@@ -508,9 +480,9 @@ namespace BlueBrick
 			{
 				// update all the other brick entries
 				foreach (BrickEntry brickEntry in groupEntry.mBrickEntryList.Values)
-					brickEntry.updateUsagePercentage(this.IncludeHiddenLayers);
+					brickEntry.updateUsagePercentageForPart(this.IncludeHiddenLayers);
 				// and also update the percentage of the sum brick entry after, so that the missing count is correctly computed
-				groupEntry.mBrickEntrySumLine.updateUsagePercentage(this.IncludeHiddenLayers);
+				groupEntry.mBrickEntrySumLine.updateUsagePercentageForLayerSum(this.IncludeHiddenLayers);
 			}
 
 			// if it is currently sorted by budget, we need to resort
