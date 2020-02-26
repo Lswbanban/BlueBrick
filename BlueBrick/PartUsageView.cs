@@ -1069,20 +1069,53 @@ namespace BlueBrick
 		#endregion
 
 		#region export in HTML
-		private void exportItemsInHtml(StreamWriter writer, int[] columnOrder, ListView.ListViewItemCollection itemList)
+		private void exportColumnHeaderInHtml(StreamWriter writer, int[] columnOrder)
 		{
-			foreach (ListViewItem item in itemList)
+			writer.WriteLine("<tr>");
+			for (int i = 0; i < columnOrder.Length; ++i)
 			{
-				writer.WriteLine("<tr>");
-				for (int i = 0; i < columnOrder.Length; ++i)
+				// get the column header text
+				string text = this.Columns[columnOrder[i]].Text;
+				// remove the column sorter char
+				if (columnOrder[i] == this.mLastColumnSortedIndex)
+					text = text.Substring(2);
+				// write the header
+				switch (columnOrder[i])
 				{
-					string text = item.SubItems[columnOrder[i]].Text;
-					switch (columnOrder[i])
-					{
-						case (int)ColumnId.PART_ID: //this is the part
-								//special case for the part column, we also add the picture
-							string colorNum = item.SubItems[(int)ColumnId.COLOR].Tag as string;
+					case (int)ColumnId.PART_ID:
+						writer.WriteLine("\t<td width=\"20%\" align=\"center\">{0}</td>", text);
+						break;
+					case (int)ColumnId.PART_COUNT:
+						writer.WriteLine("\t<td width=\"6%\" ALIGN=\"center\">{0}</td>", text);
+						break;
+					case (int)ColumnId.COLOR:
+						writer.WriteLine("\t<td width=\"12%\" align=\"center\">{0}</td>", text);
+						break;
+					case (int)ColumnId.DESCRIPTION:
+						writer.WriteLine("\t<td width=\"62%\">{0}</td>", text);
+						break;
+					default:
+						writer.WriteLine("\t<td align=\"center\">{0}</td>", text);
+						break;
+				}
+			}
+			writer.WriteLine("</tr>");
+		}
+
+		private void exportOneItemInHtml(StreamWriter writer, int[] columnOrder, ListViewItem item, bool shouldAddImage)
+		{
+			writer.WriteLine("<tr>");
+			for (int i = 0; i < columnOrder.Length; ++i)
+			{
+				string text = item.SubItems[columnOrder[i]].Text;
+				switch (columnOrder[i])
+				{
+					case (int)ColumnId.PART_ID: //this is the part
+						//special case for the part column, we may also add the picture according to the specified flag
+						if (shouldAddImage)
+						{
 							// check if we have an imageURL or if we need to construct the default image path
+							string colorNum = item.SubItems[(int)ColumnId.COLOR].Tag as string;
 							string partNumber = text;
 							if (colorNum != string.Empty)
 								partNumber += "." + colorNum;
@@ -1091,25 +1124,42 @@ namespace BlueBrick
 								imageURL = colorNum + "/" + text + ".png";
 							// construct the text for the IMG tag
 							text = "<img width=\"100%\" src=\"" + imageURL + "\"><br/>" + text;
-							// write the cell
-							writer.WriteLine("\t<td width=\"20%\" align=\"center\">{0}</td>", text);
-							break;
-						case (int)ColumnId.PART_COUNT: //this is the quantity
-							writer.WriteLine("\t<td width=\"6%\" ALIGN=\"center\">{0}</td>", text);
-							break;
-						case (int)ColumnId.COLOR: //this is the color
-							writer.WriteLine("\t<td width=\"12%\" align=\"center\">{0}</td>", text);
-							break;
-						case (int)ColumnId.DESCRIPTION: //this is the description
-							writer.WriteLine("\t<td width=\"62%\">{0}</td>", text);
-							break;
-						default:
-							writer.WriteLine("\t<td>{0}</td>", text);
-							break;
-					}
+						}
+						// write the cell
+						writer.WriteLine("\t<td align=\"center\">{0}</td>", text);
+						break;
+					case (int)ColumnId.PART_COUNT:
+					case (int)ColumnId.COLOR:
+						// center the count and color
+						writer.WriteLine("\t<td ALIGN=\"center\">{0}</td>", text);
+						break;
+					default:
+						writer.WriteLine("\t<td>{0}</td>", text);
+						break;
 				}
-				writer.WriteLine("</tr>");
 			}
+			writer.WriteLine("</tr>");
+		}
+
+		private void exportItemsInHtml(StreamWriter writer, int[] columnOrder, ListView.ListViewItemCollection itemList)
+		{
+			ListViewItem sumLineItem = null;
+
+			foreach (ListViewItem item in itemList)
+			{
+				// skip the sum line in order to add it at the end only
+				if (item.Tag != null)
+				{
+					sumLineItem = item;
+					continue;
+				}
+				// export the item
+				exportOneItemInHtml(writer, columnOrder, item, true);
+			}
+
+			// finally export the sum line if not null
+			if (sumLineItem != null)
+				exportOneItemInHtml(writer, columnOrder, sumLineItem, false);
 		}
 
 		private void exportListInHtml(string fileName, int[] columnOrder)
@@ -1138,6 +1188,7 @@ namespace BlueBrick
 					{
 						writer.WriteLine("<table border=\"1px\" width=\"95%\" cellpadding=\"10\">");
 						writer.WriteLine("<tr><td colspan={0}><b>{1}</b></td></tr>", columnOrder.Length, group.Header);
+						exportColumnHeaderInHtml(writer, columnOrder);
 						exportItemsInHtml(writer, columnOrder, group.Items);
 						writer.WriteLine("</table>");
 						writer.WriteLine("<br/>");
@@ -1146,10 +1197,7 @@ namespace BlueBrick
 				else
 				{
 					writer.WriteLine("<table border=\"1\" width=\"95%\" cellpadding=\"10\">");
-					writer.WriteLine("<tr>");
-					for (int i = 0; i < columnOrder.Length; ++i)
-						writer.WriteLine("\t<td align=\"center\"><b>{0}</b></td>", this.Columns[columnOrder[i]].Text);
-					writer.WriteLine("</tr>");
+					exportColumnHeaderInHtml(writer, columnOrder);
 					exportItemsInHtml(writer, columnOrder, this.Items);
 					writer.WriteLine("</table>");
 				}
