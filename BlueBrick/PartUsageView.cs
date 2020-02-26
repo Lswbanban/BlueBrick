@@ -763,6 +763,15 @@ namespace BlueBrick
 			if (!this.Visible)
 				return;
 
+			// and rebuild the list
+			rebuildListInternal();
+		}
+
+		/// <summary>
+		/// rebuild the full list from scratch
+		/// </summary>
+		private void rebuildListInternal()
+		{ 
 			// clear everyting that we will rebuild
 			mThumbnailImage.Clear();
 			mGroupEntryList.Clear();
@@ -793,6 +802,11 @@ namespace BlueBrick
 
 		public void export(string filename)
 		{
+			// if the part list is not visible, we need to rebuild it before exporting
+			// (otherwise, if it is visible, the list is already up to date)
+			if (!this.Visible)
+				rebuildListInternal();
+
 			// compute an array to store the order of the columns
 			int[] columnOrder = new int[this.Columns.Count];
 			int columnIndex = 0;
@@ -804,7 +818,7 @@ namespace BlueBrick
 			// call the correct exporter
 			if (filename.ToLower().EndsWith(".txt"))
 				exportListInTxt(filename, columnOrder);
-			if (filename.ToLower().EndsWith(".csv"))
+			else if (filename.ToLower().EndsWith(".csv"))
 				exportListInCSV(filename, columnOrder);
 			else
 				exportListInHtml(filename, columnOrder);
