@@ -450,6 +450,30 @@ namespace BlueBrick
 		}
 		#endregion
 		#endregion
+
+		#region localized labels
+		public string LabelAuthorLocalized
+		{
+			get { return labelAuthor.Text; }
+		}
+		public string LabelLUGLocalized
+		{
+			get { return labelLUG.Text; }
+		}
+		public string LabelEventLocalized
+		{
+			get { return labelEvent.Text; }
+		}
+		public string LabelDateLocalized
+		{
+			get { return labelDate.Text; }
+		}
+		public string LabelCommentLocalized
+		{
+			get { return labelComment.Text; }
+		}
+		#endregion
+
 		#endregion
 
 		#region Initialisation of the application
