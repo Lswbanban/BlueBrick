@@ -825,33 +825,75 @@ namespace BlueBrick
 		}
 
 		#region export in text
-		private void exportItemsInTxt(StreamWriter writer, int[] columnOrder, int[] maxLength, ListView.ListViewItemCollection itemList)
+		private void exportColumnHeaderInTxt(StreamWriter writer, int[] columnOrder, int[] maxLength)
 		{
+			writer.Write("| ");
+			for (int i = 0; i < maxLength.Length; ++i)
+			{
+				// prepare the text to write with padding
+				string text = this.Columns[columnOrder[i]].Text;
+				// remove the column sorter char
+				if (columnOrder[i] == this.mLastColumnSortedIndex)
+					text = text.Substring(2);
+				// compute the padding
+				int padding = (maxLength[i] - text.Length) + 1;
+				for (int j = 0; j < padding; ++j)
+					text += " ";
+				// write the text and a pipe
+				if (i == (maxLength.Length - 1))
+					writer.Write(text + "|\n");
+				else
+					writer.Write(text + "| ");
+			}
+		}
+		private void exportOneItemInTxt(StreamWriter writer, int[] columnOrder, int[] maxLength, ListViewItem item)
+		{
+			writer.Write("| ");
+			for (int i = 0; i < maxLength.Length; ++i)
+			{
+				// prepare the text to write with padding
+				string text = item.SubItems[columnOrder[i]].Text;
+				int padding = (maxLength[i] - text.Length) + 1;
+				for (int j = 0; j < padding; ++j)
+					text += " ";
+				// write the text and a pipe
+				if (i == (maxLength.Length - 1))
+					writer.Write(text + "|\n");
+				else
+					writer.Write(text + "| ");
+			}
+		}
+
+		private void exportItemsInTxt(StreamWriter writer, int[] columnOrder, int[] maxLength, ListView.ListViewItemCollection itemList, string headerLine)
+		{
+			ListViewItem sumLineItem = null;
+
 			foreach (ListViewItem item in itemList)
 			{
-				writer.Write("| ");
-				for (int i = 0; i < maxLength.Length; ++i)
+				// skip the sum line in order to add it at the end only
+				if (item.Tag != null)
 				{
-					// prepare the text to write with padding
-					string text = item.SubItems[columnOrder[i]].Text;
-					int padding = (maxLength[i] - text.Length) + 1;
-					for (int j = 0; j < padding; ++j)
-						text += " ";
-					// write the text and a pipe
-					if (i == (maxLength.Length - 1))
-						writer.Write(text + "|\n");
-					else
-						writer.Write(text + "| ");
+					sumLineItem = item;
+					continue;
 				}
+				// export the item
+				exportOneItemInTxt(writer, columnOrder, maxLength, item);
+			}
+
+			// finally export the sum line if not null
+			if (sumLineItem != null)
+			{
+				writer.WriteLine(headerLine);
+				exportOneItemInTxt(writer, columnOrder, maxLength, sumLineItem);
 			}
 		}
 
 		private void exportListInTxt(string fileName, int[] columnOrder)
 		{
-			//compute the max lenght of texts of each column
+			//compute the max lenght of texts of each column and the column header
 			int[] maxLength = new int[this.Columns.Count];
 			for (int i = 0; i < maxLength.Length; ++i)
-				maxLength[i] = 0;
+				maxLength[i] = this.Columns[i].Text.Length;
 			foreach (ListViewItem item in this.Items)
 			{
 				for (int i = 0; i < maxLength.Length; ++i)
@@ -896,7 +938,9 @@ namespace BlueBrick
 					{
 						writer.WriteLine("| " + group.Header);
 						writer.WriteLine(headerLine);
-						exportItemsInTxt(writer, columnOrder, maxLength, group.Items);
+						exportColumnHeaderInTxt(writer, columnOrder, maxLength);
+						writer.WriteLine(headerLine);
+						exportItemsInTxt(writer, columnOrder, maxLength, group.Items, headerLine);
 						writer.WriteLine(headerLine);
 						writer.WriteLine();
 					}
@@ -904,7 +948,9 @@ namespace BlueBrick
 				else
 				{
 					writer.WriteLine(headerLine);
-					exportItemsInTxt(writer, columnOrder, maxLength, this.Items);
+					exportColumnHeaderInTxt(writer, columnOrder, maxLength);
+					writer.WriteLine(headerLine);
+					exportItemsInTxt(writer, columnOrder, maxLength, this.Items, headerLine);
 					writer.WriteLine(headerLine);
 				}
 
