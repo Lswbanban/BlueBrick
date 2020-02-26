@@ -104,10 +104,12 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably
-- [target 1.9] MISSING FEATURE (Matthias): A versionning system for the library packages
 - [target 1.9] MISSING FEATURE (Alban): The export of part usage list is not localized
 - [target 1.9] BUG (Alban): It is difficult to edit the budget, since the update of Dot.Net (do not reccord that bug)
+
+
+- [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably
+- [target 1.9] MISSING FEATURE (Matthias): A versionning system for the library packages
 
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
 
