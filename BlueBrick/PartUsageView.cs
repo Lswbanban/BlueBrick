@@ -1135,7 +1135,7 @@ namespace BlueBrick
 								partNumber += "." + colorNum;
 							string imageURL = BrickLibrary.Instance.getImageURL(partNumber);
 							if (imageURL == null)
-								imageURL = colorNum + "/" + text + ".png";
+								imageURL = colorNum + "/" + text.ToLower() + ".png";
 							// construct the text for the IMG tag
 							text = "<img width=\"100%\" src=\"" + imageURL + "\"><br/>" + text;
 						}
