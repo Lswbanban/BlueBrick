@@ -633,4 +633,7 @@ If you prefer, you can close BlueBrick and download the packages from your web b
   <data name="TextTotal" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="TextExportPartListTitle" xml:space="preserve">
+    <value>Part List for file "&amp;"</value>
+  </data>
 </root>

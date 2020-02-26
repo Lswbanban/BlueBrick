@@ -1523,6 +1523,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Part List for file &quot;&amp;&quot;.
+        /// </summary>
+        internal static string TextExportPartListTitle {
+            get {
+                return ResourceManager.GetString("TextExportPartListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to N/A.
         /// </summary>
         internal static string TextNA {
