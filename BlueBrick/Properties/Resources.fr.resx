@@ -568,4 +568,7 @@ Si vous préférez, vous pouvez aussi fermer BlueBrick et télécharger les paqu
   <data name="TextTotal" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="TextExportPartListTitle" xml:space="preserve">
+    <value>Liste des pièces pour le fichier "&amp;"</value>
+  </data>
 </root>
