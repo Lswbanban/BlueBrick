@@ -1071,9 +1071,10 @@ namespace BlueBrick
 		#region export in HTML
 		private void exportColumnHeaderInHtml(StreamWriter writer, int[] columnOrder)
 		{
-			writer.WriteLine("<tr>");
+			writer.WriteLine("<tr class=\"header\">");
 			for (int i = 0; i < columnOrder.Length; ++i)
 			{
+				string styleClass = string.Empty;
 				// get the column header text
 				string text = this.Columns[columnOrder[i]].Text;
 				// remove the column sorter char
@@ -1083,36 +1084,49 @@ namespace BlueBrick
 				switch (columnOrder[i])
 				{
 					case (int)ColumnId.PART_ID:
-						writer.WriteLine("\t<td width=\"20%\" align=\"center\">{0}</td>", text);
+						styleClass = "partIdHeader";						
 						break;
 					case (int)ColumnId.PART_COUNT:
-						writer.WriteLine("\t<td width=\"6%\" ALIGN=\"center\">{0}</td>", text);
+						styleClass = "partCountHeader";
+						break;
+					case (int)ColumnId.BUDGET_COUNT:
+						styleClass = "budgetHeader";
+						break;
+					case (int)ColumnId.MISSING_COUNT:
+						styleClass = "missingHeader";
+						break;
+					case (int)ColumnId.PART_USAGE:
+						styleClass = "partUsageHeader";
 						break;
 					case (int)ColumnId.COLOR:
-						writer.WriteLine("\t<td width=\"12%\" align=\"center\">{0}</td>", text);
+						styleClass = "colorHeader";
 						break;
 					case (int)ColumnId.DESCRIPTION:
-						writer.WriteLine("\t<td width=\"62%\">{0}</td>", text);
-						break;
-					default:
-						writer.WriteLine("\t<td align=\"center\">{0}</td>", text);
+						styleClass = "descriptionHeader";
 						break;
 				}
+				// write the text with its style class
+				writer.WriteLine("\t<td class=\"{0}\">{1}</td>", styleClass, text);
 			}
 			writer.WriteLine("</tr>");
 		}
 
-		private void exportOneItemInHtml(StreamWriter writer, int[] columnOrder, ListViewItem item, bool shouldAddImage)
+		private void exportOneItemInHtml(StreamWriter writer, int[] columnOrder, ListViewItem item, bool isTotalLine)
 		{
-			writer.WriteLine("<tr>");
+			if (isTotalLine)
+				writer.WriteLine("<tr class=\"total\">");
+			else
+				writer.WriteLine("<tr>");
+
 			for (int i = 0; i < columnOrder.Length; ++i)
 			{
+				string styleClass = string.Empty;
 				string text = item.SubItems[columnOrder[i]].Text;
 				switch (columnOrder[i])
 				{
-					case (int)ColumnId.PART_ID: //this is the part
+					case (int)ColumnId.PART_ID:
 						//special case for the part column, we may also add the picture according to the specified flag
-						if (shouldAddImage)
+						if (!isTotalLine)
 						{
 							// check if we have an imageURL or if we need to construct the default image path
 							string colorNum = item.SubItems[(int)ColumnId.COLOR].Tag as string;
@@ -1125,18 +1139,30 @@ namespace BlueBrick
 							// construct the text for the IMG tag
 							text = "<img width=\"100%\" src=\"" + imageURL + "\"><br/>" + text;
 						}
-						// write the cell
-						writer.WriteLine("\t<td align=\"center\">{0}</td>", text);
+						// the class
+						styleClass = "partId";
 						break;
 					case (int)ColumnId.PART_COUNT:
-					case (int)ColumnId.COLOR:
-						// center the count and color
-						writer.WriteLine("\t<td ALIGN=\"center\">{0}</td>", text);
+						styleClass = "partCount";
 						break;
-					default:
-						writer.WriteLine("\t<td>{0}</td>", text);
+					case (int)ColumnId.BUDGET_COUNT:
+						styleClass = "budget";
+						break;
+					case (int)ColumnId.MISSING_COUNT:
+						styleClass = "missing";
+						break;
+					case (int)ColumnId.PART_USAGE:
+						styleClass = "partUsage";
+						break;
+					case (int)ColumnId.COLOR:
+						styleClass = "color";
+						break;
+					case (int)ColumnId.DESCRIPTION:
+						styleClass = "description";
 						break;
 				}
+				// write the text with its style class
+				writer.WriteLine("\t<td class=\"{0}\">{1}</td>", styleClass, text);
 			}
 			writer.WriteLine("</tr>");
 		}
@@ -1154,12 +1180,37 @@ namespace BlueBrick
 					continue;
 				}
 				// export the item
-				exportOneItemInHtml(writer, columnOrder, item, true);
+				exportOneItemInHtml(writer, columnOrder, item, false);
 			}
 
 			// finally export the sum line if not null
 			if (sumLineItem != null)
-				exportOneItemInHtml(writer, columnOrder, sumLineItem, false);
+				exportOneItemInHtml(writer, columnOrder, sumLineItem, true);
+		}
+
+		private void writeHtmlStyles(StreamWriter writer)
+		{
+			writer.WriteLine("\t<style type=\"text/css\" >");
+			writer.WriteLine("\th2.title { text-align: center; font-weight: bold; font-variant: small-caps; margin: 2.5%; background-color: #bdffc0; border: 2px solid black; padding: 10px;}");
+			writer.WriteLine("\ttd.info { text-align: right; vertical-align: top; font-weight: bold; }");
+			writer.WriteLine("\ttr.groupName { background-color: #90d7ff; font-weight: bold; }");
+			writer.WriteLine("\ttr.header { background-color: #bfe8ff; font-style: italic; }");
+			writer.WriteLine("\ttd.partIdHeader { text-align: center; width: 20% }");
+			writer.WriteLine("\ttd.partCountHeader { text-align: center; width: 5% }");
+			writer.WriteLine("\ttd.budgetHeader { text-align: center; width: 5% }");
+			writer.WriteLine("\ttd.missingHeader { text-align: center; width: 5% }");
+			writer.WriteLine("\ttd.partUsageHeader { text-align: center; width: 10% }");
+			writer.WriteLine("\ttd.colorHeader { text-align: center; width: 10% }");
+			writer.WriteLine("\ttd.descriptionHeader { text-align: center; width: 46% }");
+			writer.WriteLine("\ttd.partId { text-align: center; }");
+			writer.WriteLine("\ttd.partCount { text-align: center; }");
+			writer.WriteLine("\ttd.budget { text-align: center; }");
+			writer.WriteLine("\ttd.missing { text-align: center; }");
+			writer.WriteLine("\ttd.partUsage { }");
+			writer.WriteLine("\ttd.color { text-align: center; }");
+			writer.WriteLine("\ttd.description { }");
+			writer.WriteLine("\ttr.total { background-color: #feffea; }");
+			writer.WriteLine("\t</style>");
 		}
 
 		private void exportListInHtml(string fileName, int[] columnOrder)
@@ -1172,22 +1223,23 @@ namespace BlueBrick
 				// header
 				writer.WriteLine("<html>\n<head>\n\t<title>Part List generated by BlueBrick</title>");
 				writer.WriteLine("\t<base href=\"http://media.peeron.com/ldraw/images/\">");
+				writeHtmlStyles(writer);
 				writer.WriteLine("</head>\n<body>");
-				writer.WriteLine("<center><h2>Part List generated by BlueBrick</h2></center>");
-				writer.WriteLine("<TABLE BORDER=0>");
-				writer.WriteLine("\t<tr><td align=\"right\"><b>Author:</b></td><td>{0}</td></tr>", Map.Instance.Author);
-				writer.WriteLine("\t<tr><td align=\"right\"><b>LUG/LTC:</b></td><td>{0}</td></tr>", Map.Instance.LUG);
-				writer.WriteLine("\t<tr><td align=\"right\"><b>Show:</b></td><td>{0}</td></tr>", Map.Instance.Show);
-				writer.WriteLine("\t<tr><td align=\"right\"><b>Date:</b></td><td>{0}</td></tr>", Map.Instance.Date.ToLongDateString());
-				writer.WriteLine("\t<tr><td align=\"right\" valign=\"top\"><b>Comment:</b></td><td>{0}</td></tr>", Map.Instance.Comment.Replace(Environment.NewLine, "<br/>"));
-				writer.WriteLine("</table>\n<br/>\n<br/>\n<center>");
+				writer.WriteLine("<h2 class=\"title\">Part List generated by BlueBrick</h2>");
+				writer.WriteLine("<table border=\"0\" style=\"margin-left: 3%\">");
+				writer.WriteLine("\t<tr><td class=\"info\">Author:</td><td>{0}</td></tr>", Map.Instance.Author);
+				writer.WriteLine("\t<tr><td class=\"info\">LUG/LTC:</td><td>{0}</td></tr>", Map.Instance.LUG);
+				writer.WriteLine("\t<tr><td class=\"info\">Show:</td><td>{0}</td></tr>", Map.Instance.Show);
+				writer.WriteLine("\t<tr><td class=\"info\">Date:</td><td>{0}</td></tr>", Map.Instance.Date.ToLongDateString());
+				writer.WriteLine("\t<tr><td class=\"info\">Comment:</td><td>{0}</td></tr>", Map.Instance.Comment.Replace(Environment.NewLine, "<br/>"));
+				writer.WriteLine("</table>\n<br/>\n<br/>\n");
 				// the parts
 				if (this.SplitPartPerLayer)
 				{
 					foreach (ListViewGroup group in this.Groups)
 					{
-						writer.WriteLine("<table border=\"1px\" width=\"95%\" cellpadding=\"10\">");
-						writer.WriteLine("<tr><td colspan={0}><b>{1}</b></td></tr>", columnOrder.Length, group.Header);
+						writer.WriteLine("<table border=\"1px\" width=\"95%\" cellpadding=\"10\" style=\"margin: auto\">");
+						writer.WriteLine("<tr class=\"groupName\"><td colspan=\"{0}\"><b>{1}</b></td></tr>", columnOrder.Length, group.Header);
 						exportColumnHeaderInHtml(writer, columnOrder);
 						exportItemsInHtml(writer, columnOrder, group.Items);
 						writer.WriteLine("</table>");
@@ -1196,12 +1248,12 @@ namespace BlueBrick
 				}
 				else
 				{
-					writer.WriteLine("<table border=\"1\" width=\"95%\" cellpadding=\"10\">");
+					writer.WriteLine("<table border=\"1\" width=\"95%\" cellpadding=\"10\" style=\"margin: auto\">");
 					exportColumnHeaderInHtml(writer, columnOrder);
 					exportItemsInHtml(writer, columnOrder, this.Items);
 					writer.WriteLine("</table>");
 				}
-				writer.WriteLine("</center></body>\n</html>");
+				writer.WriteLine("</body>\n</html>");
 
 				// close the stream
 				writer.Close();
