@@ -104,7 +104,6 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (Alban): The export of part usage list is not localized
 - [target 1.9] BUG (Alban): It is difficult to edit the budget, since the update of Dot.Net (do not reccord that bug)
 
 
@@ -155,6 +154,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): The Part Usage can now be exported in CSV format (on top of HTML and Text)
 - NEW FEATURE (Alban): The Part Usage can now be reordered by clicking on the columns headers
 - NEW FEATURE (Alban): Added a checkbox to include or not hidden layers in the Part Usage list
+- NEW FEATURE (Alban): The export of part usage list is now localized in the language of the application
 
 - NEW FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count, option available in Preferences)
 - NEW FEATURE (Alban): A feature to download library package online from various sources (official web site, and non official url).
