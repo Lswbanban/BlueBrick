@@ -49,9 +49,11 @@ namespace BlueBrick
 			}
 		}
 
-		private const int SUBITEM_DEST_INDEX = 0;
-		private const int SUBITEM_URL_INDEX = 1;
-		private const int SUBITEM_PERCENTAGE_INDEX = 2;
+		private const int SUBITEM_PERCENTAGE_INDEX = 0;
+		//private const int FILE_NAME_INDEX = 1;
+		//private const int VERSION_INDEX = 2;
+		private const int SUBITEM_DEST_INDEX = 3;
+		private const int SUBITEM_URL_INDEX = 4;
 		private const int NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR = 10;
 
 		// a flag to tell if we need to unzip after download
@@ -151,7 +153,7 @@ namespace BlueBrick
 			foreach (DownloadableFileInfo downloadInfo in fileList)
 			{
 				// create an item
-				ListViewItem item = new ListViewItem(new string[] { downloadInfo.DestinationFolder, downloadInfo.SourceURL, string.Empty });
+				ListViewItem item = new ListViewItem(new string[] { string.Empty, downloadInfo.FileName, downloadInfo.Version, downloadInfo.DestinationFolder, downloadInfo.SourceURL });
 				item.Checked = true; // by default we download all the files
 				// add it to the list
 				this.DownloadListView.Items.Add(item);

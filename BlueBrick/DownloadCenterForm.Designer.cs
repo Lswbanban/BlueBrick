@@ -32,9 +32,11 @@ namespace BlueBrick
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.ExplanationLabel = new System.Windows.Forms.Label();
 			this.DownloadListView = new System.Windows.Forms.ListView();
+			this.PercentColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.NameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.VersionColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.DestinationColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SourceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.PercentColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.StartButton = new System.Windows.Forms.Button();
 			this.TotalProgressBar = new System.Windows.Forms.ProgressBar();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -63,15 +65,17 @@ namespace BlueBrick
 			// 
 			// DownloadListView
 			// 
+			resources.ApplyResources(this.DownloadListView, "DownloadListView");
 			this.DownloadListView.AllowColumnReorder = true;
 			this.DownloadListView.AutoArrange = false;
 			this.DownloadListView.CheckBoxes = true;
 			this.DownloadListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.PercentColumnHeader,
+            this.NameColumnHeader,
+            this.VersionColumnHeader,
             this.DestinationColumnHeader,
-            this.SourceColumnHeader,
-            this.PercentColumnHeader});
+            this.SourceColumnHeader});
 			this.tableLayoutPanel1.SetColumnSpan(this.DownloadListView, 3);
-			resources.ApplyResources(this.DownloadListView, "DownloadListView");
 			this.DownloadListView.FullRowSelect = true;
 			this.DownloadListView.HideSelection = false;
 			this.DownloadListView.LabelEdit = true;
@@ -80,6 +84,18 @@ namespace BlueBrick
 			this.DownloadListView.View = System.Windows.Forms.View.Details;
 			this.DownloadListView.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.DownloadListView_AfterLabelEdit);
 			// 
+			// PercentColumnHeader
+			// 
+			resources.ApplyResources(this.PercentColumnHeader, "PercentColumnHeader");
+			// 
+			// NameColumnHeader
+			// 
+			resources.ApplyResources(this.NameColumnHeader, "NameColumnHeader");
+			// 
+			// VersionColumnHeader
+			// 
+			resources.ApplyResources(this.VersionColumnHeader, "VersionColumnHeader");
+			// 
 			// DestinationColumnHeader
 			// 
 			resources.ApplyResources(this.DestinationColumnHeader, "DestinationColumnHeader");
@@ -87,10 +103,6 @@ namespace BlueBrick
 			// SourceColumnHeader
 			// 
 			resources.ApplyResources(this.SourceColumnHeader, "SourceColumnHeader");
-			// 
-			// PercentColumnHeader
-			// 
-			resources.ApplyResources(this.PercentColumnHeader, "PercentColumnHeader");
 			// 
 			// StartButton
 			// 
@@ -107,9 +119,9 @@ namespace BlueBrick
 			// 
 			// panel1
 			// 
+			resources.ApplyResources(this.panel1, "panel1");
 			this.panel1.Controls.Add(this.closeButton);
 			this.panel1.Controls.Add(this.cancelButton);
-			resources.ApplyResources(this.panel1, "panel1");
 			this.panel1.Name = "panel1";
 			// 
 			// closeButton
@@ -163,5 +175,7 @@ namespace BlueBrick
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Button closeButton;
 		private System.Windows.Forms.Button cancelButton;
+		private System.Windows.Forms.ColumnHeader NameColumnHeader;
+		private System.Windows.Forms.ColumnHeader VersionColumnHeader;
 	}
 }
