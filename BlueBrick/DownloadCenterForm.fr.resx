@@ -117,14 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>590, 91</value>
+  <data name="PercentColumnHeader.Text" xml:space="preserve">
+    <value>Progression</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>BlueBrick a besoin de télécharger quelques fichiers sur internet. Vous pouvez vérifier dans la liste ci-dessous l'URL des fichiers et l'emplacement où ils seront copiés sur votre ordinateur. Vous pouvez ignorer certains fichiers en les décochants. Appuyez sur le bouton "Démarrer le téléchargement" quand vous êtes prêt, assurez-vous que vous avez une connection internet et autorisez BlueBrick à traverser votre pare-feu.
-
-Si vous préférez, vous pouvez aussi fermer cette fenêtre, télécharger les fichiers avec votre butineur web et les copier dans le bon répertoire (qui est relatif au répertoire d'installation de BlueBrick).</value>
+  <data name="NameColumnHeader.Text" xml:space="preserve">
+    <value>Fichier</value>
   </data>
   <data name="DestinationColumnHeader.Text" xml:space="preserve">
     <value>Télécharger vers...</value>
@@ -132,9 +129,7 @@ Si vous préférez, vous pouvez aussi fermer cette fenêtre, télécharger les f
   <data name="SourceColumnHeader.Text" xml:space="preserve">
     <value>Depuis l'URL</value>
   </data>
-  <data name="PercentColumnHeader.Text" xml:space="preserve">
-    <value>Progression</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="StartButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 304</value>
   </data>
