@@ -19,7 +19,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
-using System.IO.Compression;
 
 namespace BlueBrick
 {
@@ -50,23 +49,23 @@ namespace BlueBrick
 		}
 
 		private const int SUBITEM_PERCENTAGE_INDEX = 0;
-		//private const int FILE_NAME_INDEX = 1;
-		//private const int VERSION_INDEX = 2;
+		private const int SUBITEM_FILE_NAME_INDEX = 1;
+		//private const int SUBITEM_VERSION_INDEX = 2;
 		private const int SUBITEM_DEST_INDEX = 3;
 		private const int SUBITEM_URL_INDEX = 4;
 		private const int NUMBER_OF_STEP_PER_FILE_FOR_TOTAL_PROGRESS_BAR = 10;
 
-		// a flag to tell if we need to unzip after download
-		private bool mDoFilesNeedToBeUnziped = false;
-
 		// a flag to tell if the user has canceled the download
 		private bool mHasDownloadBeenCancelled = false;
 
-		// a variable to count how many files has been successfully downloaded and installed
-		private int mSuccessfulDownloadCount = 0;
-		public int SuccessfulDownloadCount
+		// a list to store the file that need to be downloaded
+		private List<DownloadableFileInfo> mFilesToDownload = null;
+
+		// a list to store the successful download
+		private List<DownloadableFileInfo> mSuccessfullyDownloadedFiles = new List<DownloadableFileInfo>();
+		public List<DownloadableFileInfo> SuccessfullyDownloadedFiles
 		{
-			get { return mSuccessfulDownloadCount; }
+			get { return mSuccessfullyDownloadedFiles; }
 		}
 
 		/// <summary>
@@ -81,15 +80,15 @@ namespace BlueBrick
 		{
 			InitializeComponent();
 
-			// library packages need to be unzipped
-			mDoFilesNeedToBeUnziped = isUsedToDownloadLibraryPackage;
-
 			// change the explanation text, if we want to download brick package
 			if (isUsedToDownloadLibraryPackage)
 				this.ExplanationLabel.Text = Properties.Resources.DownloadLibraryPackageExplanation;
 
 			// reset the counter of downloaded files
-			mSuccessfulDownloadCount = 0;
+			mSuccessfullyDownloadedFiles.Clear();
+
+			// memorize the list of files to download
+			mFilesToDownload = fileList;
 
 			// fill the list with the filles
 			fillListView(fileList);
@@ -245,37 +244,15 @@ namespace BlueBrick
 				// change the color for this item to red
 				item.ForeColor = Color.Red;
 				// change the text
-				item.SubItems[SUBITEM_PERCENTAGE_INDEX].Text = BlueBrick.Properties.Resources.ErrorMsgTitleError;
+				item.SubItems[SUBITEM_PERCENTAGE_INDEX].Text = Properties.Resources.ErrorMsgTitleError;
 			}
 			else
 			{
 				// update the full percentage of for the file to 100% (but not if there was errors)
 				updatePercentageOfOneFile(result.fileIndex, 100);
 
-				// by default if we reach here, that means the file has been successfully downloaded
-				bool isInstallSuccessful = true;
-
-				// check if we need to unzip in place if there was no errors
-				if (mDoFilesNeedToBeUnziped)
-				{
-					try
-					{
-						// unzip the archive
-						string zipFileName = Application.StartupPath + this.DownloadListView.Items[result.fileIndex].SubItems[SUBITEM_DEST_INDEX].Text;
-						ZipFile.ExtractToDirectory(zipFileName, Application.StartupPath + @"/parts");
-						// then delete the archive
-						File.Delete(zipFileName);
-					}
-					catch
-					{
-						// the zip file extraction can throw many exception, if the extraction failed, clear the flag
-						isInstallSuccessful = false;
-					}
-				}
-
-				// increase the counter of successful install, if the install was successful
-				if (isInstallSuccessful)
-					mSuccessfulDownloadCount++;
+				// save the file in the list of successfull download
+				mSuccessfullyDownloadedFiles.Add(mFilesToDownload[result.fileIndex]);
 			}
 
 			// then download the next file
