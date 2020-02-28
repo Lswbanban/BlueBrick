@@ -137,7 +137,13 @@ namespace BlueBrick
 		#region package list filtering
 		private string getPackageVersionInAboutFile(string aboutFileName)
 		{
-			return "0";
+			const string version = "version=";
+			string[] lines = System.IO.File.ReadAllLines(aboutFileName);
+			// search the version line
+			foreach (string line in lines)
+				if (line.StartsWith(version, StringComparison.OrdinalIgnoreCase))
+					return line.Substring(version.Length).Trim();
+			return string.Empty;
 		}
 
 		private List<DownloadCenterForm.DownloadableFileInfo> removeAlreadyInstalledPackagesFromList(List<DownloadCenterForm.DownloadableFileInfo> packageListToFilter)
