@@ -108,11 +108,6 @@ namespace BlueBrick
             this.MultiSelect = false;
 			this.LabelWrap = true; // we need label wrap for the "\n" to work, between the part name and the budget display
 			this.DoubleBuffered = true; // the double buffered also prevent a crash bug in Mono, otherwise it tries to paint while editing the list by a filtering
-			this.BeforeLabelEdit += new LabelEditEventHandler(this.PartListView_BeforeLabelEdit);
-            this.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.PartListView_AfterLabelEdit);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseDown);
-			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PartListView_MouseUp);
-			this.MouseLeave += new EventHandler(this.PartListView_MouseLeave);
 			this.ResumeLayout(false);
         }
 
@@ -503,7 +498,15 @@ namespace BlueBrick
 		protected override void OnMouseEnter(EventArgs e)
 		{
 			// give focus to me so that user can scroll with mouse, just by moving the mouse above the part list view
-			this.Focus();
+			// but do not do it if we are editing a budget because that means we have the focus, and we don't want to exit the editing
+			if (!mIsEditingBudget)
+				this.Focus();
+		}
+
+		protected override void OnMouseLeave(EventArgs e)
+		{
+			// clear the item hit if we moved out of the view
+			mItemHitOnMouseDownForAdding = null;
 		}
 
 		private void beginEditLabel()
@@ -525,14 +528,14 @@ namespace BlueBrick
 			}
 		}
 
-		private void PartListView_BeforeLabelEdit(object sender, LabelEditEventArgs e)
+		protected override void OnBeforeLabelEdit(LabelEditEventArgs e)
 		{
 			// check if we need to cancel the edition, cause Mono just start the edition on a simple click
 			e.CancelEdit = (mItemForLabelEdit == null) ||
 				!mItemForLabelEdit.Text.Equals(Budget.Budget.Instance.getBudgetAsString(mItemForLabelEdit.Tag as string, true));
 		}
 
-        private void PartListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
+		protected override void OnAfterLabelEdit(LabelEditEventArgs e)
         {
 			// cancel the edition in any case, cause if the edition is correct, we will use a formated text
 			e.CancelEdit = true;
@@ -603,7 +606,7 @@ namespace BlueBrick
 			return result;
 		}
 
-        private void PartListView_MouseDown(object sender, MouseEventArgs e)
+		protected override void OnMouseDown(MouseEventArgs e)
         {
 			// MONO crash bug: do not try to change the selected item in this event handler,
 			// or it mess up the selection and leads to crash on Mono
@@ -633,7 +636,7 @@ namespace BlueBrick
 			}
 		}
 
-		private void PartListView_MouseUp(object sender, MouseEventArgs e)
+		protected override void OnMouseUp(MouseEventArgs e)
 		{
 			// check if we click with the left button
 			if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -661,15 +664,6 @@ namespace BlueBrick
 				}
 			}
 		}
-
-		void PartListView_MouseLeave(object sender, EventArgs e)
-		{
-			// clear the item hit if we moved out of the view
-			mIsEditingBudget = false;
-			mItemForLabelEdit = null;
-			mItemHitOnMouseDownForAdding = null;	
-		}
-
 		#endregion
 
 		#region related to budget

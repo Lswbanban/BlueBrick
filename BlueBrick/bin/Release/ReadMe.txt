@@ -104,8 +104,9 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] BUG (Alban): It is difficult to edit the budget, since the update of Dot.Net (do not reccord that bug)
+- [target 1.9] BUG (Thai Bricks): Cannot use the "&" character in layer's name
 
+- [target 1.9] MISSING FEATURE (supertruper1988): Add the possibility to create and save a template file that should be loaded when creating a new map
 
 - [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably
 - [target 1.9] MISSING FEATURE (Matthias): A versionning system for the library packages
