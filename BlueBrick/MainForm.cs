@@ -14,13 +14,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using System.Xml.Serialization;
 using BlueBrick.Actions;
 using BlueBrick.Actions.Texts;
 using BlueBrick.Actions.Bricks;
@@ -29,6 +25,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using BlueBrick.Actions.Maps;
 using BlueBrick.Actions.Rulers;
+using System.IO.Compression;
 
 namespace BlueBrick
 {
@@ -1673,20 +1670,33 @@ namespace BlueBrick
 
 		private void reloadPartLibraryToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			reloadPartLibrary(true);
+			// try to unload the part library, if sucessful continue
+			string mapFileNameToReload = null;
+			if (unloadPartLibrary(out mapFileNameToReload))
+			{
+				// then display a waiting message box, giving the user the oppotunity to change the data before reloading
+				MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgReadyToReloadPartLib,
+					BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
+					MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+
+				// reload the part library when the user close the message box
+				reloadPartLibrary(mapFileNameToReload);
+			}
 		}
 
-		private void reloadPartLibrary(bool displayAWaitMessageBox)
+		private bool unloadPartLibrary(out string mapFileNameToReload)
 		{
+			// by default no open file
+			mapFileNameToReload = null;
+
 			// we have first to undload the current file
 			// check if the current map is not save and display a warning message
 			// we also need to check for unsave budget because we will destroy the library
 			if (checkForUnsavedMap() && checkForUnsavedBudget())
 			{
 				// save the name of the current map open to reload it (if it is valid)
-				string previousOpenMapFileName = null;
-                if (Map.Instance.IsMapNameValid)
-                    previousOpenMapFileName = Map.Instance.MapFileName;
+				if (Map.Instance.IsMapNameValid)
+					mapFileNameToReload = Map.Instance.MapFileName;
 
 				// save the UI settings of the part lib before reloading it (and before clearing it), because the user may
 				// have change some UI setting after the startup of the application, and now he wants to reload the part lib
@@ -1703,45 +1713,47 @@ namespace BlueBrick
 				// call the GC to be sure that all the image are correctly released, and no files stay locked
 				// even if the GC was normally already called in the create new map function
 				// but the GC was called at then end of the reinitializeCurrentMap function
-				//GC.Collect();
+				GC.Collect();
 
-				// then display a waiting message box, giving the user the oppotunity to change the data before reloading
-				if (displayAWaitMessageBox)
-					MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgReadyToReloadPartLib,
-						BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
-						MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+				return true;
+			}
 
-				// then reload the library
-				this.Cursor = Cursors.WaitCursor;
-				loadPartLibraryFromDisk();
-				this.Cursor = Cursors.Default;
+			// part lib was not unloaded
+			return false;
+		}
 
-				// Update the budget: most of the time the budget text for the item are correct (cause correctly set during creation)
-				// however, the user may have rename a part just before reloading the part lib, 
-				// so we need to update the budget and the view again if the budget was modified
-				if (Budget.Budget.Instance.updatePartId())
-				{
-					// update the count and budget
-					this.PartsTabControl.updateAllPartCountAndBudget();
-					// update the part lib view filtering on budget (because the renamed items may appear/disappear)
-					this.PartsTabControl.updateFilterOnBudgetedParts();
-				}
+		private void reloadPartLibrary(string mapFileNameToReload)
+		{
+			// then reload the library
+			this.Cursor = Cursors.WaitCursor;
+			loadPartLibraryFromDisk();
+			this.Cursor = Cursors.Default;
 
-				// finally reload the previous map or create a new one
-				if (previousOpenMapFileName != null)
-				{
-					openMap(previousOpenMapFileName);
-					// since the connexion position may have changed after the reload of the library,
-					// maybe so 2 free connexions will become aligned, and can be connected, that's why
-					// we perform a slow update connectivity in that case.
-					foreach (Layer layer in Map.Instance.LayerList)
-						if (layer is LayerBrick)
-							(layer as LayerBrick).updateFullBrickConnectivity();
-				}
-				else
-				{
-					createNewMap();
-				}
+			// Update the budget: most of the time the budget text for the item are correct (cause correctly set during creation)
+			// however, the user may have rename a part just before reloading the part lib, 
+			// so we need to update the budget and the view again if the budget was modified
+			if (Budget.Budget.Instance.updatePartId())
+			{
+				// update the count and budget
+				this.PartsTabControl.updateAllPartCountAndBudget();
+				// update the part lib view filtering on budget (because the renamed items may appear/disappear)
+				this.PartsTabControl.updateFilterOnBudgetedParts();
+			}
+
+			// finally reload the previous map or create a new one
+			if (mapFileNameToReload != null)
+			{
+				openMap(mapFileNameToReload);
+				// since the connexion position may have changed after the reload of the library,
+				// maybe so 2 free connexions will become aligned, and can be connected, that's why
+				// we perform a slow update connectivity in that case.
+				foreach (Layer layer in Map.Instance.LayerList)
+					if (layer is LayerBrick)
+						(layer as LayerBrick).updateFullBrickConnectivity();
+			}
+			else
+			{
+				createNewMap();
 			}
 		}
 
@@ -1761,14 +1773,46 @@ namespace BlueBrick
 				DownloadCenterForm downloadCenterForm = new DownloadCenterForm(filesToDownload, true);
 				downloadCenterForm.ShowDialog();
 
-				// when the user closed the dialog, check if any package was successfully installed, and if yes, we need to reload the library
-				if (downloadCenterForm.SuccessfulDownloadCount > 0)
+				// get the list of files that has been succesfully downloaded
+				List<DownloadCenterForm.DownloadableFileInfo> successfullyDownloadedFiles = downloadCenterForm.SuccessfullyDownloadedFiles;
+				// when the user closed the dialog, check if any package was successfully download, and if yes, we need to reload the library
+				if (successfullyDownloadedFiles.Count > 0)
 				{
 					// display a warning message and reload the library
 					MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgNeedToReloadPartLib,
 									BlueBrick.Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
 									MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-					reloadPartLibrary(false);
+
+					// after the user close the message box, unload, install and reload the library
+					string mapFileNameToReload = null;
+					if (unloadPartLibrary(out mapFileNameToReload))
+					{
+						// a string to get the part folder
+						string partsFolder = Application.StartupPath + @"/parts";
+						foreach (DownloadCenterForm.DownloadableFileInfo filePackageToInstall in successfullyDownloadedFiles)
+						{
+							try
+							{
+								// get the current folder of the library
+								string currentPackageFolderName = partsFolder + @"/" + filePackageToInstall.FileName;
+								currentPackageFolderName = currentPackageFolderName.Remove(currentPackageFolderName.Length - 4);
+								// check if the package already exists, and delete it in that case.
+								if (Directory.Exists(currentPackageFolderName))
+									Directory.Delete(currentPackageFolderName, true);
+								// unzip the new archive
+								string zipFileName = Application.StartupPath + filePackageToInstall.DestinationFolder;
+								ZipFile.ExtractToDirectory(zipFileName, partsFolder);
+								// then delete the archive
+								File.Delete(zipFileName);
+							}
+							catch
+							{
+							}
+						}
+
+						// reload the part library when the user close the message box
+						reloadPartLibrary(mapFileNameToReload);
+					}
 				}
 			}
 		}
