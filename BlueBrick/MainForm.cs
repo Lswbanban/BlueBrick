@@ -1245,7 +1245,10 @@ namespace BlueBrick
 				if (result == DialogResult.Yes)
 				{
 					// call the save method (that maybe will perform a save as)
-					saveToolStripMenuItem_Click(null, null);
+					// if the save failed for whatever reason, return true to cancel the continuation
+					// and give a second chance to the user to save its file or just to quit without saving
+					if (!saveMap())
+						return false;
 				}
 				else if (result == DialogResult.Cancel)
 				{
@@ -1458,7 +1461,11 @@ namespace BlueBrick
 			openRecentToolStripMenuItem.Enabled = (openRecentToolStripMenuItem.DropDownItems.Count > 0);
 		}
 
-		private void saveMap()
+		/// <summary>
+		/// Save the map that we know as a specified name. If you're not sure if the map as a name, call the saveMap() method instead.
+		/// </summary>
+		/// <returns>true if the map was correctly saved</returns>
+		private bool saveNamedMap()
 		{
 			// set the wait cursor
 			this.Cursor = Cursors.WaitCursor;
@@ -1474,18 +1481,36 @@ namespace BlueBrick
 			}
 			// restore the cursor
 			this.Cursor = Cursors.Default;
+			// return the save status
+			return saveDone;
 		}
 
-		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+		/// <summary>
+		/// Save the current map with its current name. If the map is untitle (unnamed) then the saveMapAs() method will be called.
+		/// </summary>
+		/// <returns>true if the map was correctly saved</returns>
+		private bool saveMap()
 		{
+			// a flag to know if the save was correctly done or not
+			bool saveDone = false;
+
 			// if the current file name is not defined we do a "save as..."
-            if (Map.Instance.IsMapNameValid)
-				saveMap();
+			if (Map.Instance.IsMapNameValid)
+				saveDone = saveNamedMap();
 			else
-				saveasToolStripMenuItem_Click(sender, e);
+				saveDone = saveMapAs();
+
+			// return the flag that tells if the map was saved
+			return saveDone;
 		}
 
-		private void saveasToolStripMenuItem_Click(object sender, EventArgs e)
+		/// <summary>
+		/// Save the current map under a different name (no matter if the current map has a name or not).
+		/// This will pop out the save as dialog, and may also pop out a warning message if the user choose a not
+		/// complete file format for the save.
+		/// </summary>
+		/// <returns>true if the map was correctly saved</returns>
+		private bool saveMapAs()
 		{
 			// put the current file name in the dialog (which can be the default one)
 			// but remove the extension, such as the user can easily change the extension in
@@ -1495,6 +1520,8 @@ namespace BlueBrick
             this.saveFileDialog.InitialDirectory = Path.GetDirectoryName(Map.Instance.MapFileName);
             if (this.saveFileDialog.InitialDirectory.Length == 0)
                 this.saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			// instantiate a flag to know if the save was actually done
+			bool saveDone = false;
 			// open the save as dialog
 			DialogResult result = this.saveFileDialog.ShowDialog();
 			if (result == DialogResult.OK)
@@ -1518,16 +1545,29 @@ namespace BlueBrick
 					// if the user doesn't want to continue, do not save and
 					// do not add the name in the recent list file
 					if (result == DialogResult.No)
-						return;
+						return false;
 				}
 
 				// change the current file name before calling the save
 				changeCurrentMapFileName(this.saveFileDialog.FileName, true);
 				// save the map
-				saveMap();
-				// update the recent file list with the new file saved
-				UpdateRecentFileMenuFromConfigFile(this.saveFileDialog.FileName, true);
+				saveDone = saveNamedMap();
+				// update the recent file list with the new file saved (if correctly saved)
+				if (saveDone)
+					UpdateRecentFileMenuFromConfigFile(this.saveFileDialog.FileName, true);
 			}
+			// return the flag to know if the save was done
+			return saveDone;
+		}
+		
+		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			saveMap();
+		}
+
+		private void saveasToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			saveMapAs();
 		}
 
 		private void exportAsPictureToolStripMenuItem_Click(object sender, EventArgs e)
