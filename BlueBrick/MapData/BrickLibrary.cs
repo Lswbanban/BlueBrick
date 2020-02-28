@@ -1107,6 +1107,10 @@ namespace BlueBrick.MapData
 		/// </summary>
 		public void clearAllData()
 		{
+			// specifically dispose all the image, in order to remove the lock on the image files, and let the user update the images
+			foreach (Brick brick in mBrickDictionary.Values)
+				brick.Image.Dispose();
+			// then clear everything
 			mBrickDictionary.Clear();
 			mColorNames.Clear();
 			mConnectionTypes.Clear();

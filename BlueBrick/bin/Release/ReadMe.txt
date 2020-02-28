@@ -170,6 +170,7 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
 - BUGFIX (Alban): Now you can open a file which is in readonly access.
+- BUGFIX (Alban): Finally found a way to release the lock on the images when reloading the part library (well hopefully this time it will be fixed).
 - BUGFIX (Alban): The scroll of the mouse wheel was not happening when moving the mouse over the part lib or layer stack, only after you click on it (now the focus is automatically given to the region of the application where the mouse move)
 - BUGFIX (Alban): When updating in the library a group of parts that was not displayed in the library (because filtered with keyword) the image was added two times
 - BUGFIX (Alban): The cancel of the files download from the download center form was not properly stopped
