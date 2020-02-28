@@ -92,9 +92,9 @@ namespace BlueBrick
 			this.nameLabel.Size = new System.Drawing.Size(100, 23);
 			this.nameLabel.TabIndex = 0;
 			this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.nameLabel.DoubleClick += new System.EventHandler(this.LayerPanel_DoubleClick);
+			this.nameLabel.UseMnemonic = false;
 			this.nameLabel.Click += new System.EventHandler(this.LayerPanel_Click);
-			this.nameLabel.TextChanged += new System.EventHandler(this.nameLabel_TextChanged);
+			this.nameLabel.DoubleClick += new System.EventHandler(this.LayerPanel_DoubleClick);
 			// 
 			// layerTypePictureBox
 			// 
@@ -105,8 +105,8 @@ namespace BlueBrick
 			this.layerTypePictureBox.Size = new System.Drawing.Size(20, 20);
 			this.layerTypePictureBox.TabIndex = 0;
 			this.layerTypePictureBox.TabStop = false;
-			this.layerTypePictureBox.DoubleClick += new System.EventHandler(this.LayerPanel_DoubleClick);
 			this.layerTypePictureBox.Click += new System.EventHandler(this.LayerPanel_Click);
+			this.layerTypePictureBox.DoubleClick += new System.EventHandler(this.LayerPanel_DoubleClick);
 			// 
 			// LayerPanel
 			// 
@@ -116,9 +116,9 @@ namespace BlueBrick
 			this.Controls.Add(this.layerTypePictureBox);
 			this.Controls.Add(this.nameLabel);
 			this.Size = new System.Drawing.Size(80, 28);
-			this.DoubleClick += new System.EventHandler(this.LayerPanel_DoubleClick);
-			this.Click += new System.EventHandler(this.LayerPanel_Click);
 			this.ClientSizeChanged += new System.EventHandler(this.LayerPanel_ClientSizeChanged);
+			this.Click += new System.EventHandler(this.LayerPanel_Click);
+			this.DoubleClick += new System.EventHandler(this.LayerPanel_DoubleClick);
 			((System.ComponentModel.ISupportInitialize)(this.layerTypePictureBox)).EndInit();
 			this.ResumeLayout(false);
 
@@ -196,11 +196,6 @@ namespace BlueBrick
 		private void LayerPanel_ClientSizeChanged(object sender, EventArgs e)
 		{
 			this.nameLabel.Width = this.Width - visibilityButton.Width - layerTypePictureBox.Width - 20;
-		}
-
-		private void nameLabel_TextChanged(object sender, EventArgs e)
-		{
-			mLayerReference.Name = this.nameLabel.Text;
 		}
 
 		private void visibilityButton_Click(object sender, EventArgs e)

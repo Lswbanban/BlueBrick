@@ -104,13 +104,10 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] BUG (Thai Bricks): Cannot use the "&" character in layer's name
-
-- [target 1.9] MISSING FEATURE (supertruper1988): Add the possibility to create and save a template file that should be loaded when creating a new map
-
-- [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably
 - [target 1.9] MISSING FEATURE (Matthias): A versionning system for the library packages
 
+
+- [target 1.9] MISSING FEATURE (supertruper1988): Add the possibility to create and save a template file that should be loaded when creating a new map: Do that before the forgetable message, because that will leave some space in the Preference window.
 - [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
 
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
@@ -120,6 +117,7 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Scrollbars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
+- [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably: waiting for feedback on this one, if no feedback consider it done
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
 - [target 1.9] BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
 - MISSING FEATURE (zephyr1934): Add a favorite feature where you can tag a part as your favorite, and display all your favorite parts in a specific tab of the library
@@ -176,6 +174,7 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Alban): The vertical scroll bar of layer panel was too big when placing the scrollbar on the bottom, changing tab, and come back (scroll useless empty space)
 - BUGFIX (Alban): the part usage calculation wasn't taking in consideration the flag to include or not the hidden layers.
 - BUGFIX (Alban): The Part Usage list was not properly updated when ungrouping a named group while being visible.
+- BUGFIX (Thai Bricks): Now the "&" character is visible in layer's name if the user edits the layer's name with an ampersome.
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 - REFACTORING (Alban): Modernize the HTML code of the part usage list export (add some CSS and colors)
 
