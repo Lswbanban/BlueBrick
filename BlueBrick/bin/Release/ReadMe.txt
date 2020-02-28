@@ -119,7 +119,6 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably: waiting for feedback on this one, if no feedback consider it done
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
-- [target 1.9] BUG (Alban): Error when you try to open a file in readonly (BB should read the file anyway, even if it cannot save it)
 - MISSING FEATURE (zephyr1934): Add a favorite feature where you can tag a part as your favorite, and display all your favorite parts in a specific tab of the library
 - MISSING FEATURE (Alban): Preferences option to edit what is displayed on watermark?
 - MISSING FEATURE (Alban): Add a version number in the general info?
@@ -163,7 +162,8 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Matthias): When you delete a part, the active connection of the new selected part is the one where the deleted part was connected.
 - NEW FEATURE (supertruper1988): The default export image extension is now PNG instead of BMP (and the list of available formats has been reordered)
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
-- BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points
+- BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
+- BUGFIX (Alban): Now you can open a file which is in readonly access.
 - BUGFIX (Alban): The scroll of the mouse wheel was not happening when moving the mouse over the part lib or layer stack, only after you click on it (now the focus is automatically given to the region of the application where the mouse move)
 - BUGFIX (Alban): When updating in the library a group of parts that was not displayed in the library (because filtered with keyword) the image was added two times
 - BUGFIX (Alban): The cancel of the files download from the download center form was not properly stopped

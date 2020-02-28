@@ -571,4 +571,7 @@ Si vous préférez, vous pouvez aussi fermer BlueBrick et télécharger les paqu
   <data name="TextExportPartListTitle" xml:space="preserve">
     <value>Liste des pièces pour le fichier "&amp;"</value>
   </data>
+  <data name="ErrorMsgReadOnlyFile" xml:space="preserve">
+    <value>Impossible de sauvegarder le fichier "&amp;" car il est en lecture seule. Retirez la propriété de lecture seule ou sauvegardez le sous un autre nom.</value>
+  </data>
 </root>

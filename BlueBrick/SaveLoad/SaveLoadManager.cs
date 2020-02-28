@@ -245,8 +245,19 @@ namespace BlueBrick
 
 		public static bool save(string filename)
 		{
-			string filenameLower = filename.ToLower();
+			// first, check if the file is not read only (need to check that is exist, otherwise if we will create the file, we don't care)
+			// need to check that is exist, because the read only flag is true if it doesn't exists
+			FileInfo fileInfo = new FileInfo(filename);
+			if (fileInfo.Exists && fileInfo.IsReadOnly)
+			{
+				MessageBox.Show(MainForm.Instance, BlueBrick.Properties.Resources.ErrorMsgReadOnlyFile.Replace("&", filename),
+								BlueBrick.Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
+								MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				return false;
+			}
 
+			// otherwise try to save it
+			string filenameLower = filename.ToLower();
 			try
 			{
 				if (filenameLower.EndsWith("ldr") || filenameLower.EndsWith("dat"))
@@ -307,7 +318,7 @@ namespace BlueBrick
 		{
 			// create a serializer to load the map
 			XmlSerializer mySerializer = new XmlSerializer(typeof(Map));
-			FileStream myFileStream = new FileStream(filename, FileMode.Open);
+			FileStream myFileStream = new FileStream(filename, FileMode.Open, FileAccess.Read);
 			// By default init the progress bar from the size of the file
 			// and divide by an approximate size value of a brick to 
 			// have an estimation of the number of brick in the file.
@@ -1286,7 +1297,7 @@ namespace BlueBrick
 			BrickLibrary.Instance.updateCurrentTrackDesignerRegistryUsed();
 
 			// open the file
-			FileStream myFileStream = new FileStream(filename, FileMode.Open);
+			FileStream myFileStream = new FileStream(filename, FileMode.Open, FileAccess.Read);
 			BinaryReader binaryReader = new BinaryReader(myFileStream);
 			// init the progress bar with the number of bytes of the file
 			MainForm.Instance.resetProgressBar((int)(myFileStream.Length));

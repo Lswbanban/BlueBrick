@@ -1101,6 +1101,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot save the file &quot;&amp;&quot; because it is read only. Remove the read only property or save to a different name..
+        /// </summary>
+        internal static string ErrorMsgReadOnlyFile {
+            get {
+                return ResourceManager.GetString("ErrorMsgReadOnlyFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The parts library was unloaded, you can now modify the files in it. Click ok when you are ready to reload it..
         /// </summary>
         internal static string ErrorMsgReadyToReloadPartLib {
