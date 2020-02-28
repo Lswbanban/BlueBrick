@@ -1752,7 +1752,7 @@ namespace BlueBrick
 			packageSourceForm.ShowDialog();
 
 			// get the list of files that has been collected by the previous form dialog
-			List<string[]> filesToDownload = packageSourceForm.FilesToDownload;
+			List<DownloadCenterForm.DownloadableFileInfo> filesToDownload = packageSourceForm.FilesToDownload;
 
 			// check if we have something to download (if not just ignore, because the error message as already been displayed in the previous form)
 			if (filesToDownload.Count > 0)

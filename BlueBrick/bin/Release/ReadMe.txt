@@ -107,8 +107,14 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Matthias): A versionning system for the library packages
 
 
-- [target 1.9] MISSING FEATURE (supertruper1988): Add the possibility to create and save a template file that should be loaded when creating a new map: Do that before the forgetable message, because that will leave some space in the Preference window.
-- [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
+- [target 1.9] MISSING FEATURE (supertruper1988): Add the possibility to create and save a template file that should be loaded when creating a new map:
+	- Do that before the forgetable message, because that will leave some space in the Preference window.
+	- Put the standard template in the config folder.
+	- The template should be read only? Or we override the template
+	- Should we have a "menu > Save As Template..." that override the template? Or should have a default file to load like the default budget to load in the preference?
+		- I guess second option is better. The reset to default button, will point again on the file in the config folder
+		- And we may add some explanation text in the preference window ()
+- [target 1.9] MISSING FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead. Make the checkbox list in the preference window, a listview, in order to have scrollbar and be futur proof for all the forgettable error message later.
 
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
 - [target 1.9] MISSING FEATURE (Matthias): Better resolution for part images (Images can have an additional <scale> property in the xml-File, if no scale parameter is provided, the default resolution of 8 pixels/stud is used)
