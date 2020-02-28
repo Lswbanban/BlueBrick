@@ -636,4 +636,7 @@ If you prefer, you can close BlueBrick and download the packages from your web b
   <data name="TextExportPartListTitle" xml:space="preserve">
     <value>Part List for file "&amp;"</value>
   </data>
+  <data name="ErrorMsgReadOnlyFile" xml:space="preserve">
+    <value>Cannot save the file "&amp;" because it is read only. Remove the read only property or save to a different name.</value>
+  </data>
 </root>
