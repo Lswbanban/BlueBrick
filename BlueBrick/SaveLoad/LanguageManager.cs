@@ -57,7 +57,7 @@ namespace BlueBrick
 			}
 
 			// create a potential list of files to download
-			List<string[]> filesToDownload = new List<string[]>();
+			List<DownloadCenterForm.DownloadableFileInfo> filesToDownload = new List<DownloadCenterForm.DownloadableFileInfo>();
 			string destinationFolder = @"/" + languageCode + @"/";
 			string url = "http://bluebrick.lswproject.com/download/language/" + languageCode + "/";
 			string dllName = "BlueBrick.resources.dll";
@@ -66,7 +66,7 @@ namespace BlueBrick
 			// after checking the folder existence, check the presence of the dll package
 			FileInfo languagePackage = new FileInfo(folderPath + @"/" + dllName);
 			if (!languagePackage.Exists)
-				filesToDownload.Add(new string[] { destinationFolder + dllName, url + dllName, string.Empty });
+				filesToDownload.Add(new DownloadCenterForm.DownloadableFileInfo(dllName, "1", url + dllName, destinationFolder + dllName));
 
 			// check also the presence of the chm help file for certain languages
 			List<string> languageWithHelpFile = new List<string>(new string[] {"de", "nl", "fr", "es"});
@@ -74,7 +74,7 @@ namespace BlueBrick
 			{
 				FileInfo helpFile = new FileInfo(folderPath + @"/" + chmName);
 				if (!helpFile.Exists)
-					filesToDownload.Add(new string[] { destinationFolder + chmName, url + chmName, string.Empty });
+					filesToDownload.Add(new DownloadCenterForm.DownloadableFileInfo(chmName, "1", url + chmName, destinationFolder + chmName));
 			}
 
 			// now check if the list of file to download is not null, call the download manager

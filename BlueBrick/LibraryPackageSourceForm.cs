@@ -36,10 +36,10 @@ namespace BlueBrick
 		private bool mHasSearchBeenCancelled = false;
 
 		// the result of this search form
-		private List<string[]> mFilesToDownload = new List<string[]>();
+		private List<DownloadCenterForm.DownloadableFileInfo> mFilesToDownload = new List<DownloadCenterForm.DownloadableFileInfo>();
 
 		#region get set
-		public List<string[]> FilesToDownload
+		public List<DownloadCenterForm.DownloadableFileInfo> FilesToDownload
 		{
 			get { return mFilesToDownload; }
 		}
@@ -135,24 +135,43 @@ namespace BlueBrick
 		#endregion
 
 		#region package list filtering
-		private List<string[]> removeAlreadyInstalledPackagesFromList(List<string[]> packageListToFilter)
+		private string getPackageVersionInAboutFile(string aboutFileName)
+		{
+			return "0";
+		}
+
+		private List<DownloadCenterForm.DownloadableFileInfo> removeAlreadyInstalledPackagesFromList(List<DownloadCenterForm.DownloadableFileInfo> packageListToFilter)
 		{
 			// get all the folders in the parts folder to know what is already installed
 			DirectoryInfo partsFolder = new DirectoryInfo(PartLibraryPanel.sFullPathForLibrary);
 			DirectoryInfo[] directoriesInPartsFolder = partsFolder.GetDirectories();
 
-			// create a list with only the name of the directory (adding the zip at the end to facilitate comparison
-			List<string> installedPackageFolder = new List<string>();
+			// create a list with only the name of the directory
+			List<DownloadCenterForm.DownloadableFileInfo> installedPackages = new List<DownloadCenterForm.DownloadableFileInfo>();
 			foreach (DirectoryInfo directory in directoriesInPartsFolder)
-				installedPackageFolder.Add(@"/parts/" + directory.Name.ToLower() + ".zip");
+			{
+				// save the package name in the package info
+				DownloadCenterForm.DownloadableFileInfo package = new DownloadCenterForm.DownloadableFileInfo();
+				package.FileName = directory.Name + ".zip"; // add the zip extension to facilitate the string comparison
 
-			// then iterate on the list to filter and remove the items already installed
+				// check the about file on the local drive to get the version number
+				string aboutFileName = Application.StartupPath + @"/parts/" + directory.Name + @"/config/About.txt";
+				if (File.Exists(aboutFileName))
+					package.Version = getPackageVersionInAboutFile(aboutFileName);
+
+				// add the package to the list
+				installedPackages.Add(package);
+			}
+
+			// then iterate on the list to filter and remove the items already installed that has the good version
 			for (int i = 0; i < packageListToFilter.Count; ++i)
-				if (installedPackageFolder.Contains(packageListToFilter[i][0].ToLower()))
-				{
-					packageListToFilter.RemoveAt(i);
-					i--;
-				}
+				foreach (DownloadCenterForm.DownloadableFileInfo package in installedPackages)
+					if (package.FileName.Equals(packageListToFilter[i].FileName, StringComparison.OrdinalIgnoreCase) && string.Compare(package.Version, packageListToFilter[i].Version) >= 0)
+					{
+						packageListToFilter.RemoveAt(i);
+						i--;
+						break;
+					}
 
 			return packageListToFilter;
 		}
@@ -173,7 +192,7 @@ namespace BlueBrick
 		private class ResultParameter
 		{
 			// this list contains all the package list found for all the url we search
-			public List<string[]> allPackageListFound = new List<string[]>();
+			public List<DownloadCenterForm.DownloadableFileInfo> allPackageListFound = new List<DownloadCenterForm.DownloadableFileInfo>();
 		}
 
 		/// <summary>
@@ -231,12 +250,27 @@ namespace BlueBrick
 							foreach (Match match in matches)
 								if (match.Success)
 								{
+									// create an array to store the destination file name, and url source file name
+									DownloadCenterForm.DownloadableFileInfo downloadInfo = new DownloadCenterForm.DownloadableFileInfo();
 									// get the file name found
 									string fileName = match.Groups["name"].Value;
-									// create an array to store the destination file name, and url source file name
-									string[] destAndSource = new string[] { partsFolder + fileName, url + fileName, string.Empty };
+									string fileNameWithoutExtension = fileName.Remove(fileName.Length - 4);
+									// check if the file name contains a version number
+									int dotIndex = fileNameWithoutExtension.IndexOf('.');
+									if (dotIndex > 0)
+									{
+										downloadInfo.FileName = fileNameWithoutExtension.Remove(dotIndex) + ".zip";
+										downloadInfo.Version = fileNameWithoutExtension.Substring(dotIndex + 1);
+									}
+									else
+									{
+										downloadInfo.FileName = fileName;
+										downloadInfo.Version = string.Empty;
+									}
+									downloadInfo.SourceURL = url + fileName;
+									downloadInfo.DestinationFolder = partsFolder + fileName;
 									// add the array in the result list
-									result.allPackageListFound.Add(destAndSource);
+									result.allPackageListFound.Add(downloadInfo);
 								}
 
 							// report that we have finished to parse the html

@@ -25,6 +25,30 @@ namespace BlueBrick
 {
 	public partial class DownloadCenterForm : Form
 	{
+		/// <summary>
+		/// A convenient class to sumarize the all info regarding a file to download, such as the source URL,
+		/// the local destination folder, and so on.
+		/// </summary>
+		public class DownloadableFileInfo
+		{
+			public string FileName = string.Empty;
+			public string Version = string.Empty;
+			public string SourceURL = string.Empty;
+			public string DestinationFolder = string.Empty;
+
+			public DownloadableFileInfo()
+			{
+			}
+
+			public DownloadableFileInfo(string filename, string version, string source, string destination)
+			{
+				FileName = filename;
+				Version = version;
+				SourceURL = source;
+				DestinationFolder = destination;
+			}
+		}
+
 		private const int SUBITEM_DEST_INDEX = 0;
 		private const int SUBITEM_URL_INDEX = 1;
 		private const int SUBITEM_PERCENTAGE_INDEX = 2;
@@ -44,15 +68,14 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Instantiate a form and fill it with the specified file list. Each entry in the list is an array of three string
-		/// which first string is the local destination path on the local drive, and the second string is the
-		/// source URL path. The last string should be the empty string.
+		/// Instantiate a form and fill it with the specified file list. Each entry in the list isan instance of the 
+		/// DownloadableFileInfo class containing the necessary field to know what to download and where.
 		/// Also the specified boolean change a bit the behavior of the download form, if <c>true</c> is specified
 		/// then the explanation text will changed, and the files will be unziped after download.
 		/// </summary>
-		/// <param name="fileList">A list of file to download, for each with destination and source path</param>
+		/// <param name="fileList">A list of file info to download (containing all the info necessary for the download)</param>
 		/// <param name="isUsedToDownloadLibraryPackage">if <c>true</c> then the form will adapt its behavior for library package download</param>
-		public DownloadCenterForm(List<string[]> fileList, bool isUsedToDownloadLibraryPackage)
+		public DownloadCenterForm(List<DownloadableFileInfo> fileList, bool isUsedToDownloadLibraryPackage)
 		{
 			InitializeComponent();
 
@@ -112,12 +135,11 @@ namespace BlueBrick
 
 		#region ListView
 		/// <summary>
-		/// Fill the download form with the specified list of file. Each entry in the list is an array of three string
-		/// which first string is the local destination path on the local drive, and the second string is the
-		/// source URL path. The last string should be the empty string.
+		/// Fill the download form with the specified list of file. Each entry in the list is an instance of the 
+		/// DownloadableFileInfo class containing the necessary field to know what to download and where.
 		/// </summary>
-		/// <param name="fileList">A list of file to download, for each with destination and source path</param>
-		private void fillListView(List<string[]> fileList)
+		/// <param name="fileList">A list of file info to download (containing all the info necessary for the download)</param>
+		private void fillListView(List<DownloadableFileInfo> fileList)
 		{
 			// start of the update of the control
 			this.DownloadListView.BeginUpdate();
@@ -126,12 +148,12 @@ namespace BlueBrick
 			int itemIndex = 0;
 			this.DownloadListView.Items.Clear();
 
-			foreach (string[] file in fileList)
+			foreach (DownloadableFileInfo downloadInfo in fileList)
 			{
 				// create an item
-				ListViewItem item = new ListViewItem(file);
+				ListViewItem item = new ListViewItem(new string[] { downloadInfo.DestinationFolder, downloadInfo.SourceURL, string.Empty });
 				item.Checked = true; // by default we download all the files
-									 // add it to the list
+				// add it to the list
 				this.DownloadListView.Items.Add(item);
 				// call the update of the percentage for updating the color
 				updatePercentageOfOneFile(itemIndex, 0);
