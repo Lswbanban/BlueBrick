@@ -509,6 +509,10 @@ namespace BlueBrick
 				try
 				{
 					// read the image from the file
+					// When you instantiate a bitmap from a filename, the file is locked by the application
+					// To avoid application to lock the image files, according to the documentation, you need to clone the images.
+					// however that slow down the loading time. So instead we keep the lock, but have to make sure that we dispose
+					// all the image when we unload the library.
 					Bitmap image = new Bitmap(file.FullName);
 
 					// construct the XML file

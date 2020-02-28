@@ -1711,9 +1711,8 @@ namespace BlueBrick
 				reinitializeCurrentMap();
 
 				// call the GC to be sure that all the image are correctly released, and no files stay locked
-				// even if the GC was normally already called in the create new map function
-				// but the GC was called at then end of the reinitializeCurrentMap function
-				GC.Collect();
+				// the garbage collector was called at then end of the reinitializeCurrentMap function called just above
+				// GC.Collect();
 
 				return true;
 			}
