@@ -912,6 +912,17 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error happened during the installation of the package &quot;&amp;&quot;. The error message is:
+        ///&amp;&amp;
+        ///You should close other programs accessing the BlueBrick part library and try again. If you choose to ignore, BlueBrick will skip that package and try to install the other packages. If you choose to abord, the whole installation process will be stopped..
+        /// </summary>
+        internal static string ErrorMsgExceptionWhenDeletingPartLib {
+            get {
+                return ResourceManager.GetString("ErrorMsgExceptionWhenDeletingPartLib", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignore.
         /// </summary>
         internal static string ErrorMsgIgnoreButton {

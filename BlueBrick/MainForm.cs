@@ -1796,8 +1796,28 @@ namespace BlueBrick
 								string currentPackageFolderName = partsFolder + @"/" + filePackageToInstall.FileName;
 								currentPackageFolderName = currentPackageFolderName.Remove(currentPackageFolderName.Length - 4);
 								// check if the package already exists, and delete it in that case.
-								if (Directory.Exists(currentPackageFolderName))
-									Directory.Delete(currentPackageFolderName, true);
+								// give several chance to user in case this directory is locked
+								DialogResult result = DialogResult.Retry;
+								while ((result == DialogResult.Retry) && Directory.Exists(currentPackageFolderName))
+								{
+									try
+									{
+										Directory.Delete(currentPackageFolderName, true);
+									}
+									catch (IOException ioe)
+									{
+										// display a warning message and reload the library
+										result = MessageBox.Show(this, BlueBrick.Properties.Resources.ErrorMsgExceptionWhenDeletingPartLib.Replace("&&", ioe.Message).Replace("&", filePackageToInstall.FileName),
+														BlueBrick.Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.AbortRetryIgnore,
+														MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+									}
+								}
+								// check if user aborted the library installation, in that case break the loop to stop the install
+								// else if he ignore, then skip that package and continue with the other packages
+								if (result == DialogResult.Abort)
+									break;
+								else if (result == DialogResult.Ignore)
+									continue;
 								// unzip the new archive
 								string zipFileName = Application.StartupPath + filePackageToInstall.DestinationFolder;
 								ZipFile.ExtractToDirectory(zipFileName, partsFolder);

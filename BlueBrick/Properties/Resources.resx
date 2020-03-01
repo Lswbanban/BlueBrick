@@ -639,4 +639,9 @@ If you prefer, you can close BlueBrick and download the packages from your web b
   <data name="ErrorMsgReadOnlyFile" xml:space="preserve">
     <value>Cannot save the file "&amp;" because it is read only. Remove the read only property or save to a different name.</value>
   </data>
+  <data name="ErrorMsgExceptionWhenDeletingPartLib" xml:space="preserve">
+    <value>An error happened during the installation of the package "&amp;". The error message is:
+&amp;&amp;
+You should close other programs accessing the BlueBrick part library and try again. If you choose to ignore, BlueBrick will skip that package and try to install the other packages. If you choose to abord, the whole installation process will be stopped.</value>
+  </data>
 </root>
