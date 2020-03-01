@@ -574,4 +574,12 @@ Si vous préférez, vous pouvez aussi fermer BlueBrick et télécharger les paqu
   <data name="ErrorMsgReadOnlyFile" xml:space="preserve">
     <value>Impossible de sauvegarder le fichier "&amp;" car il est en lecture seule. Retirez la propriété de lecture seule ou sauvegardez le sous un autre nom.</value>
   </data>
+  <data name="ErrorMsgExceptionWhenDeletingPartLib" xml:space="preserve">
+    <value>Une erreur est survenue durant l'installation du paquet "&amp;". Le message d'erreur est :
+&amp;&amp;
+Vous devriez fermer tous les programmes qui accèdent à la librarie de pièces de BlueBrick et réessayer. Si vous choisissez d'ignorer, BlueBrick va sauter ce paquet et essayer d'installer les autres paquets. Si vous choisissez d'annuler, le processus d'installation sera arrêté.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
 </root>
