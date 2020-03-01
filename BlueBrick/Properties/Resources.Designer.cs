@@ -1029,7 +1029,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BlueBrick has installed new parts and need to reload the Part Library..
+        ///   Looks up a localized string similar to BlueBrick has downloaded new parts and need to reload the Part Library to install them..
         /// </summary>
         internal static string ErrorMsgNeedToReloadPartLib {
             get {
