@@ -539,7 +539,7 @@ Le message d'erreur est :
 Si vous préférez, vous pouvez aussi fermer BlueBrick et télécharger les paquets depuis votre navigateur internet et les dézipper dans le dossier "parts".</value>
   </data>
   <data name="ErrorMsgNeedToReloadPartLib" xml:space="preserve">
-    <value>BlueBrick a installé des nouvelles pièces et a besoin de recharger la librairie de pièces.</value>
+    <value>BlueBrick a téléchargé des nouvelles pièces et a besoin de recharger la librairie de pièces pour les installer.</value>
   </data>
   <data name="ErrorMsgNoAvailablePartsPackageToDownload" xml:space="preserve">
     <value>Il n'y a pas de pack de librairie de pièces additionnel disponible en ligne.</value>
