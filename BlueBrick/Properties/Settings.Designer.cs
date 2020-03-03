@@ -1355,5 +1355,17 @@ namespace BlueBrick.Properties {
                 this["UIIncludeHiddenPartsInPartUsage"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DisplayWarningMessageForPastingOnWrongLayer {
+            get {
+                return ((bool)(this["DisplayWarningMessageForPastingOnWrongLayer"]));
+            }
+            set {
+                this["DisplayWarningMessageForPastingOnWrongLayer"] = value;
+            }
+        }
     }
 }

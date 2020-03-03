@@ -191,6 +191,7 @@ namespace BlueBrick
 				this.GeneralCheckedListBoxNotification.SetItemChecked(2, Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation);
 				this.GeneralCheckedListBoxNotification.SetItemChecked(3, Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation);
 				this.GeneralCheckedListBoxNotification.SetItemChecked(4, Settings.Default.DisplayWarningMessageForShowingBudgetNumbers);
+				this.GeneralCheckedListBoxNotification.SetItemChecked(5, Settings.Default.DisplayWarningMessageForPastingOnWrongLayer);
 				// performance
 				this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
 			}
@@ -335,6 +336,7 @@ namespace BlueBrick
 				destination.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
 				destination.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation;
 				destination.DisplayWarningMessageForShowingBudgetNumbers = source.DisplayWarningMessageForShowingBudgetNumbers;
+				destination.DisplayWarningMessageForPastingOnWrongLayer = source.DisplayWarningMessageForPastingOnWrongLayer;
 			}
 			// edition
 			if ((tabPageFilter & TabPageFilter.EDITION) != 0)
@@ -440,6 +442,7 @@ namespace BlueBrick
 			Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation =  this.GeneralCheckedListBoxNotification.GetItemChecked(2);
 			Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation = this.GeneralCheckedListBoxNotification.GetItemChecked(3);
 			Settings.Default.DisplayWarningMessageForShowingBudgetNumbers = this.GeneralCheckedListBoxNotification.GetItemChecked(4);
+			Settings.Default.DisplayWarningMessageForPastingOnWrongLayer = this.GeneralCheckedListBoxNotification.GetItemChecked(5);
 			// performances
 			if (setOptimSettingAccordingToComboBox())
 			{
