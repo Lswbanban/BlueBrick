@@ -150,7 +150,19 @@ namespace BlueBrick
 		{
 			// get all the folders in the parts folder to know what is already installed
 			DirectoryInfo partsFolder = new DirectoryInfo(PartLibraryPanel.sFullPathForLibrary);
-			DirectoryInfo[] directoriesInPartsFolder = partsFolder.GetDirectories();
+			DirectoryInfo[] directoriesInPartsFolder = new DirectoryInfo[] { };
+			if (partsFolder.Exists)
+			{
+				directoriesInPartsFolder = partsFolder.GetDirectories();
+			}
+			else
+			{
+				// if the part folder doesn't exist, try to create it
+				partsFolder.Create();
+				// if the part folder doesn't exist we need to get all the package found
+				return packageListToFilter;
+			}
+
 
 			// create a list with only the name of the directory
 			List<DownloadCenterForm.DownloadableFileInfo> installedPackages = new List<DownloadCenterForm.DownloadableFileInfo>();
