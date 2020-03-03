@@ -112,23 +112,16 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="displayWarningWhenDuplicateOverBudgetCheckBox.Text" xml:space="preserve">
-    <value>Mostrar um aviso se as peças colocadas ou duplicadas excederem o orçamento</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="displayWarningForNotSavingInBBMCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 17</value>
-  </data>
-  <data name="displayWarningForNotSavingInBBMCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 32</value>
-  </data>
-  <data name="displayWarningForNotSavingInBBMCheckBox.Text" xml:space="preserve">
+  <data name="GeneralCheckedListBoxNotification.Items" xml:space="preserve">
     <value>Mostrar um aviso quando não se guarda em formato BBM</value>
+  </data>
+  <data name="GeneralCheckedListBoxNotification.Items2" xml:space="preserve">
+    <value>Mostrar um aviso se as peças colocadas ou duplicadas excederem o orçamento</value>
   </data>
   <data name="groupBox14.Text" xml:space="preserve">
     <value>Notificação</value>
@@ -157,6 +150,7 @@
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Desempenhos</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 76</value>
   </data>
@@ -253,7 +247,7 @@
   <data name="unitComboBox.Items5" xml:space="preserve">
     <value>Pés</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="displayUnitCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -468,30 +462,6 @@ da selecção</value>
   </data>
   <data name="groupBox13.Text" xml:space="preserve">
     <value>Cor de Fundo</value>
-  </data>
-  <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 17</value>
-  </data>
-  <data name="displayPartDescriptionCheckBox.Text" xml:space="preserve">
-    <value>Descrição da peça</value>
-  </data>
-  <data name="displayPartColorCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 17</value>
-  </data>
-  <data name="displayPartColorCheckBox.Text" xml:space="preserve">
-    <value>Cor de peça</value>
-  </data>
-  <data name="displayPartIDCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 17</value>
-  </data>
-  <data name="displayPartIDCheckBox.Text" xml:space="preserve">
-    <value>Identificação de peça</value>
-  </data>
-  <data name="displayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 17</value>
-  </data>
-  <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
-    <value>Mostrar informação em caixa com:</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
     <value>Informação em caixa</value>

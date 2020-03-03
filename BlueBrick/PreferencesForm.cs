@@ -186,11 +186,11 @@ namespace BlueBrick
 				this.undoRecordedNumericUpDown.Value = Settings.Default.UndoStackDepth;
 				this.undoDisplayedNumericUpDown.Value = Settings.Default.UndoStackDisplayedDepth;
 				// notification
-				this.displayWarningForNotSavingInBBMCheckBox.Checked = Settings.Default.DisplayWarningMessageForNotSavingInBBM;
-				this.displayWarningWhenAddOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation;
-				this.displayWarningWhenDuplicateOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
-				this.displayWarningWhenReplaceOverBudgetCheckBox.Checked = Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation;
-				this.askToDisplayBudgetNumbersCheckBox.Checked = Settings.Default.DisplayWarningMessageForShowingBudgetNumbers;
+				this.GeneralCheckedListBoxNotification.SetItemChecked(0, Settings.Default.DisplayWarningMessageForNotSavingInBBM);
+				this.GeneralCheckedListBoxNotification.SetItemChecked(1, Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation);
+				this.GeneralCheckedListBoxNotification.SetItemChecked(2, Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation);
+				this.GeneralCheckedListBoxNotification.SetItemChecked(3, Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation);
+				this.GeneralCheckedListBoxNotification.SetItemChecked(4, Settings.Default.DisplayWarningMessageForShowingBudgetNumbers);
 				// performance
 				this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
 			}
@@ -435,11 +435,11 @@ namespace BlueBrick
 			Settings.Default.UndoStackDepth = (int)this.undoRecordedNumericUpDown.Value;
 			Settings.Default.UndoStackDisplayedDepth = (int)this.undoDisplayedNumericUpDown.Value;
 			// notification
-			Settings.Default.DisplayWarningMessageForNotSavingInBBM = this.displayWarningForNotSavingInBBMCheckBox.Checked;
-			Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation = this.displayWarningWhenAddOverBudgetCheckBox.Checked;
-			Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = this.displayWarningWhenDuplicateOverBudgetCheckBox.Checked;
-			Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation = this.displayWarningWhenReplaceOverBudgetCheckBox.Checked;
-			Settings.Default.DisplayWarningMessageForShowingBudgetNumbers = this.askToDisplayBudgetNumbersCheckBox.Checked;
+			Settings.Default.DisplayWarningMessageForNotSavingInBBM = this.GeneralCheckedListBoxNotification.GetItemChecked(0);
+			Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation = this.GeneralCheckedListBoxNotification.GetItemChecked(1);
+			Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation =  this.GeneralCheckedListBoxNotification.GetItemChecked(2);
+			Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation = this.GeneralCheckedListBoxNotification.GetItemChecked(3);
+			Settings.Default.DisplayWarningMessageForShowingBudgetNumbers = this.GeneralCheckedListBoxNotification.GetItemChecked(4);
 			// performances
 			if (setOptimSettingAccordingToComboBox())
 			{
