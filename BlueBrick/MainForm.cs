@@ -1949,14 +1949,22 @@ namespace BlueBrick
 			if (!selectedLayer.pasteClipboardInLayer(Layer.AddOffsetAfterPaste.USE_SETTINGS_RULE, out itemTypeName, ref addInHistory))
 			{
 				// we have a type mismatch
-				// first replace the layer type name
-				string message = Properties.Resources.ErrorMsgCanNotPaste.Replace("&&", selectedLayer.LocalizedTypeName);
-				// then replace the item type name
-				message = message.Replace("&", itemTypeName);
-				// and display the message box
-				MessageBox.Show(this, message,
-								Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
-								MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+				if (Properties.Settings.Default.DisplayWarningMessageForPastingOnWrongLayer)
+				{
+					// first replace the layer type name
+					string message = Properties.Resources.ErrorMsgCanNotPaste.Replace("&&", selectedLayer.LocalizedTypeName);
+					// then replace the item type name
+					message = message.Replace("&", itemTypeName);
+					// and display the message box
+					bool dontDisplayMessageAgain = false;
+					ForgetableMessageBox.Show(this, message, Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
+									MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, ref dontDisplayMessageAgain);
+					Properties.Settings.Default.DisplayWarningMessageForPastingOnWrongLayer = !dontDisplayMessageAgain;
+				}
+				else
+				{
+					System.Media.SystemSounds.Beep.Play();
+				}
 			}
 		}
 
