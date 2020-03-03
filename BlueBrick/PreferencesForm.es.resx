@@ -112,35 +112,25 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="displayWarningWhenReplaceOverBudgetCheckBox.Text" xml:space="preserve">
-    <value>Mostrar un aviso cuando las piezas remplazadas exceden el presupuesto</value>
+  <data name="GeneralCheckedListBoxNotification.Items" xml:space="preserve">
+    <value>Mostrar un aviso cuando no se guarda en formato BBM</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="displayWarningWhenAddOverBudgetCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 49</value>
-  </data>
-  <data name="displayWarningWhenAddOverBudgetCheckBox.Text" xml:space="preserve">
+  <data name="GeneralCheckedListBoxNotification.Items1" xml:space="preserve">
     <value>Mostrar un aviso al añadir una pieza que excede el presupuesto</value>
   </data>
-  <data name="askToDisplayBudgetNumbersCheckBox.Text" xml:space="preserve">
-    <value>Pedir habilitar Números de presupuesto al habilitar Limitacion por presupuesto</value>
-  </data>
-  <data name="displayWarningWhenDuplicateOverBudgetCheckBox.Text" xml:space="preserve">
+  <data name="GeneralCheckedListBoxNotification.Items2" xml:space="preserve">
     <value>Mostrar un aviso cuando las piezas pegadas o duplicadas exceden el presupuesto</value>
   </data>
-  <data name="displayWarningForNotSavingInBBMCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 20</value>
+  <data name="GeneralCheckedListBoxNotification.Items3" xml:space="preserve">
+    <value>Mostrar un aviso cuando las piezas remplazadas exceden el presupuesto</value>
   </data>
-  <data name="displayWarningForNotSavingInBBMCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 35</value>
-  </data>
-  <data name="displayWarningForNotSavingInBBMCheckBox.Text" xml:space="preserve">
-    <value>Mostrar un aviso cuando no se guarda en formato BBM</value>
+  <data name="GeneralCheckedListBoxNotification.Items4" xml:space="preserve">
+    <value>Pedir habilitar Números de presupuesto al habilitar Limitacion por presupuesto</value>
   </data>
   <data name="groupBox14.Text" xml:space="preserve">
     <value>Notificación</value>
@@ -163,6 +153,7 @@
   <data name="optimComboBox.Items2" xml:space="preserve">
     <value>Menos memoria</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="optimComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 17</value>
   </data>
@@ -483,30 +474,6 @@ por defecto (en studs)</value>
   </data>
   <data name="groupBox13.Text" xml:space="preserve">
     <value>Color de fondo</value>
-  </data>
-  <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 17</value>
-  </data>
-  <data name="displayPartDescriptionCheckBox.Text" xml:space="preserve">
-    <value>Descripción de la pieza</value>
-  </data>
-  <data name="displayPartColorCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 17</value>
-  </data>
-  <data name="displayPartColorCheckBox.Text" xml:space="preserve">
-    <value>Color de la pieza</value>
-  </data>
-  <data name="displayPartIDCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 17</value>
-  </data>
-  <data name="displayPartIDCheckBox.Text" xml:space="preserve">
-    <value>ID de la pieza</value>
-  </data>
-  <data name="displayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 17</value>
-  </data>
-  <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
-    <value>Mostrar burbuja con:</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
     <value>Burbuja de información</value>

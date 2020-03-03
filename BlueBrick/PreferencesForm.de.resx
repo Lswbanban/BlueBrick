@@ -112,29 +112,25 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="displayWarningWhenReplaceOverBudgetCheckBox.Text" xml:space="preserve">
-    <value>Warnung anzeigen, wenn eingewechselte Teile das Budget überschreiten</value>
+  <data name="GeneralCheckedListBoxNotification.Items" xml:space="preserve">
+    <value>Warnung anzeigen, wenn nicht als BlueBrick Datei gespeichert wird</value>
   </data>
-  <data name="displayWarningWhenAddOverBudgetCheckBox.Text" xml:space="preserve">
+  <data name="GeneralCheckedListBoxNotification.Items1" xml:space="preserve">
     <value>Warnung anzeigen, wenn hinzugefügtes Teil Budget überschreitet</value>
   </data>
-  <data name="askToDisplayBudgetNumbersCheckBox.Text" xml:space="preserve">
-    <value>Nachfragen, ob das Budget angezeigt werden soll, wenn Budget aktiviert wird</value>
-  </data>
-  <data name="displayWarningWhenDuplicateOverBudgetCheckBox.Text" xml:space="preserve">
+  <data name="GeneralCheckedListBoxNotification.Items2" xml:space="preserve">
     <value>Warnung anzeigen, wenn eingefügte Teile Budget überschreiten</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="displayWarningForNotSavingInBBMCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 38</value>
+  <data name="GeneralCheckedListBoxNotification.Items3" xml:space="preserve">
+    <value>Warnung anzeigen, wenn eingewechselte Teile das Budget überschreiten</value>
   </data>
-  <data name="displayWarningForNotSavingInBBMCheckBox.Text" xml:space="preserve">
-    <value>Warnung anzeigen, wenn nicht als BlueBrick Datei gespeichert wird</value>
+  <data name="GeneralCheckedListBoxNotification.Items4" xml:space="preserve">
+    <value>Nachfragen, ob das Budget angezeigt werden soll, wenn Budget aktiviert wird</value>
   </data>
   <data name="groupBox14.Text" xml:space="preserve">
     <value>Meldungen</value>
@@ -158,6 +154,7 @@ benutzten Dateien</value>
   <data name="optimComboBox.Items2" xml:space="preserve">
     <value>Weniger Speicher</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="optimComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 18</value>
   </data>
@@ -176,9 +173,12 @@ benutzten Dateien</value>
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Leistung</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 83</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Je mehr "Rückgängige" Schritte gespeichert werden, umso mehr Speicher wird verbraucht.</value>
@@ -191,6 +191,9 @@ benutzten Dateien</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Anzahl der angezeigten, Rückgängigen Schritte.</value>
+  </data>
+  <data name="undoDisplayedNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 54</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 18</value>
@@ -520,30 +523,6 @@ für jedes Teil:</value>
   </data>
   <data name="groupBox13.Text" xml:space="preserve">
     <value>Hintergrundfarbe</value>
-  </data>
-  <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 17</value>
-  </data>
-  <data name="displayPartDescriptionCheckBox.Text" xml:space="preserve">
-    <value>Teilebeschreibung</value>
-  </data>
-  <data name="displayPartColorCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
-  </data>
-  <data name="displayPartColorCheckBox.Text" xml:space="preserve">
-    <value>Teilefarbe</value>
-  </data>
-  <data name="displayPartIDCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 17</value>
-  </data>
-  <data name="displayPartIDCheckBox.Text" xml:space="preserve">
-    <value>Teile-ID</value>
-  </data>
-  <data name="displayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 17</value>
-  </data>
-  <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
-    <value>Inhalt der Pop-up-Info:</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
     <value>Pop-up-Info</value>
