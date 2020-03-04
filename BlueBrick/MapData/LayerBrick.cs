@@ -1129,7 +1129,8 @@ namespace BlueBrick.MapData
 				else if (mEditAction == EditAction.DUPLICATE_SELECTION)
 				{
 					// undo the duplicate action and clear it
-					mLastDuplicateAction.undo();
+					if (mLastDuplicateAction != null)
+						mLastDuplicateAction.undo();
 					mLastDuplicateAction = null;
 					mRotationForSnappingDuringBrickMove = null;
 					mSnappingOrientation = 0.0f;
@@ -1297,7 +1298,8 @@ namespace BlueBrick.MapData
 						if (mEditAction == EditAction.DUPLICATE_SELECTION)
 						{
 							// update the position, undo the action and add it in the manager
-							mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
+							if (mLastDuplicateAction != null)
+								mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
 							// clear also the rotation snapping, in case of a series of duplication, but do not
 							// undo it, since we want to keep the rotation applied on the duplicated bricks.
 							mRotationForSnappingDuringBrickMove = null;
@@ -1346,7 +1348,7 @@ namespace BlueBrick.MapData
 					}
 
 					// after the last move of the duplicated bricks, add the action in the manager
-					if (mEditAction == EditAction.DUPLICATE_SELECTION)
+					if ((mEditAction == EditAction.DUPLICATE_SELECTION) && (mLastDuplicateAction != null))
 					{
 						// undo the action and add it in the manager
 						mLastDuplicateAction.undo();

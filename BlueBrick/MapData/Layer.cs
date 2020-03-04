@@ -1783,7 +1783,7 @@ namespace BlueBrick.MapData
 			xmlSettings.IgnoreWhitespace = true;
 			System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(stringReader, xmlSettings);
 
-			// read the version number
+			// try to read the version number if we start with a version tag (otherwise ignore if it is plain text)
 			Map.Instance.readVersionNumber(xmlReader);
 
 			// normallly after it's the layer node, and we should be already on it

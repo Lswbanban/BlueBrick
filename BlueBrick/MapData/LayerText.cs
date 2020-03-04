@@ -433,7 +433,8 @@ namespace BlueBrick.MapData
 				if (mEditAction == EditAction.DUPLICATE_SELECTION)
 				{
 					// undo the duplicate action and clear it
-					mLastDuplicateAction.undo();
+					if (mLastDuplicateAction != null)
+						mLastDuplicateAction.undo();
 					mLastDuplicateAction = null;
 				}
 				else if (mEditAction == EditAction.MOVE_SELECTION)
@@ -542,7 +543,8 @@ namespace BlueBrick.MapData
 					// update the duplicate action or add a move action
 					if (mEditAction == EditAction.DUPLICATE_SELECTION)
 					{
-						mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
+						if (mLastDuplicateAction != null)
+							mLastDuplicateAction.updatePositionShift(deltaMove.X, deltaMove.Y);
 					}
 					else if (mEditAction == EditAction.MOVE_SELECTION)
 					{
@@ -555,7 +557,7 @@ namespace BlueBrick.MapData
 				}
 
 				// add the duplicate action in the manager after the last modification of the movement
-				if (mEditAction == EditAction.DUPLICATE_SELECTION)
+				if ((mEditAction == EditAction.DUPLICATE_SELECTION) && (mLastDuplicateAction != null))
 				{
 					mLastDuplicateAction.undo();
 					ActionManager.Instance.doAction(mLastDuplicateAction);

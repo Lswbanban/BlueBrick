@@ -117,7 +117,6 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Scrollbars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
-- [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
 - MISSING FEATURE (Matthias): BlueBrick should check if there's new library package available in background after launch.
 - MISSING FEATURE (zephyr1934): Add a favorite feature where you can tag a part as your favorite, and display all your favorite parts in a specific tab of the library
 - MISSING FEATURE (Alban): Preferences option to edit what is displayed on watermark?
@@ -164,6 +163,8 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): Add a new mouse cursor for when the user press the shift key (before moving the mouse)
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
+- BUGFIX (Alban): Fix a crash when duplicating parts very quickly with the ALT key (crash due to delay with the clipboard)
+- BUGFIX (Vincent): Probably fixed sometimes when drag-n-dropping parts, only the selection box and the free connection point were moving (and not the grabbed parts)
 - BUGFIX (Alban): Now you can open a file which is in readonly access.
 - BUGFIX (Alban): Finally found a way to release the lock on the images when reloading the part library (well hopefully this time it will be fixed).
 - BUGFIX (Alban): The scroll of the mouse wheel was not happening when moving the mouse over the part lib or layer stack, only after you click on it (now the focus is automatically given to the region of the application where the mouse move)
