@@ -594,7 +594,8 @@ namespace BlueBrick.MapData
 		public void readVersionNumber(System.Xml.XmlReader reader)
 		{
 			reader.ReadToDescendant("Version");
-			mDataVersionOfTheFileLoaded = reader.ReadElementContentAsInt();
+			if (reader.Name.Equals("Version"))
+				mDataVersionOfTheFileLoaded = reader.ReadElementContentAsInt();
 		}
 		#endregion
 
