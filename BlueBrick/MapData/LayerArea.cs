@@ -541,6 +541,8 @@ namespace BlueBrick.MapData
 				return MainForm.Instance.HiddenLayerCursor;
 			else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
 				return MainForm.Instance.AreaMoveCursor;
+			else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseZoomPanKey)
+				return MainForm.Instance.PanOrZoomViewCursor;
 			else if (LayerArea.IsCurrentToolTheEraser)
 				return MainForm.Instance.AreaEraserCursor;
 			return MainForm.Instance.AreaPaintCursor;

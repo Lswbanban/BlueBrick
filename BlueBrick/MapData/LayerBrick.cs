@@ -901,6 +901,10 @@ namespace BlueBrick.MapData
 					{
 						return MainForm.Instance.BrickSelectionCursor;
 					}
+					else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseZoomPanKey)
+					{
+						return MainForm.Instance.PanOrZoomViewCursor;
+					}
 					else if (isPointInsideSelectionRectangle(mouseCoordInStud))
 					{
 						return MainForm.Instance.BrickMoveCursor;

@@ -64,6 +64,7 @@ namespace BlueBrick
 		private Cursor mHiddenLayerCursor = null;
 		private Cursor mPanViewCursor = null;
 		private Cursor mZoomCursor = null;
+		private Cursor mPanOrZoomViewCursor = null;
 		private Cursor mGridArrowCursor = null;
 		private Cursor mBrickArrowCursor = null;
 		private Cursor mFlexArrowCursor = null;		
@@ -210,6 +211,14 @@ namespace BlueBrick
 		public Cursor ZoomCursor
 		{
 			get { return mZoomCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for panning or zooming the view
+		/// </summary>
+		public Cursor PanOrZoomViewCursor
+		{
+			get { return mPanOrZoomViewCursor; }
 		}
 		#endregion
 
@@ -702,6 +711,7 @@ namespace BlueBrick
 			mHiddenLayerCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.HiddenLayerCursor.cur");
 			mPanViewCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.PanViewCursor.cur");
 			mZoomCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.ZoomCursor.cur");
+			mPanOrZoomViewCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.PanOrZoomViewCursor.cur");
 			mGridArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.GridArrowCursor.cur");
 			mBrickArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.BrickArrowCursor.cur");
 			mFlexArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.FlexArrowCursor.cur");

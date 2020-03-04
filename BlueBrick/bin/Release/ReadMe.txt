@@ -117,7 +117,6 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Scrollbars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
-- [target 1.9] MISSING FEATURE (Matthias): List the parts not in the budgets but on the layout, as "needed" part, in a separated group in the Part Usage, with a checkbox probably: waiting for feedback on this one, if no feedback consider it done
 - [target 1.9] BUG (Vincent): Sometimes when drag-n-dropping parts, only the selection box and the free connection point is moving (and not the grabbed parts)
 - MISSING FEATURE (Matthias): BlueBrick should check if there's new library package available in background after launch.
 - MISSING FEATURE (zephyr1934): Add a favorite feature where you can tag a part as your favorite, and display all your favorite parts in a specific tab of the library
@@ -162,6 +161,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): The new layers are now inserted above the selected layer, not at the top of the stack by default
 - NEW FEATURE (Matthias): When you delete a part, the active connection of the new selected part is the one where the deleted part was connected.
 - NEW FEATURE (supertruper1988): The default export image extension is now PNG instead of BMP (and the list of available formats has been reordered)
+- NEW FEATURE (Alban): Add a new mouse cursor for when the user press the shift key (before moving the mouse)
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
 - BUGFIX (Alban): Now you can open a file which is in readonly access.
