@@ -507,6 +507,8 @@ namespace BlueBrick.MapData
 			// if the layer is not visible you can basically do nothing on it
 			if (!Visible)
 				return MainForm.Instance.HiddenLayerCursor;
+			else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseZoomPanKey)
+				return MainForm.Instance.PanOrZoomViewCursor;
 			else if (mDisplayCellIndex) // check if the user try to move the origin of the grid
 				return MainForm.Instance.GridArrowCursor;
 

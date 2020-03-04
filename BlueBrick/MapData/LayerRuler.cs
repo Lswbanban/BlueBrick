@@ -561,6 +561,10 @@ namespace BlueBrick.MapData
 							{
 								return MainForm.Instance.RulerSelectionCursor;
 							}
+							else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseZoomPanKey)
+							{
+								return MainForm.Instance.PanOrZoomViewCursor;
+							}
 							else
 							{
 								// we need to check if we will modify one ruler by moving its control point or scalling (no matter if there is a selection)
