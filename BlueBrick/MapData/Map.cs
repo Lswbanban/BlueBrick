@@ -1090,6 +1090,12 @@ namespace BlueBrick.MapData
 					brickLayer.recomputeBrickMipmapImages();
 			}
 		}
+
+		public void editSelectedItemsProperties(PointF mouseCoordInStud)
+		{
+			if (Map.sInstance.SelectedLayer != null)
+				Map.sInstance.SelectedLayer.editSelectedItemsProperties(mouseCoordInStud);
+		}
 		#endregion
 
 		#region draw / mouse event

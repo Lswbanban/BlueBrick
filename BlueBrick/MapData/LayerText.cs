@@ -141,7 +141,7 @@ namespace BlueBrick.MapData
 		#endregion
 
 		#region action on the layer
-		#region add/remove texts
+		#region add/remove/modify texts
 		/// <summary>
 		///	Add the specified text cell at the specified position
 		/// </summary>
@@ -172,6 +172,36 @@ namespace BlueBrick.MapData
 				index = 0;
 			return index;
 		}
+
+		public override void editSelectedItemsProperties(PointF mouseCoordInStud)
+		{
+			// does nothing if the selection is empty
+			if (mSelectedObjects.Count > 0)
+			{
+				// in priority get the item under the mouse, if there's several item selected
+				TextCell textToEdit = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as TextCell;
+				// but if user click outside of the item, get the first one of the list
+				if (textToEdit == null)
+					textToEdit = mSelectedObjects[0] as TextCell;
+				// and call the function to edit the properties
+				addOrEditItem(textToEdit, mouseCoordInStud);
+			}
+		}
+
+		private void addOrEditItem(TextCell itemToAddOrEdit, PointF mouseCoordInStud)
+		{
+			// open the form to edit the properties in modal mode
+			EditTextForm editTextForm = new EditTextForm(itemToAddOrEdit);
+			editTextForm.ShowDialog();
+			if (editTextForm.DialogResult == DialogResult.OK)
+			{
+				// check if it is an edition of an existing text or a new text
+				if (itemToAddOrEdit != null)
+					ActionManager.Instance.doAction(new EditText(this, itemToAddOrEdit, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment));
+				else
+					ActionManager.Instance.doAction(new AddText(this, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment, mouseCoordInStud));
+			}
+		}
 		#endregion
 
 		#region selection
@@ -192,6 +222,15 @@ namespace BlueBrick.MapData
 			// clear the selection and add all the item of this layer
 			clearSelection();
 			addObjectInSelection(mTexts);
+		}
+
+		/// <summary>
+		/// Select all the item inside the rectangle in the current selected layer
+		/// </summary>
+		/// <param name="selectionRectangeInStud">the rectangle in which select the items</param>
+		public override void selectInRectangle(RectangleF selectionRectangeInStud)
+		{
+			selectInRectangle(selectionRectangeInStud, mTexts);
 		}
 		#endregion
 		#endregion
@@ -517,17 +556,8 @@ namespace BlueBrick.MapData
 			// and this can mess up the click count in mono
 			if (mEditAction == EditAction.ADD_OR_EDIT_TEXT)
 			{
-				// open the edit text dialog in modal
-				EditTextForm editTextForm = new EditTextForm(mCurrentTextCellUnderMouse);
-				editTextForm.ShowDialog();
-				if (editTextForm.DialogResult == DialogResult.OK)
-				{
-					// check if it is an edition of an existing text or a new text
-					if (mCurrentTextCellUnderMouse != null)
-						ActionManager.Instance.doAction(new EditText(this, mCurrentTextCellUnderMouse, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment));
-					else
-						ActionManager.Instance.doAction(new AddText(this, editTextForm.EditedText, editTextForm.EditedFont, editTextForm.EditedColor, editTextForm.EditedAlignment, mouseCoordInStud));
-				}
+				// call the function to add or edit, which open the edit text dialog in modal
+				addOrEditItem(mCurrentTextCellUnderMouse, mouseCoordInStud);
 			}
 			else if (mMouseHasMoved && (mSelectedObjects.Count > 0)) // check if we moved the selected text
 			{
@@ -586,15 +616,6 @@ namespace BlueBrick.MapData
 
 			// refresh in any case
 			return true;
-		}
-
-		/// <summary>
-		/// Select all the item inside the rectangle in the current selected layer
-		/// </summary>
-		/// <param name="selectionRectangeInStud">the rectangle in which select the items</param>
-		public override void selectInRectangle(RectangleF selectionRectangeInStud)
-		{
-			selectInRectangle(selectionRectangeInStud, mTexts);
 		}
 		#endregion
 	}

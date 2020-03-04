@@ -1660,6 +1660,17 @@ namespace BlueBrick.MapData
 		}
 		#endregion
 
+		#region editing selected items
+		/// <summary>
+		/// This function handle the edition of the selected item properties.
+		/// By default the function does nothing if the items don't have any properties to edit.
+		/// </summary>
+		/// <param name="mouseCoordInStud">The mouse coord in stud where the mouse was when the user did a right click to edit the properties</param>
+		public virtual void editSelectedItemsProperties(PointF mouseCoordInStud)
+		{
+		}
+		#endregion
+
 		#region copy/paste to clipboard
 		/// <summary>
 		/// This class is used to sort a list of layer item in the same order as in the list provided in the constructor
