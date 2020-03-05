@@ -1367,5 +1367,29 @@ namespace BlueBrick.Properties {
                 this["DisplayWarningMessageForPastingOnWrongLayer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float BrickHullThickness {
+            get {
+                return ((float)(this["BrickHullThickness"]));
+            }
+            set {
+                this["BrickHullThickness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float OtherHullThickness {
+            get {
+                return ((float)(this["OtherHullThickness"]));
+            }
+            set {
+                this["OtherHullThickness"] = value;
+            }
+        }
     }
 }
