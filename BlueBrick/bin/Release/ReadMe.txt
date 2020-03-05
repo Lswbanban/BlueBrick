@@ -141,6 +141,7 @@ Open bugs:
 - MISSING FEATURE (Ludo & Denis): Add some optional arrows at the extremities of the linear rulers.
 - MISSING FEATURE (Ludo): Move the measure values along the linear rulers in order to avoid overlapping of close parallel rulers.
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
+- MISSING FEATURE (Ludo): Add a context menu on the Part Usage list, in order to export the list from there.
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
