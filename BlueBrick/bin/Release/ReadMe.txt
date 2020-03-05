@@ -110,7 +110,6 @@ Open bugs:
 	- Should have a default file to load like the default budget to load in the preference?
 		- The reset to default button in the bottom of the screen, will point again on the file in the config folder
 		- And we may add some explanation text in the preference window ()
-- [target 1.9] MISSING FEATURE (Alban): Add a "Property" menu item in the contextual menu to edit the text and edit the ruler (even for bricks to display info, change the altitude, and order for everyone?)
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon)
 - [target 1.9] MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
@@ -142,6 +141,7 @@ Open bugs:
 - MISSING FEATURE (Ludo): Move the measure values along the linear rulers in order to avoid overlapping of close parallel rulers.
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
 - MISSING FEATURE (Ludo): Add a context menu on the Part Usage list, in order to export the list from there.
+- MISSING FEATURE (Alban): Add a Brick property window to edit the altitude of the brick
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
@@ -164,6 +164,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Matthias): When you delete a part, the active connection of the new selected part is the one where the deleted part was connected.
 - NEW FEATURE (supertruper1988): The default export image extension is now PNG instead of BMP (and the list of available formats has been reordered)
 - NEW FEATURE (Alban): Add a new mouse cursor for when the user press the shift key (before moving the mouse)
+- NEW FEATURE (Alban): Add a "Properties..." menu item in the contextual menu to edit the texts and rulers
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
 - BUGFIX (Alban): Fix a crash when duplicating parts very quickly with the ALT key (crash due to delay with the clipboard)
