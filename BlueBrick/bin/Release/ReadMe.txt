@@ -111,7 +111,6 @@ Open bugs:
 		- The reset to default button in the bottom of the screen, will point again on the file in the config folder
 		- And we may add some explanation text in the preference window ()
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon): necessite une nouvelle version du format BBM
-- [target 1.9] MISSING FEATURE (Alban): Add some preference to edit the 2 Hull color (brick and other), and maybe also Hull line thickness
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
@@ -167,6 +166,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (supertruper1988): The default export image extension is now PNG instead of BMP (and the list of available formats has been reordered)
 - NEW FEATURE (Alban): Add a new mouse cursor for when the user press the shift key (before moving the mouse)
 - NEW FEATURE (Alban): Add a "Properties..." menu item in the contextual menu to edit the texts and rulers
+- NEW FEATURE (Alban): Add some settings to edit the two Hull colors and thickness (brick and other) in the Preference window (Appearance tab)
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
 - BUGFIX (Alban): Fix a crash when duplicating parts very quickly with the ALT key (crash due to delay with the clipboard)

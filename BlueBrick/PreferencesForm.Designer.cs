@@ -129,7 +129,7 @@ namespace BlueBrick
 			this.label24 = new System.Windows.Forms.Label();
 			this.GammaForSnappingNumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.GammaForSelectionNumericUpDown = new System.Windows.Forms.NumericUpDown();
-			this.label20 = new System.Windows.Forms.Label();
+			this.previewLabel = new System.Windows.Forms.Label();
 			this.samplePictureBox = new System.Windows.Forms.PictureBox();
 			this.label19 = new System.Windows.Forms.Label();
 			this.subGridColorPictureBox = new System.Windows.Forms.PictureBox();
@@ -1095,7 +1095,7 @@ namespace BlueBrick
 			this.groupBox5.Controls.Add(this.label24);
 			this.groupBox5.Controls.Add(this.GammaForSnappingNumericUpDown);
 			this.groupBox5.Controls.Add(this.GammaForSelectionNumericUpDown);
-			this.groupBox5.Controls.Add(this.label20);
+			this.groupBox5.Controls.Add(this.previewLabel);
 			this.groupBox5.Controls.Add(this.samplePictureBox);
 			this.groupBox5.Controls.Add(this.label19);
 			this.groupBox5.Controls.Add(this.subGridColorPictureBox);
@@ -1128,6 +1128,7 @@ namespace BlueBrick
             0,
             0,
             0});
+			this.otherHullThicknessNumericUpDown.ValueChanged += new System.EventHandler(this.otherHullThicknessNumericUpDown_ValueChanged);
 			// 
 			// label43
 			// 
@@ -1162,6 +1163,7 @@ namespace BlueBrick
             0,
             0,
             0});
+			this.brickHullThicknessNumericUpDown.ValueChanged += new System.EventHandler(this.brickHullThicknessNumericUpDown_ValueChanged);
 			// 
 			// label42
 			// 
@@ -1206,10 +1208,10 @@ namespace BlueBrick
 			this.GammaForSelectionNumericUpDown.Name = "GammaForSelectionNumericUpDown";
 			this.GammaForSelectionNumericUpDown.ValueChanged += new System.EventHandler(this.GammaForSelectionNumericUpDown_ValueChanged);
 			// 
-			// label20
+			// previewLabel
 			// 
-			resources.ApplyResources(this.label20, "label20");
-			this.label20.Name = "label20";
+			resources.ApplyResources(this.previewLabel, "previewLabel");
+			this.previewLabel.Name = "previewLabel";
 			// 
 			// samplePictureBox
 			// 
@@ -1889,7 +1891,7 @@ namespace BlueBrick
 		private System.Windows.Forms.ComboBox colorSchemeComboBox;
 		private System.Windows.Forms.Label label17;
 		private System.Windows.Forms.PictureBox backgroundColorPictureBox;
-		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.Label previewLabel;
 		private System.Windows.Forms.PictureBox samplePictureBox;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.PictureBox subGridColorPictureBox;
