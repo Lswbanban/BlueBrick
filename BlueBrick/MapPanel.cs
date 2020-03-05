@@ -889,7 +889,7 @@ namespace BlueBrick
 					this.useAsModelToolStripMenuItem.Enabled = false;
 				}
 				// check is we need to enable the properties
-				this.propertiesToolStripMenuItem.Enabled = enableItemRelatedToSelection;
+				this.propertiesToolStripMenuItem.Enabled = enableItemRelatedToSelection && ((selectedLayer is LayerRuler) || (selectedLayer is LayerText));
 
 				// finally after enabling the context menu items
 				// check if at leat one toolstrip menu item is enabled otherwise, cancel the opening
