@@ -490,10 +490,10 @@ namespace BlueBrick
 			// -- tab appearance
 			// hull style
 			// check if the hull changed
-			bool doesHullStyleChange = (Settings.Default.BrickHullColor != this.brickHullColorPictureBox.BackColor) ||
-										(Settings.Default.BrickHullThickness != (float)this.brickHullThicknessNumericUpDown.Value) ||
-										(Settings.Default.OtherHullColor != this.otherHullColorPictureBox.BackColor) ||
-										(Settings.Default.OtherHullThickness != (float)this.otherHullThicknessNumericUpDown.Value);
+			bool doesHullStyleChange = (mOldSettings.BrickHullColor != this.brickHullColorPictureBox.BackColor) ||
+										(mOldSettings.BrickHullThickness != (float)this.brickHullThicknessNumericUpDown.Value) ||
+										(mOldSettings.OtherHullColor != this.otherHullColorPictureBox.BackColor) ||
+										(mOldSettings.OtherHullThickness != (float)this.otherHullThicknessNumericUpDown.Value);
 			Settings.Default.BrickHullColor = this.brickHullColorPictureBox.BackColor;
 			Settings.Default.BrickHullThickness = (float)this.brickHullThicknessNumericUpDown.Value;
 			Settings.Default.OtherHullColor = this.otherHullColorPictureBox.BackColor;
@@ -980,6 +980,16 @@ namespace BlueBrick
 			// get the part example image from the resource
 			Image image = Properties.Resources.PartForOptionPreview;
 
+			// create the pen do draw the hull around the parts
+			Pen penToDrawBrickHull = new Pen(brickHullColorPictureBox.BackColor, (float)brickHullThicknessNumericUpDown.Value);
+			Pen penToDrawOtherHull = new Pen(otherHullColorPictureBox.BackColor, (float)otherHullThicknessNumericUpDown.Value);
+
+			// draw a text and its hull
+			SizeF textSize = graphics.MeasureString(previewLabel.Text, SystemFonts.DefaultFont);
+			Rectangle textRectangle = new Rectangle(20, 10, (int)textSize.Width + 1, (int)textSize.Height + 1);
+			graphics.DrawString(previewLabel.Text, SystemFonts.DefaultFont, Brushes.Black, textRectangle);
+			graphics.DrawRectangle(penToDrawOtherHull, textRectangle);
+
 			// draw 3 part images as an example
 			Rectangle destinationRectangle = new Rectangle(42, 42, image.Width, image.Height);
 			graphics.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel);
@@ -987,6 +997,7 @@ namespace BlueBrick
 			graphics.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributeForSelection);
 			destinationRectangle.Y += 32;
 			graphics.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributeForSnapping);
+			graphics.DrawRectangle(penToDrawBrickHull, destinationRectangle);
 
 			// invalidate the picture box
 			this.samplePictureBox.Invalidate();
@@ -1006,6 +1017,11 @@ namespace BlueBrick
 			}
 		}
 
+		private void brickHullThicknessNumericUpDown_ValueChanged(object sender, EventArgs e)
+		{
+			redrawSamplePictureBox();
+		}
+
 		private void otherHullColorPictureBox_Click(object sender, EventArgs e)
 		{
 			// set the color with the current back color of the picture box
@@ -1018,6 +1034,11 @@ namespace BlueBrick
 				otherHullColorPictureBox.BackColor = this.colorDialog.Color;
 				redrawSamplePictureBox();
 			}
+		}
+
+		private void otherHullThicknessNumericUpDown_ValueChanged(object sender, EventArgs e)
+		{
+			redrawSamplePictureBox();
 		}
 
 		private void backgroundColorPictureBox_Click(object sender, EventArgs e)
