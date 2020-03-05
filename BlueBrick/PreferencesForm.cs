@@ -232,6 +232,10 @@ namespace BlueBrick
 			// -- tab appearance
 			if ((tabPageFilter & TabPageFilter.APPEARANCE) != 0)
 			{
+				this.brickHullColorPictureBox.BackColor = Settings.Default.BrickHullColor;
+				this.brickHullThicknessNumericUpDown.Value = (Decimal)Settings.Default.BrickHullThickness;
+				this.otherHullColorPictureBox.BackColor = Settings.Default.OtherHullColor;
+				this.otherHullThicknessNumericUpDown.Value = (Decimal)Settings.Default.OtherHullThickness;
 				this.backgroundColorPictureBox.BackColor = Settings.Default.DefaultBackgroundColor;
 				this.gridColorPictureBox.BackColor = Settings.Default.DefaultGridColor;
 				this.subGridColorPictureBox.BackColor = Settings.Default.DefaultSubGridColor;
@@ -370,6 +374,10 @@ namespace BlueBrick
 			// appearance
 			if ((tabPageFilter & TabPageFilter.APPEARANCE) != 0)
 			{
+				destination.BrickHullColor = source.BrickHullColor;
+				destination.BrickHullThickness = source.BrickHullThickness;
+				destination.OtherHullColor = source.OtherHullColor;
+				destination.OtherHullThickness = source.OtherHullThickness;
 				destination.DefaultBackgroundColor = source.DefaultBackgroundColor;
 				destination.DefaultAreaTransparency = source.DefaultAreaTransparency;
 				destination.DefaultAreaSize = source.DefaultAreaSize;
@@ -480,6 +488,19 @@ namespace BlueBrick
 			Settings.Default.RulerDefaultFont = this.rulerFontNameLabel.Font;
 
 			// -- tab appearance
+			// hull style
+			// check if the hull changed
+			bool doesHullStyleChange = (Settings.Default.BrickHullColor != this.brickHullColorPictureBox.BackColor) ||
+										(Settings.Default.BrickHullThickness != (float)this.brickHullThicknessNumericUpDown.Value) ||
+										(Settings.Default.OtherHullColor != this.otherHullColorPictureBox.BackColor) ||
+										(Settings.Default.OtherHullThickness != (float)this.otherHullThicknessNumericUpDown.Value);
+			Settings.Default.BrickHullColor = this.brickHullColorPictureBox.BackColor;
+			Settings.Default.BrickHullThickness = (float)this.brickHullThicknessNumericUpDown.Value;
+			Settings.Default.OtherHullColor = this.otherHullColorPictureBox.BackColor;
+			Settings.Default.OtherHullThickness = (float)this.otherHullThicknessNumericUpDown.Value;
+			// if style change, reinit the hull pens
+			if (doesHullStyleChange)
+				Layer.initHullPens();
 			// check if the user changed the grid color
 			bool doesGridColorChanged = (mOldSettings.DefaultBackgroundColor != backgroundColorPictureBox.BackColor) ||
 										(mOldSettings.DefaultGridColor != gridColorPictureBox.BackColor) ||
@@ -969,6 +990,34 @@ namespace BlueBrick
 
 			// invalidate the picture box
 			this.samplePictureBox.Invalidate();
+		}
+
+		private void brickHullColorPictureBox_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.colorDialog.Color = brickHullColorPictureBox.BackColor;
+			// open the color box in modal
+			DialogResult result = this.colorDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				brickHullColorPictureBox.BackColor = this.colorDialog.Color;
+				redrawSamplePictureBox();
+			}
+		}
+
+		private void otherHullColorPictureBox_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.colorDialog.Color = otherHullColorPictureBox.BackColor;
+			// open the color box in modal
+			DialogResult result = this.colorDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				otherHullColorPictureBox.BackColor = this.colorDialog.Color;
+				redrawSamplePictureBox();
+			}
 		}
 
 		private void backgroundColorPictureBox_Click(object sender, EventArgs e)
