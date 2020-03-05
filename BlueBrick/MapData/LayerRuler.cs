@@ -205,7 +205,7 @@ namespace BlueBrick.MapData
 		#endregion
 
 		#region action on the layer
-		#region add/remove rulers
+		#region add/remove/modify rulers
 		/// <summary>
 		///	Add the specified ruler at the specified position.
 		///	If the position is negative, add the item at the end
@@ -236,6 +236,30 @@ namespace BlueBrick.MapData
 			else
 				index = 0;
 			return index;
+		}
+
+		public override void editSelectedItemsProperties(PointF mouseCoordInStud)
+		{
+			// does nothing if the selection is empty
+			if (mSelectedObjects.Count > 0)
+			{
+				// in priority get the item under the mouse, if there's several item selected
+				RulerItem rulerToEdit = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as RulerItem;
+				// but if user click outside of the item, get the first one of the list
+				if (rulerToEdit == null)
+					rulerToEdit = mSelectedObjects[0] as RulerItem;
+				// and call the function to edit the properties
+				editRulerItem(rulerToEdit);
+			}
+		}
+
+		private void editRulerItem(RulerItem itemToEdit)
+		{
+			// open the edit text dialog in modal
+			EditRulerForm editRulerForm = new EditRulerForm(itemToEdit);
+			editRulerForm.ShowDialog();
+			if (editRulerForm.DialogResult == DialogResult.OK)
+				Actions.ActionManager.Instance.doAction(new Actions.Rulers.EditRuler(this, itemToEdit, editRulerForm.EditedRulerClone));
 		}
 		#endregion
 
@@ -1042,11 +1066,7 @@ namespace BlueBrick.MapData
 					// and this can mess up the click count in mono
 					if (mEditAction == EditAction.CUSTOMIZE_RULER)
 					{
-						// open the edit text dialog in modal
-						EditRulerForm editRulerForm = new EditRulerForm(mCurrentRulerUnderMouse);
-						editRulerForm.ShowDialog();
-						if (editRulerForm.DialogResult == DialogResult.OK)
-							Actions.ActionManager.Instance.doAction(new Actions.Rulers.EditRuler(this, mCurrentRulerUnderMouse, editRulerForm.EditedRulerClone));
+						editRulerItem(mCurrentRulerUnderMouse);
 					}
 					else if (mMouseHasMoved && (mSelectedObjects.Count > 0)) // check if we moved the selected bricks
 					{
