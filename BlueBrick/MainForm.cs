@@ -950,6 +950,7 @@ namespace BlueBrick
 			this.moveStep16ToolStripMenuItem.Enabled = enableMoveRotateButton;
 			this.moveStep8ToolStripMenuItem.Enabled = enableMoveRotateButton;
 			this.moveStep4ToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.moveStep2ToolStripMenuItem.Enabled = enableMoveRotateButton;
 			this.moveStep1ToolStripMenuItem.Enabled = enableMoveRotateButton;
 			this.moveStep05ToolStripMenuItem.Enabled = enableMoveRotateButton;
 
@@ -1021,6 +1022,7 @@ namespace BlueBrick
 			this.moveStep16ToolStripMenuItem.Checked = false;
 			this.moveStep8ToolStripMenuItem.Checked = false;
 			this.moveStep4ToolStripMenuItem.Checked = false;
+			this.moveStep2ToolStripMenuItem.Checked = false;
 			this.moveStep1ToolStripMenuItem.Checked = false;
 			this.moveStep05ToolStripMenuItem.Checked = false;
 			// uncheck all the toolbar item
@@ -1028,6 +1030,7 @@ namespace BlueBrick
 			this.toolBarGrid16Button.Checked = false;
 			this.toolBarGrid8Button.Checked = false;
 			this.toolBarGrid4Button.Checked = false;
+			this.toolBarGrid2Button.Checked = false;
 			this.toolBarGrid1Button.Checked = false;
 			this.toolBarGrid05Button.Checked = false;
 			// enable or disable the correct items
@@ -1054,6 +1057,11 @@ namespace BlueBrick
 				{
 					this.moveStep4ToolStripMenuItem.Checked = true;
 					this.toolBarGrid4Button.Checked = true;
+				}
+				else if (size == 2.0f)
+				{
+					this.moveStep2ToolStripMenuItem.Checked = true;
+					this.toolBarGrid2Button.Checked = true;
 				}
 				else if (size == 1.0f)
 				{
