@@ -117,12 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBoxPartFilter.ToolTip" xml:space="preserve">
+    <value>Entrez des mots clefs pour filtrer la liste des pièces.
+Utilisez le caractère - devant un mot clef pour exclure des pièces.
+Utilisez le caractère # devant un mot clef pour spécifier un identifiant de pièce.
+Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
+  </data>
   <data name="filterLibraryCheckboxImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAYQBAAGEAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAAYwBAAGMAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -160,480 +166,690 @@
         AQEFAAGAFwAD/4EACw==
 </value>
   </data>
+  <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
+    <value>Applique le filtre sur tous les onglets ou seulement sur l'onglet courant.</value>
+  </data>
+  <data name="DocumentDataLayerTabPage.Text" xml:space="preserve">
+    <value>Couches</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhCwAOAIIAAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
+        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
+        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
+</value>
+  </data>
+  <data name="trashLayerButton.ToolTip" xml:space="preserve">
+    <value>Effacer le calque sélectionné</value>
+  </data>
+  <data name="newLayerRulerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAADEDgAAxA4AAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/5kA/5kA/5kA/5kA/5kA
+        /5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kAAAAAAAAA/5kADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM
+        DAwMDAwMDAwMDAwM/5kAAAAAAAAA/5kADAwMMzP/DAwMMzP/DAwMMzP/DAwMMzP/DAwMMzP/DAwMDAwM
+        /5kAAAAAAAAA/5kADAwMMzP/MzP/MzP/MzP/MzP/MzP/MzP/MzP/MzP/DAwM/5kA/5kAAAAAAAAA/5kA
+        DAwMMzP/DAwMDAwMDAwMDAwMDAwMMzP/MzP/DAwM/5kA/5kAmQAAAAAAAAAA/5kADAwMMzP/DAwMzJkz
+        zJkzDAwMMzP/MzP/DAwMmQAA/5kAmQAAAP//AAAAAAAA/5kADAwMMzP/DAwMzJkzDAwMMzP/MzP/DAwM
+        /5kAAP///5kAAP///5kAAAAAAAAA/5kADAwMMzP/DAwMDAwMMzP/MzP/DAwM/5kAAP//mQAAmQAAmQAA
+        /5kAAAAAAAAA/5kADAwMMzP/DAwMMzP/MzP/DAwMmQAA/5kAAP//AP//AP//AP///5kAAAAAAAAA/5kA
+        DAwMMzP/MzP/MzP/DAwM/5kAAP//mQAA/5kAmQAAmQAAAP///5kAAAAAAAAA/5kADAwMMzP/MzP/DAwM
+        /5kAmQAA/5kAAP//mQAAAP//AP///5kA/5kAAAAAAAAA/5kADAwMMzP/DAwM/5kAmQAAAP///5kAAP//
+        AP///5kA/5kA/5kA/5kAAAAAAAAA/5kADAwMDAwM/5kAmQAAAP///5kA/5kA/5kA/5kA/5kA/5kA/5kA
+        /5kAAAAAAAAA/5kA/5kA/5kA/5kAAP///5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerRulerButton.ToolTip" xml:space="preserve">
+    <value>Ajouter un calque de mesure</value>
+  </data>
+  <data name="newLayerTextButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////////
+        ////////////////////////////////////AAAAAAAA////////////////////////////////////
+        ////////////////////AAAAAAAA////////////////AAAAAAAAAAAAAAAAAAAAAAAAv7+/////////
+        ////AAAAAAAA////////////////Pz8/Pz8/AAAAAAAAPz8/Pz8/z8/P////////////AAAAAAAA////
+        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
+        ////AAAAAAAA////////////////////////AAAAAAAA////////////////////////AAAAAAAA////
+        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
+        ////AAAAAAAA////////b29vPz8/z8/P////AAAAAAAA////////Pz8/Pz8/////////AAAAAAAA////
+        ////Pz8/AAAAv7+/////AAAAAAAA////////AAAAAAAA////////AAAAAAAA////////Pz8/AAAAX19f
+        f39/AAAAAAAAf39/f39/AAAAAAAA////////AAAAAAAA////////Pz8/AAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAA////////AAAAAAAA////////n5+ff39/f39/f39/f39/f39/f39/f39/f39/f39/////
+        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerTextButton.ToolTip" xml:space="preserve">
+    <value>Ajouter un calque de Texte</value>
+  </data>
+  <data name="newLayerAreaButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvJ/1vJ/19M+N9M+N9M+N
+        9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N
+        9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N
+        9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1
+        vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTw
+        UJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5
+        ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5
+        ccR5AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTI
+        baTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTw
+        UJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTw
+        UJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/
+        nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/nfn/AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerAreaButton.ToolTip" xml:space="preserve">
+    <value>Ajouter un calque de Zone</value>
+  </data>
+  <data name="newLayerBrickButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////7/Dx
+        YGttvsLD////////////////////////////AAAAAAAA/////////////v7+dHR0IzE0foSFk5OT+vr6
+        ////////////////////AAAAAAAA////NLAANK4BGVQAFEUAL54DBBoUDR0iK5IAM6sBNLAANLAA////
+        ////AAAAAAAA////NLAAIT4hBREEF0gAGFYIAAAAFk0NJDonDC8KGEkBNLAA////////AAAAAAAA////
+        NLAAIG0AKWUaGUUXAAEAG1wAM6oBAwsAEiMjKGoXGFMD8PHx////AAAAAAAA////NLAAGEsALp0DDyAm
+        CB8XFkYBFk4FAQQAKo4FDiQXEyImmJ6fpqutAAAAAAAA////NLAANLAAM6wAI3UAJW8OIkcmAAAAInUJ
+        MaQCAwsAEkIHaXBzTllcAAAAAAAA////NLAAGEsANLAAGEsANLAABhoLFignGDcQEz8AAgUAM6cEZWVl
+        q6+xAAAAAAAA////NLAANLAANLAANLAANLAAL54EKpAEKGMcBhcdDjsOLJUCSUlJ9fX2AAAAAAAA////
+        NLAAGEsANLAAGEsANLAAGEsANLAAFEADEUIKIT0dEi4ccnp+////AAAAAAAA////NLAANLAANLAANLAA
+        NLAANLAANLAANLAANLAANLAAFEUAuLi4////AAAAAAAA////NLAAGEsANLAAGEsANLAAGEsANLAAGEsA
+        NLAAGEsANLAA////////AAAAAAAA////NLAANLAANLAANLAANLAANLAANLAANLAANLAANLAANLAA////
+        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerBrickButton.ToolTip" xml:space="preserve">
+    <value>Ajouter un calque de Brique</value>
+  </data>
+  <data name="newLayerGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsmkGsmkGsmkG////////
+        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
+        smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////
+        smkGAAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
+        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
+        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
+        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
+        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
+        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
+        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
+        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
+        ////AAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</value>
+  </data>
+  <data name="newLayerGridButton.ToolTip" xml:space="preserve">
+    <value>Ajouter un calque Grille</value>
+  </data>
+  <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhEAAQAIEAAAAAAP///////wAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAEAAQ
+        AAAIOQAFCBxIsKBBgQAAHDyYcGHBhA0dIoQoUQBEig4vRmSocePDjgoNgsRIcKTHjyc5phRJMmPLigcD
+        AgA7
+</value>
+  </data>
+  <data name="layerUpButton.ToolTip" xml:space="preserve">
+    <value>Monter le calque sélectionné</value>
+  </data>
+  <data name="layerDownButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhEAAQAIEAAAAAAP///////wAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAEAAQ
+        AAAIOAAFCBxIsKBBAQASAjhYUOFChgMdQoyoEKLDiw8JYpRocGPGhhstXpyIcSLCiiY5pvxIkqXJgwEB
+        ADs=
+</value>
+  </data>
+  <data name="layerDownButton.ToolTip" xml:space="preserve">
+    <value>Descendre le calque sélectionné</value>
+  </data>
+  <data name="DocumentDataPartListTabPage.Text" xml:space="preserve">
+    <value>Liste de pièces</value>
+  </data>
+  <data name="PartUsageListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkMAwAAAFFTeXN0
+        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
+        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0OAAAA
+        BFRleHQKSW1hZ2VJbmRleAxTdWJJdGVtQ291bnQIU3ViSXRlbTEIU3ViSXRlbTIIU3ViSXRlbTMIU3Vi
+        SXRlbTQIU3ViSXRlbTUIU3ViSXRlbTYJQmFja0NvbG9yB0NoZWNrZWQERm9udAlGb3JlQ29sb3IXVXNl
+        SXRlbVN0eWxlRm9yU3ViSXRlbXMBAAAEBAQEBAQEAAQEAAgIMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxp
+        c3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3
+        SXRlbStMaXN0Vmlld1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStM
+        aXN0Vmlld1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmll
+        d1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0
+        ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0CAAAA
+        FFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAETU3lzdGVtLkRyYXdpbmcuRm9udAMAAAAUU3lzdGVtLkRy
+        YXdpbmcuQ29sb3IDAAAAAQIAAAAGBAAAAAVUb3RhbP////8HAAAACQUAAAAJBgAAAAkHAAAACQgAAAAJ
+        CQAAAAkKAAAABfX///8UU3lzdGVtLkRyYXdpbmcuQ29sb3IEAAAABG5hbWUFdmFsdWUKa25vd25Db2xv
+        cgVzdGF0ZQEAAAAJBwcDAAAACgAAAAAAAAAAdwABAAAJDAAAAAHz////9f///woAAAAAAAAAAG4AAQAB
+        BQUAAAAxU3lzdGVtLldpbmRvd3MuRm9ybXMuTGlzdFZpZXdJdGVtK0xpc3RWaWV3U3ViSXRlbQQAAAAE
+        dGV4dARuYW1lBXN0eWxlCHVzZXJEYXRhAQEEAj5TeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0
+        ZW0rTGlzdFZpZXdTdWJJdGVtK1N1Ykl0ZW1TdHlsZQIAAAACAAAABg4AAAABMAoKCgEGAAAABQAAAAYP
+        AAAAAAoKCgEHAAAABQAAAAkPAAAACgoKAQgAAAAFAAAABhAAAAADTi9BCgoICAAAAAABCQAAAAUAAAAJ
+        EAAAAAoKCAgAAAAAAQoAAAAFAAAACRAAAAAKCgoFDAAAABNTeXN0ZW0uRHJhd2luZy5Gb250BAAAAARO
+        YW1lBFNpemUFU3R5bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQMAAAAbU3lzdGVt
+        LkRyYXdpbmcuR3JhcGhpY3NVbml0AwAAAAMAAAAGEQAAABRNaWNyb3NvZnQgU2FucyBTZXJpZgAABEEF
+        7v///xhTeXN0ZW0uRHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMAAAAAAAAABe3///8bU3lz
+        dGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
+</value>
+  </data>
+  <data name="PartUsageListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>472, 270</value>
+  </data>
+  <data name="DocumentDataPartListTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>472, 25</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DocumentDataPartListSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>270</value>
+  </data>
+  <data name="SplitPartUsagePerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 17</value>
+  </data>
+  <data name="SplitPartUsagePerLayerCheckBox.Text" xml:space="preserve">
+    <value>Séparer par couche</value>
+  </data>
+  <data name="IncludeHiddenLayerInPartListCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 17</value>
+  </data>
+  <data name="IncludeHiddenLayerInPartListCheckBox.Text" xml:space="preserve">
+    <value>Inclure les pièces cachées</value>
+  </data>
+  <data name="DocumentDataPropertiesTabPage.Text" xml:space="preserve">
+    <value>Propriétés</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Couleur de fond :</value>
+  </data>
+  <data name="labelComment.Text" xml:space="preserve">
+    <value>Commentaire :</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>tenons</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Hauteur :</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Largeur :</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>tenons</value>
+  </data>
+  <data name="labelDate.Text" xml:space="preserve">
+    <value>Date :</value>
+  </data>
+  <data name="labelEvent.Text" xml:space="preserve">
+    <value>Evènement :</value>
+  </data>
+  <data name="labelLUG.Text" xml:space="preserve">
+    <value>LUG/LTC :</value>
+  </data>
+  <data name="labelAuthor.Text" xml:space="preserve">
+    <value>Auteur :</value>
+  </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 20</value>
+    <value>54, 20</value>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Fichier</value>
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
+    <value>292, 22</value>
   </data>
   <data name="newToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Nouveau</value>
   </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
+    <value>292, 22</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ouvrir...</value>
   </data>
   <data name="openRecentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
+    <value>292, 22</value>
   </data>
   <data name="openRecentToolStripMenuItem.Text" xml:space="preserve">
     <value>Fichiers Récents</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 6</value>
+    <value>289, 6</value>
   </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
+    <value>292, 22</value>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Enregistrer</value>
   </data>
   <data name="saveasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
+    <value>292, 22</value>
   </data>
   <data name="saveasToolStripMenuItem.Text" xml:space="preserve">
     <value>Enregistrer &amp;Sous...</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
+    <value>292, 22</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Text" xml:space="preserve">
     <value>Exporter en &amp;Image...</value>
   </data>
   <data name="exportPartListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
+    <value>292, 22</value>
   </data>
   <data name="exportPartListToolStripMenuItem.Text" xml:space="preserve">
     <value>Exporter la liste de &amp;Pièces...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 6</value>
+    <value>289, 6</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
+    <value>292, 22</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Text" xml:space="preserve">
     <value>Recharger la librairie de pièces</value>
   </data>
   <data name="downloadAdditionnalPartsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
+    <value>292, 22</value>
   </data>
   <data name="downloadAdditionnalPartsToolStripMenuItem.Text" xml:space="preserve">
     <value>Télécharger des pièces supplémentaires...</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
+    <value>292, 22</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Text" xml:space="preserve">
     <value>Sauvegarder la sélection dans la librairie...</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 6</value>
+    <value>289, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
+    <value>292, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Quitter</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 20</value>
+    <value>56, 20</value>
   </data>
   <data name="editToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Edition</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="undoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Défaire</value>
   </data>
   <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="redoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Refaire</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 6</value>
+    <value>240, 6</value>
   </data>
   <data name="cutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="cutToolStripMenuItem.Text" xml:space="preserve">
     <value>Couper</value>
   </data>
   <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Copier</value>
   </data>
   <data name="pasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="pasteToolStripMenuItem.Text" xml:space="preserve">
     <value>Co&amp;ller</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Supprimer</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 6</value>
+    <value>240, 6</value>
   </data>
   <data name="findAndReplaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="findAndReplaceToolStripMenuItem.Text" xml:space="preserve">
     <value>Chercher et &amp;Remplacer...</value>
   </data>
   <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 6</value>
+    <value>240, 6</value>
   </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Sélectionner &amp;Tout</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Déselectionner tout</value>
   </data>
   <data name="selectPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Sélectionner le chemin</value>
   </data>
   <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
     <value>Groupe</value>
   </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 22</value>
+    <value>172, 22</value>
   </data>
   <data name="groupToolStripMenuItem.Text" xml:space="preserve">
     <value>Grouper</value>
   </data>
   <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 22</value>
+    <value>172, 22</value>
   </data>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Dégrouper</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 6</value>
+    <value>240, 6</value>
   </data>
   <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="transformToolStripMenuItem.Text" xml:space="preserve">
     <value>Transformer</value>
   </data>
   <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Pas de déplacement</value>
   </data>
-  <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
-  </data>
   <data name="moveStepDisabledToolStripMenuItem.Text" xml:space="preserve">
     <value>Désactivé</value>
-  </data>
-  <data name="moveStep32ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
   </data>
   <data name="moveStep32ToolStripMenuItem.Text" xml:space="preserve">
     <value>32 tenons</value>
   </data>
-  <data name="moveStep16ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
-  </data>
   <data name="moveStep16ToolStripMenuItem.Text" xml:space="preserve">
     <value>16 tenons</value>
-  </data>
-  <data name="moveStep8ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Text" xml:space="preserve">
     <value>8 tenons</value>
   </data>
-  <data name="moveStep4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
-  </data>
   <data name="moveStep4ToolStripMenuItem.Text" xml:space="preserve">
     <value>4 tenons</value>
   </data>
-  <data name="moveStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
+  <data name="moveStep2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>2 tenons</value>
   </data>
   <data name="moveStep1ToolStripMenuItem.Text" xml:space="preserve">
     <value>1 tenon</value>
-  </data>
-  <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Text" xml:space="preserve">
     <value>1/2 tenon</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Text" xml:space="preserve">
     <value>Envoyer en arrière plan</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
     <value>Mettre en avant plan</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 6</value>
+    <value>221, 6</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Pas de rotation</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotation horaire</value>
   </data>
   <data name="rotateCCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotation anti-horaire</value>
   </data>
   <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
     <value>Outil de peinture</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Text" xml:space="preserve">
     <value>Peindre</value>
   </data>
   <data name="paintToolEraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="paintToolEraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Gommer</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 6</value>
+    <value>172, 6</value>
   </data>
   <data name="paintToolChooseColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Choisir la couleur...</value>
   </data>
   <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
     <value>Outil de mesure</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>185, 22</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Text" xml:space="preserve">
     <value>Sélectionner et éditer</value>
   </data>
   <data name="addRulerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>185, 22</value>
   </data>
   <data name="addRulerToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter une règle</value>
   </data>
   <data name="addCircleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>185, 22</value>
   </data>
   <data name="addCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter un cercle</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 6</value>
+    <value>240, 6</value>
   </data>
   <data name="mapBackgroundColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="mapBackgroundColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Couleur de &amp;Fond du plan...</value>
   </data>
   <data name="currentLayerOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="currentLayerOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>Options du c&amp;alque courant...</value>
   </data>
   <data name="preferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 22</value>
+    <value>243, 22</value>
   </data>
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>Préférences...</value>
   </data>
   <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 20</value>
+    <value>39, 20</value>
   </data>
   <data name="viewToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Vue</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>227, 22</value>
   </data>
   <data name="toolbarMenuItem.Text" xml:space="preserve">
     <value>Barre d'&amp;Outils</value>
   </data>
   <data name="statusBarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>227, 22</value>
   </data>
   <data name="statusBarMenuItem.Text" xml:space="preserve">
     <value>Barre de &amp;Statut</value>
   </data>
   <data name="watermarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>227, 22</value>
   </data>
   <data name="watermarkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Filigrane</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>224, 6</value>
   </data>
   <data name="electricCircuitsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>227, 22</value>
   </data>
   <data name="electricCircuitsMenuItem.Text" xml:space="preserve">
     <value>Circuit &amp;électrique</value>
   </data>
   <data name="connectionPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>227, 22</value>
   </data>
   <data name="connectionPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>Points de &amp;connection</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>227, 22</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>Points d'attache des mesures</value>
   </data>
   <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>227, 22</value>
   </data>
   <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
     <value>Con&amp;tours</value>
   </data>
   <data name="hullsBricksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 22</value>
+    <value>166, 22</value>
   </data>
   <data name="hullsBricksToolStripMenuItem.Text" xml:space="preserve">
     <value>Pièces</value>
   </data>
   <data name="hullsTextsAndRulersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 22</value>
+    <value>166, 22</value>
   </data>
   <data name="hullsTextsAndRulersToolStripMenuItem.Text" xml:space="preserve">
     <value>Textes et mesures</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Nouveau</value>
   </data>
   <data name="budgetOpenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="budgetOpenToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ouvrir...</value>
   </data>
   <data name="budgetImportAndMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="budgetImportAndMergeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Importer et fusionner...</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 6</value>
+    <value>282, 6</value>
   </data>
   <data name="budgetCloseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="budgetCloseToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Fermer</value>
   </data>
   <data name="budgetSaveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="budgetSaveToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Enregistrer</value>
   </data>
   <data name="budgetSaveAsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="budgetSaveAsToolStripMenuItem.Text" xml:space="preserve">
     <value>Enregistrer &amp;Sous...</value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 6</value>
+    <value>282, 6</value>
   </data>
   <data name="showOnlyBudgetedPartsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="showOnlyBudgetedPartsToolStripMenuItem.Text" xml:space="preserve">
     <value>Afficher seulement les pièces budgetées</value>
   </data>
   <data name="showBudgetNumbersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="showBudgetNumbersToolStripMenuItem.Text" xml:space="preserve">
     <value>Afficher les &amp;budgets</value>
   </data>
   <data name="useBudgetLimitationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="useBudgetLimitationToolStripMenuItem.Text" xml:space="preserve">
     <value>Utiliser la limite de budget</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 20</value>
+    <value>43, 20</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Aide</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 22</value>
+    <value>199, 22</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Contenu et Index</value>
   </data>
   <data name="aboutBlueBrickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 22</value>
+    <value>199, 22</value>
   </data>
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;A propos de BlueBrick...</value>
@@ -780,38 +996,23 @@
   <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
     <value>Selectionner le pas de la grille aimantée</value>
   </data>
-  <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
-  </data>
   <data name="toolBarGrid32Button.Text" xml:space="preserve">
     <value>32 tenons</value>
-  </data>
-  <data name="toolBarGrid16Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
   </data>
   <data name="toolBarGrid16Button.Text" xml:space="preserve">
     <value>16 tenons</value>
   </data>
-  <data name="toolBarGrid8Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
-  </data>
   <data name="toolBarGrid8Button.Text" xml:space="preserve">
     <value>8 tenons</value>
-  </data>
-  <data name="toolBarGrid4Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
   </data>
   <data name="toolBarGrid4Button.Text" xml:space="preserve">
     <value>4 tenons</value>
   </data>
-  <data name="toolBarGrid1Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
+  <data name="toolBarGrid2Button.Text" xml:space="preserve">
+    <value>2 tenons</value>
   </data>
   <data name="toolBarGrid1Button.Text" xml:space="preserve">
     <value>1 tenon</value>
-  </data>
-  <data name="toolBarGrid05Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 22</value>
   </data>
   <data name="toolBarGrid05Button.Text" xml:space="preserve">
     <value>1/2 tenon</value>
@@ -890,7 +1091,7 @@
 </value>
   </data>
   <data name="paintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>185, 22</value>
   </data>
   <data name="paintToolStripMenuItem.Text" xml:space="preserve">
     <value>Peindre</value>
@@ -904,7 +1105,7 @@
 </value>
   </data>
   <data name="eraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>185, 22</value>
   </data>
   <data name="eraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Gommer</value>
@@ -918,7 +1119,7 @@
 </value>
   </data>
   <data name="rulerSelectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>185, 22</value>
   </data>
   <data name="rulerSelectAndEditToolStripMenuItem.Text" xml:space="preserve">
     <value>Sélectionner et éditer</value>
@@ -932,7 +1133,7 @@
 </value>
   </data>
   <data name="rulerAddRulerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>185, 22</value>
   </data>
   <data name="rulerAddRulerToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter une règle</value>
@@ -946,7 +1147,7 @@
 </value>
   </data>
   <data name="rulerAddCircleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>185, 22</value>
   </data>
   <data name="rulerAddCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter un cercle</value>
@@ -966,150 +1167,6 @@
   <data name="saveExportImageDialog.Title" xml:space="preserve">
     <value>Exporter une image sous</value>
   </data>
-  <data name="textBoxPartFilter.ToolTip" xml:space="preserve">
-    <value>Entrez des mots clefs pour filtrer la liste des pièces.
-Utilisez le caractère - devant un mot clef pour exclure des pièces.
-Utilisez le caractère # devant un mot clef pour spécifier un identifiant de pièce.
-Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
-  </data>
-  <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
-    <value>Applique le filtre sur tous les onglets ou seulement sur l'onglet courant.</value>
-  </data>
-  <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhCwAOAIIAAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
-        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
-        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
-</value>
-  </data>
-  <data name="trashLayerButton.ToolTip" xml:space="preserve">
-    <value>Effacer le calque sélectionné</value>
-  </data>
-  <data name="newLayerRulerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAADEDgAAxA4AAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/5kA/5kA/5kA/5kA/5kA
-        /5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kAAAAAAAAA/5kADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM
-        DAwMDAwMDAwMDAwM/5kAAAAAAAAA/5kADAwMMzP/DAwMMzP/DAwMMzP/DAwMMzP/DAwMMzP/DAwMDAwM
-        /5kAAAAAAAAA/5kADAwMMzP/MzP/MzP/MzP/MzP/MzP/MzP/MzP/MzP/DAwM/5kA/5kAAAAAAAAA/5kA
-        DAwMMzP/DAwMDAwMDAwMDAwMDAwMMzP/MzP/DAwM/5kA/5kAmQAAAAAAAAAA/5kADAwMMzP/DAwMzJkz
-        zJkzDAwMMzP/MzP/DAwMmQAA/5kAmQAAAP//AAAAAAAA/5kADAwMMzP/DAwMzJkzDAwMMzP/MzP/DAwM
-        /5kAAP///5kAAP///5kAAAAAAAAA/5kADAwMMzP/DAwMDAwMMzP/MzP/DAwM/5kAAP//mQAAmQAAmQAA
-        /5kAAAAAAAAA/5kADAwMMzP/DAwMMzP/MzP/DAwMmQAA/5kAAP//AP//AP//AP///5kAAAAAAAAA/5kA
-        DAwMMzP/MzP/MzP/DAwM/5kAAP//mQAA/5kAmQAAmQAAAP///5kAAAAAAAAA/5kADAwMMzP/MzP/DAwM
-        /5kAmQAA/5kAAP//mQAAAP//AP///5kA/5kAAAAAAAAA/5kADAwMMzP/DAwM/5kAmQAAAP///5kAAP//
-        AP///5kA/5kA/5kA/5kAAAAAAAAA/5kADAwMDAwM/5kAmQAAAP///5kA/5kA/5kA/5kA/5kA/5kA/5kA
-        /5kAAAAAAAAA/5kA/5kA/5kA/5kAAP///5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kA/5kAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerRulerButton.ToolTip" xml:space="preserve">
-    <value>Ajouter un calque de mesure</value>
-  </data>
-  <data name="newLayerTextButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////////
-        ////////////////////////////////////AAAAAAAA////////////////////////////////////
-        ////////////////////AAAAAAAA////////////////AAAAAAAAAAAAAAAAAAAAAAAAv7+/////////
-        ////AAAAAAAA////////////////Pz8/Pz8/AAAAAAAAPz8/Pz8/z8/P////////////AAAAAAAA////
-        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
-        ////AAAAAAAA////////////////////////AAAAAAAA////////////////////////AAAAAAAA////
-        ////////////////////AAAAAAAA////////////////////////AAAAAAAA////////////////////
-        ////AAAAAAAA////////b29vPz8/z8/P////AAAAAAAA////////Pz8/Pz8/////////AAAAAAAA////
-        ////Pz8/AAAAv7+/////AAAAAAAA////////AAAAAAAA////////AAAAAAAA////////Pz8/AAAAX19f
-        f39/AAAAAAAAf39/f39/AAAAAAAA////////AAAAAAAA////////Pz8/AAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAA////////AAAAAAAA////////n5+ff39/f39/f39/f39/f39/f39/f39/f39/f39/////
-        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerTextButton.ToolTip" xml:space="preserve">
-    <value>Ajouter un calque de Texte</value>
-  </data>
-  <data name="newLayerAreaButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvJ/1vJ/19M+N9M+N9M+N
-        9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N
-        9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N
-        9M+NAAAAAAAAvJ/1vJ/19M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+N9M+NAAAAAAAAvJ/1
-        vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTw
-        UJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5
-        ccR5ccR5ccR5ccR5ccR5AAAAAAAAvJ/1vJ/1UJTwUJTwUJTwUJTwccR5ccR5ccR5ccR5ccR5ccR5ccR5
-        ccR5AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTI
-        baTIUJTwUJTwUJTwUJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTw
-        UJTwUJTwUJTwUJTwUJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIUJTwUJTwUJTwUJTwUJTwUJTwUJTw
-        UJTwnfn/nfn/nfn/nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/
-        nfn/AAAAAAAAbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTIbaTInfn/nfn/nfn/nfn/AAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerAreaButton.ToolTip" xml:space="preserve">
-    <value>Ajouter un calque de Zone</value>
-  </data>
-  <data name="newLayerBrickButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////7/Dx
-        YGttvsLD////////////////////////////AAAAAAAA/////////////v7+dHR0IzE0foSFk5OT+vr6
-        ////////////////////AAAAAAAA////NLAANK4BGVQAFEUAL54DBBoUDR0iK5IAM6sBNLAANLAA////
-        ////AAAAAAAA////NLAAIT4hBREEF0gAGFYIAAAAFk0NJDonDC8KGEkBNLAA////////AAAAAAAA////
-        NLAAIG0AKWUaGUUXAAEAG1wAM6oBAwsAEiMjKGoXGFMD8PHx////AAAAAAAA////NLAAGEsALp0DDyAm
-        CB8XFkYBFk4FAQQAKo4FDiQXEyImmJ6fpqutAAAAAAAA////NLAANLAAM6wAI3UAJW8OIkcmAAAAInUJ
-        MaQCAwsAEkIHaXBzTllcAAAAAAAA////NLAAGEsANLAAGEsANLAABhoLFignGDcQEz8AAgUAM6cEZWVl
-        q6+xAAAAAAAA////NLAANLAANLAANLAANLAAL54EKpAEKGMcBhcdDjsOLJUCSUlJ9fX2AAAAAAAA////
-        NLAAGEsANLAAGEsANLAAGEsANLAAFEADEUIKIT0dEi4ccnp+////AAAAAAAA////NLAANLAANLAANLAA
-        NLAANLAANLAANLAANLAANLAAFEUAuLi4////AAAAAAAA////NLAAGEsANLAAGEsANLAAGEsANLAAGEsA
-        NLAAGEsANLAA////////AAAAAAAA////NLAANLAANLAANLAANLAANLAANLAANLAANLAANLAANLAA////
-        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerBrickButton.ToolTip" xml:space="preserve">
-    <value>Ajouter un calque de Brique</value>
-  </data>
-  <data name="newLayerGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsmkGsmkGsmkG////////
-        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
-        smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////
-        smkGAAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
-        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
-        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
-        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
-        ////AAAAAAAA////////////////////////////////////////////////////////AAAAAAAAsmkG
-        smkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////
-        smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////
-        smkGsmkGsmkG////smkGAAAAAAAA////////////////////////////////////////////////////
-        ////AAAAAAAAsmkGsmkGsmkG////////smkGsmkGsmkG////smkGsmkGsmkG////smkGAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</value>
-  </data>
-  <data name="newLayerGridButton.ToolTip" xml:space="preserve">
-    <value>Ajouter un calque Grille</value>
-  </data>
-  <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEAAQAIEAAAAAAP///////wAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAEAAQ
-        AAAIOQAFCBxIsKBBgQAAHDyYcGHBhA0dIoQoUQBEig4vRmSocePDjgoNgsRIcKTHjyc5phRJMmPLigcD
-        AgA7
-</value>
-  </data>
-  <data name="layerUpButton.ToolTip" xml:space="preserve">
-    <value>Monter le calque sélectionné</value>
-  </data>
-  <data name="layerDownButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEAAQAIEAAAAAAP///////wAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAEAAQ
-        AAAIOAAFCBxIsKBBAQASAjhYUOFChgMdQoyoEKLDiw8JYpRocGPGhhstXpyIcSLCiiY5pvxIkqXJgwEB
-        ADs=
-</value>
-  </data>
-  <data name="layerDownButton.ToolTip" xml:space="preserve">
-    <value>Descendre le calque sélectionné</value>
-  </data>
   <data name="openBudgetFileDialog.Filter" xml:space="preserve">
     <value>Budget BlueBrick (*.bbb)|*.bbb|Tous les fichiers (*.*)|*.*</value>
   </data>
@@ -1124,96 +1181,6 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   </data>
   <data name="exportPartListFileDialog.Title" xml:space="preserve">
     <value>Exporter la liste de pièces</value>
-  </data>
-  <data name="DocumentDataLayerTabPage.Text" xml:space="preserve">
-    <value>Couches</value>
-  </data>
-  <data name="DocumentDataPartListTabPage.Text" xml:space="preserve">
-    <value>Liste de pièces</value>
-  </data>
-  <data name="PartUsageListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkMAwAAAFFTeXN0
-        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
-        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0OAAAA
-        BFRleHQKSW1hZ2VJbmRleAxTdWJJdGVtQ291bnQIU3ViSXRlbTEIU3ViSXRlbTIIU3ViSXRlbTMIU3Vi
-        SXRlbTQIU3ViSXRlbTUIU3ViSXRlbTYJQmFja0NvbG9yB0NoZWNrZWQERm9udAlGb3JlQ29sb3IXVXNl
-        SXRlbVN0eWxlRm9yU3ViSXRlbXMBAAAEBAQEBAQEAAQEAAgIMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxp
-        c3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3
-        SXRlbStMaXN0Vmlld1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStM
-        aXN0Vmlld1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmll
-        d1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0
-        ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0CAAAA
-        FFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAETU3lzdGVtLkRyYXdpbmcuRm9udAMAAAAUU3lzdGVtLkRy
-        YXdpbmcuQ29sb3IDAAAAAQIAAAAGBAAAAAVUb3RhbP////8HAAAACQUAAAAJBgAAAAkHAAAACQgAAAAJ
-        CQAAAAkKAAAABfX///8UU3lzdGVtLkRyYXdpbmcuQ29sb3IEAAAABG5hbWUFdmFsdWUKa25vd25Db2xv
-        cgVzdGF0ZQEAAAAJBwcDAAAACgAAAAAAAAAAdwABAAAJDAAAAAHz////9f///woAAAAAAAAAAG4AAQAB
-        BQUAAAAxU3lzdGVtLldpbmRvd3MuRm9ybXMuTGlzdFZpZXdJdGVtK0xpc3RWaWV3U3ViSXRlbQQAAAAE
-        dGV4dARuYW1lBXN0eWxlCHVzZXJEYXRhAQEEAj5TeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0
-        ZW0rTGlzdFZpZXdTdWJJdGVtK1N1Ykl0ZW1TdHlsZQIAAAACAAAABg4AAAABMAoKCgEGAAAABQAAAAYP
-        AAAAAAoKCgEHAAAABQAAAAkPAAAACgoKAQgAAAAFAAAABhAAAAADTi9BCgoICAAAAAABCQAAAAUAAAAJ
-        EAAAAAoKCAgAAAAAAQoAAAAFAAAACRAAAAAKCgoFDAAAABNTeXN0ZW0uRHJhd2luZy5Gb250BAAAAARO
-        YW1lBFNpemUFU3R5bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQMAAAAbU3lzdGVt
-        LkRyYXdpbmcuR3JhcGhpY3NVbml0AwAAAAMAAAAGEQAAABRNaWNyb3NvZnQgU2FucyBTZXJpZgAABEEF
-        7v///xhTeXN0ZW0uRHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMAAAAAAAAABe3///8bU3lz
-        dGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
-</value>
-  </data>
-  <data name="PartUsageListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 272</value>
-  </data>
-  <data name="DocumentDataPartListTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 25</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="DocumentDataPartListSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>272</value>
-  </data>
-  <data name="SplitPartUsagePerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 17</value>
-  </data>
-  <data name="SplitPartUsagePerLayerCheckBox.Text" xml:space="preserve">
-    <value>Séparer par couche</value>
-  </data>
-  <data name="IncludeHiddenLayerInPartListCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 17</value>
-  </data>
-  <data name="IncludeHiddenLayerInPartListCheckBox.Text" xml:space="preserve">
-    <value>Inclure les pièces cachées</value>
-  </data>
-  <data name="DocumentDataPropertiesTabPage.Text" xml:space="preserve">
-    <value>Propriétés</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Couleur de fond :</value>
-  </data>
-  <data name="labelComment.Text" xml:space="preserve">
-    <value>Commentaire :</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>tenons</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Hauteur :</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Largeur :</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>tenons</value>
-  </data>
-  <data name="labelDate.Text" xml:space="preserve">
-    <value>Date :</value>
-  </data>
-  <data name="labelEvent.Text" xml:space="preserve">
-    <value>Evènement :</value>
-  </data>
-  <data name="labelLUG.Text" xml:space="preserve">
-    <value>LUG/LTC :</value>
-  </data>
-  <data name="labelAuthor.Text" xml:space="preserve">
-    <value>Auteur :</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

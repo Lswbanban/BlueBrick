@@ -2144,6 +2144,12 @@ namespace BlueBrick
 			enableSnapGridButton(true, 4.0f);
 		}
 
+		private void moveStep2ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// enable the toolbar and the menu item
+			enableSnapGridButton(true, 2.0f);
+		}
+
 		private void moveStep1ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// enable the toolbar and the menu item

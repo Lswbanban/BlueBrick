@@ -111,14 +111,25 @@ Open bugs:
 		- The reset to default button in the bottom of the screen, will point again on the file in the config folder
 		- And we may add some explanation text in the preference window ()
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon): necessite une nouvelle version du format BBM
-- [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages
+- [target 1.9] BUG (Matthias): The export window doesn't remember the type of the image file exported
+- [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages:
+	- les lignes verticales et horizontale sont sélectionnables et bougeable à la souris, et la position est ajustable dans le cadre margins
+	- Il faut une sorte de rulers en haut et en bas, pour setter la valeur en studs, pour remplacer les margins
+	- Donc les 4 valeur de margin disparaissent, puisque les lignes de margin deviennent de simple rulers à déplacer.
+	- Puis ajouter un overlay en gris pour les marges coupées.
+	- Mais attention en fait il faut garder la même résolution sur toutes les images. Mais si on élargie trop un ruler et que la résolution max de l'image est atteinte, alors on réduit la résolution. Du coup, on ne peut plus éditer la taille de l'image? Sauf si une seule image? Ou alors il faut cliquer sur l'image qu'on veut éditer, changer sa taille, ce qui change la résolution. Mais les contrainte sont chainte, car la taille limite dépends de la réso et de la plus grande image, pas de l'image qu'on édite.
+	- Oui je pense afficher les dimensions en pixels dans le règles en haut devrait suffire, pour chaque colones et lignes
+	- Juste à l'init de la fenetre on calcule une réso conseillé, en fonction de la taille du layout, et ce pour une seule image
+- [target 1.9] BUG (Matthias): If a part name contains a dot, the full name is not properly displayed.
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
 - [target 1.9] MISSING FEATURE (Alban): Scrollbars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
+- [target 1.9] MISSING FEATURE (Evans): a possibility to show the current interruption of the 12V circuit breaker rail
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
 - [target 1.9] REFACTORING: replace the progress bar by track bar for editing transparency of the layers
+- [target 1.9] BUG (Alban): The selection should be cleared when exporting the image (to avoid drawing the selection and free connection point). Then the selection should be reset to what it was when the export window is closed.
 - MISSING FEATURE (Matthias): BlueBrick should check if there's new library package available in background after launch.
 - MISSING FEATURE (Matthias): Better resolution for part images (Images can have an additional <scale> property in the xml-File, if no scale parameter is provided, the default resolution of 8 pixels/stud is used)
 - MISSING FEATURE (zephyr1934): Add a favorite feature where you can tag a part as your favorite, and display all your favorite parts in a specific tab of the library
@@ -167,6 +178,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): Add a new mouse cursor for when the user press the shift key (before moving the mouse)
 - NEW FEATURE (Alban): Add a "Properties..." menu item in the contextual menu to edit the texts and rulers
 - NEW FEATURE (Alban): Add some settings to edit the two Hull colors and thickness (brick and other) in the Preference window (Appearance tab)
+- NEW FEATURE (Matthias): Add the 2 studs snapping.
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
 - BUGFIX (Alban): Fix a crash when duplicating parts very quickly with the ALT key (crash due to delay with the clipboard)

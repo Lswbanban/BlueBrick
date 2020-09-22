@@ -136,6 +136,7 @@ namespace BlueBrick
 			this.moveStep16ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.moveStep8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.moveStep4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moveStep2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.moveStep1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.moveStep05ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.sendToBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -205,6 +206,7 @@ namespace BlueBrick
 			this.toolBarGrid16Button = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolBarGrid8Button = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolBarGrid4Button = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolBarGrid2Button = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolBarGrid1Button = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolBarGrid05Button = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolBarRotationAngleButton = new System.Windows.Forms.ToolStripDropDownButton();
@@ -1055,6 +1057,7 @@ namespace BlueBrick
             this.moveStep16ToolStripMenuItem,
             this.moveStep8ToolStripMenuItem,
             this.moveStep4ToolStripMenuItem,
+            this.moveStep2ToolStripMenuItem,
             this.moveStep1ToolStripMenuItem,
             this.moveStep05ToolStripMenuItem});
 			this.moveStepToolStripMenuItem.Name = "moveStepToolStripMenuItem";
@@ -1091,6 +1094,12 @@ namespace BlueBrick
 			this.moveStep4ToolStripMenuItem.Name = "moveStep4ToolStripMenuItem";
 			resources.ApplyResources(this.moveStep4ToolStripMenuItem, "moveStep4ToolStripMenuItem");
 			this.moveStep4ToolStripMenuItem.Click += new System.EventHandler(this.moveStep4ToolStripMenuItem_Click);
+			// 
+			// moveStep2ToolStripMenuItem
+			// 
+			this.moveStep2ToolStripMenuItem.Name = "moveStep2ToolStripMenuItem";
+			resources.ApplyResources(this.moveStep2ToolStripMenuItem, "moveStep2ToolStripMenuItem");
+			this.moveStep2ToolStripMenuItem.Click += new System.EventHandler(this.moveStep2ToolStripMenuItem_Click);
 			// 
 			// moveStep1ToolStripMenuItem
 			// 
@@ -1563,6 +1572,7 @@ namespace BlueBrick
             this.toolBarGrid16Button,
             this.toolBarGrid8Button,
             this.toolBarGrid4Button,
+            this.toolBarGrid2Button,
             this.toolBarGrid1Button,
             this.toolBarGrid05Button});
 			resources.ApplyResources(this.toolBarSnapGridButton, "toolBarSnapGridButton");
@@ -1594,6 +1604,12 @@ namespace BlueBrick
 			this.toolBarGrid4Button.Name = "toolBarGrid4Button";
 			resources.ApplyResources(this.toolBarGrid4Button, "toolBarGrid4Button");
 			this.toolBarGrid4Button.Click += new System.EventHandler(this.moveStep4ToolStripMenuItem_Click);
+			// 
+			// toolBarGrid2Button
+			// 
+			this.toolBarGrid2Button.Name = "toolBarGrid2Button";
+			resources.ApplyResources(this.toolBarGrid2Button, "toolBarGrid2Button");
+			this.toolBarGrid2Button.Click += new System.EventHandler(this.moveStep2ToolStripMenuItem_Click);
 			// 
 			// toolBarGrid1Button
 			// 
@@ -2022,6 +2038,8 @@ namespace BlueBrick
 		private System.Windows.Forms.Button DocumentDataPropertiesMapBackgroundColorButton;
 		private System.Windows.Forms.TableLayoutPanel DocumentDataPartListTableLayoutPanel;
 		private System.Windows.Forms.CheckBox IncludeHiddenLayerInPartListCheckBox;
+		private System.Windows.Forms.ToolStripMenuItem moveStep2ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem toolBarGrid2Button;
 	}
 }
 
