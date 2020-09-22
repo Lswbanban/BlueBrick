@@ -382,5 +382,8 @@
     <Setting Name="OtherHullThickness" Type="System.Single" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="TemplateFilenameWhenCreatingANewMap" Type="System.String" Scope="User">
+      <Value Profile="(Default)">config/ClassicTemplate.bbm</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

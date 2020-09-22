@@ -505,17 +505,6 @@ namespace BlueBrick
 			enablePasteButton(false);
 			enableToolbarButtonOnItemSelection(false);
 			enableToolbarButtonOnLayerSelection(false, false, false);
-			// check if we need to open a file or create a new map
-			if ((fileToOpen != null) && canOpenThisFile(fileToOpen))
-			{
-				openMap(fileToOpen);
-			}
-			else
-			{
-				createNewMap();
-				// we update the list in the else because it is already updated in the openMap()
-				UpdateRecentFileMenuFromConfigFile();
-			}
 			// check if we need to open a budget at startup
 			if (Properties.Settings.Default.BudgetFilenameToLoadAtStartup != string.Empty)
 			{
@@ -529,6 +518,17 @@ namespace BlueBrick
 			{
 				updateEnableStatusForBudgetMenuItem();
 				this.PartUsageListView.updateBudgetNotification();
+			}
+			// check if we need to open a file or create a new map
+			if ((fileToOpen != null) && canOpenThisFile(fileToOpen))
+			{
+				openMap(fileToOpen);
+			}
+			else
+			{
+				createNewMap();
+				// we update the list in the else because it is already updated in the openMap()
+				UpdateRecentFileMenuFromConfigFile();
 			}
 		}
 
@@ -1300,31 +1300,23 @@ namespace BlueBrick
 		{
 			// trash the previous map
 			reinitializeCurrentMap();
-			// declare a variable to eventually choose the best layer to select after adding all of them
-			Layer layerToSelect = null;
-			// check if we need to add layer
-			if (Properties.Settings.Default.AddGridLayerOnNewMap)
-				ActionManager.Instance.doAction(new AddLayer("LayerGrid", false));
-			if (Properties.Settings.Default.AddBrickLayerOnNewMap)
+
+			// check the name of the template file to load when creating a new map, and load it if it is valid
+			string templateFileToOpen = Properties.Settings.Default.TemplateFilenameWhenCreatingANewMap;
+			if ((templateFileToOpen != null) && File.Exists(templateFileToOpen) && canOpenThisFile(templateFileToOpen))
 			{
+				// the template file seems valid, so open it
+				openMap(templateFileToOpen, true);
+			}
+			else
+			{
+				// no valid template file, create a default map with default settings
+				ActionManager.Instance.doAction(new AddLayer("LayerGrid", false));
 				ActionManager.Instance.doAction(new AddLayer("LayerBrick", false));
 				// by preference we want to select the brick layer
-				layerToSelect = Map.Instance.SelectedLayer;
+				Map.Instance.SelectedLayer = Map.Instance.SelectedLayer;
 			}
-			if (Properties.Settings.Default.AddAreaLayerOnNewMap)
-				ActionManager.Instance.doAction(new AddLayer("LayerArea", false));
-			if (Properties.Settings.Default.AddTextLayerOnNewMap)
-			{
-				ActionManager.Instance.doAction(new AddLayer("LayerText", false));
-				// if there's no brick layer, the second choice is to select the text layer
-				if (layerToSelect == null)
-					layerToSelect = Map.Instance.SelectedLayer;
-			}
-			if (Properties.Settings.Default.AddRulerLayerOnNewMap)
-				ActionManager.Instance.doAction(new AddLayer("LayerRuler", false));
-			// now select the prefered layer if any
-			if (layerToSelect != null)
-				Map.Instance.SelectedLayer = layerToSelect;
+
 			// after adding the two default layer, we reset the WasModified flag of the map
 			// (and before the update of the title bar)
 			Map.Instance.WasModified = false;
@@ -1348,7 +1340,7 @@ namespace BlueBrick
 			updateTitleBar();
 		}
 
-		private void openMap(string filename)
+		private void openMap(string filename, bool isTemplateFile = false)
 		{
 			// set the wait cursor
 			this.Cursor = Cursors.WaitCursor;
@@ -1388,12 +1380,13 @@ namespace BlueBrick
 			// restore the cursor after loading
 			this.Cursor = Cursors.Default;
 			// save the current file name of the loaded map
-			if (isFileValid)
+			if (isFileValid && !isTemplateFile)
 				changeCurrentMapFileName(filename, true);
 			else
 				changeCurrentMapFileName(Properties.Resources.DefaultSaveFileName, false);
 			// update the recent file list
-			UpdateRecentFileMenuFromConfigFile(filename, isFileValid);
+			if (!isTemplateFile)
+				UpdateRecentFileMenuFromConfigFile(filename, isFileValid);
 			// force a garbage collect because we just trashed the previous map
 			GC.Collect();
 		}
