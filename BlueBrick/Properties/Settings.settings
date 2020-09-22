@@ -11,12 +11,6 @@
     <Setting Name="WheelMouseIsZoomOnCursor" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="AddGridLayerOnNewMap" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="AddBrickLayerOnNewMap" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="UndoStackDepth" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
@@ -34,15 +28,6 @@
     </Setting>
     <Setting Name="DefaultSubGridColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">LightGray</Value>
-    </Setting>
-    <Setting Name="DefaultLUG" Type="System.String" Scope="User">
-      <Value Profile="(Default)">***NotInitialized***</Value>
-    </Setting>
-    <Setting Name="DefaultShow" Type="System.String" Scope="User">
-      <Value Profile="(Default)">***NotInitialized***</Value>
-    </Setting>
-    <Setting Name="DefaultAuthor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">***NotInitialized***</Value>
     </Setting>
     <Setting Name="UndoStackDisplayedDepth" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
@@ -231,15 +216,6 @@
     </Setting>
     <Setting Name="DisplayWarningMessageForNotSavingInBBM" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="AddTextLayerOnNewMap" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="AddAreaLayerOnNewMap" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="AddRulerLayerOnNewMap" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="RulerControlPointRadiusInPixel" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>

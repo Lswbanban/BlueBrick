@@ -47,17 +47,8 @@ namespace BlueBrick
 			this.label8 = new System.Windows.Forms.Label();
 			this.undoRecordedNumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.authorTextBox = new System.Windows.Forms.TextBox();
-			this.addAreaLayerCheckBox = new System.Windows.Forms.CheckBox();
-			this.addRulerLayerCheckBox = new System.Windows.Forms.CheckBox();
-			this.addTextLayerCheckBox = new System.Windows.Forms.CheckBox();
-			this.showComboBox = new System.Windows.Forms.ComboBox();
-			this.lugComboBox = new System.Windows.Forms.ComboBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.addBrickLayerCheckBox = new System.Windows.Forms.CheckBox();
-			this.addGridLayerCheckBox = new System.Windows.Forms.CheckBox();
+			this.GeneralBrowseNewMapTemplateFileButton = new System.Windows.Forms.Button();
+			this.GeneralNewMapTemplateFilenameTextBox = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
@@ -118,6 +109,8 @@ namespace BlueBrick
 			this.defaultFontColorPictureBox = new System.Windows.Forms.PictureBox();
 			this.defaultFontButton = new System.Windows.Forms.Button();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.label45 = new System.Windows.Forms.Label();
+			this.label44 = new System.Windows.Forms.Label();
 			this.otherHullThicknessNumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.label43 = new System.Windows.Forms.Label();
 			this.otherHullColorPictureBox = new System.Windows.Forms.PictureBox();
@@ -194,8 +187,6 @@ namespace BlueBrick
 			this.restoreAllDefaultButton = new System.Windows.Forms.Button();
 			this.fontDialog = new System.Windows.Forms.FontDialog();
 			this.restoreTabDefaultButton = new System.Windows.Forms.Button();
-			this.label44 = new System.Windows.Forms.Label();
-			this.label45 = new System.Windows.Forms.Label();
 			this.optionsTabControl.SuspendLayout();
 			this.generalTabPage.SuspendLayout();
 			this.groupBox14.SuspendLayout();
@@ -429,86 +420,26 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Controls.Add(this.authorTextBox);
-			this.groupBox3.Controls.Add(this.addAreaLayerCheckBox);
-			this.groupBox3.Controls.Add(this.addRulerLayerCheckBox);
-			this.groupBox3.Controls.Add(this.addTextLayerCheckBox);
-			this.groupBox3.Controls.Add(this.showComboBox);
-			this.groupBox3.Controls.Add(this.lugComboBox);
-			this.groupBox3.Controls.Add(this.label7);
-			this.groupBox3.Controls.Add(this.label6);
-			this.groupBox3.Controls.Add(this.label5);
-			this.groupBox3.Controls.Add(this.addBrickLayerCheckBox);
-			this.groupBox3.Controls.Add(this.addGridLayerCheckBox);
+			this.groupBox3.Controls.Add(this.GeneralBrowseNewMapTemplateFileButton);
+			this.groupBox3.Controls.Add(this.GeneralNewMapTemplateFilenameTextBox);
 			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 
-			// authorTextBox
+			// GeneralBrowseNewMapTemplateFileButton
 			// 
-			resources.ApplyResources(this.authorTextBox, "authorTextBox");
-			this.authorTextBox.Name = "authorTextBox";
+			resources.ApplyResources(this.GeneralBrowseNewMapTemplateFileButton, "GeneralBrowseNewMapTemplateFileButton");
+			this.GeneralBrowseNewMapTemplateFileButton.Name = "GeneralBrowseNewMapTemplateFileButton";
+			this.GeneralBrowseNewMapTemplateFileButton.UseVisualStyleBackColor = true;
+			this.GeneralBrowseNewMapTemplateFileButton.Click += new System.EventHandler(this.GeneralBrowseNewMapTemplateFileButton_Click);
 			// 
-			// addAreaLayerCheckBox
+			// GeneralNewMapTemplateFilenameTextBox
 			// 
-			resources.ApplyResources(this.addAreaLayerCheckBox, "addAreaLayerCheckBox");
-			this.addAreaLayerCheckBox.Name = "addAreaLayerCheckBox";
-			this.addAreaLayerCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// addRulerLayerCheckBox
-			// 
-			resources.ApplyResources(this.addRulerLayerCheckBox, "addRulerLayerCheckBox");
-			this.addRulerLayerCheckBox.Name = "addRulerLayerCheckBox";
-			this.addRulerLayerCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// addTextLayerCheckBox
-			// 
-			resources.ApplyResources(this.addTextLayerCheckBox, "addTextLayerCheckBox");
-			this.addTextLayerCheckBox.Name = "addTextLayerCheckBox";
-			this.addTextLayerCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// showComboBox
-			// 
-			this.showComboBox.FormattingEnabled = true;
-			resources.ApplyResources(this.showComboBox, "showComboBox");
-			this.showComboBox.Name = "showComboBox";
-			// 
-			// lugComboBox
-			// 
-			this.lugComboBox.FormattingEnabled = true;
-			resources.ApplyResources(this.lugComboBox, "lugComboBox");
-			this.lugComboBox.Name = "lugComboBox";
-			// 
-			// label7
-			// 
-			resources.ApplyResources(this.label7, "label7");
-			this.label7.Name = "label7";
-			// 
-			// label6
-			// 
-			resources.ApplyResources(this.label6, "label6");
-			this.label6.Name = "label6";
-			// 
-			// label5
-			// 
-			resources.ApplyResources(this.label5, "label5");
-			this.label5.Name = "label5";
-			// 
-			// addBrickLayerCheckBox
-			// 
-			resources.ApplyResources(this.addBrickLayerCheckBox, "addBrickLayerCheckBox");
-			this.addBrickLayerCheckBox.Checked = true;
-			this.addBrickLayerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.addBrickLayerCheckBox.Name = "addBrickLayerCheckBox";
-			this.addBrickLayerCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// addGridLayerCheckBox
-			// 
-			resources.ApplyResources(this.addGridLayerCheckBox, "addGridLayerCheckBox");
-			this.addGridLayerCheckBox.Checked = true;
-			this.addGridLayerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.addGridLayerCheckBox.Name = "addGridLayerCheckBox";
-			this.addGridLayerCheckBox.UseVisualStyleBackColor = true;
+			this.GeneralNewMapTemplateFilenameTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+			resources.ApplyResources(this.GeneralNewMapTemplateFilenameTextBox, "GeneralNewMapTemplateFilenameTextBox");
+			this.GeneralNewMapTemplateFilenameTextBox.Name = "GeneralNewMapTemplateFilenameTextBox";
+			this.GeneralNewMapTemplateFilenameTextBox.ReadOnly = true;
+			this.GeneralNewMapTemplateFilenameTextBox.TabStop = false;
 			// 
 			// groupBox1
 			// 
@@ -534,7 +465,6 @@ namespace BlueBrick
 			this.languageComboBox.FormattingEnabled = true;
 			resources.ApplyResources(this.languageComboBox, "languageComboBox");
 			this.languageComboBox.Name = "languageComboBox";
-			this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.languageComboBox_SelectedIndexChanged);
 			// 
 			// editionTabPage
 			// 
@@ -1108,6 +1038,16 @@ namespace BlueBrick
 			resources.ApplyResources(this.groupBox5, "groupBox5");
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.TabStop = false;
+			// 
+			// label45
+			// 
+			resources.ApplyResources(this.label45, "label45");
+			this.label45.Name = "label45";
+			// 
+			// label44
+			// 
+			resources.ApplyResources(this.label44, "label44");
+			this.label44.Name = "label44";
 			// 
 			// otherHullThicknessNumericUpDown
 			// 
@@ -1767,16 +1707,6 @@ namespace BlueBrick
 			this.restoreTabDefaultButton.UseVisualStyleBackColor = true;
 			this.restoreTabDefaultButton.Click += new System.EventHandler(this.restoreTabDefaultButton_Click);
 			// 
-			// label44
-			// 
-			resources.ApplyResources(this.label44, "label44");
-			this.label44.Name = "label44";
-			// 
-			// label45
-			// 
-			resources.ApplyResources(this.label45, "label45");
-			this.label45.Name = "label45";
-			// 
 			// PreferencesForm
 			// 
 			this.AcceptButton = this.okButton;
@@ -1871,12 +1801,6 @@ namespace BlueBrick
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.GroupBox groupBox3;
-		private System.Windows.Forms.CheckBox addBrickLayerCheckBox;
-		private System.Windows.Forms.CheckBox addGridLayerCheckBox;
-		private System.Windows.Forms.TextBox authorTextBox;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.GroupBox groupBox4;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.NumericUpDown undoRecordedNumericUpDown;
@@ -1909,7 +1833,6 @@ namespace BlueBrick
 		private System.Windows.Forms.NumericUpDown gridSubdivisionNumericUpDown;
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.NumericUpDown gridSizeNumericUpDown;
-		private System.Windows.Forms.ComboBox lugComboBox;
 		private System.Windows.Forms.GroupBox groupBox9;
 		private System.Windows.Forms.Label label27;
 		private System.Windows.Forms.NumericUpDown areaCellSizeNumericUpDown;
@@ -1941,7 +1864,6 @@ namespace BlueBrick
 		private System.Windows.Forms.NumericUpDown GammaForSelectionNumericUpDown;
 		private System.Windows.Forms.Label label25;
 		private System.Windows.Forms.Label label24;
-		private System.Windows.Forms.ComboBox showComboBox;
 		private System.Windows.Forms.TabPage partLibTabPage;
 		private System.Windows.Forms.GroupBox groupBox11;
 		private System.Windows.Forms.Button MoveUpButton;
@@ -1976,9 +1898,6 @@ namespace BlueBrick
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.NumericUpDown mouseZoomSpeedNumericUpDown;
 		private System.Windows.Forms.GroupBox groupBox14;
-		private System.Windows.Forms.CheckBox addAreaLayerCheckBox;
-		private System.Windows.Forms.CheckBox addRulerLayerCheckBox;
-		private System.Windows.Forms.CheckBox addTextLayerCheckBox;
 		private System.Windows.Forms.GroupBox groupBox15;
 		private System.Windows.Forms.Label label31;
 		private System.Windows.Forms.NumericUpDown rulerControlPointRadiusNumericUpDown;
@@ -2028,5 +1947,7 @@ namespace BlueBrick
 		private System.Windows.Forms.PictureBox brickHullColorPictureBox;
 		private System.Windows.Forms.Label label45;
 		private System.Windows.Forms.Label label44;
+		private System.Windows.Forms.Button GeneralBrowseNewMapTemplateFileButton;
+		private System.Windows.Forms.TextBox GeneralNewMapTemplateFilenameTextBox;
 	}
 }

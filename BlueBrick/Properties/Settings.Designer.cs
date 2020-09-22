@@ -61,30 +61,6 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool AddGridLayerOnNewMap {
-            get {
-                return ((bool)(this["AddGridLayerOnNewMap"]));
-            }
-            set {
-                this["AddGridLayerOnNewMap"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool AddBrickLayerOnNewMap {
-            get {
-                return ((bool)(this["AddBrickLayerOnNewMap"]));
-            }
-            set {
-                this["AddBrickLayerOnNewMap"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public int UndoStackDepth {
             get {
@@ -152,42 +128,6 @@ namespace BlueBrick.Properties {
             }
             set {
                 this["DefaultSubGridColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("***NotInitialized***")]
-        public string DefaultLUG {
-            get {
-                return ((string)(this["DefaultLUG"]));
-            }
-            set {
-                this["DefaultLUG"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("***NotInitialized***")]
-        public string DefaultShow {
-            get {
-                return ((string)(this["DefaultShow"]));
-            }
-            set {
-                this["DefaultShow"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("***NotInitialized***")]
-        public string DefaultAuthor {
-            get {
-                return ((string)(this["DefaultAuthor"]));
-            }
-            set {
-                this["DefaultAuthor"] = value;
             }
         }
         
@@ -789,42 +729,6 @@ namespace BlueBrick.Properties {
             }
             set {
                 this["DisplayWarningMessageForNotSavingInBBM"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AddTextLayerOnNewMap {
-            get {
-                return ((bool)(this["AddTextLayerOnNewMap"]));
-            }
-            set {
-                this["AddTextLayerOnNewMap"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AddAreaLayerOnNewMap {
-            get {
-                return ((bool)(this["AddAreaLayerOnNewMap"]));
-            }
-            set {
-                this["AddAreaLayerOnNewMap"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AddRulerLayerOnNewMap {
-            get {
-                return ((bool)(this["AddRulerLayerOnNewMap"]));
-            }
-            set {
-                this["AddRulerLayerOnNewMap"] = value;
             }
         }
         

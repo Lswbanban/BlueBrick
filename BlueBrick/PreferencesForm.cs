@@ -48,11 +48,6 @@ namespace BlueBrick
 		// save the old value of the setting to restore the old value after a click on "Reset Default Settings" + "Cancel"
 		private Settings mOldSettings = new Settings();
 
-		// save the default string in the old language
-		private string mLastDefaultAuthor = Resources.DefaultAuthor;
-		private string mLastDefaultLUG = Resources.DefaultLUG;
-		private string mLastDefaultShow = Resources.DefaultShow;
-
 		// a flag to check if the user changed the part lib order
 		private bool mHasPartLibOrderChanged = false;
 
@@ -118,30 +113,6 @@ namespace BlueBrick
 			}
 		}
 
-		/// <summary>
-		/// A util function to fill a combobox with text that is read from a text file.
-		/// The format of the text file is simple: every line in the text file will create an entry in the combo box
-		/// This is used to fill the LUG and Event combo box
-		/// </summary>
-		/// <param name="comboBoxToFill">The combobox you want to fill</param>
-		/// <param name="sourceDataFileName">The text file you want to read the data from</param>
-		public static void sFillComboBoxFromTextFile(ComboBox comboBoxToFill, string sourceDataFileName)
-		{
-			try
-			{
-				string sourceDataFullFileName = Application.StartupPath + sourceDataFileName;
-				System.IO.StreamReader textReader = new System.IO.StreamReader(sourceDataFullFileName);
-				comboBoxToFill.Items.Clear();
-				comboBoxToFill.Sorted = true;
-				while (!textReader.EndOfStream)
-					comboBoxToFill.Items.Add(textReader.ReadLine());
-				textReader.Close();
-			}
-			catch
-			{
-			}
-		}
-
 		public PreferencesForm()
 		{
 			InitializeComponent();
@@ -159,26 +130,8 @@ namespace BlueBrick
 			{
 				// language
 				fillAndSelectLanguageComboBox();
-				// new map
-				sFillComboBoxFromTextFile(this.lugComboBox, @"/config/LugList.txt");
-				sFillComboBoxFromTextFile(this.showComboBox, @"/config/EventList.txt");
-				this.addGridLayerCheckBox.Checked = Settings.Default.AddGridLayerOnNewMap;
-				this.addBrickLayerCheckBox.Checked = Settings.Default.AddBrickLayerOnNewMap;
-				this.addAreaLayerCheckBox.Checked = Settings.Default.AddAreaLayerOnNewMap;
-				this.addTextLayerCheckBox.Checked = Settings.Default.AddTextLayerOnNewMap;
-				this.addRulerLayerCheckBox.Checked = Settings.Default.AddRulerLayerOnNewMap;
-				if (Settings.Default.DefaultAuthor.Equals("***NotInitialized***"))
-					this.authorTextBox.Text = Resources.DefaultAuthor;
-				else
-					this.authorTextBox.Text = Settings.Default.DefaultAuthor;
-				if (Settings.Default.DefaultLUG.Equals("***NotInitialized***"))
-					this.lugComboBox.Text = Resources.DefaultLUG;
-				else
-					this.lugComboBox.Text = Settings.Default.DefaultLUG;
-				if (Settings.Default.DefaultShow.Equals("***NotInitialized***"))
-					this.showComboBox.Text = Resources.DefaultShow;
-				else
-					this.showComboBox.Text = Settings.Default.DefaultShow;
+				// new map template
+
 				// recent files
 				this.RecentFilesNumericUpDown.Value = Settings.Default.MaxRecentFilesNum;
 				this.clearRecentFilesButton.Enabled = (Settings.Default.RecentFiles.Count > 0);
@@ -318,15 +271,8 @@ namespace BlueBrick
 			{
 				// language
 				destination.Language = source.Language.Clone() as string;
-				// map
-				destination.AddBrickLayerOnNewMap = source.AddBrickLayerOnNewMap;
-				destination.AddGridLayerOnNewMap = source.AddGridLayerOnNewMap;
-				destination.AddAreaLayerOnNewMap = source.AddAreaLayerOnNewMap;
-				destination.AddTextLayerOnNewMap = source.AddTextLayerOnNewMap;
-				destination.AddRulerLayerOnNewMap = source.AddRulerLayerOnNewMap;
-				destination.DefaultAuthor = source.DefaultAuthor.Clone() as string;
-				destination.DefaultLUG = source.DefaultLUG.Clone() as string;
-				destination.DefaultShow = source.DefaultShow.Clone() as string;
+				// new map template
+
 				// performance
 				destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
 				// recent files
@@ -430,15 +376,8 @@ namespace BlueBrick
 			bool hasLanguageChanged = setLanguageSettingAccordingToComboBox();
 			// if the language change, we need to restart the application
 			mDoesNeedToRestart = hasLanguageChanged;
-			// new map
-			Settings.Default.AddGridLayerOnNewMap = this.addGridLayerCheckBox.Checked;
-			Settings.Default.AddBrickLayerOnNewMap = this.addBrickLayerCheckBox.Checked;
-			Settings.Default.AddAreaLayerOnNewMap = this.addAreaLayerCheckBox.Checked;
-			Settings.Default.AddTextLayerOnNewMap = this.addTextLayerCheckBox.Checked;
-			Settings.Default.AddRulerLayerOnNewMap = this.addRulerLayerCheckBox.Checked;
-			Settings.Default.DefaultAuthor = this.authorTextBox.Text;
-			Settings.Default.DefaultLUG = this.lugComboBox.Text;
-			Settings.Default.DefaultShow = this.showComboBox.Text;
+			// new map template
+
 			// recent files
 			Settings.Default.MaxRecentFilesNum = (int)this.RecentFilesNumericUpDown.Value;
 			// undo
@@ -729,6 +668,78 @@ namespace BlueBrick
 			languageComboBox.SelectedIndex = selectedIndex;
 		}
 
+		private void GeneralBrowseNewMapTemplateFileButton_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void clearRecentFilesButton_Click(object sender, EventArgs e)
+		{
+			Settings.Default.RecentFiles.Clear();
+			this.clearRecentFilesButton.Enabled = false;
+		}
+
+		private bool setOptimSettingAccordingToComboBox()
+		{
+			Settings.Default.StartSavedMipmapLevel = optimComboBox.SelectedIndex;
+			return (mOldSettings.StartSavedMipmapLevel != Settings.Default.StartSavedMipmapLevel);
+		}
+		#endregion
+
+		#region edition
+		private void lineColorPictureBox_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.colorDialog.Color = lineColorPictureBox.BackColor;
+			// open the color box in modal
+			DialogResult result = this.colorDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				this.lineColorPictureBox.BackColor = this.colorDialog.Color;
+			}
+		}
+
+		private void guidelineColorPictureBox_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.colorDialog.Color = guidelineColorPictureBox.BackColor;
+			// open the color box in modal
+			DialogResult result = this.colorDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				this.guidelineColorPictureBox.BackColor = this.colorDialog.Color;
+			}
+		}
+
+		private void rulerFontColorPictureBox_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.colorDialog.Color = rulerFontColorPictureBox.BackColor;
+			// open the color box in modal
+			DialogResult result = this.colorDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				this.rulerFontColorPictureBox.BackColor = this.colorDialog.Color;
+				this.rulerFontNameLabel.ForeColor = this.colorDialog.Color;
+			}
+		}
+
+		private void rulerFontButton_Click(object sender, EventArgs e)
+		{
+			// set the color with the current back color of the picture box
+			this.fontDialog.Font = this.rulerFontNameLabel.Font;
+			// open the color box in modal
+			DialogResult result = this.fontDialog.ShowDialog(this);
+			if (result == DialogResult.OK)
+			{
+				// if the user choose a color, set it back in the back color of the picture box
+				updateChosenFont(this.rulerFontNameLabel, this.rulerFontColorPictureBox.BackColor, this.fontDialog.Font);
+			}
+		}
+
 		private void setMultipleAndDuplicateSelectionKeySettingAccordingToComboBox()
 		{
 			// Multiple selection
@@ -754,35 +765,6 @@ namespace BlueBrick
 				case 1: Settings.Default.MouseZoomPanKey = Keys.Alt; break;
 				case 2: Settings.Default.MouseZoomPanKey = Keys.Shift; break;
 			}
-		}
-
-		private void languageComboBox_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			// get the new language
-			string newLanguage = getLanguageStringAccordingToComboBox();
-			// change the culture of the resource to get the string in the correct language
-			// create a new culture info based on the property
-			System.Globalization.CultureInfo previousCultureInfo = Resources.Culture;
-			Resources.Culture = new System.Globalization.CultureInfo(newLanguage);
-			// check if we need to replace the default string of the old language with the
-			// default string of the new language
-			if (this.authorTextBox.Text.Equals(mLastDefaultAuthor))
-			{
-				this.authorTextBox.Text = Resources.DefaultAuthor;
-				mLastDefaultAuthor = Resources.DefaultAuthor;
-			}
-			if (this.lugComboBox.Text.Equals(mLastDefaultLUG))
-			{
-				this.lugComboBox.Text = Resources.DefaultLUG;
-				mLastDefaultLUG = Resources.DefaultLUG;
-			}
-			if (this.showComboBox.Text.Equals(mLastDefaultShow))
-			{
-				this.showComboBox.Text = Resources.DefaultShow;
-				mLastDefaultShow = Resources.DefaultShow;
-			}
-			// and restore the previous culture (to avoid partially translated software before the restart)
-			Resources.Culture = previousCultureInfo;
 		}
 
 		/// <summary>
@@ -858,73 +840,6 @@ namespace BlueBrick
 			bool enableOffsetValue = (this.copyOffsetComboBox.SelectedIndex != 0);
 			this.pasteOffsetValueNumericUpDown.Enabled = enableOffsetValue;
 			this.OffsetValueLabel.Enabled = enableOffsetValue;
-		}
-
-		private bool setOptimSettingAccordingToComboBox()
-		{
-			Settings.Default.StartSavedMipmapLevel = optimComboBox.SelectedIndex;
-			return (mOldSettings.StartSavedMipmapLevel != Settings.Default.StartSavedMipmapLevel);
-		}
-
-		private void clearRecentFilesButton_Click(object sender, EventArgs e)
-		{
-			Settings.Default.RecentFiles.Clear();
-			this.clearRecentFilesButton.Enabled = false;
-		}
-		#endregion
-
-		#region edition
-		private void lineColorPictureBox_Click(object sender, EventArgs e)
-		{
-			// set the color with the current back color of the picture box
-			this.colorDialog.Color = lineColorPictureBox.BackColor;
-			// open the color box in modal
-			DialogResult result = this.colorDialog.ShowDialog(this);
-			if (result == DialogResult.OK)
-			{
-				// if the user choose a color, set it back in the back color of the picture box
-				this.lineColorPictureBox.BackColor = this.colorDialog.Color;
-			}
-		}
-
-		private void guidelineColorPictureBox_Click(object sender, EventArgs e)
-		{
-			// set the color with the current back color of the picture box
-			this.colorDialog.Color = guidelineColorPictureBox.BackColor;
-			// open the color box in modal
-			DialogResult result = this.colorDialog.ShowDialog(this);
-			if (result == DialogResult.OK)
-			{
-				// if the user choose a color, set it back in the back color of the picture box
-				this.guidelineColorPictureBox.BackColor = this.colorDialog.Color;
-			}
-		}
-
-		private void rulerFontColorPictureBox_Click(object sender, EventArgs e)
-		{
-			// set the color with the current back color of the picture box
-			this.colorDialog.Color = rulerFontColorPictureBox.BackColor;
-			// open the color box in modal
-			DialogResult result = this.colorDialog.ShowDialog(this);
-			if (result == DialogResult.OK)
-			{
-				// if the user choose a color, set it back in the back color of the picture box
-				this.rulerFontColorPictureBox.BackColor = this.colorDialog.Color;
-				this.rulerFontNameLabel.ForeColor = this.colorDialog.Color;
-			}
-		}
-
-		private void rulerFontButton_Click(object sender, EventArgs e)
-		{
-			// set the color with the current back color of the picture box
-			this.fontDialog.Font = this.rulerFontNameLabel.Font;
-			// open the color box in modal
-			DialogResult result = this.fontDialog.ShowDialog(this);
-			if (result == DialogResult.OK)
-			{
-				// if the user choose a color, set it back in the back color of the picture box
-				updateChosenFont(this.rulerFontNameLabel, this.rulerFontColorPictureBox.BackColor, this.fontDialog.Font);
-			}
 		}
 		#endregion
 

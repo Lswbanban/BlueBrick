@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -56,11 +54,8 @@ namespace BlueBrick
 		{
 			get
 			{
-				// get the default author
-				if (Properties.Settings.Default.DefaultAuthor.Equals("***NotInitialized***"))
-					return Properties.Resources.DefaultAuthor;
-				else
-					return Properties.Settings.Default.DefaultAuthor;
+				// return the same Author name as the author of the current map
+				return Map.Instance.Author;
 			}
 		}
 		#endregion

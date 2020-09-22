@@ -14,16 +14,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.IO;
-using System.Collections;
 using BlueBrick.Actions;
 using BlueBrick.Actions.Bricks;
-using BlueBrick.Actions.Layers;
-using BlueBrick.Actions.Maps;
 using BlueBrick.Properties;
 
 namespace BlueBrick.MapData
@@ -60,9 +56,9 @@ namespace BlueBrick.MapData
         private bool mIsMapNameValid = false;
 
 		// data global to the map that can change the user
-		private string mAuthor = BlueBrick.Properties.Settings.Default.DefaultAuthor;
-		private string mLUG = BlueBrick.Properties.Settings.Default.DefaultLUG;
-		private string mShow = BlueBrick.Properties.Settings.Default.DefaultShow;
+		private string mAuthor = Properties.Resources.DefaultAuthor;
+		private string mLUG = Properties.Resources.DefaultLUG;
+		private string mShow = Properties.Resources.DefaultShow;
 		private DateTime mDate = DateTime.Today;
 		private string mComment = "";
 		private Color mBackgroundColor = BlueBrick.Properties.Settings.Default.DefaultBackgroundColor;
@@ -300,14 +296,6 @@ namespace BlueBrick.MapData
 		/// </summary>
 		public Map()
 		{
-			// check if the default name for Author, LUG and Show is empty in the settings
-			// then we take the ones for the resources
-			if (mAuthor.Equals("***NotInitialized***"))
-				mAuthor = BlueBrick.Properties.Resources.DefaultAuthor;
-			if (mLUG.Equals("***NotInitialized***"))
-				mLUG = BlueBrick.Properties.Resources.DefaultLUG;
-			if (mShow.Equals("***NotInitialized***"))
-				mShow = BlueBrick.Properties.Resources.DefaultShow;
 			// and construct the watermark
 			computeGeneralInfoWatermark();
 		}

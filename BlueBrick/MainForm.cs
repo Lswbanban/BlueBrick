@@ -540,6 +540,30 @@ namespace BlueBrick
 			this.toolSplitContainer.SplitterDistance = Properties.Settings.Default.UIToolSplitContainerDistance;
 		}
 
+		/// <summary>
+		/// A util function to fill a combobox with text that is read from a text file.
+		/// The format of the text file is simple: every line in the text file will create an entry in the combo box
+		/// This is used to fill the LUG and Event combo box
+		/// </summary>
+		/// <param name="comboBoxToFill">The combobox you want to fill</param>
+		/// <param name="sourceDataFileName">The text file you want to read the data from</param>
+		private void fillComboBoxFromTextFile(ComboBox comboBoxToFill, string sourceDataFileName)
+		{
+			try
+			{
+				string sourceDataFullFileName = Application.StartupPath + sourceDataFileName;
+				System.IO.StreamReader textReader = new System.IO.StreamReader(sourceDataFullFileName);
+				comboBoxToFill.Items.Clear();
+				comboBoxToFill.Sorted = true;
+				while (!textReader.EndOfStream)
+					comboBoxToFill.Items.Add(textReader.ReadLine());
+				textReader.Close();
+			}
+			catch
+			{
+			}
+		}
+
 		private void loadUISettingFromDefaultSettings()
 		{
 			// DOT NET BUG: the data binding of the Form size and window state interfere with the
@@ -602,8 +626,8 @@ namespace BlueBrick
             // the export window
             this.mExportImageForm.loadUISettingFromDefaultSettings();
 			// fill the combo box in the Properties panel
-			PreferencesForm.sFillComboBoxFromTextFile(this.lugComboBox, @"/config/LugList.txt");
-			PreferencesForm.sFillComboBoxFromTextFile(this.eventComboBox, @"/config/EventList.txt");
+			fillComboBoxFromTextFile(this.lugComboBox, @"/config/LugList.txt");
+			fillComboBoxFromTextFile(this.eventComboBox, @"/config/EventList.txt");
 		}
 
 		private void saveUISettingInDefaultSettings()
@@ -1313,8 +1337,6 @@ namespace BlueBrick
 				// no valid template file, create a default map with default settings
 				ActionManager.Instance.doAction(new AddLayer("LayerGrid", false));
 				ActionManager.Instance.doAction(new AddLayer("LayerBrick", false));
-				// by preference we want to select the brick layer
-				Map.Instance.SelectedLayer = Map.Instance.SelectedLayer;
 			}
 
 			// after adding the two default layer, we reset the WasModified flag of the map
