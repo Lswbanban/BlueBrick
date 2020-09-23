@@ -117,11 +117,10 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
 - [target 1.9] MISSING FEATURE (Alban): Scrollbars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
-- [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - [target 1.9] MISSING FEATURE (Evans): a possibility to show the current interruption of the 12V circuit breaker rail
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
-- [target 1.9] REFACTORING: replace the progress bar by track bar for editing transparency of the layers
 - [target 1.9] BUG (Alban): The selection should be cleared when exporting the image (to avoid drawing the selection and free connection point). Then the selection should be reset to what it was when the export window is closed.
+- [target 1.9] MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - MISSING FEATURE (Matthias): BlueBrick should check if there's new library package available in background after launch.
 - MISSING FEATURE (Matthias): Better resolution for part images (Images can have an additional <scale> property in the xml-File, if no scale parameter is provided, the default resolution of 8 pixels/stud is used)
 - MISSING FEATURE (zephyr1934): Add a favorite feature where you can tag a part as your favorite, and display all your favorite parts in a specific tab of the library
@@ -192,6 +191,7 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Thai Bricks): Now the "&" character is visible in layer's name if the user edits the layer's name with an ampersome.
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 - REFACTORING (Alban): Modernize the HTML code of the part usage list export (add some CSS and colors)
+- REFACTORING (Alban): Replace the progress bar by track bar for editing transparency of the layers
 
 
 Bug fixed in 1.8.2.0:

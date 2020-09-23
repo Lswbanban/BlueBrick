@@ -38,14 +38,15 @@ namespace BlueBrick
 			this.label2 = new System.Windows.Forms.Label();
 			this.alphaNumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
-			this.alphaProgressBar = new System.Windows.Forms.ProgressBar();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cellSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.label4 = new System.Windows.Forms.Label();
+			this.alphaTrackBar = new System.Windows.Forms.TrackBar();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.alphaNumericUpDown)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cellSizeNumericUpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.alphaTrackBar)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonCancel
@@ -65,13 +66,13 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.alphaTrackBar);
 			this.groupBox3.Controls.Add(this.isVisibleCheckBox);
 			this.groupBox3.Controls.Add(this.nameTextBox);
 			this.groupBox3.Controls.Add(this.label3);
 			this.groupBox3.Controls.Add(this.label2);
 			this.groupBox3.Controls.Add(this.alphaNumericUpDown);
 			this.groupBox3.Controls.Add(this.label1);
-			this.groupBox3.Controls.Add(this.alphaProgressBar);
 			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
@@ -114,18 +115,6 @@ namespace BlueBrick
 			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
 			// 
-			// alphaProgressBar
-			// 
-			this.alphaProgressBar.Cursor = System.Windows.Forms.Cursors.VSplit;
-			resources.ApplyResources(this.alphaProgressBar, "alphaProgressBar");
-			this.alphaProgressBar.Name = "alphaProgressBar";
-			this.alphaProgressBar.Step = 100;
-			this.alphaProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-			this.alphaProgressBar.Value = 50;
-			this.alphaProgressBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseMove);
-			this.alphaProgressBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseDown);
-			this.alphaProgressBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.alphaProgressBar_MouseUp);
-			// 
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.cellSizeNumericUpDown);
@@ -164,6 +153,16 @@ namespace BlueBrick
 			resources.ApplyResources(this.label4, "label4");
 			this.label4.Name = "label4";
 			// 
+			// alphaTrackBar
+			// 
+			resources.ApplyResources(this.alphaTrackBar, "alphaTrackBar");
+			this.alphaTrackBar.Maximum = 100;
+			this.alphaTrackBar.Name = "alphaTrackBar";
+			this.alphaTrackBar.SmallChange = 10;
+			this.alphaTrackBar.TickFrequency = 10;
+			this.alphaTrackBar.Value = 50;
+			this.alphaTrackBar.Scroll += new System.EventHandler(this.alphaTrackBar_Scroll);
+			// 
 			// LayerAreaOptionForm
 			// 
 			this.AcceptButton = this.buttonOk;
@@ -183,6 +182,7 @@ namespace BlueBrick
 			((System.ComponentModel.ISupportInitialize)(this.alphaNumericUpDown)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.cellSizeNumericUpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.alphaTrackBar)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -196,11 +196,11 @@ namespace BlueBrick
 		private System.Windows.Forms.TextBox nameTextBox;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.ProgressBar alphaProgressBar;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.NumericUpDown alphaNumericUpDown;
 		private System.Windows.Forms.NumericUpDown cellSizeNumericUpDown;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TrackBar alphaTrackBar;
 	}
 }

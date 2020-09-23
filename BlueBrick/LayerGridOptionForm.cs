@@ -29,7 +29,6 @@ namespace BlueBrick
 	{
 		private LayerGrid mEditedGridLayer = null;
 		private Font mCurrentChosenFont = null;
-		private bool mIsMouseDown = false;
 
 		public LayerGridOptionForm(LayerGrid gridLayer)
 		{
@@ -42,7 +41,7 @@ namespace BlueBrick
 			this.isVisibleCheckBox.Checked = gridLayer.Visible;
 			// transparency
 			this.alphaNumericUpDown.Value = gridLayer.Transparency;
-			this.alphaProgressBar.Value = gridLayer.Transparency;
+			this.alphaTrackBar.Value = gridLayer.Transparency;
 			// grid
 			this.gridCheckBox.Checked = gridLayer.DisplayGrid;
 			this.gridSizeNumericUpDown.Value = gridLayer.GridSizeInStud;
@@ -99,47 +98,14 @@ namespace BlueBrick
 			// do a change option action
 			ActionManager.Instance.doAction(new ChangeLayerOption(mEditedGridLayer, oldLayerData, newLayerData));
 		}
-
-		private int getPercentageValueFromMouseCoord(int x)
+		private void alphaTrackBar_Scroll(object sender, EventArgs e)
 		{
-			int value = (x * 100) / alphaProgressBar.Width;
-			if (value < 0)
-				value = 0;
-			if (value > 100)
-				value = 100;
-			return value;
-		}
-
-		private void alphaProgressBar_MouseDown(object sender, MouseEventArgs e)
-		{
-			mIsMouseDown = true;
-			int value = getPercentageValueFromMouseCoord(e.X);
-			alphaProgressBar.Value = value;
-			alphaNumericUpDown.Value = value;
-		}
-
-		private void alphaProgressBar_MouseMove(object sender, MouseEventArgs e)
-		{
-			if (mIsMouseDown)
-			{
-				int value = getPercentageValueFromMouseCoord(e.X);
-				alphaProgressBar.Value = value;
-				alphaNumericUpDown.Value = value;
-			}
-		}
-
-		private void alphaProgressBar_MouseUp(object sender, MouseEventArgs e)
-		{
-			mIsMouseDown = false;
+			alphaNumericUpDown.Value = alphaTrackBar.Value;
 		}
 
 		private void alphaNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (!mIsMouseDown)
-			{
-				alphaProgressBar.Value = (int)(alphaNumericUpDown.Value);
-				alphaProgressBar.Invalidate();
-			}
+			alphaTrackBar.Value = (int)(alphaNumericUpDown.Value);
 		}
 
 		private void alphaNumericUpDown_KeyUp(object sender, KeyEventArgs e)

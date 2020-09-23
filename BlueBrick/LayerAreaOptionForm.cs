@@ -28,7 +28,6 @@ namespace BlueBrick
 	public partial class LayerAreaOptionForm : Form
 	{
 		private LayerArea mEditedLayer = null;
-		private bool mIsMouseDown = false;
 
 		public LayerAreaOptionForm(Layer layer)
 		{
@@ -41,7 +40,7 @@ namespace BlueBrick
 			this.isVisibleCheckBox.Checked = layer.Visible;
 			// transparency and cell size
 			this.alphaNumericUpDown.Value = mEditedLayer.Transparency;
-			this.alphaProgressBar.Value = mEditedLayer.Transparency;
+			this.alphaTrackBar.Value = mEditedLayer.Transparency;
 			this.cellSizeNumericUpDown.Value = mEditedLayer.AreaCellSizeInStud;
 		}
 
@@ -65,46 +64,14 @@ namespace BlueBrick
 			ActionManager.Instance.doAction(new ChangeLayerOption(mEditedLayer, oldLayerData, newLayerData));
 		}
 
-		private int getPercentageValueFromMouseCoord(int x)
+		private void alphaTrackBar_Scroll(object sender, EventArgs e)
 		{
-			int value = (x * 100) / alphaProgressBar.Width;
-			if (value < 0)
-				value = 0;
-			if (value > 100)
-				value = 100;
-			return value;
-		}
-
-		private void alphaProgressBar_MouseDown(object sender, MouseEventArgs e)
-		{
-			mIsMouseDown = true;
-			int value = getPercentageValueFromMouseCoord(e.X);
-			alphaProgressBar.Value = value;
-			alphaNumericUpDown.Value = value;
-		}
-
-		private void alphaProgressBar_MouseMove(object sender, MouseEventArgs e)
-		{
-			if (mIsMouseDown)
-			{
-				int value = getPercentageValueFromMouseCoord(e.X);
-				alphaProgressBar.Value = value;
-				alphaNumericUpDown.Value = value;
-			}
-		}
-
-		private void alphaProgressBar_MouseUp(object sender, MouseEventArgs e)
-		{
-			mIsMouseDown = false;
+			alphaNumericUpDown.Value = alphaTrackBar.Value;
 		}
 
 		private void alphaNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (!mIsMouseDown)
-			{
-				alphaProgressBar.Value = (int)(alphaNumericUpDown.Value);
-				alphaProgressBar.Invalidate();
-			}
+			alphaTrackBar.Value = (int)(alphaNumericUpDown.Value);
 		}
 
 		private void alphaNumericUpDown_KeyUp(object sender, KeyEventArgs e)
