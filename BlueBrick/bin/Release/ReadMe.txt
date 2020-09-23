@@ -104,8 +104,6 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (supertruper1988): Add the possibility to create and save a template file that should be loaded when creating a new map:
-	- In preference form, when setting a template file, ask user if appearance properties of the file should be applied to default appearance?
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon): necessite une nouvelle version du format BBM
 - [target 1.9] BUG (Matthias): The export window doesn't remember the type of the image file exported
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages:
@@ -161,12 +159,13 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Ludo): The Part Usage now display the sum of all the parts on each layer (or globally) and the part usage percentage per layer (or globally)
 - NEW FEATURE (Alban): The Part Usage can now be exported in CSV format (on top of HTML and Text)
 - NEW FEATURE (Alban): The Part Usage can now be reordered by clicking on the columns headers
-- NEW FEATURE (Alban): Added a checkbox to include or not hidden layers in the Part Usage list
+- NEW FEATURE (Alban): Added a checkbox to include (or not) hidden layers in the Part Usage list
 - NEW FEATURE (Alban): The export of part usage list is now localized in the language of the application
 - NEW FEATURE (Vincent): An option to revert the counting of the parts in the budget (display remaining count instead of used count, option available in Preferences)
 - NEW FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
 - NEW FEATURE (Alban): A feature to download library package online from various sources (official web site, and non official url).
 - NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
+- NEW FEATURE (supertruper1988): Add the possibility to set a template BBM file that is loaded when creating a new map.
 - NEW FEATURE (Matthias): An option to display part names below the parts, in the part library.
 - NEW FEATURE (Alban): The new layers are now inserted above the selected layer, not at the top of the stack by default
 - NEW FEATURE (Matthias): When you delete a part, the active connection of the new selected part is the one where the deleted part was connected.

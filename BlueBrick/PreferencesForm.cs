@@ -749,8 +749,7 @@ namespace BlueBrick
 				myFileStream.Close();
 				myFileStream.Dispose();
 				// now copy the style of the template file to the Appearance settings
-				this.backgroundColorPictureBox.BackColor = templateMap.BackgroundColor;
-
+				copyMapStyleToAppearanceSettings(templateMap);
 				// file was loaded without problem
 				return true;
 			}
@@ -762,6 +761,28 @@ namespace BlueBrick
 				// there was a problem loading the file
 				return false;
 			}
+		}
+
+		private void copyMapStyleToAppearanceSettings(Map templateMap)
+		{
+			// global parameters always present in the Map (back color only so far)
+			this.backgroundColorPictureBox.BackColor = templateMap.BackgroundColor;
+
+			// copy also the grid colors (of the lowest grid, if there's a grid in the template), do not copy other grid params
+			foreach (MapData.Layer layer in templateMap.LayerList)
+				if (layer is MapData.LayerGrid)
+				{
+					MapData.LayerGrid gridLayer = layer as MapData.LayerGrid;
+					this.gridColorPictureBox.BackColor = gridLayer.GridColor;
+					this.subGridColorPictureBox.BackColor = gridLayer.SubGridColor;
+					break;
+				}
+
+			// do not copy text, area and rulers default values
+			// then update the preview
+			redrawSamplePictureBox();
+			colorSchemeComboBox.SelectedIndex = (int)ColorScheme.CUSTOM;
+			findCorectColorSchemeAccordingToColors();
 		}
 		#endregion
 
