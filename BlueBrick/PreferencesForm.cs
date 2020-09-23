@@ -708,8 +708,11 @@ namespace BlueBrick
 			DialogResult result = openFileDialog.ShowDialog();
 			if (result == DialogResult.OK)
 				setTextBoxForTemplateFilenameForNewMap(openFileDialog.FileName);
-			else
-				setTextBoxForTemplateFilenameForNewMap(string.Empty);
+		}
+
+		private void GeneralTrashTemplateFileForNewMapButton_Click(object sender, EventArgs e)
+		{
+			setTextBoxForTemplateFilenameForNewMap(string.Empty);
 		}
 
 		private void clearRecentFilesButton_Click(object sender, EventArgs e)
@@ -1357,8 +1360,11 @@ namespace BlueBrick
 			DialogResult result = openBudgetFileDialog.ShowDialog();
 			if (result == DialogResult.OK)
 				setTextBoxForBudgetFilenameToLoadAtStartup(openBudgetFileDialog.FileName);
-			else
-				setTextBoxForBudgetFilenameToLoadAtStartup(string.Empty);
+		}
+
+		private void PartLibTrashBudgetFileToLoadArStartUpButton_Click(object sender, EventArgs e)
+		{
+			setTextBoxForBudgetFilenameToLoadAtStartup(string.Empty);
 		}
 		#endregion
 

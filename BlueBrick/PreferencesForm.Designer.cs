@@ -47,6 +47,7 @@ namespace BlueBrick
 			this.label8 = new System.Windows.Forms.Label();
 			this.undoRecordedNumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.GeneralTrashTemplateFileForNewMapButton = new System.Windows.Forms.Button();
 			this.GeneralBrowseNewMapTemplateFileButton = new System.Windows.Forms.Button();
 			this.GeneralNewMapTemplateFilenameTextBox = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -187,6 +188,7 @@ namespace BlueBrick
 			this.restoreAllDefaultButton = new System.Windows.Forms.Button();
 			this.fontDialog = new System.Windows.Forms.FontDialog();
 			this.restoreTabDefaultButton = new System.Windows.Forms.Button();
+			this.PartLibTrashBudgetFileToLoadArStartUpButton = new System.Windows.Forms.Button();
 			this.optionsTabControl.SuspendLayout();
 			this.generalTabPage.SuspendLayout();
 			this.groupBox14.SuspendLayout();
@@ -420,11 +422,19 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.GeneralTrashTemplateFileForNewMapButton);
 			this.groupBox3.Controls.Add(this.GeneralBrowseNewMapTemplateFileButton);
 			this.groupBox3.Controls.Add(this.GeneralNewMapTemplateFilenameTextBox);
 			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
+			// 
+			// GeneralTrashTemplateFileForNewMapButton
+			// 
+			resources.ApplyResources(this.GeneralTrashTemplateFileForNewMapButton, "GeneralTrashTemplateFileForNewMapButton");
+			this.GeneralTrashTemplateFileForNewMapButton.Name = "GeneralTrashTemplateFileForNewMapButton";
+			this.GeneralTrashTemplateFileForNewMapButton.UseVisualStyleBackColor = true;
+			this.GeneralTrashTemplateFileForNewMapButton.Click += new System.EventHandler(this.GeneralTrashTemplateFileForNewMapButton_Click);
 			// 
 			// GeneralBrowseNewMapTemplateFileButton
 			// 
@@ -1225,6 +1235,7 @@ namespace BlueBrick
 			// 
 			// groupBox16
 			// 
+			this.groupBox16.Controls.Add(this.PartLibTrashBudgetFileToLoadArStartUpButton);
 			this.groupBox16.Controls.Add(this.PartLibDisplayRemaingPartCountCheckBox);
 			this.groupBox16.Controls.Add(this.PartLibBrowseBudgetFileButton);
 			this.groupBox16.Controls.Add(this.PartLibBudgetFilenameTextBox);
@@ -1707,6 +1718,13 @@ namespace BlueBrick
 			this.restoreTabDefaultButton.UseVisualStyleBackColor = true;
 			this.restoreTabDefaultButton.Click += new System.EventHandler(this.restoreTabDefaultButton_Click);
 			// 
+			// PartLibTrashBudgetFileToLoadArStartUpButton
+			// 
+			resources.ApplyResources(this.PartLibTrashBudgetFileToLoadArStartUpButton, "PartLibTrashBudgetFileToLoadArStartUpButton");
+			this.PartLibTrashBudgetFileToLoadArStartUpButton.Name = "PartLibTrashBudgetFileToLoadArStartUpButton";
+			this.PartLibTrashBudgetFileToLoadArStartUpButton.UseVisualStyleBackColor = true;
+			this.PartLibTrashBudgetFileToLoadArStartUpButton.Click += new System.EventHandler(this.PartLibTrashBudgetFileToLoadArStartUpButton_Click);
+			// 
 			// PreferencesForm
 			// 
 			this.AcceptButton = this.okButton;
@@ -1949,5 +1967,7 @@ namespace BlueBrick
 		private System.Windows.Forms.Label label44;
 		private System.Windows.Forms.Button GeneralBrowseNewMapTemplateFileButton;
 		private System.Windows.Forms.TextBox GeneralNewMapTemplateFilenameTextBox;
+		private System.Windows.Forms.Button GeneralTrashTemplateFileForNewMapButton;
+		private System.Windows.Forms.Button PartLibTrashBudgetFileToLoadArStartUpButton;
 	}
 }

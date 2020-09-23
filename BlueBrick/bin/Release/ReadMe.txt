@@ -106,9 +106,6 @@ to open the help file (see above for more details).
 Open bugs:
 - [target 1.9] MISSING FEATURE (supertruper1988): Add the possibility to create and save a template file that should be loaded when creating a new map:
 	- In preference form, when setting a template file, ask user if appearance properties of the file should be applied to default appearance?
-	- the default appearance settings must stay, for example if the template doesn't contains grid, then default appearance grid color are still used when creating a grid
-	- The reset to default button in the bottom of the screen, will clear the template file field
-	- If no template file is set, then all the default appearance settings are used to create a map (with hard-coded grid + bricks layers for newbies users), otherwise if user wants different layers, he creates a template
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon): necessite une nouvelle version du format BBM
 - [target 1.9] BUG (Matthias): The export window doesn't remember the type of the image file exported
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages:

@@ -706,6 +706,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Release\ReadMe.txt" />
+    <None Include="icons\trash.gif" />
     <EmbeddedResource Include="AboutBox.no.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox.cs</DependentUpon>
