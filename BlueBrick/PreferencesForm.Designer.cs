@@ -135,6 +135,7 @@ namespace BlueBrick
 			this.label15 = new System.Windows.Forms.Label();
 			this.partLibTabPage = new System.Windows.Forms.TabPage();
 			this.groupBox16 = new System.Windows.Forms.GroupBox();
+			this.PartLibTrashBudgetFileToLoadArStartUpButton = new System.Windows.Forms.Button();
 			this.PartLibDisplayRemaingPartCountCheckBox = new System.Windows.Forms.CheckBox();
 			this.PartLibBrowseBudgetFileButton = new System.Windows.Forms.Button();
 			this.PartLibBudgetFilenameTextBox = new System.Windows.Forms.TextBox();
@@ -188,7 +189,7 @@ namespace BlueBrick
 			this.restoreAllDefaultButton = new System.Windows.Forms.Button();
 			this.fontDialog = new System.Windows.Forms.FontDialog();
 			this.restoreTabDefaultButton = new System.Windows.Forms.Button();
-			this.PartLibTrashBudgetFileToLoadArStartUpButton = new System.Windows.Forms.Button();
+			this.openTemplateFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.optionsTabControl.SuspendLayout();
 			this.generalTabPage.SuspendLayout();
 			this.groupBox14.SuspendLayout();
@@ -1247,6 +1248,13 @@ namespace BlueBrick
 			this.groupBox16.Name = "groupBox16";
 			this.groupBox16.TabStop = false;
 			// 
+			// PartLibTrashBudgetFileToLoadArStartUpButton
+			// 
+			resources.ApplyResources(this.PartLibTrashBudgetFileToLoadArStartUpButton, "PartLibTrashBudgetFileToLoadArStartUpButton");
+			this.PartLibTrashBudgetFileToLoadArStartUpButton.Name = "PartLibTrashBudgetFileToLoadArStartUpButton";
+			this.PartLibTrashBudgetFileToLoadArStartUpButton.UseVisualStyleBackColor = true;
+			this.PartLibTrashBudgetFileToLoadArStartUpButton.Click += new System.EventHandler(this.PartLibTrashBudgetFileToLoadArStartUpButton_Click);
+			// 
 			// PartLibDisplayRemaingPartCountCheckBox
 			// 
 			resources.ApplyResources(this.PartLibDisplayRemaingPartCountCheckBox, "PartLibDisplayRemaingPartCountCheckBox");
@@ -1718,12 +1726,11 @@ namespace BlueBrick
 			this.restoreTabDefaultButton.UseVisualStyleBackColor = true;
 			this.restoreTabDefaultButton.Click += new System.EventHandler(this.restoreTabDefaultButton_Click);
 			// 
-			// PartLibTrashBudgetFileToLoadArStartUpButton
+			// openTemplateFileDialog
 			// 
-			resources.ApplyResources(this.PartLibTrashBudgetFileToLoadArStartUpButton, "PartLibTrashBudgetFileToLoadArStartUpButton");
-			this.PartLibTrashBudgetFileToLoadArStartUpButton.Name = "PartLibTrashBudgetFileToLoadArStartUpButton";
-			this.PartLibTrashBudgetFileToLoadArStartUpButton.UseVisualStyleBackColor = true;
-			this.PartLibTrashBudgetFileToLoadArStartUpButton.Click += new System.EventHandler(this.PartLibTrashBudgetFileToLoadArStartUpButton_Click);
+			this.openTemplateFileDialog.DefaultExt = "bbm";
+			resources.ApplyResources(this.openTemplateFileDialog, "openTemplateFileDialog");
+			this.openTemplateFileDialog.SupportMultiDottedExtensions = true;
 			// 
 			// PreferencesForm
 			// 
@@ -1969,5 +1976,6 @@ namespace BlueBrick
 		private System.Windows.Forms.TextBox GeneralNewMapTemplateFilenameTextBox;
 		private System.Windows.Forms.Button GeneralTrashTemplateFileForNewMapButton;
 		private System.Windows.Forms.Button PartLibTrashBudgetFileToLoadArStartUpButton;
+		private System.Windows.Forms.OpenFileDialog openTemplateFileDialog;
 	}
 }

@@ -4475,6 +4475,15 @@ Shortcut</value>
   <data name="&gt;&gt;restoreTabDefaultButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="openTemplateFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>220, 19</value>
+  </metadata>
+  <data name="openTemplateFileDialog.Filter" xml:space="preserve">
+    <value>BlueBrick Map (*.bbm)|*.bbm</value>
+  </data>
+  <data name="openTemplateFileDialog.Title" xml:space="preserve">
+    <value>Open a BlueBrick Map</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -4567,6 +4576,12 @@ Shortcut</value>
   </data>
   <data name="&gt;&gt;fontDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.FontDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;openTemplateFileDialog.Name" xml:space="preserve">
+    <value>openTemplateFileDialog</value>
+  </data>
+  <data name="&gt;&gt;openTemplateFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>PreferencesForm</value>

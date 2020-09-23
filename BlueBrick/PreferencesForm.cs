@@ -21,6 +21,8 @@ using BlueBrick.Properties;
 using BlueBrick.Actions;
 using BlueBrick.Actions.Maps;
 using BlueBrick.MapData;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace BlueBrick
 {
@@ -695,19 +697,26 @@ namespace BlueBrick
 
 		private void GeneralBrowseNewMapTemplateFileButton_Click(object sender, EventArgs e)
 		{
-			// get the open file dialog for budget from the main form
-			OpenFileDialog openFileDialog = MainForm.Instance.openFileDialog;
 			// set the filename in the dialog from the setting
 			if (mIsTemplateFilenameForNewMapSet)
 			{
 				System.IO.FileInfo file = new System.IO.FileInfo(this.GeneralNewMapTemplateFilenameTextBox.Text);
-				openFileDialog.InitialDirectory = file.DirectoryName;
-				openFileDialog.FileName = file.Name;
+				this.openTemplateFileDialog.InitialDirectory = file.DirectoryName;
+				this.openTemplateFileDialog.FileName = file.Name;
 			}
 			// then open the dialog box in modal
-			DialogResult result = openFileDialog.ShowDialog();
+			DialogResult result = this.openTemplateFileDialog.ShowDialog();
 			if (result == DialogResult.OK)
-				setTextBoxForTemplateFilenameForNewMap(openFileDialog.FileName);
+			{
+				// Try to load the file and copy the style settings like the background colors, etc.. in the appearance settings
+				// so that it keeps a certain coherence. However the user may style override the appearance settings if he wants later
+				bool isFileValid = loadTemplateFileAndCopyStyleToSettings(this.openTemplateFileDialog.FileName);
+				// set the chosen file name in the text box (if the file is valid, otherwise clear the text box)
+				if (isFileValid)
+					setTextBoxForTemplateFilenameForNewMap(this.openTemplateFileDialog.FileName);
+				else
+					setTextBoxForTemplateFilenameForNewMap(string.Empty);
+			}
 		}
 
 		private void GeneralTrashTemplateFileForNewMapButton_Click(object sender, EventArgs e)
@@ -725,6 +734,34 @@ namespace BlueBrick
 		{
 			Settings.Default.StartSavedMipmapLevel = optimComboBox.SelectedIndex;
 			return (mOldSettings.StartSavedMipmapLevel != Settings.Default.StartSavedMipmapLevel);
+		}
+
+		private bool loadTemplateFileAndCopyStyleToSettings(string filename)
+		{
+			try
+			{
+				// create a serializer to load the map
+				XmlSerializer mySerializer = new XmlSerializer(typeof(Map));
+				FileStream myFileStream = new FileStream(filename, FileMode.Open, FileAccess.Read);
+				// parse and copy the data into this
+				Map templateMap = mySerializer.Deserialize(myFileStream) as Map;
+				// release the file stream
+				myFileStream.Close();
+				myFileStream.Dispose();
+				// now copy the style of the template file to the Appearance settings
+				this.backgroundColorPictureBox.BackColor = templateMap.BackgroundColor;
+
+				// file was loaded without problem
+				return true;
+			}
+			catch (Exception e)
+			{
+				string message = Properties.Resources.ErrorMsgCannotOpenMap.Replace("&", filename);
+				LoadErrorForm errorMessageDialog = new LoadErrorForm(Properties.Resources.ErrorMsgTitleError, message, e.Message);
+				errorMessageDialog.ShowDialog();
+				// there was a problem loading the file
+				return false;
+			}
 		}
 		#endregion
 
