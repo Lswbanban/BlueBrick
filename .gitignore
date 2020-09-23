@@ -1,0 +1,27 @@
+.vs
+*.bak
+*.suo
+*.orig
+*.log
+*.chm
+
+; specific directories
+ResxEditor/
+trash/
+map de test/
+BlueBrick/obj/
+BlueBrick/bin/Debug/
+BlueBrick/bin/Release/old version
+BlueBrick/bin/Release/part to integrate
+
+; specific files
+BlueBrick/BlueBrick.csproj.user
+BlueBrick/bin/Release/BlueBrick*
+BlueBrick.resources.dll
+BlueBrick.userprefs
+
+; ignore the part HG database
+BlueBrick/bin/Release/.hg
+BlueBrick/bin/Release/.hgignore
+BlueBrick/bin/Release/parts
+BlueBrick/bin/Release/UpadateFileList.bat
