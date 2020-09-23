@@ -1,3 +1,4 @@
 [submodule "BlueBrick/bin/Debug"]
 	path = BlueBrick/bin/Debug
 	url = https://github.com/Lswbanban/BlueBrickParts.git
+	branch = master
