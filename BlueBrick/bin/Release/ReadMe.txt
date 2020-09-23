@@ -105,7 +105,6 @@ to open the help file (see above for more details).
 -------------------------------------------------------------------------------
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon): necessite une nouvelle version du format BBM
-- [target 1.9] BUG (Matthias): The export window doesn't remember the type of the image file exported
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages:
 	- les lignes verticales et horizontale sont sélectionnables et bougeable à la souris, et la position est ajustable dans le cadre margins
 	- Il faut une sorte de rulers en haut et en bas, pour setter la valeur en studs, pour remplacer les margins

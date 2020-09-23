@@ -1631,22 +1631,22 @@ namespace BlueBrick
 						if (extension.Equals("bmp"))
 						{
 							choosenFormat = ImageFormat.Bmp;
-							saveExportImageDialog.FilterIndex = 1;
+							saveExportImageDialog.FilterIndex = 4;
 						}
 						else if (extension.Equals("gif"))
 						{
 							choosenFormat = ImageFormat.Gif;
-							saveExportImageDialog.FilterIndex = 2;
+							saveExportImageDialog.FilterIndex = 3;
 						}
 						else if (extension.Equals("jpg"))
 						{
 							choosenFormat = ImageFormat.Jpeg;
-							saveExportImageDialog.FilterIndex = 3;
+							saveExportImageDialog.FilterIndex = 2;
 						}
 						else if (extension.Equals("png"))
 						{
 							choosenFormat = ImageFormat.Png;
-							saveExportImageDialog.FilterIndex = 4;
+							saveExportImageDialog.FilterIndex = 1;
 						}
 						else
 						{
@@ -1655,11 +1655,11 @@ namespace BlueBrick
 							// and add the correct extension
 							switch (saveExportImageDialog.FilterIndex)
 							{
-								case 1: choosenFormat = ImageFormat.Bmp; fileName += ".bmp"; break;
-								case 2: choosenFormat = ImageFormat.Gif; fileName += ".gif"; break;
-								case 3: choosenFormat = ImageFormat.Jpeg; fileName += ".jpg"; break;
-								case 4: choosenFormat = ImageFormat.Png; fileName += ".png"; break;
-								default: choosenFormat = ImageFormat.Bmp; fileName += ".bmp"; break;
+								case 4: choosenFormat = ImageFormat.Bmp; fileName += ".bmp"; break;
+								case 3: choosenFormat = ImageFormat.Gif; fileName += ".gif"; break;
+								case 2: choosenFormat = ImageFormat.Jpeg; fileName += ".jpg"; break;
+								case 1: choosenFormat = ImageFormat.Png; fileName += ".png"; break;
+								default: choosenFormat = ImageFormat.Png; fileName += ".png"; break;
 							}
 						}
 					}
