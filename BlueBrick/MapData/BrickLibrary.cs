@@ -1003,14 +1003,16 @@ namespace BlueBrick.MapData
 
 			private string readBlueBrickId(ref System.Xml.XmlReader xmlReader, ref string partNumber, ref string partColor)
 			{
-				char[] partNumberSpliter = { '.' };
 				string fullPartId = xmlReader.ReadElementContentAsString().ToUpperInvariant();
-				string[] partNumberAndColor = fullPartId.Split(partNumberSpliter);
-				if (partNumberAndColor.Length > 0)
+				int lastDotIndex = fullPartId.LastIndexOf('.');
+				if (lastDotIndex >= 0)
 				{
-					partNumber = partNumberAndColor[0];
-					if (partNumberAndColor.Length > 1)
-						partColor = partNumberAndColor[1];
+					partNumber = fullPartId.Substring(0, lastDotIndex);
+					partColor = fullPartId.Substring(lastDotIndex + 1);
+				}
+				else
+				{
+					partNumber = fullPartId;
 				}
 				return fullPartId;
 			}
@@ -1936,26 +1938,19 @@ namespace BlueBrick.MapData
 		{
 			string[] result = new string[4];
 
-			// first split the bluebrick number
-			string[] numberAndColor = partNumber.Split(new char[] { '.' });
-			// the LDRAW part number is always the first part of the BlueBrick part number
-			result[0] = numberAndColor[0];
-			// now check if we have a valid color
-			if (numberAndColor.Length < 2)
+			// try to find the last dot to split the bluebrick number
+			int lastDotIndex = partNumber.LastIndexOf('.');
+			if (lastDotIndex >= 0)
 			{
-				// this case if for the logo for example
-				result[1] = string.Empty;
-				result[2] = BlueBrick.Properties.Resources.TextNA;
-			}
-			else
-			{
+				// split the number and color at the last index
+				result[0] = partNumber.Substring(0, lastDotIndex);
+
 				// We copy the color id no matter if it is a valid id number or "set" for example
-				// we copy it anyway in the result
-				result[1] = numberAndColor[1];
+				result[1] = partNumber.Substring(lastDotIndex + 1);
 
 				// try to parse the color id that may failed if the color is "set"
 				int colorId = 0;
-				if (int.TryParse(numberAndColor[1], out colorId))
+				if (int.TryParse(result[1], out colorId))
 				{
 					// try to get the name of this color (this can fail because we may have a valid color id
 					// but no name for this color in the list of color name)
@@ -1970,6 +1965,13 @@ namespace BlueBrick.MapData
 					// no valid color id, this case is for the "set" for example
 					result[2] = BlueBrick.Properties.Resources.TextNA;
 				}
+			}
+			else
+			{
+				// in case of a logo for example which doesn't have a color
+				result[0] = partNumber;
+				result[1] = string.Empty;
+				result[2] = BlueBrick.Properties.Resources.TextNA;
 			}
 
 			// try to get the description

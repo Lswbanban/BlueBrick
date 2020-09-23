@@ -963,9 +963,6 @@ namespace BlueBrick
 
 		private static void saveBrickLayerInLDRAW(StreamWriter textWriter, LayerBrick brickLayer, bool useMLCADHide)
 		{
-			// an array containing the spliter for part number and color
-			char[] partNumberSpliter = { '.' };
-
 			// clear the group list for saving
 			Layer.Group.sListForGroupSaving.Clear();
 
@@ -982,12 +979,21 @@ namespace BlueBrick
 				MainForm.Instance.stepProgressBar();
 
 				// split the part name and color
-				string[] partNumberAndColor = brick.PartNumber.Split(partNumberSpliter);
-				string originalBrickNumber = partNumberAndColor[0];
+				string[] partNumberAndColor = { string.Empty, string.Empty };
+				int lastDotIndex = brick.PartNumber.LastIndexOf('.');
+				if (lastDotIndex >= 0)
+				{
+					partNumberAndColor[0] = brick.PartNumber.Substring(0, lastDotIndex);
+					partNumberAndColor[1] = brick.PartNumber.Substring(lastDotIndex + 1);
+				}
+				else
+				{
+					partNumberAndColor[0] = brick.PartNumber;
+				}
 				// skip the brick if it is a set, a logo, or a special custom part
 				// so we skip all the parts that don't have a valid color number
 				int intColor = 0;
-				if ((partNumberAndColor.Length < 2) || !int.TryParse(partNumberAndColor[1], out intColor))
+				if ((partNumberAndColor[1] == string.Empty) || !int.TryParse(partNumberAndColor[1], out intColor))
 					continue;
 
 				// compute x and y because the pair bricks doesn't have image in the library
