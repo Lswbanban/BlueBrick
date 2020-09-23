@@ -60,7 +60,8 @@ namespace BlueBrick
 		// the zoom pan key doesn't have control to edit it, it is deducted from the edition of the multi select key and duplicate key
 		private int mZoomPanKeySelectedIndex = 0;
 
-		// a flag to tell if the user has set the budget file name
+		// a flag to tell if the user has set the new map template file name and the budget file name
+		private bool mIsTemplateFilenameForNewMapSet = (Settings.Default.TemplateFilenameWhenCreatingANewMap != string.Empty);
 		private bool mIsBudgetFilenameToLoadAtStartupSet = (Settings.Default.BudgetFilenameToLoadAtStartup != string.Empty);
 
 		#region properties
@@ -131,7 +132,7 @@ namespace BlueBrick
 				// language
 				fillAndSelectLanguageComboBox();
 				// new map template
-
+				setTextBoxForTemplateFilenameForNewMap(Settings.Default.TemplateFilenameWhenCreatingANewMap);
 				// recent files
 				this.RecentFilesNumericUpDown.Value = Settings.Default.MaxRecentFilesNum;
 				this.clearRecentFilesButton.Enabled = (Settings.Default.RecentFiles.Count > 0);
@@ -272,7 +273,7 @@ namespace BlueBrick
 				// language
 				destination.Language = source.Language.Clone() as string;
 				// new map template
-
+				destination.TemplateFilenameWhenCreatingANewMap = source.TemplateFilenameWhenCreatingANewMap;
 				// performance
 				destination.StartSavedMipmapLevel = source.StartSavedMipmapLevel;
 				// recent files
@@ -377,7 +378,7 @@ namespace BlueBrick
 			// if the language change, we need to restart the application
 			mDoesNeedToRestart = hasLanguageChanged;
 			// new map template
-
+			Settings.Default.TemplateFilenameWhenCreatingANewMap = mIsTemplateFilenameForNewMapSet ? this.GeneralNewMapTemplateFilenameTextBox.Text : string.Empty;
 			// recent files
 			Settings.Default.MaxRecentFilesNum = (int)this.RecentFilesNumericUpDown.Value;
 			// undo
@@ -583,6 +584,30 @@ namespace BlueBrick
 		}
 
 		/// <summary>
+		/// Set the text for the textbox that display the template filename for new map.
+		/// If the string is empty, it will display an hint, otherwise it display the value of the parameter
+		/// </summary>
+		/// <param name="filename">a filename to display or an empty string</param>
+		private void setTextBoxForTemplateFilenameForNewMap(string filename)
+		{
+			if (filename == string.Empty)
+			{
+				// reload the default sentence in the current language
+				System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreferencesForm));
+				resources.ApplyResources(this.GeneralNewMapTemplateFilenameTextBox, "GeneralNewMapTemplateFilenameTextBox");
+				// reset the flag
+				mIsTemplateFilenameForNewMapSet = false;
+			}
+			else
+			{
+				// set the filename in the text box
+				this.GeneralNewMapTemplateFilenameTextBox.Text = filename;
+				// set the flag to true
+				mIsTemplateFilenameForNewMapSet = true;
+			}
+		}
+
+		/// <summary>
 		/// Set the text for the textbox that display the budget filename to load at startup.
 		/// If the string is empty, it will display an hint, otherwise it display the value of the parameter
 		/// </summary>
@@ -670,7 +695,21 @@ namespace BlueBrick
 
 		private void GeneralBrowseNewMapTemplateFileButton_Click(object sender, EventArgs e)
 		{
-
+			// get the open file dialog for budget from the main form
+			OpenFileDialog openFileDialog = MainForm.Instance.openFileDialog;
+			// set the filename in the dialog from the setting
+			if (mIsTemplateFilenameForNewMapSet)
+			{
+				System.IO.FileInfo file = new System.IO.FileInfo(this.GeneralNewMapTemplateFilenameTextBox.Text);
+				openFileDialog.InitialDirectory = file.DirectoryName;
+				openFileDialog.FileName = file.Name;
+			}
+			// then open the dialog box in modal
+			DialogResult result = openFileDialog.ShowDialog();
+			if (result == DialogResult.OK)
+				setTextBoxForTemplateFilenameForNewMap(openFileDialog.FileName);
+			else
+				setTextBoxForTemplateFilenameForNewMap(string.Empty);
 		}
 
 		private void clearRecentFilesButton_Click(object sender, EventArgs e)
@@ -1306,7 +1345,7 @@ namespace BlueBrick
 		private void PartLibBrowseBudgetFileButton_Click(object sender, EventArgs e)
 		{
 			// get the open file dialog for budget from the main form
-			OpenFileDialog openBudgetFileDialog = MainForm.Instance.OpenBudgetFileDialog;
+			OpenFileDialog openBudgetFileDialog = MainForm.Instance.openBudgetFileDialog;
 			// set the filename in the dialog from the setting
 			if (mIsBudgetFilenameToLoadAtStartupSet)
 			{

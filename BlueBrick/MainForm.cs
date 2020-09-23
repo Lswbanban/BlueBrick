@@ -156,22 +156,6 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Get the part library tab control
-		/// </summary>
-		public PartLibraryPanel PartsTabControl
-		{
-			get { return partsTabControl; }
-		}
-
-		/// <summary>
-		/// Get the open file dialog to open a budget
-		/// </summary>
-		public OpenFileDialog OpenBudgetFileDialog
-		{
-			get { return openBudgetFileDialog; }
-		}
-
-		/// <summary>
 		/// Get the current scale of the map view.
 		/// </summary>
 		public double MapViewScale
@@ -704,7 +688,7 @@ namespace BlueBrick
 		/// </summary>
 		private void savePartLibUISettingInDefaultSettings()
 		{
-			this.partsTabControl.savePartListDisplayStatusInSettings();
+			this.PartsTabControl.savePartListDisplayStatusInSettings();
 			Properties.Settings.Default.UIFilterAllLibraryTab = this.filterAllTabCheckBox.Checked;
 		}
 
@@ -775,7 +759,7 @@ namespace BlueBrick
 			// reload the color info, because the bricks also need the color name (for correctly setting up the color name in the bubble info)
 			BrickLibrary.Instance.loadColorInfo();
 			// reinit the parts tab control (that will fill the brick library again)
-			this.partsTabControl.initPartsTabControl();
+			this.PartsTabControl.initPartsTabControl();
 			// and relod the other data for the brick library (after the brick library is loaded)
 			BrickLibrary.Instance.createEntriesForRenamedParts();
 			BrickLibrary.Instance.loadTrackDesignerRegistryFileList();
@@ -1737,7 +1721,7 @@ namespace BlueBrick
 				savePartLibUISettingInDefaultSettings();
 
 				// then clear the part lib panel and the brick library (before creating the new map)
-				this.partsTabControl.clearAllData();
+				this.PartsTabControl.clearAllData();
 				BrickLibrary.Instance.clearAllData();
 
 				// destroy the current map
@@ -1876,7 +1860,7 @@ namespace BlueBrick
 			DialogResult result = form.ShowDialog();
 			// check if we need to update the part lib
 			if ((result == DialogResult.OK) && (form.NewXmlFilesToLoad.Count > 0))
-				this.partsTabControl.loadAdditionnalGroups(form.NewXmlFilesToLoad, form.NewGroupName);
+				this.PartsTabControl.loadAdditionnalGroups(form.NewXmlFilesToLoad, form.NewGroupName);
         }
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3257,7 +3241,7 @@ namespace BlueBrick
 
 		private bool isUserTypingTextInATextBox()
 		{
-			return this.textBoxPartFilter.Focused || this.partsTabControl.IsEditingBudget ||
+			return this.textBoxPartFilter.Focused || this.PartsTabControl.IsEditingBudget ||
 					this.AuthorTextBox.Focused || this.lugComboBox.Focused || this.eventComboBox.Focused || this.commentTextBox.Focused;
 		}
 
@@ -3538,12 +3522,12 @@ namespace BlueBrick
 		#region function related to parts library
 		public string getDraggingPartNumberInPartLib()
 		{
-			return this.partsTabControl.DraggingPartNumber;
+			return this.PartsTabControl.DraggingPartNumber;
 		}
 
 		public void resetDraggingPartNumberInPartLib()
 		{
-			this.partsTabControl.DraggingPartNumber = null;
+			this.PartsTabControl.DraggingPartNumber = null;
 		}
 		#endregion
 	}

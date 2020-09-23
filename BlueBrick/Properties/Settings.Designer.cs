@@ -1298,7 +1298,7 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("config/ClassicTemplate.bbm")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string TemplateFilenameWhenCreatingANewMap {
             get {
                 return ((string)(this["TemplateFilenameWhenCreatingANewMap"]));
