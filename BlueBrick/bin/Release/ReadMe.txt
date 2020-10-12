@@ -104,6 +104,7 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
+- [target 1.9] MISSING FEATURE (Alban): remove the wait message box when reloading the part lib, since we have unlocked the part lib image now.
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon): necessite une nouvelle version du format BBM
 - [target 1.9] BUG (Alban): The selection should be cleared when exporting the image (to avoid drawing the selection and free connection point). Then the selection should be reset to what it was when the export window is closed.
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages:
