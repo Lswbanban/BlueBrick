@@ -39,6 +39,7 @@ namespace BlueBrick.MapData
 			MOVE_SELECTION,
 			DUPLICATE_SELECTION,
 			FLEX_MOVE,
+			SELECT_PATH,
 		}
 
 		[NonSerialized]
@@ -881,7 +882,7 @@ namespace BlueBrick.MapData
 				// the second test after the or, is because we give a second chance to the user to duplicate
 				// the selection if he press the duplicate key after the mouse down, but before he start to move
 				if ((mEditAction == EditAction.DUPLICATE_SELECTION) ||
-					((mEditAction == EditAction.MOVE_SELECTION) && !mMouseHasMoved && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)))
+					((mEditAction == EditAction.MOVE_SELECTION) && !mMouseHasMoved && (Control.ModifierKeys == Properties.Settings.Default.MouseDuplicateSelectionKey)))
 					return MainForm.Instance.BrickDuplicateCursor;
 				else if (mEditAction == EditAction.MOVE_SELECTION)
 					return MainForm.Instance.BrickMoveCursor;
@@ -892,16 +893,20 @@ namespace BlueBrick.MapData
 			{
 				if (mouseCoordInStud != PointF.Empty)
 				{
-					if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey)
+					if (Control.ModifierKeys == Properties.Settings.Default.MouseDuplicateSelectionKey)
 					{
 						if (isPointInsideSelectionRectangle(mouseCoordInStud))
 							return MainForm.Instance.BrickDuplicateCursor;
 					}
-					else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
+					else if ((Control.ModifierKeys | Properties.Settings.Default.MouseMultipleSelectionKey) != 0)
 					{
-						return MainForm.Instance.BrickSelectionCursor;
+						// the select path cursor should be displayed only if at least one brick is selected, otherwise just display the multi selection cursor
+						if (Control.ModifierKeys == (Keys)(Properties.Settings.Default.MouseMultipleSelectionKey | Properties.Settings.Default.MouseZoomPanKey) && (SelectedObjects.Count > 0))
+							return MainForm.Instance.BrickSelectPathCursor;
+						else
+							return MainForm.Instance.BrickSelectionCursor;
 					}
-					else if (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseZoomPanKey)
+					else if (Control.ModifierKeys == Properties.Settings.Default.MouseZoomPanKey)
 					{
 						return MainForm.Instance.PanOrZoomViewCursor;
 					}
@@ -999,17 +1004,19 @@ namespace BlueBrick.MapData
 			// do stuff only for the left button
 			if (e.Button == MouseButtons.Left)
 			{
+				// the key to select a path is a combination of modifier
+				Keys mouseSelectPathKey = (Keys)(Properties.Settings.Default.MouseMultipleSelectionKey | Properties.Settings.Default.MouseZoomPanKey);
+
 				// check if the mouse is inside the bounding rectangle of the selected objects
 				bool isMouseInsideSelectedObjects = isPointInsideSelectionRectangle(mouseCoordInStud);
-				if (!isMouseInsideSelectedObjects && (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
-					&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey))
+				if (!isMouseInsideSelectedObjects && (Control.ModifierKeys != Properties.Settings.Default.MouseMultipleSelectionKey)
+					&& (Control.ModifierKeys != mouseSelectPathKey)
+					&& (Control.ModifierKeys != Properties.Settings.Default.MouseDuplicateSelectionKey))
 					clearSelection();
 
 				// find the current brick under the mouse
-				Brick currentBrickUnderMouse = null;
-
 				// We search if there is a cell under the mouse but in priority we choose from the current selected bricks
-				currentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
+				Brick currentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
 
 				// if the current selected brick is not under the mouse we search among the other bricks
 				// but in reverse order to choose first the brick on top
@@ -1023,7 +1030,7 @@ namespace BlueBrick.MapData
 				// check if it is a duplicate of the selection
 				// Be carreful for a duplication we take only the selected objects, not the cell
 				// under the mouse that may not be selected
-				if (isMouseInsideSelectedObjects && (Control.ModifierKeys == BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey))
+				if (isMouseInsideSelectedObjects && (Control.ModifierKeys == Properties.Settings.Default.MouseDuplicateSelectionKey))
 				{
 					mEditAction = EditAction.DUPLICATE_SELECTION;
 					preferedCursor = MainForm.Instance.BrickDuplicateCursor;
@@ -1043,12 +1050,19 @@ namespace BlueBrick.MapData
 						mMouseFlexMoveAction = null;
 					}
 				}
-				
+				// check if it is a path selection
+				else if ((currentBrickUnderMouse != null) && (Control.ModifierKeys == mouseSelectPathKey) && (SelectedObjects.Count > 0))
+				{
+					mEditAction = EditAction.SELECT_PATH;
+					preferedCursor = MainForm.Instance.BrickSelectPathCursor;
+				}
+
 				// if we move the brick, use 4 directionnal arrows cursor
 				// if there's a brick under the mouse, use the hand
 				if ((mEditAction == EditAction.NONE) && (isMouseInsideSelectedObjects || (currentBrickUnderMouse != null))
-					&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey)
-					&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseDuplicateSelectionKey))
+					&& (Control.ModifierKeys != Properties.Settings.Default.MouseMultipleSelectionKey)
+					&& (Control.ModifierKeys != mouseSelectPathKey)
+					&& (Control.ModifierKeys != Properties.Settings.Default.MouseDuplicateSelectionKey))
 				{
 					mEditAction = EditAction.MOVE_SELECTION;
 					preferedCursor = MainForm.Instance.BrickMoveCursor;
@@ -1067,8 +1081,7 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
-		/// This method is called if the map decided that this layer should handle
-		/// this mouse click
+		/// This method is called if the map decided that this layer should handle this mouse click
 		/// </summary>
 		/// <param name="e">the mouse event arg that describe the click</param>
 		/// <returns>true if the view should be refreshed</returns>
@@ -1081,10 +1094,18 @@ namespace BlueBrick.MapData
 
 			if (e.Button == MouseButtons.Left)
 			{
-				// if finally we are called to handle this mouse down,
+				// if finally we are called to handle this mouse down
+				// check if we want to do a path selection
+				if ((mCurrentBrickUnderMouse != null) && (mEditAction == EditAction.SELECT_PATH))
+				{
+					List<LayerItem> brickToSelect = AStar.findPath(SelectedObjects[0] as Brick, mCurrentBrickUnderMouse);
+					// if AStar found a path, select the path
+					if (brickToSelect.Count > 0)
+						addObjectInSelection(brickToSelect);
+				}
 				// we add the cell under the mouse if the selection list is empty
-				if ((mCurrentBrickUnderMouse != null) && (mEditAction != EditAction.DUPLICATE_SELECTION)
-					&& (Control.ModifierKeys != BlueBrick.Properties.Settings.Default.MouseMultipleSelectionKey))
+				else if ((mCurrentBrickUnderMouse != null) && (mEditAction != EditAction.DUPLICATE_SELECTION)
+					&& (Control.ModifierKeys != Properties.Settings.Default.MouseMultipleSelectionKey))
 				{
 					// if the selection is empty add the brick, else check the control key state
 					if (mSelectedObjects.Count == 0)

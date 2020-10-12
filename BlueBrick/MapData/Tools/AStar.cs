@@ -14,7 +14,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
 namespace BlueBrick.MapData.Tools
@@ -113,16 +112,16 @@ namespace BlueBrick.MapData.Tools
 
 	public class AStar
 	{
-		private AStarNodeList mOpenList = new AStarNodeList();
-		private AStarNodeList mCloseList = new AStarNodeList();
+		private static AStarNodeList sOpenList = new AStarNodeList();
+		private static AStarNodeList sCloseList = new AStarNodeList();
 
-		public List<Layer.LayerItem> findPath(LayerBrick.Brick startBrick, LayerBrick.Brick goalBrick)
+		public static List<Layer.LayerItem> findPath(LayerBrick.Brick startBrick, LayerBrick.Brick goalBrick)
 		{
 			List<Layer.LayerItem> result = new List<Layer.LayerItem>();
 
 			// init some variables
-			mOpenList.Clear();
-			mCloseList.Clear();
+			sOpenList.Clear();
+			sCloseList.Clear();
 
 			// create the first node with the starting brick
 			AStarNode currentNode = new AStarNode(startBrick);
@@ -159,7 +158,7 @@ namespace BlueBrick.MapData.Tools
 						potentialNewNeighborNode.ComputeParameters(goalBrick);
 
 						// try to search the neighbor brick in the close list
-						AStarNode neighborNode = mCloseList.Find(neighborBrick);
+						AStarNode neighborNode = sCloseList.Find(neighborBrick);
 						if (neighborNode != null)
 						{
 							// we found this brick in the close list, that means this brick was already explored,
@@ -169,12 +168,12 @@ namespace BlueBrick.MapData.Tools
 								continue; // that's fine the previous exploration was the shorter way
 							// else we found a shorter way
 							// so we remove the node from the close list (cause we will add it in open)
-							mCloseList.Remove(neighborNode);
+							sCloseList.Remove(neighborNode);
 						}
 						else
 						{
 							// the neighbor brick is not in the close list so now we check if it is in open list
-							neighborNode = mOpenList.Find(neighborBrick);
+							neighborNode = sOpenList.Find(neighborBrick);
 							if (neighborNode != null)
 							{
 								// the brick is already in the open list but we check if we have found a shorter way
@@ -183,23 +182,23 @@ namespace BlueBrick.MapData.Tools
 									continue; // that's fine the new way we found is not shorter
 								// else that mean the new way is shorter
 								// so we remove the node from the open list (cause we will add the better one)
-								mOpenList.Remove(neighborNode);
+								sOpenList.Remove(neighborNode);
 							}
 						}
 
 						// If we reach this point, that means the potential new node is valid and
 						// must be added in the open list
-						mOpenList.Add(potentialNewNeighborNode);
+						sOpenList.Add(potentialNewNeighborNode);
 					}
 
 				// the current node is finished to be expored, so add it in the close list
-				mCloseList.Add(currentNode);
+				sCloseList.Add(currentNode);
 
 				// get the next node to explore
-				if (mOpenList.Count > 0)
+				if (sOpenList.Count > 0)
 				{
-					currentNode = mOpenList[0];
-					mOpenList.RemoveAt(0);
+					currentNode = sOpenList[0];
+					sOpenList.RemoveAt(0);
 				}
 				else
 				{

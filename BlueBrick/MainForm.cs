@@ -70,6 +70,7 @@ namespace BlueBrick
 		private Cursor mFlexArrowCursor = null;		
 		private Cursor mBrickDuplicateCursor = null;
 		private Cursor mBrickSelectionCursor = null;
+		private Cursor mBrickSelectPathCursor = null;
 		private Cursor mTextArrowCursor = null;
 		private Cursor mTextDuplicateCursor = null;
 		private Cursor mTextCreateCursor = null;
@@ -111,9 +112,6 @@ namespace BlueBrick
 		// for some strange reason, under Mono, the export form crash in the ctor when instanciated a second time.
 		// so instanciate only one time and keep the instance
 		private ExportImageForm mExportImageForm = new ExportImageForm();
-
-		// for the selection Path
-		MapData.Tools.AStar mAStar = new MapData.Tools.AStar();
 
 		// a mapping key table to store the shortcut for each action
 		enum shortcutableAction
@@ -255,6 +253,14 @@ namespace BlueBrick
 		public Cursor BrickSelectionCursor
 		{
 			get { return mBrickSelectionCursor; }
+		}
+
+		/// <summary>
+		/// Get the cursor for selection of a path of connected bricks
+		/// </summary>
+		public Cursor BrickSelectPathCursor
+		{
+			get { return mBrickSelectPathCursor; }
 		}
 
 		/// <summary>
@@ -725,6 +731,7 @@ namespace BlueBrick
 			mFlexArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.FlexArrowCursor.cur");
 			mBrickDuplicateCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.BrickDuplicateCursor.cur");
 			mBrickSelectionCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.BrickSelectionCursor.cur");
+			mBrickSelectPathCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.BrickSelectPathCursor.cur");
 			mTextArrowCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.TextArrowCursor.cur");
 			mTextDuplicateCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.TextDuplicateCursor.cur");
 			mTextCreateCursor = LoadEmbededCustomCursors(assembly, "BlueBrick.Cursor.TextCreateCursor.cur");
@@ -2033,7 +2040,7 @@ namespace BlueBrick
 			Layer selectedLayer = Map.Instance.SelectedLayer;
 			if ((selectedLayer != null) && (selectedLayer is LayerBrick) && (selectedLayer.SelectedObjects.Count == 2))
 			{
-				List<Layer.LayerItem> brickToSelect = mAStar.findPath(selectedLayer.SelectedObjects[0] as LayerBrick.Brick, selectedLayer.SelectedObjects[1] as LayerBrick.Brick);
+				List<Layer.LayerItem> brickToSelect = MapData.Tools.AStar.findPath(selectedLayer.SelectedObjects[0] as LayerBrick.Brick, selectedLayer.SelectedObjects[1] as LayerBrick.Brick);
 				// if AStar found a path, select the path
 				if (brickToSelect.Count > 0)
 				{

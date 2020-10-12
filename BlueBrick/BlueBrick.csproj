@@ -734,6 +734,7 @@
     <EmbeddedResource Include="Cursor\RulerMovePointCursor.cur" />
     <EmbeddedResource Include="Cursor\RulerEditCursor.cur" />
     <EmbeddedResource Include="Cursor\PanOrZoomViewCursor.cur" />
+    <EmbeddedResource Include="Cursor\BrickSelectPathCursor.cur" />
     <Content Include="icons\BlueBrickIcon.ico" />
     <Content Include="icons\BringToFront.bmp" />
     <None Include="icons\PartForOptionPreview.bmp" />

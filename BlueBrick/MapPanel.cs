@@ -13,15 +13,12 @@
 // GNU General Public License for more details.
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using BlueBrick.MapData;
 using BlueBrick.Properties;
 using BlueBrick.Actions;
-using BlueBrick.Actions.Texts;
-using BlueBrick.Actions.Bricks;
 
 namespace BlueBrick
 {
