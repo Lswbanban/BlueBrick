@@ -934,7 +934,7 @@ namespace BlueBrick
 
 			// enable/disable the select path button (menu only)
             bool selectedLayerIsBrick = (Map.Instance.SelectedLayer != null) && (Map.Instance.SelectedLayer is LayerBrick);
-			this.selectPathToolStripMenuItem.Enabled = selectedLayerIsBrick && (Map.Instance.SelectedLayer.SelectedObjects.Count == 2);
+			this.selectPathToolStripMenuItem.Enabled = selectedLayerIsBrick && (Map.Instance.SelectedLayer.SelectedObjects.Count >= 2);
 
             // enable/disable the save of the selection to the library
             this.saveSelectionInLibraryToolStripMenuItem.Enabled = selectedLayerIsBrick && (Map.Instance.SelectedLayer.SelectedObjects.Count > 1);
@@ -2038,15 +2038,18 @@ namespace BlueBrick
 		public void selectPathToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Layer selectedLayer = Map.Instance.SelectedLayer;
-			if ((selectedLayer != null) && (selectedLayer is LayerBrick) && (selectedLayer.SelectedObjects.Count == 2))
+			if ((selectedLayer != null) && (selectedLayer is LayerBrick))
 			{
-				List<Layer.LayerItem> brickToSelect = MapData.Tools.AStar.findPath(selectedLayer.SelectedObjects[0] as LayerBrick.Brick, selectedLayer.SelectedObjects[1] as LayerBrick.Brick);
-				// if AStar found a path, select the path
-				if (brickToSelect.Count > 0)
+				int selectedBrickCount = selectedLayer.SelectedObjects.Count;
+				if (selectedBrickCount >= 2)
 				{
-					selectedLayer.clearSelection();
-					selectedLayer.addObjectInSelection(brickToSelect);
-					this.mapPanel.Invalidate();
+					List<Layer.LayerItem> brickToSelect = MapData.Tools.AStar.findPath(selectedLayer.SelectedObjects[selectedBrickCount - 2] as LayerBrick.Brick, selectedLayer.SelectedObjects[selectedBrickCount - 1] as LayerBrick.Brick);
+					// if AStar found a path, select the path
+					if (brickToSelect.Count > 0)
+					{
+						selectedLayer.addObjectInSelection(brickToSelect);
+						this.mapPanel.Invalidate();
+					}
 				}
 			}
 		}

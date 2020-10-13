@@ -855,7 +855,7 @@ namespace BlueBrick
 				this.selectAllToolStripMenuItem.Enabled = (isThereAVisibleSelectedLayer && (selectedLayer.HasSomethingToSelect));
 				this.deselectAllToolStripMenuItem.Enabled = enableItemRelatedToSelection;
 				this.selectPathToolStripMenuItem.Visible = (selectedLayer is LayerBrick);
-				this.selectPathToolStripMenuItem.Enabled = (isThereAVisibleSelectedLayer && (selectedLayer.SelectedObjects.Count == 2));
+				this.selectPathToolStripMenuItem.Enabled = (isThereAVisibleSelectedLayer && (selectedLayer.SelectedObjects.Count >= 2));
 				if (isThereAVisibleSelectedLayer)
 				{
 					this.groupToolStripMenuItem.Enabled = Actions.Items.GroupItems.findItemsToGroup(selectedLayer.SelectedObjects).Count > 1;

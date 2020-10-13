@@ -104,7 +104,7 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE #6 (Alban): Simplify select path with a shortcut key + click on the second part (instead of going through the contextual menu).
+- [target 1.9] MISSING FEATURE (Alban): Simplify select path with a shortcut key + click on the second part (instead of going through the contextual menu).
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon): necessite une nouvelle version du format BBM
 - [target 1.9] BUG (Alban): The selection should be cleared when exporting the image (to avoid drawing the selection and free connection point). Then the selection should be reset to what it was when the export window is closed.
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages:
@@ -172,6 +172,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): Add a "Properties..." menu item in the contextual menu to edit the texts and rulers
 - NEW FEATURE (Alban): Add some settings to edit the two Hull colors and thickness (brick and other) in the Preference window (Appearance tab)
 - NEW FEATURE (Matthias): Add the 2 studs snapping.
+- NEW FEATURE (Alban): Improve the usuability of the select path feature (through the menu items), now the path is selected between the last two selected objects, and the previous selection is not cleared.
 - BUGFIX (Matthias): If a part name contains a dot, the full part id was not properly displayed in the part list on in the status bar.
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
