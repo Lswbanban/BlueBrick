@@ -422,9 +422,11 @@ namespace BlueBrick
 			float halfViewWidthInStud = (float)(this.Size.Width / (mViewScale * 2));
 			float halfViewHeightInStud = (float)(this.Size.Height / (mViewScale * 2));
 			// get the total area of the map
-			RectangleF totalArea = Map.Instance.getTotalAreaInStud(false);
+			RectangleF totalArea = Map.Instance.TotalAreaInStud;
 			mViewCornerX = ((totalArea.Left + totalArea.Right) / 2) - halfViewWidthInStud;
 			mViewCornerY = ((totalArea.Top + totalArea.Bottom) / 2) - halfViewHeightInStud;
+			// and update the scroll bar as we changed the view corner, and also the whole map may have changed
+			updateScrollbarSize();
 		}
 		#endregion
 	
@@ -655,8 +657,7 @@ namespace BlueBrick
 			switch (actionToDo)
 			{
 				case ActionToDoInMouseEvent.SCROLL_VIEW:
-					mViewCornerX += (mLastScrollMousePos.X - e.X) / mViewScale;
-					mViewCornerY += (mLastScrollMousePos.Y - e.Y) / mViewScale;
+					pan((mLastScrollMousePos.X - e.X) / mViewScale, (mLastScrollMousePos.Y - e.Y) / mViewScale);
 					mLastScrollMousePos.X = e.X;
 					mLastScrollMousePos.Y = e.Y;
 					// update the view continuously
@@ -851,6 +852,15 @@ namespace BlueBrick
 				Settings.Default.WheelMouseIsZoomOnCursor, e.Location);
 		}
 
+		private void pan(double deltaX, double deltaY)
+		{
+			// pan the view according to the delta
+			mViewCornerX += deltaX;
+			mViewCornerY += deltaY;
+			// and update the scrollbar position
+			UpdateScrollBarThumbFromViewCorner(true, true);
+		}
+
 		private void zoom(float zoomFactor, bool zoomOnMousePosition, Point mousePosition)
 		{
 			// compute the center of the view in case of we need to zoom in the center
@@ -879,8 +889,7 @@ namespace BlueBrick
 
 			// compute how much we should scroll the view to keep the same
 			// point in stud under the mouse coord on screen
-			mViewCornerX += previousZoomPointInStud.X - newZoomPointInStud.X;
-			mViewCornerY += previousZoomPointInStud.Y - newZoomPointInStud.Y;
+			pan(previousZoomPointInStud.X - newZoomPointInStud.X, previousZoomPointInStud.Y - newZoomPointInStud.Y);
 			updateView();
 		}
 		#endregion
