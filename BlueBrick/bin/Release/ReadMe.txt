@@ -120,8 +120,6 @@ Open bugs:
 	- Need to implement the update of the TotalAreaInStud in the Map class
 	- Need to implement the rescale of the scrollbar when a new item is added on the map (when the Map.TotalArea change)
 	- Add a settings to remember if the scrollbars are visible or not
-	- Add French translation
-	- Add the contextual menu item in the loca kit
 	- Add a menu item in the View menu
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] MISSING FEATURE (Evans): a possibility to show the current interruption of the 12V circuit breaker rail
