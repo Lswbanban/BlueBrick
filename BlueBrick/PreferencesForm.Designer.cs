@@ -84,6 +84,8 @@ namespace BlueBrick
 			this.label30 = new System.Windows.Forms.Label();
 			this.copyOffsetComboBox = new System.Windows.Forms.ComboBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.mousePanViewKeyComboBox = new System.Windows.Forms.ComboBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.mouseDuplicateSelKeyComboBox = new System.Windows.Forms.ComboBox();
 			this.label14 = new System.Windows.Forms.Label();
 			this.mouseMultipleSelKeyComboBox = new System.Windows.Forms.ComboBox();
@@ -769,6 +771,8 @@ namespace BlueBrick
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.mousePanViewKeyComboBox);
+			this.groupBox2.Controls.Add(this.label5);
 			this.groupBox2.Controls.Add(this.mouseDuplicateSelKeyComboBox);
 			this.groupBox2.Controls.Add(this.label14);
 			this.groupBox2.Controls.Add(this.mouseMultipleSelKeyComboBox);
@@ -779,6 +783,23 @@ namespace BlueBrick
 			resources.ApplyResources(this.groupBox2, "groupBox2");
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.TabStop = false;
+			// 
+			// mousePanViewKeyComboBox
+			// 
+			this.mousePanViewKeyComboBox.DisplayMember = "Strg";
+			this.mousePanViewKeyComboBox.FormattingEnabled = true;
+			this.mousePanViewKeyComboBox.Items.AddRange(new object[] {
+            resources.GetString("mousePanViewKeyComboBox.Items"),
+            resources.GetString("mousePanViewKeyComboBox.Items1"),
+            resources.GetString("mousePanViewKeyComboBox.Items2")});
+			resources.ApplyResources(this.mousePanViewKeyComboBox, "mousePanViewKeyComboBox");
+			this.mousePanViewKeyComboBox.Name = "mousePanViewKeyComboBox";
+			this.mousePanViewKeyComboBox.SelectedIndexChanged += new System.EventHandler(this.mousePanViewKeyComboBox_SelectedIndexChanged);
+			// 
+			// label5
+			// 
+			resources.ApplyResources(this.label5, "label5");
+			this.label5.Name = "label5";
 			// 
 			// mouseDuplicateSelKeyComboBox
 			// 
@@ -1977,5 +1998,7 @@ namespace BlueBrick
 		private System.Windows.Forms.Button GeneralTrashTemplateFileForNewMapButton;
 		private System.Windows.Forms.Button PartLibTrashBudgetFileToLoadArStartUpButton;
 		private System.Windows.Forms.OpenFileDialog openTemplateFileDialog;
+		private System.Windows.Forms.ComboBox mousePanViewKeyComboBox;
+		private System.Windows.Forms.Label label5;
 	}
 }

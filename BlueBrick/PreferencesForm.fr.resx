@@ -191,41 +191,15 @@ plus l'application aura besoin de mémoire.</value>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Configuration par défaut des nouveaux plans</value>
   </data>
-  <data name="addAreaLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 17</value>
+  <data name="GeneralTrashTemplateFileForNewMapButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhCwAOAIIEAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
+        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
+        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
+</value>
   </data>
-  <data name="addAreaLayerCheckBox.Text" xml:space="preserve">
-    <value>Ajouter un calque de zone</value>
-  </data>
-  <data name="addRulerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 17</value>
-  </data>
-  <data name="addRulerLayerCheckBox.Text" xml:space="preserve">
-    <value>Ajouter un calque de mesures</value>
-  </data>
-  <data name="addTextLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 17</value>
-  </data>
-  <data name="addTextLayerCheckBox.Text" xml:space="preserve">
-    <value>Ajouter un calque de textes</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Exposition</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Auteur</value>
-  </data>
-  <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 17</value>
-  </data>
-  <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
-    <value>Ajouter un calque de pièces</value>
-  </data>
-  <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 17</value>
-  </data>
-  <data name="addGridLayerCheckBox.Text" xml:space="preserve">
-    <value>Ajouter un calque de type grille</value>
+  <data name="GeneralNewMapTemplateFilenameTextBox.Text" xml:space="preserve">
+    <value>Cliquer sur le bouton pour modifier -&gt;</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Langage</value>
@@ -349,6 +323,15 @@ après la copie</value>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Souris</value>
   </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 65</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 18</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Touche de déplacement de la vue</value>
+  </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Touche de duplication</value>
   </data>
@@ -408,12 +391,6 @@ de la pièce attrappée</value>
     <value>Mise en surbrillance
 de la sélection</value>
   </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 13</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Aperçu</value>
-  </data>
   <data name="label19.Text" xml:space="preserve">
     <value>Couleur par défault de la sous-grille</value>
   </data>
@@ -431,6 +408,13 @@ de la sélection</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>Thème de couleur</value>
+  </data>
+  <data name="PartLibTrashBudgetFileToLoadArStartUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhCwAOAIIEAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
+        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
+        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
+</value>
   </data>
   <data name="PartLibDisplayRemaingPartCountCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>266, 32</value>
@@ -474,13 +458,19 @@ les pièces budgétées</value>
     <value>Couleur de fond par défaut</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
-    <value>Info de pièces et Info-bulles</value>
+    <value>Info des pièces et Info-bulles</value>
   </data>
   <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 13</value>
   </data>
   <data name="label40.Text" xml:space="preserve">
     <value>Couleur</value>
+  </data>
+  <data name="PartLibDisplayPartInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 17</value>
+  </data>
+  <data name="PartLibDisplayPartInfoCheckBox.Text" xml:space="preserve">
+    <value>Info des pièces :</value>
   </data>
   <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>

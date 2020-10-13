@@ -104,7 +104,6 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (Alban): Simplify select path with a shortcut key + click on the second part (instead of going through the contextual menu).
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon): necessite une nouvelle version du format BBM
 - [target 1.9] BUG (Alban): The selection should be cleared when exporting the image (to avoid drawing the selection and free connection point). Then the selection should be reset to what it was when the export window is closed.
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages:
@@ -173,6 +172,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): Add some settings to edit the two Hull colors and thickness (brick and other) in the Preference window (Appearance tab)
 - NEW FEATURE (Matthias): Add the 2 studs snapping.
 - NEW FEATURE (Alban): Improve the usuability of the select path feature (through the menu items), now the path is selected between the last two selected objects, and the previous selection is not cleared.
+- NEW FEATURE (Alban): Simplify the Path selection with a shortcut key (Multi selection Key + Pan View Key) + click on the second part (instead of going through the contextual menu).
 - BUGFIX (Matthias): If a part name contains a dot, the full part id was not properly displayed in the part list on in the status bar.
 - BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
@@ -194,6 +194,7 @@ Bug fixed in 1.9.0.0:
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 - REFACTORING (Alban): Modernize the HTML code of the part usage list export (add some CSS and colors)
 - REFACTORING (Alban): Replace the progress bar by track bar for editing transparency of the layers
+- REFACTORING (Alban): In the Preference Window, add a combo box to choose the pan view key (before the key was deducted from the 2 other modifier keys which were set)
 
 
 Bug fixed in 1.8.2.0:

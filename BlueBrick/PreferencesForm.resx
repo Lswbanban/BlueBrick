@@ -1493,7 +1493,7 @@ the more memory the application will use.</value>
     <value>3</value>
   </data>
   <data name="copyPasteGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 133</value>
+    <value>9, 167</value>
   </data>
   <data name="copyPasteGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 73</value>
@@ -1516,6 +1516,69 @@ the more memory the application will use.</value>
   <data name="&gt;&gt;copyPasteGroupBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="mousePanViewKeyComboBox.Items" xml:space="preserve">
+    <value>CTRL</value>
+  </data>
+  <data name="mousePanViewKeyComboBox.Items1" xml:space="preserve">
+    <value>ALT</value>
+  </data>
+  <data name="mousePanViewKeyComboBox.Items2" xml:space="preserve">
+    <value>SHIFT</value>
+  </data>
+  <data name="mousePanViewKeyComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 65</value>
+  </data>
+  <data name="mousePanViewKeyComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 21</value>
+  </data>
+  <data name="mousePanViewKeyComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="mousePanViewKeyComboBox.Text" xml:space="preserve">
+    <value>SHIFT</value>
+  </data>
+  <data name="&gt;&gt;mousePanViewKeyComboBox.Name" xml:space="preserve">
+    <value>mousePanViewKeyComboBox</value>
+  </data>
+  <data name="&gt;&gt;mousePanViewKeyComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mousePanViewKeyComboBox.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;mousePanViewKeyComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 65</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 18</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Pan View Key</value>
+  </data>
+  <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="mouseDuplicateSelKeyComboBox.Items" xml:space="preserve">
     <value>CTRL</value>
   </data>
@@ -1526,7 +1589,7 @@ the more memory the application will use.</value>
     <value>SHIFT</value>
   </data>
   <data name="mouseDuplicateSelKeyComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 92</value>
+    <value>190, 119</value>
   </data>
   <data name="mouseDuplicateSelKeyComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 21</value>
@@ -1547,13 +1610,13 @@ the more memory the application will use.</value>
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 92</value>
+    <value>38, 119</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 18</value>
@@ -1577,7 +1640,7 @@ the more memory the application will use.</value>
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="mouseMultipleSelKeyComboBox.Items" xml:space="preserve">
     <value>CTRL</value>
@@ -1589,7 +1652,7 @@ the more memory the application will use.</value>
     <value>SHIFT</value>
   </data>
   <data name="mouseMultipleSelKeyComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>189, 65</value>
+    <value>189, 92</value>
   </data>
   <data name="mouseMultipleSelKeyComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 21</value>
@@ -1610,13 +1673,13 @@ the more memory the application will use.</value>
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;mouseMultipleSelKeyComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 65</value>
+    <value>38, 92</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 18</value>
@@ -1640,7 +1703,7 @@ the more memory the application will use.</value>
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="mouseZoomCenteredCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1670,7 +1733,7 @@ the more memory the application will use.</value>
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;mouseZoomCenteredCheckBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1700,7 +1763,7 @@ the more memory the application will use.</value>
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="mouseZoomSpeedNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>189, 39</value>
@@ -1721,13 +1784,13 @@ the more memory the application will use.</value>
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;mouseZoomSpeedNumericUpDown.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 6</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 121</value>
+    <value>282, 149</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>

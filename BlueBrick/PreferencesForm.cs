@@ -59,9 +59,6 @@ namespace BlueBrick
 		// flag for the main application
 		private bool mDoesNeedToRestart = false;
 
-		// the zoom pan key doesn't have control to edit it, it is deducted from the edition of the multi select key and duplicate key
-		private int mZoomPanKeySelectedIndex = 0;
-
 		// a flag to tell if the user has set the new map template file name and the budget file name
 		private bool mIsTemplateFilenameForNewMapSet = (Settings.Default.TemplateFilenameWhenCreatingANewMap != string.Empty);
 		private bool mIsBudgetFilenameToLoadAtStartupSet = (Settings.Default.BudgetFilenameToLoadAtStartup != string.Empty);
@@ -72,8 +69,8 @@ namespace BlueBrick
 			get { return mDoesNeedToRestart; }
 		}
 		#endregion
-		#region init / close
 
+		#region init / close
 		public static void sSaveDefaultKeyInSettings()
 		{
 			sSaveDefaultKeyInSettings(Settings.Default, true);
@@ -158,7 +155,7 @@ namespace BlueBrick
 				// mouse
 				this.mouseZoomCenteredCheckBox.Checked = Settings.Default.WheelMouseIsZoomOnCursor;
 				this.mouseZoomSpeedNumericUpDown.Value = (Decimal)Settings.Default.WheelMouseZoomSpeed;
-				fillAndSelectMultipleAndDuplicateSelectionKeyComboBox();
+				fillAndSelectModifierKeyComboBox();
 				// copy/paste
 				this.copyOffsetComboBox.SelectedIndex = Settings.Default.OffsetAfterCopyStyle;
 				this.pasteOffsetValueNumericUpDown.Value = (Decimal)Settings.Default.OffsetAfterCopyValue;
@@ -297,6 +294,7 @@ namespace BlueBrick
 				// mouse
 				destination.MouseMultipleSelectionKey = source.MouseMultipleSelectionKey;
 				destination.WheelMouseIsZoomOnCursor = source.WheelMouseIsZoomOnCursor;
+				destination.MouseZoomPanKey = source.MouseZoomPanKey;
 				destination.WheelMouseZoomSpeed = source.WheelMouseZoomSpeed;
 				// copy/paste
 				destination.OffsetAfterCopyStyle = source.OffsetAfterCopyStyle;
@@ -406,7 +404,7 @@ namespace BlueBrick
 			// mouse
 			Settings.Default.WheelMouseIsZoomOnCursor = this.mouseZoomCenteredCheckBox.Checked;
 			Settings.Default.WheelMouseZoomSpeed = (double)this.mouseZoomSpeedNumericUpDown.Value;
-			setMultipleAndDuplicateSelectionKeySettingAccordingToComboBox();
+			setModifierKeySettingAccordingToComboBox();
 			// copy/paste
 			Settings.Default.OffsetAfterCopyStyle = (int)this.copyOffsetComboBox.SelectedIndex;
 			Settings.Default.OffsetAfterCopyValue = (float)this.pasteOffsetValueNumericUpDown.Value;
@@ -840,7 +838,7 @@ namespace BlueBrick
 			}
 		}
 
-		private void setMultipleAndDuplicateSelectionKeySettingAccordingToComboBox()
+		private void setModifierKeySettingAccordingToComboBox()
 		{
 			// Multiple selection
 			switch (this.mouseMultipleSelKeyComboBox.SelectedIndex)
@@ -859,7 +857,7 @@ namespace BlueBrick
 			}
 
 			// zoompan
-			switch (mZoomPanKeySelectedIndex)
+			switch (this.mousePanViewKeyComboBox.SelectedIndex)
 			{
 				case 0: Settings.Default.MouseZoomPanKey = Keys.Control; break;
 				case 1: Settings.Default.MouseZoomPanKey = Keys.Alt; break;
@@ -886,15 +884,26 @@ namespace BlueBrick
 			return thirdOne;
 		}
 
+		private void mousePanViewKeyComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// avoid to have the multiple selection, the duplicate and the zoompan on the same key
+			// we are in the event of the duplicate key, so don't change this one,
+			// change one of the two others.
+			if (this.mousePanViewKeyComboBox.SelectedIndex == this.mouseMultipleSelKeyComboBox.SelectedIndex)
+				this.mouseMultipleSelKeyComboBox.SelectedIndex = getTheThirdOne(this.mousePanViewKeyComboBox.SelectedIndex, this.mouseDuplicateSelKeyComboBox.SelectedIndex);
+			else
+				this.mouseDuplicateSelKeyComboBox.SelectedIndex = getTheThirdOne(this.mousePanViewKeyComboBox.SelectedIndex, this.mouseMultipleSelKeyComboBox.SelectedIndex);
+		}
+
 		private void mouseDuplicateSelKeyComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			// avoid to have the multiple selection, the duplicate and the zoompan on the same key
 			// we are in the event of the duplicate key, so don't change this one,
 			// change one of the two others.
 			if (this.mouseDuplicateSelKeyComboBox.SelectedIndex == this.mouseMultipleSelKeyComboBox.SelectedIndex)
-				this.mouseMultipleSelKeyComboBox.SelectedIndex = getTheThirdOne(this.mouseDuplicateSelKeyComboBox.SelectedIndex, mZoomPanKeySelectedIndex);
+				this.mouseMultipleSelKeyComboBox.SelectedIndex = getTheThirdOne(this.mouseDuplicateSelKeyComboBox.SelectedIndex, this.mousePanViewKeyComboBox.SelectedIndex);
 			else
-				mZoomPanKeySelectedIndex = getTheThirdOne(this.mouseDuplicateSelKeyComboBox.SelectedIndex, this.mouseMultipleSelKeyComboBox.SelectedIndex);
+				this.mousePanViewKeyComboBox.SelectedIndex = getTheThirdOne(this.mouseDuplicateSelKeyComboBox.SelectedIndex, this.mouseMultipleSelKeyComboBox.SelectedIndex);
 		}
 
 		private void mouseMultipleSelKeyComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -903,12 +912,12 @@ namespace BlueBrick
 			// we are in the event of the multiple select key, so don't change this one,
 			// change one of the two others.
 			if (this.mouseMultipleSelKeyComboBox.SelectedIndex == this.mouseDuplicateSelKeyComboBox.SelectedIndex)
-				this.mouseDuplicateSelKeyComboBox.SelectedIndex = getTheThirdOne(this.mouseMultipleSelKeyComboBox.SelectedIndex, mZoomPanKeySelectedIndex);
+				this.mouseDuplicateSelKeyComboBox.SelectedIndex = getTheThirdOne(this.mouseMultipleSelKeyComboBox.SelectedIndex, this.mousePanViewKeyComboBox.SelectedIndex);
 			else
-				mZoomPanKeySelectedIndex = getTheThirdOne(this.mouseMultipleSelKeyComboBox.SelectedIndex, this.mouseDuplicateSelKeyComboBox.SelectedIndex);
+				this.mousePanViewKeyComboBox.SelectedIndex = getTheThirdOne(this.mouseMultipleSelKeyComboBox.SelectedIndex, this.mouseDuplicateSelKeyComboBox.SelectedIndex);
 		}
 
-		private void fillAndSelectMultipleAndDuplicateSelectionKeyComboBox()
+		private void fillAndSelectModifierKeyComboBox()
 		{
 			// select the correct index for multiple selection
 			switch (Settings.Default.MouseMultipleSelectionKey)
@@ -929,9 +938,9 @@ namespace BlueBrick
 			// select the correct index for zoompan
 			switch (Settings.Default.MouseZoomPanKey)
 			{
-				case Keys.Control: mZoomPanKeySelectedIndex = 0; break;
-				case Keys.Alt: mZoomPanKeySelectedIndex = 1; break;
-				case Keys.Shift: mZoomPanKeySelectedIndex = 2; break;
+				case Keys.Control: this.mousePanViewKeyComboBox.SelectedIndex = 0; break;
+				case Keys.Alt: this.mousePanViewKeyComboBox.SelectedIndex = 1; break;
+				case Keys.Shift: this.mousePanViewKeyComboBox.SelectedIndex = 2; break;
 			}
 		}
 
