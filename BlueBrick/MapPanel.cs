@@ -89,10 +89,19 @@ namespace BlueBrick
 		private ToolStripMenuItem useAsModelToolStripMenuItem;
 		private ToolStripSeparator propertiesToolStripSeparator;
 		private ToolStripMenuItem propertiesToolStripMenuItem;
+		private ToolStripSeparator appearanceToolStripSeparator;
+		private ToolStripMenuItem scrollBarToolStripMenuItem;
 
 		// scale
 		private double mViewScale = 4.0;
 
+		// a parameter to adjust the scrollbar resolution. This is the slider size but also define the resolution of the whole scrollbar
+		const int mMapScrollBarSliderSize = 100;
+		private HScrollBar horizontalScrollBar;
+		private VScrollBar verticalScrollBar;
+
+		// a const margin added to the total area surface, in order to compute the scrollbar maximums
+		const int mScrollBarAddedMarginInStud = 32;
 		#endregion
 
 		#region Get / Set
@@ -135,6 +144,7 @@ namespace BlueBrick
 		/// </summary>
 		public MapPanel()
 		{
+			// Note that we add our own scroll bar, otherwise they appear below the staus bar, and also the panel try to scroll them automatically based on the component on the panel (which are none)
 			InitializeComponent();
 			// Default values
 			SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.ResizeRedraw | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
@@ -161,12 +171,15 @@ namespace BlueBrick
 			this.useAsModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.propertiesToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
 			this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.appearanceToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+			this.scrollBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.horizontalScrollBar = new System.Windows.Forms.HScrollBar();
+			this.verticalScrollBar = new System.Windows.Forms.VScrollBar();
 			this.contextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// contextMenuStrip
 			// 
-			resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
 			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bringToFrontToolStripMenuItem,
             this.sendToBackToolStripMenuItem,
@@ -182,99 +195,127 @@ namespace BlueBrick
             this.detachToolStripMenuItem,
             this.useAsModelToolStripMenuItem,
             this.propertiesToolStripSeparator,
-            this.propertiesToolStripMenuItem});
+            this.propertiesToolStripMenuItem,
+            this.appearanceToolStripSeparator,
+            this.scrollBarToolStripMenuItem});
 			this.contextMenuStrip.Name = "contextMenuStrip";
+			resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
 			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
 			// 
 			// bringToFrontToolStripMenuItem
 			// 
-			resources.ApplyResources(this.bringToFrontToolStripMenuItem, "bringToFrontToolStripMenuItem");
 			this.bringToFrontToolStripMenuItem.Name = "bringToFrontToolStripMenuItem";
+			resources.ApplyResources(this.bringToFrontToolStripMenuItem, "bringToFrontToolStripMenuItem");
 			this.bringToFrontToolStripMenuItem.Click += new System.EventHandler(this.bringToFrontToolStripMenuItem_Click);
 			// 
 			// sendToBackToolStripMenuItem
 			// 
-			resources.ApplyResources(this.sendToBackToolStripMenuItem, "sendToBackToolStripMenuItem");
 			this.sendToBackToolStripMenuItem.Name = "sendToBackToolStripMenuItem";
+			resources.ApplyResources(this.sendToBackToolStripMenuItem, "sendToBackToolStripMenuItem");
 			this.sendToBackToolStripMenuItem.Click += new System.EventHandler(this.sendToBackToolStripMenuItem_Click);
 			// 
 			// selectToolStripSeparator
 			// 
-			resources.ApplyResources(this.selectToolStripSeparator, "selectToolStripSeparator");
 			this.selectToolStripSeparator.Name = "selectToolStripSeparator";
+			resources.ApplyResources(this.selectToolStripSeparator, "selectToolStripSeparator");
 			// 
 			// selectAllToolStripMenuItem
 			// 
-			resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
 			this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+			resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
 			this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
 			// 
 			// deselectAllToolStripMenuItem
 			// 
-			resources.ApplyResources(this.deselectAllToolStripMenuItem, "deselectAllToolStripMenuItem");
 			this.deselectAllToolStripMenuItem.Name = "deselectAllToolStripMenuItem";
+			resources.ApplyResources(this.deselectAllToolStripMenuItem, "deselectAllToolStripMenuItem");
 			this.deselectAllToolStripMenuItem.Click += new System.EventHandler(this.deselectAllToolStripMenuItem_Click);
 			// 
 			// selectPathToolStripMenuItem
 			// 
-			resources.ApplyResources(this.selectPathToolStripMenuItem, "selectPathToolStripMenuItem");
 			this.selectPathToolStripMenuItem.Name = "selectPathToolStripMenuItem";
+			resources.ApplyResources(this.selectPathToolStripMenuItem, "selectPathToolStripMenuItem");
 			this.selectPathToolStripMenuItem.Click += new System.EventHandler(this.selectPathToolStripMenuItem_Click);
 			// 
 			// groupToolStripSeparator
 			// 
-			resources.ApplyResources(this.groupToolStripSeparator, "groupToolStripSeparator");
 			this.groupToolStripSeparator.Name = "groupToolStripSeparator";
+			resources.ApplyResources(this.groupToolStripSeparator, "groupToolStripSeparator");
 			// 
 			// groupToolStripMenuItem
 			// 
-			resources.ApplyResources(this.groupToolStripMenuItem, "groupToolStripMenuItem");
 			this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
+			resources.ApplyResources(this.groupToolStripMenuItem, "groupToolStripMenuItem");
 			this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
 			// 
 			// ungroupToolStripMenuItem
 			// 
-			resources.ApplyResources(this.ungroupToolStripMenuItem, "ungroupToolStripMenuItem");
 			this.ungroupToolStripMenuItem.Name = "ungroupToolStripMenuItem";
+			resources.ApplyResources(this.ungroupToolStripMenuItem, "ungroupToolStripMenuItem");
 			this.ungroupToolStripMenuItem.Click += new System.EventHandler(this.ungroupToolStripMenuItem_Click);
 			// 
 			// attachRulerToolStripSeparator
 			// 
-			resources.ApplyResources(this.attachRulerToolStripSeparator, "attachRulerToolStripSeparator");
 			this.attachRulerToolStripSeparator.Name = "attachRulerToolStripSeparator";
+			resources.ApplyResources(this.attachRulerToolStripSeparator, "attachRulerToolStripSeparator");
 			// 
 			// attachToolStripMenuItem
 			// 
-			resources.ApplyResources(this.attachToolStripMenuItem, "attachToolStripMenuItem");
 			this.attachToolStripMenuItem.Name = "attachToolStripMenuItem";
+			resources.ApplyResources(this.attachToolStripMenuItem, "attachToolStripMenuItem");
 			this.attachToolStripMenuItem.Click += new System.EventHandler(this.attachToolStripMenuItem_Click);
 			// 
 			// detachToolStripMenuItem
 			// 
-			resources.ApplyResources(this.detachToolStripMenuItem, "detachToolStripMenuItem");
 			this.detachToolStripMenuItem.Name = "detachToolStripMenuItem";
+			resources.ApplyResources(this.detachToolStripMenuItem, "detachToolStripMenuItem");
 			this.detachToolStripMenuItem.Click += new System.EventHandler(this.detachToolStripMenuItem_Click);
 			// 
 			// useAsModelToolStripMenuItem
 			// 
-			resources.ApplyResources(this.useAsModelToolStripMenuItem, "useAsModelToolStripMenuItem");
 			this.useAsModelToolStripMenuItem.Name = "useAsModelToolStripMenuItem";
+			resources.ApplyResources(this.useAsModelToolStripMenuItem, "useAsModelToolStripMenuItem");
 			this.useAsModelToolStripMenuItem.Click += new System.EventHandler(this.useAsModelToolStripMenuItem_Click);
 			// 
 			// propertiesToolStripSeparator
 			// 
-			resources.ApplyResources(this.propertiesToolStripSeparator, "propertiesToolStripSeparator");
 			this.propertiesToolStripSeparator.Name = "propertiesToolStripSeparator";
+			resources.ApplyResources(this.propertiesToolStripSeparator, "propertiesToolStripSeparator");
 			// 
 			// propertiesToolStripMenuItem
 			// 
-			resources.ApplyResources(this.propertiesToolStripMenuItem, "propertiesToolStripMenuItem");
 			this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
+			resources.ApplyResources(this.propertiesToolStripMenuItem, "propertiesToolStripMenuItem");
 			this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
+			// 
+			// appearanceToolStripSeparator
+			// 
+			this.appearanceToolStripSeparator.Name = "appearanceToolStripSeparator";
+			resources.ApplyResources(this.appearanceToolStripSeparator, "appearanceToolStripSeparator");
+			// 
+			// scrollBarToolStripMenuItem
+			// 
+			this.scrollBarToolStripMenuItem.CheckOnClick = true;
+			this.scrollBarToolStripMenuItem.Name = "scrollBarToolStripMenuItem";
+			resources.ApplyResources(this.scrollBarToolStripMenuItem, "scrollBarToolStripMenuItem");
+			this.scrollBarToolStripMenuItem.Click += new System.EventHandler(this.scrollBarToolStripMenuItem_Click);
+			// 
+			// horizontalScrollBar
+			// 
+			resources.ApplyResources(this.horizontalScrollBar, "horizontalScrollBar");
+			this.horizontalScrollBar.Name = "horizontalScrollBar";
+			this.horizontalScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.horizontalScrollBar_Scroll);
+			this.Controls.Add(this.horizontalScrollBar);
+			// 
+			// verticalScrollBar
+			// 
+			resources.ApplyResources(this.verticalScrollBar, "verticalScrollBar");
+			this.verticalScrollBar.Name = "verticalScrollBar";
+			this.verticalScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.verticalScrollBar_Scroll);
+			this.Controls.Add(this.verticalScrollBar);
 			// 
 			// MapPanel
 			// 
-			resources.ApplyResources(this, "$this");
 			this.AllowDrop = true;
 			this.ContextMenuStrip = this.contextMenuStrip;
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MapPanel_DragDrop);
@@ -964,6 +1005,54 @@ namespace BlueBrick
 		{
 			Map.Instance.editSelectedItemsProperties(mLastDownMouseCoordInStud);
 		}
+
+		private void scrollBarToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// show or hide the scrollbar
+			bool enableScrollBars = scrollBarToolStripMenuItem.Checked;
+			this.horizontalScrollBar.Visible = enableScrollBars;
+			this.verticalScrollBar.Visible = enableScrollBars;
+
+			// if the scrollbars are visible, adjust their size
+			if (enableScrollBars)
+				updateScrollbarSize();
+		}
 		#endregion
+
+		#region scrollbars
+		private void updateScrollbarSize()
+		{
+			// get the total area of the map
+			RectangleF totalArea = Map.Instance.getTotalAreaInStud(false);
+
+			// compute the total area in screen pixel (from studs)
+			double totalWidthInPixel = (totalArea.Right - totalArea.Left + mScrollBarAddedMarginInStud) * mViewScale;
+			double totalHeightInPixel = (totalArea.Bottom - totalArea.Top + mScrollBarAddedMarginInStud) * mViewScale;
+				
+			// compute how many screens are needed to display the total map area, that will define how long should be the scroll bar
+			double screenCountToDisplayTotalWidth = totalWidthInPixel / this.Size.Width;
+			double screenCountToDisplayTotalHeight = totalHeightInPixel / this.Size.Height;
+
+			// set the maximum of the scroll bars
+			this.horizontalScrollBar.Maximum = (int)(mMapScrollBarSliderSize * screenCountToDisplayTotalWidth);
+			this.horizontalScrollBar.LargeChange = mMapScrollBarSliderSize;
+			this.verticalScrollBar.Maximum = (int)(mMapScrollBarSliderSize * screenCountToDisplayTotalHeight);
+			this.verticalScrollBar.LargeChange = mMapScrollBarSliderSize;
+
+			// set the value of the scrollbar depending on the current view
+			this.horizontalScrollBar.Value = (int)((((mViewCornerX - totalArea.Left) * mViewScale) / this.Size.Width) * mMapScrollBarSliderSize);
+			this.verticalScrollBar.Value = (int)((((mViewCornerY - totalArea.Top) * mViewScale) / this.Size.Height) * mMapScrollBarSliderSize);
+		}
+		#endregion
+
+		private void horizontalScrollBar_Scroll(object sender, ScrollEventArgs e)
+		{
+			mViewCornerX = (((double)(e.NewValue / mMapScrollBarSliderSize) * this.Size.Width) / mViewScale);
+		}
+
+		private void verticalScrollBar_Scroll(object sender, ScrollEventArgs e)
+		{
+			mViewCornerY = (((double)(e.NewValue / mMapScrollBarSliderSize) * this.Size.Height) / mViewScale);
+		}
 	}
 }
