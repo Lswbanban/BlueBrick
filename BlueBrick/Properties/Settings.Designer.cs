@@ -1307,5 +1307,17 @@ namespace BlueBrick.Properties {
                 this["TemplateFilenameWhenCreatingANewMap"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UIMapScrollBarsAreVisible {
+            get {
+                return ((bool)(this["UIMapScrollBarsAreVisible"]));
+            }
+            set {
+                this["UIMapScrollBarsAreVisible"] = value;
+            }
+        }
     }
 }

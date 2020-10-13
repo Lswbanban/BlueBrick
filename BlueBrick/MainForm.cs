@@ -607,6 +607,8 @@ namespace BlueBrick
 			this.toolBar.Visible = this.toolbarMenuItem.Checked = Properties.Settings.Default.UIToolbarIsVisible;
 			this.statusBar.Visible = this.statusBarMenuItem.Checked = Properties.Settings.Default.UIStatusbarIsVisible;
 			this.mapPanel.CurrentStatusBarHeight = Properties.Settings.Default.UIStatusbarIsVisible ? this.statusBar.Height : 0;
+			this.mapScrollBarsToolStripMenuItem.Checked = Properties.Settings.Default.UIMapScrollBarsAreVisible;
+			this.mapPanel.ShowHideScrollBars(Properties.Settings.Default.UIMapScrollBarsAreVisible);
 			this.watermarkToolStripMenuItem.Checked = Properties.Settings.Default.DisplayGeneralInfoWatermark;
 			this.electricCircuitsMenuItem.Checked = Properties.Settings.Default.DisplayElectricCircuit;
 			this.connectionPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayFreeConnexionPoints;
@@ -669,6 +671,7 @@ namespace BlueBrick
 			// toolbar and status bar visibility
 			Properties.Settings.Default.UIToolbarIsVisible = this.toolBar.Visible;
 			Properties.Settings.Default.UIStatusbarIsVisible = this.statusBar.Visible;
+			Properties.Settings.Default.UIMapScrollBarsAreVisible = this.mapScrollBarsToolStripMenuItem.Checked;
 
 			// the part lib display config
 			savePartLibUISettingInDefaultSettings();
@@ -2412,6 +2415,16 @@ namespace BlueBrick
 			this.statusBar.Visible = this.statusBarMenuItem.Checked;
 			this.mapPanel.CurrentStatusBarHeight = this.statusBar.Visible ? this.statusBar.Height : 0;
 			this.mapPanel.Invalidate();
+		}
+
+		public void mapScrollBarsVisibilityChangeNotification(bool newVisibility)
+		{
+			this.mapScrollBarsToolStripMenuItem.Checked = newVisibility;
+		}
+
+		private void mapScrollBarsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.mapPanel.ShowHideScrollBars(mapScrollBarsToolStripMenuItem.Checked);
 		}
 
 		private void watermarkToolStripMenuItem_Click(object sender, EventArgs e)

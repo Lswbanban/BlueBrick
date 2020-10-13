@@ -101,6 +101,7 @@ namespace BlueBrick
 			this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolbarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusBarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.mapScrollBarsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.watermarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
 			this.electricCircuitsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -746,6 +747,7 @@ namespace BlueBrick
 			this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolbarMenuItem,
             this.statusBarMenuItem,
+            this.mapScrollBarsToolStripMenuItem,
             this.watermarkToolStripMenuItem,
             this.toolStripSeparator13,
             this.electricCircuitsMenuItem,
@@ -772,6 +774,13 @@ namespace BlueBrick
 			this.statusBarMenuItem.Name = "statusBarMenuItem";
 			resources.ApplyResources(this.statusBarMenuItem, "statusBarMenuItem");
 			this.statusBarMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
+			// 
+			// mapScrollBarsToolStripMenuItem
+			// 
+			this.mapScrollBarsToolStripMenuItem.CheckOnClick = true;
+			this.mapScrollBarsToolStripMenuItem.Name = "mapScrollBarsToolStripMenuItem";
+			resources.ApplyResources(this.mapScrollBarsToolStripMenuItem, "mapScrollBarsToolStripMenuItem");
+			this.mapScrollBarsToolStripMenuItem.Click += new System.EventHandler(this.mapScrollBarsToolStripMenuItem_Click);
 			// 
 			// watermarkToolStripMenuItem
 			// 
@@ -2040,6 +2049,7 @@ namespace BlueBrick
 		public System.Windows.Forms.OpenFileDialog openBudgetFileDialog;
 		public PartLibraryPanel PartsTabControl;
 		private System.Windows.Forms.OpenFileDialog openFileDialog;
+		private System.Windows.Forms.ToolStripMenuItem mapScrollBarsToolStripMenuItem;
 	}
 }
 

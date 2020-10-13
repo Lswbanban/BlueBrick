@@ -946,6 +946,9 @@ namespace BlueBrick
 				// check is we need to enable the properties
 				this.propertiesToolStripMenuItem.Enabled = enableItemRelatedToSelection && ((selectedLayer is LayerRuler) || (selectedLayer is LayerText));
 
+				// update the check mark of the scrollbar depending on the current state of the scrollbar
+				this.scrollBarToolStripMenuItem.Checked = this.horizontalScrollBar.Visible || this.verticalScrollBar.Visible;
+
 				// finally after enabling the context menu items
 				// check if at leat one toolstrip menu item is enabled otherwise, cancel the opening
 				bool isEnabled = false;
@@ -1025,17 +1028,24 @@ namespace BlueBrick
 
 		private void scrollBarToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			// Warn Main form to update its menu item for the scroll bars
+			MainForm.Instance.mapScrollBarsVisibilityChangeNotification(scrollBarToolStripMenuItem.Checked);
 			// show or hide the scrollbar
-			bool enableScrollBars = scrollBarToolStripMenuItem.Checked;
-			this.horizontalScrollBar.Visible = enableScrollBars;
-			this.verticalScrollBar.Visible = enableScrollBars;
-
-			// update the scrollbars size (if they are not visible, nothing happen)
-			updateScrollbarSize();
+			ShowHideScrollBars(scrollBarToolStripMenuItem.Checked);
 		}
 		#endregion
 
 		#region scrollbars
+
+		public void ShowHideScrollBars(bool isVisible)
+		{
+			// show or hide the two scrollbars
+			this.horizontalScrollBar.Visible = isVisible;
+			this.verticalScrollBar.Visible = isVisible;
+
+			// update the scrollbars size (if they are not visible, nothing happen)
+			updateScrollbarSize();
+		}
 
 		private void UpdateScrollBarThumbFromViewCorner(bool updateX, bool updateY)
 		{
