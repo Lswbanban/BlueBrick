@@ -124,9 +124,14 @@ namespace BlueBrick
 					mViewScale = value;
 				// compute the difference of scale and call the notification on the map
 				if (mViewScale != oldValue)
+				{
+					// call map notification
 					Map.Instance.zoomScaleChangeNotification(oldValue, mViewScale);
-				// invalidate the panel, since we must redraw it to handle the new scale
-				Invalidate();
+					// update the scrollbars
+					updateScrollbarSize();
+					// invalidate the panel, since we must redraw it to handle the new scale
+					Invalidate();
+				}
 			}
 		}
 
@@ -1015,9 +1020,8 @@ namespace BlueBrick
 			this.horizontalScrollBar.Visible = enableScrollBars;
 			this.verticalScrollBar.Visible = enableScrollBars;
 
-			// if the scrollbars are visible, adjust their size
-			if (enableScrollBars)
-				updateScrollbarSize();
+			// update the scrollbars size (if they are not visible, nothing happen)
+			updateScrollbarSize();
 		}
 		#endregion
 
@@ -1029,12 +1033,18 @@ namespace BlueBrick
 			RectangleF totalArea = Map.Instance.TotalAreaInStud;
 			// update the scrollbar values
 			if (updateX)
-				this.horizontalScrollBar.Value = (int)((((mViewCornerX - totalArea.Left) * mViewScale) / this.Size.Width) * mMapScrollBarSliderSize);
+			{
+				int newValue = (int)((((mViewCornerX - totalArea.Left) * mViewScale) / this.Size.Width) * mMapScrollBarSliderSize);
+				this.horizontalScrollBar.Value = Math.Max(Math.Min(newValue, this.horizontalScrollBar.Maximum), this.horizontalScrollBar.Minimum);
+			}
 			if (updateY)
-				this.verticalScrollBar.Value = (int)((((mViewCornerY - totalArea.Top) * mViewScale) / this.Size.Height) * mMapScrollBarSliderSize);
+			{
+				int newValue = (int)((((mViewCornerY - totalArea.Top) * mViewScale) / this.Size.Height) * mMapScrollBarSliderSize);
+				this.verticalScrollBar.Value = Math.Max(Math.Min(newValue, this.verticalScrollBar.Maximum), this.verticalScrollBar.Minimum);
+			}
 		}
 
-		private void UpdateViewCornerFromScrollBarThumb(bool updateX, bool updateY)
+	private void UpdateViewCornerFromScrollBarThumb(bool updateX, bool updateY)
 		{
 			// get the total area of the map
 			RectangleF totalArea = Map.Instance.TotalAreaInStud;
@@ -1047,25 +1057,29 @@ namespace BlueBrick
 
 		private void updateScrollbarSize()
 		{
-			// get the total area of the map
-			RectangleF totalArea = Map.Instance.TotalAreaInStud;
+			// does nothing if the scrollbars are not visible
+			if (this.horizontalScrollBar.Visible || this.verticalScrollBar.Visible)
+			{
+				// get the total area of the map
+				RectangleF totalArea = Map.Instance.TotalAreaInStud;
 
-			// compute the total area in screen pixel (from studs)
-			double totalWidthInPixel = (totalArea.Right - totalArea.Left + mScrollBarAddedMarginInStud) * mViewScale;
-			double totalHeightInPixel = (totalArea.Bottom - totalArea.Top + mScrollBarAddedMarginInStud) * mViewScale;
-				
-			// compute how many screens are needed to display the total map area, that will define how long should be the scroll bar
-			double screenCountToDisplayTotalWidth = totalWidthInPixel / this.Size.Width;
-			double screenCountToDisplayTotalHeight = totalHeightInPixel / this.Size.Height;
+				// compute the total area in screen pixel (from studs)
+				double totalWidthInPixel = (totalArea.Right - totalArea.Left + mScrollBarAddedMarginInStud) * mViewScale;
+				double totalHeightInPixel = (totalArea.Bottom - totalArea.Top + mScrollBarAddedMarginInStud) * mViewScale;
 
-			// set the maximum of the scroll bars
-			this.horizontalScrollBar.Maximum = (int)(mMapScrollBarSliderSize * screenCountToDisplayTotalWidth);
-			this.horizontalScrollBar.LargeChange = mMapScrollBarSliderSize;
-			this.verticalScrollBar.Maximum = (int)(mMapScrollBarSliderSize * screenCountToDisplayTotalHeight);
-			this.verticalScrollBar.LargeChange = mMapScrollBarSliderSize;
+				// compute how many screens are needed to display the total map area, that will define how long should be the scroll bar
+				double screenCountToDisplayTotalWidth = totalWidthInPixel / this.Size.Width;
+				double screenCountToDisplayTotalHeight = totalHeightInPixel / this.Size.Height;
 
-			// set the value of the scrollbar depending on the current view
-			UpdateScrollBarThumbFromViewCorner(true, true);
+				// set the maximum of the scroll bars
+				this.horizontalScrollBar.Maximum = (int)(mMapScrollBarSliderSize * screenCountToDisplayTotalWidth);
+				this.horizontalScrollBar.LargeChange = mMapScrollBarSliderSize;
+				this.verticalScrollBar.Maximum = (int)(mMapScrollBarSliderSize * screenCountToDisplayTotalHeight);
+				this.verticalScrollBar.LargeChange = mMapScrollBarSliderSize;
+
+				// set the value of the scrollbar depending on the current view
+				UpdateScrollBarThumbFromViewCorner(true, true);
+			}
 		}
 		#endregion
 
