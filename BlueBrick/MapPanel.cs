@@ -1020,10 +1020,33 @@ namespace BlueBrick
 		#endregion
 
 		#region scrollbars
+
+		private void UpdateScrollBarThumbFromViewCorner(bool updateX, bool updateY)
+		{
+			// get the total area of the map
+			RectangleF totalArea = Map.Instance.TotalAreaInStud;
+			// update the scrollbar values
+			if (updateX)
+				this.horizontalScrollBar.Value = (int)((((mViewCornerX - totalArea.Left) * mViewScale) / this.Size.Width) * mMapScrollBarSliderSize);
+			if (updateY)
+				this.verticalScrollBar.Value = (int)((((mViewCornerY - totalArea.Top) * mViewScale) / this.Size.Height) * mMapScrollBarSliderSize);
+		}
+
+		private void UpdateViewCornerFromScrollBarThumb(bool updateX, bool updateY)
+		{
+			// get the total area of the map
+			RectangleF totalArea = Map.Instance.TotalAreaInStud;
+			// update the view corner
+			if (updateX)
+				mViewCornerX = ((((double)this.horizontalScrollBar.Value / mMapScrollBarSliderSize) * this.Size.Width) / mViewScale) + totalArea.Left;
+			if (updateY)
+				mViewCornerY = ((((double)this.verticalScrollBar.Value / mMapScrollBarSliderSize) * this.Size.Height) / mViewScale) + totalArea.Top;
+		}
+
 		private void updateScrollbarSize()
 		{
 			// get the total area of the map
-			RectangleF totalArea = Map.Instance.getTotalAreaInStud(false);
+			RectangleF totalArea = Map.Instance.TotalAreaInStud;
 
 			// compute the total area in screen pixel (from studs)
 			double totalWidthInPixel = (totalArea.Right - totalArea.Left + mScrollBarAddedMarginInStud) * mViewScale;
@@ -1040,19 +1063,20 @@ namespace BlueBrick
 			this.verticalScrollBar.LargeChange = mMapScrollBarSliderSize;
 
 			// set the value of the scrollbar depending on the current view
-			this.horizontalScrollBar.Value = (int)((((mViewCornerX - totalArea.Left) * mViewScale) / this.Size.Width) * mMapScrollBarSliderSize);
-			this.verticalScrollBar.Value = (int)((((mViewCornerY - totalArea.Top) * mViewScale) / this.Size.Height) * mMapScrollBarSliderSize);
+			UpdateScrollBarThumbFromViewCorner(true, true);
 		}
 		#endregion
 
 		private void horizontalScrollBar_Scroll(object sender, ScrollEventArgs e)
 		{
-			mViewCornerX = (((double)(e.NewValue / mMapScrollBarSliderSize) * this.Size.Width) / mViewScale);
+			UpdateViewCornerFromScrollBarThumb(true, false);
+			this.Invalidate();
 		}
 
 		private void verticalScrollBar_Scroll(object sender, ScrollEventArgs e)
 		{
-			mViewCornerY = (((double)(e.NewValue / mMapScrollBarSliderSize) * this.Size.Height) / mViewScale);
+			UpdateViewCornerFromScrollBarThumb(false, true);
+			this.Invalidate();
 		}
 	}
 }

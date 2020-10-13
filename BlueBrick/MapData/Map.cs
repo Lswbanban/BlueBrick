@@ -51,9 +51,9 @@ namespace BlueBrick.MapData
 		// the current version of the data
 		private static int mDataVersionOfTheFileLoaded = CURRENT_DATA_VERSION;
 
-        // for the current map
-        private string mMapFileName = Properties.Resources.DefaultSaveFileName;
-        private bool mIsMapNameValid = false;
+		// for the current map
+		private string mMapFileName = Properties.Resources.DefaultSaveFileName;
+		private bool mIsMapNameValid = false;
 
 		// data global to the map that can change the user
 		private string mAuthor = Properties.Resources.DefaultAuthor;
@@ -66,13 +66,13 @@ namespace BlueBrick.MapData
 
 		// data for the image export (this contains the last export settings for this map)
 		private string mExportAbsoluteFileName = string.Empty; // file name including full path from root
-        private int mExportFileTypeIndex = 1; // index in the combobox for the different type of export
+		private int mExportFileTypeIndex = 1; // index in the combobox for the different type of export
 		private RectangleF mExportArea = new RectangleF();
 		private double mExportScale = 0.0;
-        private bool mExportWatermark = BlueBrick.Properties.Settings.Default.UIExportWatermark;
-        private bool mExportBrickHull = BlueBrick.Properties.Settings.Default.UIExportHulls;
-        private bool mExportElectricCircuit = BlueBrick.Properties.Settings.Default.UIExportElectricCircuit;
-        private bool mExportConnectionPoints = BlueBrick.Properties.Settings.Default.UIExportConnection;
+		private bool mExportWatermark = BlueBrick.Properties.Settings.Default.UIExportWatermark;
+		private bool mExportBrickHull = BlueBrick.Properties.Settings.Default.UIExportHulls;
+		private bool mExportElectricCircuit = BlueBrick.Properties.Settings.Default.UIExportElectricCircuit;
+		private bool mExportConnectionPoints = BlueBrick.Properties.Settings.Default.UIExportConnection;
 		private bool mHasExportSettingsChanged = false; // a boolean flag indicating that the settings has changed and that the file need to be saved
 
 		// some data for compatibility with Track designer
@@ -93,9 +93,12 @@ namespace BlueBrick.MapData
 		// singleton on the map (we assume it is always valid)
 		private static Map sInstance = new Map();
 
-        // drawing data to draw the general info watermark
-        private static SolidBrush mWatermarkBrush = new SolidBrush(Settings.Default.WatermarkColor);
-        private static SolidBrush mWatermarkBackgroundBrush = new SolidBrush(Settings.Default.WatermarkBackgroundColor);
+		// drawing data to draw the general info watermark
+		private static SolidBrush mWatermarkBrush = new SolidBrush(Settings.Default.WatermarkColor);
+		private static SolidBrush mWatermarkBackgroundBrush = new SolidBrush(Settings.Default.WatermarkBackgroundColor);
+
+		// for optimization reason we want to memorize the total area, and update it everytime an item is added or removed on the Map
+		private RectangleF mTotalAreaInStud = new RectangleF(0, 0, 32, 32);
 
 		#region get/set
 
@@ -106,25 +109,25 @@ namespace BlueBrick.MapData
 		public static Map Instance
 		{
 			get { return sInstance; }
-			set	{ sInstance = value; }
+			set { sInstance = value; }
 		}
 
-        public string MapFileName
-        {
-            get { return mMapFileName; }
-            set { mMapFileName = value; }
-        }
+		public string MapFileName
+		{
+			get { return mMapFileName; }
+			set { mMapFileName = value; }
+		}
 
-        public bool IsMapNameValid
-        {
-            get { return mIsMapNameValid; }
-            set { mIsMapNameValid = value; }
-        }
+		public bool IsMapNameValid
+		{
+			get { return mIsMapNameValid; }
+			set { mIsMapNameValid = value; }
+		}
 
 		public string Author
 		{
 			get { return mAuthor; }
-			set { mAuthor = value; computeGeneralInfoWatermark();  }
+			set { mAuthor = value; computeGeneralInfoWatermark(); }
 		}
 
 		public string LUG
@@ -249,12 +252,12 @@ namespace BlueBrick.MapData
 			}
 		}
 
-        public string ExportAbsoluteFileName
+		public string ExportAbsoluteFileName
 		{
 			get { return mExportAbsoluteFileName; }
 		}
 
-        public int ExportFileTypeIndex
+		public int ExportFileTypeIndex
 		{
 			get { return mExportFileTypeIndex; }
 		}
@@ -269,25 +272,30 @@ namespace BlueBrick.MapData
 			get { return mExportScale; }
 		}
 
-        public bool ExportWatermark
-        {
-            get { return mExportWatermark; }
-        }
+		public bool ExportWatermark
+		{
+			get { return mExportWatermark; }
+		}
 
-        public bool ExportBrickHull
-        {
-            get { return mExportBrickHull; }
-        }
+		public bool ExportBrickHull
+		{
+			get { return mExportBrickHull; }
+		}
 
-        public bool ExportElectricCircuit
-        {
-            get { return mExportElectricCircuit; }
-        }
+		public bool ExportElectricCircuit
+		{
+			get { return mExportElectricCircuit; }
+		}
 
-        public bool ExportConnectionPoints
-        {
-            get { return mExportConnectionPoints; }
-        }
+		public bool ExportConnectionPoints
+		{
+			get { return mExportConnectionPoints; }
+		}
+
+		public RectangleF TotalAreaInStud
+		{
+			get { return mTotalAreaInStud; }
+		}
 		#endregion
 
 		#region constructor
@@ -479,6 +487,8 @@ namespace BlueBrick.MapData
 				}
 			}
 
+			// compute the total area in stud after loading
+			mTotalAreaInStud = getTotalAreaInStud(false);
 			// construct the watermark
 			computeGeneralInfoWatermark();
 			// for old version, make disapear the progress bar, since it was just an estimation
