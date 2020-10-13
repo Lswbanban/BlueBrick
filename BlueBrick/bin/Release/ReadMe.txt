@@ -117,6 +117,13 @@ Open bugs:
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
 - [target 1.9] MISSING FEATURE (Alban): Scrollbars on the map view (can be disabled in the Preferences and context menu)
+	- Need to implement the update of the TotalAreaInStud in the Map class
+	- Need to implement the rescale of the scrollbar when a new item is added on the map (when the Map.TotalArea change)
+	- Need to implement the rescale of the scrollbar when the map is zoomed in/out
+	- Add a settings to remember if the scrollbars are visible or not
+	- Add French translation
+	- Add the contextual menu item in the loca kit
+	- Add a menu item in the View menu
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] MISSING FEATURE (Evans): a possibility to show the current interruption of the 12V circuit breaker rail
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)

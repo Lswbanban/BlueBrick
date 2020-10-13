@@ -305,19 +305,20 @@ namespace BlueBrick
 			resources.ApplyResources(this.horizontalScrollBar, "horizontalScrollBar");
 			this.horizontalScrollBar.Name = "horizontalScrollBar";
 			this.horizontalScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.horizontalScrollBar_Scroll);
-			this.Controls.Add(this.horizontalScrollBar);
 			// 
 			// verticalScrollBar
 			// 
 			resources.ApplyResources(this.verticalScrollBar, "verticalScrollBar");
 			this.verticalScrollBar.Name = "verticalScrollBar";
 			this.verticalScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.verticalScrollBar_Scroll);
-			this.Controls.Add(this.verticalScrollBar);
 			// 
 			// MapPanel
 			// 
 			this.AllowDrop = true;
 			this.ContextMenuStrip = this.contextMenuStrip;
+			this.Controls.Add(this.horizontalScrollBar);
+			this.Controls.Add(this.verticalScrollBar);
+			this.SizeChanged += new System.EventHandler(this.MapPanel_SizeChanged);
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MapPanel_DragDrop);
 			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MapPanel_DragEnter);
 			this.DragOver += new System.Windows.Forms.DragEventHandler(this.MapPanel_DragOver);
@@ -326,6 +327,7 @@ namespace BlueBrick
 			this.MouseEnter += new System.EventHandler(this.MapPanel_MouseEnter);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapPanel_MouseMove);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MapPanel_MouseUp);
+			this.Resize += new System.EventHandler(this.MapPanel_Resize);
 			this.contextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -1077,6 +1079,16 @@ namespace BlueBrick
 		{
 			UpdateViewCornerFromScrollBarThumb(false, true);
 			this.Invalidate();
+		}
+
+		private void MapPanel_Resize(object sender, EventArgs e)
+		{
+			updateScrollbarSize();
+		}
+
+		private void MapPanel_SizeChanged(object sender, EventArgs e)
+		{
+			updateScrollbarSize();
 		}
 	}
 }
