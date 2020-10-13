@@ -869,7 +869,7 @@ namespace BlueBrick.MapData
 		/// <summary>
 		/// Return the cursor that should be display when the mouse is above the map without mouse click
 		/// </summary>
-		/// <param name="mouseCoordInStud"></param>
+		/// <param name="mouseCoordInStud">The coordinate of the mouse pointer</param>
 		public override Cursor getDefaultCursorWithoutMouseClick(PointF mouseCoordInStud)
 		{
 			// if the layer is not visible you can basically do nothing on it
@@ -898,7 +898,7 @@ namespace BlueBrick.MapData
 						if (isPointInsideSelectionRectangle(mouseCoordInStud))
 							return MainForm.Instance.BrickDuplicateCursor;
 					}
-					else if ((Control.ModifierKeys | Properties.Settings.Default.MouseMultipleSelectionKey) != 0)
+					else if ((Control.ModifierKeys & Properties.Settings.Default.MouseMultipleSelectionKey) != 0)
 					{
 						// the select path cursor should be displayed only if at least one brick is selected, otherwise just display the multi selection cursor
 						if (Control.ModifierKeys == (Keys)(Properties.Settings.Default.MouseMultipleSelectionKey | Properties.Settings.Default.MouseZoomPanKey) && (SelectedObjects.Count > 0))
