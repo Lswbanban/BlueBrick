@@ -104,15 +104,16 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon): necessite une nouvelle version du format BBM
+- [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon)
+	- The visibility of the Hull + the Hull drawing info, such as color and line thickness should be set per layer
+	- Need a new BBM version to save the info in the file, and reload it
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages:
-	- les lignes verticales et horizontale sont sélectionnables et bougeable à la souris, et la position est ajustable dans le cadre margins
-	- Il faut une sorte de rulers en haut et en bas, pour setter la valeur en studs, pour remplacer les margins
-	- Donc les 4 valeur de margin disparaissent, puisque les lignes de margin deviennent de simple rulers à déplacer.
-	- Puis ajouter un overlay en gris pour les marges coupées.
-	- Mais attention en fait il faut garder la même résolution sur toutes les images. Mais si on élargie trop un ruler et que la résolution max de l'image est atteinte, alors on réduit la résolution. Du coup, on ne peut plus éditer la taille de l'image? Sauf si une seule image? Ou alors il faut cliquer sur l'image qu'on veut éditer, changer sa taille, ce qui change la résolution. Mais les contrainte sont chainte, car la taille limite dépends de la réso et de la plus grande image, pas de l'image qu'on édite.
-	- Oui je pense afficher les dimensions en pixels dans le règles en haut devrait suffire, pour chaque colones et lignes
-	- Juste à l'init de la fenetre on calcule une réso conseillé, en fonction de la taille du layout, et ce pour une seule image
+	- Add 2 number box in front of Width/height size of image, which by default contains 1 (minimum 1), but you can increase the number. All images have the same size (split equally)
+	- Draw additional red lines (grid) on the preview depending on the number box value
+	- Add a gray overlay for the margins (to improve readability)
+	- export several images with the cell numbers in the file name.
+	- Add a button and a combo box listing all the grid layers to split along the grid
+	- Reorganize the area numeric up down in a cross
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format

@@ -112,20 +112,21 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 18</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="exportWatermarkCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="exportWatermarkCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 21</value>
   </data>
-  <data name="&gt;&gt;exportWatermarkCheckBox.Name" xml:space="preserve">
-    <value>exportWatermarkCheckBox</value>
+  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -133,15 +134,15 @@
   <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="&gt;&gt;areaRightNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="areaLeftNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="linkPictureBox.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
   </data>
   <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;exportConnectionPointCheckBox.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -149,45 +150,38 @@
   <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="imageHeightNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="label4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="&gt;&gt;scaleNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
-  </data>
-  <data name="exportWatermarkCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 17</value>
   </data>
   <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
     <value>settingAndButtonTableLayoutPanel</value>
   </data>
-  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;columnCountNumericUpDown.Name" xml:space="preserve">
+    <value>columnCountNumericUpDown</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Export Options</value>
   </data>
   <data name="&gt;&gt;settingAndButtonTableLayoutPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;exportWatermarkCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>506, 44</value>
+    <value>644, 44</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="&gt;&gt;areaTopNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="topTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;areaLeftNumericUpDown.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -195,11 +189,17 @@
   <data name="label6.Text" xml:space="preserve">
     <value>Left</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="imageWidthNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 20</value>
   </data>
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 18</value>
   </data>
   <data name="&gt;&gt;label6.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -210,14 +210,14 @@
   <data name="&gt;&gt;imageWidthNumericUpDown.Name" xml:space="preserve">
     <value>imageWidthNumericUpDown</value>
   </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>520, 350</value>
-  </data>
-  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="&gt;&gt;exportHullCheckBox.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>groupBox2</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>130, 49</value>
   </data>
   <data name="cancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
@@ -225,17 +225,17 @@
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;settingAndButtonTableLayoutPanel.Parent" xml:space="preserve">
-    <value>topTableLayoutPanel</value>
+  <data name="exportElectricCircuitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 17</value>
   </data>
-  <data name="&gt;&gt;exportConnectionPointCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;scaleNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="topTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="&gt;&gt;exportElectricCircuitCheckBox.Name" xml:space="preserve">
-    <value>exportElectricCircuitCheckBox</value>
+  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -244,10 +244,10 @@
     <value>settingAndButtonTableLayoutPanel</value>
   </data>
   <data name="&gt;&gt;linkPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="areaTopNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="settingAndButtonTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 410</value>
@@ -255,17 +255,23 @@
   <data name="exportElectricCircuitCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="okButton.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Export Image Options</value>
   </data>
-  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;areaBottomNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;scaleNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -273,35 +279,47 @@
   <data name="areaTopNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
   <data name="scaleNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="previewPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>423, 264</value>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
   </data>
-  <data name="imageWidthNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>81, 22</value>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
   </data>
-  <data name="exportWatermarkCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="areaBottomNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>222, 49</value>
+  </data>
+  <data name="label10.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="label7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
+  <data name="&gt;&gt;imageHeightNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
+  <data name="okButton.Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
   <data name="&gt;&gt;imageHeightNumericUpDown.Name" xml:space="preserve">
     <value>imageHeightNumericUpDown</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="linkPictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
   <data name="&gt;&gt;okButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -349,28 +367,28 @@
 </value>
   </data>
   <data name="areaRightNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 23</value>
+    <value>222, 23</value>
   </data>
   <data name="scaleNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 18</value>
+  <data name="&gt;&gt;areaLeftNumericUpDown.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="rowCountNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
   </data>
   <data name="&gt;&gt;exportWatermarkCheckBox.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;exportWatermarkCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="groupBox3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="&gt;&gt;topTableLayoutPanel.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
-  <data name="okButton.Text" xml:space="preserve">
-    <value>Ok</value>
+  <data name="&gt;&gt;exportElectricCircuitCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="previewPictureBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -379,25 +397,40 @@
     <value>Height</value>
   </data>
   <data name="imageHeightNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>81, 48</value>
+    <value>144, 48</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 74</value>
+  </data>
+  <data name="imageHeightNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
   <data name="imageHeightNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 20</value>
   </data>
+  <data name="&gt;&gt;linkPictureBox.Name" xml:space="preserve">
+    <value>linkPictureBox</value>
+  </data>
   <data name="exportHullCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;exportConnectionPointCheckBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Area Size in Studs</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label8.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="topTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="previewPictureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
@@ -405,20 +438,26 @@
   <data name="exportConnectionPointCheckBox.Text" xml:space="preserve">
     <value>Connection Point</value>
   </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>506, 40</value>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;okButton.Name" xml:space="preserve">
     <value>okButton</value>
   </data>
-  <data name="&gt;&gt;exportHullCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="areaBottomNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="imageWidthNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="columnCountNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 22</value>
   </data>
   <data name="&gt;&gt;exportElectricCircuitCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;topTableLayoutPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="linkPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>21, 16</value>
@@ -429,53 +468,59 @@
   <data name="exportElectricCircuitCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;topTableLayoutPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;linkPictureBox.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 24</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="topTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>512, 520</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 25</value>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
     <value>groupBox3</value>
   </data>
+  <data name="columnCountNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;areaBottomNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 24</value>
+  </data>
+  <data name="&gt;&gt;imageWidthNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>164, 25</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="&gt;&gt;exportConnectionPointCheckBox.Name" xml:space="preserve">
-    <value>exportConnectionPointCheckBox</value>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>644, 40</value>
   </data>
-  <data name="exportElectricCircuitCheckBox.Text" xml:space="preserve">
-    <value>Electric Circuit</value>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ExportImageForm</value>
   </data>
   <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -483,50 +528,57 @@
   <data name="label3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>topTableLayoutPanel</value>
+  </data>
+  <data name="label10.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
+  </data>
   <data name="imageHeightNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
+  </data>
+  <data name="linkPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhEQAIAIEAAAAAAP///5qamv///yH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAADACwAAAAAEQAI
+        AAAIPQAHDABAcCDBggcFDhTAEADDhw4bLhRAsGFFihErAliI0OFGjx4NUuT4EaNFixkzTmwI8eFIgQc/
+        diw4ICAAOw==
+</value>
   </data>
   <data name="groupBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="exportElectricCircuitCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>256, 21</value>
+  </data>
+  <data name="&gt;&gt;rowCountNumericUpDown.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="&gt;&gt;areaBottomNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;exportElectricCircuitCheckBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="label6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 363</value>
-  </data>
-  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;exportElectricCircuitCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="exportElectricCircuitCheckBox.Text" xml:space="preserve">
+    <value>Electric Circuit</value>
   </data>
   <data name="&gt;&gt;settingAndButtonTableLayoutPanel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="areaLeftNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="areaLeftNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
   </data>
   <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>settingAndButtonTableLayoutPanel</value>
@@ -538,13 +590,13 @@
     <value>55, 18</value>
   </data>
   <data name="&gt;&gt;areaLeftNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;imageWidthNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
+  </data>
+  <data name="settingAndButtonTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 0</value>
@@ -552,8 +604,11 @@
   <data name="exportHullCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>133, 21</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 49</value>
+  <data name="rowCountNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 47</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;okButton.Parent" xml:space="preserve">
     <value>settingAndButtonTableLayoutPanel</value>
@@ -561,44 +616,65 @@
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
   <data name="exportHullCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 17</value>
   </data>
-  <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="&gt;&gt;columnCountNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;columnCountNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
   <data name="settingAndButtonTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="scaleNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>234, 36</value>
   </data>
   <data name="scaleNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
   </data>
-  <data name="exportConnectionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 17</value>
+  <data name="&gt;&gt;exportHullCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;imageWidthNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="topTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="settingAndButtonTableLayoutPanel" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="previewPictureBox" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox3" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,40,Percent,100,Absolute,50,Absolute,110" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
   <data name="&gt;&gt;label8.Parent" xml:space="preserve">
     <value>topTableLayoutPanel</value>
   </data>
-  <data name="exportElectricCircuitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 17</value>
+  <data name="label9.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="&gt;&gt;previewPictureBox.Name" xml:space="preserve">
+    <value>previewPictureBox</value>
+  </data>
+  <data name="topTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>11, 18</value>
   </data>
   <data name="&gt;&gt;imageHeightNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -609,20 +685,26 @@
   <data name="&gt;&gt;previewPictureBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="areaTopNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Pixels/Stud</value>
+  <data name="&gt;&gt;linkPictureBox.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
-  <data name="areaRightNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
+  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label8.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="topTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="settingAndButtonTableLayoutPanel" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="previewPictureBox" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox3" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,40,Percent,100,Absolute,50,Absolute,110" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
-  <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>346, 83</value>
+  <data name="columnCountNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="exportWatermarkCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 17</value>
   </data>
   <data name="&gt;&gt;areaTopNumericUpDown.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -630,14 +712,17 @@
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;exportConnectionPointCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;columnCountNumericUpDown.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;linkPictureBox.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="topTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>650, 520</value>
+  </data>
+  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 50</value>
+    <value>17, 47</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -648,71 +733,71 @@
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="label8.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="topTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
   <data name="linkPictureBox.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="previewPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 68</value>
   </data>
-  <data name="linkPictureBox.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Center</value>
+  <data name="&gt;&gt;settingAndButtonTableLayoutPanel.Parent" xml:space="preserve">
+    <value>topTableLayoutPanel</value>
   </data>
-  <data name="exportConnectionPointCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>399, 21</value>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
   </data>
-  <data name="&gt;&gt;exportHullCheckBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+  <data name="previewPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>423, 264</value>
+  </data>
+  <data name="&gt;&gt;exportConnectionPointCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="areaLeftNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 21</value>
+    <value>95, 21</value>
   </data>
   <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="exportConnectionPointCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="imageWidthNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 20</value>
+  <data name="&gt;&gt;topTableLayoutPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 83</value>
+    <value>125, 83</value>
   </data>
-  <data name="&gt;&gt;previewPictureBox.Name" xml:space="preserve">
-    <value>previewPictureBox</value>
-  </data>
-  <data name="exportElectricCircuitCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 21</value>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;exportHullCheckBox.Name" xml:space="preserve">
     <value>exportHullCheckBox</value>
   </data>
-  <data name="settingAndButtonTableLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
+  <data name="&gt;&gt;exportWatermarkCheckBox.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="label8.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;topTableLayoutPanel.Name" xml:space="preserve">
     <value>topTableLayoutPanel</value>
   </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="settingAndButtonTableLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;exportConnectionPointCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;areaLeftNumericUpDown.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -723,156 +808,173 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Bottom</value>
   </data>
-  <data name="scaleNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 36</value>
+  <data name="exportConnectionPointCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>399, 21</value>
   </data>
   <data name="&gt;&gt;areaRightNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="areaLeftNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
-  </data>
-  <data name="&gt;&gt;areaBottomNumericUpDown.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="areaBottomNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
   </data>
   <data name="topTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 18</value>
+    <value>231, 18</value>
   </data>
   <data name="&gt;&gt;label8.Name" xml:space="preserve">
     <value>label8</value>
   </data>
-  <data name="&gt;&gt;areaRightNumericUpDown.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;exportElectricCircuitCheckBox.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <data name="areaBottomNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+  <data name="&gt;&gt;exportElectricCircuitCheckBox.Name" xml:space="preserve">
+    <value>exportElectricCircuitCheckBox</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 49</value>
   </data>
   <data name="areaRightNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="exportWatermarkCheckBox.Text" xml:space="preserve">
+    <value>Watermark</value>
   </data>
-  <data name="linkPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 42</value>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 18</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 3</value>
+    <value>328, 3</value>
   </data>
-  <data name="settingAndButtonTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;previewPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;areaRightNumericUpDown.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="areaRightNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="exportWatermarkCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 21</value>
-  </data>
-  <data name="linkPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEQAIAIEAAAAAAP///5qamv///yH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAADACwAAAAAEQAI
-        AAAIPQAHDABAcCDBggcFDhTAEADDhw4bLhRAsGFFihErAliI0OFGjx4NUuT4EaNFixkzTmwI8eFIgQc/
-        diw4ICAAOw==
-</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Right</value>
-  </data>
-  <data name="areaBottomNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 49</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>topTableLayoutPanel</value>
-  </data>
-  <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;areaTopNumericUpDown.Name" xml:space="preserve">
-    <value>areaTopNumericUpDown</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>512, 520</value>
-  </data>
-  <data name="settingAndButtonTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="areaBottomNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
-  </data>
-  <data name="&gt;&gt;areaLeftNumericUpDown.Name" xml:space="preserve">
-    <value>areaLeftNumericUpDown</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
   </data>
   <data name="exportWatermarkCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;linkPictureBox.Name" xml:space="preserve">
-    <value>linkPictureBox</value>
+  <data name="&gt;&gt;topTableLayoutPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="settingAndButtonTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cancelButton" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox2" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="okButton" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="groupBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Absolute,80,Absolute,30,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>130, 24</value>
+  </data>
+  <data name="&gt;&gt;exportWatermarkCheckBox.Name" xml:space="preserve">
+    <value>exportWatermarkCheckBox</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="&gt;&gt;areaTopNumericUpDown.Name" xml:space="preserve">
+    <value>areaTopNumericUpDown</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 18</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 363</value>
+  </data>
+  <data name="areaRightNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 20</value>
+  </data>
+  <data name="topTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;rowCountNumericUpDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="areaBottomNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 20</value>
+  </data>
+  <data name="areaLeftNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;rowCountNumericUpDown.Name" xml:space="preserve">
+    <value>rowCountNumericUpDown</value>
+  </data>
+  <data name="label9.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="topTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="exportConnectionPointCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 17</value>
+  </data>
+  <data name="settingAndButtonTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cancelButton" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox2" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="okButton" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="groupBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Absolute,80,Absolute,30,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;areaLeftNumericUpDown.Name" xml:space="preserve">
+    <value>areaLeftNumericUpDown</value>
+  </data>
+  <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>450, 83</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>127, 51</value>
+    <value>161, 51</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Area Size in Studs</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>650, 520</value>
   </data>
   <data name="&gt;&gt;areaRightNumericUpDown.Name" xml:space="preserve">
     <value>areaRightNumericUpDown</value>
   </data>
-  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
-    <value>cancelButton</value>
+  <data name="columnCountNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
   </data>
-  <data name="&gt;&gt;imageHeightNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;areaRightNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;areaBottomNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
   </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 74</value>
+  <data name="rowCountNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="exportWatermarkCheckBox.Text" xml:space="preserve">
-    <value>Watermark</value>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 74</value>
   </data>
-  <data name="&gt;&gt;linkPictureBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
+    <value>cancelButton</value>
   </data>
-  <data name="&gt;&gt;scaleNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;exportConnectionPointCheckBox.Name" xml:space="preserve">
+    <value>exportConnectionPointCheckBox</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Pixels/Stud</value>
+  </data>
+  <data name="&gt;&gt;previewPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="imageWidthNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>144, 22</value>
   </data>
   <data name="exportConnectionPointCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -880,85 +982,97 @@
   <data name="areaTopNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;areaBottomNumericUpDown.Name" xml:space="preserve">
+    <value>areaBottomNumericUpDown</value>
   </data>
   <data name="exportHullCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="previewPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 68</value>
+  <data name="&gt;&gt;rowCountNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;areaBottomNumericUpDown.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;scaleNumericUpDown.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 18</value>
+  </data>
+  <data name="settingAndButtonTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="label6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 18</value>
-  </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Image Size in Pixel</value>
+    <value>Image(s) Count and Size in Pixel</value>
   </data>
   <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="rowCountNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
   </data>
-  <data name="&gt;&gt;exportHullCheckBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="topTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="linkPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>206, 42</value>
   </data>
   <data name="&gt;&gt;areaTopNumericUpDown.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="&gt;&gt;imageWidthNumericUpDown.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 18</value>
   </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 74</value>
+  <data name="areaBottomNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;areaBottomNumericUpDown.Name" xml:space="preserve">
-    <value>areaBottomNumericUpDown</value>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>11, 18</value>
   </data>
   <data name="okButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
   <data name="areaTopNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 47</value>
+    <value>95, 47</value>
   </data>
-  <data name="imageWidthNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
-  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="settingAndButtonTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>512, 110</value>
+    <value>650, 110</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 23</value>
+    <value>38, 23</value>
   </data>
   <data name="exportHullCheckBox.Text" xml:space="preserve">
     <value>Outline (Hull)</value>
   </data>
   <data name="&gt;&gt;imageHeightNumericUpDown.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>10</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Width</value>
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;exportHullCheckBox.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="&gt;&gt;topTableLayoutPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>520, 350</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
 </root>
