@@ -151,6 +151,7 @@ namespace BlueBrick
             0,
             0,
             0});
+			this.rowCountNumericUpDown.ValueChanged += new System.EventHandler(this.rowCountNumericUpDown_ValueChanged);
 			// 
 			// label9
 			// 
@@ -176,6 +177,7 @@ namespace BlueBrick
             0,
             0,
             0});
+			this.columnCountNumericUpDown.ValueChanged += new System.EventHandler(this.columnCountNumericUpDown_ValueChanged);
 			// 
 			// label4
 			// 
@@ -379,11 +381,11 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
-			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Controls.Add(this.exportConnectionPointCheckBox);
 			this.groupBox3.Controls.Add(this.exportElectricCircuitCheckBox);
 			this.groupBox3.Controls.Add(this.exportWatermarkCheckBox);
 			this.groupBox3.Controls.Add(this.exportHullCheckBox);
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 

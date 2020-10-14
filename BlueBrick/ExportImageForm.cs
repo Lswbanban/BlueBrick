@@ -31,7 +31,7 @@ namespace BlueBrick
 		private NumericUpDown mFirstSender = null;
 		private bool mIsDragingSelectionRectangle = false;
 		private PointF mStartDragPoint = new PointF();
-		private bool mUpdateImage = true;
+		private bool mCanUpdateImage = true;
 
         // save settings that can be changed with export option
 		private bool mOriginalDisplayWatermarkInSetting = Settings.Default.DisplayGeneralInfoWatermark;
@@ -306,14 +306,31 @@ namespace BlueBrick
 				graphics.SmoothingMode = SmoothingMode.None;
 				graphics.CompositingQuality = CompositingQuality.HighSpeed;
 				graphics.InterpolationMode = InterpolationMode.Low;
+
+				// compute the selected area in pixel unit
+				RectangleF selectedAreaInPixel = new RectangleF((float)((mSelectedAreaInStud.X - mTotalAreaInStud.X) * mTotalScalePixelPerStud),
+																(float)((mSelectedAreaInStud.Y - mTotalAreaInStud.Y) * mTotalScalePixelPerStud),
+																(float)(mSelectedAreaInStud.Width * mTotalScalePixelPerStud),
+																(float)(mSelectedAreaInStud.Height * mTotalScalePixelPerStud));
 				// and draw the selected area
-				graphics.DrawRectangle(mSelectionPen,
-					(float)((mSelectedAreaInStud.X - mTotalAreaInStud.X) * mTotalScalePixelPerStud),
-					(float)((mSelectedAreaInStud.Y - mTotalAreaInStud.Y) * mTotalScalePixelPerStud),
-					(float)(mSelectedAreaInStud.Width * mTotalScalePixelPerStud),
-					(float)(mSelectedAreaInStud.Height * mTotalScalePixelPerStud));
-                // draw the watermark
-                RectangleF watermarkRectangleInStud = new RectangleF(mTotalAreaInStud.X, mTotalAreaInStud.Y,
+				graphics.DrawRectangle(mSelectionPen, selectedAreaInPixel.X, selectedAreaInPixel.Y, selectedAreaInPixel.Width, selectedAreaInPixel.Height);
+
+				// draw the grid inside the select area if there's more than one image to export
+				float columnWidthInPixel = selectedAreaInPixel.Width / (int)this.columnCountNumericUpDown.Value;
+				for (int i = 1; i < this.columnCountNumericUpDown.Value; ++i)
+				{
+					float lineX = selectedAreaInPixel.X + (columnWidthInPixel * i);
+					graphics.DrawLine(mSelectionPen, lineX, selectedAreaInPixel.Top, lineX, selectedAreaInPixel.Bottom);
+				}
+				float rowHeightInPixel = selectedAreaInPixel.Height / (int)this.rowCountNumericUpDown.Value;
+				for (int i = 1; i < this.rowCountNumericUpDown.Value; ++i)
+				{
+					float lineY = selectedAreaInPixel.Y + (rowHeightInPixel * i);
+					graphics.DrawLine(mSelectionPen, selectedAreaInPixel.Left, lineY, selectedAreaInPixel.Right, lineY);
+				}
+
+				// draw the watermark
+				RectangleF watermarkRectangleInStud = new RectangleF(mTotalAreaInStud.X, mTotalAreaInStud.Y,
                                                                     mSelectedAreaInStud.X - mTotalAreaInStud.X + mSelectedAreaInStud.Width,
                                                                     mSelectedAreaInStud.Y - mTotalAreaInStud.Y + mSelectedAreaInStud.Height);
                 Map.Instance.drawWatermark(graphics, watermarkRectangleInStud, mTotalScalePixelPerStud);
@@ -328,7 +345,7 @@ namespace BlueBrick
 
 		private void updateImage(NumericUpDown firstSender)
 		{
-			if (mUpdateImage)
+			if (mCanUpdateImage)
 			{
 				drawPreviewImage();
 				mFirstSender = firstSender;
@@ -339,12 +356,12 @@ namespace BlueBrick
 
 		private void suspendUpdateImage()
 		{
-			mUpdateImage = false;
+			mCanUpdateImage = false;
 		}
 
 		private void resumeUpdateImage()
 		{
-			mUpdateImage = true;
+			mCanUpdateImage = true;
 			updateImage(this.areaLeftNumericUpDown);
 		}
 		#endregion
@@ -394,6 +411,45 @@ namespace BlueBrick
 		}
 
 		#region event handler
+		#region display options
+		private void exportWatermarkCheckBox_Click(object sender, EventArgs e)
+		{
+			// we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
+			Settings.Default.DisplayGeneralInfoWatermark = this.exportWatermarkCheckBox.Checked;
+			// if the sender is null, this method is just called from the init function, so no need to draw several times
+			if (sender != null)
+				drawAll();
+		}
+
+		private void exportHullCheckBox_Click(object sender, EventArgs e)
+		{
+			// we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
+			Settings.Default.DisplayBrickHull = this.exportHullCheckBox.Checked;
+			// if the sender is null, this method is just called from the init function, so no need to draw several times
+			if (sender != null)
+				drawAll();
+		}
+
+		private void exportElectricCircuitCheckBox_Click(object sender, EventArgs e)
+		{
+			// we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
+			Settings.Default.DisplayElectricCircuit = this.exportElectricCircuitCheckBox.Checked;
+			// if the sender is null, this method is just called from the init function, so no need to draw several times
+			if (sender != null)
+				drawAll();
+		}
+
+		private void exportConnectionPointCheckBox_Click(object sender, EventArgs e)
+		{
+			// we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
+			Settings.Default.DisplayFreeConnexionPoints = this.exportConnectionPointCheckBox.Checked;
+			// if the sender is null, this method is just called from the init function, so no need to draw several times
+			if (sender != null)
+				drawAll();
+		}
+		#endregion
+
+		#region aera size
 		private void areaLeftNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
 			float newValue = (float)(this.areaLeftNumericUpDown.Value);
@@ -459,6 +515,18 @@ namespace BlueBrick
                 this.areaTopNumericUpDown.Value = (Decimal)(newValue - 1.0f);
             }
 		}
+		#endregion
+
+		#region image count and size 
+		private void columnCountNumericUpDown_ValueChanged(object sender, EventArgs e)
+		{
+			drawPreviewImage();
+		}
+
+		private void rowCountNumericUpDown_ValueChanged(object sender, EventArgs e)
+		{
+			drawPreviewImage();
+		}
 
 		private void imageWidthNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
@@ -503,7 +571,9 @@ namespace BlueBrick
 				computeImageSizeFromAreaAndScale();
 			}
 		}
+		#endregion
 
+		#region mouse event on image preview
 		private void previewPictureBox_MouseDown(object sender, MouseEventArgs e)
 		{
 			if (e.Clicks == 1)
@@ -592,7 +662,9 @@ namespace BlueBrick
 			//resume the update of image
 			resumeUpdateImage();
 		}
+		#endregion
 
+		#region event for the Form
 		private void ExportImageForm_SizeChanged(object sender, EventArgs e)
 		{
 			computePreviewPictureSizeAndPos();
@@ -611,43 +683,6 @@ namespace BlueBrick
             saveUISettingInDefaultSettings();
 		}
 
-        private void exportWatermarkCheckBox_Click(object sender, EventArgs e)
-        {
-            // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
-            Settings.Default.DisplayGeneralInfoWatermark = this.exportWatermarkCheckBox.Checked;
-			// if the sender is null, this method is just called from the init function, so no need to draw several times
-			if (sender != null)
-				drawAll();
-        }
-
-        private void exportHullCheckBox_Click(object sender, EventArgs e)
-        {
-            // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
-            Settings.Default.DisplayBrickHull = this.exportHullCheckBox.Checked;
-			// if the sender is null, this method is just called from the init function, so no need to draw several times
-			if (sender != null)
-				drawAll();
-		}
-
-        private void exportElectricCircuitCheckBox_Click(object sender, EventArgs e)
-        {
-            // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
-            Settings.Default.DisplayElectricCircuit = this.exportElectricCircuitCheckBox.Checked;
-			// if the sender is null, this method is just called from the init function, so no need to draw several times
-			if (sender != null)
-				drawAll();
-		}
-
-        private void exportConnectionPointCheckBox_Click(object sender, EventArgs e)
-        {
-            // we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
-            Settings.Default.DisplayFreeConnexionPoints = this.exportConnectionPointCheckBox.Checked;
-			// if the sender is null, this method is just called from the init function, so no need to draw several times
-			if (sender != null)
-				drawAll();
-		}
-        #endregion
-
 		private void ExportImageForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			// set the visible false for catching this strange case:
@@ -655,5 +690,7 @@ namespace BlueBrick
 			// in such case, next time you try do do a Show Dialog, and exception is raised
 			this.Visible = false;
 		}
+		#endregion
+		#endregion
 	}
 }
