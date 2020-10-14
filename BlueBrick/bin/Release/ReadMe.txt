@@ -116,7 +116,6 @@ Open bugs:
 	- Juste à l'init de la fenetre on calcule une réso conseillé, en fonction de la taille du layout, et ce pour une seule image
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
-- [target 1.9] MISSING FEATURE (Alban): Scrollbars on the map view (can be disabled in the Preferences and context menu)
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] MISSING FEATURE (Evans): a possibility to show the current interruption of the 12V circuit breaker rail
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
@@ -145,6 +144,7 @@ Open bugs:
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
 - MISSING FEATURE (Ludo): Add a context menu on the Part Usage list, in order to export the list from there.
 - MISSING FEATURE (Alban): Add a Brick property window to edit the altitude of the brick
+- MISSING FEATURE (Alban): Add scrollbars on the map view (can be shown or hidden from the map context menu and the View menu)
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
