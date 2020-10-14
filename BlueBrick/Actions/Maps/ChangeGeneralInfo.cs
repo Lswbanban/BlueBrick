@@ -69,7 +69,7 @@ namespace BlueBrick.Actions.Maps
 			Map.Instance.Date = newInfo.mDate;
 			Map.Instance.Comment = newInfo.mComment;
 			// inform MainForm to update its UI
-			MainForm.Instance.updateMapGeneralInfo();
+			MainForm.Instance.updateMapGeneralInfo(false);
 		}
 
 		public override void undo()
@@ -80,7 +80,7 @@ namespace BlueBrick.Actions.Maps
 			Map.Instance.Date = oldInfo.mDate;
 			Map.Instance.Comment = oldInfo.mComment;
 			// inform MainForm to update its UI
-			MainForm.Instance.updateMapGeneralInfo();
+			MainForm.Instance.updateMapGeneralInfo(false);
 		}
 
 		public override bool Equals(object obj)

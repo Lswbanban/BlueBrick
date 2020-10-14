@@ -102,6 +102,9 @@ namespace BlueBrick
 
 		// a const margin added to the total area surface, in order to compute the scrollbar maximums
 		const int mScrollBarAddedMarginInStud = 32;
+
+		// for optimization reason we want to memorize the total area, and update only when some opeartion is done on the map (item added, removed or moved)
+		private RectangleF mMapTotalAreaInStud = new RectangleF(0, 0, 32, 32);
 		#endregion
 
 		#region Get / Set
@@ -423,9 +426,9 @@ namespace BlueBrick
 			float halfViewWidthInStud = (float)(this.Size.Width / (mViewScale * 2));
 			float halfViewHeightInStud = (float)(this.Size.Height / (mViewScale * 2));
 			// get the total area of the map
-			RectangleF totalArea = Map.Instance.TotalAreaInStud;
-			mViewCornerX = ((totalArea.Left + totalArea.Right) / 2) - halfViewWidthInStud;
-			mViewCornerY = ((totalArea.Top + totalArea.Bottom) / 2) - halfViewHeightInStud;
+			mMapTotalAreaInStud = Map.Instance.getTotalAreaInStud(false);
+			mViewCornerX = ((mMapTotalAreaInStud.Left + mMapTotalAreaInStud.Right) / 2) - halfViewWidthInStud;
+			mViewCornerY = ((mMapTotalAreaInStud.Top + mMapTotalAreaInStud.Bottom) / 2) - halfViewHeightInStud;
 			// and update the scroll bar as we changed the view corner, and also the whole map may have changed
 			updateScrollbarSize();
 		}
@@ -1037,42 +1040,54 @@ namespace BlueBrick
 
 		#region scrollbars
 
+		/// <summary>
+		/// This notification function should be called when the total area of the map (including text and rulers) changed.
+		/// This include when an item is added, removed, or moved, when a layer is deleted or readded, etc...
+		/// </summary>
+		public void MapAreaChangedNotification()
+		{
+			// recompute the total area, but only if the scrollbars are visible, otherwise it's useless
+			if (this.horizontalScrollBar.Visible || this.verticalScrollBar.Visible)
+			{
+				// recompute the map area
+				mMapTotalAreaInStud = Map.Instance.getTotalAreaInStud(false);
+				// update the scrollbars size (if they are not visible, nothing happen)
+				updateScrollbarSize();
+			}
+		}
+
 		public void ShowHideScrollBars(bool isVisible)
 		{
 			// show or hide the two scrollbars
 			this.horizontalScrollBar.Visible = isVisible;
 			this.verticalScrollBar.Visible = isVisible;
 
-			// update the scrollbars size (if they are not visible, nothing happen)
-			updateScrollbarSize();
+			// call the map area change notification in order to recompute the area size and update the scrollbar size
+			MapAreaChangedNotification();
 		}
 
 		private void UpdateScrollBarThumbFromViewCorner(bool updateX, bool updateY)
 		{
-			// get the total area of the map
-			RectangleF totalArea = Map.Instance.TotalAreaInStud;
 			// update the scrollbar values
 			if (updateX)
 			{
-				int newValue = (int)((((mViewCornerX - totalArea.Left) * mViewScale) / this.Size.Width) * mMapScrollBarSliderSize);
+				int newValue = (int)((((mViewCornerX - mMapTotalAreaInStud.Left + mScrollBarAddedMarginInStud) * mViewScale) / this.Size.Width) * mMapScrollBarSliderSize);
 				this.horizontalScrollBar.Value = Math.Max(Math.Min(newValue, this.horizontalScrollBar.Maximum), this.horizontalScrollBar.Minimum);
 			}
 			if (updateY)
 			{
-				int newValue = (int)((((mViewCornerY - totalArea.Top) * mViewScale) / this.Size.Height) * mMapScrollBarSliderSize);
+				int newValue = (int)((((mViewCornerY - mMapTotalAreaInStud.Top + mScrollBarAddedMarginInStud) * mViewScale) / this.Size.Height) * mMapScrollBarSliderSize);
 				this.verticalScrollBar.Value = Math.Max(Math.Min(newValue, this.verticalScrollBar.Maximum), this.verticalScrollBar.Minimum);
 			}
 		}
 
 	private void UpdateViewCornerFromScrollBarThumb(bool updateX, bool updateY)
 		{
-			// get the total area of the map
-			RectangleF totalArea = Map.Instance.TotalAreaInStud;
 			// update the view corner
 			if (updateX)
-				mViewCornerX = ((((double)this.horizontalScrollBar.Value / mMapScrollBarSliderSize) * this.Size.Width) / mViewScale) + totalArea.Left;
+				mViewCornerX = ((((double)this.horizontalScrollBar.Value / mMapScrollBarSliderSize) * this.Size.Width) / mViewScale) + mMapTotalAreaInStud.Left - mScrollBarAddedMarginInStud;
 			if (updateY)
-				mViewCornerY = ((((double)this.verticalScrollBar.Value / mMapScrollBarSliderSize) * this.Size.Height) / mViewScale) + totalArea.Top;
+				mViewCornerY = ((((double)this.verticalScrollBar.Value / mMapScrollBarSliderSize) * this.Size.Height) / mViewScale) + mMapTotalAreaInStud.Top - mScrollBarAddedMarginInStud;
 		}
 
 		private void updateScrollbarSize()
@@ -1080,12 +1095,9 @@ namespace BlueBrick
 			// does nothing if the scrollbars are not visible
 			if (this.horizontalScrollBar.Visible || this.verticalScrollBar.Visible)
 			{
-				// get the total area of the map
-				RectangleF totalArea = Map.Instance.TotalAreaInStud;
-
 				// compute the total area in screen pixel (from studs)
-				double totalWidthInPixel = (totalArea.Right - totalArea.Left + mScrollBarAddedMarginInStud) * mViewScale;
-				double totalHeightInPixel = (totalArea.Bottom - totalArea.Top + mScrollBarAddedMarginInStud) * mViewScale;
+				double totalWidthInPixel = (mMapTotalAreaInStud.Right - mMapTotalAreaInStud.Left + (mScrollBarAddedMarginInStud * 2)) * mViewScale;
+				double totalHeightInPixel = (mMapTotalAreaInStud.Bottom - mMapTotalAreaInStud.Top + (mScrollBarAddedMarginInStud * 2)) * mViewScale;
 
 				// compute how many screens are needed to display the total map area, that will define how long should be the scroll bar
 				double screenCountToDisplayTotalWidth = totalWidthInPixel / this.Size.Width;

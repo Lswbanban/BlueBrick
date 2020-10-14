@@ -97,9 +97,6 @@ namespace BlueBrick.MapData
 		private static SolidBrush mWatermarkBrush = new SolidBrush(Settings.Default.WatermarkColor);
 		private static SolidBrush mWatermarkBackgroundBrush = new SolidBrush(Settings.Default.WatermarkBackgroundColor);
 
-		// for optimization reason we want to memorize the total area, and update it everytime an item is added or removed on the Map
-		private RectangleF mTotalAreaInStud = new RectangleF(0, 0, 32, 32);
-
 		#region get/set
 
 		/// <summary>
@@ -290,11 +287,6 @@ namespace BlueBrick.MapData
 		public bool ExportConnectionPoints
 		{
 			get { return mExportConnectionPoints; }
-		}
-
-		public RectangleF TotalAreaInStud
-		{
-			get { return mTotalAreaInStud; }
 		}
 		#endregion
 
@@ -487,8 +479,6 @@ namespace BlueBrick.MapData
 				}
 			}
 
-			// compute the total area in stud after loading
-			mTotalAreaInStud = getTotalAreaInStud(false);
 			// construct the watermark
 			computeGeneralInfoWatermark();
 			// for old version, make disapear the progress bar, since it was just an estimation
@@ -928,13 +918,7 @@ namespace BlueBrick.MapData
 				giveFeedbackForNotAddingBrick(canAdd);
 		}
 
-		public void addConnectBrick(string partNumber)
-		{
-			// we check if we can add brick in the other signature of this method
-			addConnectBrick(partNumber, -1);
-		}
-
-		public void addConnectBrick(string partNumber, int connexion)
+		public void addConnectBrick(string partNumber, int connexion = -1)
 		{
 			BrickAddability canAdd = canAddBrick(partNumber);
 			if (canAdd == BrickAddability.YES)

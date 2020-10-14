@@ -1111,8 +1111,9 @@ namespace BlueBrick
 
 		/// <summary>
 		/// Update the General info UI controls in the property tab from the currently loaded map.
+		/// <param name="doesNeedToUpdateDimension"/>If true, the dimension of the full map will also be updated, otherwise they are left as they are</param>
 		/// </summary>
-		public void updateMapGeneralInfo()
+		public void updateMapGeneralInfo(bool doesNeedToUpdateDimension)
 		{
 			// update the back color of the background color button
 			this.DocumentDataPropertiesMapBackgroundColorButton.BackColor = Map.Instance.BackgroundColor;
@@ -1123,8 +1124,9 @@ namespace BlueBrick
 			this.dateTimePicker.Value = Map.Instance.Date;
 			char[] splitter = { '\n' };
 			this.commentTextBox.Lines = Map.Instance.Comment.Split(splitter);
-			// update also the map dimensions
-			updateMapDimensionInfo();
+			// update also the map dimensions if needed
+			if (doesNeedToUpdateDimension)
+				updateMapDimensionInfo();
 		}
 
 		/// <summary>
@@ -1132,6 +1134,9 @@ namespace BlueBrick
 		/// </summary>
 		private void updateMapDimensionInfo()
 		{
+			// warn the map Panel that the map dimension may have changed
+			this.mapPanel.MapAreaChangedNotification();
+
 			// ignore if the properties tab is not visible
 			if (this.DocumentDataTabControl.SelectedTab != this.DocumentDataPropertiesTabPage)
 				return;
@@ -1309,7 +1314,7 @@ namespace BlueBrick
 			this.PartUsageListView.rebuildList();
 			this.PartsTabControl.updateAllPartCountAndBudget();
 			// update the properties
-			updateMapGeneralInfo();
+			updateMapGeneralInfo(true);
 			// force a garbage collect because we just trashed the previous map
 			GC.Collect();
 		}
@@ -1376,7 +1381,7 @@ namespace BlueBrick
 				this.PartUsageListView.rebuildList();
 				this.PartsTabControl.updateAllPartCountAndBudget();
 				// update the properties
-				updateMapGeneralInfo();
+				updateMapGeneralInfo(true);
 				//check if some parts were missing in the library for displaying a warning message
 				if (BrickLibrary.Instance.WereUnknownBricksAdded)
 				{
