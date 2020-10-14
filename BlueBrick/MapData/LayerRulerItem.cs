@@ -61,6 +61,8 @@ namespace BlueBrick.MapData
 			private Point mMeasureTextSizeInPixel = new Point(); // the length and width in pixel of the mesurement text as drawn in the image (which is not the length and width of the image because the image is rotated)
 			[NonSerialized]
 			private float mMeasureImageScale = 1.0f; // the scaling factor of the image, because sometimes it need to be squizzed
+			[NonSerialized]
+			private double mScaleAtWichMeasurementImageWasDrawn = 0; // the scale at which the measurement image was drawn
 
 			#region get/set
 			public virtual bool IsNotAttached
@@ -254,24 +256,29 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// update the image used to draw the mesurement of the ruler correctly oriented
 			/// The image is drawn with the current selected unit.
-			/// This method should be called when the mesurement unit change or when one of the
-			/// points change
+			/// This method should be called when the mesurement unit change or when one of the points change
+			/// <param name="scalePixelPerStud"/>The scale of the map, if you want the measurement text to be scaled with the map. Or leave it to 1 to have a constant size on screen.</param>
 			/// </summary>
-			protected void updateMesurementImage()
+			protected void updateMesurementImage(double scalePixelPerStud = 1.0)
 			{
 				// get the mesured distance in the current unit
 				string distanceAsString = mMeasuredDistance.ToString("N2", mDisplayUnit);
 
+				// scale the font to draw the mesurement image according to the current scale of the map
+				Font scaledMeasureFont = new Font(mMeasureFont.FontFamily, (float)(mMeasureFont.Size * scalePixelPerStud));
+				// and memorize the scale at which it was drawn
+				mScaleAtWichMeasurementImageWasDrawn = scalePixelPerStud;
+
 				// draw the size
 				Graphics graphics = Graphics.FromImage(mMeasureImage);
-				SizeF textFontSize = graphics.MeasureString(distanceAsString, mMeasureFont);
+				SizeF textFontSize = graphics.MeasureString(distanceAsString, scaledMeasureFont);
 				int width = (int)textFontSize.Width;
 				int height = (int)textFontSize.Height;
 
 				// after setting the text size, call the function to compute the scale
 				mMeasureTextSizeInPixel.X = width;
 				mMeasureTextSizeInPixel.Y = height;
-				updateMesurementImageScale(MainForm.Instance.MapViewScale);
+				updateMesurementImageScale(MainForm.Instance.MapViewScale); // do not pass the scalePixelPerStud parameter, always give the real map scale
 
 				// create an array with the 4 corner of the text (actually 3 if you exclude the origin)
 				// and rotate them according to the orientation
@@ -302,7 +309,7 @@ namespace BlueBrick.MapData
 				graphics.Transform = rotation;
 				graphics.Clear(Color.Transparent);
 				graphics.SmoothingMode = SmoothingMode.HighQuality;
-				graphics.DrawString(distanceAsString, mMeasureFont, mMeasureBrush, 0, 0, mMeasureStringFormat);
+				graphics.DrawString(distanceAsString, scaledMeasureFont, mMeasureBrush, 0, 0, mMeasureStringFormat);
 				graphics.Flush();
 			}
 			#endregion
@@ -457,7 +464,8 @@ namespace BlueBrick.MapData
 			/// <param name="layerImageAttributeWithTransparency">image attribute containing current transparency in order to draw image (if needed by this ruler)</param>
 			/// <param name="isSelected">tell if this ruler is currently selected in its parent layer selection</param>
 			/// <param name="selectionBrush">the brush to use if this ruler is selected</param>
-			public abstract void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush);
+			/// <param name="shouldScaleMeasurementText">If true, the measurment string text will be scaled according to the current scalePixelPerStud of the map</param>
+			public abstract void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush, bool shouldScaleMeasurementText);
 
 			/// <summary>
 			/// Draw only the control points of this ruler item.
@@ -514,6 +522,10 @@ namespace BlueBrick.MapData
 			/// <param name="layerImageAttributeWithTransparency">image attribute containing current transparency in order to draw image (if needed by this ruler)</param>
 			protected void drawMesurementImage(Graphics g, PointF centerInPixel, double scalePixelPerStud, ImageAttributes layerImageAttributeWithTransparency)
 			{
+				// Update the measurment image, if it was generated with a wrong scale
+				if (scalePixelPerStud != mScaleAtWichMeasurementImageWasDrawn)
+					updateMesurementImage(scalePixelPerStud);
+
 				// draw the mesurement text
 				Rectangle destinationRectangle = new Rectangle();
 
@@ -1249,7 +1261,8 @@ namespace BlueBrick.MapData
 			/// <param name="layerImageAttributeWithTransparency">image attribute containing current transparency in order to draw image (if needed by this ruler)</param>
 			/// <param name="isSelected">tell if this ruler is currently selected in its parent layer selection</param>
 			/// <param name="selectionBrush">the brush to use if this ruler is selected</param>
-			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush)
+			/// <param name="shouldScaleMeasurementText">If true, the measurment string text will be scaled according to the current scalePixelPerStud of the map</param>
+			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush, bool shouldScaleMeasurementText)
 			{
 				// check if the ruler is visible
 				if ((mDisplayArea.Right >= areaInStud.Left) && (mDisplayArea.Left <= areaInStud.Right) &&
@@ -1329,7 +1342,7 @@ namespace BlueBrick.MapData
 						float middleY = (offset1InPixel.Y + offset2InPixel.Y) * 0.5f;
 
 						// draw the mesurement image
-						drawMesurementImage(g, new PointF(middleX, middleY), scalePixelPerStud, layerImageAttributeWithTransparency);
+						drawMesurementImage(g, new PointF(middleX, middleY), shouldScaleMeasurementText ? scalePixelPerStud : 1.0, layerImageAttributeWithTransparency);
 
 						// compute the middle extremity of the two lines
 						float halfTextLength = (this.MesurementTextWidthInPixel * 0.5f);
@@ -1748,7 +1761,8 @@ namespace BlueBrick.MapData
 			/// <param name="layerImageAttributeWithTransparency">image attribute containing current transparency in order to draw image (if needed by this ruler)</param>
 			/// <param name="isSelected">tell if this ruler is currently selected in its parent layer selection</param>
 			/// <param name="selectionBrush">the brush to use if this ruler is selected</param>
-			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush)
+			/// <param name="shouldScaleMeasurementText">If true, the measurment string text will be scaled according to the current scalePixelPerStud of the map</param>
+			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush, bool shouldScaleMeasurementText)
 			{
 				// check if the ruler is visible
 				if ((mDisplayArea.Right >= areaInStud.Left) && (mDisplayArea.Left <= areaInStud.Right) &&
@@ -1781,7 +1795,7 @@ namespace BlueBrick.MapData
 
 					// draw the image containing the text
 					if (mDisplayDistance)
-						drawMesurementImage(g, centerInPixel, scalePixelPerStud, layerImageAttributeWithTransparency);
+						drawMesurementImage(g, centerInPixel, shouldScaleMeasurementText ? scalePixelPerStud : 1.0, layerImageAttributeWithTransparency);
 
 					// draw the hull if needed
                     if (Properties.Settings.Default.DisplayOtherHull)
