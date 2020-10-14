@@ -1200,6 +1200,12 @@ namespace BlueBrick
 			updateMapDimensionInfo();
 		}
 
+		public void NotifyForLayerVisibilityChangedOrLayerDeletion()
+		{
+			// update the map dimensions
+			updateMapDimensionInfo();
+		}
+
 		public void NotifyForMapBackgroundColorChanged()
 		{
 			// update the back color of the background color button

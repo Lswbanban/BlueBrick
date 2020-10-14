@@ -41,11 +41,17 @@ namespace BlueBrick.Actions
 		public override void redo()
 		{
 			Map.Instance.removeLayer(mLayerDeleted);
+
+			// notify the main form for layer visibility change
+			MainForm.Instance.NotifyForLayerVisibilityChangedOrLayerDeletion();
 		}
 
 		public override void undo()
 		{
 			Map.Instance.addLayer(mLayerDeleted, mIndex);
+
+			// notify the main form for layer visibility change
+			MainForm.Instance.NotifyForLayerVisibilityChangedOrLayerDeletion();
 		}
 	}
 }

@@ -26,6 +26,7 @@ namespace BlueBrick.Actions.Layers
 		private Layer mOldLayerData = null;
 		private Layer mNewLayerData = null;
 		private bool mLayerNameChanged = false;
+		private bool mLayerVisibilityChanged = false;
 		private Dictionary<int, Dictionary<int, SolidBrush>> mOldColorMap = null;
 
 		public ChangeLayerOption(Layer layer, Layer oldLayerTemplate, Layer newLayerTemplate)
@@ -39,6 +40,8 @@ namespace BlueBrick.Actions.Layers
 			mNewLayerData = newLayerTemplate;
 			// check if the name changed
 			mLayerNameChanged = !oldLayerTemplate.Name.Equals(mNewLayerData.Name);
+			// check if visibility changed
+			mLayerVisibilityChanged = (oldLayerTemplate.Visible != newLayerTemplate.Visible);
 			// if the layer is an area layer, save the current color map
 			LayerArea layerArea = layer as LayerArea;
 			if (layerArea != null)
@@ -66,6 +69,10 @@ namespace BlueBrick.Actions.Layers
 			// copy the options
 			mLayer.CopyOptionsFrom(mNewLayerData);
 
+			// notify the main form if the visibility changed
+			if (mLayerVisibilityChanged)
+				MainForm.Instance.NotifyForLayerVisibilityChangedOrLayerDeletion();
+
 			// notify the part list if the name changed
 			if (mLayerNameChanged)
 				MainForm.Instance.NotifyPartListForLayerRenamed(mLayer);
@@ -80,6 +87,10 @@ namespace BlueBrick.Actions.Layers
 
 			// copy the options
 			mLayer.CopyOptionsFrom(mOldLayerData);
+
+			// notify the main form if the visibility changed
+			if (mLayerVisibilityChanged)
+				MainForm.Instance.NotifyForLayerVisibilityChangedOrLayerDeletion();
 
 			// notify the part list if the name changed
 			if (mLayerNameChanged)
