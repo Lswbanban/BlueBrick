@@ -105,7 +105,6 @@ to open the help file (see above for more details).
 -------------------------------------------------------------------------------
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon): necessite une nouvelle version du format BBM
-- [target 1.9] BUG (Alban): The selection should be cleared when exporting the image (to avoid drawing the selection and free connection point). Then the selection should be reset to what it was when the export window is closed.
 - [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages:
 	- les lignes verticales et horizontale sont sélectionnables et bougeable à la souris, et la position est ajustable dans le cadre margins
 	- Il faut une sorte de rulers en haut et en bas, pour setter la valeur en studs, pour remplacer les margins
@@ -144,7 +143,6 @@ Open bugs:
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
 - MISSING FEATURE (Ludo): Add a context menu on the Part Usage list, in order to export the list from there.
 - MISSING FEATURE (Alban): Add a Brick property window to edit the altitude of the brick
-- MISSING FEATURE (Alban): Add scrollbars on the map view (can be shown or hidden from the map context menu and the View menu)
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
@@ -173,10 +171,10 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Matthias): Add the 2 studs snapping.
 - NEW FEATURE (Alban): Improve the usuability of the select path feature (through the menu items), now the path is selected between the last two selected objects, and the previous selection is not cleared.
 - NEW FEATURE (Alban): Simplify the Path selection with a shortcut key (Multi selection Key + Pan View Key) + click on the second part (instead of going through the contextual menu).
-- BUGFIX (Matthias): If a part name contains a dot, the full part id was not properly displayed in the part list on in the status bar.
-- BUGFIX (Ludo): If we write an empty description in a part xml file (without language tags, just <Description></Description>) the the connection points of the parts disappears.
+- NEW FEATURE (Alban): Add scrollbars on the map view (can be shown or hidden from the map context menu and the View menu)
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
 - BUGFIX (Alban): Fix a crash when duplicating parts very quickly with the ALT key (crash due to delay with the clipboard)
+- BUGFIX (Ludo): If there was an empty description in a part xml file (without language tags, just <Description></Description>) then the connection points of the parts were missing.
 - BUGFIX (Vincent): Probably fixed sometimes when drag-n-dropping parts, only the selection box and the free connection point were moving (and not the grabbed parts)
 - BUGFIX (Alban): Now you can open a file which is in readonly access.
 - BUGFIX (Alban): Finally found a way to release the lock on the images when reloading the part library (well hopefully this time it will be fixed).
@@ -185,12 +183,14 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Alban): The cancel of the files download from the download center form was not properly stopped
 - BUGFIX (Matthias): The color name was "unknown" in the Bubble info at BlueBrick startup or after every Part Library Reload (and could only be valid after changing the preferences regarding the Bubble info)
 - BUGFIX (Alban): Adding a part on a hidden layer was counting that part in the Part Usage list
+- BUGFIX (Alban): The Part Usage calculation wasn't taking in consideration the flag to include or not the hidden layers.
 - BUGFIX (Alban): The flag that check if a budget was modified was not correctly set
+- BUGFIX (Alban): The Part Usage list was not properly updated when ungrouping a named group while being visible.
 - BUGFIX (Matthias): The next connection preference set in part xml file was not respected when connecting a brick with drag'n'drop from the library, or after a move.
 - BUGFIX (Alban): The vertical scroll bar of layer panel was too big when placing the scrollbar on the bottom, changing tab, and come back (scroll useless empty space)
-- BUGFIX (Alban): the part usage calculation wasn't taking in consideration the flag to include or not the hidden layers.
-- BUGFIX (Alban): The Part Usage list was not properly updated when ungrouping a named group while being visible.
 - BUGFIX (Thai Bricks): Now the "&" character is visible in layer's name if the user edits the layer's name with an ampersome.
+- BUGFIX (Matthias): If a part name contains a dot, the full part id was not properly displayed in the part list on in the status bar.
+- BUGFIX (Alban): The selection was displayed in the exported the image.
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 - REFACTORING (Alban): Modernize the HTML code of the part usage list export (add some CSS and colors)
 - REFACTORING (Alban): Replace the progress bar by track bar for editing transparency of the layers

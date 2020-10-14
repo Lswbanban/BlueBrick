@@ -250,10 +250,10 @@ namespace BlueBrick.MapData
 		/// Draw the layer.
 		/// </summary>
 		/// <param name="g">the graphic context in which draw the layer</param>
-        /// <param name="areaInStud">The region in which we should draw</param>
-        /// <param name="scalePixelPerStud">The scale to use to draw</param>
-        /// <param name="drawSelectionRectangle">If true draw the selection rectangle (this can be set to false when exporting the map to an image)</param>
-        public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, bool drawSelectionRectangle)
+		/// <param name="areaInStud">The region in which we should draw</param>
+		/// <param name="scalePixelPerStud">The scale to use to draw</param>
+		/// <param name="drawSelection">If true draw the selection rectangle and also the selection overlay (this can be set to false when exporting the map to an image)</param>
+		public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, bool drawSelection)
 		{
 			if (!Visible)
 				return;
@@ -284,7 +284,7 @@ namespace BlueBrick.MapData
                     g.DrawImage(cell.Image, destRect, srcRect, unit, mImageAttribute);
 
 					// compute the selection area in pixel if the text is selected or we need to draw the hull
-					bool isSelected = mSelectedObjects.Contains(cell);
+					bool isSelected = drawSelection && mSelectedObjects.Contains(cell);
                     bool displayHull = Properties.Settings.Default.DisplayOtherHull;
                     PointF[] hull = null;
                     if (isSelected || displayHull)
@@ -307,7 +307,7 @@ namespace BlueBrick.MapData
             g.Transform = new Matrix();
 
 			// call the base class to draw the surrounding selection rectangle
-            base.draw(g, areaInStud, scalePixelPerStud, drawSelectionRectangle);
+            base.draw(g, areaInStud, scalePixelPerStud, drawSelection);
 		}
 
 		#endregion

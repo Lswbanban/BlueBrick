@@ -477,10 +477,10 @@ namespace BlueBrick.MapData
 		/// Draw the layer.
 		/// </summary>
 		/// <param name="g">the graphic context in which draw the layer</param>
-        /// <param name="areaInStud">The region in which we should draw</param>
-        /// <param name="scalePixelPerStud">The scale to use to draw</param>
-        /// <param name="drawSelectionRectangle">If true draw the selection rectangle (this can be set to false when exporting the map to an image)</param>
-        public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, bool drawSelectionRectangle)
+		/// <param name="areaInStud">The region in which we should draw</param>
+		/// <param name="scalePixelPerStud">The scale to use to draw</param>
+		/// <param name="drawSelection">If true draw the selection rectangle and also the selection overlay (this can be set to false when exporting the map to an image)</param>
+		public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, bool drawSelection)
 		{
 			if (!Visible)
 				return;
@@ -488,7 +488,7 @@ namespace BlueBrick.MapData
 			// draw all the rulers of the layer
 			foreach (RulerItem ruler in mRulers)
 				ruler.draw(g, areaInStud, scalePixelPerStud, mTransparency,
-							mImageAttribute, mSelectedObjects.Contains(ruler), mSelectionBrush);
+							mImageAttribute, drawSelection && mSelectedObjects.Contains(ruler), mSelectionBrush);
 
 			// draw the ruler that we are currently creating if any
 			// (if it's the same as the ruler under the mouse
@@ -496,10 +496,10 @@ namespace BlueBrick.MapData
 			if ((mCurrentlyEditedRuler != null) && (mCurrentlyEditedRuler != mCurrentRulerUnderMouse))
 				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute, false, mSelectionBrush);
 
-			if (sCurrentEditTool == EditTool.SELECT)
+			if (drawSelection && (sCurrentEditTool == EditTool.SELECT))
 			{
 				// draw the control points of the selected rulers
-				if (BlueBrick.Properties.Settings.Default.DisplayRulerAttachPoints)
+				if (Properties.Settings.Default.DisplayRulerAttachPoints)
 				{
 					Color redColor = Color.FromArgb((int)(mTransparency * 2.55f), Color.Red);
 					foreach (LayerItem item in this.SelectedObjects)
@@ -514,7 +514,7 @@ namespace BlueBrick.MapData
 			}
 
 			// call the base class to draw the surrounding selection rectangle
-            base.draw(g, areaInStud, scalePixelPerStud, drawSelectionRectangle);
+            base.draw(g, areaInStud, scalePixelPerStud, drawSelection);
 		}
 		#endregion
 

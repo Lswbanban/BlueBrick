@@ -661,10 +661,10 @@ namespace BlueBrick.MapData
 		/// Draw the layer.
 		/// </summary>
 		/// <param name="g">the graphic context in which draw the layer</param>
-        /// <param name="areaInStud">The region in which we should draw</param>
-        /// <param name="scalePixelPerStud">The scale to use to draw</param>
-        /// <param name="drawSelectionRectangle">If true draw the selection rectangle (this can be set to false when exporting the map to an image)</param>
-        public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, bool drawSelectionRectangle)
+		/// <param name="areaInStud">The region in which we should draw</param>
+		/// <param name="scalePixelPerStud">The scale to use to draw</param>
+		/// <param name="drawSelection">If true draw the selection rectangle and also the selection overlay (this can be set to false when exporting the map to an image)</param>
+		public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, bool drawSelection)
 		{
 			if (!Visible)
 				return;
@@ -714,7 +714,7 @@ namespace BlueBrick.MapData
 						GraphicsUnit unit = GraphicsUnit.Pixel;
 
 						// draw the current brick eventually highlighted
-						if (mSelectedObjects.Contains(brick))
+						if (drawSelection && mSelectedObjects.Contains(brick))
 						{
 							if (brick == mCurrentBrickUnderMouse)
 								g.DrawImage(image, destinationPoints, image.GetBounds(ref unit), GraphicsUnit.Pixel, mImageAttributeForSnapping);
@@ -809,7 +809,7 @@ namespace BlueBrick.MapData
 			}
 
 			// call the base class to draw the surrounding selection rectangle
-            base.draw(g, areaInStud, scalePixelPerStud, drawSelectionRectangle);
+            base.draw(g, areaInStud, scalePixelPerStud, drawSelection);
 
 			// check if there's a brick for which we need to draw the current connection point (red dot)
 			// two conditions: one brick under the mouse, or only one brick selected.
