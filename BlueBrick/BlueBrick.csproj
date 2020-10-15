@@ -179,6 +179,7 @@
     <Compile Include="MapData\LayerRuler.cs" />
     <Compile Include="MapData\LayerRulerItem.cs" />
     <Compile Include="MapData\LayerTextCell.cs" />
+    <Compile Include="MapData\Tools\AlphabeticIndex.cs" />
     <Compile Include="MapData\Tools\Surface.cs" />
     <Compile Include="MapData\Tools\Distance.cs" />
     <Compile Include="PartListView.cs">

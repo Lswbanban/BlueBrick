@@ -45,28 +45,6 @@ namespace BlueBrick
 		private const int MAX_IMAGE_SIZE_IN_PIXEL = 4096;
         private const int TOTAL_HEIGHT_OF_FIXED_PANEL = 204;
 
-		#region get/set
-		public RectangleF AreaInStud
-		{
-			get { return mSelectedAreaInStud; }
-		}
-
-		public int ImageWidth
-		{
-			get { return (int)(this.imageWidthNumericUpDown.Value); }
-		}
-
-		public int ImageHeight
-		{
-			get { return (int)(this.imageHeightNumericUpDown.Value); }
-		}
-
-		public double ScalePixelPerStud
-		{
-			get { return (double)(this.scaleNumericUpDown.Value); }
-		}
-		#endregion
-
 		#region init
 		public ExportImageForm()
 		{
@@ -705,17 +683,27 @@ namespace BlueBrick
 
 		private void okButton_Click(object sender, EventArgs e)
 		{
-			// save the setting chosen in the map
+			// save the UI settings: if the user has exported, that means he like the option like that, and if he make
+			// a new map and export, he wants to find back his last settings
+			saveUISettingInDefaultSettings();
+
+			// save the setting chosen in the Map
 			Map.Instance.saveExportAreaAndDisplaySettings(mSelectedAreaInStud, (double)(this.scaleNumericUpDown.Value),
                 this.exportWatermarkCheckBox.Checked, this.exportHullCheckBox.Checked,
                 this.exportElectricCircuitCheckBox.Checked, this.exportConnectionPointCheckBox.Checked);
 
-            // save also the UI settings: if the user has exported, that means he like the option like that, and if he make
-            // a new map and export, he wants to find back his last settings
-            saveUISettingInDefaultSettings();
+			// then ask the user to choose a filename and format
+			string fileName;
+			ImageFormat choosenFormat;
+			if (getExportFileName(out fileName, out choosenFormat))
+			{
+				// the user have chosen a correct filename and format
+				// save the new settings in the map
+				Map.Instance.saveExportFileSettings(fileName, saveExportImageDialog.FilterIndex);
 
-			// then export all the images
-			ExportAndSaveAllImages();
+				// then call the function to export all the images
+				exportAllImages(fileName, choosenFormat);
+			}
 		}
 
 		private void ExportImageForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -727,15 +715,18 @@ namespace BlueBrick
 		}
 
 
-		private void ExportAndSaveAllImages()
+		private bool getExportFileName(out string fileName, out ImageFormat choosenFormat)
 		{
-			// option were set, check if we need to use the export settings saved in the file
+			fileName = string.Empty;
+			choosenFormat = ImageFormat.Png;
+
+			// check if we need to use the export settings saved in the file
 			this.saveExportImageDialog.FilterIndex = Map.Instance.ExportFileTypeIndex; // it's 1 by default anyway
-																						// by default set the same name for the exported picture than the name of the map
+																					   // by default set the same name for the exported picture than the name of the map
 			string fullFileName = Map.Instance.MapFileName;
 			if (Map.Instance.ExportAbsoluteFileName != string.Empty)
 				fullFileName = Map.Instance.ExportAbsoluteFileName;
-			
+
 			// remove the extension from the full file name and also set the starting directory
 			this.saveExportImageDialog.FileName = Path.GetFileNameWithoutExtension(fullFileName);
 			this.saveExportImageDialog.InitialDirectory = Path.GetDirectoryName(fullFileName);
@@ -746,27 +737,13 @@ namespace BlueBrick
 			DialogResult result = this.saveExportImageDialog.ShowDialog();
 			if (result == DialogResult.OK)
 			{
-				// create the Bitmap and get the graphic context from it
-				Bitmap image = new Bitmap(this.ImageWidth, this.ImageHeight, PixelFormat.Format24bppRgb);
-				Graphics graphics = Graphics.FromImage(image);
-				graphics.Clear(Map.Instance.BackgroundColor);
-				graphics.SmoothingMode = SmoothingMode.Default; // the HighQuality let appears some grid line above the area cells
-				graphics.CompositingQuality = CompositingQuality.HighQuality;
-				graphics.CompositingMode = CompositingMode.SourceOver;
-				graphics.InterpolationMode = InterpolationMode.HighQualityBicubic; // this one need to be high else there's some rendering bug appearing with a lower mode, the scale of the stud looks not correct when zooming out.
-				
-				// draw the bitmap
-				Map.Instance.draw(graphics, this.AreaInStud, this.ScalePixelPerStud, false);
-				Map.Instance.drawWatermark(graphics, this.AreaInStud, this.ScalePixelPerStud);
-				
 				// find the correct format according to the last extension.
 				// Normally the FileName MUST have a valid extension because the SaveFileDialog
 				// automatically add an extension if the user forgot to precise one, or if
 				// the use put an extension that is not in the list of the filters.
-				string fileName = saveExportImageDialog.FileName;
+				fileName = saveExportImageDialog.FileName;
 				int lastExtensionIndex = fileName.LastIndexOf('.');
-				// declare a variable that receive the choosen format
-				ImageFormat choosenFormat = ImageFormat.Bmp;
+				// find the correct format chosen by the user
 				if (lastExtensionIndex != -1)
 				{
 					string extension = fileName.Substring(lastExtensionIndex + 1).ToLower();
@@ -805,11 +782,62 @@ namespace BlueBrick
 						}
 					}
 				}
-				// save the new settings in the map
-				Map.Instance.saveExportFileSettings(fileName, saveExportImageDialog.FilterIndex);
-				// save the bitmap in a file
-				image.Save(fileName, choosenFormat);
+
+				// user has correctly choosen the filename and format
+				return true;
 			}
+
+			// user canceled the export
+			return false;
+		}
+
+		private void exportAllImages(string fileName, ImageFormat choosenFormat)
+		{
+			// compute the column and row size depending on the selected area to export and the number of cells in the grid
+			float columnWidthInStud = mSelectedAreaInStud.Width / (int)this.columnCountNumericUpDown.Value;
+			float rowHeightInStud = mSelectedAreaInStud.Height / (int)this.rowCountNumericUpDown.Value;
+
+			// get the image width, height and scale from the numeric updown
+			int imageWidth = (int)(this.imageWidthNumericUpDown.Value); 
+			int imageHeight = (int)(this.imageHeightNumericUpDown.Value);
+			double scalePixelPerStud = (double)(this.scaleNumericUpDown.Value);
+
+			// create a fileInfo to get the filename and the extension separately
+			FileInfo fileInfo = new FileInfo(fileName);
+			int extensionIndex = fileInfo.FullName.LastIndexOf(fileInfo.Extension);
+			string fileNameWithoutExtension = (extensionIndex >= 0 ? fileInfo.FullName.Remove(extensionIndex) : fileInfo.FullName) + "_";
+
+			// iterate on the grid of image to export
+			for (int i = 0; i < this.columnCountNumericUpDown.Value; ++i)
+				for (int j = 0; j < this.rowCountNumericUpDown.Value; ++j)
+				{
+					// create the Bitmap and get the graphic context from it
+					Bitmap image = new Bitmap(imageWidth, imageHeight, PixelFormat.Format24bppRgb);
+					Graphics graphics = Graphics.FromImage(image);
+					graphics.Clear(Map.Instance.BackgroundColor);
+					graphics.SmoothingMode = SmoothingMode.Default; // the HighQuality let appears some grid line above the area cells
+					graphics.CompositingQuality = CompositingQuality.HighQuality;
+					graphics.CompositingMode = CompositingMode.SourceOver;
+					graphics.InterpolationMode = InterpolationMode.HighQualityBicubic; // this one need to be high else there's some rendering bug appearing with a lower mode, the scale of the stud looks not correct when zooming out.
+
+					// define the area to draw depending on the current coordinates of the grid cell that we are exporting
+					RectangleF areaInStud = new RectangleF(mSelectedAreaInStud.X + (columnWidthInStud * i), mSelectedAreaInStud.Y + (rowHeightInStud * j), columnWidthInStud, rowHeightInStud);
+
+					// draw the bitmap
+					Map.Instance.draw(graphics, areaInStud, scalePixelPerStud, false);
+					Map.Instance.drawWatermark(graphics, areaInStud, scalePixelPerStud);
+
+					// construct a filename for each image (if there's more than one image)
+					string cellImageFileName = fileName;
+					if ((this.columnCountNumericUpDown.Value > 1) || (this.rowCountNumericUpDown.Value > 1))
+						cellImageFileName = fileNameWithoutExtension +
+											MapData.Tools.AlphabeticIndex.ConvertIndexToHumanFriendlyIndex(i + 1, true) + 
+											MapData.Tools.AlphabeticIndex.ConvertIndexToHumanFriendlyIndex(j + 1, false) +
+											fileInfo.Extension;
+
+					// save the bitmap in a file
+					image.Save(cellImageFileName, choosenFormat);
+				}
 		}
 		#endregion
 		#endregion

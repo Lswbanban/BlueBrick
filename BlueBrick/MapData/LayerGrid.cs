@@ -414,7 +414,7 @@ namespace BlueBrick.MapData
 					float y = (float)((cellCornerYInStud + halfGridSizeInStud - areaInStud.Top) * scalePixelPerStud);
 					for (float x = startX; x < endX; x += gridSizeInPixel)
 					{
-						string indexInText = getIndexInString(currentIndex, mCellIndexColumnType);
+						string indexInText = Tools.AlphabeticIndex.ConvertIndexToHumanFriendlyIndex(currentIndex, mCellIndexColumnType == CellIndexType.LETTERS);
 						g.DrawString(indexInText, scaledFont, mCellIndexBrush, x, y, sCellIndexStringFormat);
 						++currentIndex;
 					}
@@ -438,46 +438,11 @@ namespace BlueBrick.MapData
 					float x = (float)((cellCornerXInStud + halfGridSizeInStud - areaInStud.Left) * scalePixelPerStud);
 					for (float y = startY; y < endY; y += gridSizeInPixel)
 					{
-						string indexInText = getIndexInString(currentIndex, mCellIndexRowType);
+						string indexInText = Tools.AlphabeticIndex.ConvertIndexToHumanFriendlyIndex(currentIndex, mCellIndexRowType == CellIndexType.LETTERS);
 						g.DrawString(indexInText, scaledFont, mCellIndexBrush, x, y, sCellIndexStringFormat);
 						++currentIndex;
 					}
 				}
-			}
-		}
-
-		private string getIndexInString(int index, CellIndexType indexType)
-		{
-			// skip the index 0
-			if (index == 0)
-				return "";
-			// return incremented letters or numbers
-			if (indexType == CellIndexType.LETTERS)
-			{
-				string result = "";
-				// just compute a number in base 26 (26 letters in the alphabet)
-				const string numbase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-				int rest = index;
-				int modulo;
-				do
-				{
-					modulo = (rest - 1) % 26;
-					result = numbase[modulo] + result;
-					if ((rest % 26) == 0)
-					{
-						rest /= 26;
-						rest--;
-					}
-					else
-					{
-						rest /= 26;
-					}
-				} while (rest > 0);
-				return result;
-			}
-			else
-			{
-				return index.ToString();
 			}
 		}
 		#endregion
