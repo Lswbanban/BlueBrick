@@ -524,22 +524,30 @@ namespace BlueBrick
 		#region image count and size 
 		private void columnCountNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
+			// redraw the preview image to update the grid
 			drawPreviewImage();
 			// the min and max scale depends on the number of column and rows, as if you have multiple col/rows, you can increase the scale
 			updateMinAndMaxScaleAccordingToSelectedArea();
 			// also update the scale value (after changing the min max of the scale) based on the current value of the image width
 			// because if we increase the number of colums, the scale can increase with the same image width
 			imageWidthNumericUpDown_ValueChanged(sender, e);
+			// after updating the min max of scale, then the scale value (in that order), we update the image size,
+			// because changing the number of columns affect the image ratio
+			computeImageSizeFromAreaAndScale();
 		}
 
 		private void rowCountNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
+			// redraw the preview image to update the grid
 			drawPreviewImage();
 			// the min and max scale depends on the number of column and rows, as if you have multiple col/rows, you can increase the scale
 			updateMinAndMaxScaleAccordingToSelectedArea();
 			// also update the scale value (after changing the min max of the scale) based on the current value of the image height
 			// because if we increase the number of rows, the scale can increase with the same image height
 			imageHeightNumericUpDown_ValueChanged(sender, e);
+			// after updating the min max of scale, then the scale value (in that order), we update the image size again,
+			// because changing the number of rows affect the image ratio
+			computeImageSizeFromAreaAndScale();
 		}
 
 		private void imageWidthNumericUpDown_ValueChanged(object sender, EventArgs e)
