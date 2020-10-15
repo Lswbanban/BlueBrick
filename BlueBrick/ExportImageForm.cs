@@ -28,6 +28,7 @@ namespace BlueBrick
 		private double mTotalScalePixelPerStud = 0.5;
 		private Bitmap mMapImage = null;
 		private Pen mSelectionPen = new Pen(Color.Red, 2);
+		SolidBrush mMarginBlackOverlayBrush = new SolidBrush(Color.FromArgb(127, Color.Black));
 		private NumericUpDown mFirstSender = null;
 		private bool mIsDragingSelectionRectangle = false;
 		private PointF mStartDragPoint = new PointF();
@@ -301,6 +302,19 @@ namespace BlueBrick
 																(float)((mSelectedAreaInStud.Y - mTotalAreaInStud.Y) * mTotalScalePixelPerStud),
 																(float)(mSelectedAreaInStud.Width * mTotalScalePixelPerStud),
 																(float)(mSelectedAreaInStud.Height * mTotalScalePixelPerStud));
+
+				// draw the watermark
+				RectangleF watermarkRectangleInStud = new RectangleF(mTotalAreaInStud.X, mTotalAreaInStud.Y,
+																	mSelectedAreaInStud.X - mTotalAreaInStud.X + mSelectedAreaInStud.Width,
+																	mSelectedAreaInStud.Y - mTotalAreaInStud.Y + mSelectedAreaInStud.Height);
+				Map.Instance.drawWatermark(graphics, watermarkRectangleInStud, mTotalScalePixelPerStud);
+
+				// draw black overlay to over the margins
+				graphics.FillRectangle(mMarginBlackOverlayBrush, 0, 0, selectedAreaInPixel.Left, this.previewPictureBox.Image.Height);
+				graphics.FillRectangle(mMarginBlackOverlayBrush, selectedAreaInPixel.Right, 0, this.previewPictureBox.Image.Width - selectedAreaInPixel.Right, this.previewPictureBox.Image.Height);
+				graphics.FillRectangle(mMarginBlackOverlayBrush, selectedAreaInPixel.Left, 0, selectedAreaInPixel.Width, selectedAreaInPixel.Top);
+				graphics.FillRectangle(mMarginBlackOverlayBrush, selectedAreaInPixel.Left, selectedAreaInPixel.Bottom, selectedAreaInPixel.Width, this.previewPictureBox.Image.Height - selectedAreaInPixel.Bottom);
+
 				// and draw the selected area
 				graphics.DrawRectangle(mSelectionPen, selectedAreaInPixel.X, selectedAreaInPixel.Y, selectedAreaInPixel.Width, selectedAreaInPixel.Height);
 
@@ -317,13 +331,7 @@ namespace BlueBrick
 					float lineY = selectedAreaInPixel.Y + (rowHeightInPixel * i);
 					graphics.DrawLine(mSelectionPen, selectedAreaInPixel.Left, lineY, selectedAreaInPixel.Right, lineY);
 				}
-
-				// draw the watermark
-				RectangleF watermarkRectangleInStud = new RectangleF(mTotalAreaInStud.X, mTotalAreaInStud.Y,
-                                                                    mSelectedAreaInStud.X - mTotalAreaInStud.X + mSelectedAreaInStud.Width,
-                                                                    mSelectedAreaInStud.Y - mTotalAreaInStud.Y + mSelectedAreaInStud.Height);
-                Map.Instance.drawWatermark(graphics, watermarkRectangleInStud, mTotalScalePixelPerStud);
-            }
+			}
 		}
 
         private void drawAll()

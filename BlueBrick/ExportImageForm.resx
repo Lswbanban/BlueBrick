@@ -154,7 +154,7 @@
     <value>None</value>
   </data>
   <data name="previewPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 68</value>
+    <value>113, 48</value>
   </data>
   <data name="previewPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>423, 264</value>
@@ -181,7 +181,7 @@
     <value>Top</value>
   </data>
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 83</value>
+    <value>125, 103</value>
   </data>
   <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -214,7 +214,7 @@
     <value>NoControl</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 49</value>
+    <value>130, 57</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>11, 18</value>
@@ -244,7 +244,7 @@
     <value>Top</value>
   </data>
   <data name="rowCountNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 47</value>
+    <value>82, 55</value>
   </data>
   <data name="rowCountNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
@@ -271,7 +271,7 @@
     <value>NoControl</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 24</value>
+    <value>130, 32</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>11, 18</value>
@@ -301,7 +301,7 @@
     <value>Top</value>
   </data>
   <data name="columnCountNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 22</value>
+    <value>82, 30</value>
   </data>
   <data name="columnCountNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
@@ -325,7 +325,7 @@
     <value>Top</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 24</value>
+    <value>14, 32</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 18</value>
@@ -365,7 +365,7 @@
 </value>
   </data>
   <data name="linkPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 42</value>
+    <value>206, 50</value>
   </data>
   <data name="linkPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>21, 16</value>
@@ -389,7 +389,7 @@
     <value>Top</value>
   </data>
   <data name="imageWidthNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 22</value>
+    <value>144, 30</value>
   </data>
   <data name="imageWidthNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 20</value>
@@ -413,7 +413,7 @@
     <value>Top</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 47</value>
+    <value>17, 55</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 18</value>
@@ -446,7 +446,7 @@
     <value>True</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 18</value>
+    <value>231, 26</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 13</value>
@@ -473,7 +473,7 @@
     <value>Top</value>
   </data>
   <data name="scaleNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>234, 36</value>
+    <value>234, 44</value>
   </data>
   <data name="scaleNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -497,7 +497,7 @@
     <value>Top</value>
   </data>
   <data name="imageHeightNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 48</value>
+    <value>144, 56</value>
   </data>
   <data name="imageHeightNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 20</value>
@@ -521,7 +521,7 @@
     <value>328, 3</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 74</value>
+    <value>319, 94</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -545,7 +545,7 @@
     <value>Top</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>450, 83</value>
+    <value>450, 103</value>
   </data>
   <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -571,164 +571,11 @@
   <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;areaTopNumericUpDown.Name" xml:space="preserve">
-    <value>areaTopNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;areaTopNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;areaTopNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;areaTopNumericUpDown.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;areaLeftNumericUpDown.Name" xml:space="preserve">
-    <value>areaLeftNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;areaLeftNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;areaLeftNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;areaLeftNumericUpDown.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;areaBottomNumericUpDown.Name" xml:space="preserve">
-    <value>areaBottomNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;areaBottomNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;areaBottomNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;areaBottomNumericUpDown.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;areaRightNumericUpDown.Name" xml:space="preserve">
-    <value>areaRightNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;areaRightNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;areaRightNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;areaRightNumericUpDown.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 74</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Area Size in Studs</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>settingAndButtonTableLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="settingAndButtonTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="settingAndButtonTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 410</value>
-  </data>
-  <data name="settingAndButtonTableLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="settingAndButtonTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="settingAndButtonTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>650, 110</value>
-  </data>
-  <data name="settingAndButtonTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;settingAndButtonTableLayoutPanel.Name" xml:space="preserve">
-    <value>settingAndButtonTableLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;settingAndButtonTableLayoutPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;settingAndButtonTableLayoutPanel.Parent" xml:space="preserve">
-    <value>topTableLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;settingAndButtonTableLayoutPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="settingAndButtonTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cancelButton" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox2" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="okButton" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="groupBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Absolute,80,Absolute,30,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
   <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 49</value>
+    <value>70, 14</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 18</value>
@@ -758,7 +605,7 @@
     <value>Top</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 23</value>
+    <value>9, 40</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 18</value>
@@ -788,7 +635,7 @@
     <value>Top</value>
   </data>
   <data name="areaTopNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 47</value>
+    <value>129, 15</value>
   </data>
   <data name="areaTopNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -812,7 +659,7 @@
     <value>Top</value>
   </data>
   <data name="areaLeftNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 21</value>
+    <value>65, 39</value>
   </data>
   <data name="areaLeftNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -836,7 +683,7 @@
     <value>Top</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 51</value>
+    <value>70, 66</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 18</value>
@@ -866,7 +713,7 @@
     <value>Top</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>164, 25</value>
+    <value>256, 40</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 18</value>
@@ -878,7 +725,7 @@
     <value>Right</value>
   </data>
   <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -896,7 +743,7 @@
     <value>Top</value>
   </data>
   <data name="areaBottomNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 49</value>
+    <value>131, 67</value>
   </data>
   <data name="areaBottomNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 20</value>
@@ -920,7 +767,7 @@
     <value>Top</value>
   </data>
   <data name="areaRightNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 23</value>
+    <value>192, 41</value>
   </data>
   <data name="areaRightNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 20</value>
@@ -940,113 +787,65 @@
   <data name="&gt;&gt;areaRightNumericUpDown.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="topTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
   </data>
-  <data name="&gt;&gt;exportConnectionPointCheckBox.Name" xml:space="preserve">
-    <value>exportConnectionPointCheckBox</value>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 94</value>
   </data>
-  <data name="&gt;&gt;exportConnectionPointCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;exportConnectionPointCheckBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;exportConnectionPointCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;exportElectricCircuitCheckBox.Name" xml:space="preserve">
-    <value>exportElectricCircuitCheckBox</value>
-  </data>
-  <data name="&gt;&gt;exportElectricCircuitCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;exportElectricCircuitCheckBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;exportElectricCircuitCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;exportWatermarkCheckBox.Name" xml:space="preserve">
-    <value>exportWatermarkCheckBox</value>
-  </data>
-  <data name="&gt;&gt;exportWatermarkCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;exportWatermarkCheckBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;exportWatermarkCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;exportHullCheckBox.Name" xml:space="preserve">
-    <value>exportHullCheckBox</value>
-  </data>
-  <data name="&gt;&gt;exportHullCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;exportHullCheckBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;exportHullCheckBox.ZOrder" xml:space="preserve">
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="groupBox3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Area Size in Studs</value>
   </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 363</value>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>644, 44</value>
-  </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Export Options</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>topTableLayoutPanel</value>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>settingAndButtonTableLayoutPanel</value>
   </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="topTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="settingAndButtonTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="topTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="settingAndButtonTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 371</value>
   </data>
-  <data name="topTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="settingAndButtonTableLayoutPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
-  <data name="topTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>650, 520</value>
+  <data name="settingAndButtonTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="topTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="settingAndButtonTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>650, 130</value>
   </data>
-  <data name="&gt;&gt;topTableLayoutPanel.Name" xml:space="preserve">
-    <value>topTableLayoutPanel</value>
+  <data name="settingAndButtonTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
-  <data name="&gt;&gt;topTableLayoutPanel.Type" xml:space="preserve">
+  <data name="&gt;&gt;settingAndButtonTableLayoutPanel.Name" xml:space="preserve">
+    <value>settingAndButtonTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;settingAndButtonTableLayoutPanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;topTableLayoutPanel.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;settingAndButtonTableLayoutPanel.Parent" xml:space="preserve">
+    <value>topTableLayoutPanel</value>
   </data>
-  <data name="&gt;&gt;topTableLayoutPanel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;settingAndButtonTableLayoutPanel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="topTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="settingAndButtonTableLayoutPanel" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="previewPictureBox" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox3" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,40,Percent,100,Absolute,50,Absolute,110" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  <data name="settingAndButtonTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cancelButton" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox2" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="okButton" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="groupBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Absolute,100,Absolute,30" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="topTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="exportConnectionPointCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1156,6 +955,63 @@
   <data name="&gt;&gt;exportHullCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="groupBox3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 324</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>644, 44</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Export Options</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>topTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="topTableLayoutPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="topTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="topTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="topTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>650, 501</value>
+  </data>
+  <data name="topTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;topTableLayoutPanel.Name" xml:space="preserve">
+    <value>topTableLayoutPanel</value>
+  </data>
+  <data name="&gt;&gt;topTableLayoutPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;topTableLayoutPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;topTableLayoutPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="topTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="settingAndButtonTableLayoutPanel" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="previewPictureBox" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox3" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,40,Percent,100,Absolute,50,Absolute,130" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1163,7 +1019,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>650, 520</value>
+    <value>650, 501</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1206,6 +1062,9 @@
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>520, 350</value>
