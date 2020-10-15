@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GeneralCheckedListBoxNotification.Items" xml:space="preserve">
-    <value>Mostrar um aviso quando não se guarda em formato BBM</value>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Geral</value>
   </data>
-  <data name="GeneralCheckedListBoxNotification.Items2" xml:space="preserve">
-    <value>Mostrar um aviso se as peças colocadas ou duplicadas excederem o orçamento</value>
+  <data name="editionTabPage.Text" xml:space="preserve">
+    <value>Edição</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Aparência</value>
+  </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Biblioteca de peças</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Teclas de Atalho</value>
   </data>
   <data name="groupBox14.Text" xml:space="preserve">
     <value>Notificação</value>
+  </data>
+  <data name="GeneralCheckedListBoxNotification.Items" xml:space="preserve">
+    <value>Mostrar um aviso quando não se guarda em formato BBM</value>
+  </data>
+  <data name="GeneralCheckedListBoxNotification.Items3" xml:space="preserve">
+    <value>Mostrar um aviso se as peças colocadas ou duplicadas excederem o orçamento</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Ficheiros Recentes</value>
   </data>
   <data name="clearRecentFilesButton.Text" xml:space="preserve">
     <value>Limpar a Lista de Ficheiros Recentes</value>
@@ -132,8 +150,8 @@
   <data name="label23.Text" xml:space="preserve">
     <value>Número de Ficheiros Recentes</value>
   </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Ficheiros Recentes</value>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Desempenhos</value>
   </data>
   <data name="optimComboBox.Items" xml:space="preserve">
     <value>Mais Rápido</value>
@@ -147,8 +165,8 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Balanço da Memória/Velocidade</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Desempenhos</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Anular/Repetir</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
@@ -172,47 +190,18 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Número de acções anteriores guardadas</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Anular/Repetir</value>
-  </data>
-  <data name="addAreaLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 17</value>
-  </data>
-  <data name="addAreaLayerCheckBox.Text" xml:space="preserve">
-    <value>Adicione uma camada de Área no novo mapa</value>
-  </data>
-  <data name="addRulerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 17</value>
-  </data>
-  <data name="addRulerLayerCheckBox.Text" xml:space="preserve">
-    <value>Adicione uma camada de Regra no novo mapa</value>
-  </data>
-  <data name="addTextLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 17</value>
-  </data>
-  <data name="addTextLayerCheckBox.Text" xml:space="preserve">
-    <value>Adicione uma camada de Texto no novo mapa</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Evento</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Autor</value>
-  </data>
-  <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 17</value>
-  </data>
-  <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
-    <value>Adicione uma camada de Bricks no novo mapa</value>
-  </data>
-  <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 17</value>
-  </data>
-  <data name="addGridLayerCheckBox.Text" xml:space="preserve">
-    <value>Adicione uma camada de grelha no novo mapa</value>
-  </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Nova configuração por defeito</value>
+  </data>
+  <data name="GeneralTrashTemplateFileForNewMapButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhCwAOAIIEAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
+        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
+        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
+</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Linguagem</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Se mudar a linguagem é necessário reiniciar a aplicação para surtir efeito.</value>
@@ -220,11 +209,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Linguagem</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Linguagem</value>
-  </data>
-  <data name="generalTabPage.Text" xml:space="preserve">
-    <value>Geral</value>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Regras</value>
   </data>
   <data name="rulerFontNameLabel.Text" xml:space="preserve">
     <value>Nome do tipo de letra</value>
@@ -296,8 +282,8 @@ de medida</value>
   <data name="label31.Text" xml:space="preserve">
     <value>Ponto de controlo do raio (em pixels)</value>
   </data>
-  <data name="groupBox15.Text" xml:space="preserve">
-    <value>Regras</value>
+  <data name="copyPasteGroupBox.Text" xml:space="preserve">
+    <value>Copiar/Colar</value>
   </data>
   <data name="OffsetValueLabel.Text" xml:space="preserve">
     <value>Valor de deslocamento (em studs)</value>
@@ -327,8 +313,11 @@ depois de colar</value>
   <data name="copyOffsetComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 21</value>
   </data>
-  <data name="copyPasteGroupBox.Text" xml:space="preserve">
-    <value>Copiar/Colar</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Rato</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Autor</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Tecla de selecção dupla</value>
@@ -345,11 +334,8 @@ depois de colar</value>
   <data name="label3.Text" xml:space="preserve">
     <value>Velocidade do zoom na roda</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Rato</value>
-  </data>
-  <data name="editionTabPage.Text" xml:space="preserve">
-    <value>Edição</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Aparência por Defeito da Área</value>
   </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 44</value>
@@ -364,8 +350,8 @@ da célula (em studs)</value>
   <data name="label28.Text" xml:space="preserve">
     <value>Opacidade por defeito (em %)</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Aparência por Defeito da Área</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Tamanho da grelha por defeito</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Número de Sub-divisões por Defeito</value>
@@ -380,8 +366,8 @@ da célula (em studs)</value>
     <value>Tamanho da grelha
 por defeito (em studs)</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Tamanho da grelha por defeito</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Formato por Defeito do Texto</value>
   </data>
   <data name="defaultFontColorLabel.Text" xml:space="preserve">
     <value>Cor</value>
@@ -389,8 +375,8 @@ por defeito (em studs)</value>
   <data name="defaultFontButton.Text" xml:space="preserve">
     <value>Mudar Tipo de Letra</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Formato por Defeito do Texto</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Cores</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Cor de destaque da
@@ -399,12 +385,6 @@ peça seleccionada</value>
   <data name="label24.Text" xml:space="preserve">
     <value>Cor de destaque
 da selecção</value>
-  </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 13</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Pré-visualizar</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>Cor por Defeito da sub-grelha</value>
@@ -427,11 +407,15 @@ da selecção</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Esquema de Cor</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Cores</value>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>Orçamento</value>
   </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
-    <value>Aparência</value>
+  <data name="PartLibTrashBudgetFileToLoadArStartUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhCwAOAIIEAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
+        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
+        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
+</value>
   </data>
   <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
     <value>Clique no botão Browse para editar -&gt;</value>
@@ -448,8 +432,8 @@ da selecção</value>
   <data name="label37.Text" xml:space="preserve">
     <value>Limite de orçamento para cada peça, por defeito</value>
   </data>
-  <data name="groupBox16.Text" xml:space="preserve">
-    <value>Orçamento</value>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>Cor de Fundo</value>
   </data>
   <data name="label36.Text" xml:space="preserve">
     <value>Cor quando se mostram apenas as peças orçamentadas</value>
@@ -460,11 +444,11 @@ da selecção</value>
   <data name="label26.Text" xml:space="preserve">
     <value>Cor de fundo por defeito</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>Cor de Fundo</value>
-  </data>
   <data name="groupBox12.Text" xml:space="preserve">
     <value>Informação em caixa</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Ordem dos separadores</value>
   </data>
   <data name="alphabeticOrderButton.Text" xml:space="preserve">
     <value>Ordem alfabética</value>
@@ -474,12 +458,6 @@ da selecção</value>
   </data>
   <data name="MoveUpButton.Text" xml:space="preserve">
     <value>Mover para cima</value>
-  </data>
-  <data name="groupBox11.Text" xml:space="preserve">
-    <value>Ordem dos separadores</value>
-  </data>
-  <data name="partLibTabPage.Text" xml:space="preserve">
-    <value>Biblioteca de peças</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Para remover teclas de atalho, selecione-a na lista e clique este botão:</value>
@@ -558,9 +536,6 @@ da selecção</value>
   </data>
   <data name="Connection.Text" xml:space="preserve">
     <value>Conexão</value>
-  </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Teclas de Atalho</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancelar</value>

@@ -133,18 +133,21 @@
     <value>Affiche un avertissement si on ne sauve pas en BBM</value>
   </data>
   <data name="GeneralCheckedListBoxNotification.Items1" xml:space="preserve">
-    <value>Affiche un avertissement quand on ajoute une pièce qui dépasse le budget</value>
+    <value>Affiche un avertissement quand le fichier d'export d'image existe déjà</value>
   </data>
   <data name="GeneralCheckedListBoxNotification.Items2" xml:space="preserve">
-    <value>Affiche un avertissement si les pièces copiées ou dupliquées dépassent le budget</value>
+    <value>Affiche un avertissement quand on ajoute une pièce qui dépasse le budget</value>
   </data>
   <data name="GeneralCheckedListBoxNotification.Items3" xml:space="preserve">
-    <value>Affiche un avertissement si les pièces remplacées dépassent le budget</value>
+    <value>Affiche un avertissement si les pièces copiées ou dupliquées dépassent le budget</value>
   </data>
   <data name="GeneralCheckedListBoxNotification.Items4" xml:space="preserve">
-    <value>Demande l'affichage des budgets quand on active la limitation de budget</value>
+    <value>Affiche un avertissement si les pièces remplacées dépassent le budget</value>
   </data>
   <data name="GeneralCheckedListBoxNotification.Items5" xml:space="preserve">
+    <value>Demande l'affichage des budgets quand on active la limitation de budget</value>
+  </data>
+  <data name="GeneralCheckedListBoxNotification.Items6" xml:space="preserve">
     <value>Affiche un avertissement quand on colle des éléments sur le mauvais type de calque</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">

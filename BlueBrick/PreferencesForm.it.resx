@@ -120,16 +120,16 @@
   <data name="GeneralCheckedListBoxNotification.Items" xml:space="preserve">
     <value>Visualizza un avviso quando non salvi in BBM</value>
   </data>
-  <data name="GeneralCheckedListBoxNotification.Items1" xml:space="preserve">
+  <data name="GeneralCheckedListBoxNotification.Items2" xml:space="preserve">
     <value>Visualizza un avviso quando aggiungi una parte che eccede il preventivo</value>
   </data>
-  <data name="GeneralCheckedListBoxNotification.Items2" xml:space="preserve">
+  <data name="GeneralCheckedListBoxNotification.Items3" xml:space="preserve">
     <value>Visualizza un avviso quando le parti copiate o incollate eccedono il Preventivo</value>
   </data>
-  <data name="GeneralCheckedListBoxNotification.Items3" xml:space="preserve">
+  <data name="GeneralCheckedListBoxNotification.Items4" xml:space="preserve">
     <value>Visualizza un avviso quando le parti sostituite eccedono il Preventivo</value>
   </data>
-  <data name="GeneralCheckedListBoxNotification.Items4" xml:space="preserve">
+  <data name="GeneralCheckedListBoxNotification.Items5" xml:space="preserve">
     <value>Chiedi di visualizzare i numeri del budget quando abiliti le limitazioni sul budget</value>
   </data>
   <data name="groupBox14.Text" xml:space="preserve">
@@ -172,41 +172,12 @@
     <value>Annulla/Ripeti</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="addAreaLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 17</value>
-  </data>
-  <data name="addAreaLayerCheckBox.Text" xml:space="preserve">
-    <value>Aggiungi un Layer Area</value>
-  </data>
-  <data name="addRulerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 17</value>
-  </data>
-  <data name="addRulerLayerCheckBox.Text" xml:space="preserve">
-    <value>Aggiungi un Layer Righello</value>
-  </data>
-  <data name="addTextLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 17</value>
-  </data>
-  <data name="addTextLayerCheckBox.Text" xml:space="preserve">
-    <value>Aggiungi un Layer Testo</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Evento</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Autore</value>
-  </data>
-  <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 17</value>
-  </data>
-  <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
-    <value>Aggiungi un Layer elementi</value>
-  </data>
-  <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 17</value>
-  </data>
-  <data name="addGridLayerCheckBox.Text" xml:space="preserve">
-    <value>Aggiungi un Layer griglia</value>
+  <data name="GeneralTrashTemplateFileForNewMapButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhCwAOAIIEAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
+        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
+        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
+</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Configurazione di default nuova mappa</value>
@@ -311,6 +282,9 @@ l'applicazione per vedere la modifica</value>
   <data name="copyPasteGroupBox.Text" xml:space="preserve">
     <value>Copia/Incolla</value>
   </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Autore</value>
+  </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Tasto Copia Selezione</value>
   </data>
@@ -379,12 +353,6 @@ della Griglia (in Stud)</value>
   <data name="label24.Text" xml:space="preserve">
     <value>Colore selezione</value>
   </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 13</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Anteprima</value>
-  </data>
   <data name="label19.Text" xml:space="preserve">
     <value>Colore di default Griglia secondaria</value>
   </data>
@@ -408,6 +376,13 @@ della Griglia (in Stud)</value>
   </data>
   <data name="appearanceTabPage.Text" xml:space="preserve">
     <value>Aspetto</value>
+  </data>
+  <data name="PartLibTrashBudgetFileToLoadArStartUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhCwAOAIIEAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
+        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
+        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
+</value>
   </data>
   <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
     <value>Clicca il pulsante per modificare -&gt;</value>

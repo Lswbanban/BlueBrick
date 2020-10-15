@@ -140,11 +140,12 @@ namespace BlueBrick
 				this.undoDisplayedNumericUpDown.Value = Settings.Default.UndoStackDisplayedDepth;
 				// notification
 				this.GeneralCheckedListBoxNotification.SetItemChecked(0, Settings.Default.DisplayWarningMessageForNotSavingInBBM);
-				this.GeneralCheckedListBoxNotification.SetItemChecked(1, Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation);
-				this.GeneralCheckedListBoxNotification.SetItemChecked(2, Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation);
-				this.GeneralCheckedListBoxNotification.SetItemChecked(3, Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation);
-				this.GeneralCheckedListBoxNotification.SetItemChecked(4, Settings.Default.DisplayWarningMessageForShowingBudgetNumbers);
-				this.GeneralCheckedListBoxNotification.SetItemChecked(5, Settings.Default.DisplayWarningMessageForPastingOnWrongLayer);
+				this.GeneralCheckedListBoxNotification.SetItemChecked(1, Settings.Default.DisplayWarningMessageForOverridingExportFiles);
+				this.GeneralCheckedListBoxNotification.SetItemChecked(2, Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation);
+				this.GeneralCheckedListBoxNotification.SetItemChecked(3, Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation);
+				this.GeneralCheckedListBoxNotification.SetItemChecked(4, Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation);
+				this.GeneralCheckedListBoxNotification.SetItemChecked(5, Settings.Default.DisplayWarningMessageForShowingBudgetNumbers);
+				this.GeneralCheckedListBoxNotification.SetItemChecked(6, Settings.Default.DisplayWarningMessageForPastingOnWrongLayer);
 				// performance
 				this.optimComboBox.SelectedIndex = Settings.Default.StartSavedMipmapLevel;
 			}
@@ -282,6 +283,7 @@ namespace BlueBrick
 				destination.UndoStackDisplayedDepth = source.UndoStackDisplayedDepth;
 				// Notification
 				destination.DisplayWarningMessageForNotSavingInBBM = source.DisplayWarningMessageForNotSavingInBBM;
+				destination.DisplayWarningMessageForOverridingExportFiles = source.DisplayWarningMessageForOverridingExportFiles;
 				destination.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation;
 				destination.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation;
 				destination.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation = source.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation;
@@ -386,11 +388,12 @@ namespace BlueBrick
 			Settings.Default.UndoStackDisplayedDepth = (int)this.undoDisplayedNumericUpDown.Value;
 			// notification
 			Settings.Default.DisplayWarningMessageForNotSavingInBBM = this.GeneralCheckedListBoxNotification.GetItemChecked(0);
-			Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation = this.GeneralCheckedListBoxNotification.GetItemChecked(1);
-			Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation =  this.GeneralCheckedListBoxNotification.GetItemChecked(2);
-			Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation = this.GeneralCheckedListBoxNotification.GetItemChecked(3);
-			Settings.Default.DisplayWarningMessageForShowingBudgetNumbers = this.GeneralCheckedListBoxNotification.GetItemChecked(4);
-			Settings.Default.DisplayWarningMessageForPastingOnWrongLayer = this.GeneralCheckedListBoxNotification.GetItemChecked(5);
+			Settings.Default.DisplayWarningMessageForOverridingExportFiles = this.GeneralCheckedListBoxNotification.GetItemChecked(1);
+			Settings.Default.DisplayWarningMessageForBrickNotAddedDueToBudgetLimitation = this.GeneralCheckedListBoxNotification.GetItemChecked(2);
+			Settings.Default.DisplayWarningMessageForBrickNotCopiedDueToBudgetLimitation =  this.GeneralCheckedListBoxNotification.GetItemChecked(3);
+			Settings.Default.DisplayWarningMessageForBrickNotReplacedDueToBudgetLimitation = this.GeneralCheckedListBoxNotification.GetItemChecked(4);
+			Settings.Default.DisplayWarningMessageForShowingBudgetNumbers = this.GeneralCheckedListBoxNotification.GetItemChecked(5);
+			Settings.Default.DisplayWarningMessageForPastingOnWrongLayer = this.GeneralCheckedListBoxNotification.GetItemChecked(6);
 			// performances
 			if (setOptimSettingAccordingToComboBox())
 			{

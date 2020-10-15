@@ -107,8 +107,6 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon)
 	- The visibility of the Hull + the Hull drawing info, such as color and line thickness should be set per layer
 	- Need a new BBM version to save the info in the file, and reload it
-- [target 1.9] MISSING FEATURE (Ludo): The export window should propose to export on multiple pages:
-	- export several images with the cell numbers in the file name. Add a warning if the file exists?
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
@@ -167,6 +165,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Matthias): Add the 2 studs snapping.
 - NEW FEATURE (Alban): Improve the usuability of the select path feature (through the menu items), now the path is selected between the last two selected objects, and the previous selection is not cleared.
 - NEW FEATURE (Alban): Simplify the Path selection with a shortcut key (Multi selection Key + Pan View Key) + click on the second part (instead of going through the contextual menu).
+- NEW FEATURE (Ludo): The export window now propose to export in multiple images, which extend indefinitely the export area at any scale.
 - NEW FEATURE (Alban): Add scrollbars on the map view (can be shown or hidden from the map context menu and the View menu)
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
 - BUGFIX (Alban): Fix a crash when duplicating parts very quickly with the ALT key (crash due to delay with the clipboard)
