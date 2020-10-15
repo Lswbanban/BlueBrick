@@ -741,6 +741,7 @@ namespace BlueBrick.MapData
 				float ELECTRIC_WIDTH = (float)(2.5 * scalePixelPerStud);
 				Pen ELECTRIC_RED_PEN = new Pen(Color.FromArgb(alphaValue, Color.OrangeRed), (float)(0.5 * scalePixelPerStud));
 				Pen ELECTRIC_BLUE_PEN = new Pen(Color.FromArgb(alphaValue, Color.Cyan), (float)(0.5 * scalePixelPerStud));
+				Pen SHORTCUT_PEN = new Pen(Color.FromArgb(alphaValue, Color.Orange), (float)(1.5 * scalePixelPerStud));
 
 				foreach (Brick brick in visibleElectricBricks)
 					foreach (BrickLibrary.Brick.ElectricCircuit circuit in brick.ElectricCircuitIndexList)
@@ -765,22 +766,39 @@ namespace BlueBrick.MapData
 						PointF start2 = new PointF(start.X - normal.X, start.Y - normal.Y);
 						PointF end2 = new PointF(end.X - normal.X, end.Y - normal.Y);
 
-						// draw the two lines according to the polarity of connection one
+						// choose the right pen for line 1 (start1 to end1) and line 2 (start2 to end2)
+						Pen line1Pen = ELECTRIC_RED_PEN;
+						Pen line2Pen = ELECTRIC_BLUE_PEN;
 						if (brick.ConnectionPoints[circuit.mIndex1].Polarity < 0)
 						{
-							g.DrawLine(ELECTRIC_BLUE_PEN, start1, end1);
-							g.DrawLine(ELECTRIC_RED_PEN, start2, end2);
+							line1Pen = ELECTRIC_BLUE_PEN;
+							line2Pen = ELECTRIC_RED_PEN;
+						}
+
+						// draw the two lines according to the polarity of connection one
+						g.DrawLine(line1Pen, start1, end1);
+
+						// for the second line, it may be broken for circuit cutter part
+						if (brick.PartNumber.Equals("862AC01.7") || brick.PartNumber.Equals("862AC02.7"))
+						{
+							// draw the cut line
+							PointF halfLine = new PointF(direction.X * (ELECTRIC_WIDTH * 2.25f), direction.Y * (ELECTRIC_WIDTH * 2.25f));
+							PointF middleStart = new PointF(start2.X + halfLine.X, start2.Y + halfLine.Y);
+							PointF middleEnd = new PointF(end2.X - halfLine.X, end2.Y - halfLine.Y);
+							g.DrawLine(line2Pen, start2, middleStart);
+							g.DrawLine(line2Pen, end2, middleEnd);
+
+							// draw the orange break lines
+							g.DrawLine(SHORTCUT_PEN, new PointF(middleStart.X + normal.X, middleStart.Y + normal.Y), new PointF(middleStart.X - normal.X, middleStart.Y - normal.Y));
+							g.DrawLine(SHORTCUT_PEN, new PointF(middleEnd.X + normal.X, middleEnd.Y + normal.Y), new PointF(middleEnd.X - normal.X, middleEnd.Y - normal.Y));
 						}
 						else
-						{
-							g.DrawLine(ELECTRIC_RED_PEN, start1, end1);
-							g.DrawLine(ELECTRIC_BLUE_PEN, start2, end2);
-						}						
+							g.DrawLine(line2Pen, start2, end2);
+
 					}
 
 				// pen for the electric shortcut sign
 				float SHORTCUT_WIDTH = (float)(3.0 * scalePixelPerStud);
-				Pen SHORTCUT_PEN = new Pen(Color.FromArgb(alphaValue, Color.Orange), (float)(1.5 * scalePixelPerStud));
 
 				foreach (Brick brick in visibleElectricBricks)
 					foreach (BrickLibrary.Brick.ElectricCircuit circuit in brick.ElectricCircuitIndexList)

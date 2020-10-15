@@ -109,8 +109,9 @@ Open bugs:
 	- Need a new BBM version to save the info in the file, and reload it
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
+- [target 1.9] MISSING FEATURE (Alban): Implement elevation by displaying a number next to the part and edition of elevation
+- [target 1.9] MISSING FEATURE (Alban): Add a Brick property window to edit the altitude of the brick
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
-- [target 1.9] MISSING FEATURE (Evans): a possibility to show the current interruption of the 12V circuit breaker rail
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
 - MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - MISSING FEATURE (Matthias): BlueBrick should check if there's new library package available in background after launch.
@@ -119,11 +120,10 @@ Open bugs:
 - MISSING FEATURE (Alban): Add some preference to edit the Watermark property (font, text color, background color and transparency, content displayed, which corner)
 - MISSING FEATURE (Alban): Add a trackbar in the bottom left of the layers to edit the transparency of the selected layer
 - MISSING FEATURE (Alban): Add a version number in the general info?
-- MISSING FEATURE (Alban): Implement elevation by displaying a number next to the part and edition of elevation
 - MISSING FEATURE (Alban): Extend the ConnectionTypeList.xml to precise for each connection, to which connection it can connect (this allow a male/female connections types, by default it connect to itself, otherwise if another type is specified, it connect to that type)
 - MISSING FEATURE #49 (Alban): add the support of copy/paste of layer (including grid and area layers which can not be pasted for now)
 - MISSING FEATURE #43 (Alban): add the support of move/copy/paste a part of an area layer
-- MISSING FEATURE #44 (Alban): Need a "color picker" and "font size" shortcut in the contextual menu on the Text layer
+- MISSING FEATURE #44 (Alban): Need a "color picker" and "font size" shortcut in the contextual menu on the Text layer, or in the toolbar
 - MISSING FEATURE #12 (FreeBee) : Snap through layers (handy if you have multiple layers of track to connect) or make transparent all other layers except the current one
 - MISSING FEATURE (Larry): Select parts in multiple layers
 - MISSING FEATURE (Alban): Enhance layer stack usability: add a context menu to delete a layer, allow drag'n'drop reorganization.
@@ -136,7 +136,6 @@ Open bugs:
 - MISSING FEATURE (Ludo): Move the measure values along the linear rulers in order to avoid overlapping of close parallel rulers.
 - MISSING FEATURE (Denis): Add an option to place the measure above the line of the ruler
 - MISSING FEATURE (Ludo): Add a context menu on the Part Usage list, in order to export the list from there.
-- MISSING FEATURE (Alban): Add a Brick property window to edit the altitude of the brick
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
@@ -167,6 +166,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): Simplify the Path selection with a shortcut key (Multi selection Key + Pan View Key) + click on the second part (instead of going through the contextual menu).
 - NEW FEATURE (Ludo): The export window now propose to export in multiple images, which extend indefinitely the export area at any scale.
 - NEW FEATURE (Alban): Add scrollbars on the map view (can be shown or hidden from the map context menu and the View menu)
+- NEW FEATURE (Evans): Show the current interruption of the 12V circuit breaker rail (hard-coded for the 2 specific parts)
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
 - BUGFIX (Alban): Fix a crash when duplicating parts very quickly with the ALT key (crash due to delay with the clipboard)
 - BUGFIX (Ludo): If there was an empty description in a part xml file (without language tags, just <Description></Description>) then the connection points of the parts were missing.
