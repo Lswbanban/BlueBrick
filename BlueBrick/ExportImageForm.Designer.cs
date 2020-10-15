@@ -61,6 +61,7 @@ namespace BlueBrick
 			this.exportElectricCircuitCheckBox = new System.Windows.Forms.CheckBox();
 			this.exportWatermarkCheckBox = new System.Windows.Forms.CheckBox();
 			this.exportHullCheckBox = new System.Windows.Forms.CheckBox();
+			this.saveExportImageDialog = new System.Windows.Forms.SaveFileDialog();
 			((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).BeginInit();
 			this.settingAndButtonTableLayoutPanel.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -381,11 +382,11 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Controls.Add(this.exportConnectionPointCheckBox);
 			this.groupBox3.Controls.Add(this.exportElectricCircuitCheckBox);
 			this.groupBox3.Controls.Add(this.exportWatermarkCheckBox);
 			this.groupBox3.Controls.Add(this.exportHullCheckBox);
-			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 
@@ -416,6 +417,12 @@ namespace BlueBrick
 			this.exportHullCheckBox.Name = "exportHullCheckBox";
 			this.exportHullCheckBox.UseVisualStyleBackColor = true;
 			this.exportHullCheckBox.Click += new System.EventHandler(this.exportHullCheckBox_Click);
+			// 
+			// saveExportImageDialog
+			// 
+			this.saveExportImageDialog.DefaultExt = "png";
+			resources.ApplyResources(this.saveExportImageDialog, "saveExportImageDialog");
+			this.saveExportImageDialog.SupportMultiDottedExtensions = true;
 			// 
 			// ExportImageForm
 			// 
@@ -483,5 +490,6 @@ namespace BlueBrick
 		private System.Windows.Forms.NumericUpDown rowCountNumericUpDown;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.NumericUpDown columnCountNumericUpDown;
+		private System.Windows.Forms.SaveFileDialog saveExportImageDialog;
 	}
 }

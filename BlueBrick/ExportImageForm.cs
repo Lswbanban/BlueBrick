@@ -18,6 +18,8 @@ using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using BlueBrick.MapData;
 using BlueBrick.Properties;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace BlueBrick
 {
@@ -711,6 +713,9 @@ namespace BlueBrick
             // save also the UI settings: if the user has exported, that means he like the option like that, and if he make
             // a new map and export, he wants to find back his last settings
             saveUISettingInDefaultSettings();
+
+			// then export all the images
+			ExportAndSaveAllImages();
 		}
 
 		private void ExportImageForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -719,6 +724,92 @@ namespace BlueBrick
 			// Minimize the window, then right click on the task bar and choose close
 			// in such case, next time you try do do a Show Dialog, and exception is raised
 			this.Visible = false;
+		}
+
+
+		private void ExportAndSaveAllImages()
+		{
+			// option were set, check if we need to use the export settings saved in the file
+			this.saveExportImageDialog.FilterIndex = Map.Instance.ExportFileTypeIndex; // it's 1 by default anyway
+																						// by default set the same name for the exported picture than the name of the map
+			string fullFileName = Map.Instance.MapFileName;
+			if (Map.Instance.ExportAbsoluteFileName != string.Empty)
+				fullFileName = Map.Instance.ExportAbsoluteFileName;
+			
+			// remove the extension from the full file name and also set the starting directory
+			this.saveExportImageDialog.FileName = Path.GetFileNameWithoutExtension(fullFileName);
+			this.saveExportImageDialog.InitialDirectory = Path.GetDirectoryName(fullFileName);
+			if (this.saveExportImageDialog.InitialDirectory.Length == 0)
+				this.saveExportImageDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+			// open the save dialog
+			DialogResult result = this.saveExportImageDialog.ShowDialog();
+			if (result == DialogResult.OK)
+			{
+				// create the Bitmap and get the graphic context from it
+				Bitmap image = new Bitmap(this.ImageWidth, this.ImageHeight, PixelFormat.Format24bppRgb);
+				Graphics graphics = Graphics.FromImage(image);
+				graphics.Clear(Map.Instance.BackgroundColor);
+				graphics.SmoothingMode = SmoothingMode.Default; // the HighQuality let appears some grid line above the area cells
+				graphics.CompositingQuality = CompositingQuality.HighQuality;
+				graphics.CompositingMode = CompositingMode.SourceOver;
+				graphics.InterpolationMode = InterpolationMode.HighQualityBicubic; // this one need to be high else there's some rendering bug appearing with a lower mode, the scale of the stud looks not correct when zooming out.
+				
+				// draw the bitmap
+				Map.Instance.draw(graphics, this.AreaInStud, this.ScalePixelPerStud, false);
+				Map.Instance.drawWatermark(graphics, this.AreaInStud, this.ScalePixelPerStud);
+				
+				// find the correct format according to the last extension.
+				// Normally the FileName MUST have a valid extension because the SaveFileDialog
+				// automatically add an extension if the user forgot to precise one, or if
+				// the use put an extension that is not in the list of the filters.
+				string fileName = saveExportImageDialog.FileName;
+				int lastExtensionIndex = fileName.LastIndexOf('.');
+				// declare a variable that receive the choosen format
+				ImageFormat choosenFormat = ImageFormat.Bmp;
+				if (lastExtensionIndex != -1)
+				{
+					string extension = fileName.Substring(lastExtensionIndex + 1).ToLower();
+					if (extension.Equals("bmp"))
+					{
+						choosenFormat = ImageFormat.Bmp;
+						saveExportImageDialog.FilterIndex = 4;
+					}
+					else if (extension.Equals("gif"))
+					{
+						choosenFormat = ImageFormat.Gif;
+						saveExportImageDialog.FilterIndex = 3;
+					}
+					else if (extension.Equals("jpg"))
+					{
+						choosenFormat = ImageFormat.Jpeg;
+						saveExportImageDialog.FilterIndex = 2;
+					}
+					else if (extension.Equals("png"))
+					{
+						choosenFormat = ImageFormat.Png;
+						saveExportImageDialog.FilterIndex = 1;
+					}
+					else
+					{
+						// the extension is not a valid extension (like "txt" for example)
+						// so we choose the format according to the filter index
+						// and add the correct extension
+						switch (saveExportImageDialog.FilterIndex)
+						{
+							case 4: choosenFormat = ImageFormat.Bmp; fileName += ".bmp"; break;
+							case 3: choosenFormat = ImageFormat.Gif; fileName += ".gif"; break;
+							case 2: choosenFormat = ImageFormat.Jpeg; fileName += ".jpg"; break;
+							case 1: choosenFormat = ImageFormat.Png; fileName += ".png"; break;
+							default: choosenFormat = ImageFormat.Png; fileName += ".png"; break;
+						}
+					}
+				}
+				// save the new settings in the map
+				Map.Instance.saveExportFileSettings(fileName, saveExportImageDialog.FilterIndex);
+				// save the bitmap in a file
+				image.Save(fileName, choosenFormat);
+			}
 		}
 		#endregion
 		#endregion

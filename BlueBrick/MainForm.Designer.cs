@@ -163,7 +163,6 @@ namespace BlueBrick
 			this.rulerAddCircleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-			this.saveExportImageDialog = new System.Windows.Forms.SaveFileDialog();
 			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.toolTipForMainForm = new System.Windows.Forms.ToolTip(this.components);
 			this.textBoxPartFilter = new System.Windows.Forms.TextBox();
@@ -1228,12 +1227,6 @@ namespace BlueBrick
 			resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
 			this.saveFileDialog.SupportMultiDottedExtensions = true;
 			// 
-			// saveExportImageDialog
-			// 
-			this.saveExportImageDialog.DefaultExt = "png";
-			resources.ApplyResources(this.saveExportImageDialog, "saveExportImageDialog");
-			this.saveExportImageDialog.SupportMultiDottedExtensions = true;
-			// 
 			// colorDialog
 			// 
 			this.colorDialog.Color = System.Drawing.Color.Gold;
@@ -1900,7 +1893,6 @@ namespace BlueBrick
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
 		private System.Windows.Forms.ToolStripMenuItem exportAsPictureToolStripMenuItem;
 		private System.Windows.Forms.SaveFileDialog saveFileDialog;
-		private System.Windows.Forms.SaveFileDialog saveExportImageDialog;
 		private System.Windows.Forms.ToolStripMenuItem toolBarGrid4Button;
 		private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
