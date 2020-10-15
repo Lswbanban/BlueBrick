@@ -647,4 +647,8 @@ You should close other programs accessing the BlueBrick part library and try aga
   <data name="trash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\trash.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ErrorMsgExportFileExists" xml:space="preserve">
+    <value>The file "&amp;" exists. Do you want to override it?
+If you click "Yes", all the files of series will be overriden.</value>
+  </data>
 </root>

@@ -1617,8 +1617,6 @@ namespace BlueBrick
 				// have been saved in the map, therefore the map was modified.
 				this.updateTitleBar();
 			}
-            // restore the display settings
-            mExportImageForm.restoreDisplaySettings();
 		}
 
 		private void exportPartListToolStripMenuItem_Click(object sender, EventArgs e)

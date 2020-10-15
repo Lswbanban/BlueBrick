@@ -582,4 +582,8 @@ Vous devriez fermer tous les programmes qui accèdent à la librarie de pièces 
   <data name="String1" xml:space="preserve">
     <value />
   </data>
+  <data name="ErrorMsgExportFileExists" xml:space="preserve">
+    <value>Le fichier "&amp;" existe. Voulez-vous le remplacer ?
+Si vous cliquez sur "Oui", tous les fichiers de la série seront remplacés.</value>
+  </data>
 </root>

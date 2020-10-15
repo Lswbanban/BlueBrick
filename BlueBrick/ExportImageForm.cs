@@ -189,9 +189,9 @@ namespace BlueBrick
         }
 
         /// <summary>
-        /// This method is called from main form.
+        /// Restore the display settings that have been altered by the user on this Export Form, as export options
         /// </summary>
-        public void restoreDisplaySettings()
+        private void restoreDisplaySettings()
         {
             Settings.Default.DisplayGeneralInfoWatermark = mOriginalDisplayWatermarkInSetting;
             Settings.Default.DisplayBrickHull = mOriginalDisplayBrickHullInSetting;
@@ -704,6 +704,9 @@ namespace BlueBrick
 				// then call the function to export all the images
 				exportAllImages(fileName, choosenFormat);
 			}
+
+			// restore the display settings
+			restoreDisplaySettings();
 		}
 
 		private void ExportImageForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -791,7 +794,7 @@ namespace BlueBrick
 			return false;
 		}
 
-		private void exportAllImages(string fileName, ImageFormat choosenFormat)
+		private bool exportAllImages(string fileName, ImageFormat choosenFormat)
 		{
 			// compute the column and row size depending on the selected area to export and the number of cells in the grid
 			float columnWidthInStud = mSelectedAreaInStud.Width / (int)this.columnCountNumericUpDown.Value;
@@ -806,6 +809,10 @@ namespace BlueBrick
 			FileInfo fileInfo = new FileInfo(fileName);
 			int extensionIndex = fileInfo.FullName.LastIndexOf(fileInfo.Extension);
 			string fileNameWithoutExtension = (extensionIndex >= 0 ? fileInfo.FullName.Remove(extensionIndex) : fileInfo.FullName) + "_";
+
+			// a variable to know if we should check for overriding files
+			// we don't check if the warning message box was forgotten by user (which means he wants override)
+			bool shouldCheckForExistingFile = Settings.Default.DisplayWarningMessageForOverridingExportFiles;
 
 			// iterate on the grid of image to export
 			for (int i = 0; i < this.columnCountNumericUpDown.Value; ++i)
@@ -835,9 +842,42 @@ namespace BlueBrick
 											MapData.Tools.AlphabeticIndex.ConvertIndexToHumanFriendlyIndex(j + 1, false) +
 											fileInfo.Extension;
 
+					// check if the file already exist before overriding it
+					if (shouldCheckForExistingFile && File.Exists(cellImageFileName))
+					{
+						// use a local variable to get the value of the checkbox, by default we don't suggest the user to hide it
+						bool dontDisplayMessageAgain = false;
+
+						// display the warning message
+						DialogResult result = ForgetableMessageBox.Show(this, Resources.ErrorMsgExportFileExists.Replace("&", cellImageFileName),
+										Resources.ErrorMsgTitleWarning, MessageBoxButtons.YesNoCancel,
+										MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, ref dontDisplayMessageAgain);
+
+						// set back the checkbox value in the settings (don't save the settings now, it will be done when exiting the application)
+						Settings.Default.DisplayWarningMessageForOverridingExportFiles = !dontDisplayMessageAgain;
+						shouldCheckForExistingFile = !dontDisplayMessageAgain;
+
+						// we should continue with a Yes, goes to the next loop for a no, and stop iterating for a cancel
+						if (result == DialogResult.Yes)
+							shouldCheckForExistingFile = false;
+						else if (result == DialogResult.No)
+						{
+							// special case, if the user check the don't show the message again, and click "no", we assume it's a "no" for all images, so do a cancel instead
+							if (dontDisplayMessageAgain)
+								return false; // operation was canceled
+							else
+								continue;
+						}
+						else if (result == DialogResult.Cancel)
+							return false; // operation was canceled
+					}
+
 					// save the bitmap in a file
 					image.Save(cellImageFileName, choosenFormat);
 				}
+
+			// saving process ended successfully
+			return true;
 		}
 		#endregion
 		#endregion

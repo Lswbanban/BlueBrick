@@ -1319,5 +1319,17 @@ namespace BlueBrick.Properties {
                 this["UIMapScrollBarsAreVisible"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DisplayWarningMessageForOverridingExportFiles {
+            get {
+                return ((bool)(this["DisplayWarningMessageForOverridingExportFiles"]));
+            }
+            set {
+                this["DisplayWarningMessageForOverridingExportFiles"] = value;
+            }
+        }
     }
 }

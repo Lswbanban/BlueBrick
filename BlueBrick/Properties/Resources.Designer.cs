@@ -923,6 +923,16 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file &quot;&amp;&quot; exists. Do you want to override it?
+        ///If you click &quot;Yes&quot;, all the files of series will be overriden..
+        /// </summary>
+        internal static string ErrorMsgExportFileExists {
+            get {
+                return ResourceManager.GetString("ErrorMsgExportFileExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignore.
         /// </summary>
         internal static string ErrorMsgIgnoreButton {
