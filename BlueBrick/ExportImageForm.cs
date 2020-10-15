@@ -64,6 +64,7 @@ namespace BlueBrick
 		}
 		#endregion
 
+		#region init
 		public ExportImageForm()
 		{
 			InitializeComponent();
@@ -185,20 +186,6 @@ namespace BlueBrick
 			this.areaBottomNumericUpDown.Value = (Decimal)(initialSelectedAreaInStud.Bottom);
 		}
 
-		private void updateMinAndMaxScaleAccordingToSelectedArea()
-		{
-			// get the biggest dimension among width and height of the selected area, and ensure it is not null
-			double bigestDimensionOfSelectedArea = Math.Max(1.0, Math.Max(mSelectedAreaInStud.Width, mSelectedAreaInStud.Height));
-			// compute the max scale according to the max size of the export image,
-			// and the size of the total area
-			double maxScale = MAX_IMAGE_SIZE_IN_PIXEL / bigestDimensionOfSelectedArea;
-			double minScale = Math.Min(0.01, maxScale / 2); // 0.01 by default, the second value is to handle extrem case where the max is under 0.01
-			double incScale = Math.Min(0.01, maxScale / 4); // 0.01 by default, the second value is to handle extrem case where the distance between min and max is less than 0.01
-			this.scaleNumericUpDown.Maximum = (Decimal)maxScale;
-			this.scaleNumericUpDown.Minimum = (Decimal)minScale;
-			this.scaleNumericUpDown.Increment = (Decimal)incScale;
-		}
-
         private void saveAndChangeDisplaySettings()
         {
             // save the settings
@@ -230,6 +217,8 @@ namespace BlueBrick
             Settings.Default.DisplayElectricCircuit = mOriginalDisplayElectricCircuitInSetting;
             Settings.Default.DisplayFreeConnexionPoints = mOriginalDisplayConnectionPointInSetting;
         }
+		#endregion
+
 		#region update of the preview image
 		private void computePreviewPictureSizeAndPos()
 		{
@@ -366,12 +355,26 @@ namespace BlueBrick
 		}
 		#endregion
 
+		#region compute linked values
+		private void updateMinAndMaxScaleAccordingToSelectedArea()
+		{
+			// get the biggest dimension among width and height of the selected area, and ensure it is not null
+			double bigestDimensionOfSelectedArea = Math.Max(1.0, Math.Max(mSelectedAreaInStud.Width / (float)this.columnCountNumericUpDown.Value, mSelectedAreaInStud.Height / (float)this.rowCountNumericUpDown.Value));
+			// compute the max scale according to the max size of the export image, and the size of the total area (divided by the grid of exported images)
+			double maxScale = MAX_IMAGE_SIZE_IN_PIXEL / bigestDimensionOfSelectedArea;
+			double minScale = Math.Min(0.01, maxScale / 2); // 0.01 by default, the second value is to handle extrem case where the max is under 0.01
+			double incScale = Math.Min(0.01, maxScale / 4); // 0.01 by default, the second value is to handle extrem case where the distance between min and max is less than 0.01
+			this.scaleNumericUpDown.Maximum = (Decimal)maxScale;
+			this.scaleNumericUpDown.Minimum = (Decimal)minScale;
+			this.scaleNumericUpDown.Increment = (Decimal)incScale;
+		}
+
 		private void computeImageSizeFromAreaAndScale()
 		{
 			float newScaleValue = (float)(this.scaleNumericUpDown.Value);
 			if (mFirstSender != this.imageWidthNumericUpDown)
 			{
-				int newValue = (int)(mSelectedAreaInStud.Width * newScaleValue);
+				int newValue = (int)((mSelectedAreaInStud.Width / (float)this.columnCountNumericUpDown.Value) * newScaleValue);
 				if (newValue < (int)(this.imageWidthNumericUpDown.Minimum))
 					newValue = (int)(this.imageWidthNumericUpDown.Minimum);
 				if (newValue > (int)(this.imageWidthNumericUpDown.Maximum))
@@ -380,7 +383,7 @@ namespace BlueBrick
 			}
 			if (mFirstSender != this.imageHeightNumericUpDown)
 			{
-				int newValue = (int)(mSelectedAreaInStud.Height * newScaleValue);
+				int newValue = (int)((mSelectedAreaInStud.Height / (float)this.rowCountNumericUpDown.Value) * newScaleValue);
 				if (newValue < (int)(this.imageHeightNumericUpDown.Minimum))
 					newValue = (int)(this.imageHeightNumericUpDown.Minimum);
 				if (newValue > (int)(this.imageHeightNumericUpDown.Maximum))
@@ -409,6 +412,7 @@ namespace BlueBrick
 			// return the result
 			return result;
 		}
+		#endregion
 
 		#region event handler
 		#region display options
@@ -521,11 +525,21 @@ namespace BlueBrick
 		private void columnCountNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
 			drawPreviewImage();
+			// the min and max scale depends on the number of column and rows, as if you have multiple col/rows, you can increase the scale
+			updateMinAndMaxScaleAccordingToSelectedArea();
+			// also update the scale value (after changing the min max of the scale) based on the current value of the image width
+			// because if we increase the number of colums, the scale can increase with the same image width
+			imageWidthNumericUpDown_ValueChanged(sender, e);
 		}
 
 		private void rowCountNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
 			drawPreviewImage();
+			// the min and max scale depends on the number of column and rows, as if you have multiple col/rows, you can increase the scale
+			updateMinAndMaxScaleAccordingToSelectedArea();
+			// also update the scale value (after changing the min max of the scale) based on the current value of the image height
+			// because if we increase the number of rows, the scale can increase with the same image height
+			imageHeightNumericUpDown_ValueChanged(sender, e);
 		}
 
 		private void imageWidthNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -533,7 +547,7 @@ namespace BlueBrick
 			if (mFirstSender == null)
 			{
 				mFirstSender = this.imageWidthNumericUpDown;
-				double newScaleValue = (double)(this.imageWidthNumericUpDown.Value) / mSelectedAreaInStud.Width;
+				double newScaleValue = (double)(this.imageWidthNumericUpDown.Value * this.columnCountNumericUpDown.Value) / mSelectedAreaInStud.Width;
 				if (newScaleValue < (double)(this.scaleNumericUpDown.Minimum))
 					newScaleValue = (double)(this.scaleNumericUpDown.Minimum);
 				if (newScaleValue > (double)(this.scaleNumericUpDown.Maximum))
@@ -548,7 +562,7 @@ namespace BlueBrick
 			if (mFirstSender == null)
 			{
 				mFirstSender = this.imageHeightNumericUpDown;
-				double newScaleValue = (double)(this.imageHeightNumericUpDown.Value) / mSelectedAreaInStud.Height;
+				double newScaleValue = (double)(this.imageHeightNumericUpDown.Value * this.rowCountNumericUpDown.Value) / mSelectedAreaInStud.Height;
 				if (newScaleValue < (double)(this.scaleNumericUpDown.Minimum))
 					newScaleValue = (double)(this.scaleNumericUpDown.Minimum);
 				if (newScaleValue > (double)(this.scaleNumericUpDown.Maximum))
