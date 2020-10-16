@@ -49,6 +49,9 @@ namespace BlueBrick.MapData
 		private List<Brick> mBricks = new List<Brick>(); // all the bricks in the layer
 		private FreeConnectionSet mFreeConnectionPoints = new FreeConnectionSet();
 
+		// a flag to tell if this layer should display the brick altitude
+		private bool mDisplayBrickAltitude = false;
+
 		//related to selection
 		private Brick mCurrentBrickUnderMouse = null; // this is the single brick under the mouse even if this brick belongs to a group
 		private PointF mMouseDownInitialPosition;
@@ -61,10 +64,6 @@ namespace BlueBrick.MapData
 		private FlexMove mMouseFlexMoveAction = null;
 		private RotateBrickOnPivotBrick mRotationForSnappingDuringBrickMove = null; // this action is used temporally during the edition, while you are moving the selection next to a connectable brick. The Action is not recorded in the ActionManager because it is a temporary one.
 		private float mSnappingOrientation = 0.0f; // this orientation is just used during the the edition of a group of part if they snap to a free connexion point
-
-		// related to the brick altitudes
-		private float mMinBrickAltitudeOnLayer = 0;
-		private float mMaxBrickAltitudeOnLayer = 3;
 
 		// some default parameters to draw the altitude
 		static private Font sFontToDrawAltitude = new Font(FontFamily.GenericSansSerif, 8f);
@@ -689,7 +688,21 @@ namespace BlueBrick.MapData
 
 			// compute the transparency on one byte
 			int alphaValue = (255 * mTransparency) / 100;
-			float altitudePercentageNormalizer = 100f / (mMaxBrickAltitudeOnLayer - mMinBrickAltitudeOnLayer);
+
+			// compute the min and max brick altitudes if we need to draw them, on all the brick of the layer even if they are not in the display area
+			float minBrickAltitudeOnLayer = float.MaxValue;
+			float maxBrickAltitudeOnLayer = float.MinValue;
+			if (mDisplayBrickAltitude)
+				foreach (Brick brick in mBricks)
+				{
+					float brickAltitude = brick.Altitude;
+					if (brickAltitude > maxBrickAltitudeOnLayer)
+						maxBrickAltitudeOnLayer = brickAltitude;
+					if (brickAltitude < minBrickAltitudeOnLayer)
+						minBrickAltitudeOnLayer = brickAltitude;
+				}
+			// compute the altitude amplitude from the min to max altitude
+			float altitudePercentageNormalizer = 100f / (maxBrickAltitudeOnLayer - minBrickAltitudeOnLayer);
 
 			// create a list of visible electric brick
 			List<Brick> visibleElectricBricks = new List<Brick>();
@@ -734,13 +747,13 @@ namespace BlueBrick.MapData
                             g.DrawPolygon(sPenToDrawBrickHull, Layer.sConvertPolygonInStudToPixel(brick.SelectionArea.Vertice, areaInStud, scalePixelPerStud));
 
 						// draw eventually the altitude of the brick
-						if (false)
+						if (mDisplayBrickAltitude)
 						{
 							string altitudeString = brick.Altitude.ToString();
 							SizeF altitudeStringSize = g.MeasureString(altitudeString, sFontToDrawAltitude);
 							RectangleF altitudeStringFrame = new RectangleF((destinationPoints[0].X + destinationPoints[1].X - altitudeStringSize.Width) * 0.5f, (destinationPoints[0].Y + destinationPoints[2].Y - altitudeStringSize.Height) * 0.5f, altitudeStringSize.Width, altitudeStringSize.Height);
 							RectangleF altitudeFrame = new RectangleF(altitudeStringFrame.X - 3, altitudeStringFrame.Y - 3, altitudeStringFrame.Width + 5, altitudeStringFrame.Height + 5);
-							SolidBrush frameBrush = new SolidBrush(Color.FromArgb(200, DownloadCenterForm.ComputeColorFromPercentage((int)((brick.Altitude - mMinBrickAltitudeOnLayer) * altitudePercentageNormalizer), true)));
+							SolidBrush frameBrush = new SolidBrush(Color.FromArgb(200, DownloadCenterForm.ComputeColorFromPercentage((int)((brick.Altitude - minBrickAltitudeOnLayer) * altitudePercentageNormalizer), true)));
 							g.FillRectangle(frameBrush, altitudeFrame);
 							g.DrawRectangle(sPenToDrawAltitudeFrame, altitudeFrame.X, altitudeFrame.Y, altitudeFrame.Width, altitudeFrame.Height);
 							g.DrawString(altitudeString, sFontToDrawAltitude, sBrushToDrawAltitude, altitudeStringFrame);
@@ -754,7 +767,7 @@ namespace BlueBrick.MapData
 			}
 
 			// draw eventually the electric circuit
-			if (BlueBrick.Properties.Settings.Default.DisplayElectricCircuit)
+			if (Properties.Settings.Default.DisplayElectricCircuit)
 			{
 				// compute some constant value for the drawing of the electric circuit
 				float ELECTRIC_WIDTH = (float)(2.5 * scalePixelPerStud);
