@@ -14,15 +14,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using BlueBrick.Actions;
 using BlueBrick.Actions.Bricks;
-using System.Xml.Serialization;
-using System.Collections;
 using BlueBrick.MapData.Tools;
 
 namespace BlueBrick.MapData
@@ -65,6 +61,15 @@ namespace BlueBrick.MapData
 		private FlexMove mMouseFlexMoveAction = null;
 		private RotateBrickOnPivotBrick mRotationForSnappingDuringBrickMove = null; // this action is used temporally during the edition, while you are moving the selection next to a connectable brick. The Action is not recorded in the ActionManager because it is a temporary one.
 		private float mSnappingOrientation = 0.0f; // this orientation is just used during the the edition of a group of part if they snap to a free connexion point
+
+		// related to the brick altitudes
+		private float mMinBrickAltitudeOnLayer = 0;
+		private float mMaxBrickAltitudeOnLayer = 3;
+
+		// some default parameters to draw the altitude
+		static private Font sFontToDrawAltitude = new Font(FontFamily.GenericSansSerif, 8f);
+		static private Brush sBrushToDrawAltitude = Brushes.Black;
+		static private Pen sPenToDrawAltitudeFrame = new Pen(Color.Black, 1f);
 
 		#region get/set
 		/// <summary>
@@ -684,6 +689,7 @@ namespace BlueBrick.MapData
 
 			// compute the transparency on one byte
 			int alphaValue = (255 * mTransparency) / 100;
+			float altitudePercentageNormalizer = 100f / (mMaxBrickAltitudeOnLayer - mMinBrickAltitudeOnLayer);
 
 			// create a list of visible electric brick
 			List<Brick> visibleElectricBricks = new List<Brick>();
@@ -726,6 +732,19 @@ namespace BlueBrick.MapData
 
 						if (Properties.Settings.Default.DisplayBrickHull)
                             g.DrawPolygon(sPenToDrawBrickHull, Layer.sConvertPolygonInStudToPixel(brick.SelectionArea.Vertice, areaInStud, scalePixelPerStud));
+
+						// draw eventually the altitude of the brick
+						if (false)
+						{
+							string altitudeString = brick.Altitude.ToString();
+							SizeF altitudeStringSize = g.MeasureString(altitudeString, sFontToDrawAltitude);
+							RectangleF altitudeStringFrame = new RectangleF((destinationPoints[0].X + destinationPoints[1].X - altitudeStringSize.Width) * 0.5f, (destinationPoints[0].Y + destinationPoints[2].Y - altitudeStringSize.Height) * 0.5f, altitudeStringSize.Width, altitudeStringSize.Height);
+							RectangleF altitudeFrame = new RectangleF(altitudeStringFrame.X - 3, altitudeStringFrame.Y - 3, altitudeStringFrame.Width + 5, altitudeStringFrame.Height + 5);
+							SolidBrush frameBrush = new SolidBrush(Color.FromArgb(200, DownloadCenterForm.ComputeColorFromPercentage((int)((brick.Altitude - mMinBrickAltitudeOnLayer) * altitudePercentageNormalizer), true)));
+							g.FillRectangle(frameBrush, altitudeFrame);
+							g.DrawRectangle(sPenToDrawAltitudeFrame, altitudeFrame.X, altitudeFrame.Y, altitudeFrame.Width, altitudeFrame.Height);
+							g.DrawString(altitudeString, sFontToDrawAltitude, sBrushToDrawAltitude, altitudeStringFrame);
+						}
 
 						// if the brick is electric, add it to the list
 						if (brick.ElectricCircuitIndexList != null)
