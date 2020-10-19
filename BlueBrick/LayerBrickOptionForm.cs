@@ -22,9 +22,9 @@ namespace BlueBrick
 {
 	public partial class LayerBrickOptionForm : Form
 	{
-		private Layer mEditedLayer = null;
+		private LayerBrick mEditedLayer = null;
 
-		public LayerBrickOptionForm(Layer layer)
+		public LayerBrickOptionForm(LayerBrick layer)
 		{
 			InitializeComponent();
 			// save the reference on the layer that we are editing
@@ -33,6 +33,8 @@ namespace BlueBrick
 			// name and visibility
 			this.nameTextBox.Text = layer.Name;
 			this.isVisibleCheckBox.Checked = layer.Visible;
+			this.displayHullCheckBox.Checked = layer.DisplayHulls;
+			this.displayBrickElevationCheckBox.Checked = layer.DisplayBrickElevation;
 			// transparency
 			this.alphaNumericUpDown.Value = layer.Transparency;
 			this.alphaTrackBar.Value = layer.Transparency;
@@ -50,6 +52,8 @@ namespace BlueBrick
 			// name and visibility
 			newLayerData.Name = this.nameTextBox.Text;
 			newLayerData.Visible = this.isVisibleCheckBox.Checked;
+			newLayerData.DisplayHulls = this.displayHullCheckBox.Checked;
+			newLayerData.DisplayBrickElevation = this.displayBrickElevationCheckBox.Checked;
 
 			//transparency
 			newLayerData.Transparency = (int)(this.alphaNumericUpDown.Value);

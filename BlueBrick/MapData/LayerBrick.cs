@@ -50,7 +50,7 @@ namespace BlueBrick.MapData
 		private FreeConnectionSet mFreeConnectionPoints = new FreeConnectionSet();
 
 		// a flag to tell if this layer should display the brick altitude
-		private bool mDisplayBrickAltitude = false;
+		private bool mDisplayBrickElevation = false;
 
 		//related to selection
 		private Brick mCurrentBrickUnderMouse = null; // this is the single brick under the mouse even if this brick belongs to a group
@@ -125,6 +125,15 @@ namespace BlueBrick.MapData
 		{
 			get { return mBricks.Count; }
 		}
+
+		/// <summary>
+		/// A flag to indicate if the brick elevations are displayed on this brick layer
+		/// </summary>
+		public bool DisplayBrickElevation
+		{
+			get { return mDisplayBrickElevation; }
+			set { mDisplayBrickElevation = value; }
+		}
 		#endregion
 
 		#region constructor
@@ -150,6 +159,20 @@ namespace BlueBrick.MapData
 		public override int compareItemOrderOnLayer(Layer.LayerItem item1, Layer.LayerItem item2)
 		{
 			return compareItemOrderOnLayer(mBricks, item1, item2);
+		}
+
+		/// <summary>
+		/// copy only the option parameters from the specified layer
+		/// </summary>
+		/// <param name="layerToCopy">the model to copy from</param>
+		public override void CopyOptionsFrom(Layer layerToCopy)
+		{
+			// call the base method
+			base.CopyOptionsFrom(layerToCopy);
+			// and try to cast in area layer
+			LayerBrick brickLayer = layerToCopy as LayerBrick;
+			if (brickLayer != null)
+				mDisplayBrickElevation = brickLayer.mDisplayBrickElevation;
 		}
 		#endregion
 
@@ -692,7 +715,7 @@ namespace BlueBrick.MapData
 			// compute the min and max brick altitudes if we need to draw them, on all the brick of the layer even if they are not in the display area
 			float minBrickAltitudeOnLayer = float.MaxValue;
 			float maxBrickAltitudeOnLayer = float.MinValue;
-			if (mDisplayBrickAltitude)
+			if (mDisplayBrickElevation)
 				foreach (Brick brick in mBricks)
 				{
 					float brickAltitude = brick.Altitude;
@@ -747,7 +770,7 @@ namespace BlueBrick.MapData
                             g.DrawPolygon(sPenToDrawBrickHull, Layer.sConvertPolygonInStudToPixel(brick.SelectionArea.Vertice, areaInStud, scalePixelPerStud));
 
 						// draw eventually the altitude of the brick
-						if (mDisplayBrickAltitude)
+						if (mDisplayBrickElevation)
 						{
 							string altitudeString = brick.Altitude.ToString();
 							SizeF altitudeStringSize = g.MeasureString(altitudeString, sFontToDrawAltitude);

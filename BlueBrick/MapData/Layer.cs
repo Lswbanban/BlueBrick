@@ -1031,6 +1031,7 @@ namespace BlueBrick.MapData
         protected string mName = BlueBrick.Properties.Resources.DefaultLayerName;
 		protected bool mVisible = true;
 		protected int mTransparency = 100; // percentage (in int because it is easier to modify with a slider)
+		protected bool mDisplayHulls = false;
 
 		// non serialized members
 		private static int nameInstanceCounter = 0; // a counter of instance, just to give a number next to the layer name
@@ -1123,6 +1124,15 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// A flag to indicates if the hulls of the LayerItems are displayed on this layer
+		/// </summary>
+		public bool DisplayHulls
+		{
+			get { return mDisplayHulls; }
+			set { mDisplayHulls = value; }
+		}
+
+		/// <summary>
 		/// Get the number of items in this layer
 		/// </summary>
 		public abstract int NbItems
@@ -1185,6 +1195,7 @@ namespace BlueBrick.MapData
 			mName = layerToCopy.mName;
 			mVisible = layerToCopy.mVisible;
 			Transparency = layerToCopy.Transparency;
+			mDisplayHulls = layerToCopy.mDisplayHulls;
 		}
 
 		/// <summary>

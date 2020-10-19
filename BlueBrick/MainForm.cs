@@ -2272,7 +2272,7 @@ namespace BlueBrick
 				}
 				else if (selectedLayer is LayerBrick)
 				{
-					LayerBrickOptionForm optionForm = new LayerBrickOptionForm(selectedLayer);
+					LayerBrickOptionForm optionForm = new LayerBrickOptionForm(selectedLayer as LayerBrick);
 					optionForm.ShowDialog();
 				}
 				else if (selectedLayer is LayerText)
