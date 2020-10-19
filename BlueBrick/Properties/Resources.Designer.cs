@@ -1320,15 +1320,6 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Options for Text Layer.
-        /// </summary>
-        internal static string LayerTextOptionTitle {
-            get {
-                return ResourceManager.GetString("LayerTextOptionTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap layerTypeArea {

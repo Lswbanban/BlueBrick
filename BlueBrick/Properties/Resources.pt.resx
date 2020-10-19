@@ -357,9 +357,6 @@
   <data name="HideDetails" xml:space="preserve">
     <value>Esconder Detalhes</value>
   </data>
-  <data name="LayerTextOptionTitle" xml:space="preserve">
-    <value>Opções de formatação de texto</value>
-  </data>
   <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
     <value>Informação em caixa</value>
   </data>

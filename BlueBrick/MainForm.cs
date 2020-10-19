@@ -2277,7 +2277,7 @@ namespace BlueBrick
 				}
 				else if (selectedLayer is LayerText)
 				{
-					LayerBrickOptionForm optionForm = new LayerBrickOptionForm(selectedLayer);
+					LayerTextOptionForm optionForm = new LayerTextOptionForm(selectedLayer);
 					optionForm.ShowDialog();
 				}
 				else if (selectedLayer is LayerArea)
@@ -2287,7 +2287,7 @@ namespace BlueBrick
 				}
 				else if (selectedLayer is LayerRuler)
 				{
-					LayerBrickOptionForm optionForm = new LayerBrickOptionForm(selectedLayer);
+					LayerTextOptionForm optionForm = new LayerTextOptionForm(selectedLayer);
 					optionForm.ShowDialog();
 				}
 			}

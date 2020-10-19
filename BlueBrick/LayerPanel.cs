@@ -226,7 +226,7 @@ namespace BlueBrick
 			}
 			else if (this.GetType().Name == "LayerTextPanel")
 			{
-				LayerBrickOptionForm optionForm = new LayerBrickOptionForm(this.mLayerReference as LayerText);
+				LayerTextOptionForm optionForm = new LayerTextOptionForm(this.mLayerReference as LayerText);
 				optionForm.ShowDialog();
 			}
 			else if (this.GetType().Name == "LayerAreaPanel")
@@ -236,7 +236,7 @@ namespace BlueBrick
 			}
 			else if (this.GetType().Name == "LayerRulerPanel")
 			{
-				LayerBrickOptionForm optionForm = new LayerBrickOptionForm(this.mLayerReference as LayerRuler);
+				LayerTextOptionForm optionForm = new LayerTextOptionForm(this.mLayerReference as LayerRuler);
 				optionForm.ShowDialog();
 			}
 		}

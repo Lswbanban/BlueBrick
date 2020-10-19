@@ -358,9 +358,6 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
   <data name="HideDetails" xml:space="preserve">
     <value>Nascondi Dettagli</value>
   </data>
-  <data name="LayerTextOptionTitle" xml:space="preserve">
-    <value>Opzioni Layer di testo</value>
-  </data>
   <data name="PartLibMenuItemDisplayTooltips" xml:space="preserve">
     <value>Info Pop-Up</value>
   </data>

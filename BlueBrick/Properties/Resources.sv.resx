@@ -378,9 +378,6 @@
   <data name="ActionFlexMove" xml:space="preserve">
     <value>Flytta flexibla bitar</value>
   </data>
-  <data name="LayerTextOptionTitle" xml:space="preserve">
-    <value>Alternativ för textlager</value>
-  </data>
   <data name="UnitFeet" xml:space="preserve">
     <value>ft</value>
   </data>

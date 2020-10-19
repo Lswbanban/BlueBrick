@@ -383,9 +383,6 @@ Le message d'erreur est :
   <data name="ActionFlexMove" xml:space="preserve">
     <value>Déplace des briques flexibles</value>
   </data>
-  <data name="LayerTextOptionTitle" xml:space="preserve">
-    <value>Options pour le calque texte</value>
-  </data>
   <data name="InputFilterIndication" xml:space="preserve">
     <value>Tapez des mots-clef ici pour filtrer</value>
   </data>

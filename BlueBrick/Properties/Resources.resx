@@ -234,9 +234,6 @@ If you prefer, you can close BlueBrick and download the packages from your web b
   <data name="ChangeLayerOption" xml:space="preserve">
     <value>Change the options of layer "&amp;"</value>
   </data>
-  <data name="LayerTextOptionTitle" xml:space="preserve">
-    <value>Options for Text Layer</value>
-  </data>
   <data name="StatusMsgBudgetReached" xml:space="preserve">
     <value>Budget reached for this part!</value>
   </data>
