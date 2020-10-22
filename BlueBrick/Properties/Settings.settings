@@ -205,9 +205,6 @@
     <Setting Name="UIRulerToolSelected" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="DisplayBrickHull" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="OffsetAfterCopyStyle" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
@@ -267,9 +264,6 @@
     </Setting>
     <Setting Name="UIFilterAllSentence" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="DisplayOtherHull" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="BrickHullColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>

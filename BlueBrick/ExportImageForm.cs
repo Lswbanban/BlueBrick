@@ -38,7 +38,6 @@ namespace BlueBrick
 
         // save settings that can be changed with export option
 		private bool mOriginalDisplayWatermarkInSetting = Settings.Default.DisplayGeneralInfoWatermark;
-		private bool mOriginalDisplayBrickHullInSetting = Settings.Default.DisplayBrickHull;
 		private bool mOriginalDisplayElectricCircuitInSetting = Settings.Default.DisplayElectricCircuit;
         private bool mOriginalDisplayConnectionPointInSetting = Settings.Default.DisplayFreeConnexionPoints;
 
@@ -171,7 +170,6 @@ namespace BlueBrick
         {
             // save the settings
             mOriginalDisplayWatermarkInSetting = Settings.Default.DisplayGeneralInfoWatermark;
-            mOriginalDisplayBrickHullInSetting = Settings.Default.DisplayBrickHull;
             mOriginalDisplayElectricCircuitInSetting = Settings.Default.DisplayElectricCircuit;
             mOriginalDisplayConnectionPointInSetting = Settings.Default.DisplayFreeConnexionPoints;
             // now change them: for each we change the check state and simulate a click
@@ -194,7 +192,6 @@ namespace BlueBrick
         private void restoreDisplaySettings()
         {
             Settings.Default.DisplayGeneralInfoWatermark = mOriginalDisplayWatermarkInSetting;
-            Settings.Default.DisplayBrickHull = mOriginalDisplayBrickHullInSetting;
             Settings.Default.DisplayElectricCircuit = mOriginalDisplayElectricCircuitInSetting;
             Settings.Default.DisplayFreeConnexionPoints = mOriginalDisplayConnectionPointInSetting;
         }
@@ -415,11 +412,6 @@ namespace BlueBrick
 
 		private void exportHullCheckBox_Click(object sender, EventArgs e)
 		{
-			// we use the click event and not the CheckedChanged, because we don't want this to be called at startup, when the form is initialized
-			Settings.Default.DisplayBrickHull = this.exportHullCheckBox.Checked;
-			// if the sender is null, this method is just called from the init function, so no need to draw several times
-			if (sender != null)
-				drawAll();
 		}
 
 		private void exportElectricCircuitCheckBox_Click(object sender, EventArgs e)

@@ -612,8 +612,6 @@ namespace BlueBrick
 			this.watermarkToolStripMenuItem.Checked = Properties.Settings.Default.DisplayGeneralInfoWatermark;
 			this.electricCircuitsMenuItem.Checked = Properties.Settings.Default.DisplayElectricCircuit;
 			this.connectionPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayFreeConnexionPoints;
-			this.hullsBricksToolStripMenuItem.Checked = Properties.Settings.Default.DisplayBrickHull;
-            this.hullsTextsAndRulersToolStripMenuItem.Checked = Properties.Settings.Default.DisplayOtherHull;
             this.rulerAttachPointsToolStripMenuItem.Checked = Properties.Settings.Default.DisplayRulerAttachPoints;
             // the export window
             this.mExportImageForm.loadUISettingFromDefaultSettings();
@@ -2379,14 +2377,10 @@ namespace BlueBrick
 
         private void hullsBricksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.DisplayBrickHull = this.hullsBricksToolStripMenuItem.Checked;
-            this.mapPanel.Invalidate();
         }
 
         private void hullsTextsAndRulersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.DisplayOtherHull = this.hullsTextsAndRulersToolStripMenuItem.Checked;
-            this.mapPanel.Invalidate();
         }
 
 		private void rulerAttachPointsToolStripMenuItem_Click(object sender, EventArgs e)

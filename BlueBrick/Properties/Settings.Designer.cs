@@ -686,18 +686,6 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool DisplayBrickHull {
-            get {
-                return ((bool)(this["DisplayBrickHull"]));
-            }
-            set {
-                this["DisplayBrickHull"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int OffsetAfterCopyStyle {
             get {
@@ -933,18 +921,6 @@ namespace BlueBrick.Properties {
             }
             set {
                 this["UIFilterAllSentence"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool DisplayOtherHull {
-            get {
-                return ((bool)(this["DisplayOtherHull"]));
-            }
-            set {
-                this["DisplayOtherHull"] = value;
             }
         }
         

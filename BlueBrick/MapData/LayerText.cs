@@ -285,16 +285,15 @@ namespace BlueBrick.MapData
 
 					// compute the selection area in pixel if the text is selected or we need to draw the hull
 					bool isSelected = drawSelection && mSelectedObjects.Contains(cell);
-                    bool displayHull = Properties.Settings.Default.DisplayOtherHull;
                     PointF[] hull = null;
-                    if (isSelected || displayHull)
+                    if (isSelected || mDisplayHulls)
                     {
                         g.Transform = new Matrix();
                         hull = Layer.sConvertPolygonInStudToPixel(cell.SelectionArea.Vertice, areaInStud, scalePixelPerStud);
                     }
 
 					// draw the hull if needed
-					if (displayHull)
+					if (mDisplayHulls)
 						g.DrawPolygon(sPenToDrawOtherHull, hull);
 
 					// draw a frame around the selected cell while the text size is still in pixel

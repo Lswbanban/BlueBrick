@@ -715,7 +715,9 @@ namespace BlueBrick.MapData
 			// compute the min and max brick altitudes if we need to draw them, on all the brick of the layer even if they are not in the display area
 			float minBrickAltitudeOnLayer = float.MaxValue;
 			float maxBrickAltitudeOnLayer = float.MinValue;
+			float altitudePercentageNormalizer = 0f;
 			if (mDisplayBrickElevation)
+			{
 				foreach (Brick brick in mBricks)
 				{
 					float brickAltitude = brick.Altitude;
@@ -724,8 +726,9 @@ namespace BlueBrick.MapData
 					if (brickAltitude < minBrickAltitudeOnLayer)
 						minBrickAltitudeOnLayer = brickAltitude;
 				}
-			// compute the altitude amplitude from the min to max altitude
-			float altitudePercentageNormalizer = 100f / (maxBrickAltitudeOnLayer - minBrickAltitudeOnLayer);
+				// compute the altitude amplitude from the min to max altitude
+				altitudePercentageNormalizer = 100f / (maxBrickAltitudeOnLayer - minBrickAltitudeOnLayer);
+			}
 
 			// create a list of visible electric brick
 			List<Brick> visibleElectricBricks = new List<Brick>();
@@ -766,7 +769,7 @@ namespace BlueBrick.MapData
 						else
 							g.DrawImage(image, destinationPoints, image.GetBounds(ref unit), GraphicsUnit.Pixel, mImageAttributeDefault);
 
-						if (Properties.Settings.Default.DisplayBrickHull)
+						if (mDisplayHulls)
                             g.DrawPolygon(sPenToDrawBrickHull, Layer.sConvertPolygonInStudToPixel(brick.SelectionArea.Vertice, areaInStud, scalePixelPerStud));
 
 						// draw eventually the altitude of the brick
