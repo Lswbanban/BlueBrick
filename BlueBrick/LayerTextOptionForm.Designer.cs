@@ -39,14 +39,16 @@ namespace BlueBrick
 			this.label2 = new System.Windows.Forms.Label();
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.buttonOk = new System.Windows.Forms.Button();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.displayHullCheckBox = new System.Windows.Forms.CheckBox();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.alphaTrackBar)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.alphaNumericUpDown)).BeginInit();
+			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox3
 			// 
-			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Controls.Add(this.alphaTrackBar);
 			this.groupBox3.Controls.Add(this.label3);
 			this.groupBox3.Controls.Add(this.alphaNumericUpDown);
@@ -54,6 +56,7 @@ namespace BlueBrick
 			this.groupBox3.Controls.Add(this.isVisibleCheckBox);
 			this.groupBox3.Controls.Add(this.nameTextBox);
 			this.groupBox3.Controls.Add(this.label2);
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 
@@ -120,12 +123,26 @@ namespace BlueBrick
 			this.buttonOk.UseVisualStyleBackColor = true;
 			this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
 			// 
+			// groupBox1
+			// 
+			this.groupBox1.Controls.Add(this.displayHullCheckBox);
+			resources.ApplyResources(this.groupBox1, "groupBox1");
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.TabStop = false;
+			// 
+			// displayHullCheckBox
+			// 
+			resources.ApplyResources(this.displayHullCheckBox, "displayHullCheckBox");
+			this.displayHullCheckBox.Name = "displayHullCheckBox";
+			this.displayHullCheckBox.UseVisualStyleBackColor = true;
+			// 
 			// LayerTextOptionForm
 			// 
 			this.AcceptButton = this.buttonOk;
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.buttonCancel;
+			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.buttonOk);
 			this.Controls.Add(this.groupBox3);
@@ -137,6 +154,8 @@ namespace BlueBrick
 			this.groupBox3.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.alphaTrackBar)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.alphaNumericUpDown)).EndInit();
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -153,5 +172,7 @@ namespace BlueBrick
 		private System.Windows.Forms.NumericUpDown alphaNumericUpDown;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TrackBar alphaTrackBar;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.CheckBox displayHullCheckBox;
 	}
 }

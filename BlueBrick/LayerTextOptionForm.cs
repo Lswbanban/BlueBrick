@@ -36,6 +36,7 @@ namespace BlueBrick
 			// name and visibility
 			this.nameTextBox.Text = layer.Name;
 			this.isVisibleCheckBox.Checked = layer.Visible;
+			this.displayHullCheckBox.Checked = layer.DisplayHulls;
 			// transparency
 			this.alphaNumericUpDown.Value = layer.Transparency;
 			this.alphaTrackBar.Value = layer.Transparency;
@@ -53,6 +54,7 @@ namespace BlueBrick
 			// name and visibility
 			newLayerData.Name = this.nameTextBox.Text;
 			newLayerData.Visible = this.isVisibleCheckBox.Checked;
+			newLayerData.DisplayHulls = this.displayHullCheckBox.Checked;
 
 			//transparency
 			newLayerData.Transparency = (int)(this.alphaNumericUpDown.Value);
