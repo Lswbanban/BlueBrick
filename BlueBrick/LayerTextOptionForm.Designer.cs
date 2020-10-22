@@ -41,10 +41,16 @@ namespace BlueBrick
 			this.buttonOk = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.displayHullCheckBox = new System.Windows.Forms.CheckBox();
+			this.hullThicknessUnitLabel = new System.Windows.Forms.Label();
+			this.hullThicknessNumericUpDown = new System.Windows.Forms.NumericUpDown();
+			this.hullColorPictureBox = new System.Windows.Forms.PictureBox();
+			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.alphaTrackBar)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.alphaNumericUpDown)).BeginInit();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hullThicknessNumericUpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.hullColorPictureBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox3
@@ -125,6 +131,9 @@ namespace BlueBrick
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.hullThicknessUnitLabel);
+			this.groupBox1.Controls.Add(this.hullThicknessNumericUpDown);
+			this.groupBox1.Controls.Add(this.hullColorPictureBox);
 			this.groupBox1.Controls.Add(this.displayHullCheckBox);
 			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Name = "groupBox1";
@@ -135,6 +144,41 @@ namespace BlueBrick
 			resources.ApplyResources(this.displayHullCheckBox, "displayHullCheckBox");
 			this.displayHullCheckBox.Name = "displayHullCheckBox";
 			this.displayHullCheckBox.UseVisualStyleBackColor = true;
+			this.displayHullCheckBox.CheckedChanged += new System.EventHandler(this.displayHullCheckBox_CheckedChanged);
+			// 
+			// hullThicknessUnitLabel
+			// 
+			resources.ApplyResources(this.hullThicknessUnitLabel, "hullThicknessUnitLabel");
+			this.hullThicknessUnitLabel.Name = "hullThicknessUnitLabel";
+			// 
+			// hullThicknessNumericUpDown
+			// 
+			resources.ApplyResources(this.hullThicknessNumericUpDown, "hullThicknessNumericUpDown");
+			this.hullThicknessNumericUpDown.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+			this.hullThicknessNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.hullThicknessNumericUpDown.Name = "hullThicknessNumericUpDown";
+			this.hullThicknessNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			// 
+			// hullColorPictureBox
+			// 
+			this.hullColorPictureBox.BackColor = System.Drawing.Color.White;
+			this.hullColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.hullColorPictureBox, "hullColorPictureBox");
+			this.hullColorPictureBox.Name = "hullColorPictureBox";
+			this.hullColorPictureBox.TabStop = false;
+			this.hullColorPictureBox.Click += new System.EventHandler(this.hullColorPictureBox_Click);
 			// 
 			// LayerTextOptionForm
 			// 
@@ -156,6 +200,8 @@ namespace BlueBrick
 			((System.ComponentModel.ISupportInitialize)(this.alphaNumericUpDown)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hullThicknessNumericUpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.hullColorPictureBox)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -174,5 +220,9 @@ namespace BlueBrick
 		private System.Windows.Forms.TrackBar alphaTrackBar;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.CheckBox displayHullCheckBox;
+		private System.Windows.Forms.Label hullThicknessUnitLabel;
+		private System.Windows.Forms.NumericUpDown hullThicknessNumericUpDown;
+		private System.Windows.Forms.PictureBox hullColorPictureBox;
+		private System.Windows.Forms.ColorDialog colorDialog;
 	}
 }

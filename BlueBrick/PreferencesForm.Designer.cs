@@ -1071,7 +1071,7 @@ namespace BlueBrick
 			// 
 			resources.ApplyResources(this.brickHullThicknessNumericUpDown, "brickHullThicknessNumericUpDown");
 			this.brickHullThicknessNumericUpDown.Maximum = new decimal(new int[] {
-            5,
+            16,
             0,
             0,
             0});

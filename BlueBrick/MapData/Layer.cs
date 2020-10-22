@@ -1132,6 +1132,15 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// The pen (color and thickness) to draw the Hull around the layer item
+		/// </summary>
+		public Pen PenToDrawHull
+		{
+			get { return mPenToDrawHull; }
+			set { mPenToDrawHull = value; }
+		}		
+
+		/// <summary>
 		/// Get the number of items in this layer
 		/// </summary>
 		public abstract int NbItems
@@ -1185,6 +1194,7 @@ namespace BlueBrick.MapData
 			mVisible = layerToCopy.mVisible;
 			Transparency = layerToCopy.Transparency;
 			mDisplayHulls = layerToCopy.mDisplayHulls;
+			mPenToDrawHull = layerToCopy.mPenToDrawHull;
 		}
 
 		/// <summary>
