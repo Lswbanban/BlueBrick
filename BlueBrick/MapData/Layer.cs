@@ -1279,6 +1279,9 @@ namespace BlueBrick.MapData
 			// read the transparency for all the layers
 			if (Map.DataVersionOfTheFileLoaded > 4)
 				Transparency = reader.ReadElementContentAsInt();
+			// read the display hull parameter for all the layers
+			if (Map.DataVersionOfTheFileLoaded >= 9)
+				mDisplayHulls = reader.ReadElementContentAsBoolean();
 		}
 
 		protected virtual T readItem<T>(System.Xml.XmlReader reader) where T : LayerItem
@@ -1390,6 +1393,7 @@ namespace BlueBrick.MapData
 			writer.WriteElementString("Name", mName);
 			writer.WriteElementString("Visible", mVisible.ToString().ToLower());
 			writer.WriteElementString("Transparency", mTransparency.ToString());
+			writer.WriteElementString("DisplayHulls", mDisplayHulls.ToString().ToLower());
 		}
 
 		protected void writeFooter(System.Xml.XmlWriter writer)

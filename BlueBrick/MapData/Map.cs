@@ -46,7 +46,7 @@ namespace BlueBrick.MapData
 		}
 
 		// the current version of the data this version of BlueBrick can read/write
-		private const int CURRENT_DATA_VERSION = 8;
+		private const int CURRENT_DATA_VERSION = 9;
 
 		// the current version of the data
 		private static int mDataVersionOfTheFileLoaded = CURRENT_DATA_VERSION;
@@ -70,7 +70,6 @@ namespace BlueBrick.MapData
 		private RectangleF mExportArea = new RectangleF();
 		private double mExportScale = 0.0;
 		private bool mExportWatermark = BlueBrick.Properties.Settings.Default.UIExportWatermark;
-		private bool mExportBrickHull = false;
 		private bool mExportElectricCircuit = BlueBrick.Properties.Settings.Default.UIExportElectricCircuit;
 		private bool mExportConnectionPoints = BlueBrick.Properties.Settings.Default.UIExportConnection;
 		private bool mHasExportSettingsChanged = false; // a boolean flag indicating that the settings has changed and that the file need to be saved
@@ -274,11 +273,6 @@ namespace BlueBrick.MapData
 			get { return mExportWatermark; }
 		}
 
-		public bool ExportBrickHull
-		{
-			get { return mExportBrickHull; }
-		}
-
 		public bool ExportElectricCircuit
 		{
 			get { return mExportElectricCircuit; }
@@ -399,8 +393,9 @@ namespace BlueBrick.MapData
                 if (mDataVersionOfTheFileLoaded > 7)
                 {
                     mExportWatermark = XmlReadWrite.readBoolean(reader);
-                    mExportBrickHull = XmlReadWrite.readBoolean(reader);
-                    mExportElectricCircuit = XmlReadWrite.readBoolean(reader);
+					if (mDataVersionOfTheFileLoaded < 9)
+						XmlReadWrite.readBoolean(reader); // here there was: mExportBrickHull
+					mExportElectricCircuit = XmlReadWrite.readBoolean(reader);
                     mExportConnectionPoints = XmlReadWrite.readBoolean(reader);
                 }
                 reader.ReadEndElement();
@@ -523,7 +518,6 @@ namespace BlueBrick.MapData
 				XmlReadWrite.writeRectangleF(writer, "ExportArea", mExportArea);
                 writer.WriteElementString("ExportScale", mExportScale.ToString(System.Globalization.CultureInfo.InvariantCulture));
                 XmlReadWrite.writeBoolean(writer, "ExportWatermark", mExportWatermark);
-                XmlReadWrite.writeBoolean(writer, "ExportHull", mExportBrickHull);
                 XmlReadWrite.writeBoolean(writer, "ExportElectricCircuit", mExportElectricCircuit);
                 XmlReadWrite.writeBoolean(writer, "ExportConnectionPoints", mExportConnectionPoints);
             writer.WriteEndElement();

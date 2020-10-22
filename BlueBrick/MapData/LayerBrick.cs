@@ -183,6 +183,10 @@ namespace BlueBrick.MapData
 			// call the common reader class
 			base.ReadXml(reader);
 
+			// read the display of the brick elevation
+			if (Map.DataVersionOfTheFileLoaded >= 9)
+				mDisplayBrickElevation = reader.ReadElementContentAsBoolean();
+
 			// read all the bricks
 			readItemsListFromXml<Brick>(reader, ref mBricks, "Bricks", true);
 
@@ -243,6 +247,8 @@ namespace BlueBrick.MapData
 		{
 			// write the header
 			writeHeaderAndCommonProperties(writer);
+			// write the display brick elevation property
+			writer.WriteElementString("DisplayBrickElevation", mDisplayBrickElevation.ToString().ToLower());
 			// write all the bricks
 			writeItemsListToXml(writer, mBricks, "Bricks", true);
 			// write the footer

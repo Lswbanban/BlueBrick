@@ -106,12 +106,10 @@ to open the help file (see above for more details).
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): For more flexibility during export, make the Hull display PER layer (it can be a small icon next to the eye icon)
 	- The visibility of the Hull + the Hull drawing info, such as color and line thickness should be set per layer
-	- Need a new BBM version to save the info in the file, and reload it
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
 - [target 1.9] MISSING FEATURE (Alban): Support the brick elevation by displaying it on each part if the option is checked on the layer, and save the display elevation property in the BBM file
 	- add a Brick property window to edit the elevation of the brick
-	- save of the display elevation in the BBM file
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
 - MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
