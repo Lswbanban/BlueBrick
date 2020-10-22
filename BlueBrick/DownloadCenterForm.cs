@@ -179,7 +179,7 @@ namespace BlueBrick
 			subitems[SUBITEM_PERCENTAGE_INDEX].Text = ComputePercentageBarAsString(percentage);
 
 			// change the color according to the percentage value
-			this.DownloadListView.Items[fileIndex].ForeColor = ComputeColorFromPercentage(100 - percentage, false);
+			this.DownloadListView.Items[fileIndex].ForeColor = ComputeColorFromPercentage(100 - percentage, 0);
 		}
 
 		private void updatePercentageOfTotalBar(int fileIndex, int percentage)
@@ -462,58 +462,56 @@ namespace BlueBrick
 		}
 
 		/// <summary>
-		/// Compute a gradient color from green to red (if shouldGoToRed is true) or from green to Black depending
-		/// on the percentage value given in parameter
+		/// Compute a gradient color from green to red (if maxRedValue > 0) or from green to black depending
+		/// on the percentage value given in parameter. The maxRedValue can be set to 0 to have a green to black gradient.
 		/// </summary>
 		/// <param name="percentage">a value between 0 to 100 to compute the gradient of color</param>
-		/// <param name="shouldGoToRed">if true, the color will be red when percent == 100</param>
-		/// <returns></returns>
-		public static Color ComputeColorFromPercentage(int percentage, bool shouldGoToRed)
+		/// <param name="maxRedValue">The maximum value for the red component of the color (when percentage == 100)</param>
+		/// <param name="returnRedIfAbove100">If <c>true</c> and if the percentage is above 100, it will return the red color (r=255, g=0, b=0), not the color including the maxRedValue, otherwise if <c>false</c> the color will be the one computed from the maxRedValue.</param>
+		/// <returns>A color corresponding to the specified percentage inside a green to red or green to black gradient.</returns>
+		public static Color ComputeColorFromPercentage(int percentage, int maxRedValue, bool returnRedIfAbove100 = false)
 		{
-			if (percentage < 0.0)
+			// make sure percentage stay in the range [0..100]
+			if (percentage < 0)
+				percentage = 0;
+			else if (percentage > 100)
 			{
-				return Color.FromArgb(255, 0, 200, 0);
-			}
-			else if (percentage > 100.0)
-			{
-				if (shouldGoToRed)
+				if (returnRedIfAbove100)
 					return Color.Red;
 				else
-					return Color.Black;
+					percentage = 100;
+			}
+
+			// the value of green and red
+			int redColor = 0;
+			int greenColor = 0;
+
+			if (maxRedValue > 0)
+			{
+				const double PERCENTAGE_GAP = 7.5;
+				const double GREEN_SLOPE = (50 / (50.0 + PERCENTAGE_GAP));
+				double redSlope = (maxRedValue / (75.0 + PERCENTAGE_GAP));
+
+				// compute the red color
+				if (percentage <= (75.0 + PERCENTAGE_GAP))
+					redColor = (int)(redSlope * percentage);
+				else
+					redColor = maxRedValue;
+
+				// compute the green color
+				if (percentage >= (50.0 - PERCENTAGE_GAP))
+					greenColor = 200 - (int)(GREEN_SLOPE * (percentage - (50.0 - PERCENTAGE_GAP)));
+				else
+					greenColor = 200;
 			}
 			else
 			{
-				// the value of green and red
-				int redColor = 0;
-				int greenColor = 0;
-
-				if (shouldGoToRed)
-				{
-					const double PERCENTAGE_GAP = 7.5;
-					const double RED_SLOPE = (227 / (75.0 + PERCENTAGE_GAP));
-					const double GREEN_SLOPE = (50 / (50.0 + PERCENTAGE_GAP));
-
-					// compute the red color
-					if (percentage <= (75.0 + PERCENTAGE_GAP))
-						redColor = (int)(RED_SLOPE * percentage);
-					else
-						redColor = 227;
-
-					// compute the green color
-					if (percentage >= (50.0 - PERCENTAGE_GAP))
-						greenColor = 200 - (int)(GREEN_SLOPE * (percentage - (50.0 - PERCENTAGE_GAP)));
-					else
-						greenColor = 200;
-				}
-				else
-				{
-					// the red component stay null
-					// linear inc for the green
-					greenColor = 200 - (int)(2 * percentage);
-				}
-
-				return Color.FromArgb(0xFF, redColor, greenColor, 0x00);
+				// the red component stay null
+				// linear inc for the green
+				greenColor = 200 - (int)(2 * percentage);
 			}
+
+			return Color.FromArgb(0xFF, redColor, greenColor, 0x00);
 		}
 		#endregion
 	}

@@ -776,7 +776,7 @@ namespace BlueBrick.MapData
 							SizeF altitudeStringSize = g.MeasureString(altitudeString, sFontToDrawAltitude);
 							RectangleF altitudeStringFrame = new RectangleF((destinationPoints[0].X + destinationPoints[1].X - altitudeStringSize.Width) * 0.5f, (destinationPoints[0].Y + destinationPoints[2].Y - altitudeStringSize.Height) * 0.5f, altitudeStringSize.Width, altitudeStringSize.Height);
 							RectangleF altitudeFrame = new RectangleF(altitudeStringFrame.X - 3, altitudeStringFrame.Y - 3, altitudeStringFrame.Width + 5, altitudeStringFrame.Height + 5);
-							SolidBrush frameBrush = new SolidBrush(Color.FromArgb(200, DownloadCenterForm.ComputeColorFromPercentage((int)((brick.Altitude - minBrickAltitudeOnLayer) * altitudePercentageNormalizer), true)));
+							SolidBrush frameBrush = new SolidBrush(Color.FromArgb(200, DownloadCenterForm.ComputeColorFromPercentage((int)((brick.Altitude - minBrickAltitudeOnLayer) * altitudePercentageNormalizer), 255)));
 							g.FillRectangle(frameBrush, altitudeFrame);
 							g.DrawRectangle(sPenToDrawAltitudeFrame, altitudeFrame.X, altitudeFrame.Y, altitudeFrame.Width, altitudeFrame.Height);
 							g.DrawString(altitudeString, sFontToDrawAltitude, sBrushToDrawAltitude, altitudeStringFrame);

@@ -109,8 +109,9 @@ Open bugs:
 	- Need a new BBM version to save the info in the file, and reload it
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
-- [target 1.9] MISSING FEATURE (Alban): Implement elevation by displaying a number next to the part and edition of elevation
-- [target 1.9] MISSING FEATURE (Alban): Add a Brick property window to edit the altitude of the brick
+- [target 1.9] MISSING FEATURE (Alban): Support the brick elevation by displaying it on each part if the option is checked on the layer, and save the display elevation property in the BBM file
+	- add a Brick property window to edit the elevation of the brick
+	- save of the display elevation in the BBM file
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
 - MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).

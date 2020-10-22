@@ -70,6 +70,7 @@ namespace BlueBrick
 
 		private class BrickEntry
 		{
+			private const int MAX_RED_VALUE = 227;
 			private string mPartNumber = string.Empty;
 			private int mQuantity = 0;
 			private int mImageIndex = 0;
@@ -185,7 +186,7 @@ namespace BlueBrick
 					missingCount = (partCount <= partBudget) ? 0 : (partCount - partBudget);
 					mItem.SubItems[(int)ColumnId.MISSING_COUNT].ForeColor = (missingCount == 0) ? Color.Black : Color.Red;
 					usageAsString = DownloadCenterForm.ComputePercentageBarAsString(usagePercentage);
-					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
+					mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, MAX_RED_VALUE, true);
 				}
 
 				mItem.SubItems[(int)ColumnId.BUDGET_COUNT].Text = budgetCountAsString;
@@ -218,7 +219,7 @@ namespace BlueBrick
 				mItem.SubItems[(int)ColumnId.BUDGET_COUNT].Text = partBudget.ToString();
 				mItem.SubItems[(int)ColumnId.MISSING_COUNT].Text = sumUpTagOfMyGroup((int)ColumnId.MISSING_COUNT).ToString();
 				mItem.SubItems[(int)ColumnId.PART_USAGE].Text = DownloadCenterForm.ComputePercentageBarAsString(usagePercentage);
-				mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, true);
+				mItem.SubItems[(int)ColumnId.PART_USAGE].ForeColor = DownloadCenterForm.ComputeColorFromPercentage((int)usagePercentage, MAX_RED_VALUE, true);
 			}
 
 			private int sumUpTagOfMyGroup(int columnId)
