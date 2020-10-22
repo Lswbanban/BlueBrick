@@ -13,13 +13,12 @@
 // GNU General Public License for more details.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using BlueBrick.MapData;
 using BlueBrick.Actions;
 using BlueBrick.Actions.Layers;
+using BlueBrick.Properties;
 
 namespace BlueBrick
 {
@@ -31,6 +30,7 @@ namespace BlueBrick
 		private Layer mLayerReference = null;
 		private Label nameLabel;
 		protected PictureBox layerTypePictureBox;
+		protected Button displayHullButton;
 		private Button visibilityButton;
 
 		#region get/set
@@ -70,6 +70,7 @@ namespace BlueBrick
 			this.visibilityButton = new System.Windows.Forms.Button();
 			this.nameLabel = new System.Windows.Forms.Label();
 			this.layerTypePictureBox = new System.Windows.Forms.PictureBox();
+			this.displayHullButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.layerTypePictureBox)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -99,7 +100,7 @@ namespace BlueBrick
 			// layerTypePictureBox
 			// 
 			this.layerTypePictureBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.layerTypePictureBox.Location = new System.Drawing.Point(26, 5);
+			this.layerTypePictureBox.Location = new System.Drawing.Point(49, 5);
 			this.layerTypePictureBox.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
 			this.layerTypePictureBox.Name = "layerTypePictureBox";
 			this.layerTypePictureBox.Size = new System.Drawing.Size(20, 20);
@@ -108,11 +109,22 @@ namespace BlueBrick
 			this.layerTypePictureBox.Click += new System.EventHandler(this.LayerPanel_Click);
 			this.layerTypePictureBox.DoubleClick += new System.EventHandler(this.LayerPanel_DoubleClick);
 			// 
+			// displayHullButton
+			// 
+			this.displayHullButton.Location = new System.Drawing.Point(26, 3);
+			this.displayHullButton.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+			this.displayHullButton.Name = "displayHullButton";
+			this.displayHullButton.Size = new System.Drawing.Size(20, 20);
+			this.displayHullButton.TabIndex = 0;
+			this.displayHullButton.UseVisualStyleBackColor = true;
+			this.displayHullButton.Click += new System.EventHandler(this.displayHullButton_Click);
+			// 
 			// LayerPanel
 			// 
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.Controls.Add(this.visibilityButton);
+			this.Controls.Add(this.displayHullButton);
 			this.Controls.Add(this.layerTypePictureBox);
 			this.Controls.Add(this.nameLabel);
 			this.Size = new System.Drawing.Size(80, 28);
@@ -189,13 +201,22 @@ namespace BlueBrick
 			{
 				this.visibilityButton.Image = null;
 			}
+			// change the display hull button
+			if (mLayerReference.DisplayHulls)
+				this.displayHullButton.Image = Resources.showHullIcon;
+			else
+				this.displayHullButton.Image = Resources.hideHullIcon;
+
 			// change the back color if I am selected
 			changeBackColor(mLayerReference == Map.Instance.SelectedLayer);
 		}
 
 		private void LayerPanel_ClientSizeChanged(object sender, EventArgs e)
 		{
-			this.nameLabel.Width = this.Width - visibilityButton.Width - layerTypePictureBox.Width - 20;
+			int newLabelWidth = this.Width - visibilityButton.Width - layerTypePictureBox.Width - 20;
+			if (displayHullButton.Visible)
+				newLabelWidth -= displayHullButton.Width - displayHullButton.Margin.Left - displayHullButton.Margin.Right;
+			this.nameLabel.Width = newLabelWidth;
 		}
 
 		private void visibilityButton_Click(object sender, EventArgs e)
@@ -207,6 +228,24 @@ namespace BlueBrick
 				ActionManager.Instance.doAction(new HideLayer(mLayerReference));
 			else
 				ActionManager.Instance.doAction(new ShowLayer(mLayerReference));
+		}
+
+		private void displayHullButton_Click(object sender, EventArgs e)
+		{
+			// take the focus anyway if we click the panel
+			this.Focus();
+
+			// create a copy of the edited layer to hold the old data (the layer can be on any type, we just want to copy the options)
+			LayerText oldLayerData = new LayerText();
+			oldLayerData.CopyOptionsFrom(mLayerReference);
+
+			// create a new layer to store the new data, and reverse the display hull flag in the new data
+			LayerText newLayerData = new LayerText();
+			newLayerData.CopyOptionsFrom(mLayerReference);
+			newLayerData.DisplayHulls = !mLayerReference.DisplayHulls;
+
+			// do a change option action
+			ActionManager.Instance.doAction(new ChangeLayerOption(mLayerReference, oldLayerData, newLayerData));
 		}
 
 		private void LayerPanel_DoubleClick(object sender, EventArgs e)

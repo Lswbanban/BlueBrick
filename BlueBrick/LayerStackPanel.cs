@@ -202,7 +202,7 @@ namespace BlueBrick
 		private void LayerStackPanel_ControlAdded(object sender, ControlEventArgs e)
 		{
 			// resize the added control
-			e.Control.Width = this.ClientSize.Width - 6;
+			e.Control.Width = this.ClientSize.Width - 9;
 			// there's a bug in Mono, the scrollbar doesn't appear if the number of controls is more
 			// than this panel size. Touching the size will actually force the recomputation of the 
 			// need for the vertical scroll bar but since anyway this panel is docked it will not 

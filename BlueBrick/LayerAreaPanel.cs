@@ -12,10 +12,6 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
 using BlueBrick.MapData;
 
 namespace BlueBrick
@@ -26,6 +22,7 @@ namespace BlueBrick
 			: base(layer)
 		{
 			this.layerTypePictureBox.Image = BlueBrick.Properties.Resources.layerTypeArea;
+			this.displayHullButton.Visible = false;
 		}
 	}
 }

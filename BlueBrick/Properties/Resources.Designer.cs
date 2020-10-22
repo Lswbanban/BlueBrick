@@ -1212,6 +1212,16 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hideHullIcon {
+            get {
+                object obj = ResourceManager.GetObject("hideHullIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Input Keywords here to Filter.
         /// </summary>
         internal static string InputFilterIndication {
@@ -1493,6 +1503,16 @@ namespace BlueBrick.Properties {
         internal static string ShowDetails {
             get {
                 return ResourceManager.GetString("ShowDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap showHullIcon {
+            get {
+                object obj = ResourceManager.GetObject("showHullIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
