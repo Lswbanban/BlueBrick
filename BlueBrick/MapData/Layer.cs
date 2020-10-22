@@ -1280,7 +1280,12 @@ namespace BlueBrick.MapData
 				Transparency = reader.ReadElementContentAsInt();
 			// read the display hull parameter for all the layers
 			if (Map.DataVersionOfTheFileLoaded >= 9)
-				mDisplayHulls = reader.ReadElementContentAsBoolean();
+			{
+				mDisplayHulls = reader.GetAttribute(0).Equals("true");
+				reader.ReadToDescendant("hullColor");
+				mPenToDrawHull = new Pen(XmlReadWrite.readColor(reader), reader.ReadElementContentAsInt());
+				reader.ReadEndElement();
+			}
 		}
 
 		protected virtual T readItem<T>(System.Xml.XmlReader reader) where T : LayerItem
@@ -1392,7 +1397,12 @@ namespace BlueBrick.MapData
 			writer.WriteElementString("Name", mName);
 			writer.WriteElementString("Visible", mVisible.ToString().ToLower());
 			writer.WriteElementString("Transparency", mTransparency.ToString());
-			writer.WriteElementString("DisplayHulls", mDisplayHulls.ToString().ToLower());
+			// the hull properties
+			writer.WriteStartElement("HullProperties");
+				writer.WriteAttributeString("isVisible", mDisplayHulls.ToString().ToLower());
+				XmlReadWrite.writeColor(writer, "hullColor", mPenToDrawHull.Color);
+				writer.WriteElementString("hullThickness", ((int)(mPenToDrawHull.Width)).ToString());
+			writer.WriteEndElement();
 		}
 
 		protected void writeFooter(System.Xml.XmlWriter writer)
