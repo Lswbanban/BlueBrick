@@ -927,12 +927,12 @@ namespace BlueBrick.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Black")]
-        public global::System.Drawing.Color BrickHullColor {
+        public global::System.Drawing.Color DefaultHullColor {
             get {
-                return ((global::System.Drawing.Color)(this["BrickHullColor"]));
+                return ((global::System.Drawing.Color)(this["DefaultHullColor"]));
             }
             set {
-                this["BrickHullColor"] = value;
+                this["DefaultHullColor"] = value;
             }
         }
         
@@ -1239,12 +1239,12 @@ namespace BlueBrick.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public float BrickHullThickness {
+        public float DefaultHullThickness {
             get {
-                return ((float)(this["BrickHullThickness"]));
+                return ((float)(this["DefaultHullThickness"]));
             }
             set {
-                this["BrickHullThickness"] = value;
+                this["DefaultHullThickness"] = value;
             }
         }
         

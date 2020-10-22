@@ -1032,14 +1032,13 @@ namespace BlueBrick.MapData
 		protected bool mVisible = true;
 		protected int mTransparency = 100; // percentage (in int because it is easier to modify with a slider)
 		protected bool mDisplayHulls = false;
+		protected Pen mPenToDrawHull = new Pen(Properties.Settings.Default.DefaultHullColor, Properties.Settings.Default.DefaultHullThickness);
 
 		// non serialized members
 		private static int nameInstanceCounter = 0; // a counter of instance, just to give a number next to the layer name
 		protected List<LayerItem> mSelectedObjects = new List<LayerItem>();
 		protected RectangleF mBoundingSelectionRectangle = new RectangleF(); // the rectangle in stud that surrond all the object selected
 		protected Pen mBoundingSelectionPen = new Pen(Color.Black, 2);
-        protected static Pen sPenToDrawBrickHull = new Pen(Properties.Settings.Default.BrickHullColor, Properties.Settings.Default.BrickHullThickness);
-        protected static Pen sPenToDrawOtherHull = new Pen(Properties.Settings.Default.OtherHullColor, Properties.Settings.Default.OtherHullThickness);
 
 		public const int NUM_PIXEL_PER_STUD_FOR_BRICKS = 8;	// the images save on the disk use 8 pixel per studs
 
@@ -1174,16 +1173,6 @@ namespace BlueBrick.MapData
 			// A new layer is created, of course the selection is empty so 
 			// disable some buttons in the toolbar related to an empty selection
 			MainForm.Instance.enableToolbarButtonOnItemSelection(false);
-		}
-
-		/// <summary>
-		/// Create (or recreate) the pen used to draw the hulls.
-		/// </summary>
-		public static void initHullPens()
-		{
-			// recreate the pens
-			sPenToDrawBrickHull = new Pen(Properties.Settings.Default.BrickHullColor, Properties.Settings.Default.BrickHullThickness);
-			sPenToDrawOtherHull = new Pen(Properties.Settings.Default.OtherHullColor, Properties.Settings.Default.OtherHullThickness);
 		}
 
 		/// <summary>

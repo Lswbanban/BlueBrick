@@ -186,8 +186,8 @@ namespace BlueBrick
 			// -- tab appearance
 			if ((tabPageFilter & TabPageFilter.APPEARANCE) != 0)
 			{
-				this.brickHullColorPictureBox.BackColor = Settings.Default.BrickHullColor;
-				this.brickHullThicknessNumericUpDown.Value = (Decimal)Settings.Default.BrickHullThickness;
+				this.brickHullColorPictureBox.BackColor = Settings.Default.DefaultHullColor;
+				this.brickHullThicknessNumericUpDown.Value = (Decimal)Settings.Default.DefaultHullThickness;
 				this.otherHullColorPictureBox.BackColor = Settings.Default.OtherHullColor;
 				this.otherHullThicknessNumericUpDown.Value = (Decimal)Settings.Default.OtherHullThickness;
 				this.backgroundColorPictureBox.BackColor = Settings.Default.DefaultBackgroundColor;
@@ -323,8 +323,8 @@ namespace BlueBrick
 			// appearance
 			if ((tabPageFilter & TabPageFilter.APPEARANCE) != 0)
 			{
-				destination.BrickHullColor = source.BrickHullColor;
-				destination.BrickHullThickness = source.BrickHullThickness;
+				destination.DefaultHullColor = source.DefaultHullColor;
+				destination.DefaultHullThickness = source.DefaultHullThickness;
 				destination.OtherHullColor = source.OtherHullColor;
 				destination.OtherHullThickness = source.OtherHullThickness;
 				destination.DefaultBackgroundColor = source.DefaultBackgroundColor;
@@ -432,18 +432,10 @@ namespace BlueBrick
 
 			// -- tab appearance
 			// hull style
-			// check if the hull changed
-			bool doesHullStyleChange = (mOldSettings.BrickHullColor != this.brickHullColorPictureBox.BackColor) ||
-										(mOldSettings.BrickHullThickness != (float)this.brickHullThicknessNumericUpDown.Value) ||
-										(mOldSettings.OtherHullColor != this.otherHullColorPictureBox.BackColor) ||
-										(mOldSettings.OtherHullThickness != (float)this.otherHullThicknessNumericUpDown.Value);
-			Settings.Default.BrickHullColor = this.brickHullColorPictureBox.BackColor;
-			Settings.Default.BrickHullThickness = (float)this.brickHullThicknessNumericUpDown.Value;
+			Settings.Default.DefaultHullColor = this.brickHullColorPictureBox.BackColor;
+			Settings.Default.DefaultHullThickness = (float)this.brickHullThicknessNumericUpDown.Value;
 			Settings.Default.OtherHullColor = this.otherHullColorPictureBox.BackColor;
 			Settings.Default.OtherHullThickness = (float)this.otherHullThicknessNumericUpDown.Value;
-			// if style change, reinit the hull pens
-			if (doesHullStyleChange)
-				Layer.initHullPens();
 			// check if the user changed the grid color
 			bool doesGridColorChanged = (mOldSettings.DefaultBackgroundColor != backgroundColorPictureBox.BackColor) ||
 										(mOldSettings.DefaultGridColor != gridColorPictureBox.BackColor) ||

@@ -465,8 +465,8 @@ namespace BlueBrick.MapData
 			/// <param name="isSelected">tell if this ruler is currently selected in its parent layer selection</param>
 			/// <param name="selectionBrush">the brush to use if this ruler is selected</param>
 			/// <param name="shouldScaleMeasurementText">If true, the measurment string text will be scaled according to the current scalePixelPerStud of the map</param>
-			/// <param name="shouldDisplayHull">If <c>true</c>, an outline is drawn around the ruler item</param>
-			public abstract void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush, bool shouldScaleMeasurementText, bool shouldDisplayHull);
+			/// <param name="penToDrawHull">The pen that should be used to draw an outline around the ruler item</param>
+			public abstract void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush, bool shouldScaleMeasurementText, Pen penToDrawHull);
 
 			/// <summary>
 			/// Draw only the control points of this ruler item.
@@ -1263,8 +1263,8 @@ namespace BlueBrick.MapData
 			/// <param name="isSelected">tell if this ruler is currently selected in its parent layer selection</param>
 			/// <param name="selectionBrush">the brush to use if this ruler is selected</param>
 			/// <param name="shouldScaleMeasurementText">If true, the measurment string text will be scaled according to the current scalePixelPerStud of the map</param>
-			/// <param name="shouldDisplayHull">If <c>true</c>, an outline is drawn around the ruler item</param>
-			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush, bool shouldScaleMeasurementText, bool shouldDisplayHull)
+			/// <param name="penToDrawHull">The pen that should be used to draw an outline around the ruler item</param>
+			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush, bool shouldScaleMeasurementText, Pen penToDrawHull)
 			{
 				// check if the ruler is visible
 				if ((mDisplayArea.Right >= areaInStud.Left) && (mDisplayArea.Left <= areaInStud.Right) &&
@@ -1272,6 +1272,7 @@ namespace BlueBrick.MapData
 				{
 					// check if we will need to draw the dashed offset lines
 					bool needToDrawOffset = mAllowOffset && (mOffsetDistance != 0.0f);
+					bool shouldDrawHull = (penToDrawHull != null);
 					bool needToDrawArrowForSmallDistance = !mDisplayDistance && (mMeasuredDistance.DistanceInStud < MINIMUM_SIZE_FOR_DRAWING_HELPER_IN_STUD);
 
 					// transform the coordinates into pixel coordinates
@@ -1292,7 +1293,7 @@ namespace BlueBrick.MapData
 					PointF offsetInternal2InPixel = new PointF();
 					PointF offsetExternal1InPixel = new PointF();
 					PointF offsetExternal2InPixel = new PointF();
-					if (isSelected || shouldDisplayHull || needToDrawOffset || needToDrawArrowForSmallDistance)
+					if (isSelected || shouldDrawHull || needToDrawOffset || needToDrawArrowForSmallDistance)
 					{
 						offsetInternal1InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.INTERNAL_1], areaInStud, scalePixelPerStud);
 						offsetInternal2InPixel = Layer.sConvertPointInStudToPixel(mSelectionArea[(int)SelectionAreaIndex.INTERNAL_2], areaInStud, scalePixelPerStud);
@@ -1386,12 +1387,12 @@ namespace BlueBrick.MapData
 
 					// compute the selection area if it is selected or if we need to draw the hull
 					PointF[] selectionArea = null;
-					if (isSelected || shouldDisplayHull)
+					if (isSelected || shouldDrawHull)
 						selectionArea = new PointF[] { offsetInternal1InPixel, offsetExternal1InPixel, offsetExternal2InPixel, offsetInternal2InPixel };
 
 					// draw the hull if needed
-					if (shouldDisplayHull)
-						g.DrawPolygon(sPenToDrawOtherHull, selectionArea);
+					if (shouldDrawHull)
+						g.DrawPolygon(penToDrawHull, selectionArea);
 
 					// draw a frame around the ruler if it is selected
 					if (isSelected)						
@@ -1763,8 +1764,8 @@ namespace BlueBrick.MapData
 			/// <param name="isSelected">tell if this ruler is currently selected in its parent layer selection</param>
 			/// <param name="selectionBrush">the brush to use if this ruler is selected</param>
 			/// <param name="shouldScaleMeasurementText">If true, the measurment string text will be scaled according to the current scalePixelPerStud of the map</param>
-			/// <param name="shouldDisplayHull">If <c>true</c>, an outline is drawn around the ruler item</param>
-			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush, bool shouldScaleMeasurementText, bool shouldDisplayHull)
+			/// <param name="penToDrawHull">The pen that should be used to draw an outline around the ruler item</param>
+			public override void draw(Graphics g, RectangleF areaInStud, double scalePixelPerStud, int layerTransparency, ImageAttributes layerImageAttributeWithTransparency, bool isSelected, SolidBrush selectionBrush, bool shouldScaleMeasurementText, Pen penToDrawHull)
 			{
 				// check if the ruler is visible
 				if ((mDisplayArea.Right >= areaInStud.Left) && (mDisplayArea.Left <= areaInStud.Right) &&
@@ -1800,8 +1801,8 @@ namespace BlueBrick.MapData
 						drawMesurementImage(g, centerInPixel, shouldScaleMeasurementText ? scalePixelPerStud : 1.0, layerImageAttributeWithTransparency);
 
 					// draw the hull if needed
-                    if (shouldDisplayHull)
-						g.DrawEllipse(sPenToDrawOtherHull, upperLeftInPixel.X, upperLeftInPixel.Y, diameterInPixel, diameterInPixel);
+                    if (penToDrawHull != null)
+						g.DrawEllipse(penToDrawHull, upperLeftInPixel.X, upperLeftInPixel.Y, diameterInPixel, diameterInPixel);
 
 					// draw the selection overlay
 					if (isSelected)

@@ -265,7 +265,7 @@
     <Setting Name="UIFilterAllSentence" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="BrickHullColor" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="DefaultHullColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
     </Setting>
     <Setting Name="OtherHullColor" Type="System.Drawing.Color" Scope="User">
@@ -343,7 +343,7 @@
     <Setting Name="DisplayWarningMessageForPastingOnWrongLayer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="BrickHullThickness" Type="System.Single" Scope="User">
+    <Setting Name="DefaultHullThickness" Type="System.Single" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="OtherHullThickness" Type="System.Single" Scope="User">

@@ -776,7 +776,7 @@ namespace BlueBrick.MapData
 							g.DrawImage(image, destinationPoints, image.GetBounds(ref unit), GraphicsUnit.Pixel, mImageAttributeDefault);
 
 						if (mDisplayHulls)
-                            g.DrawPolygon(sPenToDrawBrickHull, Layer.sConvertPolygonInStudToPixel(brick.SelectionArea.Vertice, areaInStud, scalePixelPerStud));
+                            g.DrawPolygon(mPenToDrawHull, Layer.sConvertPolygonInStudToPixel(brick.SelectionArea.Vertice, areaInStud, scalePixelPerStud));
 
 						// draw eventually the altitude of the brick
 						if (mDisplayBrickElevation)

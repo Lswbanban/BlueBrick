@@ -490,13 +490,13 @@ namespace BlueBrick.MapData
 				ruler.draw(g, areaInStud, scalePixelPerStud, mTransparency,
 							mImageAttribute, drawSelection && mSelectedObjects.Contains(ruler), mSelectionBrush,
 							// special case, if we don't draw the selection (i.e. if it is the exported image), we need to rescale all the measurement text at the scale of the image
-							!drawSelection, mDisplayHulls);
+							!drawSelection, mDisplayHulls ? mPenToDrawHull : null);
 
 			// draw the ruler that we are currently creating if any
 			// (if it's the same as the ruler under the mouse
 			// that means we are not creating a new one but editing an existing one)
 			if ((mCurrentlyEditedRuler != null) && (mCurrentlyEditedRuler != mCurrentRulerUnderMouse))
-				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute, false, mSelectionBrush, false, mDisplayHulls);
+				mCurrentlyEditedRuler.draw(g, areaInStud, scalePixelPerStud, mTransparency, mImageAttribute, false, mSelectionBrush, false, mDisplayHulls ? mPenToDrawHull : null);
 
 			if (drawSelection && (sCurrentEditTool == EditTool.SELECT))
 			{
