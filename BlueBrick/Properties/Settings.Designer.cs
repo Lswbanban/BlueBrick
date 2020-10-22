@@ -999,18 +999,6 @@ namespace BlueBrick.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool UIExportHulls {
-            get {
-                return ((bool)(this["UIExportHulls"]));
-            }
-            set {
-                this["UIExportHulls"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool UIExportElectricCircuit {
             get {
                 return ((bool)(this["UIExportElectricCircuit"]));

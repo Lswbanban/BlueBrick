@@ -70,7 +70,7 @@ namespace BlueBrick.MapData
 		private RectangleF mExportArea = new RectangleF();
 		private double mExportScale = 0.0;
 		private bool mExportWatermark = BlueBrick.Properties.Settings.Default.UIExportWatermark;
-		private bool mExportBrickHull = BlueBrick.Properties.Settings.Default.UIExportHulls;
+		private bool mExportBrickHull = false;
 		private bool mExportElectricCircuit = BlueBrick.Properties.Settings.Default.UIExportElectricCircuit;
 		private bool mExportConnectionPoints = BlueBrick.Properties.Settings.Default.UIExportConnection;
 		private bool mHasExportSettingsChanged = false; // a boolean flag indicating that the settings has changed and that the file need to be saved
@@ -715,7 +715,7 @@ namespace BlueBrick.MapData
 			mExportFileTypeIndex = exportFileTypeIndex;
 		}
 
-		public void saveExportAreaAndDisplaySettings(RectangleF exportArea, double exportScale, bool exportWatermark, bool exportBrickHull, bool exportElectricCircuit, bool exportConnectionPoints)
+		public void saveExportAreaAndDisplaySettings(RectangleF exportArea, double exportScale, bool exportWatermark, bool exportElectricCircuit, bool exportConnectionPoints)
 		{
 			// epsilon value to compare double values.
 			const double epsilon = 0.000000001;
@@ -723,15 +723,13 @@ namespace BlueBrick.MapData
             mHasExportSettingsChanged = mHasExportSettingsChanged || 
                                         (mExportArea != exportArea) ||
 										(Math.Abs(mExportScale - exportScale) > epsilon) ||
-                                        (mExportWatermark != exportWatermark) ||
-                                        (mExportBrickHull != exportBrickHull) ||
+                                        (mExportWatermark != exportWatermark) ||                                        
                                         (mExportElectricCircuit != exportElectricCircuit) ||
                                         (mExportConnectionPoints != exportConnectionPoints);
             // then remember the settings
             mExportArea = exportArea;
 			mExportScale = exportScale;
 		    mExportWatermark = exportWatermark;
-            mExportBrickHull = exportBrickHull;
             mExportElectricCircuit = exportElectricCircuit;
             mExportConnectionPoints = exportConnectionPoints;
 		}

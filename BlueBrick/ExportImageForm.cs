@@ -53,7 +53,6 @@ namespace BlueBrick
         public void loadUISettingFromDefaultSettings()
         {
             this.exportWatermarkCheckBox.Checked = Settings.Default.UIExportWatermark;
-            this.exportHullCheckBox.Checked = Settings.Default.UIExportHulls;
             this.exportElectricCircuitCheckBox.Checked = Settings.Default.UIExportElectricCircuit;
             this.exportConnectionPointCheckBox.Checked = Settings.Default.UIExportConnection;
         }
@@ -61,7 +60,6 @@ namespace BlueBrick
         public void saveUISettingInDefaultSettings()
         {
             Settings.Default.UIExportWatermark = this.exportWatermarkCheckBox.Checked;
-            Settings.Default.UIExportHulls = this.exportHullCheckBox.Checked;
             Settings.Default.UIExportElectricCircuit = this.exportElectricCircuitCheckBox.Checked;
             Settings.Default.UIExportConnection = this.exportConnectionPointCheckBox.Checked;
         }
@@ -175,9 +173,6 @@ namespace BlueBrick
             // now change them: for each we change the check state and simulate a click
             this.exportWatermarkCheckBox.Checked = Map.Instance.ExportWatermark;
             this.exportWatermarkCheckBox_Click(null, null);
-
-            this.exportHullCheckBox.Checked = Map.Instance.ExportBrickHull;
-            this.exportHullCheckBox_Click(null, null);
 
             this.exportElectricCircuitCheckBox.Checked = Map.Instance.ExportElectricCircuit;
             this.exportElectricCircuitCheckBox_Click(null, null);
@@ -408,10 +403,6 @@ namespace BlueBrick
 			// if the sender is null, this method is just called from the init function, so no need to draw several times
 			if (sender != null)
 				drawAll();
-		}
-
-		private void exportHullCheckBox_Click(object sender, EventArgs e)
-		{
 		}
 
 		private void exportElectricCircuitCheckBox_Click(object sender, EventArgs e)
@@ -681,8 +672,7 @@ namespace BlueBrick
 
 			// save the setting chosen in the Map
 			Map.Instance.saveExportAreaAndDisplaySettings(mSelectedAreaInStud, (double)(this.scaleNumericUpDown.Value),
-                this.exportWatermarkCheckBox.Checked, this.exportHullCheckBox.Checked,
-                this.exportElectricCircuitCheckBox.Checked, this.exportConnectionPointCheckBox.Checked);
+                this.exportWatermarkCheckBox.Checked, this.exportElectricCircuitCheckBox.Checked, this.exportConnectionPointCheckBox.Checked);
 
 			// then ask the user to choose a filename and format
 			string fileName;
@@ -708,7 +698,6 @@ namespace BlueBrick
 			// in such case, next time you try do do a Show Dialog, and exception is raised
 			this.Visible = false;
 		}
-
 
 		private bool getExportFileName(out string fileName, out ImageFormat choosenFormat)
 		{

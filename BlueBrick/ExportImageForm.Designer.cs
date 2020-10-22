@@ -60,7 +60,6 @@ namespace BlueBrick
 			this.exportConnectionPointCheckBox = new System.Windows.Forms.CheckBox();
 			this.exportElectricCircuitCheckBox = new System.Windows.Forms.CheckBox();
 			this.exportWatermarkCheckBox = new System.Windows.Forms.CheckBox();
-			this.exportHullCheckBox = new System.Windows.Forms.CheckBox();
 			this.saveExportImageDialog = new System.Windows.Forms.SaveFileDialog();
 			((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).BeginInit();
 			this.settingAndButtonTableLayoutPanel.SuspendLayout();
@@ -382,11 +381,10 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
-			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Controls.Add(this.exportConnectionPointCheckBox);
 			this.groupBox3.Controls.Add(this.exportElectricCircuitCheckBox);
 			this.groupBox3.Controls.Add(this.exportWatermarkCheckBox);
-			this.groupBox3.Controls.Add(this.exportHullCheckBox);
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 
@@ -410,13 +408,6 @@ namespace BlueBrick
 			this.exportWatermarkCheckBox.Name = "exportWatermarkCheckBox";
 			this.exportWatermarkCheckBox.UseVisualStyleBackColor = true;
 			this.exportWatermarkCheckBox.Click += new System.EventHandler(this.exportWatermarkCheckBox_Click);
-			// 
-			// exportHullCheckBox
-			// 
-			resources.ApplyResources(this.exportHullCheckBox, "exportHullCheckBox");
-			this.exportHullCheckBox.Name = "exportHullCheckBox";
-			this.exportHullCheckBox.UseVisualStyleBackColor = true;
-			this.exportHullCheckBox.Click += new System.EventHandler(this.exportHullCheckBox_Click);
 			// 
 			// saveExportImageDialog
 			// 
@@ -482,7 +473,6 @@ namespace BlueBrick
 		private System.Windows.Forms.PictureBox linkPictureBox;
 		private System.Windows.Forms.TableLayoutPanel topTableLayoutPanel;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.CheckBox exportHullCheckBox;
         private System.Windows.Forms.CheckBox exportConnectionPointCheckBox;
         private System.Windows.Forms.CheckBox exportElectricCircuitCheckBox;
         private System.Windows.Forms.CheckBox exportWatermarkCheckBox;
