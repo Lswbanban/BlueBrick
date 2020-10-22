@@ -938,18 +938,6 @@ namespace BlueBrick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
-        public global::System.Drawing.Color OtherHullColor {
-            get {
-                return ((global::System.Drawing.Color)(this["OtherHullColor"]));
-            }
-            set {
-                this["OtherHullColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Arial Narrow, 9.75pt")]
         public global::System.Drawing.Font WatermarkFont {
             get {
@@ -1245,18 +1233,6 @@ namespace BlueBrick.Properties {
             }
             set {
                 this["DefaultHullThickness"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public float OtherHullThickness {
-            get {
-                return ((float)(this["OtherHullThickness"]));
-            }
-            set {
-                this["OtherHullThickness"] = value;
             }
         }
         

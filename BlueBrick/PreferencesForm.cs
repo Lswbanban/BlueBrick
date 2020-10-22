@@ -188,8 +188,6 @@ namespace BlueBrick
 			{
 				this.brickHullColorPictureBox.BackColor = Settings.Default.DefaultHullColor;
 				this.brickHullThicknessNumericUpDown.Value = (Decimal)Settings.Default.DefaultHullThickness;
-				this.otherHullColorPictureBox.BackColor = Settings.Default.OtherHullColor;
-				this.otherHullThicknessNumericUpDown.Value = (Decimal)Settings.Default.OtherHullThickness;
 				this.backgroundColorPictureBox.BackColor = Settings.Default.DefaultBackgroundColor;
 				this.gridColorPictureBox.BackColor = Settings.Default.DefaultGridColor;
 				this.subGridColorPictureBox.BackColor = Settings.Default.DefaultSubGridColor;
@@ -325,8 +323,6 @@ namespace BlueBrick
 			{
 				destination.DefaultHullColor = source.DefaultHullColor;
 				destination.DefaultHullThickness = source.DefaultHullThickness;
-				destination.OtherHullColor = source.OtherHullColor;
-				destination.OtherHullThickness = source.OtherHullThickness;
 				destination.DefaultBackgroundColor = source.DefaultBackgroundColor;
 				destination.DefaultAreaTransparency = source.DefaultAreaTransparency;
 				destination.DefaultAreaSize = source.DefaultAreaSize;
@@ -434,8 +430,6 @@ namespace BlueBrick
 			// hull style
 			Settings.Default.DefaultHullColor = this.brickHullColorPictureBox.BackColor;
 			Settings.Default.DefaultHullThickness = (float)this.brickHullThicknessNumericUpDown.Value;
-			Settings.Default.OtherHullColor = this.otherHullColorPictureBox.BackColor;
-			Settings.Default.OtherHullThickness = (float)this.otherHullThicknessNumericUpDown.Value;
 			// check if the user changed the grid color
 			bool doesGridColorChanged = (mOldSettings.DefaultBackgroundColor != backgroundColorPictureBox.BackColor) ||
 										(mOldSettings.DefaultGridColor != gridColorPictureBox.BackColor) ||
@@ -1000,14 +994,13 @@ namespace BlueBrick
 			Image image = Properties.Resources.PartForOptionPreview;
 
 			// create the pen do draw the hull around the parts
-			Pen penToDrawBrickHull = new Pen(brickHullColorPictureBox.BackColor, (float)brickHullThicknessNumericUpDown.Value);
-			Pen penToDrawOtherHull = new Pen(otherHullColorPictureBox.BackColor, (float)otherHullThicknessNumericUpDown.Value);
+			Pen penToDrawHull = new Pen(brickHullColorPictureBox.BackColor, (float)brickHullThicknessNumericUpDown.Value);
 
 			// draw a text and its hull
 			SizeF textSize = graphics.MeasureString(previewLabel.Text, SystemFonts.DefaultFont);
 			Rectangle textRectangle = new Rectangle(20, 10, (int)textSize.Width + 1, (int)textSize.Height + 1);
 			graphics.DrawString(previewLabel.Text, SystemFonts.DefaultFont, Brushes.Black, textRectangle);
-			graphics.DrawRectangle(penToDrawOtherHull, textRectangle);
+			graphics.DrawRectangle(penToDrawHull, textRectangle);
 
 			// draw 3 part images as an example
 			Rectangle destinationRectangle = new Rectangle(42, 42, image.Width, image.Height);
@@ -1016,7 +1009,7 @@ namespace BlueBrick
 			graphics.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributeForSelection);
 			destinationRectangle.Y += 32;
 			graphics.DrawImage(image, destinationRectangle, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributeForSnapping);
-			graphics.DrawRectangle(penToDrawBrickHull, destinationRectangle);
+			graphics.DrawRectangle(penToDrawHull, destinationRectangle);
 
 			// invalidate the picture box
 			this.samplePictureBox.Invalidate();
@@ -1037,25 +1030,6 @@ namespace BlueBrick
 		}
 
 		private void brickHullThicknessNumericUpDown_ValueChanged(object sender, EventArgs e)
-		{
-			redrawSamplePictureBox();
-		}
-
-		private void otherHullColorPictureBox_Click(object sender, EventArgs e)
-		{
-			// set the color with the current back color of the picture box
-			this.colorDialog.Color = otherHullColorPictureBox.BackColor;
-			// open the color box in modal
-			DialogResult result = this.colorDialog.ShowDialog(this);
-			if (result == DialogResult.OK)
-			{
-				// if the user choose a color, set it back in the back color of the picture box
-				otherHullColorPictureBox.BackColor = this.colorDialog.Color;
-				redrawSamplePictureBox();
-			}
-		}
-
-		private void otherHullThicknessNumericUpDown_ValueChanged(object sender, EventArgs e)
 		{
 			redrawSamplePictureBox();
 		}
