@@ -2375,14 +2375,6 @@ namespace BlueBrick
 			this.mapPanel.Invalidate();
 		}
 
-        private void hullsBricksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void hullsTextsAndRulersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
 		private void rulerAttachPointsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Properties.Settings.Default.DisplayRulerAttachPoints = this.rulerAttachPointsToolStripMenuItem.Checked;

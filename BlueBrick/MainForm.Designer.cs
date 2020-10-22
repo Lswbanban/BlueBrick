@@ -107,9 +107,6 @@ namespace BlueBrick
 			this.electricCircuitsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.connectionPointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.rulerAttachPointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.hullsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.hullsBricksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.hullsTextsAndRulersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.budgetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.budgetNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.budgetOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -751,8 +748,7 @@ namespace BlueBrick
             this.toolStripSeparator13,
             this.electricCircuitsMenuItem,
             this.connectionPointsToolStripMenuItem,
-            this.rulerAttachPointsToolStripMenuItem,
-            this.hullsToolStripMenuItem});
+            this.rulerAttachPointsToolStripMenuItem});
 			this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
 			resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
 			// 
@@ -819,28 +815,6 @@ namespace BlueBrick
 			this.rulerAttachPointsToolStripMenuItem.Name = "rulerAttachPointsToolStripMenuItem";
 			resources.ApplyResources(this.rulerAttachPointsToolStripMenuItem, "rulerAttachPointsToolStripMenuItem");
 			this.rulerAttachPointsToolStripMenuItem.Click += new System.EventHandler(this.rulerAttachPointsToolStripMenuItem_Click);
-			// 
-			// hullsToolStripMenuItem
-			// 
-			this.hullsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hullsBricksToolStripMenuItem,
-            this.hullsTextsAndRulersToolStripMenuItem});
-			this.hullsToolStripMenuItem.Name = "hullsToolStripMenuItem";
-			resources.ApplyResources(this.hullsToolStripMenuItem, "hullsToolStripMenuItem");
-			// 
-			// hullsBricksToolStripMenuItem
-			// 
-			this.hullsBricksToolStripMenuItem.CheckOnClick = true;
-			this.hullsBricksToolStripMenuItem.Name = "hullsBricksToolStripMenuItem";
-			resources.ApplyResources(this.hullsBricksToolStripMenuItem, "hullsBricksToolStripMenuItem");
-			this.hullsBricksToolStripMenuItem.Click += new System.EventHandler(this.hullsBricksToolStripMenuItem_Click);
-			// 
-			// hullsTextsAndRulersToolStripMenuItem
-			// 
-			this.hullsTextsAndRulersToolStripMenuItem.CheckOnClick = true;
-			this.hullsTextsAndRulersToolStripMenuItem.Name = "hullsTextsAndRulersToolStripMenuItem";
-			resources.ApplyResources(this.hullsTextsAndRulersToolStripMenuItem, "hullsTextsAndRulersToolStripMenuItem");
-			this.hullsTextsAndRulersToolStripMenuItem.Click += new System.EventHandler(this.hullsTextsAndRulersToolStripMenuItem_Click);
 			// 
 			// budgetToolStripMenuItem
 			// 
@@ -1977,9 +1951,6 @@ namespace BlueBrick
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.CheckBox filterAllTabCheckBox;
         private System.Windows.Forms.ImageList filterLibraryCheckboxImageList;
-        private System.Windows.Forms.ToolStripMenuItem hullsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hullsBricksToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hullsTextsAndRulersToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem budgetToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem budgetNewToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem budgetOpenToolStripMenuItem;
