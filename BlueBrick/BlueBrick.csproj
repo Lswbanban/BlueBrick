@@ -87,6 +87,7 @@
     <Compile Include="Actions\Bricks\AddConnectBrick.cs" />
     <Compile Include="Actions\Bricks\AddConnectGroup.cs" />
     <Compile Include="Actions\Bricks\BringBrickToFront.cs" />
+    <Compile Include="Actions\Bricks\ChangeBrickElevation.cs" />
     <Compile Include="Actions\Bricks\DuplicateBrick.cs" />
     <Compile Include="Actions\Bricks\MoveBrick.cs" />
     <Compile Include="Actions\Bricks\ReplaceBrick.cs" />
@@ -140,6 +141,12 @@
     </Compile>
     <Compile Include="DownloadCenterForm.Designer.cs">
       <DependentUpon>DownloadCenterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditBrickForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditBrickForm.Designer.cs">
+      <DependentUpon>EditBrickForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EditRulerForm.cs">
       <SubType>Form</SubType>
@@ -318,6 +325,9 @@
     <EmbeddedResource Include="AboutBox.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditBrickForm.resx">
+      <DependentUpon>EditBrickForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditRulerForm.de.resx">
       <DependentUpon>EditRulerForm.cs</DependentUpon>

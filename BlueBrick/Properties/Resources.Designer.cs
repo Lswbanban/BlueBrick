@@ -187,6 +187,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Brick Elevation to &amp;.
+        /// </summary>
+        internal static string ActionChangeBrickElevation {
+            get {
+                return ResourceManager.GetString("ActionChangeBrickElevation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Map General Info.
         /// </summary>
         internal static string ActionChangeGeneralInfo {

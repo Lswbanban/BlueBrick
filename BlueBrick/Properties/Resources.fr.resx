@@ -583,4 +583,7 @@ Vous devriez fermer tous les programmes qui accèdent à la librarie de pièces 
     <value>Le fichier "&amp;" existe. Voulez-vous le remplacer ?
 Si vous cliquez sur "Oui", tous les fichiers de la série seront remplacés.</value>
   </data>
+  <data name="ActionChangeBrickElevation" xml:space="preserve">
+    <value>Modifie l'altitude de la brique à &amp;</value>
+  </data>
 </root>
