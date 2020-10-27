@@ -624,20 +624,16 @@ namespace BlueBrick.MapData
 		}
 		#endregion 
 
-		#region altitude
+		#region elevation
 		/// <summary>
 		/// A delegate to compare two bricks by altitude
 		/// </summary>
 		/// <param name="brick1">the first brick to compare</param>
 		/// <param name="brick2">the second brick to compare</param>
 		/// <returns></returns>
-		private static int CompareBricksByAltitudeDelegate(Brick brick1, Brick brick2)
+		private static int CompareBricksByElevationDelegate(Brick brick1, Brick brick2)
 		{
-			if (brick1.Altitude > brick2.Altitude)
-				return -1;
-			if (brick1.Altitude < brick2.Altitude)
-				return 1;
-			return 0;
+			return (int)((brick2.Altitude - brick1.Altitude) * 10);
 		}
 
 		/// <summary>
@@ -645,9 +641,9 @@ namespace BlueBrick.MapData
 		/// such as the higher bricks are displayed last, and appear on top.
 		/// This function is usefull when we load a LDRAW or TD file that contains altitude
 		/// </summary>
-		public void sortBricksByAltitude()
+		public void sortBricksByElevation()
 		{
-			mBricks.Sort(CompareBricksByAltitudeDelegate);
+			mBricks.Sort(CompareBricksByElevationDelegate);
 		}
 
 		/// <summary>

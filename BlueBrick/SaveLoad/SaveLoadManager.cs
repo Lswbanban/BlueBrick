@@ -586,7 +586,7 @@ namespace BlueBrick
                     {
                         LayerBrick brickLayer = sCurrentLayerLoaded as LayerBrick;
                         brickLayer.updateFullBrickConnectivity();
-                        brickLayer.sortBricksByAltitude();
+                        brickLayer.sortBricksByElevation();
                     }
                 }
 
