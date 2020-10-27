@@ -37,6 +37,7 @@ namespace BlueBrick.MapData
 			DUPLICATE_SELECTION,
 			FLEX_MOVE,
 			SELECT_PATH,
+			EDIT_PROPERTIES,
 		}
 
 		[NonSerialized]
@@ -669,8 +670,8 @@ namespace BlueBrick.MapData
 				editBrickForm.ShowDialog();
 				if (editBrickForm.DialogResult == DialogResult.OK)
 				{
-					List<Brick> brickToEdit = new List<Brick>(mSelectedObjects.OfType<Brick>());
-					ActionManager.Instance.doAction(new ChangeBrickElevation(brickToEdit, editBrickForm.BrickElevation));
+					List<Brick> brickListToEdit = new List<Brick>(mSelectedObjects.OfType<Brick>());
+					ActionManager.Instance.doAction(new ChangeBrickElevation(brickListToEdit, editBrickForm.BrickElevation));
 				}
 			}
 		}
@@ -1145,19 +1146,26 @@ namespace BlueBrick.MapData
 					preferedCursor = MainForm.Instance.BrickDuplicateCursor;
 				}
 				// check if it is a double click, to see if we need to do a flex move
-				else if ((currentBrickUnderMouse != null) && (e.Clicks == 2))
+				else if (e.Clicks == 2)
 				{
-					mMouseFlexMoveAction = new FlexMove(this, this.SelectedObjects, currentBrickUnderMouse, mouseCoordInStud);
-					if (mMouseFlexMoveAction.IsValid)
+					// a flex move can only happen if a brick is double clicked
+					if (currentBrickUnderMouse != null)
 					{
-						mEditAction = EditAction.FLEX_MOVE;
-						preferedCursor = MainForm.Instance.FlexArrowCursor;
+						mMouseFlexMoveAction = new FlexMove(this, this.SelectedObjects, currentBrickUnderMouse, mouseCoordInStud);
+						if (mMouseFlexMoveAction.IsValid)
+						{
+							mEditAction = EditAction.FLEX_MOVE;
+							preferedCursor = MainForm.Instance.FlexArrowCursor;
+						}
+						else
+						{
+							// destroy the action if it is not valid
+							mMouseFlexMoveAction = null;
+						}
 					}
-					else
-					{
-						// destroy the action if it is not valid
-						mMouseFlexMoveAction = null;
-					}
+					// if we didn't find a valid flex move edition then the double click can be an edit properties if the selection is not empty
+					if ((mEditAction == EditAction.NONE) && (SelectedObjects.Count > 0))
+						mEditAction = EditAction.EDIT_PROPERTIES;
 				}
 				// check if it is a path selection
 				else if ((currentBrickUnderMouse != null) && (Control.ModifierKeys == mouseSelectPathKey) && (SelectedObjects.Count > 0))
@@ -1314,6 +1322,8 @@ namespace BlueBrick.MapData
 				if (mEditAction == EditAction.FLEX_MOVE)
 				{
 					mMouseFlexMoveAction.reachTarget(mouseCoordInStudSnapped, snappedConnection);
+					// set the flag to tell that we move the mouse
+					mMouseHasMoved = true;
 					return true;
 				}
 				else if ((mEditAction == EditAction.MOVE_SELECTION) || (mEditAction == EditAction.DUPLICATE_SELECTION))
@@ -1400,7 +1410,18 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseUp(MouseEventArgs e, PointF mouseCoordInStud)
 		{
-			if (mEditAction == EditAction.FLEX_MOVE)
+			// if it's a double click, we should prompt a box for text editing
+			// WARNING: prompt the box in the mouse up event,
+			// otherwise, if you do it in the mouse down, the mouse up is not triggered (both under dot net and mono)
+			// and this can mess up the click count in mono
+			// If we double click we open the edit properties window, unless the user was doing a flex move also triggered by a double click
+			// but the user can also edit the properties of flex parts, so if the user double click without moving the it's an brick property edition
+			if ((mEditAction == EditAction.EDIT_PROPERTIES) || ((mEditAction == EditAction.FLEX_MOVE) && !mMouseHasMoved))
+			{
+				// call the function to add or edit, which open the edit text dialog in modal
+				editSelectedItemsProperties(mouseCoordInStud);
+			}
+			else if (mEditAction == EditAction.FLEX_MOVE)
 			{
 				// finish the action for this move and add it to the manager
 				mMouseFlexMoveAction.finishActionConstruction();

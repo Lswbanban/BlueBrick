@@ -106,8 +106,6 @@ to open the help file (see above for more details).
 Open bugs:
 - [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
-- [target 1.9] MISSING FEATURE (Alban): Support the brick elevation by displaying it on each part if the option is checked on the layer, and save the display elevation property in the BBM file
-	- add a Brick property window to edit the elevation of the brick
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
 - MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
@@ -165,6 +163,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): Add scrollbars on the map view (can be shown or hidden from the map context menu and the View menu)
 - NEW FEATURE (Evans): Show the current interruption of the 12V circuit breaker rail (hard-coded for the 2 specific parts)
 - NEW FEATURE (Alban): For more flexibility during export and also during the edition, the hulls are now displayable PER layer, with different color and thickness for each layer
+- NEW FEATURE (Alban): Support the brick elevation by displaying it on each part if the option is checked on the layer, and save the display elevation property in the BBM file
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
 - BUGFIX (Alban): Fix a crash when duplicating parts very quickly with the ALT key (crash due to delay with the clipboard)
 - BUGFIX (Ludo): If there was an empty description in a part xml file (without language tags, just <Description></Description>) then the connection points of the parts were missing.
