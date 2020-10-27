@@ -326,6 +326,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditBrickForm.fr.resx">
+      <DependentUpon>EditBrickForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditBrickForm.resx">
       <DependentUpon>EditBrickForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -64,15 +64,15 @@
 			// 
 			// okButton
 			// 
-			resources.ApplyResources(this.okButton, "okButton");
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			resources.ApplyResources(this.okButton, "okButton");
 			this.okButton.Name = "okButton";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
 			// 
-			resources.ApplyResources(this.cancelButton, "cancelButton");
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			resources.ApplyResources(this.cancelButton, "cancelButton");
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 

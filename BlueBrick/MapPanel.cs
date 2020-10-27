@@ -948,7 +948,7 @@ namespace BlueBrick
 					this.useAsModelToolStripMenuItem.Enabled = false;
 				}
 				// check is we need to enable the properties
-				this.propertiesToolStripMenuItem.Enabled = enableItemRelatedToSelection && ((selectedLayer is LayerRuler) || (selectedLayer is LayerText));
+				this.propertiesToolStripMenuItem.Enabled = enableItemRelatedToSelection && ((selectedLayer is LayerRuler) || (selectedLayer is LayerText) || (selectedLayer is LayerBrick));
 
 				// update the check mark of the scrollbar depending on the current state of the scrollbar
 				this.scrollBarToolStripMenuItem.Checked = this.horizontalScrollBar.Visible || this.verticalScrollBar.Visible;

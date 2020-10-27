@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Windows.Forms;
 using BlueBrick.Actions;
 using BlueBrick.Actions.Bricks;
@@ -646,6 +647,32 @@ namespace BlueBrick.MapData
 		public void sortBricksByAltitude()
 		{
 			mBricks.Sort(CompareBricksByAltitudeDelegate);
+		}
+
+		/// <summary>
+		/// Edit the properties of the selected bricks (which is only the altitude property for now)
+		/// </summary>
+		/// <param name="mouseCoordInStud">the mouse coordinate where the edit property was triggered</param>
+		public override void editSelectedItemsProperties(PointF mouseCoordInStud)
+		{
+			// does nothing if the selection is empty
+			if (mSelectedObjects.Count > 0)
+			{
+				// in priority get the brick under the mouse, if there's several brick selected
+				Brick priorityBrick = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
+				// but if user click outside of the item, get the first one of the list
+				if (priorityBrick == null)
+					priorityBrick = mSelectedObjects[0] as Brick;
+
+				// open the form to edit the properties in modal mode (given the altitude of the priority brick)
+				EditBrickForm editBrickForm = new EditBrickForm(priorityBrick.Altitude);
+				editBrickForm.ShowDialog();
+				if (editBrickForm.DialogResult == DialogResult.OK)
+				{
+					List<Brick> brickToEdit = new List<Brick>(mSelectedObjects.OfType<Brick>());
+					ActionManager.Instance.doAction(new ChangeBrickElevation(brickToEdit, editBrickForm.BrickElevation));
+				}
+			}
 		}
 		#endregion
 
