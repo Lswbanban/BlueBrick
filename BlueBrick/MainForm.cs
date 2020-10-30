@@ -1225,45 +1225,73 @@ namespace BlueBrick
 
 		public void resetProgressBar(int maxValue)
 		{
-			if (maxValue > 0)
+			try
 			{
-				this.statusBarProgressBar.Step = 1;
-				this.statusBarProgressBar.Minimum = 0;
-				this.statusBarProgressBar.Maximum = maxValue;
-				this.statusBarProgressBar.Value = 0;
-				this.statusBarProgressBar.Visible = true;
+				if (maxValue > 0)
+				{
+					this.statusBarProgressBar.Step = 1;
+					this.statusBarProgressBar.Minimum = 0;
+					this.statusBarProgressBar.Maximum = maxValue;
+					this.statusBarProgressBar.Value = 0;
+					this.statusBarProgressBar.Visible = true;
+				}
+			}
+			catch
+			{
+				// ignore if if the progressbar is already dead
 			}
 		}
 
 		public void stepProgressBar()
 		{
-			// perform the step
-			this.statusBarProgressBar.PerformStep();
-			// hide automatically the progress bar when the end is reached
-			if (this.statusBarProgressBar.Value >= this.statusBarProgressBar.Maximum)
-				this.statusBarProgressBar.Visible = false;
+			try
+			{
+				// perform the step
+				this.statusBarProgressBar.PerformStep();
+				// hide automatically the progress bar when the end is reached
+				if (this.statusBarProgressBar.Value >= this.statusBarProgressBar.Maximum)
+					this.statusBarProgressBar.Visible = false;
+			}
+			catch
+			{
+				// ignore if if the progressbar is already dead
+			}
 		}
 
 		public void stepProgressBar(int stepValue)
 		{
-			if (stepValue > 0)
+			try
 			{
-				this.statusBarProgressBar.Step = stepValue;
-				stepProgressBar();
+				if (stepValue > 0)
+				{
+					this.statusBarProgressBar.Step = stepValue;
+					stepProgressBar();
+				}
+			}
+			catch
+			{
+				// ignore if if the progressbar is already dead
 			}
 		}
 
 		public void finishProgressBar()
 		{
-			if (this.statusBarProgressBar.Value < this.statusBarProgressBar.Maximum)
+			try
 			{
-				this.statusBarProgressBar.Step = this.statusBarProgressBar.Maximum - this.statusBarProgressBar.Value;
-				stepProgressBar();
+				if (this.statusBarProgressBar.Value < this.statusBarProgressBar.Maximum)
+				{
+					this.statusBarProgressBar.Step = this.statusBarProgressBar.Maximum - this.statusBarProgressBar.Value;
+					stepProgressBar();
+				}
+			}
+			catch
+			{
+				// ignore if if the progressbar is already dead
 			}
 		}
 		#endregion
 
-        #region event handler for menu bar
+		#region event handler for menu bar
 
 		#region File menu
 		/// <summary>

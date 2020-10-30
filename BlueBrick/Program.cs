@@ -75,9 +75,29 @@ namespace BlueBrick
 				// final catch for exeption
 				string message = Properties.Resources.ErrorMsgCrash;
 				message += e.ToString();
-				MessageBox.Show(null, message,
-					Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
+				MessageBox.Show(null, message, Properties.Resources.ErrorMsgTitleError, MessageBoxButtons.OK,
 					MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+
+				// save the map if there's unsaved changed
+				if (MapData.Map.Instance.WasModified)
+				{
+					// construct a file name for the save
+					string backupFileNameEnd = "_autosave.bbm";
+					string backupFullFileName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + System.IO.Path.DirectorySeparatorChar + backupFileNameEnd;
+					if (MapData.Map.Instance.IsMapNameValid)
+					{
+						System.IO.FileInfo fileInfo = new System.IO.FileInfo(MapData.Map.Instance.MapFileName);
+						backupFullFileName = fileInfo.FullName.Remove(fileInfo.FullName.LastIndexOf(fileInfo.Extension)) + backupFileNameEnd;
+					}
+
+					// call the save function (which can fail for some reason, in such case a flase flag will be returned)
+					bool saveDone = SaveLoadManager.save(backupFullFileName);
+
+					// inform the player of the save
+					if (saveDone)
+						MessageBox.Show(null, Properties.Resources.ErrorMsgAutosaveMap.Replace("&", backupFullFileName), Properties.Resources.ErrorMsgTitleInfo, MessageBoxButtons.OK,
+							MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+				}
 			}
 		}
 	}

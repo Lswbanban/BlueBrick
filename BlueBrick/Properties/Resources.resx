@@ -657,4 +657,11 @@ You should close other programs accessing the BlueBrick part library and try aga
   <data name="ActionChangeBrickElevation" xml:space="preserve">
     <value>Change Brick Elevation to &amp;</value>
   </data>
+  <data name="ErrorMsgAutosaveMap" xml:space="preserve">
+    <value>A backup of your map has been saved to:
+&amp;</value>
+  </data>
+  <data name="ErrorMsgTitleInfo" xml:space="preserve">
+    <value>Information</value>
+  </data>
 </root>

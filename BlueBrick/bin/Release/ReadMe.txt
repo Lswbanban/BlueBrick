@@ -104,7 +104,6 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE #6 (Alban): Autosave.
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
@@ -134,6 +133,8 @@ Open bugs:
 - BUG (Alban): For some mice, the middle button doesn't work all the time.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
+- REFACTORING (Alban): In the part XML, promote the <LDraw><PreferredHeight> to normal part properties, and use it to set the default Altitude of parts
+- REFACTORING (Alban): The two buttons to raise and lower parts in the toolbar should probably change the Altitude of the parts for a brick layer (that's what the users may expect)
 
 Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): The window to edit the general info has been moved to a tab next to the layer list, including the edition of the map background color
@@ -164,6 +165,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Evans): Show the current interruption of the 12V circuit breaker rail (hard-coded for the 2 specific parts)
 - NEW FEATURE (Alban): For more flexibility during export and also during the edition, the hulls are now displayable PER layer, with different color and thickness for each layer
 - NEW FEATURE (Alban): Support the brick elevation by displaying it on each part if the option is checked on the layer, and save the display elevation property in the BBM file
+- NEW FEATURE #6 (Alban): Save a backup file of the map if the application crash.
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
 - BUGFIX (Alban): Fix a crash when duplicating parts very quickly with the ALT key (crash due to delay with the clipboard)
 - BUGFIX (Ludo): If there was an empty description in a part xml file (without language tags, just <Description></Description>) then the connection points of the parts were missing.

@@ -586,4 +586,11 @@ Si vous cliquez sur "Oui", tous les fichiers de la série seront remplacés.</va
   <data name="ActionChangeBrickElevation" xml:space="preserve">
     <value>Modifie l'altitude de la brique à &amp;</value>
   </data>
+  <data name="ErrorMsgAutosaveMap" xml:space="preserve">
+    <value>Une copie de sauvegarde de votre plan a éré sauvegardé sous le nom :
+&amp;</value>
+  </data>
+  <data name="ErrorMsgTitleInfo" xml:space="preserve">
+    <value>Information</value>
+  </data>
 </root>

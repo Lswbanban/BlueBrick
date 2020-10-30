@@ -795,6 +795,16 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A backup of your map has been saved to:
+        ///&amp;.
+        /// </summary>
+        internal static string ErrorMsgAutosaveMap {
+            get {
+                return ResourceManager.GetString("ErrorMsgAutosaveMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your current Budget is not saved. Do you want to save your modification?.
         /// </summary>
         internal static string ErrorMsgBudgetWasModified {
@@ -1190,6 +1200,15 @@ namespace BlueBrick.Properties {
         internal static string ErrorMsgTitleError {
             get {
                 return ResourceManager.GetString("ErrorMsgTitleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        internal static string ErrorMsgTitleInfo {
+            get {
+                return ResourceManager.GetString("ErrorMsgTitleInfo", resourceCulture);
             }
         }
         
