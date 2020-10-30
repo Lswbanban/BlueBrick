@@ -2069,16 +2069,21 @@ namespace BlueBrick
 			if (connectedBrick != null)
 				ConnectedBrickBId = connectedBrick.GUID.ToString();
 
+			// get the node coordinate
+			float x = connectionPoint.PositionInStudWorldCoord.X * 8;
+			float y = connectionPoint.PositionInStudWorldCoord.Y * 8;
+			float z = connectionPoint.OwnerBrick.Altitude;
+
 			// export the node
 			textWriter.WriteLine("   <node>");
-			textWriter.WriteLine("      <coordinates x=\"" + connectionPoint.PositionInStudWorldCoord.X + "\" y=\"" + connectionPoint.PositionInStudWorldCoord.Y + "\" z=\"" + connectionPoint.OwnerBrick.Altitude + "\"/>");
+			textWriter.WriteLine("      <coordinates x=\"" + x + "\" y=\"" + y + "\" z=\"" + z + "\"/>");
 			textWriter.WriteLine("      <segments a=\"" + ConnectedBrickAId + "\" b=\"" + ConnectedBrickBId + "\"/>");
 			textWriter.WriteLine("      <anchor value=\"yes\"/>");
 			textWriter.WriteLine("      <type value=\"NT_UNDEFINED\"/>");
 			textWriter.WriteLine("   </node>");
 		}
 
-		private static void saveOneTrackSegmentIn4DBrix(StreamWriter textWriter, LayerBrick.Brick brick)
+		private static void saveOneTrackSegmentIn4DBrix(StreamWriter textWriter, LayerBrick.Brick brick, Dictionary<LayerBrick.Brick.ConnectionPoint, int> connectionGlobalIndex)
 		{
 			textWriter.WriteLine("   <segment>");
 			textWriter.WriteLine("      <index value=\"" + brick.GUID.ToString() + "\"/>");
@@ -2087,12 +2092,15 @@ namespace BlueBrick
 			if (brick.HasConnectionPoint)
 			{
 				textWriter.WriteLine("      <nodes value=\"" + brick.ConnectionPoints.Count + "\"/>");
-				int connectionLocalIndex = 1;
+				int localIndex = 1; // the local index is just used for the name of the xml tag, and starts with 1
 				foreach (LayerBrick.Brick.ConnectionPoint connection in brick.ConnectionPoints)
 				{
-					int connectionGlobalIndex = 0;
-					textWriter.WriteLine("      <node" + connectionLocalIndex.ToString() + " value=\"" + connectionGlobalIndex.ToString() + "\"/>");
-					connectionLocalIndex++;
+					// get the global index of the current connection (this should never fail)
+					int globalIndex = 0;
+					connectionGlobalIndex.TryGetValue(connection, out globalIndex);
+					// then write the line
+					textWriter.WriteLine("      <node" + localIndex.ToString() + " value=\"" + globalIndex.ToString() + "\"/>");
+					localIndex++;
 				}
 			}
 			textWriter.WriteLine("      <angle value=\"" + brick.Orientation.ToString() + "\"/>");
@@ -2101,7 +2109,55 @@ namespace BlueBrick
 			textWriter.WriteLine("   </segment>");
 		}
 
-		private static void saveLayerIn4DBrix(StreamWriter textWriter, Layer layer)
+		private static void saveTracksIn4DBrix(StreamWriter textWriter, List<LayerBrick.Brick> tracks)
+		{
+			// 4DBrix share the connections points between tracks, but BlueBricks give a connection point to each brick
+			// so we need to create a list of unique connection points and remove the connection points at the same place.
+			List<LayerBrick.Brick.ConnectionPoint> allNodes = new List<LayerBrick.Brick.ConnectionPoint>();
+			Dictionary<LayerBrick.Brick.ConnectionPoint, int> connectionGlobalIndex = new Dictionary<LayerBrick.Brick.ConnectionPoint, int>();
+
+			// iterate on the brick list, because it's the bricks who holds their connection points
+			// for each brick iterate on their connection points.
+			foreach (LayerBrick.Brick brick in tracks)
+			{
+				List<LayerBrick.Brick.ConnectionPoint> currentBrickConnectionPoints = brick.ConnectionPoints;
+				if (currentBrickConnectionPoints != null)
+					foreach (LayerBrick.Brick.ConnectionPoint connection in currentBrickConnectionPoints)
+					{
+						// Check if we need to add this connection in the list or if a connection at the same place is already in
+						// if the brother to which I'm linked, is already in the global list that means I would be redundant, so I should not be inserted
+						if ((connection.ConnectionLink == null) || !connectionGlobalIndex.ContainsKey(connection.ConnectionLink))
+						{
+							// use the last index of the list as global index for this connection
+							connectionGlobalIndex.Add(connection, allNodes.Count);
+							allNodes.Add(connection);
+						}
+						else
+						{
+							// in such case, get the global index of my linked brother and add myself in the dictionary with his global index
+							connectionGlobalIndex.Add(connection, connectionGlobalIndex[connection.ConnectionLink]);
+						}
+					}
+			}
+
+			// now iterate on all the nodes to save them
+			foreach (LayerBrick.Brick.ConnectionPoint connection in allNodes)
+				saveOneNodeIn4DBrix(textWriter, connection);
+
+			// then iterate on all the bricks to same them
+			foreach (LayerBrick.Brick brick in tracks)
+				saveOneTrackSegmentIn4DBrix(textWriter, brick, connectionGlobalIndex);
+		}
+
+		private static void saveTablesIn4DBrix(StreamWriter textWriter, List<LayerBrick.Brick> tables)
+		{
+		}
+
+		private static void saveBaseplatesIn4DBrix(StreamWriter textWriter, List<LayerBrick.Brick> baseplates)
+		{
+		}
+
+		private static void saveStructuresIn4DBrix(StreamWriter textWriter, List<LayerBrick.Brick> structures)
 		{
 		}
 
@@ -2128,12 +2184,31 @@ namespace BlueBrick
 			// step the progressbar after the write of the header
 			MainForm.Instance.stepProgressBar();
 
+			// 4DBrix only have 4 fixed layers, so we need to split the bricks of all the layers in 4 different list
+			List<LayerBrick.Brick> tables = new List<LayerBrick.Brick>();
+			List<LayerBrick.Brick> tracks = new List<LayerBrick.Brick>();
+			List<LayerBrick.Brick> baseplates = new List<LayerBrick.Brick>();
+			List<LayerBrick.Brick> structures = new List<LayerBrick.Brick>();
+
 			// iterate on all the layers of the Map
 			foreach (Layer layer in Map.Instance.LayerList)
 			{
-				// save the layer according its type
-				saveLayerIn4DBrix(textWriter, layer);
+				if (layer is LayerBrick)
+				{
+					LayerBrick brickLayer = layer as LayerBrick;
+					foreach (LayerBrick.Brick brick in brickLayer.BrickList)
+					{
+						// todo: add a tag info in the brick xml for remapping to 4DBrix, then ask the brick library in which type should go the part
+						tracks.Add(brick);
+					}
+				}
 			}
+
+			// then save the different layers in the correct order
+			saveTracksIn4DBrix(textWriter, tracks);
+			saveTablesIn4DBrix(textWriter, tables);
+			saveBaseplatesIn4DBrix(textWriter, baseplates);
+			saveStructuresIn4DBrix(textWriter, structures);
 
 			// save the footer to finish the file
 			saveFooterIn4DBrix(textWriter);
