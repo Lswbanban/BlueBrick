@@ -19,19 +19,34 @@ namespace BlueBrick.Actions.Bricks
 {
 	class ChangeBrickElevation : Action
 	{
+		private LayerBrick mLayer = null;
 		private List<LayerBrick.Brick> mBricksToEdit = null;
 		private List<float> mOldElevationForEachBrick = null;
 		private float mNewElevation = 0;
+		// for restoring the order in the list we need a list of brick and index sorted by index in increasing order
+		struct BriCkAndIndex
+		{
+			public LayerBrick.Brick mBrick;
+			public int mIndex;
+		}
+		private List<BriCkAndIndex> mBrickIndex = null; // this list of index is for the redo, to add each text at the same place
 
-		public ChangeBrickElevation(List<LayerBrick.Brick> bricksToEdit, float newElevation)
+		public ChangeBrickElevation(LayerBrick layer, List<LayerBrick.Brick> bricksToEdit, float newElevation)
 		{
 			// save the item list to edit and the other parameters
+			mLayer = layer;
 			mBricksToEdit = bricksToEdit;
 			mNewElevation = newElevation;
-			// and memorise the elevation of all the bricks
+			// and memorise the elevation of all the bricks and also its original index (for the undo)
 			mOldElevationForEachBrick = new List<float>(bricksToEdit.Count);
+			mBrickIndex = new List<BriCkAndIndex>(bricksToEdit.Count);
 			foreach (LayerBrick.Brick brick in bricksToEdit)
+			{
 				mOldElevationForEachBrick.Add(brick.Altitude);
+				mBrickIndex.Add(new BriCkAndIndex() { mBrick = brick, mIndex = mLayer.BrickList.IndexOf(brick) });
+			}
+			// sort the brick index list
+			mBrickIndex.Sort((x, y) => x.mIndex - y.mIndex);
 		}
 
 		public override string getName()
@@ -44,13 +59,23 @@ namespace BlueBrick.Actions.Bricks
 			// assign the same new elevation to all the bricks
 			foreach (LayerBrick.Brick brick in mBricksToEdit)
 				brick.Altitude = mNewElevation;
+			// sort the bricks on the layer
+			mLayer.sortBricksByElevation();
 		}
 
 		public override void undo()
 		{
 			// restore the old elevation to all the bricks to edit
 			for (int i = 0; i < mBricksToEdit.Count; ++i)
+			{
 				mBricksToEdit[i].Altitude = mOldElevationForEachBrick[i];
+				// remove the brick from the list, we will resinsert it at the previous index
+				mLayer.removeBrickWithoutChangingConnectivity(mBricksToEdit[i]);
+			}
+
+			// and restore the brick at the right index in the list of bricks
+			foreach (BriCkAndIndex briCkAndIndex in mBrickIndex)
+				mLayer.addBrickWithoutChangingConnectivity(briCkAndIndex.mBrick, briCkAndIndex.mIndex);
 		}
 	}
 }

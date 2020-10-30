@@ -633,7 +633,7 @@ namespace BlueBrick.MapData
 		/// <returns></returns>
 		private static int CompareBricksByElevationDelegate(Brick brick1, Brick brick2)
 		{
-			return (int)((brick2.Altitude - brick1.Altitude) * 10);
+			return (int)((brick1.Altitude - brick2.Altitude) * 10);
 		}
 
 		/// <summary>
@@ -667,7 +667,7 @@ namespace BlueBrick.MapData
 				if (editBrickForm.DialogResult == DialogResult.OK)
 				{
 					List<Brick> brickListToEdit = new List<Brick>(mSelectedObjects.OfType<Brick>());
-					ActionManager.Instance.doAction(new ChangeBrickElevation(brickListToEdit, editBrickForm.BrickElevation));
+					ActionManager.Instance.doAction(new ChangeBrickElevation(this, brickListToEdit, editBrickForm.BrickElevation));
 				}
 			}
 		}
