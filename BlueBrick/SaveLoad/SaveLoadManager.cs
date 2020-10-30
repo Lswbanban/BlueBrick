@@ -2058,6 +2058,49 @@ namespace BlueBrick
 			textWriter.WriteLine("   </script>");
 		}
 
+		private static void saveOneNodeIn4DBrix(StreamWriter textWriter, LayerBrick.Brick.ConnectionPoint connectionPoint)
+		{
+			// get the two id of the bricks which are connected to this connection point.
+			// if there's no brick, then "None" is used. All the connection point have a valid owner brick, because bluebrick don't allow loose connection point
+			// unlike 4DBrix in which you can create floating nodes, which means the A segment will always be valid
+			string ConnectedBrickAId = connectionPoint.OwnerBrick.GUID.ToString();
+			string ConnectedBrickBId = "None";
+			LayerBrick.Brick connectedBrick = connectionPoint.ConnectedBrick;
+			if (connectedBrick != null)
+				ConnectedBrickBId = connectedBrick.GUID.ToString();
+
+			// export the node
+			textWriter.WriteLine("   <node>");
+			textWriter.WriteLine("      <coordinates x=\"" + connectionPoint.PositionInStudWorldCoord.X + "\" y=\"" + connectionPoint.PositionInStudWorldCoord.Y + "\" z=\"" + connectionPoint.OwnerBrick.Altitude + "\"/>");
+			textWriter.WriteLine("      <segments a=\"" + ConnectedBrickAId + "\" b=\"" + ConnectedBrickBId + "\"/>");
+			textWriter.WriteLine("      <anchor value=\"yes\"/>");
+			textWriter.WriteLine("      <type value=\"NT_UNDEFINED\"/>");
+			textWriter.WriteLine("   </node>");
+		}
+
+		private static void saveOneTrackSegmentIn4DBrix(StreamWriter textWriter, LayerBrick.Brick brick)
+		{
+			textWriter.WriteLine("   <segment>");
+			textWriter.WriteLine("      <index value=\"" + brick.GUID.ToString() + "\"/>");
+			textWriter.WriteLine("      <type value=\"TS_STRAIGHT\"/>"); // TODO implement proper part name
+			textWriter.WriteLine("      <label value=\"\"/>");
+			if (brick.HasConnectionPoint)
+			{
+				textWriter.WriteLine("      <nodes value=\"" + brick.ConnectionPoints.Count + "\"/>");
+				int connectionLocalIndex = 1;
+				foreach (LayerBrick.Brick.ConnectionPoint connection in brick.ConnectionPoints)
+				{
+					int connectionGlobalIndex = 0;
+					textWriter.WriteLine("      <node" + connectionLocalIndex.ToString() + " value=\"" + connectionGlobalIndex.ToString() + "\"/>");
+					connectionLocalIndex++;
+				}
+			}
+			textWriter.WriteLine("      <angle value=\"" + brick.Orientation.ToString() + "\"/>");
+			textWriter.WriteLine("      <origin value=\"0\"/>");
+			textWriter.WriteLine("      <slope value=\"0\"/>");
+			textWriter.WriteLine("   </segment>");
+		}
+
 		private static void saveLayerIn4DBrix(StreamWriter textWriter, Layer layer)
 		{
 		}

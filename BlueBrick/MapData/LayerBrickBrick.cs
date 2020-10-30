@@ -40,6 +40,11 @@ namespace BlueBrick.MapData
 				private short mHasElectricShortcut = 0; // 0=no shortcut, 1 = has shortcut
 
 				#region get/set
+				public Brick OwnerBrick
+				{
+					get { return mMyBrick; }
+				}
+
 				public bool IsFree
 				{
 					get { return (mConnectionLink == null); }
