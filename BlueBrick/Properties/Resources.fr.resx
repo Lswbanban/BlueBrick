@@ -273,7 +273,7 @@
   <data name="DefaultSaveFileName" xml:space="preserve">
     <value>SansTitre.bbm</value>
   </data>
-  <data name="DefaultShow" xml:space="preserve">
+  <data name="DefaultEvent" xml:space="preserve">
     <value>Exposition inconnue</value>
   </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">

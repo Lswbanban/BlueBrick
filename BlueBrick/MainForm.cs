@@ -1118,7 +1118,7 @@ namespace BlueBrick
 			// fill the text controls
 			this.AuthorTextBox.Text = Map.Instance.Author;
 			this.lugComboBox.Text = Map.Instance.LUG;
-			this.eventComboBox.Text = Map.Instance.Show;
+			this.eventComboBox.Text = Map.Instance.Event;
 			this.dateTimePicker.Value = Map.Instance.Date;
 			char[] splitter = { '\n' };
 			this.commentTextBox.Lines = Map.Instance.Comment.Split(splitter);

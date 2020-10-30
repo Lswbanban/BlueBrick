@@ -58,7 +58,7 @@ namespace BlueBrick.MapData
 		// data global to the map that can change the user
 		private string mAuthor = Properties.Resources.DefaultAuthor;
 		private string mLUG = Properties.Resources.DefaultLUG;
-		private string mShow = Properties.Resources.DefaultShow;
+		private string mEvent = Properties.Resources.DefaultEvent;
 		private DateTime mDate = DateTime.Today;
 		private string mComment = "";
 		private Color mBackgroundColor = BlueBrick.Properties.Settings.Default.DefaultBackgroundColor;
@@ -132,10 +132,10 @@ namespace BlueBrick.MapData
 			set { mLUG = value; computeGeneralInfoWatermark(); }
 		}
 
-		public string Show
+		public string Event
 		{
-			get { return mShow; }
-			set { mShow = value; computeGeneralInfoWatermark(); }
+			get { return mEvent; }
+			set { mEvent = value; computeGeneralInfoWatermark(); }
 		}
 
 		public DateTime Date
@@ -312,7 +312,7 @@ namespace BlueBrick.MapData
 		/// </summary>
 		private void computeGeneralInfoWatermark()
 		{
-			mGeneralInfoWatermark = this.Author + ", " + this.LUG + ", " + this.Show + " (" + this.Date.ToShortDateString() + ")";
+			mGeneralInfoWatermark = this.Author + ", " + this.LUG + ", " + this.Event + " (" + this.Date.ToShortDateString() + ")";
 		}
 		#endregion
 
@@ -352,7 +352,7 @@ namespace BlueBrick.MapData
 			// data of the map
 			mAuthor = reader.ReadElementContentAsString();
 			mLUG = reader.ReadElementContentAsString();
-			mShow = reader.ReadElementContentAsString();
+			mEvent = reader.ReadElementContentAsString();
 			reader.ReadToDescendant("Day");
 			int day = reader.ReadElementContentAsInt();
 			int month = reader.ReadElementContentAsInt();
@@ -502,7 +502,7 @@ namespace BlueBrick.MapData
 			// data of the map
 			writer.WriteElementString("Author", mAuthor);
 			writer.WriteElementString("LUG", mLUG);
-			writer.WriteElementString("Show", mShow);
+			writer.WriteElementString("Event", mEvent);
 			writer.WriteStartElement("Date");
 				writer.WriteElementString("Day", mDate.Day.ToString());
 				writer.WriteElementString("Month", mDate.Month.ToString());

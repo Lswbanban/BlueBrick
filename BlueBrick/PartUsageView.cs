@@ -933,7 +933,7 @@ namespace BlueBrick
 				writer.WriteLine();
 				writer.WriteLine("{0} {1}", MainForm.Instance.LabelAuthorLocalized, Map.Instance.Author);
 				writer.WriteLine("{0} {1}", MainForm.Instance.LabelLUGLocalized, Map.Instance.LUG);
-				writer.WriteLine("{0} {1}", MainForm.Instance.LabelEventLocalized, Map.Instance.Show);
+				writer.WriteLine("{0} {1}", MainForm.Instance.LabelEventLocalized, Map.Instance.Event);
 				writer.WriteLine("{0} {1}", MainForm.Instance.LabelDateLocalized, Map.Instance.Date.ToLongDateString());
 				writer.WriteLine("{0}\n{1}", MainForm.Instance.LabelCommentLocalized, Map.Instance.Comment);
 				writer.WriteLine();
@@ -1237,7 +1237,7 @@ namespace BlueBrick
 				writer.WriteLine("<table border=\"0\" style=\"margin-left: 3%\">");
 				writer.WriteLine("\t<tr><td class=\"info\">{0}</td><td>{1}</td></tr>", MainForm.Instance.LabelAuthorLocalized, Map.Instance.Author);
 				writer.WriteLine("\t<tr><td class=\"info\">{0}</td><td>{1}</td></tr>", MainForm.Instance.LabelLUGLocalized, Map.Instance.LUG);
-				writer.WriteLine("\t<tr><td class=\"info\">{0}</td><td>{1}</td></tr>", MainForm.Instance.LabelEventLocalized, Map.Instance.Show);
+				writer.WriteLine("\t<tr><td class=\"info\">{0}</td><td>{1}</td></tr>", MainForm.Instance.LabelEventLocalized, Map.Instance.Event);
 				writer.WriteLine("\t<tr><td class=\"info\">{0}</td><td>{1}</td></tr>", MainForm.Instance.LabelDateLocalized, Map.Instance.Date.ToLongDateString());
 				writer.WriteLine("\t<tr><td class=\"info\">{0}</td><td>{1}</td></tr>", MainForm.Instance.LabelCommentLocalized, Map.Instance.Comment.Replace(Environment.NewLine, "<br/>"));
 				writer.WriteLine("</table>\n<br/>\n<br/>\n");

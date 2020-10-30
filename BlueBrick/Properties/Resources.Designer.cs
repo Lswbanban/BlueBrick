@@ -721,6 +721,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unknown Event.
+        /// </summary>
+        internal static string DefaultEvent {
+            get {
+                return ResourceManager.GetString("DefaultEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Layer.
         /// </summary>
         internal static string DefaultLayerName {
@@ -753,15 +762,6 @@ namespace BlueBrick.Properties {
         internal static string DefaultSaveFileNameForBudget {
             get {
                 return ResourceManager.GetString("DefaultSaveFileNameForBudget", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown Event.
-        /// </summary>
-        internal static string DefaultShow {
-            get {
-                return ResourceManager.GetString("DefaultShow", resourceCulture);
             }
         }
         

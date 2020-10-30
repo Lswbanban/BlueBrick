@@ -343,7 +343,7 @@ If you click "Yes", all the files of series will be overriden.</value>
   <data name="ErrorMsgCancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="DefaultShow" xml:space="preserve">
+  <data name="DefaultEvent" xml:space="preserve">
     <value>Unknown Event</value>
   </data>
   <data name="SearchStatusWaitResponse" xml:space="preserve">

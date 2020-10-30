@@ -45,7 +45,7 @@ namespace BlueBrick.Actions.Maps
 			// save old data
 			oldInfo.mAuthor = Map.Instance.Author.Clone() as string;
 			oldInfo.mLUG = Map.Instance.LUG.Clone() as string;
-			oldInfo.mEvent = Map.Instance.Show.Clone() as string;
+			oldInfo.mEvent = Map.Instance.Event.Clone() as string;
 			oldInfo.mDate = Map.Instance.Date;
 			oldInfo.mComment = Map.Instance.Comment.Clone() as string;
 			// save new data
@@ -65,7 +65,7 @@ namespace BlueBrick.Actions.Maps
 		{
 			Map.Instance.Author = newInfo.mAuthor;
 			Map.Instance.LUG = newInfo.mLUG;
-			Map.Instance.Show = newInfo.mEvent;
+			Map.Instance.Event = newInfo.mEvent;
 			Map.Instance.Date = newInfo.mDate;
 			Map.Instance.Comment = newInfo.mComment;
 			// inform MainForm to update its UI
@@ -76,7 +76,7 @@ namespace BlueBrick.Actions.Maps
 		{
 			Map.Instance.Author = oldInfo.mAuthor;
 			Map.Instance.LUG = oldInfo.mLUG;
-			Map.Instance.Show = oldInfo.mEvent;
+			Map.Instance.Event = oldInfo.mEvent;
 			Map.Instance.Date = oldInfo.mDate;
 			Map.Instance.Comment = oldInfo.mComment;
 			// inform MainForm to update its UI

@@ -225,6 +225,8 @@ namespace BlueBrick
 					return loadMDP(filename);
 				else if (filenameLower.EndsWith("tdl"))
 					return loadTDL(filename);
+				else if (filenameLower.EndsWith("ncp"))
+					return load4DBrix(filename);
 				else if (filenameLower.EndsWith("bbb"))
 					return loadBudgetBBB(filename);
 				else
@@ -266,6 +268,8 @@ namespace BlueBrick
 					return saveMDP(filename);
 				else if (filenameLower.EndsWith("tdl"))
 					return saveTDL(filename);
+				else if (filenameLower.EndsWith("ncp"))
+					return save4DBrix(filename);
 				else if (filenameLower.EndsWith("bbb"))
 					return saveBudgetBBB(filename);
 				else
@@ -674,7 +678,7 @@ namespace BlueBrick
 			}
 			else if (token[startIndex].StartsWith("Event"))
 			{
-				Map.Instance.Show = getRemainingOfLineAfterTokenInLDRAW(line, token[1]);
+				Map.Instance.Event = getRemainingOfLineAfterTokenInLDRAW(line, token[1]);
 			}
 			else if (token[startIndex].StartsWith("Date"))
 			{
@@ -685,7 +689,7 @@ namespace BlueBrick
 				if (token[startIndex + 1].StartsWith("LUG"))
 					Map.Instance.LUG = getRemainingOfLineAfterTokenInLDRAW(line, token[2]);
 				else if (token[startIndex + 1].StartsWith("Event"))
-					Map.Instance.Show = getRemainingOfLineAfterTokenInLDRAW(line, token[2]);
+					Map.Instance.Event = getRemainingOfLineAfterTokenInLDRAW(line, token[2]);
 				else if (token[startIndex + 1].StartsWith("Date"))
 					parseDateInLDRAW(getRemainingOfLineAfterTokenInLDRAW(line, token[2]));
 				else
@@ -934,7 +938,7 @@ namespace BlueBrick
 			// write other global infos of this file
 			textWriter.WriteLine("0");
 			textWriter.WriteLine("0 // LUG: " + Map.Instance.LUG);
-			textWriter.WriteLine("0 // Event: " + Map.Instance.Show);
+			textWriter.WriteLine("0 // Event: " + Map.Instance.Event);
 			textWriter.WriteLine("0 // Date: " + Map.Instance.Date.ToString(LDRAW_DATE_FORMAT_STRING, System.Globalization.CultureInfo.InvariantCulture));
 			// write the comments of this map
 			char[] commentSpliter = { '\r', '\n' };
@@ -1587,7 +1591,7 @@ namespace BlueBrick
 			Map.Instance.AllowSlopeMismatch = (binaryReader.ReadInt32() != 0);
 			// description string
 			char descriptionStringSize = binaryReader.ReadChar();
-			Map.Instance.Show = new string(binaryReader.ReadChars(descriptionStringSize));
+			Map.Instance.Event = new string(binaryReader.ReadChars(descriptionStringSize));
 			// comment string
 			char commentStringSize = binaryReader.ReadChar();
 			Map.Instance.Comment = new string(binaryReader.ReadChars(commentStringSize));
@@ -1987,7 +1991,7 @@ namespace BlueBrick
 
 			// description string (the TDL file only support a maximum number of 255 char
 			// because the first char is the length of the string)
-			string description = Map.Instance.Show.Clone() as string;
+			string description = Map.Instance.Event.Clone() as string;
 			if (description.Length > 255)
 				description = description.Substring(0, 255);
 			binaryWriter.Write((char)description.Length);
@@ -2004,6 +2008,99 @@ namespace BlueBrick
 			binaryWriter.Write((short)0); // the number of piece in the piece list
 		}
 
+		#endregion
+		#region 4DBrix nControl
+		private static bool load4DBrix(string filename)
+		{
+			return true;
+		}
+
+		private static string escapeSpecialXMLCharacter(string text)
+		{
+			// replace amp first as we will add more in the string
+			return text.Replace("&", "&amp;").Replace("\"", "&quot;").Replace("'", "&apos;").Replace("<", "&lt;").Replace(">", "&gt;");
+		}
+
+		private static void saveHeaderIn4DBrix(StreamWriter textWriter, string filename)
+		{
+			// get the total area of the map (as we will need to save it
+			RectangleF totalArea = Map.Instance.getTotalAreaInStud(true);
+
+			// get the File Info of the current file if it already exists (for the creation date)
+			string dateTimeFormat = "d-MMM-yyyy, HH:mm:ss";
+			string now = DateTime.Now.ToString(dateTimeFormat);
+			string creationTime = now;
+			if (File.Exists(filename))
+				creationTime = new FileInfo(filename).CreationTime.ToString(dateTimeFormat);
+
+			// write the project general info
+			textWriter.WriteLine("<?xml version=\"1.0\"?>");
+			textWriter.WriteLine("<data type=\"nControl\" version=\"1\">");
+			textWriter.WriteLine("   <project>");
+			textWriter.WriteLine("      <ncontrol version=\"2020.0\"/>");
+			textWriter.WriteLine("      <title value=\"" + escapeSpecialXMLCharacter(Map.Instance.Event) + "\"/>");
+			textWriter.WriteLine("      <author value=\"" + escapeSpecialXMLCharacter(Map.Instance.Author) + "\"/>");
+			textWriter.WriteLine("      <lug value=\"" + escapeSpecialXMLCharacter(Map.Instance.LUG) + "\"/>");
+			textWriter.WriteLine("      <created value=\"" + creationTime + "\"/>");
+			textWriter.WriteLine("      <modified value=\"" + now +"\"/>");
+			textWriter.WriteLine("      <description value=\"" + Map.Instance.Date.ToString(dateTimeFormat) + "\"/>");
+			textWriter.WriteLine("      <info value=\"" + escapeSpecialXMLCharacter(Map.Instance.Comment) + "\"/>");
+			textWriter.WriteLine("      <tracklayout width=\"" + totalArea.Width.ToString() + "\" height=\"" + totalArea.Height.ToString() + "\" scale=\"0.25\"/>");
+			textWriter.WriteLine("      <tilepanel rows=\"1\" columns=\"6\"/>");
+			textWriter.WriteLine("   </project>");
+
+			// write the script tags
+			textWriter.WriteLine("   <script type=\"ST_ACTIVATION\">");
+			textWriter.WriteLine("      <action value=\"\"/>");
+			textWriter.WriteLine("   </script>");
+			textWriter.WriteLine("   <script type=\"ST_DEACTIVATION\">");
+			textWriter.WriteLine("      <action value=\"\"/>");
+			textWriter.WriteLine("   </script>");
+		}
+
+		private static void saveLayerIn4DBrix(StreamWriter textWriter, Layer layer)
+		{
+		}
+
+		private static void saveFooterIn4DBrix(StreamWriter textWriter)
+		{
+			textWriter.WriteLine("</data>");
+		}
+
+		private static bool save4DBrix(string filename)
+		{
+			// init the progress bar with the number of items (+1 for init remap +1 for header so start with 2)
+			int nbItems = 2;
+			foreach (Layer layer in Map.Instance.LayerList)
+				nbItems += layer.NbItems;
+			MainForm.Instance.resetProgressBar(nbItems);
+
+			// step the progressbar after the init of part remap
+			MainForm.Instance.stepProgressBar();
+
+			StreamWriter textWriter = new StreamWriter(filename, false, new UTF8Encoding(false));
+			// write the header
+			saveHeaderIn4DBrix(textWriter, filename);
+
+			// step the progressbar after the write of the header
+			MainForm.Instance.stepProgressBar();
+
+			// iterate on all the layers of the Map
+			foreach (Layer layer in Map.Instance.LayerList)
+			{
+				// save the layer according its type
+				saveLayerIn4DBrix(textWriter, layer);
+			}
+
+			// save the footer to finish the file
+			saveFooterIn4DBrix(textWriter);
+
+			// close the file
+			textWriter.Close();
+
+			//MainForm.Instance.finishProgressBar();
+			return true;
+		}
 		#endregion
 	}
 }

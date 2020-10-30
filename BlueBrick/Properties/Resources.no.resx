@@ -283,7 +283,7 @@
   <data name="DefaultSaveFileName" xml:space="preserve">
     <value>utennavn.bbm</value>
   </data>
-  <data name="DefaultShow" xml:space="preserve">
+  <data name="DefaultEvent" xml:space="preserve">
     <value>Ukjent event</value>
   </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">

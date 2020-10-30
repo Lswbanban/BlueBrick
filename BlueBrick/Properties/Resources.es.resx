@@ -276,7 +276,7 @@
   <data name="DefaultSaveFileName" xml:space="preserve">
     <value>SinTítulo.bbm</value>
   </data>
-  <data name="DefaultShow" xml:space="preserve">
+  <data name="DefaultEvent" xml:space="preserve">
     <value>Evento desconocido</value>
   </data>
   <data name="ErrorMsgApplyNewSettingsToAllLayers" xml:space="preserve">
