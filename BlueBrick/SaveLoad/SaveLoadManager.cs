@@ -2069,10 +2069,12 @@ namespace BlueBrick
 			if (connectedBrick != null)
 				ConnectedBrickBId = connectedBrick.GUID.ToString();
 
-			// get the node coordinate
+			// compute the node coordinate
+			// 4DBrix use milimeter for the unit of the coorrdinate system. Since one stud = 8 mm, we need to multiply by 8 the coord in studs.
+			// And the conversion for the z coordinates, is from LDU to milimeters.
 			float x = connectionPoint.PositionInStudWorldCoord.X * 8;
 			float y = connectionPoint.PositionInStudWorldCoord.Y * 8;
-			float z = connectionPoint.OwnerBrick.Altitude;
+			float z = connectionPoint.OwnerBrick.Altitude * 0.4f;
 
 			// export the node
 			textWriter.WriteLine("   <node>");
@@ -2151,14 +2153,52 @@ namespace BlueBrick
 
 		private static void saveTablesIn4DBrix(StreamWriter textWriter, List<LayerBrick.Brick> tables)
 		{
+			foreach (LayerBrick.Brick brick in tables)
+			{
+				textWriter.WriteLine("   <table>");
+				textWriter.WriteLine("      <coordinates x=\"" + brick.Position.X + "\" y=\"" + brick.Position.Y + "\"/>");
+				textWriter.WriteLine("      <angle value=\"" + brick.Orientation + "\"/>");
+				textWriter.WriteLine("      <svgfile value=\"/tables/metric/EU-150x075.svg\"/>");
+				textWriter.WriteLine("   </table>");
+			}
 		}
 
 		private static void saveBaseplatesIn4DBrix(StreamWriter textWriter, List<LayerBrick.Brick> baseplates)
 		{
+			foreach (LayerBrick.Brick brick in baseplates)
+			{
+				// the width and height are the one of the baseplate without rotation for ncontrol, so we ask it to the part library
+				// nControl wants the baseplate size is in millimeter, one stud = 8 mm, and the brick resolution is 8 pixel per stud. So 1 px = 1 mm, we can use the image size in pixel.
+				Image brickImage = BrickLibrary.Instance.getImage(brick.PartNumber);
+				// write the block for the baseplate
+				textWriter.WriteLine("   <baseplate>");
+				textWriter.WriteLine("      <coordinates x=\"" + brick.Position.X + "\" y=\"" + brick.Position.Y + "\"/>");
+				textWriter.WriteLine("      <angle value=\"" + brick.Orientation + "\"/>");
+				textWriter.WriteLine("      <svgfile value=\"/baseplates/roads/44336px4.svg\"/>");
+				textWriter.WriteLine("      <size height=\"" + brickImage.Height + "\" width=\"" + brickImage.Width + "\"/>");
+				textWriter.WriteLine("   </baseplate>");
+			}
 		}
 
 		private static void saveStructuresIn4DBrix(StreamWriter textWriter, List<LayerBrick.Brick> structures)
 		{
+			foreach (LayerBrick.Brick brick in structures)
+			{
+				// get the center of the brick and convert the stud coord to milimeters
+				PointF center = brick.Center;
+				center.X *= 8f;
+				center.Y *= 8f;
+				// the width and height are the one of the baseplate without rotation for ncontrol, so we ask it to the part library
+				// nControl wants the baseplate size is in millimeter, one stud = 8 mm, and the brick resolution is 8 pixel per stud. So 1 px = 1 mm, we can use the image size in pixel.
+				Image brickImage = BrickLibrary.Instance.getImage(brick.PartNumber);
+				// write the block for the baseplate
+				textWriter.WriteLine("   <structure>");
+				textWriter.WriteLine("      <center x=\"" + center.X + "\" y=\"" + center.Y + "\"/>");
+				textWriter.WriteLine("      <angle value=\"" + brick.Orientation + "\"/>");
+				textWriter.WriteLine("      <svgfile value=\"/structures/train/60050.svg\"/>");
+				textWriter.WriteLine("      <size height=\"" + brickImage.Height + "\" width=\"" + brickImage.Width + "\"/>");
+				textWriter.WriteLine("   </structure>");
+			}
 		}
 
 		private static void saveFooterIn4DBrix(StreamWriter textWriter)
