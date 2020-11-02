@@ -2010,6 +2010,15 @@ namespace BlueBrick
 
 		#endregion
 		#region 4DBrix nControl
+		/// <summary>
+		/// This struct is for optimization reason, in order to ask the remap data only once to the brick library
+		/// </summary>
+		private struct FourDBrixPart
+		{
+			public BrickLibrary.Brick.FourDBrixRemapData mRemapData;
+			public LayerBrick.Brick mBrick;
+		}
+
 		private static bool load4DBrix(string filename)
 		{
 			return true;
@@ -2085,11 +2094,14 @@ namespace BlueBrick
 			textWriter.WriteLine("   </node>");
 		}
 
-		private static void saveOneTrackSegmentIn4DBrix(StreamWriter textWriter, LayerBrick.Brick brick, Dictionary<LayerBrick.Brick.ConnectionPoint, int> connectionGlobalIndex)
+		private static void saveOneTrackSegmentIn4DBrix(StreamWriter textWriter, FourDBrixPart part, Dictionary<LayerBrick.Brick.ConnectionPoint, int> connectionGlobalIndex)
 		{
+			// get the brick
+			LayerBrick.Brick brick = part.mBrick;
+			// start to write the segment
 			textWriter.WriteLine("   <segment>");
 			textWriter.WriteLine("      <index value=\"" + brick.GUID.ToString() + "\"/>");
-			textWriter.WriteLine("      <type value=\"TS_STRAIGHT\"/>"); // TODO implement proper part name
+			textWriter.WriteLine("      <type value=\"" + part.mRemapData.mPartName + "\"/>");
 			textWriter.WriteLine("      <label value=\"\"/>");
 			if (brick.HasConnectionPoint)
 			{
@@ -2111,7 +2123,7 @@ namespace BlueBrick
 			textWriter.WriteLine("   </segment>");
 		}
 
-		private static void saveTracksIn4DBrix(StreamWriter textWriter, List<LayerBrick.Brick> tracks)
+		private static void saveTracksIn4DBrix(StreamWriter textWriter, List<FourDBrixPart> tracks)
 		{
 			// 4DBrix share the connections points between tracks, but BlueBricks give a connection point to each brick
 			// so we need to create a list of unique connection points and remove the connection points at the same place.
@@ -2120,9 +2132,9 @@ namespace BlueBrick
 
 			// iterate on the brick list, because it's the bricks who holds their connection points
 			// for each brick iterate on their connection points.
-			foreach (LayerBrick.Brick brick in tracks)
+			foreach (FourDBrixPart part in tracks)
 			{
-				List<LayerBrick.Brick.ConnectionPoint> currentBrickConnectionPoints = brick.ConnectionPoints;
+				List<LayerBrick.Brick.ConnectionPoint> currentBrickConnectionPoints = part.mBrick.ConnectionPoints;
 				if (currentBrickConnectionPoints != null)
 					foreach (LayerBrick.Brick.ConnectionPoint connection in currentBrickConnectionPoints)
 					{
@@ -2147,55 +2159,55 @@ namespace BlueBrick
 				saveOneNodeIn4DBrix(textWriter, connection);
 
 			// then iterate on all the bricks to same them
-			foreach (LayerBrick.Brick brick in tracks)
-				saveOneTrackSegmentIn4DBrix(textWriter, brick, connectionGlobalIndex);
+			foreach (FourDBrixPart part in tracks)
+				saveOneTrackSegmentIn4DBrix(textWriter, part, connectionGlobalIndex);
 		}
 
-		private static void saveTablesIn4DBrix(StreamWriter textWriter, List<LayerBrick.Brick> tables)
+		private static void saveTablesIn4DBrix(StreamWriter textWriter, List<FourDBrixPart> tables)
 		{
-			foreach (LayerBrick.Brick brick in tables)
+			foreach (FourDBrixPart part in tables)
 			{
 				textWriter.WriteLine("   <table>");
-				textWriter.WriteLine("      <coordinates x=\"" + brick.Position.X + "\" y=\"" + brick.Position.Y + "\"/>");
-				textWriter.WriteLine("      <angle value=\"" + brick.Orientation + "\"/>");
-				textWriter.WriteLine("      <svgfile value=\"/tables/metric/EU-150x075.svg\"/>");
+				textWriter.WriteLine("      <coordinates x=\"" + part.mBrick.Position.X + "\" y=\"" + part.mBrick.Position.Y + "\"/>");
+				textWriter.WriteLine("      <angle value=\"" + part.mBrick.Orientation + "\"/>");
+				textWriter.WriteLine("      <svgfile value=\"" + part.mRemapData.mPartName + "\"/>");
 				textWriter.WriteLine("   </table>");
 			}
 		}
 
-		private static void saveBaseplatesIn4DBrix(StreamWriter textWriter, List<LayerBrick.Brick> baseplates)
+		private static void saveBaseplatesIn4DBrix(StreamWriter textWriter, List<FourDBrixPart> baseplates)
 		{
-			foreach (LayerBrick.Brick brick in baseplates)
+			foreach (FourDBrixPart part in baseplates)
 			{
 				// the width and height are the one of the baseplate without rotation for ncontrol, so we ask it to the part library
 				// nControl wants the baseplate size is in millimeter, one stud = 8 mm, and the brick resolution is 8 pixel per stud. So 1 px = 1 mm, we can use the image size in pixel.
-				Image brickImage = BrickLibrary.Instance.getImage(brick.PartNumber);
+				Image brickImage = BrickLibrary.Instance.getImage(part.mBrick.PartNumber);
 				// write the block for the baseplate
 				textWriter.WriteLine("   <baseplate>");
-				textWriter.WriteLine("      <coordinates x=\"" + brick.Position.X + "\" y=\"" + brick.Position.Y + "\"/>");
-				textWriter.WriteLine("      <angle value=\"" + brick.Orientation + "\"/>");
-				textWriter.WriteLine("      <svgfile value=\"/baseplates/roads/44336px4.svg\"/>");
+				textWriter.WriteLine("      <coordinates x=\"" + part.mBrick.Position.X + "\" y=\"" + part.mBrick.Position.Y + "\"/>");
+				textWriter.WriteLine("      <angle value=\"" + part.mBrick.Orientation + "\"/>");
+				textWriter.WriteLine("      <svgfile value=\"" + part.mRemapData.mPartName + "\"/>");
 				textWriter.WriteLine("      <size height=\"" + brickImage.Height + "\" width=\"" + brickImage.Width + "\"/>");
 				textWriter.WriteLine("   </baseplate>");
 			}
 		}
 
-		private static void saveStructuresIn4DBrix(StreamWriter textWriter, List<LayerBrick.Brick> structures)
+		private static void saveStructuresIn4DBrix(StreamWriter textWriter, List<FourDBrixPart> structures)
 		{
-			foreach (LayerBrick.Brick brick in structures)
+			foreach (FourDBrixPart part in structures)
 			{
 				// get the center of the brick and convert the stud coord to milimeters
-				PointF center = brick.Center;
+				PointF center = part.mBrick.Center;
 				center.X *= 8f;
 				center.Y *= 8f;
 				// the width and height are the one of the baseplate without rotation for ncontrol, so we ask it to the part library
 				// nControl wants the baseplate size is in millimeter, one stud = 8 mm, and the brick resolution is 8 pixel per stud. So 1 px = 1 mm, we can use the image size in pixel.
-				Image brickImage = BrickLibrary.Instance.getImage(brick.PartNumber);
+				Image brickImage = BrickLibrary.Instance.getImage(part.mBrick.PartNumber);
 				// write the block for the baseplate
 				textWriter.WriteLine("   <structure>");
 				textWriter.WriteLine("      <center x=\"" + center.X + "\" y=\"" + center.Y + "\"/>");
-				textWriter.WriteLine("      <angle value=\"" + brick.Orientation + "\"/>");
-				textWriter.WriteLine("      <svgfile value=\"/structures/train/60050.svg\"/>");
+				textWriter.WriteLine("      <angle value=\"" + part.mBrick.Orientation + "\"/>");
+				textWriter.WriteLine("      <svgfile value=\"" + part.mRemapData.mPartName + "\"/>");
 				textWriter.WriteLine("      <size height=\"" + brickImage.Height + "\" width=\"" + brickImage.Width + "\"/>");
 				textWriter.WriteLine("   </structure>");
 			}
@@ -2225,10 +2237,10 @@ namespace BlueBrick
 			MainForm.Instance.stepProgressBar();
 
 			// 4DBrix only have 4 fixed layers, so we need to split the bricks of all the layers in 4 different list
-			List<LayerBrick.Brick> tables = new List<LayerBrick.Brick>();
-			List<LayerBrick.Brick> tracks = new List<LayerBrick.Brick>();
-			List<LayerBrick.Brick> baseplates = new List<LayerBrick.Brick>();
-			List<LayerBrick.Brick> structures = new List<LayerBrick.Brick>();
+			List<FourDBrixPart> tables = new List<FourDBrixPart>();
+			List<FourDBrixPart> tracks = new List<FourDBrixPart>();
+			List<FourDBrixPart> baseplates = new List<FourDBrixPart>();
+			List<FourDBrixPart> structures = new List<FourDBrixPart>();
 
 			// iterate on all the layers of the Map
 			foreach (Layer layer in Map.Instance.LayerList)
@@ -2238,8 +2250,27 @@ namespace BlueBrick
 					LayerBrick brickLayer = layer as LayerBrick;
 					foreach (LayerBrick.Brick brick in brickLayer.BrickList)
 					{
-						// todo: add a tag info in the brick xml for remapping to 4DBrix, then ask the brick library in which type should go the part
-						tracks.Add(brick);
+						// create a struct to combine the remap data and the brick
+						FourDBrixPart part = new FourDBrixPart() { mRemapData = BrickLibrary.Instance.get4DBrixRemapData(brick.PartNumber), mBrick = brick };
+						// add the part in the correct list according to the remapdata type
+						switch (part.mRemapData.mFourDBrixBrickType)
+						{
+							case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.SEGMENT:
+								tracks.Add(part);
+								break;
+							case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.TABLE:
+								tables.Add(part);
+								break;
+							case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.BASEPLATE:
+								baseplates.Add(part);
+								break;
+							case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.STRUCTURE:
+								structures.Add(part);
+								break;
+							default:
+								structures.Add(part);
+								break;
+						}
 					}
 				}
 			}

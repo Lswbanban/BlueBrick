@@ -2181,6 +2181,20 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
+		/// Get the 4DBrix remap data class for the specified BlueBrick part number.
+		/// </summary>
+		/// <param name="partNumber">the bluebrick part number</param>
+		/// <returns>An instance of remap data, that contains all the information to translate the specified part into 4DBrix</returns>
+		public Brick.FourDBrixRemapData get4DBrixRemapData(string partNumber)
+		{
+			Brick brickRef = null;
+			mBrickDictionary.TryGetValue(partNumber, out brickRef);
+			if (brickRef != null)
+				return brickRef.m4DBrixRemapData;
+			return null;
+		}
+
+		/// <summary>
 		/// Tell if the specified brick id (with color) should be ignore during the loading of a LDraw File.
 		/// </summary>
 		/// <param name="partNumber">the bluebrick part number</param>
