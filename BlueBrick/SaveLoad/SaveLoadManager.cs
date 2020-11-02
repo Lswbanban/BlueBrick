@@ -2102,30 +2102,210 @@ namespace BlueBrick
 
 		private static void readProjectTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
 		{
+			// check if the description is not empty
+			bool continueToRead = !xmlReader.IsEmptyElement;
+			if (continueToRead)
+			{
+				// read the first child node (and check that it is not the end element)
+				xmlReader.Read();
+				continueToRead = !xmlReader.Name.Equals("project") && !xmlReader.EOF;
+				while (continueToRead)
+				{
+					if (xmlReader.Name.Equals("title"))
+						Map.Instance.Event = unescapeSpecialXMLCharacter(xmlReader.GetAttribute("value"));
+					else if (xmlReader.Name.Equals("author"))
+						Map.Instance.Author = unescapeSpecialXMLCharacter(xmlReader.GetAttribute("value"));
+					else if (xmlReader.Name.Equals("lug"))
+						Map.Instance.LUG = unescapeSpecialXMLCharacter(xmlReader.GetAttribute("value"));
+					else if (xmlReader.Name.Equals("info"))
+						Map.Instance.Comment = unescapeSpecialXMLCharacter(xmlReader.GetAttribute("value"));
+					// read the tag anyway after having read the property
+					xmlReader.Read();
+					// check if we reach the end of the Description
+					continueToRead = !xmlReader.Name.Equals("project") && !xmlReader.EOF;
+				}
+				// finish the Description tag
+				if (!xmlReader.EOF)
+					xmlReader.ReadEndElement();
+			}
+			else
+			{
+				xmlReader.Read();
+			}
 		}
 
 		private static void readScriptTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
 		{
+			// check if the description is not empty
+			bool continueToRead = !xmlReader.IsEmptyElement;
+			if (continueToRead)
+			{
+				// read the first child node (and check that it is not the end element)
+				xmlReader.Read();
+				continueToRead = !xmlReader.Name.Equals("script") && !xmlReader.EOF;
+				while (continueToRead)
+				{
+					if (xmlReader.Name.Equals("todo"))
+						;//todo
+					// read the tag anyway after having read the property
+					xmlReader.Read();
+					// check if we reach the end of the Description
+					continueToRead = !xmlReader.Name.Equals("script") && !xmlReader.EOF;
+				}
+				// finish the Description tag
+				if (!xmlReader.EOF)
+					xmlReader.ReadEndElement();
+			}
+			else
+			{
+				xmlReader.Read();
+			}
 		}
 
 		private static void readNodeTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
 		{
+			// check if the description is not empty
+			bool continueToRead = !xmlReader.IsEmptyElement;
+			if (continueToRead)
+			{
+				// read the first child node (and check that it is not the end element)
+				xmlReader.Read();
+				continueToRead = !xmlReader.Name.Equals("node") && !xmlReader.EOF;
+				while (continueToRead)
+				{
+					if (xmlReader.Name.Equals("todo"))
+						;//todo
+					// read the tag anyway after having read the property
+					xmlReader.Read();
+					// check if we reach the end of the Description
+					continueToRead = !xmlReader.Name.Equals("node") && !xmlReader.EOF;
+				}
+				// finish the Description tag
+				if (!xmlReader.EOF)
+					xmlReader.ReadEndElement();
+			}
+			else
+			{
+				xmlReader.Read();
+			}
 		}
 
 		private static void readSegmentTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
 		{
+			// check if the description is not empty
+			bool continueToRead = !xmlReader.IsEmptyElement;
+			if (continueToRead)
+			{
+				// read the first child node (and check that it is not the end element)
+				xmlReader.Read();
+				continueToRead = !xmlReader.Name.Equals("segment") && !xmlReader.EOF;
+				while (continueToRead)
+				{
+					if (xmlReader.Name.Equals("todo"))
+						;//todo
+					// read the tag anyway after having read the property
+					xmlReader.Read();
+					// check if we reach the end of the Description
+					continueToRead = !xmlReader.Name.Equals("segment") && !xmlReader.EOF;
+				}
+				// finish the Description tag
+				if (!xmlReader.EOF)
+					xmlReader.ReadEndElement();
+			}
+			else
+			{
+				xmlReader.Read();
+			}
 		}
 
 		private static void readTableTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
 		{
+			// check if the description is not empty
+			bool continueToRead = !xmlReader.IsEmptyElement;
+			if (continueToRead)
+			{
+				// read the first child node (and check that it is not the end element)
+				xmlReader.Read();
+				continueToRead = !xmlReader.Name.Equals("table") && !xmlReader.EOF;
+				while (continueToRead)
+				{
+					if (xmlReader.Name.Equals("todo"))
+						;//todo
+					// read the tag anyway after having read the property
+					xmlReader.Read();
+					// check if we reach the end of the Description
+					continueToRead = !xmlReader.Name.Equals("table") && !xmlReader.EOF;
+				}
+				// finish the Description tag
+				if (!xmlReader.EOF)
+					xmlReader.ReadEndElement();
+			}
+			else
+			{
+				xmlReader.Read();
+			}
 		}
 
 		private static void readBaseplateTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
 		{
+			// check if the description is not empty
+			bool continueToRead = !xmlReader.IsEmptyElement;
+			if (continueToRead)
+			{
+				// read the first child node (and check that it is not the end element)
+				xmlReader.Read();
+				continueToRead = !xmlReader.Name.Equals("baseplate") && !xmlReader.EOF;
+				while (continueToRead)
+				{
+					if (xmlReader.Name.Equals("todo"))
+						;//todo
+					// read the tag anyway after having read the property
+					xmlReader.Read();
+					// check if we reach the end of the Description
+					continueToRead = !xmlReader.Name.Equals("baseplate") && !xmlReader.EOF;
+				}
+				// finish the Description tag
+				if (!xmlReader.EOF)
+					xmlReader.ReadEndElement();
+			}
+			else
+			{
+				xmlReader.Read();
+			}
 		}
 
 		private static void readStructureTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
 		{
+			// check if the description is not empty
+			bool continueToRead = !xmlReader.IsEmptyElement;
+			if (continueToRead)
+			{
+				// read the first child node (and check that it is not the end element)
+				xmlReader.Read();
+				continueToRead = !xmlReader.Name.Equals("structure") && !xmlReader.EOF;
+				while (continueToRead)
+				{
+					if (xmlReader.Name.Equals("todo"))
+						;//todo
+					// read the tag anyway after having read the property
+					xmlReader.Read();
+					// check if we reach the end of the Description
+					continueToRead = !xmlReader.Name.Equals("structure") && !xmlReader.EOF;
+				}
+				// finish the Description tag
+				if (!xmlReader.EOF)
+					xmlReader.ReadEndElement();
+			}
+			else
+			{
+				xmlReader.Read();
+			}
+		}
+
+		private static string unescapeSpecialXMLCharacter(string text)
+		{
+			// replace amp at last as we will add more in the string
+			return text.Replace("&quot;", "\"").Replace("&apos;", "'").Replace("&lt;", "<").Replace("&gt;", ">").Replace("&amp;", "&");
 		}
 
 		private static string escapeSpecialXMLCharacter(string text)
