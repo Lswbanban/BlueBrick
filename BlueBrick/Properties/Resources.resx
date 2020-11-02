@@ -664,4 +664,7 @@ You should close other programs accessing the BlueBrick part library and try aga
   <data name="ErrorMsgTitleInfo" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="ErrorMsgMissing4DBrixRemap" xml:space="preserve">
+    <value>Some 4DBrix parts were not found in your BlueBrick library. BlueBrick was not able to load them and has ignored them. You should ensure that you have the corresponding part in your BlueBrick library with the correct 4DBrix tag set in the XML file and then try to re-open the 4DBrix file. The missing parts were:</value>
+  </data>
 </root>

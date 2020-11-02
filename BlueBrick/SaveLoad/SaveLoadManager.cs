@@ -2021,7 +2021,111 @@ namespace BlueBrick
 
 		private static bool load4DBrix(string filename)
 		{
+			// create a new map and different layer for different type of parts
+			Map.Instance = new Map();
+			LayerBrick tableLayer = new LayerBrick();
+			LayerBrick baseplateLayer = new LayerBrick();
+			LayerBrick trackLayer = new LayerBrick();
+			LayerBrick structureLayer = new LayerBrick();
+			//LayerBrick currentLayer = trackLayer;
+
+			// declare a bool to check if we found some part not remaped in the library
+			List<int> noRemapablePartFound = new List<int>();
+
+			// create an XML reader to parse the data
+			System.Xml.XmlReaderSettings xmlSettings = new System.Xml.XmlReaderSettings();
+			xmlSettings.ConformanceLevel = System.Xml.ConformanceLevel.Document;
+			xmlSettings.IgnoreWhitespace = true;
+			xmlSettings.IgnoreComments = true;
+			xmlSettings.CheckCharacters = false;
+			xmlSettings.CloseInput = true;
+			System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(filename, xmlSettings);
+
+			// first find and enter the unique root tag
+			bool rootNodeFound = false;
+			do
+			{
+				xmlReader.Read();
+				rootNodeFound = xmlReader.Name.Equals("data");
+			} while (!rootNodeFound && !xmlReader.EOF);
+
+			// if we found the root node, start to parse it
+			if (rootNodeFound)
+			{
+				// read the first child node
+				xmlReader.Read();
+				bool continueToRead = !xmlReader.EOF;
+				while (continueToRead)
+				{
+					if (xmlReader.Name.Equals("project"))
+						readProjectTagIn4DBrix(ref xmlReader);
+					else if (xmlReader.Name.Equals("script"))
+						readScriptTagIn4DBrix(ref xmlReader);
+					else if (xmlReader.Name.Equals("node"))
+						readNodeTagIn4DBrix(ref xmlReader);
+					else if (xmlReader.Name.Equals("segment"))
+						readSegmentTagIn4DBrix(ref xmlReader);
+					else if (xmlReader.Name.Equals("table"))
+						readTableTagIn4DBrix(ref xmlReader);
+					else if (xmlReader.Name.Equals("baseplate"))
+						readBaseplateTagIn4DBrix(ref xmlReader);
+					else if (xmlReader.Name.Equals("structure"))
+						readStructureTagIn4DBrix(ref xmlReader);
+					else
+						xmlReader.Read();
+					// check if we need to continue
+					continueToRead = !xmlReader.Name.Equals("data") && !xmlReader.EOF;
+				}
+			}
+
+			// close the xml file
+			xmlReader.Close();
+
+			// finish the progress bar (to hide it)
+			MainForm.Instance.finishProgressBar();
+
+			// check if we found some part that can be remaped
+			if (noRemapablePartFound.Count > 0)
+			{
+				string message = Properties.Resources.ErrorMsgMissing4DBrixRemap;
+				foreach (int id in noRemapablePartFound)
+					message += id.ToString() + ", ";
+				message = message.Remove(message.Length - 2) + ".";
+				MessageBox.Show(null, message,
+					Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
+					MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+			}
+
+			// the file can be open
 			return true;
+		}
+
+		private static void readProjectTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
+		{
+		}
+
+		private static void readScriptTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
+		{
+		}
+
+		private static void readNodeTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
+		{
+		}
+
+		private static void readSegmentTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
+		{
+		}
+
+		private static void readTableTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
+		{
+		}
+
+		private static void readBaseplateTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
+		{
+		}
+
+		private static void readStructureTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
+		{
 		}
 
 		private static string escapeSpecialXMLCharacter(string text)

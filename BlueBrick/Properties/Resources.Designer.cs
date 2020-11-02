@@ -1033,6 +1033,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Some 4DBrix parts were not found in your BlueBrick library. BlueBrick was not able to load them and has ignored them. You should ensure that you have the corresponding part in your BlueBrick library with the correct 4DBrix tag set in the XML file and then try to re-open the 4DBrix file. The missing parts were:.
+        /// </summary>
+        internal static string ErrorMsgMissing4DBrixRemap {
+            get {
+                return ResourceManager.GetString("ErrorMsgMissing4DBrixRemap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can not open the &quot;&amp;&quot; file. Without this file you will not be able to see the color and description of the parts in the part list. Please verify the presence of this file, or reinstall BlueBrick to fix the problem..
         /// </summary>
         internal static string ErrorMsgMissingColorInfoFile {

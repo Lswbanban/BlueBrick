@@ -593,4 +593,7 @@ Si vous cliquez sur "Oui", tous les fichiers de la série seront remplacés.</va
   <data name="ErrorMsgTitleInfo" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="ErrorMsgMissing4DBrixRemap" xml:space="preserve">
+    <value>Quelques pièces 4DBrix n'ont pas été trouvés dans votre librairie BlueBrick. BlueBrick n'a pas été capable de les charger et les a juste ignorés. Vous devriez vous assurer que vous avez la pièce correspondante dans votre librairie BlueBrick avec le tag 4DBrix correctement inscrit dans le fichier XML puis essayer de rouvrir le fichier 4DBrix. Les identifiants manquants étaient:</value>
+  </data>
 </root>
