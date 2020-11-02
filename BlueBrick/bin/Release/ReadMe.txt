@@ -108,6 +108,7 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
 - MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
+- MISSING FEATURE (Matthias): Add a simple view for the track with the part number displayed overlaid (add a new tag in the xml for this simplified name to avoid too long names).
 - MISSING FEATURE (Matthias): BlueBrick should check if there's new library package available in background after launch.
 - MISSING FEATURE (Matthias): Better resolution for part images (Images can have an additional <scale> property in the xml-File, if no scale parameter is provided, the default resolution of 8 pixels/stud is used)
 - MISSING FEATURE (zephyr1934): Add a favorite feature where you can tag a part as your favorite, and display all your favorite parts in a specific tab of the library
