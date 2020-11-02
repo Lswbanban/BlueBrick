@@ -2160,7 +2160,12 @@ namespace BlueBrick
 
 			// then iterate on all the bricks to same them
 			foreach (FourDBrixPart part in tracks)
+			{
+				// save the brick
 				saveOneTrackSegmentIn4DBrix(textWriter, part, connectionGlobalIndex);
+				// step the progress bar for this brick for the second pass
+				MainForm.Instance.stepProgressBar();
+			}
 		}
 
 		private static void saveTablesIn4DBrix(StreamWriter textWriter, List<FourDBrixPart> tables)
@@ -2174,6 +2179,8 @@ namespace BlueBrick
 				textWriter.WriteLine("      <angle value=\"" + part.mBrick.Orientation + "\"/>");
 				textWriter.WriteLine("      <svgfile value=\"" + part.mRemapData.mPartName + "\"/>");
 				textWriter.WriteLine("   </table>");
+				// step the progress bar for this brick for the second pass
+				MainForm.Instance.stepProgressBar();
 			}
 		}
 
@@ -2193,6 +2200,8 @@ namespace BlueBrick
 				textWriter.WriteLine("      <svgfile value=\"" + part.mRemapData.mPartName + "\"/>");
 				textWriter.WriteLine("      <size height=\"" + brickImage.Height + "\" width=\"" + brickImage.Width + "\"/>");
 				textWriter.WriteLine("   </baseplate>");
+				// step the progress bar for this brick for the second pass
+				MainForm.Instance.stepProgressBar();
 			}
 		}
 
@@ -2214,6 +2223,8 @@ namespace BlueBrick
 				textWriter.WriteLine("      <svgfile value=\"" + part.mRemapData.mPartName + "\"/>");
 				textWriter.WriteLine("      <size height=\"" + brickImage.Height + "\" width=\"" + brickImage.Width + "\"/>");
 				textWriter.WriteLine("   </structure>");
+				// step the progress bar for this brick for the second pass
+				MainForm.Instance.stepProgressBar();
 			}
 		}
 
@@ -2225,9 +2236,11 @@ namespace BlueBrick
 		private static bool save4DBrix(string filename)
 		{
 			// init the progress bar with the number of items (+1 for init remap +1 for header so start with 2)
+			// and we count the number of items twice because there're 2 passes
 			int nbItems = 2;
 			foreach (Layer layer in Map.Instance.LayerList)
-				nbItems += layer.NbItems;
+				if (layer is LayerBrick)
+					nbItems += (layer.NbItems * 2);
 			MainForm.Instance.resetProgressBar(nbItems);
 
 			// step the progressbar after the init of part remap
@@ -2256,25 +2269,36 @@ namespace BlueBrick
 					{
 						// create a struct to combine the remap data and the brick
 						FourDBrixPart part = new FourDBrixPart() { mRemapData = BrickLibrary.Instance.get4DBrixRemapData(brick.PartNumber), mBrick = brick };
-						// add the part in the correct list according to the remapdata type
-						switch (part.mRemapData.mFourDBrixBrickType)
+						// add the part in the correct list according to the remapdata type (if it exists, otherwise, ignore the part)
+						if (part.mRemapData != null)
 						{
-							case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.SEGMENT:
-								tracks.Add(part);
-								break;
-							case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.TABLE:
-								tables.Add(part);
-								break;
-							case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.BASEPLATE:
-								baseplates.Add(part);
-								break;
-							case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.STRUCTURE:
-								structures.Add(part);
-								break;
-							default:
-								structures.Add(part);
-								break;
+							switch (part.mRemapData.mFourDBrixBrickType)
+							{
+								case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.SEGMENT:
+									tracks.Add(part);
+									break;
+								case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.TABLE:
+									tables.Add(part);
+									break;
+								case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.BASEPLATE:
+									baseplates.Add(part);
+									break;
+								case BrickLibrary.Brick.FourDBrixRemapData.FourDBrixBrickType.STRUCTURE:
+									structures.Add(part);
+									break;
+								default:
+									structures.Add(part);
+									break;
+							}
 						}
+						else
+						{
+							// if the current item is skiped (not inserted in the list), then step the progress bar, to skip also its second phase)
+							MainForm.Instance.stepProgressBar();
+						}
+
+						// step the progress bar for this brick for the first pass
+						MainForm.Instance.stepProgressBar();
 					}
 				}
 			}
@@ -2291,7 +2315,6 @@ namespace BlueBrick
 			// close the file
 			textWriter.Close();
 
-			//MainForm.Instance.finishProgressBar();
 			return true;
 		}
 		#endregion
