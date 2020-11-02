@@ -208,7 +208,20 @@ namespace BlueBrick.MapData
 				public string mAliasPartColor = null;
 			}
 
-            public class SubPart
+			public class FourDBrixRemapData
+			{
+				public enum FourDBrixBrickType
+				{
+					SEGMENT = 0,
+					TABLE,
+					BASEPLATE,
+					STRUCTURE,
+				}
+				public FourDBrixBrickType mFourDBrixBrickType = FourDBrixBrickType.SEGMENT;
+				public string mPartName = null;
+			}
+
+			public class SubPart
             {
                 // we store the number and the brick because not all the brick may have been parsed when the group is parsed
                 public string mSubPartNumber = string.Empty;
@@ -250,9 +263,10 @@ namespace BlueBrick.MapData
 			public GroupInfo		mGroupInfo = null; // if this brick is a group, this class will be instantiated to store the data needed to build the group
 			public TDRemapData		mTDRemapData = null;
 			public LDrawRemapData	mLDrawRemapData = null;
+			public FourDBrixRemapData m4DBrixRemapData = null;
 
 			#region get/set
-            public Image Image
+			public Image Image
             {
                 get { return mImage; }
                 set
@@ -379,6 +393,8 @@ namespace BlueBrick.MapData
 								readGroupConnectionPreferenceListTag(ref xmlReader);
 							else if (xmlReader.Name.Equals("NotListedInLibrary"))
 								readNotListedInLibraryTag(ref xmlReader);
+							else if (xmlReader.Name.Equals("FourDBrix"))
+								read4DBrixTag(ref xmlReader);
 							else
 								xmlReader.Read();
 							// check if we need to continue
@@ -875,7 +891,41 @@ namespace BlueBrick.MapData
 				}
 			}
 
-            private void readCanUngroupTag(ref System.Xml.XmlReader xmlReader)
+			private void read4DBrixTag(ref System.Xml.XmlReader xmlReader)
+			{
+				// check if the description is not empty
+				bool continueToRead = !xmlReader.IsEmptyElement;
+				if (continueToRead)
+				{
+					// the 4DBrix tag is not empty, instanciate the class that will hold the data
+					m4DBrixRemapData = new FourDBrixRemapData();
+
+					// read the first child node (and check if the list is not empty)
+					xmlReader.Read();
+					continueToRead = !xmlReader.Name.Equals("FourDBrix") && !xmlReader.EOF;
+					while (continueToRead)
+					{
+						if (xmlReader.Name.Equals("PartType"))
+							m4DBrixRemapData.mFourDBrixBrickType = (FourDBrixRemapData.FourDBrixBrickType)Enum.Parse(typeof(FourDBrixRemapData.FourDBrixBrickType), xmlReader.ReadElementContentAsString(), true);
+						else if (xmlReader.Name.Equals("PartName"))
+							m4DBrixRemapData.mPartName = xmlReader.ReadElementContentAsString();
+						else
+							xmlReader.Read();
+						// check if we need to continue
+						continueToRead = !xmlReader.Name.Equals("FourDBrix") && !xmlReader.EOF;
+					}
+
+					// finish the LDraw tag
+					if (!xmlReader.EOF)
+						xmlReader.ReadEndElement();
+				}
+				else
+				{
+					xmlReader.Read();
+				}
+			}
+
+			private void readCanUngroupTag(ref System.Xml.XmlReader xmlReader)
             {
                 if (!xmlReader.IsEmptyElement)
                 {
