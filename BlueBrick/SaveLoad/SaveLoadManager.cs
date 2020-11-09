@@ -2023,14 +2023,9 @@ namespace BlueBrick
 		{
 			// create a new map and different layer for different type of parts
 			Map.Instance = new Map();
-			LayerBrick tableLayer = new LayerBrick();
-			LayerBrick baseplateLayer = new LayerBrick();
-			LayerBrick trackLayer = new LayerBrick();
-			LayerBrick structureLayer = new LayerBrick();
-			//LayerBrick currentLayer = trackLayer;
 
 			// declare a bool to check if we found some part not remaped in the library
-			List<int> noRemapablePartFound = new List<int>();
+			List<string> noRemapablePartFound = new List<string>();
 
 			// create an XML reader to parse the data
 			System.Xml.XmlReaderSettings xmlSettings = new System.Xml.XmlReaderSettings();
@@ -2065,12 +2060,15 @@ namespace BlueBrick
 						readNodeTagIn4DBrix(ref xmlReader);
 					else if (xmlReader.Name.Equals("segment"))
 						readSegmentTagIn4DBrix(ref xmlReader);
-					else if (xmlReader.Name.Equals("table"))
-						readTableTagIn4DBrix(ref xmlReader);
-					else if (xmlReader.Name.Equals("baseplate"))
-						readBaseplateTagIn4DBrix(ref xmlReader);
-					else if (xmlReader.Name.Equals("structure"))
-						readStructureTagIn4DBrix(ref xmlReader);
+					else if (xmlReader.Name.Equals("table") || xmlReader.Name.Equals("baseplate") || xmlReader.Name.Equals("structure"))
+					{
+						// create a new layer
+						LayerBrick layer = new LayerBrick();
+						layer.Name = xmlReader.Name;
+						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, layer, ref noRemapablePartFound);
+						// add the layer to the map
+						Map.Instance.addLayer(layer);
+					}
 					else
 						xmlReader.Read();
 					// check if we need to continue
@@ -2088,8 +2086,8 @@ namespace BlueBrick
 			if (noRemapablePartFound.Count > 0)
 			{
 				string message = Properties.Resources.ErrorMsgMissing4DBrixRemap;
-				foreach (int id in noRemapablePartFound)
-					message += id.ToString() + ", ";
+				foreach (string id in noRemapablePartFound)
+					message += id + ", ";
 				message = message.Remove(message.Length - 2) + ".";
 				MessageBox.Show(null, message,
 					Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
@@ -2145,8 +2143,7 @@ namespace BlueBrick
 				continueToRead = !xmlReader.Name.Equals("script") && !xmlReader.EOF;
 				while (continueToRead)
 				{
-					if (xmlReader.Name.Equals("todo"))
-						;//todo
+					// completely skip the script tags, BlueBrick cannot do anything with that
 					// read the tag anyway after having read the property
 					xmlReader.Read();
 					// check if we reach the end of the Description
@@ -2218,83 +2215,74 @@ namespace BlueBrick
 			}
 		}
 
-		private static void readTableTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
+		private static void readGenericPartIn4DBrix(ref System.Xml.XmlReader xmlReader, string partTag, LayerBrick layer, ref List<string> noRemapablePartFound)
 		{
 			// check if the description is not empty
 			bool continueToRead = !xmlReader.IsEmptyElement;
 			if (continueToRead)
 			{
-				// read the first child node (and check that it is not the end element)
-				xmlReader.Read();
-				continueToRead = !xmlReader.Name.Equals("table") && !xmlReader.EOF;
-				while (continueToRead)
-				{
-					if (xmlReader.Name.Equals("todo"))
-						;//todo
-					// read the tag anyway after having read the property
-					xmlReader.Read();
-					// check if we reach the end of the Description
-					continueToRead = !xmlReader.Name.Equals("table") && !xmlReader.EOF;
-				}
-				// finish the Description tag
-				if (!xmlReader.EOF)
-					xmlReader.ReadEndElement();
-			}
-			else
-			{
-				xmlReader.Read();
-			}
-		}
+				// we need to memorize each parameter read, because usually the part id is at the end
+				float x = 0;
+				float y = 0;
+				float angle = 0;
+				string partNumber = string.Empty;
 
-		private static void readBaseplateTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
-		{
-			// check if the description is not empty
-			bool continueToRead = !xmlReader.IsEmptyElement;
-			if (continueToRead)
-			{
 				// read the first child node (and check that it is not the end element)
 				xmlReader.Read();
-				continueToRead = !xmlReader.Name.Equals("baseplate") && !xmlReader.EOF;
+				continueToRead = !xmlReader.Name.Equals(partTag) && !xmlReader.EOF;
 				while (continueToRead)
 				{
-					if (xmlReader.Name.Equals("todo"))
-						;//todo
+					if (xmlReader.Name.Equals("coordinates"))
+					{
+						float.TryParse(xmlReader.GetAttribute("x"), out x);
+						float.TryParse(xmlReader.GetAttribute("y"), out y);
+					}
+					else if (xmlReader.Name.Equals("angle"))
+					{
+						float.TryParse(xmlReader.GetAttribute("value"), out angle);
+					}
+					else if (xmlReader.Name.Equals("svgfile"))
+					{
+						partNumber = xmlReader.GetAttribute("value");
+					}
+					// we don't care about the "size" tag, as BlueBrick already know the size of the parts from its database
 					// read the tag anyway after having read the property
 					xmlReader.Read();
 					// check if we reach the end of the Description
-					continueToRead = !xmlReader.Name.Equals("baseplate") && !xmlReader.EOF;
+					continueToRead = !xmlReader.Name.Equals(partTag) && !xmlReader.EOF;
 				}
 				// finish the Description tag
 				if (!xmlReader.EOF)
 					xmlReader.ReadEndElement();
-			}
-			else
-			{
-				xmlReader.Read();
-			}
-		}
 
-		private static void readStructureTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
-		{
-			// check if the description is not empty
-			bool continueToRead = !xmlReader.IsEmptyElement;
-			if (continueToRead)
-			{
-				// read the first child node (and check that it is not the end element)
-				xmlReader.Read();
-				continueToRead = !xmlReader.Name.Equals("structure") && !xmlReader.EOF;
-				while (continueToRead)
+				// After reading all the tags, check if we have read a valid 4DBrix part number
+				if (partNumber != string.Empty)
 				{
-					if (xmlReader.Name.Equals("todo"))
-						;//todo
-					// read the tag anyway after having read the property
-					xmlReader.Read();
-					// check if we reach the end of the Description
-					continueToRead = !xmlReader.Name.Equals("structure") && !xmlReader.EOF;
+					// check if we can find the equivalent brick in the library
+					BrickLibrary.Brick libBrick = BrickLibrary.Instance.getBrickFrom4DBrixPartName(partNumber);
+					// if we found a brick in the brick library matching the 4DBrix part name, we can add the brick to the current layer
+					if (libBrick != null)
+					{
+						// create a new brick
+						LayerBrick.Brick brick = new LayerBrick.Brick(libBrick.mPartNumber);
+
+						// rotate the brick (will recompute the correct OffsetFromOriginalImage)
+						brick.Orientation = angle;
+
+						// rescale the position because in 4DBrix, position are in millimeters
+						//x = (x / 8f) - brick.OffsetFromOriginalImage.X;
+						//y = (y / 8f) - brick.OffsetFromOriginalImage.Y;
+						brick.Position = new PointF(x / 8f, y / 8f);
+
+						// add the brick to the layer
+						layer.addBrick(brick, -1);
+					}
+					else
+					{
+						// else add this unknown part in the error list
+						noRemapablePartFound.Add(partNumber);
+					}
 				}
-				// finish the Description tag
-				if (!xmlReader.EOF)
-					xmlReader.ReadEndElement();
 			}
 			else
 			{

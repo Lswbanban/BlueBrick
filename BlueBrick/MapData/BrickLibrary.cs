@@ -14,7 +14,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Win32;
@@ -908,7 +907,11 @@ namespace BlueBrick.MapData
 						if (xmlReader.Name.Equals("PartType"))
 							m4DBrixRemapData.mFourDBrixBrickType = (FourDBrixRemapData.FourDBrixBrickType)Enum.Parse(typeof(FourDBrixRemapData.FourDBrixBrickType), xmlReader.ReadElementContentAsString(), true);
 						else if (xmlReader.Name.Equals("PartName"))
+						{
 							m4DBrixRemapData.mPartName = xmlReader.ReadElementContentAsString();
+							// also add me (the current brick we are reading) in the remap dictionary with the 4dBrix part name that we just read
+							BrickLibrary.Instance.AddTo4DBrixPartNumberAssociation(m4DBrixRemapData.mPartName, this);
+						}
 						else
 							xmlReader.Read();
 						// check if we need to continue
@@ -1116,6 +1119,9 @@ namespace BlueBrick.MapData
 		// a dictionary that match the registry file names with a registry keyword used in the part XML files
 		private Dictionary<string, string> mTrackDesignerRegistryFiles = new Dictionary<string, string>();
 
+		// a dictionary to find the corresponding BlueBrick part number from the 4DBrix part id
+		private Dictionary<string, Brick> m4DBrixPartNumberAssociation = new Dictionary<string, Brick>();
+
 		// This temporary list is used during the loading of the Brick library to record the parts that have an alias
 		private Dictionary<string, Brick> mTempRenamedPartList = new Dictionary<string, Brick>();
 
@@ -1169,6 +1175,7 @@ namespace BlueBrick.MapData
 			mConnectionTypeRemapingDictionnary.Clear();
 			mTrackDesignerPartNumberAssociation.Clear();
 			mTrackDesignerRegistryFiles.Clear();
+			m4DBrixPartNumberAssociation.Clear();
 			mTempRenamedPartList.Clear();
 			mWereUnknownBricksAdded = false;
 		}
@@ -1188,6 +1195,19 @@ namespace BlueBrick.MapData
 			{
 				// if the brick is already added, we just don't care
 			}
+		}
+
+		/// <summary>
+		/// Add the specified brick with the specified 4DBrix part name to the dictionnary used
+		/// to quickly find a Brick from a 4DBrix id
+		/// </summary>
+		/// <param name="fourDBrixPartNumber">the 4DBrix part name (can be a svg file name, or some specific segment name)</param>
+		/// <param name="brick">the brick that is linked with the specified 4DBrix id</param>
+		public void AddTo4DBrixPartNumberAssociation(string fourDBrixPartNumber, Brick brick)
+		{
+			// check if the 4DBrix part name is valid
+			if ((fourDBrixPartNumber != string.Empty) && !m4DBrixPartNumberAssociation.ContainsKey(fourDBrixPartNumber))
+				m4DBrixPartNumberAssociation.Add(fourDBrixPartNumber, brick);
 		}
 
 		/// <summary>
@@ -2192,6 +2212,13 @@ namespace BlueBrick.MapData
 			if (brickRef != null)
 				return brickRef.m4DBrixRemapData;
 			return null;
+		}
+
+		public Brick getBrickFrom4DBrixPartName(string fourDBrixPartName)
+		{
+			Brick brickRef = null;
+			m4DBrixPartNumberAssociation.TryGetValue(fourDBrixPartName, out brickRef);
+			return brickRef;
 		}
 
 		/// <summary>
