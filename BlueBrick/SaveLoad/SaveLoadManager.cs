@@ -2019,6 +2019,16 @@ namespace BlueBrick
 			public LayerBrick.Brick mBrick;
 		}
 
+		/// <summary>
+		/// This struct is used to store temporary the coordinates of a node that is read in the ncp file
+		/// </summary>
+		private struct FourDBrixNodeCoord
+		{
+			public float mX;
+			public float mY;
+			public float mZ;
+		}
+
 		private static bool load4DBrix(string filename)
 		{
 			// create a new map and different layer for different type of parts
@@ -2031,6 +2041,8 @@ namespace BlueBrick
 			trackLayer.Name = "Tracks";
 			LayerBrick structureLayer = new LayerBrick();
 			structureLayer.Name = "Structures";
+			// a dictionary to store all the corrdinates of the node found (because in ncp format, the connection points are separated from the bricks)
+			List<FourDBrixNodeCoord> nodeCoordinates = new List<FourDBrixNodeCoord>();
 
 			// declare a bool to check if we found some part not remaped in the library
 			List<string> noRemapablePartFound = new List<string>();
@@ -2065,7 +2077,7 @@ namespace BlueBrick
 					else if (xmlReader.Name.Equals("script"))
 						readScriptTagIn4DBrix(ref xmlReader);
 					else if (xmlReader.Name.Equals("node"))
-						readNodeTagIn4DBrix(ref xmlReader);
+						readNodeTagIn4DBrix(ref xmlReader, ref nodeCoordinates);
 					else if (xmlReader.Name.Equals("segment"))
 						readSegmentTagIn4DBrix(ref xmlReader);
 					else if (xmlReader.Name.Equals("table"))
@@ -2171,7 +2183,7 @@ namespace BlueBrick
 			}
 		}
 
-		private static void readNodeTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
+		private static void readNodeTagIn4DBrix(ref System.Xml.XmlReader xmlReader, ref List<FourDBrixNodeCoord> nodeCoordinates)
 		{
 			// check if the description is not empty
 			bool continueToRead = !xmlReader.IsEmptyElement;
@@ -2182,8 +2194,17 @@ namespace BlueBrick
 				continueToRead = !xmlReader.Name.Equals("node") && !xmlReader.EOF;
 				while (continueToRead)
 				{
-					if (xmlReader.Name.Equals("todo"))
-						;//todo
+					// we only care about the node coordinates, the rest is useless for BlueBrick
+					if (xmlReader.Name.Equals("coordinates"))
+					{
+						// declare a coord struct and parse the values of the coordinates
+						FourDBrixNodeCoord coord = new FourDBrixNodeCoord() { mX = 0, mY = 0, mZ = 0 };
+						float.TryParse(xmlReader.GetAttribute("x"), out coord.mX);
+						float.TryParse(xmlReader.GetAttribute("y"), out coord.mY);
+						float.TryParse(xmlReader.GetAttribute("z"), out coord.mZ);
+						// add the coord in the list
+						nodeCoordinates.Add(coord);
+					}
 					// read the tag anyway after having read the property
 					xmlReader.Read();
 					// check if we reach the end of the Description
