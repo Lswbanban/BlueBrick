@@ -2029,6 +2029,18 @@ namespace BlueBrick
 			public float mZ;
 		}
 
+		/// <summary>
+		/// This struct is used to store temporary the segments (or bricks) because we can only construct the segment once the file
+		/// is finished to be read, as maybe a node could be declared after a segment, and segments need nodes to know their positions
+		/// </summary>
+		private struct FourDBrixSegment
+		{
+			public string mPartId; // the 4DBrix part number/id, that will be used to ask the Brick library the corresponding BlueBrick part number
+			public int mOriginNodeIndex; // The index in the list of all the nodes declared in the file, on which this part is attached. We will use this node coordinate to place the part
+			public float mAngle; // the angle of the part
+		}
+
+
 		private static bool load4DBrix(string filename)
 		{
 			// create a new map and different layer for different type of parts
@@ -2041,8 +2053,10 @@ namespace BlueBrick
 			trackLayer.Name = "Tracks";
 			LayerBrick structureLayer = new LayerBrick();
 			structureLayer.Name = "Structures";
-			// a dictionary to store all the corrdinates of the node found (because in ncp format, the connection points are separated from the bricks)
+			// a list to store all the corrdinates of the node found (because in ncp format, the connection points are separated from the bricks)
 			List<FourDBrixNodeCoord> nodeCoordinates = new List<FourDBrixNodeCoord>();
+			// a list to also store the segment, we then instantiate the bricks by combining the two list after the file as been fully parsed
+			List<FourDBrixSegment> segments = new List<FourDBrixSegment>();
 
 			// declare a bool to check if we found some part not remaped in the library
 			List<string> noRemapablePartFound = new List<string>();
@@ -2079,7 +2093,7 @@ namespace BlueBrick
 					else if (xmlReader.Name.Equals("node"))
 						readNodeTagIn4DBrix(ref xmlReader, ref nodeCoordinates);
 					else if (xmlReader.Name.Equals("segment"))
-						readSegmentTagIn4DBrix(ref xmlReader);
+						readSegmentTagIn4DBrix(ref xmlReader, ref segments);
 					else if (xmlReader.Name.Equals("table"))
 						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, tableLayer, ref noRemapablePartFound);
 					else if (xmlReader.Name.Equals("baseplate"))
@@ -2095,6 +2109,9 @@ namespace BlueBrick
 
 			// close the xml file
 			xmlReader.Close();
+
+			// after we have finished to read the file, we can fill the track layer with the bluebrick parts, from the nodes and segment that we found in the file
+			createBricksFromNodeAndSegement(trackLayer, nodeCoordinates, segments, ref noRemapablePartFound);
 
 			// add the layers to the map in the correct order
 			Map.Instance.addLayer(new LayerGrid());
@@ -2189,6 +2206,9 @@ namespace BlueBrick
 			bool continueToRead = !xmlReader.IsEmptyElement;
 			if (continueToRead)
 			{
+				// declare a coord struct
+				FourDBrixNodeCoord coord = new FourDBrixNodeCoord() { mX = 0, mY = 0, mZ = 0 };
+
 				// read the first child node (and check that it is not the end element)
 				xmlReader.Read();
 				continueToRead = !xmlReader.Name.Equals("node") && !xmlReader.EOF;
@@ -2197,13 +2217,10 @@ namespace BlueBrick
 					// we only care about the node coordinates, the rest is useless for BlueBrick
 					if (xmlReader.Name.Equals("coordinates"))
 					{
-						// declare a coord struct and parse the values of the coordinates
-						FourDBrixNodeCoord coord = new FourDBrixNodeCoord() { mX = 0, mY = 0, mZ = 0 };
+						// parse the values of the coordinates
 						float.TryParse(xmlReader.GetAttribute("x"), out coord.mX);
 						float.TryParse(xmlReader.GetAttribute("y"), out coord.mY);
 						float.TryParse(xmlReader.GetAttribute("z"), out coord.mZ);
-						// add the coord in the list
-						nodeCoordinates.Add(coord);
 					}
 					// read the tag anyway after having read the property
 					xmlReader.Read();
@@ -2213,6 +2230,9 @@ namespace BlueBrick
 				// finish the Description tag
 				if (!xmlReader.EOF)
 					xmlReader.ReadEndElement();
+
+				// add the coord in the list
+				nodeCoordinates.Add(coord);
 			}
 			else
 			{
@@ -2220,19 +2240,34 @@ namespace BlueBrick
 			}
 		}
 
-		private static void readSegmentTagIn4DBrix(ref System.Xml.XmlReader xmlReader)
+		private static void readSegmentTagIn4DBrix(ref System.Xml.XmlReader xmlReader, ref List<FourDBrixSegment> segments)
 		{
 			// check if the description is not empty
 			bool continueToRead = !xmlReader.IsEmptyElement;
 			if (continueToRead)
 			{
+				// declare the segment in which we will store the data we need to read
+				FourDBrixSegment currentSegment = new FourDBrixSegment() { mPartId = string.Empty, mOriginNodeIndex = 0, mAngle = 0};
+				List<int> globalNodesIndexOfTheSegment = new List<int>();
+
 				// read the first child node (and check that it is not the end element)
 				xmlReader.Read();
 				continueToRead = !xmlReader.Name.Equals("segment") && !xmlReader.EOF;
 				while (continueToRead)
 				{
-					if (xmlReader.Name.Equals("todo"))
-						;//todo
+					if (xmlReader.Name.Equals("type"))
+						currentSegment.mPartId = xmlReader.GetAttribute("value");
+					else if (xmlReader.Name.Equals("angle"))
+						float.TryParse(xmlReader.GetAttribute("value"), out currentSegment.mAngle);
+					else if (xmlReader.Name.Equals("origin"))
+						int.TryParse(xmlReader.GetAttribute("value"), out currentSegment.mOriginNodeIndex); // for now store the local origin node index
+					else if (xmlReader.Name.StartsWith("node") && !xmlReader.Name.Equals("nodes"))
+					{
+						// we also need to read the global node index that this segment use, to store it in the origin after the read is complete
+						int nodeIndex = 0;
+						if (int.TryParse(xmlReader.GetAttribute("value"), out nodeIndex))
+							globalNodesIndexOfTheSegment.Add(nodeIndex);
+					}
 					// read the tag anyway after having read the property
 					xmlReader.Read();
 					// check if we reach the end of the Description
@@ -2241,10 +2276,63 @@ namespace BlueBrick
 				// finish the Description tag
 				if (!xmlReader.EOF)
 					xmlReader.ReadEndElement();
+
+				// add the segment in the list if at least we have a valid part name
+				if (currentSegment.mPartId != string.Empty)
+				{
+					// remap the local origin node index into the global node index
+					if (currentSegment.mOriginNodeIndex < globalNodesIndexOfTheSegment.Count)
+						currentSegment.mOriginNodeIndex = globalNodesIndexOfTheSegment[currentSegment.mOriginNodeIndex];
+					// then add the segment in the list
+					segments.Add(currentSegment);
+				}
 			}
 			else
 			{
 				xmlReader.Read();
+			}
+		}
+
+		private static void createBricksFromNodeAndSegement(LayerBrick layer, List<FourDBrixNodeCoord> nodeCoordinates, List<FourDBrixSegment> segments, ref List<string> noRemapablePartFound)
+		{
+			// iterate on all the segments (which are the equivalent to the bricks)
+			foreach (FourDBrixSegment segment in segments)
+			{
+				// first try to find the equivalent brick in the brick library
+				BrickLibrary.Brick libBrick = BrickLibrary.Instance.getBrickFrom4DBrixPartName(segment.mPartId);
+				// if we found a brick in the brick library matching the 4DBrix part name, we can add the brick to the current layer
+				if (libBrick != null)
+				{
+					// create a new brick
+					LayerBrick.Brick brick = new LayerBrick.Brick(libBrick.mPartNumber);
+
+					// rotate the brick (will recompute the correct OffsetFromOriginalImage)
+					brick.Orientation = segment.mAngle;
+
+					// check if the origin node for this segement is valid
+					if (segment.mOriginNodeIndex < nodeCoordinates.Count)
+					{
+						// get the coordinate of the origin node for this brick
+						FourDBrixNodeCoord nodeCoord = nodeCoordinates[segment.mOriginNodeIndex];
+
+						// check in the remap data to which BlueBrick connection point, correspond the origin of a 4DBrix segment
+						brick.ActiveConnectionPointIndex = 0; // TODO
+
+						// rescale the position because in 4DBrix, position are in millimeters and set position of the brick through the active connection point
+						brick.ActiveConnectionPosition = new PointF(nodeCoord.mX * 0.125f, nodeCoord.mY * 0.125f); // or divided by 8
+
+						// set also the altitude
+						brick.Altitude = nodeCoord.mZ * 2.5f; // or divided by 0.4f;
+					}
+
+					// add the brick to the layer
+					layer.addBrick(brick, -1);
+				}
+				else
+				{
+					// else add this unknown part in the error list
+					noRemapablePartFound.Add(segment.mPartId);
+				}
 			}
 		}
 
@@ -2305,7 +2393,7 @@ namespace BlueBrick
 						// rescale the position because in 4DBrix, position are in millimeters
 						//x = (x / 8f) - brick.OffsetFromOriginalImage.X;
 						//y = (y / 8f) - brick.OffsetFromOriginalImage.Y;
-						brick.Position = new PointF(x / 8f, y / 8f);
+						brick.Position = new PointF(x * 0.125f, y * 0.125f); // or divided by 8
 
 						// add the brick to the layer
 						layer.addBrick(brick, -1);
