@@ -2023,6 +2023,14 @@ namespace BlueBrick
 		{
 			// create a new map and different layer for different type of parts
 			Map.Instance = new Map();
+			LayerBrick tableLayer = new LayerBrick();
+			tableLayer.Name = "Tables";
+			LayerBrick baseplateLayer = new LayerBrick();
+			baseplateLayer.Name = "Baseplates";
+			LayerBrick trackLayer = new LayerBrick();
+			trackLayer.Name = "Tracks";
+			LayerBrick structureLayer = new LayerBrick();
+			structureLayer.Name = "Structures";
 
 			// declare a bool to check if we found some part not remaped in the library
 			List<string> noRemapablePartFound = new List<string>();
@@ -2060,15 +2068,12 @@ namespace BlueBrick
 						readNodeTagIn4DBrix(ref xmlReader);
 					else if (xmlReader.Name.Equals("segment"))
 						readSegmentTagIn4DBrix(ref xmlReader);
-					else if (xmlReader.Name.Equals("table") || xmlReader.Name.Equals("baseplate") || xmlReader.Name.Equals("structure"))
-					{
-						// create a new layer
-						LayerBrick layer = new LayerBrick();
-						layer.Name = xmlReader.Name;
-						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, layer, ref noRemapablePartFound);
-						// add the layer to the map
-						Map.Instance.addLayer(layer);
-					}
+					else if (xmlReader.Name.Equals("table"))
+						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, tableLayer, ref noRemapablePartFound);
+					else if (xmlReader.Name.Equals("baseplate"))
+						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, baseplateLayer, ref noRemapablePartFound);
+					else if (xmlReader.Name.Equals("structure"))
+						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, structureLayer, ref noRemapablePartFound);
 					else
 						xmlReader.Read();
 					// check if we need to continue
@@ -2078,6 +2083,13 @@ namespace BlueBrick
 
 			// close the xml file
 			xmlReader.Close();
+
+			// add the layers to the map in the correct order
+			Map.Instance.addLayer(new LayerGrid());
+			Map.Instance.addLayer(tableLayer);
+			Map.Instance.addLayer(baseplateLayer);
+			Map.Instance.addLayer(trackLayer);
+			Map.Instance.addLayer(structureLayer);
 
 			// finish the progress bar (to hide it)
 			MainForm.Instance.finishProgressBar();
