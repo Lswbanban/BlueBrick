@@ -2348,12 +2348,15 @@ namespace BlueBrick
 				float angle = 0;
 				string partNumber = string.Empty;
 
+				// get the tag used for saving the coordinates
+				string coordTag = isCoordInCenter ? "center" : "coordinates";
+
 				// read the first child node (and check that it is not the end element)
 				xmlReader.Read();
 				continueToRead = !xmlReader.Name.Equals(partTag) && !xmlReader.EOF;
 				while (continueToRead)
 				{
-					if (xmlReader.Name.Equals("coordinates"))
+					if (xmlReader.Name.Equals(coordTag))
 					{
 						float.TryParse(xmlReader.GetAttribute("x"), out x);
 						float.TryParse(xmlReader.GetAttribute("y"), out y);
