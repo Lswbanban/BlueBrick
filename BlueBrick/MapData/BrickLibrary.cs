@@ -218,6 +218,7 @@ namespace BlueBrick.MapData
 				}
 				public FourDBrixBrickType mFourDBrixBrickType = FourDBrixBrickType.SEGMENT;
 				public string mPartName = null;
+				public int mConnectionIndexUsedAsOrigin = 0;
 			}
 
 			public class SubPart
@@ -912,6 +913,8 @@ namespace BlueBrick.MapData
 							// also add me (the current brick we are reading) in the remap dictionary with the 4dBrix part name that we just read
 							BrickLibrary.Instance.AddTo4DBrixPartNumberAssociation(m4DBrixRemapData.mPartName, this);
 						}
+						else if (xmlReader.Name.Equals("ConnectionIndexUsedAsOrigin"))
+							m4DBrixRemapData.mConnectionIndexUsedAsOrigin = xmlReader.ReadElementContentAsInt();
 						else
 							xmlReader.Read();
 						// check if we need to continue

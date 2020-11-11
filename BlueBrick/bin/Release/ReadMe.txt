@@ -106,6 +106,15 @@ to open the help file (see above for more details).
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
+	- verify the export and import (all the data correctly exported?)
+	- add some ConnectionIndexUsedAsOrigin in the part xml to test
+	- do all the baseplates
+	- prepare a 4DBrix lib with few parts
+	- add a message to warn if the user didn't imported the 4DBrix library
+	- what is segment label?
+	- what is node anchor?
+	- what is node type?
+	- verify origin of table, baseplate and structures
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
 - MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - MISSING FEATURE (Matthias): Add a simple view for the track with the part number displayed overlaid (add a new tag in the xml for this simplified name to avoid too long names).

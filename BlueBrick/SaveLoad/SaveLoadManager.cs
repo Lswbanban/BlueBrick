@@ -2095,11 +2095,11 @@ namespace BlueBrick
 					else if (xmlReader.Name.Equals("segment"))
 						readSegmentTagIn4DBrix(ref xmlReader, ref segments);
 					else if (xmlReader.Name.Equals("table"))
-						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, tableLayer, ref noRemapablePartFound);
+						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, tableLayer, false, ref noRemapablePartFound);
 					else if (xmlReader.Name.Equals("baseplate"))
-						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, baseplateLayer, ref noRemapablePartFound);
+						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, baseplateLayer, false, ref noRemapablePartFound);
 					else if (xmlReader.Name.Equals("structure"))
-						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, structureLayer, ref noRemapablePartFound);
+						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, structureLayer, true, ref noRemapablePartFound);
 					else
 						xmlReader.Read();
 					// check if we need to continue
@@ -2316,7 +2316,7 @@ namespace BlueBrick
 						FourDBrixNodeCoord nodeCoord = nodeCoordinates[segment.mOriginNodeIndex];
 
 						// check in the remap data to which BlueBrick connection point, correspond the origin of a 4DBrix segment
-						brick.ActiveConnectionPointIndex = 0; // TODO
+						brick.ActiveConnectionPointIndex = libBrick.m4DBrixRemapData.mConnectionIndexUsedAsOrigin;
 
 						// rescale the position because in 4DBrix, position are in millimeters and set position of the brick through the active connection point
 						brick.ActiveConnectionPosition = new PointF(nodeCoord.mX * 0.125f, nodeCoord.mY * 0.125f); // or divided by 8
@@ -2336,7 +2336,7 @@ namespace BlueBrick
 			}
 		}
 
-		private static void readGenericPartIn4DBrix(ref System.Xml.XmlReader xmlReader, string partTag, LayerBrick layer, ref List<string> noRemapablePartFound)
+		private static void readGenericPartIn4DBrix(ref System.Xml.XmlReader xmlReader, string partTag, LayerBrick layer, bool isCoordInCenter, ref List<string> noRemapablePartFound)
 		{
 			// check if the description is not empty
 			bool continueToRead = !xmlReader.IsEmptyElement;
@@ -2390,10 +2390,20 @@ namespace BlueBrick
 						// rotate the brick (will recompute the correct OffsetFromOriginalImage)
 						brick.Orientation = angle;
 
-						// rescale the position because in 4DBrix, position are in millimeters
-						//x = (x / 8f) - brick.OffsetFromOriginalImage.X;
-						//y = (y / 8f) - brick.OffsetFromOriginalImage.Y;
-						brick.Position = new PointF(x * 0.125f, y * 0.125f); // or divided by 8
+						// if the coordinates should be interpreted as center coordinate, shift them, as w
+						if (isCoordInCenter)
+						{
+							// rescale the position because in 4DBrix, position are in millimeters (divide by 8), and give the adjustment due to the orientation
+							x = (x * 0.125f) - brick.OffsetFromOriginalImage.X;
+							y = (y * 0.125f) - brick.OffsetFromOriginalImage.Y;
+							// and assign the center
+							brick.Center = new PointF(x, y);
+						}
+						else
+						{
+							// rescale the position because in 4DBrix, position are in millimeters
+							brick.Position = new PointF(x * 0.125f, y * 0.125f); // or divided by 8
+						}
 
 						// add the brick to the layer
 						layer.addBrick(brick, -1);
@@ -2511,7 +2521,9 @@ namespace BlueBrick
 				}
 			}
 			textWriter.WriteLine("      <angle value=\"" + brick.Orientation.ToString() + "\"/>");
-			textWriter.WriteLine("      <origin value=\"0\"/>");
+			// since we always write the nodes in the order of the BlueBrick.Brick.ConnectionPoints, the origin local node id correspond to the ConnectionPoint Index specified in the xml file
+			textWriter.WriteLine("      <origin value=\"" + part.mRemapData.mConnectionIndexUsedAsOrigin.ToString() + "\"/>"); 
+			// in BlueBrick the part can have elevation, but not slope (they are always horizontal
 			textWriter.WriteLine("      <slope value=\"0\"/>");
 			textWriter.WriteLine("   </segment>");
 		}
