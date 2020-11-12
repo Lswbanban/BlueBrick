@@ -382,6 +382,16 @@ namespace BlueBrick.MapData
 			}
 
 			/// <summary>
+			/// Get the coordinate of the top left corner of the Brick, on the map, in stud unit.
+			/// This is usually different from the top left corner of the display area if the brick is rotated.
+			/// </summary>
+			public PointF TopLeftCornerPositionInStud
+			{
+				get { return new PointF(mDisplayArea.X + (mTopLeftCornerInPixel.X / NUM_PIXEL_PER_STUD_FOR_BRICKS),
+										mDisplayArea.Y + (mTopLeftCornerInPixel.Y / NUM_PIXEL_PER_STUD_FOR_BRICKS)); }
+			}
+
+			/// <summary>
 			/// Tell if this brick has any connection point
 			/// </summary>
 			public bool HasConnectionPoint
@@ -796,7 +806,7 @@ namespace BlueBrick.MapData
 				PointF[] hullArray = hull.ToArray();
 				rotation.TransformVectors(hullArray);
 
-				// check if this picture has a specific hull
+				// check if this picture has a specific hull (otherwise the computation of the hullMin and hullMax are purely identical as the computation of the bounding box, so the offset would be null in that case)
 				if (hull != boundingBox)
 				{
 					// get the bounding size from the hull

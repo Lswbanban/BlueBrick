@@ -2585,9 +2585,10 @@ namespace BlueBrick
 		{
 			foreach (FourDBrixPart part in tables)
 			{
-				// get the position in stud coordinates and save it in milimeters
-				PointF position = part.mBrick.Position;
+				// get the position in stud coordinates of the top left corner (as this is what nControl use to place tables)
+				PointF position = part.mBrick.TopLeftCornerPositionInStud;
 				textWriter.WriteLine("   <table>");
+				// save the position in milimeters
 				textWriter.WriteLine("      <coordinates x=\"" + (position.X * 8f) + "\" y=\"" + (position.Y * 8f) + "\"/>");
 				textWriter.WriteLine("      <angle value=\"" + part.mBrick.Orientation + "\"/>");
 				textWriter.WriteLine("      <svgfile value=\"" + part.mRemapData.mPartName + "\"/>");
@@ -2604,8 +2605,8 @@ namespace BlueBrick
 				// the width and height are the one of the baseplate without rotation for ncontrol, so we ask it to the part library
 				// nControl wants the baseplate size is in millimeter, one stud = 8 mm, and the brick resolution is 8 pixel per stud. So 1 px = 1 mm, we can use the image size in pixel.
 				Image brickImage = BrickLibrary.Instance.getImage(part.mBrick.PartNumber);
-				// get the position in stud coordinates and save it in milimeters
-				PointF position = part.mBrick.Position;
+				// get the position in stud coordinates of the top left corner (as this is what nControl use to place baseplates)
+				PointF position = part.mBrick.TopLeftCornerPositionInStud;
 				// write the block for the baseplate
 				textWriter.WriteLine("   <baseplate>");
 				textWriter.WriteLine("      <coordinates x=\"" + (position.X * 8f) + "\" y=\"" + (position.Y * 8f) + "\"/>");
