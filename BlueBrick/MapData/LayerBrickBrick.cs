@@ -384,11 +384,20 @@ namespace BlueBrick.MapData
 			/// <summary>
 			/// Get the coordinate of the top left corner of the Brick, on the map, in stud unit.
 			/// This is usually different from the top left corner of the display area if the brick is rotated.
+			/// Or set the position of this brick through its top left corner.
 			/// </summary>
 			public PointF TopLeftCornerPositionInStud
 			{
-				get { return new PointF(mDisplayArea.X + (mTopLeftCornerInPixel.X / NUM_PIXEL_PER_STUD_FOR_BRICKS),
-										mDisplayArea.Y + (mTopLeftCornerInPixel.Y / NUM_PIXEL_PER_STUD_FOR_BRICKS)); }
+				set
+				{
+					this.Position = new PointF(value.X - (mTopLeftCornerInPixel.X / NUM_PIXEL_PER_STUD_FOR_BRICKS),
+												value.Y - (mTopLeftCornerInPixel.Y / NUM_PIXEL_PER_STUD_FOR_BRICKS));
+				}
+				get
+				{
+					return new PointF(mDisplayArea.X + (mTopLeftCornerInPixel.X / NUM_PIXEL_PER_STUD_FOR_BRICKS),
+										mDisplayArea.Y + (mTopLeftCornerInPixel.Y / NUM_PIXEL_PER_STUD_FOR_BRICKS));
+				}
 			}
 
 			/// <summary>

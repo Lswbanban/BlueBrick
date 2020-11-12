@@ -2409,7 +2409,7 @@ namespace BlueBrick
 						else
 						{
 							// rescale the position because in 4DBrix, position are in millimeters
-							brick.Position = new PointF(x * 0.125f, y * 0.125f); // or divided by 8
+							brick.TopLeftCornerPositionInStud = new PointF(x * 0.125f, y * 0.125f); // or divided by 8
 						}
 
 						// add the brick to the layer
