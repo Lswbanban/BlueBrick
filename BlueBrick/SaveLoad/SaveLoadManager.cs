@@ -2334,6 +2334,10 @@ namespace BlueBrick
 					noRemapablePartFound.Add(segment.mPartId);
 				}
 			}
+
+			// then update the connectivy and sort the bricks by elevation
+			layer.updateFullBrickConnectivity();
+			layer.sortBricksByElevation();
 		}
 
 		private static void readGenericPartIn4DBrix(ref System.Xml.XmlReader xmlReader, string partTag, LayerBrick layer, bool isCoordInCenter, ref List<string> noRemapablePartFound)
@@ -2460,7 +2464,8 @@ namespace BlueBrick
 			textWriter.WriteLine("      <modified value=\"" + now +"\"/>");
 			textWriter.WriteLine("      <description value=\"" + Map.Instance.Date.ToString(dateTimeFormat) + "\"/>");
 			textWriter.WriteLine("      <info value=\"" + escapeSpecialXMLCharacter(Map.Instance.Comment) + "\"/>");
-			textWriter.WriteLine("      <tracklayout width=\"" + totalArea.Width.ToString() + "\" height=\"" + totalArea.Height.ToString() + "\" scale=\"0.25\"/>");
+			// for the tracklayout size, nControl only accept interger value in studs, and always assume the top left corner is (0,0)
+			textWriter.WriteLine("      <tracklayout width=\"" + ((int)(totalArea.Right)).ToString() + "\" height=\"" + ((int)(totalArea.Bottom)).ToString() + "\" scale=\"0.25\"/>");
 			textWriter.WriteLine("      <tilepanel rows=\"1\" columns=\"6\"/>");
 			textWriter.WriteLine("   </project>");
 
@@ -2495,7 +2500,7 @@ namespace BlueBrick
 			textWriter.WriteLine("   <node>");
 			textWriter.WriteLine("      <coordinates x=\"" + x + "\" y=\"" + y + "\" z=\"" + z + "\"/>");
 			textWriter.WriteLine("      <segments a=\"" + ConnectedBrickAId + "\" b=\"" + ConnectedBrickBId + "\"/>");
-			textWriter.WriteLine("      <anchor value=\"yes\"/>");
+			textWriter.WriteLine("      <anchor value=\"no\"/>");
 			textWriter.WriteLine("      <type value=\"NT_UNDEFINED\"/>");
 			textWriter.WriteLine("   </node>");
 		}
