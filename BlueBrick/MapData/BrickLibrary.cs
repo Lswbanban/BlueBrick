@@ -218,6 +218,7 @@ namespace BlueBrick.MapData
 				}
 				public FourDBrixBrickType mFourDBrixBrickType = FourDBrixBrickType.SEGMENT;
 				public string mPartName = null;
+				public float mOrientationDifference = 0f;
 				public int mConnectionIndexUsedAsOrigin = 0;
 			}
 
@@ -913,6 +914,8 @@ namespace BlueBrick.MapData
 							// also add me (the current brick we are reading) in the remap dictionary with the 4dBrix part name that we just read
 							BrickLibrary.Instance.AddTo4DBrixPartNumberAssociation(m4DBrixRemapData.mPartName, this);
 						}
+						else if (xmlReader.Name.Equals("OrientationDifference"))
+							m4DBrixRemapData.mOrientationDifference = xmlReader.ReadElementContentAsFloat();
 						else if (xmlReader.Name.Equals("ConnectionIndexUsedAsOrigin"))
 							m4DBrixRemapData.mConnectionIndexUsedAsOrigin = xmlReader.ReadElementContentAsInt();
 						else

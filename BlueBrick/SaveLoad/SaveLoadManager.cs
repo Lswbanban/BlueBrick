@@ -2307,7 +2307,7 @@ namespace BlueBrick
 					LayerBrick.Brick brick = new LayerBrick.Brick(libBrick.mPartNumber);
 
 					// rotate the brick (will recompute the correct OffsetFromOriginalImage)
-					brick.Orientation = segment.mAngle;
+					brick.Orientation = segment.mAngle - libBrick.m4DBrixRemapData.mOrientationDifference;
 
 					// check if the origin node for this segement is valid
 					if (segment.mOriginNodeIndex < nodeCoordinates.Count)
@@ -2411,6 +2411,10 @@ namespace BlueBrick
 							// rescale the position because in 4DBrix, position are in millimeters
 							brick.TopLeftCornerPositionInStud = new PointF(x * 0.125f, y * 0.125f); // or divided by 8
 						}
+
+						// AFTER setting the correct position from the center of the top left corner, set again the orientation, this time with the orientation difference
+						if (libBrick.m4DBrixRemapData.mOrientationDifference != 0f)
+							brick.Orientation = angle - libBrick.m4DBrixRemapData.mOrientationDifference;
 
 						// add the brick to the layer
 						layer.addBrick(brick, -1);
@@ -2528,7 +2532,7 @@ namespace BlueBrick
 					localIndex++;
 				}
 			}
-			textWriter.WriteLine("      <angle value=\"" + brick.Orientation.ToString() + "\"/>");
+			textWriter.WriteLine("      <angle value=\"" + (brick.Orientation + part.mRemapData.mOrientationDifference).ToString() + "\"/>");
 			// since we always write the nodes in the order of the BlueBrick.Brick.ConnectionPoints, the origin local node id correspond to the ConnectionPoint Index specified in the xml file
 			textWriter.WriteLine("      <origin value=\"" + part.mRemapData.mConnectionIndexUsedAsOrigin.ToString() + "\"/>"); 
 			// in BlueBrick the part can have elevation, but not slope (they are always horizontal
@@ -2581,62 +2585,34 @@ namespace BlueBrick
 			}
 		}
 
-		private static void saveTablesIn4DBrix(StreamWriter textWriter, List<FourDBrixPart> tables)
+		private static void saveGenericPartsIn4DBrix(StreamWriter textWriter, List<FourDBrixPart> partList, string partTag, bool isCoordInCenter)
 		{
-			foreach (FourDBrixPart part in tables)
+			// get the tag used for saving the coordinates
+			string coordTag = isCoordInCenter ? "center" : "coordinates";
+			bool needToSaveSize = !partTag.Equals("table");
+
+			foreach (FourDBrixPart part in partList)
 			{
+				// we need to rotate the part first before asking it's top left corner
+				part.mBrick.Orientation = part.mBrick.Orientation + part.mRemapData.mOrientationDifference;
 				// get the position in stud coordinates of the top left corner (as this is what nControl use to place tables)
-				PointF position = part.mBrick.TopLeftCornerPositionInStud;
-				textWriter.WriteLine("   <table>");
+				PointF position = isCoordInCenter ? part.mBrick.Center : part.mBrick.TopLeftCornerPositionInStud;
+				textWriter.WriteLine("   <" + partTag + ">");
 				// save the position in milimeters
-				textWriter.WriteLine("      <coordinates x=\"" + (position.X * 8f) + "\" y=\"" + (position.Y * 8f) + "\"/>");
-				textWriter.WriteLine("      <angle value=\"" + part.mBrick.Orientation + "\"/>");
+				textWriter.WriteLine("      <" + coordTag + " x =\"" + (position.X * 8f) + "\" y=\"" + (position.Y * 8f) + "\"/>");
+				textWriter.WriteLine("      <angle value=\"" + part.mBrick.Orientation.ToString() + "\"/>");
 				textWriter.WriteLine("      <svgfile value=\"" + part.mRemapData.mPartName + "\"/>");
-				textWriter.WriteLine("   </table>");
-				// step the progress bar for this brick for the second pass
-				MainForm.Instance.stepProgressBar();
-			}
-		}
-
-		private static void saveBaseplatesIn4DBrix(StreamWriter textWriter, List<FourDBrixPart> baseplates)
-		{
-			foreach (FourDBrixPart part in baseplates)
-			{
-				// the width and height are the one of the baseplate without rotation for ncontrol, so we ask it to the part library
-				// nControl wants the baseplate size is in millimeter, one stud = 8 mm, and the brick resolution is 8 pixel per stud. So 1 px = 1 mm, we can use the image size in pixel.
-				Image brickImage = BrickLibrary.Instance.getImage(part.mBrick.PartNumber);
-				// get the position in stud coordinates of the top left corner (as this is what nControl use to place baseplates)
-				PointF position = part.mBrick.TopLeftCornerPositionInStud;
-				// write the block for the baseplate
-				textWriter.WriteLine("   <baseplate>");
-				textWriter.WriteLine("      <coordinates x=\"" + (position.X * 8f) + "\" y=\"" + (position.Y * 8f) + "\"/>");
-				textWriter.WriteLine("      <angle value=\"" + part.mBrick.Orientation + "\"/>");
-				textWriter.WriteLine("      <svgfile value=\"" + part.mRemapData.mPartName + "\"/>");
-				textWriter.WriteLine("      <size height=\"" + brickImage.Height + "\" width=\"" + brickImage.Width + "\"/>");
-				textWriter.WriteLine("   </baseplate>");
-				// step the progress bar for this brick for the second pass
-				MainForm.Instance.stepProgressBar();
-			}
-		}
-
-		private static void saveStructuresIn4DBrix(StreamWriter textWriter, List<FourDBrixPart> structures)
-		{
-			foreach (FourDBrixPart part in structures)
-			{
-				// get the center of the brick and convert the stud coord to milimeters
-				PointF center = part.mBrick.Center;
-				center.X *= 8f;
-				center.Y *= 8f;
-				// the width and height are the one of the baseplate without rotation for ncontrol, so we ask it to the part library
-				// nControl wants the baseplate size is in millimeter, one stud = 8 mm, and the brick resolution is 8 pixel per stud. So 1 px = 1 mm, we can use the image size in pixel.
-				Image brickImage = BrickLibrary.Instance.getImage(part.mBrick.PartNumber);
-				// write the block for the baseplate
-				textWriter.WriteLine("   <structure>");
-				textWriter.WriteLine("      <center x=\"" + center.X + "\" y=\"" + center.Y + "\"/>");
-				textWriter.WriteLine("      <angle value=\"" + part.mBrick.Orientation + "\"/>");
-				textWriter.WriteLine("      <svgfile value=\"" + part.mRemapData.mPartName + "\"/>");
-				textWriter.WriteLine("      <size height=\"" + brickImage.Height + "\" width=\"" + brickImage.Width + "\"/>");
-				textWriter.WriteLine("   </structure>");
+				// special case for baseplates and structures they want the size in studs
+				if (needToSaveSize)
+				{
+					// the width and height are the one of the baseplate without rotation for ncontrol, so we ask it to the part library
+					// nControl wants the baseplate size is in millimeter, one stud = 8 mm, and the brick resolution is 8 pixel per stud. So 1 px = 1 mm, we can use the image size in pixel.
+					Image brickImage = BrickLibrary.Instance.getImage(part.mBrick.PartNumber);
+					textWriter.WriteLine("      <size height=\"" + brickImage.Height + "\" width=\"" + brickImage.Width + "\"/>");
+				}
+				textWriter.WriteLine("   </" + partTag + ">");
+				// rotate back the brick to its original orientation
+				part.mBrick.Orientation = part.mBrick.Orientation - part.mRemapData.mOrientationDifference;
 				// step the progress bar for this brick for the second pass
 				MainForm.Instance.stepProgressBar();
 			}
@@ -2719,9 +2695,9 @@ namespace BlueBrick
 
 			// then save the different layers in the correct order
 			saveTracksIn4DBrix(textWriter, tracks);
-			saveTablesIn4DBrix(textWriter, tables);
-			saveBaseplatesIn4DBrix(textWriter, baseplates);
-			saveStructuresIn4DBrix(textWriter, structures);
+			saveGenericPartsIn4DBrix(textWriter, tables, "table", false);
+			saveGenericPartsIn4DBrix(textWriter, baseplates, "baseplate", false);
+			saveGenericPartsIn4DBrix(textWriter, structures, "structure", true);
 
 			// save the footer to finish the file
 			saveFooterIn4DBrix(textWriter);
