@@ -106,8 +106,7 @@ to open the help file (see above for more details).
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
-	- need to add a rotation parameter, in case the part is not oriented the same way in BlueBrick and nControl
-	- prepare a 4DBrix lib with few tracks
+	- prepare a 4DBrix lib with few tracks + create the missing structure sets
 	- add a message to warn if the user didn't imported the 4DBrix library
 	- what is segment label?
 	- what is node anchor?
