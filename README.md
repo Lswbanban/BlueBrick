@@ -1,13 +1,13 @@
 # BlueBrick version 1.8.2.0
 
 ## Overview
-Bluebrick is software to plan Lego© Diorama or Layout. It is particularly efficient
+Bluebrick is software to plan LEGO© Diorama or Layout. It is particularly efficient
 to lay down train tracks.
 
 Bluebrick is partially compatible with LDRAW.
 
-Bluebrick use a part library, not included in this repo, but available in [this repo](https://bitbucket.org/bluebrick/bluebrick.bitbucket.org). This library is fully customizable,
-and the software can be used to plan non-lego© layout, if you are willing to create the parts.
+Bluebrick use a part library, not included in this repo, but available in [this repo](https://github.com/Lswbanban/BlueBrickParts). This library is fully customizable,
+and the software can be used to plan non-LEGO© layout, if you are willing to create the parts.
 
 ## Install
 
@@ -22,8 +22,8 @@ BlueBrick.
 
 ### Windows XP
 a) First, you need to download and install the Microsoft .NET FrameWork (at
-least version 4.0), that can be found on the 
-[Microsoft website](http://www.microsoft.com/en-us/download/details.aspx?id=17851) 
+least version 4.0), that can be found on the
+[Microsoft website](http://www.microsoft.com/en-us/download/details.aspx?id=17851)
 (if not already installed on your machine).
 
 b) Then extract the files contained in the BlueBrick zip file, somewhere on
@@ -32,6 +32,7 @@ your hardrive, by keeping the same folders organization.
 c) Double click on the BlueBrick.exe file in the install folder.
 
 ### Linux
+#### h4 MonoDevelop
 a) You need to install Mono for Linux first. I suggest you to use the Software
 Center, and search for "MonoDevelop".
 
@@ -50,6 +51,13 @@ c.bis) Or simply, if you don't want to create a shortcut, to run BlueBrick in
 a Terminal Shell, type:
 $ mono BlueBrick.exe &
 
+#### h4 PlayOnLinux
+a) Create a new wineprefix.
+
+b) Click "Configure" and under "Install components" choose `dotnet45`.
+
+c) Copy the BlueBrick folder to the virtual drive and create a shortcut.
+
 ### Mac OS
 Warning: it seem the program cannot run on Mac OSX. Several users have reported an
 error related to user32.dll. If you know how to fix it, please, contact me.
@@ -65,7 +73,7 @@ to learn how to solve it:
 http://www.mono-project.com/docs/advanced/pinvoke/dllnotfoundexception/
 
 a.bis) If you want to be able to open the documentation file, you should also
-install a CHM reader, for example: 
+install a CHM reader, for example:
 [iCHM](http://www.macupdate.com/app/mac/28171/ichm)
 or [Chmox](http://chmox.sourceforge.net/).
 
