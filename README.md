@@ -32,7 +32,7 @@ your hardrive, by keeping the same folders organization.
 c) Double click on the BlueBrick.exe file in the install folder.
 
 ### Linux
-#### h4 MonoDevelop
+#### - MonoDevelop
 a) You need to install Mono for Linux first. I suggest you to use the Software
 Center, and search for "MonoDevelop".
 
@@ -51,7 +51,7 @@ c.bis) Or simply, if you don't want to create a shortcut, to run BlueBrick in
 a Terminal Shell, type:
 $ mono BlueBrick.exe &
 
-#### h4 PlayOnLinux
+#### - PlayOnLinux
 a) Create a new wineprefix.
 
 b) Click "Configure" and under "Install components" choose `dotnet45`.
@@ -59,8 +59,10 @@ b) Click "Configure" and under "Install components" choose `dotnet45`.
 c) Copy the BlueBrick folder to the virtual drive and create a shortcut.
 
 ### Mac OS
-Warning: it seem the program cannot run on Mac OSX. Several users have reported an
+- Warning: it seem the program cannot run on Mac OSX. Several users have reported an
 error related to user32.dll. If you know how to fix it, please, contact me.
+
+- Alternatively, you can also install PlayOnMac and use the same instructions as above for PlayOnLinux.
 
 a) You need to install Mono for Mac first which you can download here:
 http://www.mono-project.com/download/
