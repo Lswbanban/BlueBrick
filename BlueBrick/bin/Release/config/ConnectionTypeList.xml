@@ -19,13 +19,20 @@
 			<ColorARGB>FF00FFFF</ColorARGB>
 			<Size>1.5</Size>
 		</ConnectionType>
-		<ConnectionType name="3"> <!-- Monorail -->
+		<ConnectionType name="mono"> <!-- Monorail -->
 			<ColorARGB>FFE22B8A</ColorARGB>
 			<Size>1</Size>
+			<FoudDBrixName>NT_MONORAIL</FoudDBrixName>
 		</ConnectionType>
-		<ConnectionType name="4"> <!-- MONORAIL_SHORT_CURVE -->
+		<ConnectionType name="mono45"> <!-- Monorail short curve -->
 			<ColorARGB>FFA899FF</ColorARGB>
 			<Size>1</Size>
+			<FoudDBrixName>NT_MONORAIL45</FoudDBrixName>
+		</ConnectionType>
+		<ConnectionType name="monoramp"> <!-- Monorail ramp -->
+			<ColorARGB>FF782BE2</ColorARGB>
+			<Size>1</Size>
+			<FoudDBrixName>NT_MONORAILRAMP</FoudDBrixName>
 		</ConnectionType>
 		<ConnectionType name="5"> <!-- Duplo rail -->
 			<ColorARGB>FF2FFFAD</ColorARGB>

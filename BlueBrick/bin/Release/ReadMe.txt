@@ -108,7 +108,6 @@ Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
 	- prepare a 4DBrix lib with few tracks
 	- export the group tag in the ncp
-	- what is node type? This seems to correspond to the BlueBrick type of connection, so that can be exported (at least hard-coded if not in the connection type config file)
 	- add proxy in Brick library to make a part appear in different folder? This to make appear the standard tracks in the 4DBrix folder (with a different sorting key). used for the 9V track and also half straight
 	- what is segment label?
 	- what is node anchor?

@@ -35,6 +35,7 @@ namespace BlueBrick.MapData
 			private Color mColor = Color.Empty;
 			private float mSize = 1.0f;
 			private float mHingeAngle = 0.0f;
+			private string mFourDBrixName = "NT_UNDEFINED";
 
 			public Color Color
 			{
@@ -51,12 +52,18 @@ namespace BlueBrick.MapData
 				get { return mHingeAngle; }
 			}
 
-			public ConnectionType(string name, Color color, float size, float angle)
+			public string FourDBrixName
+			{
+				get { return mFourDBrixName; }
+			}
+
+			public ConnectionType(string name, Color color, float size, float angle, string fourDBrixName = "NT_UNDEFINED")
 			{
 				mName = name;
 				mColor = color;
 				mSize = size;
 				mHingeAngle = angle;
+				mFourDBrixName = fourDBrixName;
 			}
 		};
 
@@ -1384,11 +1391,16 @@ namespace BlueBrick.MapData
 						if (xmlReader.Name.Equals("HingeAngle"))
 							hingeAngle = xmlReader.ReadElementContentAsFloat();
 
+						// read the 4DBrix name
+						string foudDBrixName = "NT_UNDEFINED";
+						if (xmlReader.Name.Equals("FoudDBrixName"))
+							foudDBrixName = xmlReader.ReadElementContentAsString();
+
 						// add the new connection to the list (if not already there)
 						if (!mConnectionTypeRemapingDictionnary.ContainsKey(name))
 						{
 							mConnectionTypeRemapingDictionnary.Add(name, mConnectionTypes.Count);
-							mConnectionTypes.Add(new ConnectionType(name, color, size, hingeAngle));
+							mConnectionTypes.Add(new ConnectionType(name, color, size, hingeAngle, foudDBrixName));
 						}
 
 						// read the next connection
@@ -1773,6 +1785,20 @@ namespace BlueBrick.MapData
 			if (brickRef != null)
 				return brickRef.Image;
 			return null;
+		}
+
+		/// <summary>
+		/// Return an object containing all the information regarding a specific connection type,
+		/// from the specified connection type index
+		/// </summary>
+		/// <param name="connexionTypeIndex">The index of the connection type for which you want more infos</param>
+		/// <returns>An object containing more info on the connection type</returns>
+		public ConnectionType getConnexionTypeInfo(int connexionTypeIndex)
+		{
+			// make sure the index if valid otherwise, return the default connection type
+			if ((connexionTypeIndex < 0) || (connexionTypeIndex >= mConnectionTypes.Count))
+				connexionTypeIndex = ConnectionType.DEFAULT;
+			return mConnectionTypes[connexionTypeIndex];
 		}
 
 		public int getConnexionType(string partNumber, int connexionIndex)

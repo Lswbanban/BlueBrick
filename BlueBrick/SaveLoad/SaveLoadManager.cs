@@ -2512,7 +2512,8 @@ namespace BlueBrick
 			textWriter.WriteLine("      <coordinates x=\"" + x + "\" y=\"" + y + "\" z=\"" + z + "\"/>");
 			textWriter.WriteLine("      <segments a=\"" + ConnectedBrickAId + "\" b=\"" + ConnectedBrickBId + "\"/>");
 			textWriter.WriteLine("      <anchor value=\"no\"/>");
-			textWriter.WriteLine("      <type value=\"NT_UNDEFINED\"/>");
+			BrickLibrary.ConnectionType connectionType = BrickLibrary.Instance.getConnexionTypeInfo(connectionPoint.Type);
+			textWriter.WriteLine("      <type value=\"" + connectionType.FourDBrixName + "\"/>");
 			textWriter.WriteLine("   </node>");
 		}
 
