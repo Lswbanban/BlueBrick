@@ -15,6 +15,10 @@
 			<ColorARGB>FFFFFF00</ColorARGB>
 			<Size>1</Size>
 		</ConnectionType>
+		<ConnectionType name="narrow"> <!-- Narrow Track Rail -->
+			<ColorARGB>FFEAAC27</ColorARGB>
+			<Size>1</Size>
+		</ConnectionType>
 		<ConnectionType name="2"> <!-- Road -->
 			<ColorARGB>FF00FFFF</ColorARGB>
 			<Size>1.5</Size>
