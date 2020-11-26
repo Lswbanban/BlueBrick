@@ -596,4 +596,7 @@ Si vous cliquez sur "Oui", tous les fichiers de la série seront remplacés.</va
   <data name="ErrorMsgMissing4DBrixRemap" xml:space="preserve">
     <value>Quelques pièces 4DBrix n'ont pas été trouvés dans votre librairie BlueBrick. BlueBrick n'a pas été capable de les charger et les a juste ignorés. Vous devriez vous assurer que vous avez la pièce correspondante dans votre librairie BlueBrick avec le tag 4DBrix correctement inscrit dans le fichier XML puis essayer de rouvrir le fichier 4DBrix. Les identifiants manquants étaient:</value>
   </data>
+  <data name="ErrorMsgMissing4DBrixLibrary" xml:space="preserve">
+    <value>Vous êtes sur le point de charger un fichier ncp, mais la bibliothèque 4DBrix n'est pas installée dans votre dossier "parts". Veuillez aller dans le menu "Fichier &gt; Télécharger des pièces supplémentaires..." pour installer la bibliothèque 4DBrix, puis recharger votre fichier ncp. Cela corrigera probablement la plupart des erreurs de pièces manquantes.</value>
+  </data>
 </root>

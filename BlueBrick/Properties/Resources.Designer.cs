@@ -1033,6 +1033,15 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are about to load a ncp file, but the 4DBrix library is not installed in your &quot;parts&quot; folder. Please go to the menu &quot;File &gt; Download Additional Parts...&quot; to install the 4DBrix library, and then reload your ncp file. This would probably fix most of the missing parts errors..
+        /// </summary>
+        internal static string ErrorMsgMissing4DBrixLibrary {
+            get {
+                return ResourceManager.GetString("ErrorMsgMissing4DBrixLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Some 4DBrix parts were not found in your BlueBrick library. BlueBrick was not able to load them and has ignored them. You should ensure that you have the corresponding part in your BlueBrick library with the correct 4DBrix tag set in the XML file and then try to re-open the 4DBrix file. The missing parts were:.
         /// </summary>
         internal static string ErrorMsgMissing4DBrixRemap {

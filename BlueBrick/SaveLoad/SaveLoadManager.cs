@@ -2126,6 +2126,13 @@ namespace BlueBrick
 			// check if we found some part that can be remaped
 			if (noRemapablePartFound.Count > 0)
 			{
+				// check if the 4DBrix library is installed, if not, display a warning message to encourage the user to download the library
+				if (!File.Exists(Application.StartupPath + @"/parts/4DBrix"))
+					MessageBox.Show(null, Properties.Resources.ErrorMsgMissing4DBrixLibrary,
+						Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
+						MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+
+				// show the message for the unknown bricks
 				string message = Properties.Resources.ErrorMsgMissing4DBrixRemap;
 				foreach (string id in noRemapablePartFound)
 					message += id + ", ";
