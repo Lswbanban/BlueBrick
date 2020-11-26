@@ -2525,23 +2525,39 @@ namespace BlueBrick
 			textWriter.WriteLine("      <index value=\"" + brick.GUID.ToString() + "\"/>");
 			textWriter.WriteLine("      <type value=\"" + part.mRemapData.mPartName + "\"/>");
 			textWriter.WriteLine("      <label value=\"\"/>");
+			// the saving of an origin index which is different from 0 in a ncp file is totally bugged in nControl,
+			// because nControl will keep that value, but totally mess up the part when reloading it.
+			// so we need to always save the ncp file with a origin set as 0
+			// however, if the origin connection is different in nControl and BlueBrick, we need to 
+			// save all the connection point in order, but starting with the ncp origin
+			// so that we can write "origin=0" later
 			if (brick.HasConnectionPoint)
 			{
 				textWriter.WriteLine("      <nodes value=\"" + brick.ConnectionPoints.Count + "\"/>");
 				int localIndex = 1; // the local index is just used for the name of the xml tag, and starts with 1
-				foreach (LayerBrick.Brick.ConnectionPoint connection in brick.ConnectionPoints)
+				// start from the origin index
+				int i = part.mRemapData.mConnectionIndexUsedAsOrigin;
+				do
 				{
+					// get the current connection
+					LayerBrick.Brick.ConnectionPoint connection = brick.ConnectionPoints[i];
 					// get the global index of the current connection (this should never fail)
 					int globalIndex = 0;
 					connectionGlobalIndex.TryGetValue(connection, out globalIndex);
 					// then write the line
 					textWriter.WriteLine("      <node" + localIndex.ToString() + " value=\"" + globalIndex.ToString() + "\"/>");
 					localIndex++;
-				}
+					// increase the index, if we reach the end, loop it from 0
+					i++;
+					if (i == brick.ConnectionPoints.Count)
+						i = 0;
+					// and stop the loop, when we reach again the origin
+				} while (i != part.mRemapData.mConnectionIndexUsedAsOrigin);
 			}
 			textWriter.WriteLine("      <angle value=\"" + (brick.Orientation + part.mRemapData.mOrientationDifference).ToString() + "\"/>");
-			// since we always write the nodes in the order of the BlueBrick.Brick.ConnectionPoints, the origin local node id correspond to the ConnectionPoint Index specified in the xml file
-			textWriter.WriteLine("      <origin value=\"" + part.mRemapData.mConnectionIndexUsedAsOrigin.ToString() + "\"/>"); 
+			// alway write that the origin local index node is 0, because we wrote the node id by starting from the origin defined in the part description
+			// nControl is bugged and does not support well an origin index different from 0
+			textWriter.WriteLine("      <origin value=\"0\"/>"); 
 			// in BlueBrick the part can have elevation, but not slope (they are always horizontal
 			textWriter.WriteLine("      <slope value=\"0\"/>");
 			textWriter.WriteLine("   </segment>");

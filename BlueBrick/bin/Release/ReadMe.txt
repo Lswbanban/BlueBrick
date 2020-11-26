@@ -106,11 +106,10 @@ to open the help file (see above for more details).
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
 - [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
-	- try to fix the connection origin import/export?
 	- prepare a 4DBrix lib with few tracks
 	- export the group tag in the ncp
 	- what is node type? This seems to correspond to the BlueBrick type of connection, so that can be exported (at least hard-coded if not in the connection type config file)
-	- add alias in Brick library to make the part appear in different folder? This to make appear the standard tracks in the 4DBrix folder (avec un sorting key différent). used for the 9V track and also half straight
+	- add proxy in Brick library to make a part appear in different folder? This to make appear the standard tracks in the 4DBrix folder (with a different sorting key). used for the 9V track and also half straight
 	- what is segment label?
 	- what is node anchor?
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
