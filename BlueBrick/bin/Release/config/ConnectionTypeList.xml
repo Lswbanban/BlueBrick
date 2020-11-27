@@ -16,8 +16,8 @@
 			<Size>1</Size>
 		</ConnectionType>
 		<ConnectionType name="narrow"> <!-- Narrow Track Rail -->
-			<ColorARGB>FFEAAC27</ColorARGB>
-			<Size>1</Size>
+			<ColorARGB>FFA2FF10</ColorARGB>
+			<Size>0.8</Size>
 		</ConnectionType>
 		<ConnectionType name="2"> <!-- Road -->
 			<ColorARGB>FF00FFFF</ColorARGB>
@@ -37,6 +37,10 @@
 			<ColorARGB>FF782BE2</ColorARGB>
 			<Size>1</Size>
 			<FoudDBrixName>NT_MONORAILRAMP</FoudDBrixName>
+		</ConnectionType>
+		<ConnectionType name="coaster"> <!-- Roller Coaster track -->
+			<ColorARGB>FF1021FF</ColorARGB>
+			<Size>0.8</Size>
 		</ConnectionType>
 		<ConnectionType name="5"> <!-- Duplo rail -->
 			<ColorARGB>FF2FFFAD</ColorARGB>
