@@ -112,28 +112,19 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>589, 91</value>
+  <data name="PercentColumnHeader.Text" xml:space="preserve">
+    <value>Fortschritt</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>BlueBrick muss einige Dateien aus dem Internet herunterladen. In der unten stehenden Liste kann die URL der Dateien und das Verzeichnis, in dem diese Dateien gespeichert werden, überprüft werden. Das Verzeichnis ist relativ zum Installationsordner von BlueBrick angegeben. Durch die Abwahl von Kontrollkästchen können Dateien übersprungen werden. Bitte Internet-Verbindung und Freischaltung der Firewall für BlueBrick sicherstellen.
-
-Alternativ können die Dateien auch mit einem Web Browser heruntergeladen und im angegebenen Verzeichnis gespeichert werden.</value>
-  </data>
-  <data name="FileColumnHeader.Text" xml:space="preserve">
+  <data name="NameColumnHeader.Text" xml:space="preserve">
     <value>Datei</value>
   </data>
   <data name="DestinationColumnHeader.Text" xml:space="preserve">
     <value>Download nach …</value>
-  </data>
-  <data name="PercentColumnHeader.Text" xml:space="preserve">
-    <value>Fortschritt</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Schließen</value>
@@ -141,6 +132,7 @@ Alternativ können die Dateien auch mit einem Web Browser heruntergeladen und im
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Abbruch</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAAACACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAB

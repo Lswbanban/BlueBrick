@@ -45,12 +45,12 @@
 			// 
 			// elevationNumericUpDown
 			// 
+			resources.ApplyResources(this.elevationNumericUpDown, "elevationNumericUpDown");
 			this.elevationNumericUpDown.Increment = new decimal(new int[] {
             8,
             0,
             0,
             0});
-			resources.ApplyResources(this.elevationNumericUpDown, "elevationNumericUpDown");
 			this.elevationNumericUpDown.Maximum = new decimal(new int[] {
             10000,
             0,

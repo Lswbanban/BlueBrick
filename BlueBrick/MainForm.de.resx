@@ -128,7 +128,7 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAYgBAAGIAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAAZgBAAGYAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -168,6 +168,9 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   </data>
   <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
     <value>Filter auf alle / nur aktuellem Karteireiter anwenden.</value>
+  </data>
+  <data name="DocumentDataLayerTabPage.Text" xml:space="preserve">
+    <value>Ebenen</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -305,8 +308,8 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Verschiebe die Ebene nach Unten</value>
   </data>
-  <data name="DocumentDataPartListTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 301</value>
+  <data name="DocumentDataPartListTabPage.Text" xml:space="preserve">
+    <value>Stückliste</value>
   </data>
   <data name="PartUsageListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -337,141 +340,59 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
         dGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
 </value>
   </data>
-  <data name="PartUsageListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 270</value>
+  <data name="SplitPartUsagePerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 17</value>
   </data>
-  <data name="DocumentDataPartListTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 27</value>
+  <data name="SplitPartUsagePerLayerCheckBox.Text" xml:space="preserve">
+    <value>Aufgeteilt nach Ebenen</value>
   </data>
-  <data name="DocumentDataPartListSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 301</value>
+  <data name="IncludeHiddenLayerInPartListCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 17</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="DocumentDataPartListSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>270</value>
+  <data name="IncludeHiddenLayerInPartListCheckBox.Text" xml:space="preserve">
+    <value>Ausgeblendete Teile Anzeigen</value>
   </data>
-  <data name="IncludeHiddenLayerInPartListCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>241, 3</value>
+  <data name="DocumentDataPropertiesTabPage.Text" xml:space="preserve">
+    <value>Eigenschaften</value>
   </data>
-  <data name="DocumentDataPropertiesTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 301</value>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Hintergrundfarbe:</value>
   </data>
-  <data name="DocumentDataPropertiesTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 301</value>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Module</value>
   </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 24</value>
+  <data name="labelComment.Text" xml:space="preserve">
+    <value>Kommentar:</value>
   </data>
-  <data name="commentTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 171</value>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Fuß</value>
   </data>
-  <data name="commentTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 127</value>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Noppen</value>
   </data>
-  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>164, 144</value>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Höhe:</value>
   </data>
-  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 24</value>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Breite:</value>
   </data>
-  <data name="labelComment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 20</value>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Module</value>
   </data>
-  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>442, 144</value>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Noppen</value>
   </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 24</value>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Fuß</value>
   </data>
-  <data name="labelHeightFeet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>395, 144</value>
+  <data name="labelDate.Text" xml:space="preserve">
+    <value>Datum:</value>
   </data>
-  <data name="labelHeightModule.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 144</value>
+  <data name="labelEvent.Text" xml:space="preserve">
+    <value>Ausstellung:</value>
   </data>
-  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>362, 144</value>
-  </data>
-  <data name="labelHeightMeter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>315, 144</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 144</value>
-  </data>
-  <data name="labelHeightStud.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 144</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 24</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 24</value>
-  </data>
-  <data name="labelWidthModule.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 120</value>
-  </data>
-  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>164, 120</value>
-  </data>
-  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 24</value>
-  </data>
-  <data name="labelWidthStud.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 120</value>
-  </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 120</value>
-  </data>
-  <data name="labelWidthMeter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>315, 120</value>
-  </data>
-  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>362, 120</value>
-  </data>
-  <data name="labelWidthFeet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>395, 120</value>
-  </data>
-  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>442, 120</value>
-  </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 24</value>
-  </data>
-  <data name="labelDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 20</value>
-  </data>
-  <data name="dateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 99</value>
-  </data>
-  <data name="labelEvent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 20</value>
-  </data>
-  <data name="eventComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 75</value>
-  </data>
-  <data name="eventComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 21</value>
-  </data>
-  <data name="labelLUG.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 20</value>
-  </data>
-  <data name="lugComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 51</value>
-  </data>
-  <data name="lugComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 21</value>
-  </data>
-  <data name="labelAuthor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 20</value>
-  </data>
-  <data name="AuthorTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 27</value>
-  </data>
-  <data name="AuthorTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 20</value>
-  </data>
-  <data name="DocumentDataPropertiesMapBackgroundColorButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 3</value>
+  <data name="labelAuthor.Text" xml:space="preserve">
+    <value>Autor:</value>
   </data>
   <data name="menuBar.Text" xml:space="preserve">
     <value>Menüleiste</value>
@@ -524,6 +445,9 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="exportPartListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>251, 22</value>
   </data>
+  <data name="exportPartListToolStripMenuItem.Text" xml:space="preserve">
+    <value>Export &amp;Teileliste...</value>
+  </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 6</value>
   </data>
@@ -535,6 +459,9 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   </data>
   <data name="downloadAdditionnalPartsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>251, 22</value>
+  </data>
+  <data name="downloadAdditionnalPartsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zusätzliche Teile herunterladen…</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>251, 22</value>
@@ -659,26 +586,50 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Bewegungsschritt </value>
   </data>
+  <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
+  </data>
   <data name="moveStepDisabledToolStripMenuItem.Text" xml:space="preserve">
     <value>Deaktiviert</value>
+  </data>
+  <data name="moveStep32ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
   </data>
   <data name="moveStep32ToolStripMenuItem.Text" xml:space="preserve">
     <value>32 Noppen</value>
   </data>
+  <data name="moveStep16ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
+  </data>
   <data name="moveStep16ToolStripMenuItem.Text" xml:space="preserve">
     <value>16 Noppen</value>
+  </data>
+  <data name="moveStep8ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Text" xml:space="preserve">
     <value>8 Noppen</value>
   </data>
+  <data name="moveStep4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
+  </data>
   <data name="moveStep4ToolStripMenuItem.Text" xml:space="preserve">
     <value>4 Noppen</value>
+  </data>
+  <data name="moveStep2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
   </data>
   <data name="moveStep2ToolStripMenuItem.Text" xml:space="preserve">
     <value>2 Noppen</value>
   </data>
+  <data name="moveStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
+  </data>
   <data name="moveStep1ToolStripMenuItem.Text" xml:space="preserve">
     <value>1 Noppe</value>
+  </data>
+  <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Text" xml:space="preserve">
     <value>1/2 Noppe</value>
@@ -819,61 +770,46 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
     <value>&amp;Ansicht</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="toolbarMenuItem.Text" xml:space="preserve">
     <value>&amp;Werkzeugleiste</value>
   </data>
   <data name="statusBarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="statusBarMenuItem.Text" xml:space="preserve">
     <value>&amp;Statusanzeige</value>
   </data>
+  <data name="mapScrollBarsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
   <data name="watermarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="watermarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Wasser&amp;zeichen</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 6</value>
+    <value>177, 6</value>
   </data>
   <data name="electricCircuitsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="electricCircuitsMenuItem.Text" xml:space="preserve">
     <value>Strom&amp;kreis</value>
   </data>
   <data name="connectionPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="connectionPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Verbindungspunkte</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Bemaßte Punkte</value>
-  </data>
-  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Hüllkurve</value>
-  </data>
-  <data name="hullsBricksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="hullsBricksToolStripMenuItem.Text" xml:space="preserve">
-    <value>Steine</value>
-  </data>
-  <data name="hullsTextsAndRulersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="hullsTextsAndRulersToolStripMenuItem.Text" xml:space="preserve">
-    <value>Text und Bemaßung</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
@@ -939,13 +875,13 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
     <value>&amp;Hilfe</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 22</value>
+    <value>179, 22</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Inhalt und Index</value>
   </data>
   <data name="aboutBlueBrickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 22</value>
+    <value>179, 22</value>
   </data>
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Über BlueBrick...</value>
@@ -1095,23 +1031,44 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
     <value>Wähle die Raster-Fangstufen</value>
   </data>
+  <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
+  </data>
   <data name="toolBarGrid32Button.Text" xml:space="preserve">
     <value>32 Noppen</value>
+  </data>
+  <data name="toolBarGrid16Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
   </data>
   <data name="toolBarGrid16Button.Text" xml:space="preserve">
     <value>16 Noppen</value>
   </data>
+  <data name="toolBarGrid8Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
+  </data>
   <data name="toolBarGrid8Button.Text" xml:space="preserve">
     <value>8 Noppen</value>
+  </data>
+  <data name="toolBarGrid4Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
   </data>
   <data name="toolBarGrid4Button.Text" xml:space="preserve">
     <value>4 Noppen</value>
   </data>
+  <data name="toolBarGrid2Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
+  </data>
   <data name="toolBarGrid2Button.Text" xml:space="preserve">
     <value>2 Noppen</value>
   </data>
+  <data name="toolBarGrid1Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
+  </data>
   <data name="toolBarGrid1Button.Text" xml:space="preserve">
     <value>1 Noppe</value>
+  </data>
+  <data name="toolBarGrid05Button.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
   </data>
   <data name="toolBarGrid05Button.Text" xml:space="preserve">
     <value>1/2 Noppe</value>
@@ -1287,9 +1244,6 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   <data name="saveFileDialog.Title" xml:space="preserve">
     <value>Speichere BlueBrick Datei unter...</value>
   </data>
-  <data name="saveExportImageDialog.Title" xml:space="preserve">
-    <value>Exportiere Bild als</value>
-  </data>
   <data name="openBudgetFileDialog.Filter" xml:space="preserve">
     <value>BlueBrick Budget (*.bbb)|*.bbb|Alle Dateien (*.*)|*.*</value>
   </data>
@@ -1301,6 +1255,9 @@ Mit Anführungszeichen können Stichwörter gruppiert werden.</value>
   </data>
   <data name="saveBudgetFileDialog.Title" xml:space="preserve">
     <value>BlueBrick Budget speichern unter</value>
+  </data>
+  <data name="exportPartListFileDialog.Title" xml:space="preserve">
+    <value>Stückliste exportieren</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

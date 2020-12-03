@@ -933,7 +933,7 @@ namespace BlueBrick.Properties {
         /// <summary>
         ///   Looks up a localized string similar to An error happened during the installation of the package &quot;&amp;&quot;. The error message is:
         ///&amp;&amp;
-        ///You should close other programs accessing the BlueBrick part library and try again. If you choose to ignore, BlueBrick will skip that package and try to install the other packages. If you choose to abord, the whole installation process will be stopped..
+        ///You should close other programs accessing the BlueBrick part library and try again. If you choose to ignore, BlueBrick will skip that package and try to install the other packages. If you choose to abort, the whole installation process will be stopped..
         /// </summary>
         internal static string ErrorMsgExceptionWhenDeletingPartLib {
             get {
@@ -943,7 +943,7 @@ namespace BlueBrick.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to The file &quot;&amp;&quot; exists. Do you want to override it?
-        ///If you click &quot;Yes&quot;, all the files of series will be overriden..
+        ///If you click &quot;Yes&quot;, all the files of series will be  overwritten..
         /// </summary>
         internal static string ErrorMsgExportFileExists {
             get {
@@ -1033,7 +1033,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are about to load a ncp file, but the 4DBrix library is not installed in your &quot;parts&quot; folder. Please go to the menu &quot;File &gt; Download Additional Parts...&quot; to install the 4DBrix library, and then reload your ncp file. This would probably fix most of the missing parts errors..
+        ///   Looks up a localized string similar to You are about to load a ncp file, but the 4DBrix library is not installed in your &quot;parts&quot; folder. Please go to the menu &quot;File &gt; Download Additional Parts...&quot; to install the 4DBrix library, and then reload your ncp file. This will probably fix most of the missing parts errors..
         /// </summary>
         internal static string ErrorMsgMissing4DBrixLibrary {
             get {

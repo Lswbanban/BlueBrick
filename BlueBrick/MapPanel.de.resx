@@ -112,82 +112,100 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bringToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
     <value>In den Vordergrund</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Text" xml:space="preserve">
     <value>In den Hintergrund</value>
   </data>
   <data name="selectToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 6</value>
+    <value>233, 6</value>
   </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Alles Auswählen</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Alles Abwählen</value>
   </data>
   <data name="selectPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Pfad Wählen</value>
   </data>
   <data name="groupToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 6</value>
+    <value>233, 6</value>
   </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="groupToolStripMenuItem.Text" xml:space="preserve">
     <value>Gruppierung</value>
   </data>
   <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Gruppierung aufheben</value>
   </data>
   <data name="attachRulerToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 6</value>
+    <value>233, 6</value>
   </data>
   <data name="attachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="attachToolStripMenuItem.Text" xml:space="preserve">
     <value>Messpunkt mit Teil verknüpfen</value>
   </data>
   <data name="detachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="detachToolStripMenuItem.Text" xml:space="preserve">
     <value>Messpunkt von Teil lösen</value>
   </data>
   <data name="useAsModelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="useAsModelToolStripMenuItem.Text" xml:space="preserve">
     <value>Als Formatvorlage benutzen</value>
   </data>
+  <data name="propertiesToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 6</value>
+  </data>
+  <data name="propertiesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 22</value>
+  </data>
+  <data name="propertiesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Eigenschaften…</value>
+  </data>
+  <data name="appearanceToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 6</value>
+  </data>
+  <data name="scrollBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 22</value>
+  </data>
+  <data name="scrollBarToolStripMenuItem.Text" xml:space="preserve">
+    <value>Scrollleisten</value>
+  </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 242</value>
+    <value>237, 298</value>
   </data>
 </root>

@@ -326,6 +326,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditBrickForm.de.resx">
+      <DependentUpon>EditBrickForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditBrickForm.fr.resx">
       <DependentUpon>EditBrickForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -454,6 +457,9 @@
       <DependentUpon>LayerTextOptionForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="LibraryPackageSourceForm.de.resx">
+      <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LibraryPackageSourceForm.fr.resx">
       <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -462,6 +468,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PartListView.resx">
       <DependentUpon>PartListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartUsageView.de.resx">
+      <DependentUpon>PartUsageView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartUsageView.resx">
       <DependentUpon>PartUsageView.cs</DependentUpon>

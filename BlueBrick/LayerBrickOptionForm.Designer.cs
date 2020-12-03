@@ -40,11 +40,11 @@ namespace BlueBrick
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.buttonOk = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.displayBrickElevationCheckBox = new System.Windows.Forms.CheckBox();
-			this.displayHullCheckBox = new System.Windows.Forms.CheckBox();
 			this.hullThicknessUnitLabel = new System.Windows.Forms.Label();
 			this.hullThicknessNumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.hullColorPictureBox = new System.Windows.Forms.PictureBox();
+			this.displayBrickElevationCheckBox = new System.Windows.Forms.CheckBox();
+			this.displayHullCheckBox = new System.Windows.Forms.CheckBox();
 			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.alphaTrackBar)).BeginInit();
@@ -141,19 +141,6 @@ namespace BlueBrick
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
 			// 
-			// displayBrickElevationCheckBox
-			// 
-			resources.ApplyResources(this.displayBrickElevationCheckBox, "displayBrickElevationCheckBox");
-			this.displayBrickElevationCheckBox.Name = "displayBrickElevationCheckBox";
-			this.displayBrickElevationCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// displayHullCheckBox
-			// 
-			resources.ApplyResources(this.displayHullCheckBox, "displayHullCheckBox");
-			this.displayHullCheckBox.Name = "displayHullCheckBox";
-			this.displayHullCheckBox.UseVisualStyleBackColor = true;
-			this.displayHullCheckBox.CheckedChanged += new System.EventHandler(this.displayHullCheckBox_CheckedChanged);
-			// 
 			// hullThicknessUnitLabel
 			// 
 			resources.ApplyResources(this.hullThicknessUnitLabel, "hullThicknessUnitLabel");
@@ -187,6 +174,19 @@ namespace BlueBrick
 			this.hullColorPictureBox.Name = "hullColorPictureBox";
 			this.hullColorPictureBox.TabStop = false;
 			this.hullColorPictureBox.Click += new System.EventHandler(this.hullColorPictureBox_Click);
+			// 
+			// displayBrickElevationCheckBox
+			// 
+			resources.ApplyResources(this.displayBrickElevationCheckBox, "displayBrickElevationCheckBox");
+			this.displayBrickElevationCheckBox.Name = "displayBrickElevationCheckBox";
+			this.displayBrickElevationCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// displayHullCheckBox
+			// 
+			resources.ApplyResources(this.displayHullCheckBox, "displayHullCheckBox");
+			this.displayHullCheckBox.Name = "displayHullCheckBox";
+			this.displayHullCheckBox.UseVisualStyleBackColor = true;
+			this.displayHullCheckBox.CheckedChanged += new System.EventHandler(this.displayHullCheckBox_CheckedChanged);
 			// 
 			// LayerBrickOptionForm
 			// 

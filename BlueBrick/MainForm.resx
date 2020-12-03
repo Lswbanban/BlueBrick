@@ -323,7 +323,7 @@ You can use double quote characters to group keywords.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAYgBBwGIAQcBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAAbgBBwG4AQcBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -1312,7 +1312,7 @@ You can use double quote characters to group keywords.</value>
     <value>3, 0</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 24</value>
+    <value>107, 24</value>
   </data>
   <data name="label16.TabIndex" type="System.Int32, mscorlib">
     <value>57</value>
@@ -1339,7 +1339,7 @@ You can use double quote characters to group keywords.</value>
     <value>Fill</value>
   </data>
   <data name="commentTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 171</value>
+    <value>116, 171</value>
   </data>
   <data name="commentTextBox.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1348,7 +1348,7 @@ You can use double quote characters to group keywords.</value>
     <value>Vertical</value>
   </data>
   <data name="commentTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 127</value>
+    <value>357, 127</value>
   </data>
   <data name="commentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
@@ -1372,10 +1372,10 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>164, 144</value>
+    <value>163, 144</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 24</value>
+    <value>50, 24</value>
   </data>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
     <value>53</value>
@@ -1408,7 +1408,7 @@ You can use double quote characters to group keywords.</value>
     <value>3, 168</value>
   </data>
   <data name="labelComment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 20</value>
+    <value>107, 20</value>
   </data>
   <data name="labelComment.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -1438,10 +1438,10 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>442, 144</value>
+    <value>443, 144</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 24</value>
+    <value>30, 24</value>
   </data>
   <data name="label18.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -1471,7 +1471,7 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="labelHeightFeet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>395, 144</value>
+    <value>396, 144</value>
   </data>
   <data name="labelHeightFeet.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 24</value>
@@ -1504,7 +1504,7 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="labelHeightModule.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 144</value>
+    <value>116, 144</value>
   </data>
   <data name="labelHeightModule.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 24</value>
@@ -1537,10 +1537,10 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>362, 144</value>
+    <value>364, 144</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 24</value>
+    <value>26, 24</value>
   </data>
   <data name="label14.TabIndex" type="System.Int32, mscorlib">
     <value>45</value>
@@ -1570,7 +1570,7 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="labelHeightMeter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>315, 144</value>
+    <value>317, 144</value>
   </data>
   <data name="labelHeightMeter.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 24</value>
@@ -1603,10 +1603,10 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 144</value>
+    <value>266, 144</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 24</value>
+    <value>45, 24</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
@@ -1636,7 +1636,7 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="labelHeightStud.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 144</value>
+    <value>219, 144</value>
   </data>
   <data name="labelHeightStud.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 24</value>
@@ -1672,7 +1672,7 @@ You can use double quote characters to group keywords.</value>
     <value>3, 144</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 24</value>
+    <value>107, 24</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -1705,7 +1705,7 @@ You can use double quote characters to group keywords.</value>
     <value>3, 120</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 24</value>
+    <value>107, 24</value>
   </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
@@ -1735,7 +1735,7 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="labelWidthModule.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 120</value>
+    <value>116, 120</value>
   </data>
   <data name="labelWidthModule.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 24</value>
@@ -1768,10 +1768,10 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>164, 120</value>
+    <value>163, 120</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 24</value>
+    <value>50, 24</value>
   </data>
   <data name="label13.TabIndex" type="System.Int32, mscorlib">
     <value>52</value>
@@ -1801,7 +1801,7 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="labelWidthStud.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 120</value>
+    <value>219, 120</value>
   </data>
   <data name="labelWidthStud.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 24</value>
@@ -1834,10 +1834,10 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 120</value>
+    <value>266, 120</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 24</value>
+    <value>45, 24</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
@@ -1867,7 +1867,7 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="labelWidthMeter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>315, 120</value>
+    <value>317, 120</value>
   </data>
   <data name="labelWidthMeter.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 24</value>
@@ -1900,10 +1900,10 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>362, 120</value>
+    <value>364, 120</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 24</value>
+    <value>26, 24</value>
   </data>
   <data name="label15.TabIndex" type="System.Int32, mscorlib">
     <value>44</value>
@@ -1933,7 +1933,7 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="labelWidthFeet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>395, 120</value>
+    <value>396, 120</value>
   </data>
   <data name="labelWidthFeet.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 24</value>
@@ -1966,10 +1966,10 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>442, 120</value>
+    <value>443, 120</value>
   </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 24</value>
+    <value>30, 24</value>
   </data>
   <data name="label19.TabIndex" type="System.Int32, mscorlib">
     <value>48</value>
@@ -2002,7 +2002,7 @@ You can use double quote characters to group keywords.</value>
     <value>3, 96</value>
   </data>
   <data name="labelDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 20</value>
+    <value>107, 20</value>
   </data>
   <data name="labelDate.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -2026,7 +2026,7 @@ You can use double quote characters to group keywords.</value>
     <value>21</value>
   </data>
   <data name="dateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 99</value>
+    <value>116, 99</value>
   </data>
   <data name="dateTimePicker.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 20</value>
@@ -2056,7 +2056,7 @@ You can use double quote characters to group keywords.</value>
     <value>3, 72</value>
   </data>
   <data name="labelEvent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 20</value>
+    <value>107, 20</value>
   </data>
   <data name="labelEvent.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
@@ -2083,10 +2083,10 @@ You can use double quote characters to group keywords.</value>
     <value>Top</value>
   </data>
   <data name="eventComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 75</value>
+    <value>116, 75</value>
   </data>
   <data name="eventComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 21</value>
+    <value>357, 21</value>
   </data>
   <data name="eventComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -2113,7 +2113,7 @@ You can use double quote characters to group keywords.</value>
     <value>3, 48</value>
   </data>
   <data name="labelLUG.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 20</value>
+    <value>107, 20</value>
   </data>
   <data name="labelLUG.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
@@ -2140,10 +2140,10 @@ You can use double quote characters to group keywords.</value>
     <value>Top</value>
   </data>
   <data name="lugComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 51</value>
+    <value>116, 51</value>
   </data>
   <data name="lugComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 21</value>
+    <value>357, 21</value>
   </data>
   <data name="lugComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -2170,7 +2170,7 @@ You can use double quote characters to group keywords.</value>
     <value>3, 24</value>
   </data>
   <data name="labelAuthor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 20</value>
+    <value>107, 20</value>
   </data>
   <data name="labelAuthor.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
@@ -2197,10 +2197,10 @@ You can use double quote characters to group keywords.</value>
     <value>Top</value>
   </data>
   <data name="AuthorTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 27</value>
+    <value>116, 27</value>
   </data>
   <data name="AuthorTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 20</value>
+    <value>357, 20</value>
   </data>
   <data name="AuthorTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -2221,7 +2221,7 @@ You can use double quote characters to group keywords.</value>
     <value>NoControl</value>
   </data>
   <data name="DocumentDataPropertiesMapBackgroundColorButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 3</value>
+    <value>116, 3</value>
   </data>
   <data name="DocumentDataPropertiesMapBackgroundColorButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 18</value>
@@ -2269,7 +2269,7 @@ You can use double quote characters to group keywords.</value>
     <value>0</value>
   </data>
   <data name="DocumentDataPropertiesTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label16" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="commentTextBox" Row="7" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="label12" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="labelComment" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="6" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightFeet" Row="6" RowSpan="1" Column="7" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightModule" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightMeter" Row="6" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="6" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightStud" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthModule" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthStud" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="5" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthMeter" Row="5" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="5" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthFeet" Row="5" RowSpan="1" Column="7" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="5" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;Control Name="labelDate" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dateTimePicker" Row="4" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelEvent" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="eventComboBox" Row="3" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelLUG" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lugComboBox" Row="2" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelAuthor" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="AuthorTextBox" Row="1" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="DocumentDataPropertiesMapBackgroundColorButton" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,24,Percent,10,Percent,12,Percent,10,Percent,10,Percent,10,Percent,7,Percent,10,Percent,7" /&gt;&lt;Rows Styles="Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label16" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="commentTextBox" Row="7" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="label12" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="labelComment" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="6" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightFeet" Row="6" RowSpan="1" Column="7" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightModule" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightMeter" Row="6" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="6" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightStud" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthModule" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthStud" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="5" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthMeter" Row="5" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="5" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthFeet" Row="5" RowSpan="1" Column="7" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="5" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;Control Name="labelDate" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dateTimePicker" Row="4" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelEvent" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="eventComboBox" Row="3" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelLUG" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lugComboBox" Row="2" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelAuthor" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="AuthorTextBox" Row="1" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="DocumentDataPropertiesMapBackgroundColorButton" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,23.76238,Percent,9.90099,Percent,11.88119,Percent,9.90099,Percent,10.89109,Percent,9.90099,Percent,6.930693,Percent,9.90099,Percent,6.930693" /&gt;&lt;Rows Styles="Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="DocumentDataPropertiesTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 4</value>

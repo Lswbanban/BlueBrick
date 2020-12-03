@@ -290,7 +290,7 @@ If you prefer, you can close BlueBrick and download the packages from your web b
   </data>
   <data name="ErrorMsgExportFileExists" xml:space="preserve">
     <value>The file "&amp;" exists. Do you want to override it?
-If you click "Yes", all the files of series will be overriden.</value>
+If you click "Yes", all the files of series will be  overwritten.</value>
   </data>
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
     <value>BlueBrick can not find the help file named "BlueBrick.chm" which is supposed to be in the installation folder. Reinstalling BlueBrick may fix the problem.</value>
@@ -442,7 +442,7 @@ If you click "Yes", all the files of series will be overriden.</value>
   <data name="ErrorMsgExceptionWhenDeletingPartLib" xml:space="preserve">
     <value>An error happened during the installation of the package "&amp;". The error message is:
 &amp;&amp;
-You should close other programs accessing the BlueBrick part library and try again. If you choose to ignore, BlueBrick will skip that package and try to install the other packages. If you choose to abord, the whole installation process will be stopped.</value>
+You should close other programs accessing the BlueBrick part library and try again. If you choose to ignore, BlueBrick will skip that package and try to install the other packages. If you choose to abort, the whole installation process will be stopped.</value>
   </data>
   <data name="ActionDeleteSeveralBricks" xml:space="preserve">
     <value>Delete several parts</value>
@@ -668,6 +668,6 @@ You should close other programs accessing the BlueBrick part library and try aga
     <value>Some 4DBrix parts were not found in your BlueBrick library. BlueBrick was not able to load them and has ignored them. You should ensure that you have the corresponding part in your BlueBrick library with the correct 4DBrix tag set in the XML file and then try to re-open the 4DBrix file. The missing parts were:</value>
   </data>
   <data name="ErrorMsgMissing4DBrixLibrary" xml:space="preserve">
-    <value>You are about to load a ncp file, but the 4DBrix library is not installed in your "parts" folder. Please go to the menu "File &gt; Download Additional Parts..." to install the 4DBrix library, and then reload your ncp file. This would probably fix most of the missing parts errors.</value>
+    <value>You are about to load a ncp file, but the 4DBrix library is not installed in your "parts" folder. Please go to the menu "File &gt; Download Additional Parts..." to install the 4DBrix library, and then reload your ncp file. This will probably fix most of the missing parts errors.</value>
   </data>
 </root>

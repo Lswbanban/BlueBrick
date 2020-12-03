@@ -117,26 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="generalTabPage.Text" xml:space="preserve">
-    <value>Allgemein</value>
-  </data>
-  <data name="editionTabPage.Text" xml:space="preserve">
-    <value>Bearbeitung</value>
-  </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
-    <value>Aussehen</value>
-  </data>
-  <data name="partLibTabPage.Text" xml:space="preserve">
-    <value>Teilebibliothek</value>
-  </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Tastenkürzel</value>
-  </data>
-  <data name="groupBox14.Text" xml:space="preserve">
-    <value>Meldungen</value>
-  </data>
   <data name="GeneralCheckedListBoxNotification.Items" xml:space="preserve">
     <value>Warnung anzeigen, wenn nicht als BlueBrick Datei gespeichert wird</value>
+  </data>
+  <data name="GeneralCheckedListBoxNotification.Items1" xml:space="preserve">
+    <value>Zeige eine Warnung an, wenn die exportierte Bilddatei bereits vorhanden ist</value>
   </data>
   <data name="GeneralCheckedListBoxNotification.Items2" xml:space="preserve">
     <value>Warnung anzeigen, wenn hinzugefügtes Teil Budget überschreitet</value>
@@ -150,8 +135,11 @@
   <data name="GeneralCheckedListBoxNotification.Items5" xml:space="preserve">
     <value>Nachfragen, ob das Budget angezeigt werden soll, wenn Budget aktiviert wird</value>
   </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Zuletzt benutzte Dateien</value>
+  <data name="GeneralCheckedListBoxNotification.Items6" xml:space="preserve">
+    <value>Zeigen eine Warnung an, wenn Elemente auf dem falschen Ebenentyp einfügt werden</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>Meldungen</value>
   </data>
   <data name="clearRecentFilesButton.Text" xml:space="preserve">
     <value>Liste der zuletzt benutzten Dateien leeren</value>
@@ -160,8 +148,8 @@
     <value>Anzahl der zuletzt
 benutzten Dateien</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Leistung</value>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Zuletzt benutzte Dateien</value>
   </data>
   <data name="optimComboBox.Items" xml:space="preserve">
     <value>Schneller</value>
@@ -188,8 +176,8 @@ benutzten Dateien</value>
   <data name="label11.Text" xml:space="preserve">
     <value>Speicher / Geschwindigkeit Ausgleich</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Rückgängig / Wiederherstellen</value>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Leistung</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -222,8 +210,8 @@ benutzten Dateien</value>
   <data name="label8.Text" xml:space="preserve">
     <value>Anzahl der gespeicherten, Rückgängigen Schritte.</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Standardeinstellungen für neue Gleispläne</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Rückgängig / Wiederherstellen</value>
   </data>
   <data name="GeneralTrashTemplateFileForNewMapButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -232,8 +220,11 @@ benutzten Dateien</value>
         khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
 </value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Sprache</value>
+  <data name="GeneralNewMapTemplateFilenameTextBox.Text" xml:space="preserve">
+    <value>Klicke den "…" Button zur Dateiauswahl →</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Standardeinstellungen für neue Gleispläne</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Wenn die Sprache geändert wird, muss die Anwendung neu gestartet werden
@@ -242,8 +233,11 @@ um die Änderung auszuführen.</value>
   <data name="label1.Text" xml:space="preserve">
     <value>Sprache</value>
   </data>
-  <data name="groupBox15.Text" xml:space="preserve">
-    <value>Bemaßung</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Allgemein</value>
   </data>
   <data name="rulerFontNameLabel.Text" xml:space="preserve">
     <value>Schriftartname</value>
@@ -313,8 +307,8 @@ um die Änderung auszuführen.</value>
   <data name="label31.Text" xml:space="preserve">
     <value>Verknüpfungspunktradius (in Pixel)</value>
   </data>
-  <data name="copyPasteGroupBox.Text" xml:space="preserve">
-    <value>Kopieren/Einfügen</value>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Bemaßung</value>
   </data>
   <data name="OffsetValueLabel.Text" xml:space="preserve">
     <value>Versatz (in Noppen)</value>
@@ -331,11 +325,11 @@ um die Änderung auszuführen.</value>
   <data name="copyOffsetComboBox.Items2" xml:space="preserve">
     <value>Immer</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Maus</value>
+  <data name="copyPasteGroupBox.Text" xml:space="preserve">
+    <value>Kopieren/Einfügen</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Autor</value>
+    <value>Schwenkansicht-Taste</value>
   </data>
   <data name="mouseDuplicateSelKeyComboBox.Items" xml:space="preserve">
     <value>Strg</value>
@@ -382,8 +376,11 @@ um die Änderung auszuführen.</value>
   <data name="label3.Text" xml:space="preserve">
     <value>Mausrad Vergrößerungstempo</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Standard Aussehen der Flächen</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Maus</value>
+  </data>
+  <data name="editionTabPage.Text" xml:space="preserve">
+    <value>Bearbeitung</value>
   </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 47</value>
@@ -397,8 +394,8 @@ um die Änderung auszuführen.</value>
   <data name="label28.Text" xml:space="preserve">
     <value>Standard Intransparenz (in %)</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Standard Rasterweite</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Standard Aussehen der Flächen</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Standard Anzahl der Unterteilungen</value>
@@ -406,8 +403,8 @@ um die Änderung auszuführen.</value>
   <data name="label21.Text" xml:space="preserve">
     <value>Standard Rasterweite (in Noppen)</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Standard Textformat</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Standard Rasterweite</value>
   </data>
   <data name="defaultFontColorLabel.Text" xml:space="preserve">
     <value>Farbe</value>
@@ -415,8 +412,11 @@ um die Änderung auszuführen.</value>
   <data name="defaultFontButton.Text" xml:space="preserve">
     <value>Schriftart wechseln</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Farben</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Standard Textformat</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>Standard Hülle</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Farbkennzeichnung
@@ -455,12 +455,21 @@ des geführten Teils</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Farbschema</value>
   </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Farben</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Aussehen</value>
+  </data>
   <data name="PartLibTrashBudgetFileToLoadArStartUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhCwAOAIIEAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
         AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
         khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
 </value>
+  </data>
+  <data name="PartLibDisplayRemaingPartCountCheckBox.Text" xml:space="preserve">
+    <value>Verbleibende Teileanzahl anstelle der verwendeten Anzahl anzeigen</value>
   </data>
   <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
     <value>Klicke den "…" Button zur Dateiauswahl</value>
@@ -487,9 +496,6 @@ des geführten Teils</value>
     <value>Standard Budget
 für jedes Teil:</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>Hintergrundfarbe</value>
-  </data>
   <data name="label36.Text" xml:space="preserve">
     <value>Farbe, wenn nur budgetierte Teile angezeigt werden</value>
   </data>
@@ -499,11 +505,23 @@ für jedes Teil:</value>
   <data name="label26.Text" xml:space="preserve">
     <value>Standard Hintergrundfarbe</value>
   </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>Hintergrundfarbe</value>
+  </data>
+  <data name="PartLibDisplayPartInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 17</value>
+  </data>
+  <data name="PartLibDisplayPartInfoCheckBox.Text" xml:space="preserve">
+    <value>Teilinfo:</value>
+  </data>
+  <data name="PartLibDisplayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 17</value>
+  </data>
+  <data name="PartLibDisplayBubbleInfoCheckBox.Text" xml:space="preserve">
+    <value>Pop-up-Info:</value>
+  </data>
   <data name="groupBox12.Text" xml:space="preserve">
     <value>Pop-up-Info</value>
-  </data>
-  <data name="groupBox11.Text" xml:space="preserve">
-    <value>Reihenfolge Karteireiter</value>
   </data>
   <data name="alphabeticOrderButton.Text" xml:space="preserve">
     <value>Alphabetische Reihenfolge</value>
@@ -513,6 +531,12 @@ für jedes Teil:</value>
   </data>
   <data name="MoveUpButton.Text" xml:space="preserve">
     <value>Nach oben schieben</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Reihenfolge Karteireiter</value>
+  </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Teilebibliothek</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Um Tastenkürzel zu entfernen, wähle sie in der Liste aus und drücke dann auf diese Taste.</value>
@@ -669,6 +693,9 @@ für jedes Teil:</value>
   </data>
   <data name="Connection.Text" xml:space="preserve">
     <value>Verbindung</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Tastenkürzel</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Abbrechen</value>

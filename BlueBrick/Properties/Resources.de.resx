@@ -562,4 +562,70 @@ Die Fehlermeldung lautet:</value>
   <data name="UnitStraightTrack" xml:space="preserve">
     <value>Gleis</value>
   </data>
+  <data name="ActionChangeBrickElevation" xml:space="preserve">
+    <value>Stein Höhe auf &amp; ändern</value>
+  </data>
+  <data name="ButtonPleaseWait" xml:space="preserve">
+    <value>Suche läuft. Bitte warten.</value>
+  </data>
+  <data name="DownloadLibraryPackageExplanation" xml:space="preserve">
+    <value>Bitte aktivieren Sie die Kontrollkästchen des Pakets, das Sie herunterladen und installieren möchten, und klicken Sie dann auf die Schaltfläche "Herunterladen", um den Download zu starten.
+
+Wenn Sie möchten, können Sie BlueBrick schließen, die Pakete mit Ihrem Webbrowser herunterladen und sie im dem Teileordner entpacken.</value>
+  </data>
+  <data name="ErrorMsgAutosaveMap" xml:space="preserve">
+    <value>Eine Sicherung des Gleisplans wurde gespeichert in:
+&amp;</value>
+  </data>
+  <data name="ErrorMsgExceptionWhenDeletingPartLib" xml:space="preserve">
+    <value>Bei der Installation des Pakets "&amp;" ist ein Fehler aufgetreten. Die Fehlermeldung lautet:
+&amp;&amp;
+Bitte schließen Sie andere Programme, die auf die BlueBrick-Teilebibliothek zugreifen, und versuchen Sie es erneut. Wenn Sie es ignorieren möchten, überspringt BlueBrick dieses Paket und versucht, die anderen Pakete zu installieren. Wenn Sie den Vorgang abbrechen wird der gesamte Installationsvorgang angehalten.</value>
+  </data>
+  <data name="ErrorMsgExportFileExists" xml:space="preserve">
+    <value>Die Datei "&amp;" ist bereits vorhanden. Möchten Sie es überschreiben?
+Wenn Sie auf "Ja" klicken, werden alle Dateien der Serie überschrieben.</value>
+  </data>
+  <data name="ErrorMsgMissing4DBrixLibrary" xml:space="preserve">
+    <value>Sie sind dabei, eine ncp-Datei zu laden, aber die 4DBrix-Bibliothek ist nicht in Ihrem Ordner "parts" installiert. Bitte gehen Sie zum Menü "Datei &gt; Zusätzliche Teile herunterladen..." , um die 4DBrix-Bibliothek zu installieren. Laden Sie dann Ihre ncp-Datei erneut. Dies wird wahrscheinlich die meisten Fehlermeldungen beheben.</value>
+  </data>
+  <data name="ErrorMsgMissing4DBrixRemap" xml:space="preserve">
+    <value>Einige 4DBrix-Teile wurden in Ihrer BlueBrick-Bibliothek nicht gefunden. BlueBrick konnte sie nicht laden und hat sie ignoriert. Sie sollten sicherstellen, dass Sie das entsprechende Teil in Ihrer BlueBrick-Bibliothek mit dem richtigen 4DBrix-Tag in der XML-Datei haben. Versuchen sie dann, die 4DBrix-Datei erneut zu öffnen. Die fehlenden Teile waren:</value>
+  </data>
+  <data name="ErrorMsgNeedToReloadPartLib" xml:space="preserve">
+    <value>BlueBrick hat neue Teile heruntergeladen und muss die Teilebibliothek neu laden, um sie zu installieren.</value>
+  </data>
+  <data name="ErrorMsgNoAvailablePartsPackageToDownload" xml:space="preserve">
+    <value>Es ist kein zusätzliches Teilbibliothekspaket online verfügbar.</value>
+  </data>
+  <data name="ErrorMsgReadOnlyFile" xml:space="preserve">
+    <value>Die Datei "&amp;" kann nicht gespeichert werden, da es schreibgeschützt ist. Entfernen Sie die schreibgeschützte Eigenschaft, oder speichern Sie es unter einem anderen Namen.</value>
+  </data>
+  <data name="ErrorMsgTitleInfo" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="PartLibMenuItemDisplayPartInfo" xml:space="preserve">
+    <value>Teileinformation</value>
+  </data>
+  <data name="SearchStatusError" xml:space="preserve">
+    <value>Fehler. Informationen können nicht von der URL abgerufen werden.</value>
+  </data>
+  <data name="SearchStatusFinished" xml:space="preserve">
+    <value>Lesevorgang fertig</value>
+  </data>
+  <data name="SearchStatusReadStream" xml:space="preserve">
+    <value>HTTP-Stream lesen</value>
+  </data>
+  <data name="SearchStatusWaitResponse" xml:space="preserve">
+    <value>Warten auf HTTP-Antwort</value>
+  </data>
+  <data name="TextExportPartListTitle" xml:space="preserve">
+    <value>Stückliste für Datei "&amp;"</value>
+  </data>
+  <data name="TextTotal" xml:space="preserve">
+    <value>Gesamt</value>
+  </data>
+  <data name="TextUnbudgeted" xml:space="preserve">
+    <value>Nicht budgetiert</value>
+  </data>
 </root>

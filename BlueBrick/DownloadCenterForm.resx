@@ -141,7 +141,7 @@
   <data name="DownloadListView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>8, 3, 8, 3</value>
   </data>
-  <data name="&gt;&gt;SourceColumnHeader.Type" xml:space="preserve">
+  <data name="&gt;&gt;VersionColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="DestinationColumnHeader.Text" xml:space="preserve">
@@ -242,7 +242,7 @@ If you prefer, you can also close this dialog window, download the files with yo
   <data name="SourceColumnHeader.Text" xml:space="preserve">
     <value>From URL</value>
   </data>
-  <data name="&gt;&gt;VersionColumnHeader.Type" xml:space="preserve">
+  <data name="&gt;&gt;SourceColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;SourceColumnHeader.Name" xml:space="preserve">
@@ -429,7 +429,7 @@ If you prefer, you can also close this dialog window, download the files with yo
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="ExplanationLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="3" /&gt;&lt;Control Name="DownloadListView" Row="1" RowSpan="1" Column="0" ColumnSpan="3" /&gt;&lt;Control Name="StartButton" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="TotalProgressBar" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="panel1" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;Rows Styles="Absolute,110,Percent,100,Absolute,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="ExplanationLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="3" /&gt;&lt;Control Name="DownloadListView" Row="1" RowSpan="1" Column="0" ColumnSpan="3" /&gt;&lt;Control Name="StartButton" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="TotalProgressBar" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="panel1" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33.33333,Percent,33.33333,Percent,33.33333" /&gt;&lt;Rows Styles="Absolute,110,Percent,100,Absolute,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -479,10 +479,10 @@ If you prefer, you can also close this dialog window, download the files with yo
   <data name="&gt;&gt;DestinationColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="downloadBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="downloadBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
 </root>
