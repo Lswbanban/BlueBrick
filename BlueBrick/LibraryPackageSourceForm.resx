@@ -131,8 +131,18 @@
   <data name="labelURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 13</value>
   </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;checkBoxSearchOfficial.Name" xml:space="preserve">
+    <value>checkBoxSearchOfficial</value>
+  </data>
   <data name="checkBoxSearchUnofficial.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="labelSearchStatus.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 156</value>
@@ -176,7 +186,6 @@
   <data name="&gt;&gt;labelURL.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
@@ -191,12 +200,6 @@
   </data>
   <data name="buttonSearch.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
-  </data>
-  <data name="checkBoxSearchNonLego.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="checkBoxSearchOfficial.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="&gt;&gt;buttonSearch.Parent" xml:space="preserve">
     <value>$this</value>
@@ -224,9 +227,6 @@
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="buttonSearch.Size" type="System.Drawing.Size, System.Drawing">
     <value>265, 23</value>
@@ -257,6 +257,9 @@
   </data>
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="checkBoxSearchOfficial.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="checkBoxSearchNonLego.Size" type="System.Drawing.Size, System.Drawing">
     <value>259, 17</value>
@@ -354,17 +357,14 @@
   <data name="&gt;&gt;checkBoxSearchNonLego.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Part Library Package Online Sources</value>
+  <data name="checkBoxSearchNonLego.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="checkBoxSearchOfficial.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 31</value>
   </data>
   <data name="&gt;&gt;buttonSearch.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonSearch.Name" xml:space="preserve">
-    <value>buttonSearch</value>
   </data>
   <data name="&gt;&gt;checkBoxSearchNonLego.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -381,8 +381,8 @@
   <data name="&gt;&gt;checkBoxSearchUnofficial.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="checkBoxSearchOfficial.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;labelSearchStatus.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -390,17 +390,17 @@
   <data name="labelURL.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="checkBoxSearchOfficial.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="&gt;&gt;checkBoxSearchOfficial.Name" xml:space="preserve">
-    <value>checkBoxSearchOfficial</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Part Library Package Online Sources</value>
   </data>
   <data name="&gt;&gt;backgroundWorkerSearchOnline.Type" xml:space="preserve">
     <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="labelSearchStatus.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="&gt;&gt;buttonSearch.Name" xml:space="preserve">
+    <value>buttonSearch</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

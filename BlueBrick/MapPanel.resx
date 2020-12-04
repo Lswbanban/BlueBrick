@@ -130,6 +130,9 @@
   <data name="propertiesToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 6</value>
   </data>
+  <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bring to Front</value>
+  </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
@@ -139,8 +142,8 @@
   <data name="selectPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
-  <data name="&gt;&gt;useAsModelToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="propertiesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
   </data>
   <data name="detachToolStripMenuItem.Text" xml:space="preserve">
     <value>Detach Ruler</value>
@@ -157,26 +160,23 @@
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MapPanel</value>
   </data>
-  <data name="verticalScrollBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>17, 100</value>
-  </data>
-  <data name="deselectAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>Deselect All</value>
+  <data name="horizontalScrollBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 83</value>
   </data>
   <data name="horizontalScrollBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 17</value>
   </data>
-  <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
+  <data name="&gt;&gt;useAsModelToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
+  <data name="&gt;&gt;groupToolStripSeparator.Name" xml:space="preserve">
+    <value>groupToolStripSeparator</value>
+  </data>
   <data name="attachRulerToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 6</value>
-  </data>
-  <data name="&gt;&gt;useAsModelToolStripMenuItem.Name" xml:space="preserve">
-    <value>useAsModelToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;verticalScrollBar.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -193,12 +193,18 @@
   <data name="&gt;&gt;verticalScrollBar.Name" xml:space="preserve">
     <value>verticalScrollBar</value>
   </data>
+  <data name="verticalScrollBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 100</value>
+  </data>
   <data name="&gt;&gt;attachToolStripMenuItem.Name" xml:space="preserve">
     <value>attachToolStripMenuItem</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="horizontalScrollBar.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;selectAllToolStripMenuItem.Name" xml:space="preserve">
+    <value>selectAllToolStripMenuItem</value>
   </data>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Select Path</value>
@@ -224,20 +230,30 @@
   <data name="&gt;&gt;ungroupToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;selectAllToolStripMenuItem.Name" xml:space="preserve">
-    <value>selectAllToolStripMenuItem</value>
+  <data name="&gt;&gt;selectAllToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;attachToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;scrollBarToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="verticalScrollBar.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;propertiesToolStripSeparator.Name" xml:space="preserve">
+    <value>propertiesToolStripSeparator</value>
   </data>
   <data name="scrollBarToolStripMenuItem.Text" xml:space="preserve">
     <value>Scroll Bars</value>
   </data>
+  <data name="&gt;&gt;scrollBarToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;propertiesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;scrollBarToolStripMenuItem.Name" xml:space="preserve">
+    <value>scrollBarToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;selectToolStripSeparator.Name" xml:space="preserve">
     <value>selectToolStripSeparator</value>
@@ -251,12 +267,6 @@
   <data name="attachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
-  <data name="&gt;&gt;detachToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="horizontalScrollBar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 83</value>
-  </data>
   <data name="&gt;&gt;horizontalScrollBar.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
@@ -266,8 +276,8 @@
   <data name="selectToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 6</value>
   </data>
-  <data name="&gt;&gt;scrollBarToolStripMenuItem.Name" xml:space="preserve">
-    <value>scrollBarToolStripMenuItem</value>
+  <data name="&gt;&gt;horizontalScrollBar.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;horizontalScrollBar.Name" xml:space="preserve">
     <value>horizontalScrollBar</value>
@@ -277,6 +287,9 @@
   </data>
   <data name="horizontalScrollBar.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="&gt;&gt;useAsModelToolStripMenuItem.Name" xml:space="preserve">
+    <value>useAsModelToolStripMenuItem</value>
   </data>
   <data name="verticalScrollBar.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -290,20 +303,14 @@
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Select All</value>
   </data>
-  <data name="&gt;&gt;propertiesToolStripSeparator.Name" xml:space="preserve">
-    <value>propertiesToolStripSeparator</value>
-  </data>
   <data name="useAsModelToolStripMenuItem.Text" xml:space="preserve">
     <value>Use as Template</value>
   </data>
-  <data name="&gt;&gt;selectAllToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;horizontalScrollBar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="&gt;&gt;propertiesToolStripSeparator.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;detachToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;bringToFrontToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -320,18 +327,17 @@
   <data name="&gt;&gt;attachRulerToolStripSeparator.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="propertiesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
   <data name="&gt;&gt;propertiesToolStripMenuItem.Name" xml:space="preserve">
     <value>propertiesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;deselectAllToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Text" xml:space="preserve">
     <value>Send to Back</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="verticalScrollBar.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Right</value>
+  <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
   </data>
   <data name="groupToolStripMenuItem.Text" xml:space="preserve">
     <value>Group</value>
@@ -354,14 +360,8 @@
   <data name="&gt;&gt;attachRulerToolStripSeparator.Name" xml:space="preserve">
     <value>attachRulerToolStripSeparator</value>
   </data>
-  <data name="horizontalScrollBar.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bring to Front</value>
-  </data>
-  <data name="&gt;&gt;groupToolStripSeparator.Name" xml:space="preserve">
-    <value>groupToolStripSeparator</value>
+  <data name="deselectAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>Deselect All</value>
   </data>
   <data name="attachToolStripMenuItem.Text" xml:space="preserve">
     <value>Attach Ruler to Part</value>
@@ -372,8 +372,8 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;deselectAllToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="horizontalScrollBar.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
   </data>
   <data name="groupToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 6</value>

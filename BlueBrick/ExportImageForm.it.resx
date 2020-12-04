@@ -124,7 +124,7 @@
     <value>Annulla</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Dimensioni immagine in Pixel</value>
+    <value>Conteggio e dimensione delle immagini in pixel</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Larghezza</value>
@@ -185,12 +185,6 @@
   <data name="exportWatermarkCheckBox.Text" xml:space="preserve">
     <value>Filigrana</value>
   </data>
-  <data name="exportHullCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 17</value>
-  </data>
-  <data name="exportHullCheckBox.Text" xml:space="preserve">
-    <value>Bordo (Contorno)</value>
-  </data>
   <data name="saveExportImageDialog.Title" xml:space="preserve">
     <value>Esporta immagine come</value>
   </data>
@@ -238,7 +232,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Opzioni Export Immagini</value>

@@ -491,7 +491,7 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
     <value>Riprova</value>
   </data>
   <data name="ErrorMsgSomeBrickWereNotCopiedDueToBudgetLimitation" xml:space="preserve">
-    <value>Alcune parti non saranno duplicate a causa delle limitazioni sul budget. Vuoi continuare?</value>
+    <value>Alcune parti non saranno duplicate a causa delle limitazioni sul preventivo. Vuoi continuare?</value>
   </data>
   <data name="ErrorMsgYesButton" xml:space="preserve">
     <value>Si</value>
@@ -512,7 +512,7 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
     <value>Mostra solo parti Preventivate</value>
   </data>
   <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
-    <value>Usa limitazioni budget</value>
+    <value>Usa limitazioni Preventivo</value>
   </data>
   <data name="StatusMsgBudgetReached" xml:space="preserve">
     <value>Preventivo raggiunto per questa parte!</value>
@@ -524,12 +524,78 @@ Questo programma ha provocato un errore irrecuperabile e verrà chiuso. Per favo
     <value>Hai abilitato le limitazioni da preventivo, ma al momento i numeri delllo stesso non sono visualizzati. Desideri visualizzare i numeri nel preventivo?</value>
   </data>
   <data name="ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation" xml:space="preserve">
-    <value>Alcune parti non saranno rimpiazzate a causa delle limitazioni sul preventivo. Desideri continuare?</value>
+    <value>Alcune parti non saranno duplicate a causa delle limitazioni sul preventivo. Vuoi continuare?</value>
   </data>
   <data name="StatusMsgWrongLayerType" xml:space="preserve">
     <value>Il layer attivo non è un Layer Brick</value>
   </data>
   <data name="UnitStraightTrack" xml:space="preserve">
     <value>Binario</value>
+  </data>
+  <data name="ActionChangeBrickElevation" xml:space="preserve">
+    <value>Cambia elevazione Brick in &amp;</value>
+  </data>
+  <data name="ButtonPleaseWait" xml:space="preserve">
+    <value>Sto cercando. Attendere prego.</value>
+  </data>
+  <data name="DownloadLibraryPackageExplanation" xml:space="preserve">
+    <value>Seleziona le caselle di controllo del pacchetto della libreria che si desidera scaricare e installare, quindi fare clic sul pulsante "Download" "per avviare il download.
+
+Se preferisci, puoi chiudere BlueBrick e scaricare i pacchetti dal tuo browser web e decomprimerli nella cartella delle parti.</value>
+  </data>
+  <data name="ErrorMsgAutosaveMap" xml:space="preserve">
+    <value>Un backup della tua mappa è stato salvato in:
+&amp;</value>
+  </data>
+  <data name="ErrorMsgExceptionWhenDeletingPartLib" xml:space="preserve">
+    <value>Si è verificato un errore durante l'installazione del pacchetto "&amp;". Il messaggio di errore è:
+&amp;&amp;
+È necessario chiudere altri programmi che accedono alla libreria di parti BlueBrick e riprovare. Se scegli di ignorare, BlueBrick salterà quel pacchetto e proverà a installare gli altri pacchetti. Se scegli di interrompere, l'intero processo di installazione verrà interrotto.</value>
+  </data>
+  <data name="ErrorMsgExportFileExists" xml:space="preserve">
+    <value>Il file "&amp;" esiste già. Vuoi sovrascriverlo?
+Se fai clic su "Sì", tutti i file della serie verranno sovrascritti.</value>
+  </data>
+  <data name="ErrorMsgMissing4DBrixLibrary" xml:space="preserve">
+    <value>Stai per caricare un file ncp, ma la libreria 4DBrix non è installata nella tua cartella "parts". Vai al menu "File &gt; Scarica parti aggiuntive..." per installare la libreria 4DBrix, quindi ricarica il file ncp. Questo probabilmente risolverà la maggior parte degli errori di parti mancanti.</value>
+  </data>
+  <data name="ErrorMsgMissing4DBrixRemap" xml:space="preserve">
+    <value>Alcune parti 4DBrix non sono state trovate nella tua libreria BlueBrick. BlueBrick non è stato in grado di caricarli e li ha ignorati. Dovresti assicurarti di avere la parte corrispondente nella tua libreria BlueBrick con il tag 4DBrix corretto impostato nel file XML e poi provare a riaprire il file 4DBrix. Le parti mancanti erano:</value>
+  </data>
+  <data name="ErrorMsgNeedToReloadPartLib" xml:space="preserve">
+    <value>BlueBrick ha scaricato nuove parti e deve ricaricare la Libreria delle parti per installarle.</value>
+  </data>
+  <data name="ErrorMsgNoAvailablePartsPackageToDownload" xml:space="preserve">
+    <value>Non sono disponibili ulteriori pacchetti di librerie di parti online.</value>
+  </data>
+  <data name="ErrorMsgReadOnlyFile" xml:space="preserve">
+    <value>Impossibile salvare il file "&amp;" perché è in sola lettura. Rimuovere la proprietà di sola lettura o salvarlo con un nome diverso.</value>
+  </data>
+  <data name="ErrorMsgTitleInfo" xml:space="preserve">
+    <value>Informazione</value>
+  </data>
+  <data name="PartLibMenuItemDisplayPartInfo" xml:space="preserve">
+    <value>Informazioni sulla parte</value>
+  </data>
+  <data name="SearchStatusError" xml:space="preserve">
+    <value>Errore. Impossibile ottenere informazioni dall'URL.</value>
+  </data>
+  <data name="SearchStatusFinished" xml:space="preserve">
+    <value>Lettura Terminata</value>
+  </data>
+  <data name="SearchStatusReadStream" xml:space="preserve">
+    <value>Leggi Flusso HTTP</value>
+  </data>
+  <data name="SearchStatusWaitResponse" xml:space="preserve">
+    <value>Attendi la risposta HTTP</value>
+  </data>
+  <data name="TextExportPartListTitle" xml:space="preserve">
+    <value>Elenco delle parti per il file "&amp;"</value>
+  </data>
+  <data name="TextTotal" xml:space="preserve">
+    <value>Totale</value>
+  </data>
+  <data name="TextUnbudgeted" xml:space="preserve">
+    <value>Senza preventivo</value>
   </data>
 </root>

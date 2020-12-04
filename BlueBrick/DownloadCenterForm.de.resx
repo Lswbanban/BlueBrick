@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ExplanationLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>589, 98</value>
+  </data>
+  <data name="ExplanationLabel.Text" xml:space="preserve">
+    <value>BlueBrick muss einige Dateien aus dem Internet herunterladen. In der unten stehenden Liste kann die URL der Dateien und das Verzeichnis, in dem diese Dateien gespeichert werden, überprüft werden. Das Verzeichnis ist relativ zum Installationsordner von BlueBrick angegeben. Durch die Abwahl von Kontrollkästchen können Dateien übersprungen werden. Bitte Internet-Verbindung und Freischaltung der Firewall für BlueBrick sicherstellen.
+
+Alternativ können die Dateien auch mit einem Web Browser heruntergeladen und im angegebenen Verzeichnis gespeichert werden.
+
+
+</value>
+  </data>
   <data name="PercentColumnHeader.Text" xml:space="preserve">
     <value>Fortschritt</value>
   </data>
@@ -132,7 +144,6 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Abbruch</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAAACACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAB

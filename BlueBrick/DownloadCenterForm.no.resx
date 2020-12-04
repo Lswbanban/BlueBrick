@@ -112,16 +112,16 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ExplanationLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>586, 78</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
+  <data name="ExplanationLabel.Text" xml:space="preserve">
     <value>BlueBrick trenger å laste ned noen filer fra internett. I listen under kan du sjekke filenes webadresser og hvor de vil legge seg på datamaskinen din. Noen av filene kan du hoppe over ved å velge dem bort. Trykk på "Start nedlasting" når du er klar. Pass på at du er koblet til internett og at BlueBrick slipper gjennom brannmuren.
 
 Hvis du heller foretrekker det kan du lukke dette vinduet, laste ned filene ved hjelp av nettleseren din og så kopiere dem til riktig mappe (i henhold til mappen BlueBrick Install Folder).</value>
@@ -129,17 +129,14 @@ Hvis du heller foretrekker det kan du lukke dette vinduet, laste ned filene ved 
   <data name="StartButton.Text" xml:space="preserve">
     <value>Start nedlasting</value>
   </data>
-  <data name="FileColumnHeader.Text" xml:space="preserve">
-    <value>Fil</value>
+  <data name="PercentColumnHeader.Text" xml:space="preserve">
+    <value>Fremdrift</value>
   </data>
   <data name="DestinationColumnHeader.Text" xml:space="preserve">
     <value>Last ned til...</value>
   </data>
   <data name="SourceColumnHeader.Text" xml:space="preserve">
     <value>Webadresse</value>
-  </data>
-  <data name="PercentColumnHeader.Text" xml:space="preserve">
-    <value>Fremdrift</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Lukk</value>

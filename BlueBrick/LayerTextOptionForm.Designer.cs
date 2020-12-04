@@ -55,6 +55,7 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Controls.Add(this.alphaTrackBar);
 			this.groupBox3.Controls.Add(this.label3);
 			this.groupBox3.Controls.Add(this.alphaNumericUpDown);
@@ -62,7 +63,6 @@ namespace BlueBrick
 			this.groupBox3.Controls.Add(this.isVisibleCheckBox);
 			this.groupBox3.Controls.Add(this.nameTextBox);
 			this.groupBox3.Controls.Add(this.label2);
-			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 
@@ -131,11 +131,11 @@ namespace BlueBrick
 			// 
 			// groupBox1
 			// 
+			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Controls.Add(this.hullThicknessUnitLabel);
 			this.groupBox1.Controls.Add(this.hullThicknessNumericUpDown);
 			this.groupBox1.Controls.Add(this.hullColorPictureBox);
 			this.groupBox1.Controls.Add(this.displayHullCheckBox);
-			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
 			// 
@@ -166,9 +166,9 @@ namespace BlueBrick
 			// 
 			// hullColorPictureBox
 			// 
+			resources.ApplyResources(this.hullColorPictureBox, "hullColorPictureBox");
 			this.hullColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.hullColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			resources.ApplyResources(this.hullColorPictureBox, "hullColorPictureBox");
 			this.hullColorPictureBox.Name = "hullColorPictureBox";
 			this.hullColorPictureBox.TabStop = false;
 			this.hullColorPictureBox.Click += new System.EventHandler(this.hullColorPictureBox_Click);

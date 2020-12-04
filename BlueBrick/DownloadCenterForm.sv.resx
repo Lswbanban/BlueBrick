@@ -112,16 +112,16 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ExplanationLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>590, 78</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
+  <data name="ExplanationLabel.Text" xml:space="preserve">
     <value>Bluebrick behöver ladda ner filer från Internet. I nedanstående lista kan Du se adressen till filerna och var de kommer hamna på Din dator. Du kan hoppa över vissa filer genom att bocka ur kryssrutorna. Klicka på "Ladda ner" när Du är färdig. Du måste vara uppkopplad till Internet och låta BlueBrick passera eventuella brandväggar.
 
 Du kan också stänga den här dialogrutan och ladda ner filerna via din webläsare för att sedan kopiera dem till rätt mapp på Din dator. Mappen ska ligga under BlueBricks installationsmapp.</value>
@@ -129,14 +129,11 @@ Du kan också stänga den här dialogrutan och ladda ner filerna via din webläs
   <data name="StartButton.Text" xml:space="preserve">
     <value>Ladda ner</value>
   </data>
-  <data name="FileColumnHeader.Text" xml:space="preserve">
-    <value>Fil</value>
+  <data name="PercentColumnHeader.Text" xml:space="preserve">
+    <value>Förloppsindikator</value>
   </data>
   <data name="DestinationColumnHeader.Text" xml:space="preserve">
     <value>Ladda ner till..</value>
-  </data>
-  <data name="PercentColumnHeader.Text" xml:space="preserve">
-    <value>Förloppsindikator</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Stäng</value>

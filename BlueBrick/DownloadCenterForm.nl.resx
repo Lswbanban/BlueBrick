@@ -112,31 +112,29 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ExplanationLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>590, 78</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>BlueBrick moet enkele bestanden downloaden van het ineternet. In de onderstaande lijst kan je de URL controleren en de locatie waar de bestanden bewaard worden. U kan bestanden overslaan door de keuzevakjes uit te vinken. Druk op de "Start Download" om te beginnen. Controleer of u een internetverbinding heeft en stel u firewall in.
+  <data name="ExplanationLabel.Text" xml:space="preserve">
+    <value>BlueBrick moet enkele bestanden downloaden van het ineternet. In de onderstaande lijst kan je de URL controleren en de locatie waar de bestanden bewaard worden. U kan bestanden overslaan door de keuzevakjes uit te vinken. Druk op de "Begin download" om te beginnen. Controleer of u een internetverbinding heeft en stel u firewall in.
 
-U kan ook dit venster sluiten en de bestanden vie u webbrowser downloaden en opslaan in de juiste folder (welke relatief is tot de installatie folder).</value>
+U kan ook dit venster sluiten en de bestanden vie u webbrowser downloaden en opslaan in de juiste folder (welke relatief is tot de installatie folder).
+</value>
   </data>
   <data name="StartButton.Text" xml:space="preserve">
     <value>Begin download</value>
   </data>
-  <data name="FileColumnHeader.Text" xml:space="preserve">
-    <value>Bestand</value>
+  <data name="PercentColumnHeader.Text" xml:space="preserve">
+    <value>Vooruitgang</value>
   </data>
   <data name="DestinationColumnHeader.Text" xml:space="preserve">
     <value>Opslaan als</value>
-  </data>
-  <data name="PercentColumnHeader.Text" xml:space="preserve">
-    <value>Vooruitgang</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Sluiten</value>
