@@ -135,6 +135,9 @@
   <data name="GeneralCheckedListBoxNotification.Items" xml:space="preserve">
     <value>Mostrar un aviso cuando no se guarda en formato BBM</value>
   </data>
+  <data name="GeneralCheckedListBoxNotification.Items1" xml:space="preserve">
+    <value>Mostrar un aviso si la imagen que se exporta ya existe</value>
+  </data>
   <data name="GeneralCheckedListBoxNotification.Items2" xml:space="preserve">
     <value>Mostrar un aviso al añadir una pieza que excede el presupuesto</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="GeneralCheckedListBoxNotification.Items5" xml:space="preserve">
     <value>Pedir habilitar Números de presupuesto al habilitar Limitacion por presupuesto</value>
+  </data>
+  <data name="GeneralCheckedListBoxNotification.Items6" xml:space="preserve">
+    <value>Mostrar un aviso al pegar elementos en el tipo equivocado de capa</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
     <value>Archivos recientes</value>
@@ -200,6 +206,9 @@ más memoria se utilizará.</value>
         AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
         khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
 </value>
+  </data>
+  <data name="GeneralNewMapTemplateFilenameTextBox.Text" xml:space="preserve">
+    <value>Haga clic en el botón para editar →</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Idioma</value>
@@ -301,7 +310,7 @@ por defecto (en grosor)</value>
     <value>Ratón</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Autor</value>
+    <value>Tecla panoramización</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Tecla de selección duplicada</value>
@@ -423,6 +432,9 @@ por defecto (en studs)</value>
         khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
 </value>
   </data>
+  <data name="PartLibDisplayRemaingPartCountCheckBox.Text" xml:space="preserve">
+    <value>Mostrar piezas restantes en ves de usadas</value>
+  </data>
   <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
     <value>Pinche el botón para editar -&gt;</value>
   </data>
@@ -457,7 +469,34 @@ por defecto (en studs)</value>
     <value>Color de fondo por defecto</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
-    <value>Burbuja de información</value>
+    <value>Información de pieza y burbujas</value>
+  </data>
+  <data name="label41.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 13</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="PartLibDisplayPartInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 17</value>
+  </data>
+  <data name="PartLibDisplayPartInfoCheckBox.Text" xml:space="preserve">
+    <value>Info. de pieza:</value>
+  </data>
+  <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 20</value>
+  </data>
+  <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 13</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>ID de la pieza</value>
+  </data>
+  <data name="PartLibDisplayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 17</value>
+  </data>
+  <data name="PartLibDisplayBubbleInfoCheckBox.Text" xml:space="preserve">
+    <value>Info. de burbuja:</value>
   </data>
   <data name="groupBox11.Text" xml:space="preserve">
     <value>Orden de pestañas</value>

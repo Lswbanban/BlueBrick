@@ -460,6 +460,9 @@
     <EmbeddedResource Include="LibraryPackageSourceForm.de.resx">
       <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LibraryPackageSourceForm.es.resx">
+      <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LibraryPackageSourceForm.fr.resx">
       <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -470,6 +473,9 @@
       <DependentUpon>PartListView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartUsageView.de.resx">
+      <DependentUpon>PartUsageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartUsageView.es.resx">
       <DependentUpon>PartUsageView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartUsageView.resx">

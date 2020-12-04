@@ -148,7 +148,7 @@
     <value>Cambiar el color de fondo</value>
   </data>
   <data name="ActionChangeGeneralInfo" xml:space="preserve">
-    <value>Cambiar la información general del mapa</value>
+    <value>Cambiar información general del mapa</value>
   </data>
   <data name="ActionChangeMapAppearance" xml:space="preserve">
     <value>Cambiar la apariencia del mapa</value>
@@ -527,5 +527,65 @@
   </data>
   <data name="UnitStraightTrack" xml:space="preserve">
     <value>vía</value>
+  </data>
+  <data name="ActionChangeBrickElevation" xml:space="preserve">
+    <value>Cambiar elevación de ladrillo a &amp;</value>
+  </data>
+  <data name="ButtonPleaseWait" xml:space="preserve">
+    <value>Buscando. Por favor, espere.</value>
+  </data>
+  <data name="DownloadLibraryPackageExplanation" xml:space="preserve">
+    <value>Por favor, marque las casillas del Paquete de la Biblioteca que desea descargar e instalar, y luego haga clic en el botón "Descargar" para iniciar la descarga.
+
+Si lo prefieres, puedes cerrar BlueBrick y descargar los paquetes desde tu navegador y descomprimirlos en la carpeta de piezas.</value>
+  </data>
+  <data name="ErrorMsgAutosaveMap" xml:space="preserve">
+    <value>Una copia de tu mapa se ha guardado en:
+&amp;</value>
+  </data>
+  <data name="ErrorMsgExceptionWhenDeletingPartLib" xml:space="preserve">
+    <value>Un error ocurrió durante la instalación del paquete "&amp;". El mensaje de error es:
+&amp;&amp;
+Cierra los otros programas que acceden a la biblioteca de piezas de BlueBrick e inténtalo de nuevo. Si decides ignorar, BlueBrick se saltará ese paquete e intentará instalar los otros paquetes.Si elige abortar, todo el proceso de instalación se detendrá.</value>
+  </data>
+  <data name="ErrorMsgExportFileExists" xml:space="preserve">
+    <value>El archivo "&amp;" existe. ¿Quieres anularlo?
+Si haces clic en "Sí", todos los archivos de la serie serán anulados.</value>
+  </data>
+  <data name="ErrorMsgMissing4DBrixLibrary" xml:space="preserve">
+    <value>Estás a punto de cargar un archivo ncp, pero la biblioteca de 4DBrix no está instalada en tu carpeta de " piezas". Por favor ve al menú "Archivo &gt; Descargar piezas adicionales..." para instalar la biblioteca 4DBrix, y luego recarga tu archivo ncp. Esto probablemente solucionará la mayoría de los errores de piezas perdidas.</value>
+  </data>
+  <data name="ErrorMsgMissing4DBrixRemap" xml:space="preserve">
+    <value>Algunas piezas de 4DBrix no se encontraron en la biblioteca de BlueBrick. BlueBrick no ha podido cargarlas y las ha ignorado. Comprueba que tienes la pieza correspondiente en tu biblioteca BlueBrick con la etiqueta 4DBrix correcta en el archivo XML y luego intenta volver a abrir el archivo 4DBrix. Las piezas que faltaban eran:</value>
+  </data>
+  <data name="ErrorMsgReadOnlyFile" xml:space="preserve">
+    <value>No se puede guardar el archivo "&amp;" porque es de sólo lectura. Elimina la propiedad de sólo lectura o guárdalo con un nombre diferente.</value>
+  </data>
+  <data name="ErrorMsgTitleInfo" xml:space="preserve">
+    <value>Información</value>
+  </data>
+  <data name="PartLibMenuItemDisplayPartInfo" xml:space="preserve">
+    <value>Información de la piezas</value>
+  </data>
+  <data name="SearchStatusError" xml:space="preserve">
+    <value>Error. No se puede obtener información del URL</value>
+  </data>
+  <data name="SearchStatusFinished" xml:space="preserve">
+    <value>Lectura terminada</value>
+  </data>
+  <data name="SearchStatusReadStream" xml:space="preserve">
+    <value>Leer flujo HTTP</value>
+  </data>
+  <data name="SearchStatusWaitResponse" xml:space="preserve">
+    <value>Esperar a respuesta HTTP</value>
+  </data>
+  <data name="TextExportPartListTitle" xml:space="preserve">
+    <value>Lista de piezas para el archivo "&amp;"</value>
+  </data>
+  <data name="TextTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TextUnbudgeted" xml:space="preserve">
+    <value>Sin presupuesto</value>
   </data>
 </root>

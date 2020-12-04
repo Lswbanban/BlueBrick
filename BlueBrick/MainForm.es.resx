@@ -112,26 +112,11 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="statusBar.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="mapPanel.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="mainSplitContainer.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="partsTabControl.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="splitContainerPartLibrary.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="textBoxPartFilter.ToolTip" xml:space="preserve">
     <value>Usar palabras clave para filtrar la lista de piezas.
 Usar - delante de una palabra para excluir piezas.
@@ -143,7 +128,7 @@ También se pueden usar comillas para agrupar palabras clave.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAZgBAAGYAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAAaABAAGgAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -184,25 +169,10 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
     <value>Aplicar el filtro en todas las pestañas o solo la pestaña actual.</value>
   </data>
-  <data name="tableLayoutPanel1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="DocumentDataLayerTabPage.Text" xml:space="preserve">
+    <value>Capas</value>
   </data>
-  <data name="splitContainerPartLibrary.Panel2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="splitContainerPartLibrary.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="toolSplitContainer.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="layerStackPanel.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="layerSplitContainer.Panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhCwAOAIIAAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
@@ -212,9 +182,6 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   </data>
   <data name="trashLayerButton.ToolTip" xml:space="preserve">
     <value>Eliminar capa seleccionada</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="newLayerRulerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -321,9 +288,6 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="newLayerGridButton.ToolTip" xml:space="preserve">
     <value>Añadir una capa de cuadrícula</value>
   </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="layerUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhEAAQAIEAAAAAAP///////wAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAAACACwAAAAAEAAQ
@@ -344,26 +308,245 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Bajar capa seleccionada</value>
   </data>
-  <data name="LayerButtonFlowLayoutPanel.ToolTip" xml:space="preserve">
-    <value />
+  <data name="DocumentDataPartListTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
   </data>
-  <data name="layerSplitContainer.Panel2.ToolTip" xml:space="preserve">
-    <value />
+  <data name="DocumentDataPartListTabPage.Text" xml:space="preserve">
+    <value>Lista de piezas</value>
   </data>
-  <data name="layerSplitContainer.ToolTip" xml:space="preserve">
-    <value />
+  <data name="PartUsageListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkMAwAAAFFTeXN0
+        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
+        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0OAAAA
+        BFRleHQKSW1hZ2VJbmRleAxTdWJJdGVtQ291bnQIU3ViSXRlbTEIU3ViSXRlbTIIU3ViSXRlbTMIU3Vi
+        SXRlbTQIU3ViSXRlbTUIU3ViSXRlbTYJQmFja0NvbG9yB0NoZWNrZWQERm9udAlGb3JlQ29sb3IXVXNl
+        SXRlbVN0eWxlRm9yU3ViSXRlbXMBAAAEBAQEBAQEAAQEAAgIMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxp
+        c3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3
+        SXRlbStMaXN0Vmlld1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStM
+        aXN0Vmlld1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmll
+        d1N1Ykl0ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0
+        ZW0CAAAAMVN5c3RlbS5XaW5kb3dzLkZvcm1zLkxpc3RWaWV3SXRlbStMaXN0Vmlld1N1Ykl0ZW0CAAAA
+        FFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAETU3lzdGVtLkRyYXdpbmcuRm9udAMAAAAUU3lzdGVtLkRy
+        YXdpbmcuQ29sb3IDAAAAAQIAAAAGBAAAAAVUb3RhbP////8HAAAACQUAAAAJBgAAAAkHAAAACQgAAAAJ
+        CQAAAAkKAAAABfX///8UU3lzdGVtLkRyYXdpbmcuQ29sb3IEAAAABG5hbWUFdmFsdWUKa25vd25Db2xv
+        cgVzdGF0ZQEAAAAJBwcDAAAACgAAAAAAAAAAdwABAAAJDAAAAAHz////9f///woAAAAAAAAAAG4AAQAB
+        BQUAAAAxU3lzdGVtLldpbmRvd3MuRm9ybXMuTGlzdFZpZXdJdGVtK0xpc3RWaWV3U3ViSXRlbQQAAAAE
+        dGV4dARuYW1lBXN0eWxlCHVzZXJEYXRhAQEEAj5TeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0
+        ZW0rTGlzdFZpZXdTdWJJdGVtK1N1Ykl0ZW1TdHlsZQIAAAACAAAABg4AAAABMAoKCgEGAAAABQAAAAYP
+        AAAAAAoKCgEHAAAABQAAAAkPAAAACgoKAQgAAAAFAAAABhAAAAADTi9BCgoICAAAAAABCQAAAAUAAAAJ
+        EAAAAAoKCAgAAAAAAQoAAAAFAAAACRAAAAAKCgoFDAAAABNTeXN0ZW0uRHJhd2luZy5Gb250BAAAAARO
+        YW1lBFNpemUFU3R5bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQMAAAAbU3lzdGVt
+        LkRyYXdpbmcuR3JhcGhpY3NVbml0AwAAAAMAAAAGEQAAABRNaWNyb3NvZnQgU2FucyBTZXJpZgAABEEF
+        7v///xhTeXN0ZW0uRHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMAAAAAAAAABe3///8bU3lz
+        dGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
+</value>
   </data>
-  <data name="toolSplitContainer.Panel2.ToolTip" xml:space="preserve">
-    <value />
+  <data name="PartUsageListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 270</value>
   </data>
-  <data name="toolSplitContainer.ToolTip" xml:space="preserve">
-    <value />
+  <data name="DocumentDataPartListTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 27</value>
   </data>
-  <data name="mainSplitContainer.Panel2.ToolTip" xml:space="preserve">
-    <value />
+  <data name="DocumentDataPartListSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
   </data>
-  <data name="mainSplitContainer.ToolTip" xml:space="preserve">
-    <value />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DocumentDataPartListSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>270</value>
+  </data>
+  <data name="SplitPartUsagePerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 17</value>
+  </data>
+  <data name="SplitPartUsagePerLayerCheckBox.Text" xml:space="preserve">
+    <value>Separar por capas</value>
+  </data>
+  <data name="IncludeHiddenLayerInPartListCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>241, 3</value>
+  </data>
+  <data name="IncludeHiddenLayerInPartListCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 17</value>
+  </data>
+  <data name="IncludeHiddenLayerInPartListCheckBox.Text" xml:space="preserve">
+    <value>Incluir elementos ocultos</value>
+  </data>
+  <data name="DocumentDataPropertiesTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
+  </data>
+  <data name="DocumentDataPropertiesTabPage.Text" xml:space="preserve">
+    <value>Propiedades</value>
+  </data>
+  <data name="DocumentDataPropertiesTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 24</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Color de fondo:</value>
+  </data>
+  <data name="commentTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 171</value>
+  </data>
+  <data name="commentTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>357, 127</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 144</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>módulos</value>
+  </data>
+  <data name="labelComment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
+  </data>
+  <data name="labelComment.Text" xml:space="preserve">
+    <value>Comentario:</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 144</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 24</value>
+  </data>
+  <data name="labelHeightFeet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>396, 144</value>
+  </data>
+  <data name="labelHeightFeet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="labelHeightModule.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 144</value>
+  </data>
+  <data name="labelHeightModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 144</value>
+  </data>
+  <data name="labelHeightMeter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>317, 144</value>
+  </data>
+  <data name="labelHeightMeter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>266, 144</value>
+  </data>
+  <data name="labelHeightStud.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 144</value>
+  </data>
+  <data name="labelHeightStud.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 24</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Altura:</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 24</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Ancho:</value>
+  </data>
+  <data name="labelWidthModule.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 120</value>
+  </data>
+  <data name="labelWidthModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 120</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>módulos</value>
+  </data>
+  <data name="labelWidthStud.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 120</value>
+  </data>
+  <data name="labelWidthStud.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>266, 120</value>
+  </data>
+  <data name="labelWidthMeter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>317, 120</value>
+  </data>
+  <data name="labelWidthMeter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 120</value>
+  </data>
+  <data name="labelWidthFeet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>396, 120</value>
+  </data>
+  <data name="labelWidthFeet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 120</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 24</value>
+  </data>
+  <data name="labelDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
+  </data>
+  <data name="labelDate.Text" xml:space="preserve">
+    <value>Fecha:</value>
+  </data>
+  <data name="dateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 99</value>
+  </data>
+  <data name="labelEvent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
+  </data>
+  <data name="labelEvent.Text" xml:space="preserve">
+    <value>Evento:</value>
+  </data>
+  <data name="eventComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 75</value>
+  </data>
+  <data name="eventComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>357, 21</value>
+  </data>
+  <data name="labelLUG.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
+  </data>
+  <data name="lugComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 51</value>
+  </data>
+  <data name="lugComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>357, 21</value>
+  </data>
+  <data name="labelAuthor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
+  </data>
+  <data name="labelAuthor.Text" xml:space="preserve">
+    <value>Autor:</value>
+  </data>
+  <data name="AuthorTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 27</value>
+  </data>
+  <data name="AuthorTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>357, 20</value>
+  </data>
+  <data name="DocumentDataPropertiesMapBackgroundColorButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 3</value>
+  </data>
+  <data name="menuBar.Text" xml:space="preserve">
+    <value>barra de menú</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Archivo</value>
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 22</value>
@@ -404,6 +587,12 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="exportAsPictureToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Exportar imagen…</value>
   </data>
+  <data name="exportPartListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>248, 22</value>
+  </data>
+  <data name="exportPartListToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exportar lista de &amp;Piezas...</value>
+  </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 6</value>
   </data>
@@ -412,6 +601,12 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Text" xml:space="preserve">
     <value>Recargar biblioteca de piezas</value>
+  </data>
+  <data name="downloadAdditionnalPartsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>248, 22</value>
+  </data>
+  <data name="downloadAdditionnalPartsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Descargar piezas adicionales...</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 22</value>
@@ -428,11 +623,11 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Cerrar</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 20</value>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 20</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Archivo</value>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Editar</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
@@ -503,6 +698,12 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Seleccionar tramo</value>
   </data>
+  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Agrupar</value>
+  </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
@@ -515,14 +716,20 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Desagrupar</value>
   </data>
-  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Agrupar</value>
-  </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>241, 6</value>
+  </data>
+  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Transformar</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>298, 22</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Distancia de ajuste</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
@@ -542,17 +749,14 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="moveStep4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
+  <data name="moveStep2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 22</value>
+  </data>
   <data name="moveStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
-  </data>
-  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>298, 22</value>
-  </data>
-  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Distancia de ajuste</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>298, 22</value>
@@ -569,14 +773,14 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>295, 6</value>
   </data>
-  <data name="rotationStep22ToolStripMenuItem.Text" xml:space="preserve">
-    <value>22,5°</value>
-  </data>
   <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>298, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotación</value>
+  </data>
+  <data name="rotationStep22ToolStripMenuItem.Text" xml:space="preserve">
+    <value>22,5°</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>298, 22</value>
@@ -590,11 +794,11 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Girar en contra del sentido del reloj</value>
   </data>
-  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
-  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
-    <value>Transformar</value>
+  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Herramienta de pintura</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
@@ -617,11 +821,11 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Seleccionar color...</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Herramienta de pintura</value>
+  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Herramienta de regla</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -641,20 +845,8 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="addCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Añadir círculo</value>
   </data>
-  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Herramienta de regla</value>
-  </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>241, 6</value>
-  </data>
-  <data name="generalInformationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="generalInformationToolStripMenuItem.Text" xml:space="preserve">
-    <value>Información general...</value>
   </data>
   <data name="mapBackgroundColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
@@ -674,11 +866,11 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>Preferencias...</value>
   </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 20</value>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
   </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Editar</value>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ver</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 22</value>
@@ -692,17 +884,14 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="statusBarMenuItem.Text" xml:space="preserve">
     <value>Barra de estado</value>
   </data>
+  <data name="mapScrollBarsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>226, 22</value>
+  </data>
   <data name="watermarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 22</value>
   </data>
   <data name="watermarkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Marca de agua</value>
-  </data>
-  <data name="partListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 22</value>
-  </data>
-  <data name="partListToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Lista de piezas</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 6</value>
@@ -725,29 +914,11 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>Puntos de &amp;fijación en la regla</value>
   </data>
-  <data name="hullsBricksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+  <data name="budgetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 20</value>
   </data>
-  <data name="hullsBricksToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ladrillos</value>
-  </data>
-  <data name="hullsTextsAndRulersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="hullsTextsAndRulersToolStripMenuItem.Text" xml:space="preserve">
-    <value>Texto y reglas</value>
-  </data>
-  <data name="hullsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 22</value>
-  </data>
-  <data name="hullsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Contornos</value>
-  </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 20</value>
-  </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ver</value>
+  <data name="budgetToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Presupuesto</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
@@ -809,11 +980,11 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="useBudgetLimitationToolStripMenuItem.Text" xml:space="preserve">
     <value>Usar limitaciones de presupuesto</value>
   </data>
-  <data name="budgetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 20</value>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
   </data>
-  <data name="budgetToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Presupuesto</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>A&amp;yuda</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
@@ -827,17 +998,8 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>Acerca de BlueBrick...</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>A&amp;yuda</value>
-  </data>
-  <data name="menuBar.Text" xml:space="preserve">
-    <value>barra de menú</value>
-  </data>
-  <data name="menuBar.ToolTip" xml:space="preserve">
-    <value />
+  <data name="toolBar.Text" xml:space="preserve">
+    <value>Barra de herramientas</value>
   </data>
   <data name="toolBarNewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -981,9 +1143,6 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
     <value>Seleccionar la distancia de ajuste a la cuadrícula</value>
   </data>
-  <data name="toolBarAngle22Button.Text" xml:space="preserve">
-    <value>22,5°</value>
-  </data>
   <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -995,6 +1154,9 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   </data>
   <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
     <value>Seleccionar el ángulo del paso de rotación</value>
+  </data>
+  <data name="toolBarAngle22Button.Text" xml:space="preserve">
+    <value>22,5°</value>
   </data>
   <data name="toolBarRotateCCWButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1039,6 +1201,16 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   </data>
   <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
     <value>Traer al frente</value>
+  </data>
+  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABISURBVDhP7Y1BCgAgCAT9/6cLcRLy5Hrp0sBCCbNrAuvg
+        7zhpoM8KUP96nDTQh+slEuzmslSAGviftEG95HYB6kx2HsolTcw2QXKZZ3a8yasAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
+    <value>Seleccionar la herramienta editar la capa actual</value>
   </data>
   <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1109,22 +1281,6 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   <data name="rulerAddCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Añadir círculo</value>
   </data>
-  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABISURBVDhP7Y1BCgAgCAT9/6cLcRLy5Hrp0sBCCbNrAuvg
-        7zhpoM8KUP96nDTQh+slEuzmslSAGviftEG95HYB6kx2HsolTcw2QXKZZ3a8yasAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
-    <value>Seleccionar la herramienta editar la capa actual</value>
-  </data>
-  <data name="toolBar.Text" xml:space="preserve">
-    <value>Barra de herramientas</value>
-  </data>
-  <data name="toolBar.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="openFileDialog.Filter" xml:space="preserve">
     <value>Mapa BlueBrick (*.bbm)|*.bbm|LDraw (*.ldr)|*.ldr|LDraw Multi Parts (*.mpd)|*.mpd|Track Designer (*.tdl)|*.tdl|Todos los archivos (*.*)|*.*</value>
   </data>
@@ -1136,9 +1292,6 @@ También se pueden usar comillas para agrupar palabras clave.</value>
   </data>
   <data name="saveFileDialog.Title" xml:space="preserve">
     <value>Guardar el mapa BlueBrick como</value>
-  </data>
-  <data name="saveExportImageDialog.Title" xml:space="preserve">
-    <value>Exportar imagen como</value>
   </data>
   <data name="openBudgetFileDialog.Filter" xml:space="preserve">
     <value>Presupuesto BlueBrick (*.bbb)|*.bbb|Todos los archivos (*.*)|*.*</value>
@@ -1193,8 +1346,5 @@ También se pueden usar comillas para agrupar palabras clave.</value>
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
   </data>
 </root>
