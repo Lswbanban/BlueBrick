@@ -128,7 +128,7 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAZgBAAGYAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAAaABAAGgAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -305,9 +305,6 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Abbassa il Layer selezionato di un livello</value>
   </data>
-  <data name="DocumentDataPartListTabPage.Text" xml:space="preserve">
-    <value>Lista Parti</value>
-  </data>
   <data name="PartUsageListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
@@ -337,11 +334,17 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
         dGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
 </value>
   </data>
+  <data name="PartUsageListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 270</value>
+  </data>
   <data name="SplitPartUsagePerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 17</value>
   </data>
   <data name="SplitPartUsagePerLayerCheckBox.Text" xml:space="preserve">
     <value>Suddividi per Layer</value>
+  </data>
+  <data name="IncludeHiddenLayerInPartListCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>241, 3</value>
   </data>
   <data name="IncludeHiddenLayerInPartListCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 17</value>
@@ -349,44 +352,195 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="IncludeHiddenLayerInPartListCheckBox.Text" xml:space="preserve">
     <value>Includi Parti Nascoste</value>
   </data>
-  <data name="DocumentDataPropertiesTabPage.Text" xml:space="preserve">
-    <value>Proprietà</value>
+  <data name="DocumentDataPartListTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 27</value>
+  </data>
+  <data name="DocumentDataPartListSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DocumentDataPartListSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>270</value>
+  </data>
+  <data name="DocumentDataPartListTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
+  </data>
+  <data name="DocumentDataPartListTabPage.Text" xml:space="preserve">
+    <value>Lista Parti</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 24</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Colore sfondo:</value>
   </data>
+  <data name="commentTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 171</value>
+  </data>
+  <data name="commentTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>357, 127</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 144</value>
+  </data>
   <data name="label12.Text" xml:space="preserve">
     <value>Moduli</value>
+  </data>
+  <data name="labelComment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
   </data>
   <data name="labelComment.Text" xml:space="preserve">
     <value>Commento:</value>
   </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 144</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 24</value>
+  </data>
+  <data name="labelHeightFeet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>396, 144</value>
+  </data>
+  <data name="labelHeightFeet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="labelHeightModule.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 144</value>
+  </data>
+  <data name="labelHeightModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 144</value>
+  </data>
+  <data name="labelHeightMeter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>317, 144</value>
+  </data>
+  <data name="labelHeightMeter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>266, 144</value>
+  </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Studs</value>
+  </data>
+  <data name="labelHeightStud.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 144</value>
+  </data>
+  <data name="labelHeightStud.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 24</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Altezza:</value>
   </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 24</value>
+  </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Larghezza:</value>
+  </data>
+  <data name="labelWidthModule.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 120</value>
+  </data>
+  <data name="labelWidthModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 120</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Moduli</value>
   </data>
+  <data name="labelWidthStud.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 120</value>
+  </data>
+  <data name="labelWidthStud.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>266, 120</value>
+  </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Studs</value>
+  </data>
+  <data name="labelWidthMeter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>317, 120</value>
+  </data>
+  <data name="labelWidthMeter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 120</value>
+  </data>
+  <data name="labelWidthFeet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>396, 120</value>
+  </data>
+  <data name="labelWidthFeet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 120</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 24</value>
+  </data>
+  <data name="labelDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
   </data>
   <data name="labelDate.Text" xml:space="preserve">
     <value>Data:</value>
   </data>
+  <data name="dateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 99</value>
+  </data>
+  <data name="labelEvent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
+  </data>
   <data name="labelEvent.Text" xml:space="preserve">
     <value>Evento:</value>
+  </data>
+  <data name="eventComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 75</value>
+  </data>
+  <data name="eventComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>357, 21</value>
+  </data>
+  <data name="labelLUG.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
+  </data>
+  <data name="lugComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 51</value>
+  </data>
+  <data name="lugComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>357, 21</value>
+  </data>
+  <data name="labelAuthor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
   </data>
   <data name="labelAuthor.Text" xml:space="preserve">
     <value>Autore:</value>
   </data>
-  <data name="menuBar.Text" xml:space="preserve">
-    <value>Barra del menu</value>
+  <data name="AuthorTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 27</value>
+  </data>
+  <data name="AuthorTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>357, 20</value>
+  </data>
+  <data name="DocumentDataPropertiesMapBackgroundColorButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 3</value>
+  </data>
+  <data name="DocumentDataPropertiesTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
+  </data>
+  <data name="DocumentDataPropertiesTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
+  </data>
+  <data name="DocumentDataPropertiesTabPage.Text" xml:space="preserve">
+    <value>Proprietà</value>
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
@@ -463,12 +617,6 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Esc&amp;i</value>
   </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 20</value>
-  </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Modifica</value>
-  </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 22</value>
   </data>
@@ -538,12 +686,6 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Seleziona &amp;Percorso</value>
   </data>
-  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
-  </data>
-  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Gruppi</value>
-  </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
   </data>
@@ -556,20 +698,14 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Separa</value>
   </data>
-  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 6</value>
-  </data>
-  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 22</value>
   </data>
-  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
-    <value>Trasforma</value>
+  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Gruppi</value>
   </data>
-  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 22</value>
-  </data>
-  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Passo di spostamento</value>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 6</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>133, 22</value>
@@ -619,6 +755,12 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="moveStep05ToolStripMenuItem.Text" xml:space="preserve">
     <value>1/2 Stud</value>
   </data>
+  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 22</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Passo di spostamento</value>
+  </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
@@ -634,14 +776,14 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 6</value>
   </data>
+  <data name="rotationStep22ToolStripMenuItem.Text" xml:space="preserve">
+    <value>22,5°</value>
+  </data>
   <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Passo di rotazione</value>
-  </data>
-  <data name="rotationStep22ToolStripMenuItem.Text" xml:space="preserve">
-    <value>22,5°</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
@@ -655,11 +797,11 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Ruota in senso antiorario</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 22</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pennello</value>
+  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trasforma</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 22</value>
@@ -682,11 +824,11 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Scegli colore…</value>
   </data>
-  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 22</value>
   </data>
-  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Righello</value>
+  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pennello</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 22</value>
@@ -705,6 +847,12 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   </data>
   <data name="addCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Aggiungi Cerchio</value>
+  </data>
+  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
+  </data>
+  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Righello</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 6</value>
@@ -727,8 +875,11 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>&amp;Opzioni...</value>
   </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Vista</value>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 20</value>
+  </data>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Modifica</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 22</value>
@@ -772,11 +923,8 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>Punti d'attacco &amp;Righello</value>
   </data>
-  <data name="budgetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 20</value>
-  </data>
-  <data name="budgetToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Preventivo</value>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Vista</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
@@ -838,11 +986,11 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="useBudgetLimitationToolStripMenuItem.Text" xml:space="preserve">
     <value>Usa limitazioni Preventivo</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
+  <data name="budgetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 20</value>
   </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Aiuto</value>
+  <data name="budgetToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Preventivo</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>217, 22</value>
@@ -856,8 +1004,14 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Informazioni su BlueBrick…</value>
   </data>
-  <data name="toolBar.Text" xml:space="preserve">
-    <value>Barra degli strumenti</value>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Aiuto</value>
+  </data>
+  <data name="menuBar.Text" xml:space="preserve">
+    <value>Barra del menu</value>
   </data>
   <data name="toolBarNewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -989,18 +1143,6 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="toolBarPasteButton.ToolTipText" xml:space="preserve">
     <value>Incolla oggetti copiati</value>
   </data>
-  <data name="toolBarSnapGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACMSURBVDhPrZALCsAgDEMFT+LlvPAO5Bptu/rbnFsgYGP6
-        QJ1VCCHxUbWaZW0BMHwxY4q6gLSaZf0J0MIOwPoZgEFMaTbFKcZYfdbMhUKSZfjwXi+qEmuUKcAuQ6as
-        eQfAItwuQ1y2fgeQu3IsqgAYpAQDgszmNmvNGGpxufXNs3rJgvWoPAWslq/MuROqQLBGE8eA3AAAAABJ
-        RU5ErkJggg==
-</value>
-  </data>
-  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
-    <value>Seleziona il passo di spostamento sulla griglia</value>
-  </data>
   <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 22</value>
   </data>
@@ -1043,6 +1185,21 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="toolBarGrid05Button.Text" xml:space="preserve">
     <value>1/2 Stud</value>
   </data>
+  <data name="toolBarSnapGridButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACMSURBVDhPrZALCsAgDEMFT+LlvPAO5Bptu/rbnFsgYGP6
+        QJ1VCCHxUbWaZW0BMHwxY4q6gLSaZf0J0MIOwPoZgEFMaTbFKcZYfdbMhUKSZfjwXi+qEmuUKcAuQ6as
+        eQfAItwuQ1y2fgeQu3IsqgAYpAQDgszmNmvNGGpxufXNs3rJgvWoPAWslq/MuROqQLBGE8eA3AAAAABJ
+        RU5ErkJggg==
+</value>
+  </data>
+  <data name="toolBarSnapGridButton.ToolTipText" xml:space="preserve">
+    <value>Seleziona il passo di spostamento sulla griglia</value>
+  </data>
+  <data name="toolBarAngle22Button.Text" xml:space="preserve">
+    <value>22,5°</value>
+  </data>
   <data name="toolBarRotationAngleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1054,9 +1211,6 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   </data>
   <data name="toolBarRotationAngleButton.ToolTipText" xml:space="preserve">
     <value>Seleziona il passo di rotazione dell'angolo</value>
-  </data>
-  <data name="toolBarAngle22Button.Text" xml:space="preserve">
-    <value>22,5°</value>
   </data>
   <data name="toolBarRotateCCWButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1101,16 +1255,6 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   </data>
   <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
     <value>Porta in primo piano</value>
-  </data>
-  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABISURBVDhP7Y1BCgAgCAT9/6cLcRLy5Hrp0sBCCbNrAuvg
-        7zhpoM8KUP96nDTQh+slEuzmslSAGviftEG95HYB6kx2HsolTcw2QXKZZ3a8yasAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
-    <value>Seleziona lo strumento per modificare il Layer corrente</value>
   </data>
   <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1181,14 +1325,27 @@ Puoi usare le doppie quote per raggruppare parole chiave.</value>
   <data name="rulerAddCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Aggiungi Cerchio</value>
   </data>
+  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABISURBVDhP7Y1BCgAgCAT9/6cLcRLy5Hrp0sBCCbNrAuvg
+        7zhpoM8KUP96nDTQh+slEuzmslSAGviftEG95HYB6kx2HsolTcw2QXKZZ3a8yasAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
+    <value>Seleziona lo strumento per modificare il Layer corrente</value>
+  </data>
+  <data name="toolBar.Text" xml:space="preserve">
+    <value>Barra degli strumenti</value>
+  </data>
   <data name="openFileDialog.Filter" xml:space="preserve">
-    <value>BlueBrick Mappa (*.bbm)|*.bbm|LDraw (*.ldr)|*.ldr|LDraw Multi Parts (*.mpd)|*.mpd|Track Designer (*.tdl)|*.tdl|Tutti i files (*.*)|*.*</value>
+    <value>BlueBrick Mappa (*.bbm)|*.bbm|LDraw (*.ldr)|*.ldr|LDraw Multi Parts (*.mpd)|*.mpd|Track Designer (*.tdl)|*.tdl|4DBrix (*.ncp)|*.ncp|Tutti i files (*.*)|*.*</value>
   </data>
   <data name="openFileDialog.Title" xml:space="preserve">
     <value>Apri una Mappa BlueBrick</value>
   </data>
   <data name="saveFileDialog.Filter" xml:space="preserve">
-    <value>BlueBrick Mappa (*.bbm)|*.bbm|LDraw (*.ldr)|*.ldr|LDraw Multi Parts (*.mpd)|*.mpd|Track Designer (*.tdl)|*.tdl|Tutti i files (*.*)|*.*</value>
+    <value>BlueBrick Mappa (*.bbm)|*.bbm|LDraw (*.ldr)|*.ldr|LDraw Multi Parts (*.mpd)|*.mpd|Track Designer (*.tdl)|*.tdl|4DBrix (*.ncp)|*.ncp|Tutti i files (*.*)|*.*</value>
   </data>
   <data name="saveFileDialog.Title" xml:space="preserve">
     <value>Salva Mappa con nome…</value>
