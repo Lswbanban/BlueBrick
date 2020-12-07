@@ -2033,13 +2033,22 @@ namespace BlueBrick
 		/// This struct is used to store temporary the segments (or bricks) because we can only construct the segment once the file
 		/// is finished to be read, as maybe a node could be declared after a segment, and segments need nodes to know their positions
 		/// </summary>
-		private struct FourDBrixSegment
+		private class FourDBrixSegment
 		{
 			public string mPartId; // the 4DBrix part number/id, that will be used to ask the Brick library the corresponding BlueBrick part number
 			public int mOriginNodeIndex; // The index in the list of all the nodes declared in the file, on which this part is attached. We will use this node coordinate to place the part
 			public float mAngle; // the angle of the part
+			public int mGUID; // the id of the segment instance, use to create the groups
+			public LayerBrick.Brick mBrick; // the BlueBrick brick hat was created for this segment (in order to recreate the group)
 		}
 
+		/// <summary>
+		/// This struct is used to temporary store the group read in the ncp file (a group is a list of segment GUID)
+		/// </summary>
+		private struct FourDBrixGroup
+		{
+			public List<int> mGUIDInTheGroup;
+		}
 
 		private static bool load4DBrix(string filename)
 		{
@@ -2057,6 +2066,8 @@ namespace BlueBrick
 			List<FourDBrixNodeCoord> nodeCoordinates = new List<FourDBrixNodeCoord>();
 			// a list to also store the segment, we then instantiate the bricks by combining the two list after the file as been fully parsed
 			List<FourDBrixSegment> segments = new List<FourDBrixSegment>();
+			// a list to store all the groups that we will read in the file
+			List<FourDBrixGroup> groups = new List<FourDBrixGroup>();
 
 			// declare a bool to check if we found some part not remaped in the library
 			List<string> noRemapablePartFound = new List<string>();
@@ -2100,6 +2111,8 @@ namespace BlueBrick
 						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, baseplateLayer, false, ref noRemapablePartFound);
 					else if (xmlReader.Name.Equals("structure"))
 						readGenericPartIn4DBrix(ref xmlReader, xmlReader.Name, structureLayer, true, ref noRemapablePartFound);
+					else if (xmlReader.Name.Equals("group"))
+						readGroupIn4DBrix(ref xmlReader, groups);
 					else
 						xmlReader.Read();
 					// check if we need to continue
@@ -2111,7 +2124,10 @@ namespace BlueBrick
 			xmlReader.Close();
 
 			// after we have finished to read the file, we can fill the track layer with the bluebrick parts, from the nodes and segment that we found in the file
-			createBricksFromNodeAndSegement(trackLayer, nodeCoordinates, segments, ref noRemapablePartFound);
+			createBricksFromNodeAndSegment(trackLayer, nodeCoordinates, segments, ref noRemapablePartFound);
+
+			// and then create the groups
+			createGroupsFromSegmentAndGroupIdList(segments, groups);
 
 			// add the layers to the map in the correct order
 			Map.Instance.addLayer(new LayerGrid());
@@ -2119,6 +2135,9 @@ namespace BlueBrick
 			Map.Instance.addLayer(baseplateLayer);
 			Map.Instance.addLayer(trackLayer);
 			Map.Instance.addLayer(structureLayer);
+
+			// select the track layer by default
+			Map.Instance.SelectedLayer = trackLayer;
 
 			// finish the progress bar (to hide it)
 			MainForm.Instance.finishProgressBar();
@@ -2262,7 +2281,9 @@ namespace BlueBrick
 				continueToRead = !xmlReader.Name.Equals("segment") && !xmlReader.EOF;
 				while (continueToRead)
 				{
-					if (xmlReader.Name.Equals("type"))
+					if (xmlReader.Name.Equals("index"))
+						int.TryParse(xmlReader.GetAttribute("value"), out currentSegment.mGUID);
+					else if (xmlReader.Name.Equals("type"))
 						currentSegment.mPartId = xmlReader.GetAttribute("value");
 					else if (xmlReader.Name.Equals("angle"))
 						float.TryParse(xmlReader.GetAttribute("value"), out currentSegment.mAngle);
@@ -2300,7 +2321,7 @@ namespace BlueBrick
 			}
 		}
 
-		private static void createBricksFromNodeAndSegement(LayerBrick layer, List<FourDBrixNodeCoord> nodeCoordinates, List<FourDBrixSegment> segments, ref List<string> noRemapablePartFound)
+		private static void createBricksFromNodeAndSegment(LayerBrick layer, List<FourDBrixNodeCoord> nodeCoordinates, List<FourDBrixSegment> segments, ref List<string> noRemapablePartFound)
 		{
 			// iterate on all the segments (which are the equivalent to the bricks)
 			foreach (FourDBrixSegment segment in segments)
@@ -2312,6 +2333,9 @@ namespace BlueBrick
 				{
 					// create a new brick
 					LayerBrick.Brick brick = new LayerBrick.Brick(libBrick.mPartNumber);
+
+					// also save the BlueBrick brick created for this segement, because we will need it for recreating the groups
+					segment.mBrick = brick;
 
 					// rotate the brick (will recompute the correct OffsetFromOriginalImage)
 					brick.Orientation = segment.mAngle - libBrick.m4DBrixRemapData.mOrientationDifference;
@@ -2337,6 +2361,9 @@ namespace BlueBrick
 				}
 				else
 				{
+					// no brick created for this segment
+					segment.mBrick = null;
+
 					// else add this unknown part in the error list
 					noRemapablePartFound.Add(segment.mPartId);
 				}
@@ -2436,6 +2463,70 @@ namespace BlueBrick
 			else
 			{
 				xmlReader.Read();
+			}
+		}
+
+		private static void readGroupIn4DBrix(ref System.Xml.XmlReader xmlReader, List<FourDBrixGroup> groups)
+		{
+			// check if the description is not empty
+			bool continueToRead = !xmlReader.IsEmptyElement;
+			if (continueToRead)
+			{
+				// declare the segment in which we will store the data we need to read
+				FourDBrixGroup currentGroup = new FourDBrixGroup() { mGUIDInTheGroup = new List<int>() };
+
+				// read the first child node (and check that it is not the end element)
+				xmlReader.Read();
+				continueToRead = !xmlReader.Name.Equals("group") && !xmlReader.EOF;
+				while (continueToRead)
+				{
+					if (xmlReader.Name.Equals("segments"))
+					{
+						string[] segmentList = xmlReader.GetAttribute("list").Split(new char[] { ',' });
+						// once the string list is split try to parse all the numbers
+						int guid = 0;
+						foreach (string segmentGUID in segmentList)
+							if (int.TryParse(segmentGUID, out guid))
+								currentGroup.mGUIDInTheGroup.Add(guid);
+					}
+					// read the tag anyway after having read the property, and ignore the bounding box
+					xmlReader.Read();
+					// check if we reach the end of the Description
+					continueToRead = !xmlReader.Name.Equals("group") && !xmlReader.EOF;
+				}
+
+				// if the group is not empty, add it to the list
+				if (currentGroup.mGUIDInTheGroup.Count > 0)
+					groups.Add(currentGroup);
+
+				// finish the Description tag
+				if (!xmlReader.EOF)
+					xmlReader.ReadEndElement();
+			}
+			else
+			{
+				xmlReader.Read();
+			}
+		}
+		private static void createGroupsFromSegmentAndGroupIdList(List<FourDBrixSegment> segments, List<FourDBrixGroup> groups)
+		{
+			foreach (FourDBrixGroup group in groups)
+			{
+				// create an empty BlueBrick Group
+				Layer.Group bbGroup = new Layer.Group(true);
+
+				// iterate on the guid id of the group and find it in the segment list
+				foreach (int guid in group.mGUIDInTheGroup)
+					foreach (FourDBrixSegment segment in segments)
+						if ((segment.mGUID == guid) && (segment.mBrick != null))
+						{
+							bbGroup.addItem(segment.mBrick);
+							// remove also the segment we found, to speed up the next search iteration
+							// because a segment can only appear in one group
+							segments.Remove(segment);
+							// and stop the iteration for searching the segment
+							break;
+						}
 			}
 		}
 
