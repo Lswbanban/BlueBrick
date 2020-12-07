@@ -2642,6 +2642,28 @@ namespace BlueBrick
 			}
 		}
 
+		private static void saveGroupsIn4DBrix(StreamWriter textWriter, List<LayerBrick.Group> groupList)
+		{
+			foreach (LayerBrick.Group group in groupList)
+			{
+				textWriter.WriteLine("   <group>");
+				// write the segment list
+				textWriter.Write("      <segments list=\"");
+				List<Layer.LayerItem> brickList = group.getAllLeafItems();
+				for (int i = 0; i < brickList.Count; ++i)
+				{
+					Layer.LayerItem brick = brickList[i];
+					textWriter.Write(brick.GUID.ToString());
+					if (i < brickList.Count - 1)
+						textWriter.Write(",");
+				}
+				textWriter.WriteLine("\"/>");
+				// write the bounding box
+				textWriter.WriteLine("      <boundingbox x=\"" + group.DisplayArea.X * 8 + "\" y=\"" + group.DisplayArea.Y * 8 + "\" w=\"" + group.DisplayArea.Width * 8 + "\" h=\"" + group.DisplayArea.Height * 8 + "\"/>");
+				textWriter.WriteLine("   </group>");
+			}
+		}
+
 		private static void saveFooterIn4DBrix(StreamWriter textWriter)
 		{
 			textWriter.WriteLine("</data>");
@@ -2672,6 +2694,7 @@ namespace BlueBrick
 			List<FourDBrixPart> tracks = new List<FourDBrixPart>();
 			List<FourDBrixPart> baseplates = new List<FourDBrixPart>();
 			List<FourDBrixPart> structures = new List<FourDBrixPart>();
+			List<LayerBrick.Group> groups = new List<LayerBrick.Group>();
 
 			// iterate on all the layers of the Map
 			foreach (Layer layer in Map.Instance.LayerList)
@@ -2681,6 +2704,16 @@ namespace BlueBrick
 					LayerBrick brickLayer = layer as LayerBrick;
 					foreach (LayerBrick.Brick brick in brickLayer.BrickList)
 					{
+						// if the brick is part of a group, add the group in the group list (if not already in)
+						if (brick.Group != null)
+						{
+							// because 4DBrix doesn't support hierachical groups, we flatten all the trees, 
+							// and group all the children leaves in their same top group.
+							Layer.Group topGroup = brick.TopGroup;
+							if (!groups.Contains(topGroup))
+								groups.Add(topGroup);
+						}
+
 						// create a struct to combine the remap data and the brick
 						FourDBrixPart part = new FourDBrixPart() { mRemapData = BrickLibrary.Instance.get4DBrixRemapData(brick.PartNumber), mBrick = brick };
 						// add the part in the correct list according to the remapdata type (if it exists, otherwise, ignore the part)
@@ -2722,6 +2755,7 @@ namespace BlueBrick
 			saveGenericPartsIn4DBrix(textWriter, tables, "table", false);
 			saveGenericPartsIn4DBrix(textWriter, baseplates, "baseplate", false);
 			saveGenericPartsIn4DBrix(textWriter, structures, "structure", true);
+			saveGroupsIn4DBrix(textWriter, groups);
 
 			// save the footer to finish the file
 			saveFooterIn4DBrix(textWriter);
