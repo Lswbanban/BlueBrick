@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionAddArea" xml:space="preserve">
-    <value>Fläche Einfärben</value>
+    <value>Fläche einfärben</value>
   </data>
   <data name="ActionAddBrick" xml:space="preserve">
     <value>Füge Teil &amp; hinzu</value>
@@ -563,7 +563,7 @@ Die Fehlermeldung lautet:</value>
     <value>Gleis</value>
   </data>
   <data name="ActionChangeBrickElevation" xml:space="preserve">
-    <value>Stein Höhe auf &amp; ändern</value>
+    <value>Höhenlage auf &amp; ändern</value>
   </data>
   <data name="ButtonPleaseWait" xml:space="preserve">
     <value>Suche läuft. Bitte warten.</value>

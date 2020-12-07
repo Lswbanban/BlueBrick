@@ -138,6 +138,9 @@ Alternativ können die Dateien auch mit einem Web Browser heruntergeladen und im
   <data name="DestinationColumnHeader.Text" xml:space="preserve">
     <value>Download nach …</value>
   </data>
+  <data name="SourceColumnHeader.Text" xml:space="preserve">
+    <value>Von URL</value>
+  </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Schließen</value>
   </data>

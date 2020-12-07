@@ -120,6 +120,9 @@
   <data name="partColumnHeader.Text" xml:space="preserve">
     <value>Teil</value>
   </data>
+  <data name="quantiyColumnHeader.Text" xml:space="preserve">
+    <value>In Verwendung</value>
+  </data>
   <data name="colorColumnHeader.Text" xml:space="preserve">
     <value>Farbe</value>
   </data>
@@ -128,5 +131,11 @@
   </data>
   <data name="usagePercentageColumnHeader.Text" xml:space="preserve">
     <value>Teileverwendung in %</value>
+  </data>
+  <data name="budgetCountColumnHeader.Text" xml:space="preserve">
+    <value>Budgetiert</value>
+  </data>
+  <data name="missingCountColumnHeader.Text" xml:space="preserve">
+    <value>Fehlt</value>
   </data>
 </root>

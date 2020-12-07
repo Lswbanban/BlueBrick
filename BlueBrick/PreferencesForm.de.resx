@@ -205,7 +205,7 @@ benutzten Dateien</value>
     <value>10, 83</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Je mehr "Rückgängige" Schritte gespeichert werden, umso mehr Speicher wird verbraucht.</value>
+    <value>Je mehr "rückgängige" Schritte gespeichert werden, umso mehr Speicher wird verbraucht.</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 50</value>
@@ -214,7 +214,7 @@ benutzten Dateien</value>
     <value>174, 27</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Anzahl der angezeigten, Rückgängigen Schritte.</value>
+    <value>Anzahl der angezeigten, rückgängigen Schritte.</value>
   </data>
   <data name="undoDisplayedNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>190, 54</value>
@@ -226,10 +226,10 @@ benutzten Dateien</value>
     <value>174, 27</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Anzahl der gespeicherten, Rückgängigen Schritte.</value>
+    <value>Anzahl der gespeicherten, rückgängigen Schritte.</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>Standardeinstellungen für neue Gleispläne</value>
+    <value>Vorlage für neue Gleispläne</value>
   </data>
   <data name="GeneralTrashTemplateFileForNewMapButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -359,7 +359,7 @@ um die Änderung auszuführen.</value>
     <value>Alt.</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>Duplikaten Auswahltaste</value>
+    <value>Duplikaten-Auswahltaste</value>
   </data>
   <data name="mouseMultipleSelKeyComboBox.Items" xml:space="preserve">
     <value>Strg</value>
@@ -374,7 +374,7 @@ um die Änderung auszuführen.</value>
     <value>Strg</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Mehrfach Auswahltaste</value>
+    <value>Mehrfach-Auswahltaste</value>
   </data>
   <data name="mouseZoomCenteredCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 17</value>
@@ -499,8 +499,8 @@ des geführten Teils</value>
     <value>Null</value>
   </data>
   <data name="label37.Text" xml:space="preserve">
-    <value>Standard Budget
-für jedes Teil:</value>
+    <value>Standard Budgetgrenze
+für jedes Teil</value>
   </data>
   <data name="groupBox13.Text" xml:space="preserve">
     <value>Hintergrundfarbe</value>
@@ -728,7 +728,7 @@ für jedes Teil:</value>
     <value>Alles auf Standard setzen</value>
   </data>
   <data name="restoreTabDefaultButton.Text" xml:space="preserve">
-    <value>Obiges auf Standard setzen</value>
+    <value>Den aktuellen Tab auf Standard setzen</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

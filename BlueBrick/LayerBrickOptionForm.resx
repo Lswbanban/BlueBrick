@@ -171,6 +171,9 @@
   <data name="&gt;&gt;alphaTrackBar.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
+  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
@@ -179,9 +182,6 @@
   </data>
   <data name="displayBrickElevationCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>517, 233</value>
   </data>
   <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -324,9 +324,6 @@
   <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
   <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>101, 20</value>
   </data>
@@ -402,14 +399,14 @@
   <data name="displayBrickElevationCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="&gt;&gt;hullThicknessNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
   <data name="hullThicknessUnitLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>222, 27</value>
   </data>
   <data name="&gt;&gt;displayHullCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;displayHullCheckBox.Name" xml:space="preserve">
-    <value>displayHullCheckBox</value>
   </data>
   <data name="&gt;&gt;alphaNumericUpDown.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -471,8 +468,8 @@
   <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;displayHullCheckBox.Name" xml:space="preserve">
+    <value>displayHullCheckBox</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -498,8 +495,8 @@
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 20</value>
   </data>
-  <data name="&gt;&gt;hullThicknessNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
   </data>
   <data name="&gt;&gt;alphaTrackBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -546,8 +543,8 @@
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 20</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Special Item Visibility</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>517, 233</value>
   </data>
   <data name="&gt;&gt;displayHullCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -594,6 +591,9 @@
   <data name="&gt;&gt;displayBrickElevationCheckBox.Name" xml:space="preserve">
     <value>displayBrickElevationCheckBox</value>
   </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Special Item Visibility</value>
+  </data>
   <data name="displayHullCheckBox.Text" xml:space="preserve">
     <value>Display Hulls</value>
   </data>
@@ -606,10 +606,10 @@
   <data name="displayBrickElevationCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 53</value>
   </data>
-  <metadata name="colorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="colorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
 </root>

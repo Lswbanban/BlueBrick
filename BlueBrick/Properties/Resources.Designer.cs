@@ -942,7 +942,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &quot;&amp;&quot; exists. Do you want to override it?
+        ///   Looks up a localized string similar to The file &quot;&amp;&quot; exists. Do you want to overwrite it?
         ///If you click &quot;Yes&quot;, all the files of series will be  overwritten..
         /// </summary>
         internal static string ErrorMsgExportFileExists {

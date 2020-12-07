@@ -289,7 +289,7 @@ If you prefer, you can close BlueBrick and download the packages from your web b
     <value>Parchment</value>
   </data>
   <data name="ErrorMsgExportFileExists" xml:space="preserve">
-    <value>The file "&amp;" exists. Do you want to override it?
+    <value>The file "&amp;" exists. Do you want to overwrite it?
 If you click "Yes", all the files of series will be  overwritten.</value>
   </data>
   <data name="ErrorMsgNoHelpFile" xml:space="preserve">
