@@ -1218,6 +1218,7 @@ namespace BlueBrick.MapData
 				}
 				// we add the cell under the mouse if the selection list is empty
 				else if ((mCurrentBrickUnderMouse != null) && (mEditAction != EditAction.DUPLICATE_SELECTION)
+					&& (mEditAction != EditAction.EDIT_PROPERTIES)
 					&& (Control.ModifierKeys != Properties.Settings.Default.MouseMultipleSelectionKey))
 				{
 					// if the selection is empty add the brick, else check the control key state
@@ -1235,12 +1236,11 @@ namespace BlueBrick.MapData
 					// then the brick becomes free, and the snapping algo choose again the previous linked brick for the
 					// second little move. By breaking the link now, the snapping algo will always choose the previous
 					// linked brick unless you start to do a big move.
-					if (mEditAction != EditAction.DUPLICATE_SELECTION)
-						foreach (Brick brick in mSelectedObjects)
-							if (brick.ConnectionPoints != null)
-								foreach (Brick.ConnectionPoint connection in brick.ConnectionPoints)
-									if (connection.ConnectedBrick != null && !mSelectedObjects.Contains(connection.ConnectedBrick))
-										disconnectTwoConnectionPoints(connection, connection.ConnectionLink);
+					foreach (Brick brick in mSelectedObjects)
+						if (brick.ConnectionPoints != null)
+							foreach (Brick.ConnectionPoint connection in brick.ConnectionPoints)
+								if (connection.ConnectedBrick != null && !mSelectedObjects.Contains(connection.ConnectedBrick))
+									disconnectTwoConnectionPoints(connection, connection.ConnectionLink);
 
 					// update the active connexion point (after cutting the bridge with non selected parts)
 					mCurrentBrickUnderMouse.setActiveConnectionPointUnder(mouseCoordInStud);
