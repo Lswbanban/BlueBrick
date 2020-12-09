@@ -2244,9 +2244,9 @@ namespace BlueBrick
 					if (xmlReader.Name.Equals("coordinates"))
 					{
 						// parse the values of the coordinates
-						float.TryParse(xmlReader.GetAttribute("x"), out coord.mX);
-						float.TryParse(xmlReader.GetAttribute("y"), out coord.mY);
-						float.TryParse(xmlReader.GetAttribute("z"), out coord.mZ);
+						float.TryParse(xmlReader.GetAttribute("x"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out coord.mX);
+						float.TryParse(xmlReader.GetAttribute("y"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out coord.mY);
+						float.TryParse(xmlReader.GetAttribute("z"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out coord.mZ);
 					}
 					// read the tag anyway after having read the property
 					xmlReader.Read();
@@ -2286,7 +2286,7 @@ namespace BlueBrick
 					else if (xmlReader.Name.Equals("type"))
 						currentSegment.mPartId = xmlReader.GetAttribute("value");
 					else if (xmlReader.Name.Equals("angle"))
-						float.TryParse(xmlReader.GetAttribute("value"), out currentSegment.mAngle);
+						float.TryParse(xmlReader.GetAttribute("value"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out currentSegment.mAngle);
 					else if (xmlReader.Name.Equals("origin"))
 						int.TryParse(xmlReader.GetAttribute("value"), out currentSegment.mOriginNodeIndex); // for now store the local origin node index
 					else if (xmlReader.Name.StartsWith("node") && !xmlReader.Name.Equals("nodes"))
@@ -2397,12 +2397,12 @@ namespace BlueBrick
 				{
 					if (xmlReader.Name.Equals(coordTag))
 					{
-						float.TryParse(xmlReader.GetAttribute("x"), out x);
-						float.TryParse(xmlReader.GetAttribute("y"), out y);
+						float.TryParse(xmlReader.GetAttribute("x"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out x);
+						float.TryParse(xmlReader.GetAttribute("y"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out y);
 					}
 					else if (xmlReader.Name.Equals("angle"))
 					{
-						float.TryParse(xmlReader.GetAttribute("value"), out angle);
+						float.TryParse(xmlReader.GetAttribute("value"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out angle);
 					}
 					else if (xmlReader.Name.Equals("svgfile"))
 					{
@@ -2550,10 +2550,10 @@ namespace BlueBrick
 
 			// get the File Info of the current file if it already exists (for the creation date)
 			string dateTimeFormat = "d-MMM-yyyy, HH:mm:ss";
-			string now = DateTime.Now.ToString(dateTimeFormat);
+			string now = DateTime.Now.ToString(dateTimeFormat, System.Globalization.CultureInfo.InvariantCulture);
 			string creationTime = now;
 			if (File.Exists(filename))
-				creationTime = new FileInfo(filename).CreationTime.ToString(dateTimeFormat);
+				creationTime = new FileInfo(filename).CreationTime.ToString(dateTimeFormat, System.Globalization.CultureInfo.InvariantCulture);
 
 			// write the project general info
 			textWriter.WriteLine("<?xml version=\"1.0\"?>");
@@ -2565,7 +2565,7 @@ namespace BlueBrick
 			textWriter.WriteLine("      <lug value=\"" + escapeSpecialXMLCharacter(Map.Instance.LUG) + "\"/>");
 			textWriter.WriteLine("      <created value=\"" + creationTime + "\"/>");
 			textWriter.WriteLine("      <modified value=\"" + now +"\"/>");
-			textWriter.WriteLine("      <description value=\"" + Map.Instance.Date.ToString(dateTimeFormat) + "\"/>");
+			textWriter.WriteLine("      <description value=\"" + Map.Instance.Date.ToString(dateTimeFormat, System.Globalization.CultureInfo.InvariantCulture) + "\"/>");
 			textWriter.WriteLine("      <info value=\"" + escapeSpecialXMLCharacter(Map.Instance.Comment) + "\"/>");
 			// for the tracklayout size, nControl only accept interger value in studs, and always assume the top left corner is (0,0)
 			textWriter.WriteLine("      <tracklayout width=\"" + ((int)(totalArea.Right)).ToString() + "\" height=\"" + ((int)(totalArea.Bottom)).ToString() + "\" scale=\"0.25\"/>");
@@ -2601,7 +2601,9 @@ namespace BlueBrick
 
 			// export the node
 			textWriter.WriteLine("   <node>");
-			textWriter.WriteLine("      <coordinates x=\"" + x + "\" y=\"" + y + "\" z=\"" + z + "\"/>");
+			textWriter.WriteLine("      <coordinates x=\"" + x.ToString(System.Globalization.CultureInfo.InvariantCulture) +
+												"\" y=\"" + y.ToString(System.Globalization.CultureInfo.InvariantCulture) +
+												"\" z=\"" + z.ToString(System.Globalization.CultureInfo.InvariantCulture) + "\"/>");
 			textWriter.WriteLine("      <segments a=\"" + ConnectedBrickAId + "\" b=\"" + ConnectedBrickBId + "\"/>");
 			textWriter.WriteLine("      <anchor value=\"no\"/>");
 			BrickLibrary.ConnectionType connectionType = BrickLibrary.Instance.getConnexionTypeInfo(connectionPoint.Type);
@@ -2647,7 +2649,7 @@ namespace BlueBrick
 					// and stop the loop, when we reach again the origin
 				} while (i != part.mRemapData.mConnectionIndexUsedAsOrigin);
 			}
-			textWriter.WriteLine("      <angle value=\"" + (brick.Orientation + part.mRemapData.mOrientationDifference).ToString() + "\"/>");
+			textWriter.WriteLine("      <angle value=\"" + (brick.Orientation + part.mRemapData.mOrientationDifference).ToString(System.Globalization.CultureInfo.InvariantCulture) + "\"/>");
 			// alway write that the origin local index node is 0, because we wrote the node id by starting from the origin defined in the part description
 			// nControl is bugged and does not support well an origin index different from 0
 			textWriter.WriteLine("      <origin value=\"0\"/>"); 
@@ -2715,8 +2717,9 @@ namespace BlueBrick
 				PointF position = isCoordInCenter ? part.mBrick.Center : part.mBrick.TopLeftCornerPositionInStud;
 				textWriter.WriteLine("   <" + partTag + ">");
 				// save the position in milimeters
-				textWriter.WriteLine("      <" + coordTag + " x =\"" + (position.X * 8f) + "\" y=\"" + (position.Y * 8f) + "\"/>");
-				textWriter.WriteLine("      <angle value=\"" + part.mBrick.Orientation.ToString() + "\"/>");
+				textWriter.WriteLine("      <" + coordTag + " x =\"" + (position.X * 8f).ToString(System.Globalization.CultureInfo.InvariantCulture) +
+															"\" y=\"" + (position.Y * 8f).ToString(System.Globalization.CultureInfo.InvariantCulture) + "\"/>");
+				textWriter.WriteLine("      <angle value=\"" + part.mBrick.Orientation.ToString(System.Globalization.CultureInfo.InvariantCulture) + "\"/>");
 				textWriter.WriteLine("      <svgfile value=\"" + part.mRemapData.mPartName + "\"/>");
 				// special case for baseplates and structures they want the size in studs
 				if (needToSaveSize)
@@ -2751,7 +2754,10 @@ namespace BlueBrick
 				}
 				textWriter.WriteLine("\"/>");
 				// write the bounding box
-				textWriter.WriteLine("      <boundingbox x=\"" + group.DisplayArea.X * 8 + "\" y=\"" + group.DisplayArea.Y * 8 + "\" w=\"" + group.DisplayArea.Width * 8 + "\" h=\"" + group.DisplayArea.Height * 8 + "\"/>");
+				textWriter.WriteLine("      <boundingbox x=\"" + (group.DisplayArea.X * 8).ToString(System.Globalization.CultureInfo.InvariantCulture) +
+														"\" y=\"" + (group.DisplayArea.Y * 8).ToString(System.Globalization.CultureInfo.InvariantCulture) +
+														"\" w=\"" + (group.DisplayArea.Width * 8).ToString(System.Globalization.CultureInfo.InvariantCulture) +
+														"\" h=\"" + (group.DisplayArea.Height * 8).ToString(System.Globalization.CultureInfo.InvariantCulture) + "\"/>");
 				textWriter.WriteLine("   </group>");
 			}
 		}
