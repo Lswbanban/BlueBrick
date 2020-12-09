@@ -2146,7 +2146,7 @@ namespace BlueBrick
 			if (noRemapablePartFound.Count > 0)
 			{
 				// check if the 4DBrix library is installed, if not, display a warning message to encourage the user to download the library
-				if (!File.Exists(Application.StartupPath + @"/parts/4DBrix"))
+				if (!Directory.Exists(Application.StartupPath + @"/parts/4DBrix"))
 					MessageBox.Show(null, Properties.Resources.ErrorMsgMissing4DBrixLibrary,
 						Properties.Resources.ErrorMsgTitleWarning, MessageBoxButtons.OK,
 						MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
@@ -2364,8 +2364,9 @@ namespace BlueBrick
 					// no brick created for this segment
 					segment.mBrick = null;
 
-					// else add this unknown part in the error list
-					noRemapablePartFound.Add(segment.mPartId);
+					// else add this unknown part in the error list (if not already in)
+					if (!noRemapablePartFound.Contains(segment.mPartId))
+						noRemapablePartFound.Add(segment.mPartId);
 				}
 			}
 
