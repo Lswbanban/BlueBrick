@@ -28,199 +28,199 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaveGroupNameForm));
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.okButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.nameTextBox = new System.Windows.Forms.RichTextBox();
-            this.nameErrorLabel = new System.Windows.Forms.Label();
-            this.sortingKeyTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.authorTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.canUngroupCheckBox = new System.Windows.Forms.CheckBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.languageNameLabel = new System.Windows.Forms.Label();
-            this.descriptionTextBox = new System.Windows.Forms.TextBox();
-            this.languageCodeComboBox = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.partURLTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.imageURLTextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // cancelButton
-            // 
-            resources.ApplyResources(this.cancelButton, "cancelButton");
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            // 
-            // okButton
-            // 
-            resources.ApplyResources(this.okButton, "okButton");
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Name = "okButton";
-            this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // groupBox1
-            // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Controls.Add(this.nameTextBox);
-            this.groupBox1.Controls.Add(this.nameErrorLabel);
-            this.groupBox1.Controls.Add(this.sortingKeyTextBox);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.authorTextBox);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.canUngroupCheckBox);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
-            // 
-            // nameTextBox
-            // 
-            resources.ApplyResources(this.nameTextBox, "nameTextBox");
-            this.nameTextBox.BackColor = System.Drawing.Color.LightSalmon;
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
-            // 
-            // nameErrorLabel
-            // 
-            resources.ApplyResources(this.nameErrorLabel, "nameErrorLabel");
-            this.nameErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.nameErrorLabel.Name = "nameErrorLabel";
-            // 
-            // sortingKeyTextBox
-            // 
-            resources.ApplyResources(this.sortingKeyTextBox, "sortingKeyTextBox");
-            this.sortingKeyTextBox.Name = "sortingKeyTextBox";
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
-            // authorTextBox
-            // 
-            resources.ApplyResources(this.authorTextBox, "authorTextBox");
-            this.authorTextBox.Name = "authorTextBox";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // canUngroupCheckBox
-            // 
-            resources.ApplyResources(this.canUngroupCheckBox, "canUngroupCheckBox");
-            this.canUngroupCheckBox.Checked = true;
-            this.canUngroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.canUngroupCheckBox.Name = "canUngroupCheckBox";
-            this.canUngroupCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.Controls.Add(this.languageNameLabel);
-            this.groupBox2.Controls.Add(this.descriptionTextBox);
-            this.groupBox2.Controls.Add(this.languageCodeComboBox);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.TabStop = false;
-            // 
-            // languageNameLabel
-            // 
-            resources.ApplyResources(this.languageNameLabel, "languageNameLabel");
-            this.languageNameLabel.Name = "languageNameLabel";
-            // 
-            // descriptionTextBox
-            // 
-            resources.ApplyResources(this.descriptionTextBox, "descriptionTextBox");
-            this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Enter += new System.EventHandler(this.descriptionTextBox_Enter);
-            this.descriptionTextBox.Leave += new System.EventHandler(this.descriptionTextBox_Leave);
-            // 
-            // languageCodeComboBox
-            // 
-            resources.ApplyResources(this.languageCodeComboBox, "languageCodeComboBox");
-            this.languageCodeComboBox.FormattingEnabled = true;
-            this.languageCodeComboBox.Name = "languageCodeComboBox";
-            this.languageCodeComboBox.SelectedIndexChanged += new System.EventHandler(this.languageCodeComboBox_SelectedIndexChanged);
-            this.languageCodeComboBox.TextChanged += new System.EventHandler(this.languageCodeComboBox_TextChanged);
-            this.languageCodeComboBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.languageCodeComboBox_PreviewKeyDown);
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // groupBox3
-            // 
-            resources.ApplyResources(this.groupBox3, "groupBox3");
-            this.groupBox3.Controls.Add(this.partURLTextBox);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.imageURLTextBox);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.TabStop = false;
-            // 
-            // partURLTextBox
-            // 
-            resources.ApplyResources(this.partURLTextBox, "partURLTextBox");
-            this.partURLTextBox.Name = "partURLTextBox";
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
-            // 
-            // imageURLTextBox
-            // 
-            resources.ApplyResources(this.imageURLTextBox, "imageURLTextBox");
-            this.imageURLTextBox.Name = "imageURLTextBox";
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
-            // SaveGroupNameForm
-            // 
-            this.AcceptButton = this.okButton;
-            resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.CancelButton = this.cancelButton;
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.okButton);
-            this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "SaveGroupNameForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveGroupNameForm_FormClosing);
-            this.Shown += new System.EventHandler(this.SaveGroupNameForm_Shown);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.ResumeLayout(false);
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaveGroupNameForm));
+			this.cancelButton = new System.Windows.Forms.Button();
+			this.okButton = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.nameTextBox = new System.Windows.Forms.RichTextBox();
+			this.nameErrorLabel = new System.Windows.Forms.Label();
+			this.sortingKeyTextBox = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.authorTextBox = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.canUngroupCheckBox = new System.Windows.Forms.CheckBox();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.languageNameLabel = new System.Windows.Forms.Label();
+			this.descriptionTextBox = new System.Windows.Forms.TextBox();
+			this.languageCodeComboBox = new System.Windows.Forms.ComboBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.partURLTextBox = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.imageURLTextBox = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.groupBox1.SuspendLayout();
+			this.groupBox2.SuspendLayout();
+			this.groupBox3.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// cancelButton
+			// 
+			resources.ApplyResources(this.cancelButton, "cancelButton");
+			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.UseVisualStyleBackColor = true;
+			// 
+			// okButton
+			// 
+			resources.ApplyResources(this.okButton, "okButton");
+			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.Name = "okButton";
+			this.okButton.UseVisualStyleBackColor = true;
+			this.okButton.Click += new System.EventHandler(this.okButton_Click);
+			// 
+			// label1
+			// 
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			// 
+			// groupBox1
+			// 
+			resources.ApplyResources(this.groupBox1, "groupBox1");
+			this.groupBox1.Controls.Add(this.nameTextBox);
+			this.groupBox1.Controls.Add(this.nameErrorLabel);
+			this.groupBox1.Controls.Add(this.sortingKeyTextBox);
+			this.groupBox1.Controls.Add(this.label4);
+			this.groupBox1.Controls.Add(this.authorTextBox);
+			this.groupBox1.Controls.Add(this.label2);
+			this.groupBox1.Controls.Add(this.canUngroupCheckBox);
+			this.groupBox1.Controls.Add(this.label1);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.TabStop = false;
+			// 
+			// nameTextBox
+			// 
+			resources.ApplyResources(this.nameTextBox, "nameTextBox");
+			this.nameTextBox.BackColor = System.Drawing.Color.LightSalmon;
+			this.nameTextBox.Name = "nameTextBox";
+			this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
+			// 
+			// nameErrorLabel
+			// 
+			resources.ApplyResources(this.nameErrorLabel, "nameErrorLabel");
+			this.nameErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
+			this.nameErrorLabel.Name = "nameErrorLabel";
+			// 
+			// sortingKeyTextBox
+			// 
+			resources.ApplyResources(this.sortingKeyTextBox, "sortingKeyTextBox");
+			this.sortingKeyTextBox.Name = "sortingKeyTextBox";
+			// 
+			// label4
+			// 
+			resources.ApplyResources(this.label4, "label4");
+			this.label4.Name = "label4";
+			// 
+			// authorTextBox
+			// 
+			resources.ApplyResources(this.authorTextBox, "authorTextBox");
+			this.authorTextBox.Name = "authorTextBox";
+			// 
+			// label2
+			// 
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			// 
+			// canUngroupCheckBox
+			// 
+			resources.ApplyResources(this.canUngroupCheckBox, "canUngroupCheckBox");
+			this.canUngroupCheckBox.Checked = true;
+			this.canUngroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.canUngroupCheckBox.Name = "canUngroupCheckBox";
+			this.canUngroupCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// groupBox2
+			// 
+			resources.ApplyResources(this.groupBox2, "groupBox2");
+			this.groupBox2.Controls.Add(this.languageNameLabel);
+			this.groupBox2.Controls.Add(this.descriptionTextBox);
+			this.groupBox2.Controls.Add(this.languageCodeComboBox);
+			this.groupBox2.Controls.Add(this.label3);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.TabStop = false;
+			// 
+			// languageNameLabel
+			// 
+			resources.ApplyResources(this.languageNameLabel, "languageNameLabel");
+			this.languageNameLabel.Name = "languageNameLabel";
+			// 
+			// descriptionTextBox
+			// 
+			resources.ApplyResources(this.descriptionTextBox, "descriptionTextBox");
+			this.descriptionTextBox.Name = "descriptionTextBox";
+			this.descriptionTextBox.Enter += new System.EventHandler(this.descriptionTextBox_Enter);
+			this.descriptionTextBox.Leave += new System.EventHandler(this.descriptionTextBox_Leave);
+			// 
+			// languageCodeComboBox
+			// 
+			resources.ApplyResources(this.languageCodeComboBox, "languageCodeComboBox");
+			this.languageCodeComboBox.FormattingEnabled = true;
+			this.languageCodeComboBox.Name = "languageCodeComboBox";
+			this.languageCodeComboBox.SelectedIndexChanged += new System.EventHandler(this.languageCodeComboBox_SelectedIndexChanged);
+			this.languageCodeComboBox.TextChanged += new System.EventHandler(this.languageCodeComboBox_TextChanged);
+			this.languageCodeComboBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.languageCodeComboBox_PreviewKeyDown);
+			// 
+			// label3
+			// 
+			resources.ApplyResources(this.label3, "label3");
+			this.label3.Name = "label3";
+			// 
+			// groupBox3
+			// 
+			resources.ApplyResources(this.groupBox3, "groupBox3");
+			this.groupBox3.Controls.Add(this.partURLTextBox);
+			this.groupBox3.Controls.Add(this.label5);
+			this.groupBox3.Controls.Add(this.imageURLTextBox);
+			this.groupBox3.Controls.Add(this.label6);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.TabStop = false;
+			// 
+			// partURLTextBox
+			// 
+			resources.ApplyResources(this.partURLTextBox, "partURLTextBox");
+			this.partURLTextBox.Name = "partURLTextBox";
+			// 
+			// label5
+			// 
+			resources.ApplyResources(this.label5, "label5");
+			this.label5.Name = "label5";
+			// 
+			// imageURLTextBox
+			// 
+			resources.ApplyResources(this.imageURLTextBox, "imageURLTextBox");
+			this.imageURLTextBox.Name = "imageURLTextBox";
+			// 
+			// label6
+			// 
+			resources.ApplyResources(this.label6, "label6");
+			this.label6.Name = "label6";
+			// 
+			// SaveGroupNameForm
+			// 
+			this.AcceptButton = this.okButton;
+			resources.ApplyResources(this, "$this");
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+			this.CancelButton = this.cancelButton;
+			this.Controls.Add(this.groupBox3);
+			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.cancelButton);
+			this.Controls.Add(this.okButton);
+			this.KeyPreview = true;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
+			this.Name = "SaveGroupNameForm";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveGroupNameForm_FormClosing);
+			this.Shown += new System.EventHandler(this.SaveGroupNameForm_Shown);
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
+			this.groupBox3.ResumeLayout(false);
+			this.groupBox3.PerformLayout();
+			this.ResumeLayout(false);
 
 		}
 

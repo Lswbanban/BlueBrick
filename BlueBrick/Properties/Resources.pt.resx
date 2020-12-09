@@ -457,13 +457,13 @@
     <value>Abortar</value>
   </data>
   <data name="ErrorMsgBudgetWasModified" xml:space="preserve">
-    <value>O seu Orçamento não está guardado. Quer guardar as modificações?</value>
+    <value>O seu limite de custo não está guardado. Quer guardar as modificações?</value>
   </data>
   <data name="ErrorMsgCancelButton" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="ErrorMsgCannotOpenBudget" xml:space="preserve">
-    <value>Não se consegue abrir o Orçamento &amp;.</value>
+    <value>Não se consegue abrir o limite de custos &amp;.</value>
   </data>
   <data name="ErrorMsgCannotSaveBudget" xml:space="preserve">
     <value>Não se consegue guardar o Orçamento &amp;.</value>
@@ -508,9 +508,92 @@
     <value>Mostrar os números do orçamento</value>
   </data>
   <data name="PartLibMenuItemShowOnlyBudgetedParts" xml:space="preserve">
-    <value>Mostrar apenas as peças dentro do valor orçamentado</value>
+    <value>Mostrar apenas as peças dentro do limite de custos</value>
   </data>
   <data name="PartLibMenuItemUseBudgetLimitation" xml:space="preserve">
-    <value>Usar limites ao orçamento</value>
+    <value>Usar limite de custos</value>
+  </data>
+  <data name="ActionChangeBrickElevation" xml:space="preserve">
+    <value>Alterar a elevação da peça para &amp;</value>
+  </data>
+  <data name="ButtonPleaseWait" xml:space="preserve">
+    <value>Procurando agora. Por favor espere.</value>
+  </data>
+  <data name="DownloadLibraryPackageExplanation" xml:space="preserve">
+    <value>Por favor marque o quadrado do pacote de biblioteca de peças que deseja descarregar e instalar. Depois carregue no botão "Descarregar" para iniciar. 
+
+Se preferir, pode encerrar o BlueBrick e descarregar o pacote através do teu navegador de internet e descomprimir o ficheiro ZIP na pasta de peças.</value>
+  </data>
+  <data name="ErrorMsgAutosaveMap" xml:space="preserve">
+    <value>Uma cópia de segurança do seu mapa foi guardado em:
+&amp;</value>
+  </data>
+  <data name="ErrorMsgCannotAddDueToBudgetLimitation" xml:space="preserve">
+    <value>Não pode adicionar esta peça porque o limite de custo foi atingido. Se quiser adicionar esta peça, aumente o seu limite de custos, desactive o limite de custos ou feche o ficheiro de limite de custos.</value>
+  </data>
+  <data name="ErrorMsgDoYouWantToDisplayBudgetNumber" xml:space="preserve">
+    <value>Foi definida uma limitalão de custos, mas os valores da limitação de custos não estão visiveis. Quer que os valores do limites de custos sejam visiveis?</value>
+  </data>
+  <data name="ErrorMsgExceptionWhenDeletingPartLib" xml:space="preserve">
+    <value>Ocorreu um erro durante a instalação do pacote "&amp;". A mensagem de erro é: 
+&amp;&amp;
+Deverá encerrar outros programas que acedam à biblioteca de peças do Bluebrick e tentar de novo. Se escolher ignorar, BlueBrick irá saltar esse pacote e tentará instalar os outros pacotes. Se escolher abortar, todo o processo de instalação irá terminar.</value>
+  </data>
+  <data name="ErrorMsgExportFileExists" xml:space="preserve">
+    <value>O ficheiro "&amp;" existe. Deseja substituí-lo? Se clicar "Sim", todos os ficheiros da serie serão substituidos.</value>
+  </data>
+  <data name="ErrorMsgMissing4DBrixLibrary" xml:space="preserve">
+    <value>Você está prestes a carregar um ficheiro ncp, mas a biblioteca 4DBrix não está instalada na sua pasta "peças". Por favor vá ao menu "Ficheiro &gt; Descarregar Peças Adicionais…" para instalar a biblioteca de peças 4DBrix, e depois recarrega o teu ficheiro ncp. Isto irá provavelmente corrigir a maior parte dos erros de peças em falta.</value>
+  </data>
+  <data name="ErrorMsgMissing4DBrixRemap" xml:space="preserve">
+    <value>Algumas peças da 4DBrix não foram encontradas na sua biblioteca BlueBrick. BlueBrick não foi capaz de carregar-las e ignorou-as. Deves garantir que tens a peça correspondente na biblioteca BlueBrick com a etiqueta 4DBrix correcta no ficheiro XML e depois tenta voltar a abrir o ficheiro 4DBrix. As peças que faltavam eram:</value>
+  </data>
+  <data name="ErrorMsgNeedToReloadPartLib" xml:space="preserve">
+    <value>BlueBrick descarregou peças novas e necessita de recarregar a Biblioteca de Peças para as instalar.</value>
+  </data>
+  <data name="ErrorMsgNoAvailablePartsPackageToDownload" xml:space="preserve">
+    <value>Não há Pacotes de Bibliotecas de Peças adicionais disponiveis online.</value>
+  </data>
+  <data name="ErrorMsgReadOnlyFile" xml:space="preserve">
+    <value>Não é possivel guardar o ficheiro "&amp;" porque é apenas de leitura. Remova a propriedade de "apenas leitura" ou guarde com um nome diferente.</value>
+  </data>
+  <data name="ErrorMsgSomeBrickWereNotReplacedDueToBudgetLimitation" xml:space="preserve">
+    <value>Algumas peças não serão substituidas devido ao seu limite de custos definido. Deseja continuar?</value>
+  </data>
+  <data name="ErrorMsgTitleInfo" xml:space="preserve">
+    <value>Informação</value>
+  </data>
+  <data name="PartLibMenuItemDisplayPartInfo" xml:space="preserve">
+    <value>Informação das Peças</value>
+  </data>
+  <data name="SearchStatusError" xml:space="preserve">
+    <value>Erro. Não se consegue obter informação do endereço de internet.</value>
+  </data>
+  <data name="SearchStatusFinished" xml:space="preserve">
+    <value>Leitura terminada</value>
+  </data>
+  <data name="SearchStatusReadStream" xml:space="preserve">
+    <value>Ler fluxo HTTP</value>
+  </data>
+  <data name="SearchStatusWaitResponse" xml:space="preserve">
+    <value>Esperar pela resposta HTTP</value>
+  </data>
+  <data name="StatusMsgBudgetReached" xml:space="preserve">
+    <value>Limite de custos alcançado para esta peça</value>
+  </data>
+  <data name="StatusMsgWrongLayerType" xml:space="preserve">
+    <value>A camada activa não é uma camada de Bricks</value>
+  </data>
+  <data name="TextExportPartListTitle" xml:space="preserve">
+    <value>Lista de peças para o ficheiro "&amp;"</value>
+  </data>
+  <data name="TextTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TextUnbudgeted" xml:space="preserve">
+    <value>Sem limite de custos</value>
+  </data>
+  <data name="UnitStraightTrack" xml:space="preserve">
+    <value>Via</value>
   </data>
 </root>

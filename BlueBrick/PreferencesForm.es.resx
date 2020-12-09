@@ -436,7 +436,7 @@ por defecto (en studs)</value>
     <value>Mostrar piezas restantes en ves de usadas</value>
   </data>
   <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
-    <value>Pinche el botón para editar -&gt;</value>
+    <value>Pinche el botón para editar →</value>
   </data>
   <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 13</value>

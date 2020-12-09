@@ -117,139 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Valor de medida</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="unitLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 16</value>
+  <data name="checkBoxSearchNonLego.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 17</value>
   </data>
-  <data name="unitLabel.Text" xml:space="preserve">
-    <value>Unidade de medida</value>
-  </data>
-  <data name="unitComboBox.Items" xml:space="preserve">
-    <value>studs</value>
-  </data>
-  <data name="unitComboBox.Items2" xml:space="preserve">
-    <value>linha recta</value>
-  </data>
-  <data name="unitComboBox.Items3" xml:space="preserve">
-    <value>módulos</value>
-  </data>
-  <data name="unitComboBox.Items4" xml:space="preserve">
-    <value>metro</value>
-  </data>
-  <data name="unitComboBox.Items5" xml:space="preserve">
-    <value>pés</value>
-  </data>
-  <data name="unitComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>121, 45</value>
-  </data>
-  <data name="fontNameLabel.Text" xml:space="preserve">
-    <value>nome do tipo de letra</value>
-  </data>
-  <data name="fontColorLabel.Text" xml:space="preserve">
-    <value>Cor</value>
-  </data>
-  <data name="fontButton.Text" xml:space="preserve">
-    <value>Mudar Tipo de Letra</value>
-  </data>
-  <data name="displayUnitCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>248, 47</value>
-  </data>
-  <data name="displayUnitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 17</value>
-  </data>
-  <data name="displayUnitCheckBox.Text" xml:space="preserve">
-    <value>Mostrar unidade de medida</value>
-  </data>
-  <data name="displayMeasureTextCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 17</value>
-  </data>
-  <data name="displayMeasureTextCheckBox.Text" xml:space="preserve">
-    <value>Mostrar valor de medida</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 108</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Aspecto da Linha</value>
-  </data>
-  <data name="lineThicknessNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 24</value>
-  </data>
-  <data name="allowOffsetCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 17</value>
-  </data>
-  <data name="allowOffsetCheckBox.Text" xml:space="preserve">
-    <value>Permitir Deslocamento</value>
-  </data>
-  <data name="lineColorLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 55</value>
-  </data>
-  <data name="lineColorLabel.Text" xml:space="preserve">
-    <value>Cor</value>
-  </data>
-  <data name="lineColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 55</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 26</value>
+  <data name="checkBoxSearchNonLego.Text" xml:space="preserve">
+    <value>Procurar na biblioteca de peças "não LEGO" oficial</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 13</value>
+    <value>401, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Espessura (em pixels)</value>
+    <value>Escolha a localização online de onde quer fazer o download da biblioteca de peças</value>
   </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 12</value>
+  <data name="textBoxUnofficialPartLibraryURL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 103</value>
   </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 105</value>
+  <data name="textBoxUnofficialPartLibraryURL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>455, 20</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Aspecto das linhas</value>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
   </data>
-  <data name="dashPatternSpaceNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>183, 52</value>
+  <data name="buttonSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 156</value>
   </data>
-  <data name="dashPatternLineNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 52</value>
+  <data name="buttonSearch.Text" xml:space="preserve">
+    <value>Procurar por pacotes de bibliotecas de peças</value>
   </data>
-  <data name="guidelineThicknessNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 23</value>
+  <data name="checkBoxSearchOfficial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>206, 17</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 47</value>
+  <data name="checkBoxSearchOfficial.Text" xml:space="preserve">
+    <value>Procurar na biblioteça de peças oficial</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 26</value>
+  <data name="checkBoxSearchUnofficial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>524, 17</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Padrão de traços e
-espaços (em espessura)</value>
+  <data name="checkBoxSearchUnofficial.Text" xml:space="preserve">
+    <value>Procurar numa biblioteca de peças não oficial "Third Party" (Por favor especifique o endereço de internet)</value>
   </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>69, 80</value>
+  <data name="labelURL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 99</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Cor</value>
+  <data name="labelURL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 26</value>
   </data>
-  <data name="guidelineColorPictureBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 80</value>
+  <data name="labelURL.Text" xml:space="preserve">
+    <value>Endereço
+de internet:</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 25</value>
+  <data name="labelURL.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 13</value>
+  <data name="labelSearchStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 133</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Espessura (em pixels)</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>546, 191</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -292,8 +217,5 @@ espaços (em espessura)</value>
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Edição de Regras</value>
   </data>
 </root>
