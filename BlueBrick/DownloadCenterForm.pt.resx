@@ -132,11 +132,17 @@ Se preferir pode fechar esta janela e descarregar os ficheiros a partir do seu b
   <data name="PercentColumnHeader.Text" xml:space="preserve">
     <value>Progresso</value>
   </data>
+  <data name="NameColumnHeader.Text" xml:space="preserve">
+    <value>Ficheiro</value>
+  </data>
+  <data name="VersionColumnHeader.Text" xml:space="preserve">
+    <value>Versão</value>
+  </data>
   <data name="DestinationColumnHeader.Text" xml:space="preserve">
     <value>Fazer o download para…</value>
   </data>
   <data name="SourceColumnHeader.Text" xml:space="preserve">
-    <value>Endereço de internet</value>
+    <value>A partir de endereço de internet</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Fechar</value>

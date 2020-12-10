@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="generalTabPage.Text" xml:space="preserve">
     <value>Generelt</value>
@@ -150,7 +150,7 @@
   <data name="optimComboBox.Items2" xml:space="preserve">
     <value>Mindre minne</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="optimComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 18</value>
   </data>
@@ -186,20 +186,21 @@ kan brukes</value>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Nye kartinnstillinger</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Opphavsperson</value>
+  <data name="GeneralTrashTemplateFileForNewMapButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhCwAOAIIEAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
+        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
+        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
+</value>
   </data>
-  <data name="addBrickLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 17</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Språk</value>
   </data>
-  <data name="addBrickLayerCheckBox.Text" xml:space="preserve">
-    <value>Legg til et klosse-lag på nytt kart</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Hvis du endrer språk må du starte programmet på nytt for at endringene skal tre i kraft.</value>
   </data>
-  <data name="addGridLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 17</value>
-  </data>
-  <data name="addGridLayerCheckBox.Text" xml:space="preserve">
-    <value>Legg til et rutenett-lag på nytt kart</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Språk</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Mus</value>
@@ -237,15 +238,6 @@ kan brukes</value>
   <data name="label3.Text" xml:space="preserve">
     <value>Zoom-hastighet på musehjulet</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Språk</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Hvis du endrer språk må du starte programmet på nytt for at endringene skal tre i kraft.</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Språk</value>
-  </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Standard utseende på område</value>
   </data>
@@ -267,9 +259,6 @@ kan brukes</value>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Standard tekstformat</value>
   </data>
-  <data name="defaultFontNameLabel.Text" xml:space="preserve">
-    <value>Skrifttype</value>
-  </data>
   <data name="defaultFontColorLabel.Text" xml:space="preserve">
     <value>Farge</value>
   </data>
@@ -284,12 +273,6 @@ kan brukes</value>
   </data>
   <data name="label24.Text" xml:space="preserve">
     <value>Farge på utvalg</value>
-  </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 13</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Forhåndsvisning</value>
   </data>
   <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
     <value>236, 92</value>
@@ -312,6 +295,13 @@ kan brukes</value>
   <data name="label15.Text" xml:space="preserve">
     <value>Fargeinnstilling</value>
   </data>
+  <data name="PartLibTrashBudgetFileToLoadArStartUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhCwAOAIIEAEtLSwAxEABLGAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
+        AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
+        khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
+</value>
+  </data>
   <data name="groupBox13.Text" xml:space="preserve">
     <value>Utseende</value>
   </data>
@@ -321,29 +311,20 @@ kan brukes</value>
   <data name="groupBox12.Text" xml:space="preserve">
     <value>Tips-boble</value>
   </data>
-  <data name="displayPartDescriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 17</value>
+  <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
   </data>
-  <data name="displayPartDescriptionCheckBox.Text" xml:space="preserve">
-    <value>Beskrivelse av delen</value>
+  <data name="label40.Text" xml:space="preserve">
+    <value>Farge</value>
   </data>
-  <data name="displayPartColorCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 17</value>
+  <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 20</value>
   </data>
-  <data name="displayPartColorCheckBox.Text" xml:space="preserve">
-    <value>Delens farge</value>
+  <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
   </data>
-  <data name="displayPartIDCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
-  </data>
-  <data name="displayPartIDCheckBox.Text" xml:space="preserve">
+  <data name="label39.Text" xml:space="preserve">
     <value>Delens ID</value>
-  </data>
-  <data name="displayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 17</value>
-  </data>
-  <data name="displayBubbleInfoCheckBox.Text" xml:space="preserve">
-    <value>Innhold i tips-boblen:</value>
   </data>
   <data name="groupBox11.Text" xml:space="preserve">
     <value>Tab-rekkefølge</value>

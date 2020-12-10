@@ -138,8 +138,23 @@
   <data name="GeneralCheckedListBoxNotification.Items" xml:space="preserve">
     <value>Mostrar um aviso quando não se guarda em formato BBM</value>
   </data>
+  <data name="GeneralCheckedListBoxNotification.Items1" xml:space="preserve">
+    <value>Mostrar um aviso se o ficheiro de imagem exportado já existe</value>
+  </data>
+  <data name="GeneralCheckedListBoxNotification.Items2" xml:space="preserve">
+    <value>Mostrar um aviso se as peças adicionadas fizerem ultrapassar o limite de custos </value>
+  </data>
   <data name="GeneralCheckedListBoxNotification.Items3" xml:space="preserve">
-    <value>Mostrar um aviso se as peças colocadas ou duplicadas excederem o orçamento</value>
+    <value>Mostrar um aviso se as peças colocadas ou duplicadas fizerem ultapassar o limite de custos</value>
+  </data>
+  <data name="GeneralCheckedListBoxNotification.Items4" xml:space="preserve">
+    <value>Mostrar um aviso se as peças substituidas fizerem ultrapassar o limite de custos</value>
+  </data>
+  <data name="GeneralCheckedListBoxNotification.Items5" xml:space="preserve">
+    <value>Pedir para mostrar os valores do limite de custos, quando se define um limite de custos</value>
+  </data>
+  <data name="GeneralCheckedListBoxNotification.Items6" xml:space="preserve">
+    <value>Mostrar um aviso se colar peças no tipo errado de camada</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
     <value>Ficheiros Recentes</value>
@@ -191,7 +206,7 @@
     <value>Número de acções anteriores guardadas</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>Nova configuração por defeito</value>
+    <value>Novo modelo de mapa</value>
   </data>
   <data name="GeneralTrashTemplateFileForNewMapButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -199,6 +214,9 @@
         AAAEACwAAAAACwAOAAAIQQAJCCQwoODAgQUTGiQAYEAAARAhBhjQMKJFiAozJiQoYEDHjwMEehwJUiTI
         khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
 </value>
+  </data>
+  <data name="GeneralNewMapTemplateFilenameTextBox.Text" xml:space="preserve">
+    <value>Clicar no botão para editar  →</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Linguagem</value>
@@ -223,6 +241,9 @@
   </data>
   <data name="unitComboBox.Items" xml:space="preserve">
     <value>studs</value>
+  </data>
+  <data name="unitComboBox.Items2" xml:space="preserve">
+    <value>linha recta</value>
   </data>
   <data name="unitComboBox.Items3" xml:space="preserve">
     <value>módulos</value>
@@ -254,10 +275,10 @@ de medida</value>
     <value>Mostrar valor de medida</value>
   </data>
   <data name="allowOffsetCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 17</value>
+    <value>147, 17</value>
   </data>
   <data name="allowOffsetCheckBox.Text" xml:space="preserve">
-    <value>Permitir Deslocamento</value>
+    <value>Usar Offset para as linhas</value>
   </data>
   <data name="label35.Text" xml:space="preserve">
     <value>Padrão de traços e espaços
@@ -266,8 +287,17 @@ de medida</value>
   <data name="lineColorLabel.Text" xml:space="preserve">
     <value>Cor por defeito</value>
   </data>
+  <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
+    <value>193, 81</value>
+  </data>
+  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 35</value>
+  </data>
   <data name="label34.Text" xml:space="preserve">
-    <value>Instruções</value>
+    <value>Linha de direção</value>
+  </data>
+  <data name="label34.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
   </data>
   <data name="label33.Text" xml:space="preserve">
     <value>Linha</value>
@@ -317,7 +347,7 @@ depois de colar</value>
     <value>Rato</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Autor</value>
+    <value>Tecla de vista panorâmica</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Tecla de selecção dupla</value>
@@ -378,6 +408,16 @@ por defeito (em studs)</value>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Cores</value>
   </data>
+  <data name="label44.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 13</value>
+  </data>
+  <data name="label44.Text" xml:space="preserve">
+    <value>pixeis</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>Casco de item
+por defeito</value>
+  </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Cor de destaque da
 peça seleccionada</value>
@@ -417,6 +457,9 @@ da selecção</value>
         khxJjjSpsiPLkyFTwnypUqRGgwEBADs=
 </value>
   </data>
+  <data name="PartLibDisplayRemaingPartCountCheckBox.Text" xml:space="preserve">
+    <value>Mostrar número de peças restantes em vez do número de peças usadas</value>
+  </data>
   <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
     <value>Clique no botão Browse para editar -&gt;</value>
   </data>
@@ -445,7 +488,46 @@ da selecção</value>
     <value>Cor de fundo por defeito</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
-    <value>Informação em caixa</value>
+    <value>Informação de peça e bolha</value>
+  </data>
+  <data name="label41.Location" type="System.Drawing.Point, System.Drawing">
+    <value>218, 20</value>
+  </data>
+  <data name="label41.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 13</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="label40.Location" type="System.Drawing.Point, System.Drawing">
+    <value>171, 20</value>
+  </data>
+  <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 13</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>Cor</value>
+  </data>
+  <data name="PartLibDisplayPartInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="PartLibDisplayPartInfoCheckBox.Text" xml:space="preserve">
+    <value>Info. de peça:</value>
+  </data>
+  <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 20</value>
+  </data>
+  <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 13</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Identificação</value>
+  </data>
+  <data name="PartLibDisplayBubbleInfoCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 17</value>
+  </data>
+  <data name="PartLibDisplayBubbleInfoCheckBox.Text" xml:space="preserve">
+    <value>Info. de bolha:</value>
   </data>
   <data name="groupBox11.Text" xml:space="preserve">
     <value>Ordem dos separadores</value>

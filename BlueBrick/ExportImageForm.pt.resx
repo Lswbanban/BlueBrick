@@ -123,9 +123,6 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancelar</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Tamanho da Imagem em Pixels</value>
-  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Largura</value>
   </data>
@@ -143,8 +140,8 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Pixeis/Stud</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Área em Studs</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Número de Imagens e tamanho em Pixels</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Topo</value>
@@ -158,8 +155,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Direita</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Opções de exportação</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Área em Studs</value>
   </data>
   <data name="exportConnectionPointCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>384, 21</value>
@@ -185,11 +182,8 @@
   <data name="exportWatermarkCheckBox.Text" xml:space="preserve">
     <value>Marca de água</value>
   </data>
-  <data name="exportHullCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 17</value>
-  </data>
-  <data name="exportHullCheckBox.Text" xml:space="preserve">
-    <value>Contorno</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Opções de exportação</value>
   </data>
   <data name="saveExportImageDialog.Title" xml:space="preserve">
     <value>Exportar Imagem Como</value>
@@ -238,7 +232,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Exportar as Opções de Imagem</value>

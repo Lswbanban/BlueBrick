@@ -478,7 +478,7 @@ des geführten Teils</value>
     <value>Verbleibende Teileanzahl anstelle der verwendeten Anzahl anzeigen</value>
   </data>
   <data name="PartLibBudgetFilenameTextBox.Text" xml:space="preserve">
-    <value>Klicke den "…" Button zur Dateiauswahl</value>
+    <value>Klicke den "…" Button zur Dateiauswahl →</value>
   </data>
   <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 13</value>

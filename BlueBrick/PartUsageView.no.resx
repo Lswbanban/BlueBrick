@@ -117,113 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;partColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;quantiyColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="budgetCountColumnHeader.Text" xml:space="preserve">
-    <value>Budgeted</value>
-  </data>
-  <data name="&gt;&gt;missingCountColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;budgetCountColumnHeader.Name" xml:space="preserve">
-    <value>budgetCountColumnHeader</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="missingCountColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
+  <data name="partColumnHeader.Text" xml:space="preserve">
+    <value>Del</value>
   </data>
   <data name="colorColumnHeader.Text" xml:space="preserve">
-    <value>Color</value>
-  </data>
-  <data name="&gt;&gt;partColumnHeader.Name" xml:space="preserve">
-    <value>partColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;budgetCountColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>PartUsageView</value>
-  </data>
-  <data name="&gt;&gt;usagePercentageColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;colorColumnHeader.Name" xml:space="preserve">
-    <value>colorColumnHeader</value>
-  </data>
-  <data name="colorColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>70</value>
-  </data>
-  <data name="usagePercentageColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="missingCountColumnHeader.Text" xml:space="preserve">
-    <value>Missing</value>
-  </data>
-  <data name="partColumnHeader.Text" xml:space="preserve">
-    <value>Part</value>
-  </data>
-  <data name="colorColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;missingCountColumnHeader.Name" xml:space="preserve">
-    <value>missingCountColumnHeader</value>
-  </data>
-  <data name="quantiyColumnHeader.Text" xml:space="preserve">
-    <value>In Use</value>
-  </data>
-  <data name="budgetCountColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>Farge</value>
   </data>
   <data name="descriptionColumnHeader.Text" xml:space="preserve">
-    <value>Description</value>
+    <value>Beskrivelse</value>
   </data>
-  <data name="partColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="usagePercentageColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>125</value>
-  </data>
-  <data name="&gt;&gt;descriptionColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="descriptionColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>200</value>
-  </data>
-  <data name="usagePercentageColumnHeader.Text" xml:space="preserve">
-    <value>Part Usage %</value>
-  </data>
-  <data name="quantiyColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="&gt;&gt;colorColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="descriptionColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;usagePercentageColumnHeader.Name" xml:space="preserve">
-    <value>usagePercentageColumnHeader</value>
-  </data>
-  <data name="missingCountColumnHeader.DisplayIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;descriptionColumnHeader.Name" xml:space="preserve">
-    <value>descriptionColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;quantiyColumnHeader.Name" xml:space="preserve">
-    <value>quantiyColumnHeader</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
 </root>
