@@ -26,17 +26,17 @@
 		<ConnectionType name="mono"> <!-- Monorail -->
 			<ColorARGB>FFE22B8A</ColorARGB>
 			<Size>1</Size>
-			<FoudDBrixName>NT_MONORAIL</FoudDBrixName>
+			<FourDBrixName>NT_MONORAIL</FourDBrixName>
 		</ConnectionType>
 		<ConnectionType name="mono45"> <!-- Monorail short curve -->
 			<ColorARGB>FFA899FF</ColorARGB>
 			<Size>1</Size>
-			<FoudDBrixName>NT_MONORAIL45</FoudDBrixName>
+			<FourDBrixName>NT_MONORAIL45</FourDBrixName>
 		</ConnectionType>
 		<ConnectionType name="monoramp"> <!-- Monorail ramp -->
 			<ColorARGB>FF782BE2</ColorARGB>
 			<Size>1</Size>
-			<FoudDBrixName>NT_MONORAILRAMP</FoudDBrixName>
+			<FourDBrixName>NT_MONORAILRAMP</FourDBrixName>
 		</ConnectionType>
 		<ConnectionType name="coaster"> <!-- Roller Coaster track -->
 			<ColorARGB>FF1021FF</ColorARGB>

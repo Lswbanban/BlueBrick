@@ -1392,15 +1392,15 @@ namespace BlueBrick.MapData
 							hingeAngle = xmlReader.ReadElementContentAsFloat();
 
 						// read the 4DBrix name
-						string foudDBrixName = "NT_UNDEFINED";
-						if (xmlReader.Name.Equals("FoudDBrixName"))
-							foudDBrixName = xmlReader.ReadElementContentAsString();
+						string fourDBrixName = "NT_UNDEFINED";
+						if (xmlReader.Name.Equals("FourDBrixName"))
+							fourDBrixName = xmlReader.ReadElementContentAsString();
 
 						// add the new connection to the list (if not already there)
 						if (!mConnectionTypeRemapingDictionnary.ContainsKey(name))
 						{
 							mConnectionTypeRemapingDictionnary.Add(name, mConnectionTypes.Count);
-							mConnectionTypes.Add(new ConnectionType(name, color, size, hingeAngle, foudDBrixName));
+							mConnectionTypes.Add(new ConnectionType(name, color, size, hingeAngle, fourDBrixName));
 						}
 
 						// read the next connection
