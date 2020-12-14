@@ -414,7 +414,7 @@ Le message d'erreur est :
     <value>tenon</value>
   </data>
   <data name="LayerRulerOptionTitle" xml:space="preserve">
-    <value>Options pour le calque de mesure</value>
+    <value>Propriétés des calques de mesure</value>
   </data>
   <data name="ErrorMsgReplaceExistingShortcut" xml:space="preserve">
     <value>Un raccourci éxiste déjà pour cette touche. Voulez-vous le remplacer ?</value>

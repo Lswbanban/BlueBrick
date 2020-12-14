@@ -335,6 +335,9 @@
     <EmbeddedResource Include="EditBrickForm.it.resx">
       <DependentUpon>EditBrickForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditBrickForm.nl.resx">
+      <DependentUpon>EditBrickForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditBrickForm.pt.resx">
       <DependentUpon>EditBrickForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -475,6 +478,9 @@
     <EmbeddedResource Include="LibraryPackageSourceForm.it.resx">
       <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LibraryPackageSourceForm.nl.resx">
+      <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LibraryPackageSourceForm.pt.resx">
       <DependentUpon>LibraryPackageSourceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -491,6 +497,9 @@
       <DependentUpon>PartUsageView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartUsageView.it.resx">
+      <DependentUpon>PartUsageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartUsageView.nl.resx">
       <DependentUpon>PartUsageView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartUsageView.no.resx">

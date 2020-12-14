@@ -105,11 +105,6 @@ to open the help file (see above for more details).
 -------------------------------------------------------------------------------
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
-- [target 1.9] MISSING FEATURE (Alban): Export in 4dbrix.com format
-	- prepare a 4DBrix lib with few tracks
-	- add proxy in Brick library to make a part appear in different folder? This to make appear the standard tracks in the 4DBrix folder (with a different sorting key). used for the 9V track and also half straight
-	- what is segment label?
-	- what is node anchor?
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
 - MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - MISSING FEATURE (Matthias): Add a simple view for the track with the part number displayed overlaid (add a new tag in the xml for this simplified name to avoid too long names).
@@ -153,6 +148,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Vincent): Make the error message when pasting on the wrong layer, forgettable. Just beep instead.
 - NEW FEATURE (Alban): A feature to download library package online from various sources (official web site, and non official url).
 - NEW FEATURE (Alban): Support local Connection Type file in order to facilitate the deployment of packages (now you can add a "config" sub folder inside a part category folder, and add a ConnectionTypeList.xml file inside in order to define the connections of your package)
+- NEW FEATURE (Alban): Support the loading and saving of *.ncp file (from the thirdparty 4dbrix.com)
 - NEW FEATURE (supertruper1988): Add the possibility to set a template BBM file that is loaded when creating a new map.
 - NEW FEATURE (Matthias): An option to display part names below the parts, in the part library.
 - NEW FEATURE (Alban): The new layers are now inserted above the selected layer, not at the top of the stack by default

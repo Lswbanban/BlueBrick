@@ -128,7 +128,7 @@ Gebruik aanhalingstekens om kernwoorden te groeperen.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAZABAAGQAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAAagBAAGoAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -168,6 +168,9 @@ Gebruik aanhalingstekens om kernwoorden te groeperen.</value>
   </data>
   <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
     <value>Filter toepassen op alle tabbladen of enkel het huidige tabblad.</value>
+  </data>
+  <data name="DocumentDataLayerTabPage.Text" xml:space="preserve">
+    <value>Lagen</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -305,8 +308,8 @@ Gebruik aanhalingstekens om kernwoorden te groeperen.</value>
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Verplaats geselecteerde laag omlaag</value>
   </data>
-  <data name="DocumentDataPartListTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 301</value>
+  <data name="DocumentDataPartListTabPage.Text" xml:space="preserve">
+    <value>Onderdelenlijst</value>
   </data>
   <data name="PartUsageListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -337,159 +340,41 @@ Gebruik aanhalingstekens om kernwoorden te groeperen.</value>
         dGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
 </value>
   </data>
-  <data name="PartUsageListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 270</value>
+  <data name="SplitPartUsagePerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 17</value>
   </data>
-  <data name="DocumentDataPartListTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 27</value>
+  <data name="SplitPartUsagePerLayerCheckBox.Text" xml:space="preserve">
+    <value>Opsplitsen per laag</value>
   </data>
-  <data name="DocumentDataPartListSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 301</value>
+  <data name="IncludeHiddenLayerInPartListCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 17</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="DocumentDataPartListSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>270</value>
+  <data name="IncludeHiddenLayerInPartListCheckBox.Text" xml:space="preserve">
+    <value>Verborgen onderdelen opnemen</value>
   </data>
-  <data name="IncludeHiddenLayerInPartListCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>241, 3</value>
+  <data name="DocumentDataPropertiesTabPage.Text" xml:space="preserve">
+    <value>Eigenschappen</value>
   </data>
-  <data name="DocumentDataPropertiesTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 301</value>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Achtergrond kleur:</value>
   </data>
-  <data name="DocumentDataPropertiesTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 301</value>
+  <data name="labelComment.Text" xml:space="preserve">
+    <value>Commentaar:</value>
   </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 24</value>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Hoogte:</value>
   </data>
-  <data name="commentTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 171</value>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Breedte:</value>
   </data>
-  <data name="commentTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>357, 127</value>
+  <data name="labelDate.Text" xml:space="preserve">
+    <value>Datum:</value>
   </data>
-  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 144</value>
+  <data name="labelEvent.Text" xml:space="preserve">
+    <value>Evenement:</value>
   </data>
-  <data name="labelComment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 20</value>
-  </data>
-  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>443, 144</value>
-  </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 24</value>
-  </data>
-  <data name="labelHeightFeet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>396, 144</value>
-  </data>
-  <data name="labelHeightFeet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 24</value>
-  </data>
-  <data name="labelHeightModule.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 144</value>
-  </data>
-  <data name="labelHeightModule.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 24</value>
-  </data>
-  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>364, 144</value>
-  </data>
-  <data name="labelHeightMeter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 144</value>
-  </data>
-  <data name="labelHeightMeter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 24</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 144</value>
-  </data>
-  <data name="labelHeightStud.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 144</value>
-  </data>
-  <data name="labelHeightStud.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 24</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 24</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 24</value>
-  </data>
-  <data name="labelWidthModule.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 120</value>
-  </data>
-  <data name="labelWidthModule.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 24</value>
-  </data>
-  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 120</value>
-  </data>
-  <data name="labelWidthStud.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 120</value>
-  </data>
-  <data name="labelWidthStud.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 24</value>
-  </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 120</value>
-  </data>
-  <data name="labelWidthMeter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 120</value>
-  </data>
-  <data name="labelWidthMeter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 24</value>
-  </data>
-  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>364, 120</value>
-  </data>
-  <data name="labelWidthFeet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>396, 120</value>
-  </data>
-  <data name="labelWidthFeet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 24</value>
-  </data>
-  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>443, 120</value>
-  </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 24</value>
-  </data>
-  <data name="labelDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 20</value>
-  </data>
-  <data name="dateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 99</value>
-  </data>
-  <data name="labelEvent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 20</value>
-  </data>
-  <data name="eventComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 75</value>
-  </data>
-  <data name="eventComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>357, 21</value>
-  </data>
-  <data name="labelLUG.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 20</value>
-  </data>
-  <data name="lugComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 51</value>
-  </data>
-  <data name="lugComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>357, 21</value>
-  </data>
-  <data name="labelAuthor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 20</value>
-  </data>
-  <data name="AuthorTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 27</value>
-  </data>
-  <data name="AuthorTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>357, 20</value>
-  </data>
-  <data name="DocumentDataPropertiesMapBackgroundColorButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 3</value>
+  <data name="labelAuthor.Text" xml:space="preserve">
+    <value>Auteur:</value>
   </data>
   <data name="menuBar.Text" xml:space="preserve">
     <value>MenuBar</value>
@@ -522,13 +407,13 @@ Gebruik aanhalingstekens om kernwoorden te groeperen.</value>
     <value>242, 22</value>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Opslaan</value>
+    <value>O&amp;pslaan</value>
   </data>
   <data name="saveasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="saveasToolStripMenuItem.Text" xml:space="preserve">
-    <value>O&amp;pslaan Als...</value>
+    <value>Opslaan &amp;Als...</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
@@ -538,6 +423,9 @@ Gebruik aanhalingstekens om kernwoorden te groeperen.</value>
   </data>
   <data name="exportPartListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
+  </data>
+  <data name="exportPartListToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exporteer onderdelen&amp;lijst...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 6</value>
@@ -550,6 +438,9 @@ Gebruik aanhalingstekens om kernwoorden te groeperen.</value>
   </data>
   <data name="downloadAdditionnalPartsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
+  </data>
+  <data name="downloadAdditionnalPartsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Extra onderdelen downloaden…</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
@@ -826,6 +717,9 @@ Gebruik aanhalingstekens om kernwoorden te groeperen.</value>
   </data>
   <data name="mapScrollBarsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 22</value>
+  </data>
+  <data name="mapScrollBarsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Schuif&amp;balken</value>
   </data>
   <data name="watermarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 22</value>
@@ -1232,6 +1126,9 @@ Gebruik aanhalingstekens om kernwoorden te groeperen.</value>
   </data>
   <data name="saveBudgetFileDialog.Title" xml:space="preserve">
     <value>Bewaar dit BlueBrick Budget als</value>
+  </data>
+  <data name="exportPartListFileDialog.Title" xml:space="preserve">
+    <value>Onderdelenlijst exporteren</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -490,7 +490,7 @@ You should close other programs accessing the BlueBrick part library and try aga
     <value>Track</value>
   </data>
   <data name="LayerRulerOptionTitle" xml:space="preserve">
-    <value>Options for Ruler Layer</value>
+    <value>Ruler Layer Properties</value>
   </data>
   <data name="ActionRotateText" xml:space="preserve">
     <value>Rotate the text "&amp;"</value>

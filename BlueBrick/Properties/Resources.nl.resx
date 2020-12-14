@@ -536,4 +536,70 @@ The error message is:
   <data name="UnitStraightTrack" xml:space="preserve">
     <value>Spoor</value>
   </data>
+  <data name="ActionChangeBrickElevation" xml:space="preserve">
+    <value>Brick elevatie wijzigen naar &amp;</value>
+  </data>
+  <data name="ButtonPleaseWait" xml:space="preserve">
+    <value>Aan het zoeken. Een ogenblik geduld.</value>
+  </data>
+  <data name="DownloadLibraryPackageExplanation" xml:space="preserve">
+    <value>Schakel de selectievakjes in van het bibliotheekpakket dat u wilt downloaden en installeren, en klik vervolgens op de knop Downloaden om de download te starten.
+
+Indien gewenst kunt u ook BlueBrick sluiten, de pakketten vanuit uw webbrowser downloaden en ze in de onderdelenmap uitpakken.</value>
+  </data>
+  <data name="ErrorMsgAutosaveMap" xml:space="preserve">
+    <value>Er is een back-up van uw kaart opgeslagen in:
+&amp;</value>
+  </data>
+  <data name="ErrorMsgExceptionWhenDeletingPartLib" xml:space="preserve">
+    <value>Er is een fout opgetreden tijdens de installatie van het pakket "&amp;". De foutmelding is:
+&amp;&amp;
+Sluit andere programma's die toegang hebben tot de BlueBrick-onderdeelbibliotheek en probeer het opnieuw. Als u ervoor kiest om te negeren, zal BlueBrick dat pakket overslaan en proberen de andere pakketten te installeren. Als u ervoor kiest om af te breken, wordt het hele installatieproces gestopt.</value>
+  </data>
+  <data name="ErrorMsgExportFileExists" xml:space="preserve">
+    <value>Het bestand "&amp;" bestaat al. Wilt u het overschrijven?
+Als u op 'Ja' klikt, worden alle bestanden van deze serie overschreven.</value>
+  </data>
+  <data name="ErrorMsgMissing4DBrixLibrary" xml:space="preserve">
+    <value>U staat op het punt een ncp-bestand te laden, maar de 4DBrix-bibliotheek is niet in de "parts" map geïnstalleerd. Ga naar het menu "Bestand &gt; Extra onderdelen downloaden..." om de 4DBrix-bibliotheek te installeren en vervolgens uw ncp-bestand opnieuw te laden. Dit zal waarschijnlijk de meeste foutmeldingen oplossen.</value>
+  </data>
+  <data name="ErrorMsgMissing4DBrixRemap" xml:space="preserve">
+    <value>Sommige 4DBrix onderdelen werden niet in uw BlueBrick bibliotheek gevonden. BlueBrick was niet in staat om ze te laden en heeft ze genegeerd. U moet ervoor zorgen dat u het bijbehorende onderdeel, met de juiste 4DBrix-tag in het XML-bestand, in uw BlueBrick-bibliotheek heeft.  U kunt vervolgens probeeren het 4DBrix-bestand opnieuw te openen. De ontbrekende onderdelen waren:</value>
+  </data>
+  <data name="ErrorMsgNeedToReloadPartLib" xml:space="preserve">
+    <value>BlueBrick heeft nieuwe onderdelen gedownload en moet de deelbibliotheek opnieuw laden om ze te installeren.</value>
+  </data>
+  <data name="ErrorMsgNoAvailablePartsPackageToDownload" xml:space="preserve">
+    <value>Er zijn geen extra pakketbibliotheken online beschikbaar.</value>
+  </data>
+  <data name="ErrorMsgReadOnlyFile" xml:space="preserve">
+    <value>Kan het bestand "&amp;" niet opslaan omdat het als "alleen-lezen" werd ingesteld. Verwijder de eigenschap alleen-lezen of sla het op met een andere naam.</value>
+  </data>
+  <data name="ErrorMsgTitleInfo" xml:space="preserve">
+    <value>Informatie</value>
+  </data>
+  <data name="PartLibMenuItemDisplayPartInfo" xml:space="preserve">
+    <value>Deelinformatie</value>
+  </data>
+  <data name="SearchStatusError" xml:space="preserve">
+    <value>Foutmelding. Kan geen informatie krijgen van URL.</value>
+  </data>
+  <data name="SearchStatusFinished" xml:space="preserve">
+    <value>Lezen voltooid</value>
+  </data>
+  <data name="SearchStatusReadStream" xml:space="preserve">
+    <value>HTTP-stream lezen</value>
+  </data>
+  <data name="SearchStatusWaitResponse" xml:space="preserve">
+    <value>Wachten op antwoord van HTTP</value>
+  </data>
+  <data name="TextExportPartListTitle" xml:space="preserve">
+    <value>Onderdelenlijst voor bestand "&amp;"</value>
+  </data>
+  <data name="TextTotal" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="TextUnbudgeted" xml:space="preserve">
+    <value>Niet gebudgetteerd</value>
+  </data>
 </root>

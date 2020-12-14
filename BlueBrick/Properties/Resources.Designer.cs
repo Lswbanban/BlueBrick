@@ -1367,7 +1367,7 @@ namespace BlueBrick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Options for Ruler Layer.
+        ///   Looks up a localized string similar to Ruler Layer Properties.
         /// </summary>
         internal static string LayerRulerOptionTitle {
             get {

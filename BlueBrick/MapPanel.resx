@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="deselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="&gt;&gt;groupToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -128,22 +128,22 @@
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="propertiesToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>174, 6</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
     <value>Bring to Front</value>
   </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="&gt;&gt;sendToBackToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="selectPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="propertiesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="detachToolStripMenuItem.Text" xml:space="preserve">
     <value>Detach Ruler</value>
@@ -155,7 +155,7 @@
     <value>183, 0</value>
   </data>
   <data name="useAsModelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MapPanel</value>
@@ -170,22 +170,22 @@
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="&gt;&gt;groupToolStripSeparator.Name" xml:space="preserve">
     <value>groupToolStripSeparator</value>
   </data>
   <data name="attachRulerToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>174, 6</value>
   </data>
   <data name="&gt;&gt;verticalScrollBar.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="&gt;&gt;verticalScrollBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -213,7 +213,7 @@
     <value>$this</value>
   </data>
   <data name="appearanceToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>174, 6</value>
   </data>
   <data name="&gt;&gt;detachToolStripMenuItem.Name" xml:space="preserve">
     <value>detachToolStripMenuItem</value>
@@ -259,22 +259,22 @@
     <value>selectToolStripSeparator</value>
   </data>
   <data name="scrollBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Ungroup</value>
   </data>
   <data name="attachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="&gt;&gt;horizontalScrollBar.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 298</value>
+    <value>178, 298</value>
   </data>
   <data name="selectToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>174, 6</value>
   </data>
   <data name="&gt;&gt;horizontalScrollBar.Parent" xml:space="preserve">
     <value>$this</value>
@@ -319,7 +319,7 @@
     <value>System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="detachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="&gt;&gt;selectToolStripSeparator.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -337,7 +337,7 @@
     <value>Send to Back</value>
   </data>
   <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>177, 22</value>
   </data>
   <data name="groupToolStripMenuItem.Text" xml:space="preserve">
     <value>Group</value>
@@ -376,7 +376,7 @@
     <value>Bottom</value>
   </data>
   <data name="groupToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>174, 6</value>
   </data>
   <metadata name="horizontalScrollBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 95</value>

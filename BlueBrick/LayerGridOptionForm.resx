@@ -137,8 +137,8 @@
   <data name="nameTextBox.MaxLength" type="System.Int32, mscorlib">
     <value>256</value>
   </data>
-  <data name="gridPixelNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="cellIndexFontNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 34</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -196,9 +196,6 @@
   </data>
   <data name="&gt;&gt;subGridPixelNumericUpDown.Name" xml:space="preserve">
     <value>subGridPixelNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;gridCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;alphaTrackBar.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -307,6 +304,9 @@
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>485, 85</value>
+  </data>
+  <data name="subGridThicknessLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
   <data name="cellIndexOriginLabel.Text" xml:space="preserve">
     <value>Origin (in grid coord) is at</value>
@@ -618,8 +618,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Opacity</value>
   </data>
-  <data name="subGridThicknessLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="cellIndexOriginXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
   </data>
   <data name="&gt;&gt;cellIndexColorLabel.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -639,6 +639,9 @@
   <data name="&gt;&gt;fontDialog.Name" xml:space="preserve">
     <value>fontDialog</value>
   </data>
+  <data name="&gt;&gt;cellIndexFontButton.Name" xml:space="preserve">
+    <value>cellIndexFontButton</value>
+  </data>
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -656,6 +659,9 @@
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 13</value>
+  </data>
+  <data name="gridPixelNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;cellIndexColorPictureBox.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -750,9 +756,6 @@
   <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;cellIndexFontNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -798,11 +801,8 @@
   <data name="&gt;&gt;gridColorlabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cellIndexOriginXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Options for a Grid Layer</value>
+    <value>Grid Layer Properties</value>
   </data>
   <data name="cellIndexFontButton.Text" xml:space="preserve">
     <value>Change Font</value>
@@ -852,8 +852,8 @@
   <data name="&gt;&gt;gridColorlabel.Name" xml:space="preserve">
     <value>gridColorlabel</value>
   </data>
-  <data name="&gt;&gt;cellIndexFontNameLabel.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;gridCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="cellIndexCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -924,6 +924,9 @@
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
   </data>
+  <data name="&gt;&gt;alphaTrackBar.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;cellIndexCommaLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -981,8 +984,8 @@
   <data name="cellIndexCheckBox.Text" xml:space="preserve">
     <value>Display cell index</value>
   </data>
-  <data name="&gt;&gt;cellIndexFontButton.Name" xml:space="preserve">
-    <value>cellIndexFontButton</value>
+  <data name="&gt;&gt;cellIndexFontNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;subGridCheckBox.Name" xml:space="preserve">
     <value>subGridCheckBox</value>
@@ -1019,9 +1022,6 @@
   </data>
   <data name="&gt;&gt;subGridSizeNumericUpDown.Parent" xml:space="preserve">
     <value>groupBox1</value>
-  </data>
-  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
   </data>
   <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
     <value>423, 365</value>
@@ -1083,14 +1083,17 @@
   <data name="&gt;&gt;subGridColorPictureBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;cellIndexFontNameLabel.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
   <data name="&gt;&gt;cellIndexColorPictureBox.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
   <data name="&gt;&gt;cellIndexOriginYNumericUpDown.Name" xml:space="preserve">
     <value>cellIndexOriginYNumericUpDown</value>
   </data>
-  <data name="&gt;&gt;alphaTrackBar.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="alphaNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1103,9 +1106,6 @@
   </data>
   <data name="cellIndexRowLabel.Text" xml:space="preserve">
     <value>Row</value>
-  </data>
-  <data name="cellIndexFontNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 34</value>
   </data>
   <data name="alphaNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>386, 52</value>

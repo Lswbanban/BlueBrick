@@ -142,7 +142,7 @@
     <value>False</value>
   </data>
   <data name="statusBarLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>11, 17</value>
+    <value>13, 17</value>
   </data>
   <data name="statusBarLabel.Text" xml:space="preserve">
     <value>  </value>
@@ -323,7 +323,7 @@ You can use double quote characters to group keywords.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAagBCAGoAQgBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAAfABCAHwAQgBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -2269,7 +2269,7 @@ You can use double quote characters to group keywords.</value>
     <value>0</value>
   </data>
   <data name="DocumentDataPropertiesTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label16" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="commentTextBox" Row="7" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="label12" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="labelComment" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="6" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightFeet" Row="6" RowSpan="1" Column="7" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightModule" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightMeter" Row="6" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="6" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightStud" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthModule" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthStud" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="5" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthMeter" Row="5" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="5" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthFeet" Row="5" RowSpan="1" Column="7" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="5" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;Control Name="labelDate" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dateTimePicker" Row="4" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelEvent" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="eventComboBox" Row="3" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelLUG" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lugComboBox" Row="2" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelAuthor" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="AuthorTextBox" Row="1" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="DocumentDataPropertiesMapBackgroundColorButton" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,22,95819,Percent,9,926148,Percent,11,91138,Percent,9,926148,Percent,11,52922,Percent,9,926148,Percent,6,948305,Percent,9,926148,Percent,6,948305" /&gt;&lt;Rows Styles="Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label16" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="commentTextBox" Row="7" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="label12" Row="6" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="labelComment" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="6" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightFeet" Row="6" RowSpan="1" Column="7" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightModule" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="6" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightMeter" Row="6" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="6" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="labelHeightStud" Row="6" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthModule" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="5" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthStud" Row="5" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="5" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthMeter" Row="5" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="label15" Row="5" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="labelWidthFeet" Row="5" RowSpan="1" Column="7" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="5" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;Control Name="labelDate" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dateTimePicker" Row="4" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelEvent" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="eventComboBox" Row="3" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelLUG" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lugComboBox" Row="2" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="labelAuthor" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="AuthorTextBox" Row="1" RowSpan="1" Column="1" ColumnSpan="8" /&gt;&lt;Control Name="DocumentDataPropertiesMapBackgroundColorButton" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,22.95819,Percent,9.926148,Percent,11.91138,Percent,9.926148,Percent,11.52922,Percent,9.926148,Percent,6.948305,Percent,9.926148,Percent,6.948305" /&gt;&lt;Rows Styles="Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,Absolute,24,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="DocumentDataPropertiesTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 4</value>
@@ -2401,7 +2401,7 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+N</value>
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="newToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;New</value>
@@ -2410,7 +2410,7 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+O</value>
   </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Open...</value>
@@ -2419,25 +2419,25 @@ You can use double quote characters to group keywords.</value>
     <value>False</value>
   </data>
   <data name="openRecentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="openRecentToolStripMenuItem.Text" xml:space="preserve">
     <value>Recent Files</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>221, 6</value>
   </data>
   <data name="saveToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+S</value>
   </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Save</value>
   </data>
   <data name="saveasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="saveasToolStripMenuItem.Text" xml:space="preserve">
     <value>Save &amp;As...</value>
@@ -2446,28 +2446,28 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+E</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Export Picture...</value>
   </data>
   <data name="exportPartListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="exportPartListToolStripMenuItem.Text" xml:space="preserve">
     <value>Export &amp;Part List...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>221, 6</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Text" xml:space="preserve">
     <value>Reload Part Library</value>
   </data>
   <data name="downloadAdditionnalPartsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="downloadAdditionnalPartsToolStripMenuItem.Text" xml:space="preserve">
     <value>Download Additional Parts...</value>
@@ -2476,22 +2476,22 @@ You can use double quote characters to group keywords.</value>
     <value>False</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Text" xml:space="preserve">
     <value>Save Selection in Library...</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>221, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>224, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 20</value>
+    <value>37, 20</value>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;File</value>
@@ -2503,7 +2503,7 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+Z</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="undoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Undo</value>
@@ -2515,19 +2515,19 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+Y</value>
   </data>
   <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="redoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Redo</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 6</value>
+    <value>210, 6</value>
   </data>
   <data name="cutToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+X</value>
   </data>
   <data name="cutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="cutToolStripMenuItem.Text" xml:space="preserve">
     <value>Cut</value>
@@ -2536,7 +2536,7 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+C</value>
   </data>
   <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Copy</value>
@@ -2545,37 +2545,37 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+V</value>
   </data>
   <data name="pasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="pasteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Paste</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Delete</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 6</value>
+    <value>210, 6</value>
   </data>
   <data name="findAndReplaceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F</value>
   </data>
   <data name="findAndReplaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="findAndReplaceToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Find and Replace...</value>
   </data>
   <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 6</value>
+    <value>210, 6</value>
   </data>
   <data name="selectAllToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+A</value>
   </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Select &amp;All</value>
@@ -2584,7 +2584,7 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+D</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Deselect All</value>
@@ -2593,7 +2593,7 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+P</value>
   </data>
   <data name="selectPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Select &amp;Path</value>
@@ -2602,7 +2602,7 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+G</value>
   </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="groupToolStripMenuItem.Text" xml:space="preserve">
     <value>Group</value>
@@ -2611,115 +2611,115 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+U</value>
   </data>
   <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Ungroup</value>
   </data>
   <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
     <value>Group</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 6</value>
+    <value>210, 6</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
+    <value>119, 22</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Text" xml:space="preserve">
     <value>Disabled</value>
   </data>
   <data name="moveStep32ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
+    <value>119, 22</value>
   </data>
   <data name="moveStep32ToolStripMenuItem.Text" xml:space="preserve">
     <value>32 studs</value>
   </data>
   <data name="moveStep16ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
+    <value>119, 22</value>
   </data>
   <data name="moveStep16ToolStripMenuItem.Text" xml:space="preserve">
     <value>16 studs</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
+    <value>119, 22</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Text" xml:space="preserve">
     <value>8 studs</value>
   </data>
   <data name="moveStep4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
+    <value>119, 22</value>
   </data>
   <data name="moveStep4ToolStripMenuItem.Text" xml:space="preserve">
     <value>4 studs</value>
   </data>
   <data name="moveStep2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
+    <value>119, 22</value>
   </data>
   <data name="moveStep2ToolStripMenuItem.Text" xml:space="preserve">
     <value>2 studs</value>
   </data>
   <data name="moveStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
+    <value>119, 22</value>
   </data>
   <data name="moveStep1ToolStripMenuItem.Text" xml:space="preserve">
     <value>1 stud</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
+    <value>119, 22</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Text" xml:space="preserve">
     <value>1/2 stud</value>
   </data>
   <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>178, 22</value>
   </data>
   <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Move Step</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>178, 22</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Text" xml:space="preserve">
     <value>Send To Back</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>178, 22</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
     <value>Bring To Front</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 6</value>
+    <value>175, 6</value>
   </data>
   <data name="rotationStep90ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 22</value>
+    <value>100, 22</value>
   </data>
   <data name="rotationStep90ToolStripMenuItem.Text" xml:space="preserve">
     <value>90°</value>
   </data>
   <data name="rotationStep45ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 22</value>
+    <value>100, 22</value>
   </data>
   <data name="rotationStep45ToolStripMenuItem.Text" xml:space="preserve">
     <value>45°</value>
   </data>
   <data name="rotationStep22ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 22</value>
+    <value>100, 22</value>
   </data>
   <data name="rotationStep22ToolStripMenuItem.Text" xml:space="preserve">
     <value>22.5°</value>
   </data>
   <data name="rotationStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 22</value>
+    <value>100, 22</value>
   </data>
   <data name="rotationStep1ToolStripMenuItem.Text" xml:space="preserve">
     <value>1°</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>178, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotation Step</value>
@@ -2728,7 +2728,7 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+R</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>178, 22</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotate CW</value>
@@ -2737,208 +2737,208 @@ You can use double quote characters to group keywords.</value>
     <value>Ctrl+L</value>
   </data>
   <data name="rotateCCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>178, 22</value>
   </data>
   <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotate CCW</value>
   </data>
   <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="transformToolStripMenuItem.Text" xml:space="preserve">
     <value>Transform</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 22</value>
+    <value>155, 22</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Text" xml:space="preserve">
     <value>Paint</value>
   </data>
   <data name="paintToolEraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 22</value>
+    <value>155, 22</value>
   </data>
   <data name="paintToolEraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Erase</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 6</value>
+    <value>152, 6</value>
   </data>
   <data name="paintToolChooseColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 22</value>
+    <value>155, 22</value>
   </data>
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Choose Color...</value>
   </data>
   <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
     <value>Paint Tool</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Text" xml:space="preserve">
     <value>Select and Edit</value>
   </data>
   <data name="addRulerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="addRulerToolStripMenuItem.Text" xml:space="preserve">
     <value>Add Ruler</value>
   </data>
   <data name="addCircleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="addCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Add Circle</value>
   </data>
   <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
     <value>Ruler Tool</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 6</value>
+    <value>210, 6</value>
   </data>
   <data name="mapBackgroundColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="mapBackgroundColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Map &amp;Background Color...</value>
   </data>
   <data name="currentLayerOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="currentLayerOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>Current &amp;Layer Options...</value>
   </data>
   <data name="preferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>213, 22</value>
   </data>
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>Preferences...</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 20</value>
+    <value>39, 20</value>
   </data>
   <data name="editToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Edit</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="toolbarMenuItem.Text" xml:space="preserve">
     <value>&amp;Toolbar</value>
   </data>
   <data name="statusBarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="statusBarMenuItem.Text" xml:space="preserve">
     <value>&amp;Status Bar</value>
   </data>
   <data name="mapScrollBarsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="mapScrollBarsToolStripMenuItem.Text" xml:space="preserve">
     <value>Scr&amp;oll Bars</value>
   </data>
   <data name="watermarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="watermarkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Watermark</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 6</value>
+    <value>172, 6</value>
   </data>
   <data name="electricCircuitsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="electricCircuitsMenuItem.Text" xml:space="preserve">
     <value>&amp;Electric Circuit</value>
   </data>
   <data name="connectionPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="connectionPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Connection Points</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ruler Attach Points</value>
   </data>
   <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
+    <value>44, 20</value>
   </data>
   <data name="viewToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;View</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;New</value>
   </data>
   <data name="budgetOpenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="budgetOpenToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Open...</value>
   </data>
   <data name="budgetImportAndMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="budgetImportAndMergeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Import and Merge...</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 6</value>
+    <value>211, 6</value>
   </data>
   <data name="budgetCloseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="budgetCloseToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Close</value>
   </data>
   <data name="budgetSaveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="budgetSaveToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Save</value>
   </data>
   <data name="budgetSaveAsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="budgetSaveAsToolStripMenuItem.Text" xml:space="preserve">
     <value>Save &amp;As...</value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 6</value>
+    <value>211, 6</value>
   </data>
   <data name="showOnlyBudgetedPartsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="showOnlyBudgetedPartsToolStripMenuItem.Text" xml:space="preserve">
     <value>Show Only Budgeted Parts</value>
   </data>
   <data name="showBudgetNumbersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="showBudgetNumbersToolStripMenuItem.Text" xml:space="preserve">
     <value>Show &amp;Budget Numbers</value>
   </data>
   <data name="useBudgetLimitationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
+    <value>214, 22</value>
   </data>
   <data name="useBudgetLimitationToolStripMenuItem.Text" xml:space="preserve">
     <value>Use Budget &amp;Limitation</value>
   </data>
   <data name="budgetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 20</value>
+    <value>57, 20</value>
   </data>
   <data name="budgetToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Budget</value>
@@ -2947,19 +2947,19 @@ You can use double quote characters to group keywords.</value>
     <value>F1</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>196, 22</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Contents and Index</value>
   </data>
   <data name="aboutBlueBrickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>196, 22</value>
   </data>
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About BlueBrick...</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
+    <value>44, 20</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Help</value>
@@ -3191,43 +3191,43 @@ You can use double quote characters to group keywords.</value>
     <value>6, 25</value>
   </data>
   <data name="toolBarGrid32Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="toolBarGrid32Button.Text" xml:space="preserve">
     <value>32 studs</value>
   </data>
   <data name="toolBarGrid16Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="toolBarGrid16Button.Text" xml:space="preserve">
     <value>16 studs</value>
   </data>
   <data name="toolBarGrid8Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="toolBarGrid8Button.Text" xml:space="preserve">
     <value>8 studs</value>
   </data>
   <data name="toolBarGrid4Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="toolBarGrid4Button.Text" xml:space="preserve">
     <value>4 studs</value>
   </data>
   <data name="toolBarGrid2Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="toolBarGrid2Button.Text" xml:space="preserve">
     <value>2 studs</value>
   </data>
   <data name="toolBarGrid1Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="toolBarGrid1Button.Text" xml:space="preserve">
     <value>1 stud</value>
   </data>
   <data name="toolBarGrid05Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="toolBarGrid05Button.Text" xml:space="preserve">
     <value>1/2 stud</value>
@@ -3251,25 +3251,25 @@ You can use double quote characters to group keywords.</value>
     <value>Select the grid snaping step</value>
   </data>
   <data name="toolBarAngle90Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 22</value>
+    <value>100, 22</value>
   </data>
   <data name="toolBarAngle90Button.Text" xml:space="preserve">
     <value>90°</value>
   </data>
   <data name="toolBarAngle45Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 22</value>
+    <value>100, 22</value>
   </data>
   <data name="toolBarAngle45Button.Text" xml:space="preserve">
     <value>45°</value>
   </data>
   <data name="toolBarAngle22Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 22</value>
+    <value>100, 22</value>
   </data>
   <data name="toolBarAngle22Button.Text" xml:space="preserve">
     <value>22.5°</value>
   </data>
   <data name="toolBarAngle1Button.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 22</value>
+    <value>100, 22</value>
   </data>
   <data name="toolBarAngle1Button.Text" xml:space="preserve">
     <value>1°</value>
@@ -3371,7 +3371,7 @@ You can use double quote characters to group keywords.</value>
     <value>Fuchsia</value>
   </data>
   <data name="paintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="paintToolStripMenuItem.Text" xml:space="preserve">
     <value>Paint</value>
@@ -3388,7 +3388,7 @@ You can use double quote characters to group keywords.</value>
     <value>Fuchsia</value>
   </data>
   <data name="eraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="eraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Erase</value>
@@ -3405,7 +3405,7 @@ You can use double quote characters to group keywords.</value>
     <value>Fuchsia</value>
   </data>
   <data name="rulerSelectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="rulerSelectAndEditToolStripMenuItem.Text" xml:space="preserve">
     <value>Select and Edit</value>
@@ -3422,7 +3422,7 @@ You can use double quote characters to group keywords.</value>
     <value>Fuchsia</value>
   </data>
   <data name="rulerAddRulerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="rulerAddRulerToolStripMenuItem.Text" xml:space="preserve">
     <value>Add Ruler</value>
@@ -3439,7 +3439,7 @@ You can use double quote characters to group keywords.</value>
     <value>Fuchsia</value>
   </data>
   <data name="rulerAddCircleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
+    <value>151, 22</value>
   </data>
   <data name="rulerAddCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Add Circle</value>

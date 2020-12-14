@@ -131,6 +131,12 @@
   <data name="labelURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 13</value>
   </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;checkBoxSearchOfficial.Name" xml:space="preserve">
+    <value>checkBoxSearchOfficial</value>
+  </data>
   <data name="checkBoxSearchUnofficial.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
@@ -153,9 +159,6 @@
   <data name="&gt;&gt;labelSearchStatus.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="checkBoxSearchUnofficial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 17</value>
-  </data>
   <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="labelSearchStatus.Location" type="System.Drawing.Point, System.Drawing">
     <value>233, 133</value>
+  </data>
+  <data name="labelSearchStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
   <data name="textBoxUnofficialPartLibraryURL.Location" type="System.Drawing.Point, System.Drawing">
     <value>66, 103</value>
@@ -195,11 +201,8 @@
   <data name="buttonSearch.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="checkBoxSearchNonLego.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="labelSearchStatus.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="&gt;&gt;buttonSearch.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>390, 13</value>
@@ -213,8 +216,8 @@
   <data name="&gt;&gt;checkBoxSearchOfficial.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="checkBoxSearchOfficial.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="checkBoxSearchUnofficial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>386, 17</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
     <value>buttonCancel</value>
@@ -351,14 +354,11 @@
   <data name="labelURL.Location" type="System.Drawing.Point, System.Drawing">
     <value>28, 106</value>
   </data>
-  <data name="&gt;&gt;buttonSearch.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="&gt;&gt;checkBoxSearchNonLego.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Part Library Package Online Sources</value>
+  <data name="checkBoxSearchNonLego.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="checkBoxSearchOfficial.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 31</value>
@@ -381,8 +381,8 @@
   <data name="&gt;&gt;checkBoxSearchUnofficial.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="checkBoxSearchOfficial.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;labelSearchStatus.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -393,8 +393,8 @@
   <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;checkBoxSearchOfficial.Name" xml:space="preserve">
-    <value>checkBoxSearchOfficial</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Part Library Package Online Sources</value>
   </data>
   <data name="&gt;&gt;backgroundWorkerSearchOnline.Type" xml:space="preserve">
     <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

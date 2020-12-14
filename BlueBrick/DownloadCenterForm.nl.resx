@@ -133,8 +133,17 @@ U kan ook dit venster sluiten en de bestanden vie u webbrowser downloaden en ops
   <data name="PercentColumnHeader.Text" xml:space="preserve">
     <value>Vooruitgang</value>
   </data>
+  <data name="NameColumnHeader.Text" xml:space="preserve">
+    <value>Bestand</value>
+  </data>
+  <data name="VersionColumnHeader.Text" xml:space="preserve">
+    <value>Versie</value>
+  </data>
   <data name="DestinationColumnHeader.Text" xml:space="preserve">
     <value>Opslaan als</value>
+  </data>
+  <data name="SourceColumnHeader.Text" xml:space="preserve">
+    <value>Van URL</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Sluiten</value>
