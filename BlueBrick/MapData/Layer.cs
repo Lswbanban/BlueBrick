@@ -788,10 +788,11 @@ namespace BlueBrick.MapData
 			/// </summary>
 			public void computeDisplayArea(bool doItRecursive)
 			{
+				// init the display area with zero, and we will increase it (or stay at zero if there's no item in the group)
+				mDisplayArea.X = mDisplayArea.Y = mDisplayArea.Width = mDisplayArea.Height = 0.0f;
+				// iterate on all the items
 				if (mItems.Count > 0)
 				{
-					// init the display area with the one of the first item
-					mDisplayArea = mItems[0].DisplayArea;
 					// then iterate on all the items
 					foreach (Layer.LayerItem item in mItems)
 					{
@@ -802,29 +803,41 @@ namespace BlueBrick.MapData
 						increaseDisplayAreaWithThisItem(item);
 					}
 				}
-				else
-				{
-					mDisplayArea.X = mDisplayArea.Y = mDisplayArea.Width = mDisplayArea.Height = 0.0f;
-				}
 			}
 
 			private void increaseDisplayAreaWithThisItem(Layer.LayerItem item)
 			{
 				// check if the new item added increase the size of the display area
-				if (item.DisplayArea.Left < mDisplayArea.Left)
+				if (mDisplayArea.Width == 0f)
 				{
-					mDisplayArea.Width = mDisplayArea.Right - item.DisplayArea.Left;
+					mDisplayArea.Width = item.DisplayArea.Width;
 					mDisplayArea.X = item.DisplayArea.Left;
 				}
-				if (item.DisplayArea.Top < mDisplayArea.Top)
+				else
 				{
-					mDisplayArea.Height = mDisplayArea.Bottom - item.DisplayArea.Top;
+					if (item.DisplayArea.Left < mDisplayArea.Left)
+					{
+						mDisplayArea.Width = mDisplayArea.Right - item.DisplayArea.Left;
+						mDisplayArea.X = item.DisplayArea.Left;
+					}
+					if (item.DisplayArea.Right > mDisplayArea.Right)
+						mDisplayArea.Width = item.DisplayArea.Right - mDisplayArea.Left;
+				}
+				if (mDisplayArea.Height == 0f)
+				{
+					mDisplayArea.Height = item.DisplayArea.Height;
 					mDisplayArea.Y = item.DisplayArea.Top;
 				}
-				if (item.DisplayArea.Right > mDisplayArea.Right)
-					mDisplayArea.Width = item.DisplayArea.Right - mDisplayArea.Left;
-				if (item.DisplayArea.Bottom > mDisplayArea.Bottom)
-					mDisplayArea.Height = item.DisplayArea.Bottom - mDisplayArea.Top;
+				else
+				{
+					if (item.DisplayArea.Top < mDisplayArea.Top)
+					{
+						mDisplayArea.Height = mDisplayArea.Bottom - item.DisplayArea.Top;
+						mDisplayArea.Y = item.DisplayArea.Top;
+					}
+					if (item.DisplayArea.Bottom > mDisplayArea.Bottom)
+						mDisplayArea.Height = item.DisplayArea.Bottom - mDisplayArea.Top;
+				}
 			}
 			#endregion
 
@@ -1500,9 +1513,8 @@ namespace BlueBrick.MapData
 		}
 
 		/// <summary>
-		/// This static tool method return all the items at the top a hierachical level of a group of layer items.
-		/// The specified item list can be a forest of tree, this method will then return all the top node of
-		/// each tree.
+		/// This static tool method return all the items (item or group) at the top a hierachical level of a group of layer items.
+		/// The specified item list can be a forest of tree, this method will then return all the top node of each tree.
 		/// </summary>
 		/// <param name="itemList">a list of layer items among which we should search the top items</param>
 		/// <returns>A list of items which are the top items of each tree, or null if the specified list is empty</returns>

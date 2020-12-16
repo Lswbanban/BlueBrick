@@ -31,13 +31,18 @@ namespace BlueBrick.Actions.Items
 			mLayer = layer;
 			mMove = move;
 			// copy the list, because the pointer may change (specially if it is the selection)
-			mItems = new List<Layer.LayerItem>(items.Count);
-			foreach (Layer.LayerItem obj in items)
-				mItems.Add(obj);
+			// To do that call the function that gives all the top items of the list (brick or group),
+			// this function will return a newly created list.
+			// Also moving the top group, will also move all the children items
+			mItems = Layer.sGetTopItemListFromList(items);
+			// however this function can return null, if the list of item is empty, so create an empty list instead
+			if (mItems == null)
+				mItems = new List<Layer.LayerItem>();
 		}
 
 		public override void redo()
 		{
+			// move all the items (if the item is a group, the whole items of the group will be recursively moved)
 			foreach (Layer.LayerItem item in mItems)
 				item.Position = new PointF(item.Position.X + mMove.X, item.Position.Y + mMove.Y);
 
@@ -47,6 +52,7 @@ namespace BlueBrick.Actions.Items
 
 		public override void undo()
 		{
+			// move all the items (if the item is a group, the whole items of the group will be recursively moved)
 			foreach (Layer.LayerItem item in mItems)
 				item.Position = new PointF(item.Position.X - mMove.X, item.Position.Y - mMove.Y);
 

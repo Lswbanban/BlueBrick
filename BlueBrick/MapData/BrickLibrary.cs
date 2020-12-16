@@ -1571,7 +1571,7 @@ namespace BlueBrick.MapData
 			// use a temp list of transform to compute and store the transform of each sub part only for drawing purpose
 			List<Matrix> subPartDrawingTransforms = new List<Matrix>(group.mGroupInfo.mGroupSubPartList.Count);
 
-            // declare 4 variable to get the bounding box of the group part (in stud)
+            // declare 4 variable to get the bounding box of the group part (in pixel)
             float minX = float.MaxValue;
             float minY = float.MaxValue;
             float maxX = float.MinValue;
@@ -1608,16 +1608,17 @@ namespace BlueBrick.MapData
 				hullHalfSize.X *= 0.5f;
 				hullHalfSize.Y *= 0.5f;
 				// compute the part translation in pixel
-				float translateX = (subPart.mLocalTransformInStud.OffsetX * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
-				float translateY = (subPart.mLocalTransformInStud.OffsetY * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
+				float localTransformXInPixel = (subPart.mLocalTransformInStud.OffsetX * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
+				float localTransformYInPixel = (subPart.mLocalTransformInStud.OffsetY * Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS);
 				// compute the hull min and max inside the whole group (so with the translation of the part)
-				PointF hullMinInsideGroup = new PointF(translateX - hullHalfSize.X, translateY - hullHalfSize.Y);
-				PointF hullMaxInsideGroup = new PointF(translateX + hullHalfSize.X, translateY + hullHalfSize.Y);
+				PointF hullMinInsideGroup = new PointF(localTransformXInPixel - hullHalfSize.X, localTransformYInPixel - hullHalfSize.Y);
+				PointF hullMaxInsideGroup = new PointF(localTransformXInPixel + hullHalfSize.X, localTransformYInPixel + hullHalfSize.Y);
 				// add the part transaltion to the transform for drawing.
 				// The drawing transform want the top left corner of the image as a reference. So to compute it
-				// we use the center position of the part inside the group (translateX) from which we remove the half size
-				// of the part (hullHallSize.X) i.e. it is hullMinInsideGroup.X. But we also need to remove hullMin of the sub part
-				// to but I don't know why. So now the translation of the sub part is relative to the XML origin of the group
+				// we use the center position of the part inside the group (localTransformXInPixel) from which we remove the half size
+				// of the part (hullHallSize.X) i.e. it is hullMinInsideGroup.X.
+				// But we also need to remove hullMin of the sub part to but I don't know why!!!??
+				// So now the translation of the sub part is relative to the XML origin of the group
 				// but we will need to recentrate this, after finishing computing the whole size of the group, we can know where
 				// is the origin of the group compare to the center of the group, but this will be added after this loop
 				drawingTransform.Translate(hullMinInsideGroup.X - hullMin.X, hullMinInsideGroup.Y - hullMin.Y, MatrixOrder.Append);

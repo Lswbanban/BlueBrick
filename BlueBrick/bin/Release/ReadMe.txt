@@ -186,6 +186,7 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Matthias): If a part name contains a dot, the full part id was not properly displayed in the part list on in the status bar.
 - BUGFIX (Alban): The selection was displayed in the exported the image.
 - BUGFIX (Alban): The ruler measurement text was not scaled in the exported image (which is the intended behavior on the map panel, but not on the exported image)
+- BUGFIX (Matthias): The saving of a group in the Brick Library was incorrect when the group contain a sub-group, and you moved the group before saving.
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 - REFACTORING (Alban): Modernize the HTML code of the part usage list export (add some CSS and colors)
 - REFACTORING (Alban): Replace the progress bar by track bar for editing transparency of the layers
