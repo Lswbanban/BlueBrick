@@ -105,6 +105,7 @@ to open the help file (see above for more details).
 -------------------------------------------------------------------------------
 Open bugs:
 - [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
+- [target 1.9] BUG (Alban): The saving of a group in the brick library after rotating it will create a correct image, but wrong part positions when the group is placed back on the map
 - [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
 - MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - MISSING FEATURE (Matthias): Add a simple view for the track with the part number displayed overlaid (add a new tag in the xml for this simplified name to avoid too long names).
@@ -187,6 +188,7 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Alban): The selection was displayed in the exported the image.
 - BUGFIX (Alban): The ruler measurement text was not scaled in the exported image (which is the intended behavior on the map panel, but not on the exported image)
 - BUGFIX (Matthias): The saving of a group in the Brick Library was incorrect when the group contain a sub-group, and you moved the group before saving.
+- BUGFIX (Alban): If you move a large group with connections by picking it oustside its parts, but the mouse is under another part with connection not in the group, the group was still try to connect to free connection points, instead of just translate.
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 - REFACTORING (Alban): Modernize the HTML code of the part usage list export (add some CSS and colors)
 - REFACTORING (Alban): Replace the progress bar by track bar for editing transparency of the layers

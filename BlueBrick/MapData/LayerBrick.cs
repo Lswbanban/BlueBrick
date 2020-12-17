@@ -1122,12 +1122,11 @@ namespace BlueBrick.MapData
 
 				// find the current brick under the mouse
 				// We search if there is a cell under the mouse but in priority we choose from the current selected bricks
-				Brick currentBrickUnderMouse = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
+				Brick currentBrickUnderMouseInSelection = getLayerItemUnderMouse(mSelectedObjects, mouseCoordInStud) as Brick;
 
-				// if the current selected brick is not under the mouse we search among the other bricks
-				// but in reverse order to choose first the brick on top
-				if (currentBrickUnderMouse == null)
-					currentBrickUnderMouse = getBrickUnderMouse(mouseCoordInStud);
+				// If we found a brick under the mouse and in the selection, just give that brick as the current brick under the mouse
+				// otherwise, ask the current brick under mouse on the whole layer (not only among the selection)
+				Brick currentBrickUnderMouse = (currentBrickUnderMouseInSelection != null) ? currentBrickUnderMouseInSelection : getBrickUnderMouse(mouseCoordInStud);
 
 				// reset the action and the cursor
 				mEditAction = EditAction.NONE;
@@ -1141,13 +1140,13 @@ namespace BlueBrick.MapData
 					mEditAction = EditAction.DUPLICATE_SELECTION;
 					preferedCursor = MainForm.Instance.BrickDuplicateCursor;
 				}
-				// check if it is a double click, to see if we need to do a flex move
+				// check if it is a double click, to see if we need to do a flex move or an edit brick properties
 				else if (e.Clicks == 2)
 				{
 					// a flex move can only happen if a brick is double clicked
-					if (currentBrickUnderMouse != null)
+					if (currentBrickUnderMouseInSelection != null)
 					{
-						mMouseFlexMoveAction = new FlexMove(this, this.SelectedObjects, currentBrickUnderMouse, mouseCoordInStud);
+						mMouseFlexMoveAction = new FlexMove(this, this.SelectedObjects, currentBrickUnderMouseInSelection, mouseCoordInStud);
 						if (mMouseFlexMoveAction.IsValid)
 						{
 							mEditAction = EditAction.FLEX_MOVE;
@@ -1163,7 +1162,7 @@ namespace BlueBrick.MapData
 					if ((mEditAction == EditAction.NONE) && (SelectedObjects.Count > 0))
 						mEditAction = EditAction.EDIT_PROPERTIES;
 				}
-				// check if it is a path selection
+				// check if it is a path selection (which can work with any brick under mouse, even unselected ones)
 				else if ((currentBrickUnderMouse != null) && (Control.ModifierKeys == mouseSelectPathKey) && (SelectedObjects.Count > 0))
 				{
 					mEditAction = EditAction.SELECT_PATH;
@@ -1177,6 +1176,9 @@ namespace BlueBrick.MapData
 					&& (Control.ModifierKeys != mouseSelectPathKey)
 					&& (Control.ModifierKeys != Properties.Settings.Default.MouseDuplicateSelectionKey))
 				{
+					// if the user click inside the selection, but not on a selected brick, clear the brick under mouse for this move selection action
+					if (isMouseInsideSelectedObjects && (currentBrickUnderMouseInSelection == null))
+						currentBrickUnderMouse = null;
 					mEditAction = EditAction.MOVE_SELECTION;
 					preferedCursor = MainForm.Instance.BrickMoveCursor;
 				}
@@ -1604,7 +1606,7 @@ namespace BlueBrick.MapData
 		/// Here again we look at the brick under the mouse which is the master brick to move and snap.
 		/// </summary>
 		/// <param name="pointInStud">the rough point to snap</param>
-		/// <param name="referenceItem">the reference item from which we compute the snap point in case of connection</param>
+		/// <param name="referenceItem">the reference item from which we compute the snap point in case of connection, which can be a Brick or a Group</param>
 		/// <param name="snappedConnection">If the brick should snap to a connection, this is the one, otherwise null</param>
 		/// <returns>a near snap point</returns>
 		public PointF getMovedSnapPoint(PointF pointInStud, LayerItem referenceItem, out Brick.ConnectionPoint snappedConnection)
