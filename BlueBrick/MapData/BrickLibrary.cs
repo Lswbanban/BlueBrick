@@ -1617,8 +1617,8 @@ namespace BlueBrick.MapData
 				// The drawing transform want the top left corner of the image as a reference. So to compute it
 				// we use the center position of the part inside the group (localTransformXInPixel) from which we remove the half size
 				// of the part (hullHallSize.X) i.e. it is hullMinInsideGroup.X.
-				// But we also need to remove hullMin of the sub part to but I don't know why!!!??
-				// So now the translation of the sub part is relative to the XML origin of the group
+				// But we also need to remove hullMin of the sub part in order to align the top left corner of the rotated subpart.
+				// So now the translation of the top left corner of the sub part is relative to the XML origin of the group
 				// but we will need to recentrate this, after finishing computing the whole size of the group, we can know where
 				// is the origin of the group compare to the center of the group, but this will be added after this loop
 				drawingTransform.Translate(hullMinInsideGroup.X - hullMin.X, hullMinInsideGroup.Y - hullMin.Y, MatrixOrder.Append);
@@ -1645,11 +1645,6 @@ namespace BlueBrick.MapData
 														-centerPositionRelativeToGroupOriginY / Layer.NUM_PIXEL_PER_STUD_FOR_BRICKS,
 														MatrixOrder.Append);
 
-			// also compute the vector between the center expressed in the drawing coord system (whose origin is in the
-			// top left corner of the image) and the center expressed in the XML coord system
-			float centerXMLToCenterImageX = ((maxX - minX) * 0.5f) - centerPositionRelativeToGroupOriginX;
-			float centerXMLToCenterImageY = ((maxY - minY) * 0.5f) - centerPositionRelativeToGroupOriginY;
-
 			// create a new image with the correct size
 			int width = (int)(maxX - minX);
             int height = (int)(maxY - minY);
@@ -1668,8 +1663,9 @@ namespace BlueBrick.MapData
 					// get the sub part and its transform
 					Brick.SubPart subPart = group.mGroupInfo.mGroupSubPartList[i];
 					Matrix drawingTransform = subPartDrawingTransforms[i];
-					// add a final translate to the drawing transform
-					drawingTransform.Translate(centerXMLToCenterImageX, centerXMLToCenterImageY, MatrixOrder.Append);
+					// also compute the vector between the center expressed in the drawing coord system (whose origin is in the
+					// top left corner of the image) and the center expressed in the XML coord system
+					drawingTransform.Translate(-minX, -minY, MatrixOrder.Append);
 					// set the transform to the graphics context and draw
 					graphics.Transform = drawingTransform;
 					graphics.DrawImage(subPart.mSubPartBrick.Image, 0, 0, subPart.mSubPartBrick.Image.Width, subPart.mSubPartBrick.Image.Height);

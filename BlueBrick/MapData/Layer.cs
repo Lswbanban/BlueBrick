@@ -691,7 +691,7 @@ namespace BlueBrick.MapData
 			{
 				// set the group name
 				mPartNumber = groupName;
-				// set the orientation of this group after the part number (useful top compute the snap marging)
+				// set the orientation of this group after the part number (useful to compute the snap marging)
 				this.Orientation = (float)(Math.Atan2(parentTransform.Elements[1], parentTransform.Elements[0]) * 180.0 / Math.PI);
 				// set the can ungroup flag
 				mCanUngroup = BrickLibrary.Instance.canUngroup(groupName);
