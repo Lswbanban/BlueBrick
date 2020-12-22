@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Abbrechen</value>
@@ -144,7 +144,7 @@
   <data name="fontButton.Text" xml:space="preserve">
     <value>Schriftart ändern</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="displayUnitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 17</value>
   </data>
@@ -261,6 +261,6 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Bemaßung bearbeiten</value>
+    <value>Linealeigenschaften</value>
   </data>
 </root>

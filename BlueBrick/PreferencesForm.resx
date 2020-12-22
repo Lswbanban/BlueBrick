@@ -171,14 +171,17 @@ for each Part:</value>
   <data name="PartLibDefaultBudgetNotLimitedradioButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;comboBoxConnexion.Name" xml:space="preserve">
-    <value>comboBoxConnexion</value>
+  <data name="&gt;&gt;defaultTextFontNameLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;alphabeticOrderButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PartLibDisplayBubblePartIDCheckBox.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="PartLibDefaultBudgetNotLimitedradioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 93</value>
   </data>
   <data name="&gt;&gt;label24.Parent" xml:space="preserve">
     <value>groupBox5</value>
@@ -218,6 +221,9 @@ for each Part:</value>
   </data>
   <data name="&gt;&gt;label25.Parent" xml:space="preserve">
     <value>groupBox5</value>
+  </data>
+  <data name="RecentFilesNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 19</value>
   </data>
   <data name="&gt;&gt;RecentFilesNumericUpDown.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -352,11 +358,14 @@ for each Part:</value>
   <data name="defaultFontColorLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>174, 41</value>
   </data>
-  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="GeneralTrashTemplateFileForNewMapButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>250, 16</value>
   </data>
   <data name="&gt;&gt;partLibTabPage.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="&gt;&gt;PartLibDisplayPartPartColorCheckBox.Name" xml:space="preserve">
+    <value>PartLibDisplayPartPartColorCheckBox</value>
   </data>
   <data name="groupBox11.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 9</value>
@@ -403,8 +412,8 @@ for each Part:</value>
   <data name="&gt;&gt;label26.Parent" xml:space="preserve">
     <value>groupBox13</value>
   </data>
-  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>18</value>
+  <data name="groupBox14.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;optimComboBox.Name" xml:space="preserve">
     <value>optimComboBox</value>
@@ -510,9 +519,6 @@ for each Part:</value>
   </data>
   <data name="label22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;defaultTextFontNameLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;restoreAllDefaultButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -651,6 +657,9 @@ for each Part:</value>
   </data>
   <data name="&gt;&gt;Action.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PartLibDisplayPartInfoCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 39</value>
   </data>
   <data name="PartLibDisplayPartPartDescriptionCheckBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -878,9 +887,6 @@ Shortcut</value>
   <data name="&gt;&gt;openTemplateFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;okButton.Name" xml:space="preserve">
-    <value>okButton</value>
-  </data>
   <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
@@ -1055,8 +1061,8 @@ Shortcut</value>
   <data name="guidelineColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 16</value>
   </data>
-  <data name="comboBoxKey.Items6" xml:space="preserve">
-    <value>G</value>
+  <data name="comboBoxKey.Items11" xml:space="preserve">
+    <value>L</value>
   </data>
   <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
     <value>generalTabPage</value>
@@ -1124,9 +1130,6 @@ Shortcut</value>
   <data name="PartLibTrashBudgetFileToLoadArStartUpButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
   </data>
-  <data name="restoreAllDefaultButton.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
   <data name="&gt;&gt;GeneralTrashTemplateFileForNewMapButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
@@ -1168,6 +1171,9 @@ Shortcut</value>
   </data>
   <data name="&gt;&gt;GammaForSelectionNumericUpDown.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 45</value>
   </data>
   <data name="displayUnitCheckBox.Text" xml:space="preserve">
     <value>Display Unit</value>
@@ -1265,6 +1271,12 @@ Shortcut</value>
   </data>
   <data name="unitComboBox.Items5" xml:space="preserve">
     <value>Feet</value>
+  </data>
+  <data name="label31.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="comboBoxKey.Items6" xml:space="preserve">
+    <value>G</value>
   </data>
   <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 19</value>
@@ -1776,8 +1788,8 @@ Shortcut</value>
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 439</value>
   </data>
-  <data name="&gt;&gt;areaTransparencyNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;optimComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Default Area Appearance</value>
@@ -1788,11 +1800,14 @@ Shortcut</value>
   <data name="subGridEnabledCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 14</value>
   </data>
-  <data name="groupBox14.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
   </data>
   <data name="guidelineThicknessNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>210, 152</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 20</value>
   </data>
   <data name="defaultFontButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 23</value>
@@ -1972,8 +1987,8 @@ grabbed part</value>
   <data name="partLibBudgetFilterBackColorPictureBox.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
-  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Part Library</value>
   </data>
   <data name="label35.Text" xml:space="preserve">
     <value>Default Dash-Space Pattern
@@ -1984,9 +1999,6 @@ grabbed part</value>
   </data>
   <data name="mouseZoomSpeedNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 20</value>
-  </data>
-  <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
     <value>236, 48</value>
@@ -2082,6 +2094,9 @@ the more memory the application will use.</value>
   <data name="comboBoxKey.Items9" xml:space="preserve">
     <value>J</value>
   </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="&gt;&gt;Connection.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -2153,9 +2168,6 @@ the more memory the application will use.</value>
   </data>
   <data name="&gt;&gt;restoreAllDefaultButton.Name" xml:space="preserve">
     <value>restoreAllDefaultButton</value>
-  </data>
-  <data name="partLibTabPage.Text" xml:space="preserve">
-    <value>Part Library</value>
   </data>
   <data name="GammaForSelectionNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -2247,8 +2259,8 @@ the more memory the application will use.</value>
   <data name="&gt;&gt;restoreTabDefaultButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 20</value>
+  <data name="&gt;&gt;copyOffsetComboBox.Name" xml:space="preserve">
+    <value>copyOffsetComboBox</value>
   </data>
   <data name="PartLibBudgetFilenameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 41</value>
@@ -2385,9 +2397,6 @@ the more memory the application will use.</value>
   <data name="PartLibTrashBudgetFileToLoadArStartUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
   <data name="&gt;&gt;listViewShortcutKeys.Parent" xml:space="preserve">
     <value>shortcutKeysTabPage</value>
   </data>
@@ -2420,9 +2429,6 @@ the more memory the application will use.</value>
   </data>
   <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
     <value>13</value>
-  </data>
-  <data name="&gt;&gt;optimComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="PartLibBrowseBudgetFileButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>228, 41</value>
@@ -2520,14 +2526,17 @@ the more memory the application will use.</value>
   <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="GammaForSnappingNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
   <data name="&gt;&gt;lineColorPictureBox.Name" xml:space="preserve">
     <value>lineColorPictureBox</value>
   </data>
   <data name="OffsetValueLabel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="rulerFontColorPictureBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="restoreAllDefaultButton.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
   </data>
   <data name="&gt;&gt;editionTabPage.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -2811,14 +2820,14 @@ the more memory the application will use.</value>
   <data name="&gt;&gt;optimComboBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="label31.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="&gt;&gt;okButton.Name" xml:space="preserve">
+    <value>okButton</value>
   </data>
   <data name="optionsTabControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="GammaForSnappingNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="optionsTabControl.Size" type="System.Drawing.Size, System.Drawing">
     <value>592, 431</value>
@@ -2843,9 +2852,6 @@ the more memory the application will use.</value>
   </data>
   <data name="lineColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 16</value>
-  </data>
-  <data name="GeneralTrashTemplateFileForNewMapButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>250, 16</value>
   </data>
   <data name="rulerFontButton.Text" xml:space="preserve">
     <value>Change Font</value>
@@ -3003,8 +3009,8 @@ the more memory the application will use.</value>
   <data name="&gt;&gt;PartLibDisplayBubblePartDescriptionCheckBox.Name" xml:space="preserve">
     <value>PartLibDisplayBubblePartDescriptionCheckBox</value>
   </data>
-  <data name="&gt;&gt;previewLabel.Parent" xml:space="preserve">
-    <value>groupBox5</value>
+  <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;brickHullColorPictureBox.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -3028,8 +3034,8 @@ the more memory the application will use.</value>
   <data name="mouseZoomSpeedNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="PartLibDefaultBudgetNotLimitedradioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 93</value>
+  <data name="&gt;&gt;areaTransparencyNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;comboBoxConnexion.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -3256,9 +3262,6 @@ the more memory the application will use.</value>
   <data name="&gt;&gt;GeneralNewMapTemplateFilenameTextBox.Name" xml:space="preserve">
     <value>GeneralNewMapTemplateFilenameTextBox</value>
   </data>
-  <data name="&gt;&gt;copyOffsetComboBox.Name" xml:space="preserve">
-    <value>copyOffsetComboBox</value>
-  </data>
   <data name="defaultTextFontNameLabel.Text" xml:space="preserve">
     <value>Font name</value>
   </data>
@@ -3274,6 +3277,9 @@ the more memory the application will use.</value>
   <data name="&gt;&gt;PartLibTrashBudgetFileToLoadArStartUpButton.Parent" xml:space="preserve">
     <value>groupBox16</value>
   </data>
+  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
   <data name="&gt;&gt;buttonDelete.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -3283,8 +3289,8 @@ the more memory the application will use.</value>
   <data name="&gt;&gt;mouseMultipleSelKeyComboBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="RecentFilesNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 19</value>
+  <data name="MoveDownButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="shortcutKeysTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -3412,8 +3418,8 @@ the more memory the application will use.</value>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="restoreTabDefaultButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 23</value>
+  <data name="&gt;&gt;groupBox9.Parent" xml:space="preserve">
+    <value>appearanceTabPage</value>
   </data>
   <data name="&gt;&gt;label10.Name" xml:space="preserve">
     <value>label10</value>
@@ -3541,8 +3547,8 @@ the more memory the application will use.</value>
   <data name="label41.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 13</value>
   </data>
-  <data name="&gt;&gt;PartLibDisplayPartPartDescriptionCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;comboBoxConnexion.Name" xml:space="preserve">
+    <value>comboBoxConnexion</value>
   </data>
   <data name="&gt;&gt;groupBox10.Parent" xml:space="preserve">
     <value>generalTabPage</value>
@@ -3619,9 +3625,6 @@ the more memory the application will use.</value>
   <data name="mousePanViewKeyComboBox.Items1" xml:space="preserve">
     <value>ALT</value>
   </data>
-  <data name="&gt;&gt;groupBox9.Parent" xml:space="preserve">
-    <value>appearanceTabPage</value>
-  </data>
   <data name="&gt;&gt;displayMeasureTextCheckBox.Name" xml:space="preserve">
     <value>displayMeasureTextCheckBox</value>
   </data>
@@ -3642,9 +3645,6 @@ the more memory the application will use.</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 17</value>
-  </data>
-  <data name="comboBoxKey.Items11" xml:space="preserve">
-    <value>L</value>
   </data>
   <data name="&gt;&gt;label12.Name" xml:space="preserve">
     <value>label12</value>
@@ -3806,17 +3806,14 @@ the more memory the application will use.</value>
   <data name="&gt;&gt;okButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="MoveDownButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="OffsetValueLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="GeneralCheckedListBoxNotification.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="label22.Text" xml:space="preserve">
-    <value>Default Number of Subdivisions</value>
+  <data name="&gt;&gt;label29.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Wheel Zoom Speed</value>
@@ -3887,14 +3884,11 @@ the more memory the application will use.</value>
   <data name="fontColorLabel.Text" xml:space="preserve">
     <value>Color</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="rulerFontColorPictureBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;mouseDuplicateSelKeyComboBox.Name" xml:space="preserve">
     <value>mouseDuplicateSelKeyComboBox</value>
-  </data>
-  <data name="&gt;&gt;label29.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label40.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -3905,8 +3899,8 @@ the more memory the application will use.</value>
   <data name="&gt;&gt;languageComboBox.Name" xml:space="preserve">
     <value>languageComboBox</value>
   </data>
-  <data name="&gt;&gt;PartLibDisplayPartPartColorCheckBox.Name" xml:space="preserve">
-    <value>PartLibDisplayPartPartColorCheckBox</value>
+  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="buttonDelete.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3929,8 +3923,8 @@ the more memory the application will use.</value>
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="PartLibDisplayPartInfoCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 39</value>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Default Number of Subdivisions</value>
   </data>
   <data name="label39.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3962,8 +3956,8 @@ the more memory the application will use.</value>
   <data name="mouseDuplicateSelKeyComboBox.Text" xml:space="preserve">
     <value>ALT</value>
   </data>
-  <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 45</value>
+  <data name="GeneralCheckedListBoxNotification.Items6" xml:space="preserve">
+    <value>Display a Warning when pasting items on the wrong type of layer</value>
   </data>
   <data name="label31.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -4047,6 +4041,9 @@ the more memory the application will use.</value>
     <value>191, 24</value>
   </data>
   <data name="&gt;&gt;brickHullColorPictureBox.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;previewLabel.Parent" xml:space="preserve">
     <value>groupBox5</value>
   </data>
   <data name="mouseDuplicateSelKeyComboBox.Items1" xml:space="preserve">
@@ -4138,9 +4135,6 @@ the more memory the application will use.</value>
   </data>
   <data name="dashPatternSpaceNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
-  </data>
-  <data name="GeneralCheckedListBoxNotification.Items6" xml:space="preserve">
-    <value>Display a Warning when pasting items on the wrong type of layer</value>
   </data>
   <data name="&gt;&gt;areaCellSizeNumericUpDown.Parent" xml:space="preserve">
     <value>groupBox9</value>
@@ -4436,6 +4430,9 @@ the more memory the application will use.</value>
   <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="&gt;&gt;PartLibDisplayPartPartDescriptionCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;guidelineColorPictureBox.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
@@ -4525,6 +4522,9 @@ the more memory the application will use.</value>
   </data>
   <data name="&gt;&gt;editionTabPage.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="restoreTabDefaultButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 23</value>
   </data>
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

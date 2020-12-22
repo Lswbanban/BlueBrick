@@ -545,7 +545,7 @@ Die Fehlermeldung lautet:</value>
     <value>Budget für dieses Teil ausgeschöpft</value>
   </data>
   <data name="LayerRulerOptionTitle" xml:space="preserve">
-    <value>Einstellungen für Bemaßungsebenen</value>
+    <value>Eigenschaften für Bemaßungsebenen</value>
   </data>
   <data name="ErrorMsgCannotAddDueToBudgetLimitation" xml:space="preserve">
     <value>Teil kann nicht hinzugefügt werden, da Budget ausgeschöpft ist. Wenn das Teil hinzugefügt werden soll, entweder Budget vergrößern, Budget aufheben oder Budgetdatei schließen.</value>

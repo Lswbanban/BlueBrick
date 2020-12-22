@@ -504,7 +504,7 @@ The error message is:
     <value>Voeg hier kernwoorden in om te filteren</value>
   </data>
   <data name="LayerRulerOptionTitle" xml:space="preserve">
-    <value>Opties voor de Liniaal laag</value>
+    <value>Eigenschappen voor de Liniaal laag</value>
   </data>
   <data name="PartLibMenuItemEditBudget" xml:space="preserve">
     <value>Bewerk het budget van dit onderdeel</value>

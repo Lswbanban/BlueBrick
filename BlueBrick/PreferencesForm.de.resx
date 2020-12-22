@@ -515,7 +515,7 @@ für jedes Teil</value>
     <value>Standard Hintergrundfarbe</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
-    <value>Pop-up-Info</value>
+    <value>Pop-up und Teile Info.</value>
   </data>
   <data name="label41.Location" type="System.Drawing.Point, System.Drawing">
     <value>211, 20</value>

@@ -141,12 +141,6 @@
   <data name="isVisibleCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="hullThicknessUnitLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 27</value>
-  </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>494, 91</value>
-  </data>
   <data name="hullThicknessNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 20</value>
   </data>
@@ -159,11 +153,14 @@
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 178</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;displayHullCheckBox.Name" xml:space="preserve">
-    <value>displayHullCheckBox</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>517, 213</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;hullThicknessNumericUpDown.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -270,14 +267,11 @@
   <data name="alphaNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>386, 54</value>
   </data>
-  <data name="&gt;&gt;alphaTrackBar.Name" xml:space="preserve">
-    <value>alphaTrackBar</value>
+  <data name="alphaTrackBar.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
-  </data>
-  <data name="isVisibleCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
     <value>buttonCancel</value>
@@ -288,8 +282,8 @@
   <data name="isVisibleCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>404, 22</value>
   </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="displayHullCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -333,8 +327,8 @@
   <data name="isVisibleCheckBox.Text" xml:space="preserve">
     <value>Visible</value>
   </data>
-  <data name="alphaTrackBar.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -384,6 +378,138 @@
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;alphaNumericUpDown.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="hullColorPictureBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;alphaNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="hullThicknessUnitLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="isVisibleCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="alphaTrackBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 30</value>
+  </data>
+  <data name="hullColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="alphaTrackBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>101, 54</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hullColorPictureBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;hullThicknessNumericUpDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;alphaTrackBar.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 54</value>
+  </data>
+  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Layer name</value>
+  </data>
+  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;hullThicknessNumericUpDown.Name" xml:space="preserve">
+    <value>hullThicknessNumericUpDown</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 20</value>
+  </data>
+  <data name="hullThicknessNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>178, 24</value>
+  </data>
+  <data name="&gt;&gt;displayHullCheckBox.Name" xml:space="preserve">
+    <value>displayHullCheckBox</value>
+  </data>
+  <data name="&gt;&gt;colorDialog.Name" xml:space="preserve">
+    <value>colorDialog</value>
+  </data>
+  <data name="&gt;&gt;hullColorPictureBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;alphaTrackBar.Name" xml:space="preserve">
+    <value>alphaTrackBar</value>
+  </data>
+  <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="hullColorPictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>430, 178</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="alphaTrackBar.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="hullThicknessUnitLabel.Text" xml:space="preserve">
+    <value>pixel</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="hullThicknessUnitLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>220, 27</value>
+  </data>
+  <data name="&gt;&gt;alphaTrackBar.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>101, 20</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAAACACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAB
@@ -426,132 +552,6 @@
         AA//4AAf//gAf//+Af///4f/
 </value>
   </data>
-  <data name="hullColorPictureBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;alphaNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="hullThicknessUnitLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="alphaTrackBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 30</value>
-  </data>
-  <data name="hullColorPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>General</value>
-  </data>
-  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="alphaTrackBar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>101, 54</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;hullColorPictureBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;hullThicknessNumericUpDown.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 54</value>
-  </data>
-  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Layer name</value>
-  </data>
-  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;hullThicknessNumericUpDown.Name" xml:space="preserve">
-    <value>hullThicknessNumericUpDown</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 20</value>
-  </data>
-  <data name="hullThicknessNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>178, 24</value>
-  </data>
-  <data name="&gt;&gt;colorDialog.Name" xml:space="preserve">
-    <value>colorDialog</value>
-  </data>
-  <data name="&gt;&gt;hullColorPictureBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;alphaNumericUpDown.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="hullColorPictureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>430, 178</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="buttonOk.Text" xml:space="preserve">
-    <value>Ok</value>
-  </data>
-  <data name="alphaTrackBar.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="hullThicknessUnitLabel.Text" xml:space="preserve">
-    <value>pixel</value>
-  </data>
-  <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>517, 213</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;alphaTrackBar.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>101, 20</value>
-  </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
   </data>
@@ -570,8 +570,8 @@
   <data name="&gt;&gt;hullColorPictureBox.Name" xml:space="preserve">
     <value>hullColorPictureBox</value>
   </data>
-  <data name="&gt;&gt;alphaTrackBar.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>494, 91</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Opacity</value>

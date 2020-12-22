@@ -137,8 +137,8 @@
   <data name="nameTextBox.MaxLength" type="System.Int32, mscorlib">
     <value>256</value>
   </data>
-  <data name="cellIndexFontNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 34</value>
+  <data name="gridPixelNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -269,9 +269,6 @@
   <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="&gt;&gt;cellIndexCheckBox.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
   <data name="&gt;&gt;cellIndexColorPictureBox.Name" xml:space="preserve">
     <value>cellIndexColorPictureBox</value>
   </data>
@@ -287,6 +284,9 @@
   <data name="cellIndexOriginXNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>197, 128</value>
   </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Grid Size</value>
+  </data>
   <data name="alphaTrackBar.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
@@ -296,6 +296,9 @@
   <data name="&gt;&gt;cellIndexRowLabel.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
+  <data name="&gt;&gt;cellIndexOriginXNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="cellIndexCommaLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>10, 13</value>
   </data>
@@ -304,9 +307,6 @@
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>485, 85</value>
-  </data>
-  <data name="subGridThicknessLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
   </data>
   <data name="cellIndexOriginLabel.Text" xml:space="preserve">
     <value>Origin (in grid coord) is at</value>
@@ -344,9 +344,6 @@
   </data>
   <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;colorDialog.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cellIndexColorLabel.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -390,8 +387,8 @@
   <data name="gridPixelNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
   </data>
-  <data name="&gt;&gt;cellIndexOriginButton.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;subGridSizeNumericUpDown.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="gridColorlabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 13</value>
@@ -429,8 +426,8 @@
   <data name="subGridCheckBox.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="gridCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="&gt;&gt;gridPixelNumericUpDown.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="gridColorlabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -543,6 +540,9 @@
   <data name="&gt;&gt;subGridCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;gridCheckBox.Name" xml:space="preserve">
+    <value>gridCheckBox</value>
+  </data>
   <data name="&gt;&gt;cellIndexColumnLabel.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
@@ -618,8 +618,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Opacity</value>
   </data>
-  <data name="cellIndexOriginXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+  <data name="subGridThicknessLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
   <data name="&gt;&gt;cellIndexColorLabel.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -639,17 +639,11 @@
   <data name="&gt;&gt;fontDialog.Name" xml:space="preserve">
     <value>fontDialog</value>
   </data>
-  <data name="&gt;&gt;cellIndexFontButton.Name" xml:space="preserve">
-    <value>cellIndexFontButton</value>
-  </data>
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cellIndexColorLabel.Text" xml:space="preserve">
     <value>Color</value>
-  </data>
-  <data name="subGridThicknessLabel.Text" xml:space="preserve">
-    <value>Thickness (in pixels)</value>
   </data>
   <data name="cellIndexRowLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -659,9 +653,6 @@
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 13</value>
-  </data>
-  <data name="gridPixelNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
   </data>
   <data name="&gt;&gt;cellIndexColorPictureBox.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -689,9 +680,6 @@
   </data>
   <data name="&gt;&gt;buttonOk.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gridPixelNumericUpDown.ZOrder" xml:space="preserve">
-    <value>8</value>
   </data>
   <data name="cellIndexCommaLabel.Text" xml:space="preserve">
     <value>,</value>
@@ -756,6 +744,9 @@
   <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;cellIndexFontNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -801,6 +792,9 @@
   <data name="&gt;&gt;gridColorlabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="cellIndexOriginXNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Grid Layer Properties</value>
   </data>
@@ -831,8 +825,8 @@
   <data name="alphaTrackBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Grid Size</value>
+  <data name="&gt;&gt;cellIndexCheckBox.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>101, 20</value>
@@ -855,8 +849,8 @@
   <data name="&gt;&gt;gridCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="cellIndexCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="&gt;&gt;cellIndexOriginButton.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;gridColorPictureBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -879,8 +873,8 @@
   <data name="subGridCheckBox.Text" xml:space="preserve">
     <value>Number of sub-divisions</value>
   </data>
-  <data name="&gt;&gt;subGridSizeNumericUpDown.Name" xml:space="preserve">
-    <value>subGridSizeNumericUpDown</value>
+  <data name="subGridThicknessLabel.Text" xml:space="preserve">
+    <value>Thickness (in pixels)</value>
   </data>
   <data name="&gt;&gt;cellIndexCheckBox.Name" xml:space="preserve">
     <value>cellIndexCheckBox</value>
@@ -984,8 +978,8 @@
   <data name="cellIndexCheckBox.Text" xml:space="preserve">
     <value>Display cell index</value>
   </data>
-  <data name="&gt;&gt;cellIndexFontNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cellIndexFontButton.Name" xml:space="preserve">
+    <value>cellIndexFontButton</value>
   </data>
   <data name="&gt;&gt;subGridCheckBox.Name" xml:space="preserve">
     <value>subGridCheckBox</value>
@@ -1005,9 +999,6 @@
   <data name="&gt;&gt;colorDialog.Name" xml:space="preserve">
     <value>colorDialog</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="cellIndexColumnLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
@@ -1019,9 +1010,6 @@
   </data>
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;subGridSizeNumericUpDown.Parent" xml:space="preserve">
-    <value>groupBox1</value>
   </data>
   <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
     <value>423, 365</value>
@@ -1056,8 +1044,8 @@
   <data name="subGridSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
   </data>
-  <data name="&gt;&gt;gridCheckBox.Name" xml:space="preserve">
-    <value>gridCheckBox</value>
+  <data name="&gt;&gt;subGridSizeNumericUpDown.Name" xml:space="preserve">
+    <value>subGridSizeNumericUpDown</value>
   </data>
   <data name="subGridThicknessLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 20</value>
@@ -1073,6 +1061,9 @@
   </data>
   <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
     <value>groupBox3</value>
+  </data>
+  <data name="gridCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -1107,14 +1098,23 @@
   <data name="cellIndexRowLabel.Text" xml:space="preserve">
     <value>Row</value>
   </data>
-  <data name="alphaNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>386, 52</value>
+  <data name="cellIndexFontNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 34</value>
+  </data>
+  <data name="&gt;&gt;colorDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gridColorlabel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
   <data name="&gt;&gt;cellIndexRowComboBox.Name" xml:space="preserve">
     <value>cellIndexRowComboBox</value>
   </data>
   <data name="&gt;&gt;alphaTrackBar.Name" xml:space="preserve">
     <value>alphaTrackBar</value>
+  </data>
+  <data name="alphaNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 52</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>486, 154</value>
@@ -1128,8 +1128,8 @@
   <data name="cellIndexColumnComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>91, 84</value>
   </data>
-  <data name="&gt;&gt;cellIndexOriginXNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="gridColorPictureBox.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -1143,8 +1143,8 @@
   <data name="gridCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 20</value>
   </data>
-  <data name="gridColorlabel.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="cellIndexCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
   <data name="&gt;&gt;cellIndexOriginXNumericUpDown.Name" xml:space="preserve">
     <value>cellIndexOriginXNumericUpDown</value>
