@@ -29,7 +29,7 @@ namespace BlueBrick.Actions.Items
 		// data for the action
 		protected Layer mLayer = null;
 		protected List<Layer.LayerItem> mItems = null;
-		protected List<Layer.Group> mAllGroupsOfTheItems = null;
+		protected List<Layer.Group> mNamedGroupsOfTheItems = null;
 		protected List<Layer.Group> mTopGroupsOfTheItems = null;
 		protected bool mRotateCW;
 		protected float mRotationStep = 0.0f; // in degree, we need to save it because the current rotation step may change between the do and undo
@@ -60,7 +60,7 @@ namespace BlueBrick.Actions.Items
 				PointF minCenter = new PointF(originalItems[0].DisplayArea.Left, originalItems[0].DisplayArea.Top);
 				PointF maxCenter = new PointF(originalItems[0].DisplayArea.Right, originalItems[0].DisplayArea.Bottom);
 				mItems = new List<Layer.LayerItem>(originalItems.Count);
-				mAllGroupsOfTheItems = new List<Layer.Group>(originalItems.Count);
+				mNamedGroupsOfTheItems = new List<Layer.Group>(originalItems.Count);
 				mTopGroupsOfTheItems = new List<Layer.Group>(originalItems.Count);
 				foreach (Layer.LayerItem obj in originalItems)
 				{
@@ -82,9 +82,9 @@ namespace BlueBrick.Actions.Items
 					Layer.Group parentGroup = obj.Group;
 					if (parentGroup != null)
 					{
-						// we found a group, add it to the list if not already in
-						if (!mAllGroupsOfTheItems.Contains(parentGroup))
-							mAllGroupsOfTheItems.Add(parentGroup);
+						// we found a group, add it to the list if it is a named group and if it is not already in
+						if (parentGroup.IsANamedGroup && !mNamedGroupsOfTheItems.Contains(parentGroup))
+							mNamedGroupsOfTheItems.Add(parentGroup);
 
 						// also if that group doesn't have a parent group, this is a top group, so add it to the top group list if not already in
 						if ((parentGroup.Group == null) && !mTopGroupsOfTheItems.Contains(parentGroup))
@@ -137,7 +137,7 @@ namespace BlueBrick.Actions.Items
 		protected void rotateGroups(float rotationAngle)
 		{
 			// rotate all the groups in order to rotate their snap margin (only usefull for named group)
-			foreach (Layer.Group group in mAllGroupsOfTheItems)
+			foreach (Layer.Group group in mNamedGroupsOfTheItems)
 				group.Orientation = group.Orientation + rotationAngle;
 
 			// then recompute recursively their display area

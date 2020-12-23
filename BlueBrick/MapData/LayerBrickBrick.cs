@@ -849,7 +849,8 @@ namespace BlueBrick.MapData
 				Matrix translation = new Matrix();
 				translation.Translate(mTopLeftCornerInPixel.X, mTopLeftCornerInPixel.Y);
 				translation.Scale(PIXEL_TO_STUD_RATIO, PIXEL_TO_STUD_RATIO, MatrixOrder.Append);
-				translation.Translate(Center.X - (mDisplayArea.Width * 0.5f), Center.Y - (mDisplayArea.Height * 0.5f), MatrixOrder.Append);
+				PointF center = this.Center;
+				translation.Translate(center.X - (mDisplayArea.Width * 0.5f), center.Y - (mDisplayArea.Height * 0.5f), MatrixOrder.Append);
 				translation.TransformPoints(hullArray);
 
 				// create the new selection area from the rotated hull
