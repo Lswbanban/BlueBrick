@@ -12,10 +12,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.Drawing.Drawing2D;
 using BlueBrick.MapData;
 using BlueBrick.Actions.Items;
@@ -64,6 +61,9 @@ namespace BlueBrick.Actions.Texts
 			foreach (Layer.LayerItem item in mItems)
 				rotate(item, rotation, rotationAngle, true);
 
+			// rotate also the groups in order to rotate their snap margin and to adjust their display area
+			rotateGroups(rotationAngle);
+
 			// update the bounding rectangle (because the text is not square)
 			mLayer.updateBoundingSelectionRectangle();
 		}
@@ -78,6 +78,9 @@ namespace BlueBrick.Actions.Texts
 			rotation.Rotate(rotationAngle);
 			foreach (Layer.LayerItem item in mItems)
 				rotate(item, rotation, rotationAngle, true);
+
+			// rotate also the groups in order to rotate their snap margin and to adjust their display area
+			rotateGroups(rotationAngle);
 
 			// update the bounding rectangle (because the text is not square)
 			mLayer.updateBoundingSelectionRectangle();

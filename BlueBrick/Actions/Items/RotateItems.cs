@@ -14,7 +14,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using BlueBrick.MapData;
 using System.Drawing.Drawing2D;
@@ -30,6 +29,8 @@ namespace BlueBrick.Actions.Items
 		// data for the action
 		protected Layer mLayer = null;
 		protected List<Layer.LayerItem> mItems = null;
+		protected List<Layer.Group> mAllGroupsOfTheItems = null;
+		protected List<Layer.Group> mTopGroupsOfTheItems = null;
 		protected bool mRotateCW;
 		protected float mRotationStep = 0.0f; // in degree, we need to save it because the current rotation step may change between the do and undo
 		protected PointF mCenter = new PointF(0, 0);	// in Stud coord
@@ -59,6 +60,8 @@ namespace BlueBrick.Actions.Items
 				PointF minCenter = new PointF(originalItems[0].DisplayArea.Left, originalItems[0].DisplayArea.Top);
 				PointF maxCenter = new PointF(originalItems[0].DisplayArea.Right, originalItems[0].DisplayArea.Bottom);
 				mItems = new List<Layer.LayerItem>(originalItems.Count);
+				mAllGroupsOfTheItems = new List<Layer.Group>(originalItems.Count);
+				mTopGroupsOfTheItems = new List<Layer.Group>(originalItems.Count);
 				foreach (Layer.LayerItem obj in originalItems)
 				{
 					mItems.Add(obj);
@@ -73,6 +76,19 @@ namespace BlueBrick.Actions.Items
 							maxCenter.X = obj.DisplayArea.Right;
 						if (obj.DisplayArea.Bottom > maxCenter.Y)
 							maxCenter.Y = obj.DisplayArea.Bottom;
+					}
+
+					// Also collect the groups amongs all the items
+					Layer.Group parentGroup = obj.Group;
+					if (parentGroup != null)
+					{
+						// we found a group, add it to the list if not already in
+						if (!mAllGroupsOfTheItems.Contains(parentGroup))
+							mAllGroupsOfTheItems.Add(parentGroup);
+
+						// also if that group doesn't have a parent group, this is a top group, so add it to the top group list if not already in
+						if ((parentGroup.Group == null) && !mTopGroupsOfTheItems.Contains(parentGroup))
+							mTopGroupsOfTheItems.Add(parentGroup);
 					}
 				}
 				// set the center for this rotation action (keep the previous one or compute a new one
@@ -116,6 +132,17 @@ namespace BlueBrick.Actions.Items
 				// assign the new pivot position after rotation
 				item.Pivot = pivot;
 			}
+		}
+
+		protected void rotateGroups(float rotationAngle)
+		{
+			// rotate all the groups in order to rotate their snap margin (only usefull for named group)
+			foreach (Layer.Group group in mAllGroupsOfTheItems)
+				group.Orientation = group.Orientation + rotationAngle;
+
+			// then recompute recursively their display area
+			foreach (Layer.Group group in mTopGroupsOfTheItems)
+				group.computeDisplayArea(true);
 		}
 	}
 }

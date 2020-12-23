@@ -14,7 +14,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using BlueBrick.MapData;
@@ -25,7 +24,6 @@ namespace BlueBrick.Actions.Bricks
 	class RotateBrick : RotateItems
 	{
 		// data for the action
-		private List<Layer.Group> mNamedGroup = null;
 		private string mPartNumber = string.Empty; //if the list contains only one brick or one group, this is the name of this specific brick or group
 
 		// special case for only one brick connected that we must rotate
@@ -146,20 +144,6 @@ namespace BlueBrick.Actions.Bricks
 			// call the base method
 			base.commonConstructor(layer, bricks, angle, forceKeepLastCenter);
 
-			// fill the brick list with the one provided and set the center of rotation for this action
-			if (bricks.Count > 0)
-			{
-				mNamedGroup = new List<Layer.Group>(bricks.Count);
-				foreach (Layer.LayerItem obj in bricks)
-				{
-					// if the current brick is part of a group which has a name (so a group from the library)
-					// also add this group to the list of NamedGroup (if not already in)
-					Layer.Group parentGroup = obj.Group;
-					if ((parentGroup != null) && (parentGroup.IsANamedGroup) && !mNamedGroup.Contains(parentGroup))
-						mNamedGroup.Add(parentGroup);
-				}
-			}
-
 			// try to get a part number (which can be the name of a group)
 			Layer.LayerItem topItem = Layer.sGetTopItemFromList(mItems);
 			if (topItem != null)
@@ -197,14 +181,13 @@ namespace BlueBrick.Actions.Bricks
 			foreach (Layer.LayerItem item in mItems)
 				rotate(item, rotation, rotationAngle, true);
 
-			// rotate also the named group in order to rotate their snap margin
-			foreach (Layer.Group group in mNamedGroup)
-				group.Orientation = group.Orientation + rotationAngle;
-
 			// special case, if the bricks we have to rotate are connected, we need also to move them after the rotation
 			// to keep the connexion (since the rotation only rotate in the center of the part)
 			if (mNewConnectionPoint != null)
 				moveToConnect(mNewConnectionPoint);
+
+			// rotate also the groups in order to rotate their snap margin and to adjust their display area
+			rotateGroups(rotationAngle);
 
 			// reselect the items of the action, cause after we will update the connectivity of the selection
 			// the selection may have changed ater a succession of undo/redo
@@ -229,14 +212,13 @@ namespace BlueBrick.Actions.Bricks
 			foreach (Layer.LayerItem item in mItems)
 				rotate(item, rotation, rotationAngle, true);
 
-			// rotate also the named group in order to rotate their snap margin
-			foreach (Layer.Group group in mNamedGroup)
-				group.Orientation = group.Orientation + rotationAngle;
-
 			// special case, if the bricks we have to rotate are connected, we need to 
 			// reattach them to the old brick after canceling the rotation
 			if (mOldConnectionPoint != null)
 				moveToConnect(mOldConnectionPoint);
+
+			// rotate also the groups in order to rotate their snap margin and to adjust their display area
+			rotateGroups(rotationAngle);
 
 			// reselect the items of the action, cause after we will update the connectivity of the selection
 			// the selection may have changed ater a succession of undo/redo
