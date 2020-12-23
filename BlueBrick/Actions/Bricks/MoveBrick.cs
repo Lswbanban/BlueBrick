@@ -31,12 +31,7 @@ namespace BlueBrick.Actions.Bricks
 			// try to get a part number (which can be the name of a group)
 			Layer.LayerItem topItem = Layer.sGetTopItemFromList(mItems);
 			if (topItem != null)
-			{
-				if (topItem.IsAGroup)
-					mPartNumber = (topItem as Layer.Group).PartNumber;
-				else
-					mPartNumber = (topItem as LayerBrick.Brick).PartNumber;
-			}
+				mPartNumber = topItem.PartNumber; // part number is virtual, works both for part and group
 		}
 
 		public override string getName()

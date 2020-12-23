@@ -12,9 +12,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using BlueBrick.MapData;
 using BlueBrick.Actions.Items;
@@ -33,9 +31,15 @@ namespace BlueBrick.Actions.Texts
 			if (mItems.Count == 1)
 			{
 				string actionName = BlueBrick.Properties.Resources.ActionMoveText;
-				string text = (mItems[0] as LayerText.TextCell).Text.Replace("\r\n", " ");
+				// if the first item is a group, search recursively the first non group item
+				Layer.LayerItem firstItem = mItems[0];
+				while (firstItem.IsAGroup)
+					firstItem = (firstItem as Layer.Group).Items[0];
+				// get the text and cut it if it is too long
+				string text = (firstItem as LayerText.TextCell).Text.Replace("\r\n", " ");
 				if (text.Length > 10)
 					text = text.Substring(0, 10) + "...";
+				// construct the action name
 				actionName = actionName.Replace("&", text);
 				return actionName;
 			}
