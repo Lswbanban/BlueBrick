@@ -1311,7 +1311,7 @@ namespace BlueBrick.MapData
 		/// <returns>true if the view should be refreshed</returns>
 		public override bool mouseMove(MouseEventArgs e, PointF mouseCoordInStud, ref Cursor preferedCursor)
 		{
-			if ((mEditAction != EditAction.NONE) && (mSelectedObjects.Count > 0))
+			if ((mEditAction != EditAction.NONE) && (mEditAction != EditAction.SELECT_PATH) && (mSelectedObjects.Count > 0))
 			{
 				// snap the mouse coord to the grid
 				Brick.ConnectionPoint snappedConnection = null;
