@@ -535,7 +535,7 @@ namespace BlueBrick.MapData
 				// call the init after setting the orientation (in the base copy copy constructor)
 				// to compute the image in the right orientation
 				// the init method will initialize mMipmapImages, mOriginalImageReference, mOriginalImageReference and mConnectionPoints
-				init(model.mPartNumber);
+				init(model.mPartNumber, PointF.Empty);
 			}
 
 			/// <summary>
@@ -544,7 +544,7 @@ namespace BlueBrick.MapData
 			/// <param name="partNumber">the part number used to create this brick</param>
 			public Brick(string partNumber)
 			{
-				init(partNumber);
+				init(partNumber, PointF.Empty);
 			}
 
 			/// <summary>
@@ -560,9 +560,7 @@ namespace BlueBrick.MapData
 				// We do not use the accessor intentionnaly to not trigger an image building
 				this.mOrientation = orientation;
 				// the init parameter will generate the image
-				init(partNumber);
-				// finally adjust the center position
-				this.Center = centerPosition;
+				init(partNumber, centerPosition);
 			}
 
 			/// <summary>
@@ -575,11 +573,13 @@ namespace BlueBrick.MapData
 				return new Brick(this);
 			}
 
-			private void init(string partNumber)
+			private void init(string partNumber, PointF centerPosition)
 			{
 				// We must set the part number first because the connection list need it
 				// call the accessor to recreate the picture
 				PartNumber = partNumber;
+				// adjust the center position after the creation of the display area in the PartNumber accessor
+				this.Center = centerPosition;
 				// create the connection list if any
 				List<BrickLibrary.Brick.ConnectionPoint> connectionList = BrickLibrary.Instance.getConnectionList(partNumber);
 				if (connectionList != null)

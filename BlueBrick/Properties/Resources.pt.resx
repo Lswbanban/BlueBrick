@@ -594,6 +594,6 @@ Deverá encerrar outros programas que acedam à biblioteca de peças do Bluebric
     <value>Sem limite de custos</value>
   </data>
   <data name="UnitStraightTrack" xml:space="preserve">
-    <value>Via</value>
+    <value>Linha Recta</value>
   </data>
 </root>
