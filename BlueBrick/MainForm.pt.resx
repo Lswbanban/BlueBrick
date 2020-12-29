@@ -128,7 +128,7 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAZgBAAGYAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAAaABAAGgAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -168,6 +168,9 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
   </data>
   <data name="filterAllTabCheckBox.ToolTip" xml:space="preserve">
     <value>Aplicar o filtro em todos os separadores ou apenas no separador actual.</value>
+  </data>
+  <data name="DocumentDataLayerTabPage.Text" xml:space="preserve">
+    <value>Camadas</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -305,8 +308,8 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Mover a camada seleccionada para baixo</value>
   </data>
-  <data name="DocumentDataLayerTabPage.Text" xml:space="preserve">
-    <value>Camadas</value>
+  <data name="DocumentDataPartListTabPage.Text" xml:space="preserve">
+    <value>Lista de Peças</value>
   </data>
   <data name="PartUsageListView.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -349,8 +352,8 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
   <data name="IncludeHiddenLayerInPartListCheckBox.Text" xml:space="preserve">
     <value>Incluir peças escondidas</value>
   </data>
-  <data name="DocumentDataPartListTabPage.Text" xml:space="preserve">
-    <value>Lista de Peças</value>
+  <data name="DocumentDataPropertiesTabPage.Text" xml:space="preserve">
+    <value>Propriedades</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Cor de Fundo:</value>
@@ -379,467 +382,467 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
   <data name="labelAuthor.Text" xml:space="preserve">
     <value>Autor:</value>
   </data>
-  <data name="DocumentDataPropertiesTabPage.Text" xml:space="preserve">
-    <value>Propriedades</value>
+  <data name="menuBar.Text" xml:space="preserve">
+    <value>Barra de Menus</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ficheiro</value>
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>259, 22</value>
   </data>
   <data name="newToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Novo</value>
   </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>259, 22</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Abrir...</value>
   </data>
   <data name="openRecentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>259, 22</value>
   </data>
   <data name="openRecentToolStripMenuItem.Text" xml:space="preserve">
     <value>Ficheiros Recentes</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 6</value>
+    <value>256, 6</value>
   </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>259, 22</value>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Guardar</value>
   </data>
   <data name="saveasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>259, 22</value>
   </data>
   <data name="saveasToolStripMenuItem.Text" xml:space="preserve">
     <value>Guardar &amp;Como…</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>259, 22</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Exportar Imagem…</value>
   </data>
   <data name="exportPartListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>259, 22</value>
   </data>
   <data name="exportPartListToolStripMenuItem.Text" xml:space="preserve">
     <value>Exportar lista de &amp;Peças...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 6</value>
+    <value>256, 6</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>259, 22</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Text" xml:space="preserve">
     <value>Recarregar biblioteca de elementos</value>
   </data>
   <data name="downloadAdditionnalPartsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>259, 22</value>
   </data>
   <data name="downloadAdditionnalPartsToolStripMenuItem.Text" xml:space="preserve">
     <value>Descarregar peças adicionais…</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>259, 22</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Text" xml:space="preserve">
     <value>Guardar a seleção na biblioteca…</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 6</value>
+    <value>256, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>259, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Sair</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 20</value>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 20</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ficheiro</value>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Editar</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="undoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Anular</value>
   </data>
   <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="redoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Repetir</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 6</value>
+    <value>227, 6</value>
   </data>
   <data name="cutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="cutToolStripMenuItem.Text" xml:space="preserve">
     <value>Cortar</value>
   </data>
   <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Copiar</value>
   </data>
   <data name="pasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="pasteToolStripMenuItem.Text" xml:space="preserve">
     <value>C&amp;olar</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Eliminar</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 6</value>
+    <value>227, 6</value>
   </data>
   <data name="findAndReplaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="findAndReplaceToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Procurar e Substituir…</value>
   </data>
   <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 6</value>
+    <value>227, 6</value>
   </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Seleccionar Tudo</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Cancelar a Selecção</value>
   </data>
   <data name="selectPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Selecionar Caminho</value>
   </data>
+  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 22</value>
+  </data>
+  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Agrupar</value>
+  </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="groupToolStripMenuItem.Text" xml:space="preserve">
     <value>Agrupar</value>
   </data>
   <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Desagrupar</value>
   </data>
-  <data name="groupMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
-  </data>
-  <data name="groupMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Agrupar</value>
-  </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 6</value>
+    <value>227, 6</value>
+  </data>
+  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 22</value>
+  </data>
+  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mover Passo</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 22</value>
+    <value>138, 22</value>
   </data>
   <data name="moveStepDisabledToolStripMenuItem.Text" xml:space="preserve">
     <value>Desactivado</value>
   </data>
   <data name="moveStep32ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 22</value>
+    <value>138, 22</value>
   </data>
   <data name="moveStep16ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 22</value>
+    <value>138, 22</value>
   </data>
   <data name="moveStep8ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 22</value>
+    <value>138, 22</value>
   </data>
   <data name="moveStep4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 22</value>
+    <value>138, 22</value>
   </data>
   <data name="moveStep2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 22</value>
+    <value>138, 22</value>
   </data>
   <data name="moveStep1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 22</value>
+    <value>138, 22</value>
   </data>
   <data name="moveStep05ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 22</value>
-  </data>
-  <data name="moveStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 22</value>
-  </data>
-  <data name="moveStepToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mover Passo</value>
+    <value>138, 22</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 22</value>
+    <value>282, 22</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Text" xml:space="preserve">
     <value>Enviar para Trás</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 22</value>
+    <value>282, 22</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
     <value>Trazer para a Frente</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 6</value>
+    <value>279, 6</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 22</value>
+    <value>282, 22</value>
   </data>
   <data name="rotationStepToolStripMenuItem.Text" xml:space="preserve">
     <value>Passo de Rotação</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 22</value>
+    <value>282, 22</value>
   </data>
   <data name="rotateCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotação no sentido horário</value>
   </data>
   <data name="rotateCCWToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 22</value>
+    <value>282, 22</value>
   </data>
   <data name="rotateCCWToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotação no sentido anti-horário</value>
   </data>
-  <data name="transformToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 22</value>
   </data>
-  <data name="transformToolStripMenuItem.Text" xml:space="preserve">
-    <value>Modificar</value>
+  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ferramenta de Pintura</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 22</value>
+    <value>158, 22</value>
   </data>
   <data name="paintToolPaintToolStripMenuItem.Text" xml:space="preserve">
     <value>Pintar</value>
   </data>
   <data name="paintToolEraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 22</value>
+    <value>158, 22</value>
   </data>
   <data name="paintToolEraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Apagar</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 6</value>
+    <value>155, 6</value>
   </data>
   <data name="paintToolChooseColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 22</value>
+    <value>158, 22</value>
   </data>
   <data name="paintToolChooseColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Escolher a Cor...</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 22</value>
   </data>
-  <data name="paintToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ferramenta de Pintura</value>
+  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ferramenta de regras</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="selectAndEditToolStripMenuItem.Text" xml:space="preserve">
     <value>Selecionar e Editar</value>
   </data>
   <data name="addRulerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="addRulerToolStripMenuItem.Text" xml:space="preserve">
     <value>Adicionar regra</value>
   </data>
   <data name="addCircleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="addCircleToolStripMenuItem.Text" xml:space="preserve">
     <value>Adicionar círculo</value>
   </data>
-  <data name="rulerToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
-  </data>
-  <data name="rulerToolToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ferramenta de regras</value>
-  </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 6</value>
+    <value>227, 6</value>
   </data>
   <data name="mapBackgroundColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="mapBackgroundColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Cor de &amp;Fundo do Mapa…</value>
   </data>
   <data name="currentLayerOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="currentLayerOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>Opções da Ca&amp;mada Actual...</value>
   </data>
   <data name="preferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="preferencesMenuItem.Text" xml:space="preserve">
     <value>Preferências...</value>
   </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 20</value>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
   </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Editar</value>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ver</value>
   </data>
   <data name="toolbarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
+    <value>231, 22</value>
   </data>
   <data name="toolbarMenuItem.Text" xml:space="preserve">
     <value>&amp;Barra de Ferramentas</value>
   </data>
   <data name="statusBarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
+    <value>231, 22</value>
   </data>
   <data name="statusBarMenuItem.Text" xml:space="preserve">
     <value>Barra de &amp;Estado</value>
   </data>
   <data name="mapScrollBarsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
+    <value>231, 22</value>
   </data>
   <data name="mapScrollBarsToolStripMenuItem.Text" xml:space="preserve">
     <value>Barras de &amp;deslocamento</value>
   </data>
   <data name="watermarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
+    <value>231, 22</value>
   </data>
   <data name="watermarkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Marca de Água</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 6</value>
+    <value>228, 6</value>
   </data>
   <data name="electricCircuitsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
+    <value>231, 22</value>
   </data>
   <data name="electricCircuitsMenuItem.Text" xml:space="preserve">
     <value>&amp;Circuito Eléctrico</value>
   </data>
   <data name="connectionPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
+    <value>231, 22</value>
   </data>
   <data name="connectionPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Pontos de Conexão</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
+    <value>231, 22</value>
   </data>
   <data name="rulerAttachPointsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Regra de pontos de Anexação</value>
   </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 20</value>
+  <data name="budgetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 20</value>
   </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ver</value>
+  <data name="budgetToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Limite de custos</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="budgetNewToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Novo</value>
   </data>
   <data name="budgetOpenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="budgetOpenToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Abrir...</value>
   </data>
   <data name="budgetImportAndMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="budgetImportAndMergeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Importar e juntar...</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 6</value>
+    <value>328, 6</value>
   </data>
   <data name="budgetCloseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="budgetCloseToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Fechar</value>
   </data>
   <data name="budgetSaveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="budgetSaveToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Guardar</value>
   </data>
   <data name="budgetSaveAsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="budgetSaveAsToolStripMenuItem.Text" xml:space="preserve">
     <value>Guardar &amp;como…</value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 6</value>
+    <value>328, 6</value>
   </data>
   <data name="showOnlyBudgetedPartsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="showOnlyBudgetedPartsToolStripMenuItem.Text" xml:space="preserve">
     <value>Apenas mostrar peças abaixo do limite de custos</value>
   </data>
   <data name="showBudgetNumbersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="showBudgetNumbersToolStripMenuItem.Text" xml:space="preserve">
     <value>Mostrar números do &amp;limite de custos</value>
   </data>
   <data name="useBudgetLimitationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
+    <value>331, 22</value>
   </data>
   <data name="useBudgetLimitationToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Usar limite de custos</value>
   </data>
-  <data name="budgetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 20</value>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
   </data>
-  <data name="budgetToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Limite de custos</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ajuda</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="helpContentsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Conteúdos e Índice</value>
   </data>
   <data name="aboutBlueBrickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="aboutBlueBrickToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Sobre o BlueBrick...</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ajuda</value>
-  </data>
-  <data name="menuBar.Text" xml:space="preserve">
-    <value>Barra de Menus</value>
+  <data name="toolBar.Text" xml:space="preserve">
+    <value>Barra de Ferramentas</value>
   </data>
   <data name="toolBarNewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1039,6 +1042,16 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
   <data name="toolBarBringToFrontButton.ToolTipText" xml:space="preserve">
     <value>Trazer para a Frente</value>
   </data>
+  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABISURBVDhP7Y1BCgAgCAT9/6cLcRLy5Hrp0sBCCbNrAuvg
+        7zhpoM8KUP96nDTQh+slEuzmslSAGviftEG95HYB6kx2HsolTcw2QXKZZ3a8yasAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
+    <value>Seleccione a ferramenta para editar a camada actual</value>
+  </data>
   <data name="paintToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1047,7 +1060,7 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
 </value>
   </data>
   <data name="paintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="paintToolStripMenuItem.Text" xml:space="preserve">
     <value>Pintar</value>
@@ -1061,7 +1074,7 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
 </value>
   </data>
   <data name="eraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="eraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Apagar</value>
@@ -1075,7 +1088,7 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
 </value>
   </data>
   <data name="rulerSelectAndEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="rulerSelectAndEditToolStripMenuItem.Text" xml:space="preserve">
     <value>Selecionar e Editar</value>
@@ -1089,7 +1102,7 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
 </value>
   </data>
   <data name="rulerAddRulerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>170, 22</value>
   </data>
   <data name="rulerAddRulerToolStripMenuItem.Text" xml:space="preserve">
     <value>Adicionar círculo</value>
@@ -1103,20 +1116,7 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
 </value>
   </data>
   <data name="rulerAddCircleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="toolBarToolButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABISURBVDhP7Y1BCgAgCAT9/6cLcRLy5Hrp0sBCCbNrAuvg
-        7zhpoM8KUP96nDTQh+slEuzmslSAGviftEG95HYB6kx2HsolTcw2QXKZZ3a8yasAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="toolBarToolButton.ToolTipText" xml:space="preserve">
-    <value>Seleccione a ferramenta para editar a camada actual</value>
-  </data>
-  <data name="toolBar.Text" xml:space="preserve">
-    <value>Barra de Ferramentas</value>
+    <value>170, 22</value>
   </data>
   <data name="openFileDialog.Filter" xml:space="preserve">
     <value>Mapa BlueBrick (*.bbm)|*.bbm|LDraw (*.ldr)|*.ldr|LDraw Multi Parts (*.mpd)|*.mpd|Track Designer (*.tdl)|*.tdl|4DBrix (*.ncp)|*.ncp|Todos os ficheiros (*.*)|*.*</value>
@@ -1141,6 +1141,9 @@ Pode usar aspas duplas para agrupar palavras-chave.</value>
   </data>
   <data name="saveBudgetFileDialog.Title" xml:space="preserve">
     <value>Guardar o Orçamento BlueBrick como…</value>
+  </data>
+  <data name="exportPartListFileDialog.Title" xml:space="preserve">
+    <value>Exportar lista de Peças</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
