@@ -1416,6 +1416,13 @@ namespace BlueBrick.MapData
 			// but the user can also edit the properties of flex parts, so if the user double click without moving the it's an brick property edition
 			if ((mEditAction == EditAction.EDIT_PROPERTIES) || ((mEditAction == EditAction.FLEX_MOVE) && !mMouseHasMoved))
 			{
+				// undo the rotation action if there was one
+				if (mRotationForSnappingDuringBrickMove != null)
+				{
+					mRotationForSnappingDuringBrickMove.undo();
+					mRotationForSnappingDuringBrickMove = null;
+				}
+
 				// call the function to add or edit, which open the edit text dialog in modal
 				editSelectedItemsProperties(mouseCoordInStud);
 			}
