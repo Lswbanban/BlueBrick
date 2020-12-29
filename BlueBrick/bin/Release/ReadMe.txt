@@ -104,9 +104,7 @@ to open the help file (see above for more details).
 4) History
 -------------------------------------------------------------------------------
 Open bugs:
-- [target 1.9] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
-- [target 1.9] BUG (Alban): The saving of a group in the brick library after rotating it will create a correct image, but wrong part positions when the group is placed back on the map
-- [target 1.9] BUG #62 (FreeStorm): Text position on Text Layer (Linux)
+- [target 1.10] MISSING FEATURE (Alban): Add some !BLUEBRICK meta commands in LDraw format to save all the data of a BlueBrick file in LDraw. Then remove the warning for saving in LDRAW.
 - MISSING FEATURE (Alban): A feature to check if there's new parts available online in the official library (when opening a file with missing parts).
 - MISSING FEATURE (Matthias): Add a simple view for the track with the part number displayed overlaid (add a new tag in the xml for this simplified name to avoid too long names).
 - MISSING FEATURE (Matthias): BlueBrick should check if there's new library package available in background after launch.
@@ -133,6 +131,8 @@ Open bugs:
 - MISSING FEATURE (Ludo): Add a context menu on the Part Usage list, in order to export the list from there.
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
+- BUG #62 (FreeStorm): Text position on Text Layer (Linux)
+- BUG (Alban): The saving of a group in the brick library after rotating it will create a correct image, but wrong part positions when the group is placed back on the map
 - REFACTORING (Alban): In the part XML, promote the <LDraw><PreferredHeight> to normal part properties, and use it to set the default Altitude of parts
 - REFACTORING (Alban): The two buttons to raise and lower parts in the toolbar should probably change the Altitude of the parts for a brick layer (that's what the users may expect)
 
