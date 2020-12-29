@@ -1213,7 +1213,8 @@ namespace BlueBrick.MapData
 				// check if we want to do a path selection
 				if ((mCurrentBrickUnderMouse != null) && (mEditAction == EditAction.SELECT_PATH))
 				{
-					List<LayerItem> brickToSelect = AStar.findPath(SelectedObjects[0] as Brick, mCurrentBrickUnderMouse);
+					// find a path between the last brick that has been selected, and the current brick under the mouse
+					List<LayerItem> brickToSelect = AStar.findPath(SelectedObjects[SelectedObjects.Count - 1] as Brick, mCurrentBrickUnderMouse);
 					// if AStar found a path, select the path
 					if (brickToSelect.Count > 0)
 						addObjectInSelection(brickToSelect);
