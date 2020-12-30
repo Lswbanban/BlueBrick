@@ -686,16 +686,16 @@ namespace BlueBrick
 				// then call the function to export all the images
 				exportAllImages(fileName, choosenFormat);
 			}
-
-			// restore the display settings
-			restoreDisplaySettings();
 		}
 
 		private void ExportImageForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			// set the visible false for catching this strange case:
+			// restore the display settings
+			restoreDisplaySettings();
+
+			// set the visible to false for catching this strange case:
 			// Minimize the window, then right click on the task bar and choose close
-			// in such case, next time you try do do a Show Dialog, and exception is raised
+			// in such case, next time you try do do a Show Dialog, an exception is raised
 			this.Visible = false;
 		}
 
