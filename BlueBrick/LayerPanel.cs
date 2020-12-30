@@ -77,7 +77,8 @@ namespace BlueBrick
 			// visibilityButton
 			// 
 			this.visibilityButton.Image = ((System.Drawing.Image)(resources.GetObject("visibilityButton.Image")));
-			this.visibilityButton.Location = new System.Drawing.Point(3, 3);
+			this.visibilityButton.Location = new System.Drawing.Point(23, 3);
+			this.visibilityButton.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
 			this.visibilityButton.Name = "visibilityButton";
 			this.visibilityButton.Size = new System.Drawing.Size(20, 20);
 			this.visibilityButton.TabIndex = 0;
@@ -100,8 +101,8 @@ namespace BlueBrick
 			// layerTypePictureBox
 			// 
 			this.layerTypePictureBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.layerTypePictureBox.Location = new System.Drawing.Point(49, 5);
-			this.layerTypePictureBox.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+			this.layerTypePictureBox.Location = new System.Drawing.Point(3, 5);
+			this.layerTypePictureBox.Margin = new System.Windows.Forms.Padding(3, 5, 0, 0);
 			this.layerTypePictureBox.Name = "layerTypePictureBox";
 			this.layerTypePictureBox.Size = new System.Drawing.Size(20, 20);
 			this.layerTypePictureBox.TabIndex = 0;
@@ -111,7 +112,7 @@ namespace BlueBrick
 			// 
 			// displayHullButton
 			// 
-			this.displayHullButton.Location = new System.Drawing.Point(26, 3);
+			this.displayHullButton.Location = new System.Drawing.Point(46, 3);
 			this.displayHullButton.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
 			this.displayHullButton.Name = "displayHullButton";
 			this.displayHullButton.Size = new System.Drawing.Size(20, 20);
@@ -123,9 +124,9 @@ namespace BlueBrick
 			// 
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.Controls.Add(this.layerTypePictureBox);
 			this.Controls.Add(this.visibilityButton);
 			this.Controls.Add(this.displayHullButton);
-			this.Controls.Add(this.layerTypePictureBox);
 			this.Controls.Add(this.nameLabel);
 			this.Size = new System.Drawing.Size(80, 28);
 			this.ClientSizeChanged += new System.EventHandler(this.LayerPanel_ClientSizeChanged);
