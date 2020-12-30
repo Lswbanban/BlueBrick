@@ -627,7 +627,7 @@ namespace BlueBrick.Budget
 			if (this.ShouldUseBudgetLimitation)
 			{
 				// first check with the main brick
-				canAdd = canAddBrick(partID, shouldIncludeHiddenParts);
+				canAdd = canAddBrick(partID, 1, shouldIncludeHiddenParts);
 				// and if it is a group, check that all subparts don't exceed the budget
 				if (canAdd)
 				{
