@@ -13,8 +13,6 @@
 // GNU General Public License for more details.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using BlueBrick.MapData;
 
 namespace BlueBrick.Actions.Maps

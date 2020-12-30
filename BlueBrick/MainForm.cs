@@ -1109,10 +1109,19 @@ namespace BlueBrick
 
 		/// <summary>
 		/// Update the General info UI controls in the property tab from the currently loaded map.
+		/// This function is called programatically to update the UI when the program need to, so the event handler
+		/// of the UI element are disabled during this function to avoid having another change map info action created.
 		/// <param name="doesNeedToUpdateDimension"/>If true, the dimension of the full map will also be updated, otherwise they are left as they are</param>
 		/// </summary>
 		public void updateMapGeneralInfo(bool doesNeedToUpdateDimension)
 		{
+			// disable the UI event handlers
+			this.AuthorTextBox.Leave -= AuthorTextBox_Leave;
+			this.lugComboBox.Leave -= lugComboBox_Leave;
+			this.eventComboBox.Leave -= eventComboBox_Leave;
+			this.dateTimePicker.ValueChanged -= dateTimePicker_ValueChanged;
+			this.commentTextBox.Leave -= commentTextBox_Leave;
+
 			// update the back color of the background color button
 			this.DocumentDataPropertiesMapBackgroundColorButton.BackColor = Map.Instance.BackgroundColor;
 			// fill the text controls
@@ -1125,6 +1134,13 @@ namespace BlueBrick
 			// update also the map dimensions if needed
 			if (doesNeedToUpdateDimension)
 				updateMapDimensionInfo();
+
+			// re-enable the UI event handlers
+			this.AuthorTextBox.Leave += AuthorTextBox_Leave;
+			this.lugComboBox.Leave += lugComboBox_Leave;
+			this.eventComboBox.Leave += eventComboBox_Leave;
+			this.dateTimePicker.ValueChanged += dateTimePicker_ValueChanged;
+			this.commentTextBox.Leave += commentTextBox_Leave;
 		}
 
 		/// <summary>
