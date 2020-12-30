@@ -535,7 +535,7 @@ namespace BlueBrick.MapData
 				// call the init after setting the orientation (in the base copy copy constructor)
 				// to compute the image in the right orientation
 				// the init method will initialize mMipmapImages, mOriginalImageReference, mOriginalImageReference and mConnectionPoints
-				init(model.mPartNumber, PointF.Empty);
+				init(model.mPartNumber, model.Center);
 			}
 
 			/// <summary>
