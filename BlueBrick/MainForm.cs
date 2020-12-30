@@ -786,7 +786,7 @@ namespace BlueBrick
 			fileExtension = fileExtension.ToLower();
 
 			// authorize the drop if it's a file with the good extension
-			return (fileExtension.Equals("bbm") || fileExtension.Equals("ldr") ||
+			return (fileExtension.Equals("bbm") || fileExtension.Equals("ldr") || fileExtension.Equals("ncp") ||
 					fileExtension.Equals("mpd") || fileExtension.Equals("tdl") || fileExtension.Equals("dat"));
 		}
 
