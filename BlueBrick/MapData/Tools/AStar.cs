@@ -139,6 +139,8 @@ namespace BlueBrick.MapData.Tools
 					// the goal is reached, put all the bricks in the result list
 					for (AStarNode node = currentNode; node != null; node = node.mParentNode)
 						result.Add(node.mBrick);
+					// reverse the list to have the path from start to goal
+					result.Reverse();
 					return result;
 				}
 
