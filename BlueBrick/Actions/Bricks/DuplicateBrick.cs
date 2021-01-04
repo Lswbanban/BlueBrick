@@ -132,10 +132,6 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
-			// notify the part list view
-			foreach (Layer.LayerItem item in mBricksForNotification)
-				MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, item, false);
-
 			// add all the bricks (by default all the brick index are initialized with -1
 			// so the first time they are added, we just add them at the end,
 			// after the index is record in the array during the undo)
@@ -151,14 +147,14 @@ namespace BlueBrick.Actions.Bricks
 			}
 			// finally reselect all the duplicated brick
 			mBrickLayer.selectOnlyThisObject(mItems);
+
+			// notify the part list view (after actually adding the brick because the total map size need to be recomputed)
+			foreach (Layer.LayerItem item in mBricksForNotification)
+				MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, item, false);
 		}
 
 		public override void undo()
 		{
-			// notify the part list view
-			foreach (Layer.LayerItem item in mBricksForNotification)
-				MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, item, false);
-
 			// remove the specified brick from the list of the layer,
 			// but do not delete it, also memorise its last position
 			mItemIndex.Clear();
@@ -166,6 +162,10 @@ namespace BlueBrick.Actions.Bricks
 				mItemIndex.Add(mBrickLayer.removeBrick(obj as LayerBrick.Brick));
 			// don't need to update the connectivity of the bricks because we do it specifically for the brick removed
 			// mBrickLayer.updateBrickConnectivityOfSelection(false);
+
+			// notify the part list view (after actually deleting the brick because the total map size need to be recomputed)
+			foreach (Layer.LayerItem item in mBricksForNotification)
+				MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, item, false);
 		}
 
 		/// <summary>

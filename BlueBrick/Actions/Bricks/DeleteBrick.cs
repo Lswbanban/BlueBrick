@@ -65,10 +65,6 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
-			// notify the part list view
-			foreach (Layer.LayerItem item in mBricksForNotification)
-				MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, item, false);
-
 			// special case for easy editing: if the group of brick has connection points and is connected
 			// to bricks not deleted we select the connected brick, 
 			// such as the user can press several times on the del button to delete a full line of track.
@@ -106,14 +102,14 @@ namespace BlueBrick.Actions.Bricks
 				if (nextActiveConnectionPointIndex >= 0)
 					nextBrickToSelect.ActiveConnectionPointIndex = nextActiveConnectionPointIndex;
 			}
+
+			// notify the part list view (after actually deleting the brick because the total map size need to be recomputed)
+			foreach (Layer.LayerItem item in mBricksForNotification)
+				MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, item, false);
 		}
 
 		public override void undo()
 		{
-			// notify the part list view
-			foreach (Layer.LayerItem item in mBricksForNotification)
-				MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, item, false);
-
 			// and add all the texts in the reverse order
 			for (int i = mBricks.Count - 1; i >= 0; --i)
 			{
@@ -126,6 +122,10 @@ namespace BlueBrick.Actions.Bricks
 			}
 			// finally reselect all the undeleted brick
 			mBrickLayer.selectOnlyThisObject(mBricks);
+
+			// notify the part list view (after actually adding the brick because the total map size need to be recomputed)
+			foreach (Layer.LayerItem item in mBricksForNotification)
+				MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, item, false);
 		}
 	}
 }

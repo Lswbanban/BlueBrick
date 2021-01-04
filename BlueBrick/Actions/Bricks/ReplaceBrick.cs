@@ -189,10 +189,6 @@ namespace BlueBrick.Actions.Bricks
 
 		private void replaceOneItem(LayerBrick layer, Layer.LayerItem itemToRemove, Layer.LayerItem itemToAdd)
         {
-			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickRemoved(layer, itemToRemove, false);
-			MainForm.Instance.NotifyPartListForBrickAdded(layer, itemToAdd, false);
-
 			// memorise the brick index order and the group of the old brick
 			int oldItemIndex = -1;
 			Layer.Group oldItemGroup = itemToRemove.Group;
@@ -234,6 +230,10 @@ namespace BlueBrick.Actions.Bricks
 			// then once the item has been added to the layer, add it also to the group if the old item had a group
 			if (oldItemGroup != null)
 				oldItemGroup.addItem(itemToAdd);
+
+			// notify the part list view (after actually adding and deleting the bricks because the total map size need to be recomputed)
+			MainForm.Instance.NotifyPartListForBrickRemoved(layer, itemToRemove, false);
+			MainForm.Instance.NotifyPartListForBrickAdded(layer, itemToAdd, false);
 		}
 
 		private void replace(bool newByOld)

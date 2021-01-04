@@ -189,9 +189,6 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
-			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, mGroup, false);
-
 			// clear the selection to reselect the parts of the group
 			mBrickLayer.clearSelection();
 
@@ -214,18 +211,21 @@ namespace BlueBrick.Actions.Bricks
 			// set the prefered index after the adding,
 			// because the connection of the brick will move automatically the the active connection
 			setActiveConnectionIndex(mNextPreferedActiveConnectionIndex);
+
+			// notify the part list view (after actually adding the brick because the total map size need to be recomputed)
+			MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, mGroup, false);
 		}
 
 		public override void undo()
 		{
-			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, mGroup, false);
-
 			// remove all the bricks of the group but do not delete them
 			foreach (Layer.LayerItem item in mBricksInTheGroup)
 				mBrickLayer.removeBrick(item as LayerBrick.Brick);
 			// don't need to update the connectivity of the bricks because we do it specifically for the brick removed
 			// mBrickLayer.updateBrickConnectivityOfSelection(false);
+
+			// notify the part list view (after actually deleting the brick because the total map size need to be recomputed)
+			MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, mGroup, false);
 		}
 	}
 }

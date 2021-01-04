@@ -75,9 +75,6 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
-			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, mBrickOrGroup, false);
-
 			// and add all the bricks in the reverse order
 			for (int i = mBricks.Count - 1; i >= 0; --i)
 			{
@@ -89,13 +86,13 @@ namespace BlueBrick.Actions.Bricks
 			}
 			// finally reselect all the undeleted brick
 			mBrickLayer.selectOnlyThisObject(mBricks);
+
+			// notify the part list view (after actually adding the brick because the total map size need to be recomputed)
+			MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, mBrickOrGroup, false);
 		}
 
 		public override void undo()
 		{
-			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, mBrickOrGroup, false);
-
 			// remove the specified brick from the list of the layer,
 			// but do not delete it, also memorise its last position
 			mBrickIndex.Clear();
@@ -103,6 +100,9 @@ namespace BlueBrick.Actions.Bricks
 				mBrickIndex.Add(mBrickLayer.removeBrick(obj as LayerBrick.Brick));
 			// don't need to update the connectivity of the bricks because we do it specifically for the brick removed
 			// mBrickLayer.updateBrickConnectivityOfSelection(false);
+
+			// notify the part list view (after actually deleting the brick because the total map size need to be recomputed)
+			MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, mBrickOrGroup, false);
 		}
 	}
 }

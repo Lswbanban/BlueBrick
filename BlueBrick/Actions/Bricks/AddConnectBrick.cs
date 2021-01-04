@@ -177,9 +177,6 @@ namespace BlueBrick.Actions.Bricks
 
 		public override void redo()
 		{
-			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, mBrick, false);
-
 			// and add this brick in the list of the layer
 			mBrickLayer.addBrick(mBrick, mBrickIndex);
 
@@ -187,18 +184,21 @@ namespace BlueBrick.Actions.Bricks
 			mBrickLayer.selectOnlyThisObject(mBrick);
 			// update the connectivity of the bricks after selecting it
 			mBrickLayer.updateBrickConnectivityOfSelection(false);
+
+			// notify the part list view (after actually adding the brick because the total map size need to be recomputed)
+			MainForm.Instance.NotifyPartListForBrickAdded(mBrickLayer, mBrick, false);
 		}
 
 		public override void undo()
 		{
-			// notify the part list view
-			MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, mBrick, false);
-
 			// remove the specified brick from the list of the layer,
 			// but do not delete it, also memorise its last position
 			mBrickIndex = mBrickLayer.removeBrick(mBrick);
 			// don't need to update the connectivity of the bricks because we do it specifically for the brick removed
 			// mBrickLayer.updateBrickConnectivityOfSelection(false);
+
+			// notify the part list view (after actually deleting the brick because the total map size need to be recomputed)
+			MainForm.Instance.NotifyPartListForBrickRemoved(mBrickLayer, mBrick, false);
 		}
 	}
 }
