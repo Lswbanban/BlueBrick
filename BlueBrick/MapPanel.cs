@@ -931,23 +931,24 @@ namespace BlueBrick
 				}
 				// check if the current layer is of type ruler
 				bool isSelectedLayerRuler = isThereAVisibleSelectedLayer && (selectedLayer is LayerRuler);
+				bool isSelectedLayerText = isThereAVisibleSelectedLayer && (selectedLayer is LayerText);
 				this.attachRulerToolStripSeparator.Visible = isSelectedLayerRuler;
 				this.attachToolStripMenuItem.Visible = isSelectedLayerRuler;
 				this.detachToolStripMenuItem.Visible = isSelectedLayerRuler;
-				this.useAsModelToolStripMenuItem.Visible = isSelectedLayerRuler;
+				this.useAsModelToolStripMenuItem.Visible = isSelectedLayerRuler || isSelectedLayerText;
+				this.useAsModelToolStripMenuItem.Enabled = (isSelectedLayerRuler || isSelectedLayerText) && (selectedLayer.SelectedObjects.Count == 1);
 				if (isSelectedLayerRuler)
 				{
 					LayerRuler rulerLayer = selectedLayer as LayerRuler;
 					this.attachToolStripMenuItem.Enabled = rulerLayer.canAttachRuler();
 					this.detachToolStripMenuItem.Enabled = rulerLayer.canDetachRuler();
-					this.useAsModelToolStripMenuItem.Enabled = (rulerLayer.SelectedObjects.Count == 1);
 				}
 				else
 				{
 					this.attachToolStripMenuItem.Enabled = false;
 					this.detachToolStripMenuItem.Enabled = false;
-					this.useAsModelToolStripMenuItem.Enabled = false;
 				}
+
 				// check is we need to enable the properties
 				this.propertiesToolStripMenuItem.Enabled = enableItemRelatedToSelection && ((selectedLayer is LayerRuler) || (selectedLayer is LayerText) || (selectedLayer is LayerBrick));
 
@@ -1017,12 +1018,25 @@ namespace BlueBrick
 		private void useAsModelToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// this action (i.e. changing the settings) is not undoable
-			LayerRuler rulerLayer = Map.Instance.SelectedLayer as LayerRuler;
-			if ((rulerLayer != null) && (rulerLayer.SelectedObjects.Count == 1))
+			if (Map.Instance.SelectedLayer is LayerRuler)
 			{
-				LayerRuler.RulerItem item = rulerLayer.SelectedObjects[0] as LayerRuler.RulerItem;
-				if (item != null)
-					PreferencesForm.sChangeRulerSettingsFromRuler(item);
+				LayerRuler rulerLayer = Map.Instance.SelectedLayer as LayerRuler;
+				if (rulerLayer.SelectedObjects.Count == 1)
+				{
+					LayerRuler.RulerItem item = rulerLayer.SelectedObjects[0] as LayerRuler.RulerItem;
+					if (item != null)
+						PreferencesForm.sChangeRulerSettingsFromRuler(item);
+				}
+			}
+			else if (Map.Instance.SelectedLayer is LayerText)
+			{
+				LayerText textLayer = Map.Instance.SelectedLayer as LayerText;
+				if (textLayer.SelectedObjects.Count == 1)
+				{
+					LayerText.TextCell item = textLayer.SelectedObjects[0] as LayerText.TextCell;
+					if (item != null)
+						PreferencesForm.sChangeTextSettingsFromText(item);
+				}
 			}
 		}
 

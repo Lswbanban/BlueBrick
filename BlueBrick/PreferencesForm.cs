@@ -639,6 +639,12 @@ namespace BlueBrick
 			Settings.Default.RulerDefaultFontColor = rulerItem.MeasureColor;
 			Settings.Default.RulerDefaultFont = rulerItem.MeasureFont;
 		}
+
+		static public void sChangeTextSettingsFromText(LayerText.TextCell textCell)
+		{
+			Settings.Default.DefaultTextColor = textCell.FontColor;
+			Settings.Default.DefaultTextFont = textCell.Font;
+		}
 		#endregion
 
 		#region tab general

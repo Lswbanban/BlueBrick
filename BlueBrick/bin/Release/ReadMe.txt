@@ -167,6 +167,7 @@ Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): For more flexibility during export and also during the edition, the hulls are now displayable PER layer, with different color and thickness for each layer
 - NEW FEATURE (Alban): Support the brick elevation by displaying it on each part if the option is checked on the layer, and save the display elevation property in the BBM file
 - NEW FEATURE #6 (Alban): Save a backup file of the map if the application crash.
+- NEW FEATURE (Alban): Add the "Use as Template" context menu for the text cells (works like for the Rulers).
 - BUGFIX (Alban): Fix a crash when saving in the library a group of parts without connection points.
 - BUGFIX (Alban): Fix a crash when duplicating parts very quickly with the ALT key (crash due to delay with the clipboard)
 - BUGFIX (Ludo): If there was an empty description in a part xml file (without language tags, just <Description></Description>) then the connection points of the parts were missing.
