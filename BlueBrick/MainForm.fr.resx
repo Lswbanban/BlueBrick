@@ -128,7 +128,7 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAZwBAAGcAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAAaQBAAGkAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -170,7 +170,7 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
     <value>Applique le filtre sur tous les onglets ou seulement sur l'onglet courant.</value>
   </data>
   <data name="DocumentDataLayerTabPage.Text" xml:space="preserve">
-    <value>Couches</value>
+    <value>Calques</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="trashLayerButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -308,6 +308,9 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="layerDownButton.ToolTip" xml:space="preserve">
     <value>Descendre le calque sélectionné</value>
   </data>
+  <data name="DocumentDataPartListTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
+  </data>
   <data name="DocumentDataPartListTabPage.Text" xml:space="preserve">
     <value>Liste de pièces</value>
   </data>
@@ -340,11 +343,27 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
         dGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAAAAs=
 </value>
   </data>
+  <data name="PartUsageListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 270</value>
+  </data>
+  <data name="DocumentDataPartListTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 27</value>
+  </data>
+  <data name="DocumentDataPartListSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DocumentDataPartListSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
+    <value>270</value>
+  </data>
   <data name="SplitPartUsagePerLayerCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 17</value>
   </data>
   <data name="SplitPartUsagePerLayerCheckBox.Text" xml:space="preserve">
     <value>Séparer par couche</value>
+  </data>
+  <data name="IncludeHiddenLayerInPartListCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>241, 3</value>
   </data>
   <data name="IncludeHiddenLayerInPartListCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 17</value>
@@ -352,38 +371,182 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
   <data name="IncludeHiddenLayerInPartListCheckBox.Text" xml:space="preserve">
     <value>Inclure les pièces cachées</value>
   </data>
+  <data name="DocumentDataPropertiesTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
+  </data>
   <data name="DocumentDataPropertiesTabPage.Text" xml:space="preserve">
     <value>Propriétés</value>
+  </data>
+  <data name="DocumentDataPropertiesTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 301</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 24</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Couleur de fond :</value>
   </data>
+  <data name="commentTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 171</value>
+  </data>
+  <data name="commentTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 127</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 144</value>
+  </data>
+  <data name="labelComment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 20</value>
+  </data>
   <data name="labelComment.Text" xml:space="preserve">
     <value>Commentaire :</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 144</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 24</value>
+  </data>
+  <data name="labelHeightFeet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>396, 144</value>
+  </data>
+  <data name="labelHeightFeet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="labelHeightModule.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 144</value>
+  </data>
+  <data name="labelHeightModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>363, 144</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 24</value>
+  </data>
+  <data name="labelHeightMeter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>316, 144</value>
+  </data>
+  <data name="labelHeightMeter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>262, 144</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>tenons</value>
   </data>
+  <data name="labelHeightStud.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 144</value>
+  </data>
+  <data name="labelHeightStud.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 24</value>
+  </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Hauteur :</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 24</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Largeur :</value>
   </data>
+  <data name="labelWidthModule.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 120</value>
+  </data>
+  <data name="labelWidthModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 120</value>
+  </data>
+  <data name="labelWidthStud.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 120</value>
+  </data>
+  <data name="labelWidthStud.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>262, 120</value>
+  </data>
   <data name="label8.Text" xml:space="preserve">
     <value>tenons</value>
+  </data>
+  <data name="labelWidthMeter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>316, 120</value>
+  </data>
+  <data name="labelWidthMeter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>363, 120</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 24</value>
+  </data>
+  <data name="labelWidthFeet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>396, 120</value>
+  </data>
+  <data name="labelWidthFeet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 24</value>
+  </data>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 120</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 24</value>
+  </data>
+  <data name="labelDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 20</value>
   </data>
   <data name="labelDate.Text" xml:space="preserve">
     <value>Date :</value>
   </data>
+  <data name="dateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 99</value>
+  </data>
+  <data name="labelEvent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 20</value>
+  </data>
   <data name="labelEvent.Text" xml:space="preserve">
     <value>Evènement :</value>
+  </data>
+  <data name="eventComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 75</value>
+  </data>
+  <data name="eventComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 21</value>
+  </data>
+  <data name="labelLUG.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 20</value>
   </data>
   <data name="labelLUG.Text" xml:space="preserve">
     <value>LUG/LTC :</value>
   </data>
+  <data name="lugComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 51</value>
+  </data>
+  <data name="lugComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 21</value>
+  </data>
+  <data name="labelAuthor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 20</value>
+  </data>
   <data name="labelAuthor.Text" xml:space="preserve">
     <value>Auteur :</value>
+  </data>
+  <data name="AuthorTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 27</value>
+  </data>
+  <data name="AuthorTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 20</value>
+  </data>
+  <data name="DocumentDataPropertiesMapBackgroundColorButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 3</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 20</value>
