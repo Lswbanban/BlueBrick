@@ -117,13 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="checkBoxSearchNonLego.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 17</value>
+  </data>
+  <data name="checkBoxSearchNonLego.Text" xml:space="preserve">
+    <value>Busque en la Biblioteca Oficial de Paquetes No LEGO</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>410, 13</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Elija las ubicaciones en línea de donde quiere descargar las Bibliotecas de Paquetes.</value>
+  </data>
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="buttonSearch.Text" xml:space="preserve">
     <value>Buscar paquetes de bibliotecas</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="checkBoxSearchOfficial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 17</value>
+  </data>
+  <data name="checkBoxSearchOfficial.Text" xml:space="preserve">
+    <value>Busque en la Biblioteca Oficial del Paquete</value>
+  </data>
+  <data name="checkBoxSearchUnofficial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>453, 17</value>
+  </data>
+  <data name="checkBoxSearchUnofficial.Text" xml:space="preserve">
+    <value>Buscar en una biblioteca de paquetes de terceros no oficial (por favor, especifique el URL)</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAAACACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAB
@@ -165,5 +189,8 @@
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Paquete de la Biblioteca de Partes Fuentes en línea</value>
   </data>
 </root>

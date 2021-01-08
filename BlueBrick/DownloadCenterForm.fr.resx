@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ExplanationLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>578, 91</value>
+  </data>
+  <data name="ExplanationLabel.Text" xml:space="preserve">
+    <value>BlueBrick a besoin de télécharger certains fichiers sur Internet. Dans la liste ci-dessous, vous pouvez vérifier l'URL des fichiers et l'endroit où ils seront copiés sur votre ordinateur. Vous pouvez ignorer certains fichiers en décochant leur case. Appuyez sur le bouton "Démarrer le téléchargement" lorsque vous êtes prêt, assurez-vous que vous êtes connecté à internet et que votre pare-feu autorise l'accès à BlueBrick.
+
+Si vous préférez, vous pouvez également fermer cette fenêtre de dialogue, télécharger les fichiers avec votre navigateur web et les copier dans le bon dossier (qui est relatif au dossier d'installation de BlueBrick).</value>
+  </data>
+  <data name="StartButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 304</value>
+  </data>
+  <data name="StartButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 23</value>
+  </data>
+  <data name="StartButton.Text" xml:space="preserve">
+    <value>Démarrer le téléchargement</value>
+  </data>
   <data name="PercentColumnHeader.Text" xml:space="preserve">
     <value>Progression</value>
   </data>
@@ -128,16 +146,6 @@
   </data>
   <data name="SourceColumnHeader.Text" xml:space="preserve">
     <value>Depuis l'URL</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="StartButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 304</value>
-  </data>
-  <data name="StartButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 23</value>
-  </data>
-  <data name="StartButton.Text" xml:space="preserve">
-    <value>Démarrer le téléchargement</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
