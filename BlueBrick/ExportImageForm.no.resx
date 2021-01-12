@@ -123,6 +123,9 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Avbryt</value>
   </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Bildestørrelse (piksler)</value>
+  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Bredde</value>
   </data>
@@ -143,11 +146,11 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Piksler/stud</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Bildestørrelse (piksler)</value>
-  </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Områdets størrelse (studs)</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Øverst</value>
@@ -161,8 +164,11 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Høyre</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Områdets størrelse (studs)</value>
+  <data name="exportConnectionPointCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>407, 21</value>
+  </data>
+  <data name="exportElectricCircuitCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 19</value>
   </data>
   <data name="saveExportImageDialog.Title" xml:space="preserve">
     <value>Eksporter bilde som</value>
@@ -211,7 +217,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Alternativer for bildeeksport</value>

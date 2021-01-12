@@ -174,7 +174,7 @@
     <value>Points de connection</value>
   </data>
   <data name="exportElectricCircuitCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 21</value>
+    <value>175, 21</value>
   </data>
   <data name="exportElectricCircuitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 17</value>
@@ -187,15 +187,6 @@
   </data>
   <data name="exportWatermarkCheckBox.Text" xml:space="preserve">
     <value>Filigrane</value>
-  </data>
-  <data name="exportHullCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 21</value>
-  </data>
-  <data name="exportHullCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 17</value>
-  </data>
-  <data name="exportHullCheckBox.Text" xml:space="preserve">
-    <value>Contours (Enveloppes)</value>
   </data>
   <data name="saveExportImageDialog.Title" xml:space="preserve">
     <value>Exporter l'image sous</value>
@@ -241,10 +232,6 @@
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Options pour l'export d'image</value>

@@ -381,10 +381,10 @@ namespace BlueBrick
 			// 
 			// groupBox3
 			// 
-			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Controls.Add(this.exportConnectionPointCheckBox);
 			this.groupBox3.Controls.Add(this.exportElectricCircuitCheckBox);
 			this.groupBox3.Controls.Add(this.exportWatermarkCheckBox);
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 

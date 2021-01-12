@@ -123,9 +123,6 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annulla</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Conteggio e dimensione delle immagini in pixel</value>
-  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Larghezza</value>
   </data>
@@ -146,8 +143,8 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Pixel/Stud</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Dimensioni Area in Stud</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Conteggio e dimensione delle immagini in pixel</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Alto</value>
@@ -161,8 +158,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Destra</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Opzioni di Export</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Dimensioni Area in Stud</value>
   </data>
   <data name="exportConnectionPointCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>371, 21</value>
@@ -172,6 +169,9 @@
   </data>
   <data name="exportConnectionPointCheckBox.Text" xml:space="preserve">
     <value>Punto di Connessione</value>
+  </data>
+  <data name="exportElectricCircuitCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>176, 21</value>
   </data>
   <data name="exportElectricCircuitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 17</value>
@@ -184,6 +184,9 @@
   </data>
   <data name="exportWatermarkCheckBox.Text" xml:space="preserve">
     <value>Filigrana</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Opzioni di Export</value>
   </data>
   <data name="saveExportImageDialog.Title" xml:space="preserve">
     <value>Esporta immagine come</value>
@@ -229,10 +232,6 @@
         AA/gAAAP4AAAD+AAAA/gAAAP4AAAD+AAAA/gAAAH4AAAB+AAAAfgAAAH4AAAD+AAAA/4AAAP/gAAD/+A
         AA//4AAf//gAf//+Af///4f/
 </value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Opzioni Export Immagini</value>
