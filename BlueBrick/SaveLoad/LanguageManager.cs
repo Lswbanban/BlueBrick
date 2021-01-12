@@ -12,10 +12,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Net;
 using System.IO;
 using System.Windows.Forms;
 
@@ -37,7 +34,7 @@ namespace BlueBrick
 			if (languageCode.Equals("en"))
 				return;
 
-			// check the presence of the folde in the startup path
+			// check the presence of the folder in the startup path
 			string folderPath = Application.StartupPath + @"/" + languageCode;
 			DirectoryInfo languageFolder = new DirectoryInfo(folderPath);
 			// if it doesn't exist create it
