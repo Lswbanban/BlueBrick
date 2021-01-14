@@ -179,11 +179,9 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Alban): The cancel of the files download from the download center form was not properly stopped
 - BUGFIX (Matthias): The color name was "unknown" in the Bubble info at BlueBrick startup or after every Part Library Reload (and could only be valid after changing the preferences regarding the Bubble info)
 - BUGFIX (Alban): Adding a part on a hidden layer was counting that part in the Part Usage list
-- BUGFIX (Alban): The Part Usage calculation wasn't taking in consideration the flag to include or not the hidden layers.
 - BUGFIX (Alban): The flag that check if a budget was modified was not correctly set
 - BUGFIX (Alban): The Part Usage list was not properly updated when ungrouping a named group while being visible.
 - BUGFIX (Matthias): The next connection preference set in part xml file was not respected when connecting a brick with drag'n'drop from the library, or after a move.
-- BUGFIX (Alban): The vertical scroll bar of layer panel was too big when placing the scrollbar on the bottom, changing tab, and come back (scroll useless empty space)
 - BUGFIX (Thai Bricks): Now the "&" character is visible in layer's name if the user edits the layer's name with an ampersome.
 - BUGFIX (Matthias): If a part name contains a dot, the full part id was not properly displayed in the part list on in the status bar.
 - BUGFIX (Alban): The selection was displayed in the exported the image.
@@ -191,7 +189,6 @@ Bug fixed in 1.9.0.0:
 - BUGFIX (Matthias): The saving of a group in the Brick Library was incorrect when the group contain a sub-group, and you moved the group before saving.
 - BUGFIX (Alban): If you move a large group with connections by picking it oustside its parts, but the mouse is under another part with connection not in the group, the group was still try to connect to free connection points, instead of just translate.
 - BUGFIX (Alban): If you open the export image window and change the rendering settings, and cancel to close the window without exporting the image, then the settings were changed on the map
-- BUGFIX (Alban): The map size was not correctly updated after adding or deleting a part.
 - REFACTORING (Alban): Optimization of the update of the part list panel (use AddRange() instead of Add() to add the items in the ListView)
 - REFACTORING (Alban): Modernize the HTML code of the part usage list export (add some CSS and colors)
 - REFACTORING (Alban): Replace the progress bar by track bar for editing transparency of the layers
