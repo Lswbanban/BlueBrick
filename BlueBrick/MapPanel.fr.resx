@@ -119,87 +119,93 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bringToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
   </data>
   <data name="bringToFrontToolStripMenuItem.Text" xml:space="preserve">
     <value>Mettre en avant plan</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
   </data>
   <data name="sendToBackToolStripMenuItem.Text" xml:space="preserve">
     <value>Envoyer en arrière plan</value>
   </data>
   <data name="selectToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>222, 6</value>
   </data>
   <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Sélectionner tout</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
   </data>
   <data name="deselectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Désélectionner tout</value>
   </data>
   <data name="selectPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
   </data>
   <data name="selectPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Sélectionner le chemin</value>
   </data>
   <data name="groupToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>222, 6</value>
   </data>
   <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
   </data>
   <data name="groupToolStripMenuItem.Text" xml:space="preserve">
     <value>Grouper</value>
   </data>
   <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
   </data>
   <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Dégrouper</value>
   </data>
   <data name="attachRulerToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>222, 6</value>
   </data>
   <data name="attachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
+  </data>
+  <data name="attachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Attacher la mesure à la pièce</value>
   </data>
   <data name="detachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
+  </data>
+  <data name="detachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Détacher la mesure</value>
   </data>
   <data name="useAsModelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
   </data>
   <data name="useAsModelToolStripMenuItem.Text" xml:space="preserve">
     <value>Utiliser comme Modèle</value>
   </data>
   <data name="propertiesToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>222, 6</value>
   </data>
   <data name="propertiesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
   </data>
   <data name="propertiesToolStripMenuItem.Text" xml:space="preserve">
     <value>Propriétés...</value>
   </data>
   <data name="appearanceToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>222, 6</value>
   </data>
   <data name="scrollBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+    <value>225, 22</value>
   </data>
   <data name="scrollBarToolStripMenuItem.Text" xml:space="preserve">
     <value>Barres de défilement</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 298</value>
+    <value>226, 298</value>
   </data>
 </root>
