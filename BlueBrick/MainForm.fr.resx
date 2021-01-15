@@ -128,7 +128,7 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA8
-        CAAAAk1TRnQBSQFMAgEBAgEAAawBAAGsAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAAbQBAAG0AQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -392,76 +392,76 @@ Vous pouvez utiliser les guillemets pour grouper des mots clef.</value>
     <value>&amp;Fichier</value>
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="newToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Nouveau</value>
   </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Ouvrir...</value>
   </data>
   <data name="openRecentToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="openRecentToolStripMenuItem.Text" xml:space="preserve">
     <value>Fichiers Récents</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 6</value>
+    <value>317, 6</value>
   </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Enregistrer</value>
   </data>
   <data name="saveasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="saveasToolStripMenuItem.Text" xml:space="preserve">
     <value>Enregistrer &amp;Sous...</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="exportAsPictureToolStripMenuItem.Text" xml:space="preserve">
     <value>Exporter en &amp;Image...</value>
   </data>
   <data name="exportPartListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="exportPartListToolStripMenuItem.Text" xml:space="preserve">
     <value>Exporter la liste de &amp;Pièces...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 6</value>
+    <value>317, 6</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="reloadPartLibraryToolStripMenuItem.Text" xml:space="preserve">
     <value>Recharger la bibliothèque de pièces</value>
   </data>
   <data name="downloadAdditionnalPartsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="downloadAdditionnalPartsToolStripMenuItem.Text" xml:space="preserve">
     <value>Télécharger des pièces supplémentaires...</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="saveSelectionInLibraryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sauvegarder la sélection dans la librairie...</value>
+    <value>Sauvegarder la sélection dans la bibliothèque...</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 6</value>
+    <value>317, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>292, 22</value>
+    <value>320, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Quitter</value>
