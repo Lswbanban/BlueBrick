@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="generalTabPage.Text" xml:space="preserve">
+    <value>Général</value>
+  </data>
+  <data name="appearanceTabPage.Text" xml:space="preserve">
+    <value>Apparence</value>
+  </data>
+  <data name="partLibTabPage.Text" xml:space="preserve">
+    <value>Bibliothèque de pièces</value>
+  </data>
+  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
+    <value>Racourcis clavier</value>
+  </data>
   <data name="GeneralCheckedListBoxNotification.Items" xml:space="preserve">
     <value>Affiche un avertissement si on ne sauve pas en BBM</value>
   </data>
@@ -138,14 +150,14 @@
   <data name="GeneralCheckedListBoxNotification.Items6" xml:space="preserve">
     <value>Affiche un avertissement quand on colle des éléments sur le mauvais type de calque</value>
   </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Fichiers récents</value>
+  </data>
   <data name="clearRecentFilesButton.Text" xml:space="preserve">
     <value>Vider la liste des fichiers récents</value>
   </data>
   <data name="label23.Text" xml:space="preserve">
     <value>Nombre de fichiers récents</value>
-  </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Fichiers récents</value>
   </data>
   <data name="optimComboBox.Items" xml:space="preserve">
     <value>Rapide</value>
@@ -169,15 +181,27 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Compromis Mémoire/Vitesse</value>
   </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Défaire/Refaire</value>
+  </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Plus vous voulez enregistrer d'undo,
+    <value>Plus vous voulez enregistrer d'action Défaire,
 plus l'application aura besoin de mémoire.</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Nombre de Undo affichés</value>
+    <value>Nombre d'action Défaire affichés</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 17</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 20</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Nombre de Undo enregistrés</value>
+    <value>Nombre d'action Défaire enregistrés</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Configuration par défaut des nouveaux plans</value>
   </data>
   <data name="GeneralTrashTemplateFileForNewMapButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -189,8 +213,8 @@ plus l'application aura besoin de mémoire.</value>
   <data name="GeneralNewMapTemplateFilenameTextBox.Text" xml:space="preserve">
     <value>Cliquer sur le bouton pour modifier →</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Configuration par défaut des nouveaux plans</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Langage</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Si vous changez le langage vous devrez redémarrer l'application pour que cela prenne effet.</value>
@@ -198,11 +222,8 @@ plus l'application aura besoin de mémoire.</value>
   <data name="label1.Text" xml:space="preserve">
     <value>Langage</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Langage</value>
-  </data>
-  <data name="generalTabPage.Text" xml:space="preserve">
-    <value>Général</value>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Mesures</value>
   </data>
   <data name="rulerFontNameLabel.Text" xml:space="preserve">
     <value>Nom de police</value>
@@ -292,8 +313,8 @@ chaque création de mesure</value>
     <value>Rayon des points de contrôle
 (en pixel)</value>
   </data>
-  <data name="groupBox15.Text" xml:space="preserve">
-    <value>Mesures</value>
+  <data name="copyPasteGroupBox.Text" xml:space="preserve">
+    <value>Copier/Coller</value>
   </data>
   <data name="OffsetValueLabel.Text" xml:space="preserve">
     <value>Valeur du décalage (en tenon)</value>
@@ -311,8 +332,8 @@ après la copie</value>
   <data name="copyOffsetComboBox.Items2" xml:space="preserve">
     <value>Toujours</value>
   </data>
-  <data name="copyPasteGroupBox.Text" xml:space="preserve">
-    <value>Copier/Coller</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Souris</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 65</value>
@@ -338,8 +359,8 @@ après la copie</value>
   <data name="label3.Text" xml:space="preserve">
     <value>Vitesse de zoom à la molette</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Souris</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Apparence par défault des zones</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>Taille de zone par défaut (en stud)</value>
@@ -347,8 +368,8 @@ après la copie</value>
   <data name="label28.Text" xml:space="preserve">
     <value>Opacité par défaut (en %)</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Apparence par défault des zones</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Taille de la grille par défaut</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Nombre de subdivisions par défaut</value>
@@ -356,8 +377,8 @@ après la copie</value>
   <data name="label21.Text" xml:space="preserve">
     <value>Taille de la grille par défaut (en stud)</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Taille de la grille par défaut</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Format des textes par défaut</value>
   </data>
   <data name="defaultFontColorLabel.Text" xml:space="preserve">
     <value>Couleur</value>
@@ -365,8 +386,8 @@ après la copie</value>
   <data name="defaultFontButton.Text" xml:space="preserve">
     <value>Changer la police</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Format des textes par défaut</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Couleurs</value>
   </data>
   <data name="label42.Text" xml:space="preserve">
     <value>Contour des pièces :</value>
@@ -396,12 +417,6 @@ de la sélection</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>Thème de couleur</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Couleurs</value>
-  </data>
-  <data name="appearanceTabPage.Text" xml:space="preserve">
-    <value>Apparence</value>
   </data>
   <data name="PartLibTrashBudgetFileToLoadArStartUpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -438,6 +453,9 @@ de la sélection</value>
     <value>Limite de budget par
 défaut pour chaque pièce :</value>
   </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>Couleur de Fond</value>
+  </data>
   <data name="label36.Text" xml:space="preserve">
     <value>Couleur lorsqu'on affiche seulement
 les pièces budgétées</value>
@@ -448,8 +466,8 @@ les pièces budgétées</value>
   <data name="label26.Text" xml:space="preserve">
     <value>Couleur de fond par défaut</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>Couleur de Fond</value>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Info des pièces et Info-bulles</value>
   </data>
   <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 13</value>
@@ -475,8 +493,8 @@ les pièces budgétées</value>
   <data name="PartLibDisplayBubbleInfoCheckBox.Text" xml:space="preserve">
     <value>Info-bulles :</value>
   </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Info des pièces et Info-bulles</value>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Ordre des onglets</value>
   </data>
   <data name="alphabeticOrderButton.Text" xml:space="preserve">
     <value>Ordre alphabétique</value>
@@ -486,12 +504,6 @@ les pièces budgétées</value>
   </data>
   <data name="MoveUpButton.Text" xml:space="preserve">
     <value>Monter</value>
-  </data>
-  <data name="groupBox11.Text" xml:space="preserve">
-    <value>Ordre des onglets</value>
-  </data>
-  <data name="partLibTabPage.Text" xml:space="preserve">
-    <value>Bibliothèque de pièces</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Pour supprimer des racourcis claviers, sélectionnez les dans la liste et cliquez ensuite sur ce bouton :</value>
@@ -625,9 +637,6 @@ racourcis</value>
   </data>
   <data name="Connection.Text" xml:space="preserve">
     <value>Connexion</value>
-  </data>
-  <data name="shortcutKeysTabPage.Text" xml:space="preserve">
-    <value>Racourcis clavier</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annuler</value>
