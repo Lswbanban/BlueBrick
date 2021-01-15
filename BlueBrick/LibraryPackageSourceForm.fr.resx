@@ -119,10 +119,10 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="checkBoxSearchNonLego.Size" type="System.Drawing.Size, System.Drawing">
-    <value>291, 17</value>
+    <value>316, 17</value>
   </data>
   <data name="checkBoxSearchNonLego.Text" xml:space="preserve">
-    <value>Chercher dans la librairie de paquets non-LEGO officielle</value>
+    <value>Chercher dans la bibliothèque de paquets non-LEGO officielle</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>405, 13</value>
@@ -137,16 +137,16 @@
     <value>Chercher les paquets de pièces</value>
   </data>
   <data name="checkBoxSearchOfficial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 17</value>
+    <value>263, 17</value>
   </data>
   <data name="checkBoxSearchOfficial.Text" xml:space="preserve">
-    <value>Chercher dans la librairie de paquets officielle</value>
+    <value>Chercher dans la bibliothèque de paquets officielle</value>
   </data>
   <data name="checkBoxSearchUnofficial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>353, 17</value>
+    <value>378, 17</value>
   </data>
   <data name="checkBoxSearchUnofficial.Text" xml:space="preserve">
-    <value>Chercher dans une librairie tiers non officielle (merci de préciser l'URL)</value>
+    <value>Chercher dans une bibliothèque tiers non officielle (merci de préciser l'URL)</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -192,7 +192,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Origine internet des paquets de pièces</value>
