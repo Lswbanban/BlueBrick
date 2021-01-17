@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.8.2.0 |
+                    | BlueBrick version 1.9.0.0 |
                     +---------------------------+
 
 -------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ shortcut is created, simply double click it to run BlueBrick.
 
 c.bis) Or simply, if you don't want to create a shortcut, to run BlueBrick in
 a Terminal Shell, type:
-$ mono BlueBrick.exe &
+$ mono32 BlueBrick.exe &
 
 2.4) Mac OSX
 ~~~~~~~~~~~~
@@ -89,7 +89,7 @@ b) Unzip the BlueBrick zip file somewhere on your hardrive.
 
 c) To run BlueBrick, in a Terminal Shell type, go to the BlueBrick installation
 folder using the "cd" command then type:
-$ mono BlueBrick.exe
+$ mono32 BlueBrick.exe
 
 -------------------------------------------------------------------------------
 3) Help

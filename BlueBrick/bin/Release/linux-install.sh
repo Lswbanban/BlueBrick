@@ -16,7 +16,7 @@ Type=Application
 Categories=Application
 Comment=Plan Lego Layout with BlueBrick
 Icon=$BBFolder/icons/32x32/apps/BlueBrick.png
-Exec=mono $BBFolder/BlueBrick.exe &
+Exec=mono32 $BBFolder/BlueBrick.exe &
 _EOF_
 
 # make the shortcut executable
