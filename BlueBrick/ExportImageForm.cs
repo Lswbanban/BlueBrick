@@ -42,7 +42,7 @@ namespace BlueBrick
         private bool mOriginalDisplayConnectionPointInSetting = Settings.Default.DisplayFreeConnexionPoints;
 
 		private const int MAX_IMAGE_SIZE_IN_PIXEL = 4096;
-        private const int TOTAL_HEIGHT_OF_FIXED_PANEL = 204;
+        private const int TOTAL_HEIGHT_OF_FIXED_PANEL = 230;
 
 		#region init
 		public ExportImageForm()
