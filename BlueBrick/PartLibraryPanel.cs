@@ -824,7 +824,7 @@ namespace BlueBrick
 		public void updateAppearanceAccordingToSettings(bool updateTabOrder, bool updateAppearance, bool updateStyle, bool updateBudgetCount, bool updateBubbleInfoFormat, bool updateSelectedTab, bool updateCommonFilter)
 		{
 			// save the selected tab to reselect it after reorder
-			TabPage selectedTab = this.SelectedTab;
+			TabPage selectedTab = (this.TabCount > 0) ? this.SelectedTab : null;
 
 			// suspend the layout since we will rearrange everything
 			this.SuspendLayout();
@@ -907,7 +907,7 @@ namespace BlueBrick
 			}
 
 			// redraw the selected tab to have the correct background color for part exceeding budget
-            if (this.SelectedTab != null)
+            if ((this.TabCount > 0) && (this.SelectedTab != null))
 			    this.SelectedTab.Invalidate();
 		}
 
@@ -1180,7 +1180,7 @@ namespace BlueBrick
 		{
 			// if we don't have a global filtering, update the filter combo box, with the 
 			// filter of the new current tab
-			if (!Settings.Default.UIFilterAllLibraryTab && (this.SelectedTab != null) && (this.SelectedTab.Controls.Count > 0))
+			if (!Settings.Default.UIFilterAllLibraryTab && (this.TabCount > 0) && (this.SelectedTab != null) && (this.SelectedTab.Controls.Count > 0))
 			{
 				PartListView listView = this.SelectedTab.Controls[0] as PartListView;
 				if (listView != null)
