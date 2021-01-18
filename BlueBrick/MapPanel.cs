@@ -396,14 +396,17 @@ namespace BlueBrick
 			// NOTE: the background color is set directly in this.BackColor !!!
 			this.BackColor = Map.Instance.BackgroundColor;
 
+			// compute the eventual height of the scrollbar if visible
+			int currentScrollbarHeight = this.horizontalScrollBar.Visible ? this.horizontalScrollBar.Height : 0;
+
 			// call the draw of the map
 			float widthInStud = (float)(this.Size.Width / mViewScale);
-            float heightInStud = (float)((this.Size.Height - mCurrentStatusBarHeight) / mViewScale);
+            float heightInStud = (float)((this.Size.Height - mCurrentStatusBarHeight - currentScrollbarHeight) / mViewScale);			
 			float startXInStud = (float)mViewCornerX;
 			float startYInStud = (float)mViewCornerY;
 			RectangleF rectangle = new RectangleF(startXInStud, startYInStud, widthInStud, heightInStud);
 			Map.Instance.draw(g, rectangle, mViewScale, true);
-            Map.Instance.drawWatermark(g, rectangle, mViewScale);
+			Map.Instance.drawWatermark(g, rectangle, mViewScale);
 
 			// on top of all the layer draw the selection rectangle
 			if (mIsSelectionRectangleOn)

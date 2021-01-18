@@ -136,6 +136,10 @@ Open bugs:
 - REFACTORING (Alban): In the part XML, promote the <LDraw><PreferredHeight> to normal part properties, and use it to set the default Altitude of parts
 - REFACTORING (Alban): The two buttons to raise and lower parts in the toolbar should probably change the Altitude of the parts for a brick layer (that's what the users may expect)
 
+Bug fixed in 1.9.1.0:
+- BUGFIX (Alban): Fix the height calculation of the preview image in the Export Image Windows
+- BUGFIX (Alban): Fix the drawing of the watermark when the scrollbar is displayed
+
 Bug fixed in 1.9.0.0:
 - NEW FEATURE (Alban): The window to edit the general info has been moved to a tab next to the layer list, including the edition of the map background color
 - NEW FEATURE (Alban): The part list window (now renamed into Part Usage) has been moved to a tab next to the layers list

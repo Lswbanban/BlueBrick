@@ -21,8 +21,6 @@ using BlueBrick.Actions;
 using BlueBrick.Actions.Texts;
 using BlueBrick.Actions.Bricks;
 using BlueBrick.MapData;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using BlueBrick.Actions.Maps;
 using BlueBrick.Actions.Rulers;
 using System.IO.Compression;
@@ -2399,6 +2397,7 @@ namespace BlueBrick
 		private void mapScrollBarsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			this.mapPanel.ShowHideScrollBars(mapScrollBarsToolStripMenuItem.Checked);
+			this.mapPanel.Invalidate();
 		}
 
 		private void watermarkToolStripMenuItem_Click(object sender, EventArgs e)
