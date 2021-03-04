@@ -134,7 +134,7 @@ namespace BlueBrick
 
 		private void labelWebSiteName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			ProcessStartInfo sInfo = new ProcessStartInfo("http://bluebrick.lswproject.com");
+			ProcessStartInfo sInfo = new ProcessStartInfo("https://bluebrick.lswproject.com");
 			Process.Start(sInfo);
 			labelWebSiteName.LinkVisited = true;
 		}

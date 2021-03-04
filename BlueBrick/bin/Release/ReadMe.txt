@@ -26,7 +26,7 @@ assignment.
 2) Install
 -------------------------------------------------------------------------------
 
-Note: you can refer to the BlueBrick website (http://bluebrick.lswproject.com/),
+Note: you can refer to the BlueBrick website (https://bluebrick.lswproject.com/),
 in the Download section, for detailed install instructions with pictures.
 
 2.1) Windows Vista or Windows 7, 8 or 10
@@ -138,6 +138,7 @@ Open bugs:
 - REFACTORING (Alban): The two buttons to raise and lower parts in the toolbar should probably change the Altitude of the parts for a brick layer (that's what the users may expect)
 
 Bug fixed in 1.9.1.0:
+- BUGFIX (Alban): Update the application to download the part package in https instead of http, since the website has moved to https
 - BUGFIX (Alban): Fix the height calculation of the preview image in the Export Image Windows
 - BUGFIX (Alban): Fix the drawing of the watermark when the scrollbar is displayed
 

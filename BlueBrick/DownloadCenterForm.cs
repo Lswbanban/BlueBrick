@@ -395,6 +395,15 @@ namespace BlueBrick
 				// return the file index with the error code
 				eventArgs.Result = new ResultParameter(parameters.fileIndex, true);
 			}
+			catch (Exception)
+			{
+				// An access denied exception can be raised by a firewall or an antivirus
+				// preventing BlueBrick to write the file on the hard drive.
+				// this exception can be raised by the FileStream constructor
+
+				// return the file index with the error code
+				eventArgs.Result = new ResultParameter(parameters.fileIndex, true);
+			}
 		}
 
 		/// <summary>

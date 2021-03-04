@@ -56,7 +56,7 @@ namespace BlueBrick
 			// create a potential list of files to download
 			List<DownloadCenterForm.DownloadableFileInfo> filesToDownload = new List<DownloadCenterForm.DownloadableFileInfo>();
 			string destinationFolder = @"/" + languageCode + @"/";
-			string url = "http://bluebrick.lswproject.com/download/language/" + languageCode + "/";
+			string url = "https://bluebrick.lswproject.com/download/language/" + languageCode + "/";
 			string dllName = "BlueBrick.resources.dll";
 			string chmName = "BlueBrick.chm";
 

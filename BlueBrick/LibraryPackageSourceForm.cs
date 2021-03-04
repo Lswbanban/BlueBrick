@@ -25,8 +25,8 @@ namespace BlueBrick
 {
 	public partial class LibraryPackageSourceForm : Form
 	{
-		private const string mOfficialPartLibraryURL = "http://bluebrick.lswproject.com/download/package/";
-		private const string mOfficialNonLegoPartLibraryURL = "http://bluebrick.lswproject.com/download/packageOther/";
+		private const string mOfficialPartLibraryURL = "https://bluebrick.lswproject.com/download/package/";
+		private const string mOfficialNonLegoPartLibraryURL = "https://bluebrick.lswproject.com/download/packageOther/";
 
 		// a variable to memorize the button text because we will change it
 		private string mOriginalSearchButtonLabel = string.Empty;
