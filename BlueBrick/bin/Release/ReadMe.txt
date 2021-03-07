@@ -1,26 +1,31 @@
                     +---------------------------+
-                    | BlueBrick version 1.9.0.0 |
+                    | BlueBrick version 1.9.1.0 |
                     +---------------------------+
 
 -------------------------------------------------------------------------------
 1) License
 -------------------------------------------------------------------------------
 
-BlueBrick is a free software for Windows/Vista developped by Alban Nanty in
-open source. You can use it for your personnal purpose but not for commercial
-profit. You can redistribute it under the terms of the GNU General Public
-License version 3 (http://www.gnu.org/licenses/) as published by the Free
-Software Foundation (http://www.fsf.org/licensing/licenses/gpl.html). This
-program is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY.
+BlueBrick is a free and open source software for Windows developped by Alban Nanty.
+Copyright (C) since 2009  Alban Nanty
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License version 3 as published by the Free
+Software Foundation (https://www.gnu.org/licenses/gpl-3.0.html).
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
 This software was designed specially for the AFOLs who want to prepare the
-layouts of their LEGO(c) exhibitions. BlueBrick is compatible with LDRAW
-(http://www.ldraw.org/) and "Train Depot Track Designer"
-(http://www.ngltc.org/Train_Depot/td.htm) and was designed to extend easily
-its part database. Its layers feature allow you to better organize your map,
-and some specific layers make possible the addition of annotation and area
-assignment.
+layouts of their LEGO(c) exhibitions. BlueBrick is compatible with:
+  - LDRAW (https://www.ldraw.org/)
+  - "Train Depot Track Designer" (http://www.ngltc.org/Train_Depot/td.htm)
+  - 4DBrix nControl (https://www.4dbrix.com/)
+BlueBrick was designed to extend easily its part database. Its layers feature
+allow you to better organize your map, and some specific layers make possible
+the addition of annotation and area assignment.
 
 -------------------------------------------------------------------------------
 2) Install
