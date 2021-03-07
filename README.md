@@ -4,7 +4,9 @@
 Bluebrick is software to plan LEGO© Diorama or Layout. It is particularly efficient
 to lay down train tracks.
 
-Bluebrick is partially compatible with LDRAW.
+Bluebrick is partially compatible with [LDRAW](https://www.ldraw.org/), 
+[Train Depot Track Designer](http://www.ngltc.org/Train_Depot/td.htm),
+and [4DBrix nControl](https://www.4dbrix.com/).
 
 Bluebrick use a part library, not included in this repo, but available in [this repo](https://github.com/Lswbanban/BlueBrickParts). This library is fully customizable,
 and the software can be used to plan non-LEGO© layout, if you are willing to create the parts.
@@ -49,6 +51,7 @@ shortcut is created, simply double click it to run BlueBrick.
 
 c.bis) Or simply, if you don't want to create a shortcut, to run BlueBrick in
 a Terminal Shell, type:
+
 $ mono32 BlueBrick.exe &
 
 #### - PlayOnLinux
@@ -80,6 +83,7 @@ b) Unzip the BlueBrick zip file somewhere on your hardrive.
 
 c) To run BlueBrick, in a Terminal Shell type, go to the BlueBrick installation
 folder using the "cd" command then type:
+
 $ mono32 BlueBrick.exe
 
 ## License
@@ -98,9 +102,10 @@ GNU General Public License for more details.
 
 This software was designed specially for the AFOLs who want to prepare the
 layouts of their LEGO(c) exhibitions. BlueBrick is compatible with:
-  - LDRAW (https://www.ldraw.org/)
-  - "Train Depot Track Designer" (http://www.ngltc.org/Train_Depot/td.htm)
-  - 4DBrix nControl (https://www.4dbrix.com/)
+- LDRAW (https://www.ldraw.org/)
+- "Train Depot Track Designer" (http://www.ngltc.org/Train_Depot/td.htm)
+- 4DBrix nControl (https://www.4dbrix.com/)
+
 BlueBrick was designed to extend easily its part database. Its layers feature
 allow you to better organize your map, and some specific layers make possible
 the addition of annotation and area assignment.
