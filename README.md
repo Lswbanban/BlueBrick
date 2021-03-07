@@ -1,4 +1,4 @@
-# BlueBrick version 1.8.2.0
+# BlueBrick version 1.9.1.0
 
 ## Overview
 Bluebrick is software to plan LEGO© Diorama or Layout. It is particularly efficient
@@ -49,7 +49,7 @@ shortcut is created, simply double click it to run BlueBrick.
 
 c.bis) Or simply, if you don't want to create a shortcut, to run BlueBrick in
 a Terminal Shell, type:
-$ mono BlueBrick.exe &
+$ mono32 BlueBrick.exe &
 
 #### - PlayOnLinux
 a) Create a new wineprefix.
@@ -59,9 +59,6 @@ b) Click "Configure" and under "Install components" choose `dotnet45`.
 c) Copy the BlueBrick folder to the virtual drive and create a shortcut.
 
 ### Mac OS
-- Warning: it seem the program cannot run on Mac OSX. Several users have reported an
-error related to user32.dll. If you know how to fix it, please, contact me.
-
 - Alternatively, you can also install PlayOnMac and use the same instructions as above for PlayOnLinux.
 
 a) You need to install Mono for Mac first which you can download here:
@@ -83,22 +80,27 @@ b) Unzip the BlueBrick zip file somewhere on your hardrive.
 
 c) To run BlueBrick, in a Terminal Shell type, go to the BlueBrick installation
 folder using the "cd" command then type:
-$ mono BlueBrick.exe
+$ mono32 BlueBrick.exe
 
 ## License
 
-BlueBrick is a free software for Windows/Vista developped by Alban Nanty in
-open source. You can use it for your personnal purpose but not for commercial
-profit. You can redistribute it under the terms of the [GNU General Public
-License version 3](http://www.gnu.org/licenses/) as published by the [Free
-Software Foundation](http://www.fsf.org/licensing/licenses/gpl.html). This
-program is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY.
+BlueBrick is a free and open source software for Windows developped by Alban Nanty.
+Copyright (C) since 2009  Alban Nanty
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License version 3 as published by the Free
+Software Foundation (https://www.gnu.org/licenses/gpl-3.0.html).
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
 This software was designed specially for the AFOLs who want to prepare the
-layouts of their LEGO© exhibitions. BlueBrick is compatible with [LDRAW](http://www.ldraw.org/)
-and ["Train Depot Track Designer"](http://www.ngltc.org/Train_Depot/td.htm)
-and was designed to extend easily
-its part database. Its layers feature allow you to better organize your map,
-and some specific layers make possible the addition of annotation and area
-assignment.
+layouts of their LEGO(c) exhibitions. BlueBrick is compatible with:
+  - LDRAW (https://www.ldraw.org/)
+  - "Train Depot Track Designer" (http://www.ngltc.org/Train_Depot/td.htm)
+  - 4DBrix nControl (https://www.4dbrix.com/)
+BlueBrick was designed to extend easily its part database. Its layers feature
+allow you to better organize your map, and some specific layers make possible
+the addition of annotation and area assignment.
