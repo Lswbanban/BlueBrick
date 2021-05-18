@@ -286,9 +286,7 @@ namespace BlueBrick.MapData
 					bool isSelected = drawSelection && mSelectedObjects.Contains(cell);
                     PointF[] hull = null;
                     if (isSelected || mDisplayHulls)
-                    {
                         hull = Layer.sConvertPolygonInStudToPixel(cell.SelectionArea.Vertice, areaInStud, scalePixelPerStud);
-                    }
 
 					// draw the hull if needed
 					if (mDisplayHulls)

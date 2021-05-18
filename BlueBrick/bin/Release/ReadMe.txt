@@ -137,10 +137,12 @@ Open bugs:
 - MISSING FEATURE (Vincent): Display the number of part selected (probably in the status bar).
 - BUG #57 (Alban): The drag and drop of file is not working under Mono 2.10
 - BUG #58 (Alban): The cancel of the edition with the right click mouse button doesn't work under Mono
-- BUG #62 (FreeStorm): Text position on Text Layer (Linux)
 - BUG (Alban): The saving of a group in the brick library after rotating it will create a correct image, but wrong part positions when the group is placed back on the map
 - REFACTORING (Alban): In the part XML, promote the <LDraw><PreferredHeight> to normal part properties, and use it to set the default Altitude of parts
 - REFACTORING (Alban): The two buttons to raise and lower parts in the toolbar should probably change the Altitude of the parts for a brick layer (that's what the users may expect)
+
+Bug fixed in 1.9.2.0:
+- BUGFIX #62 on Bitbucket (FreeStorm): Text cells on Text Layer is not drawn at the correct position on Linux (thanks @Shevonar for the fix)
 
 Bug fixed in 1.9.1.0:
 - BUGFIX (Alban): Update the application to download the part package in https instead of http, since the website has moved to https
