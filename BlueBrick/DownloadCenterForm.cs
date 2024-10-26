@@ -319,6 +319,7 @@ namespace BlueBrick
 
 			// create a http request
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(parameters.url);
+			request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36";
 			// Set some reasonable limits on resources used by this request
 			request.MaximumAutomaticRedirections = 4;
 			request.MaximumResponseHeadersLength = 4;
