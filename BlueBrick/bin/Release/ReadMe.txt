@@ -146,6 +146,7 @@ Bug fixed in 1.9.2.0:
 - BUGFIX (Mattzobricks): The download new parts feature was displaying an error (the HTTP request was refused with a 403 error)
 - BUGFIX #62 on Bitbucket (FreeStorm): Text cells on Text Layer is not drawn at the correct position on Linux (thanks @Shevonar for the fix)
 - BUGFIX (Vincent): open the popup modial dialog box on the same screen as the Main Application (when you have multiple screens and run BlueBrick on the second monitor)
+- BUGFIX (Vincent): Make the combo box for the grid size a bit larger in the Grid Layer Properties window
 
 Bug fixed in 1.9.1.0:
 - BUGFIX (Alban): Update the application to download the part package in https instead of http, since the website has moved to https

@@ -87,7 +87,6 @@ namespace BlueBrick
 			// 
 			// groupBox1
 			// 
-			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Controls.Add(this.gridCheckBox);
 			this.groupBox1.Controls.Add(this.subGridColorlabel);
 			this.groupBox1.Controls.Add(this.subGridColorPictureBox);
@@ -100,14 +99,15 @@ namespace BlueBrick
 			this.groupBox1.Controls.Add(this.subGridSizeNumericUpDown);
 			this.groupBox1.Controls.Add(this.subGridCheckBox);
 			this.groupBox1.Controls.Add(this.gridSizeNumericUpDown);
+			resources.ApplyResources(this.groupBox1, "groupBox1");
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.TabStop = false;
 			// 
 			// gridCheckBox
 			// 
-			resources.ApplyResources(this.gridCheckBox, "gridCheckBox");
 			this.gridCheckBox.Checked = true;
 			this.gridCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			resources.ApplyResources(this.gridCheckBox, "gridCheckBox");
 			this.gridCheckBox.Name = "gridCheckBox";
 			this.gridCheckBox.UseVisualStyleBackColor = true;
 			this.gridCheckBox.CheckedChanged += new System.EventHandler(this.gridCheckBox_CheckedChanged);
@@ -119,9 +119,9 @@ namespace BlueBrick
 			// 
 			// subGridColorPictureBox
 			// 
-			resources.ApplyResources(this.subGridColorPictureBox, "subGridColorPictureBox");
 			this.subGridColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.subGridColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.subGridColorPictureBox, "subGridColorPictureBox");
 			this.subGridColorPictureBox.Name = "subGridColorPictureBox";
 			this.subGridColorPictureBox.TabStop = false;
 			this.subGridColorPictureBox.Click += new System.EventHandler(this.subGridColorPictureBox_Click);
@@ -133,9 +133,9 @@ namespace BlueBrick
 			// 
 			// gridColorPictureBox
 			// 
-			resources.ApplyResources(this.gridColorPictureBox, "gridColorPictureBox");
 			this.gridColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.gridColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.gridColorPictureBox, "gridColorPictureBox");
 			this.gridColorPictureBox.Name = "gridColorPictureBox";
 			this.gridColorPictureBox.TabStop = false;
 			this.gridColorPictureBox.Click += new System.EventHandler(this.gridColorPictureBox_Click);
@@ -212,9 +212,9 @@ namespace BlueBrick
 			// 
 			// subGridCheckBox
 			// 
-			resources.ApplyResources(this.subGridCheckBox, "subGridCheckBox");
 			this.subGridCheckBox.Checked = true;
 			this.subGridCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			resources.ApplyResources(this.subGridCheckBox, "subGridCheckBox");
 			this.subGridCheckBox.Name = "subGridCheckBox";
 			this.subGridCheckBox.UseVisualStyleBackColor = true;
 			this.subGridCheckBox.CheckedChanged += new System.EventHandler(this.subGridCheckBox_CheckedChanged);
@@ -241,7 +241,6 @@ namespace BlueBrick
 			// 
 			// groupBox2
 			// 
-			resources.ApplyResources(this.groupBox2, "groupBox2");
 			this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
 			this.groupBox2.Controls.Add(this.cellIndexOriginButton);
 			this.groupBox2.Controls.Add(this.cellIndexCommaLabel);
@@ -257,6 +256,7 @@ namespace BlueBrick
 			this.groupBox2.Controls.Add(this.cellIndexRowLabel);
 			this.groupBox2.Controls.Add(this.cellIndexRowComboBox);
 			this.groupBox2.Controls.Add(this.cellIndexCheckBox);
+			resources.ApplyResources(this.groupBox2, "groupBox2");
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.TabStop = false;
 			// 
@@ -309,9 +309,9 @@ namespace BlueBrick
 			// 
 			// cellIndexFontNameLabel
 			// 
-			resources.ApplyResources(this.cellIndexFontNameLabel, "cellIndexFontNameLabel");
 			this.cellIndexFontNameLabel.BackColor = System.Drawing.SystemColors.InactiveBorder;
 			this.cellIndexFontNameLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.cellIndexFontNameLabel, "cellIndexFontNameLabel");
 			this.cellIndexFontNameLabel.Name = "cellIndexFontNameLabel";
 			// 
 			// cellIndexColorLabel
@@ -321,9 +321,9 @@ namespace BlueBrick
 			// 
 			// cellIndexColorPictureBox
 			// 
-			resources.ApplyResources(this.cellIndexColorPictureBox, "cellIndexColorPictureBox");
 			this.cellIndexColorPictureBox.BackColor = System.Drawing.Color.White;
 			this.cellIndexColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			resources.ApplyResources(this.cellIndexColorPictureBox, "cellIndexColorPictureBox");
 			this.cellIndexColorPictureBox.Name = "cellIndexColorPictureBox";
 			this.cellIndexColorPictureBox.TabStop = false;
 			this.cellIndexColorPictureBox.Click += new System.EventHandler(this.cellIndexColorPictureBox_Click);
@@ -342,11 +342,11 @@ namespace BlueBrick
 			// 
 			// cellIndexColumnComboBox
 			// 
-			resources.ApplyResources(this.cellIndexColumnComboBox, "cellIndexColumnComboBox");
 			this.cellIndexColumnComboBox.FormattingEnabled = true;
 			this.cellIndexColumnComboBox.Items.AddRange(new object[] {
             resources.GetString("cellIndexColumnComboBox.Items"),
             resources.GetString("cellIndexColumnComboBox.Items1")});
+			resources.ApplyResources(this.cellIndexColumnComboBox, "cellIndexColumnComboBox");
 			this.cellIndexColumnComboBox.Name = "cellIndexColumnComboBox";
 			// 
 			// cellIndexRowLabel
@@ -356,11 +356,11 @@ namespace BlueBrick
 			// 
 			// cellIndexRowComboBox
 			// 
-			resources.ApplyResources(this.cellIndexRowComboBox, "cellIndexRowComboBox");
 			this.cellIndexRowComboBox.FormattingEnabled = true;
 			this.cellIndexRowComboBox.Items.AddRange(new object[] {
             resources.GetString("cellIndexRowComboBox.Items"),
             resources.GetString("cellIndexRowComboBox.Items1")});
+			resources.ApplyResources(this.cellIndexRowComboBox, "cellIndexRowComboBox");
 			this.cellIndexRowComboBox.Name = "cellIndexRowComboBox";
 			// 
 			// cellIndexCheckBox
@@ -374,22 +374,21 @@ namespace BlueBrick
 			// 
 			// buttonOk
 			// 
-			resources.ApplyResources(this.buttonOk, "buttonOk");
 			this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+			resources.ApplyResources(this.buttonOk, "buttonOk");
 			this.buttonOk.Name = "buttonOk";
 			this.buttonOk.UseVisualStyleBackColor = true;
 			this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
 			// 
 			// buttonCancel
 			// 
-			resources.ApplyResources(this.buttonCancel, "buttonCancel");
 			this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			resources.ApplyResources(this.buttonCancel, "buttonCancel");
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.UseVisualStyleBackColor = true;
 			// 
 			// groupBox3
 			// 
-			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Controls.Add(this.alphaTrackBar);
 			this.groupBox3.Controls.Add(this.label3);
 			this.groupBox3.Controls.Add(this.alphaNumericUpDown);
@@ -397,6 +396,7 @@ namespace BlueBrick
 			this.groupBox3.Controls.Add(this.isVisibleCheckBox);
 			this.groupBox3.Controls.Add(this.nameTextBox);
 			this.groupBox3.Controls.Add(this.label2);
+			resources.ApplyResources(this.groupBox3, "groupBox3");
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.TabStop = false;
 			// 
