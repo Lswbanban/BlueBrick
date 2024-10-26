@@ -254,6 +254,7 @@ namespace BlueBrick
 
 					// create a web request to browse the url
 					HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+					request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36";
 					using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 					{
 						// report that we got an answer
