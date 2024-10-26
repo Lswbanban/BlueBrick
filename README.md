@@ -1,4 +1,4 @@
-# BlueBrick version 1.9.1.0
+# BlueBrick version 1.9.2.0
 
 ## Overview
 Bluebrick is software to plan LEGO© Diorama or Layout. It is particularly efficient

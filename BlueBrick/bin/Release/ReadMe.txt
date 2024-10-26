@@ -1,5 +1,5 @@
                     +---------------------------+
-                    | BlueBrick version 1.9.1.0 |
+                    | BlueBrick version 1.9.2.0 |
                     +---------------------------+
 
 -------------------------------------------------------------------------------
@@ -142,6 +142,7 @@ Open bugs:
 - REFACTORING (Alban): The two buttons to raise and lower parts in the toolbar should probably change the Altitude of the parts for a brick layer (that's what the users may expect)
 
 Bug fixed in 1.9.2.0:
+- BUGFIX (Mattzobricks): The download new parts feature was displaying an error (the HTTP request was refused with a 403 error)
 - BUGFIX #62 on Bitbucket (FreeStorm): Text cells on Text Layer is not drawn at the correct position on Linux (thanks @Shevonar for the fix)
 
 Bug fixed in 1.9.1.0:
