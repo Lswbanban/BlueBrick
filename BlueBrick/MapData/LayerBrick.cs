@@ -663,7 +663,7 @@ namespace BlueBrick.MapData
 
 				// open the form to edit the properties in modal mode (given the altitude of the priority brick)
 				EditBrickForm editBrickForm = new EditBrickForm(priorityBrick.Altitude);
-				editBrickForm.ShowDialog();
+				editBrickForm.ShowDialog(MainForm.Instance);
 				if (editBrickForm.DialogResult == DialogResult.OK)
 				{
 					List<Brick> brickListToEdit = new List<Brick>(mSelectedObjects.OfType<Brick>());

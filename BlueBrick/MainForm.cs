@@ -1463,7 +1463,7 @@ namespace BlueBrick
 			// check if the current map is not save and display a warning message
 			if (checkForUnsavedMap())
 			{
-				DialogResult result = this.openFileDialog.ShowDialog();
+				DialogResult result = this.openFileDialog.ShowDialog(this);
 				if (result == DialogResult.OK)
 					openMap(this.openFileDialog.FileName);
 			}
@@ -1598,7 +1598,7 @@ namespace BlueBrick
 			// instantiate a flag to know if the save was actually done
 			bool saveDone = false;
 			// open the save as dialog
-			DialogResult result = this.saveFileDialog.ShowDialog();
+			DialogResult result = this.saveFileDialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 			{
 				// for a "Save As..." only (not for a save), we check if the user choose a LDRAW or TDL format
@@ -1649,7 +1649,7 @@ namespace BlueBrick
 		{
 			// open the export form
 			mExportImageForm.init();
-			DialogResult result = mExportImageForm.ShowDialog();
+			DialogResult result = mExportImageForm.ShowDialog(this);
 			if (result == DialogResult.OK)
 			{
 				// if some export options (at least the first one) were validated, we need to update the view
@@ -1662,7 +1662,7 @@ namespace BlueBrick
 		private void exportPartListToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// open the save file dialog
-			DialogResult result = this.exportPartListFileDialog.ShowDialog();
+			DialogResult result = this.exportPartListFileDialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 				this.PartUsageListView.export(this.exportPartListFileDialog.FileName);
 		}
@@ -1759,7 +1759,7 @@ namespace BlueBrick
 		{
 			// first spawn the window to let the user choose the online source of the part library
 			LibraryPackageSourceForm packageSourceForm = new LibraryPackageSourceForm();
-			packageSourceForm.ShowDialog();
+			packageSourceForm.ShowDialog(this);
 
 			// get the list of files that has been collected by the previous form dialog
 			List<DownloadCenterForm.DownloadableFileInfo> filesToDownload = packageSourceForm.FilesToDownload;
@@ -1769,7 +1769,7 @@ namespace BlueBrick
 			{
 				// open the download center form in dialog mode
 				DownloadCenterForm downloadCenterForm = new DownloadCenterForm(filesToDownload, true);
-				downloadCenterForm.ShowDialog();
+				downloadCenterForm.ShowDialog(this);
 
 				// get the list of files that has been succesfully downloaded
 				List<DownloadCenterForm.DownloadableFileInfo> successfullyDownloadedFiles = downloadCenterForm.SuccessfullyDownloadedFiles;
@@ -1839,7 +1839,7 @@ namespace BlueBrick
         {
 			// create a window for editing the option of the group and show it
 			SaveGroupNameForm form = new SaveGroupNameForm();
-			DialogResult result = form.ShowDialog();
+			DialogResult result = form.ShowDialog(this);
 			// check if we need to update the part lib
 			if ((result == DialogResult.OK) && (form.NewXmlFilesToLoad.Count > 0))
 				this.PartsTabControl.loadAdditionnalGroups(form.NewXmlFilesToLoad, form.NewGroupName);
@@ -2273,7 +2273,7 @@ namespace BlueBrick
 		private void paintToolChooseColorToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			this.colorDialog.Color = mCurrentPaintIconColor;
-			DialogResult result = this.colorDialog.ShowDialog();
+			DialogResult result = this.colorDialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 			{
 				// regenerate the icon
@@ -2289,7 +2289,7 @@ namespace BlueBrick
 		/// </summary>
 		private void openColorPickerToChangeMapBackgroundColor()
 		{
-			DialogResult result = this.colorDialog.ShowDialog();
+			DialogResult result = this.colorDialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 				ActionManager.Instance.doAction(new ChangeBackgroundColor(this.colorDialog.Color));
 		}
@@ -2308,27 +2308,27 @@ namespace BlueBrick
 				if (selectedLayer is LayerGrid)
 				{
 					LayerGridOptionForm optionForm = new LayerGridOptionForm(selectedLayer as LayerGrid);
-					optionForm.ShowDialog();
+					optionForm.ShowDialog(this);
 				}
 				else if (selectedLayer is LayerBrick)
 				{
 					LayerBrickOptionForm optionForm = new LayerBrickOptionForm(selectedLayer as LayerBrick);
-					optionForm.ShowDialog();
+					optionForm.ShowDialog(this);
 				}
 				else if (selectedLayer is LayerText)
 				{
 					LayerTextOptionForm optionForm = new LayerTextOptionForm(selectedLayer);
-					optionForm.ShowDialog();
+					optionForm.ShowDialog(this);
 				}
 				else if (selectedLayer is LayerArea)
 				{
 					LayerAreaOptionForm optionForm = new LayerAreaOptionForm(selectedLayer);
-					optionForm.ShowDialog();
+					optionForm.ShowDialog(this);
 				}
 				else if (selectedLayer is LayerRuler)
 				{
 					LayerTextOptionForm optionForm = new LayerTextOptionForm(selectedLayer);
-					optionForm.ShowDialog();
+					optionForm.ShowDialog(this);
 				}
 			}
 		}
@@ -2552,7 +2552,7 @@ namespace BlueBrick
 			// check if the current budget is not save and display a warning message
 			if (checkForUnsavedBudget())
 			{
-				DialogResult result = this.openBudgetFileDialog.ShowDialog();
+				DialogResult result = this.openBudgetFileDialog.ShowDialog(this);
 				if (result == DialogResult.OK)
 					openBudget(this.openBudgetFileDialog.FileName, null);
 			}
@@ -2564,7 +2564,7 @@ namespace BlueBrick
 			// save the current budget instance, cause the loading of new budget will erase it
 			Budget.Budget currentBudget = Budget.Budget.Instance;
 			// open the new one
-			DialogResult result = this.openBudgetFileDialog.ShowDialog();
+			DialogResult result = this.openBudgetFileDialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 				openBudget(this.openBudgetFileDialog.FileName, currentBudget);
 		}
@@ -2624,7 +2624,7 @@ namespace BlueBrick
 			if (this.saveBudgetFileDialog.InitialDirectory.Length == 0)
 				this.saveBudgetFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 			// open the save as dialog
-			DialogResult result = this.saveBudgetFileDialog.ShowDialog();
+			DialogResult result = this.saveBudgetFileDialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 			{
 				// change the current file name before calling the save
@@ -2715,7 +2715,7 @@ namespace BlueBrick
 		private void aboutBlueBrickToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			AboutBox aboutBox = new AboutBox();
-			aboutBox.ShowDialog();
+			aboutBox.ShowDialog(this);
 		}
 		#endregion
 

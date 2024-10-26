@@ -78,7 +78,7 @@ namespace BlueBrick
 			if (filesToDownload.Count > 0)
 			{
 				DownloadCenterForm languageManager = new DownloadCenterForm(filesToDownload, false);
-				languageManager.ShowDialog();
+				languageManager.ShowDialog(MainForm.Instance);
 			}
 		}
 	}

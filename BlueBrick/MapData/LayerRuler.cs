@@ -256,7 +256,7 @@ namespace BlueBrick.MapData
 		{
 			// open the edit text dialog in modal
 			EditRulerForm editRulerForm = new EditRulerForm(itemToEdit);
-			editRulerForm.ShowDialog();
+			editRulerForm.ShowDialog(MainForm.Instance);
 			if (editRulerForm.DialogResult == DialogResult.OK)
 				Actions.ActionManager.Instance.doAction(new Actions.Rulers.EditRuler(this, itemToEdit, editRulerForm.EditedRulerClone));
 		}

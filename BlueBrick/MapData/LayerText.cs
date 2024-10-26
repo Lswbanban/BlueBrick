@@ -191,7 +191,7 @@ namespace BlueBrick.MapData
 		{
 			// open the form to edit the properties in modal mode
 			EditTextForm editTextForm = new EditTextForm(itemToAddOrEdit);
-			editTextForm.ShowDialog();
+			editTextForm.ShowDialog(MainForm.Instance);
 			if (editTextForm.DialogResult == DialogResult.OK)
 			{
 				// check if it is an edition of an existing text or a new text

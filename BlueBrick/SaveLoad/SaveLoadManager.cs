@@ -240,7 +240,7 @@ namespace BlueBrick
 				else
 					message = Properties.Resources.ErrorMsgCannotOpenMap.Replace("&", filename);
 				LoadErrorForm errorMessageDialog = new LoadErrorForm(Properties.Resources.ErrorMsgTitleError, message, e.Message);
-				errorMessageDialog.ShowDialog();
+				errorMessageDialog.ShowDialog(MainForm.Instance);
 				return false;
 			}
 		}
@@ -283,7 +283,7 @@ namespace BlueBrick
 				else
 					message = Properties.Resources.ErrorMsgCannotSaveMap.Replace("&", filename);
 				LoadErrorForm errorMessageDialog = new LoadErrorForm(Properties.Resources.ErrorMsgTitleError, message, e.Message);
-				errorMessageDialog.ShowDialog();
+				errorMessageDialog.ShowDialog(MainForm.Instance);
 				return false;
 			}
 		}

@@ -698,7 +698,7 @@ namespace BlueBrick
 				this.openTemplateFileDialog.FileName = file.Name;
 			}
 			// then open the dialog box in modal
-			DialogResult result = this.openTemplateFileDialog.ShowDialog();
+			DialogResult result = this.openTemplateFileDialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 			{
 				// Try to load the file and copy the style settings like the background colors, etc.. in the appearance settings
@@ -750,7 +750,7 @@ namespace BlueBrick
 			{
 				string message = Properties.Resources.ErrorMsgCannotOpenMap.Replace("&", filename);
 				LoadErrorForm errorMessageDialog = new LoadErrorForm(Properties.Resources.ErrorMsgTitleError, message, e.Message);
-				errorMessageDialog.ShowDialog();
+				errorMessageDialog.ShowDialog(this);
 				// there was a problem loading the file
 				return false;
 			}
@@ -1399,7 +1399,7 @@ namespace BlueBrick
 				openBudgetFileDialog.FileName = file.Name;
 			}
 			// then open the dialog box in modal
-			DialogResult result = openBudgetFileDialog.ShowDialog();
+			DialogResult result = openBudgetFileDialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 				setTextBoxForBudgetFilenameToLoadAtStartup(openBudgetFileDialog.FileName);
 		}

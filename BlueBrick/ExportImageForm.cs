@@ -718,7 +718,7 @@ namespace BlueBrick
 				this.saveExportImageDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
 			// open the save dialog
-			DialogResult result = this.saveExportImageDialog.ShowDialog();
+			DialogResult result = this.saveExportImageDialog.ShowDialog(this);
 			if (result == DialogResult.OK)
 			{
 				// find the correct format according to the last extension.

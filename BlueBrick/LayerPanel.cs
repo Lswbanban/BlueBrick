@@ -257,27 +257,27 @@ namespace BlueBrick
 			if (this.GetType().Name == "LayerGridPanel")
 			{
 				LayerGridOptionForm optionForm = new LayerGridOptionForm(this.mLayerReference as LayerGrid);
-				optionForm.ShowDialog();
+				optionForm.ShowDialog(MainForm.Instance);
 			}
 			else if (this.GetType().Name == "LayerBrickPanel")
 			{
 				LayerBrickOptionForm optionForm = new LayerBrickOptionForm(this.mLayerReference as LayerBrick);
-				optionForm.ShowDialog();
+				optionForm.ShowDialog(MainForm.Instance);
 			}
 			else if (this.GetType().Name == "LayerTextPanel")
 			{
 				LayerTextOptionForm optionForm = new LayerTextOptionForm(this.mLayerReference as LayerText);
-				optionForm.ShowDialog();
+				optionForm.ShowDialog(MainForm.Instance);
 			}
 			else if (this.GetType().Name == "LayerAreaPanel")
 			{
 				LayerAreaOptionForm optionForm = new LayerAreaOptionForm(this.mLayerReference as LayerArea);
-				optionForm.ShowDialog();
+				optionForm.ShowDialog(MainForm.Instance);
 			}
 			else if (this.GetType().Name == "LayerRulerPanel")
 			{
 				LayerTextOptionForm optionForm = new LayerTextOptionForm(this.mLayerReference as LayerRuler);
-				optionForm.ShowDialog();
+				optionForm.ShowDialog(MainForm.Instance);
 			}
 		}
 
