@@ -972,6 +972,8 @@ namespace BlueBrick
 			this.toolBarRotationAngleButton.Enabled = enableMoveRotateButton;
 			this.rotationStepToolStripMenuItem.Enabled = enableMoveRotateButton;
 			this.rotationStep1ToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.rotationStep5ToolStripMenuItem.Enabled = enableMoveRotateButton;
+			this.rotationStep11ToolStripMenuItem.Enabled = enableMoveRotateButton;
 			this.rotationStep22ToolStripMenuItem.Enabled = enableMoveRotateButton;
 			this.rotationStep45ToolStripMenuItem.Enabled = enableMoveRotateButton;
 			this.rotationStep90ToolStripMenuItem.Enabled = enableMoveRotateButton;
@@ -2165,6 +2167,8 @@ namespace BlueBrick
 			this.toolBarAngle90Button.Checked = this.rotationStep90ToolStripMenuItem.Checked = (angle == 90.0f);
 			this.toolBarAngle45Button.Checked = this.rotationStep45ToolStripMenuItem.Checked = (angle == 45.0f);
 			this.toolBarAngle22Button.Checked = this.rotationStep22ToolStripMenuItem.Checked = (angle == 22.5f);
+			this.toolBarAngle11Button.Checked = this.rotationStep11ToolStripMenuItem.Checked = (angle == 11.25f);
+			this.toolBarAngle5Button.Checked = this.rotationStep5ToolStripMenuItem.Checked = (angle == 5.625f);
 			this.toolBarAngle1Button.Checked = this.rotationStep1ToolStripMenuItem.Checked = (angle == 1.0f);
 			//layer
 			Layer.CurrentRotationStep = angle;
@@ -2183,6 +2187,16 @@ namespace BlueBrick
 		private void rotationStep22ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			updateRotationStepButton(22.5f);
+		}
+
+		private void rotationStep11ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			updateRotationStepButton(11.25f);
+		}
+
+		private void rotationStep5ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			updateRotationStepButton(5.625f);
 		}
 
 		private void rotationStep1ToolStripMenuItem_Click(object sender, EventArgs e)
