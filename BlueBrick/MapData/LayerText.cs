@@ -273,12 +273,12 @@ namespace BlueBrick.MapData
                     PointF center = Layer.sConvertPointInStudToPixel(cell.Center, areaInStud, scalePixelPerStud);
                     rotation.Translate(center.X, center.Y);
                     rotation.Rotate(cell.Orientation);
-                    g.Transform = rotation;
                     // get the source and destination rectangle
                     RectangleF srcRect = cell.Image.GetBounds(ref unit);
                     float halfWidth = srcRect.Width * scaleForDestinationRectangle;
                     float halfHeight = srcRect.Height * scaleForDestinationRectangle;
                     PointF[] destRect = { new PointF(-halfWidth, -halfHeight), new PointF(halfWidth, -halfHeight), new PointF(-halfWidth, halfHeight) };
+                    rotation.TransformPoints(destRect);
                     // draw the image containing the text
                     g.DrawImage(cell.Image, destRect, srcRect, unit, mImageAttribute);
 
@@ -286,10 +286,7 @@ namespace BlueBrick.MapData
 					bool isSelected = drawSelection && mSelectedObjects.Contains(cell);
                     PointF[] hull = null;
                     if (isSelected || mDisplayHulls)
-                    {
-                        g.Transform = new Matrix();
                         hull = Layer.sConvertPolygonInStudToPixel(cell.SelectionArea.Vertice, areaInStud, scalePixelPerStud);
-                    }
 
 					// draw the hull if needed
 					if (mDisplayHulls)
@@ -300,9 +297,6 @@ namespace BlueBrick.MapData
 						g.FillPolygon(mSelectionBrush, hull);
 				}
 			}
-
-            // reset the transform
-            g.Transform = new Matrix();
 
 			// call the base class to draw the surrounding selection rectangle
             base.draw(g, areaInStud, scalePixelPerStud, drawSelection);
