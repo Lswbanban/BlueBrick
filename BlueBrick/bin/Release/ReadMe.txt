@@ -141,6 +141,9 @@ Open bugs:
 - REFACTORING (Alban): In the part XML, promote the <LDraw><PreferredHeight> to normal part properties, and use it to set the default Altitude of parts
 - REFACTORING (Alban): The two buttons to raise and lower parts in the toolbar should probably change the Altitude of the parts for a brick layer (that's what the users may expect)
 
+Bug fixed in 1.9.3.0:
+- BUGFIX (Roy): Fix a translation error in German in the Ruler Property window, for selecting the unit
+
 Bug fixed in 1.9.2.0:
 - NEW FEATURE (Mattzobricks): Add snapping angles of 11.25° and 5.625° in the rotation snapping menu
 - BUGFIX (Mattzobricks): The download new parts feature was displaying an error (the HTTP request was refused with a 403 error)
